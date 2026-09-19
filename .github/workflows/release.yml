@@ -1,0 +1,37 @@
+name: Publicar sistema
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validar sistema
+        run: npm run validate
+
+      - name: Preparar paquete
+        run: |
+          mkdir -p package/tierra-magica
+          rsync -a --exclude='.git' --exclude='.github' --exclude='package' --exclude='test' --exclude='node_modules' --exclude='*.zip' ./ package/tierra-magica/
+          cd package
+          zip -r ../tierra-magica.zip tierra-magica
+
+      - name: Crear publicación
+        uses: softprops/action-gh-release@v2
+        with:
+          files: tierra-magica.zip
+          generate_release_notes: true

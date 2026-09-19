@@ -1,0 +1,39 @@
+{
+  "id": "tierra-magica",
+  "title": "Tierra Mágica",
+  "description": "Sistema de fantasía heroica para Tierra Mágica. Incluye fichas de personajes y PNJ, atributos, habilidades, recursos, inventario, ataques, magia y tiradas al chat.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "Gustavo Matus"
+    }
+  ],
+  "esmodules": [
+    "scripts/tierra-magica.mjs"
+  ],
+  "styles": [
+    "styles/tierra-magica.css"
+  ],
+  "languages": [
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    }
+  ],
+  "socket": true,
+  "initiative": "1d20 + @attributes.agility.mod + @combat.initiativeBonus",
+  "grid": {
+    "distance": 1.5,
+    "units": "m"
+  },
+  "primaryTokenAttribute": "resources.health",
+  "secondaryTokenAttribute": "resources.mana",
+  "url": "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry",
+  "manifest": "https://raw.githubusercontent.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/main/system.json",
+  "download": "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/tierra-magica.zip"
+}

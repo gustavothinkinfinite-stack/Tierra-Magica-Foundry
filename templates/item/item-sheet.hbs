@@ -1,0 +1,51 @@
+<form class="{{cssClass}} tm-item-sheet" autocomplete="off">
+  <header class="tm-item-header">
+    <img src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <div>
+      <span class="tm-kicker">{{typeLabel}}</span>
+      <input name="name" type="text" value="{{item.name}}" placeholder="Nombre" />
+    </div>
+  </header>
+
+  <section class="tm-panel tm-item-fields">
+    <div class="tm-form-grid">
+      {{#if isWeapon}}
+        <label><span>Atributo</span><select name="system.ability">{{selectOptions config.abilities selected=system.ability}}</select></label>
+        <label><span>Bono de ataque</span><input type="number" name="system.attackBonus" value="{{system.attackBonus}}" /></label>
+        <label><span>Daño</span><input type="text" name="system.damage" value="{{system.damage}}" placeholder="1d8" /></label>
+        <label><span>Bono de daño</span><input type="number" name="system.damageBonus" value="{{system.damageBonus}}" /></label>
+        <label><span>Alcance</span><input type="text" name="system.range" value="{{system.range}}" /></label>
+        <label><span>Rasgos</span><input type="text" name="system.traits" value="{{system.traits}}" /></label>
+      {{/if}}
+      {{#if isArmor}}
+        <label><span>Armadura</span><input type="number" name="system.armor" value="{{system.armor}}" /></label>
+        <label><span>Límite de Agilidad</span><input type="number" name="system.agilityCap" value="{{system.agilityCap}}" /></label>
+        <label><span>Rasgos</span><input type="text" name="system.traits" value="{{system.traits}}" /></label>
+      {{/if}}
+      {{#if isEquipment}}
+        <label><span>Categoría</span><input type="text" name="system.category" value="{{system.category}}" /></label>
+      {{/if}}
+      {{#if isSpell}}
+        <label><span>Círculo</span><input type="number" name="system.circle" value="{{system.circle}}" min="0" /></label>
+        <label><span>Tradición</span><input type="text" name="system.tradition" value="{{system.tradition}}" /></label>
+        <label><span>Costo de maná</span><input type="number" name="system.cost" value="{{system.cost}}" min="0" /></label>
+        <label><span>Atributo</span><select name="system.ability">{{selectOptions config.abilities selected=system.ability}}</select></label>
+        <label><span>Tirada / daño</span><input type="text" name="system.roll" value="{{system.roll}}" placeholder="2d6 + 3" /></label>
+        <label><span>Rasgos</span><input type="text" name="system.traits" value="{{system.traits}}" /></label>
+      {{/if}}
+      {{#if isTalent}}
+        <label><span>Categoría</span><input type="text" name="system.category" value="{{system.category}}" /></label>
+        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" /></label>
+      {{/if}}
+      <label><span>Cantidad</span><input type="number" name="system.quantity" value="{{system.quantity}}" min="0" /></label>
+      <label><span>Peso</span><input type="number" name="system.weight" value="{{system.weight}}" min="0" step="0.1" /></label>
+      <label><span>Precio</span><input type="number" name="system.price" value="{{system.price}}" min="0" step="0.1" /></label>
+      <label class="tm-check"><span>Equipado</span><input type="checkbox" name="system.equipped" {{checked system.equipped}} /></label>
+    </div>
+  </section>
+
+  <section class="tm-panel tm-editor-panel">
+    <h2>Descripción</h2>
+    {{editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" collaborate=false}}
+  </section>
+</form>

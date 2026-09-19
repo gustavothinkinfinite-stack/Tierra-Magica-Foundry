@@ -1,0 +1,60 @@
+{
+  "TYPES": {
+    "Actor": {
+      "character": "Personaje",
+      "npc": "PNJ"
+    },
+    "Item": {
+      "weapon": "Arma",
+      "armor": "Armadura",
+      "equipment": "Equipo",
+      "spell": "Hechizo",
+      "talent": "Talento"
+    }
+  },
+  "TM": {
+    "SystemName": "Tierra Mágica",
+    "Actor": {
+      "Character": "Personaje",
+      "Npc": "PNJ"
+    },
+    "Item": {
+      "Weapon": "Arma",
+      "Armor": "Armadura",
+      "Equipment": "Equipo",
+      "Spell": "Hechizo",
+      "Talent": "Talento"
+    },
+    "Abilities": {
+      "might": "Poderío",
+      "agility": "Agilidad",
+      "intellect": "Intelecto",
+      "will": "Voluntad",
+      "presence": "Presencia"
+    },
+    "Skills": {
+      "athletics": "Atletismo",
+      "acrobatics": "Acrobacias",
+      "stealth": "Sigilo",
+      "thievery": "Latrocinio",
+      "arcana": "Arcana",
+      "crafting": "Artesanía",
+      "lore": "Saber",
+      "medicine": "Medicina",
+      "nature": "Naturaleza",
+      "perception": "Percepción",
+      "survival": "Supervivencia",
+      "deception": "Engaño",
+      "diplomacy": "Diplomacia",
+      "intimidation": "Intimidación",
+      "performance": "Interpretación"
+    },
+    "Ranks": {
+      "0": "Sin entrenamiento",
+      "1": "Entrenado",
+      "2": "Experto",
+      "3": "Maestro",
+      "4": "Legendario"
+    }
+  }
+}

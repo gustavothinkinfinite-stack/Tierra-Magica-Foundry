@@ -1,0 +1,38 @@
+<section class="tm-panel tm-item-section">
+  <div class="tm-section-heading">
+    <h2>{{title}}</h2>
+    {{#if @root.editable}}
+      <button type="button" class="tm-icon-button" data-action="item-create" data-type="{{type}}" title="Crear {{title}}">
+        <i class="fa-solid fa-plus"></i> Agregar
+      </button>
+    {{/if}}
+  </div>
+  <ol class="tm-item-list">
+    {{#each items as |item|}}
+      <li class="item tm-item-row" data-item-id="{{item.id}}">
+        <img src="{{item.img}}" alt="" />
+        <div class="tm-item-name">
+          <strong>{{item.name}}</strong>
+          {{#if (eq item.type "weapon")}}<small>{{item.system.damage}} · {{item.system.range}}</small>{{/if}}
+          {{#if (eq item.type "armor")}}<small>Armadura +{{item.system.armor}}</small>{{/if}}
+          {{#if (eq item.type "spell")}}<small>Círculo {{item.system.circle}} · {{item.system.tradition}}</small>{{/if}}
+          {{#if (eq item.type "equipment")}}<small>Cantidad: {{item.system.quantity}}</small>{{/if}}
+          {{#if (eq item.type "talent")}}<small>{{item.system.category}}</small>{{/if}}
+        </div>
+        <div class="tm-item-actions">
+          {{#if (eq item.type "weapon")}}
+            <button type="button" data-action="item-attack" title="Ataque"><i class="fa-solid fa-dice-d20"></i> Ataque</button>
+            <button type="button" data-action="item-damage" title="Daño"><i class="fa-solid fa-burst"></i> Daño</button>
+          {{/if}}
+          {{#if (eq item.type "spell")}}
+            <button type="button" data-action="item-spell" title="Lanzar"><i class="fa-solid fa-wand-sparkles"></i> Lanzar</button>
+          {{/if}}
+          <button type="button" class="tm-icon-button" data-action="item-edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>
+          {{#if @root.editable}}<button type="button" class="tm-icon-button tm-danger" data-action="item-delete" title="Eliminar"><i class="fa-solid fa-trash"></i></button>{{/if}}
+        </div>
+      </li>
+    {{else}}
+      <li class="tm-empty">Todavía no hay elementos en esta sección.</li>
+    {{/each}}
+  </ol>
+</section>
