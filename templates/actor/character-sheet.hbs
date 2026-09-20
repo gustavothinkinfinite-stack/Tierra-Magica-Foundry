@@ -214,8 +214,12 @@
         <div>
           <small>Página de habilidades</small>
           <h2>Habilidades</h2>
-          <p>Administra los rangos y realiza tiradas desde una vista completa del personaje.</p>
+          <p>Rangos, modificadores automáticos, temporales y fuentes que componen cada valor final.</p>
         </div>
+        <button type="button" class="tm-v04-clear-temporaries" data-action="clear-skill-temporaries" title="Poner todos los modificadores temporales en 0">
+          <i class="fa-solid fa-eraser"></i>
+          <span>Limpiar temporales</span>
+        </button>
       </section>
 
       <section class="tm-v03-skills-page">
@@ -226,18 +230,74 @@
               <h3>{{group.label}}</h3>
             </header>
 
-            <div class="tm-v03-skill-category-list">
+            <div class="tm-v03-skill-category-list tm-v04-skill-category-list">
               {{#each group.skills as |skill|}}
-                <div class="tm-v03-skill-manage-row">
-                  <button type="button" class="tm-v03-skill-manage-roll" data-action="roll-skill" data-key="{{skill.key}}" title="Tirar {{skill.label}}">
-                    <span>{{skill.label}}</span>
-                    <i class="fa-solid fa-dice"></i>
-                  </button>
-                  <select data-action="set-skill-rank" data-key="{{skill.key}}" title="Rango de {{skill.label}}">
-                    {{selectOptions @root.config.rankLabels selected=skill.rank}}
-                  </select>
-                  <b>+{{skill.bonus}}</b>
-                </div>
+                <article class="tm-v04-skill-detail">
+                  <div class="tm-v04-skill-main">
+                    <button type="button" class="tm-v04-skill-name" data-action="roll-skill" data-key="{{skill.key}}" title="Tirar {{skill.label}}">
+                      <span>{{skill.label}}</span>
+                      <i class="fa-solid fa-dice"></i>
+                    </button>
+
+                    <select data-action="set-skill-rank" data-key="{{skill.key}}" title="Rango de {{skill.label}}">
+                      {{selectOptions @root.config.rankLabels selected=skill.rank}}
+                    </select>
+
+                    <div class="tm-v04-skill-total" title="Modificador final de la Habilidad">
+                      <small>Total</small>
+                      <b>{{skill.bonusDisplay}}</b>
+                    </div>
+
+                    <button type="button" class="tm-v04-roll-button" data-action="roll-skill" data-key="{{skill.key}}" title="Tirar {{skill.label}}">
+                      <i class="fa-solid fa-dice-d10"></i>
+                    </button>
+                  </div>
+
+                  <div class="tm-v04-skill-breakdown">
+                    {{#each skill.modifierSummary as |modifier|}}
+                      <span class="tm-v04-modifier-chip tm-v04-modifier-{{modifier.key}}">
+                        <small>{{modifier.label}}</small>
+                        <b>{{modifier.display}}</b>
+                      </span>
+                    {{/each}}
+
+                    <label class="tm-v04-manual-modifier">
+                      <small>Temporal</small>
+                      <input type="number" value="{{skill.temporary}}" data-action="set-skill-temporary" data-key="{{skill.key}}" title="Modificador temporal" />
+                    </label>
+
+                    <label class="tm-v04-manual-modifier">
+                      <small>Otros</small>
+                      <input type="number" value="{{skill.other}}" data-action="set-skill-other" data-key="{{skill.key}}" title="Otro modificador manual" />
+                    </label>
+                  </div>
+
+                  {{#if skill.sources.length}}
+                    <div class="tm-v04-skill-sources">
+                      <span class="tm-v04-sources-title"><i class="fa-solid fa-link"></i> Fuentes activas</span>
+                      <div class="tm-v04-source-list">
+                        {{#each skill.sources as |source|}}
+                          <button type="button" class="tm-v04-source" data-action="skill-source-open" data-item-id="{{source.itemId}}" title="Abrir {{source.name}}">
+                            <span>
+                              <b>{{source.name}}</b>
+                              <small>{{source.categoryLabel}}{{#if source.label}} · {{source.label}}{{/if}}</small>
+                            </span>
+                            <strong>{{source.display}}</strong>
+                          </button>
+                        {{/each}}
+                      </div>
+                    </div>
+                  {{/if}}
+
+                  {{#if skill.linkedSpecializations.length}}
+                    <div class="tm-v04-linked-specializations">
+                      <span>Especializaciones:</span>
+                      {{#each skill.linkedSpecializations as |specialization|}}
+                        <button type="button" data-action="skill-source-open" data-item-id="{{specialization.id}}">{{specialization.name}}</button>
+                      {{/each}}
+                    </div>
+                  {{/if}}
+                </article>
               {{/each}}
             </div>
           </section>
