@@ -1,15 +1,13 @@
 {
   "name": "tierra-magica-foundry",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
-  "description": "Sistema Tierra Mágica para Foundry VTT",
+  "description": "Foundry T.M. — sistema Tierra Mágica para Foundry VTT",
   "scripts": {
     "test": "node --test",
-    "check": "node --check scripts/tierra-magica.mjs && node --check scripts/config.mjs && node --check scripts/content.mjs && node --check scripts/documents/actor.mjs && node --check scripts/sheets/actor-sheet.mjs && node --check scripts/sheets/item-sheet.mjs",
+    "check": "node --check scripts/tierra-magica.mjs && node --check scripts/config.mjs && node --check scripts/content.mjs && node --check scripts/rules.mjs && node --check scripts/documents/actor.mjs && node --check scripts/documents/item.mjs && node --check scripts/sheets/actor-sheet.mjs && node --check scripts/sheets/item-sheet.mjs",
     "validate": "npm run check && npm test"
   },
-  "engines": {
-    "node": ">=20"
-  }
+  "engines": { "node": ">=20" }
 }
