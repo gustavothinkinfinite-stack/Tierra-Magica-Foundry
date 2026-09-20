@@ -2896,3 +2896,218 @@ form.tm-character-sheet-v03 {
     height: 450px;
   }
 }
+
+
+/* =========================================================
+   TIERRA MÁGICA v0.9.1 — BANNER ILUSTRADO Y ORNAMENTACIÓN
+   Integra la cabecera ilustrada aprobada y refina bloques
+   completos de la Ficha sin alterar mecánicas.
+   ========================================================= */
+
+/* Cabecera ilustrada: pieza hero real, no silueta vectorial. */
+.tm-character-sheet-v03 .tm-v09-header {
+  position: relative;
+  flex: 0 0 190px;
+  height: 190px;
+  padding: 0;
+  overflow: hidden;
+  background: #151b19;
+  border-bottom: 2px solid #70491f;
+  box-shadow:
+    inset 0 -1px rgba(255,255,255,.35),
+    0 5px 13px rgba(55,34,12,.20);
+}
+.tm-character-sheet-v03 .tm-v09-header::before,
+.tm-character-sheet-v03 .tm-v09-header::after {
+  display: none !important;
+}
+.tm-character-sheet-v03 .tm-v091-title-art {
+  display: block;
+  width: 100%;
+  height: 190px;
+  margin: 0;
+  border: 0;
+  object-fit: cover;
+  object-position: center center;
+  filter: saturate(1.04) contrast(1.035);
+}
+
+/* Marco de transición entre la ilustración y los datos. */
+.tm-character-sheet-v03 .tm-v09-header + .tm-v03-identity {
+  position: relative;
+  border-top: 1px solid #d6b36a;
+  box-shadow:
+    inset 0 2px rgba(255,255,255,.42),
+    inset 0 -4px 11px rgba(91,56,21,.06);
+}
+.tm-character-sheet-v03 .tm-v09-header + .tm-v03-identity::before,
+.tm-character-sheet-v03 .tm-v09-header + .tm-v03-identity::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  width: 96px;
+  height: 8px;
+  pointer-events: none;
+  opacity: .7;
+  background: linear-gradient(90deg, transparent, #b8893e, transparent);
+}
+.tm-character-sheet-v03 .tm-v09-header + .tm-v03-identity::before { left: 24px; }
+.tm-character-sheet-v03 .tm-v09-header + .tm-v03-identity::after { right: 24px; }
+
+/* Paneles principales: más sensación de grimorio físico. */
+.tm-character-sheet-v03 .tab[data-tab="summary"] .tm-v03-panel {
+  border: 1px solid #765024;
+  box-shadow:
+    inset 0 0 0 1px rgba(223,186,102,.42),
+    inset 0 0 0 4px rgba(102,65,25,.055),
+    0 4px 11px rgba(44,28,12,.13);
+}
+.tm-character-sheet-v03 .tab[data-tab="summary"] .tm-v03-panel::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 31px;
+  height: 31px;
+  opacity: .34;
+  pointer-events: none;
+  background: url("../assets/ui/sheet-corner.svg") center/contain no-repeat;
+  transform: rotate(180deg);
+}
+.tm-character-sheet-v03 .tab[data-tab="summary"] .tm-v03-panel-heading {
+  min-height: 42px;
+  border-bottom: 1px solid #c59a4e;
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.055),
+    inset 0 -1px rgba(0,0,0,.28),
+    0 2px 4px rgba(58,36,14,.10);
+}
+.tm-character-sheet-v03 .tab[data-tab="summary"] .tm-v03-panel-heading h2 {
+  position: relative;
+}
+.tm-character-sheet-v03 .tab[data-tab="summary"] .tm-v03-panel-heading h2::after {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 1px;
+  margin-left: 9px;
+  vertical-align: middle;
+  background: linear-gradient(90deg,#c9a158,transparent);
+}
+
+/* Núcleo: borde ceremonial más rico sin restar lectura. */
+.tm-character-sheet-v03 .tm-v03-character-stage {
+  border: 2px solid #5a3817;
+  outline: 1px solid #e0bb67;
+  outline-offset: -7px;
+  box-shadow:
+    inset 0 0 0 2px rgba(218,179,91,.30),
+    inset 0 0 0 8px rgba(2,15,20,.52),
+    inset 0 0 98px rgba(0,0,0,.59),
+    0 6px 17px rgba(38,24,10,.26);
+}
+.tm-character-sheet-v03 .tm-v03-character-stage::before,
+.tm-character-sheet-v03 .tm-v03-character-stage::after {
+  opacity: .43;
+}
+
+/* Defensas: menos facetadas, más cercanas a placas/escudos ornamentales. */
+.tm-character-sheet-v03 .tm-v03-defense-grid .tm-v09-defense {
+  min-height: 73px;
+  padding: 8px 9px;
+  border-radius: 9px;
+  clip-path: polygon(8% 0,92% 0,100% 13%,100% 72%,82% 100%,18% 100%,0 72%,0 13%);
+  background:
+    linear-gradient(135deg,rgba(13,69,80,.95) 0 12%,transparent 12%),
+    linear-gradient(315deg,rgba(13,69,80,.95) 0 12%,transparent 12%),
+    linear-gradient(180deg,#fff3d3,#dfc181);
+  box-shadow:
+    inset 0 0 0 2px #1b5662,
+    inset 0 0 0 4px rgba(230,196,118,.82),
+    inset 0 0 0 6px rgba(78,48,18,.16),
+    0 4px 7px rgba(58,37,14,.19);
+}
+.tm-character-sheet-v03 .tm-v03-defense-grid .tm-v09-defense > i {
+  border-right-color: rgba(144,100,41,.35);
+  background:
+    radial-gradient(circle at 50% 38%,rgba(99,216,235,.16),transparent 55%),
+    linear-gradient(180deg,rgba(17,78,89,.12),rgba(17,78,89,.02));
+}
+
+/* Estado/listas: pequeños remaches y doble filete. */
+.tm-character-sheet-v03 .tm-v03-right-rail .tm-v03-state .tm-v03-panel-heading,
+.tm-character-sheet-v03 .tm-v03-right-rail .tm-v03-list-panel .tm-v03-panel-heading {
+  border-bottom: 1px solid #b78b43;
+}
+.tm-character-sheet-v03 .tm-v03-right-rail .tm-v03-state .tm-v03-panel-heading::after,
+.tm-character-sheet-v03 .tm-v03-right-rail .tm-v03-list-panel .tm-v03-panel-heading::after {
+  content: "";
+  position: absolute;
+  left: 42px;
+  right: 10px;
+  bottom: 5px;
+  height: 1px;
+  background: linear-gradient(90deg,#d0a75c,rgba(208,167,92,.12));
+}
+.tm-character-sheet-v03 .tm-v03-right-rail .tm-v03-state .tm-v03-panel-heading::before,
+.tm-character-sheet-v03 .tm-v03-right-rail .tm-v03-list-panel .tm-v03-panel-heading::before {
+  box-shadow:
+    0 0 0 1px rgba(219,180,96,.24),
+    0 0 8px rgba(97,214,235,.20);
+}
+
+/* Habilidades: marco reforzado, sin recargar la lectura. */
+.tm-character-sheet-v03 .tm-v03-skills-quick .tm-v03-quick-skill:hover {
+  background:
+    linear-gradient(90deg,rgba(18,83,96,.11),rgba(18,83,96,.015));
+}
+.tm-character-sheet-v03 .tm-v03-skills-quick .tm-v03-quick-skill b {
+  border-radius: 2px;
+}
+
+/* Pestañas externas: limpiar texto auxiliar y mantener sólo las orejas. */
+.tm-character-sheet-v03 .tm-v03-page-tabs::after {
+  display: none !important;
+  content: none !important;
+}
+.tm-character-sheet-v03 .tm-v03-page-tabs {
+  top: 154px;
+  right: -101px;
+}
+.tm-character-sheet-v03 .tm-v03-page-tabs .item {
+  min-height: 55px;
+}
+.tm-character-sheet-v03 .tm-v03-page-tabs .item:hover {
+  transform: translateX(3px);
+}
+.tm-character-sheet-v03 .tm-v03-page-tabs .item.active {
+  transform: translateX(7px);
+}
+
+/* La cabecera ilustrada queda siempre contenida dentro de su marco. */
+.tierra-magica:has(form.tm-character-sheet-v03) > .window-content {
+  isolation: isolate;
+}
+
+/* Responsive del banner real. */
+@media (max-width: 1180px) {
+  .tm-character-sheet-v03 .tm-v09-header,
+  .tm-character-sheet-v03 .tm-v091-title-art {
+    height: 168px;
+  }
+  .tm-character-sheet-v03 .tm-v09-header {
+    flex-basis: 168px;
+  }
+}
+@media (max-width: 900px) {
+  .tm-character-sheet-v03 .tm-v09-header,
+  .tm-character-sheet-v03 .tm-v091-title-art {
+    height: 128px;
+  }
+  .tm-character-sheet-v03 .tm-v09-header {
+    flex-basis: 128px;
+  }
+  .tm-character-sheet-v03 .tm-v03-page-tabs {
+    top: 118px;
+  }
+}
