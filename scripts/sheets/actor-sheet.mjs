@@ -49,6 +49,20 @@ export class TierraMagicaActorSheet extends ActorSheet {
     html.find("[data-action='resource-change']").click((event) => this.actor.adjustResource(event.currentTarget.dataset.resource, event.currentTarget.dataset.amount));
     html.find("[data-action='rest']").click((event) => this.actor.rest(event.currentTarget.dataset.kind));
 
+    html.find("[data-action='set-skill-rank']").change((event) => {
+      const key = event.currentTarget.dataset.key;
+      const rank = Math.min(5, Math.max(0, Math.floor(toNumber(event.currentTarget.value))));
+      return this.actor.update({ ["system.skills." + key + ".rank"]: rank });
+    });
+    html.find("[data-action='set-numeric-field']").change((event) => {
+      const field = event.currentTarget.dataset.field;
+      if (!field) return;
+      const minimum = event.currentTarget.min === "" ? Number.NEGATIVE_INFINITY : toNumber(event.currentTarget.min);
+      const maximum = event.currentTarget.max === "" ? Number.POSITIVE_INFINITY : toNumber(event.currentTarget.max);
+      const value = Math.min(maximum, Math.max(minimum, toNumber(event.currentTarget.value)));
+      return this.actor.update({ [field]: value });
+    });
+
     html.find("[data-action='item-create']").click((event) => this.#createItem(event.currentTarget.dataset.type));
     html.find("[data-action='content-browser']").click((event) => this.#openContentBrowser(event.currentTarget.dataset.type));
     html.find("[data-action='item-edit']").click((event) => this.#getItem(event)?.sheet.render(true));
