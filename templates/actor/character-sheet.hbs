@@ -55,7 +55,7 @@
                 {{#each group.skills as |skill|}}
                   <button type="button" class="tm-v03-quick-skill" data-action="roll-skill" data-key="{{skill.key}}" title="Tirar {{skill.label}}">
                     <span>{{skill.label}}</span>
-                    <b>+{{skill.bonus}}</b>
+                    <b>{{skill.bonusDisplay}}</b>
                   </button>
                 {{/each}}
               {{/each}}
