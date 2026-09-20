@@ -32,6 +32,7 @@
 
   <nav class="tm-tabs tm-v03-page-tabs tabs" data-group="primary" aria-label="Páginas de la ficha">
     <a class="item" data-tab="summary"><i class="fa-solid fa-user"></i><span>Ficha</span></a>
+    <a class="item" data-tab="skills"><i class="fa-solid fa-list-check"></i><span>Habilidades</span></a>
     <a class="item" data-tab="combat"><i class="fa-solid fa-swords"></i><span>Combate</span></a>
     <a class="item" data-tab="magic"><i class="fa-solid fa-wand-sparkles"></i><span>Magia</span></a>
     <a class="item" data-tab="development"><i class="fa-solid fa-diagram-project"></i><span>Desarrollo</span></a>
@@ -44,28 +45,19 @@
       <div class="tm-v03-dashboard">
 
         <aside class="tm-v03-left-rail">
-          <section class="tm-v03-panel tm-v03-skills-panel">
+          <section class="tm-v03-panel tm-v03-skills-panel tm-v03-skills-quick">
             <header class="tm-v03-panel-heading">
               <h2>Habilidades</h2>
-              <small>El atributo se elige al tirar.</small>
             </header>
 
-            <div class="tm-v03-skill-groups">
+            <div class="tm-v03-quick-skill-list">
               {{#each skillGroups as |group|}}
-                <section class="tm-v03-skill-group">
-                  <h3><i class="fa-solid {{group.icon}}"></i>{{group.label}}</h3>
-                  {{#each group.skills as |skill|}}
-                    <div class="tm-v03-skill-row">
-                      <button type="button" class="tm-v03-skill-roll" data-action="roll-skill" data-key="{{skill.key}}" title="Tirar {{skill.label}}">
-                        <span>{{skill.label}}</span>
-                        <b>+{{skill.bonus}}</b>
-                      </button>
-                      <select data-action="set-skill-rank" data-key="{{skill.key}}" title="Rango de {{skill.label}}">
-                        {{selectOptions @root.config.rankLabels selected=skill.rank}}
-                      </select>
-                    </div>
-                  {{/each}}
-                </section>
+                {{#each group.skills as |skill|}}
+                  <button type="button" class="tm-v03-quick-skill" data-action="roll-skill" data-key="{{skill.key}}" title="Tirar {{skill.label}}">
+                    <span>{{skill.label}}</span>
+                    <b>+{{skill.bonus}}</b>
+                  </button>
+                {{/each}}
               {{/each}}
             </div>
           </section>
@@ -214,6 +206,77 @@
           </div>
         </aside>
       </div>
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="skills">
+      <section class="tm-v03-page-hero tm-v03-skills-hero">
+        <i class="fa-solid fa-list-check"></i>
+        <div>
+          <small>Página de habilidades</small>
+          <h2>Habilidades</h2>
+          <p>Administra los rangos y realiza tiradas desde una vista completa del personaje.</p>
+        </div>
+      </section>
+
+      <section class="tm-v03-skills-page">
+        {{#each skillGroups as |group|}}
+          <section class="tm-v03-panel tm-v03-skill-category">
+            <header class="tm-v03-skill-category-heading">
+              <i class="fa-solid {{group.icon}}"></i>
+              <h3>{{group.label}}</h3>
+            </header>
+
+            <div class="tm-v03-skill-category-list">
+              {{#each group.skills as |skill|}}
+                <div class="tm-v03-skill-manage-row">
+                  <button type="button" class="tm-v03-skill-manage-roll" data-action="roll-skill" data-key="{{skill.key}}" title="Tirar {{skill.label}}">
+                    <span>{{skill.label}}</span>
+                    <i class="fa-solid fa-dice"></i>
+                  </button>
+                  <select data-action="set-skill-rank" data-key="{{skill.key}}" title="Rango de {{skill.label}}">
+                    {{selectOptions @root.config.rankLabels selected=skill.rank}}
+                  </select>
+                  <b>+{{skill.bonus}}</b>
+                </div>
+              {{/each}}
+            </div>
+          </section>
+        {{/each}}
+      </section>
+
+      <section class="tm-v03-skills-support-grid">
+        <section class="tm-v03-panel tm-v03-page-panel">
+          <div class="tm-section-heading"><h2>Especializaciones</h2><span>Relacionadas con tus Habilidades.</span></div>
+          <ol class="tm-v03-mini-list">
+            {{#each itemGroups.specialization as |item|}}
+              <li class="item" data-item-id="{{item.id}}">
+                <button type="button" data-action="item-edit">
+                  <span>{{item.name}}</span>
+                  <small>{{item.system.skill}}</small>
+                </button>
+              </li>
+            {{else}}
+              <li class="tm-v03-empty">Sin especializaciones registradas.</li>
+            {{/each}}
+          </ol>
+        </section>
+
+        <section class="tm-v03-panel tm-v03-page-panel">
+          <div class="tm-section-heading"><h2>Técnicas</h2><span>Capacidades ligadas a tu entrenamiento.</span></div>
+          <ol class="tm-v03-mini-list">
+            {{#each itemGroups.technique as |item|}}
+              <li class="item" data-item-id="{{item.id}}">
+                <button type="button" data-action="item-edit">
+                  <span>{{item.name}}</span>
+                  <small>{{lookup @root.config.techniqueGrades item.system.grade}} · {{item.system.pdCost}} PD</small>
+                </button>
+              </li>
+            {{else}}
+              <li class="tm-v03-empty">Sin técnicas registradas.</li>
+            {{/each}}
+          </ol>
+        </section>
+      </section>
     </div>
 
     <div class="tab" data-group="primary" data-tab="combat">
