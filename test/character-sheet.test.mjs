@@ -55,3 +55,16 @@ test("el modelo base incluye la economía de turno", async () => {
     reaction: true
   });
 });
+
+
+test("las pestañas laterales quedan fuera del marco de la hoja", async () => {
+  const css = await readFile(resolve(root, "styles/character-sheet-v03.css"), "utf8");
+  assert.equal(css.includes("width: calc(100% - 92px);"), true);
+  assert.equal(css.includes("margin-right: 92px;"), true);
+  assert.equal(css.includes("right: -82px;"), true);
+  assert.equal(css.includes("border-radius: 0 17px 17px 0;"), true);
+  assert.equal(css.includes("clip-path: none;"), true);
+  assert.equal(css.includes("transform: translateX(8px);"), true);
+  assert.equal(css.includes(".window-content:has(form.tm-character-sheet-v03)"), true);
+  assert.equal(css.includes("padding-right: 88px;"), false);
+});
