@@ -1,5 +1,14 @@
 # Historial de cambios
 
+## 0.5.1
+
+- Las pestañas laterales ahora quedan visualmente **fuera del marco de la hoja**, usando un margen transparente reservado dentro de la ventana.
+- La forma de las pestañas se invierte: borde recto junto a la hoja y extremo redondeado hacia afuera.
+- La pestaña activa sobresale hacia el exterior en lugar de meterse sobre el contenido.
+- Corregidos dos selectores CSS que no podían aplicarse correctamente porque buscaban `.window-content` y `form` como descendientes del propio formulario.
+- El fondo de la ventana de la ficha de personaje queda transparente en la zona reservada a los señaladores, evitando que el marco beige parezca extenderse hasta ellos.
+
+
 ## 0.5.0
 
 - Nueva **Ficha de Personaje Tierra Mágica v0.3 — Compacta**.
