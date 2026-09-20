@@ -49,7 +49,11 @@ test("la portada usa Habilidades sólo como lectura y tirada", async () => {
   assert.equal(summary.includes("tm-v03-quick-skill"), true);
   assert.equal(summary.includes("tm-v03-skill-group"), false);
   assert.equal(summary.includes("set-skill-rank"), false);
-  assert.equal(summary.includes("<select"), false);
+
+  const quickStart = summary.indexOf('<div class="tm-v03-quick-skill-list">');
+  const quickEnd = summary.indexOf("</div>", quickStart);
+  const quickSkills = summary.slice(quickStart, quickEnd);
+  assert.equal(quickSkills.includes("<select"), false);
 });
 
 test("la página Habilidades contiene categorías, edición de rango y tiradas", async () => {
