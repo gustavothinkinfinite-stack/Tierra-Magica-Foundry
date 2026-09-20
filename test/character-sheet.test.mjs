@@ -49,6 +49,8 @@ test("la portada usa Habilidades sólo como lectura y tirada", async () => {
   assert.equal(summary.includes("tm-v03-quick-skill"), true);
   assert.equal(summary.includes("tm-v03-skill-group"), false);
   assert.equal(summary.includes("set-skill-rank"), false);
+  assert.equal(summary.includes("set-skill-temporary"), false);
+  assert.equal(summary.includes("set-skill-other"), false);
 
   const quickStart = summary.indexOf('<div class="tm-v03-quick-skill-list">');
   const quickEnd = summary.indexOf("</div>", quickStart);
@@ -56,15 +58,21 @@ test("la portada usa Habilidades sólo como lectura y tirada", async () => {
   assert.equal(quickSkills.includes("<select"), false);
 });
 
-test("la página Habilidades contiene categorías, edición de rango y tiradas", async () => {
+test("la página Habilidades muestra el desglose completo y permite ajustes manuales", async () => {
   const source = await readFile(resolve(root, "templates/actor/character-sheet.hbs"), "utf8");
   const start = source.indexOf('<div class="tab" data-group="primary" data-tab="skills">');
   const end = source.indexOf('<div class="tab" data-group="primary" data-tab="combat">', start);
   const skillsPage = source.slice(start, end);
 
   assert.equal(skillsPage.includes("tm-v03-skill-category"), true);
-  assert.equal(skillsPage.includes("tm-v03-skill-manage-row"), true);
+  assert.equal(skillsPage.includes("tm-v04-skill-detail"), true);
+  assert.equal(skillsPage.includes("tm-v04-skill-breakdown"), true);
+  assert.equal(skillsPage.includes("tm-v04-skill-sources"), true);
   assert.equal(skillsPage.includes('data-action="set-skill-rank"'), true);
+  assert.equal(skillsPage.includes('data-action="set-skill-temporary"'), true);
+  assert.equal(skillsPage.includes('data-action="set-skill-other"'), true);
+  assert.equal(skillsPage.includes('data-action="clear-skill-temporaries"'), true);
+  assert.equal(skillsPage.includes('data-action="skill-source-open"'), true);
   assert.equal(skillsPage.includes('data-action="roll-skill"'), true);
   assert.equal(skillsPage.includes("Especializaciones"), true);
   assert.equal(skillsPage.includes("Técnicas"), true);
@@ -77,13 +85,47 @@ test("la ficha mantiene economía de turno y acceso al familiar", async () => {
   assert.equal(source.includes('data-action="open-familiar"'), true);
 });
 
-test("el modelo base incluye la economía de turno", async () => {
+test("el modelo base incluye economía de turno y modificadores manuales de Habilidad", async () => {
   const templates = JSON.parse(await readFile(resolve(root, "template.json"), "utf8"));
   assert.deepEqual(templates.Actor.templates.base.turn, {
     movement: true,
     action: true,
     reaction: true
   });
+
+  for (const skill of Object.values(templates.Actor.templates.base.skills)) {
+    assert.equal(skill.temporary, 0);
+    assert.equal(skill.other, 0);
+  }
+
+  assert.deepEqual(templates.Item.templates.base.skillModifiers, []);
+  assert.equal(templates.Item.templates.base.skillModifiersActive, true);
+  assert.equal(templates.Item.spell.skillModifiersActive, false);
+});
+
+test("los Items permiten configurar fuentes estructuradas de modificadores", async () => {
+  const template = await readFile(resolve(root, "templates/item/item-sheet.hbs"), "utf8");
+  const sheet = await readFile(resolve(root, "scripts/sheets/item-sheet.mjs"), "utf8");
+
+  assert.equal(template.includes("Modificadores de Habilidad"), true);
+  assert.equal(template.includes('name="system.skillModifiersActive"'), true);
+  assert.equal(template.includes('data-action="skill-modifier-add"'), true);
+  assert.equal(template.includes('data-action="skill-modifier-delete"'), true);
+  assert.equal(template.includes('data-action="skill-modifier-field"'), true);
+
+  assert.equal(sheet.includes("#addSkillModifier"), true);
+  assert.equal(sheet.includes("#deleteSkillModifier"), true);
+  assert.equal(sheet.includes("#updateSkillModifier"), true);
+});
+
+test("las tiradas usan el total de Habilidad y exponen sus fuentes", async () => {
+  const actor = await readFile(resolve(root, "scripts/documents/actor.mjs"), "utf8");
+  assert.equal(actor.includes("skill.breakdown = this.#buildSkillBreakdown"), true);
+  assert.equal(actor.includes("skill.bonus = skill.breakdown.total"), true);
+  assert.equal(actor.includes("const skill = skillData ? toNumber(skillData.bonus) : 0;"), true);
+  assert.equal(actor.includes("#skillModifierItemActive"), true);
+  assert.equal(actor.includes("#skillBreakdownHtml"), true);
+  assert.equal(actor.includes("skillModifiers"), true);
 });
 
 test("las pestañas laterales quedan fuera del marco de la hoja", async () => {
@@ -98,10 +140,11 @@ test("las pestañas laterales quedan fuera del marco de la hoja", async () => {
   assert.equal(css.includes("padding-right: 88px;"), false);
 });
 
-test("los estilos distinguen la lista rápida de la página de gestión", async () => {
+test("los estilos distinguen la lista rápida y el desglose técnico", async () => {
   const css = await readFile(resolve(root, "styles/character-sheet-v03.css"), "utf8");
   assert.equal(css.includes(".tm-v03-quick-skill-list"), true);
   assert.equal(css.includes(".tm-v03-quick-skill"), true);
-  assert.equal(css.includes(".tm-v03-skills-page"), true);
-  assert.equal(css.includes(".tm-v03-skill-manage-row"), true);
+  assert.equal(css.includes(".tm-v04-skill-detail"), true);
+  assert.equal(css.includes(".tm-v04-skill-breakdown"), true);
+  assert.equal(css.includes(".tm-v04-source-list"), true);
 });
