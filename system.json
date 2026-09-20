@@ -2,7 +2,7 @@
   "id": "tierra-magica",
   "title": "Tierra Mágica — Foundry T.M.",
   "description": "Implementación de Foundry T.M. para Tierra Mágica, basada en el Manual Básico v0.1 Playtest: motor 2d10, desarrollo sin clases, combate, daño grave, trauma, magia universal y familiares.",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "compatibility": { "minimum": "13", "verified": "14" },
   "authors": [{ "name": "Gustavo Matus" }],
   "esmodules": ["scripts/tierra-magica.mjs"],
