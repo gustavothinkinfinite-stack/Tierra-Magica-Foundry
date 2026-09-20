@@ -1,5 +1,19 @@
 # Historial de cambios
 
+## 0.7.0
+
+- La página **Habilidades** pasa a mostrar el desglose completo de cada valor final: Rango, Especialización, Equipo, Técnica, Magia, Rasgo, modificador Temporal y Otros.
+- Cada Habilidad dispone de un modificador **Temporal** editable y un modificador manual **Otros**, sin contaminar la vista rápida de la página Ficha.
+- Añadido botón **Limpiar temporales** para poner en cero todos los modificadores temporales del personaje.
+- Armas, armaduras, escudos, equipo, hechizos, técnicas, rasgos y especializaciones pueden aportar modificadores estructurados a Habilidades concretas.
+- Los modificadores de equipo sólo se aplican cuando el objeto está equipado; los modificadores mágicos pueden activarse o desactivarse desde la ficha del hechizo.
+- Cada fuente automática aparece identificada por nombre, tipo, motivo y valor, y puede abrirse directamente desde la página Habilidades.
+- El valor mostrado en la página Ficha, la página Habilidades y las tiradas usa el mismo **TOTAL** calculado.
+- El diálogo de tirada y la tarjeta de chat muestran el desglose mecánico aplicado a la Habilidad.
+- Añadido editor genérico de **Modificadores de Habilidad** a las fichas de Item.
+- No se inventan penalizadores automáticos por Trauma, Fatiga u otros estados mientras esas reglas no estén definidas en el sistema; pueden representarse mediante Temporal/Otros o mediante una fuente estructurada.
+
+
 ## 0.6.0
 
 - Nueva separación entre **Habilidades de uso rápido** y **gestión de Habilidades**.
