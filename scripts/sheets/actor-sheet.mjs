@@ -6,7 +6,7 @@ export class TierraMagicaActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["tierra-magica", "sheet", "actor"],
-      width: 1120,
+      width: 1180,
       height: 900,
       resizable: true,
       tabs: [{ navSelector: ".tm-tabs", contentSelector: ".tm-sheet-body", initial: "summary" }],

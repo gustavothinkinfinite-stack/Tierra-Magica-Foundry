@@ -1,5 +1,21 @@
 # Historial de cambios
 
+## 0.5.0
+
+- Nueva **Ficha de Personaje Tierra Mágica v0.3 — Compacta**.
+- Cabecera reducida a **TIERRA MÁGICA** centrado y dorado, sin subtítulos técnicos ni duplicación del Nivel.
+- Identidad del personaje comprimida para recuperar espacio vertical.
+- Vida, Maná y Desarrollo trasladados al núcleo central bajo el retrato.
+- Movimiento, Acción y Reacción quedan visibles dentro del núcleo central y pueden marcarse como gastados.
+- Fuerza y Vigor se reposicionan hacia arriba para liberar la zona inferior del retrato.
+- Habilidades siempre visibles por categoría, sin acordeones, menús de sección ni contadores de cantidad.
+- Pestaña separada de Habilidades eliminada para evitar redundancia: las Habilidades viven en la página Ficha.
+- Navegación trasladada al borde derecho mediante pestañas tipo señaladores de libro: Ficha, Combate, Magia, Desarrollo, Equipo e Historia.
+- Atributos con mayor contraste y números más legibles.
+- El cuerpo de la ficha usa scroll general para que toda la hoja pueda recorrerse sin quedar contenido inaccesible.
+- Rasgos, Especializaciones y Técnicas permanecen visibles como paneles compactos en la columna derecha.
+
+
 ## 0.4.0
 
 - Nueva **Ficha de Personaje Tierra Mágica v0.2 — Visual y Usabilidad**.
