@@ -313,7 +313,8 @@
       "penetration": 0,
       "range": "",
       "requirements": "",
-      "sustained": false
+      "sustained": false,
+      "skillModifiersActive": false
     },
     "technique": {
       "templates": [
