@@ -136,7 +136,7 @@ test("las pestañas laterales quedan fuera del marco de la hoja", async () => {
   assert.equal(css.includes("border-radius: 0 17px 17px 0;"), true);
   assert.equal(css.includes("clip-path: none;"), true);
   assert.equal(css.includes("transform: translateX(8px);"), true);
-  assert.equal(css.includes(".window-content:has(form.tm-character-sheet-v03)"), true);
+  assert.equal(css.includes(".tierra-magica:has(form.tm-character-sheet-v03) > .window-content"), true);
   assert.equal(css.includes("padding-right: 88px;"), false);
 });
 
