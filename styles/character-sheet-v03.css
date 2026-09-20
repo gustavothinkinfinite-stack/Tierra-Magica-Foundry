@@ -1122,3 +1122,290 @@ form.tm-character-sheet-v03 {
     grid-template-columns: minmax(0, 1fr) 118px 38px;
   }
 }
+
+
+/* =========================================================
+   Habilidades v0.5 — desglose mecánico completo
+   ========================================================= */
+
+.tm-v03-skills-hero {
+  grid-template-columns: 72px minmax(0, 1fr) auto;
+}
+
+.tm-v04-clear-temporaries {
+  min-width: 126px;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 6px 10px;
+  color: #efe1ba;
+  background: rgba(5, 25, 33, .48);
+  border: 1px solid #a67d40;
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .045em;
+}
+.tm-v04-clear-temporaries i { color: #63d7ed; }
+.tm-v04-clear-temporaries:hover {
+  color: #fff0c8;
+  background: rgba(18, 65, 77, .72);
+  border-color: #5ea9ba;
+}
+
+.tm-v04-skill-category-list {
+  padding: 5px 7px 8px;
+}
+
+.tm-v04-skill-detail {
+  margin-bottom: 7px;
+  background: rgba(255, 250, 235, .48);
+  border: 1px solid rgba(153, 112, 58, .42);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.16);
+}
+.tm-v04-skill-detail:last-child { margin-bottom: 0; }
+
+.tm-v04-skill-main {
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px 58px 31px;
+  gap: 6px;
+  align-items: center;
+  padding: 5px 6px;
+  border-bottom: 1px solid rgba(128, 91, 44, .28);
+}
+
+.tm-v04-skill-name {
+  min-width: 0;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 5px;
+  color: #2b2318;
+  background: transparent;
+  border: 0;
+  text-align: left;
+}
+.tm-v04-skill-name span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: 700 11px Georgia, serif;
+}
+.tm-v04-skill-name i {
+  color: #247b8e;
+  opacity: .65;
+}
+.tm-v04-skill-name:hover {
+  color: #075f73;
+}
+.tm-v04-skill-name:hover i { opacity: 1; }
+
+.tm-v04-skill-main > select {
+  height: 27px;
+  min-width: 0;
+  padding: 0 4px;
+  color: #2b2318;
+  background: #f8efd6;
+  border: 1px solid #a57e48;
+  font-size: 9px;
+}
+
+.tm-v04-skill-total {
+  min-height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #173b46;
+  background: linear-gradient(#f3e6c4, #dfc995);
+  border: 1px solid #a77f49;
+}
+.tm-v04-skill-total small {
+  color: #796440;
+  font-size: 6px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.tm-v04-skill-total b {
+  font: 700 14px Georgia, serif;
+}
+
+.tm-v04-roll-button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  color: #e9dcba;
+  background: #173b46;
+  border: 1px solid #98713c;
+}
+.tm-v04-roll-button i { color: #62d6ec; }
+.tm-v04-roll-button:hover {
+  background: #205262;
+  border-color: #58a9ba;
+}
+
+.tm-v04-skill-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 5px 6px 6px;
+}
+
+.tm-v04-modifier-chip,
+.tm-v04-manual-modifier {
+  min-height: 34px;
+  display: grid;
+  grid-template-rows: 12px 1fr;
+  align-items: center;
+  padding: 3px 5px;
+  color: #2a2319;
+  background: rgba(229, 214, 177, .62);
+  border: 1px solid rgba(160, 119, 62, .42);
+}
+.tm-v04-modifier-chip {
+  min-width: 68px;
+  flex: 1 1 68px;
+}
+.tm-v04-modifier-chip small,
+.tm-v04-manual-modifier small {
+  color: #77613d;
+  font-size: 6px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .025em;
+}
+.tm-v04-modifier-chip b {
+  color: #173b46;
+  font: 700 11px Georgia, serif;
+}
+.tm-v04-manual-modifier {
+  min-width: 74px;
+  flex: 0 0 74px;
+}
+.tm-v04-manual-modifier input {
+  width: 100%;
+  height: 20px;
+  padding: 0 3px;
+  color: #173b46;
+  background: #fff8e5;
+  border: 1px solid #a6824e;
+  text-align: center;
+  font: 700 10px Georgia, serif;
+}
+
+.tm-v04-modifier-equipment,
+.tm-v04-modifier-technique,
+.tm-v04-modifier-magic,
+.tm-v04-modifier-specialization,
+.tm-v04-modifier-trait {
+  background: rgba(27, 70, 80, .065);
+}
+
+.tm-v04-skill-sources {
+  padding: 0 6px 6px;
+}
+.tm-v04-sources-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 4px;
+  color: #6d5938;
+  font-size: 7px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .045em;
+}
+.tm-v04-sources-title i { color: #267b8d; }
+
+.tm-v04-source-list {
+  display: grid;
+  gap: 3px;
+}
+.tm-v04-source {
+  min-height: 31px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 38px;
+  gap: 6px;
+  align-items: center;
+  padding: 3px 6px;
+  color: #2b2419;
+  background: rgba(255, 250, 236, .64);
+  border: 1px dotted rgba(133, 96, 48, .46);
+  text-align: left;
+}
+.tm-v04-source > span {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.tm-v04-source b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: 600 9px Georgia, serif;
+}
+.tm-v04-source small {
+  overflow: hidden;
+  color: #7d6845;
+  font-size: 7px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tm-v04-source strong {
+  color: #173b46;
+  font: 700 11px Georgia, serif;
+  text-align: right;
+}
+.tm-v04-source:hover {
+  color: #075f73;
+  background: rgba(79, 157, 173, .09);
+  border-color: #5e9fad;
+}
+
+.tm-v04-linked-specializations {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px 6px;
+  color: #6c5838;
+  font-size: 7px;
+}
+.tm-v04-linked-specializations > span {
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.tm-v04-linked-specializations button {
+  min-height: 21px;
+  padding: 2px 6px;
+  color: #17404c;
+  background: rgba(231, 216, 179, .75);
+  border: 1px solid rgba(155, 113, 57, .42);
+  font-size: 7px;
+}
+.tm-v04-linked-specializations button:hover {
+  color: #075f73;
+  border-color: #5796a5;
+}
+
+@media (max-width: 980px) {
+  .tm-v03-skills-hero {
+    grid-template-columns: 62px minmax(0, 1fr);
+  }
+
+  .tm-v04-clear-temporaries {
+    grid-column: 1/-1;
+    justify-self: end;
+    min-height: 34px;
+    margin-top: -6px;
+  }
+
+  .tm-v04-skill-main {
+    grid-template-columns: minmax(0, 1fr) 112px 54px 29px;
+  }
+}
