@@ -1,54 +1,48 @@
 export const STARTER_CONTENT = {
+  weapon: [
+    { name: "Daga", system: { skill: "lightWeapons", attackAttribute: "agi", damage: 3, penetration: 0, strengthMin: 0, severe: "Perforación", properties: "Ligera, Ocultable" } },
+    { name: "Espada corta", system: { skill: "lightWeapons", attackAttribute: "agi", damageAttribute: "fue", damage: 4, penetration: 0, severe: "Sangrado", properties: "Ligera" } },
+    { name: "Espada larga", system: { skill: "martialWeapons", attackAttribute: "fue", damageAttribute: "fue", damage: 5, penetration: 0, strengthMin: 1, severe: "Sangrado", properties: "Versátil" } },
+    { name: "Hacha", system: { skill: "martialWeapons", attackAttribute: "fue", damageAttribute: "fue", damage: 6, penetration: 0, strengthMin: 2, severe: "Sangrado", properties: "Impactante" } },
+    { name: "Martillo de guerra", system: { skill: "martialWeapons", attackAttribute: "fue", damageAttribute: "fue", damage: 6, penetration: 2, strengthMin: 2, severe: "Fractura", properties: "Impactante" } },
+    { name: "Lanza", system: { skill: "martialWeapons", attackAttribute: "fue", damageAttribute: "fue", damage: 5, penetration: 0, strengthMin: 1, severe: "Perforación Profunda", properties: "Alcance, 2 manos" } },
+    { name: "Gran hacha", system: { skill: "heavyWeapons", attackAttribute: "fue", damageAttribute: "fue", damage: 8, penetration: 0, strengthMin: 3, severe: "Sangrado Grave", properties: "Pesada" } },
+    { name: "Ballesta", system: { skill: "rangedWeapons", attackAttribute: "per", damage: 6, penetration: 1, rangeOptimal: 20, severe: "Perforación", properties: "Recarga" } },
+    { name: "Rifle temprano", system: { skill: "rangedWeapons", attackAttribute: "per", damage: 7, penetration: 3, rangeOptimal: 25, severe: "Perforación Profunda", properties: "Recarga, 2 manos" } },
+    { name: "Rifle repetidor", system: { skill: "rangedWeapons", attackAttribute: "per", damage: 7, penetration: 3, rangeOptimal: 25, severe: "Perforación Profunda", properties: "Repetición, 2 manos" } }
+  ],
+  armor: [
+    { name: "Armadura ligera", system: { protection: 1, strengthMin: 0 } },
+    { name: "Armadura reforzada", system: { protection: 2, strengthMin: 1 } },
+    { name: "Malla", system: { protection: 3, strengthMin: 1 } },
+    { name: "Armadura pesada", system: { protection: 4, strengthMin: 2 } },
+    { name: "Placa", system: { protection: 5, strengthMin: 3 } }
+  ],
+  shield: [
+    { name: "Broquel", system: { passiveDefense: 0, block: 2, strengthMin: 0, properties: "Ligero y móvil" } },
+    { name: "Escudo estándar", system: { passiveDefense: 1, block: 3, strengthMin: 0, properties: "Protección general" } },
+    { name: "Escudo pesado", system: { passiveDefense: 2, block: 4, strengthMin: 2, frontalOnly: true, properties: "Movimiento -1; requiere orientación" } }
+  ],
   spell: [
-    { name: "Alarma", system: { cost: 1, saving: "Ninguna", requirements: "Objeto personal", description: "Vincula psíquicamente un objeto para que recuerde al receptor una hora marcada." } },
-    { name: "Suerte", system: { cost: 2, saving: "Ninguna", requirements: "1 moneda", description: "Encanta una moneda y permite repetir una tirada una vez durante el día." } },
-    { name: "Mala suerte", system: { cost: 2, saving: "Ninguna", requirements: "1 moneda", description: "Encanta una moneda y obliga a repetir una tirada exitosa una vez durante el día." } },
-    { name: "Ver en la oscuridad", system: { cost: 2, saving: "Ninguna", requirements: "Percepción 4", description: "Permite ver en oscuridad y concede +2 a las tiradas de detección durante una hora." } },
-    { name: "Nube negra", system: { cost: 5, saving: "Ninguna", requirements: "Inteligencia 4", description: "Invoca una nube oscura que bloquea la visión durante un minuto por nivel." } },
-    { name: "Arma oculta", system: { cost: 3, saving: "Ninguna", requirements: "Agilidad 4", description: "Oculta mágicamente un objeto o arma entre las pertenencias del lanzador." } },
-    { name: "Golpe certero", system: { cost: 5, saving: "Ninguna", requirements: "Fuerza 5", description: "Tras concentrarse un turno concede +5 al ataque, doble daño en el primer golpe y +5 a iniciativa." } },
-    { name: "Zona resbaladiza", system: { cost: 3, saving: "Destreza CD 10", requirements: "Ninguno", description: "Crea una zona resbaladiza de 5 × 5 metros durante tantos asaltos como el nivel del lanzador." } },
-    { name: "Regenerar menor", system: { cost: 5, saving: "Ninguna", requirements: "Fortaleza 4", description: "Acelera la recuperación de heridas menores del lanzador." } },
-    { name: "Regeneración", system: { cost: 7, saving: "Voluntad si se resiste", requirements: "Fortaleza 5", description: "Otorga regeneración temporal al lanzador o a otro objetivo." } },
-    { name: "Regeneración de miembros", system: { cost: 20, saving: "Voluntad si se resiste", requirements: "Fortaleza 4 y objetivo", description: "Inicia la regeneración completa de un miembro perdido durante una semana." } },
-    { name: "Conocer el pasado", system: { cost: 20, saving: "Ninguna", requirements: "Percepción 7", description: "Revela mediante un trance acontecimientos vividos por un objeto." } },
-    { name: "Modificar objeto", system: { cost: 10, saving: "Ninguna", requirements: "Voluntad 4", description: "Modifica temporalmente un objeto y puede vincular sus propiedades a una característica." } },
-    { name: "Almacenador", system: { cost: 20, saving: "Ninguna", requirements: "Poder 5 y Voluntad 5", description: "Almacena un conjuro en un objeto para activarlo posteriormente." } },
-    { name: "Inspiración", system: { cost: 8, saving: "Voluntad si se resiste", requirements: "Poder 5", description: "Inspira a quienes escuchan y concede una nueva salvación contra efectos de control." } },
-    { name: "Miedo", system: { cost: 8, saving: "Voluntad contra Intimidar + Poder + nivel", requirements: "Poder 5", description: "Hace aflorar los miedos profundos de quienes escuchan al lanzador." } },
-    { name: "Muro", system: { cost: 15, saving: "Agilidad CD 8", requirements: "Ninguno", description: "Crea un muro capaz de bloquear, aplastar o atrapar a quienes estén en su zona." } }
+    { name: "Proyectil Ígneo", system: { discipline: "evocation", manaCost: 3, attribute: "int", defense: "normal", damage: 5, penetration: 1, range: "Medio", requirements: "" } },
+    { name: "Descarga Eléctrica", system: { discipline: "evocation", manaCost: 4, attribute: "int", defense: "normal", damage: 5, penetration: 1, range: "Cercano", requirements: "" } },
+    { name: "Onda de Choque", system: { discipline: "evocation", manaCost: 4, attribute: "int", defense: "normal", damage: 4, penetration: 0, range: "Área corta", requirements: "" } },
+    { name: "Paso Ligero", system: { discipline: "alteration", manaCost: 2, attribute: "int", defense: "df", difficulty: 10, requirements: "" } },
+    { name: "Potencia Sobrenatural", system: { discipline: "alteration", manaCost: 4, attribute: "int", defense: "df", difficulty: 12, sustained: true, requirements: "" } },
+    { name: "Cierre Restaurador", system: { discipline: "restoration", manaCost: 3, attribute: "int", defense: "df", difficulty: 10, requirements: "Medicina" } },
+    { name: "Estabilización Vital", system: { discipline: "restoration", manaCost: 2, attribute: "int", defense: "df", difficulty: 10, requirements: "Medicina" } },
+    { name: "Regeneración", system: { discipline: "restoration", manaCost: 6, attribute: "int", defense: "df", difficulty: 16, requirements: "Medicina" } },
+    { name: "Visión Arcana", system: { discipline: "perception", manaCost: 2, attribute: "per", defense: "df", difficulty: 10, requirements: "Arcana" } },
+    { name: "Sugestión", system: { discipline: "influence", manaCost: 5, attribute: "pre", defense: "mental", requirements: "" } },
+    { name: "Trasposición", system: { discipline: "conjuration", manaCost: 6, attribute: "int", defense: "df", difficulty: 14, range: "8 espacios", requirements: "" } }
   ],
-  talent: [
-    { name: "Carga del Toro", system: { category: "Estilo de combate", description: "Duplica los beneficios de una carga, elimina sus desventajas y concede +2 a iniciativa al cargar." } },
-    { name: "Movimientos rápidos", system: { category: "Estilo de combate", description: "Permite desenvainar o envainar como acción instantánea y concede +2 a iniciativa y movimiento." } },
-    { name: "Muro de Hierro", system: { category: "Estilo de combate", description: "Con escudo: +2 CA y +5 CA contra proyectiles; se anula al ser flanqueado o sorprendido." } },
-    { name: "Afinidad con tu arma", system: { category: "Estilo de combate", description: "+1 al ataque y al daño con el tipo de arma seleccionado." } },
-    { name: "Siempre en servicio", system: { category: "Estilo de combate", requirements: "Fortaleza 4", description: "Permite descansar con armadura sin perder comodidad." } },
-    { name: "Saludable", system: { category: "Estilo de combate", description: "Sana al doble de velocidad y se estabiliza automáticamente antes de morir." } },
-    { name: "Golpe replicador", system: { category: "Estilo de combate", description: "Tras atacar permite golpear a un objetivo adyacente con -4." } },
-    { name: "Golpe doble", system: { category: "Estilo de combate", requirements: "Agilidad 3 y Golpe replicador", description: "Repite el golpe contra el mismo objetivo con -4." } },
-    { name: "Combate a dos manos", system: { category: "Estilo de combate", description: "Duplica el bonificador de daño por Fuerza al usar armas a dos manos." } },
-    { name: "Combate ágil", system: { category: "Estilo de combate", description: "+2 CA al ser flanqueado mientras pueda moverse." } },
-    { name: "Ataque en giro", system: { category: "Estilo de combate", requirements: "Agilidad 4, Fuerza 4 y arma grande", description: "Ataca con una única tirada a varios oponentes cercanos; cada daño se tira por separado." } },
-    { name: "Blindado", system: { category: "Estilo de combate", description: "+1 CA y reduce penalizadores de armadura sobre habilidades entrenadas." } },
-    { name: "Blindado pesado", system: { category: "Estilo de combate", requirements: "Blindado y Fortaleza 5", description: "+2 CA y elimina penalizadores de armadura en habilidades." } },
-    { name: "Cazador de magos", system: { category: "Estilo de combate", requirements: "Voluntad 4 y Poder 3", description: "+5 a salvaciones mágicas y una repetición de control por partida." } },
-    { name: "Vigilante", system: { category: "Estilo de combate", description: "No sufre sueño durante guardias y gana +15 a Advertir mientras vigila." } },
-    { name: "Bendecido", system: { category: "Perk", description: "+1 a salvaciones; los éxitos críticos manifiestan una intervención notoria." } },
-    { name: "Sacrificio", system: { category: "Perk de combatiente", manaCost: 5, description: "Sacrifica Vida para aumentar el daño; llegar a 0 Vida provoca la muerte." } }
-  ],
-  familiarBenefit: [
-    { name: "Característica mejorada", system: { cost: 1, effect: "Mejora características seleccionadas", description: "Puede adquirirse varias veces y aplicarse a características ya mejoradas." } },
-    { name: "Alas", system: { cost: 2, effect: "Vuelo a Movimiento ×2", description: "Otorga vuelo; las criaturas con alas naturales mejoran su multiplicador de movimiento." } },
-    { name: "Aliento", system: { cost: 2, requirements: "Bestia, Elemental o Dragonoide", effect: "Daño de Fuerza ×3", description: "Arma de aliento elemental con alcance de Fortaleza ×3 metros, una vez por minuto." } },
-    { name: "Habilidoso", system: { cost: 1, effect: "Dos habilidades a valor 4", description: "Puede adquirirse varias veces para habilidades diferentes." } },
-    { name: "Inmunidad elemental", system: { cost: 1, effect: "Inmunidad natural y 50% mágica", description: "Inmunidad a un elemento natural y resistencia del 50% frente a su versión mágica." } },
-    { name: "Mágico básico", system: { cost: 2, effect: "Un hechizo natural principiante", description: "El familiar conoce un hechizo natural de nivel principiante." } },
-    { name: "Armadura natural", system: { cost: 1, effect: "+1 a +3 de armadura", description: "La piel, escamas o construcción del familiar le conceden armadura permanente." } },
-    { name: "Resistente a la magia", system: { cost: 1, effect: "Resistencia mágica", description: "Concede una resistencia inusual frente a efectos mágicos." } },
-    { name: "Gaseoso", system: { cost: 1, effect: "Forma gaseosa", description: "Permite atravesar rendijas y espacios por los que el cuerpo normal no pasaría." } },
-    { name: "Intercambio", system: { cost: 3, effect: "Intercambia posición con el receptor", description: "El vínculo permite intercambiar mágicamente la posición del familiar y su receptor." } },
-    { name: "Equipado", system: { cost: 1, effect: "Equipo propio", description: "El familiar posee armadura, bolsa u otro equipo apropiado." } },
-    { name: "Consejero", system: { cost: 1, effect: "Repetir una tirada por sesión", description: "El familiar aconseja a su receptor y le permite repetir una tirada una vez por sesión." } }
+  technique: [
+    { name: "Golpe Potente", system: { grade: "basic", pdCost: 2, requirements: "Habilidad de arma Entrenada", effect: "+2 daño; -2 Defensa hasta tu próximo turno." } },
+    { name: "Recibir Carga", system: { grade: "basic", pdCost: 2, requirements: "Arma de Alcance", effect: "Reacción cuando un enemigo entra mediante carga o movimiento rápido." } },
+    { name: "Media Asta", system: { grade: "basic", pdCost: 2, requirements: "Arma de Alcance", effect: "Elimina la Desventaja de arma de Alcance contra objetivos en Contacto." } },
+    { name: "Disparo Preciso", system: { grade: "advanced", pdCost: 3, requirements: "Armas a Distancia Experto", effect: "Al Apuntar, permite Ataque Dirigido sin la Desventaja normal." } },
+    { name: "Cubrir Aliado", system: { grade: "basic", pdCost: 2, requirements: "Escudo", effect: "Aplicar Bloqueo con escudo a aliado adyacente mediante Reacción." } },
+    { name: "Presa Entrenada", system: { grade: "basic", pdCost: 2, requirements: "Atletismo Entrenado", effect: "+1 a DF de Agarre." } },
+    { name: "Proyección", system: { grade: "advanced", pdCost: 3, requirements: "Presa Entrenada", effect: "Desde Agarre, acción para dejar Derribado al objetivo mediante prueba apropiada." } }
   ]
 };
