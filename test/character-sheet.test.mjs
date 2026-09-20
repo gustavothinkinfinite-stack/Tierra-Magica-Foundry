@@ -6,28 +6,45 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
-test("la ficha no serializa dos veces los campos visualmente repetidos", async () => {
+test("la ficha no serializa dos veces los campos editables", async () => {
   const source = await readFile(resolve(root, "templates/actor/character-sheet.hbs"), "utf8");
   assert.equal(source.includes('name="system.details.level"'), false);
   assert.equal(source.includes('name="system.details.pdSpent"'), false);
   assert.equal(source.includes('name="system.skills.{{key}}.rank"'), false);
-  assert.equal((source.match(/data-action="set-skill-rank"/g) ?? []).length, 2);
-  assert.equal((source.match(/data-field="system.details.level"/g) ?? []).length, 2);
-  assert.equal((source.match(/data-field="system.details.pdSpent"/g) ?? []).length, 2);
+  assert.equal((source.match(/data-action="set-skill-rank"/g) ?? []).length, 1);
+  assert.equal((source.match(/data-field="system.details.level"/g) ?? []).length, 1);
+  assert.equal((source.match(/data-field="system.details.pdSpent"/g) ?? []).length, 1);
 });
 
-test("la ficha v0.2 carga recursos visuales e interacciones principales", async () => {
+test("la ficha v0.3 usa páginas laterales y recursos dentro del núcleo central", async () => {
   const source = await readFile(resolve(root, "templates/actor/character-sheet.hbs"), "utf8");
   const manifest = JSON.parse(await readFile(resolve(root, "system.json"), "utf8"));
-  assert.equal(source.includes("tm-character-sheet-v02"), true);
+
+  assert.equal(source.includes("tm-character-sheet-v03"), true);
+  assert.equal(source.includes("tm-v03-page-tabs"), true);
+  assert.equal(source.includes("tm-v03-resources"), true);
+  assert.equal(source.includes("tm-v03-turn"), true);
+  assert.equal(source.includes('data-tab="skills"'), false);
+  assert.equal(source.includes("<details"), false);
+  assert.equal(source.includes("FOUNDRY T.M. · FICHA DE PERSONAJE"), false);
+  assert.equal(source.includes("Fantasía medieval arcano-industrial"), false);
+
+  for (const tab of ["summary", "combat", "magic", "development", "inventory", "biography"]) {
+    assert.equal(source.includes(`data-tab="${tab}"`), true);
+  }
+
+  assert.equal(manifest.styles.includes("styles/character-sheet-v03.css"), true);
+  await Promise.all([
+    "styles/character-sheet-v03.css",
+    "assets/ui/character-sheet-arcane.svg"
+  ].map((file) => access(resolve(root, file))));
+});
+
+test("la ficha mantiene economía de turno y acceso al familiar", async () => {
+  const source = await readFile(resolve(root, "templates/actor/character-sheet.hbs"), "utf8");
   assert.equal(source.includes('data-action="toggle-turn"'), true);
   assert.equal(source.includes('data-action="reset-turn"'), true);
   assert.equal(source.includes('data-action="open-familiar"'), true);
-  assert.equal(manifest.styles.includes("styles/character-sheet-v02.css"), true);
-  await Promise.all([
-    "styles/character-sheet-v02.css",
-    "assets/ui/character-sheet-arcane.svg"
-  ].map((file) => access(resolve(root, file))));
 });
 
 test("el modelo base incluye la economía de turno", async () => {
