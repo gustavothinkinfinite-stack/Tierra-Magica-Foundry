@@ -1,36 +1,16 @@
 {
   "id": "tierra-magica",
-  "title": "Tierra Mágica",
-  "description": "Sistema de mesa para Tierra Mágica. Incluye creación guiada, personajes, PNJ, familiares, razas, profesiones, habilidades, combate, magia, Perks e inventario.",
-  "version": "0.2.0",
-  "compatibility": {
-    "minimum": "13",
-    "verified": "14"
-  },
-  "authors": [
-    {
-      "name": "Gustavo Matus"
-    }
-  ],
-  "esmodules": [
-    "scripts/tierra-magica.mjs"
-  ],
-  "styles": [
-    "styles/tierra-magica.css"
-  ],
-  "languages": [
-    {
-      "lang": "es",
-      "name": "Español",
-      "path": "lang/es.json"
-    }
-  ],
+  "title": "Tierra Mágica — Foundry T.M.",
+  "description": "Implementación de Foundry T.M. para Tierra Mágica, basada en el Manual Básico v0.1 Playtest: motor 2d10, desarrollo sin clases, combate, daño grave, trauma, magia universal y familiares.",
+  "version": "0.3.0",
+  "compatibility": { "minimum": "13", "verified": "14" },
+  "authors": [{ "name": "Gustavo Matus" }],
+  "esmodules": ["scripts/tierra-magica.mjs"],
+  "styles": ["styles/tierra-magica.css"],
+  "languages": [{ "lang": "es", "name": "Español", "path": "lang/es.json" }],
   "socket": true,
-  "initiative": "1d20 + @attributes.agility.value + @attributes.perception.value + @combat.initiativeBonus",
-  "grid": {
-    "distance": 1.5,
-    "units": "m"
-  },
+  "initiative": "2d10 + @attributes.per.value + @combat.initiativeBonus",
+  "grid": { "distance": 1.5, "units": "m" },
   "primaryTokenAttribute": "resources.health",
   "secondaryTokenAttribute": "resources.mana",
   "url": "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry",
