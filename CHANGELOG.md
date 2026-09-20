@@ -1,5 +1,19 @@
 # Historial de cambios
 
+## 0.9.1
+
+- La cabecera vectorial de v0.9.0 se reemplaza por la **ilustración panorámica aprobada de Tierra Mágica**, con castillo, montañas, dragón, paisaje fantástico, placa central y el lema **Historias que dejan huella**.
+- La ilustración se integra como asset optimizado para Foundry en `assets/ui/tierra-magica-banner-final.jpg`.
+- La cabecera aumenta su presencia visual y mantiene recorte controlado para conservar el foco en el emblema central.
+- Los paneles principales reciben una segunda capa de ornamentación con doble filete, esquina decorativa y mayor profundidad de marco.
+- El núcleo central recibe un borde ceremonial reforzado sin modificar la distribución de retrato, atributos ni recursos.
+- Las Defensas se refinan para verse menos facetadas y más cercanas a placas/escudos arcano-industriales.
+- Estado, Rasgos, Especializaciones y Técnicas incorporan doble filete y detalles de remache coherentes con la nueva cabecera.
+- Eliminado el texto decorativo bajo las pestañas laterales para limpiar el gutter derecho y dejar sólo los señaladores.
+- Ajustada la posición vertical de las pestañas para acompañar la nueva altura de la cabecera.
+- Sin cambios en reglas, cálculos, datos ni acciones de la ficha.
+
+
 ## 0.9.0
 
 - Rediseño visual amplio de la página **Ficha**, basado en la composición aprobada por referencia.

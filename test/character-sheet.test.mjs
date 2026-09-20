@@ -218,3 +218,19 @@ test("la dirección visual v0.9.0 usa el emblema hero y la composición aprobada
 
   await access(resolve(root, "assets/ui/sheet-title-hero.svg"));
 });
+
+
+test("v0.9.1 integra el banner ilustrado aprobado y limpia el gutter lateral", async () => {
+  const source = await readFile(resolve(root, "templates/actor/character-sheet.hbs"), "utf8");
+  const css = await readFile(resolve(root, "styles/character-sheet-v03.css"), "utf8");
+
+  assert.equal(source.includes("assets/ui/tierra-magica-banner-final.jpg"), true);
+  assert.equal(source.includes("tm-v091-title-art"), true);
+  assert.equal(css.includes("TIERRA MÁGICA v0.9.1 — BANNER ILUSTRADO Y ORNAMENTACIÓN"), true);
+  assert.equal(css.includes(".tm-v091-title-art"), true);
+  assert.equal(css.includes(".tm-v03-page-tabs::after"), true);
+  assert.equal(css.includes("content: none !important;"), true);
+  assert.equal(css.includes(".tm-v03-defense-grid .tm-v09-defense"), true);
+
+  await access(resolve(root, "assets/ui/tierra-magica-banner-final.jpg"));
+});
