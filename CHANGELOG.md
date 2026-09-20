@@ -1,5 +1,14 @@
 # Historial de cambios
 
+## 0.7.1
+
+- Restaurado el marco superior de la ventana de Foundry para que el título del Actor y los controles de cabecera permanezcan claramente visibles.
+- La cabecera nativa se alinea con el ancho real de la hoja y ya no se extiende por detrás de los señaladores laterales.
+- Eliminado el marco y la sombra externos del contenedor de aplicación en la franja reservada a las pestañas.
+- La zona a la derecha de la hoja queda transparente: únicamente aparecen las orejas/señaladores, sin un rectángulo de ventana detrás.
+- Añadida una pequeña separación entre la cabecera de Foundry y la hoja para distinguir ambas capas visuales.
+
+
 ## 0.7.0
 
 - La página **Habilidades** pasa a mostrar el desglose completo de cada valor final: Rango, Especialización, Equipo, Técnica, Magia, Rasgo, modificador Temporal y Otros.

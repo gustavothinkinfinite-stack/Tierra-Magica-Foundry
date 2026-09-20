@@ -30,10 +30,51 @@
   box-shadow: inset 0 0 0 4px rgba(255,255,255,.14);
 }
 
-.tierra-magica .window-content:has(form.tm-character-sheet-v03) {
-  overflow: hidden;
-  background: transparent;
+/*
+ * La ventana de personaje se compone de tres capas independientes:
+ * cabecera Foundry, hoja y señaladores externos.
+ * El contenedor de Foundry no dibuja un marco alrededor de la franja
+ * reservada a las pestañas.
+ */
+.tierra-magica:has(form.tm-character-sheet-v03) {
+  overflow: visible;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
+
+.tierra-magica:has(form.tm-character-sheet-v03) > .window-header {
+  position: relative;
+  z-index: 100;
+  width: calc(100% - 92px);
+  min-height: 34px;
+  margin-right: 92px;
+  padding: 0 9px;
+  box-sizing: border-box;
+  color: #efe1bd;
+  background:
+    linear-gradient(180deg, rgba(20,22,24,.98), rgba(6,9,11,.98));
+  border: 1px solid #896536;
+  border-bottom-color: #c09a54;
+  border-radius: 6px 6px 0 0;
+  box-shadow: 0 2px 7px rgba(0,0,0,.34);
+}
+
+.tierra-magica:has(form.tm-character-sheet-v03) > .window-header .window-title,
+.tierra-magica:has(form.tm-character-sheet-v03) > .window-header .header-control {
+  position: relative;
+  z-index: 1;
+}
+
+.tierra-magica:has(form.tm-character-sheet-v03) > .window-content {
+  width: 100%;
+  padding: 6px 0 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: transparent !important;
+  border: 0 !important;
+}
+
 form.tm-character-sheet-v03 {
   height: 100%;
   overflow: visible;
@@ -890,6 +931,10 @@ form.tm-character-sheet-v03 {
   .tm-v03-rest-actions { grid-column: 1/-1; }
 }
 @media (max-width: 850px) {
+  .tierra-magica:has(form.tm-character-sheet-v03) > .window-header {
+    width: calc(100% - 64px);
+    margin-right: 64px;
+  }
   .tm-character-sheet-v03 .tm-v03-shell {
     width: calc(100% - 64px);
     margin-right: 64px;
