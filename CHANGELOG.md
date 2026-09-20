@@ -1,5 +1,19 @@
 # Historial de cambios
 
+## 0.4.0
+
+- Nueva **Ficha de Personaje Tierra Mágica v0.2 — Visual y Usabilidad**.
+- Retrato central reforzado con astrolabio arcano, siete Atributos y una composición más cercana a una ficha ilustrada de manual.
+- Habilidades agrupadas por Físicas, Exploración, Sociales, Conocimiento, Técnicas, Combate, Magia y Operación.
+- Paneles de Rasgos, Especializaciones y Técnicas plegables para aprovechar mejor el espacio.
+- Barras visuales de Vida y Maná con controles rápidos.
+- Economía de turno interactiva: Movimiento, Acción y Reacción pueden marcarse como disponibles o gastados y restablecerse con un clic.
+- Panel de Desarrollo con PD totales, gastados y disponibles.
+- Pestaña de Magia rediseñada con las seis Disciplinas y una presentación editorial propia.
+- El bloque de Familiar abre el Familiar vinculado cuando existe y evita crear duplicados.
+- Nuevo recurso gráfico arcano reutilizable y estilos adaptativos para ventanas de distintos tamaños.
+
+
 ## 0.3.2
 
 - Corregido el guardado de rangos de Habilidad cuando la misma Habilidad aparece en más de una vista de la ficha.
