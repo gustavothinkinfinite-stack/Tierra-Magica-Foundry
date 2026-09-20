@@ -42,7 +42,7 @@ Hooks.on("preCreateActor", (actor) => {
 
 Hooks.on("preCreateItem", (item) => {
   if (!item.img || item.img === "icons/svg/item-bag.svg") {
-    const fallback = ["weapon","armor","shield","equipment","spell"].includes(item.type) ? item.type : "equipment";
+    const fallback = item.type === "shield" ? "armor" : ["weapon","armor","equipment","spell"].includes(item.type) ? item.type : "equipment";
     item.updateSource({ img: "systems/tierra-magica/assets/icons/" + fallback + ".svg" });
   }
 });
