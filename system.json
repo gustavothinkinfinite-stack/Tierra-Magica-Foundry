@@ -6,7 +6,7 @@
   "compatibility": { "minimum": "13", "verified": "14" },
   "authors": [{ "name": "Gustavo Matus" }],
   "esmodules": ["scripts/tierra-magica.mjs"],
-  "styles": ["styles/tierra-magica.css"],
+  "styles": ["styles/tierra-magica.css", "styles/character-sheet-v01.css"],
   "languages": [{ "lang": "es", "name": "Español", "path": "lang/es.json" }],
   "socket": true,
   "initiative": "2d10 + @attributes.per.value + @combat.initiativeBonus",
