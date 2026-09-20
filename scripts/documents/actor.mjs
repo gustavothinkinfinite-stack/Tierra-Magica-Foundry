@@ -249,11 +249,13 @@ export class TierraMagicaActor extends Actor {
         if (modifier?.skill !== skillKey) continue;
         const value = toNumber(modifier.value);
         if (!value) continue;
+        const category = this.#skillSourceCategory(item.type);
         sources.push({
           itemId: item.id,
           name: item.name,
           itemType: item.type,
-          category: this.#skillSourceCategory(item.type),
+          category,
+          categoryLabel: this.#skillSourceCategoryLabel(category),
           label: String(modifier.label ?? "").trim(),
           value
         });
@@ -311,6 +313,17 @@ export class TierraMagicaActor extends Actor {
     if (type === "spell") return "magic";
     if (type === "trait") return "trait";
     return "other";
+  }
+
+  #skillSourceCategoryLabel(category) {
+    return {
+      specialization: "Especialización",
+      equipment: "Equipo",
+      technique: "Técnica",
+      magic: "Magia",
+      trait: "Rasgo",
+      other: "Otro"
+    }[category] ?? "Otro";
   }
 
   #skillDialogSummary(breakdown) {
