@@ -5,8 +5,8 @@
   --tm-paper-deep: #ddd1ba;
   --tm-gold: #b28a3e;
   --tm-gold-bright: #d8b667;
-  --tm-green: #284f43;
-  --tm-green-soft: #3f7463;
+  --tm-green: #183b47;
+  --tm-green-soft: #2f6f7b;
   --tm-red: #873e39;
   --tm-blue: #355c7d;
   --tm-shadow: rgba(27, 22, 16, 0.24);
@@ -47,7 +47,7 @@
   color: #f5ecda;
   background:
     radial-gradient(circle at 80% -40%, rgba(219, 181, 100, 0.32), transparent 38%),
-    linear-gradient(125deg, #142d28, #275345 55%, #1d3b34);
+    linear-gradient(125deg, #102f39, #1f5360 55%, #173b45);
   border-bottom: 3px solid var(--tm-gold);
 }
 
@@ -197,7 +197,7 @@
 
 .tm-resource.tm-health { background: linear-gradient(120deg, #713631, #984940); }
 .tm-resource.tm-mana { background: linear-gradient(120deg, #294c6b, #3d6e94); }
-.tm-resource.tm-stamina { background: linear-gradient(120deg, #315d4c, #47816a); }
+.tm-resource.tm-stamina { background: linear-gradient(120deg, #31505b, #4f7782); }
 .tm-resource.tm-destiny { background: linear-gradient(120deg, #664a7b, #8963a0); }
 
 .tm-xp-strip {
@@ -507,7 +507,7 @@
   margin: -14px -14px 14px;
   padding: 14px;
   color: #fff;
-  background: linear-gradient(125deg, #18342d, #315e4f);
+  background: linear-gradient(125deg, #173c47, #2d6671);
   border-bottom: 3px solid var(--tm-gold);
 }
 
@@ -572,3 +572,16 @@
   .tm-tabs .item { font-size: 0; }
   .tm-tabs .item i { font-size: 14px; }
 }
+
+/* Foundry T.M. v0.3 — dirección visual canónica: azul petróleo, metal envejecido y acentos arcanos. */
+.tm-resource-bar-two { grid-template-columns: repeat(2, 1fr); }
+.tm-extraordinary { padding: 6px 8px; border-left: 3px solid var(--tm-gold-bright); background: rgba(216,182,103,.12); }
+.tm-danger-text { color: var(--tm-red); font-weight: 700; }
+.tm-item-section .tm-section-buttons { flex-wrap: wrap; }
+.tm-item-fields .tm-form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.tm-sheet-header { background:
+  radial-gradient(circle at 82% -35%, rgba(54,190,215,.18), transparent 38%),
+  linear-gradient(125deg, #102f39, #1f5360 55%, #173b45);
+}
+.tm-level-seal { background: rgba(5,26,34,.72); }
+.tm-panel { backdrop-filter: blur(1px); }
