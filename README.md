@@ -1,48 +1,41 @@
-# Tierra Mágica para Foundry VTT
+# Tierra Mágica — Foundry T.M.
 
-Sistema propio de fantasía para **Foundry VTT v14**, basado en los documentos originales de Tierra Mágica.
+Sistema para **Foundry VTT v14** basado en el **Manual Básico v0.1 Playtest** de Foundry T.M.
 
-## Estado actual 0.2.0
+## Rama de reconstrucción
 
-La versión 0.2.0 reemplaza la base genérica inicial por las reglas y conceptos del libro:
+Esta versión reemplaza la adaptación anterior (d20, clases, 8 características y perks) por el núcleo actual del manual:
 
-- Personajes, PNJ y Compañeros Familiares con fichas propias.
-- Fuerza, Destreza, Agilidad, Fortaleza, Inteligencia, Percepción, Voluntad y Poder.
-- Creación guiada por puntos o tiradas de `2d6` conservando el dado mayor.
-- Diez razas con sus valores de Vida, Maná, frecuencia de Perks y rasgos.
-- Cuatro ramas profesionales: Combatiente, Místico, Técnico y Sin clase.
-- Treinta y siete habilidades secundarias configurables.
-- Tiradas `1d20 + característica + habilidad + bono`.
-- Configuración opcional de dificultad y modificadores manteniendo Mayús al tirar.
-- Grados de resultado: fallo crítico, fallo, éxito y éxito crítico.
-- Vida, Maná y Destino con controles rápidos.
-- Clase de armadura, Fortaleza, Voluntad, resistencia mágica, iniciativa, movimiento, carga y Letalidad.
-- Progresión de experiencia hasta nivel 10 según la tabla del libro.
-- Armas, armaduras, equipo, hechizos, Perks, estilos y beneficios de familiar.
-- Biblioteca integrada con 17 conjuros, 17 Perks o estilos y 12 beneficios de familiar extraídos del material original.
-- Consumo automático de Maná al lanzar conjuros.
-- Creación de un Familiar directamente vinculado desde la ficha del personaje.
-- Migración automática de fichas creadas con la versión 0.1.0.
+- Motor **2d10 + Atributo + Habilidad + modificadores ≥ DF**.
+- Ventaja/Desventaja mediante **3d10 conservando los dos mejores/peores**.
+- Hazañas (10/10) y Pifias (1/1) interpretadas después de determinar éxito o fallo.
+- Siete Atributos: FUE, AGI, VIG, INT, PER, VOL y PRE.
+- 26 Habilidades con rangos Sin entrenamiento, Aprendiz, Entrenado, Experto, Maestro y Gran Maestro.
+- Atributo y Habilidad desacoplados: el atributo se elige al realizar cada prueba.
+- Vida, Maná, Defensa, Defensa de Maniobra, Mental y Corporal automáticas.
+- Protección, Penetración, Daño Grave y estados de Trauma/Fatiga.
+- Armas, armaduras y escudos del manual como contenido de referencia.
+- Magia con Fuentes, Disciplinas, Maná, Canalización y requisitos de conocimiento.
+- Hechizos de calibración del Manual v0.1.
+- Técnicas, Rasgos y Especializaciones como tipos de objeto independientes.
+- Familiares como Actor propio vinculado al personaje.
+- Estética visual ajustada a la guía canónica arcano-industrial de Tierra Mágica.
 
-## Instalación
+## Estado
 
-En **Foundry > Sistemas de juego > Instalar sistema**, usá esta URL:
+**0.3.0 — reconstrucción estructural para playtest.**
 
-```text
-https://raw.githubusercontent.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/main/system.json
-```
+El sistema implementa el núcleo que el manual declara consolidado y deja editables los módulos que el propio documento marca como provisionales o pendientes. No inventa razas, bestiario, economía definitiva ni grimorio completo.
 
-## Uso básico
+## Instalación de desarrollo
 
-1. Creá un Actor de tipo **Personaje**.
-2. Abrí su ficha y presioná **Crear** para elegir raza, profesión y método de características.
-3. Ajustá los valores y distribuí puntos de habilidad según Inteligencia + Poder.
-4. En Magia, Perks o Beneficios del Familiar, usá **Del libro** para añadir contenido preparado.
-5. Hacé clic sobre una característica o habilidad para tirar. Mantené **Mayús** para agregar dificultad y modificadores circunstanciales.
+Para probar esta reconstrucción antes de fusionarla, usar la rama:
 
-## Criterio de adaptación
+`foundry-tm-manual-v01`
 
-Los borradores originales contienen variantes y contradicciones entre características, creación y progresión. La implementación prioriza el documento más completo y conserva los valores numéricos explícitos de razas, profesiones, experiencia, conjuros y familiares. Los cálculos que no estaban cerrados permanecen editables en la ficha para facilitar las pruebas de mesa.
+Al fusionarse a `main`, la URL normal del manifiesto vuelve a ser:
+
+`https://raw.githubusercontent.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/main/system.json`
 
 ## Desarrollo
 
@@ -50,4 +43,4 @@ Los borradores originales contienen variantes y contradicciones entre caracterí
 npm run validate
 ```
 
-Las validaciones comprueban sintaxis, manifiesto, plantillas, progresión, habilidades, defensas, carga y grados de éxito.
+La validación comprueba sintaxis del núcleo y reglas matemáticas básicas.
