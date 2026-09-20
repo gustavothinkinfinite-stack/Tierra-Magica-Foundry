@@ -1,210 +1,255 @@
-import {
-  characteristicPoints, degreeOfSuccess, defense, experienceForNextLevel,
-  inventoryLoad, signed, skillTotal, toNumber
-} from "../rules.mjs";
 import { TM_CONFIG } from "../config.mjs";
+import {
+  toNumber, clamp, rankBonus, defenseBonus, rollFormula,
+  classifyResult, extraordinaryTag, finalDamage, severeThreshold
+} from "../rules.mjs";
 
 export class TierraMagicaActor extends Actor {
   prepareDerivedData() {
     super.prepareDerivedData();
-    const system = this.system;
-    const level = Math.max(1, toNumber(system.details?.level, 1));
+    const s = this.system;
+    const a = s.attributes ?? {};
+    const vig = toNumber(a.vig?.value, 1);
+    const agi = toNumber(a.agi?.value, 1);
+    const vol = toNumber(a.vol?.value, 1);
 
-    for (const attribute of Object.values(system.attributes ?? {})) {
-      attribute.value = toNumber(attribute.value);
-      attribute.signed = signed(attribute.value);
+    for (const attribute of Object.values(a)) attribute.value = clamp(attribute.value, 0, 99);
+    for (const [key, skill] of Object.entries(s.skills ?? {})) {
+      skill.rank = clamp(Math.floor(toNumber(skill.rank)), 0, 5);
+      skill.bonus = rankBonus(skill.rank, TM_CONFIG.rankBonuses);
+      skill.label = TM_CONFIG.skills[key]?.label ?? key;
+      skill.rankLabel = TM_CONFIG.rankLabels[skill.rank] ?? "";
     }
 
-    for (const [key, skill] of Object.entries(system.skills ?? {})) {
-      const defaultAbility = TM_CONFIG.skills[key]?.ability;
-      skill.ability ||= defaultAbility;
-      const ability = system.attributes?.[skill.ability]?.value ?? 0;
-      skill.total = skillTotal({ ability, value: skill.value, bonus: skill.bonus });
-      skill.signed = signed(skill.total);
-    }
+    const armor = this.items
+      .filter((i) => i.type === "armor" && i.system.equipped)
+      .reduce((max, i) => Math.max(max, toNumber(i.system.protection)), 0);
+    const shield = this.items
+      .filter((i) => i.type === "shield" && i.system.equipped)
+      .reduce((max, i) => Math.max(max, toNumber(i.system.passiveDefense)), 0);
 
-    const ancestry = TM_CONFIG.ancestries[system.details?.ancestry] ?? null;
-    const actorClass = TM_CONFIG.classes[system.details?.class] ?? null;
-    const equippedArmor = this.items
-      .filter((item) => item.type === "armor" && item.system.equipped)
-      .sort((a, b) => toNumber(b.system.armor) - toNumber(a.system.armor))[0];
-    const armor = toNumber(equippedArmor?.system.armor) + toNumber(system.combat?.armor);
-    const magicResistance = toNumber(equippedArmor?.system.magicResistance) + toNumber(system.combat?.magicResistance);
-    const agility = system.attributes?.agility?.value ?? 0;
-    const dexterity = system.attributes?.dexterity?.value ?? 0;
-    const fortitude = system.attributes?.fortitude?.value ?? 0;
-    const perception = system.attributes?.perception?.value ?? 0;
-    const willpower = system.attributes?.willpower?.value ?? 0;
+    const martialRank = clamp(Math.floor(toNumber(s.combat?.defensiveRank)), 0, 5);
+    const martialDefense = defenseBonus(martialRank, TM_CONFIG.defensiveRankBonuses);
+    const extraDefense = toNumber(s.combat?.defenseBonus);
 
-    system.derived = {
-      ancestry,
-      actorClass,
-      movement: agility + dexterity + toNumber(ancestry?.movement),
-      initiative: agility + perception + toNumber(system.combat?.initiativeBonus),
-      magicResistance,
-      skillPointsPerLevel: toNumber(system.attributes?.intelligence?.value) + toNumber(system.attributes?.power?.value),
-      characteristicPoints: characteristicPoints(system.attributes),
-      characteristicBudget: 30,
-      load: inventoryLoad(this.items),
-      loadMax: Math.max(1, toNumber(system.attributes?.strength?.value) * 5),
-      perkEvery: ancestry?.perkEvery ?? 0
+    s.derived = {
+      healthMax: 10 + vig * 2,
+      manaMax: 6 + vol * 3,
+      severeThreshold: severeThreshold(vig),
+      defense: 11 + agi + martialDefense + shield + extraDefense,
+      maneuverDefense: 11 + agi + martialDefense + extraDefense,
+      mentalDefense: 11 + vol,
+      bodyDefense: 11 + vig,
+      protection: armor + toNumber(s.combat?.protectionBonus),
+      movement: Math.max(1, 6 + toNumber(s.combat?.movementBonus)),
+      initiative: toNumber(a.per?.value, 1) + toNumber(s.combat?.initiativeBonus),
+      martialDefense,
+      equippedShield: shield
     };
 
-    system.combat.defenses.armor = defense(10, agility, armor);
-    system.combat.defenses.fortitude = defense(10, fortitude, level);
-    system.combat.defenses.willpower = defense(10, willpower, level);
-    system.details.experience.max = experienceForNextLevel(level, TM_CONFIG.xpThresholds);
+    if (s.resources?.health) s.resources.health.max = s.derived.healthMax;
+    if (s.resources?.mana) s.resources.mana.max = s.derived.manaMax;
   }
 
-  async rollAttribute(key, { configure = false } = {}) {
-    const attribute = this.system.attributes?.[key];
-    if (!attribute) return;
-    return this.#rollD20(attribute.value, `${TM_CONFIG.abilities[key] ?? key} · ${this.name}`, configure);
+  async rollAttribute(key, options = {}) {
+    return this.rollCheck({
+      label: TM_CONFIG.attributes[key] ?? key,
+      attributeKey: key,
+      skillKey: null,
+      ...options
+    });
   }
 
-  async rollSkill(key, { configure = false } = {}) {
+  async rollSkill(key, options = {}) {
     const skill = this.system.skills?.[key];
-    if (!skill) return;
-    return this.#rollD20(skill.total, `${TM_CONFIG.skills[key]?.label ?? key} · ${this.name}`, configure);
+    if (!skill) return null;
+    const attributeKey = options.attributeKey ?? await this.#chooseAttribute(key);
+    if (!attributeKey) return null;
+    return this.rollCheck({
+      label: TM_CONFIG.skills[key]?.label ?? key,
+      attributeKey,
+      skillKey: key,
+      ...options
+    });
   }
 
-  async rollInitiativeCheck({ configure = false } = {}) {
-    return this.#rollD20(this.system.derived.initiative, `Iniciativa · ${this.name}`, configure);
+  async rollCheck({ label, attributeKey, skillKey = null, df = null, mode = "normal", modifier = 0 } = {}) {
+    const attribute = toNumber(this.system.attributes?.[attributeKey]?.value);
+    const skill = skillKey ? rankBonus(this.system.skills?.[skillKey]?.rank, TM_CONFIG.rankBonuses) : 0;
+    const totalModifier = attribute + skill + toNumber(modifier);
+    const roll = await new Roll(rollFormula(mode, totalModifier), this.getRollData()).evaluate();
+
+    const tag = extraordinaryTag(roll);
+    let resultText = "";
+    if (df !== null && df !== undefined && df !== "") {
+      const result = classifyResult(roll.total, df);
+      resultText = "<p><strong>" + result.degree + "</strong> · DF " + toNumber(df) + " · margen " + result.margin + "</p>";
+      if (tag === "Hazaña") resultText += result.success
+        ? "<p class='tm-extraordinary'>Hazaña: éxito excepcional.</p>"
+        : "<p class='tm-extraordinary'>Hazaña en fallo: surge una ventaja, descubrimiento u oportunidad coherente.</p>";
+      if (tag === "Pifia") resultText += result.success
+        ? "<p class='tm-extraordinary'>Pifia en éxito: el objetivo se logra con una complicación coherente.</p>"
+        : "<p class='tm-extraordinary'>Pifia: fallo con una complicación seria y contextual.</p>";
+    } else if (tag) {
+      resultText = "<p class='tm-extraordinary'><strong>" + tag + "</strong></p>";
+    }
+
+    const flavor = "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(label) + " · " +
+      foundry.utils.escapeHTML(this.name) + "</strong><p>" +
+      foundry.utils.escapeHTML(TM_CONFIG.attributes[attributeKey] ?? attributeKey) +
+      (skillKey ? " + " + foundry.utils.escapeHTML(TM_CONFIG.skills[skillKey]?.label ?? skillKey) : "") +
+      " · " + (mode === "advantage" ? "Ventaja" : mode === "disadvantage" ? "Desventaja" : "Normal") +
+      "</p>" + resultText + "</div>";
+
+    return roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor,
+      rollMode: game.settings.get("core", "rollMode")
+    });
   }
 
-  async rollWeapon(item, { configure = false } = {}) {
-    if (!item || item.type !== "weapon") return;
-    const ability = this.system.attributes?.[item.system.attackAbility]?.value ?? 0;
-    const attackBonus = ability + toNumber(this.system.combat.attackBonus) + toNumber(item.system.attackBonus);
-    return this.#rollD20(attackBonus, `Ataque con ${item.name} · ${this.name}`, configure);
+  async configureAndRollSkill(key) {
+    const skill = this.system.skills?.[key];
+    if (!skill) return null;
+    const options = Object.entries(TM_CONFIG.attributes)
+      .map(([k, v]) => "<option value='" + k + "'>" + v + "</option>").join("");
+    const result = await Dialog.prompt({
+      title: "Tirada de " + (TM_CONFIG.skills[key]?.label ?? key),
+      content:
+        "<div class='form-group'><label>Atributo</label><select name='attribute'>" + options + "</select></div>" +
+        "<div class='form-group'><label>Modo</label><select name='mode'><option value='normal'>Normal</option><option value='advantage'>Ventaja</option><option value='disadvantage'>Desventaja</option></select></div>" +
+        "<div class='form-group'><label>DF</label><input name='df' type='number' placeholder='Sin DF'/></div>" +
+        "<div class='form-group'><label>Modificador</label><input name='modifier' type='number' value='0'/></div>",
+      label: "Tirar",
+      callback: (html) => ({
+        attributeKey: html.find("[name='attribute']").val(),
+        mode: html.find("[name='mode']").val(),
+        df: html.find("[name='df']").val(),
+        modifier: html.find("[name='modifier']").val()
+      }),
+      rejectClose: false
+    });
+    if (!result) return null;
+    return this.rollSkill(key, result);
+  }
+
+  async rollInitiativeCheck() {
+    return this.rollCheck({
+      label: "Iniciativa",
+      attributeKey: "per",
+      modifier: toNumber(this.system.combat?.initiativeBonus)
+    });
+  }
+
+  async rollWeapon(item, { df = null, mode = "normal", modifier = 0 } = {}) {
+    if (!item || item.type !== "weapon") return null;
+    const target = [...(game.user.targets ?? [])][0]?.actor;
+    const targetDf = df ?? target?.system?.derived?.defense ?? null;
+    return this.rollCheck({
+      label: "Ataque con " + item.name,
+      attributeKey: item.system.attackAttribute || "agi",
+      skillKey: item.system.skill || "martialWeapons",
+      df: targetDf,
+      mode,
+      modifier
+    });
   }
 
   async rollDamage(item) {
-    if (!item || item.type !== "weapon") return;
-    const ability = this.system.attributes?.[item.system.damageAbility]?.value ?? 0;
-    const bonus = ability + toNumber(this.system.combat.damageBonus) + toNumber(item.system.damageBonus);
-    const formula = `${item.system.damage || "1d6"} ${bonus >= 0 ? "+" : "-"} ${Math.abs(bonus)}`;
-    const lethality = toNumber(this.system.combat.lethality);
-    const suffix = lethality ? ` · Letalidad ${signed(lethality)}` : "";
-    return this.#roll(formula, `Daño de ${item.name}${suffix} · ${this.name}`);
+    if (!item || item.type !== "weapon") return null;
+    const target = [...(game.user.targets ?? [])][0]?.actor;
+    const damageAttribute = item.system.damageAttribute
+      ? toNumber(this.system.attributes?.[item.system.damageAttribute]?.value)
+      : 0;
+    const protection = toNumber(target?.system?.derived?.protection);
+    const damage = finalDamage(
+      item.system.damage,
+      damageAttribute,
+      0,
+      protection,
+      item.system.penetration
+    );
+    const grave = target && damage >= toNumber(target.system.derived?.severeThreshold);
+    const content = "<div class='tm-chat-card'><strong>Daño · " + foundry.utils.escapeHTML(item.name) +
+      "</strong><p>Base " + toNumber(item.system.damage) +
+      (damageAttribute ? " + atributo " + damageAttribute : "") +
+      " · Pen " + toNumber(item.system.penetration) +
+      (target ? " · Protección objetivo " + protection : "") +
+      "</p><p><strong>Daño final: " + damage + "</strong>" +
+      (grave ? " · <span class='tm-danger-text'>Daño Grave</span>" : "") + "</p></div>";
+    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content });
   }
 
   async useSpell(item) {
-    if (!item || item.type !== "spell") return;
-    const cost = Math.max(0, toNumber(item.system.cost));
-    const currentMana = toNumber(this.system.resources.mana.value);
-    if (item.system.consumeOnUse && currentMana < cost) {
-      return ui.notifications.warn(`${this.name} no tiene Maná suficiente para lanzar ${item.name}.`);
+    if (!item || item.type !== "spell") return null;
+    const cost = Math.max(0, toNumber(item.system.manaCost));
+    const mana = toNumber(this.system.resources?.mana?.value);
+    if (mana < cost) return ui.notifications.warn(this.name + " no tiene Maná suficiente.");
+
+    const requirements = String(item.system.requirements ?? "").trim();
+    if (requirements && !this.#meetsSkillRequirement(requirements)) {
+      return ui.notifications.warn("No se cumplen los requisitos de " + item.name + ": " + requirements);
     }
 
-    if (item.system.consumeOnUse && cost > 0) {
-      await this.update({ "system.resources.mana.value": currentMana - cost });
-    }
+    if (cost) await this.update({ "system.resources.mana.value": mana - cost });
 
-    const details = `<div class="tm-chat-card"><strong>${foundry.utils.escapeHTML(item.name)}</strong>`
-      + `<p>Coste: ${cost} Maná · Salvación: ${foundry.utils.escapeHTML(item.system.saving || "Ninguna")}</p>`
-      + `${item.system.requirements ? `<p>Requisitos: ${foundry.utils.escapeHTML(item.system.requirements)}</p>` : ""}</div>`;
-    if (item.system.roll?.trim()) return this.#roll(item.system.roll.trim(), details);
-    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: details });
+    const target = [...(game.user.targets ?? [])][0]?.actor;
+    let df = toNumber(item.system.difficulty, 12);
+    if (item.system.defense === "mental" && target) df = toNumber(target.system.derived?.mentalDefense);
+    if (item.system.defense === "body" && target) df = toNumber(target.system.derived?.bodyDefense);
+    if (item.system.defense === "normal" && target) df = toNumber(target.system.derived?.defense);
+
+    return this.rollCheck({
+      label: "Hechizo: " + item.name + " · " + (TM_CONFIG.disciplines[item.system.discipline] ?? item.system.discipline),
+      attributeKey: item.system.attribute || "int",
+      skillKey: "channeling",
+      df
+    });
   }
 
   async adjustResource(resource, amount) {
     const data = this.system.resources?.[resource];
-    if (!data) return;
+    if (!data) return null;
     const next = Math.min(toNumber(data.max), Math.max(0, toNumber(data.value) + toNumber(amount)));
-    return this.update({ [`system.resources.${resource}.value`]: next });
+    return this.update({ ["system.resources." + resource + ".value"]: next });
   }
 
-  async rest(complete = false) {
+  async rest(kind = "rest") {
     const updates = {};
-    const health = this.system.resources.health;
-    updates["system.resources.health.value"] = complete
-      ? toNumber(health.max)
-      : Math.min(toNumber(health.max), toNumber(health.value) + Math.max(1, toNumber(this.system.attributes.fortitude.value)));
-    if (complete) {
-      updates["system.resources.mana.value"] = toNumber(this.system.resources.mana.max);
-      updates["system.status.fatigue"] = 0;
+    const hp = this.system.resources.health;
+    const mp = this.system.resources.mana;
+    if (kind === "rest") {
+      updates["system.resources.health.value"] = Math.min(toNumber(hp.max), toNumber(hp.value) + toNumber(this.system.attributes.vig.value) + 2);
+      updates["system.resources.mana.value"] = Math.min(toNumber(mp.max), toNumber(mp.value) + toNumber(this.system.attributes.vol.value) + 1);
+    } else if (kind === "full") {
+      updates["system.resources.health.value"] = toNumber(hp.max);
+      updates["system.resources.mana.value"] = toNumber(mp.max);
     }
     await this.update(updates);
-    ui.notifications.info(`${this.name} completó un descanso ${complete ? "completo" : "breve"}.`);
   }
 
-  async applyCharacterCreation({ ancestryKey, classKey, generation = "points" }) {
-    const ancestry = TM_CONFIG.ancestries[ancestryKey] ?? TM_CONFIG.ancestries.human;
-    const actorClass = TM_CONFIG.classes[classKey] ?? TM_CONFIG.classes.unclassed;
-    const attributeKeys = Object.keys(TM_CONFIG.abilities);
-    let values;
-
-    if (generation === "roll") {
-      values = [];
-      for (let i = 0; i < attributeKeys.length; i += 1) {
-        const roll = await new Roll("2d6kh1").evaluate();
-        values.push(roll.total);
-      }
-    } else {
-      values = [4, 4, 4, 4, 4, 4, 3, 3];
-    }
-
-    const attributes = Object.fromEntries(attributeKeys.map((key, index) => [key, { value: values[index] }]));
-    const fortitude = attributes.fortitude.value;
-    const intelligence = attributes.intelligence.value;
-    const healthMax = actorClass.hitDieAverage + ancestry.health + fortitude;
-    const manaMax = ancestry.mana + intelligence;
-    const destiny = await new Roll("1d6").evaluate();
-
-    return this.update({
-      "system.details.ancestry": ancestryKey,
-      "system.details.class": classKey,
-      "system.details.level": 1,
-      "system.details.experience.value": 0,
-      "system.attributes": attributes,
-      "system.resources.health": { value: healthMax, max: healthMax },
-      "system.resources.mana": { value: manaMax, max: manaMax },
-      "system.resources.destiny": { value: destiny.total, max: 6 },
-      "system.traits.racial": ancestry.traits,
-      "system.traits.languages": ancestry.traits.includes("común") ? ancestry.traits : "Común",
-      "system.traits.size": ancestryKey === "minotaur" ? "Grande" : "Mediano",
-      "system.currency.gold": 50
-    });
+  async #chooseAttribute(skillKey) {
+    const defaultMap = {
+      athletics: "fue", acrobatics: "agi", stealth: "agi", survival: "per", nature: "int",
+      investigation: "int", persuasion: "pre", deception: "pre", intimidation: "pre", empathy: "per",
+      history: "int", religion: "int", medicine: "int", arcana: "int", crafting: "int",
+      engineering: "int", alchemy: "int", thievery: "agi", lightWeapons: "agi", martialWeapons: "fue",
+      heavyWeapons: "fue", rangedWeapons: "per", channeling: "int", ritualism: "int", handling: "agi", piloting: "agi"
+    };
+    return defaultMap[skillKey] ?? "int";
   }
 
-  async #rollD20(baseModifier, flavor, configure) {
-    let modifier = toNumber(baseModifier);
-    let dc = null;
-    if (configure) {
-      const configuration = await Dialog.prompt({
-        title: `Configurar ${flavor}`,
-        content: `<div class="form-group"><label>Modificador circunstancial</label><input name="bonus" type="number" value="0"></div>`
-          + `<div class="form-group"><label>Dificultad opcional</label><input name="dc" type="number" placeholder="Sin dificultad"></div>`,
-        label: "Tirar",
-        callback: (html) => ({
-          bonus: toNumber(html.find("[name='bonus']").val()),
-          dc: html.find("[name='dc']").val()
-        }),
-        rejectClose: false
-      });
-      if (!configuration) return null;
-      modifier += configuration.bonus;
-      dc = configuration.dc === "" ? null : toNumber(configuration.dc);
+  #meetsSkillRequirement(text) {
+    const lower = text.toLowerCase();
+    const pairs = [
+      ["medicina", "medicine"], ["arcana", "arcana"], ["canalización", "channeling"],
+      ["ritualismo", "ritualism"], ["alquimia", "alchemy"], ["ingeniería", "engineering"]
+    ];
+    for (const [label, key] of pairs) {
+      if (!lower.includes(label)) continue;
+      const rank = toNumber(this.system.skills?.[key]?.rank);
+      if (rank < 1) return false;
     }
-
-    const roll = await new Roll(`1d20 ${modifier >= 0 ? "+" : "-"} ${Math.abs(modifier)}`, this.getRollData()).evaluate();
-    if (dc !== null) {
-      const natural = roll.dice?.[0]?.results?.[0]?.result ?? 0;
-      const result = degreeOfSuccess(roll.total, dc, natural);
-      flavor += ` · CD ${dc} · <strong>${result}</strong>`;
-    }
-    return roll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: this }), flavor,
-      rollMode: game.settings.get("core", "rollMode")
-    });
-  }
-
-  async #roll(formula, flavor) {
-    const roll = await new Roll(formula, this.getRollData()).evaluate();
-    return roll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: this }), flavor,
-      rollMode: game.settings.get("core", "rollMode")
-    });
+    return true;
   }
 }
