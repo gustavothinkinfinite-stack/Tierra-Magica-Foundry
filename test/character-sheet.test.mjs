@@ -195,3 +195,26 @@ test("el refinamiento visual v0.8.1 separa filigrana, estrellas y defensas", asy
   assert.equal(css.includes("border-radius: 999px;"), true);
   assert.equal(css.includes(".tm-v03-right-rail .tm-v03-panel-heading h2::before"), true);
 });
+
+
+test("la dirección visual v0.9.0 usa el emblema hero y la composición aprobada", async () => {
+  const source = await readFile(resolve(root, "templates/actor/character-sheet.hbs"), "utf8");
+  const css = await readFile(resolve(root, "styles/character-sheet-v03.css"), "utf8");
+
+  assert.equal(source.includes('class="tm-v03-header tm-v09-header"'), true);
+  assert.equal(source.includes('assets/ui/sheet-title-hero.svg'), true);
+  assert.equal(source.includes('class="tm-v09-motto"'), true);
+  assert.equal(source.includes('class="tm-v09-defense'), true);
+  assert.equal(source.includes('fa-book-open'), true);
+  assert.equal(source.includes('fa-shield-halved'), true);
+
+  assert.equal(css.includes("TIERRA MÁGICA v0.9.0 — DIRECCIÓN VISUAL MAYOR"), true);
+  assert.equal(css.includes(".tm-v09-title-art"), true);
+  assert.equal(css.includes(".tm-v09-motto"), true);
+  assert.equal(css.includes(".tm-v09-defense"), true);
+  assert.equal(css.includes("width: calc(100% - 112px);"), true);
+  assert.equal(css.includes("right: -102px;"), true);
+  assert.equal(css.includes("grid-template-columns: 290px minmax(500px,1fr) 302px;"), true);
+
+  await access(resolve(root, "assets/ui/sheet-title-hero.svg"));
+});

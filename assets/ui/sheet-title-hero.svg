@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 140" role="img" aria-labelledby="title desc">
+  <title id="title">Tierra Mágica</title>
+  <desc id="desc">Emblema de Tierra Mágica sobre un paisaje fantástico de castillos, montañas y dragón.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3e8c9"/>
+      <stop offset="1" stop-color="#dfcca0"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5d98c"/>
+      <stop offset=".28" stop-color="#b7782f"/>
+      <stop offset=".55" stop-color="#f0c86d"/>
+      <stop offset="1" stop-color="#6c421c"/>
+    </linearGradient>
+    <linearGradient id="darkPlate" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a1b18" stop-opacity=".94"/>
+      <stop offset=".55" stop-color="#33291d" stop-opacity=".88"/>
+      <stop offset="1" stop-color="#121819" stop-opacity=".94"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-40%" width="160%" height="190%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="4" result="off"/>
+      <feColorMatrix in="off" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .58 0"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="1.2"/></filter>
+  </defs>
+
+  <rect x="1.5" y="1.5" width="1197" height="137" rx="3" fill="url(#paper)" stroke="#6e4a22" stroke-width="3"/>
+  <rect x="8" y="8" width="1184" height="124" rx="2" fill="none" stroke="#bd9149" stroke-width="1"/>
+
+  <!-- distant landscape -->
+  <g opacity=".62" fill="#6e654e">
+    <path d="M0 109 38 93 72 98 106 71 132 88 166 54 198 80 228 45 263 76 294 61 328 91 363 75 400 102 430 82 464 104 500 93 528 112H0Z"/>
+    <path d="M702 103 744 83 778 94 821 51 852 78 890 38 921 72 960 52 998 80 1035 46 1072 70 1110 42 1146 82 1200 58V118H702Z"/>
+  </g>
+
+  <!-- castle silhouette -->
+  <g fill="#404238" opacity=".83">
+    <path d="M72 104h172V81h-12V54h-18v27h-11V38h-15v43h-13V63h-18v18h-16V46h-13v35h-19V66H96v15H72Z"/>
+    <path d="M90 54 96 43l6 11Zm48-10 7-15 7 15Zm42-17 8-18 8 18Zm34 18 8-17 8 17Z"/>
+    <path d="M58 106c23-8 43-14 64-16 27-3 41 8 63 4 17-3 28-10 48-9 19 1 34 8 51 21Z"/>
+  </g>
+
+  <!-- dragon -->
+  <g transform="translate(1025 24)" fill="#31362f" opacity=".88">
+    <path d="M8 42c17-17 31-19 46-12 11-18 23-25 43-22-11 9-15 18-14 27 16 1 27 9 36 24-17-7-29-8-39-4-9 4-18 12-29 20 1-13-1-21-7-28-12 9-24 9-36-5Z"/>
+    <path d="M45 31c-8-8-18-11-29-9 9-8 20-11 34-9Zm21 13c10 4 21 12 33 24-14-5-26-10-36-17Z"/>
+    <circle cx="53" cy="34" r="1.8" fill="#d4a94f"/>
+  </g>
+
+  <!-- central dark plate -->
+  <path d="M343 19 392 7h416l49 12 19 47-19 47-49 12H392l-49-12-19-47Z" fill="url(#darkPlate)" stroke="#8b642d" stroke-width="2"/>
+  <path d="M365 24 400 14h400l35 10 14 42-14 42-35 10H400l-35-10-14-42Z" fill="none" stroke="#d0a556" stroke-width="1" opacity=".65"/>
+
+  <!-- title -->
+  <g filter="url(#shadow)">
+    <text x="600" y="83" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="61" font-weight="900"
+      letter-spacing="2.5" fill="url(#gold)" stroke="#3b2411" stroke-width="5" paint-order="stroke fill">TIERRA MÁGICA</text>
+    <text x="600" y="82" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="61" font-weight="900"
+      letter-spacing="2.5" fill="none" stroke="#f1d481" stroke-width=".8">TIERRA MÁGICA</text>
+  </g>
+
+  <!-- central gem -->
+  <g transform="translate(600 91)">
+    <path d="M0-13 10-4 7 9 0 15-7 9-10-4Z" fill="#24768a" stroke="#d7b15b" stroke-width="2"/>
+    <circle cx="0" cy="-1" r="4" fill="#70e0f2"/>
+  </g>
+
+  <!-- subtitle ribbon -->
+  <g transform="translate(600 111)">
+    <path d="M-147-10h294l14 10-14 10h-294l-14-10Z" fill="#efe1bc" stroke="#8c642e"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Georgia, serif" font-size="10" letter-spacing="2.3" fill="#57432a">HISTORIAS QUE DEJAN HUELLA</text>
+  </g>
+
+  <!-- corner filigree -->
+  <g fill="none" stroke="#8f672f" stroke-width="1.3" opacity=".8">
+    <path d="M12 47V12h35M12 29c13 0 17-4 17-17M21 12c0 11 5 16 17 16"/>
+    <path d="M1188 47V12h-35M1188 29c-13 0-17-4-17-17M1179 12c0 11-5 16-17 16"/>
+    <path d="M12 93v35h35M12 111c13 0 17 4 17 17M21 128c0-11 5-16 17-16"/>
+    <path d="M1188 93v35h-35M1188 111c-13 0-17 4-17 17M1179 128c0-11-5-16-17-16"/>
+  </g>
+</svg>

@@ -1,10 +1,9 @@
 <form class="{{cssClass}} tm-actor-sheet tm-character-sheet-v03" autocomplete="off">
 <div class="tm-v03-shell">
 
-  <header class="tm-v03-header">
-    <span aria-hidden="true"></span>
-    <h1>TIERRA MÁGICA</h1>
-    <span aria-hidden="true"></span>
+  <header class="tm-v03-header tm-v09-header">
+    <h1 class="tm-v09-visually-hidden">TIERRA MÁGICA</h1>
+    <img class="tm-v09-title-art" src="systems/tierra-magica/assets/ui/sheet-title-hero.svg" alt="Tierra Mágica — Historias que dejan huella" />
   </header>
 
   <section class="tm-v03-identity">
@@ -68,13 +67,13 @@
           <div class="tm-v03-stage-runes" aria-hidden="true"></div>
           <div class="tm-v03-stage-ring" aria-hidden="true"></div>
 
-          <button type="button" class="tm-v03-attribute tm-v03-int" data-action="roll-attribute" data-key="int" title="INT · clic para tirar; Mayús para configurar"><span>INT</span><b>{{system.attributes.int.value}}</b></button>
-          <button type="button" class="tm-v03-attribute tm-v03-per" data-action="roll-attribute" data-key="per" title="PER · clic para tirar; Mayús para configurar"><span>PER</span><b>{{system.attributes.per.value}}</b></button>
-          <button type="button" class="tm-v03-attribute tm-v03-vol" data-action="roll-attribute" data-key="vol" title="VOL · clic para tirar; Mayús para configurar"><span>VOL</span><b>{{system.attributes.vol.value}}</b></button>
-          <button type="button" class="tm-v03-attribute tm-v03-agi" data-action="roll-attribute" data-key="agi" title="AGI · clic para tirar; Mayús para configurar"><span>AGI</span><b>{{system.attributes.agi.value}}</b></button>
-          <button type="button" class="tm-v03-attribute tm-v03-pre" data-action="roll-attribute" data-key="pre" title="PRE · clic para tirar; Mayús para configurar"><span>PRE</span><b>{{system.attributes.pre.value}}</b></button>
-          <button type="button" class="tm-v03-attribute tm-v03-fue" data-action="roll-attribute" data-key="fue" title="FUE · clic para tirar; Mayús para configurar"><span>FUE</span><b>{{system.attributes.fue.value}}</b></button>
-          <button type="button" class="tm-v03-attribute tm-v03-vig" data-action="roll-attribute" data-key="vig" title="VIG · clic para tirar; Mayús para configurar"><span>VIG</span><b>{{system.attributes.vig.value}}</b></button>
+          <button type="button" class="tm-v03-attribute tm-v03-int" data-action="roll-attribute" data-key="int" title="INT · clic para tirar; Mayús para configurar"><span>INT</span><b>{{system.attributes.int.value}}</b><i class="fa-solid fa-book-open" aria-hidden="true"></i></button>
+          <button type="button" class="tm-v03-attribute tm-v03-per" data-action="roll-attribute" data-key="per" title="PER · clic para tirar; Mayús para configurar"><span>PER</span><b>{{system.attributes.per.value}}</b><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+          <button type="button" class="tm-v03-attribute tm-v03-vol" data-action="roll-attribute" data-key="vol" title="VOL · clic para tirar; Mayús para configurar"><span>VOL</span><b>{{system.attributes.vol.value}}</b><i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i></button>
+          <button type="button" class="tm-v03-attribute tm-v03-agi" data-action="roll-attribute" data-key="agi" title="AGI · clic para tirar; Mayús para configurar"><span>AGI</span><b>{{system.attributes.agi.value}}</b><i class="fa-solid fa-person-running" aria-hidden="true"></i></button>
+          <button type="button" class="tm-v03-attribute tm-v03-pre" data-action="roll-attribute" data-key="pre" title="PRE · clic para tirar; Mayús para configurar"><span>PRE</span><b>{{system.attributes.pre.value}}</b><i class="fa-solid fa-star" aria-hidden="true"></i></button>
+          <button type="button" class="tm-v03-attribute tm-v03-fue" data-action="roll-attribute" data-key="fue" title="FUE · clic para tirar; Mayús para configurar"><span>FUE</span><b>{{system.attributes.fue.value}}</b><i class="fa-solid fa-hand-fist" aria-hidden="true"></i></button>
+          <button type="button" class="tm-v03-attribute tm-v03-vig" data-action="roll-attribute" data-key="vig" title="VIG · clic para tirar; Mayús para configurar"><span>VIG</span><b>{{system.attributes.vig.value}}</b><i class="fa-solid fa-shield" aria-hidden="true"></i></button>
 
           <div class="tm-v03-portrait-frame">
             <img class="profile-img tm-v03-portrait" src="{{actor.img}}" data-edit="img" title="Cambiar retrato de {{actor.name}}" />
@@ -133,6 +132,10 @@
               </button>
             </div>
           </section>
+
+          <div class="tm-v09-motto" aria-hidden="true">
+            <span>✦</span><b>EXPLORA</b><i>•</i><b>CREA</b><i>•</i><b>ENFRENTA</b><i>•</i><b>TRASCIENDE</b><span>✦</span>
+          </div>
         </main>
 
         <aside class="tm-v03-right-rail">
@@ -141,10 +144,10 @@
               <h2>Defensas</h2>
             </header>
             <div class="tm-v03-defense-grid">
-              <div><span>Defensa</span><b>{{system.derived.defense}}</b></div>
-              <div><span>Maniobra</span><b>{{system.derived.maneuverDefense}}</b></div>
-              <div><span>Mental</span><b>{{system.derived.mentalDefense}}</b></div>
-              <div><span>Corporal</span><b>{{system.derived.bodyDefense}}</b></div>
+              <div class="tm-v09-defense tm-v09-defense-general"><i class="fa-solid fa-shield-halved"></i><span>Defensa</span><b>{{system.derived.defense}}</b></div>
+              <div class="tm-v09-defense tm-v09-defense-maneuver"><i class="fa-solid fa-swords"></i><span>Maniobra</span><b>{{system.derived.maneuverDefense}}</b></div>
+              <div class="tm-v09-defense tm-v09-defense-mental"><i class="fa-solid fa-brain"></i><span>Mental</span><b>{{system.derived.mentalDefense}}</b></div>
+              <div class="tm-v09-defense tm-v09-defense-body"><i class="fa-solid fa-person"></i><span>Corporal</span><b>{{system.derived.bodyDefense}}</b></div>
             </div>
             <div class="tm-v03-derived-list">
               <button type="button" data-action="roll-initiative"><span>Iniciativa</span><b>+{{system.derived.initiative}}</b><i class="fa-solid fa-dice"></i></button>
