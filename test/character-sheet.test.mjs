@@ -202,7 +202,7 @@ test("la dirección visual v0.9.0 usa el emblema hero y la composición aprobada
   const css = await readFile(resolve(root, "styles/character-sheet-v03.css"), "utf8");
 
   assert.equal(source.includes('class="tm-v03-header tm-v09-header"'), true);
-  assert.equal(source.includes('assets/ui/sheet-title-hero.svg'), true);
+  assert.equal(source.includes("tm-v09-title-art"), true);
   assert.equal(source.includes('class="tm-v09-motto"'), true);
   assert.equal(source.includes('class="tm-v09-defense'), true);
   assert.equal(source.includes('fa-book-open'), true);
