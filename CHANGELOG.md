@@ -1,5 +1,13 @@
 # Historial de cambios
 
+## 0.3.2
+
+- Corregido el guardado de rangos de Habilidad cuando la misma Habilidad aparece en más de una vista de la ficha.
+- Corregido el guardado de Nivel y PD gastados entre la cabecera y la pestaña Desarrollo.
+- Añadida reparación automática para personajes afectados por v0.3.1 que almacenaron esos valores como listas.
+- Los controles repetidos ahora actualizan el Actor directamente y dejan de generar valores duplicados en el formulario.
+
+
 ## 0.3.1
 
 - Integración de **Ficha de Personaje Tierra Mágica v0.1** para actores `character`.
