@@ -1,18 +1,58 @@
 {
   "Actor": {
-    "types": ["character", "npc", "familiar"],
+    "types": [
+      "character",
+      "npc",
+      "familiar"
+    ],
     "templates": {
       "base": {
-        "details": { "level": 1, "origin": "", "ancestry": "", "background": "", "concept": "", "pdSpent": 0 },
+        "details": {
+          "level": 1,
+          "origin": "",
+          "ancestry": "",
+          "background": "",
+          "concept": "",
+          "pdSpent": 0
+        },
         "attributes": {
-          "fue": { "value": 1 }, "agi": { "value": 1 }, "vig": { "value": 1 },
-          "int": { "value": 1 }, "per": { "value": 1 }, "vol": { "value": 1 }, "pre": { "value": 1 }
+          "fue": {
+            "value": 1
+          },
+          "agi": {
+            "value": 1
+          },
+          "vig": {
+            "value": 1
+          },
+          "int": {
+            "value": 1
+          },
+          "per": {
+            "value": 1
+          },
+          "vol": {
+            "value": 1
+          },
+          "pre": {
+            "value": 1
+          }
         },
         "resources": {
-          "health": { "value": 12, "max": 12 },
-          "mana": { "value": 9, "max": 9 }
+          "health": {
+            "value": 12,
+            "max": 12
+          },
+          "mana": {
+            "value": 9,
+            "max": 9
+          }
         },
-        "turn": { "movement": true, "action": true, "reaction": true },
+        "turn": {
+          "movement": true,
+          "action": true,
+          "reaction": true
+        },
         "combat": {
           "defensiveRank": 0,
           "defenseBonus": 0,
@@ -21,14 +61,136 @@
           "movementBonus": 0
         },
         "skills": {
-          "athletics": { "rank": 0 }, "acrobatics": { "rank": 0 }, "stealth": { "rank": 0 },
-          "survival": { "rank": 0 }, "nature": { "rank": 0 }, "investigation": { "rank": 0 },
-          "persuasion": { "rank": 0 }, "deception": { "rank": 0 }, "intimidation": { "rank": 0 }, "empathy": { "rank": 0 },
-          "history": { "rank": 0 }, "religion": { "rank": 0 }, "medicine": { "rank": 0 }, "arcana": { "rank": 0 },
-          "crafting": { "rank": 0 }, "engineering": { "rank": 0 }, "alchemy": { "rank": 0 }, "thievery": { "rank": 0 },
-          "lightWeapons": { "rank": 0 }, "martialWeapons": { "rank": 0 }, "heavyWeapons": { "rank": 0 }, "rangedWeapons": { "rank": 0 },
-          "channeling": { "rank": 0 }, "ritualism": { "rank": 0 },
-          "handling": { "rank": 0 }, "piloting": { "rank": 0 }
+          "athletics": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "acrobatics": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "stealth": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "survival": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "nature": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "investigation": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "persuasion": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "deception": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "intimidation": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "empathy": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "history": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "religion": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "medicine": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "arcana": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "crafting": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "engineering": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "alchemy": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "thievery": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "lightWeapons": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "martialWeapons": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "heavyWeapons": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "rangedWeapons": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "channeling": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "ritualism": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "handling": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          },
+          "piloting": {
+            "rank": 0,
+            "temporary": 0,
+            "other": 0
+          }
         },
         "status": {
           "trauma": 0,
@@ -36,41 +198,148 @@
           "bleeding": 0,
           "conditions": ""
         },
-        "traits": { "size": "medium", "languages": "Común", "senses": "", "notes": "" },
-        "currency": { "gold": 0, "silver": 0, "copper": 0 },
+        "traits": {
+          "size": "medium",
+          "languages": "Común",
+          "senses": "",
+          "notes": ""
+        },
+        "currency": {
+          "gold": 0,
+          "silver": 0,
+          "copper": 0
+        },
         "biography": "",
         "notes": ""
       }
     },
-    "character": { "templates": ["base"] },
-    "npc": { "templates": ["base"], "details": { "role": "", "threat": "" } },
+    "character": {
+      "templates": [
+        "base"
+      ]
+    },
+    "npc": {
+      "templates": [
+        "base"
+      ],
+      "details": {
+        "role": "",
+        "threat": ""
+      }
+    },
     "familiar": {
-      "templates": ["base"],
-      "details": { "ownerName": "", "ownerUuid": "", "bond": "Vinculado", "nature": "" }
+      "templates": [
+        "base"
+      ],
+      "details": {
+        "ownerName": "",
+        "ownerUuid": "",
+        "bond": "Vinculado",
+        "nature": ""
+      }
     }
   },
   "Item": {
-    "types": ["weapon", "armor", "shield", "equipment", "spell", "technique", "trait", "specialization"],
+    "types": [
+      "weapon",
+      "armor",
+      "shield",
+      "equipment",
+      "spell",
+      "technique",
+      "trait",
+      "specialization"
+    ],
     "templates": {
       "base": {
-        "description": "", "quantity": 1, "weight": 0, "price": 0, "equipped": false,
-        "availability": "common", "quality": "common", "properties": ""
+        "description": "",
+        "quantity": 1,
+        "weight": 0,
+        "price": 0,
+        "equipped": false,
+        "availability": "common",
+        "quality": "common",
+        "properties": "",
+        "skillModifiersActive": true,
+        "skillModifiers": []
       }
     },
     "weapon": {
-      "templates": ["base"], "skill": "martialWeapons", "attackAttribute": "agi", "damageAttribute": "",
-      "damage": 4, "penetration": 0, "strengthMin": 0, "rangeOptimal": 0, "severe": ""
+      "templates": [
+        "base"
+      ],
+      "skill": "martialWeapons",
+      "attackAttribute": "agi",
+      "damageAttribute": "",
+      "damage": 4,
+      "penetration": 0,
+      "strengthMin": 0,
+      "rangeOptimal": 0,
+      "severe": ""
     },
-    "armor": { "templates": ["base"], "protection": 1, "strengthMin": 0 },
-    "shield": { "templates": ["base"], "passiveDefense": 1, "block": 3, "strengthMin": 0, "frontalOnly": false },
-    "equipment": { "templates": ["base"], "category": "General" },
+    "armor": {
+      "templates": [
+        "base"
+      ],
+      "protection": 1,
+      "strengthMin": 0
+    },
+    "shield": {
+      "templates": [
+        "base"
+      ],
+      "passiveDefense": 1,
+      "block": 3,
+      "strengthMin": 0,
+      "frontalOnly": false
+    },
+    "equipment": {
+      "templates": [
+        "base"
+      ],
+      "category": "General"
+    },
     "spell": {
-      "templates": ["base"], "discipline": "evocation", "source": "soul", "manaCost": 3,
-      "attribute": "int", "defense": "df", "difficulty": 12, "damage": 0, "penetration": 0,
-      "range": "", "requirements": "", "sustained": false
+      "templates": [
+        "base"
+      ],
+      "discipline": "evocation",
+      "source": "soul",
+      "manaCost": 3,
+      "attribute": "int",
+      "defense": "df",
+      "difficulty": 12,
+      "damage": 0,
+      "penetration": 0,
+      "range": "",
+      "requirements": "",
+      "sustained": false
     },
-    "technique": { "templates": ["base"], "grade": "basic", "pdCost": 2, "requirements": "", "effect": "" },
-    "trait": { "templates": ["base"], "category": "acquired", "traitCost": 1, "requirements": "", "effect": "" },
-    "specialization": { "templates": ["base"], "skill": "", "requirements": "", "effect": "" }
+    "technique": {
+      "templates": [
+        "base"
+      ],
+      "grade": "basic",
+      "pdCost": 2,
+      "requirements": "",
+      "effect": ""
+    },
+    "trait": {
+      "templates": [
+        "base"
+      ],
+      "category": "acquired",
+      "traitCost": 1,
+      "requirements": "",
+      "effect": ""
+    },
+    "specialization": {
+      "templates": [
+        "base"
+      ],
+      "skill": "",
+      "requirements": "",
+      "effect": ""
+    }
   }
 }
