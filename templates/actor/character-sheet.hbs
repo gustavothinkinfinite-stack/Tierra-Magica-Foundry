@@ -1,185 +1,268 @@
-<form class="{{cssClass}} tm-actor-sheet tm-character-sheet-v01" autocomplete="off">
-<div class="tm-v01-shell">
-  <header class="tm-v01-brand">
-    <div class="tm-v01-brand-mark">✦</div>
-    <div class="tm-v01-brand-copy">
-      <span class="tm-v01-kicker">Foundry T.M. · Manual Básico v0.1</span>
+<form class="{{cssClass}} tm-actor-sheet tm-character-sheet-v02" autocomplete="off">
+<div class="tm-v02-shell">
+  <header class="tm-v02-header">
+    <div class="tm-v02-emblem" aria-hidden="true"><span>✦</span></div>
+
+    <div class="tm-v02-title">
+      <span class="tm-v02-kicker">FOUNDRY T.M. · FICHA DE PERSONAJE v0.2</span>
       <strong>TIERRA MÁGICA</strong>
-      <small>Ficha de Personaje · v0.1</small>
+      <small>Fantasía medieval arcano-industrial</small>
     </div>
-    <div class="tm-v01-level"><span>NIVEL</span><b>{{system.details.level}}</b></div>
+
+    <div class="tm-v02-level-seal">
+      <span>NIVEL</span>
+      <b>{{system.details.level}}</b>
+    </div>
   </header>
 
-  <section class="tm-v01-identity">
-    <label class="tm-v01-name"><span>Nombre</span><input name="name" type="text" value="{{actor.name}}" placeholder="Nombre del personaje" /></label>
+  <section class="tm-v02-identity">
+    <label class="tm-v02-name">
+      <span>Nombre</span>
+      <input name="name" type="text" value="{{actor.name}}" placeholder="Nombre del personaje" />
+    </label>
     <label><span>Concepto</span><input type="text" name="system.details.concept" value="{{system.details.concept}}" /></label>
     <label><span>Origen</span><input type="text" name="system.details.origin" value="{{system.details.origin}}" /></label>
     <label><span>Raza / Ancestría</span><input type="text" name="system.details.ancestry" value="{{system.details.ancestry}}" /></label>
     <label><span>Trasfondo</span><input type="text" name="system.details.background" value="{{system.details.background}}" /></label>
-    <label><span>Nivel</span><input type="number" value="{{system.details.level}}" min="1" max="20" data-action="set-numeric-field" data-field="system.details.level" /></label>
-    <label><span>PD gastados</span><input type="number" value="{{system.details.pdSpent}}" min="0" data-action="set-numeric-field" data-field="system.details.pdSpent" /></label>
+    <label>
+      <span>Nivel</span>
+      <input type="number" value="{{system.details.level}}" min="1" max="20" data-action="set-numeric-field" data-field="system.details.level" />
+    </label>
+    <label>
+      <span>PD gastados</span>
+      <input type="number" value="{{system.details.pdSpent}}" min="0" data-action="set-numeric-field" data-field="system.details.pdSpent" />
+    </label>
   </section>
 
-  <section class="tm-resource-bar tm-resource-bar-two tm-v01-resources-top">
-    <div class="tm-resource tm-health">
-      <button type="button" data-action="resource-change" data-resource="health" data-amount="-1"><i class="fa-solid fa-minus"></i></button>
-      <span>Vida</span>
-      <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}" />
-      <b>/</b><strong>{{system.derived.healthMax}}</strong>
-      <button type="button" data-action="resource-change" data-resource="health" data-amount="1"><i class="fa-solid fa-plus"></i></button>
-    </div>
-    <div class="tm-resource tm-mana">
-      <button type="button" data-action="resource-change" data-resource="mana" data-amount="-1"><i class="fa-solid fa-minus"></i></button>
-      <span>Maná</span>
-      <input type="number" name="system.resources.mana.value" value="{{system.resources.mana.value}}" />
-      <b>/</b><strong>{{system.derived.manaMax}}</strong>
-      <button type="button" data-action="resource-change" data-resource="mana" data-amount="1"><i class="fa-solid fa-plus"></i></button>
-    </div>
+  <section class="tm-v02-resource-deck">
+    <article class="tm-v02-resource tm-v02-health" style="--tm-fill: {{healthPercent}}%;">
+      <div class="tm-v02-resource-head">
+        <span><i class="fa-solid fa-heart"></i> Vida</span>
+        <strong>{{system.resources.health.value}} / {{system.derived.healthMax}}</strong>
+      </div>
+      <div class="tm-v02-resource-track"><i></i></div>
+      <div class="tm-v02-resource-controls">
+        <button type="button" data-action="resource-change" data-resource="health" data-amount="-1"><i class="fa-solid fa-minus"></i></button>
+        <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}" />
+        <button type="button" data-action="resource-change" data-resource="health" data-amount="1"><i class="fa-solid fa-plus"></i></button>
+      </div>
+    </article>
+
+    <article class="tm-v02-resource tm-v02-mana" style="--tm-fill: {{manaPercent}}%;">
+      <div class="tm-v02-resource-head">
+        <span><i class="fa-solid fa-sparkles"></i> Maná</span>
+        <strong>{{system.resources.mana.value}} / {{system.derived.manaMax}}</strong>
+      </div>
+      <div class="tm-v02-resource-track"><i></i></div>
+      <div class="tm-v02-resource-controls">
+        <button type="button" data-action="resource-change" data-resource="mana" data-amount="-1"><i class="fa-solid fa-minus"></i></button>
+        <input type="number" name="system.resources.mana.value" value="{{system.resources.mana.value}}" />
+        <button type="button" data-action="resource-change" data-resource="mana" data-amount="1"><i class="fa-solid fa-plus"></i></button>
+      </div>
+    </article>
+
+    <article class="tm-v02-pd">
+      <span>DESARROLLO</span>
+      <div><strong>{{development.pdAvailable}}</strong><small>PD disponibles</small></div>
+      <div><b>{{development.pdTotal}}</b><small>PD totales</small></div>
+    </article>
   </section>
 
-  <nav class="tm-tabs tabs tm-v01-tabs" data-group="primary">
-    <a class="item" data-tab="summary"><i class="fa-solid fa-compass"></i> Ficha</a>
-    <a class="item" data-tab="skills"><i class="fa-solid fa-list-check"></i> Habilidades</a>
-    <a class="item" data-tab="combat"><i class="fa-solid fa-swords"></i> Combate</a>
-    <a class="item" data-tab="magic"><i class="fa-solid fa-wand-sparkles"></i> Magia</a>
-    <a class="item" data-tab="development"><i class="fa-solid fa-diagram-project"></i> Desarrollo</a>
-    <a class="item" data-tab="inventory"><i class="fa-solid fa-backpack"></i> Equipo</a>
-    <a class="item" data-tab="biography"><i class="fa-solid fa-feather"></i> Historia</a>
+  <nav class="tm-tabs tm-v02-tabs tabs" data-group="primary">
+    <a class="item" data-tab="summary"><i class="fa-solid fa-compass"></i><span>Ficha</span></a>
+    <a class="item" data-tab="skills"><i class="fa-solid fa-list-check"></i><span>Habilidades</span></a>
+    <a class="item" data-tab="combat"><i class="fa-solid fa-swords"></i><span>Combate</span></a>
+    <a class="item" data-tab="magic"><i class="fa-solid fa-wand-sparkles"></i><span>Magia</span></a>
+    <a class="item" data-tab="development"><i class="fa-solid fa-diagram-project"></i><span>Desarrollo</span></a>
+    <a class="item" data-tab="inventory"><i class="fa-solid fa-backpack"></i><span>Equipo</span></a>
+    <a class="item" data-tab="biography"><i class="fa-solid fa-feather"></i><span>Historia</span></a>
   </nav>
 
-  <section class="tm-sheet-body tm-v01-body">
+  <section class="tm-sheet-body tm-v02-body">
     <div class="tab" data-group="primary" data-tab="summary">
-      <div class="tm-v01-main-grid">
-        <aside class="tm-v01-card tm-v01-skills-card">
-          <h2>Habilidades</h2>
-          <p class="tm-v01-card-note">El atributo se elige al tirar.</p>
-          <div class="tm-v01-skill-list">
-            {{#each system.skills as |skill key|}}
-              <div class="tm-v01-skill-row">
-                <button type="button" data-action="roll-skill" data-key="{{key}}" title="Configurar y tirar {{lookup ../config.skillLabels key}}">
-                  <span>{{lookup ../config.skillLabels key}}</span>
-                  <b>+{{skill.bonus}}</b>
-                </button>
-                <select data-action="set-skill-rank" data-key="{{key}}" title="Rango de {{lookup ../config.skillLabels key}}">{{selectOptions ../config.rankLabels selected=skill.rank}}</select>
-              </div>
-            {{/each}}
-          </div>
+      <div class="tm-v02-dashboard">
+        <aside class="tm-v02-left-rail">
+          <section class="tm-v02-panel tm-v02-skills-panel">
+            <header class="tm-v02-panel-title">
+              <div><span>HABILIDADES</span><small>El atributo se elige al tirar.</small></div>
+              <i class="fa-solid fa-book-open"></i>
+            </header>
+
+            <div class="tm-v02-skill-groups">
+              {{#each skillGroups as |group|}}
+                <details class="tm-v02-skill-group" open>
+                  <summary>
+                    <span><i class="fa-solid {{group.icon}}"></i>{{group.label}}</span>
+                    <small>{{group.skills.length}}</small>
+                  </summary>
+                  <div>
+                    {{#each group.skills as |skill|}}
+                      <div class="tm-v02-skill-row">
+                        <button type="button" class="tm-v02-skill-roll" data-action="roll-skill" data-key="{{skill.key}}">
+                          <span>{{skill.label}}</span>
+                          <b>+{{skill.bonus}}</b>
+                        </button>
+                        <select data-action="set-skill-rank" data-key="{{skill.key}}" title="Rango de {{skill.label}}">
+                          {{selectOptions @root.config.rankLabels selected=skill.rank}}
+                        </select>
+                      </div>
+                    {{/each}}
+                  </div>
+                </details>
+              {{/each}}
+            </div>
+          </section>
         </aside>
 
-        <main class="tm-v01-core">
-          <div class="tm-v01-arcane-ring" aria-hidden="true"></div>
+        <main class="tm-v02-character-stage">
+          <div class="tm-v02-stage-runes" aria-hidden="true"></div>
+          <div class="tm-v02-stage-ring" aria-hidden="true"></div>
 
-          <button type="button" class="tm-v01-attribute tm-v01-int" data-action="roll-attribute" data-key="int" title="INT · clic para tirar; Mayús para configurar"><span>INT</span><b>{{system.attributes.int.value}}</b></button>
-          <button type="button" class="tm-v01-attribute tm-v01-per" data-action="roll-attribute" data-key="per" title="PER · clic para tirar; Mayús para configurar"><span>PER</span><b>{{system.attributes.per.value}}</b></button>
-          <button type="button" class="tm-v01-attribute tm-v01-vol" data-action="roll-attribute" data-key="vol" title="VOL · clic para tirar; Mayús para configurar"><span>VOL</span><b>{{system.attributes.vol.value}}</b></button>
-          <button type="button" class="tm-v01-attribute tm-v01-agi" data-action="roll-attribute" data-key="agi" title="AGI · clic para tirar; Mayús para configurar"><span>AGI</span><b>{{system.attributes.agi.value}}</b></button>
-          <button type="button" class="tm-v01-attribute tm-v01-pre" data-action="roll-attribute" data-key="pre" title="PRE · clic para tirar; Mayús para configurar"><span>PRE</span><b>{{system.attributes.pre.value}}</b></button>
-          <button type="button" class="tm-v01-attribute tm-v01-fue" data-action="roll-attribute" data-key="fue" title="FUE · clic para tirar; Mayús para configurar"><span>FUE</span><b>{{system.attributes.fue.value}}</b></button>
-          <button type="button" class="tm-v01-attribute tm-v01-vig" data-action="roll-attribute" data-key="vig" title="VIG · clic para tirar; Mayús para configurar"><span>VIG</span><b>{{system.attributes.vig.value}}</b></button>
+          <button type="button" class="tm-v02-attribute tm-v02-int" data-action="roll-attribute" data-key="int"><span>INT</span><b>{{system.attributes.int.value}}</b><small>Intelecto</small></button>
+          <button type="button" class="tm-v02-attribute tm-v02-per" data-action="roll-attribute" data-key="per"><span>PER</span><b>{{system.attributes.per.value}}</b><small>Percepción</small></button>
+          <button type="button" class="tm-v02-attribute tm-v02-vol" data-action="roll-attribute" data-key="vol"><span>VOL</span><b>{{system.attributes.vol.value}}</b><small>Voluntad</small></button>
+          <button type="button" class="tm-v02-attribute tm-v02-agi" data-action="roll-attribute" data-key="agi"><span>AGI</span><b>{{system.attributes.agi.value}}</b><small>Agilidad</small></button>
+          <button type="button" class="tm-v02-attribute tm-v02-pre" data-action="roll-attribute" data-key="pre"><span>PRE</span><b>{{system.attributes.pre.value}}</b><small>Presencia</small></button>
+          <button type="button" class="tm-v02-attribute tm-v02-fue" data-action="roll-attribute" data-key="fue"><span>FUE</span><b>{{system.attributes.fue.value}}</b><small>Fuerza</small></button>
+          <button type="button" class="tm-v02-attribute tm-v02-vig" data-action="roll-attribute" data-key="vig"><span>VIG</span><b>{{system.attributes.vig.value}}</b><small>Vigor</small></button>
 
-          <div class="tm-v01-portrait-frame">
-            <img class="profile-img tm-v01-portrait" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+          <div class="tm-v02-portrait-frame">
+            <img class="profile-img tm-v02-portrait" src="{{actor.img}}" data-edit="img" title="Cambiar retrato de {{actor.name}}" />
+            <span class="tm-v02-portrait-caption">{{actor.name}}</span>
           </div>
 
-          <div class="tm-v01-motto">MÁS QUE UN JUEGO · UN MUNDO POR EXPLORAR</div>
-
-          <div class="tm-v01-turn-economy">
-            <span><i></i>Movimiento</span>
-            <span><i></i>Acción</span>
-            <span><i></i>Reacción</span>
-          </div>
+          <section class="tm-v02-turn">
+            <div class="tm-v02-turn-title">
+              <span>ECONOMÍA DE TURNO</span>
+              <button type="button" data-action="reset-turn" title="Restablecer turno"><i class="fa-solid fa-rotate-right"></i></button>
+            </div>
+            <div class="tm-v02-turn-actions">
+              <button type="button" class="{{#unless turn.movement}}spent{{/unless}}" data-action="toggle-turn" data-key="movement">
+                <i class="fa-solid fa-person-running"></i><span>Movimiento</span><small>{{#if turn.movement}}Disponible{{else}}Gastado{{/if}}</small>
+              </button>
+              <button type="button" class="{{#unless turn.action}}spent{{/unless}}" data-action="toggle-turn" data-key="action">
+                <i class="fa-solid fa-bolt"></i><span>Acción</span><small>{{#if turn.action}}Disponible{{else}}Gastada{{/if}}</small>
+              </button>
+              <button type="button" class="{{#unless turn.reaction}}spent{{/unless}}" data-action="toggle-turn" data-key="reaction">
+                <i class="fa-solid fa-shield-halved"></i><span>Reacción</span><small>{{#if turn.reaction}}Disponible{{else}}Gastada{{/if}}</small>
+              </button>
+            </div>
+          </section>
         </main>
 
-        <aside class="tm-v01-development">
-          <section class="tm-v01-card">
-            <h2>Rasgos</h2>
-            <ol class="tm-v01-mini-list">
+        <aside class="tm-v02-right-rail">
+          <section class="tm-v02-panel tm-v02-defenses">
+            <header class="tm-v02-panel-title"><div><span>DEFENSAS</span><small>Valores derivados</small></div><i class="fa-solid fa-shield"></i></header>
+            <div class="tm-v02-defense-grid">
+              <div><span>Defensa</span><b>{{system.derived.defense}}</b></div>
+              <div><span>Maniobra</span><b>{{system.derived.maneuverDefense}}</b></div>
+              <div><span>Mental</span><b>{{system.derived.mentalDefense}}</b></div>
+              <div><span>Corporal</span><b>{{system.derived.bodyDefense}}</b></div>
+            </div>
+            <div class="tm-v02-derived-list">
+              <button type="button" data-action="roll-initiative"><span>Iniciativa</span><b>+{{system.derived.initiative}}</b><i class="fa-solid fa-dice-d10"></i></button>
+              <div><span>Protección</span><b>{{system.derived.protection}}</b></div>
+              <div><span>Daño Grave</span><b>{{system.derived.severeThreshold}}</b></div>
+              <div><span>Movimiento</span><b>{{system.derived.movement}}</b></div>
+            </div>
+          </section>
+
+          <details class="tm-v02-panel tm-v02-collapsible" {{#if itemCounts.trait}}open{{/if}}>
+            <summary><span>Rasgos</span><b>{{itemCounts.trait}}</b></summary>
+            <ol class="tm-v02-mini-list">
               {{#each itemGroups.trait as |item|}}
                 <li class="item" data-item-id="{{item.id}}"><button type="button" data-action="item-edit"><span>{{item.name}}</span><small>{{lookup @root.config.traitCategories item.system.category}}</small></button></li>
-              {{else}}<li class="tm-v01-empty">Sin rasgos registrados.</li>{{/each}}
+              {{else}}<li class="tm-v02-empty">Sin rasgos registrados.</li>{{/each}}
             </ol>
-          </section>
-          <section class="tm-v01-card">
-            <h2>Especializaciones</h2>
-            <ol class="tm-v01-mini-list">
+          </details>
+
+          <details class="tm-v02-panel tm-v02-collapsible" {{#if itemCounts.specialization}}open{{/if}}>
+            <summary><span>Especializaciones</span><b>{{itemCounts.specialization}}</b></summary>
+            <ol class="tm-v02-mini-list">
               {{#each itemGroups.specialization as |item|}}
                 <li class="item" data-item-id="{{item.id}}"><button type="button" data-action="item-edit"><span>{{item.name}}</span><small>{{item.system.skill}}</small></button></li>
-              {{else}}<li class="tm-v01-empty">Sin especializaciones.</li>{{/each}}
+              {{else}}<li class="tm-v02-empty">Sin especializaciones.</li>{{/each}}
             </ol>
-          </section>
-          <section class="tm-v01-card">
-            <h2>Técnicas</h2>
-            <ol class="tm-v01-mini-list">
+          </details>
+
+          <details class="tm-v02-panel tm-v02-collapsible" {{#if itemCounts.technique}}open{{/if}}>
+            <summary><span>Técnicas</span><b>{{itemCounts.technique}}</b></summary>
+            <ol class="tm-v02-mini-list">
               {{#each itemGroups.technique as |item|}}
                 <li class="item" data-item-id="{{item.id}}"><button type="button" data-action="item-edit"><span>{{item.name}}</span><small>{{lookup @root.config.techniqueGrades item.system.grade}} · {{item.system.pdCost}} PD</small></button></li>
-              {{else}}<li class="tm-v01-empty">Sin técnicas.</li>{{/each}}
+              {{else}}<li class="tm-v02-empty">Sin técnicas registradas.</li>{{/each}}
             </ol>
-          </section>
-          <button type="button" class="tm-v01-familiar-button" data-action="create-familiar"><i class="fa-solid fa-paw"></i><span>Familiar</span><small>Crear vínculo</small></button>
+          </details>
+
+          <button type="button" class="tm-v02-familiar" data-action="open-familiar">
+            {{#if familiar}}
+              <img src="{{familiar.img}}" alt="" />
+              <span><b>{{familiar.name}}</b><small>Abrir Familiar</small></span>
+            {{else}}
+              <i class="fa-solid fa-paw"></i>
+              <span><b>Familiar</b><small>Crear vínculo</small></span>
+            {{/if}}
+          </button>
         </aside>
       </div>
 
-      <div class="tm-v01-lower-grid">
-        <section class="tm-v01-card tm-v01-defenses">
-          <h2>Defensas</h2>
-          <div class="tm-v01-medallion-grid">
-            <div><span>Defensa</span><b>{{system.derived.defense}}</b></div>
-            <div><span>Maniobra</span><b>{{system.derived.maneuverDefense}}</b></div>
-            <div><span>Mental</span><b>{{system.derived.mentalDefense}}</b></div>
-            <div><span>Corporal</span><b>{{system.derived.bodyDefense}}</b></div>
-          </div>
-          <div class="tm-v01-derived-strip">
-            <button type="button" data-action="roll-initiative"><i class="fa-solid fa-dice"></i> Iniciativa +{{system.derived.initiative}}</button>
-            <span>Protección <b>{{system.derived.protection}}</b></span>
-            <span>Daño Grave <b>{{system.derived.severeThreshold}}</b></span>
-            <span>Movimiento <b>{{system.derived.movement}}</b></span>
-          </div>
-        </section>
-
-        <section class="tm-v01-card tm-v01-health-state">
-          <h2>Estado y heridas</h2>
-          <div class="tm-v01-form-grid">
+      <div class="tm-v02-bottom-grid">
+        <section class="tm-v02-panel tm-v02-state">
+          <header class="tm-v02-panel-title"><div><span>ESTADO Y HERIDAS</span><small>Vida y Trauma son capas diferentes.</small></div><i class="fa-solid fa-kit-medical"></i></header>
+          <div class="tm-v02-form-grid">
             <label><span>Trauma</span><select name="system.status.trauma">{{selectOptions config.trauma selected=system.status.trauma}}</select></label>
             <label><span>Fatiga</span><select name="system.status.fatigue">{{selectOptions config.fatigue selected=system.status.fatigue}}</select></label>
             <label><span>Sangrado / turno</span><input type="number" name="system.status.bleeding" value="{{system.status.bleeding}}" min="0" max="2" /></label>
             <label><span>Condiciones</span><input type="text" name="system.status.conditions" value="{{system.status.conditions}}" placeholder="Derribado, Agarrado..." /></label>
           </div>
           <div class="tm-rest-actions">
-            <button type="button" data-action="rest" data-kind="rest">Descanso ~1 h</button>
-            <button type="button" data-action="rest" data-kind="full">Reposo completo ~8 h</button>
+            <button type="button" data-action="rest" data-kind="rest"><i class="fa-solid fa-campground"></i> Descanso ~1 h</button>
+            <button type="button" data-action="rest" data-kind="full"><i class="fa-solid fa-bed"></i> Reposo completo ~8 h</button>
           </div>
         </section>
 
-        <section class="tm-v01-card tm-v01-magic-glance">
-          <h2>Magia</h2>
-          <div class="tm-v01-magic-symbol">✦</div>
-          <p><b>Canalización</b> +{{system.skills.channeling.bonus}} · <b>Ritualismo</b> +{{system.skills.ritualism.bonus}} · <b>Arcana</b> +{{system.skills.arcana.bonus}}</p>
-          <small>Fuente + Disciplina + Método + Conocimiento → Hechizo</small>
+        <section class="tm-v02-panel tm-v02-magic-card">
+          <header class="tm-v02-panel-title"><div><span>MAGIA</span><small>Arquitectura arcana</small></div><i class="fa-solid fa-wand-sparkles"></i></header>
+          <div class="tm-v02-magic-overview">
+            <div class="tm-v02-magic-wheel" aria-hidden="true">
+              <span class="ev">EVO</span><span class="al">ALT</span><span class="re">RES</span>
+              <span class="pe">PER</span><span class="in">INF</span><span class="co">CON</span>
+              <b>✦</b>
+            </div>
+            <div class="tm-v02-magic-stats">
+              <div><span>Canalización</span><b>+{{system.skills.channeling.bonus}}</b></div>
+              <div><span>Ritualismo</span><b>+{{system.skills.ritualism.bonus}}</b></div>
+              <div><span>Arcana</span><b>+{{system.skills.arcana.bonus}}</b></div>
+              <small>Fuente + Disciplina + Método + Conocimiento → Hechizo</small>
+            </div>
+          </div>
         </section>
       </div>
     </div>
 
     <div class="tab" data-group="primary" data-tab="skills">
-      <section class="tm-panel">
-        <div class="tm-section-heading"><h2>Habilidades</h2><span>El Atributo se elige al tirar; no está ligado permanentemente.</span></div>
-        <div class="tm-skill-list">
-          <div class="tm-skill-row tm-list-header"><span>Habilidad</span><span>Grupo</span><span>Rango</span><span>Bono</span><span>Tirar</span></div>
-          {{#each system.skills as |skill key|}}
-            <div class="tm-skill-row">
-              <strong>{{lookup ../config.skillLabels key}}</strong>
-              <span>{{lookup (lookup ../config.skills key) "group"}}</span>
-              <select data-action="set-skill-rank" data-key="{{key}}">{{selectOptions ../config.rankLabels selected=skill.rank}}</select>
-              <strong>+{{skill.bonus}}</strong>
-              <button type="button" data-action="roll-skill" data-key="{{key}}"><i class="fa-solid fa-dice"></i></button>
-            </div>
+      <section class="tm-panel tm-v02-tab-panel">
+        <div class="tm-section-heading"><h2>Habilidades</h2><span>El Atributo se elige en cada tirada.</span></div>
+        <div class="tm-v02-skill-table">
+          {{#each skillGroups as |group|}}
+            <section>
+              <h3><i class="fa-solid {{group.icon}}"></i>{{group.label}}</h3>
+              {{#each group.skills as |skill|}}
+                <div class="tm-v02-skill-table-row">
+                  <button type="button" data-action="roll-skill" data-key="{{skill.key}}"><span>{{skill.label}}</span><i class="fa-solid fa-dice"></i></button>
+                  <select data-action="set-skill-rank" data-key="{{skill.key}}">{{selectOptions @root.config.rankLabels selected=skill.rank}}</select>
+                  <b>+{{skill.bonus}}</b>
+                </div>
+              {{/each}}
+            </section>
           {{/each}}
         </div>
       </section>
     </div>
 
     <div class="tab" data-group="primary" data-tab="combat">
-      <section class="tm-panel">
-        <h2>Configuración defensiva</h2>
+      <section class="tm-panel tm-v02-tab-panel">
+        <div class="tm-section-heading"><h2>Configuración defensiva</h2><span>Ajustes y entrenamiento marcial.</span></div>
         <div class="tm-form-grid">
           <label><span>Rango marcial relevante</span><select name="system.combat.defensiveRank">{{selectOptions config.rankLabels selected=system.combat.defensiveRank}}</select></label>
           <label><span>Mod. Defensa</span><input type="number" name="system.combat.defenseBonus" value="{{system.combat.defenseBonus}}" /></label>
@@ -187,54 +270,81 @@
           <label><span>Mod. Movimiento</span><input type="number" name="system.combat.movementBonus" value="{{system.combat.movementBonus}}" /></label>
         </div>
       </section>
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Armas" type="weapon" items=itemGroups.weapon}}
+      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Armas preparadas" type="weapon" items=itemGroups.weapon}}
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Armaduras" type="armor" items=itemGroups.armor}}
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Escudos" type="shield" items=itemGroups.shield}}
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Técnicas" type="technique" items=itemGroups.technique}}
     </div>
 
     <div class="tab" data-group="primary" data-tab="magic">
-      <section class="tm-panel"><p><strong>Maná = 6 + VOL × 3.</strong> El lanzamiento usa 2d10 + Atributo apropiado + Canalización. VOL no es el atributo universal de lanzamiento.</p></section>
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Hechizos" type="spell" items=itemGroups.spell}}
+      <section class="tm-v02-magic-hero">
+        <div class="tm-v02-magic-hero-wheel" aria-hidden="true">✦</div>
+        <div>
+          <span>MAGIA UNIVERSAL</span>
+          <h2>Fuente + Disciplina + Método + Conocimiento</h2>
+          <p>El lanzamiento usa 2d10 + Atributo apropiado + Canalización. VOL no es el atributo universal para lanzar magia.</p>
+        </div>
+        <div class="tm-v02-magic-resource"><small>MANÁ</small><b>{{system.resources.mana.value}}</b><span>/ {{system.derived.manaMax}}</span></div>
+      </section>
+
+      <section class="tm-panel tm-v02-tab-panel">
+        <div class="tm-v02-discipline-grid">
+          <div><i class="fa-solid fa-fire"></i><span>Evocación</span></div>
+          <div><i class="fa-solid fa-shuffle"></i><span>Alteración</span></div>
+          <div><i class="fa-solid fa-hand-holding-medical"></i><span>Restauración</span></div>
+          <div><i class="fa-solid fa-eye"></i><span>Percepción</span></div>
+          <div><i class="fa-solid fa-comments"></i><span>Influencia</span></div>
+          <div><i class="fa-solid fa-door-open"></i><span>Conjuración</span></div>
+        </div>
+      </section>
+
+      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Grimorio" type="spell" items=itemGroups.spell}}
     </div>
 
     <div class="tab" data-group="primary" data-tab="development">
-      <section class="tm-panel">
-        <h2>Desarrollo</h2>
+      <section class="tm-v02-development-hero">
+        <div><span>PD disponibles</span><b>{{development.pdAvailable}}</b></div>
+        <div><span>PD gastados</span><b>{{development.pdSpent}}</b></div>
+        <div><span>PD totales</span><b>{{development.pdTotal}}</b></div>
+      </section>
+
+      <section class="tm-panel tm-v02-tab-panel">
+        <div class="tm-section-heading"><h2>Desarrollo del personaje</h2><span>25 PD iniciales · +4 PD por nivel.</span></div>
         <div class="tm-form-grid">
           <label><span>Nivel</span><input type="number" value="{{system.details.level}}" min="1" max="20" data-action="set-numeric-field" data-field="system.details.level" /></label>
           <label><span>PD gastados / control</span><input type="number" value="{{system.details.pdSpent}}" min="0" data-action="set-numeric-field" data-field="system.details.pdSpent" /></label>
           <label><span>Idiomas</span><input type="text" name="system.traits.languages" value="{{system.traits.languages}}" /></label>
           <label><span>Sentidos</span><input type="text" name="system.traits.senses" value="{{system.traits.senses}}" /></label>
           <label><span>Escala</span><select name="system.traits.size">{{selectOptions config.sizes selected=system.traits.size}}</select></label>
-          <label><span>Regla</span><input type="text" value="25 PD iniciales · +4 PD por nivel" disabled /></label>
         </div>
       </section>
-      <section class="tm-panel">
-        <div class="tm-section-heading"><h2>Atributos</h2><span>Edición de valores base</span></div>
-        <div class="tm-form-grid">
+
+      <section class="tm-panel tm-v02-tab-panel">
+        <div class="tm-section-heading"><h2>Atributos</h2><span>Edición de valores base.</span></div>
+        <div class="tm-v02-attribute-editor">
           {{#each system.attributes as |attribute key|}}
             <label><span>{{lookup ../config.attributes key}}</span><input type="number" name="system.attributes.{{key}}.value" value="{{attribute.value}}" min="0" max="8" /></label>
           {{/each}}
         </div>
       </section>
+
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Especializaciones" type="specialization" items=itemGroups.specialization}}
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Rasgos" type="trait" items=itemGroups.trait}}
     </div>
 
     <div class="tab" data-group="primary" data-tab="inventory">
-      <section class="tm-panel tm-currency">
-        <h2>Moneda</h2>
+      <section class="tm-panel tm-currency tm-v02-tab-panel">
+        <div class="tm-section-heading"><h2>Moneda</h2><span>Recursos disponibles.</span></div>
         <label>Oro <input type="number" name="system.currency.gold" value="{{system.currency.gold}}" /></label>
         <label>Plata <input type="number" name="system.currency.silver" value="{{system.currency.silver}}" /></label>
         <label>Cobre <input type="number" name="system.currency.copper" value="{{system.currency.copper}}" /></label>
       </section>
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Equipo" type="equipment" items=itemGroups.equipment}}
+      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Equipo e inventario" type="equipment" items=itemGroups.equipment}}
     </div>
 
     <div class="tab" data-group="primary" data-tab="biography">
-      <section class="tm-panel tm-editor-panel"><h2>Historia</h2>{{editor enrichedBiography target="system.biography" button=true editable=editable engine="prosemirror" collaborate=false}}</section>
-      <section class="tm-panel tm-editor-panel"><h2>Notas</h2>{{editor enrichedNotes target="system.notes" button=true editable=editable engine="prosemirror" collaborate=false}}</section>
+      <section class="tm-panel tm-editor-panel tm-v02-tab-panel"><h2>Historia</h2>{{editor enrichedBiography target="system.biography" button=true editable=editable engine="prosemirror" collaborate=false}}</section>
+      <section class="tm-panel tm-editor-panel tm-v02-tab-panel"><h2>Notas</h2>{{editor enrichedNotes target="system.notes" button=true editable=editable engine="prosemirror" collaborate=false}}</section>
     </div>
   </section>
 </div>
