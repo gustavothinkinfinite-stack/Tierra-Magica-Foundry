@@ -1,5 +1,22 @@
 # Historial de cambios
 
+## 0.8.0
+
+- Primera pasada visual integral de la página **Ficha**, sin alterar su estructura ni lógica.
+- Nuevo marco general de pergamino con doble línea de bronce, profundidad interior y ornamentos reutilizables en las esquinas.
+- Cabecera **TIERRA MÁGICA** reforzada con filigrana central y jerarquía editorial más marcada.
+- Campos de identidad refinados para sentirse como parte del documento y no como controles HTML sueltos.
+- Paneles principales de la portada rediseñados con marcos, filetes y profundidad coherentes con el lenguaje visual del sistema.
+- Núcleo central enriquecido con fondo arcano más profundo, anillos, detalles geométricos y esquinas ornamentales.
+- Retrato convertido visualmente en un relicario arcano con marco metálico estratificado.
+- Atributos y Defensas usan nuevos medallones reutilizables de bronce y azul petróleo.
+- Vida, Maná y Desarrollo adoptan apariencia de placas/instrumentos integrados al núcleo del personaje.
+- Movimiento, Acción y Reacción reciben una presentación más cercana a un tablero táctico.
+- Señaladores laterales reciben materialidad de cuero/metal, remaches y una pestaña activa más claramente diferenciada.
+- Refinados Familiar, listas laterales, botones de descanso y scrollbar para mantener coherencia visual.
+- Añadidos recursos SVG reutilizables: filigrana, esquina ornamental y medallón de atributo.
+
+
 ## 0.7.1
 
 - Restaurado el marco superior de la ventana de Foundry para que el título del Actor y los controles de cabecera permanezcan claramente visibles.

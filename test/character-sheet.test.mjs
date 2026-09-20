@@ -160,3 +160,23 @@ test("la ventana conserva una cabecera Foundry visible y no enmarca la zona de p
   assert.equal(css.includes("padding: 6px 0 0;"), true);
   assert.equal(css.includes("border-radius: 6px 6px 0 0;"), true);
 });
+
+
+test("la primera pasada visual carga ornamentos reutilizables y mantiene la portada funcional", async () => {
+  const css = await readFile(resolve(root, "styles/character-sheet-v03.css"), "utf8");
+
+  assert.equal(css.includes("TIERRA MÁGICA v0.8 — PRIMERA PASADA VISUAL"), true);
+  assert.equal(css.includes('url("../assets/ui/sheet-filigree.svg")'), true);
+  assert.equal(css.includes('url("../assets/ui/sheet-corner.svg")'), true);
+  assert.equal(css.includes('url("../assets/ui/attribute-medallion.svg")'), true);
+  assert.equal(css.includes('.tab[data-tab="summary"] .tm-v03-panel'), true);
+  assert.equal(css.includes(".tm-v03-character-stage"), true);
+  assert.equal(css.includes(".tm-v03-resource"), true);
+  assert.equal(css.includes(".tm-v03-page-tabs .item.active"), true);
+
+  await Promise.all([
+    "assets/ui/sheet-filigree.svg",
+    "assets/ui/sheet-corner.svg",
+    "assets/ui/attribute-medallion.svg"
+  ].map((file) => access(resolve(root, file))));
+});
