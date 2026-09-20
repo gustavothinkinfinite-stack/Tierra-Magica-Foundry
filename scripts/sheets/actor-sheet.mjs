@@ -77,6 +77,23 @@ export class TierraMagicaActorSheet extends ActorSheet {
       const rank = Math.min(5, Math.max(0, Math.floor(toNumber(event.currentTarget.value))));
       return this.actor.update({ ["system.skills." + key + ".rank"]: rank });
     });
+    html.find("[data-action='set-skill-temporary']").change((event) => {
+      const key = event.currentTarget.dataset.key;
+      return this.actor.update({ ["system.skills." + key + ".temporary"]: toNumber(event.currentTarget.value) });
+    });
+    html.find("[data-action='set-skill-other']").change((event) => {
+      const key = event.currentTarget.dataset.key;
+      return this.actor.update({ ["system.skills." + key + ".other"]: toNumber(event.currentTarget.value) });
+    });
+    html.find("[data-action='clear-skill-temporaries']").click(() => {
+      const updates = {};
+      for (const key of Object.keys(TM_CONFIG.skills)) updates["system.skills." + key + ".temporary"] = 0;
+      return this.actor.update(updates);
+    });
+    html.find("[data-action='skill-source-open']").click((event) => {
+      const itemId = event.currentTarget.dataset.itemId;
+      this.actor.items.get(itemId)?.sheet.render(true);
+    });
     html.find("[data-action='set-numeric-field']").change((event) => {
       const field = event.currentTarget.dataset.field;
       if (!field) return;
@@ -140,11 +157,31 @@ export class TierraMagicaActorSheet extends ActorSheet {
         skills: []
       });
       const skill = skills[key] ?? { rank: 0, bonus: 0 };
+      const breakdown = skill.breakdown ?? {
+        rank: toNumber(skill.bonus),
+        specialization: 0,
+        equipment: 0,
+        technique: 0,
+        magic: 0,
+        trait: 0,
+        itemOther: 0,
+        temporary: toNumber(skill.temporary),
+        other: toNumber(skill.other),
+        total: toNumber(skill.bonus),
+        sources: []
+      };
       groups.get(group).skills.push({
         key,
         label: definition.label,
         rank: toNumber(skill.rank),
-        bonus: toNumber(skill.bonus)
+        bonus: toNumber(skill.bonus),
+        temporary: toNumber(skill.temporary),
+        other: toNumber(skill.other),
+        breakdown,
+        sources: breakdown.sources ?? [],
+        linkedSpecializations: this.actor.items
+          .filter((item) => item.type === "specialization" && item.system.skill === key)
+          .map((item) => ({ id: item.id, name: item.name }))
       });
     }
     return [...groups.values()];
