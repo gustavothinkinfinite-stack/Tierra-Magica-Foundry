@@ -170,15 +170,31 @@ export class TierraMagicaActorSheet extends ActorSheet {
         total: toNumber(skill.bonus),
         sources: []
       };
+      const signed = (value) => {
+        const number = toNumber(value);
+        return (number >= 0 ? "+" : "") + number;
+      };
       groups.get(group).skills.push({
         key,
         label: definition.label,
         rank: toNumber(skill.rank),
         bonus: toNumber(skill.bonus),
+        bonusDisplay: signed(skill.bonus),
         temporary: toNumber(skill.temporary),
         other: toNumber(skill.other),
         breakdown,
-        sources: breakdown.sources ?? [],
+        modifierSummary: [
+          { key: "rank", label: "Rango", value: breakdown.rank, display: signed(breakdown.rank) },
+          { key: "specialization", label: "Especialización", value: breakdown.specialization, display: signed(breakdown.specialization) },
+          { key: "equipment", label: "Equipo", value: breakdown.equipment, display: signed(breakdown.equipment) },
+          { key: "technique", label: "Técnica", value: breakdown.technique, display: signed(breakdown.technique) },
+          { key: "magic", label: "Magia", value: breakdown.magic, display: signed(breakdown.magic) },
+          { key: "trait", label: "Rasgo", value: breakdown.trait, display: signed(breakdown.trait) }
+        ],
+        sources: (breakdown.sources ?? []).map((source) => ({
+          ...source,
+          display: signed(source.value)
+        })),
         linkedSpecializations: this.actor.items
           .filter((item) => item.type === "specialization" && item.system.skill === key)
           .map((item) => ({ id: item.id, name: item.name }))
