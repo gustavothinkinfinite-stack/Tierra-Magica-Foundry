@@ -4,8 +4,8 @@ export class TierraMagicaItemSheet extends ItemSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["tierra-magica", "sheet", "item"],
-      width: 560,
-      height: 620,
+      width: 580,
+      height: 660,
       resizable: true
     });
   }
@@ -18,16 +18,16 @@ export class TierraMagicaItemSheet extends ItemSheet {
     const context = await super.getData(options);
     context.system = this.item.system;
     context.config = TM_CONFIG;
+    context.editable = this.isEditable;
     context.isWeapon = this.item.type === "weapon";
     context.isArmor = this.item.type === "armor";
     context.isEquipment = this.item.type === "equipment";
     context.isSpell = this.item.type === "spell";
     context.isTalent = this.item.type === "talent";
+    context.isFamiliarBenefit = this.item.type === "familiarBenefit";
     context.typeLabel = TM_CONFIG.itemTypes[this.item.type] ?? this.item.type;
     context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description ?? "", {
-      async: true,
-      secrets: this.item.isOwner,
-      relativeTo: this.item
+      async: true, secrets: this.item.isOwner, relativeTo: this.item
     });
     return context;
   }

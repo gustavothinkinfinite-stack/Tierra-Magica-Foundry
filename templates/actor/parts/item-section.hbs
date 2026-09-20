@@ -1,11 +1,14 @@
 <section class="tm-panel tm-item-section">
   <div class="tm-section-heading">
     <h2>{{title}}</h2>
-    {{#if @root.editable}}
-      <button type="button" class="tm-icon-button" data-action="item-create" data-type="{{type}}" title="Crear {{title}}">
-        <i class="fa-solid fa-plus"></i> Agregar
-      </button>
-    {{/if}}
+    <div class="tm-section-buttons">
+      {{#if (eq type "spell")}}<button type="button" class="tm-icon-button" data-action="content-browser" data-type="spell"><i class="fa-solid fa-book"></i> Del libro</button>{{/if}}
+      {{#if (eq type "talent")}}<button type="button" class="tm-icon-button" data-action="content-browser" data-type="talent"><i class="fa-solid fa-book"></i> Del libro</button>{{/if}}
+      {{#if (eq type "familiarBenefit")}}<button type="button" class="tm-icon-button" data-action="content-browser" data-type="familiarBenefit"><i class="fa-solid fa-book"></i> Del libro</button>{{/if}}
+      {{#if @root.editable}}
+        <button type="button" class="tm-icon-button" data-action="item-create" data-type="{{type}}" title="Crear {{title}}"><i class="fa-solid fa-plus"></i> Agregar</button>
+      {{/if}}
+    </div>
   </div>
   <ol class="tm-item-list">
     {{#each items as |item|}}
@@ -15,9 +18,10 @@
           <strong>{{item.name}}</strong>
           {{#if (eq item.type "weapon")}}<small>{{item.system.damage}} · {{item.system.range}}</small>{{/if}}
           {{#if (eq item.type "armor")}}<small>Armadura +{{item.system.armor}}</small>{{/if}}
-          {{#if (eq item.type "spell")}}<small>Círculo {{item.system.circle}} · {{item.system.tradition}}</small>{{/if}}
+          {{#if (eq item.type "spell")}}<small>{{item.system.level}} · Coste {{item.system.cost}} Maná</small>{{/if}}
           {{#if (eq item.type "equipment")}}<small>Cantidad: {{item.system.quantity}}</small>{{/if}}
           {{#if (eq item.type "talent")}}<small>{{item.system.category}}</small>{{/if}}
+          {{#if (eq item.type "familiarBenefit")}}<small>Coste {{item.system.cost}} · {{item.system.effect}}</small>{{/if}}
         </div>
         <div class="tm-item-actions">
           {{#if (eq item.type "weapon")}}
@@ -27,6 +31,8 @@
           {{#if (eq item.type "spell")}}
             <button type="button" data-action="item-spell" title="Lanzar"><i class="fa-solid fa-wand-sparkles"></i> Lanzar</button>
           {{/if}}
+          {{#if (eq item.type "armor")}}<button type="button" class="tm-icon-button {{#if item.system.equipped}}active{{/if}}" data-action="item-toggle" title="Equipar o quitar"><i class="fa-solid fa-shield"></i></button>{{/if}}
+          {{#if (eq item.type "weapon")}}<button type="button" class="tm-icon-button {{#if item.system.equipped}}active{{/if}}" data-action="item-toggle" title="Equipar o quitar"><i class="fa-solid fa-hand-fist"></i></button>{{/if}}
           <button type="button" class="tm-icon-button" data-action="item-edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>
           {{#if @root.editable}}<button type="button" class="tm-icon-button tm-danger" data-action="item-delete" title="Eliminar"><i class="fa-solid fa-trash"></i></button>{{/if}}
         </div>

@@ -1,123 +1,104 @@
 {
   "Actor": {
-    "types": ["character", "npc"],
+    "types": ["character", "npc", "familiar"],
     "templates": {
       "base": {
         "details": {
-          "level": 1,
-          "ancestry": "Humano",
-          "culture": "",
-          "class": "",
-          "background": "",
-          "experience": {
-            "value": 0,
-            "max": 1000
-          }
+          "level": 1, "ancestry": "human", "class": "unclassed", "background": "", "culture": "",
+          "experience": { "value": 0, "max": 300 }
         },
         "attributes": {
-          "might": { "value": 10, "mod": 0 },
-          "agility": { "value": 10, "mod": 0 },
-          "intellect": { "value": 10, "mod": 0 },
-          "will": { "value": 10, "mod": 0 },
-          "presence": { "value": 10, "mod": 0 }
+          "strength": { "value": 3 }, "dexterity": { "value": 3 }, "agility": { "value": 3 },
+          "fortitude": { "value": 3 }, "intelligence": { "value": 3 }, "perception": { "value": 3 },
+          "willpower": { "value": 3 }, "power": { "value": 3 }
         },
         "resources": {
-          "health": { "value": 10, "max": 10 },
-          "mana": { "value": 5, "max": 5 },
-          "stamina": { "value": 5, "max": 5 }
+          "health": { "value": 10, "max": 10 }, "mana": { "value": 5, "max": 5 },
+          "destiny": { "value": 1, "max": 6 }
         },
         "combat": {
-          "armor": 0,
-          "initiativeBonus": 0,
-          "speed": 7.5,
-          "proficiency": 2,
-          "defenses": {
-            "armor": 10,
-            "fortitude": 10,
-            "reflex": 10,
-            "will": 10
-          }
+          "armor": 0, "magicResistance": 0, "initiativeBonus": 0, "attackBonus": 0,
+          "damageBonus": 0, "lethality": 0,
+          "defenses": { "armor": 10, "fortitude": 10, "willpower": 10 }
         },
         "skills": {
-          "athletics": { "ability": "might", "rank": 0, "bonus": 0, "total": 0 },
-          "acrobatics": { "ability": "agility", "rank": 0, "bonus": 0, "total": 0 },
-          "stealth": { "ability": "agility", "rank": 0, "bonus": 0, "total": 0 },
-          "thievery": { "ability": "agility", "rank": 0, "bonus": 0, "total": 0 },
-          "arcana": { "ability": "intellect", "rank": 0, "bonus": 0, "total": 0 },
-          "crafting": { "ability": "intellect", "rank": 0, "bonus": 0, "total": 0 },
-          "lore": { "ability": "intellect", "rank": 0, "bonus": 0, "total": 0 },
-          "medicine": { "ability": "intellect", "rank": 0, "bonus": 0, "total": 0 },
-          "nature": { "ability": "will", "rank": 0, "bonus": 0, "total": 0 },
-          "perception": { "ability": "will", "rank": 0, "bonus": 0, "total": 0 },
-          "survival": { "ability": "will", "rank": 0, "bonus": 0, "total": 0 },
-          "deception": { "ability": "presence", "rank": 0, "bonus": 0, "total": 0 },
-          "diplomacy": { "ability": "presence", "rank": 0, "bonus": 0, "total": 0 },
-          "intimidation": { "ability": "presence", "rank": 0, "bonus": 0, "total": 0 },
-          "performance": { "ability": "presence", "rank": 0, "bonus": 0, "total": 0 }
+          "athletics": { "ability": "agility", "value": 0, "bonus": 0 },
+          "climbing": { "ability": "agility", "value": 0, "bonus": 0 },
+          "riding": { "ability": "dexterity", "value": 0, "bonus": 0 },
+          "intimidation": { "ability": "power", "value": 0, "bonus": 0 },
+          "leadership": { "ability": "power", "value": 0, "bonus": 0 },
+          "persuasion": { "ability": "intelligence", "value": 0, "bonus": 0 },
+          "awareness": { "ability": "perception", "value": 0, "bonus": 0 },
+          "search": { "ability": "perception", "value": 0, "bonus": 0 },
+          "tracking": { "ability": "perception", "value": 0, "bonus": 0 },
+          "animals": { "ability": "perception", "value": 0, "bonus": 0 },
+          "science": { "ability": "intelligence", "value": 0, "bonus": 0 },
+          "herbalism": { "ability": "intelligence", "value": 0, "bonus": 0 },
+          "history": { "ability": "intelligence", "value": 0, "bonus": 0 },
+          "medicine": { "ability": "intelligence", "value": 0, "bonus": 0 },
+          "memorize": { "ability": "intelligence", "value": 0, "bonus": 0 },
+          "occultism": { "ability": "intelligence", "value": 0, "bonus": 0 },
+          "appraisal": { "ability": "intelligence", "value": 0, "bonus": 0 },
+          "composure": { "ability": "power", "value": 0, "bonus": 0 },
+          "resistPain": { "ability": "willpower", "value": 0, "bonus": 0 },
+          "disguise": { "ability": "dexterity", "value": 0, "bonus": 0 },
+          "lockpicking": { "ability": "dexterity", "value": 0, "bonus": 0 },
+          "hiding": { "ability": "agility", "value": 0, "bonus": 0 },
+          "pickpocket": { "ability": "dexterity", "value": 0, "bonus": 0 },
+          "stealth": { "ability": "agility", "value": 0, "bonus": 0 },
+          "trapping": { "ability": "dexterity", "value": 0, "bonus": 0 },
+          "poisons": { "ability": "intelligence", "value": 0, "bonus": 0 },
+          "art": { "ability": "power", "value": 0, "bonus": 0 },
+          "dance": { "ability": "agility", "value": 0, "bonus": 0 },
+          "smithing": { "ability": "dexterity", "value": 0, "bonus": 0 },
+          "navigation": { "ability": "intelligence", "value": 0, "bonus": 0 },
+          "engineering": { "ability": "dexterity", "value": 0, "bonus": 0 },
+          "streetwise": { "ability": "perception", "value": 0, "bonus": 0 },
+          "empathy": { "ability": "perception", "value": 0, "bonus": 0 },
+          "subterfuge": { "ability": "intelligence", "value": 0, "bonus": 0 },
+          "hunting": { "ability": "perception", "value": 0, "bonus": 0 },
+          "lipReading": { "ability": "perception", "value": 0, "bonus": 0 },
+          "runes": { "ability": "intelligence", "value": 0, "bonus": 0 }
         },
-        "traits": {
-          "languages": "Común",
-          "senses": "",
-          "size": "medium"
-        },
-        "biography": "",
-        "notes": ""
+        "traits": { "languages": "Común", "senses": "", "size": "Mediano", "racial": "" },
+        "currency": { "gold": 50, "silver": 0, "copper": 0 },
+        "status": { "wounds": 0, "fatigue": 0 },
+        "biography": "", "notes": ""
       }
     },
-    "character": {
-      "templates": ["base"]
-    },
-    "npc": {
+    "character": { "templates": ["base"] },
+    "npc": { "templates": ["base"], "details": { "role": "", "threat": "normal" } },
+    "familiar": {
       "templates": ["base"],
       "details": {
-        "role": "",
-        "threat": "normal"
+        "familiarClass": "animal", "ownerName": "", "ownerUuid": "", "bond": "Vinculado",
+        "incubation": "", "level": 1
       }
     }
   },
   "Item": {
-    "types": ["weapon", "armor", "equipment", "spell", "talent"],
+    "types": ["weapon", "armor", "equipment", "spell", "talent", "familiarBenefit"],
     "templates": {
-      "base": {
-        "description": "",
-        "quantity": 1,
-        "weight": 0,
-        "price": 0,
-        "equipped": false
-      }
+      "base": { "description": "", "quantity": 1, "weight": 0, "price": 0, "equipped": false }
     },
     "weapon": {
-      "templates": ["base"],
-      "ability": "might",
-      "attackBonus": 0,
-      "damage": "1d6",
-      "damageBonus": 0,
-      "range": "Cuerpo a cuerpo",
-      "traits": ""
+      "templates": ["base"], "attackAbility": "dexterity", "damageAbility": "strength",
+      "attackBonus": 0, "damage": "1d6", "damageBonus": 0, "range": "Cuerpo a cuerpo",
+      "hands": 1, "traits": ""
     },
     "armor": {
-      "templates": ["base"],
-      "armor": 1,
-      "agilityCap": 99,
-      "traits": ""
+      "templates": ["base"], "armor": 1, "magicResistance": 0, "penalty": 0, "traits": ""
     },
-    "equipment": {
-      "templates": ["base"],
-      "category": "General"
-    },
+    "equipment": { "templates": ["base"], "category": "General" },
     "spell": {
-      "templates": ["base"],
-      "circle": 1,
-      "tradition": "Arcana",
-      "cost": 1,
-      "ability": "intellect",
-      "roll": "1d6",
-      "traits": ""
+      "templates": ["base"], "level": "Principiante", "cost": 1, "saving": "Ninguna",
+      "requirements": "", "roll": "", "consumeOnUse": true, "traits": ""
     },
     "talent": {
-      "templates": ["base"],
-      "category": "General",
-      "requirements": ""
+      "templates": ["base"], "category": "Perk", "requirements": "", "manaCost": 0
+    },
+    "familiarBenefit": {
+      "templates": ["base"], "cost": 1, "requirements": "", "effect": ""
     }
   }
 }

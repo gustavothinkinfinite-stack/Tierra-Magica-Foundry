@@ -140,6 +140,20 @@
   font: 700 28px/1 Georgia, serif;
 }
 
+.tm-header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.tm-header-actions > button {
+  width: 82px;
+  color: #fff7dd;
+  background: rgba(7, 26, 22, 0.62);
+  border: 1px solid var(--tm-gold-bright);
+}
+
 .tm-resource-bar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -171,9 +185,49 @@
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
+.tm-resource button {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+}
+
 .tm-resource.tm-health { background: linear-gradient(120deg, #713631, #984940); }
 .tm-resource.tm-mana { background: linear-gradient(120deg, #294c6b, #3d6e94); }
 .tm-resource.tm-stamina { background: linear-gradient(120deg, #315d4c, #47816a); }
+.tm-resource.tm-destiny { background: linear-gradient(120deg, #664a7b, #8963a0); }
+
+.tm-xp-strip {
+  height: 30px;
+  display: grid;
+  grid-template-columns: 120px 1fr 72px;
+  gap: 10px;
+  align-items: center;
+  padding: 4px 14px;
+  color: #534939;
+  background: #e6decd;
+  border-bottom: 1px solid #b9aa8c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.tm-xp-strip > div {
+  height: 8px;
+  overflow: hidden;
+  background: #c3b69d;
+  border-radius: 5px;
+}
+
+.tm-xp-strip > div i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--tm-green), var(--tm-green-soft));
+}
+
+.tm-xp-strip input { height: 22px; text-align: center; }
 
 .tm-tabs {
   display: flex;
@@ -208,7 +262,7 @@
 .tm-tabs .item i { margin-right: 4px; }
 
 .tm-sheet-body {
-  height: calc(100% - 230px);
+  height: calc(100% - 260px);
   padding: 14px;
   overflow: hidden auto;
 }
@@ -251,7 +305,7 @@
 .tm-ability {
   height: 46px;
   display: grid;
-  grid-template-columns: 1fr 38px 42px;
+  grid-template-columns: 1fr 38px 24px;
   align-items: center;
   padding: 0 9px;
   text-align: left;
@@ -270,7 +324,7 @@
 
 .tm-ability span { font: 600 13px Georgia, serif; }
 .tm-ability strong { font-size: 18px; text-align: center; }
-.tm-ability em { color: var(--tm-green); font-size: 18px; font-style: normal; font-weight: 700; text-align: right; }
+.tm-ability i { color: var(--tm-green); text-align: right; }
 .tm-ability-score { height: 46px !important; text-align: center; font-weight: 700; }
 
 .tm-defense-grid {
@@ -306,6 +360,48 @@
   border: 0;
 }
 
+.tm-derived-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.tm-derived-list > div,
+.tm-derived-list > button {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 9px;
+  background: #e5ddcc;
+  border: 1px solid #b8aa8e;
+}
+
+.tm-derived-list > button {
+  color: #fff;
+  background: var(--tm-green);
+}
+
+.tm-derived-list span { color: var(--tm-muted); font-size: 11px; }
+
+.tm-rest-actions {
+  display: flex;
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.tm-rest-actions button { font-size: 11px; }
+
+.tm-create-familiar {
+  width: auto;
+  margin-top: 12px;
+  padding: 6px 12px;
+  color: #fff !important;
+  background: var(--tm-green) !important;
+}
+
 .tm-form-grid input,
 .tm-form-grid select,
 .tm-quick-stats input {
@@ -325,6 +421,7 @@
 
 .tm-section-heading h2 { margin: 0; border: 0; }
 .tm-section-heading > span { color: var(--tm-muted); font-size: 11px; }
+.tm-section-buttons { display: flex; gap: 5px; }
 
 .tm-skill-list {
   display: flex;
@@ -389,6 +486,7 @@
 .tm-item-name small { color: var(--tm-muted); }
 .tm-item-actions { display: flex; align-items: center; gap: 4px; }
 .tm-item-actions button { width: auto; min-width: 29px; padding: 4px 7px; font-size: 11px; }
+.tm-item-actions button.active { color: #fff; background: var(--tm-green); }
 .tm-danger { color: var(--tm-red) !important; }
 .tm-empty { padding: 18px; color: var(--tm-muted); text-align: center; font-style: italic; }
 
@@ -447,6 +545,22 @@
 }
 
 .tm-check input { width: 20px; }
+
+.tm-currency {
+  display: grid;
+  grid-template-columns: auto repeat(3, minmax(100px, 1fr));
+  gap: 10px;
+  align-items: end;
+}
+
+.tm-currency h2 { margin: 0; }
+.tm-currency label { display: flex; align-items: center; gap: 6px; font-weight: 700; }
+.tm-currency input { width: 70px; text-align: center; }
+
+.tm-chat-card {
+  padding: 8px;
+  border-left: 3px solid var(--tm-gold, #b28a3e);
+}
 
 @media (max-width: 700px) {
   .tm-sheet-header { grid-template-columns: 86px 1fr; }

@@ -1,8 +1,8 @@
 {
   "id": "tierra-magica",
   "title": "Tierra Mágica",
-  "description": "Sistema de fantasía heroica para Tierra Mágica. Incluye fichas de personajes y PNJ, atributos, habilidades, recursos, inventario, ataques, magia y tiradas al chat.",
-  "version": "0.1.0",
+  "description": "Sistema de mesa para Tierra Mágica. Incluye creación guiada, personajes, PNJ, familiares, razas, profesiones, habilidades, combate, magia, Perks e inventario.",
+  "version": "0.2.0",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -26,7 +26,7 @@
     }
   ],
   "socket": true,
-  "initiative": "1d20 + @attributes.agility.mod + @combat.initiativeBonus",
+  "initiative": "1d20 + @attributes.agility.value + @attributes.perception.value + @combat.initiativeBonus",
   "grid": {
     "distance": 1.5,
     "units": "m"

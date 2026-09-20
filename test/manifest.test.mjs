@@ -10,6 +10,7 @@ const readJson = async (file) => JSON.parse(await readFile(resolve(root, file), 
 test("el manifiesto describe un sistema instalable", async () => {
   const manifest = await readJson("system.json");
   assert.equal(manifest.id, "tierra-magica");
+  assert.equal(manifest.version, "0.2.0");
   assert.equal(manifest.compatibility.verified, "14");
   assert.ok(manifest.esmodules.length > 0);
   assert.ok(manifest.styles.length > 0);
@@ -24,7 +25,9 @@ test("el manifiesto describe un sistema instalable", async () => {
 
 test("las plantillas definen actores y objetos iniciales", async () => {
   const templates = await readJson("template.json");
-  assert.deepEqual(templates.Actor.types, ["character", "npc"]);
-  assert.deepEqual(templates.Item.types, ["weapon", "armor", "equipment", "spell", "talent"]);
+  assert.deepEqual(templates.Actor.types, ["character", "npc", "familiar"]);
+  assert.deepEqual(templates.Item.types, ["weapon", "armor", "equipment", "spell", "talent", "familiarBenefit"]);
   assert.equal(templates.Actor.templates.base.resources.health.max, 10);
+  await Promise.all(templates.Actor.types.map((type) => access(resolve(root, `templates/actor/${type}-sheet.hbs`))));
+  await Promise.all(templates.Item.types.map((type) => access(resolve(root, `assets/icons/${type}.svg`))));
 });

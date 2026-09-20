@@ -1,23 +1,37 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { abilityModifier, clamp, defense, rankBonus, signed, skillTotal, toNumber } from "../scripts/rules.mjs";
+import {
+  characteristicPoints, clamp, defense, degreeOfSuccess, experienceForNextLevel,
+  inventoryLoad, signed, skillTotal, toNumber
+} from "../scripts/rules.mjs";
 
-test("calcula modificadores al estilo d20", () => {
-  assert.equal(abilityModifier(8), -1);
-  assert.equal(abilityModifier(10), 0);
-  assert.equal(abilityModifier(18), 4);
+test("calcula habilidades con característica, valor y bono", () => {
+  assert.equal(skillTotal({ ability: 4, value: 8, bonus: 2 }), 14);
+  assert.equal(skillTotal({ ability: 3, value: 0, bonus: -2 }), 1);
 });
 
-test("los grados suman nivel, competencia y dominio", () => {
-  assert.equal(rankBonus(0, 5, 2), 0);
-  assert.equal(rankBonus(1, 5, 2), 7);
-  assert.equal(rankBonus(2, 5, 2), 9);
-  assert.equal(rankBonus(4, 5, 2), 13);
+test("calcula defensas del sistema", () => {
+  assert.equal(defense(10, 4, 2), 16);
 });
 
-test("calcula habilidades y defensas", () => {
-  assert.equal(skillTotal({ modifier: 3, rank: 2, level: 4, proficiency: 2, bonus: 1 }), 12);
-  assert.equal(defense(10, 3, 2), 15);
+test("resuelve grados de éxito y extremos naturales", () => {
+  assert.equal(degreeOfSuccess(25, 15, 12), "Éxito crítico");
+  assert.equal(degreeOfSuccess(15, 15, 10), "Éxito");
+  assert.equal(degreeOfSuccess(14, 15, 10), "Fallo");
+  assert.equal(degreeOfSuccess(5, 15, 10), "Fallo crítico");
+  assert.equal(degreeOfSuccess(14, 15, 20), "Éxito");
+  assert.equal(degreeOfSuccess(15, 15, 1), "Fallo");
+});
+
+test("usa la progresión de experiencia del libro", () => {
+  const thresholds = [0, 0, 300, 600, 1000, 1500, 2100, 2800, 3600, 4500, 5400];
+  assert.equal(experienceForNextLevel(1, thresholds), 300);
+  assert.equal(experienceForNextLevel(9, thresholds), 5400);
+});
+
+test("calcula puntos de características y carga", () => {
+  assert.equal(characteristicPoints({ one: { value: 4 }, two: { value: 3 } }), 7);
+  assert.equal(inventoryLoad([{ system: { quantity: 2, weight: 1.5 } }]), 3);
 });
 
 test("normaliza números y presentación", () => {
