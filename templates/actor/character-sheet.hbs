@@ -16,8 +16,8 @@
     <label><span>Origen</span><input type="text" name="system.details.origin" value="{{system.details.origin}}" /></label>
     <label><span>Raza / Ancestría</span><input type="text" name="system.details.ancestry" value="{{system.details.ancestry}}" /></label>
     <label><span>Trasfondo</span><input type="text" name="system.details.background" value="{{system.details.background}}" /></label>
-    <label><span>Nivel</span><input type="number" name="system.details.level" value="{{system.details.level}}" min="1" max="20" /></label>
-    <label><span>PD gastados</span><input type="number" name="system.details.pdSpent" value="{{system.details.pdSpent}}" min="0" /></label>
+    <label><span>Nivel</span><input type="number" value="{{system.details.level}}" min="1" max="20" data-action="set-numeric-field" data-field="system.details.level" /></label>
+    <label><span>PD gastados</span><input type="number" value="{{system.details.pdSpent}}" min="0" data-action="set-numeric-field" data-field="system.details.pdSpent" /></label>
   </section>
 
   <section class="tm-resource-bar tm-resource-bar-two tm-v01-resources-top">
@@ -60,7 +60,7 @@
                   <span>{{lookup ../config.skillLabels key}}</span>
                   <b>+{{skill.bonus}}</b>
                 </button>
-                <select name="system.skills.{{key}}.rank" title="Rango de {{lookup ../config.skillLabels key}}">{{selectOptions ../config.rankLabels selected=skill.rank}}</select>
+                <select data-action="set-skill-rank" data-key="{{key}}" title="Rango de {{lookup ../config.skillLabels key}}">{{selectOptions ../config.rankLabels selected=skill.rank}}</select>
               </div>
             {{/each}}
           </div>
@@ -168,7 +168,7 @@
             <div class="tm-skill-row">
               <strong>{{lookup ../config.skillLabels key}}</strong>
               <span>{{lookup (lookup ../config.skills key) "group"}}</span>
-              <select name="system.skills.{{key}}.rank">{{selectOptions ../config.rankLabels selected=skill.rank}}</select>
+              <select data-action="set-skill-rank" data-key="{{key}}">{{selectOptions ../config.rankLabels selected=skill.rank}}</select>
               <strong>+{{skill.bonus}}</strong>
               <button type="button" data-action="roll-skill" data-key="{{key}}"><i class="fa-solid fa-dice"></i></button>
             </div>
@@ -202,8 +202,8 @@
       <section class="tm-panel">
         <h2>Desarrollo</h2>
         <div class="tm-form-grid">
-          <label><span>Nivel</span><input type="number" name="system.details.level" value="{{system.details.level}}" min="1" max="20" /></label>
-          <label><span>PD gastados / control</span><input type="number" name="system.details.pdSpent" value="{{system.details.pdSpent}}" min="0" /></label>
+          <label><span>Nivel</span><input type="number" value="{{system.details.level}}" min="1" max="20" data-action="set-numeric-field" data-field="system.details.level" /></label>
+          <label><span>PD gastados / control</span><input type="number" value="{{system.details.pdSpent}}" min="0" data-action="set-numeric-field" data-field="system.details.pdSpent" /></label>
           <label><span>Idiomas</span><input type="text" name="system.traits.languages" value="{{system.traits.languages}}" /></label>
           <label><span>Sentidos</span><input type="text" name="system.traits.senses" value="{{system.traits.senses}}" /></label>
           <label><span>Escala</span><select name="system.traits.size">{{selectOptions config.sizes selected=system.traits.size}}</select></label>
