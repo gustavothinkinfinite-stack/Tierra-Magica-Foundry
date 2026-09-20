@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## Próxima versión
+
+- Integración de **Ficha de Personaje Tierra Mágica v0.1** para actores `character`.
+- Nueva vista principal con retrato central, siete Atributos alrededor del personaje, Habilidades compactas, Defensas, Estado, Magia y paneles de desarrollo.
+- La ficha reutiliza las rutas de datos y acciones existentes del sistema; PNJ y Familiares conservan su ficha anterior.
+- Los estilos de la ficha quedan separados en `styles/character-sheet-v01.css` para permitir iteración visual sin alterar la interfaz base.
+
 ## 0.2.0
 
 - Adaptación del sistema a los documentos originales de Tierra Mágica.
