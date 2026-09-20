@@ -6,8 +6,8 @@ export class TierraMagicaActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["tierra-magica", "sheet", "actor"],
-      width: 980,
-      height: 840,
+      width: 1120,
+      height: 900,
       resizable: true,
       tabs: [{ navSelector: ".tm-tabs", contentSelector: ".tm-sheet-body", initial: "summary" }],
       dragDrop: [{ dragSelector: ".item", dropSelector: null }]
@@ -27,6 +27,29 @@ export class TierraMagicaActorSheet extends ActorSheet {
     context.isNpc = this.actor.type === "npc";
     context.isFamiliar = this.actor.type === "familiar";
     context.itemGroups = this.#groupItems(this.actor.items);
+    context.itemCounts = Object.fromEntries(Object.entries(context.itemGroups).map(([type, items]) => [type, items.length]));
+    context.skillGroups = this.#groupSkills(this.actor.system.skills ?? {});
+    context.healthPercent = this.#resourcePercent(this.actor.system.resources?.health);
+    context.manaPercent = this.#resourcePercent(this.actor.system.resources?.mana);
+
+    const level = Math.max(1, Math.floor(toNumber(this.actor.system.details?.level, 1)));
+    const pdSpent = Math.max(0, toNumber(this.actor.system.details?.pdSpent));
+    context.development = {
+      pdTotal: 25 + Math.max(0, level - 1) * 4,
+      pdSpent,
+      pdAvailable: 25 + Math.max(0, level - 1) * 4 - pdSpent
+    };
+
+    context.turn = {
+      movement: this.actor.system.turn?.movement ?? true,
+      action: this.actor.system.turn?.action ?? true,
+      reaction: this.actor.system.turn?.reaction ?? true
+    };
+
+    context.familiar = game.actors.find((actor) =>
+      actor.type === "familiar" && actor.system.details?.ownerUuid === this.actor.uuid
+    ) ?? null;
+
     context.enrichedBiography = await TextEditor.enrichHTML(this.actor.system.biography ?? "", {
       async: true, secrets: this.actor.isOwner, relativeTo: this.actor
     });
@@ -62,6 +85,18 @@ export class TierraMagicaActorSheet extends ActorSheet {
       const value = Math.min(maximum, Math.max(minimum, toNumber(event.currentTarget.value)));
       return this.actor.update({ [field]: value });
     });
+    html.find("[data-action='toggle-turn']").click((event) => {
+      const key = event.currentTarget.dataset.key;
+      if (!["movement", "action", "reaction"].includes(key)) return;
+      const current = this.actor.system.turn?.[key] ?? true;
+      return this.actor.update({ ["system.turn." + key]: !current });
+    });
+    html.find("[data-action='reset-turn']").click(() => this.actor.update({
+      "system.turn.movement": true,
+      "system.turn.action": true,
+      "system.turn.reaction": true
+    }));
+    html.find("[data-action='open-familiar']").click(() => this.#openFamiliar());
 
     html.find("[data-action='item-create']").click((event) => this.#createItem(event.currentTarget.dataset.type));
     html.find("[data-action='content-browser']").click((event) => this.#openContentBrowser(event.currentTarget.dataset.type));
@@ -83,6 +118,42 @@ export class TierraMagicaActorSheet extends ActorSheet {
   #getItem(event) {
     const row = event.currentTarget.closest(".item");
     return this.actor.items.get(row?.dataset.itemId);
+  }
+
+  #groupSkills(skills) {
+    const iconByGroup = {
+      "Físicas": "fa-person-running",
+      "Exploración": "fa-compass",
+      "Sociales": "fa-comments",
+      "Conocimiento": "fa-book-open",
+      "Técnicas": "fa-gears",
+      "Combate": "fa-swords",
+      "Magia": "fa-wand-sparkles",
+      "Operación": "fa-horse"
+    };
+    const groups = new Map();
+    for (const [key, definition] of Object.entries(TM_CONFIG.skills)) {
+      const group = definition.group ?? "Otras";
+      if (!groups.has(group)) groups.set(group, {
+        label: group,
+        icon: iconByGroup[group] ?? "fa-circle",
+        skills: []
+      });
+      const skill = skills[key] ?? { rank: 0, bonus: 0 };
+      groups.get(group).skills.push({
+        key,
+        label: definition.label,
+        rank: toNumber(skill.rank),
+        bonus: toNumber(skill.bonus)
+      });
+    }
+    return [...groups.values()];
+  }
+
+  #resourcePercent(resource) {
+    const maximum = Math.max(0, toNumber(resource?.max));
+    if (!maximum) return 0;
+    return Math.max(0, Math.min(100, Math.round((toNumber(resource?.value) / maximum) * 100)));
   }
 
   async #createItem(type) {
@@ -147,7 +218,20 @@ export class TierraMagicaActorSheet extends ActorSheet {
     return this.actor.rollAttribute(key, result);
   }
 
+  async #openFamiliar() {
+    const familiar = game.actors.find((actor) =>
+      actor.type === "familiar" && actor.system.details?.ownerUuid === this.actor.uuid
+    );
+    if (familiar) return familiar.sheet.render(true);
+    return this.#createFamiliar();
+  }
+
   async #createFamiliar() {
+    const existing = game.actors.find((actor) =>
+      actor.type === "familiar" && actor.system.details?.ownerUuid === this.actor.uuid
+    );
+    if (existing) return existing.sheet.render(true);
+
     const familiar = await Actor.create({
       name: "Familiar de " + this.actor.name,
       type: "familiar",
