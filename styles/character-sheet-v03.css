@@ -3111,3 +3111,136 @@ form.tm-character-sheet-v03 {
     top: 118px;
   }
 }
+
+
+/* =========================================================
+   TIERRA MÁGICA v0.9.2 — CALIDAD DE BANNER Y LAYOUT FLUIDO
+   Corrige la cabecera, elimina bandas vacías y evita que
+   Defensas o la columna derecha queden recortadas.
+   ========================================================= */
+
+.tm-character-sheet-v03 .tm-v03-shell {
+  container-type: inline-size;
+  container-name: tm-character-sheet;
+}
+
+.tm-character-sheet-v03 .tm-v09-header {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 1600 / 287;
+  line-height: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.tm-character-sheet-v03 .tm-v091-title-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+}
+
+/* La portada usa el ancho real disponible, no mínimos rígidos. */
+.tm-character-sheet-v03 .tm-v03-dashboard {
+  grid-template-columns:
+    minmax(220px, 24%)
+    minmax(0, 1fr)
+    minmax(240px, 25%);
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.tm-character-sheet-v03 .tm-v03-left-rail,
+.tm-character-sheet-v03 .tm-v03-character-stage,
+.tm-character-sheet-v03 .tm-v03-right-rail,
+.tm-character-sheet-v03 .tm-v03-panel,
+.tm-character-sheet-v03 .tm-v03-defenses,
+.tm-character-sheet-v03 .tm-v03-state,
+.tm-character-sheet-v03 .tm-v03-list-panel {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.tm-character-sheet-v03 .tm-v03-right-rail {
+  overflow: hidden;
+}
+
+.tm-character-sheet-v03 .tm-v03-defense-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.tm-character-sheet-v03 .tm-v03-defense-grid .tm-v09-defense {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tm-character-sheet-v03 .tm-v03-defense-grid .tm-v09-defense span,
+.tm-character-sheet-v03 .tm-v03-defense-grid .tm-v09-defense b {
+  min-width: 0;
+}
+
+/* Al reducir la hoja real, se reorganiza por el ancho del componente
+   y no por el viewport completo de Foundry. */
+@container tm-character-sheet (max-width: 1040px) {
+  .tm-character-sheet-v03 .tm-v03-dashboard {
+    grid-template-columns: minmax(220px, .74fr) minmax(0, 1.35fr);
+  }
+
+  .tm-character-sheet-v03 .tm-v03-right-rail {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .9fr) repeat(3, minmax(0, .75fr));
+    gap: 10px;
+    align-items: start;
+  }
+}
+
+@container tm-character-sheet (max-width: 820px) {
+  .tm-character-sheet-v03 .tm-v03-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .tm-character-sheet-v03 .tm-v03-left-rail,
+  .tm-character-sheet-v03 .tm-v03-character-stage,
+  .tm-character-sheet-v03 .tm-v03-right-rail {
+    grid-column: 1;
+  }
+
+  .tm-character-sheet-v03 .tm-v03-right-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Los media queries antiguos no deben volver a fijar una altura
+   distinta de la proporción real del banner. */
+@media (max-width: 1180px) {
+  .tm-character-sheet-v03 .tm-v09-header,
+  .tm-character-sheet-v03 .tm-v091-title-art {
+    height: auto;
+  }
+
+  .tm-character-sheet-v03 .tm-v09-header {
+    flex-basis: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .tm-character-sheet-v03 .tm-v09-header,
+  .tm-character-sheet-v03 .tm-v091-title-art {
+    height: auto;
+  }
+
+  .tm-character-sheet-v03 .tm-v09-header {
+    flex-basis: auto;
+  }
+}
