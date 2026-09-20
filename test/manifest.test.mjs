@@ -15,6 +15,7 @@ test("el manifiesto describe Foundry T.M. 0.9.0", async () => {
   assert.equal(manifest.initiative.startsWith("2d10"), true);
   await Promise.all([...manifest.esmodules, ...manifest.styles, ...manifest.languages.map((l) => l.path)]
     .map((file) => access(resolve(root, file))));
+  await access(resolve(root, "assets/ui/sheet-title-hero.svg"));
 });
 
 test("el esquema contiene actores y tipos de objeto del manual", async () => {
