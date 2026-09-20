@@ -1,21 +1,16 @@
 {
   "TYPES": {
-    "Actor": { "character": "Personaje", "npc": "PNJ", "familiar": "Compañero Familiar" },
+    "Actor": { "character": "Personaje", "npc": "PNJ", "familiar": "Familiar" },
     "Item": {
-      "weapon": "Arma", "armor": "Armadura", "equipment": "Equipo", "spell": "Hechizo",
-      "talent": "Perk o estilo", "familiarBenefit": "Beneficio de familiar"
+      "weapon": "Arma", "armor": "Armadura", "shield": "Escudo", "equipment": "Equipo",
+      "spell": "Hechizo", "technique": "Técnica", "trait": "Rasgo", "specialization": "Especialización"
     }
   },
   "TM": {
-    "SystemName": "Tierra Mágica",
-    "Abilities": {
-      "strength": "Fuerza", "dexterity": "Destreza", "agility": "Agilidad", "fortitude": "Fortaleza",
-      "intelligence": "Inteligencia", "perception": "Percepción", "willpower": "Voluntad", "power": "Poder"
-    },
-    "Actor": { "Character": "Personaje", "Npc": "PNJ", "Familiar": "Compañero Familiar" },
-    "Item": {
-      "Weapon": "Arma", "Armor": "Armadura", "Equipment": "Equipo", "Spell": "Hechizo",
-      "Talent": "Perk o estilo", "FamiliarBenefit": "Beneficio de familiar"
+    "SystemName": "Tierra Mágica — Foundry T.M.",
+    "Attributes": {
+      "fue": "Fuerza", "agi": "Agilidad", "vig": "Vigor", "int": "Intelecto",
+      "per": "Percepción", "vol": "Voluntad", "pre": "Presencia"
     }
   }
 }
