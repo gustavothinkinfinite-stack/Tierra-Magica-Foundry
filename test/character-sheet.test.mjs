@@ -41,8 +41,8 @@ test("la ficha usa páginas laterales y recursos dentro del núcleo central", as
 
 test("la portada usa Habilidades sólo como lectura y tirada", async () => {
   const source = await readFile(resolve(root, "templates/actor/character-sheet.hbs"), "utf8");
-  const start = source.indexOf('data-tab="summary"');
-  const end = source.indexOf('data-tab="skills"', start + 1);
+  const start = source.indexOf('<div class="tab" data-group="primary" data-tab="summary">');
+  const end = source.indexOf('<div class="tab" data-group="primary" data-tab="skills">', start);
   const summary = source.slice(start, end);
 
   assert.equal(summary.includes("tm-v03-quick-skill-list"), true);
