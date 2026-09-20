@@ -1,6 +1,6 @@
 # Historial de cambios
 
-## Próxima versión
+## 0.3.1
 
 - Integración de **Ficha de Personaje Tierra Mágica v0.1** para actores `character`.
 - Nueva vista principal con retrato central, siete Atributos alrededor del personaje, Habilidades compactas, Defensas, Estado, Magia y paneles de desarrollo.

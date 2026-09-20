@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - "v*"
+    branches:
+      - "release/v*"
 
 permissions:
   contents: write
@@ -23,6 +25,16 @@ jobs:
       - name: Validar sistema
         run: npm run validate
 
+      - name: Determinar versión
+        shell: bash
+        run: |
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            echo "TM_RELEASE_TAG=$GITHUB_REF_NAME" >> "$GITHUB_ENV"
+          else
+            VERSION=$(node -p "JSON.parse(require('fs').readFileSync('system.json','utf8')).version")
+            echo "TM_RELEASE_TAG=v$VERSION" >> "$GITHUB_ENV"
+          fi
+
       - name: Preparar paquete
         run: |
           mkdir -p package/tierra-magica
@@ -31,7 +43,9 @@ jobs:
           zip -r ../tierra-magica.zip tierra-magica
 
       - name: Crear publicación
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: tierra-magica.zip
           generate_release_notes: true
+          tag_name: ${{ env.TM_RELEASE_TAG }}
+          target_commitish: ${{ github.sha }}
