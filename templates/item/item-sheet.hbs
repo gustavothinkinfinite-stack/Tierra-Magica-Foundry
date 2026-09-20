@@ -1,54 +1,89 @@
 <form class="{{cssClass}} tm-item-sheet" autocomplete="off">
   <header class="tm-item-header">
     <img src="{{item.img}}" data-edit="img" title="{{item.name}}" />
-    <div><span class="tm-kicker">{{typeLabel}}</span><input name="name" type="text" value="{{item.name}}" placeholder="Nombre" /></div>
+    <div><span class="tm-kicker">{{typeLabel}} · Foundry T.M.</span><input name="name" type="text" value="{{item.name}}" placeholder="Nombre" /></div>
   </header>
 
   <section class="tm-panel tm-item-fields">
     <div class="tm-form-grid">
       {{#if isWeapon}}
-        <label><span>Característica de ataque</span><select name="system.attackAbility">{{selectOptions config.abilities selected=system.attackAbility}}</select></label>
-        <label><span>Bono de ataque</span><input type="number" name="system.attackBonus" value="{{system.attackBonus}}" /></label>
-        <label><span>Daño</span><input type="text" name="system.damage" value="{{system.damage}}" placeholder="1d8" /></label>
-        <label><span>Característica de daño</span><select name="system.damageAbility">{{selectOptions config.abilities selected=system.damageAbility}}</select></label>
-        <label><span>Bono de daño</span><input type="number" name="system.damageBonus" value="{{system.damageBonus}}" /></label>
-        <label><span>Manos</span><input type="number" name="system.hands" value="{{system.hands}}" min="0" max="2" /></label>
-        <label><span>Alcance</span><input type="text" name="system.range" value="{{system.range}}" /></label>
-        <label><span>Rasgos</span><input type="text" name="system.traits" value="{{system.traits}}" /></label>
+        <label><span>Habilidad</span><select name="system.skill">{{selectOptions config.skillLabels selected=system.skill}}</select></label>
+        <label><span>Atributo de ataque</span><select name="system.attackAttribute">{{selectOptions config.attributes selected=system.attackAttribute}}</select></label>
+        <label><span>Atributo al daño</span><select name="system.damageAttribute"><option value="">Ninguno</option>{{selectOptions config.attributes selected=system.damageAttribute}}</select></label>
+        <label><span>Daño base</span><input type="number" name="system.damage" value="{{system.damage}}" min="0" /></label>
+        <label><span>Penetración</span><input type="number" name="system.penetration" value="{{system.penetration}}" min="0" /></label>
+        <label><span>FUE mínima</span><input type="number" name="system.strengthMin" value="{{system.strengthMin}}" min="0" /></label>
+        <label><span>Alcance óptimo (esp.)</span><input type="number" name="system.rangeOptimal" value="{{system.rangeOptimal}}" min="0" /></label>
+        <label><span>Consecuencia grave</span><input type="text" name="system.severe" value="{{system.severe}}" /></label>
       {{/if}}
+
       {{#if isArmor}}
-        <label><span>Armadura</span><input type="number" name="system.armor" value="{{system.armor}}" /></label>
-        <label><span>Resistencia mágica</span><input type="number" name="system.magicResistance" value="{{system.magicResistance}}" /></label>
-        <label><span>Penalizador</span><input type="number" name="system.penalty" value="{{system.penalty}}" /></label>
-        <label><span>Rasgos</span><input type="text" name="system.traits" value="{{system.traits}}" /></label>
+        <label><span>Protección</span><input type="number" name="system.protection" value="{{system.protection}}" min="0" /></label>
+        <label><span>FUE mínima</span><input type="number" name="system.strengthMin" value="{{system.strengthMin}}" min="0" /></label>
       {{/if}}
+
+      {{#if isShield}}
+        <label><span>Defensa pasiva</span><input type="number" name="system.passiveDefense" value="{{system.passiveDefense}}" min="0" /></label>
+        <label><span>Bloqueo</span><input type="number" name="system.block" value="{{system.block}}" min="0" /></label>
+        <label><span>FUE mínima</span><input type="number" name="system.strengthMin" value="{{system.strengthMin}}" min="0" /></label>
+        <label class="tm-check"><span>Solo frontal</span><input type="checkbox" name="system.frontalOnly" {{checked system.frontalOnly}} /></label>
+      {{/if}}
+
       {{#if isEquipment}}
         <label><span>Categoría</span><input type="text" name="system.category" value="{{system.category}}" /></label>
       {{/if}}
+
       {{#if isSpell}}
-        <label><span>Nivel</span><input type="text" name="system.level" value="{{system.level}}" /></label>
-        <label><span>Coste de Maná</span><input type="number" name="system.cost" value="{{system.cost}}" min="0" /></label>
-        <label><span>Salvación</span><input type="text" name="system.saving" value="{{system.saving}}" /></label>
-        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" /></label>
-        <label><span>Tirada o daño</span><input type="text" name="system.roll" value="{{system.roll}}" placeholder="1d20 + 5" /></label>
-        <label><span>Rasgos</span><input type="text" name="system.traits" value="{{system.traits}}" /></label>
-        <label class="tm-check"><span>Consumir Maná al lanzar</span><input type="checkbox" name="system.consumeOnUse" {{checked system.consumeOnUse}} /></label>
-      {{/if}}
-      {{#if isTalent}}
-        <label><span>Categoría</span><input type="text" name="system.category" value="{{system.category}}" /></label>
-        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" /></label>
+        <label><span>Fuente</span><select name="system.source">{{selectOptions config.sources selected=system.source}}</select></label>
+        <label><span>Disciplina</span><select name="system.discipline">{{selectOptions config.disciplines selected=system.discipline}}</select></label>
         <label><span>Coste de Maná</span><input type="number" name="system.manaCost" value="{{system.manaCost}}" min="0" /></label>
+        <label><span>Atributo</span><select name="system.attribute">{{selectOptions config.attributes selected=system.attribute}}</select></label>
+        <label><span>Defensa</span><select name="system.defense">
+          <option value="df" {{#if (eq system.defense "df")}}selected{{/if}}>DF fija</option>
+          <option value="normal" {{#if (eq system.defense "normal")}}selected{{/if}}>Defensa</option>
+          <option value="mental" {{#if (eq system.defense "mental")}}selected{{/if}}>Defensa Mental</option>
+          <option value="body" {{#if (eq system.defense "body")}}selected{{/if}}>Defensa Corporal</option>
+        </select></label>
+        <label><span>DF</span><input type="number" name="system.difficulty" value="{{system.difficulty}}" /></label>
+        <label><span>Daño</span><input type="number" name="system.damage" value="{{system.damage}}" min="0" /></label>
+        <label><span>Penetración</span><input type="number" name="system.penetration" value="{{system.penetration}}" min="0" /></label>
+        <label><span>Alcance</span><input type="text" name="system.range" value="{{system.range}}" /></label>
+        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" placeholder="Medicina, Arcana..." /></label>
+        <label class="tm-check"><span>Sostenido</span><input type="checkbox" name="system.sustained" {{checked system.sustained}} /></label>
       {{/if}}
-      {{#if isFamiliarBenefit}}
-        <label><span>Coste de beneficio</span><input type="number" name="system.cost" value="{{system.cost}}" min="0" /></label>
+
+      {{#if isTechnique}}
+        <label><span>Grado</span><select name="system.grade">{{selectOptions config.techniqueGrades selected=system.grade}}</select></label>
+        <label><span>Coste PD</span><input type="number" name="system.pdCost" value="{{system.pdCost}}" min="0" /></label>
         <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" /></label>
-        <label><span>Efecto resumido</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
+        <label><span>Efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
       {{/if}}
+
+      {{#if isTrait}}
+        <label><span>Categoría</span><select name="system.category">{{selectOptions config.traitCategories selected=system.category}}</select></label>
+        <label><span>Coste de Rasgo</span><input type="number" name="system.traitCost" value="{{system.traitCost}}" min="0" /></label>
+        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" /></label>
+        <label><span>Efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
+      {{/if}}
+
+      {{#if isSpecialization}}
+        <label><span>Habilidad base</span><select name="system.skill"><option value="">Elegir</option>{{selectOptions config.skillLabels selected=system.skill}}</select></label>
+        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" /></label>
+        <label><span>Acceso / efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
+      {{/if}}
+
       <label><span>Cantidad</span><input type="number" name="system.quantity" value="{{system.quantity}}" min="0" /></label>
       <label><span>Peso</span><input type="number" name="system.weight" value="{{system.weight}}" min="0" step="0.1" /></label>
       <label><span>Precio</span><input type="number" name="system.price" value="{{system.price}}" min="0" step="0.1" /></label>
-      {{#unless isSpell}}{{#unless isTalent}}{{#unless isFamiliarBenefit}}<label class="tm-check"><span>Equipado</span><input type="checkbox" name="system.equipped" {{checked system.equipped}} /></label>{{/unless}}{{/unless}}{{/unless}}
+      <label><span>Disponibilidad</span><select name="system.availability">{{selectOptions config.availability selected=system.availability}}</select></label>
+      <label><span>Calidad</span><select name="system.quality">{{selectOptions config.qualities selected=system.quality}}</select></label>
+      <label><span>Propiedades</span><input type="text" name="system.properties" value="{{system.properties}}" /></label>
+      {{#if (or isWeapon isArmor isShield isEquipment)}}<label class="tm-check"><span>Equipado</span><input type="checkbox" name="system.equipped" {{checked system.equipped}} /></label>{{/if}}
     </div>
   </section>
-  <section class="tm-panel tm-editor-panel"><h2>Descripción</h2>{{editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" collaborate=false}}</section>
+
+  <section class="tm-panel tm-editor-panel">
+    <h2>Descripción</h2>
+    {{editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" collaborate=false}}
+  </section>
 </form>
