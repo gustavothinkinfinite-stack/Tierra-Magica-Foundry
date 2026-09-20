@@ -148,3 +148,15 @@ test("los estilos distinguen la lista rápida y el desglose técnico", async () 
   assert.equal(css.includes(".tm-v04-skill-breakdown"), true);
   assert.equal(css.includes(".tm-v04-source-list"), true);
 });
+
+
+test("la ventana conserva una cabecera Foundry visible y no enmarca la zona de pestañas", async () => {
+  const css = await readFile(resolve(root, "styles/character-sheet-v03.css"), "utf8");
+  assert.equal(css.includes(".tierra-magica:has(form.tm-character-sheet-v03) > .window-header"), true);
+  assert.equal(css.includes("width: calc(100% - 92px);"), true);
+  assert.equal(css.includes("margin-right: 92px;"), true);
+  assert.equal(css.includes("border: 0 !important;"), true);
+  assert.equal(css.includes("box-shadow: none !important;"), true);
+  assert.equal(css.includes("padding: 6px 0 0;"), true);
+  assert.equal(css.includes("border-radius: 6px 6px 0 0;"), true);
+});
