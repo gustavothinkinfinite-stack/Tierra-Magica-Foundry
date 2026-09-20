@@ -16,9 +16,13 @@ export class TierraMagicaActor extends Actor {
     for (const attribute of Object.values(a)) attribute.value = clamp(attribute.value, 0, 99);
     for (const [key, skill] of Object.entries(s.skills ?? {})) {
       skill.rank = clamp(Math.floor(toNumber(skill.rank)), 0, 5);
-      skill.bonus = rankBonus(skill.rank, TM_CONFIG.rankBonuses);
+      skill.rankBonus = rankBonus(skill.rank, TM_CONFIG.rankBonuses);
+      skill.temporary = toNumber(skill.temporary);
+      skill.other = toNumber(skill.other);
       skill.label = TM_CONFIG.skills[key]?.label ?? key;
       skill.rankLabel = TM_CONFIG.rankLabels[skill.rank] ?? "";
+      skill.breakdown = this.#buildSkillBreakdown(key, skill);
+      skill.bonus = skill.breakdown.total;
     }
 
     const armor = this.items
@@ -75,7 +79,8 @@ export class TierraMagicaActor extends Actor {
 
   async rollCheck({ label, attributeKey, skillKey = null, df = null, mode = "normal", modifier = 0 } = {}) {
     const attribute = toNumber(this.system.attributes?.[attributeKey]?.value);
-    const skill = skillKey ? rankBonus(this.system.skills?.[skillKey]?.rank, TM_CONFIG.rankBonuses) : 0;
+    const skillData = skillKey ? this.system.skills?.[skillKey] : null;
+    const skill = skillData ? toNumber(skillData.bonus) : 0;
     const totalModifier = attribute + skill + toNumber(modifier);
     const roll = await new Roll(rollFormula(mode, totalModifier), this.getRollData()).evaluate();
 
@@ -94,12 +99,13 @@ export class TierraMagicaActor extends Actor {
       resultText = "<p class='tm-extraordinary'><strong>" + tag + "</strong></p>";
     }
 
+    const skillBreakdown = skillKey ? this.#skillBreakdownHtml(skillKey, attribute, modifier) : "";
     const flavor = "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(label) + " · " +
       foundry.utils.escapeHTML(this.name) + "</strong><p>" +
       foundry.utils.escapeHTML(TM_CONFIG.attributes[attributeKey] ?? attributeKey) +
       (skillKey ? " + " + foundry.utils.escapeHTML(TM_CONFIG.skills[skillKey]?.label ?? skillKey) : "") +
       " · " + (mode === "advantage" ? "Ventaja" : mode === "disadvantage" ? "Desventaja" : "Normal") +
-      "</p>" + resultText + "</div>";
+      "</p>" + skillBreakdown + resultText + "</div>";
 
     return roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
@@ -113,13 +119,15 @@ export class TierraMagicaActor extends Actor {
     if (!skill) return null;
     const options = Object.entries(TM_CONFIG.attributes)
       .map(([k, v]) => "<option value='" + k + "'>" + v + "</option>").join("");
+    const breakdown = skill.breakdown ?? this.#buildSkillBreakdown(key, skill);
     const result = await Dialog.prompt({
       title: "Tirada de " + (TM_CONFIG.skills[key]?.label ?? key),
       content:
+        this.#skillDialogSummary(breakdown) +
         "<div class='form-group'><label>Atributo</label><select name='attribute'>" + options + "</select></div>" +
         "<div class='form-group'><label>Modo</label><select name='mode'><option value='normal'>Normal</option><option value='advantage'>Ventaja</option><option value='disadvantage'>Desventaja</option></select></div>" +
         "<div class='form-group'><label>DF</label><input name='df' type='number' placeholder='Sin DF'/></div>" +
-        "<div class='form-group'><label>Modificador</label><input name='modifier' type='number' value='0'/></div>",
+        "<div class='form-group'><label>Modificador de tirada</label><input name='modifier' type='number' value='0'/></div>",
       label: "Tirar",
       callback: (html) => ({
         attributeKey: html.find("[name='attribute']").val(),
@@ -226,6 +234,149 @@ export class TierraMagicaActor extends Actor {
       updates["system.resources.mana.value"] = toNumber(mp.max);
     }
     await this.update(updates);
+  }
+
+  #buildSkillBreakdown(skillKey, skill) {
+    const rank = toNumber(skill.rankBonus ?? rankBonus(skill.rank, TM_CONFIG.rankBonuses));
+    const temporary = toNumber(skill.temporary);
+    const other = toNumber(skill.other);
+    const sources = [];
+
+    for (const item of this.items) {
+      if (!this.#skillModifierItemActive(item)) continue;
+      const modifiers = Array.isArray(item.system?.skillModifiers) ? item.system.skillModifiers : [];
+      for (const modifier of modifiers) {
+        if (modifier?.skill !== skillKey) continue;
+        const value = toNumber(modifier.value);
+        if (!value) continue;
+        const category = this.#skillSourceCategory(item.type);
+        sources.push({
+          itemId: item.id,
+          name: item.name,
+          itemType: item.type,
+          category,
+          categoryLabel: this.#skillSourceCategoryLabel(category),
+          label: String(modifier.label ?? "").trim(),
+          value
+        });
+      }
+    }
+
+    const totalFor = (category) => sources
+      .filter((source) => source.category === category)
+      .reduce((sum, source) => sum + toNumber(source.value), 0);
+
+    const specialization = totalFor("specialization");
+    const equipment = totalFor("equipment");
+    const technique = totalFor("technique");
+    const magic = totalFor("magic");
+    const trait = totalFor("trait");
+    const itemOther = totalFor("other");
+    const sourceTotal = specialization + equipment + technique + magic + trait + itemOther;
+
+    return {
+      rank,
+      specialization,
+      equipment,
+      technique,
+      magic,
+      trait,
+      itemOther,
+      temporary,
+      other,
+      sourceTotal,
+      total: rank + sourceTotal + temporary + other,
+      sources
+    };
+  }
+
+  #skillModifierItemActive(item) {
+    if (!item?.system) return false;
+    const enabled = item.system.skillModifiersActive !== false;
+    if (!enabled) return false;
+
+    if (["weapon", "armor", "shield", "equipment"].includes(item.type)) {
+      return Boolean(item.system.equipped);
+    }
+
+    if (item.type === "spell") {
+      return item.system.skillModifiersActive === true;
+    }
+
+    return true;
+  }
+
+  #skillSourceCategory(type) {
+    if (type === "specialization") return "specialization";
+    if (["weapon", "armor", "shield", "equipment"].includes(type)) return "equipment";
+    if (type === "technique") return "technique";
+    if (type === "spell") return "magic";
+    if (type === "trait") return "trait";
+    return "other";
+  }
+
+  #skillSourceCategoryLabel(category) {
+    return {
+      specialization: "Especialización",
+      equipment: "Equipo",
+      technique: "Técnica",
+      magic: "Magia",
+      trait: "Rasgo",
+      other: "Otro"
+    }[category] ?? "Otro";
+  }
+
+  #skillDialogSummary(breakdown) {
+    const rows = [
+      ["Rango", breakdown.rank],
+      ["Especialización", breakdown.specialization],
+      ["Equipo", breakdown.equipment],
+      ["Técnica", breakdown.technique],
+      ["Magia", breakdown.magic],
+      ["Rasgo", breakdown.trait],
+      ["Temporal", breakdown.temporary],
+      ["Otros", breakdown.other + breakdown.itemOther]
+    ];
+    const rowHtml = rows.map(([label, value]) =>
+      "<span>" + label + " <strong>" + this.#signed(value) + "</strong></span>"
+    ).join("");
+    return "<div class='tm-roll-breakdown tm-roll-breakdown-dialog'>" +
+      "<div>" + rowHtml + "</div><p>Total de Habilidad <strong>" + this.#signed(breakdown.total) + "</strong></p></div>";
+  }
+
+  #skillBreakdownHtml(skillKey, attribute, rollModifier) {
+    const skill = this.system.skills?.[skillKey];
+    const breakdown = skill?.breakdown;
+    if (!breakdown) return "";
+    const rows = [
+      ["Atributo", attribute],
+      ["Rango", breakdown.rank],
+      ["Especialización", breakdown.specialization],
+      ["Equipo", breakdown.equipment],
+      ["Técnica", breakdown.technique],
+      ["Magia", breakdown.magic],
+      ["Rasgo", breakdown.trait],
+      ["Temporal", breakdown.temporary],
+      ["Otros", breakdown.other + breakdown.itemOther]
+    ];
+    if (toNumber(rollModifier)) rows.push(["Mod. tirada", toNumber(rollModifier)]);
+
+    const sourceHtml = breakdown.sources.length
+      ? "<ul>" + breakdown.sources.map((source) =>
+          "<li>" + foundry.utils.escapeHTML(source.name) +
+          (source.label ? " · " + foundry.utils.escapeHTML(source.label) : "") +
+          " <strong>" + this.#signed(source.value) + "</strong></li>"
+        ).join("") + "</ul>"
+      : "";
+
+    return "<div class='tm-roll-breakdown'><div>" +
+      rows.map(([label, value]) => "<span>" + label + " <strong>" + this.#signed(value) + "</strong></span>").join("") +
+      "</div>" + sourceHtml + "</div>";
+  }
+
+  #signed(value) {
+    const number = toNumber(value);
+    return (number >= 0 ? "+" : "") + number;
   }
 
   async #chooseAttribute(skillKey) {
