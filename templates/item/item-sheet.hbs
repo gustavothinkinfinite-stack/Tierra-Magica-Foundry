@@ -82,6 +82,48 @@
     </div>
   </section>
 
+  <section class="tm-panel tm-skill-modifiers-editor">
+    <div class="tm-section-heading">
+      <h2>Modificadores de Habilidad</h2>
+      <span>Bonificadores o penalizadores que este elemento aporta a Habilidades concretas.</span>
+    </div>
+
+    <div class="tm-skill-modifier-toolbar">
+      <label class="tm-check">
+        <span>Modificadores activos</span>
+        <input type="checkbox" name="system.skillModifiersActive" {{checked system.skillModifiersActive}} />
+      </label>
+      {{#if (or isWeapon isArmor isShield isEquipment)}}
+        <small>En armas, armaduras, escudos y equipo también debe estar marcado como Equipado.</small>
+      {{/if}}
+      {{#if isSpell}}
+        <small>Actívalo únicamente mientras el efecto mágico esté vigente.</small>
+      {{/if}}
+    </div>
+
+    <div class="tm-skill-modifier-list">
+      {{#each skillModifiers as |modifier|}}
+        <div class="tm-skill-modifier-row">
+          <select data-action="skill-modifier-field" data-index="{{modifier.index}}" data-field="skill" title="Habilidad afectada">
+            <option value="">Elegir Habilidad</option>
+            {{selectOptions @root.config.skillLabels selected=modifier.skill}}
+          </select>
+          <input type="number" value="{{modifier.value}}" data-action="skill-modifier-field" data-index="{{modifier.index}}" data-field="value" title="Bonificador o penalizador" />
+          <input type="text" value="{{modifier.label}}" data-action="skill-modifier-field" data-index="{{modifier.index}}" data-field="label" placeholder="Motivo / condición" title="Etiqueta opcional" />
+          <button type="button" data-action="skill-modifier-delete" data-index="{{modifier.index}}" title="Eliminar modificador">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      {{else}}
+        <p class="tm-empty">Este elemento no modifica Habilidades.</p>
+      {{/each}}
+    </div>
+
+    <button type="button" class="tm-skill-modifier-add" data-action="skill-modifier-add">
+      <i class="fa-solid fa-plus"></i> Agregar modificador
+    </button>
+  </section>
+
   <section class="tm-panel tm-editor-panel">
     <h2>Descripción</h2>
     {{editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" collaborate=false}}
