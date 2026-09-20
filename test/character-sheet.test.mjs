@@ -180,3 +180,18 @@ test("la primera pasada visual carga ornamentos reutilizables y mantiene la port
     "assets/ui/attribute-medallion.svg"
   ].map((file) => access(resolve(root, file))));
 });
+
+
+test("el refinamiento visual v0.8.1 separa filigrana, estrellas y defensas", async () => {
+  const source = await readFile(resolve(root, "templates/actor/character-sheet.hbs"), "utf8");
+  const css = await readFile(resolve(root, "styles/character-sheet-v03.css"), "utf8");
+
+  assert.equal(source.includes('class="tm-v03-stage-stars"'), true);
+  assert.equal(css.includes("TIERRA MÁGICA v0.8.1 — REFINAMIENTO VISUAL DE FICHA"), true);
+  assert.equal(css.includes(".tm-v03-header::after"), true);
+  assert.equal(css.includes(".tm-v03-stage-stars"), true);
+  assert.equal(css.includes(".tm-v03-stage-ring::before"), true);
+  assert.equal(css.includes(".tm-v03-defense-grid > div"), true);
+  assert.equal(css.includes("border-radius: 999px;"), true);
+  assert.equal(css.includes(".tm-v03-right-rail .tm-v03-panel-heading h2::before"), true);
+});
