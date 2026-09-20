@@ -585,3 +585,71 @@
 }
 .tm-level-seal { background: rgba(5,26,34,.72); }
 .tm-panel { backdrop-filter: blur(1px); }
+
+
+/* Editor genérico de modificadores de Habilidad en Items */
+.tm-skill-modifiers-editor {
+  margin-top: 10px;
+}
+.tm-skill-modifier-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(137, 101, 53, .32);
+  background: rgba(23, 59, 70, .04);
+}
+.tm-skill-modifier-toolbar small {
+  color: #756342;
+  font-size: 8px;
+}
+.tm-skill-modifier-list {
+  display: grid;
+  gap: 5px;
+  padding: 8px 10px;
+}
+.tm-skill-modifier-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) 74px minmax(150px, 1.25fr) 32px;
+  gap: 6px;
+  align-items: center;
+}
+.tm-skill-modifier-row select,
+.tm-skill-modifier-row input {
+  min-width: 0;
+  height: 28px;
+}
+.tm-skill-modifier-row button {
+  width: 31px;
+  height: 28px;
+  padding: 0;
+  color: #e9dbb5;
+  background: #173b46;
+  border: 1px solid #8f6b3a;
+}
+.tm-skill-modifier-row button:hover {
+  color: #ffdddd;
+  border-color: #b7584f;
+}
+.tm-skill-modifier-add {
+  margin: 0 10px 10px;
+  min-height: 31px;
+  color: #eadcb7;
+  background: #173b46;
+  border: 1px solid #93703d;
+}
+.tm-skill-modifier-add:hover {
+  color: #69d9ee;
+  border-color: #5b9dab;
+}
+
+@media (max-width: 700px) {
+  .tm-skill-modifier-row {
+    grid-template-columns: 1fr 66px 32px;
+  }
+  .tm-skill-modifier-row input[data-field="label"] {
+    grid-column: 1/-1;
+    grid-row: 2;
+  }
+}
