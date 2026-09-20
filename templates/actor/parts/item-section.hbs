@@ -2,11 +2,11 @@
   <div class="tm-section-heading">
     <h2>{{title}}</h2>
     <div class="tm-section-buttons">
-      {{#if (eq type "spell")}}<button type="button" class="tm-icon-button" data-action="content-browser" data-type="spell"><i class="fa-solid fa-book"></i> Del libro</button>{{/if}}
-      {{#if (eq type "talent")}}<button type="button" class="tm-icon-button" data-action="content-browser" data-type="talent"><i class="fa-solid fa-book"></i> Del libro</button>{{/if}}
-      {{#if (eq type "familiarBenefit")}}<button type="button" class="tm-icon-button" data-action="content-browser" data-type="familiarBenefit"><i class="fa-solid fa-book"></i> Del libro</button>{{/if}}
+      {{#if (or (eq type "weapon") (eq type "armor") (eq type "shield") (eq type "spell") (eq type "technique"))}}
+        <button type="button" class="tm-icon-button" data-action="content-browser" data-type="{{type}}"><i class="fa-solid fa-book"></i> Manual</button>
+      {{/if}}
       {{#if @root.editable}}
-        <button type="button" class="tm-icon-button" data-action="item-create" data-type="{{type}}" title="Crear {{title}}"><i class="fa-solid fa-plus"></i> Agregar</button>
+        <button type="button" class="tm-icon-button" data-action="item-create" data-type="{{type}}"><i class="fa-solid fa-plus"></i> Agregar</button>
       {{/if}}
     </div>
   </div>
@@ -16,29 +16,30 @@
         <img src="{{item.img}}" alt="" />
         <div class="tm-item-name">
           <strong>{{item.name}}</strong>
-          {{#if (eq item.type "weapon")}}<small>{{item.system.damage}} · {{item.system.range}}</small>{{/if}}
-          {{#if (eq item.type "armor")}}<small>Armadura +{{item.system.armor}}</small>{{/if}}
-          {{#if (eq item.type "spell")}}<small>{{item.system.level}} · Coste {{item.system.cost}} Maná</small>{{/if}}
-          {{#if (eq item.type "equipment")}}<small>Cantidad: {{item.system.quantity}}</small>{{/if}}
-          {{#if (eq item.type "talent")}}<small>{{item.system.category}}</small>{{/if}}
-          {{#if (eq item.type "familiarBenefit")}}<small>Coste {{item.system.cost}} · {{item.system.effect}}</small>{{/if}}
+          {{#if (eq item.type "weapon")}}<small>Daño {{item.system.damage}} · Pen {{item.system.penetration}} · {{item.system.properties}}</small>{{/if}}
+          {{#if (eq item.type "armor")}}<small>Protección {{item.system.protection}} · FUE {{item.system.strengthMin}}</small>{{/if}}
+          {{#if (eq item.type "shield")}}<small>Defensa +{{item.system.passiveDefense}} · Bloqueo +{{item.system.block}}</small>{{/if}}
+          {{#if (eq item.type "spell")}}<small>{{lookup @root.config.disciplines item.system.discipline}} · {{item.system.manaCost}} Maná</small>{{/if}}
+          {{#if (eq item.type "technique")}}<small>{{lookup @root.config.techniqueGrades item.system.grade}} · {{item.system.pdCost}} PD</small>{{/if}}
+          {{#if (eq item.type "trait")}}<small>{{lookup @root.config.traitCategories item.system.category}} · Coste {{item.system.traitCost}}</small>{{/if}}
+          {{#if (eq item.type "specialization")}}<small>{{item.system.effect}}</small>{{/if}}
+          {{#if (eq item.type "equipment")}}<small>Cantidad {{item.system.quantity}} · {{item.system.availability}}</small>{{/if}}
         </div>
         <div class="tm-item-actions">
           {{#if (eq item.type "weapon")}}
-            <button type="button" data-action="item-attack" title="Ataque"><i class="fa-solid fa-dice-d20"></i> Ataque</button>
-            <button type="button" data-action="item-damage" title="Daño"><i class="fa-solid fa-burst"></i> Daño</button>
+            <button type="button" data-action="item-attack">Ataque</button>
+            <button type="button" data-action="item-damage">Daño</button>
           {{/if}}
-          {{#if (eq item.type "spell")}}
-            <button type="button" data-action="item-spell" title="Lanzar"><i class="fa-solid fa-wand-sparkles"></i> Lanzar</button>
+          {{#if (eq item.type "spell")}}<button type="button" data-action="item-spell">Lanzar</button>{{/if}}
+          {{#if (or (eq item.type "weapon") (eq item.type "armor") (eq item.type "shield"))}}
+            <button type="button" class="tm-icon-button {{#if item.system.equipped}}active{{/if}}" data-action="item-toggle" title="Equipar"><i class="fa-solid fa-hand"></i></button>
           {{/if}}
-          {{#if (eq item.type "armor")}}<button type="button" class="tm-icon-button {{#if item.system.equipped}}active{{/if}}" data-action="item-toggle" title="Equipar o quitar"><i class="fa-solid fa-shield"></i></button>{{/if}}
-          {{#if (eq item.type "weapon")}}<button type="button" class="tm-icon-button {{#if item.system.equipped}}active{{/if}}" data-action="item-toggle" title="Equipar o quitar"><i class="fa-solid fa-hand-fist"></i></button>{{/if}}
-          <button type="button" class="tm-icon-button" data-action="item-edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>
-          {{#if @root.editable}}<button type="button" class="tm-icon-button tm-danger" data-action="item-delete" title="Eliminar"><i class="fa-solid fa-trash"></i></button>{{/if}}
+          <button type="button" class="tm-icon-button" data-action="item-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+          {{#if @root.editable}}<button type="button" class="tm-icon-button tm-danger" data-action="item-delete"><i class="fa-solid fa-trash"></i></button>{{/if}}
         </div>
       </li>
     {{else}}
-      <li class="tm-empty">Todavía no hay elementos en esta sección.</li>
+      <li class="tm-empty">No hay elementos en esta sección.</li>
     {{/each}}
   </ol>
 </section>
