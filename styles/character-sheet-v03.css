@@ -2021,3 +2021,260 @@ form.tm-character-sheet-v03 {
     height: 75px;
   }
 }
+
+
+/* =========================================================
+   TIERRA MÁGICA v0.8.1 — REFINAMIENTO VISUAL DE FICHA
+   Segunda pasada sobre la portada sin alterar su estructura.
+   ========================================================= */
+
+/* Cabecera: la filigrana acompaña al título sin cruzarlo. */
+.tm-character-sheet-v03 .tm-v03-header {
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 12px;
+  background:
+    url("../assets/ui/sheet-filigree.svg") center calc(100% - 1px) / 330px 28px no-repeat,
+    radial-gradient(circle at 50% 135%, rgba(181,138,67,.14), transparent 53%),
+    linear-gradient(180deg, rgba(251,244,221,.98), rgba(232,218,181,.97));
+}
+.tm-character-sheet-v03 .tm-v03-header h1 {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 6px;
+  font-size: 29px;
+  letter-spacing: .105em;
+}
+.tm-character-sheet-v03 .tm-v03-header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 9px;
+  width: 240px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(156,111,45,.85), transparent);
+  opacity: .9;
+}
+
+/* Ornamentos de esquina: menos invasivos y mejor contenidos. */
+.tm-character-sheet-v03 .tm-v03-shell::before,
+.tm-character-sheet-v03 .tm-v03-shell::after {
+  width: 56px;
+  height: 56px;
+  opacity: .52;
+}
+.tm-character-sheet-v03 .tm-v03-shell::before {
+  left: 7px;
+  top: 7px;
+}
+.tm-character-sheet-v03 .tm-v03-shell::after {
+  right: 7px;
+  bottom: 7px;
+}
+.tm-character-sheet-v03 .tm-v03-character-stage::before,
+.tm-character-sheet-v03 .tm-v03-character-stage::after {
+  width: 52px;
+  height: 52px;
+  opacity: .34;
+}
+
+/* Núcleo arcano: más detalle visual en el espacio alrededor del retrato. */
+.tm-character-sheet-v03 .tm-v03-character-stage {
+  background:
+    radial-gradient(circle at 50% 35%, rgba(97,214,235,.20), transparent 22%),
+    radial-gradient(circle at 50% 35%, rgba(31,88,100,.38), transparent 48%),
+    repeating-radial-gradient(circle at 50% 35%, rgba(196,160,83,.045) 0 1px, transparent 1px 33px),
+    linear-gradient(145deg, #0b3440, #071f28 62%, #04171e);
+}
+.tm-character-sheet-v03 .tm-v03-stage-runes {
+  opacity: .92;
+}
+.tm-character-sheet-v03 .tm-v03-stage-ring::before,
+.tm-character-sheet-v03 .tm-v03-stage-ring::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+}
+.tm-character-sheet-v03 .tm-v03-stage-ring::before {
+  width: 72%;
+  height: 72%;
+  border: 1px dashed rgba(212,174,89,.18);
+  box-shadow: 0 0 0 1px rgba(97,214,235,.06);
+}
+.tm-character-sheet-v03 .tm-v03-stage-ring::after {
+  width: 52%;
+  height: 52%;
+  border: 1px solid rgba(97,214,235,.09);
+}
+.tm-character-sheet-v03 .tm-v03-stage-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .45;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(97,214,235,.92) 0 1px, transparent 2px),
+    radial-gradient(circle at 79% 21%, rgba(97,214,235,.82) 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 73%, rgba(212,174,89,.78) 0 1px, transparent 2px),
+    radial-gradient(circle at 28% 77%, rgba(212,174,89,.78) 0 1px, transparent 2px),
+    radial-gradient(circle at 50% 84%, rgba(97,214,235,.65) 0 2px, transparent 3px);
+  filter: drop-shadow(0 0 4px rgba(97,214,235,.18));
+}
+
+/* Retrato: más sensación de relicario encastrado. */
+.tm-character-sheet-v03 .tm-v03-portrait-frame::before {
+  inset: -11px;
+}
+.tm-character-sheet-v03 .tm-v03-portrait-frame::after {
+  inset: 2px;
+  box-shadow:
+    inset 0 0 0 1px rgba(248,222,156,.55),
+    inset 0 0 0 5px rgba(39,20,7,.18),
+    inset 0 0 35px rgba(0,0,0,.34);
+}
+.tm-character-sheet-v03 .tm-v03-portrait {
+  filter: saturate(1.02) contrast(1.02);
+}
+.tm-character-sheet-v03 .tm-v03-portrait-caption {
+  bottom: -22px;
+  padding: 6px 10px;
+  font-size: 13px;
+  letter-spacing: .04em;
+}
+
+/* Atributos: detalle arcano discreto sin aumentar tamaño. */
+.tm-character-sheet-v03 .tm-v03-attribute::after {
+  content: "✦";
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  font-size: 8px;
+  color: rgba(97,214,235,.78);
+  text-shadow: 0 0 5px rgba(97,214,235,.22);
+}
+
+/* Defensas: dejan de parecer mini-Atributos y pasan a ser medidores. */
+.tm-character-sheet-v03 .tm-v03-defense-grid > div {
+  min-height: 72px;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, #d8bc73 0%, #f8eed2 18%, #f8eed2 82%, #d8bc73 100%);
+  border: 1px solid #9f7741;
+  box-shadow:
+    inset 0 0 0 2px rgba(20,58,69,.88),
+    inset 0 0 0 5px rgba(217,185,111,.58),
+    0 3px 6px rgba(64,42,17,.14);
+  filter: none;
+}
+.tm-character-sheet-v03 .tm-v03-defense-grid span {
+  font-size: 7px;
+  color: #5c4a2f;
+}
+.tm-character-sheet-v03 .tm-v03-defense-grid b {
+  font-size: 19px;
+  color: #103a46;
+}
+
+/* Vida, Maná y Desarrollo: se perciben como un mismo conjunto instrumental. */
+.tm-character-sheet-v03 .tm-v03-resources {
+  padding-top: 4px;
+}
+.tm-character-sheet-v03 .tm-v03-resources::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,174,89,.65), transparent);
+}
+.tm-character-sheet-v03 .tm-v03-resource {
+  min-height: 73px;
+}
+.tm-character-sheet-v03 .tm-v03-resource-label {
+  font-size: 12px;
+  letter-spacing: .03em;
+}
+.tm-character-sheet-v03 .tm-v03-resource-value {
+  gap: 5px;
+}
+.tm-character-sheet-v03 .tm-v03-development {
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.13),
+    inset 0 -12px 20px rgba(0,0,0,.09),
+    0 3px 7px rgba(0,0,0,.2),
+    0 0 0 1px rgba(97,214,235,.08);
+}
+
+/* Paneles derechos: más jerarquía editorial. */
+.tm-character-sheet-v03 .tm-v03-right-rail .tm-v03-panel {
+  background:
+    linear-gradient(180deg, rgba(250,243,224,.98), rgba(233,218,179,.98));
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.26),
+    inset 0 0 0 4px rgba(181,138,67,.06),
+    0 3px 8px rgba(47,31,13,.08);
+}
+.tm-character-sheet-v03 .tm-v03-right-rail .tm-v03-panel-heading {
+  min-height: 38px;
+  padding-left: 12px;
+}
+.tm-character-sheet-v03 .tm-v03-right-rail .tm-v03-panel-heading h2 {
+  position: relative;
+  padding-left: 16px;
+}
+.tm-character-sheet-v03 .tm-v03-right-rail .tm-v03-panel-heading h2::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 9px;
+  color: #b78943;
+}
+.tm-character-sheet-v03 .tm-v03-state-grid input,
+.tm-character-sheet-v03 .tm-v03-state-grid select {
+  min-height: 25px;
+}
+
+/* Pestañas: mayor contraste entre activa, inactiva y hover. */
+.tm-character-sheet-v03 .tm-v03-page-tabs .item {
+  transition:
+    transform .12s ease,
+    box-shadow .12s ease,
+    background .12s ease,
+    color .12s ease;
+}
+.tm-character-sheet-v03 .tm-v03-page-tabs .item:hover {
+  transform: translateX(2px);
+  box-shadow:
+    4px 5px 9px rgba(0,0,0,.34),
+    inset 0 1px rgba(255,255,255,.08),
+    inset 0 -1px rgba(0,0,0,.28);
+}
+.tm-character-sheet-v03 .tm-v03-page-tabs .item.active {
+  color: #2b2114;
+  box-shadow:
+    6px 6px 12px rgba(0,0,0,.26),
+    inset 0 1px rgba(255,255,255,.62),
+    inset 0 -2px rgba(105,71,28,.14);
+}
+
+/* Responsive del refinamiento. */
+@media (max-width: 900px) {
+  .tm-character-sheet-v03 .tm-v03-header {
+    background-size: 270px 24px, auto, auto;
+  }
+  .tm-character-sheet-v03 .tm-v03-shell::before,
+  .tm-character-sheet-v03 .tm-v03-shell::after {
+    width: 44px;
+    height: 44px;
+  }
+  .tm-character-sheet-v03 .tm-v03-defense-grid > div {
+    min-height: 64px;
+  }
+}
