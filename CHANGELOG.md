@@ -1,5 +1,19 @@
 # Historial de cambios
 
+## 0.8.1
+
+- Refinada la cabecera para que la filigrana acompañe a **TIERRA MÁGICA** sin atravesar el título.
+- Reducidos y reubicados los ornamentos de esquina para evitar cortes visuales y mantener mejor simetría.
+- Añadida una capa de estrellas y geometría arcana tenue al núcleo central para aprovechar el espacio alrededor del retrato sin recargarlo.
+- El retrato recibe una segunda capa de profundidad para sentirse más integrado al relicario.
+- Los Atributos incorporan un detalle arcano discreto sin aumentar su tamaño.
+- Las Defensas dejan de reutilizar visualmente el mismo medallón de Atributos y pasan a una presentación propia de medidores.
+- Vida, Maná y Desarrollo se integran mejor como conjunto de recursos.
+- Los paneles de Estado, Rasgos, Especializaciones y Técnicas reciben mayor jerarquía editorial.
+- Mejorado el contraste de pestañas laterales entre estado activo, inactivo y hover.
+- Sin cambios en reglas, cálculos, datos ni distribución funcional de la ficha.
+
+
 ## 0.8.0
 
 - Primera pasada visual integral de la página **Ficha**, sin alterar su estructura ni lógica.
