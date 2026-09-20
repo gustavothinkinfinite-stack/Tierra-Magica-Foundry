@@ -16,6 +16,7 @@
     <label><span>Origen</span><input type="text" name="system.details.origin" value="{{system.details.origin}}" /></label>
     <label><span>Raza / Ancestría</span><input type="text" name="system.details.ancestry" value="{{system.details.ancestry}}" /></label>
     <label><span>Trasfondo</span><input type="text" name="system.details.background" value="{{system.details.background}}" /></label>
+    <label><span>Nivel</span><input type="number" name="system.details.level" value="{{system.details.level}}" min="1" max="20" /></label>
     <label><span>PD gastados</span><input type="number" name="system.details.pdSpent" value="{{system.details.pdSpent}}" min="0" /></label>
   </section>
 
@@ -201,8 +202,20 @@
       <section class="tm-panel">
         <h2>Desarrollo</h2>
         <div class="tm-form-grid">
+          <label><span>Nivel</span><input type="number" name="system.details.level" value="{{system.details.level}}" min="1" max="20" /></label>
           <label><span>PD gastados / control</span><input type="number" name="system.details.pdSpent" value="{{system.details.pdSpent}}" min="0" /></label>
+          <label><span>Idiomas</span><input type="text" name="system.traits.languages" value="{{system.traits.languages}}" /></label>
+          <label><span>Sentidos</span><input type="text" name="system.traits.senses" value="{{system.traits.senses}}" /></label>
+          <label><span>Escala</span><select name="system.traits.size">{{selectOptions config.sizes selected=system.traits.size}}</select></label>
           <label><span>Regla</span><input type="text" value="25 PD iniciales · +4 PD por nivel" disabled /></label>
+        </div>
+      </section>
+      <section class="tm-panel">
+        <div class="tm-section-heading"><h2>Atributos</h2><span>Edición de valores base</span></div>
+        <div class="tm-form-grid">
+          {{#each system.attributes as |attribute key|}}
+            <label><span>{{lookup ../config.attributes key}}</span><input type="number" name="system.attributes.{{key}}.value" value="{{attribute.value}}" min="0" max="8" /></label>
+          {{/each}}
         </div>
       </section>
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Especializaciones" type="specialization" items=itemGroups.specialization}}
