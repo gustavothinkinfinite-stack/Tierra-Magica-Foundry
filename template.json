@@ -12,6 +12,7 @@
           "health": { "value": 12, "max": 12 },
           "mana": { "value": 9, "max": 9 }
         },
+        "turn": { "movement": true, "action": true, "reaction": true },
         "combat": {
           "defensiveRank": 0,
           "defenseBonus": 0,
