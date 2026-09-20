@@ -1,5 +1,23 @@
 # Historial de cambios
 
+## 0.9.0
+
+- Rediseño visual amplio de la página **Ficha**, basado en la composición aprobada por referencia.
+- **TIERRA MÁGICA** deja de ser texto simple y pasa a un emblema gráfico completo con paisaje, castillo, montañas, dragón, placa oscura, dorado y lema **Historias que dejan huella**.
+- Cabecera e identidad adoptan una presentación de documento fantástico premium, con pergamino, bronce envejecido y mayor profundidad.
+- Paneles de Habilidades, Defensas, Estado, Rasgos, Especializaciones y Técnicas reciben cabeceras azul petróleo con filigrana y acentos arcanos.
+- El núcleo central crece y refuerza la composición de astrolabio, constelaciones y relicario del retrato.
+- Los siete Atributos incorporan sigilos propios dentro de sus medallones.
+- Las Defensas pasan a placas heráldico-arcanas con iconografía propia, claramente distintas de los Atributos.
+- Vida, Maná y Desarrollo se integran como instrumentos de color bajo el retrato.
+- Movimiento, Acción y Reacción se consolidan como tablero táctico inferior.
+- Añadido el lema **EXPLORA · CREA · ENFRENTA · TRASCIENDE** al núcleo de la ficha.
+- Las pestañas laterales se amplían y estilizan como señaladores físicos oscuros con bronce, remaches, iconos y pestaña activa en pergamino dorado.
+- El gutter derecho se amplía para que las pestañas no queden recortadas.
+- Añadido el recurso reusable `assets/ui/sheet-title-hero.svg`.
+- Sin cambios en reglas, cálculos ni estructura de datos.
+
+
 ## 0.8.1
 
 - Refinada la cabecera para que la filigrana acompañe a **TIERRA MÁGICA** sin atravesar el título.
