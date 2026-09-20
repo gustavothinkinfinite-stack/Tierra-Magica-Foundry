@@ -1,5 +1,17 @@
 # Historial de cambios
 
+## 0.6.0
+
+- Nueva separación entre **Habilidades de uso rápido** y **gestión de Habilidades**.
+- La página **Ficha** muestra una lista continua de Habilidades sin categorías, sin desplegables y sin controles de edición; cada fila sirve únicamente para realizar la tirada.
+- Aumentado el tamaño y contraste de nombres y bonos en la lista rápida.
+- Recuperada la pestaña lateral **Habilidades** como una página independiente.
+- La página **Habilidades** muestra todas las categorías abiertas, el rango editable, el bono y un acceso directo a la tirada.
+- Especializaciones y Técnicas se muestran también en la página Habilidades como información relacionada con el entrenamiento.
+- La edición de rangos queda concentrada en la página Habilidades, evitando controles redundantes en la portada.
+- Ajustado el señalador lateral de Habilidades para mantener legible su texto sin alterar el diseño externo de las pestañas.
+
+
 ## 0.5.1
 
 - Las pestañas laterales ahora quedan visualmente **fuera del marco de la hoja**, usando un margen transparente reservado dentro de la ventana.
