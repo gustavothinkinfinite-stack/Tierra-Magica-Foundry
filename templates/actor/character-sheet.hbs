@@ -387,6 +387,14 @@
         </div>
       </section>
 
+      <section class="tm-panel tm-v03-page-panel">
+        <div class="tm-section-heading"><h2>Sostenimiento</h2><span>Un efecto demandante; Doble Sostenimiento permite dos.</span></div>
+        <ol class="tm-item-list">
+          {{#each sustainedSpells as |spell|}}
+            <li class="tm-item-row"><div class="tm-item-name"><strong>{{spell.name}}</strong></div><button type="button" data-action="stop-sustained" data-item-id="{{spell.id}}">Abandonar</button></li>
+          {{else}}<li class="tm-empty">Sin efectos sostenidos demandantes.</li>{{/each}}
+        </ol>
+      </section>
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Grimorio" type="spell" items=itemGroups.spell}}
     </div>
 

@@ -31,6 +31,8 @@ export class TierraMagicaActorSheet extends ActorSheet {
     context.skillGroups = this.#groupSkills(this.actor.system.skills ?? {});
     context.healthPercent = this.#resourcePercent(this.actor.system.resources?.health);
     context.manaPercent = this.#resourcePercent(this.actor.system.resources?.mana);
+    const sustainedIds = Array.isArray(this.actor.system.magic?.sustainedSpellIds) ? this.actor.system.magic.sustainedSpellIds : [];
+    context.sustainedSpells = sustainedIds.map((id) => this.actor.items.get(id)).filter(Boolean);
 
     const level = Math.max(1, Math.floor(toNumber(this.actor.system.details?.level, 1)));
     const pdSpent = Math.max(0, toNumber(this.actor.system.details?.pdSpent));
@@ -123,6 +125,7 @@ export class TierraMagicaActorSheet extends ActorSheet {
     html.find("[data-action='item-attack']").click((event) => this.actor.rollWeapon(this.#getItem(event)));
     html.find("[data-action='item-damage']").click((event) => this.actor.rollDamage(this.#getItem(event)));
     html.find("[data-action='item-spell']").click((event) => this.actor.useSpell(this.#getItem(event)));
+    html.find("[data-action='stop-sustained']").click((event) => this.actor.stopSustainedSpell(event.currentTarget.dataset.itemId));
     html.find("[data-action='create-familiar']").click(() => this.#createFamiliar());
   }
 

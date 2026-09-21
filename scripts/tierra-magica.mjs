@@ -5,7 +5,7 @@ import { TierraMagicaActorSheet } from "./sheets/actor-sheet.mjs";
 import { TierraMagicaItemSheet } from "./sheets/item-sheet.mjs";
 
 Hooks.once("init", async () => {
-  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.3");
+  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.4");
 
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;

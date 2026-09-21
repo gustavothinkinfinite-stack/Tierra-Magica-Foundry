@@ -1,5 +1,15 @@
 # Historial de cambios
 
+## 1.0.4
+
+- Auditoría de magia: Sobrecarga disponible sólo cuando falta exactamente 1 Maná, queda al menos 1 y el personaje no está Colapsado.
+- Sobrecarga usa VOL + Canalización contra DF17, consume el Maná restante y aplica Exhausto; quien ya estaba Exhausto queda Colapsado tras resolver.
+- Los hechizos Sostenidos registran efectos activos. Límite normal 1; Doble Sostenimiento permite 2.
+- Foundry no permite superar el límite de Sostenimiento mediante una tirada; el usuario debe abandonar un efecto antes de mantener otro.
+- Las consecuencias concretas de una Pifia de Sobrecarga permanecen contextuales en manos del Director.
+- Contramagia permanece como técnica reactiva contextual y no se convierte en cancelación automática universal.
+
+
 ## 1.0.3
 
 - Auditoría de Vida/Trauma: la primera caída real de Vida positiva a 0 aplica Incapacitado y, si corresponde, Trauma 0→1; caer repetidamente a 0 no incrementa Trauma automáticamente.

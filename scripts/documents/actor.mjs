@@ -194,14 +194,34 @@ export class TierraMagicaActor extends Actor {
     if (!item || item.type !== "spell") return null;
     const cost = Math.max(0, toNumber(item.system.manaCost));
     const mana = toNumber(this.system.resources?.mana?.value);
-    if (mana < cost) return ui.notifications.warn(this.name + " no tiene Maná suficiente.");
-
     const requirements = String(item.system.requirements ?? "").trim();
     if (requirements && !this.#meetsSkillRequirement(requirements)) {
       return ui.notifications.warn("No se cumplen los requisitos de " + item.name + ": " + requirements);
     }
 
-    if (cost) await this.update({ "system.resources.mana.value": mana - cost });
+    const overload = mana < cost;
+    if (overload && !(cost - mana === 1 && mana >= 1)) {
+      return ui.notifications.warn(this.name + " no tiene Maná suficiente y no cumple las condiciones de Sobrecarga.");
+    }
+    if (overload && toNumber(this.system.status?.fatigue) >= 3) {
+      return ui.notifications.warn(this.name + " está Colapsado y no puede usar Sobrecarga.");
+    }
+
+    if (overload) {
+      await this.update({ "system.resources.mana.value": 0 });
+      const roll = await this.rollCheck({
+        label: "Sobrecarga: " + item.name,
+        attributeKey: "vol",
+        skillKey: "channeling",
+        df: 17
+      });
+      const success = toNumber(roll?.total) >= 17;
+      const previousFatigue = toNumber(this.system.status?.fatigue);
+      await this.update({ "system.status.fatigue": previousFatigue >= 2 ? 3 : 2 });
+      if (!success) return ui.notifications.warn("La Sobrecarga falla: el hechizo no se produce. La Pifia, si aparece, requiere una consecuencia mágica contextual.");
+    } else if (cost) {
+      await this.update({ "system.resources.mana.value": mana - cost });
+    }
 
     const target = [...(game.user.targets ?? [])][0]?.actor;
     let df = toNumber(item.system.difficulty, 12);
@@ -209,12 +229,34 @@ export class TierraMagicaActor extends Actor {
     if (item.system.defense === "body" && target) df = toNumber(target.system.derived?.bodyDefense);
     if (item.system.defense === "normal" && target) df = toNumber(target.system.derived?.defense);
 
-    return this.rollCheck({
+    const result = await this.rollCheck({
       label: "Hechizo: " + item.name + " · " + (TM_CONFIG.disciplines[item.system.discipline] ?? item.system.discipline),
       attributeKey: item.system.attribute || "int",
       skillKey: "channeling",
       df
     });
+
+    if (item.system.sustained) await this.#beginSustainedSpell(item);
+    return result;
+  }
+
+  async stopSustainedSpell(itemId) {
+    const current = Array.isArray(this.system.magic?.sustainedSpellIds) ? [...this.system.magic.sustainedSpellIds] : [];
+    if (!current.includes(itemId)) return;
+    return this.update({ "system.magic.sustainedSpellIds": current.filter((id) => id !== itemId) });
+  }
+
+  async #beginSustainedSpell(item) {
+    const current = Array.isArray(this.system.magic?.sustainedSpellIds)
+      ? this.system.magic.sustainedSpellIds.filter((id) => this.items.get(id)?.type === "spell")
+      : [];
+    const hasDouble = this.items.some((i) => i.type === "technique" && i.name === "Doble Sostenimiento");
+    const limit = hasDouble ? 2 : 1;
+    if (current.includes(item.id)) return;
+    if (current.length >= limit) {
+      return ui.notifications.warn("Límite de Sostenimiento alcanzado. Abandona un efecto sostenido antes de mantener " + item.name + ".");
+    }
+    await this.update({ "system.magic.sustainedSpellIds": [...current, item.id] });
   }
 
   async adjustResource(resource, amount) {
