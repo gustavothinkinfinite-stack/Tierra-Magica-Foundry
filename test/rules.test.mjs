@@ -4,7 +4,7 @@ import {
   clamp, rankBonus, defenseBonus, rollFormula, classifyResult, extraordinaryTag, finalDamage, severeThreshold, toNumber
 } from "../scripts/rules.mjs";
 
-test("rangos de habilidad usan la progresión del Manual v0.1", () => {
+test("rangos de habilidad usan la progresión de T.M. 1.0", () => {
   assert.equal(rankBonus(0), 0);
   assert.equal(rankBonus(1), 1);
   assert.equal(rankBonus(2), 2);
@@ -42,4 +42,16 @@ test("utilidades numéricas", () => {
   assert.equal(clamp(15, 0, 10), 10);
 });
 
-test("Hazaña/Pifia 1.0 usan suma natural y éxito/fallo",()=>{const mk=(a,b)=>({dice:[{results:[{result:a,active:true},{result:b,active:true}]}]});assert.equal(extraordinaryTag(mk(9,9),{success:true}),"Hazaña");assert.equal(extraordinaryTag(mk(10,8),{success:false}),"");assert.equal(extraordinaryTag(mk(1,3),{success:false}),"Pifia");assert.equal(extraordinaryTag(mk(1,3),{success:true}),"");});
+test("Hazaña/Pifia requieren dobles naturales extremos entre los dados conservados", () => {
+  const mk = (...results) => ({ dice: [{ results: results.map((result) => ({ result, active: true })) }] });
+  const discarded = (a, b, c, discardIndex) => ({ dice: [{ results: [a,b,c].map((result, index) => ({ result, active: index !== discardIndex, discarded: index === discardIndex })) }] });
+
+  assert.equal(extraordinaryTag(mk(10,10), { success: true }), "Hazaña");
+  assert.equal(extraordinaryTag(mk(10,9), { success: true }), "");
+  assert.equal(extraordinaryTag(mk(1,1), { success: false }), "Pifia");
+  assert.equal(extraordinaryTag(mk(1,2), { success: false }), "");
+  assert.equal(extraordinaryTag(mk(10,10), { success: false }), "");
+  assert.equal(extraordinaryTag(mk(1,1), { success: true }), "");
+  assert.equal(extraordinaryTag(discarded(1,10,10,0), { success: true }), "Hazaña");
+  assert.equal(extraordinaryTag(discarded(1,1,10,2), { success: false }), "Pifia");
+});
