@@ -250,3 +250,15 @@ test("Ingeniería usa Energía/Caudal y estados sin convertirlos en Maná",async
 test("Familiar rico mantiene autonomía y economía de acciones",async()=>{const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");const familiar=await readFile(resolve(root,"templates/actor/familiar-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(model.Actor.familiar.details.independence,"independent");assert.equal(actor.includes("async linkedFamiliarAction"),true);assert.equal(actor.includes('"system.turn.reaction": false'),true);assert.equal(actor.includes("async commandFamiliar"),true);assert.equal(actor.includes('"system.turn.action": false'),true);assert.equal(sheet.includes("Acción Vinculada (Reacción)"),true);assert.equal(familiar.includes("Vínculo y autonomía"),true);});
 
 test("capacidades avanzadas de Familiar no crean segundo lanzador",async()=>{const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");const familiar=await readFile(resolve(root,"templates/actor/familiar-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(model.Actor.familiar.familiar.bondLevel,1);assert.equal(actor.includes("async useFamiliarSense"),true);assert.equal(actor.includes('"system.turn.action": false'),true);assert.equal(actor.includes("async castFromFamiliar"),true);assert.equal(actor.includes("const result = await this.useSpell(spell)"),true);assert.equal(familiar.includes("Origen Remoto"),true);});
+
+
+test("v1.0.10 corrige banner proporcional y recorte de la columna derecha", async () => {
+  const css = await readFile(resolve(root, "styles/character-sheet-v03.css"), "utf8");
+
+  assert.equal(css.includes("TIERRA MÁGICA v1.0.10 — FIX DE CABECERA Y LAYOUT REAL"), true);
+  assert.equal(css.includes("aspect-ratio: 1600 / 287"), true);
+  assert.equal(css.includes("container-name: tm-character-sheet"), true);
+  assert.equal(css.includes("minmax(360px, 1.54fr)"), true);
+  assert.equal(css.includes("grid-template-columns: repeat(2, minmax(0, 1fr))"), true);
+  assert.equal(css.includes("@container tm-character-sheet (max-width: 860px)"), true);
+});
