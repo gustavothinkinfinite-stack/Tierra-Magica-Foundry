@@ -2,7 +2,7 @@
   <div class="tm-section-heading">
     <h2>{{title}}</h2>
     <div class="tm-section-buttons">
-      {{#if (or (eq type "weapon") (eq type "armor") (eq type "shield") (eq type "spell") (eq type "technique") (eq type "formula"))}}
+      {{#if (or (eq type "weapon") (eq type "armor") (eq type "shield") (eq type "spell") (eq type "technique") (eq type "formula") (eq type "ritual"))}}
         <button type="button" class="tm-icon-button" data-action="content-browser" data-type="{{type}}"><i class="fa-solid fa-book"></i> Manual</button>
       {{/if}}
       {{#if @root.editable}}
@@ -25,6 +25,7 @@
           {{#if (eq item.type "specialization")}}<small>{{item.system.effect}}</small>{{/if}}
           {{#if (eq item.type "equipment")}}<small>Cantidad {{item.system.quantity}} · {{item.system.availability}}</small>{{/if}}
           {{#if (eq item.type "formula")}}<small>Dosis {{item.system.quantity}}{{#if item.system.saturating}} · Saturante: {{item.system.family}}{{/if}}</small>{{/if}}
+          {{#if (eq item.type "ritual")}}<small>DF {{item.system.difficulty}} · Director {{item.system.manaDirector}} Maná · {{item.system.time}}</small>{{/if}}
         </div>
         <div class="tm-item-actions">
           {{#if (eq item.type "weapon")}}
@@ -33,6 +34,7 @@
           {{/if}}
           {{#if (eq item.type "spell")}}<button type="button" data-action="item-spell">Lanzar</button>{{/if}}
           {{#if (eq item.type "formula")}}<button type="button" data-action="item-formula">Usar</button>{{/if}}
+          {{#if (eq item.type "ritual")}}<button type="button" data-action="item-ritual">Realizar</button>{{/if}}
           {{#if (or (eq item.type "weapon") (eq item.type "armor") (eq item.type "shield"))}}
             <button type="button" class="tm-icon-button {{#if item.system.equipped}}active{{/if}}" data-action="item-toggle" title="Equipar"><i class="fa-solid fa-hand"></i></button>
           {{/if}}

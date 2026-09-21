@@ -1,5 +1,14 @@
 # Historial de cambios
 
+## 1.0.6
+
+- Auditoría de Rituales: los rituales aparecen en la ficha y pueden resolverse con una única tirada principal de Ritualismo.
+- El Director debe disponer y pagar su Maná mínimo; el aporte declarado de asistentes queda limitado por asistentes útiles × máximo por asistente.
+- El Maná de asistentes no sustituye el requisito del Director ni se crea automáticamente.
+- Foundry informa Caudal requerido y contribuciones, pero no descuenta recursos de otros actores ni valida fuentes/componentes contextuales sin una relación explícita.
+- Se evita el exploit de asistentes ilimitados y el +1 acumulativo por participante.
+
+
 ## 1.0.5
 
 - Auditoría de Alquimia: las Fórmulas aparecen en la ficha y pueden consumirse mediante una acción de uso.

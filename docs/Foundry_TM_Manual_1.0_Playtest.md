@@ -34,7 +34,7 @@ Alquimia: Fórmula, Complejidad, Ingredientes, Tiempo, Dosis, Efecto. Rutina com
 
 Ingeniería: acumuladores con Energía/Caudal/Estabilidad; dispositivos con Consumo. Transferir no crea Energía; sumar Caudal requiere infraestructura. Sobrecarga Controlada: Caudal+1 con riesgo, no Energía. Averías Operativo→Dañado→Deshabilitado.
 
-Ritualismo: Director único y una tirada principal; asistentes útiles limitados; sin +1 por persona ni Maná infinito. Componentes Material/Foco/Catalizador/Ancla. Invocar, contener y controlar son funciones distintas. Sin Resurrección estándar ni sacrificio→Maná universal.
+Ritualismo: Director único y una tirada principal de Atributo apropiado + Ritualismo contra la DF del ritual; asistentes útiles limitados; sin +1 por persona ni Maná infinito. Cada ritual define Maná mínimo del Director y, cuando procede, máximo de Maná por asistente. El aporte de asistentes no reemplaza el requisito del Director. Caudal, componentes y fuentes deben existir realmente; declarar asistentes en Foundry no crea ni descuenta recursos ajenos. Componentes Material/Foco/Catalizador/Ancla. Invocar, contener y controlar son funciones distintas. Sin Resurrección estándar ni sacrificio→Maná universal.
 
 ## Economía
 100 C iniciales. Ligera12/Prot1; Reforzada25/2; Malla40/3/FUE1; Pesada60/4/FUE2; Placas85/5/FUE3. Escudo estándar18: +1 frontal, Bloqueo+2. Pesado30: +2 frontal, Bloqueo+2, Mov−1, FUE2. Broquel10: +1 frontal sin Bloqueo especial. Precios de armas y consumibles en scripts/content.mjs. Calidad no da +1/+2/+3 universal. Dinero no compra PD/PR.

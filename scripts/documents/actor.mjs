@@ -292,6 +292,35 @@ export class TierraMagicaActor extends Actor {
     });
   }
 
+  async performRitual(item, { assistantMana = 0 } = {}) {
+    if (!item || item.type !== "ritual") return null;
+    const directorCost = Math.max(0, toNumber(item.system.manaDirector));
+    const mana = toNumber(this.system.resources?.mana?.value);
+    if (mana < directorCost) return ui.notifications.warn(this.name + " no tiene el Maná de Director requerido para " + item.name + ".");
+
+    const usefulAssistants = Math.max(0, Math.floor(toNumber(item.system.usefulAssistants)));
+    const assistantMax = Math.max(0, toNumber(item.system.manaAssistantMax));
+    const requestedAssistantMana = Math.max(0, toNumber(assistantMana));
+    const assistantCap = usefulAssistants * assistantMax;
+    if (requestedAssistantMana > assistantCap) {
+      return ui.notifications.warn("El aporte de asistentes excede el máximo definido por el ritual (" + assistantCap + " Maná).");
+    }
+
+    if (directorCost) await this.update({ "system.resources.mana.value": mana - directorCost });
+    const roll = await this.rollCheck({
+      label: "Ritual: " + item.name,
+      attributeKey: item.system.attribute || "int",
+      skillKey: "ritualism",
+      df: toNumber(item.system.difficulty, 15)
+    });
+    const content = "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(item.name) +
+      "</strong><p>Director: " + directorCost + " Maná · Asistentes declarados: " + requestedAssistantMana +
+      " / " + assistantCap + " · Caudal requerido: " + Math.max(0, toNumber(item.system.flowRequired)) +
+      "</p><p>El aporte de asistentes y el Caudal deben provenir de participantes/fuentes válidos; Foundry no crea ni descuenta esos recursos automáticamente.</p></div>";
+    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content });
+    return roll;
+  }
+
   async adjustResource(resource, amount) {
     const data = this.system.resources?.[resource];
     if (!data) return null;

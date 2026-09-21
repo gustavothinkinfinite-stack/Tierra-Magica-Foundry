@@ -126,6 +126,18 @@ export class TierraMagicaActorSheet extends ActorSheet {
     html.find("[data-action='item-damage']").click((event) => this.actor.rollDamage(this.#getItem(event)));
     html.find("[data-action='item-spell']").click((event) => this.actor.useSpell(this.#getItem(event)));
     html.find("[data-action='item-formula']").click((event) => this.actor.useFormula(this.#getItem(event)));
+    html.find("[data-action='item-ritual']").click(async (event) => {
+      const item = this.#getItem(event);
+      if (!item) return;
+      const result = await Dialog.prompt({
+        title: "Realizar ritual: " + item.name,
+        content: "<div class='form-group'><label>Maná total declarado por asistentes</label><input name='assistantMana' type='number' min='0' value='0'/></div><p>Máximo por asistente: " + toNumber(item.system.manaAssistantMax) + " · asistentes útiles: " + toNumber(item.system.usefulAssistants) + "</p>",
+        label: "Realizar",
+        callback: (html) => ({ assistantMana: toNumber(html.find("[name='assistantMana']").val()) }),
+        rejectClose: false
+      });
+      if (result) return this.actor.performRitual(item, result);
+    });
     html.find("[data-action='stop-sustained']").click((event) => this.actor.stopSustainedSpell(event.currentTarget.dataset.itemId));
     html.find("[data-action='create-familiar']").click(() => this.#createFamiliar());
   }
