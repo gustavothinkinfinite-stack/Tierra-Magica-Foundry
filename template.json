@@ -269,7 +269,15 @@
         "abilities": "",
         "currentOrder": "",
         "orderType": "none",
-        "incapacitated": false
+        "incapacitated": false,
+        "bondLevel": 1,
+        "bondProgress": 0,
+        "archetype": "companion",
+        "sharedSenses": false,
+        "enhancedCommunication": false,
+        "remoteOrigin": false,
+        "flight": false,
+        "tinyScout": false
       }
     }
   },

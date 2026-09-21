@@ -1,5 +1,15 @@
 # Historial de cambios
 
+## 1.0.9
+
+- Segunda auditoría de Familiares: grados narrativos de vínculo I–IV y arquetipos Compañero, Explorador, Guardián y Místico sin paquetes gratuitos.
+- Sentidos Compartidos consume Acción y usa únicamente los sentidos reales del Familiar.
+- Comunicación Mejorada y Origen Remoto se formalizan como capacidades específicas, no beneficios automáticos del vínculo.
+- Origen Remoto conserva Maná, tirada y Sostenimiento en el personaje; no crea un segundo lanzador.
+- Se documentan pruebas de abuso para vuelo, tamaño Diminuto, exploración remota, combate y combinaciones de capacidades.
+- Vuelo, tamaño, sentidos y movilidad extraordinaria requieren rasgos/capacidades compatibles y no equivalen a invisibilidad o acceso universal.
+
+
 ## 1.0.8
 
 - Auditoría profunda de Familiares: se formaliza autonomía, personalidad, deseos, comunicación aproximada y alcance narrativo del vínculo.

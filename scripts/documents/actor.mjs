@@ -395,6 +395,23 @@ export class TierraMagicaActor extends Actor {
     });
   }
 
+  async useFamiliarSense(familiar) {
+    if (!familiar || familiar.type !== "familiar" || familiar.system.details?.ownerUuid !== this.uuid) return null;
+    if (!familiar.system.familiar?.sharedSenses) return ui.notifications.warn("Este vínculo no posee Sentidos Compartidos.");
+    if (!(this.system.turn?.action ?? true)) return ui.notifications.warn(this.name + " ya gastó su Acción.");
+    await this.update({ "system.turn.action": false });
+    return ChatMessage.create({speaker:ChatMessage.getSpeaker({actor:this}),content:"<div class='tm-chat-card'><strong>Sentidos Compartidos</strong><p>" + foundry.utils.escapeHTML(this.name) + " percibe temporalmente a través de " + foundry.utils.escapeHTML(familiar.name) + ". Esto no concede omnisciencia ni permite percibir fuera de los sentidos reales del Familiar.</p></div>"});
+  }
+
+  async castFromFamiliar(familiar, spell) {
+    if (!familiar?.system.familiar?.remoteOrigin) return ui.notifications.warn("El vínculo no permite Origen Remoto.");
+    if (!spell || spell.type !== "spell") return null;
+    const result = await this.useSpell(spell);
+    if (!result) return result;
+    await ChatMessage.create({speaker:ChatMessage.getSpeaker({actor:this}),content:"<div class='tm-chat-card'><strong>Origen Remoto</strong><p>El hechizo usa la posición de " + foundry.utils.escapeHTML(familiar.name) + " como origen. El Maná, tirada, Sostenimiento y límites siguen perteneciendo a " + foundry.utils.escapeHTML(this.name) + ".</p></div>"});
+    return result;
+  }
+
   async callFamiliar(familiar) {
     if (!familiar || familiar.type !== "familiar" || familiar.system.details?.ownerUuid !== this.uuid) return null;
     return ChatMessage.create({

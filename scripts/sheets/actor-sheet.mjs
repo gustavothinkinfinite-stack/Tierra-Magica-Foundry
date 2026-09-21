@@ -129,6 +129,7 @@ export class TierraMagicaActorSheet extends ActorSheet {
       if (result) return this.actor.commandFamiliar(familiar, result.order);
     });
     html.find("[data-action='familiar-call']").click(() => { const familiar=this.#linkedFamiliar(); if (familiar) return this.actor.callFamiliar(familiar); });
+    html.find("[data-action='familiar-senses']").click(() => { const familiar=this.#linkedFamiliar(); if (familiar) return this.actor.useFamiliarSense(familiar); });
 
     html.find("[data-action='item-create']").click((event) => this.#createItem(event.currentTarget.dataset.type));
     html.find("[data-action='content-browser']").click((event) => this.#openContentBrowser(event.currentTarget.dataset.type));

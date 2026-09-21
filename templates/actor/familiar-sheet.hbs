@@ -9,6 +9,11 @@
     <label><span>Comunicación</span><input name="system.details.communication" value="{{system.details.communication}}" /></label>
     <label><span>Alcance del vínculo</span><input name="system.details.bondRange" value="{{system.details.bondRange}}" /></label>
     <label><span>Orden actual</span><input name="system.familiar.currentOrder" value="{{system.familiar.currentOrder}}" /></label>
+    <label><span>Arquetipo</span><select name="system.familiar.archetype"><option value="companion" {{#if (eq system.familiar.archetype "companion")}}selected{{/if}}>Compañero</option><option value="scout" {{#if (eq system.familiar.archetype "scout")}}selected{{/if}}>Explorador</option><option value="guardian" {{#if (eq system.familiar.archetype "guardian")}}selected{{/if}}>Guardián</option><option value="mystic" {{#if (eq system.familiar.archetype "mystic")}}selected{{/if}}>Místico</option></select></label>
+    <label><span>Nivel de vínculo</span><input type="number" min="1" max="4" name="system.familiar.bondLevel" value="{{system.familiar.bondLevel}}" /></label>
+    <label class="tm-check"><span>Sentidos Compartidos</span><input type="checkbox" name="system.familiar.sharedSenses" {{checked system.familiar.sharedSenses}} /></label>
+    <label class="tm-check"><span>Comunicación Mejorada</span><input type="checkbox" name="system.familiar.enhancedCommunication" {{checked system.familiar.enhancedCommunication}} /></label>
+    <label class="tm-check"><span>Origen Remoto</span><input type="checkbox" name="system.familiar.remoteOrigin" {{checked system.familiar.remoteOrigin}} /></label>
   </div>
   <p>El Familiar conserva personalidad, deseos y criterio. Acción Vinculada consume la Reacción del personaje; cambiar una orden táctica compleja consume su Acción. Llamar no teletransporta.</p>
 </section>

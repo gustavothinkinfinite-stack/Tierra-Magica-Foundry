@@ -205,6 +205,7 @@
                 <button type="button" data-action="familiar-linked-action">Acción Vinculada (Reacción)</button>
                 <button type="button" data-action="familiar-command">Nueva orden (Acción)</button>
                 <button type="button" data-action="familiar-call">Llamar</button>
+                {{#if familiar.system.familiar.sharedSenses}}<button type="button" data-action="familiar-senses">Sentidos Compartidos (Acción)</button>{{/if}}
               </div>
               <p><small>El vínculo transmite de forma aproximada emociones/conceptos simples; no es GPS, telepatía perfecta ni obediencia absoluta.</small></p>
             {{/if}}
