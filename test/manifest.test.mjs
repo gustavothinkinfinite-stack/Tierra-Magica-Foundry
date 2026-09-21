@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, stat } from "node:fs/promises";
 import test from "node:test";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -16,6 +16,8 @@ test("el manifiesto describe Foundry T.M. 1.0.10", async () => {
   await Promise.all([...manifest.esmodules, ...manifest.styles, ...manifest.languages.map((l) => l.path)]
     .map((file) => access(resolve(root, file))));
   await access(resolve(root, "assets/ui/tierra-magica-banner-final.jpg"));
+  const banner = await stat(resolve(root, "assets/ui/tierra-magica-banner-final.jpg"));
+  assert.equal(banner.size > 30000, true);
 });
 
 test("el esquema contiene actores y tipos de objeto del manual", async () => {
