@@ -28,11 +28,11 @@ export function keptDice(roll) {
   if (!die) return [];
   return die.results?.filter((r) => r.active !== false && !r.discarded).map((r) => r.result).slice(-2) ?? [];
 }
-export function extraordinaryTag(roll, { success = null } = {}) {
+export function extraordinaryTag(roll) {
   const dice = keptDice(roll);
   if (dice.length !== 2) return "";
-  if (dice[0] === 10 && dice[1] === 10 && success !== false) return "Hazaña";
-  if (dice[0] === 1 && dice[1] === 1 && success !== true) return "Pifia";
+  if (dice[0] === 10 && dice[1] === 10) return "Hazaña";
+  if (dice[0] === 1 && dice[1] === 1) return "Pifia";
   return "";
 }
 export function finalDamage(base, attribute, bonus, protection, penetration = 0) {

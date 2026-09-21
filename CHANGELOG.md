@@ -1,5 +1,13 @@
 # Historial de cambios
 
+## 1.0.1
+
+- Resultado extraordinario canónico restaurado: **10+10 conservado = Hazaña** y **1+1 conservado = Pifia**.
+- Hazaña/Pifia se evalúan después del éxito o fallo y no sustituyen ese resultado.
+- Ventaja/Desventaja sólo consideran los dos dados conservados.
+- Retirados definitivamente los umbrales provisionales 18–20 / 2–4.
+
+
 ## 0.9.1
 
 - La cabecera vectorial de v0.9.0 se reemplaza por la **ilustración panorámica aprobada de Tierra Mágica**, con castillo, montañas, dragón, paisaje fantástico, placa central y el lema **Historias que dejan huella**.

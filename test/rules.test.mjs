@@ -45,13 +45,10 @@ test("utilidades numéricas", () => {
 test("Hazaña/Pifia requieren dobles naturales extremos entre los dados conservados", () => {
   const mk = (...results) => ({ dice: [{ results: results.map((result) => ({ result, active: true })) }] });
   const discarded = (a, b, c, discardIndex) => ({ dice: [{ results: [a,b,c].map((result, index) => ({ result, active: index !== discardIndex, discarded: index === discardIndex })) }] });
-
-  assert.equal(extraordinaryTag(mk(10,10), { success: true }), "Hazaña");
-  assert.equal(extraordinaryTag(mk(10,9), { success: true }), "");
-  assert.equal(extraordinaryTag(mk(1,1), { success: false }), "Pifia");
-  assert.equal(extraordinaryTag(mk(1,2), { success: false }), "");
-  assert.equal(extraordinaryTag(mk(10,10), { success: false }), "");
-  assert.equal(extraordinaryTag(mk(1,1), { success: true }), "");
-  assert.equal(extraordinaryTag(discarded(1,10,10,0), { success: true }), "Hazaña");
-  assert.equal(extraordinaryTag(discarded(1,1,10,2), { success: false }), "Pifia");
+  assert.equal(extraordinaryTag(mk(10,10)), "Hazaña");
+  assert.equal(extraordinaryTag(mk(10,9)), "");
+  assert.equal(extraordinaryTag(mk(1,1)), "Pifia");
+  assert.equal(extraordinaryTag(mk(1,2)), "");
+  assert.equal(extraordinaryTag(discarded(1,10,10,0)), "Hazaña");
+  assert.equal(extraordinaryTag(discarded(1,1,10,2)), "Pifia");
 });

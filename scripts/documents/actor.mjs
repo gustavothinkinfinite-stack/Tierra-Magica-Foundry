@@ -88,7 +88,7 @@ export class TierraMagicaActor extends Actor {
     let resultText = "";
     if (df !== null && df !== undefined && df !== "") {
       const result = classifyResult(roll.total, df);
-      tag = extraordinaryTag(roll, { success: result.success });
+      tag = extraordinaryTag(roll);
       resultText = "<p><strong>" + result.degree + "</strong> · DF " + toNumber(df) + " · margen " + result.margin + "</p>";
       if (tag === "Hazaña") resultText += result.success
         ? "<p class='tm-extraordinary'>Hazaña: éxito excepcional.</p>"
