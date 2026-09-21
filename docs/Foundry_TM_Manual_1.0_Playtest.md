@@ -3,7 +3,7 @@
 > Fuente maestra. Sustituye reglas mecánicas anteriores incompatibles.
 
 ## Núcleo
-Prueba: **2d10 + Atributo + Habilidad + modificadores ≥ DF**. Ventaja 3d10 mejores 2; Desventaja 3d10 peores 2; no acumulan. DF 8/10/12/14/16/18/20/22/24+ = muy favorable bajo presión/sencilla/moderada/demandante/difícil/muy difícil/extraordinaria/heroica/sobrenatural. Hazaña = suma natural 18–20 y éxito. Pifia = suma natural 2–4 y fallo. No repetir prueba idéntica sin cambio significativo.
+Prueba: **2d10 + Atributo + Habilidad + modificadores ≥ DF**. Ventaja 3d10 mejores 2; Desventaja 3d10 peores 2; no acumulan. DF 8/10/12/14/16/18/20/22/24+ = muy favorable bajo presión/sencilla/moderada/demandante/difícil/muy difícil/extraordinaria/heroica/sobrenatural. Hazaña = **10+10 natural en los dos dados conservados y éxito**. Pifia = **1+1 natural en los dos dados conservados y fallo**. Ventaja/Desventaja solo consideran los dos dados finalmente conservados. No repetir prueba idéntica sin cambio significativo.
 
 ## Personaje
 Atributos FUE, AGI, VIG, INT, PER, VOL, PRE. Escala 0 deficiente, 1 adulto normal, 2 notable, 3 excepcional, 4 élite, 5 límite natural, 6+ sobrenatural. 26 Habilidades: Atletismo, Acrobacia, Sigilo, Supervivencia, Naturaleza, Investigación, Persuasión, Engaño, Intimidación, Empatía, Historia, Religión, Medicina, Arcana, Artesanía, Ingeniería, Alquimia, Latrocinio, Armas Ligeras, Marciales, Pesadas, a Distancia, Canalización, Ritualismo, Manejo y Pilotaje. Rangos +0/+1/+2/+4/+6/+8; coste acumulado 0/1/3/7/13/21 PD.
@@ -11,7 +11,7 @@ Atributos FUE, AGI, VIG, INT, PER, VOL, PRE. Escala 0 deficiente, 1 adulto norma
 Creación: atributos parten de 1, 6 aumentos, máximo 3; 25 PD; 3 PR; 100 C; máximo una Habilidad Experta. Niveles 1–20, +4 PD por nivel 2–20, total 101. Sin bono universal por nivel. Especialización 2 PD; Disciplina 3; Técnicas 2/3/5/8+; Hechizos 1/2/3/5/8+. Maestro nivel9+, Gran Maestro15+. Atributos post-creación: 4/6/9/13/18 PD por pasos 0→1→2→3→4→5.
 
 ## Derivados y turno
-Vida=10+2×VIG. Maná=6+3×VOL. Defensa=11+AGI+Bono Defensivo+equipo. Corporal=11+VIG. Mental=11+VOL. Maniobra=11+max(FUE,AGI)+Bono Defensivo. Iniciativa=2d10+PER. Turno: Acción, Movimiento, Reacción. Reacción se recupera al inicio del turno propio. Guardia universal: Acción, +2 Defensa hasta siguiente turno. Sin Ataque de Oportunidad universal.
+Vida=10+2×VIG. Maná=6+3×VOL. Defensa=11+AGI+Bono Defensivo+equipo. Corporal=11+VIG. Mental=11+VOL. **Maniobra=11+AGI+Bono Defensivo**. Iniciativa=2d10+PER. Turno: Acción, Movimiento, Reacción. Reacción se recupera al inicio del turno propio. Guardia universal: Acción, +2 Defensa hasta siguiente turno. Sin Ataque de Oportunidad universal.
 
 ## Combate
 Daño=base+un Atributo permitido+bonos−Protección efectiva; Protección efectiva=max(0,Prot−Pen). Bono Defensivo 0/0/1/2/3/4 y solo el mejor aplicable. Parada Reacción +2 Defensa. Golpe Potente −2 ataque/+2 daño. Estocada Perforante −1 ataque/−1 daño/Pen+2. Combate Dual: dos armas Ligeras/compatibles, dos ataques −2, modificador de ataque completo solo en uno. Barrido: una tirada −2 contra hasta dos objetivos. Reacciones ofensivas no encadenan otras reacciones ofensivas salvo regla expresa.
