@@ -1,5 +1,18 @@
 # Historial de cambios
 
+## 1.0.10
+
+- Reemplazado el banner de cabecera comprimido por una copia optimizada de alta calidad, evitando el aspecto borroso de la versión anterior.
+- La cabecera ahora conserva la proporción real de la ilustración y elimina la franja oscura vacía que aparecía debajo.
+- La grilla principal deja de usar mínimos rígidos que empujaban la columna de Defensas fuera de la hoja.
+- Habilidades, núcleo central y panel derecho se reparten el ancho real disponible mediante columnas flexibles.
+- Las cuatro Defensas se mantienen dentro de su panel incluso al reducir la ventana.
+- Estado, Rasgos, Especializaciones y Técnicas ya no pueden ensanchar accidentalmente la columna derecha por sus controles.
+- Añadida adaptación por ancho de la propia ficha para reorganizar la columna derecha cuando la ventana sea realmente estrecha.
+- Añadida una prueba que impide volver a publicar por error un banner truncado o excesivamente comprimido.
+- Sin cambios en reglas, cálculos, datos o acciones del personaje.
+
+
 ## 1.0.9
 
 - Segunda auditoría de Familiares: grados narrativos de vínculo I–IV y arquetipos Compañero, Explorador, Guardián y Místico sin paquetes gratuitos.
