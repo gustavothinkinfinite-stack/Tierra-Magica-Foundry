@@ -356,6 +356,54 @@ export class TierraMagicaActor extends Actor {
     return roll;
   }
 
+  async linkedFamiliarAction(familiar, order = "") {
+    if (!familiar || familiar.type !== "familiar" || familiar.system.details?.ownerUuid !== this.uuid) {
+      return ui.notifications.warn("No hay un Familiar vinculado válido.");
+    }
+    if (!(this.system.turn?.reaction ?? true)) return ui.notifications.warn(this.name + " ya gastó su Reacción.");
+    if (familiar.system.familiar?.incapacitated || toNumber(familiar.system.resources?.health?.value) <= 0) {
+      return ui.notifications.warn(familiar.name + " está Incapacitado y no puede ejecutar una Acción Vinculada.");
+    }
+    await this.update({ "system.turn.reaction": false });
+    await familiar.update({
+      "system.familiar.currentOrder": String(order ?? "").trim(),
+      "system.familiar.orderType": "linked"
+    });
+    return ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: "<div class='tm-chat-card'><strong>Acción Vinculada — " + foundry.utils.escapeHTML(familiar.name) + "</strong><p>" +
+        foundry.utils.escapeHTML(String(order ?? "").trim() || "Acción táctica coordinada") +
+        "</p><p>Consume la Reacción de " + foundry.utils.escapeHTML(this.name) + ".</p></div>"
+    });
+  }
+
+  async commandFamiliar(familiar, order = "") {
+    if (!familiar || familiar.type !== "familiar" || familiar.system.details?.ownerUuid !== this.uuid) {
+      return ui.notifications.warn("No hay un Familiar vinculado válido.");
+    }
+    if (!(this.system.turn?.action ?? true)) return ui.notifications.warn(this.name + " ya gastó su Acción.");
+    await this.update({ "system.turn.action": false });
+    await familiar.update({
+      "system.familiar.currentOrder": String(order ?? "").trim(),
+      "system.familiar.orderType": "persistent"
+    });
+    return ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: "<div class='tm-chat-card'><strong>Nueva orden — " + foundry.utils.escapeHTML(familiar.name) + "</strong><p>" +
+        foundry.utils.escapeHTML(String(order ?? "").trim() || "Orden persistente simple") +
+        "</p><p>Cambiar una orden táctica compleja consume la Acción del personaje. Una orden simple puede continuar hasta que la ficción la invalide.</p></div>"
+    });
+  }
+
+  async callFamiliar(familiar) {
+    if (!familiar || familiar.type !== "familiar" || familiar.system.details?.ownerUuid !== this.uuid) return null;
+    return ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: "<div class='tm-chat-card'><strong>Llamada del Vínculo</strong><p>" + foundry.utils.escapeHTML(this.name) +
+        " llama a " + foundry.utils.escapeHTML(familiar.name) + " mediante el vínculo aproximado. No teletransporta, no revela coordenadas y no garantiza obediencia.</p></div>"
+    });
+  }
+
   async adjustResource(resource, amount) {
     const data = this.system.resources?.[resource];
     if (!data) return null;

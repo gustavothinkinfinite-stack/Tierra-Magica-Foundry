@@ -194,15 +194,21 @@
             </ol>
           </section>
 
-          <button type="button" class="tm-v03-familiar" data-action="open-familiar">
+          <section class="tm-panel tm-v03-page-panel">
+            <div class="tm-section-heading"><h2>Familiar</h2><span>Compañero independiente vinculado.</span></div>
+            <button type="button" class="tm-v03-familiar" data-action="open-familiar">
+              {{#if familiar}}<img src="{{familiar.img}}" alt="" /><span><b>{{familiar.name}}</b><small>Abrir ficha</small></span>
+              {{else}}<i class="fa-solid fa-paw"></i><span><b>Familiar</b><small>Crear vínculo</small></span>{{/if}}
+            </button>
             {{#if familiar}}
-              <img src="{{familiar.img}}" alt="" />
-              <span><b>{{familiar.name}}</b><small>Abrir Familiar</small></span>
-            {{else}}
-              <i class="fa-solid fa-paw"></i>
-              <span><b>Familiar</b><small>Crear vínculo</small></span>
+              <div class="tm-section-buttons">
+                <button type="button" data-action="familiar-linked-action">Acción Vinculada (Reacción)</button>
+                <button type="button" data-action="familiar-command">Nueva orden (Acción)</button>
+                <button type="button" data-action="familiar-call">Llamar</button>
+              </div>
+              <p><small>El vínculo transmite de forma aproximada emociones/conceptos simples; no es GPS, telepatía perfecta ni obediencia absoluta.</small></p>
             {{/if}}
-          </button>
+          </section>
 
           <div class="tm-v03-rest-actions">
             <button type="button" data-action="rest" data-kind="breather"><i class="fa-solid fa-mug-hot"></i> Respiro (~10 min)</button>

@@ -1,3 +1,29 @@
 <form class="{{cssClass}} tm-actor-sheet tm-familiar-sheet" autocomplete="off">
   {{> "systems/tierra-magica/templates/actor/parts/actor-sheet.hbs"}}
+<section class="tm-panel">
+  <h2>Vínculo y autonomía</h2>
+  <div class="tm-form-grid">
+    <label><span>Naturaleza</span><input name="system.details.nature" value="{{system.details.nature}}" /></label>
+    <label><span>Temperamento</span><input name="system.details.temperament" value="{{system.details.temperament}}" /></label>
+    <label><span>Deseos</span><input name="system.details.desires" value="{{system.details.desires}}" /></label>
+    <label><span>Comunicación</span><input name="system.details.communication" value="{{system.details.communication}}" /></label>
+    <label><span>Alcance del vínculo</span><input name="system.details.bondRange" value="{{system.details.bondRange}}" /></label>
+    <label><span>Orden actual</span><input name="system.familiar.currentOrder" value="{{system.familiar.currentOrder}}" /></label>
+  </div>
+  <p>El Familiar conserva personalidad, deseos y criterio. Acción Vinculada consume la Reacción del personaje; cambiar una orden táctica compleja consume su Acción. Llamar no teletransporta.</p>
+</section>
+<section class="tm-panel">
+  <h2>Perfil simplificado</h2>
+  <div class="tm-form-grid">
+    <label><span>Escala</span><input name="system.familiar.scale" value="{{system.familiar.scale}}" /></label>
+    <label><span>Movimiento</span><input type="number" name="system.familiar.movement" value="{{system.familiar.movement}}" /></label>
+    <label><span>Protección</span><input type="number" name="system.familiar.protection" value="{{system.familiar.protection}}" /></label>
+    <label><span>Ataque</span><input type="number" name="system.familiar.attackBonus" value="{{system.familiar.attackBonus}}" /></label>
+    <label><span>Daño</span><input type="number" name="system.familiar.damage" value="{{system.familiar.damage}}" /></label>
+    <label><span>Percepción</span><input type="number" name="system.familiar.perception" value="{{system.familiar.perception}}" /></label>
+    <label><span>Voluntad</span><input type="number" name="system.familiar.will" value="{{system.familiar.will}}" /></label>
+  </div>
+  <label><span>Rasgos</span><textarea name="system.familiar.traits">{{system.familiar.traits}}</textarea></label>
+  <label><span>Habilidades de Familiar</span><textarea name="system.familiar.abilities">{{system.familiar.abilities}}</textarea></label>
+</section>
 </form>

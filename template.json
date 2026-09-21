@@ -249,7 +249,27 @@
         "ownerName": "",
         "ownerUuid": "",
         "bond": "Vinculado",
-        "nature": ""
+        "nature": "",
+        "bondState": "linked",
+        "temperament": "",
+        "desires": "",
+        "communication": "Emociones y conceptos simples",
+        "bondRange": "Corta / aproximada",
+        "independence": "independent"
+      },
+      "familiar": {
+        "scale": "small",
+        "movement": 6,
+        "perception": 0,
+        "will": 0,
+        "attackBonus": 0,
+        "damage": 2,
+        "protection": 0,
+        "traits": "",
+        "abilities": "",
+        "currentOrder": "",
+        "orderType": "none",
+        "incapacitated": false
       }
     }
   },

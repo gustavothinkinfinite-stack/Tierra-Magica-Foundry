@@ -1,5 +1,16 @@
 # Historial de cambios
 
+## 1.0.8
+
+- Auditoría profunda de Familiares: se formaliza autonomía, personalidad, deseos, comunicación aproximada y alcance narrativo del vínculo.
+- Acción Vinculada consume la Reacción del personaje para una acción táctica coordinada significativa; el Familiar no concede un segundo turno completo gratuito.
+- Cambiar una orden táctica compleja consume la Acción del personaje; órdenes simples persistentes pueden continuar mientras sigan siendo válidas.
+- Llamar mediante el vínculo no teletransporta ni revela coordenadas y no garantiza obediencia.
+- Ficha de Familiar ampliada con perfil simplificado, naturaleza, temperamento, deseos, orden actual, rasgos y habilidades.
+- Compartir sentidos, origen remoto de hechizos y comunicación superior requieren capacidades específicas; no se concede un segundo depósito completo de Maná.
+- A 0 Vida el Familiar queda Incapacitado/herido; muerte y ruptura dependen de su naturaleza y no eliminan automáticamente el Rasgo.
+
+
 ## 1.0.7
 
 - Auditoría arcano-industrial: dispositivos validan Energía y Caudal antes de activarse y descuentan sólo Energía.

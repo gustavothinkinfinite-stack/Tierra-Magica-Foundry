@@ -116,6 +116,19 @@ export class TierraMagicaActorSheet extends ActorSheet {
       "system.turn.reaction": true
     }));
     html.find("[data-action='open-familiar']").click(() => this.#openFamiliar());
+    html.find("[data-action='familiar-linked-action']").click(async () => {
+      const familiar = this.#linkedFamiliar();
+      if (!familiar) return ui.notifications.warn("No hay Familiar vinculado.");
+      const result = await Dialog.prompt({title:"Acción Vinculada",content:"<div class='form-group'><label>Acción táctica</label><input name='order' type='text'/></div>",label:"Ejecutar",callback:(html)=>({order:String(html.find("[name='order']").val() ?? "")}),rejectClose:false});
+      if (result) return this.actor.linkedFamiliarAction(familiar, result.order);
+    });
+    html.find("[data-action='familiar-command']").click(async () => {
+      const familiar = this.#linkedFamiliar();
+      if (!familiar) return ui.notifications.warn("No hay Familiar vinculado.");
+      const result = await Dialog.prompt({title:"Dar orden al Familiar",content:"<div class='form-group'><label>Nueva orden</label><input name='order' type='text'/></div>",label:"Ordenar",callback:(html)=>({order:String(html.find("[name='order']").val() ?? "")}),rejectClose:false});
+      if (result) return this.actor.commandFamiliar(familiar, result.order);
+    });
+    html.find("[data-action='familiar-call']").click(() => { const familiar=this.#linkedFamiliar(); if (familiar) return this.actor.callFamiliar(familiar); });
 
     html.find("[data-action='item-create']").click((event) => this.#createItem(event.currentTarget.dataset.type));
     html.find("[data-action='content-browser']").click((event) => this.#openContentBrowser(event.currentTarget.dataset.type));
@@ -287,6 +300,10 @@ export class TierraMagicaActorSheet extends ActorSheet {
     });
     if (!result) return;
     return this.actor.rollAttribute(key, result);
+  }
+
+  #linkedFamiliar() {
+    return game.actors.find((actor) => actor.type === "familiar" && actor.system.details?.ownerUuid === this.actor.uuid) ?? null;
   }
 
   async #openFamiliar() {
