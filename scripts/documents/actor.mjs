@@ -220,8 +220,22 @@ export class TierraMagicaActor extends Actor {
   async adjustResource(resource, amount) {
     const data = this.system.resources?.[resource];
     if (!data) return null;
-    const next = Math.min(toNumber(data.max), Math.max(0, toNumber(data.value) + toNumber(amount)));
-    return this.update({ ["system.resources." + resource + ".value"]: next });
+    const previous = toNumber(data.value);
+    const next = Math.min(toNumber(data.max), Math.max(0, previous + toNumber(amount)));
+    const updates = { ["system.resources." + resource + ".value"]: next };
+
+    if (resource === "health") {
+      if (previous > 0 && next === 0) {
+        updates["system.status.incapacitated"] = true;
+        if (toNumber(this.system.status?.trauma) === 0 && !this.system.recovery?.zeroTraumaApplied) {
+          updates["system.status.trauma"] = 1;
+          updates["system.recovery.zeroTraumaApplied"] = true;
+        }
+      } else if (next > 0) {
+        updates["system.status.incapacitated"] = false;
+      }
+    }
+    return this.update(updates);
   }
 
   async rest(kind = "rest") {
@@ -229,7 +243,9 @@ export class TierraMagicaActor extends Actor {
     const hp = this.system.resources.health;
     const mp = this.system.resources.mana;
     const recovery = this.system.recovery ?? {};
-    if (kind === "rest") {
+    if (kind === "breather") {
+      return ui.notifications.info(this.name + ": Respiro completado. No recupera Vida ni Maná; limpia Saturación compatible de forma contextual.");
+    } else if (kind === "rest") {
       if (!recovery.healthUsed) {
         updates["system.resources.health.value"] = Math.min(toNumber(hp.max), toNumber(hp.value) + toNumber(this.system.attributes.vig.value) + 2);
         updates["system.recovery.healthUsed"] = true;

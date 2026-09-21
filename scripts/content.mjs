@@ -65,6 +65,8 @@ export const STARTER_CONTENT = {
  ],
  formula:[
   {name:"Bálsamo Restaurador",system:{grade:"common",pdCost:1,saturating:true,family:"restaurativa",effect:"Recupera 4 Vida; no Trauma/Herida Grave.",price:12}},
+  {name:"Poción Restauradora",system:{grade:"common",pdCost:1,route:"Oral",saturating:true,family:"restaurativa",effect:"Acción: recupera 4 Vida, hasta el máximo y respetando límites de lesión; no reduce Trauma ni repara Heridas Graves.",price:12}},
+  {name:"Poción de Recuperación Arcana",system:{grade:"refined",pdCost:1,route:"Oral",saturating:true,family:"arcana",effect:"Acción: recupera 3 Maná, hasta el máximo; no elimina Fatiga ni consecuencias de Sobrecarga.",price:15}},
   {name:"Tónico de Vigor",system:{grade:"refined",pdCost:1,saturating:true,family:"potenciador",effect:"Ventaja en una prueba de VIG por esfuerzo prolongado.",price:10}},
   {name:"Supresor del Dolor",system:{grade:"refined",pdCost:1,saturating:true,family:"analgésica",effect:"Ignora una Desventaja causada por dolor compatible; no repara lesión.",price:15}},
   {name:"Neutralizante Común",system:{grade:"refined",pdCost:1,effect:"Nueva resistencia con Ventaja contra toxina compatible.",price:10}},

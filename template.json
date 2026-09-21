@@ -199,7 +199,8 @@
           "trauma": 0,
           "fatigue": 0,
           "bleeding": 0,
-          "conditions": ""
+          "conditions": "",
+          "incapacitated": false
         },
         "traits": {
           "size": "medium",
@@ -215,7 +216,8 @@
         "recovery": {
           "healthUsed": false,
           "manaUsed": false,
-          "healthCap": 999
+          "healthCap": 999,
+          "zeroTraumaApplied": false
         }
       }
     },

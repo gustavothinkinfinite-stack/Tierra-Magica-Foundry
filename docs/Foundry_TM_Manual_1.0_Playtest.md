@@ -30,7 +30,7 @@ Fuentes Alma/Divina/Ambiental/Externa. Disciplinas Evocación/Alteración/Restau
 Sobrecarga: falta exactamente1 Maná y queda al menos1; gastar restante; VOL+Canalización DF17. Éxito hechizo+Exhausto; fallo sin hechizo+Exhausto; Pifia consecuencia contextual. Dominación directa fuera del catálogo inicial. Sugestión no fuerza suicidio ni traición fundamental automática. Teletransporte forzado ordinario no coloca en destino inválido/inmediatamente letal.
 
 ## Alquimia, Ingeniería y Rituales
-Alquimia: Fórmula, Complejidad, Ingredientes, Tiempo, Dosis, Efecto. Rutina competente sin tirada. Saturante bloquea misma familia hasta Respiro. Bálsamo: +4 Vida, no Trauma/Herida. Venenos: Vía/Latencia/DF/Efecto/Duración; una resistencia normal; sin Toxicidad universal.
+Alquimia: Fórmula, Complejidad, Ingredientes, Tiempo, Dosis, Efecto. Rutina competente sin tirada. Saturante bloquea misma familia hasta Respiro. Bálsamo Restaurador y Poción Restauradora: +4 Vida, familia restaurativa; no reducen Trauma ni reparan Heridas Graves. Poción de Recuperación Arcana: +3 Maná, familia arcana; no supera el máximo ni elimina Fatiga/consecuencias de Sobrecarga. Consumir una preparación accesible en presión requiere normalmente una Acción. Venenos: Vía/Latencia/DF/Efecto/Duración; una resistencia normal; sin Toxicidad universal.
 
 Ingeniería: acumuladores con Energía/Caudal/Estabilidad; dispositivos con Consumo. Transferir no crea Energía; sumar Caudal requiere infraestructura. Sobrecarga Controlada: Caudal+1 con riesgo, no Energía. Averías Operativo→Dañado→Deshabilitado.
 

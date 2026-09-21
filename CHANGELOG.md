@@ -1,5 +1,14 @@
 # Historial de cambios
 
+## 1.0.3
+
+- Auditoría de Vida/Trauma: la primera caída real de Vida positiva a 0 aplica Incapacitado y, si corresponde, Trauma 0→1; caer repetidamente a 0 no incrementa Trauma automáticamente.
+- Se distinguen en ficha Respiro (~10 min), Descanso (~1 h) y Descanso completo (~8 h).
+- El umbral de Daño Grave sigue siendo una señal para el Director, no una creación automática de Herida Grave.
+- Añadidas Poción Restauradora (+4 Vida, familia restaurativa) y Poción de Recuperación Arcana (+3 Maná, familia arcana), ambas Saturantes y sin curar Trauma/Fatiga/Sobrecarga.
+- No se añaden penalizadores universales por Trauma ni automatización narrativa de Heridas Graves.
+
+
 ## 1.0.2
 
 - Auditoría de coherencia manual ↔ motor: Defensa de Maniobra vuelve a **11 + AGI + Bono Defensivo**.
