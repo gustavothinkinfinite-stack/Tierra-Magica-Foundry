@@ -3111,3 +3111,159 @@ form.tm-character-sheet-v03 {
     top: 118px;
   }
 }
+
+
+/* =========================================================
+   TIERRA MÁGICA v1.0.10 — FIX DE CABECERA Y LAYOUT REAL
+   Corrige el banner borroso, elimina la banda vacía y evita
+   que Defensas / Estado queden recortados en ventanas reales.
+   ========================================================= */
+
+.tm-character-sheet-v03 .tm-v03-shell {
+  container-type: inline-size;
+  container-name: tm-character-sheet;
+}
+
+/* La cabecera conserva exactamente la proporción del arte. */
+.tm-character-sheet-v03 .tm-v09-header {
+  flex: 0 0 auto !important;
+  width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: 1600 / 287;
+  line-height: 0;
+  overflow: hidden;
+  background: transparent !important;
+}
+
+.tm-character-sheet-v03 .tm-v09-title-art,
+.tm-character-sheet-v03 .tm-v091-title-art {
+  display: block;
+  width: 100%;
+  height: 100% !important;
+  max-height: none !important;
+  margin: 0;
+  object-fit: cover;
+  object-position: center;
+  background: transparent;
+}
+
+/* El dashboard usa el ancho real disponible de la hoja. */
+.tm-character-sheet-v03 .tm-v03-dashboard {
+  width: 100%;
+  min-width: 0;
+  grid-template-columns:
+    minmax(200px, .76fr)
+    minmax(360px, 1.54fr)
+    minmax(220px, .82fr);
+  gap: 12px;
+}
+
+.tm-character-sheet-v03 .tm-v03-left-rail,
+.tm-character-sheet-v03 .tm-v03-character-stage,
+.tm-character-sheet-v03 .tm-v03-right-rail,
+.tm-character-sheet-v03 .tm-v03-panel,
+.tm-character-sheet-v03 .tm-v03-defenses,
+.tm-character-sheet-v03 .tm-v03-state,
+.tm-character-sheet-v03 .tm-v03-list-panel {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.tm-character-sheet-v03 .tm-v03-right-rail {
+  width: 100%;
+  overflow: visible;
+}
+
+/* Las cuatro Defensas siempre caben dentro del panel. */
+.tm-character-sheet-v03 .tm-v03-defenses .tm-v03-defense-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
+  gap: 7px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.tm-character-sheet-v03 .tm-v03-defense-grid .tm-v09-defense {
+  width: 100%;
+  min-width: 0;
+  min-height: 69px;
+  grid-template-columns: 26px minmax(0, 1fr);
+  column-gap: 3px;
+  padding: 7px 6px;
+  box-sizing: border-box;
+}
+
+.tm-character-sheet-v03 .tm-v03-defense-grid .tm-v09-defense > i {
+  width: 24px;
+  height: 36px;
+  font-size: 15px;
+}
+
+.tm-character-sheet-v03 .tm-v03-defense-grid .tm-v09-defense span {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 6.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tm-character-sheet-v03 .tm-v03-defense-grid .tm-v09-defense b {
+  font-size: 19px;
+}
+
+/* El contenido derecho no puede ensanchar la columna por sus controles. */
+.tm-character-sheet-v03 .tm-v03-right-rail input,
+.tm-character-sheet-v03 .tm-v03-right-rail select,
+.tm-character-sheet-v03 .tm-v03-right-rail button,
+.tm-character-sheet-v03 .tm-v03-derived-list > div {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Adaptación por ancho de la propia ficha, no por el monitor completo. */
+@container tm-character-sheet (max-width: 860px) {
+  .tm-character-sheet-v03 .tm-v03-dashboard {
+    grid-template-columns: minmax(210px, .72fr) minmax(360px, 1.28fr);
+  }
+
+  .tm-character-sheet-v03 .tm-v03-right-rail {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .9fr) repeat(3, minmax(0, .72fr));
+    gap: 10px;
+    align-items: start;
+  }
+}
+
+@container tm-character-sheet (max-width: 690px) {
+  .tm-character-sheet-v03 .tm-v03-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .tm-character-sheet-v03 .tm-v03-left-rail,
+  .tm-character-sheet-v03 .tm-v03-character-stage,
+  .tm-character-sheet-v03 .tm-v03-right-rail {
+    grid-column: 1;
+  }
+
+  .tm-character-sheet-v03 .tm-v03-right-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Los media queries históricos no vuelven a forzar alturas erróneas. */
+@media (max-width: 1180px), (max-width: 900px) {
+  .tm-character-sheet-v03 .tm-v09-header {
+    flex-basis: auto !important;
+    height: auto !important;
+  }
+
+  .tm-character-sheet-v03 .tm-v09-title-art,
+  .tm-character-sheet-v03 .tm-v091-title-art {
+    height: 100% !important;
+  }
+}
