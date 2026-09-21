@@ -221,6 +221,9 @@
         },
         "magic": {
           "sustainedSpellIds": []
+        },
+        "alchemy": {
+          "saturatedFamilies": []
         }
       }
     },

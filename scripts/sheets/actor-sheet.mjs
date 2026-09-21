@@ -125,6 +125,7 @@ export class TierraMagicaActorSheet extends ActorSheet {
     html.find("[data-action='item-attack']").click((event) => this.actor.rollWeapon(this.#getItem(event)));
     html.find("[data-action='item-damage']").click((event) => this.actor.rollDamage(this.#getItem(event)));
     html.find("[data-action='item-spell']").click((event) => this.actor.useSpell(this.#getItem(event)));
+    html.find("[data-action='item-formula']").click((event) => this.actor.useFormula(this.#getItem(event)));
     html.find("[data-action='stop-sustained']").click((event) => this.actor.stopSustainedSpell(event.currentTarget.dataset.itemId));
     html.find("[data-action='create-familiar']").click(() => this.#createFamiliar());
   }

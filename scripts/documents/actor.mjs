@@ -259,6 +259,39 @@ export class TierraMagicaActor extends Actor {
     await this.update({ "system.magic.sustainedSpellIds": [...current, item.id] });
   }
 
+  async useFormula(item) {
+    if (!item || item.type !== "formula") return null;
+    if (toNumber(item.system.quantity, 1) <= 0) return ui.notifications.warn("No quedan dosis de " + item.name + ".");
+
+    const family = String(item.system.family ?? "").trim().toLowerCase();
+    const saturated = Array.isArray(this.system.alchemy?.saturatedFamilies) ? [...this.system.alchemy.saturatedFamilies] : [];
+    if (item.system.saturating && family && saturated.includes(family)) {
+      return ui.notifications.warn(this.name + " ya está Saturado por la familia " + family + ".");
+    }
+
+    const updates = {};
+    if (item.name === "Poción Restauradora" || item.name === "Bálsamo Restaurador") {
+      const hp = this.system.resources.health;
+      const cap = Math.max(0, Math.min(toNumber(hp.max), toNumber(this.system.recovery?.healthCap, hp.max)));
+      updates["system.resources.health.value"] = Math.min(cap, toNumber(hp.value) + 4);
+    } else if (item.name === "Poción de Recuperación Arcana") {
+      const mp = this.system.resources.mana;
+      updates["system.resources.mana.value"] = Math.min(toNumber(mp.max), toNumber(mp.value) + 3);
+    } else {
+      return ui.notifications.info(item.name + ": efecto contextual. Aplica la fórmula según su descripción.");
+    }
+
+    if (item.system.saturating && family) {
+      updates["system.alchemy.saturatedFamilies"] = [...new Set([...saturated, family])];
+    }
+    await this.update(updates);
+    await item.update({ "system.quantity": Math.max(0, toNumber(item.system.quantity, 1) - 1) });
+    return ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(this.name) + " usa " + foundry.utils.escapeHTML(item.name) + "</strong><p>" + foundry.utils.escapeHTML(item.system.effect ?? "") + "</p></div>"
+    });
+  }
+
   async adjustResource(resource, amount) {
     const data = this.system.resources?.[resource];
     if (!data) return null;
@@ -286,7 +319,9 @@ export class TierraMagicaActor extends Actor {
     const mp = this.system.resources.mana;
     const recovery = this.system.recovery ?? {};
     if (kind === "breather") {
-      return ui.notifications.info(this.name + ": Respiro completado. No recupera Vida ni Maná; limpia Saturación compatible de forma contextual.");
+      updates["system.alchemy.saturatedFamilies"] = [];
+      await this.update(updates);
+      return ui.notifications.info(this.name + ": Respiro completado. No recupera Vida ni Maná; limpia Saturación de preparaciones compatibles.");
     } else if (kind === "rest") {
       if (!recovery.healthUsed) {
         updates["system.resources.health.value"] = Math.min(toNumber(hp.max), toNumber(hp.value) + toNumber(this.system.attributes.vig.value) + 2);

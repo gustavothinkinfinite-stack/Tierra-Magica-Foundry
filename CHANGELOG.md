@@ -1,5 +1,14 @@
 # Historial de cambios
 
+## 1.0.5
+
+- Auditoría de Alquimia: las Fórmulas aparecen en la ficha y pueden consumirse mediante una acción de uso.
+- Poción Restauradora/Bálsamo recuperan 4 Vida respetando Vida máxima y límite de recuperación por lesión; Poción de Recuperación Arcana recupera 3 Maná hasta el máximo.
+- Las preparaciones Saturantes registran su familia en el Actor y bloquean una segunda aplicación beneficiosa de esa familia.
+- Respiro limpia las Saturaciones compatibles sin recuperar Vida ni Maná.
+- Cada uso automatizado consume una dosis. Fórmulas de efecto contextual siguen mostrando su descripción sin inventar automatización.
+
+
 ## 1.0.4
 
 - Auditoría de magia: Sobrecarga disponible sólo cuando falta exactamente 1 Maná, queda al menos 1 y el personaje no está Colapsado.
