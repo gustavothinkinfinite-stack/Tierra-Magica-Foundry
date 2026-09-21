@@ -41,7 +41,7 @@ export class TierraMagicaActor extends Actor {
       manaMax: 6 + vol * 3,
       severeThreshold: severeThreshold(vig),
       defense: 11 + agi + martialDefense + shield + extraDefense,
-      maneuverDefense: 11 + agi + martialDefense + extraDefense,
+      maneuverDefense: 11 + Math.max(toNumber(a.fue?.value, 1), agi) + martialDefense + extraDefense,
       mentalDefense: 11 + vol,
       bodyDefense: 11 + vig,
       protection: armor + toNumber(s.combat?.protectionBonus),
@@ -84,10 +84,11 @@ export class TierraMagicaActor extends Actor {
     const totalModifier = attribute + skill + toNumber(modifier);
     const roll = await new Roll(rollFormula(mode, totalModifier), this.getRollData()).evaluate();
 
-    const tag = extraordinaryTag(roll);
+    let tag = "";
     let resultText = "";
     if (df !== null && df !== undefined && df !== "") {
       const result = classifyResult(roll.total, df);
+      tag = extraordinaryTag(roll, { success: result.success });
       resultText = "<p><strong>" + result.degree + "</strong> · DF " + toNumber(df) + " · margen " + result.margin + "</p>";
       if (tag === "Hazaña") resultText += result.success
         ? "<p class='tm-extraordinary'>Hazaña: éxito excepcional.</p>"
@@ -95,8 +96,9 @@ export class TierraMagicaActor extends Actor {
       if (tag === "Pifia") resultText += result.success
         ? "<p class='tm-extraordinary'>Pifia en éxito: el objetivo se logra con una complicación coherente.</p>"
         : "<p class='tm-extraordinary'>Pifia: fallo con una complicación seria y contextual.</p>";
-    } else if (tag) {
-      resultText = "<p class='tm-extraordinary'><strong>" + tag + "</strong></p>";
+    } else {
+      tag = extraordinaryTag(roll);
+      if (tag) resultText = "<p class='tm-extraordinary'><strong>" + tag + "</strong></p>";
     }
 
     const skillBreakdown = skillKey ? this.#skillBreakdownHtml(skillKey, attribute, modifier) : "";
@@ -226,12 +228,23 @@ export class TierraMagicaActor extends Actor {
     const updates = {};
     const hp = this.system.resources.health;
     const mp = this.system.resources.mana;
+    const recovery = this.system.recovery ?? {};
     if (kind === "rest") {
-      updates["system.resources.health.value"] = Math.min(toNumber(hp.max), toNumber(hp.value) + toNumber(this.system.attributes.vig.value) + 2);
-      updates["system.resources.mana.value"] = Math.min(toNumber(mp.max), toNumber(mp.value) + toNumber(this.system.attributes.vol.value) + 1);
+      if (!recovery.healthUsed) {
+        updates["system.resources.health.value"] = Math.min(toNumber(hp.max), toNumber(hp.value) + toNumber(this.system.attributes.vig.value) + 2);
+        updates["system.recovery.healthUsed"] = true;
+      }
+      if (!recovery.manaUsed) {
+        updates["system.resources.mana.value"] = Math.min(toNumber(mp.max), toNumber(mp.value) + toNumber(this.system.attributes.vol.value) + 1);
+        updates["system.recovery.manaUsed"] = true;
+      }
     } else if (kind === "full") {
-      updates["system.resources.health.value"] = toNumber(hp.max);
+      const cap = Math.max(0, Math.min(toNumber(hp.max), toNumber(recovery.healthCap, hp.max)));
+      updates["system.resources.health.value"] = cap;
       updates["system.resources.mana.value"] = toNumber(mp.max);
+      updates["system.recovery.healthUsed"] = false;
+      updates["system.recovery.manaUsed"] = false;
+      updates["system.status.fatigue"] = 0;
     }
     await this.update(updates);
   }

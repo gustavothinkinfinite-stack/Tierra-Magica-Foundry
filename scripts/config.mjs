@@ -50,10 +50,10 @@ export const TM_CONFIG = {
   techniqueGrades: { basic: "Básica", advanced: "Avanzada", master: "Maestra", legendary: "Legendaria" },
   traitCategories: { innate: "Innato", acquired: "Adquirido", bond: "Vincular", conditional: "Condicional" },
   availability: { common: "Común", professional: "Profesional", restricted: "Restringida", rare: "Rara", exceptional: "Excepcional" },
-  qualities: { common: "Común", good: "Bueno", masterwork: "Obra Maestra", masterpiece: "Pieza Maestra" },
+  qualities: { defective: "Defectuoso", common: "Común", superior: "Superior", exceptional: "Excepcional" },
   itemTypes: {
     weapon: "Arma", armor: "Armadura", shield: "Escudo", equipment: "Equipo", spell: "Hechizo",
-    technique: "Técnica", trait: "Rasgo", specialization: "Especialización"
+    technique: "Técnica", trait: "Rasgo", specialization: "Especialización", formula: "Fórmula", ritual: "Ritual", device: "Dispositivo"
   }
 };
 TM_CONFIG.skillLabels = Object.fromEntries(Object.entries(TM_CONFIG.skills).map(([k,v]) => [k, v.label]));

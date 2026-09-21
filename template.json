@@ -13,7 +13,10 @@
           "ancestry": "",
           "background": "",
           "concept": "",
-          "pdSpent": 0
+          "pdSpent": 0,
+          "prSpent": 0,
+          "creationPd": 25,
+          "creationPr": 3
         },
         "attributes": {
           "fue": {
@@ -205,12 +208,15 @@
           "notes": ""
         },
         "currency": {
-          "gold": 0,
-          "silver": 0,
-          "copper": 0
+          "crowns": 100
         },
         "biography": "",
-        "notes": ""
+        "notes": "",
+        "recovery": {
+          "healthUsed": false,
+          "manaUsed": false,
+          "healthCap": 999
+        }
       }
     },
     "character": {
@@ -248,7 +254,10 @@
       "spell",
       "technique",
       "trait",
-      "specialization"
+      "specialization",
+      "formula",
+      "ritual",
+      "device"
     ],
     "templates": {
       "base": {
@@ -275,23 +284,28 @@
       "penetration": 0,
       "strengthMin": 0,
       "rangeOptimal": 0,
-      "severe": ""
+      "severe": "",
+      "price": 0,
+      "reload": 0,
+      "power": 0
     },
     "armor": {
       "templates": [
         "base"
       ],
       "protection": 1,
-      "strengthMin": 0
+      "strengthMin": 0,
+      "price": 0
     },
     "shield": {
       "templates": [
         "base"
       ],
       "passiveDefense": 1,
-      "block": 3,
+      "block": 2,
       "strengthMin": 0,
-      "frontalOnly": false
+      "frontalOnly": false,
+      "price": 0
     },
     "equipment": {
       "templates": [
@@ -314,7 +328,11 @@
       "range": "",
       "requirements": "",
       "sustained": false,
-      "skillModifiersActive": false
+      "skillModifiersActive": false,
+      "grade": "basic",
+      "activation": "Acción",
+      "duration": "Instantánea",
+      "area": ""
     },
     "technique": {
       "templates": [
@@ -323,7 +341,11 @@
       "grade": "basic",
       "pdCost": 2,
       "requirements": "",
-      "effect": ""
+      "effect": "",
+      "activation": "",
+      "cost": "",
+      "target": "",
+      "restrictions": ""
     },
     "trait": {
       "templates": [
@@ -340,6 +362,57 @@
       ],
       "skill": "",
       "requirements": "",
+      "effect": "",
+      "pdCost": 2
+    },
+    "formula": {
+      "templates": [
+        "base"
+      ],
+      "grade": "common",
+      "pdCost": 1,
+      "preparation": "",
+      "ingredients": "",
+      "time": "",
+      "dose": "",
+      "route": "",
+      "duration": "",
+      "saturating": false,
+      "family": "",
+      "effect": "",
+      "preservation": ""
+    },
+    "ritual": {
+      "templates": [
+        "base"
+      ],
+      "grade": "basic",
+      "pdCost": 2,
+      "difficulty": 15,
+      "time": "30 minutos",
+      "participants": "Director 1",
+      "usefulAssistants": 0,
+      "components": "",
+      "source": "",
+      "range": "",
+      "manaDirector": 0,
+      "manaAssistantMax": 0,
+      "flowRequired": 0,
+      "effect": "",
+      "failure": ""
+    },
+    "device": {
+      "templates": [
+        "base"
+      ],
+      "category": "arcano-industrial",
+      "energy": {
+        "value": 0,
+        "max": 0
+      },
+      "flow": 0,
+      "stability": "stable",
+      "consumption": 0,
       "effect": ""
     }
   }

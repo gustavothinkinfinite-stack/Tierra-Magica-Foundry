@@ -5,7 +5,7 @@ import { TierraMagicaActorSheet } from "./sheets/actor-sheet.mjs";
 import { TierraMagicaItemSheet } from "./sheets/item-sheet.mjs";
 
 Hooks.once("init", async () => {
-  console.info("Foundry T.M. | Iniciando Tierra Mágica v0.9.1");
+  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.0");
 
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
@@ -23,7 +23,7 @@ Hooks.once("init", async () => {
     label: "Foundry T.M."
   });
 
-  const itemTypes = ["weapon", "armor", "shield", "equipment", "spell", "technique", "trait", "specialization"];
+  const itemTypes = ["weapon", "armor", "shield", "equipment", "spell", "technique", "trait", "specialization", "formula", "ritual", "device"];
   Items.unregisterSheet("core", ItemSheet, { types: itemTypes });
   Items.registerSheet("tierra-magica", TierraMagicaItemSheet, {
     types: itemTypes,

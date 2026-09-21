@@ -1,46 +1,13 @@
 # Tierra Mágica — Foundry T.M.
 
-Sistema para **Foundry VTT v14** basado en el **Manual Básico v0.1 Playtest** de Foundry T.M.
+Sistema para Foundry VTT v14 basado en **Foundry T.M. 1.0 Playtest**.
 
-## Rama de reconstrucción
+La fuente mecánica canónica es `docs/Foundry_TM_Manual_1.0_Playtest.md`. Las versiones históricas no prevalecen cuando la contradicen.
 
-Esta versión reemplaza la adaptación anterior (d20, clases, 8 características y perks) por el núcleo actual del manual:
+Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + 100 C en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-- Motor **2d10 + Atributo + Habilidad + modificadores ≥ DF**.
-- Ventaja/Desventaja mediante **3d10 conservando los dos mejores/peores**.
-- Hazañas (10/10) y Pifias (1/1) interpretadas después de determinar éxito o fallo.
-- Siete Atributos: FUE, AGI, VIG, INT, PER, VOL y PRE.
-- 26 Habilidades con rangos Sin entrenamiento, Aprendiz, Entrenado, Experto, Maestro y Gran Maestro.
-- Atributo y Habilidad desacoplados: el atributo se elige al realizar cada prueba.
-- Vida, Maná, Defensa, Defensa de Maniobra, Mental y Corporal automáticas.
-- Protección, Penetración, Daño Grave y estados de Trauma/Fatiga.
-- Armas, armaduras y escudos del manual como contenido de referencia.
-- Magia con Fuentes, Disciplinas, Maná, Canalización y requisitos de conocimiento.
-- Hechizos de calibración del Manual v0.1.
-- Técnicas, Rasgos y Especializaciones como tipos de objeto independientes.
-- Familiares como Actor propio vinculado al personaje.
-- Estética visual ajustada a la guía canónica arcano-industrial de Tierra Mágica.
-
-## Estado
-
-**0.3.0 — reconstrucción estructural para playtest.**
-
-El sistema implementa el núcleo que el manual declara consolidado y deja editables los módulos que el propio documento marca como provisionales o pendientes. No inventa razas, bestiario, economía definitiva ni grimorio completo.
-
-## Instalación de desarrollo
-
-Para probar esta reconstrucción antes de fusionarla, usar la rama:
-
-`foundry-tm-manual-v01`
-
-Al fusionarse a `main`, la URL normal del manifiesto vuelve a ser:
-
-`https://raw.githubusercontent.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/main/system.json`
-
-## Desarrollo
+**1.0.0 — núcleo estable para playtest.** Cambios del motor requieren problemas reproducibles.
 
 ```bash
 npm run validate
 ```
-
-La validación comprueba sintaxis del núcleo y reglas matemáticas básicas.

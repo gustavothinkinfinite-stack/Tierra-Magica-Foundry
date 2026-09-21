@@ -21,3 +21,5 @@ test("incluye equipo y hechizos de calibración", () => {
   assert.ok(STARTER_CONTENT.spell.some((i) => i.name === "Regeneración"));
   assert.ok(STARTER_CONTENT.technique.some((i) => i.name === "Golpe Potente"));
 });
+
+test("contenido 1.0 cubre economía y subsistemas finales",()=>{assert.equal(STARTER_CONTENT.armor.find(i=>i.name==="Placas").system.price,85);assert.equal(STARTER_CONTENT.shield.find(i=>i.name==="Escudo pesado").system.block,2);assert.ok(STARTER_CONTENT.formula.some(i=>i.name==="Bálsamo Restaurador"));assert.ok(STARTER_CONTENT.ritual.some(i=>i.name==="Portal Estable"));assert.ok(STARTER_CONTENT.device.some(i=>i.name==="Celda arcana menor"));assert.equal(STARTER_CONTENT.technique.find(i=>i.name==="Estocada Perforante").system.effect,"-1 ataque, -1 daño, Pen +2.");});
