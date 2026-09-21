@@ -72,6 +72,48 @@
         <label><span>Acceso / efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
       {{/if}}
 
+      {{#if isFormula}}
+        <label><span>Grado</span><input type="text" name="system.grade" value="{{system.grade}}" /></label>
+        <label><span>Coste PD</span><input type="number" name="system.pdCost" value="{{system.pdCost}}" min="0" /></label>
+        <label><span>Preparación</span><input type="text" name="system.preparation" value="{{system.preparation}}" /></label>
+        <label><span>Ingredientes</span><input type="text" name="system.ingredients" value="{{system.ingredients}}" /></label>
+        <label><span>Tiempo</span><input type="text" name="system.time" value="{{system.time}}" /></label>
+        <label><span>Dosis</span><input type="text" name="system.dose" value="{{system.dose}}" /></label>
+        <label><span>Vía</span><input type="text" name="system.route" value="{{system.route}}" /></label>
+        <label><span>Duración</span><input type="text" name="system.duration" value="{{system.duration}}" /></label>
+        <label><span>Familia</span><input type="text" name="system.family" value="{{system.family}}" /></label>
+        <label class="tm-check"><span>Saturante</span><input type="checkbox" name="system.saturating" {{checked system.saturating}} /></label>
+        <label><span>Efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
+        <label><span>Conservación</span><input type="text" name="system.preservation" value="{{system.preservation}}" /></label>
+      {{/if}}
+
+      {{#if isRitual}}
+        <label><span>Grado</span><input type="text" name="system.grade" value="{{system.grade}}" /></label>
+        <label><span>Coste PD</span><input type="number" name="system.pdCost" value="{{system.pdCost}}" min="0" /></label>
+        <label><span>DF</span><input type="number" name="system.difficulty" value="{{system.difficulty}}" min="0" /></label>
+        <label><span>Tiempo</span><input type="text" name="system.time" value="{{system.time}}" /></label>
+        <label><span>Participantes</span><input type="text" name="system.participants" value="{{system.participants}}" /></label>
+        <label><span>Asistentes útiles</span><input type="number" name="system.usefulAssistants" value="{{system.usefulAssistants}}" min="0" /></label>
+        <label><span>Componentes</span><input type="text" name="system.components" value="{{system.components}}" /></label>
+        <label><span>Fuente</span><input type="text" name="system.source" value="{{system.source}}" /></label>
+        <label><span>Alcance</span><input type="text" name="system.range" value="{{system.range}}" /></label>
+        <label><span>Maná Director</span><input type="number" name="system.manaDirector" value="{{system.manaDirector}}" min="0" /></label>
+        <label><span>Maná máx. por asistente</span><input type="number" name="system.manaAssistantMax" value="{{system.manaAssistantMax}}" min="0" /></label>
+        <label><span>Caudal requerido</span><input type="number" name="system.flowRequired" value="{{system.flowRequired}}" min="0" /></label>
+        <label><span>Efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
+        <label><span>Fallo</span><input type="text" name="system.failure" value="{{system.failure}}" /></label>
+      {{/if}}
+
+      {{#if isDevice}}
+        <label><span>Categoría</span><input type="text" name="system.category" value="{{system.category}}" /></label>
+        <label><span>Energía actual</span><input type="number" name="system.energy.value" value="{{system.energy.value}}" min="0" /></label>
+        <label><span>Energía máxima</span><input type="number" name="system.energy.max" value="{{system.energy.max}}" min="0" /></label>
+        <label><span>Caudal</span><input type="number" name="system.flow" value="{{system.flow}}" min="0" /></label>
+        <label><span>Estabilidad</span><input type="text" name="system.stability" value="{{system.stability}}" /></label>
+        <label><span>Consumo</span><input type="number" name="system.consumption" value="{{system.consumption}}" min="0" /></label>
+        <label><span>Efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
+      {{/if}}
+
       <label><span>Cantidad</span><input type="number" name="system.quantity" value="{{system.quantity}}" min="0" /></label>
       <label><span>Peso</span><input type="number" name="system.weight" value="{{system.weight}}" min="0" step="0.1" /></label>
       <label><span>Precio</span><input type="number" name="system.price" value="{{system.price}}" min="0" step="0.1" /></label>

@@ -1,5 +1,14 @@
 # Historial de cambios
 
+## 1.0.2
+
+- Auditoría de coherencia manual ↔ motor: Defensa de Maniobra vuelve a **11 + AGI + Bono Defensivo**.
+- Restauradas las identidades mecánicas consolidadas de armas; se elimina la inflación accidental de daño/Penetración introducida al consolidar 1.0.
+- Fórmulas, Rituales y Dispositivos ya exponen en su ficha los campos definidos por el esquema.
+- Reparados tests obsoletos del manifiesto 0.9.1 y el nombre `Placas`; la suite pasa a exigir los once tipos de Item de 1.0.
+- Sin automatizar decisiones contextuales del Director: Escala, heridas concretas, geometría frontal y consecuencias narrativas siguen siendo deliberadamente manuales.
+
+
 ## 1.0.1
 
 - Resultado extraordinario canónico restaurado: **10+10 conservado = Hazaña** y **1+1 conservado = Pifia**.

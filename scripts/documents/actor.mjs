@@ -41,7 +41,7 @@ export class TierraMagicaActor extends Actor {
       manaMax: 6 + vol * 3,
       severeThreshold: severeThreshold(vig),
       defense: 11 + agi + martialDefense + shield + extraDefense,
-      maneuverDefense: 11 + Math.max(toNumber(a.fue?.value, 1), agi) + martialDefense + extraDefense,
+      maneuverDefense: 11 + agi + martialDefense + extraDefense,
       mentalDefense: 11 + vol,
       bodyDefense: 11 + vig,
       protection: armor + toNumber(s.combat?.protectionBonus),

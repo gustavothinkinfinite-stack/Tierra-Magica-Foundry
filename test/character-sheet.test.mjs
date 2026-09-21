@@ -234,3 +234,5 @@ test("v0.9.1 integra el banner ilustrado aprobado y limpia el gutter lateral", a
 
   await access(resolve(root, "assets/ui/tierra-magica-banner-final.jpg"));
 });
+
+test("auditoría 1.0.2 alinea Maniobra y editores de subsistemas",async()=>{const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");const item=await readFile(resolve(root,"templates/item/item-sheet.hbs"),"utf8");assert.equal(actor.includes("maneuverDefense: 11 + agi + martialDefense + extraDefense"),true);assert.equal(actor.includes("Math.max(toNumber(a.fue"),false);for(const flag of ["isFormula","isRitual","isDevice"]) assert.equal(item.includes(flag),true);for(const field of ["system.saturating","system.manaDirector","system.energy.value","system.flow"]) assert.equal(item.includes(field),true);});
