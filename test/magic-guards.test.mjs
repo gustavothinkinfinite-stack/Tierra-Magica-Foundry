@@ -14,11 +14,28 @@ test("Sobrecarga lee el total real del Roll contenido en ChatMessage", async () 
   assert.equal(guards.includes("message.total = total"), true);
 });
 
+test("magia contextual no inventa tirada sin incertidumbre y oposición sí la exige", async () => {
+  const { spellNeedsCheck } = await import("../scripts/rules/magic-guards.mjs");
+  assert.equal(spellNeedsCheck({system:{checkMode:"contextual",defense:"df"}}), false);
+  assert.equal(spellNeedsCheck({system:{checkMode:"automatic",defense:"mental"}}), false);
+  assert.equal(spellNeedsCheck({system:{checkMode:"required",defense:"df"}}), true);
+  assert.equal(spellNeedsCheck({system:{checkMode:"contextual",defense:"mental"}}), true);
+  assert.equal(spellNeedsCheck({system:{checkMode:"contextual",defense:"body"}}), true);
+  assert.equal(spellNeedsCheck({system:{checkMode:"contextual",defense:"normal"}}), true);
+});
+
+test("omitir la tirada final no omite la Sobrecarga", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
+  assert.equal(guards.includes('startsWith("Hechizo:")'), true);
+  assert.equal(guards.includes("actorRollCheck.call(this, options)"), true);
+  assert.equal(guards.includes("tmAutomaticSpell"), true);
+});
+
 test("un hechizo sostenido fallido no permanece activo", async () => {
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
   assert.equal(guards.includes("if (!success)"), true);
   assert.equal(guards.includes("after.filter((id) => id !== item.id)"), true);
-  assert.equal(guards.includes("El Maná ya pagado no se devuelve"), true);
+  assert.equal(guards.includes("el Maná ya pagado no se devuelve"), true);
 });
 
 test("superar Sostenimiento abandona un efecto previo en vez de invalidar el lanzamiento", async () => {
