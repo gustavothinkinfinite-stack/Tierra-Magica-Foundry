@@ -4,8 +4,10 @@ import { TierraMagicaItem } from "./documents/item.mjs";
 import { TierraMagicaActorSheet } from "./sheets/actor-sheet.mjs";
 import { TierraMagicaItemSheet } from "./sheets/item-sheet.mjs";
 import { installFamiliarGuards } from "./rules/familiar-guards.mjs";
+import { installMagicGuards } from "./rules/magic-guards.mjs";
 
 installFamiliarGuards(TierraMagicaActor);
+installMagicGuards(TierraMagicaActor);
 
 Hooks.once("init", async () => {
   console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.10");
