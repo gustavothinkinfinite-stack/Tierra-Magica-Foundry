@@ -7,10 +7,10 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = async (file) => JSON.parse(await readFile(resolve(root, file), "utf8"));
 
-test("el manifiesto describe Foundry T.M. 1.0.9", async () => {
+test("el manifiesto describe Foundry T.M. 1.0.10", async () => {
   const manifest = await readJson("system.json");
   assert.equal(manifest.id, "tierra-magica");
-  assert.equal(manifest.version, "1.0.9");
+  assert.equal(manifest.version, "1.0.10");
   assert.equal(manifest.compatibility.verified, "14");
   assert.equal(manifest.initiative.startsWith("2d10"), true);
   await Promise.all([...manifest.esmodules, ...manifest.styles, ...manifest.languages.map((l) => l.path)]
