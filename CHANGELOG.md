@@ -1,5 +1,15 @@
 # Historial de cambios
 
+## 1.0.7
+
+- Auditoría arcano-industrial: dispositivos validan Energía y Caudal antes de activarse y descuentan sólo Energía.
+- Estados de dispositivo normalizados: Operativo, Dañado y Deshabilitado.
+- Sobrecarga Controlada disponible sólo en construcciones compatibles: INT + Ingeniería DF16.
+- Éxito de Sobrecarga habilita Caudal efectivo +1 para esa activación y deja el dispositivo Dañado; fallo lo deja Deshabilitado sin activación.
+- Sobrecarga nunca crea Energía ni usa Maná personal; Pifias energéticas permanecen contextuales.
+- Transferencias y suma de Caudal continúan manuales cuando dependen de infraestructura real.
+
+
 ## 1.0.6
 
 - Auditoría de Rituales: los rituales aparecen en la ficha y pueden resolverse con una única tirada principal de Ritualismo.

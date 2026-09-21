@@ -321,6 +321,41 @@ export class TierraMagicaActor extends Actor {
     return roll;
   }
 
+  async useDevice(item) {
+    if (!item || item.type !== "device") return null;
+    const condition = String(item.system.condition ?? "operative");
+    if (condition === "disabled") return ui.notifications.warn(item.name + " está Deshabilitado.");
+    const consumption = Math.max(0, toNumber(item.system.consumption));
+    const energy = Math.max(0, toNumber(item.system.energy?.value));
+    const flow = Math.max(0, toNumber(item.system.flow));
+    if (consumption > flow) return ui.notifications.warn(item.name + " requiere más Caudal del que puede entregar.");
+    if (consumption > energy) return ui.notifications.warn(item.name + " no tiene Energía suficiente.");
+    if (consumption) await item.update({ "system.energy.value": energy - consumption });
+    return ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(item.name) + "</strong><p>Consumo " + consumption + " Energía · Caudal " + flow + "</p><p>" + foundry.utils.escapeHTML(item.system.effect ?? "") + "</p></div>"
+    });
+  }
+
+  async overloadDevice(item) {
+    if (!item || item.type !== "device") return null;
+    if (!item.system.overloadAllowed) return ui.notifications.warn(item.name + " no admite Sobrecarga Controlada.");
+    if (String(item.system.condition ?? "operative") === "disabled") return ui.notifications.warn(item.name + " está Deshabilitado.");
+    const roll = await this.rollCheck({
+      label: "Sobrecarga Controlada: " + item.name,
+      attributeKey: "int",
+      skillKey: "engineering",
+      df: 16
+    });
+    const success = toNumber(roll?.total) >= 16;
+    await item.update({ "system.condition": success ? "damaged" : "disabled" });
+    const outcome = success
+      ? "Funciona esta activación con Caudal efectivo +1 y queda Dañado."
+      : "No funciona y queda Deshabilitado.";
+    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Sobrecarga Controlada</strong><p>" + outcome + "</p><p>La Pifia puede añadir una consecuencia energética contextual.</p></div>" });
+    return roll;
+  }
+
   async adjustResource(resource, amount) {
     const data = this.system.resources?.[resource];
     if (!data) return null;

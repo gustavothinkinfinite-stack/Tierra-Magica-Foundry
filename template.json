@@ -421,7 +421,9 @@
       "flow": 0,
       "stability": "stable",
       "consumption": 0,
-      "effect": ""
+      "effect": "",
+      "condition": "operative",
+      "overloadAllowed": true
     }
   }
 }

@@ -2,7 +2,7 @@
   "id": "tierra-magica",
   "title": "Tierra Mágica — Foundry T.M.",
   "description": "Foundry T.M. 1.0 Playtest: 2d10, desarrollo sin clases, combate, Trauma, magia, alquimia, rituales, ingeniería arcano-industrial y familiares.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
