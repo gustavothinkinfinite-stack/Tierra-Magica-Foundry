@@ -3,6 +3,7 @@ import {
   toNumber, clamp, rankBonus, defenseBonus, rollFormula,
   classifyResult, extraordinaryTag, finalDamage, severeThreshold
 } from "../rules.mjs";
+import { attackHits, resolveWeaponImpact } from "../rules/combat-impact.mjs";
 
 export class TierraMagicaActor extends Actor {
   prepareDerivedData() {
@@ -153,9 +154,12 @@ export class TierraMagicaActor extends Actor {
 
   async rollWeapon(item, { df = null, mode = "normal", modifier = 0 } = {}) {
     if (!item || item.type !== "weapon") return null;
-    const target = [...(game.user.targets ?? [])][0]?.actor;
-    const targetDf = df ?? target?.system?.derived?.defense ?? null;
-    return this.rollCheck({
+    const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
+    const uniqueTargets = [...new Map(selected.map((actor) => [actor.uuid ?? actor.id, actor])).values()];
+    if (uniqueTargets.length !== 1) return ui.notifications.warn("El ataque requiere exactamente un objetivo válido.");
+    const target = uniqueTargets[0];
+    const targetDf = df ?? target.system?.derived?.defense;
+    const roll = await this.rollCheck({
       label: "Ataque con " + item.name,
       attributeKey: item.system.attackAttribute || "agi",
       skillKey: item.system.skill || "martialWeapons",
@@ -163,31 +167,34 @@ export class TierraMagicaActor extends Actor {
       mode,
       modifier
     });
+    const total = toNumber(roll?.rolls?.[0]?.total ?? roll?.roll?.total ?? roll?.total, Number.NaN);
+    const hit = attackHits(total, targetDf);
+    if (!hit) {
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: "<div class='tm-chat-card'><strong>Impacto — " + foundry.utils.escapeHTML(item.name) +
+          "</strong><p>" + foundry.utils.escapeHTML(target.name) + ": fallo. No se genera daño.</p></div>"
+      });
+      return roll;
+    }
+    const impact = resolveWeaponImpact(item, this, target);
+    const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
+    if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: "<div class='tm-chat-card'><strong>Impacto — " + foundry.utils.escapeHTML(item.name) +
+        "</strong><p><strong>" + foundry.utils.escapeHTML(target.name) + "</strong>: " + impact.damage +
+        " daño · Protección " + impact.protection + " → " + impact.effectiveProtection +
+        (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") +
+        (!canUpdate && impact.damage > 0 ? " · <em>sin aplicar: permisos insuficientes</em>" : "") +
+        "</p><p>El umbral de Daño Grave no crea automáticamente una Herida Grave.</p></div>"
+    });
+    return roll;
   }
 
   async rollDamage(item) {
     if (!item || item.type !== "weapon") return null;
-    const target = [...(game.user.targets ?? [])][0]?.actor;
-    const damageAttribute = item.system.damageAttribute
-      ? toNumber(this.system.attributes?.[item.system.damageAttribute]?.value)
-      : 0;
-    const protection = toNumber(target?.system?.derived?.protection);
-    const damage = finalDamage(
-      item.system.damage,
-      damageAttribute,
-      0,
-      protection,
-      item.system.penetration
-    );
-    const grave = target && damage >= toNumber(target.system.derived?.severeThreshold);
-    const content = "<div class='tm-chat-card'><strong>Daño · " + foundry.utils.escapeHTML(item.name) +
-      "</strong><p>Base " + toNumber(item.system.damage) +
-      (damageAttribute ? " + atributo " + damageAttribute : "") +
-      " · Pen " + toNumber(item.system.penetration) +
-      (target ? " · Protección objetivo " + protection : "") +
-      "</p><p><strong>Daño final: " + damage + "</strong>" +
-      (grave ? " · <span class='tm-danger-text'>Daño Grave</span>" : "") + "</p></div>";
-    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content });
+    return ui.notifications.warn("El daño físico se resuelve únicamente como parte del ataque que lo autorizó.");
   }
 
   async useSpell(item) {
