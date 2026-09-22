@@ -113,8 +113,27 @@ export class TierraMagicaActorSheet extends ActorSheet {
     html.find("[data-action='reset-turn']").click(() => this.actor.update({
       "system.turn.movement": true,
       "system.turn.action": true,
-      "system.turn.reaction": true
+      "system.turn.reaction": true,
+      "system.combat.guardActive": false,
+      "system.combat.parryActive": false,
+      "system.combat.counterattackUsed": false
     }));
+    html.find("[data-action='combat-guard']").click(() => this.actor.guard());
+    html.find("[data-action='combat-parry']").click(() => this.actor.parry());
+    html.find("[data-action='combat-counterattack']").click(async (event) => {
+      const weapons = this.actor.items.filter((item) => item.type === "weapon" && item.system.equipped);
+      if (!weapons.length) return ui.notifications.warn("No hay un arma equipada para Contraataque.");
+      const weaponId = await Dialog.prompt({
+        title: "Contraataque",
+        content: "<div class='form-group'><label>Arma</label><select name='weapon'>" +
+          weapons.map((item) => "<option value='" + item.id + "'>" + foundry.utils.escapeHTML(item.name) + "</option>").join("") +
+          "</select></div>",
+        label: "Contraatacar",
+        callback: (html) => String(html.find("[name='weapon']").val() ?? ""),
+        rejectClose: false
+      });
+      if (weaponId) return this.actor.counterattack(this.actor.items.get(weaponId));
+    });
     html.find("[data-action='open-familiar']").click(() => this.#openFamiliar());
     html.find("[data-action='familiar-linked-action']").click(async () => {
       const familiar = this.#linkedFamiliar();
