@@ -62,6 +62,25 @@ function normalizeStoredNumber(value, { fallback = 0, minimum = 0, maximum = Num
   return Math.max(...candidates);
 }
 
+async function retireLegacyMechanicalFields() {
+  if (!game.user.isGM) return 0;
+  let repaired = 0;
+  for (const actor of game.actors) {
+    const source = actor.toObject().system ?? {};
+    const updates = {};
+    if (Object.prototype.hasOwnProperty.call(source.recovery ?? {}, "zeroTraumaApplied")) updates["system.recovery.-=zeroTraumaApplied"] = null;
+    if (actor.type === "familiar") {
+      for (const key of ["sharedSenses", "enhancedCommunication", "remoteOrigin"]) {
+        if (Object.prototype.hasOwnProperty.call(source.familiar ?? {}, key)) updates["system.familiar.-=" + key] = null;
+      }
+    }
+    if (!Object.keys(updates).length) continue;
+    await actor.update(updates);
+    repaired += 1;
+  }
+  return repaired;
+}
+
 async function repairCharacterSheet031Data() {
   if (!game.user.isGM) return 0;
   let repaired = 0;
@@ -94,7 +113,9 @@ async function repairCharacterSheet031Data() {
 Hooks.once("ready", async () => {
   console.info("Foundry T.M. | Sistema listo");
   const repaired = await repairCharacterSheet031Data();
+  const retired = await retireLegacyMechanicalFields();
   if (repaired) {
     ui.notifications.info("Tierra Mágica: se repararon " + repaired + " ficha(s) afectadas por el guardado de v0.3.1.");
   }
+  if (retired) ui.notifications.info("Tierra Mágica: se retiraron campos mecánicos históricos de " + retired + " actor(es).");
 });
