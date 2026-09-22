@@ -1,0 +1,21 @@
+name: Emergency restore actor 2
+on: push
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore and push
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin main
+          git reset --hard origin/main
+          git show e906ecae0d77d495b1c124f2b52f4bd8d875da3b:scripts/documents/actor.mjs > scripts/documents/actor.mjs
+          git add scripts/documents/actor.mjs
+          git commit -m 'fix: restore actor source'
+          git push origin HEAD:main
