@@ -17,6 +17,7 @@ test("Sobrecarga lee el total real del Roll contenido en ChatMessage", async () 
 test("magia contextual no inventa tirada sin incertidumbre y oposición sí la exige", async () => {
   const { spellNeedsCheck } = await import("../scripts/rules/magic-guards.mjs");
   assert.equal(spellNeedsCheck({system:{checkMode:"contextual",defense:"df"}}), false);
+  assert.equal(spellNeedsCheck({system:{checkMode:"contextual",defense:"df"}},{contextualCheck:true}), true);
   assert.equal(spellNeedsCheck({system:{checkMode:"automatic",defense:"mental"}}), true);
   assert.equal(spellNeedsCheck({system:{checkMode:"required",defense:"df"}}), true);
   assert.equal(spellNeedsCheck({system:{checkMode:"contextual",defense:"mental"}}), true);
@@ -69,4 +70,11 @@ test("daño mágico se aplica una sola vez por Actor y respeta permisos", async 
   assert.equal(guards.includes('canUserModify?.(game.user, "update")'), true);
   assert.equal(guards.includes('adjustResource("health", -impact.damage)'), true);
   assert.equal(guards.includes("permisos insuficientes"), true);
+});
+
+test("la ruta de lanzamiento pregunta la incertidumbre contextual sin alterar hechizos automáticos u opuestos", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
+  assert.equal(guards.includes('await Dialog.confirm({'), true);
+  assert.equal(guards.includes('¿Existe incertidumbre significativa, oposición o una dificultad real en este lanzamiento?'), true);
+  assert.equal(guards.includes('const needsCheck = spellNeedsCheck(item, { contextualCheck })'), true);
 });
