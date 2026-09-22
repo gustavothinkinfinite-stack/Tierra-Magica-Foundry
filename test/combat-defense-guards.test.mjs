@@ -31,12 +31,14 @@ test("Parada no protege ataques a distancia y queda disponible para un ataque pa
   assert.equal(source.includes('const parryable = !isRangedWeapon(item)'), true);
 });
 
-test("Combate Dual aplica Parada sólo al primer ataque parable de la secuencia", async () => {
+test("Combate Dual aplica Parada al primer ataque realmente parable de la secuencia", async () => {
   const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
   assert.equal(source.includes("ActorClass.prototype.dualWieldAttack = async function"), true);
-  assert.equal(source.includes("const parryThisAttack = index === 0 && !isRangedWeapon(weapon)"), true);
+  assert.equal(source.includes("let parryPending = Boolean(target.system?.combat?.parryActive)"), true);
+  assert.equal(source.includes("const parryThisAttack = parryPending && !isRangedWeapon(weapon)"), true);
   assert.equal(source.includes("baseDefense + (parryThisAttack ? 2 : 0)"), true);
-  assert.equal(source.includes("if (parryThisAttack) await closeParry"), true);
+  assert.equal(source.includes("await closeParry(target, total, baseDefense)"), true);
+  assert.equal(source.includes("parryPending = false"), true);
 });
 
 test("Barrido conserva una tirada pero resuelve Defensa y Parada por objetivo", async () => {
