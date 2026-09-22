@@ -1,4 +1,5 @@
 import { attackHits, resolveWeaponImpact } from "./combat-impact.mjs";
+import { pendingDamageRequest } from "./damage-delivery.mjs";
 
 const number = (value, fallback = Number.NaN) => {
   const parsed = Number(value);
@@ -85,6 +86,7 @@ export function installCombatDefenseGuards(ActorClass) {
     const baseDefense = number(target.system?.derived?.defense);
     if (!Number.isFinite(baseDefense)) return ui.notifications.warn("El objetivo no tiene una Defensa válida.");
     const results = [];
+    let pendingTotal = 0;
     let parryPending = Boolean(target.system?.combat?.parryActive);
     for (const [index, weapon] of [primary, secondary].entries()) {
       // La Parada espera al primer ataque realmente parable de la secuencia.
@@ -99,6 +101,7 @@ export function installCombatDefenseGuards(ActorClass) {
         const impact = resolveWeaponImpact(weapon, this, target);
         damage = impact.damage;
         if (damage > 0 && canUpdate(target)) await target.adjustResource("health", -damage);
+        else if (damage > 0) pendingTotal += damage;
       }
       results.push({ roll, hit, damage });
       if (parryThisAttack) {
@@ -106,7 +109,14 @@ export function installCombatDefenseGuards(ActorClass) {
         parryPending = false;
       }
     }
-    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Combate Dual</strong><p>" + results.map((result, index) => foundry.utils.escapeHTML([primary, secondary][index].name) + ": " + (result.hit ? result.damage + " daño" : "fallo")).join(" · ") + "</p></div>" });
+    const pendingDamage = pendingDamageRequest({ targetUuid: target.uuid, damage: pendingTotal, source: "Combate Dual", attacker: this.name });
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flags: pendingDamage ? { "tierra-magica": { pendingDamage } } : {},
+      content: "<div class='tm-chat-card'><strong>Combate Dual</strong><p>" +
+        results.map((result, index) => foundry.utils.escapeHTML([primary, secondary][index].name) + ": " + (result.hit ? result.damage + " daño" : "fallo")).join(" · ") +
+        (pendingDamage ? "</p><p><em>Daño pendiente de aprobación del DJ.</em>" : "") + "</p></div>"
+    });
     return results;
   };
 
@@ -133,7 +143,19 @@ export function installCombatDefenseGuards(ActorClass) {
         damage = impact.damage;
         if (damage > 0 && canUpdate(target)) await target.adjustResource("health", -damage);
       }
-      summaries.push(foundry.utils.escapeHTML(target.name) + ": " + (hit ? damage + " daño" : "fallo") + " (Defensa " + defenses[i] + ")");
+      const pendingDamage = !canUpdate(target) ? pendingDamageRequest({
+        targetUuid: target.uuid, damage, source: "Barrido — " + item.name, attacker: this.name
+      }) : null;
+      summaries.push(foundry.utils.escapeHTML(target.name) + ": " + (hit ? damage + " daño" : "fallo") + " (Defensa " + defenses[i] + ")" +
+        (pendingDamage ? " · pendiente de DJ" : ""));
+      if (pendingDamage) {
+        await ChatMessage.create({
+          speaker: ChatMessage.getSpeaker({ actor: this }),
+          flags: { "tierra-magica": { pendingDamage } },
+          content: "<div class='tm-chat-card'><strong>Barrido — aprobación de daño</strong><p>" +
+            foundry.utils.escapeHTML(target.name) + ": " + damage + " daño pendiente de aprobación del DJ.</p></div>"
+        });
+      }
       if (parryable && target.system?.combat?.parryActive) await closeParry(target, total, baseDefenses[i]);
     }
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Barrido — " + foundry.utils.escapeHTML(item.name) + "</strong><p>" + summaries.join(" · ") + "</p></div>" });
