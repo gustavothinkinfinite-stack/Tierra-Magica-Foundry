@@ -85,8 +85,11 @@ export function installCombatDefenseGuards(ActorClass) {
     const baseDefense = number(target.system?.derived?.defense);
     if (!Number.isFinite(baseDefense)) return ui.notifications.warn("El objetivo no tiene una Defensa válida.");
     const results = [];
+    let parryPending = Boolean(target.system?.combat?.parryActive);
     for (const [index, weapon] of [primary, secondary].entries()) {
-      const parryThisAttack = index === 0 && !isRangedWeapon(weapon) && Boolean(target.system?.combat?.parryActive);
+      // La Parada espera al primer ataque realmente parable de la secuencia.
+      // Un ataque a distancia previo no debe consumirla ni hacer que el segundo ataque cuerpo a cuerpo la eluda.
+      const parryThisAttack = parryPending && !isRangedWeapon(weapon);
       const defense = baseDefense + (parryThisAttack ? 2 : 0);
       const roll = await this.rollCheck({ label: "Combate Dual " + (index + 1) + ": " + weapon.name, attributeKey: weapon.system.attackAttribute || "agi", skillKey: weapon.system.skill || "lightWeapons", df: defense, modifier: -2 });
       const total = rollTotal(roll);
@@ -98,7 +101,10 @@ export function installCombatDefenseGuards(ActorClass) {
         if (damage > 0 && canUpdate(target)) await target.adjustResource("health", -damage);
       }
       results.push({ roll, hit, damage });
-      if (parryThisAttack) await closeParry(target, total, baseDefense);
+      if (parryThisAttack) {
+        await closeParry(target, total, baseDefense);
+        parryPending = false;
+      }
     }
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Combate Dual</strong><p>" + results.map((result, index) => foundry.utils.escapeHTML([primary, secondary][index].name) + ": " + (result.hit ? result.damage + " daño" : "fallo")).join(" · ") + "</p></div>" });
     return results;
