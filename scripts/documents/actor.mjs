@@ -152,7 +152,7 @@ export class TierraMagicaActor extends Actor {
     });
   }
 
-  async rollWeapon(item, { df = null, mode = "normal", modifier = 0 } = {}) {
+  async rollWeapon(item, { df = null, mode = "normal", modifier = 0, damageBonus = 0, penetrationBonus = 0, technique = "" } = {}) {
     if (!item || item.type !== "weapon") return null;
     const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
     const uniqueTargets = [...new Map(selected.map((actor) => [actor.uuid ?? actor.id, actor])).values()];
@@ -177,7 +177,7 @@ export class TierraMagicaActor extends Actor {
       });
       return roll;
     }
-    const impact = resolveWeaponImpact(item, this, target);
+    const impact = resolveWeaponImpact(item, this, target, { damageBonus, penetrationBonus });
     const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
     if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
     await ChatMessage.create({
@@ -187,9 +187,19 @@ export class TierraMagicaActor extends Actor {
         " daño · Protección " + impact.protection + " → " + impact.effectiveProtection +
         (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") +
         (!canUpdate && impact.damage > 0 ? " · <em>sin aplicar: permisos insuficientes</em>" : "") +
-        "</p><p>El umbral de Daño Grave no crea automáticamente una Herida Grave.</p></div>"
+        "</p>" + (technique ? "<p>Técnica: " + foundry.utils.escapeHTML(technique) + ".</p>" : "") + "<p>El umbral de Daño Grave no crea automáticamente una Herida Grave.</p></div>"
     });
     return roll;
+  }
+
+  async useCombatTechnique(name, item) {
+    if (!item || item.type !== "weapon") return null;
+    if (!this.items.some((entry) => entry.type === "technique" && entry.name === name)) {
+      return ui.notifications.warn(this.name + " no posee la Técnica " + name + ".");
+    }
+    if (name === "Golpe Potente") return this.rollWeapon(item, { modifier: -2, damageBonus: 2, technique: name });
+    if (name === "Estocada Perforante") return this.rollWeapon(item, { modifier: -1, damageBonus: -1, penetrationBonus: 2, technique: name });
+    return ui.notifications.warn(name + " requiere una resolución multiataque específica y no se ejecutará como un ataque ordinario.");
   }
 
   async rollDamage(item) {
