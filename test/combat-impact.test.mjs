@@ -116,3 +116,14 @@ test("Guardia Parada y Contraataque respetan Acción/Reacción y no encadenan", 
   assert.equal(sheetSource.includes('"system.combat.counterattackUsed": false'), true);
   for (const action of ["combat-guard", "combat-parry", "combat-counterattack"]) assert.equal(template.includes('data-action="' + action + '"'), true);
 });
+
+test("Guardia modifica Defensa y Parada sólo habilita Contraataque cuando cambia el resultado", async () => {
+  const actorSource = await readFile(new URL("../scripts/documents/actor.mjs", import.meta.url), "utf8");
+  assert.equal(actorSource.includes('const guardDefense = s.combat?.guardActive ? 2 : 0'), true);
+  assert.equal(actorSource.includes('defense: 11 + agi + martialDefense + shield + extraDefense + guardDefense'), true);
+  assert.equal(actorSource.includes('const targetDf = baseDefense + (parryActive ? 2 : 0)'), true);
+  assert.equal(actorSource.includes('const parrySucceeded = parryActive && attackHits(total, baseDefense) && !hit'), true);
+  assert.equal(actorSource.includes('"system.combat.parryActive": false'), true);
+  assert.equal(actorSource.includes('"system.combat.parrySucceeded": parrySucceeded'), true);
+  assert.equal(actorSource.includes('if (!this.system.combat?.parrySucceeded)'), true);
+});
