@@ -45,9 +45,10 @@ export function installCombatDefenseGuards(ActorClass) {
   };
 
   ActorClass.prototype.parry = async function () {
+    if (!ownsTechnique(this, "Parada")) return ui.notifications.warn(this.name + " no posee la Técnica Parada.");
     if (!(this.system.turn?.reaction ?? true)) return ui.notifications.warn(this.name + " ya gastó su Reacción.");
     await this.update({ "system.turn.reaction": false, "system.combat.parryActive": true, "system.combat.parrySucceeded": false, "system.combat.counterattackUsed": false });
-    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Parada</strong><p>" + foundry.utils.escapeHTML(this.name) + " consume su Reacción y obtiene +2 Defensa contra el ataque que está parando.</p></div>" });
+    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Parada</strong><p>" + foundry.utils.escapeHTML(this.name) + " consume su Reacción y obtiene +2 Defensa contra el siguiente ataque cuerpo a cuerpo parable que la desencadene. No se aplica por defecto a distancia, áreas ni hechizos.</p></div>" });
   };
 
   ActorClass.prototype.counterattack = async function (item) {
