@@ -37,7 +37,7 @@ Revisado: 1.0.7.
 
 Estado documental: reconciliado para Energía, Caudal, estados y Sobrecarga Controlada.
 
-Discrepancia de implementación: `overloadDevice` resuelve la prueba y cambia el estado del dispositivo, pero no ejecuta por sí mismo la activación ni descuenta Energía. El Manual dice que el éxito permite esa activación con Caudal efectivo +1. Debe corregirse el flujo de Foundry o separarse explícitamente prueba y activación sin duplicar consumo.
+Corregido en 1.0.11: Sobrecarga Controlada valida antes de tirar que la activación cabe en Caudal+1 y Energía; en éxito ejecuta el consumo y deja el dispositivo Dañado, y en fallo no consume Energía y lo deja Deshabilitado.
 
 ### Familiares
 Revisados: 1.0.8, 1.0.9, auditoría 1.0.10 y salvaguardas posteriores.
@@ -64,12 +64,12 @@ Revisados: resolución de impacto y selección de objetivos.
 
 Estado documental: reconciliado. Protección efectiva, Penetración, piso de daño 0, Daño Grave después de mitigación, objetivo obligatorio para magia ofensiva/opuesta, objetivo único, áreas, aliados y deduplicación por Actor están escritos.
 
-Discrepancia crítica de integración: los validadores `validateSpellTargets` y `resolveSpellImpacts` existen, pero la ruta principal `useSpell` todavía selecciona sólo el primer objetivo para calcular DF y no integra de extremo a extremo la resolución multiobjetivo/área. Por ello estas reglas están documentadas y probadas como funciones aisladas, pero aún no constituyen automatización completa de lanzamiento.
+Corregido en 1.0.11: `useSpell` valida la selección antes del gasto, resuelve una Defensa por objetivo en áreas, deduplica por Actor, calcula impacto individual y aplica el daño exitoso a Vida cuando el usuario tiene permiso de actualización.
 
 ### Origen Remoto
 Estado documental: reconciliado. Vínculo III, propietario correcto, Familiar operativo, recursos/tirada/Sostenimiento del personaje y ausencia de percepción/conocimiento/línea de efecto gratuitos están escritos.
 
-Discrepancia de integración: la implementación valida propiedad, incapacidad y Vínculo III, pero la geometría real de alcance/línea de efecto sigue sin resolverse automáticamente. El mensaje informa la restricción; no debe presentarse como validación geométrica completa.
+Integrado parcialmente por límite del canon: Origen Remoto pasa un token activo del Familiar a la ruta real de lanzamiento. Los alcances narrativos como «Medio» o «Área corta» no tienen conversión numérica canónica, por lo que Foundry no inventa distancias ni línea de efecto automática; esas validaciones siguen siendo de mesa hasta que una regla canónica las cuantifique.
 
 ### Modificadores estructurados de Habilidad
 Revisado: v0.7.0.
