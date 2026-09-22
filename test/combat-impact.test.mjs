@@ -62,3 +62,13 @@ test("rechaza resolver daño con documentos incompatibles", () => {
   assert.throws(() => resolveWeaponImpact({ type: "spell", system: {} }, actor(), actor()), TypeError);
   assert.throws(() => resolveWeaponImpact(weapon({ damage: 4 }), null, actor()), TypeError);
 });
+
+test("la ficha usa una ruta atómica y no ofrece un segundo botón explotable de daño", async () => {
+  const actorSource = await readFile(new URL("../scripts/documents/actor.mjs", import.meta.url), "utf8");
+  const sheetSource = await readFile(new URL("../templates/actor/parts/item-section.hbs", import.meta.url), "utf8");
+  assert.equal(actorSource.includes("uniqueTargets.length !== 1"), true);
+  assert.equal(actorSource.includes("attackHits(total, targetDf)"), true);
+  assert.equal(actorSource.includes('target.adjustResource("health", -impact.damage)'), true);
+  assert.equal(actorSource.includes("El daño físico se resuelve únicamente como parte del ataque"), true);
+  assert.equal(sheetSource.includes('data-action="item-damage"'), false);
+});
