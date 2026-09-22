@@ -135,16 +135,31 @@ export function installMagicGuards(ActorClass) {
     if (number(item.system.damage) > 0 && targets.length) {
       const hitTargets = outcomes.filter((entry) => entry.success).map((entry) => entry.actor);
       const impacts = resolveSpellImpacts(item, hitTargets);
-      const rows = impacts.map((impact) =>
+      const applied = [];
+      for (const impact of impacts) {
+        if (impact.damage <= 0) {
+          applied.push({ ...impact, applied: true });
+          continue;
+        }
+        const canUpdate = impact.actor.canUserModify?.(game.user, "update") ?? impact.actor.isOwner ?? false;
+        if (!canUpdate) {
+          applied.push({ ...impact, applied: false });
+          continue;
+        }
+        await impact.actor.adjustResource("health", -impact.damage);
+        applied.push({ ...impact, applied: true });
+      }
+      const rows = applied.map((impact) =>
         "<p><strong>" + foundry.utils.escapeHTML(impact.actor.name) + "</strong>: " + impact.damage +
         " daño (Protección " + impact.protection + ", efectiva " + impact.effectiveProtection + ")" +
-        (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") + "</p>"
+        (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") +
+        (impact.applied ? "" : " · <em>sin aplicar: permisos insuficientes</em>") + "</p>"
       ).join("");
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
         content: "<div class='tm-chat-card'><strong>Impactos — " + foundry.utils.escapeHTML(item.name) +
           "</strong>" + (rows || "<p>Ningún objetivo fue impactado.</p>") +
-          "<p>Vista previa: todavía no modifica Vida automáticamente.</p></div>"
+          "<p>El umbral de Daño Grave es informativo: no crea automáticamente una Herida Grave.</p></div>"
       });
     }
 
