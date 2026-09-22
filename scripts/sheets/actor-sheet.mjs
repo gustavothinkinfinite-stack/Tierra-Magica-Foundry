@@ -137,6 +137,7 @@ export class TierraMagicaActorSheet extends ActorSheet {
     html.find("[data-action='item-delete']").click((event) => this.#deleteItem(event));
     html.find("[data-action='item-toggle']").click((event) => this.#toggleItem(event));
     html.find("[data-action='item-attack']").click((event) => this.actor.rollWeapon(this.#getItem(event)));
+    html.find("[data-action='item-combat-technique']").click((event) => this.#useWeaponTechnique(event));
     html.find("[data-action='item-spell']").click((event) => this.actor.useSpell(this.#getItem(event)));
     html.find("[data-action='item-formula']").click((event) => this.actor.useFormula(this.#getItem(event)));
     html.find("[data-action='item-device']").click((event) => this.actor.useDevice(this.#getItem(event)));
@@ -155,6 +156,50 @@ export class TierraMagicaActorSheet extends ActorSheet {
     });
     html.find("[data-action='stop-sustained']").click((event) => this.actor.stopSustainedSpell(event.currentTarget.dataset.itemId));
     html.find("[data-action='create-familiar']").click(() => this.#createFamiliar());
+  }
+
+  async #useWeaponTechnique(event) {
+    const weapon = this.#getItem(event);
+    if (!weapon) return;
+    const owned = new Set(this.actor.items.filter((item) => item.type === "technique").map((item) => item.name));
+    const options = [];
+    if (owned.has("Golpe Potente")) options.push(["powerful", "Golpe Potente"]);
+    if (owned.has("Estocada Perforante")) options.push(["piercing", "Estocada Perforante"]);
+    if (owned.has("Barrido")) options.push(["sweep", "Barrido"]);
+    if (owned.has("Combate Dual")) options.push(["dual", "Combate Dual"]);
+    if (!options.length) return ui.notifications.warn("El personaje no posee Técnicas ofensivas compatibles.");
+
+    const selected = await Dialog.prompt({
+      title: "Técnica con " + weapon.name,
+      content: "<div class='form-group'><label>Técnica</label><select name='technique'>" +
+        options.map(([value, label]) => "<option value='" + value + "'>" + label + "</option>").join("") +
+        "</select></div>",
+      label: "Continuar",
+      callback: (html) => String(html.find("[name='technique']").val() ?? ""),
+      rejectClose: false
+    });
+    if (!selected) return;
+    if (selected === "powerful") return this.actor.useCombatTechnique("Golpe Potente", weapon);
+    if (selected === "piercing") return this.actor.useCombatTechnique("Estocada Perforante", weapon);
+    if (selected === "sweep") return this.actor.sweepAttack(weapon);
+    if (selected !== "dual") return;
+
+    const candidates = this.actor.items.filter((item) =>
+      item.type === "weapon" && item.id !== weapon.id && item.system.equipped &&
+      /Ligera/i.test(String(item.system.properties ?? ""))
+    );
+    if (!candidates.length) return ui.notifications.warn("No hay una segunda arma Ligera/compatible equipada.");
+    const secondaryId = await Dialog.prompt({
+      title: "Combate Dual",
+      content: "<div class='form-group'><label>Segunda arma</label><select name='secondary'>" +
+        candidates.map((item) => "<option value='" + item.id + "'>" + foundry.utils.escapeHTML(item.name) + "</option>").join("") +
+        "</select></div>",
+      label: "Atacar",
+      callback: (html) => String(html.find("[name='secondary']").val() ?? ""),
+      rejectClose: false
+    });
+    if (!secondaryId) return;
+    return this.actor.dualWieldAttack(weapon, this.actor.items.get(secondaryId));
   }
 
   #groupItems(items) {
