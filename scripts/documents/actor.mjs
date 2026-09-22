@@ -192,6 +192,50 @@ export class TierraMagicaActor extends Actor {
     return roll;
   }
 
+  async dualWieldAttack(primary, secondary) {
+    if (!primary || !secondary || primary.type !== "weapon" || secondary.type !== "weapon" || primary.id === secondary.id) {
+      return ui.notifications.warn("Combate Dual requiere dos armas distintas.");
+    }
+    if (!this.items.some((entry) => entry.type === "technique" && entry.name === "Combate Dual")) {
+      return ui.notifications.warn(this.name + " no posee la Técnica Combate Dual.");
+    }
+    const compatible = (weapon) => /Ligera/i.test(String(weapon.system?.properties ?? ""));
+    if (!compatible(primary) || !compatible(secondary)) return ui.notifications.warn("Combate Dual requiere armas Ligeras o expresamente compatibles.");
+    const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
+    const targets = [...new Map(selected.map((actor) => [actor.uuid ?? actor.id, actor])).values()];
+    if (targets.length !== 1) return ui.notifications.warn("Combate Dual requiere exactamente un objetivo válido.");
+    const target = targets[0];
+    const defense = toNumber(target.system?.derived?.defense, Number.NaN);
+    if (!Number.isFinite(defense)) return ui.notifications.warn("El objetivo no tiene una Defensa válida.");
+
+    const results = [];
+    for (const [index, weapon] of [primary, secondary].entries()) {
+      // El segundo ataque conserva Atributo y Habilidad, pero no recibe modificadores
+      // circunstanciales extra: evita duplicar un bono de ataque completo en ambas armas.
+      const roll = await this.rollCheck({
+        label: "Combate Dual " + (index + 1) + ": " + weapon.name,
+        attributeKey: weapon.system.attackAttribute || "agi",
+        skillKey: weapon.system.skill || "lightWeapons",
+        df: defense,
+        modifier: -2
+      });
+      const total = toNumber(roll?.rolls?.[0]?.total ?? roll?.roll?.total ?? roll?.total, Number.NaN);
+      if (attackHits(total, defense)) {
+        const impact = resolveWeaponImpact(weapon, this, target);
+        const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
+        if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
+        results.push({ roll, hit: true, damage: impact.damage });
+      } else results.push({ roll, hit: false, damage: 0 });
+    }
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: "<div class='tm-chat-card'><strong>Combate Dual</strong><p>" +
+        results.map((result, index) => foundry.utils.escapeHTML([primary, secondary][index].name) + ": " +
+          (result.hit ? result.damage + " daño" : "fallo")).join(" · ") + "</p></div>"
+    });
+    return results;
+  }
+
   async sweepAttack(item) {
     if (!item || item.type !== "weapon") return null;
     if (!this.items.some((entry) => entry.type === "technique" && entry.name === "Barrido")) {
