@@ -85,3 +85,15 @@ test("técnicas ofensivas no duplican modificadores ni eluden restricciones", as
   assert.equal(actorSource.includes("/Ligera/i.test"), true);
   assert.equal(actorSource.includes("for (const [index, weapon] of [primary, secondary].entries())"), true);
 });
+
+test("la ficha expone Técnicas ofensivas y selecciona la segunda arma sin duplicar lógica", async () => {
+  const sheetLogic = await readFile(new URL("../scripts/sheets/actor-sheet.mjs", import.meta.url), "utf8");
+  const sheetTemplate = await readFile(new URL("../templates/actor/parts/item-section.hbs", import.meta.url), "utf8");
+  assert.equal(sheetTemplate.includes('data-action="item-combat-technique"'), true);
+  for (const name of ["Golpe Potente", "Estocada Perforante", "Barrido", "Combate Dual"]) assert.equal(sheetLogic.includes(name), true);
+  assert.equal(sheetLogic.includes('item.id !== weapon.id && item.system.equipped'), true);
+  assert.equal(sheetLogic.includes('/Ligera/i.test'), true);
+  assert.equal(sheetLogic.includes('this.actor.dualWieldAttack(weapon, this.actor.items.get(secondaryId))'), true);
+  assert.equal(sheetLogic.includes('this.actor.sweepAttack(weapon)'), true);
+  assert.equal(sheetLogic.includes('this.actor.useCombatTechnique("Golpe Potente", weapon)'), true);
+});
