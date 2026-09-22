@@ -19,13 +19,14 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
           p=Path('test/character-sheet.test.mjs'); s=p.read_text()
           s=s.replace('model.Actor.templates.base.recovery.zeroTraumaApplied,false', 'Object.prototype.hasOwnProperty.call(model.Actor.templates.base.recovery,"zeroTraumaApplied"),false')
           s=s.replace('test("Vida 0 y descansos exponen la semántica auditada",async()=>{const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");', 'test("Vida 0 y descansos exponen la semántica auditada",async()=>{const actor=await readFile(resolve(root,"scripts/rules/familiar-guards.mjs"),"utf8");')
-          marker='test("capacidades avanzadas de Familiar no crean segundo lanzador",async()=>{'
-          a=s.index(marker); b=s.index('\n\n',a)
-          block='test("capacidades avanzadas de Familiar no crean segundo lanzador",async()=>{const actor=await readFile(resolve(root,"scripts/rules/familiar-guards.mjs"),"utf8");const familiar=await readFile(resolve(root,"templates/actor/familiar-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(model.Actor.familiar.familiar.bondLevel,1);assert.equal(actor.includes("ActorClass.prototype.useFamiliarSense = async function"),true);assert.equal(actor.includes(\'"system.turn.action": false\'),true);assert.equal(actor.includes("ActorClass.prototype.castFromFamiliar = async function"),true);assert.equal(actor.includes("this.useSpell(spell, { remoteOrigin: familiar })"),true);assert.equal(familiar.includes("Origen Remoto"),true);});'
-          s=s[:a]+block+s[b:]; p.write_text(s)
+          replacement='test("capacidades avanzadas de Familiar no crean segundo lanzador",async()=>{const actor=await readFile(resolve(root,"scripts/rules/familiar-guards.mjs"),"utf8");const familiar=await readFile(resolve(root,"templates/actor/familiar-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(model.Actor.familiar.familiar.bondLevel,1);assert.equal(actor.includes("ActorClass.prototype.useFamiliarSense = async function"),true);assert.equal(actor.includes(\'"system.turn.action": false\'),true);assert.equal(actor.includes("ActorClass.prototype.castFromFamiliar = async function"),true);assert.equal(actor.includes("this.useSpell(spell, { remoteOrigin: familiar })"),true);assert.equal(familiar.includes("Origen Remoto"),true);});'
+          s,n=re.subn(r'test\("capacidades avanzadas de Familiar no crean segundo lanzador".*?\}\);', replacement, s, count=1)
+          if n != 1: raise SystemExit('No se encontró la regresión de Familiar')
+          p.write_text(s)
           p=Path('test/combat-defense-guards.test.mjs'); s=p.read_text().replace('const parryThisAttack = index === 0 && !isRangedWeapon(weapon)', 'const parryThisAttack = parryPending && !isRangedWeapon(weapon)'); p.write_text(s)
           p=Path('test/damage-delivery.test.mjs'); s=p.read_text().replace("bootstrap.includes('data.tmApproveDamage')", "bootstrap.includes('dataset.tmApproveDamage')"); p.write_text(s)
           PY
