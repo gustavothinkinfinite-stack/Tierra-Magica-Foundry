@@ -17,7 +17,7 @@ test("Sobrecarga lee el total real del Roll contenido en ChatMessage", async () 
 test("magia contextual no inventa tirada sin incertidumbre y oposición sí la exige", async () => {
   const { spellNeedsCheck } = await import("../scripts/rules/magic-guards.mjs");
   assert.equal(spellNeedsCheck({system:{checkMode:"contextual",defense:"df"}}), false);
-  assert.equal(spellNeedsCheck({system:{checkMode:"automatic",defense:"mental"}}), false);
+  assert.equal(spellNeedsCheck({system:{checkMode:"automatic",defense:"mental"}}), true);
   assert.equal(spellNeedsCheck({system:{checkMode:"required",defense:"df"}}), true);
   assert.equal(spellNeedsCheck({system:{checkMode:"contextual",defense:"mental"}}), true);
   assert.equal(spellNeedsCheck({system:{checkMode:"contextual",defense:"body"}}), true);
@@ -44,4 +44,21 @@ test("superar Sostenimiento abandona un efecto previo en vez de invalidar el lan
   assert.equal(guards.includes("validBefore.slice"), true);
   assert.equal(guards.includes("[...retained, item.id]"), true);
   assert.equal(guards.includes("se abandona el efecto sostenido más antiguo"), true);
+});
+
+test("ruta real valida objetivos antes de gastar recursos y resuelve áreas por Defensa", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
+  assert.equal(guards.includes("validateSpellTargets(item, selectedTokens"), true);
+  assert.equal(guards.indexOf("validateSpellTargets(item, selectedTokens") < guards.indexOf("originalUseSpell.call(this, item)"), true);
+  assert.equal(guards.includes('spellAreaKind(item) === "area" && needsCheck'), true);
+  assert.equal(guards.includes("spellDfFor(item, target)"), true);
+  assert.equal(guards.includes("resolveSpellImpacts(item, hitTargets)"), true);
+  assert.equal(guards.includes("todavía no modifica Vida automáticamente"), true);
+});
+
+test("Origen Remoto fija un token de origen sin inventar alcance narrativo", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
+  assert.equal(guards.includes("options.remoteOrigin"), true);
+  assert.equal(guards.includes("getActiveTokens?.()[0]"), true);
+  assert.equal(guards.includes("no concede percepción, conocimiento del objetivo ni línea de efecto"), true);
 });
