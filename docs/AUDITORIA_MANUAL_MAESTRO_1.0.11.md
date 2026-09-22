@@ -22,19 +22,17 @@ El Manual 1.0 sólo define Contramagia como técnica reactiva contextual y decla
 
 Acción aplicada: se retiró esa fórmula del Maestro. Contramagia queda contextual hasta una decisión canónica explícita.
 
-### A2 — Recibir Carga existe en datos pero no está definida por el Manual 1.0 — ALTA — ABIERTO
+### A2 — Recibir Carga existía en datos sin definición canónica — ALTA — RESUELTO
 
 `scripts/content.mjs` registra Recibir Carga, Básica 2 PD, Reacción, requisito Arma de Alcance, pero no define su efecto. El Manual 1.0 no la enumera. Por tanto la implementación contiene una entrada que no tiene regla completa canónica.
 
-Acción aplicada: el Maestro la marca como implementada pero no ratificada y prohíbe inferir un efecto adicional.
+Resolución posterior a la auditoría: ratificada como Técnica Básica de 2 PD. Reacción con arma de Alcance ante desplazamiento voluntario directo hacia el usuario; ataque inmediato antes de completar la aproximación, daño normal y sin detener automáticamente el movimiento.
 
-Decisión pendiente: definir su efecto en canon y luego probarlo, o retirar la entrada del contenido inicial.
-
-### A3 — Intercepción aparece en el Maestro sin soporte 1.0/1.0.11 — ALTA — ABIERTO
+### A3 — Intercepción aparecía en el Maestro sin soporte 1.0/1.0.11 — ALTA — RESUELTO
 
 El Maestro conservaba Intercepción como Técnica Básica, pero no existe en el Manual 1.0 ni en el catálogo de Técnicas de `scripts/content.mjs`. Tampoco tiene coste PD canónico.
 
-Acción aplicada: permanece explícitamente marcada como pendiente y sin coste. No debe utilizarse como regla vigente hasta ratificación o eliminación.
+Resolución posterior a la auditoría: ratificada como Técnica Básica de 2 PD. Reacción para interponerse ante un ataque perceptible contra un aliado cercano mediante el desplazamiento mínimo físicamente válido; el usuario pasa a ser objetivo. No añade Defensa, no teletransporta, no excede Movimiento y no funciona contra áreas.
 
 ### A4 — Catálogo extendido de hechizos mezcla implementados y no ratificados — ALTA — CORREGIDO EN DOCUMENTACIÓN / ABIERTO EN DISEÑO
 
@@ -102,7 +100,7 @@ No se eliminan automáticamente: deben rastrearse a una decisión de diseño apr
 
 ## Próxima pasada recomendada
 
-1. Resolver A2 Recibir Carga y A3 Intercepción mediante decisión explícita: ratificar con texto completo o retirar.
+1. A2 Recibir Carga y A3 Intercepción: resueltos y ratificados.
 2. Auditar uno por uno los hechizos extendidos y clasificarlos como ratificados, revisados o descartados.
 3. Auditar mecánicas de pueblos/Orígenes por balance y procedencia antes de canonizarlas.
 4. Limpiar deuda técnica de Familiar y actualizar README.
