@@ -53,7 +53,8 @@ export const STARTER_CONTENT = {
  technique:[
   {name:"Parada",system:{grade:"basic",pdCost:2,activation:"Reacción",effect:"+2 Defensa contra ataque cuerpo a cuerpo parable."}},
   {name:"Golpe Potente",system:{grade:"basic",pdCost:2,effect:"-2 ataque; +2 daño."}},
-  {name:"Recibir Carga",system:{grade:"basic",pdCost:2,activation:"Reacción",requirements:"Arma de Alcance"}},
+  {name:"Recibir Carga",system:{grade:"basic",pdCost:2,activation:"Reacción",requirements:"Arma de Alcance",effect:"Cuando un enemigo entra voluntariamente en tu alcance mediante un desplazamiento directo hacia ti, realiza un ataque inmediato antes de que complete la aproximación. Daño normal; no detiene automáticamente el movimiento."}},
+  {name:"Intercepción",system:{grade:"basic",pdCost:2,activation:"Reacción",effect:"Cuando un aliado cercano es objetivo de un ataque perceptible, desplázate lo mínimo por una trayectoria válida para interponerte y pasa a ser el objetivo. Sin Defensa adicional, sin teletransporte, sin exceder Movimiento y no contra áreas."}},
   {name:"Tirador Preparado",system:{grade:"basic",pdCost:2,activation:"Acción + Reacción",effect:"Disparo reactivo; expira al inicio del siguiente turno."}},
   {name:"Recarga Experta",system:{grade:"basic",pdCost:2,effect:"Reduce Recarga en 1 Acción respetando límites físicos."}},
   {name:"Combate Dual",system:{grade:"advanced",pdCost:3,effect:"Dos ataques -2 con armas Ligeras/compatibles; modificador de ataque completo solo en uno."}},
