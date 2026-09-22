@@ -11,11 +11,10 @@
     <label><span>Orden actual</span><input name="system.familiar.currentOrder" value="{{system.familiar.currentOrder}}" /></label>
     <label><span>Arquetipo</span><select name="system.familiar.archetype"><option value="companion" {{#if (eq system.familiar.archetype "companion")}}selected{{/if}}>Compañero</option><option value="scout" {{#if (eq system.familiar.archetype "scout")}}selected{{/if}}>Explorador</option><option value="guardian" {{#if (eq system.familiar.archetype "guardian")}}selected{{/if}}>Guardián</option><option value="mystic" {{#if (eq system.familiar.archetype "mystic")}}selected{{/if}}>Místico</option></select></label>
     <label><span>Nivel de vínculo</span><input type="number" min="1" max="4" name="system.familiar.bondLevel" value="{{system.familiar.bondLevel}}" /></label>
-    <label class="tm-check"><span>Sentidos Compartidos</span><input type="checkbox" name="system.familiar.sharedSenses" {{checked system.familiar.sharedSenses}} /></label>
-    <label class="tm-check"><span>Comunicación Mejorada</span><input type="checkbox" name="system.familiar.enhancedCommunication" {{checked system.familiar.enhancedCommunication}} /></label>
-    <label class="tm-check"><span>Origen Remoto</span><input type="checkbox" name="system.familiar.remoteOrigin" {{checked system.familiar.remoteOrigin}} /></label>
+    <label><span>Modo de control</span><select name="system.familiar.controlMode"><option value="autonomous" {{#if (eq system.familiar.controlMode "autonomous")}}selected{{/if}}>Autónomo</option><option value="linked" {{#if (eq system.familiar.controlMode "linked")}}selected{{/if}}>Vinculado</option><option value="reactive" {{#if (eq system.familiar.controlMode "reactive")}}selected{{/if}}>Reactivo</option></select></label>
+    <label><span>Disparador reactivo</span><input name="system.familiar.reactiveTrigger" value="{{system.familiar.reactiveTrigger}}" /></label>
   </div>
-  <p>El Familiar conserva personalidad, deseos y criterio. Acción Vinculada consume la Reacción del personaje; cambiar una orden táctica compleja consume su Acción. Llamar no teletransporta.</p>
+  <p>Las capacidades de vínculo se adquieren como Técnicas del personaje y respetan su requisito de Vínculo. El Familiar conserva personalidad, deseos y criterio. Acción Vinculada consume la Reacción del personaje; cambiar una orden táctica compleja consume su Acción. Llamar no teletransporta.</p>
 </section>
 <section class="tm-panel">
   <h2>Perfil simplificado</h2>
