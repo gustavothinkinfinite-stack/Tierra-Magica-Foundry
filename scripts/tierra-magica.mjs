@@ -10,6 +10,7 @@ import { installCombatDefenseGuards } from "./rules/combat-defense-guards.mjs";
 import { installReactiveTechniqueGuards } from "./rules/reactive-technique-guards.mjs";
 import { installFormulaGuards } from "./rules/formula-guards.mjs";
 import { installRitualGuards } from "./rules/ritual-guards.mjs";
+import { primaryActiveGm, validatePendingDamageRequest } from "./rules/damage-delivery.mjs";
 
 installFamiliarGuards(TierraMagicaActor);
 installMagicGuards(TierraMagicaActor);
@@ -128,4 +129,44 @@ Hooks.once("ready", async () => {
     ui.notifications.info("Tierra Mágica: se repararon " + repaired + " ficha(s) afectadas por el guardado de v0.3.1.");
   }
   if (retired) ui.notifications.info("Tierra Mágica: se retiraron campos mecánicos históricos de " + retired + " actor(es).");
+});
+
+
+Hooks.on("renderChatMessage", (message, html) => {
+  const request = validatePendingDamageRequest(message.getFlag("tierra-magica", "pendingDamage"));
+  if (!request || !game.user?.isGM) return;
+  const primary = primaryActiveGm(game.users ?? []);
+  if (!primary || primary.id !== game.user.id) return;
+
+  const root = html?.[0] ?? html;
+  const card = root?.querySelector?.(".tm-chat-card");
+  if (!card || card.querySelector("[data-tm-approve-damage]")) return;
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.dataset.tmApproveDamage = "true";
+  button.textContent = "Aplicar " + request.damage + " daño";
+  button.title = "Aplicación explícita por el DJ. No concede permisos al jugador atacante.";
+  button.addEventListener("click", async () => {
+    button.disabled = true;
+    const current = validatePendingDamageRequest(message.getFlag("tierra-magica", "pendingDamage"));
+    if (!current) return;
+
+    const target = await fromUuid(current.targetUuid);
+    if (!target || typeof target.adjustResource !== "function") {
+      ui.notifications.warn("Tierra Mágica: el objetivo de esta solicitud ya no está disponible.");
+      button.disabled = false;
+      return;
+    }
+    if (!(target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false)) {
+      ui.notifications.warn("Tierra Mágica: el DJ activo no puede modificar el objetivo.");
+      button.disabled = false;
+      return;
+    }
+
+    await target.adjustResource("health", -current.damage);
+    await message.setFlag("tierra-magica", "pendingDamage", { ...current, resolved: true });
+    button.textContent = "Daño aplicado";
+  });
+  card.append(button);
 });
