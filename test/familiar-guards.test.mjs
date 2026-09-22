@@ -19,8 +19,16 @@ test("Familiares no heredan una segunda economía de PJ", async () => {
 test("Trauma automático a 0 Vida queda limitado a personajes", async () => {
   const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
   assert.equal(guards.includes('this.type === "character" && number(this.system.status?.trauma) === 0'), true);
-  assert.equal(guards.includes("zeroTraumaApplied"), false);
   assert.equal(guards.includes('this.type === "familiar") updates["system.familiar.incapacitated"] = true'), true);
+});
+
+test("Acción Vinculada consume la Reacción del dueño y exige intervención concreta", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
+  assert.equal(guards.includes("ActorClass.prototype.linkedFamiliarAction = async function"), true);
+  assert.equal(guards.includes('if (!(this.system.turn?.reaction ?? true))'), true);
+  assert.equal(guards.includes('await this.update({ "system.turn.reaction": false })'), true);
+  assert.equal(guards.includes("La Acción Vinculada debe indicar una intervención táctica concreta"), true);
+  assert.equal(guards.includes('"system.familiar.controlMode": "linked"'), true);
 });
 
 test("orden persistente no se presenta como ataque táctico gratuito", async () => {
@@ -35,6 +43,15 @@ test("Origen Remoto valida propiedad, estado y Vínculo III", async () => {
   assert.equal(guards.includes('hasBondCapability(this, familiar, "Origen Remoto", 3)'), true);
   assert.equal(guards.includes("no concede conocimiento, percepción ni línea de efecto"), true);
   assert.equal(guards.includes("const result = await this.useSpell(spell, { remoteOrigin: familiar })"), true);
+});
+
+test("Coordinación Reactiva no crea una intervención significativa gratuita", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
+  assert.equal(guards.includes("ActorClass.prototype.triggerFamiliarReaction = async function"), true);
+  assert.equal(guards.includes('hasBondCapability(this, familiar, "Coordinación Reactiva", 3)'), true);
+  assert.equal(guards.includes('familiar.system.familiar?.controlMode !== "reactive"'), true);
+  assert.equal(guards.includes('await this.update({ "system.turn.reaction": false })'), true);
+  assert.equal(guards.includes("no puede encadenar otra respuesta reactiva"), true);
 });
 
 test("capacidades de vínculo requieren Técnica comprada y nivel de Vínculo", async () => {
