@@ -36,7 +36,7 @@ test("el flujo multijugador no usa sockets ni concede actualización del PNJ al 
   const defenses = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
   assert.equal(actor.includes("pendingDamageRequest"), true);
   assert.equal(actor.includes("pendiente de aprobación del DJ"), true);
-  assert.equal(bootstrap.includes('data.tmApproveDamage'), true);
+  assert.equal(bootstrap.includes('button.dataset.tmApproveDamage = "true"'), true);
   assert.equal(bootstrap.includes('message.setFlag("tierra-magica", "pendingDamage"'), true);
   assert.equal(bootstrap.includes("game.socket"), false);
   assert.equal(bootstrap.includes("fromUuid(current.targetUuid)"), true);
