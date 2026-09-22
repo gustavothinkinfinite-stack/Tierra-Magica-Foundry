@@ -6,7 +6,7 @@ La fuente mecánica canónica es `docs/Foundry_TM_Manual_1.0_Playtest.md`. Las v
 
 Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + 100 C en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**1.0.9 — núcleo estable para playtest.** Cambios del motor requieren problemas reproducibles.
+**1.0.12 — núcleo estable para playtest.** Cambios del motor requieren problemas reproducibles y deben conservar la compatibilidad con el canon 1.0.
 
 ```bash
 npm run validate
