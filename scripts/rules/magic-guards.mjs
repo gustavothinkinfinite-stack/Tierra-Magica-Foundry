@@ -16,14 +16,14 @@ function spellDfFor(item, target = null) {
   return df;
 }
 
-export function spellNeedsCheck(item) {
+export function spellNeedsCheck(item, { contextualCheck = false } = {}) {
   const defense = String(item?.system?.defense ?? "");
   // Una Defensa siempre representa oposición: ni siquiera checkMode=automatic la omite.
   if (["normal", "mental", "body"].includes(defense)) return true;
   const mode = String(item?.system?.checkMode ?? "contextual");
   if (mode === "automatic") return false;
   if (mode === "required") return true;
-  return false;
+  return mode === "contextual" && Boolean(contextualCheck);
 }
 
 export function installMagicGuards(ActorClass) {
@@ -63,7 +63,18 @@ export function installMagicGuards(ActorClass) {
     const before = Array.isArray(this.system.magic?.sustainedSpellIds)
       ? [...this.system.magic.sustainedSpellIds]
       : [];
-    const needsCheck = spellNeedsCheck(item);
+    let contextualCheck = false;
+    const defense = String(item.system?.defense ?? "");
+    if (String(item.system?.checkMode ?? "contextual") === "contextual" && !["normal", "mental", "body"].includes(defense)) {
+      contextualCheck = await Dialog.confirm({
+        title: "Prueba contextual — " + item.name,
+        content: "<p>¿Existe incertidumbre significativa, oposición o una dificultad real en este lanzamiento?</p><p><strong>Sí</strong>: realiza la prueba. <strong>No</strong>: resuelve el lanzamiento sin tirada.</p>",
+        yes: () => true,
+        no: () => false,
+        defaultYes: false
+      });
+    }
+    const needsCheck = spellNeedsCheck(item, { contextualCheck });
 
     let intercepted = false;
     const actorRollCheck = this.rollCheck;
