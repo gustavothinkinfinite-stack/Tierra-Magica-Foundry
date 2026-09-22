@@ -554,10 +554,139 @@ Un plano estable vuelve reproducible un trabajo rutinario para quien tenga la co
 
 Los proyectos largos se resuelven por etapas significativas, no mediante una reserva universal de puntos de progreso. Un fallo genera consecuencias, retrasos, costes o necesidad de cambiar el enfoque según la situación; no reinicia automáticamente todo el proyecto.
 
+
+## 19. Economía, disponibilidad y equipo
+
+La moneda de referencia es la **Corona (C)**. Un personaje comienza normalmente con **100 C**. El dinero pertenece a la economía del mundo: puede comprar bienes, servicios, propiedades y acceso cuando estén disponibles, pero no compra PD ni PR.
+
+El precio no es el único límite. Un objeto o servicio también puede tener una **Disponibilidad** —Común, Profesional, Restringida, Rara o Excepcional— y un régimen de **Acceso** —Libre, Gremial, Licenciado, Militar, Religioso o Prohibido—. El mercado importa: Aldea, Pueblo, Ciudad, Gran Ciudad o Mercado Especializado. Tener suficiente dinero no crea existencias ni elimina requisitos legales, sociales o logísticos.
+
+Herramientas de referencia: un conjunto Básico ronda 10 C, uno Profesional 25 C y equipo Especializado comienza normalmente alrededor de 100 C. Los materiales de fabricación ordinarios suelen representar aproximadamente 30–60% del precio de un producto terminado cuando el proyecto y el mercado lo justifican; esto no es una regla universal de reventa ni permite convertir fabricación en dinero infinito sin tiempo, demanda, acceso y costes reales.
+
+Consumibles de referencia: Bálsamo Restaurador 12 C; Tónico de Vigor 10 C; Supresor del Dolor 15 C; Neutralizante Común 10 C; Bomba Incendiaria 20 C; Toxina Debilitante 18 C. La Poción de Recuperación Arcana existe en el catálogo actual a 15 C y permanece sujeta a Saturación arcana; su impacto sobre la economía de Maná debe seguir auditándose en playtest.
+
+La munición ordinaria puede manejarse como **Suministro** en expediciones cuando contar cada proyectil no aporte decisiones interesantes. La referencia actual es 3 unidades de Suministro por expedición, ajustable por duración y circunstancias. Munición especial sí puede registrarse individualmente.
+
+Los objetos mágicos no usan una escala universal de “+1/+2/+3”. Sus propiedades deben ser concretas. La riqueza, los negocios y la propiedad pueden producir poder económico real dentro del mundo, pero no se convierten automáticamente en progresión mecánica de PD o PR.
+
+## 20. Pueblos, herencias y orígenes
+
+La fisiología y la cultura se separan. Una herencia describe cuerpo y capacidades biológicas; un **Origen** describe crianza, entorno, contactos y aprendizaje cultural. No existen modificadores raciales amplios a Atributos ni paquetes culturales obligatorios de Habilidades.
+
+### Humanos
+
+Escala Mediana, Movimiento 6. **Adaptabilidad:** durante la creación dispone de 2 PD iniciales adicionales restringidos a Habilidades, Especializaciones o Técnicas Básicas. No pueden gastarse en Atributos, Rasgos, Familiar Mágico o Disciplinas.
+
+### Elfos
+
+Escala Mediana, Movimiento 6. Poseen **Visión Crepuscular**, **Sentidos Agudos** contextuales —Ventaja cuando su percepción superior sea realmente relevante—, **Paso Ligero** y **Trance**. Un Trance de unas 4 horas satisface su descanso biológico, pero no reduce automáticamente las demás exigencias mecánicas de un Descanso Completo cuando esas condiciones requieran el periodo completo.
+
+### Enanos
+
+Escala Pequeña, Movimiento 5. **Constitución Densa:** cuentan como una categoría de Escala mayor únicamente para carga y para resistir movimiento forzado o Derribo; no modifica ataque, daño o alcance. Poseen **Visión Subterránea**, paso seguro en terreno pétreo apropiado y metabolismo robusto.
+
+### Orcos
+
+Escala Mediana, Movimiento 6. **Complexión Poderosa:** para carga y requisitos de equipo pesado tratan FUE como un punto superior, hasta un equivalente natural máximo de 5; no mejora ataque, daño ni agarres. **Colmillos:** arma natural Daño 2. **Resistencia:** Ventaja en pruebas de VIG relacionadas con esfuerzo físico continuo cuando corresponda.
+
+### Goblins
+
+Escala Pequeña, Movimiento 6. Pueden atravesar el espacio ocupado por una criatura Mediana cuando exista hueco físico suficiente; esto no evita Reacciones aplicables. Poseen capacidad natural de trepa, **Oportunista** para prestar Ayuda mediante posición cuando la ficción lo permite y Visión Crepuscular.
+
+### Medianos
+
+Escala Pequeña, Movimiento 5. **Centro Bajo** favorece situaciones de equilibrio y caídas cuando sea pertinente. **Paso Ágil** facilita desplazamiento apropiado. **Pie Firme** permite usar AGI + Acrobacia en una resistencia válida contra empuje o Derribo cuando la diferencia de Escala lo permita; no modifica pasivamente la Defensa de Maniobra.
+
+### Aelari
+
+Escala Mediana, Movimiento 6. Cada Aelari elige una **Resonancia** compatible con su naturaleza. Puede producir una manifestación trivial asociada a ella, sin bono numérico universal ni sustitución automática de una Disciplina, Hechizo o Rasgo.
+
+### Herencia mixta
+
+Una herencia mixta parte de una fisiología base y puede reemplazar una capacidad no estructural por otra compatible. No permite combinar libremente todas las ventajas fisiológicas de dos pueblos. Tamaño, anatomía y otras propiedades estructurales deben seguir siendo coherentes.
+
+## 21. Orígenes
+
+Un Origen concede normalmente **una Habilidad en Aprendiz**, **una Especialización cultural**, idioma/cultura pertinente y un elemento menor de equipo, contacto o acceso contextual. No concede Atributos gratuitos ni reemplaza los 25 PD de creación.
+
+Orígenes de referencia: **Urbano, Rural, Frontera, Académico, Gremial, Militar, Nómada, Religioso y Arcano-industrial**. El Origen Religioso representa educación o comunidad religiosa; no concede automáticamente Vínculo Divino. El Arcano-industrial representa familiaridad social/técnica con ese entorno, no acceso gratuito a dispositivos excepcionales.
+
+Las profesiones son descripciones de trayectoria y posibles arquetipos de gasto de los 25 PD. No constituyen clases ni paquetes obligatorios mientras un perfil específico no indique expresamente otra cosa.
+
+## 22. Vehículos, monturas y autómatas
+
+Vehículos, monturas y autómatas usan perfiles reducidos con **Escala, Movimiento, Vida, Defensa, Protección, Maniobra, Tripulación, Capacidad y Sistemas/Rasgos**. No necesitan reproducir toda la ficha de un PJ.
+
+Conducir o montar en condiciones rutinarias no exige prueba. Una maniobra peligrosa usa **2d10 + Atributo apropiado + Manejo o Pilotaje**. Un vehículo tiene su propia Defensa: la AGI del piloto no se convierte automáticamente en Defensa del vehículo.
+
+### Monturas
+
+El jinete conserva su Acción y la montura proporciona su Movimiento cuando está entrenada y controlada. Una acción táctica significativa de una montura entrenada consume normalmente la Acción del jinete. El movimiento ordinario dirigido de la montura no crea una Reacción táctica independiente gratuita.
+
+### Autómatas
+
+Un autómata puede ser una herramienta automatizada o un actor independiente según su diseño. Automatizar una tarea no concede por sí mismo acciones adicionales al propietario. Un autómata auxiliar sigue las restricciones de su programa, órdenes, Energía/Caudal y perfil; uno verdaderamente independiente se trata como PNJ con criterio y economía propia según corresponda.
+
+El juego no incorpora un subsistema de combate masivo preventivo. Batallas de gran escala se resuelven con las herramientas normales, escenas y objetivos relevantes hasta que una necesidad de juego reproducible justifique reglas adicionales.
+
+## 23. PNJ y criaturas
+
+Los PNJ se construyen directamente para representar su función; no necesitan gastar PD como un personaje jugador. El mundo no escala automáticamente con el nivel del grupo. Una criatura peligrosa conserva su identidad mecánica independientemente de quién la enfrente.
+
+Las categorías de amenaza son **Trivial, Favorable, Equilibrada, Peligrosa y Extrema**. Son una lectura contextual, no una suma de “CR”. Terreno, objetivos, información, número de participantes, preparación y recursos pueden desplazar aproximadamente una categoría o más.
+
+Un enemigo dominante se distingue por presencia táctica, capacidades, posición y opciones, no por inflar Vida arbitrariamente ni por una Resistencia Legendaria universal.
+
+### Perfiles de referencia
+
+| PNJ / criatura | Vida | Def | Corp | Mental | Maniobra | Prot | Mov | Inic. | Ataque principal |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| Civil | 12 | 12 | 12 | 12 | 12 | 0 | 6 | +1 | Contextual |
+| Bandido | 12 | 13 | 12 | 12 | 13 | 1 | 6 | +2 | Espada corta +4, daño 6; arco corto +4, daño 6 |
+| Guardia | 14 | 14 | 13 | 12 | 14 | 2 | 6 | +2 | Lanza +4, daño 7, Pen 1, Alcance |
+| Soldado | 14 | 14 | 13 | 13 | 15 | 3 | 6 | +3 | Marcial +5, daño 7–8, Pen 1 |
+| Veterano | 16 | 16 | 14 | 14 | 17 | 3 | 6 | +4 | Ataque +7, daño 8, Pen 1 |
+| Tirador | 12 | 14 | 12 | 13 | 13 | 1 | 6 | +4 | Rifle +7, daño 7, Pen 3 |
+| Canalizador hostil | 12 | 13 | 12 | 15 | 12 | 0–1 | 6 | +3 | Maná 15, Canalización +6 |
+| Lobo | 10 | 14 | 13 | 11 | 13 | 0 | 8 | +4 | Mordida +5, daño 5 |
+| Ogro | 28 | 11 | 16 | 11 | 17 | 2 | 6 | +1 | Garrote +7, daño 11, Pen 1 |
+| Centinela de Bronce | 22 | 12 | — | 12* | 16 | 5 | 4 | +1 | Golpe +6, daño 8, Pen 2 |
+| Troll dominante | 32 | 13 | 17 | 13 | 18 | 4 | 6 | +3 | Garra +7, daño 9 Pen 1; martillo +7, daño 11 Pen 2 |
+
+El asterisco de un constructo indica que su “Defensa Mental” representa sólo efectos capaces de afectarlo; no implica biología o mente ordinaria. Un espíritu menor puede tener inmunidad causal frente a ataques físicos ordinarios si su naturaleza lo establece; eso no se convierte en una inmunidad genérica de todos los espíritus.
+
+Un Troll dominante puede incluir Barrido, empuje reactivo, descarga y dos Reacciones entre turnos propios cuando su perfil lo especifique. Esas Reacciones siguen sin poder repetirse sobre el mismo disparador salvo capacidad expresa.
+
+## 24. Dirección de juego
+
+El Director determina primero qué está ocurriendo en la ficción, si una acción es posible y si existe incertidumbre significativa. La tirada resuelve incertidumbre; no sustituye causalidad, competencia o información.
+
+No se pide una prueba para tareas rutinarias de un personaje competente en condiciones adecuadas. Tampoco se permiten intentos repetidos idénticos hasta obtener un resultado alto. Si el enfoque, tiempo, herramientas, posición, información o riesgo cambian de forma significativa, puede existir una nueva prueba.
+
+Los modificadores circunstanciales deberían permanecer normalmente dentro de **-3 a +3 en total**. Cuando una circunstancia sea más decisiva, es preferible usar Ventaja/Desventaja, cambiar la posibilidad de la acción o establecer una consecuencia concreta.
+
+Las Habilidades especializadas pueden exigir entrenamiento real. Un resultado alto de Historia no inventa un texto que el personaje nunca estudió; Persuasión no es control mental; Investigación no crea evidencia; Percepción no implica interpretación. La información obtenida debe corresponder a lo que la acción podía descubrir.
+
+### Conflictos y consecuencias
+
+Antes de una prueba importante conviene establecer intención, riesgo y coste. Un fallo no tiene que significar siempre “no ocurre nada”: puede consumir tiempo, revelar posición, gastar recursos, producir una complicación o forzar una elección, siempre que la consecuencia derive de lo que estaba en juego.
+
+Hazaña y Pifia son capas extraordinarias sobre éxito/fallo. Sus consecuencias deben respetar la naturaleza de la acción. Una Hazaña fallida puede producir una ventaja colateral sin convertir el intento principal en éxito; una Pifia exitosa puede lograr el objetivo con una complicación grave.
+
+### Diseño de encuentros
+
+No existe un número obligatorio de encuentros por día. La recuperación de Vida, Maná, Fatiga, consumibles y Saturación determina el ritmo de desgaste. Un encuentro se evalúa por participantes, posición, objetivos, terreno, información y capacidades, no sólo por Vida o daño.
+
+Los jefes no reciben inmunidades arbitrarias contra control. El catálogo ordinario evita que una única opción barata elimine sostenidamente todas sus acciones; cuando una criatura tenga una inmunidad o resistencia especial, debe proceder de su naturaleza o perfil.
+
+### Reglas antes que excepciones
+
+No se crea un subsistema nuevo para anticipar un problema hipotético. Primero se usa el núcleo, después una propiedad o Técnica concreta y sólo se añade una regla nueva cuando exista una necesidad reproducible que el sistema actual no resuelva bien.
+
 ---
 
 ## Estado de consolidación
 
-**Consolidado:** núcleo, creación, desarrollo, Rasgos, turno/movimiento, Escala/maniobras, combate, armas/armaduras/escudos, Vida/Trauma/recuperación, magia, grimorio inicial, Técnicas, Familiares/invocaciones, Ritualismo, Alquimia, Ingeniería arcano-industrial y Proyectos.
+**Consolidado:** núcleo de resolución; creación y desarrollo; Rasgos; turno y movimiento; Escala y maniobras; combate; armas, armaduras y escudos; Vida, Trauma y recuperación; magia y grimorio inicial; Técnicas; Familiares e invocaciones; Ritualismo; Alquimia; Ingeniería arcano-industrial; Proyectos; economía y disponibilidad; pueblos/herencias y Orígenes; vehículos, monturas y autómatas; PNJ/criaturas; dirección de juego.
 
-**Pendiente de consolidación:** economía y disponibilidad ampliadas; razas, orígenes y profesiones; vehículos, monturas y autómatas; PNJ y criaturas; dirección de juego; mundo, pueblos, mitología y Panteón Primordial; referencia rápida, glosario e índices. Los puntos explícitamente marcados como no fijados siguen pendientes de decisión y no se rellenan por inferencia.
+**Pendiente:** consolidación narrativa completa del mundo, pueblos, mitología y Panteón Primordial desde las fuentes históricas canónicas; referencia rápida; glosario; índices; auditoría editorial final de contradicciones y huecos. El lore histórico no se reconstruirá de memoria cuando pueda recuperarse de su fuente.
