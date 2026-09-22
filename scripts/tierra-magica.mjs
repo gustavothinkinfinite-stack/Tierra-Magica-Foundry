@@ -10,7 +10,7 @@ installFamiliarGuards(TierraMagicaActor);
 installMagicGuards(TierraMagicaActor);
 
 Hooks.once("init", async () => {
-  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.10");
+  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.11");
 
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
