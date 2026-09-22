@@ -19,15 +19,16 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          p=Path('test/character-sheet.test.mjs')
-          s=p.read_text()
-          s=s.replace('const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(model.Actor.templates.base.status.incapacitated,false);assert.equal(model.Actor.templates.base.recovery.zeroTraumaApplied,false);assert.equal(actor.includes(\'previous > 0 && next === 0\'),true);assert.equal(actor.includes(\'updates["system.status.trauma"] = 1\'),true);', 'const actor=await readFile(resolve(root,"scripts/rules/familiar-guards.mjs"),"utf8");const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(model.Actor.templates.base.status.incapacitated,false);assert.equal(Object.prototype.hasOwnProperty.call(model.Actor.templates.base.recovery,"zeroTraumaApplied"),false);assert.equal(actor.includes(\'previous > 0 && next === 0\'),true);assert.equal(actor.includes(\'updates["system.status.trauma"] = 1\'),true);')
-          old='const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");const familiar=await readFile(resolve(root,"templates/actor/familiar-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(model.Actor.familiar.familiar.bondLevel,1);assert.equal(actor.includes("async useFamiliarSense"),true);assert.equal(actor.includes(\'"system.turn.action": false\'),true);assert.equal(actor.includes("async castFromFamiliar"),true);assert.equal(actor.includes("const result = await this.useSpell(spell)"),true);'
-          new='const actor=await readFile(resolve(root,"scripts/rules/familiar-guards.mjs"),"utf8");const familiar=await readFile(resolve(root,"templates/actor/familiar-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(model.Actor.familiar.familiar.bondLevel,1);assert.equal(actor.includes("useFamiliarSense = async function"),true);assert.equal(actor.includes(\'"system.turn.action": false\'),true);assert.equal(actor.includes("castFromFamiliar = async function"),true);assert.equal(actor.includes("this.useSpell(spell, { remoteOrigin: familiar })"),true);'
-          s=s.replace(old,new)
-          p.write_text(s)
-          p=Path('test/combat-defense-guards.test.mjs'); s=p.read_text(); s=s.replace('const parryThisAttack = index === 0 && !isRangedWeapon(weapon)', 'const parryThisAttack = parryPending && !isRangedWeapon(weapon)'); p.write_text(s)
-          p=Path('test/damage-delivery.test.mjs'); s=p.read_text(); s=s.replace("bootstrap.includes('data.tmApproveDamage')", "bootstrap.includes('dataset.tmApproveDamage')"); p.write_text(s)
+          p=Path('test/character-sheet.test.mjs'); s=p.read_text()
+          s=s.replace('model.Actor.templates.base.recovery.zeroTraumaApplied,false', 'Object.prototype.hasOwnProperty.call(model.Actor.templates.base.recovery,"zeroTraumaApplied"),false')
+          s=s.replace('test("Vida 0 y descansos exponen la semántica auditada",async()=>{const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");', 'test("Vida 0 y descansos exponen la semántica auditada",async()=>{const actor=await readFile(resolve(root,"scripts/rules/familiar-guards.mjs"),"utf8");')
+          marker='test("capacidades avanzadas de Familiar no crean segundo lanzador",async()=>{'
+          a=s.index(marker); b=s.index('\n\n',a)
+          block=s[a:b]
+          block=block.replace('scripts/documents/actor.mjs','scripts/rules/familiar-guards.mjs').replace('async useFamiliarSense','useFamiliarSense = async function').replace('async castFromFamiliar','castFromFamiliar = async function').replace('const result = await this.useSpell(spell)','this.useSpell(spell, { remoteOrigin: familiar })')
+          s=s[:a]+block+s[b:]; p.write_text(s)
+          p=Path('test/combat-defense-guards.test.mjs'); s=p.read_text().replace('const parryThisAttack = index === 0 && !isRangedWeapon(weapon)', 'const parryThisAttack = parryPending && !isRangedWeapon(weapon)'); p.write_text(s)
+          p=Path('test/damage-delivery.test.mjs'); s=p.read_text().replace("bootstrap.includes('data.tmApproveDamage')", "bootstrap.includes('dataset.tmApproveDamage')"); p.write_text(s)
           PY
           npm install --ignore-scripts
           npm run validate
