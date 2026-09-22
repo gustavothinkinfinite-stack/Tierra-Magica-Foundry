@@ -127,7 +127,7 @@ export function installFamiliarGuards(ActorClass) {
     }
     if (!spell || spell.type !== "spell") return null;
 
-    const result = await this.useSpell(spell);
+    const result = await this.useSpell(spell, { remoteOrigin: familiar });
     if (!result) return result;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
