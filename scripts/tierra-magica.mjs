@@ -7,11 +7,13 @@ import { installFamiliarGuards } from "./rules/familiar-guards.mjs";
 import { installMagicGuards } from "./rules/magic-guards.mjs";
 import { installMagicReactionGuards } from "./rules/magic-reaction-guards.mjs";
 import { installCombatDefenseGuards } from "./rules/combat-defense-guards.mjs";
+import { installReactiveTechniqueGuards } from "./rules/reactive-technique-guards.mjs";
 
 installFamiliarGuards(TierraMagicaActor);
 installMagicGuards(TierraMagicaActor);
 installMagicReactionGuards(TierraMagicaActor);
 installCombatDefenseGuards(TierraMagicaActor);
+installReactiveTechniqueGuards(TierraMagicaActor);
 
 Hooks.once("init", async () => {
   console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.11");
@@ -37,7 +39,7 @@ Hooks.once("init", async () => {
   Items.registerSheet("tierra-magica", TierraMagicaItemSheet, {
     types: itemTypes,
     makeDefault: true,
-    label: "Objeto Foundry T.M."
+    label: "Foundry T.M."
   });
 });
 
