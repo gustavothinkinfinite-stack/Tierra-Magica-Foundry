@@ -10,6 +10,9 @@ const number = (value, fallback = 0) => {
 const validFamiliar = (owner, familiar) => Boolean(
   familiar && familiar.type === "familiar" && familiar.system?.details?.ownerUuid === owner.uuid
 );
+const hasTechnique = (owner, name) => owner.items?.some?.((item) => item.type === "technique" && item.name === name) ?? false;
+const hasBondCapability = (owner, familiar, name, minimumBond) =>
+  validFamiliar(owner, familiar) && number(familiar.system?.familiar?.bondLevel, 1) >= minimumBond && hasTechnique(owner, name);
 
 export function installFamiliarGuards(ActorClass) {
   const originalPrepare = ActorClass.prototype.prepareDerivedData;
@@ -55,6 +58,43 @@ export function installFamiliarGuards(ActorClass) {
     return this.update(updates);
   };
 
+  ActorClass.prototype.useFamiliarSense = async function (familiar) {
+    if (!validFamiliar(this, familiar)) return ui.notifications.warn("No hay un Familiar vinculado válido.");
+    if (!hasBondCapability(this, familiar, "Sentidos Compartidos", 2)) {
+      return ui.notifications.warn("Sentidos Compartidos requiere su Técnica y Vínculo II o superior.");
+    }
+    if (familiar.system.familiar?.incapacitated || number(familiar.system.resources?.health?.value) <= 0) {
+      return ui.notifications.warn(familiar.name + " está Incapacitado.");
+    }
+    if (!(this.system.turn?.action ?? true)) return ui.notifications.warn(this.name + " ya gastó su Acción.");
+    await this.update({ "system.turn.action": false });
+    return ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: "<div class='tm-chat-card'><strong>Sentidos Compartidos</strong><p>" +
+        foundry.utils.escapeHTML(this.name) + " percibe temporalmente mediante los sentidos reales de " +
+        foundry.utils.escapeHTML(familiar.name) + ". No obtiene sentidos, conocimiento ni atención adicional.</p></div>"
+    });
+  };
+
+  ActorClass.prototype.setFamiliarReactiveTrigger = async function (familiar, trigger = "") {
+    if (!validFamiliar(this, familiar)) return ui.notifications.warn("No hay un Familiar vinculado válido.");
+    if (!hasBondCapability(this, familiar, "Coordinación Reactiva", 3)) {
+      return ui.notifications.warn("Coordinación Reactiva requiere su Técnica y Vínculo III o superior.");
+    }
+    const text = String(trigger ?? "").trim();
+    if (!text) return ui.notifications.warn("El disparador reactivo debe ser concreto y observable.");
+    await familiar.update({
+      "system.familiar.controlMode": "reactive",
+      "system.familiar.reactiveTrigger": text
+    });
+    return ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: "<div class='tm-chat-card'><strong>Coordinación Reactiva — " +
+        foundry.utils.escapeHTML(familiar.name) + "</strong><p>" + foundry.utils.escapeHTML(text) +
+        "</p><p>El disparador no crea Reacciones adicionales ni puede encadenar respuestas reactivas.</p></div>"
+    });
+  };
+
   ActorClass.prototype.commandFamiliar = async function (familiar, order = "") {
     if (!validFamiliar(this, familiar)) return ui.notifications.warn("No hay un Familiar vinculado válido.");
     if (familiar.system.familiar?.incapacitated || number(familiar.system.resources?.health?.value) <= 0) {
@@ -66,7 +106,8 @@ export function installFamiliarGuards(ActorClass) {
     await this.update({ "system.turn.action": false });
     await familiar.update({
       "system.familiar.currentOrder": text,
-      "system.familiar.orderType": "persistent"
+      "system.familiar.orderType": "persistent",
+      "system.familiar.controlMode": "linked"
     });
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
@@ -81,8 +122,9 @@ export function installFamiliarGuards(ActorClass) {
     if (familiar.system.familiar?.incapacitated || number(familiar.system.resources?.health?.value) <= 0) {
       return ui.notifications.warn(familiar.name + " está Incapacitado y no puede servir como Origen Remoto.");
     }
-    if (!familiar.system.familiar?.remoteOrigin) return ui.notifications.warn("El vínculo no permite Origen Remoto.");
-    if (number(familiar.system.familiar?.bondLevel, 1) < 3) return ui.notifications.warn("Origen Remoto requiere Vínculo III o superior.");
+    if (!hasBondCapability(this, familiar, "Origen Remoto", 3)) {
+      return ui.notifications.warn("Origen Remoto requiere su Técnica y Vínculo III o superior.");
+    }
     if (!spell || spell.type !== "spell") return null;
 
     const result = await this.useSpell(spell);
