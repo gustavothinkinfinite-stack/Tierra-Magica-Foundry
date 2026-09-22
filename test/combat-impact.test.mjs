@@ -100,7 +100,7 @@ test("la ficha expone Técnicas ofensivas y selecciona la segunda arma sin dupli
 });
 
 test("Guardia Parada y Contraataque respetan Acción/Reacción y no encadenan", async () => {
-  const actorSource = await readFile(new URL("../scripts/documents/actor.mjs", import.meta.url), "utf8");
+  const actorSource = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
   const sheetSource = await readFile(new URL("../scripts/sheets/actor-sheet.mjs", import.meta.url), "utf8");
   const template = await readFile(new URL("../templates/actor/character-sheet.hbs", import.meta.url), "utf8");
   assert.equal(actorSource.includes('async guard()'), true);
@@ -118,14 +118,12 @@ test("Guardia Parada y Contraataque respetan Acción/Reacción y no encadenan", 
 });
 
 test("Guardia modifica Defensa y Parada sólo habilita Contraataque cuando cambia el resultado", async () => {
-  const actorSource = await readFile(new URL("../scripts/documents/actor.mjs", import.meta.url), "utf8");
-  assert.equal(actorSource.includes('const guardDefense = s.combat?.guardActive ? 2 : 0'), true);
-  assert.equal(actorSource.includes('defense: 11 + agi + martialDefense + shield + extraDefense + guardDefense'), true);
-  assert.equal(actorSource.includes('const targetDf = baseDefense + (parryActive ? 2 : 0)'), true);
-  assert.equal(actorSource.includes('const parrySucceeded = parryActive && attackHits(total, baseDefense) && !hit'), true);
-  assert.equal(actorSource.includes('"system.combat.parryActive": false'), true);
-  assert.equal(actorSource.includes('"system.combat.parrySucceeded": parrySucceeded'), true);
-  assert.equal(actorSource.includes('if (!this.system.combat?.parrySucceeded)'), true);
+  const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
+  assert.equal(source.includes('this.system.derived.defense = number(this.system.derived.defense, 0) + 2'), true);
+  assert.equal(source.includes('const succeeded = Number.isFinite(total) && total >= baseDefense && total < baseDefense + 2'), true);
+  assert.equal(source.includes('"system.combat.parryActive": false'), true);
+  assert.equal(source.includes('"system.combat.parrySucceeded": succeeded'), true);
+  assert.equal(source.includes('if (!this.system.combat?.parrySucceeded)'), true);
 });
 
 test("Intercepción respeta la economía binaria de Movimiento sin crear una reserva paralela", async () => {
