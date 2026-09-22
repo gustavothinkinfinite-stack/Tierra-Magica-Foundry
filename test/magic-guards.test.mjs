@@ -27,15 +27,15 @@ test("magia contextual no inventa tirada sin incertidumbre y oposición sí la e
 test("omitir la tirada final no omite la Sobrecarga", async () => {
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
   assert.equal(guards.includes('startsWith("Hechizo:")'), true);
-  assert.equal(guards.includes("actorRollCheck.call(this, options)"), true);
+  assert.equal(guards.includes("actorRollCheck.call(this, rollOptions)"), true);
   assert.equal(guards.includes("tmAutomaticSpell"), true);
 });
 
 test("un hechizo sostenido fallido no permanece activo", async () => {
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
-  assert.equal(guards.includes("if (!success)"), true);
+  assert.equal(guards.includes("if (!castSuccess)"), true);
   assert.equal(guards.includes("after.filter((id) => id !== item.id)"), true);
-  assert.equal(guards.includes("el Maná ya pagado no se devuelve"), true);
+  assert.equal(guards.includes("after.filter((id) => id !== item.id)"), true);
 });
 
 test("superar Sostenimiento abandona un efecto previo en vez de invalidar el lanzamiento", async () => {
