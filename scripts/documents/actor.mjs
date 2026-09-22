@@ -4,6 +4,7 @@ import {
   classifyResult, extraordinaryTag, finalDamage, severeThreshold
 } from "../rules.mjs";
 import { attackHits, resolveWeaponImpact } from "../rules/combat-impact.mjs";
+import { pendingDamageRequest } from "../rules/damage-delivery.mjs";
 
 export class TierraMagicaActor extends Actor {
   prepareDerivedData() {
@@ -180,13 +181,17 @@ export class TierraMagicaActor extends Actor {
     const impact = resolveWeaponImpact(item, this, target, { damageBonus, penetrationBonus });
     const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
     if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
+    const pendingDamage = !canUpdate ? pendingDamageRequest({
+      targetUuid: target.uuid, damage: impact.damage, source: item.name, attacker: this.name
+    }) : null;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
+      flags: pendingDamage ? { "tierra-magica": { pendingDamage } } : {},
       content: "<div class='tm-chat-card'><strong>Impacto — " + foundry.utils.escapeHTML(item.name) +
         "</strong><p><strong>" + foundry.utils.escapeHTML(target.name) + "</strong>: " + impact.damage +
         " daño · Protección " + impact.protection + " → " + impact.effectiveProtection +
         (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") +
-        (!canUpdate && impact.damage > 0 ? " · <em>sin aplicar: permisos insuficientes</em>" : "") +
+        (pendingDamage ? " · <em>pendiente de aprobación del DJ</em>" : "") +
         "</p>" + (technique ? "<p>Técnica: " + foundry.utils.escapeHTML(technique) + ".</p>" : "") + "<p>El umbral de Daño Grave no crea automáticamente una Herida Grave.</p></div>"
     });
     return roll;
@@ -209,6 +214,7 @@ export class TierraMagicaActor extends Actor {
     if (!Number.isFinite(defense)) return ui.notifications.warn("El objetivo no tiene una Defensa válida.");
 
     const results = [];
+    let pendingTotal = 0;
     for (const [index, weapon] of [primary, secondary].entries()) {
       // El segundo ataque conserva Atributo y Habilidad, pero no recibe modificadores
       // circunstanciales extra: evita duplicar un bono de ataque completo en ambas armas.
@@ -224,11 +230,16 @@ export class TierraMagicaActor extends Actor {
         const impact = resolveWeaponImpact(weapon, this, target);
         const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
         if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
+        if (impact.damage > 0 && !canUpdate) pendingTotal += impact.damage;
         results.push({ roll, hit: true, damage: impact.damage });
       } else results.push({ roll, hit: false, damage: 0 });
     }
+    const pendingDamage = pendingDamageRequest({
+      targetUuid: target.uuid, damage: pendingTotal, source: "Combate Dual", attacker: this.name
+    });
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
+      flags: pendingDamage ? { "tierra-magica": { pendingDamage } } : {},
       content: "<div class='tm-chat-card'><strong>Combate Dual</strong><p>" +
         results.map((result, index) => foundry.utils.escapeHTML([primary, secondary][index].name) + ": " +
           (result.hit ? result.damage + " daño" : "fallo")).join(" · ") + "</p></div>"
@@ -260,12 +271,16 @@ export class TierraMagicaActor extends Actor {
       const impact = resolveWeaponImpact(item, this, target);
       const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
       if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
+      const pendingDamage = !canUpdate ? pendingDamageRequest({
+        targetUuid: target.uuid, damage: impact.damage, source: "Barrido — " + item.name, attacker: this.name
+      }) : null;
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
+        flags: pendingDamage ? { "tierra-magica": { pendingDamage } } : {},
         content: "<div class='tm-chat-card'><strong>Barrido — " + foundry.utils.escapeHTML(item.name) +
           "</strong><p>" + foundry.utils.escapeHTML(target.name) + ": " + impact.damage + " daño" +
           (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") +
-          (!canUpdate && impact.damage > 0 ? " · <em>sin aplicar: permisos insuficientes</em>" : "") +
+          (pendingDamage ? " · <em>pendiente de aprobación del DJ</em>" : "") +
           ".</p></div>"
       });
     }
