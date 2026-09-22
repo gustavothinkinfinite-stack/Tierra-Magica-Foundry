@@ -403,10 +403,161 @@ El catálogo inicial no incluye Dominación directa. Un objetivo que haya resist
 
 **Portal — Maestro, 10 Maná.** INT; DF de referencia 21; requiere Anclas compatibles y normalmente preparación prolongada. Para conexiones estables de gran escala se usa el Ritual correspondiente.
 
+
+## 13. Técnicas
+
+Las Técnicas representan entrenamiento, maniobras o capacidades aprendidas. Sus grados y costes normales son Básica 2 PD, Avanzada 3 PD, Maestra 5 PD y Legendaria 8+ PD. Una Técnica sólo hace lo que especifica: no crea competencia, acciones, Reacciones, alcance o recursos adicionales salvo que lo indique expresamente.
+
+| Técnica | Grado | Coste | Requisito / activación | Efecto |
+|---|---|---:|---|---|
+| Parada | Básica | 2 PD | Reacción; arma apropiada; Habilidad marcial Entrenada | +2 Defensa contra un ataque cuerpo a cuerpo parable. |
+| Golpe Potente | Básica | 2 PD | Ataque compatible | -2 ataque, +2 daño. |
+| Recibir Carga | Básica | 2 PD | Reacción; arma de Alcance | Respuesta específica ante una carga válida; requiere posición y alcance reales. |
+| Tirador Preparado | Básica | 2 PD | Acción + Reacción | Permite preparar un disparo y resolverlo al cumplirse el disparador; expira al inicio del siguiente turno. |
+| Recarga Experta | Básica | 2 PD | Arma con Recarga | Reduce la Recarga en 1 Acción respetando límites físicos. |
+| Combate Dual | Avanzada | 3 PD | Dos armas Ligeras/compatibles | Una Acción, dos ataques a -2; un modificador de ataque completo sólo afecta uno. |
+| Barrido | Avanzada | 3 PD | Objetivos adyacentes válidos | Una tirada a -2 contra hasta dos objetivos; daño separado. |
+| Estocada Perforante | Avanzada | 3 PD | Ataque compatible | -1 ataque, -1 daño, Pen +2. |
+| Contraataque | Avanzada | 3 PD | Requiere Parada | Si Parada convierte impacto en fallo, ataque inmediato dentro de la misma Reacción; sin cadena reactiva. |
+| Contramagia | Avanzada | 3 PD | Reacción; compatibilidad mágica | Interfiere un lanzamiento antes de resolverlo; no es cancelación universal. |
+| Doble Sostenimiento | Maestra | 5 PD | Capacidad mágica | Eleva a dos el límite de efectos Sostenidos demandantes. |
+| Sentidos Compartidos | Básica | 2 PD | Familiar Mágico; Vínculo II; Acción | Percibe temporalmente mediante los sentidos reales del Familiar. |
+| Comunicación Mejorada | Básica | 2 PD | Familiar Mágico; Vínculo II | Permite conceptos complejos dentro del alcance válido del vínculo. |
+| Origen Remoto | Avanzada | 3 PD | Familiar Mágico; Vínculo III | Usa la posición del Familiar como origen de un hechizo compatible; recursos y lanzamiento siguen perteneciendo al personaje. |
+| Coordinación Reactiva | Avanzada | 3 PD | Familiar Mágico; Vínculo III | Define un disparador simple y observable para una respuesta del Familiar; no crea Reacciones ni cadenas adicionales. |
+
+**Intercepción** existe como técnica Básica reactiva: permite interponerse físicamente ante una amenaza cuando posición, distancia y movimiento lo hacen posible. El canon actual no fija todavía un coste PD independiente en el catálogo implementado; hasta su consolidación de coste no debe asumirse un precio nuevo.
+
+## 14. Familiares, vínculos e invocaciones
+
+**Familiar Mágico** es un Rasgo de Vínculo de 2 PR. El Familiar es una criatura independiente vinculada al personaje, no una extensión perfecta del jugador ni un segundo personaje completo gratuito. Tiene personalidad, deseos, conocimiento, criterio y una naturaleza propia. El vínculo no implica obediencia absoluta.
+
+Un Familiar usa un perfil simplificado: Escala, Movimiento, Vida, Defensa, Protección, Ataque, Percepción, Voluntad, Rasgos y capacidades relevantes. No obtiene por defecto un segundo depósito completo de Maná. Si una criatura concreta posee Maná por su propia naturaleza, esa excepción debe estar expresamente definida.
+
+### Grados de vínculo
+
+Los grados son referencias narrativas y prerrequisitos, no paquetes gratuitos:
+
+| Grado | Nombre | Función |
+|---|---|---|
+| I | Compañero | Vínculo funcional inicial. |
+| II | Afinado | Habilita desarrollo de percepción/comunicación avanzada. |
+| III | Profundo | Habilita capacidades tácticas/mágicas avanzadas. |
+| IV | Excepcional | Vínculo extraordinario; no concede bonos por sí mismo. |
+
+Los arquetipos **Compañero, Explorador, Guardián y Místico** sirven para describir función y orientar elecciones. No son clases ni conceden beneficios gratuitos.
+
+### Comunicación y llamada
+
+El vínculo ordinario transmite a corta distancia emociones y conceptos simples de forma aproximada. No es GPS, telepatía perfecta ni conocimiento compartido. **Llamar** comunica una llamada compatible con el vínculo; no teletransporta, no revela coordenadas y no obliga a obedecer.
+
+### Modos de control
+
+**Autónomo:** el Familiar actúa según su personalidad, deseos, peligro y órdenes previas. El jugador no obtiene control táctico gratuito de un segundo PJ.
+
+**Vinculado:** una intervención táctica coordinada significativa utiliza normalmente la **Acción Vinculada**, que consume la Reacción del personaje. Cambiar una orden táctica compleja consume la Acción del personaje.
+
+**Reactivo:** sólo existe cuando una capacidad como Coordinación Reactiva lo habilita. El disparador debe ser simple, concreto y observable. No concede Reacciones adicionales.
+
+Una orden simple persistente puede cubrir seguir, moverse, esconderse, vigilar, huir, transportar un objeto, esperar o mantener posición. No autoriza ataques repetidos, magia, maniobras, Ayuda táctica, Intercepción u otra intervención significativa gratuita ronda tras ronda.
+
+### Desarrollo del vínculo
+
+**Sentidos Compartidos, 2 PD, Vínculo II.** El personaje dedica una Acción a percibir temporalmente mediante los sentidos reales del Familiar. No concede omnisciencia ni dos focos perfectos de atención.
+
+**Comunicación Mejorada, 2 PD, Vínculo II.** Permite intercambiar conceptos complejos dentro del alcance válido. El Familiar no comunica conocimientos que no posea ni interpretaciones para las que carezca de comprensión.
+
+**Origen Remoto, 3 PD, Vínculo III.** Un Familiar vinculado, operativo y situado válidamente puede servir como origen de un hechizo compatible. El personaje paga Maná, realiza la tirada y conserva los límites de Sostenimiento. Cambiar el origen no concede conocimiento del objetivo, percepción, alcance sensorial o línea de efecto. Un Familiar Incapacitado no puede servir como Origen Remoto.
+
+**Coordinación Reactiva, 3 PD, Vínculo III.** Permite definir un disparador observable para una respuesta válida del Familiar. No crea acciones o Reacciones adicionales ni permite cadenas reactivas.
+
+Los PD invertidos pertenecen al desarrollo del vínculo del personaje. La muerte, pérdida o sustitución del Familiar no destruye ni devuelve automáticamente esos PD; un nuevo Familiar puede requerir re-vinculación narrativa antes de utilizar las capacidades.
+
+### Cuerpo y capacidades naturales
+
+Vuelo, tamaño Diminuto, sentidos especiales, sigilo o movilidad extraordinaria pertenecen al cuerpo o Rasgos del Familiar y deben estar pagados o justificados por su naturaleza. Vuelo no elimina clima, cobertura, distancia o detección. Diminuto permite atravesar sólo aberturas físicamente válidas. Un explorador remoto informa únicamente lo que puede percibir, comprender y comunicar.
+
+A 0 Vida el Familiar queda Incapacitado o gravemente herido según su naturaleza. La muerte y la ruptura del vínculo son consecuencias narrativas dependientes de esa naturaleza y no borran automáticamente Familiar Mágico.
+
+### Invocaciones
+
+Las criaturas invocadas usan los mismos tres modos conceptuales: Autónoma, Vinculada o Reactiva. Invocar, contener y controlar son funciones distintas. Una invocación Vinculada no concede un segundo turno completo: cambiar una orden táctica compleja consume la Acción del invocador y una orden persistente sólo continúa gratis mientras sea simple y no constituya una intervención táctica significativa repetida. Varias invocaciones demandantes quedan sujetas a los límites de Sostenimiento aplicables.
+
+## 15. Ritualismo
+
+Ritualismo es una Habilidad independiente de Canalización. Un ritual usa **2d10 + Atributo apropiado + Ritualismo** cuando necesita una prueba. Cada ritual define Complejidad, DF, Tiempo, Participantes, Componentes, Fuente, Alcance, Efecto y consecuencias de fallo.
+
+Referencias de complejidad: Menor DF 11–13 y unos 10 minutos; Básico DF 14–16 y 30–60 minutos; Avanzado DF 17–19 y horas; Maestro DF 20–22 y horas o días; Legendario DF 23+ y normalmente días.
+
+Existe un único **Director** y una tirada principal. Los asistentes deben aportar ayuda real y su número útil está limitado por el ritual. No existe +1 por cada participante ni donación ilimitada de Maná. Cuando un ritual permite aportes, especifica el Maná mínimo del Director y el máximo por asistente. El aporte ajeno no sustituye el requisito del Director.
+
+Los componentes habilitan el procedimiento; no son bonos numéricos arbitrarios. Pueden ser Material, Foco, Catalizador o Ancla. Un requisito de Caudal debe proceder de infraestructura real y compatible. Los acumuladores sólo aportan Energía compatible con su Fuente; Energía y Maná personal no son equivalentes universales.
+
+| Ritual | Grado | DF | Tiempo | Director | Asistentes | Efecto |
+|---|---|---:|---|---:|---|---|
+| Círculo de Protección | Básico | 15 | 30 min | 3 Maná | hasta 2, máx. 1 Maná c/u | Barrera contra una categoría sobrenatural definida. |
+| Vínculo de Localización | Avanzado | 18 | 2 h | 5 Maná | hasta 2 útiles | Dirección/región aproximada; no GPS. |
+| Portal Estable | Maestro | 21 | 8 h | 8 Maná | hasta 4, máx. 2 Maná c/u; Caudal 3 | Conexión temporal entre dos Anclas compatibles. |
+
+La investigación ritual puede descubrir procedimientos nuevos, pero una tirada no vuelve viable algo que el mundo establece como imposible. No existe Resurrección estándar ni una regla universal de sacrificio convertido en Maná.
+
+## 16. Alquimia
+
+Una Fórmula se describe mediante **Nombre, Grado, Preparación, Componentes, Herramientas, Vía, Activación, Duración, Saturación, Efecto y Preservación**. Preparar una fórmula conocida en laboratorio adecuado, con ingredientes, tiempo y competencia suficientes, es una tarea rutinaria y no exige tirada. La improvisación, presión o investigación sí pueden hacerlo.
+
+Costes de conocimiento actualmente usados: Común 1 PD, Refinada 1 PD, Compleja 2 PD y las fórmulas superiores requieren desarrollo acorde; el coste Maestro de referencia es 3 PD mientras permanezca expresamente definido por el catálogo/proyecto correspondiente.
+
+### Saturación
+
+La Saturación es binaria y contextual. Una preparación Saturante registra su familia y bloquea otra aplicación beneficiosa de esa misma familia hasta un Respiro efectivo. No existe una reserva universal de puntos de Toxicidad. Un Respiro limpia las Saturaciones compatibles, pero no recupera Vida o Maná por sí mismo.
+
+| Fórmula | Grado | Precio | Familia / vía | Efecto |
+|---|---|---:|---|---|
+| Bálsamo Restaurador | Común | 12 C | Restaurativa | +4 Vida; no Trauma ni Herida Grave. |
+| Poción Restauradora | Común | 12 C | Restaurativa / oral | Acción: +4 Vida hasta máximo y límites de lesión. |
+| Poción de Recuperación Arcana | Refinada | 15 C | Arcana / oral | Acción: +3 Maná hasta máximo; no elimina Fatiga ni Sobrecarga. |
+| Tónico de Vigor | Refinada | 10 C | Potenciador | Ventaja en una prueba de VIG por esfuerzo prolongado. |
+| Supresor del Dolor | Refinada | 15 C | Analgésica | Ignora una Desventaja causada por dolor compatible; no repara lesión. |
+| Neutralizante Común | Refinada | 10 C | — | Nueva resistencia con Ventaja contra una toxina compatible. |
+| Toxina Debilitante | Compleja | 18 C | Sangre | VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular. |
+| Bomba Incendiaria | Compleja | 20 C | — | Área pequeña, Daño 6, Pen 1; requiere colocación válida. |
+
+Un veneno define Vía, Latencia, DF, Efecto y Duración. Normalmente concede una resistencia y no exige pruebas repetidas sin cambio. Aplicar veneno a un arma requiere preparación/Acción apropiada y la primera aplicación válida consume la dosis.
+
+Los explosivos usan una prueba de colocación cuando existe incertidumbre, normalmente AGI + Armas a Distancia u otra combinación apropiada; cobertura y posición importan. No añaden una segunda tirada defensiva genérica si la resolución ya establece cómo afecta el área.
+
+## 17. Ingeniería arcano-industrial
+
+Las máquinas no usan Maná personal por defecto. Un acumulador se define por **Energía**, **Caudal** máximo por activación y **Estabilidad**. Un dispositivo define su **Consumo**. Para activarlo debe cumplirse Consumo <= Energía disponible y Consumo <= Caudal; la activación reduce Energía, no Maná.
+
+Acumuladores portátiles de referencia: celda menor 4 Energía/Caudal 2; acumulador estándar 8/3; núcleo pesado 16/5. Transferir Energía nunca crea Energía y conectar acumuladores no suma automáticamente Caudal sin infraestructura diseñada para ello.
+
+Estados de avería: **Operativo -> Dañado -> Deshabilitado**.
+
+### Sobrecarga Controlada
+
+Sólo una construcción compatible puede intentarla. Se realiza **INT + Ingeniería contra DF 16**. Deben existir Energía suficiente y una activación válida. Con éxito, esa activación dispone de Caudal efectivo +1, ejecuta su efecto, consume la Energía correspondiente y el dispositivo queda Dañado. Con fallo no se activa y queda Deshabilitado. Una Pifia puede añadir una consecuencia energética contextual. La Sobrecarga nunca crea Energía.
+
+Dispositivos de referencia incluyen lámparas arcanas, herramientas motorizadas, visor espectral, estabilizador de tiro, cámara de penetración (Consumo/Caudal 2, Pen +2 cuando corresponda), propulsor de impacto (Consumo 2, +2 daño o empuje 1 según diseño), prótesis motorizadas, escudo de campo (Caudal 2, Consumo 2, Reacción +2 Defensa sin acumular con Barrera Cinética equivalente), arnés de carga y autómatas auxiliares. Un autómata auxiliar no concede automáticamente una Acción extra al usuario.
+
+Ingeniería diseña, construye y repara mecanismos; Arcana comprende fenómenos mágicos; Canalización dirige activamente magia personal cuando corresponda. Una Habilidad no reemplaza universalmente a las otras.
+
+## 18. Proyectos, fabricación e investigación
+
+Los proyectos siguen el ciclo **Diseño -> Requisitos -> Trabajo -> Complicaciones -> Resultado**. Las categorías de complejidad son Simple, Estándar, Complejo, Magistral y Extraordinario; la competencia esperada progresa aproximadamente de Aprendiz a Gran Maestro.
+
+Una tarea reproducible, conocida y realizada con tiempo, herramientas, materiales e instalaciones apropiadas no necesita tirada. Las Especializaciones autorizan, reducen dificultades contextuales o desbloquean trabajo; no conceden un +X universal.
+
+Un proyecto multidisciplinario tiene una disciplina Principal y una o más Auxiliares. Las escalas de tiempo son Minutos, Horas, Días, Semanas y Meses. Acelerar un proyecto puede reducir un grado de tiempo cuando sea plausible, a cambio de riesgo, coste o calidad comprometida. Los recursos se clasifican como Comunes, Especializados, Raros o Excepcionales; las instalaciones como Improvisadas, Adecuadas, Profesionales, Especializadas o Excepcionales.
+
+Un plano estable vuelve reproducible un trabajo rutinario para quien tenga la competencia y medios requeridos. La investigación sigue **Concepto -> Viabilidad -> Investigación -> Prototipo -> Fórmula/Plano estable**. La Viabilidad puede ser Posible, Posible con condiciones o Actualmente imposible. Una tirada alta no atraviesa la imposibilidad establecida.
+
+Los proyectos largos se resuelven por etapas significativas, no mediante una reserva universal de puntos de progreso. Un fallo genera consecuencias, retrasos, costes o necesidad de cambiar el enfoque según la situación; no reinicia automáticamente todo el proyecto.
+
 ---
 
 ## Estado de consolidación
 
-**Consolidado en este documento:** núcleo, creación, desarrollo, Rasgos, turno/movimiento, Escala/maniobras, combate, armas/armaduras/escudos, Vida/Trauma/recuperación, magia y grimorio inicial.
+**Consolidado:** núcleo, creación, desarrollo, Rasgos, turno/movimiento, Escala/maniobras, combate, armas/armaduras/escudos, Vida/Trauma/recuperación, magia, grimorio inicial, Técnicas, Familiares/invocaciones, Ritualismo, Alquimia, Ingeniería arcano-industrial y Proyectos.
 
-**Siguiente bloque:** catálogo completo de Técnicas, Familiares e invocaciones, Ritualismo, Alquimia, Ingeniería arcano-industrial, Proyectos, economía ampliada, razas/orígenes, vehículos/autómatas, PNJ/criaturas y lore/panteón.
+**Pendiente de consolidación:** economía y disponibilidad ampliadas; razas, orígenes y profesiones; vehículos, monturas y autómatas; PNJ y criaturas; dirección de juego; mundo, pueblos, mitología y Panteón Primordial; referencia rápida, glosario e índices. Los puntos explícitamente marcados como no fijados siguen pendientes de decisión y no se rellenan por inferencia.
