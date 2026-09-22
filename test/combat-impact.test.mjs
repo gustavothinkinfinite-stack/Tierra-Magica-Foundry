@@ -98,3 +98,21 @@ test("la ficha expone Técnicas ofensivas y selecciona la segunda arma sin dupli
   assert.equal(sheetLogic.includes('this.actor.sweepAttack(weapon)'), true);
   assert.equal(sheetLogic.includes('this.actor.useCombatTechnique("Golpe Potente", weapon)'), true);
 });
+
+test("Guardia Parada y Contraataque respetan Acción/Reacción y no encadenan", async () => {
+  const actorSource = await readFile(new URL("../scripts/documents/actor.mjs", import.meta.url), "utf8");
+  const sheetSource = await readFile(new URL("../scripts/sheets/actor-sheet.mjs", import.meta.url), "utf8");
+  const template = await readFile(new URL("../templates/actor/character-sheet.hbs", import.meta.url), "utf8");
+  assert.equal(actorSource.includes('async guard()'), true);
+  assert.equal(actorSource.includes('"system.turn.action": false, "system.combat.guardActive": true'), true);
+  assert.equal(actorSource.includes('async parry()'), true);
+  assert.equal(actorSource.includes('"system.turn.reaction": false, "system.combat.parryActive": true'), true);
+  assert.equal(actorSource.includes('async counterattack(item)'), true);
+  assert.equal(actorSource.includes('if (!this.system.combat?.parryActive)'), true);
+  assert.equal(actorSource.includes('if (this.system.combat?.counterattackUsed)'), true);
+  assert.equal(actorSource.includes('"system.combat.parryActive": false, "system.combat.counterattackUsed": true'), true);
+  assert.equal(sheetSource.includes('"system.combat.guardActive": false'), true);
+  assert.equal(sheetSource.includes('"system.combat.parryActive": false'), true);
+  assert.equal(sheetSource.includes('"system.combat.counterattackUsed": false'), true);
+  for (const action of ["combat-guard", "combat-parry", "combat-counterattack"]) assert.equal(template.includes('data-action="' + action + '"'), true);
+});
