@@ -152,35 +152,6 @@ export class TierraMagicaActor extends Actor {
     });
   }
 
-  async guard() {
-    if (!(this.system.turn?.action ?? true)) return ui.notifications.warn(this.name + " ya gastó su Acción.");
-    await this.update({ "system.turn.action": false, "system.combat.guardActive": true });
-    return ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor: this }),
-      content: "<div class='tm-chat-card'><strong>Guardia</strong><p>" + foundry.utils.escapeHTML(this.name) + " consume su Acción y obtiene +2 Defensa hasta el inicio de su siguiente turno.</p></div>"
-    });
-  }
-
-  async parry() {
-    if (!(this.system.turn?.reaction ?? true)) return ui.notifications.warn(this.name + " ya gastó su Reacción.");
-    await this.update({ "system.turn.reaction": false, "system.combat.parryActive": true });
-    return ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor: this }),
-      content: "<div class='tm-chat-card'><strong>Parada</strong><p>" + foundry.utils.escapeHTML(this.name) + " consume su Reacción y obtiene +2 Defensa contra el ataque que está parando.</p></div>"
-    });
-  }
-
-  async counterattack(item) {
-    if (!item || item.type !== "weapon") return null;
-    if (!this.items.some((entry) => entry.type === "technique" && entry.name === "Contraataque")) {
-      return ui.notifications.warn(this.name + " no posee la Técnica Contraataque.");
-    }
-    if (!this.system.combat?.parryActive) return ui.notifications.warn("Contraataque requiere una Parada exitosa contra el ataque desencadenante.");
-    if (this.system.combat?.counterattackUsed) return ui.notifications.warn("Esta Reacción ya resolvió un Contraataque.");
-    await this.update({ "system.combat.parryActive": false, "system.combat.counterattackUsed": true });
-    return this.rollWeapon(item, { technique: "Contraataque" });
-  }
-
   async rollWeapon(item, { df = null, mode = "normal", modifier = 0, damageBonus = 0, penetrationBonus = 0, technique = "" } = {}) {
     if (!item || item.type !== "weapon") return null;
     const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
