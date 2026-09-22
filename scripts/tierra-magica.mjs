@@ -8,12 +8,14 @@ import { installMagicGuards } from "./rules/magic-guards.mjs";
 import { installMagicReactionGuards } from "./rules/magic-reaction-guards.mjs";
 import { installCombatDefenseGuards } from "./rules/combat-defense-guards.mjs";
 import { installReactiveTechniqueGuards } from "./rules/reactive-technique-guards.mjs";
+import { installFormulaGuards } from "./rules/formula-guards.mjs";
 
 installFamiliarGuards(TierraMagicaActor);
 installMagicGuards(TierraMagicaActor);
 installMagicReactionGuards(TierraMagicaActor);
 installCombatDefenseGuards(TierraMagicaActor);
 installReactiveTechniqueGuards(TierraMagicaActor);
+installFormulaGuards(TierraMagicaActor);
 
 Hooks.once("init", async () => {
   console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.11");
