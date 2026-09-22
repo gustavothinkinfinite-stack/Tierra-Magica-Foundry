@@ -16,6 +16,12 @@ Vida=10+2×VIG. Maná=6+3×VOL. Defensa=11+AGI+Bono Defensivo+equipo. Corporal=1
 ## Combate
 Daño=base+un Atributo permitido+bonos−Protección efectiva; Protección efectiva=max(0,Prot−Pen). Bono Defensivo 0/0/1/2/3/4 y solo el mejor aplicable. Parada Reacción +2 Defensa contra el ataque que la desencadena. Una Parada es exitosa, a efectos de Contraataque, sólo si ese +2 cambia el resultado del ataque de impacto a fallo; un ataque que ya fallaba contra la Defensa normal no habilita Contraataque. Golpe Potente −2 ataque/+2 daño. Estocada Perforante −1 ataque/−1 daño/Pen+2. Combate Dual: dos armas Ligeras/compatibles, dos ataques −2, modificador de ataque completo solo en uno. Barrido: una tirada −2 contra hasta dos objetivos. Reacciones ofensivas no encadenan otras reacciones ofensivas salvo regla expresa. **Contraataque:** requiere poseer la Técnica Contraataque y haber realizado con éxito una Parada contra ese ataque; el contraataque es un ataque inmediato contra el atacante y forma parte de la misma Reacción ya consumida por la Parada, por lo que no consume una segunda Reacción. Un Contraataque no puede activar otro Contraataque ni iniciar una cadena de reacciones ofensivas.
 
+### Técnicas reactivas ratificadas
+
+**Recibir Carga — Básica, 2 PD.** Reacción; requiere un arma con Alcance. Cuando un enemigo entra voluntariamente en tu alcance mediante un desplazamiento directo hacia ti, puedes realizar inmediatamente un ataque con esa arma antes de que complete la aproximación. Si impacta, causa daño normal. El impacto no detiene automáticamente el movimiento ni cancela la acción que motivó la aproximación.
+
+**Intercepción — Básica, 2 PD.** Reacción. Cuando un aliado cercano es objetivo de un ataque que puedes percibir, puedes desplazarte lo mínimo indispensable para interponerte si existe una trayectoria física válida. Pasas a ser el objetivo de ese ataque. Intercepción no concede Defensa adicional, no teletransporta, no permite exceder el Movimiento disponible y no funciona contra áreas. El desplazamiento realizado cuenta contra el Movimiento disponible del personaje para ese turno cuando corresponda.
+
 ## Vida, Trauma y descanso
 0 Vida = Incapacitado; organismo en Trauma0 pasa a Trauma1. Trauma 0 Sin, 1 Grave, 2 Crítico, 3 Terminal; sin penalizadores universales. Herida Grave es lesión concreta, Activa→Controlada→Tratada→Recuperada. Puede surgir por regla, Hazaña con daño significativo, impacto ≥ mitad de Vida máxima cuando la ficción lo justifique o lesión severa evidente. Sangrado 1 Vida/turno; Grave2 solo explícito.
 
