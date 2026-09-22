@@ -72,3 +72,16 @@ test("la ficha usa una ruta atómica y no ofrece un segundo botón explotable de
   assert.equal(actorSource.includes("El daño físico se resuelve únicamente como parte del ataque"), true);
   assert.equal(sheetSource.includes('data-action="item-damage"'), false);
 });
+
+test("técnicas ofensivas no duplican modificadores ni eluden restricciones", async () => {
+  const actorSource = await readFile(new URL("../scripts/documents/actor.mjs", import.meta.url), "utf8");
+  assert.equal(actorSource.includes('name === "Golpe Potente"'), true);
+  assert.equal(actorSource.includes('{ modifier: -2, damageBonus: 2, technique: name }'), true);
+  assert.equal(actorSource.includes('name === "Estocada Perforante"'), true);
+  assert.equal(actorSource.includes('{ modifier: -1, damageBonus: -1, penetrationBonus: 2, technique: name }'), true);
+  assert.equal(actorSource.includes("Barrido requiere uno o dos objetivos válidos."), true);
+  assert.equal(actorSource.includes("const roll = await this.rollCheck({\n      label: \"Barrido"), true);
+  assert.equal(actorSource.includes("Combate Dual requiere dos armas distintas."), true);
+  assert.equal(actorSource.includes("/Ligera/i.test"), true);
+  assert.equal(actorSource.includes("for (const [index, weapon] of [primary, secondary].entries())"), true);
+});
