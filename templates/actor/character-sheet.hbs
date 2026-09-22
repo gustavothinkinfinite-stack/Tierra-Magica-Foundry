@@ -365,6 +365,14 @@
           <label><span>Mod. Movimiento</span><input type="number" name="system.combat.movementBonus" value="{{system.combat.movementBonus}}" /></label>
         </div>
       </section>
+      <section class="tm-panel tm-v03-page-panel">
+        <div class="tm-section-heading"><h2>Economía defensiva</h2><span>Guardia consume Acción; Parada consume Reacción.</span></div>
+        <div class="tm-section-buttons">
+          <button type="button" data-action="combat-guard">Guardia (+2 Defensa)</button>
+          <button type="button" data-action="combat-parry">Parada (+2 Defensa)</button>
+          <button type="button" data-action="combat-counterattack">Contraataque</button>
+        </div>
+      </section>
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Armas preparadas" type="weapon" items=itemGroups.weapon}}
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Armaduras" type="armor" items=itemGroups.armor}}
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Escudos" type="shield" items=itemGroups.shield}}
