@@ -127,3 +127,11 @@ test("Guardia modifica Defensa y Parada sólo habilita Contraataque cuando cambi
   assert.equal(actorSource.includes('"system.combat.parrySucceeded": parrySucceeded'), true);
   assert.equal(actorSource.includes('if (!this.system.combat?.parrySucceeded)'), true);
 });
+
+test("Intercepción respeta la economía binaria de Movimiento sin crear una reserva paralela", async () => {
+  const reactive = await readFile(new URL("../scripts/rules/reactive-technique-guards.mjs", import.meta.url), "utf8");
+  assert.equal(reactive.includes('const tracksDistance = Object.prototype.hasOwnProperty.call(this.system.turn ?? {}, "movementRemaining")'), true);
+  assert.equal(reactive.includes('if (!movementAvailable && cost > 0)'), true);
+  assert.equal(reactive.includes('else if (cost > 0) await this.update({ "system.turn.movement": false })'), true);
+  assert.equal(reactive.includes('"system.turn.movementRemaining": Math.max(0, available - cost)'), true);
+});
