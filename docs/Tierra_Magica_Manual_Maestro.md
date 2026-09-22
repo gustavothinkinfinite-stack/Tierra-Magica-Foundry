@@ -295,9 +295,11 @@ Un área usa una resolución de lanzamiento y compara el resultado con las Defen
 
 La magia no concede armadura fallida, ataques de oportunidad por lanzar ni devolución universal de Maná por Hazaña. Efectos numéricos mágicos idénticos no se acumulan salvo regla. Invisibilidad no equivale a indetectabilidad. Transformaciones deben indicar qué reemplazan y qué conservan. El teletransporte forzado ordinario no puede colocar a un objetivo involuntario en un destino inválido o inmediatamente letal sin una regla ofensiva y resistencia específicas.
 
-**Contramagia — Avanzada, 3 PD.** Reacción después de declarar un lanzamiento y antes de resolverlo. Requiere compatibilidad narrativa/mágica. Se realiza una prueba apropiada contra la DF efectiva del hechizo; con éxito impone Desventaja a una tirada de lanzamiento susceptible o +2 DF cuando el efecto use una resolución susceptible sin tirada enfrentada. No crea una cadena de contracontramagias ni cancela universalmente cualquier efecto.
+**Contramagia — Avanzada, 3 PD.** Reacción después de declarar un lanzamiento y antes de resolverlo. Requiere compatibilidad narrativa/mágica y produce una interferencia contextual. No es una cancelación automática universal. **Auditoría:** el Manual 1.0 y la implementación no fijan todavía una fórmula universal de tirada, DF o modificador para Contramagia; cualquier fórmula más específica queda pendiente de decisión canónica.
 
-## 12. Grimorio canónico inicial
+## 12. Grimorio extendido en consolidación
+
+**Estado de auditoría.** El catálogo implementado 1.0.11 contiene Proyectil Ígneo, Onda de Choque, Barrera Cinética, Potencia Sobrenatural, Piel Alterada, Cierre Restaurador, Regeneración, Reconstrucción, Visión Arcana, Vínculo de Rastreo, Visión Remota, Calma, Sugestión, Llamada Menor, Paso Breve, Trasposición, Umbral y Portal. Las demás entradas de esta sección proceden del diseño consolidado previo, pero no aparecen enumeradas en el Manual 1.0 ni en el contenido inicial 1.0.11; se conservan para revisión y **no se consideran todavía ratificadas por esta auditoría**.
 
 ### Evocación
 
@@ -412,7 +414,7 @@ Las Técnicas representan entrenamiento, maniobras o capacidades aprendidas. Sus
 |---|---|---:|---|---|
 | Parada | Básica | 2 PD | Reacción; arma apropiada; Habilidad marcial Entrenada | +2 Defensa contra un ataque cuerpo a cuerpo parable. |
 | Golpe Potente | Básica | 2 PD | Ataque compatible | -2 ataque, +2 daño. |
-| Recibir Carga | Básica | 2 PD | Reacción; arma de Alcance | Respuesta específica ante una carga válida; requiere posición y alcance reales. |
+| Recibir Carga | Básica | 2 PD | Reacción; arma de Alcance | **Implementada pero no descrita en el Manual 1.0.** Su efecto completo queda pendiente de ratificación; no debe inferirse una resolución adicional. |
 | Tirador Preparado | Básica | 2 PD | Acción + Reacción | Permite preparar un disparo y resolverlo al cumplirse el disparador; expira al inicio del siguiente turno. |
 | Recarga Experta | Básica | 2 PD | Arma con Recarga | Reduce la Recarga en 1 Acción respetando límites físicos. |
 | Combate Dual | Avanzada | 3 PD | Dos armas Ligeras/compatibles | Una Acción, dos ataques a -2; un modificador de ataque completo sólo afecta uno. |
@@ -570,6 +572,8 @@ La munición ordinaria puede manejarse como **Suministro** en expediciones cuand
 Los objetos mágicos no usan una escala universal de “+1/+2/+3”. Sus propiedades deben ser concretas. La riqueza, los negocios y la propiedad pueden producir poder económico real dentro del mundo, pero no se convierten automáticamente en progresión mecánica de PD o PR.
 
 ## 20. Pueblos, herencias y orígenes
+
+> **Estado de auditoría mecánica:** el Manual 1.0 no define paquetes mecánicos de pueblos ni Orígenes. Los perfiles de esta sección se conservan como material de diseño para ratificación; no deben tratarse como reglas 1.0 vigentes hasta resolver su procedencia y balance en la auditoría final.
 
 La fisiología y la cultura se separan. Una herencia describe cuerpo y capacidades biológicas; un **Origen** describe crianza, entorno, contactos y aprendizaje cultural. No existen modificadores raciales amplios a Atributos ni paquetes culturales obligatorios de Habilidades.
 
@@ -828,6 +832,6 @@ Permanecen abiertos para desarrollo futuro los elementos que v0.3 señalaba expr
 
 ## Estado de consolidación
 
-**Consolidado:** núcleo mecánico; creación y desarrollo; Rasgos; combate y recuperación; magia y grimorio; Técnicas; Familiares e invocaciones; Ritualismo; Alquimia; Ingeniería; Proyectos; economía; pueblos mecánicos y Orígenes; vehículos; PNJ; dirección de juego; cosmología y lore canónico del Panteón Primordial recuperado del Manual Unificado v0.3.
+**Consolidado y contrastado con 1.0/1.0.11:** núcleo, creación/desarrollo, derivados, turno, combate básico, Vida/Trauma/descanso, Familiares, magia nuclear, Alquimia nuclear, Ingeniería/Sobrecarga, Ritualismo y economía básica. El lore del Panteón se conserva desde v0.3 por remisión expresa del Manual 1.0.
 
-**Pendiente:** referencia rápida, glosario e índices; auditoría cruzada del Manual Maestro contra el manual 1.0, contenido implementado y changelog; resolución explícita de contradicciones restantes; revisión editorial final. El Manual Maestro todavía no sustituye al manual 1.0 como fuente mecánica hasta completar esa auditoría.
+**Pendiente de ratificación o cierre:** fórmulas mecánicas no presentes en 1.0, catálogo extendido de hechizos, Recibir Carga, Intercepción, paquetes mecánicos de pueblos/Orígenes y otros bloques ampliados que exceden lo definido expresamente en 1.0. Véase `docs/AUDITORIA_MANUAL_MAESTRO_1.0.11.md`. El Manual Maestro todavía no sustituye al Manual 1.0.
