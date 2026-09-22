@@ -36,3 +36,14 @@ No se aplica todavía daño físico automático a Vida. Antes debe existir una �
 El siguiente bloque debe integrar esa resolución en la ficha mediante una acción atómica de ataque, o mediante una tarjeta de chat cuyo botón de daño lleve una referencia inmutable al atacante, arma, objetivo y resultado autorizado. Debe cubrir también Golpe Potente, Estocada Perforante, Combate Dual y Barrido sin crear acciones adicionales ni duplicar modificadores.
 
 No se añaden reglas nuevas: este bloque sólo endurece la implementación de la regla de combate ya consolidada.
+
+
+## Integración posterior
+
+La brecha prioritaria quedó cerrada mediante una ruta atómica de ataque físico. La ficha ya no ofrece un botón de daño separado: un ataque exige exactamente un Actor objetivo, fija su Defensa antes de tirar, comprueba el impacto y sólo entonces calcula y aplica el daño a ese mismo Actor. Cambiar la selección después de la tirada no redirige el daño.
+
+Golpe Potente y Estocada Perforante pasan sus modificadores de ataque/daño/Penetración una sola vez a esa ruta. Barrido usa una sola tirada -2, deduplica Actores y compara el mismo total contra cada Defensa, hasta dos objetivos. Combate Dual exige dos armas distintas Ligeras/compatibles, un objetivo y genera exactamente dos ataques -2; no crea un tercer ataque ni una segunda aplicación de daño por cada impacto.
+
+El umbral de Daño Grave sigue siendo sólo una señal y nunca crea automáticamente una Herida Grave. Los fallos no generan daño. Protección y Penetración siguen delegadas al núcleo puro `combat-impact.mjs`.
+
+Pendiente de interfaz: exponer selectores cómodos para activar las Técnicas y elegir la segunda arma de Combate Dual. La lógica de resolución ya está encapsulada para que esa interfaz no pueda alterar sus restricciones.
