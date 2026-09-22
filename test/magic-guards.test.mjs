@@ -53,7 +53,8 @@ test("ruta real valida objetivos antes de gastar recursos y resuelve áreas por 
   assert.equal(guards.includes('spellAreaKind(item) === "area" && needsCheck'), true);
   assert.equal(guards.includes("spellDfFor(item, target)"), true);
   assert.equal(guards.includes("resolveSpellImpacts(item, hitTargets)"), true);
-  assert.equal(guards.includes("todavía no modifica Vida automáticamente"), true);
+  assert.equal(guards.includes('adjustResource("health", -impact.damage)'), true);
+  assert.equal(guards.includes("no crea automáticamente una Herida Grave"), true);
 });
 
 test("Origen Remoto fija un token de origen sin inventar alcance narrativo", async () => {
@@ -61,4 +62,11 @@ test("Origen Remoto fija un token de origen sin inventar alcance narrativo", asy
   assert.equal(guards.includes("options.remoteOrigin"), true);
   assert.equal(guards.includes("getActiveTokens?.()[0]"), true);
   assert.equal(guards.includes("no concede percepción, conocimiento del objetivo ni línea de efecto"), true);
+});
+
+test("daño mágico se aplica una sola vez por Actor y respeta permisos", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
+  assert.equal(guards.includes('canUserModify?.(game.user, "update")'), true);
+  assert.equal(guards.includes('adjustResource("health", -impact.damage)'), true);
+  assert.equal(guards.includes("permisos insuficientes"), true);
 });
