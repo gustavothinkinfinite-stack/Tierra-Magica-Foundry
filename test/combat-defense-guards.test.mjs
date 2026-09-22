@@ -27,7 +27,7 @@ test("Parada no protege ataques a distancia y queda disponible para un ataque pa
   const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
   assert.equal(source.includes('const isRangedWeapon = (weapon)'), true);
   assert.equal(source.includes('if (!target?.system?.combat?.parryActive || isRangedWeapon(item))'), true);
-  assert.equal(source.includes('const parryThisAttack = index === 0 && !isRangedWeapon(weapon)'), true);
+  assert.equal(source.includes('const parryThisAttack = parryPending && !isRangedWeapon(weapon)'), true);
   assert.equal(source.includes('const parryable = !isRangedWeapon(item)'), true);
 });
 
