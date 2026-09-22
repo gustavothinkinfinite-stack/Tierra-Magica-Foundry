@@ -1,5 +1,16 @@
 # Historial de cambios
 
+## 1.0.11
+
+- Auditoría retrospectiva corregida: el umbral `5+VIG` coincide exactamente con la mitad de Vida máxima; sigue siendo informativo y no crea Herida Grave.
+- Capacidades de Familiar registradas como Técnicas con coste PD y requisito de Vínculo; se añade modo de control y Coordinación Reactiva.
+- Objetivos mágicos se validan antes de gastar Maná; áreas resuelven cada Defensa por separado y deduplican Actores.
+- Origen Remoto entra en la ruta real de lanzamiento y exige un token activo del Familiar; no inventa alcance ni línea de efecto.
+- Sobrecarga Controlada de dispositivos valida Energía/Caudal, ejecuta la activación y consume Energía sólo en éxito.
+- Se retiran campos históricos de Trauma/capacidades de Familiar mediante migración.
+- El daño mágico exitoso aplica Vida por objetivo tras Protección/Penetración; el umbral Grave no automatiza lesiones.
+
+
 ## 1.0.10
 
 - Reemplazado el banner de cabecera comprimido por una copia optimizada de alta calidad, evitando el aspecto borroso de la versión anterior.
