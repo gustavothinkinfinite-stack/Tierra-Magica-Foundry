@@ -34,12 +34,17 @@ export function installReactiveTechniqueGuards(ActorClass) {
     if (area) return ui.notifications.warn("Intercepción no funciona contra áreas.");
     const cost = Number(movementCost);
     if (!Number.isFinite(cost) || cost < 0) return ui.notifications.warn("Intercepción requiere un coste de Movimiento válido.");
-    const available = Number(this.system.turn?.movementRemaining ?? this.system.derived?.movement ?? 0);
-    if (cost > available) return ui.notifications.warn("Intercepción excede el Movimiento disponible.");
+    const tracksDistance = Object.prototype.hasOwnProperty.call(this.system.turn ?? {}, "movementRemaining");
+    const movementAvailable = this.system.turn?.movement ?? true;
+    const available = tracksDistance ? Number(this.system.turn.movementRemaining) : Number(this.system.derived?.movement ?? 0);
+    if (!movementAvailable && cost > 0) return ui.notifications.warn(this.name + " ya gastó su Movimiento.");
+    if (!Number.isFinite(available) || cost > available) return ui.notifications.warn("Intercepción excede el Movimiento disponible.");
     if (!(await spendReaction(this, "Intercepción"))) return null;
-    const updates = {};
-    if (Object.prototype.hasOwnProperty.call(this.system.turn ?? {}, "movementRemaining")) updates["system.turn.movementRemaining"] = Math.max(0, available - cost);
-    if (Object.keys(updates).length) await this.update(updates);
+    // El núcleo usa Movimiento como economía binaria. No creamos una segunda reserva
+    // cuantificada sólo para Intercepción: si no existe movementRemaining canónico,
+    // cualquier desplazamiento real consume el Movimiento del turno.
+    if (tracksDistance) await this.update({ "system.turn.movementRemaining": Math.max(0, available - cost) });
+    else if (cost > 0) await this.update({ "system.turn.movement": false });
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>Intercepción</strong><p>" + foundry.utils.escapeHTML(this.name) + " consume su Reacción y " + cost + " de Movimiento para interponerse" + (ally?.name ? " por " + foundry.utils.escapeHTML(ally.name) : "") + ". El ataque debe cambiar su objetivo a este personaje; no obtiene Defensa adicional. La trayectoria, percepción y validez física deben estar confirmadas en la escena.</p></div>"
