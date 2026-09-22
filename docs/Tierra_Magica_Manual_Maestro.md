@@ -188,7 +188,7 @@ No existe una ronda universal de sorpresa. Una iniciación no percibida resuelve
 
 **Contraataque — Avanzada, 3 PD; requiere Parada.** Si una Parada convierte un impacto en fallo, permite un ataque inmediato dentro de esa misma Reacción. No inicia una cadena de Reacciones ofensivas.
 
-**Intercepción — Básica.** Reacción para interponerse físicamente cuando posición y Movimiento lo permiten; no teletransporta al usuario.
+**Intercepción — Básica, 2 PD.** Reacción. Cuando un aliado cercano es objetivo de un ataque que puedes percibir, puedes desplazarte lo mínimo indispensable para interponerte si existe una trayectoria física válida. Pasas a ser el objetivo de ese ataque. No concede Defensa adicional, no teletransporta, no permite exceder el Movimiento disponible y no funciona contra áreas. El desplazamiento realizado cuenta contra el Movimiento disponible del personaje para ese turno cuando corresponda.
 
 **Combate Dual — Avanzada, 3 PD.** Con dos armas Ligeras o compatibles, una Acción produce dos ataques, cada uno con -2. Un modificador que afecte al ataque completo se aplica sólo a uno salvo regla expresa. No permite otra Acción ofensiva adicional.
 
@@ -414,7 +414,8 @@ Las Técnicas representan entrenamiento, maniobras o capacidades aprendidas. Sus
 |---|---|---:|---|---|
 | Parada | Básica | 2 PD | Reacción; arma apropiada; Habilidad marcial Entrenada | +2 Defensa contra un ataque cuerpo a cuerpo parable. |
 | Golpe Potente | Básica | 2 PD | Ataque compatible | -2 ataque, +2 daño. |
-| Recibir Carga | Básica | 2 PD | Reacción; arma de Alcance | **Implementada pero no descrita en el Manual 1.0.** Su efecto completo queda pendiente de ratificación; no debe inferirse una resolución adicional. |
+| Recibir Carga | Básica | 2 PD | Reacción; arma de Alcance | Cuando un enemigo entra voluntariamente en tu alcance mediante un desplazamiento directo hacia ti, realiza inmediatamente un ataque con esa arma antes de completar la aproximación. Daño normal; no detiene automáticamente el movimiento. |
+| Intercepción | Básica | 2 PD | Reacción; aliado cercano objetivo de ataque perceptible | Desplázate lo mínimo para interponerte por trayectoria válida y pasa a ser objetivo; sin Defensa extra, sin teletransporte, sin exceder Movimiento y no contra áreas. |
 | Tirador Preparado | Básica | 2 PD | Acción + Reacción | Permite preparar un disparo y resolverlo al cumplirse el disparador; expira al inicio del siguiente turno. |
 | Recarga Experta | Básica | 2 PD | Arma con Recarga | Reduce la Recarga en 1 Acción respetando límites físicos. |
 | Combate Dual | Avanzada | 3 PD | Dos armas Ligeras/compatibles | Una Acción, dos ataques a -2; un modificador de ataque completo sólo afecta uno. |
@@ -428,7 +429,7 @@ Las Técnicas representan entrenamiento, maniobras o capacidades aprendidas. Sus
 | Origen Remoto | Avanzada | 3 PD | Familiar Mágico; Vínculo III | Usa la posición del Familiar como origen de un hechizo compatible; recursos y lanzamiento siguen perteneciendo al personaje. |
 | Coordinación Reactiva | Avanzada | 3 PD | Familiar Mágico; Vínculo III | Define un disparador simple y observable para una respuesta del Familiar; no crea Reacciones ni cadenas adicionales. |
 
-**Intercepción** existe como técnica Básica reactiva: permite interponerse físicamente ante una amenaza cuando posición, distancia y movimiento lo hacen posible. El canon actual no fija todavía un coste PD independiente en el catálogo implementado; hasta su consolidación de coste no debe asumirse un precio nuevo.
+**Intercepción** está ratificada como Técnica Básica de 2 PD con la resolución indicada en el catálogo anterior.
 
 ## 14. Familiares, vínculos e invocaciones
 
@@ -834,4 +835,4 @@ Permanecen abiertos para desarrollo futuro los elementos que v0.3 señalaba expr
 
 **Consolidado y contrastado con 1.0/1.0.11:** núcleo, creación/desarrollo, derivados, turno, combate básico, Vida/Trauma/descanso, Familiares, magia nuclear, Alquimia nuclear, Ingeniería/Sobrecarga, Ritualismo y economía básica. El lore del Panteón se conserva desde v0.3 por remisión expresa del Manual 1.0.
 
-**Pendiente de ratificación o cierre:** fórmulas mecánicas no presentes en 1.0, catálogo extendido de hechizos, Recibir Carga, Intercepción, paquetes mecánicos de pueblos/Orígenes y otros bloques ampliados que exceden lo definido expresamente en 1.0. Véase `docs/AUDITORIA_MANUAL_MAESTRO_1.0.11.md`. El Manual Maestro todavía no sustituye al Manual 1.0.
+**Pendiente de ratificación o cierre:** fórmulas mecánicas no presentes en 1.0, catálogo extendido de hechizos, paquetes mecánicos de pueblos/Orígenes y otros bloques ampliados que exceden lo definido expresamente en 1.0. Véase `docs/AUDITORIA_MANUAL_MAESTRO_1.0.11.md`. El Manual Maestro todavía no sustituye al Manual 1.0.
