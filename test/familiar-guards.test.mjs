@@ -1,67 +1,68 @@
-import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import assert from "node:assert/strict";
+import { installFamiliarGuards } from "../scripts/rules/familiar-guards.mjs";
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const warnings = [];
+globalThis.ui = { notifications: { warn: (message) => { warnings.push(message); return message; } } };
+globalThis.foundry = { utils: { escapeHTML: (value) => String(value) } };
+globalThis.ChatMessage = { getSpeaker: ({ actor }) => ({ actor: actor.uuid }), create: async (data) => data };
 
-test("Familiares no heredan una segunda economía de PJ", async () => {
-  const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
-  const entry = await readFile(resolve(root, "scripts/tierra-magica.mjs"), "utf8");
-  assert.equal(entry.includes("installFamiliarGuards(TierraMagicaActor)"), true);
-  assert.equal(guards.includes("this.system.resources.mana.value = 0"), true);
-  assert.equal(guards.includes("this.system.resources.mana.max = 0"), true);
-  assert.equal(guards.includes("this.system.turn.action = false"), true);
-  assert.equal(guards.includes("this.system.turn.reaction = false"), true);
+class FakeActor {
+  constructor({ uuid, name, type = "character", system = {}, items = [] }) { Object.assign(this, { uuid, name, type, system, items }); this.updates = []; }
+  prepareDerivedData() {}
+  async update(changes) {
+    this.updates.push(changes);
+    for (const [path, value] of Object.entries(changes)) {
+      const keys = path.split(".").slice(1); let target = this.system;
+      while (keys.length > 1) { const key = keys.shift(); target[key] ??= {}; target = target[key]; }
+      target[keys[0]] = value;
+    }
+    return changes;
+  }
+  async useSpell(spell, options) { return { spell, options }; }
+}
+installFamiliarGuards(FakeActor);
+
+const technique = (name) => ({ type: "technique", name });
+const owner = (items = []) => new FakeActor({ uuid: "Actor.owner", name: "Dueño", items, system: { turn: { action: true, reaction: true }, resources: { health: { value: 10, max: 10 }, mana: { value: 9, max: 9 } }, status: { trauma: 0 } } });
+const familiar = ({ ownerUuid = "Actor.owner", health = 5, bondLevel = 3 } = {}) => new FakeActor({ uuid: "Actor.familiar", name: "Familiar", type: "familiar", system: { details: { ownerUuid }, familiar: { bondLevel, incapacitated: false }, turn: { action: true, reaction: true }, resources: { health: { value: health, max: 5 }, mana: { value: 6, max: 6 } }, status: { trauma: 0 } } });
+
+test("Familiar no hereda Maná ni economía de turno propia", () => {
+  const pet = familiar(); pet.prepareDerivedData();
+  assert.equal(pet.system.resources.mana.value, 0); assert.equal(pet.system.resources.mana.max, 0);
+  assert.equal(pet.system.turn.action, false); assert.equal(pet.system.turn.reaction, false);
 });
 
-test("Trauma automático a 0 Vida queda limitado a personajes", async () => {
-  const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
-  assert.equal(guards.includes('this.type === "character" && number(this.system.status?.trauma) === 0'), true);
-  assert.equal(guards.includes('this.type === "familiar") updates["system.familiar.incapacitated"] = true'), true);
+test("Acción Vinculada vacía, ajena o incapacitada no consume Reacción", async () => {
+  for (const [pet, order] of [[familiar(), "   "], [familiar({ ownerUuid: "Actor.other" }), "Atacar"], [familiar({ health: 0 }), "Atacar"]]) {
+    const pc = owner(); await pc.linkedFamiliarAction(pet, order); assert.equal(pc.system.turn.reaction, true); assert.equal(pc.updates.length, 0);
+  }
 });
 
-test("Acción Vinculada consume la Reacción del dueño y exige intervención concreta", async () => {
-  const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
-  assert.equal(guards.includes("ActorClass.prototype.linkedFamiliarAction = async function"), true);
-  assert.equal(guards.includes('if (!(this.system.turn?.reaction ?? true))'), true);
-  assert.equal(guards.includes('await this.update({ "system.turn.reaction": false })'), true);
-  assert.equal(guards.includes("La Acción Vinculada debe indicar una intervención táctica concreta"), true);
-  assert.equal(guards.includes('"system.familiar.controlMode": "linked"'), true);
+test("orden persistente vacía no consume Acción", async () => {
+  const pc = owner(); await pc.commandFamiliar(familiar(), ""); assert.equal(pc.system.turn.action, true); assert.equal(pc.updates.length, 0);
 });
 
-test("orden persistente no se presenta como ataque táctico gratuito", async () => {
-  const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
-  assert.equal(guards.includes("no concede ataques repetidos"), true);
-  assert.equal(guards.includes("requieren Acción Vinculada"), true);
+test("Sentidos Compartidos exige Técnica y Vínculo II y no duplica Acción", async () => {
+  const pet = familiar({ bondLevel: 2 }); const without = owner(); await without.useFamiliarSense(pet); assert.equal(without.system.turn.action, true);
+  const pc = owner([technique("Sentidos Compartidos")]); await pc.useFamiliarSense(pet); assert.equal(pc.system.turn.action, false);
+  const count = pc.updates.length; await pc.useFamiliarSense(pet); assert.equal(pc.updates.length, count);
 });
 
-test("Origen Remoto valida propiedad, estado y Vínculo III", async () => {
-  const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
-  assert.equal(guards.includes("validFamiliar(this, familiar)"), true);
-  assert.equal(guards.includes('hasBondCapability(this, familiar, "Origen Remoto", 3)'), true);
-  assert.equal(guards.includes("no concede conocimiento, percepción ni línea de efecto"), true);
-  assert.equal(guards.includes("const result = await this.useSpell(spell, { remoteOrigin: familiar })"), true);
+test("Origen Remoto exige Técnica y Vínculo III y conserva al dueño como lanzador", async () => {
+  const spell = { type: "spell", name: "Prueba" }; const pet = familiar({ bondLevel: 3 });
+  const without = owner(); assert.equal(typeof await without.castFromFamiliar(pet, spell), "string");
+  const pc = owner([technique("Origen Remoto")]); const result = await pc.castFromFamiliar(pet, spell);
+  assert.equal(result.spell, spell); assert.equal(result.options.remoteOrigin, pet); assert.equal(pet.system.resources.mana.value, 6);
 });
 
-test("Coordinación Reactiva no crea una intervención significativa gratuita", async () => {
-  const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
-  assert.equal(guards.includes("ActorClass.prototype.triggerFamiliarReaction = async function"), true);
-  assert.equal(guards.includes('hasBondCapability(this, familiar, "Coordinación Reactiva", 3)'), true);
-  assert.equal(guards.includes('familiar.system.familiar?.controlMode !== "reactive"'), true);
-  assert.equal(guards.includes('await this.update({ "system.turn.reaction": false })'), true);
-  assert.equal(guards.includes("no puede encadenar otra respuesta reactiva"), true);
+test("Vida 0 incapacita Familiar sin aplicar Trauma de personaje", async () => {
+  const pet = familiar({ health: 1 }); await pet.adjustResource("health", -1);
+  assert.equal(pet.system.resources.health.value, 0); assert.equal(pet.system.status.incapacitated, true); assert.equal(pet.system.familiar.incapacitated, true); assert.equal(pet.system.status.trauma, 0);
 });
 
-test("capacidades de vínculo requieren Técnica comprada y nivel de Vínculo", async () => {
-  const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
-  const content = await readFile(resolve(root, "scripts/content.mjs"), "utf8");
-  const model = JSON.parse(await readFile(resolve(root, "template.json"), "utf8"));
-  assert.equal(guards.includes("hasTechnique(owner, name)"), true);
-  assert.equal(guards.includes('"Sentidos Compartidos", 2'), true);
-  assert.equal(guards.includes('"Coordinación Reactiva", 3'), true);
-  for (const name of ["Sentidos Compartidos","Comunicación Mejorada","Origen Remoto","Coordinación Reactiva"]) assert.equal(content.includes('name:"' + name + '"'), true);
-  assert.equal(model.Actor.familiar.familiar.controlMode, "autonomous");
-  assert.equal("zeroTraumaApplied" in model.Actor.templates.base.recovery, false);
+test("Coordinación Reactiva no encadena una segunda Reacción", async () => {
+  const pc = owner([technique("Coordinación Reactiva")]); const pet = familiar({ bondLevel: 3 });
+  await pc.setFamiliarReactiveTrigger(pet, "cuando alguien cruce la puerta"); await pc.triggerFamiliarReaction(pet, "avisar y distraer"); assert.equal(pc.system.turn.reaction, false);
+  const count = pc.updates.length; await pc.triggerFamiliarReaction(pet, "repetir"); assert.equal(pc.updates.length, count);
 });
