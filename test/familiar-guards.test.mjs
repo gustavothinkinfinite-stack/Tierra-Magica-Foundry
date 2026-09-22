@@ -34,7 +34,7 @@ test("Origen Remoto valida propiedad, estado y Vínculo III", async () => {
   assert.equal(guards.includes("validFamiliar(this, familiar)"), true);
   assert.equal(guards.includes('hasBondCapability(this, familiar, "Origen Remoto", 3)'), true);
   assert.equal(guards.includes("no concede conocimiento, percepción ni línea de efecto"), true);
-  assert.equal(guards.includes("const result = await this.useSpell(spell)"), true);
+  assert.equal(guards.includes("const result = await this.useSpell(spell, { remoteOrigin: familiar })"), true);
 });
 
 test("capacidades de vínculo requieren Técnica comprada y nivel de Vínculo", async () => {
