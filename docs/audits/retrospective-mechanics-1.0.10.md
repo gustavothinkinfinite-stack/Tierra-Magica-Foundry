@@ -13,7 +13,7 @@ Revisados: reconstrucción v0.3, consolidación 1.0, restauración de Hazaña/Pi
 
 Estado: reconciliado en Manual para fórmula 2d10, Ventaja/Desventaja, Hazaña/Pifia, Defensa de Maniobra, daño, Protección/Penetración y técnicas principales. Se restauraron además los grados de éxito que el motor conserva: Ajustado 0–4, Claro 5–9 y Dominante 10+, y la prohibición de repetir una prueba idéntica sin cambio significativo.
 
-Observación pendiente de implementación: el motor usa `severeThreshold(vigor)=5+VIG`, mientras el Manual describe como posible detonante de Herida Grave un impacto de al menos la mitad de Vida máxima cuando la ficción lo justifica. No son equivalentes para todos los valores de VIG. Hasta resolverlo, el indicador automático de Daño Grave no debe interpretarse como creación automática de Herida Grave.
+Corrección de la auditoría: `severeThreshold(vigor)=5+VIG` es exactamente la mitad de `Vida máxima=10+2×VIG`. No existe discrepancia matemática. El indicador sigue siendo sólo una señal: el Manual exige justificación ficticia y no autoriza crear automáticamente una Herida Grave.
 
 ### Vida, Trauma, descansos y recuperación
 Revisados: 1.0.3 y salvaguardas posteriores de Familiar/Trauma.
@@ -80,7 +80,7 @@ Estado: Foundry permite fuentes de modificador por equipo, técnica, magia, rasg
 La auditoría no encontró justificación para revertir el núcleo canónico actual. Sí encontró deuda de integración y restos históricos que impiden afirmar equivalencia total Manual ↔ Foundry.
 
 Prioridad de corrección:
-1. Unificar umbral/indicador de Daño Grave con la definición canónica sin automatizar Herida Grave.
+1. Mantener el indicador de Daño Grave como señal, sin automatizar Herida Grave; su umbral ya coincide matemáticamente con la mitad de Vida máxima.
 2. Completar capacidades de Familiar como compras reales de PD y modos de control.
 3. Integrar selección/validación/impacto mágico en la ruta real de lanzamiento, incluido multiobjetivo.
 4. Corregir el flujo de Sobrecarga Controlada de dispositivos.
