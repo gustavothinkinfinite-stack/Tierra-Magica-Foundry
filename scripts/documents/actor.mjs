@@ -192,6 +192,42 @@ export class TierraMagicaActor extends Actor {
     return roll;
   }
 
+  async sweepAttack(item) {
+    if (!item || item.type !== "weapon") return null;
+    if (!this.items.some((entry) => entry.type === "technique" && entry.name === "Barrido")) {
+      return ui.notifications.warn(this.name + " no posee la Técnica Barrido.");
+    }
+    const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
+    const targets = [...new Map(selected.map((actor) => [actor.uuid ?? actor.id, actor])).values()];
+    if (targets.length < 1 || targets.length > 2) return ui.notifications.warn("Barrido requiere uno o dos objetivos válidos.");
+    const defenses = targets.map((target) => toNumber(target.system?.derived?.defense, Number.NaN));
+    if (defenses.some((value) => !Number.isFinite(value))) return ui.notifications.warn("Barrido encontró una Defensa no válida.");
+    const roll = await this.rollCheck({
+      label: "Barrido con " + item.name,
+      attributeKey: item.system.attackAttribute || "agi",
+      skillKey: item.system.skill || "martialWeapons",
+      df: Math.max(...defenses),
+      modifier: -2
+    });
+    const total = toNumber(roll?.rolls?.[0]?.total ?? roll?.roll?.total ?? roll?.total, Number.NaN);
+    for (let i = 0; i < targets.length; i += 1) {
+      const target = targets[i];
+      if (!attackHits(total, defenses[i])) continue;
+      const impact = resolveWeaponImpact(item, this, target);
+      const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
+      if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: "<div class='tm-chat-card'><strong>Barrido — " + foundry.utils.escapeHTML(item.name) +
+          "</strong><p>" + foundry.utils.escapeHTML(target.name) + ": " + impact.damage + " daño" +
+          (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") +
+          (!canUpdate && impact.damage > 0 ? " · <em>sin aplicar: permisos insuficientes</em>" : "") +
+          ".</p></div>"
+      });
+    }
+    return roll;
+  }
+
   async useCombatTechnique(name, item) {
     if (!item || item.type !== "weapon") return null;
     if (!this.items.some((entry) => entry.type === "technique" && entry.name === name)) {
