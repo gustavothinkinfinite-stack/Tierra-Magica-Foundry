@@ -683,10 +683,151 @@ Los jefes no reciben inmunidades arbitrarias contra control. El catálogo ordina
 
 No se crea un subsistema nuevo para anticipar un problema hipotético. Primero se usa el núcleo, después una propiedad o Técnica concreta y sólo se añade una regla nueva cuando exista una necesidad reproducible que el sistema actual no resuelva bien.
 
+
+## 25. Cosmología: los Principios Primordiales
+
+Esta sección consolida el lore declarado canónico en el Manual Unificado v0.3. Las reglas mecánicas antiguas de ese documento no se reintroducen por esta vía.
+
+La cosmología conocida se articula alrededor de siete acontecimientos primordiales: **Primera Semilla, Primera Forja, Primera Guerra, Primera Elección, Primera Luz, Primera Profanación y Primer Tránsito**. Cada uno expresa un principio y está asociado a una deidad primordial. Estos principios no obligan moralmente a los pueblos creados por cada dios: origen, cultura, religión y conducta individual son dimensiones distintas.
+
+| Deidad | Acontecimiento | Principio | Creaciones primordiales |
+|---|---|---|---|
+| Eïra | Primera Semilla | Vida | Feéricos, Élficos, Terios |
+| Khorun | Primera Forja | Materia y Forma | Enanos, Gigantes, Elementales |
+| Varkor | Primera Guerra | Conflicto | Orcos, Trolls, Ogros, Goblinoides |
+| Aster | Primera Elección | Elección | Humanos |
+| Ilyr | Primera Luz / Primer Juramento | Bien | Celestiales o Ángeles |
+| Nereth | Primera Profanación | Corrupción / Mal | Demonios; origen de la No Muerte |
+| Vaelun | Primer Tránsito | Tránsito | Ankar |
+
+Con Vaelun se cierra el **Panteón Primordial básico**. El canon permite que aparezcan posteriormente dioses menores, descendientes, entidades regionales, héroes divinizados u otros poderes históricos sin convertirlos retroactivamente en miembros de este grupo original.
+
+## 26. Eïra y la Primera Semilla
+
+**Eïra, Madre de la Primera Semilla**, representa la Vida. Su obra primordial se expresa mediante tres imágenes: **Hoja, Savia y Sangre**, tres formas en que la naturaleza aprendió a pensar.
+
+**La Hoja** dio origen a los Feéricos. El canon histórico incluye Hadas, Sátiros, Dríades, Trents, Náyades, Nereidas, Silfos, Duendes del bosque, linajes Centáuricos, Espíritus florales y Feéricos estacionales. Son familias y pueblos vinculados de maneras distintas con procesos, lugares y manifestaciones naturales; no constituyen una única anatomía.
+
+**La Savia** dio origen a los Élficos. Las tradiciones distinguen Altos Elfos, Elfos Silvanos y Elfos Oscuros, además de poblaciones élficas no adscritas necesariamente a esas ramas.
+
+**La Sangre** dio origen a los Terios, llamados Anihombres en muchas culturas. Son pueblos nacidos como tales, no humanos transformados. Un Terio lupino, por ejemplo, no es un hombre lobo: la licantropía, si existe, es otro fenómeno —maldición, enfermedad, transformación, pacto o magia—.
+
+El canon también reconoce otros hijos de la Primera Semilla, entre ellos Micelios, Verdantes y Coralios. Su existencia no implica todavía paquetes mecánicos jugables completos.
+
+Eïra puede ser Fuente Divina mediante un Vínculo apropiado. Apariencia, manifestaciones, dogma, templos, sacerdocio, festividades, mandamientos, avatares, milagros y detalles de Vínculos Divinos permanecen deliberadamente abiertos donde v0.3 los marcaba como pendientes.
+
+## 27. Khorun y la Primera Forja
+
+**Khorun, el Primer Forjador**, encarna **Materia y Forma**. Sus títulos tradicionales incluyen Padre de la Montaña, Señor de las Profundidades, Aquel que Dio Forma y Corazón del Mundo. Sus dominios abarcan piedra, metal, fuego interior, montañas, cavernas, minerales, forja, construcción, resistencia, fuerza, creación material y fuerzas elementales. Su símbolo tradicional es un martillo vertical sobre una montaña partida con una brasa en el centro.
+
+La Primera Forja se expresa mediante **Piedra, Montaña y Chispa**.
+
+**La Piedra** originó a los Enanos. Las tradiciones históricas distinguen Enanos de Montaña, Profundos, de Forja y Errantes. La creación material ocupa un lugar central en muchas de sus culturas, pero no determina la profesión de cada individuo.
+
+**La Montaña** originó a los Gigantes. El canon reconoce linajes de Piedra, Montaña, Fuego, Escarcha, Tormenta y Mar, además de Titanes.
+
+**La Chispa** originó a los Elementales. Un **Elemental verdadero** es una entidad consciente descendiente de la Primera Forja; una **manifestación elemental** es materia o energía animada temporalmente por magia, ritual, artefacto u otro procedimiento. Las grandes familias abarcan Tierra, Fuego, Agua y Aire. Los grados narrativos distinguen Espíritus Elementales menores, Elementales plenamente conscientes y Primordiales ligados a fenómenos de enorme escala.
+
+También se registran Gárgolas, Cristálidos, Ígneos y Pétreos entre otros hijos de la Primera Forja.
+
+Eïra despertó la Vida; Khorun despertó la Materia y la Forma. El canon no los trata como principios incompatibles: sus creaciones y doctrinas pueden intersectarse.
+
+## 28. Varkor y la Primera Guerra
+
+**Varkor, Señor de la Primera Guerra**, representa el **Conflicto**. Entre sus títulos se encuentran Puño Rojo, Padre de los Fuertes, Rompedor de Cadenas y Aquel que No Retrocede. Sus dominios incluyen guerra, fuerza, valor, conquista, resistencia, furia, competencia, desafío, supervivencia mediante la lucha y victoria.
+
+Su creación se expresa mediante las **Cuatro Virtudes de Varkor**: **Colmillo, Garra, Puño y Ojo**.
+
+**El Colmillo** originó a los Orcos y simboliza fuerza disciplinada y voluntad guerrera. El lore registra Orcos Comunes, de Sangre, Grises y Negros.
+
+**La Garra** originó a los Trolls y simboliza resistencia, supervivencia y ferocidad. Se registran Trolls de Bosque, Piedra, Pantano, Montaña, Hielo y Guerra. La regeneración no es idéntica entre linajes y sus límites mecánicos no deben deducirse del lore.
+
+**El Puño** originó a los Ogros y simboliza poder físico y dominación directa. Se registran Ogros Comunes, de Guerra, de las Estepas, de Montaña y Ogros Magos.
+
+**El Ojo** originó a los Goblinoides y simboliza astucia, número, adaptación y guerra mediante inteligencia. Incluye Goblins, Hobgoblins, Bugbears, variantes goblinoides y Kobolds.
+
+Ningún pueblo creado por Varkor nace moralmente malvado. La herencia divina puede explicar rasgos físicos o símbolos culturales; la moral depende de individuos, sociedades, circunstancias e historia. Para Varkor, fuerza tampoco equivale necesariamente a tamaño: significa capacidad de imponer o preservar la voluntad frente a aquello que intenta quebrarla.
+
+## 29. Aster y la Primera Elección
+
+**Aster, Señor de las Mil Sendas**, introduce el principio de **Elección**: la capacidad de reconocer alternativas y escoger un rumbo no determinado de antemano. Sus dominios incluyen libertad, voluntad, ambición, descubrimiento, exploración, invención, progreso, civilización, cambio, legado y caminos.
+
+Aster no representa bondad automática. La libertad puede crear o destruir; la ambición puede fundar una ciudad o iniciar una guerra. Su principio es la posibilidad consciente de decir: **podría hacer otra cosa**.
+
+Según la tradición, Aster creó al primer Humano sin imponerle un don dominante ni un propósito único. Le mostró el mundo y le preguntó qué quería hacer. El Humano señaló el horizonte y quiso descubrir qué había allí. Ese acto es recordado como la **Primera Elección**.
+
+Los Humanos son los **Hijos del Camino**. No existen subrazas humanas divinas originales: su diversidad posterior procede de migraciones, climas, culturas, mezclas poblacionales, magia, religión, guerras, aislamiento, alimentación, historia y adaptación.
+
+El llamado **Don sin Forma** no concede fuerza, longevidad o resistencia sobrenatural; expresa la ausencia de una función primordial estrecha. La brevedad de la vida humana produce en muchas culturas una urgencia por construir, explorar, investigar, transmitir y dejar **Legado**.
+
+Las **Cinco Sendas** son símbolos, no castas: **Camino** (exploración), **Mano** (creación), **Voz** (sociedad), **Mirada** (conocimiento) y **Huella** (legado).
+
+La doctrina de Aster contiene una contradicción consciente: los mismos seres capaces de elegir pueden construir leyes, fronteras, ejércitos, prisiones e imperios que limiten la elección ajena. Sus cultos pueden discrepar sobre cómo reconciliar libertad y civilización. Elegir no elimina consecuencias.
+
+Raza y culto no son equivalentes. Un miembro de cualquier pueblo puede venerar a Aster, y un Humano puede vincularse religiosamente con otra deidad cuando la ficción lo permita.
+
+## 30. Ilyr y la Primera Luz
+
+**Ilyr, Portador de la Primera Luz**, representa el **Bien** como principio moral consciente. Sus dominios son luz, protección, misericordia, justicia, esperanza, sacrificio, sanación, verdad, juramentos y redención. Su símbolo es un sol blanco o dorado rodeado por seis alas.
+
+La **Primera Luz** introduce la pregunta moral no sólo sobre qué puede hacerse, sino sobre qué debería hacerse. El **Primer Juramento** afirma la posibilidad de elegir proteger a quien lo necesita.
+
+Ilyr creó a los **Celestiales o Ángeles**. Los Ángeles son una familia de seres propia: no son almas de mortales virtuosos ni héroes muertos transformados. Ser celestial tampoco significa ser invulnerable; siguen sometidos a límites, costes y consecuencias.
+
+El **Juramento de las Seis Alas** articula seis principios: Protección, Misericordia, Justicia, Verdad, Sacrificio y Esperanza. Las tradiciones distinguen Custodios, Heraldos, Luminares, Justicarios, Virtudes, Serafines, Tronos y Querubines, además de Celestiales menores como Chispas, Guías, Vigilantes y Portadores.
+
+La libertad moral implica posibilidad de caída. Un Celestial puede quebrar su juramento o actuar contra Ilyr. Un **Ángel Caído no es automáticamente un Demonio**. La tradición ilyrana mantiene además la posibilidad de redención mientras exista capacidad real de elección, sin que redención borre consecuencias o equivalga a perdón automático.
+
+La naturaleza, por sí sola, no es moralmente malvada por funcionar como naturaleza. La moralidad requiere algún grado de voluntad y elección.
+
+## 31. Nereth y la Primera Profanación
+
+**Nereth, Señor de la Primera Profanación**, encarna **Corrupción / Mal**. No es el dios de la muerte natural. Sus dominios incluyen corrupción, dominación, crueldad, traición, necromancia, profanación, esclavitud del alma, conocimiento prohibido, demonios, pactos oscuros y No Muerte.
+
+La **Primera Maldad** se define en las tradiciones no como el primer dolor o acto violento, sino como la primera elección consciente de causar o explotar un sufrimiento comprendido.
+
+La **Primera Profanación** ocurre cuando Nereth viola el final natural de un muerto y produce la primera No Muerte. La muerte no es malvada; la No Muerte es una alteración del orden natural. Su origen es una profanación, aunque un No Muerto consciente puede conservar voluntad, memoria y capacidad moral propias.
+
+El lore distingue estados de No Muerte: **Cascarones, Atados, Espectrales, Hambrientos y Soberanos de la Muerte**. Son categorías narrativas; no constituyen por sí mismas estadísticas completas.
+
+La Necromancia prohibida comienza cuando una práctica exige **retener, esclavizar, alterar, consumir o utilizar aquello que debería haber abandonado el mundo**. No toda interacción con espíritus es automáticamente necromancia prohibida.
+
+Nereth creó además a los **Demonios**, un linaje propio. Demonio y Ángel Caído no son sinónimos. Las castas registradas incluyen Tentadores, Dominadores, Devoradores, Verdugos, Profanadores y Archidemonios, además de demonios menores y entidades asociadas a pactos.
+
+Los planos demoníacos, Archidemonios concretos, posesión, corrupción mecánica, catálogo completo de No Muertos, Necromancia y pactos permanecen pendientes donde el canon histórico los dejó abiertos.
+
+## 32. Vaelun y el Primer Tránsito
+
+**Vaelun, Guardián del Último Umbral**, representa el **Tránsito**. Sus dominios abarcan muerte natural, descanso, almas, funerales, memoria de los muertos, ancestros, equilibrio entre vida y muerte, protección de tumbas y persecución de la No Muerte.
+
+Vaelun no mata ni determina necesariamente cuándo debe morir alguien. Su función comienza cuando la vida termina. Eïra gobierna el ciclo vital; Vaelun custodia el paso de la consciencia después de ese final.
+
+Cuando murió el primer ser plenamente consciente quedó una esencia con identidad, memoria y continuidad: el alma. Vaelun no intentó devolverla a la vida; la guio a cruzar. Ese acontecimiento es el **Primer Tránsito**.
+
+El canon establece que la muerte consciente produce un tránsito real y que las almas pueden ser vulnerables mientras está incompleto. **El destino último de las almas permanece deliberadamente abierto**: no existe todavía una cosmología única y cerrada del más allá.
+
+Vaelun creó a los **Ankar** para impedir que las almas fueran tomadas contra su voluntad. Son humanoides altos y esbeltos de rasgos cánidos estilizados. **Ankar y Terio Chacal no son la misma raza**: el segundo pertenece a la Sangre de Eïra; el primero fue creado directamente por Vaelun.
+
+La filosofía Ankar se resume en tres obligaciones: **Recordar**, preservando nombres, historias y memoria; **Custodiar**, protegiendo tumbas, rutas espirituales y lugares vulnerables; y **Dejar Partir**, distinguiendo memoria y duelo de la retención de un alma.
+
+Un Ankar puede escuchar ecos, detectar presencias, identificar No Muertos, realizar ritos funerarios, investigar muertes o guiar almas sin convertirse por ello en nigromante. Tampoco está obligado a destruir automáticamente todo No Muerto consciente: debe distinguir voluntad, causa y profanación. Un espíritu perdido puede ser guiado; un ser que esclaviza otras almas representa una transgresión mucho más profunda.
+
+La oposición entre Vaelun y Nereth es central: para Vaelun, un cadáver conserva dignidad y un alma pertenece a sí misma; para Nereth, ambos pueden convertirse en recursos.
+
+## 33. Relaciones del Panteón y límites de canon
+
+Los siete principios forman una secuencia cosmológica, no una tabla simple de aliados y enemigos. Eïra y Khorun describen Vida y Forma; Varkor introduce Conflicto; Aster, Elección; Ilyr, responsabilidad moral; Nereth, la corrupción deliberada de esos límites; Vaelun, el derecho al final y al tránsito.
+
+Los cultos no son equivalentes a las deidades. Instituciones religiosas pueden equivocarse, dividirse, corromperse o interpretar de forma diferente un mismo principio. Una deidad no aprueba automáticamente todo lo que una organización realiza en su nombre.
+
+Las deidades pueden actuar como **Fuente Divina** para personajes con un Vínculo apropiado. Esto concede acceso narrativo/mágico según las reglas correspondientes, no autoridad moral automática, inmunidad a consecuencias ni un paquete universal de poderes.
+
+Permanecen abiertos para desarrollo futuro los elementos que v0.3 señalaba expresamente como pendientes: avatares y apariencias definitivas, dogmas completos, estructuras universales de culto, festividades, milagros detallados, Vínculos Divinos específicos, planos, destino último de las almas, Archidemonios concretos, mecánicas completas de corrupción/posesión/Necromancia y numerosos paquetes jugables de pueblos primordiales. El Manual Maestro no rellena esos huecos por inferencia.
+
 ---
 
 ## Estado de consolidación
 
-**Consolidado:** núcleo de resolución; creación y desarrollo; Rasgos; turno y movimiento; Escala y maniobras; combate; armas, armaduras y escudos; Vida, Trauma y recuperación; magia y grimorio inicial; Técnicas; Familiares e invocaciones; Ritualismo; Alquimia; Ingeniería arcano-industrial; Proyectos; economía y disponibilidad; pueblos/herencias y Orígenes; vehículos, monturas y autómatas; PNJ/criaturas; dirección de juego.
+**Consolidado:** núcleo mecánico; creación y desarrollo; Rasgos; combate y recuperación; magia y grimorio; Técnicas; Familiares e invocaciones; Ritualismo; Alquimia; Ingeniería; Proyectos; economía; pueblos mecánicos y Orígenes; vehículos; PNJ; dirección de juego; cosmología y lore canónico del Panteón Primordial recuperado del Manual Unificado v0.3.
 
-**Pendiente:** consolidación narrativa completa del mundo, pueblos, mitología y Panteón Primordial desde las fuentes históricas canónicas; referencia rápida; glosario; índices; auditoría editorial final de contradicciones y huecos. El lore histórico no se reconstruirá de memoria cuando pueda recuperarse de su fuente.
+**Pendiente:** referencia rápida, glosario e índices; auditoría cruzada del Manual Maestro contra el manual 1.0, contenido implementado y changelog; resolución explícita de contradicciones restantes; revisión editorial final. El Manual Maestro todavía no sustituye al manual 1.0 como fuente mecánica hasta completar esa auditoría.
