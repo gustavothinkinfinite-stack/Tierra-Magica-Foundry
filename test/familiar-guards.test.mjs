@@ -32,7 +32,19 @@ test("orden persistente no se presenta como ataque táctico gratuito", async () 
 test("Origen Remoto valida propiedad, estado y Vínculo III", async () => {
   const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
   assert.equal(guards.includes("validFamiliar(this, familiar)"), true);
-  assert.equal(guards.includes("bondLevel, 1) < 3"), true);
+  assert.equal(guards.includes('hasBondCapability(this, familiar, "Origen Remoto", 3)'), true);
   assert.equal(guards.includes("no concede conocimiento, percepción ni línea de efecto"), true);
   assert.equal(guards.includes("const result = await this.useSpell(spell)"), true);
+});
+
+test("capacidades de vínculo requieren Técnica comprada y nivel de Vínculo", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/familiar-guards.mjs"), "utf8");
+  const content = await readFile(resolve(root, "scripts/content.mjs"), "utf8");
+  const model = JSON.parse(await readFile(resolve(root, "template.json"), "utf8"));
+  assert.equal(guards.includes("hasTechnique(owner, name)"), true);
+  assert.equal(guards.includes('"Sentidos Compartidos", 2'), true);
+  assert.equal(guards.includes('"Coordinación Reactiva", 3'), true);
+  for (const name of ["Sentidos Compartidos","Comunicación Mejorada","Origen Remoto","Coordinación Reactiva"]) assert.equal(content.includes('name:"' + name + '"'), true);
+  assert.equal(model.Actor.familiar.familiar.controlMode, "autonomous");
+  assert.equal("zeroTraumaApplied" in model.Actor.templates.base.recovery, false);
 });
