@@ -253,10 +253,8 @@ export class TierraMagicaActor extends Actor {
     const hasDouble = this.items.some((i) => i.type === "technique" && i.name === "Doble Sostenimiento");
     const limit = hasDouble ? 2 : 1;
     if (current.includes(item.id)) return;
-    if (current.length >= limit) {
-      return ui.notifications.warn("Límite de Sostenimiento alcanzado. Abandona un efecto sostenido antes de mantener " + item.name + ".");
-    }
-    await this.update({ "system.magic.sustainedSpellIds": [...current, item.id] });
+    const retained = current.slice(Math.max(0, current.length - (limit - 1)));
+    await this.update({ "system.magic.sustainedSpellIds": [...retained, item.id] });
   }
 
   async useFormula(item) {
@@ -341,6 +339,11 @@ export class TierraMagicaActor extends Actor {
     if (!item || item.type !== "device") return null;
     if (!item.system.overloadAllowed) return ui.notifications.warn(item.name + " no admite Sobrecarga Controlada.");
     if (String(item.system.condition ?? "operative") === "disabled") return ui.notifications.warn(item.name + " está Deshabilitado.");
+    const consumption = Math.max(0, toNumber(item.system.consumption));
+    const energy = Math.max(0, toNumber(item.system.energy?.value));
+    const effectiveFlow = Math.max(0, toNumber(item.system.flow)) + 1;
+    if (consumption > effectiveFlow) return ui.notifications.warn(item.name + " excede incluso el Caudal de Sobrecarga (" + effectiveFlow + ").");
+    if (consumption > energy) return ui.notifications.warn(item.name + " no tiene Energía suficiente para esta activación.");
     const roll = await this.rollCheck({
       label: "Sobrecarga Controlada: " + item.name,
       attributeKey: "int",
@@ -348,10 +351,12 @@ export class TierraMagicaActor extends Actor {
       df: 16
     });
     const success = toNumber(roll?.total) >= 16;
-    await item.update({ "system.condition": success ? "damaged" : "disabled" });
+    const updates = { "system.condition": success ? "damaged" : "disabled" };
+    if (success && consumption) updates["system.energy.value"] = energy - consumption;
+    await item.update(updates);
     const outcome = success
-      ? "Funciona esta activación con Caudal efectivo +1 y queda Dañado."
-      : "No funciona y queda Deshabilitado.";
+      ? "La activación se resuelve con Caudal efectivo " + effectiveFlow + ", consume " + consumption + " Energía y el dispositivo queda Dañado."
+      : "La activación no se produce y el dispositivo queda Deshabilitado; no consume Energía.";
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Sobrecarga Controlada</strong><p>" + outcome + "</p><p>La Pifia puede añadir una consecuencia energética contextual.</p></div>" });
     return roll;
   }
@@ -431,9 +436,8 @@ export class TierraMagicaActor extends Actor {
     if (resource === "health") {
       if (previous > 0 && next === 0) {
         updates["system.status.incapacitated"] = true;
-        if (toNumber(this.system.status?.trauma) === 0 && !this.system.recovery?.zeroTraumaApplied) {
+        if (this.type === "character" && toNumber(this.system.status?.trauma) === 0) {
           updates["system.status.trauma"] = 1;
-          updates["system.recovery.zeroTraumaApplied"] = true;
         }
       } else if (next > 0) {
         updates["system.status.incapacitated"] = false;
