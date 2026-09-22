@@ -116,6 +116,7 @@ export class TierraMagicaActorSheet extends ActorSheet {
       "system.turn.reaction": true,
       "system.combat.guardActive": false,
       "system.combat.parryActive": false,
+      "system.combat.parrySucceeded": false,
       "system.combat.counterattackUsed": false
     }));
     html.find("[data-action='combat-guard']").click(() => this.actor.guard());
