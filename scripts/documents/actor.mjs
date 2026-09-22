@@ -36,13 +36,12 @@ export class TierraMagicaActor extends Actor {
     const martialRank = clamp(Math.floor(toNumber(s.combat?.defensiveRank)), 0, 5);
     const martialDefense = defenseBonus(martialRank, TM_CONFIG.defensiveRankBonuses);
     const extraDefense = toNumber(s.combat?.defenseBonus);
-    const guardDefense = s.combat?.guardActive ? 2 : 0;
 
     s.derived = {
       healthMax: 10 + vig * 2,
       manaMax: 6 + vol * 3,
       severeThreshold: severeThreshold(vig),
-      defense: 11 + agi + martialDefense + shield + extraDefense + guardDefense,
+      defense: 11 + agi + martialDefense + shield + extraDefense,
       maneuverDefense: 11 + agi + martialDefense + extraDefense,
       mentalDefense: 11 + vol,
       bodyDefense: 11 + vig,
@@ -50,7 +49,6 @@ export class TierraMagicaActor extends Actor {
       movement: Math.max(1, 6 + toNumber(s.combat?.movementBonus)),
       initiative: toNumber(a.per?.value, 1) + toNumber(s.combat?.initiativeBonus),
       martialDefense,
-      guardDefense,
       equippedShield: shield
     };
 
@@ -160,10 +158,7 @@ export class TierraMagicaActor extends Actor {
     const uniqueTargets = [...new Map(selected.map((actor) => [actor.uuid ?? actor.id, actor])).values()];
     if (uniqueTargets.length !== 1) return ui.notifications.warn("El ataque requiere exactamente un objetivo válido.");
     const target = uniqueTargets[0];
-    const baseDefense = toNumber(df ?? target.system?.derived?.defense, Number.NaN);
-    if (!Number.isFinite(baseDefense)) return ui.notifications.warn("El objetivo no tiene una Defensa válida.");
-    const parryActive = Boolean(target.system?.combat?.parryActive);
-    const targetDf = baseDefense + (parryActive ? 2 : 0);
+    const targetDf = df ?? target.system?.derived?.defense;
     const roll = await this.rollCheck({
       label: "Ataque con " + item.name,
       attributeKey: item.system.attackAttribute || "agi",
@@ -174,16 +169,6 @@ export class TierraMagicaActor extends Actor {
     });
     const total = toNumber(roll?.rolls?.[0]?.total ?? roll?.roll?.total ?? roll?.total, Number.NaN);
     const hit = attackHits(total, targetDf);
-    const parrySucceeded = parryActive && attackHits(total, baseDefense) && !hit;
-    if (parryActive) {
-      const canResolveParry = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
-      if (canResolveParry) await target.update({
-        "system.combat.parryActive": false,
-        "system.combat.parrySucceeded": parrySucceeded,
-        "system.combat.counterattackUsed": false
-      });
-      else ui.notifications.warn("La Parada se aplicó al cálculo, pero debe cerrarla un usuario con permisos sobre " + target.name + ".");
-    }
     if (!hit) {
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
