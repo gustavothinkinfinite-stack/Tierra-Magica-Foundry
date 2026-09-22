@@ -61,7 +61,11 @@ export const STARTER_CONTENT = {
   {name:"Estocada Perforante",system:{grade:"advanced",pdCost:3,effect:"-1 ataque, -1 daño, Pen +2."}},
   {name:"Contraataque",system:{grade:"advanced",pdCost:3,requirements:"Parada",effect:"Ataque inmediato dentro de la misma Reacción tras Parada exitosa."}},
   {name:"Contramagia",system:{grade:"advanced",pdCost:3,activation:"Reacción",effect:"Interferencia compatible antes de resolver; no cancelación universal."}},
-  {name:"Doble Sostenimiento",system:{grade:"master",pdCost:5,effect:"Mantiene dos efectos Sostenidos demandantes."}}
+  {name:"Doble Sostenimiento",system:{grade:"master",pdCost:5,effect:"Mantiene dos efectos Sostenidos demandantes."}},
+  {name:"Sentidos Compartidos",system:{grade:"basic",pdCost:2,requirements:"Familiar Mágico; Vínculo II",activation:"Acción",effect:"Percibe temporalmente mediante los sentidos reales del Familiar."}},
+  {name:"Comunicación Mejorada",system:{grade:"basic",pdCost:2,requirements:"Familiar Mágico; Vínculo II",effect:"Permite conceptos complejos dentro del alcance válido del vínculo."}},
+  {name:"Origen Remoto",system:{grade:"advanced",pdCost:3,requirements:"Familiar Mágico; Vínculo III",effect:"Permite usar la posición del Familiar como origen compatible; Maná, tirada y Sostenimiento siguen siendo del personaje."}},
+  {name:"Coordinación Reactiva",system:{grade:"advanced",pdCost:3,requirements:"Familiar Mágico; Vínculo III",effect:"Define un disparador simple y observable para una respuesta; no genera Reacciones adicionales ni cadenas reactivas."}}
  ],
  formula:[
   {name:"Bálsamo Restaurador",system:{grade:"common",pdCost:1,saturating:true,family:"restaurativa",effect:"Recupera 4 Vida; no Trauma/Herida Grave.",price:12}},
