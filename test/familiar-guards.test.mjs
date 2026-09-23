@@ -8,7 +8,7 @@ globalThis.foundry = { utils: { escapeHTML: (value) => String(value) } };
 globalThis.ChatMessage = { getSpeaker: ({ actor }) => ({ actor: actor.uuid }), create: async (data) => data };
 
 class FakeActor {
-  constructor({ uuid, name, type = "character", system = {}, items = [] }) { Object.assign(this, { uuid, name, type, system, items }); this.updates = []; }
+  constructor({ uuid, name, type = "character", system = {}, items = [] }) { Object.assign(this, { uuid, name, type, system, items }); this.updates = []; this.spellUses = []; }
   prepareDerivedData() {}
   async update(changes) {
     this.updates.push(changes);
@@ -19,7 +19,7 @@ class FakeActor {
     }
     return changes;
   }
-  async useSpell(spell, options) { return { spell, options }; }
+  async useSpell(spell, options) { this.spellUses.push({ spell, options }); return { spell, options }; }
 }
 installFamiliarGuards(FakeActor);
 
@@ -59,9 +59,29 @@ test("Sentidos Compartidos exige Técnica y Vínculo II y no duplica Acción", a
 
 test("Origen Remoto exige Técnica y Vínculo III y conserva al dueño como lanzador", async () => {
   const spell = { type: "spell", name: "Prueba" }; const pet = familiar({ bondLevel: 3 });
-  const without = owner(); assert.equal(typeof await without.castFromFamiliar(pet, spell), "string");
+  const without = owner(); assert.equal(typeof await without.castFromFamiliar(pet, spell), "string"); assert.equal(without.spellUses.length, 0);
   const pc = owner([technique("Origen Remoto")]); const result = await pc.castFromFamiliar(pet, spell);
-  assert.equal(result.spell, spell); assert.equal(result.options.remoteOrigin, pet); assert.equal(pet.system.resources.mana.value, 6);
+  assert.equal(result.spell, spell); assert.equal(result.options.remoteOrigin, pet); assert.equal(pet.system.resources.mana.value, 6); assert.equal(pc.spellUses.length, 1);
+});
+
+test("Origen Remoto inválido nunca alcanza la capa mágica", async () => {
+  const spell = { type: "spell", name: "Prueba" };
+  const cases = [
+    familiar({ ownerUuid: "Actor.other", bondLevel: 3 }),
+    familiar({ health: 0, bondLevel: 3 }),
+    familiar({ bondLevel: 2 })
+  ];
+  for (const pet of cases) {
+    const pc = owner([technique("Origen Remoto")]);
+    await pc.castFromFamiliar(pet, spell);
+    assert.equal(pc.spellUses.length, 0);
+    assert.equal(pc.system.resources.mana.value, 9);
+    assert.equal(pc.system.turn.action, true);
+    assert.equal(pc.system.turn.reaction, true);
+  }
+  const pc = owner([technique("Origen Remoto")]);
+  await pc.castFromFamiliar(familiar(), { type: "weapon", name: "No es hechizo" });
+  assert.equal(pc.spellUses.length, 0);
 });
 
 test("Vida 0 incapacita Familiar sin aplicar Trauma de personaje", async () => {
@@ -73,6 +93,16 @@ test("Coordinación Reactiva no encadena una segunda Reacción", async () => {
   const pc = owner([technique("Coordinación Reactiva")]); const pet = familiar({ bondLevel: 3 });
   await pc.setFamiliarReactiveTrigger(pet, "cuando alguien cruce la puerta"); await pc.triggerFamiliarReaction(pet, "avisar y distraer"); assert.equal(pc.system.turn.reaction, false);
   const count = pc.updates.length; await pc.triggerFamiliarReaction(pet, "repetir"); assert.equal(pc.updates.length, count);
+});
+
+test("Coordinación Reactiva rechaza respuesta vacía sin consumir Reacción", async () => {
+  const pc = owner([technique("Coordinación Reactiva")]); const pet = familiar({ bondLevel: 3 });
+  await pc.setFamiliarReactiveTrigger(pet, "cuando alguien cruce la puerta");
+  const beforeOwner = pc.updates.length; const beforePet = pet.updates.length;
+  await pc.triggerFamiliarReaction(pet, "   ");
+  assert.equal(pc.system.turn.reaction, true);
+  assert.equal(pc.updates.length, beforeOwner);
+  assert.equal(pet.updates.length, beforePet);
 });
 
 test("Coordinación Reactiva rechaza disparadores vacíos, ajenos o incapacitados sin mutar estado", async () => {
