@@ -11,6 +11,15 @@ const canUpdate = (actor) => actor.canUserModify?.(game.user, "update") ?? actor
 const rollTotal = (result) => number(result?.rolls?.[0]?.total ?? result?.roll?.total ?? result?.total);
 const isRangedWeapon = (weapon) => String(weapon?.system?.skill ?? "") === "rangedWeapons";
 
+async function spendAction(actor) {
+  if (!(actor.system.turn?.action ?? true)) {
+    ui.notifications.warn(actor.name + " ya gastó su Acción.");
+    return false;
+  }
+  await actor.update({ "system.turn.action": false });
+  return true;
+}
+
 async function closeParry(target, total, baseDefense) {
   if (!target.system?.combat?.parryActive) return false;
   const succeeded = Number.isFinite(total) && total >= baseDefense && total < baseDefense + 2;
@@ -63,9 +72,12 @@ export function installCombatDefenseGuards(ActorClass) {
   };
 
   ActorClass.prototype.rollWeapon = async function (item, options = {}) {
+    if (!item || item.type !== "weapon") return null;
     const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
     const targets = [...new Map(selected.map((actor) => [actor.uuid ?? actor.id, actor])).values()];
-    const target = targets.length === 1 ? targets[0] : null;
+    if (targets.length !== 1) return ui.notifications.warn("El ataque requiere exactamente un objetivo válido.");
+    if (!options.tmReactionAttack && !(await spendAction(this))) return null;
+    const target = targets[0];
     if (!target?.system?.combat?.parryActive || isRangedWeapon(item)) return originalRollWeapon.call(this, item, options);
     const baseDefense = number(options.df ?? target.system?.derived?.defense);
     if (!Number.isFinite(baseDefense)) return originalRollWeapon.call(this, item, options);
@@ -85,12 +97,11 @@ export function installCombatDefenseGuards(ActorClass) {
     const target = targets[0];
     const baseDefense = number(target.system?.derived?.defense);
     if (!Number.isFinite(baseDefense)) return ui.notifications.warn("El objetivo no tiene una Defensa válida.");
+    if (!(await spendAction(this))) return null;
     const results = [];
     let pendingTotal = 0;
     let parryPending = Boolean(target.system?.combat?.parryActive);
     for (const [index, weapon] of [primary, secondary].entries()) {
-      // La Parada espera al primer ataque realmente parable de la secuencia.
-      // Un ataque a distancia previo no debe consumirla ni hacer que el segundo ataque cuerpo a cuerpo la eluda.
       const parryThisAttack = parryPending && !isRangedWeapon(weapon);
       const defense = baseDefense + (parryThisAttack ? 2 : 0);
       const roll = await this.rollCheck({ label: "Combate Dual " + (index + 1) + ": " + weapon.name, attributeKey: weapon.system.attackAttribute || "agi", skillKey: weapon.system.skill || "lightWeapons", df: defense, modifier: -2 });
@@ -128,9 +139,9 @@ export function installCombatDefenseGuards(ActorClass) {
     if (targets.length < 1 || targets.length > 2) return ui.notifications.warn("Barrido requiere uno o dos objetivos válidos.");
     const baseDefenses = targets.map((target) => number(target.system?.derived?.defense));
     if (baseDefenses.some((value) => !Number.isFinite(value))) return ui.notifications.warn("Barrido encontró una Defensa no válida.");
+    if (!(await spendAction(this))) return null;
     const parryable = !isRangedWeapon(item);
     const defenses = targets.map((target, index) => baseDefenses[index] + (parryable && target.system?.combat?.parryActive ? 2 : 0));
-    // Una sola tirada, sin DF global engañosa: cada objetivo tiene su propia Defensa.
     const roll = await this.rollCheck({ label: "Barrido con " + item.name, attributeKey: item.system.attackAttribute || "agi", skillKey: item.system.skill || "martialWeapons", df: null, modifier: -2 });
     const total = rollTotal(roll);
     const summaries = [];
@@ -143,17 +154,13 @@ export function installCombatDefenseGuards(ActorClass) {
         damage = impact.damage;
         if (damage > 0 && canUpdate(target)) await target.adjustResource("health", -damage);
       }
-      const pendingDamage = !canUpdate(target) ? pendingDamageRequest({
-        targetUuid: target.uuid, damage, source: "Barrido — " + item.name, attacker: this.name
-      }) : null;
-      summaries.push(foundry.utils.escapeHTML(target.name) + ": " + (hit ? damage + " daño" : "fallo") + " (Defensa " + defenses[i] + ")" +
-        (pendingDamage ? " · pendiente de DJ" : ""));
+      const pendingDamage = !canUpdate(target) ? pendingDamageRequest({ targetUuid: target.uuid, damage, source: "Barrido — " + item.name, attacker: this.name }) : null;
+      summaries.push(foundry.utils.escapeHTML(target.name) + ": " + (hit ? damage + " daño" : "fallo") + " (Defensa " + defenses[i] + ")" + (pendingDamage ? " · pendiente de DJ" : ""));
       if (pendingDamage) {
         await ChatMessage.create({
           speaker: ChatMessage.getSpeaker({ actor: this }),
           flags: { "tierra-magica": { pendingDamage } },
-          content: "<div class='tm-chat-card'><strong>Barrido — aprobación de daño</strong><p>" +
-            foundry.utils.escapeHTML(target.name) + ": " + damage + " daño pendiente de aprobación del DJ.</p></div>"
+          content: "<div class='tm-chat-card'><strong>Barrido — aprobación de daño</strong><p>" + foundry.utils.escapeHTML(target.name) + ": " + damage + " daño pendiente de aprobación del DJ.</p></div>"
         });
       }
       if (parryable && target.system?.combat?.parryActive) await closeParry(target, total, baseDefenses[i]);
