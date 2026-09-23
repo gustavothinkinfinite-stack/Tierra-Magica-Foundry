@@ -1,11 +1,10 @@
 // Foundry T.M. — autoridad transversal para la Acción de activaciones ejecutables.
 // Sólo consume después de una resolución válida; las validaciones fallidas no queman el turno.
-// El bloqueo local impide que dos activaciones concurrentes reutilicen la misma Acción antes
-// de que Foundry persista system.turn.action=false.
+// Un único bloqueo por Actor impide reutilizar la Acción concurrentemente entre subsistemas.
 
 const actionLocks = new WeakSet();
 
-async function runAction(actor, operation) {
+export async function runAction(actor, operation) {
   if (!(actor.system.turn?.action ?? true)) {
     ui.notifications.warn(actor.name + " ya gastó su Acción.");
     return null;
@@ -20,9 +19,9 @@ async function runAction(actor, operation) {
     const result = await operation();
     if (!result) return result;
 
-    // La operación ya fue validada y ejecutada. El guard se instala por fuera de los
-    // guards específicos para que éstos sigan siendo autoridad de objetivos, recursos
-    // y requisitos, mientras esta capa es autoridad únicamente de economía de turno.
+    // La operación ya fue validada y ejecutada. Los guards específicos conservan
+    // autoridad sobre objetivos, recursos y requisitos; esta capa sólo gobierna
+    // la economía y la exclusión mutua de la Acción.
     await actor.update({ "system.turn.action": false });
     return result;
   } finally {
