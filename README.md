@@ -8,6 +8,10 @@ Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 
 
 **1.0.12 — núcleo estable para playtest.** Cambios del motor requieren problemas reproducibles y deben conservar la compatibilidad con el canon 1.0.
 
+## Limitaciones deliberadas de automatización
+
+- **Broquel y efectos frontales:** Foundry muestra el bono del mejor escudo equipado, pero no determina automáticamente si una amenaza está en el arco frontal. El +1 del Broquel sólo se aplica cuando la mesa confirma que el ataque es frontal; ante ataques laterales o traseros debe ignorarse manualmente. Esta limitación evita introducir una geometría de encaramiento que el canon 1.0 no define.
+
 ```bash
 npm run validate
 ```
