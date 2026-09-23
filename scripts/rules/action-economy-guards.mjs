@@ -18,10 +18,6 @@ export async function runAction(actor, operation) {
   try {
     const result = await operation();
     if (!result) return result;
-
-    // La operación ya fue validada y ejecutada. Los guards específicos conservan
-    // autoridad sobre objetivos, recursos y requisitos; esta capa sólo gobierna
-    // la economía y la exclusión mutua de la Acción.
     await actor.update({ "system.turn.action": false });
     return result;
   } finally {
@@ -34,20 +30,34 @@ export function installActionEconomyGuards(ActorClass) {
   const originalUseFormula = ActorClass.prototype.useFormula;
   const originalUseDevice = ActorClass.prototype.useDevice;
   const originalOverloadDevice = ActorClass.prototype.overloadDevice;
+  const originalRollWeapon = ActorClass.prototype.rollWeapon;
+  const originalDualWieldAttack = ActorClass.prototype.dualWieldAttack;
+  const originalSweepAttack = ActorClass.prototype.sweepAttack;
 
   ActorClass.prototype.useSpell = async function (...args) {
     return runAction(this, () => originalUseSpell.apply(this, args));
   };
-
   ActorClass.prototype.useFormula = async function (...args) {
     return runAction(this, () => originalUseFormula.apply(this, args));
   };
-
   ActorClass.prototype.useDevice = async function (...args) {
     return runAction(this, () => originalUseDevice.apply(this, args));
   };
-
   ActorClass.prototype.overloadDevice = async function (...args) {
     return runAction(this, () => originalOverloadDevice.apply(this, args));
+  };
+
+  // Combate ya valida y persiste el gasto internamente. Esta envoltura añade la
+  // exclusión mutua compartida con magia/alquimia/dispositivos, cerrando el caso
+  // de doble clic cruzado sin cambiar costes ni el orden de validación existente.
+  ActorClass.prototype.rollWeapon = async function (item, options = {}) {
+    if (options?.tmReactionAttack) return originalRollWeapon.call(this, item, options);
+    return runAction(this, () => originalRollWeapon.call(this, item, options));
+  };
+  ActorClass.prototype.dualWieldAttack = async function (...args) {
+    return runAction(this, () => originalDualWieldAttack.apply(this, args));
+  };
+  ActorClass.prototype.sweepAttack = async function (...args) {
+    return runAction(this, () => originalSweepAttack.apply(this, args));
   };
 }
