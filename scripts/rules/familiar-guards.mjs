@@ -20,9 +20,6 @@ export function installFamiliarGuards(ActorClass) {
   ActorClass.prototype.prepareDerivedData = function () {
     originalPrepare.call(this);
     if (this.type !== "familiar") return;
-
-    // Un Familiar no obtiene una segunda reserva personal de Maná ni una economía
-    // completa de Acción/Reacción por heredar la plantilla base.
     if (this.system.resources?.mana) {
       this.system.resources.mana.value = 0;
       this.system.resources.mana.max = 0;
@@ -39,7 +36,6 @@ export function installFamiliarGuards(ActorClass) {
     const previous = number(data.value);
     const next = Math.min(number(data.max), Math.max(0, previous + number(amount)));
     const updates = { [`system.resources.${resource}.value`]: next };
-
     if (resource === "health") {
       if (previous > 0 && next === 0) {
         updates["system.status.incapacitated"] = true;
@@ -53,8 +49,6 @@ export function installFamiliarGuards(ActorClass) {
     return this.update(updates);
   };
 
-  // Acción Vinculada: una intervención táctica significativa del Familiar usa la
-  // Reacción del personaje. No concede un segundo turno completo ni otra Reacción.
   ActorClass.prototype.linkedFamiliarAction = async function (familiar, order = "") {
     if (!validFamiliar(this, familiar)) return ui.notifications.warn("No hay un Familiar vinculado válido.");
     if (!familiarOperational(familiar)) return ui.notifications.warn(familiar.name + " está Incapacitado y no puede ejecutar una Acción Vinculada.");
@@ -94,8 +88,6 @@ export function installFamiliarGuards(ActorClass) {
     return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Coordinación Reactiva — " + foundry.utils.escapeHTML(familiar.name) + "</strong><p>" + foundry.utils.escapeHTML(text) + "</p><p>El disparador no crea Reacciones adicionales ni puede encadenar respuestas reactivas.</p></div>" });
   };
 
-  // Resolver el disparador sigue siendo una decisión de escena. Esta ruta sólo
-  // garantiza la economía: la respuesta significativa consume la Reacción del dueño.
   ActorClass.prototype.triggerFamiliarReaction = async function (familiar, response = "") {
     if (!validFamiliar(this, familiar)) return ui.notifications.warn("No hay un Familiar vinculado válido.");
     if (!hasBondCapability(this, familiar, "Coordinación Reactiva", 3)) return ui.notifications.warn("Coordinación Reactiva requiere su Técnica y Vínculo III o superior.");
@@ -124,9 +116,8 @@ export function installFamiliarGuards(ActorClass) {
     if (!familiarOperational(familiar)) return ui.notifications.warn(familiar.name + " está Incapacitado y no puede servir como Origen Remoto.");
     if (!hasBondCapability(this, familiar, "Origen Remoto", 3)) return ui.notifications.warn("Origen Remoto requiere su Técnica y Vínculo III o superior.");
     if (!spell || spell.type !== "spell") return null;
-    const result = await this.useSpell(spell, { remoteOrigin: familiar });
-    if (!result) return result;
-    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Origen Remoto</strong><p>El hechizo usa la posición de " + foundry.utils.escapeHTML(familiar.name) + " como origen. El personaje conserva Maná, tirada y Sostenimiento. La posición remota no concede conocimiento, percepción ni línea de efecto por sí sola; el objetivo debe ser válido según los sentidos, alcance y obstáculos aplicables.</p></div>" });
-    return result;
+    // La capa mágica es la única autoridad que resuelve y anuncia Origen Remoto.
+    // Evita doble mensaje y mantiene en un solo punto la validación de token/origen.
+    return this.useSpell(spell, { remoteOrigin: familiar });
   };
 }
