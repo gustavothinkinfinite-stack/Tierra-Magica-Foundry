@@ -10,6 +10,7 @@ import { installCombatDefenseGuards } from "./rules/combat-defense-guards.mjs";
 import { installReactiveTechniqueGuards } from "./rules/reactive-technique-guards.mjs";
 import { installFormulaGuards } from "./rules/formula-guards.mjs";
 import { installRitualGuards } from "./rules/ritual-guards.mjs";
+import { installActionEconomyGuards } from "./rules/action-economy-guards.mjs";
 import { primaryActiveGm, validatePendingDamageRequest } from "./rules/damage-delivery.mjs";
 
 installFamiliarGuards(TierraMagicaActor);
@@ -19,9 +20,10 @@ installCombatDefenseGuards(TierraMagicaActor);
 installReactiveTechniqueGuards(TierraMagicaActor);
 installFormulaGuards(TierraMagicaActor);
 installRitualGuards(TierraMagicaActor);
+installActionEconomyGuards(TierraMagicaActor);
 
 Hooks.once("init", async () => {
-  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.11");
+  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.13");
 
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
@@ -130,7 +132,6 @@ Hooks.once("ready", async () => {
   }
   if (retired) ui.notifications.info("Tierra Mágica: se retiraron campos mecánicos históricos de " + retired + " actor(es).");
 });
-
 
 Hooks.on("renderChatMessage", (message, html) => {
   const request = validatePendingDamageRequest(message.getFlag("tierra-magica", "pendingDamage"));
