@@ -43,6 +43,14 @@ test("orden persistente vacía no consume Acción", async () => {
   const pc = owner(); await pc.commandFamiliar(familiar(), ""); assert.equal(pc.system.turn.action, true); assert.equal(pc.updates.length, 0);
 });
 
+test("orden persistente ajena o sobre Familiar incapacitado no consume Acción ni altera al Familiar", async () => {
+  for (const pet of [familiar({ ownerUuid: "Actor.other" }), familiar({ health: 0 })]) {
+    const pc = owner(); const before = pet.updates.length;
+    await pc.commandFamiliar(pet, "vigilar la puerta");
+    assert.equal(pc.system.turn.action, true); assert.equal(pc.updates.length, 0); assert.equal(pet.updates.length, before);
+  }
+});
+
 test("Sentidos Compartidos exige Técnica y Vínculo II y no duplica Acción", async () => {
   const pet = familiar({ bondLevel: 2 }); const without = owner(); await without.useFamiliarSense(pet); assert.equal(without.system.turn.action, true);
   const pc = owner([technique("Sentidos Compartidos")]); await pc.useFamiliarSense(pet); assert.equal(pc.system.turn.action, false);
@@ -65,4 +73,13 @@ test("Coordinación Reactiva no encadena una segunda Reacción", async () => {
   const pc = owner([technique("Coordinación Reactiva")]); const pet = familiar({ bondLevel: 3 });
   await pc.setFamiliarReactiveTrigger(pet, "cuando alguien cruce la puerta"); await pc.triggerFamiliarReaction(pet, "avisar y distraer"); assert.equal(pc.system.turn.reaction, false);
   const count = pc.updates.length; await pc.triggerFamiliarReaction(pet, "repetir"); assert.equal(pc.updates.length, count);
+});
+
+test("Coordinación Reactiva rechaza disparadores vacíos, ajenos o incapacitados sin mutar estado", async () => {
+  const cases = [[familiar(), "   "], [familiar({ ownerUuid: "Actor.other" }), "cuando ataque"], [familiar({ health: 0 }), "cuando ataque"]];
+  for (const [pet, trigger] of cases) {
+    const pc = owner([technique("Coordinación Reactiva")]); const before = pet.updates.length;
+    await pc.setFamiliarReactiveTrigger(pet, trigger);
+    assert.equal(pc.system.turn.action, true); assert.equal(pc.system.turn.reaction, true); assert.equal(pc.updates.length, 0); assert.equal(pet.updates.length, before);
+  }
 });
