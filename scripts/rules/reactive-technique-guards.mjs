@@ -27,7 +27,7 @@ export function installReactiveTechniqueGuards(ActorClass) {
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>Recibir Carga</strong><p>" + foundry.utils.escapeHTML(this.name) + " consume su Reacción. Resuelve ahora un ataque con " + foundry.utils.escapeHTML(weapon.name) + " antes de completar la aproximación. El impacto no detiene automáticamente el movimiento.</p></div>"
     });
-    return this.rollWeapon(weapon, { technique: "Recibir Carga" });
+    return this.rollWeapon(weapon, { technique: "Recibir Carga", tmReactionAttack: true });
   };
 
   ActorClass.prototype.interceptAttack = async function ({ ally = null, attacker = null, movementCost = 0, area = false } = {}) {
