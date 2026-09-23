@@ -1,4 +1,4 @@
-# Auditoría cruzada — Manual Maestro vs 1.0 vs Foundry 1.0.12
+# Auditoría cruzada — Manual Maestro vs 1.0 vs Foundry 1.0.13
 
 Fecha de auditoría inicial: 2026-09-22. Estado reconciliado: 2026-09-23.
 
@@ -10,7 +10,7 @@ La jerarquía vigente sigue siendo la del propio repositorio: el Manual 1.0 es f
 
 ## Resultado ejecutivo
 
-El núcleo 1.0 y la implementación 1.0.12 están ampliamente alineados en resolución, derivados, Trauma, descansos, Familiares, Sobrecarga mágica, objetivos/áreas, daño mágico, Alquimia automatizada, Ritualismo y Sobrecarga Controlada.
+El núcleo 1.0 y la implementación están ampliamente alineados en resolución, derivados, Trauma, descansos, Familiares, Sobrecarga mágica, objetivos/áreas, daño mágico, Alquimia automatizada, Ritualismo y Sobrecarga Controlada.
 
 Las ampliaciones heredadas del Manual Maestro no se convierten en canon por mera presencia documental. Se ratifican sólo cuando aportan una necesidad mecánica demostrable y superan revisión de coherencia, balance e interacción.
 
@@ -44,15 +44,15 @@ El changelog 1.0.4 era histórico. La regla vigente y el motor coinciden: un nue
 
 Foundry muestra el bono del mejor escudo equipado, pero no determina automáticamente el arco frontal. El +1 del Broquel sólo corresponde cuando la mesa confirma que el ataque es frontal; lateral o trasero debe ignorarlo manualmente. No se introduce un subsistema de encaramiento que el canon 1.0 no define. La limitación está visible en README.
 
-### A8 — Métodos históricos de Familiar en `actor.mjs` — MEDIA — DEUDA TÉCNICA ABIERTA
+### A8 — Métodos históricos de Familiar en `actor.mjs` — MEDIA — RESUELTO
 
-`actor.mjs` todavía conserva implementaciones históricas de Acción Vinculada, órdenes, Sentidos Compartidos, Origen Remoto y ajuste de recursos. `familiar-guards.mjs` las sustituye al iniciar el sistema y es la autoridad canónica efectiva: valida propietario, estado operativo, Técnica, nivel de Vínculo, economía de Acción/Reacción y tratamiento de Vida 0 del Familiar.
+Las implementaciones históricas duplicadas de Acción Vinculada, órdenes, Sentidos Compartidos, Origen Remoto y ajuste de recursos fueron retiradas físicamente de `actor.mjs`. `familiar-guards.mjs` es ahora la única autoridad del subsistema y mantiene las validaciones de propietario, estado operativo, Técnica, nivel de Vínculo, economía de Acción/Reacción y Vida 0.
 
-La batería de regresión ya cubre entradas vacías, Familiar ajeno o incapacitado, Vínculo insuficiente, Origen Remoto inválido, no-hechizos, respuestas reactivas vacías, ausencia de Maná/Acción/Reacción propia y Trauma improcedente. La deuda restante es estructural: retirar físicamente las implementaciones históricas del Actor sin alterar la conducta protegida.
+La batería de regresión protege entradas vacías, Familiar ajeno o incapacitado, Vínculo insuficiente, Origen Remoto inválido, no-hechizos, respuestas reactivas vacías, ausencia de Maná/Acción/Reacción propia y Trauma improcedente. La consolidación se realizó sin modificar las reglas canónicas ni abrir capacidades nuevas.
 
 ### A9 — README desactualizado — BAJA — RESUELTO
 
-README ya declara **1.0.12 — núcleo estable para playtest** y mantiene el Manual 1.0 como fuente mecánica canónica.
+README declara la versión vigente y mantiene el Manual 1.0 como fuente mecánica canónica.
 
 ## Coherencias verificadas
 
@@ -78,11 +78,11 @@ No se canonizan por defecto. Antes de implementar cualquiera debe demostrarse un
 
 ## Próxima pasada recomendada
 
-1. Completar A8 retirando la lógica histórica duplicada de Familiares de `actor.mjs` y ejecutar la suite completa.
-2. Revalidar instalación, manifiesto y compatibilidad de Foundry tras la limpieza estructural.
-3. Auditar únicamente los huecos funcionales restantes que afecten una partida completa; no expandir subsistemas por catálogo.
-4. Cuando no queden bloqueos funcionales ni contradicciones canónicas, ejecutar la auditoría integral final y preparar referencia rápida, glosario e índices.
+1. Revalidar instalación, manifiesto, paquete publicado y compatibilidad de Foundry tras la limpieza estructural.
+2. Auditar únicamente huecos funcionales que impidan una partida completa; no expandir subsistemas por catálogo.
+3. Ejecutar la auditoría integral final: creación/progresión, economía de acciones y recursos, combate, magia, Familiares, alquimia, rituales, ingeniería, persistencia/multijugador e instalación.
+4. Si no aparecen bloqueos funcionales ni contradicciones canónicas, preparar referencia rápida, glosario e índices sin añadir reglas nuevas.
 
 ## Estado
 
-A1–A7 y A9 están resueltos. A8 es la única deuda identificada en esta auditoría que todavía requiere limpieza estructural. El sistema no se declara final mientras esa duplicación permanezca y hasta completar la auditoría integral final.
+A1–A9 están resueltos. No quedan deudas de esta auditoría cruzada. El sistema entra en auditoría integral final; sólo deben abrirse cambios nuevos ante un defecto reproducible, una contradicción canónica o un hueco que impida una partida completa.
