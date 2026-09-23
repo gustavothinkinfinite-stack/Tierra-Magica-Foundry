@@ -30,20 +30,55 @@ jobs:
               'castFromFamiliar',
               'adjustResource',
           ]
-          for index, name in enumerate(methods):
-              next_names = methods[index + 1:] + ['callFamiliar', 'rest']
-              alternatives = '|'.join(map(re.escape, next_names))
-              pattern = rf'\n  async {re.escape(name)}\([^\n]*?\) \{{.*?(?=\n  async (?:{alternatives})\()'
-              s, n = re.subn(pattern, '', s, count=1, flags=re.S)
-              if n != 1:
-                  raise SystemExit(f'No se pudo retirar la implementación histórica: {name}')
 
-          # callFamiliar sigue siendo una operación simple no reemplazada por familiar-guards.
+          def remove_async_method(source, name):
+              match = re.search(rf'\n  async {re.escape(name)}\s*\(', source)
+              if not match:
+                  raise SystemExit(f'No se encontró la implementación histórica: {name}')
+              start = match.start()
+              brace = source.find('{', match.end())
+              if brace < 0:
+                  raise SystemExit(f'No se encontró apertura de método: {name}')
+              depth = 0
+              quote = None
+              escaped = False
+              i = brace
+              while i < len(source):
+                  ch = source[i]
+                  if quote:
+                      if escaped:
+                          escaped = False
+                      elif ch == '\\':
+                          escaped = True
+                      elif ch == quote:
+                          quote = None
+                  else:
+                      if ch in ('"', "'", '`'):
+                          quote = ch
+                      elif ch == '{':
+                          depth += 1
+                      elif ch == '}':
+                          depth -= 1
+                          if depth == 0:
+                              end = i + 1
+                              while end < len(source) and source[end] in ' \t':
+                                  end += 1
+                              if end < len(source) and source[end] == '\n':
+                                  end += 1
+                              return source[:start] + '\n' + source[end:]
+                  i += 1
+              raise SystemExit(f'No se encontró cierre de método: {name}')
+
           for name in methods:
-              if re.search(rf'\n  async {re.escape(name)}\(', s):
+              s = remove_async_method(s, name)
+
+          for name in methods:
+              if re.search(rf'\n  async {re.escape(name)}\s*\(', s):
                   raise SystemExit(f'Persistió método duplicado: {name}')
-          if '\n  async callFamiliar(' not in s:
+          if not re.search(r'\n  async callFamiliar\s*\(', s):
               raise SystemExit('La limpieza eliminó callFamiliar accidentalmente')
+          if not re.search(r'\n  async rest\s*\(', s):
+              raise SystemExit('La limpieza dañó el límite posterior del bloque')
           p.write_text(s)
           PY
           npm install --ignore-scripts
