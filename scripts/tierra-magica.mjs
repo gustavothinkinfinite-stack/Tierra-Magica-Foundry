@@ -80,39 +80,96 @@ function normalizeStoredNumber(value, { fallback = 0, minimum = 0, maximum = Num
 async function retireLegacyMechanicalFields() {
   if (!game.user.isGM) return 0;
   let repaired = 0;
-  for (const actor of game.actors ?? []) {
+  for (const actor of game.actors) {
+    const source = actor.toObject().system ?? {};
     const updates = {};
-    const turn = actor.system?.turn ?? {};
-    if (Object.prototype.hasOwnProperty.call(turn, "movementRemaining")) updates["system.turn.-=movementRemaining"] = null;
-    const combat = actor.system?.combat ?? {};
-    if (Object.prototype.hasOwnProperty.call(combat, "parrySucceeded") && typeof combat.parrySucceeded !== "boolean") updates["system.combat.parrySucceeded"] = Boolean(combat.parrySucceeded);
-    if (Object.keys(updates).length) {
-      await actor.update(updates);
-      repaired += 1;
+    if (Object.prototype.hasOwnProperty.call(source.recovery ?? {}, "zeroTraumaApplied")) updates["system.recovery.-=zeroTraumaApplied"] = null;
+    if (actor.type === "familiar") {
+      for (const key of ["sharedSenses", "enhancedCommunication", "remoteOrigin"]) {
+        if (Object.prototype.hasOwnProperty.call(source.familiar ?? {}, key)) updates["system.familiar.-=" + key] = null;
+      }
     }
+    if (!Object.keys(updates).length) continue;
+    await actor.update(updates);
+    repaired += 1;
   }
   return repaired;
 }
 
+async function repairCharacterSheet031Data() {
+  if (!game.user.isGM) return 0;
+  let repaired = 0;
+
+  for (const actor of game.actors) {
+    if (actor.type !== "character") continue;
+    const source = actor.toObject().system ?? {};
+    const updates = {};
+
+    if (Array.isArray(source.details?.level)) {
+      updates["system.details.level"] = normalizeStoredNumber(source.details.level, { fallback: 1, minimum: 1, maximum: 20 });
+    }
+    if (Array.isArray(source.details?.pdSpent)) {
+      updates["system.details.pdSpent"] = normalizeStoredNumber(source.details.pdSpent, { fallback: 0, minimum: 0 });
+    }
+
+    for (const [key, skill] of Object.entries(source.skills ?? {})) {
+      if (!Array.isArray(skill?.rank)) continue;
+      updates["system.skills." + key + ".rank"] = normalizeStoredNumber(skill.rank, { fallback: 0, minimum: 0, maximum: 5 });
+    }
+
+    if (!Object.keys(updates).length) continue;
+    await actor.update(updates);
+    repaired += 1;
+  }
+
+  return repaired;
+}
+
 Hooks.once("ready", async () => {
-  await retireLegacyMechanicalFields();
+  console.info("Foundry T.M. | Sistema listo");
+  const repaired = await repairCharacterSheet031Data();
+  const retired = await retireLegacyMechanicalFields();
+  if (repaired) {
+    ui.notifications.info("Tierra Mágica: se repararon " + repaired + " ficha(s) afectadas por el guardado de v0.3.1.");
+  }
+  if (retired) ui.notifications.info("Tierra Mágica: se retiraron campos mecánicos históricos de " + retired + " actor(es).");
 });
 
 Hooks.on("renderChatMessage", (message, html) => {
-  const request = message.flags?.["tierra-magica"]?.pendingDamage;
-  if (!request) return;
+  const request = validatePendingDamageRequest(message.getFlag("tierra-magica", "pendingDamage"));
+  if (!request || !game.user?.isGM) return;
+  const primary = primaryActiveGm(game.users ?? []);
+  if (!primary || primary.id !== game.user.id) return;
+
   const root = html?.[0] ?? html;
-  const button = root?.querySelector?.("[data-action='tm-approve-damage']");
-  if (!button) return;
-  button.disabled = !game.user.isGM;
+  const card = root?.querySelector?.(".tm-chat-card");
+  if (!card || card.querySelector("[data-tm-approve-damage]")) return;
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.dataset.tmApproveDamage = "true";
+  button.textContent = "Aplicar " + request.damage + " daño";
+  button.title = "Aplicación explícita por el DJ. No concede permisos al jugador atacante.";
   button.addEventListener("click", async () => {
-    if (!game.user.isGM || !primaryActiveGm()) return;
-    const validated = validatePendingDamageRequest(request);
-    if (!validated) return ui.notifications.warn("Solicitud de daño inválida o desactualizada.");
-    const target = await fromUuid(validated.targetUuid);
-    if (!target?.adjustResource) return ui.notifications.warn("No se encontró un objetivo válido para aplicar el daño.");
-    await target.adjustResource("health", -validated.damage);
-    await message.update({ "flags.tierra-magica.pendingDamage.applied": true });
     button.disabled = true;
+    const current = validatePendingDamageRequest(message.getFlag("tierra-magica", "pendingDamage"));
+    if (!current) return;
+
+    const target = await fromUuid(current.targetUuid);
+    if (!target || typeof target.adjustResource !== "function") {
+      ui.notifications.warn("Tierra Mágica: el objetivo de esta solicitud ya no está disponible.");
+      button.disabled = false;
+      return;
+    }
+    if (!(target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false)) {
+      ui.notifications.warn("Tierra Mágica: el DJ activo no puede modificar el objetivo.");
+      button.disabled = false;
+      return;
+    }
+
+    await target.adjustResource("health", -current.damage);
+    await message.setFlag("tierra-magica", "pendingDamage", { ...current, resolved: true });
+    button.textContent = "Daño aplicado";
   });
+  card.append(button);
 });
