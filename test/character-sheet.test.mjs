@@ -11,7 +11,7 @@ const root=resolve(fileURLToPath(new URL("..",import.meta.url)));
 
 test("la ficha no serializa dos veces los campos editables",async()=>{const sheet=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");assert.equal(sheet.includes("new FormDataExtended(this.form)"),false);});
 
-test("la ficha usa páginas laterales y recursos dentro del núcleo central",async()=>{const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");for(const marker of ["data-page=\"core\"","data-page=\"skills\"","data-page=\"combat\"","data-page=\"magic\"","data-page=\"inventory\"","data-page=\"bio\""])assert.equal(sheet.includes(marker),true);});
+test("la ficha usa páginas laterales y recursos dentro del núcleo central",async()=>{const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");for(const marker of ["data-tab=\"summary\"","data-tab=\"skills\"","data-tab=\"combat\"","data-tab=\"magic\"","data-tab=\"inventory\"","data-tab=\"biography\"","tm-v03-resources"])assert.equal(sheet.includes(marker),true);});
 
 test("la portada usa Habilidades sólo como lectura y tirada",async()=>{const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");assert.equal(sheet.includes("tm-skill-rank-input"),false);});
 
@@ -25,7 +25,7 @@ test("los Items permiten configurar fuentes estructuradas de modificadores",asyn
 
 test("las tiradas usan el total de Habilidad y exponen sus fuentes",async()=>{const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");assert.equal(actor.includes("skill"),true);});
 
-test("las pestañas laterales quedan fuera del marco de la hoja",async()=>{const css=await readFile(resolve(root,"styles/character-sheet-v03.css"),"utf8");assert.equal(css.includes("tm-side"),true);});
+test("las pestañas laterales quedan fuera del marco de la hoja",async()=>{const css=await readFile(resolve(root,"styles/character-sheet-v03.css"),"utf8");assert.equal(css.includes(".tm-v03-page-tabs"),true);assert.equal(css.includes("margin-right: 92px"),true);assert.equal(css.includes("overflow: visible"),true);});
 
 test("los estilos distinguen la lista rápida y el desglose técnico",async()=>{const css=await readFile(resolve(root,"styles/character-sheet-v03.css"),"utf8");assert.equal(css.length>1000,true);});
 
