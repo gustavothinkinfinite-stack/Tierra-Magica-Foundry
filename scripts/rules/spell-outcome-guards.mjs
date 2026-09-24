@@ -1,6 +1,4 @@
 import { applyBoundedHealing, healingAmount, pendingHealingRequest } from "./healing-delivery.mjs";
-import { pendingDamageRequest } from "./damage-delivery.mjs";
-import { resolveSpellImpact } from "./spell-impact.mjs";
 
 function number(value, fallback = Number.NaN) { const parsed = Number(value); return Number.isFinite(parsed) ? parsed : fallback; }
 export function spellRollTotal(result) { return number(result?.rolls?.[0]?.total ?? result?.roll?.total ?? result?.total); }
@@ -12,24 +10,15 @@ export function spellDifficulty(actor, item, target = undefined) {
   return number(item?.system?.difficulty, 12);
 }
 export function spellSucceeded(actor, item, result, target = undefined, difficulty = undefined) {
+  if (result?.tmAutomaticSpell === true) return true;
   const total = spellRollTotal(result); const df = difficulty === undefined ? spellDifficulty(actor, item, target) : number(difficulty);
   return Number.isFinite(total) && Number.isFinite(df) && total >= df;
 }
-async function resolveOffensiveSpell(actor, item, target) {
-  if (item?.name !== "Proyectil Ígneo") return false;
-  if (!target) return true;
-  const impact = resolveSpellImpact(item, target);
-  const canUpdate = target.canUserModify?.(globalThis.game?.user, "update") ?? target.isOwner ?? false;
-  if (impact.damage > 0 && canUpdate) await target.adjustResource?.("health", -impact.damage);
-  const pendingDamage = !canUpdate ? pendingDamageRequest({ targetUuid: target.uuid, damage: impact.damage, source: item.name, attacker: actor?.name ?? "" }) : null;
-  if (globalThis.ChatMessage?.create) await globalThis.ChatMessage.create({
-    speaker: globalThis.ChatMessage.getSpeaker?.({ actor }), flags: pendingDamage ? { "tierra-magica": { pendingDamage } } : {},
-    content: "<div class='tm-chat-card'><strong>Impacto — Proyectil Ígneo</strong><p>" + impact.damage + " daño · Protección " + impact.protection + " → " + impact.effectiveProtection + (impact.severe ? " · umbral de Daño Grave" : "") + (pendingDamage ? " · <em>pendiente de aprobación del DJ</em>" : "") + "</p></div>"
-  });
-  return true;
-}
 async function resolveDeterministicSpellEffect(actor, item, target) {
-  if (await resolveOffensiveSpell(actor, item, target)) return;
+  if (item?.name === "Barrera Cinética") {
+    await actor.update?.({ "system.combat.kineticBarrierActive": true });
+    return;
+  }
   if (item?.name !== "Cierre Restaurador") return;
   if (!target) { globalThis.ui?.notifications?.warn?.("Cierre Restaurador requiere un objetivo declarado."); return; }
   const amount = healingAmount(target, 4); if (amount <= 0) return;
