@@ -56,5 +56,7 @@ export function installReactionEconomyGuards(ActorClass) {
   wrapReactionMethod(ActorClass, "useCounterspell");
   wrapReactionMethod(ActorClass, "receiveCharge");
   wrapReactionMethod(ActorClass, "interceptAttack");
+  wrapReactionMethod(ActorClass, "linkedFamiliarAction");
+  wrapReactionMethod(ActorClass, "triggerFamiliarReaction");
   installTurnTransitionHook();
 }
