@@ -92,3 +92,14 @@ test("orden al Familiar y consumible concurrentes no reutilizan la misma Acción
   assert.equal(actor.system.turn.action, false);
   assert.equal([order, formula].filter(Boolean).length, 1);
 });
+
+
+test("dos hechizos reactivos concurrentes no duplican gasto ni beneficio", async () => {
+  const actor = new ActorStub();
+  const barrier = { system: { activation: "Reacción" } };
+  const [first, second] = await Promise.all([actor.useSpell(barrier), actor.useSpell(barrier)]);
+  assert.equal(actor.calls, 1);
+  assert.equal(actor.system.turn.reaction, false);
+  assert.equal(actor.system.turn.action, true);
+  assert.equal([first, second].filter(Boolean).length, 1);
+});
