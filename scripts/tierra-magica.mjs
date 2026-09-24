@@ -28,7 +28,7 @@ installActionEconomyGuards(TierraMagicaActor);
 installReactionEconomyGuards(TierraMagicaActor);
 
 Hooks.once("init", async () => {
-  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.13");
+  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.14");
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
   CONFIG.Item.documentClass = TierraMagicaItem;
