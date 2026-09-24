@@ -5,6 +5,7 @@
 import { runReaction } from "./reaction-economy-guards.mjs";
 
 const actionLocks = new WeakSet();
+const reactionLocksByActor = new WeakSet();
 
 export async function runAction(actor, operation) {
   if (actor.system.status?.incapacitated || Number(actor.system.resources?.health?.value) <= 0) {
@@ -32,12 +33,24 @@ export async function runAction(actor, operation) {
 }
 
 async function runReactionSpell(actor, operation) {
-  return runReaction(actor, async () => {
-    const result = await operation();
-    if (!result) return result;
-    await actor.update({ "system.turn.reaction": false });
-    return result;
-  });
+  // runReaction ya aporta la exclusión transversal con Parada/Contramagia/Familiar.
+  // Este bloqueo local además impide dos lanzamientos reactivos simultáneos antes
+  // de que el primero alcance a persistir el gasto de Reacción.
+  if (reactionLocksByActor.has(actor)) {
+    ui.notifications.warn(actor.name + " ya está resolviendo un hechizo de Reacción.");
+    return null;
+  }
+  reactionLocksByActor.add(actor);
+  try {
+    return await runReaction(actor, async () => {
+      const result = await operation();
+      if (!result) return result;
+      await actor.update({ "system.turn.reaction": false });
+      return result;
+    });
+  } finally {
+    reactionLocksByActor.delete(actor);
+  }
 }
 
 export function installActionEconomyGuards(ActorClass) {
