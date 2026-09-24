@@ -23,10 +23,11 @@ export async function resetActorTurnForCombat(actor, combat, combatant) {
   // Turn-scoped defenses expire before the fresh economy is granted. Guardia
   // explicitly lasts until the start of the actor's next turn; Parada and its
   // success/counterattack window cannot be banked into a later turn.
+  const incapacitated = Boolean(actor.system?.status?.incapacitated) || Number(actor.system?.resources?.health?.value) <= 0;
   await actor.update({
-    "system.turn.movement": true,
-    "system.turn.action": true,
-    "system.turn.reaction": true,
+    "system.turn.movement": !incapacitated,
+    "system.turn.action": !incapacitated,
+    "system.turn.reaction": !incapacitated,
     "system.combat.guardActive": false,
     "system.combat.parryActive": false,
     "system.combat.parrySucceeded": false,
