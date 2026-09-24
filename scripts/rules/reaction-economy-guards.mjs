@@ -2,8 +2,11 @@
 // Las reglas especializadas conservan propiedad, disparadores y gasto; esta capa sólo
 // impide que dos rutas asíncronas reutilicen simultáneamente la misma Reacción.
 
+import { resetCurrentCombatantTurn } from "./turn-economy.mjs";
+
 const reactionLocks = new WeakSet();
 const REACTION_GUARD = Symbol("tierraMagicaReactionGuard");
+let turnHookInstalled = false;
 
 export async function runReaction(actor, operation) {
   if (!(actor.system.turn?.reaction ?? true)) {
@@ -34,9 +37,24 @@ function wrapReactionMethod(ActorClass, methodName) {
   ActorClass.prototype[methodName] = guarded;
 }
 
+function installTurnTransitionHook() {
+  if (turnHookInstalled || !globalThis.Hooks?.on) return;
+  turnHookInstalled = true;
+  Hooks.on("updateCombat", async (combat, changed) => {
+    if (!("turn" in changed) && !("round" in changed)) return;
+    if (!game.user?.isGM) return;
+    const primaryGm = Array.from(game.users ?? [])
+      .filter((user) => user.active && user.isGM)
+      .sort((a, b) => String(a.id).localeCompare(String(b.id)))[0];
+    if (!primaryGm || primaryGm.id !== game.user.id) return;
+    await resetCurrentCombatantTurn(combat);
+  });
+}
+
 export function installReactionEconomyGuards(ActorClass) {
   wrapReactionMethod(ActorClass, "parry");
   wrapReactionMethod(ActorClass, "useCounterspell");
   wrapReactionMethod(ActorClass, "receiveCharge");
   wrapReactionMethod(ActorClass, "interceptAttack");
+  installTurnTransitionHook();
 }
