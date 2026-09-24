@@ -63,12 +63,12 @@ test("Proyectil Igneo requires exactly one target before spending the cast", asy
   assert.equal(await new ActorStub().useSpell({ name: "Proyectil Ígneo", type: "spell", system: { defense: "normal", damage: 5, penetration: 1 } }), "blocked");
 });
 
-test("successful Proyectil Igneo applies fixed damage after penetration and protection", async () => {
+test("spell outcome does not duplicate Proyectil Igneo damage owned by magic resolution", async () => {
   const target = { uuid: "T", isOwner: true, name: "Objetivo", system: { derived: { defense: 12, protection: 3, severeThreshold: 8 } }, damage: 0, async adjustResource(key, delta) { assert.equal(key, "health"); this.damage += -delta; } };
   globalThis.game = { user: { targets: new Set([{ actor: target }]) } }; globalThis.ChatMessage = { getSpeaker: () => ({}), create: async () => ({}) };
   class ActorStub { async useSpell() { return { rolls: [{ total: 12 }] }; } }
   installSpellOutcomeGuards(ActorStub); await new ActorStub().useSpell({ name: "Proyectil Ígneo", type: "spell", system: { defense: "normal", damage: 5, penetration: 1 } });
-  assert.equal(target.damage, 3);
+  assert.equal(target.damage, 0);
 });
 
 test("failed Proyectil Igneo never applies damage", async () => {
