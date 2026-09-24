@@ -123,6 +123,19 @@ export function installMagicGuards(ActorClass) {
     }
 
     const castSuccess = outcomes.some((entry) => entry.success);
+
+    // Barrera Cinética modifica únicamente Defensa normal y pertenece al ataque
+    // declarado. Tras resolver ese ataque mágico, su +2 no puede persistir para
+    // una segunda agresión. Las Defensas Mental/Corporal no la consumen.
+    if (String(item.system?.defense ?? "") === "normal") {
+      for (const target of targets) {
+        if (!target?.system?.combat?.kineticBarrierActive) continue;
+        const canUpdateTarget = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
+        if (canUpdateTarget) await target.update({ "system.combat.kineticBarrierActive": false });
+        else ui.notifications.warn("Barrera Cinética se aplicó al hechizo, pero un usuario con permisos sobre " + target.name + " debe cerrar su estado.");
+      }
+    }
+
     const after = Array.isArray(this.system.magic?.sustainedSpellIds)
       ? [...this.system.magic.sustainedSpellIds]
       : [];
