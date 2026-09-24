@@ -76,13 +76,10 @@ El Maestro conserva ampliaciones potenciales —Escala detallada, agarres, movim
 
 No se canonizan por defecto. Antes de implementar cualquiera debe demostrarse una carencia real del juego, comprobar que no puede resolverse con reglas existentes y revisar coste de complejidad, exploits e interacción con el núcleo.
 
-## Próxima pasada recomendada
+## Cierre posterior
 
-1. Revalidar instalación, manifiesto, paquete publicado y compatibilidad de Foundry tras la limpieza estructural.
-2. Auditar únicamente huecos funcionales que impidan una partida completa; no expandir subsistemas por catálogo.
-3. Ejecutar la auditoría integral final: creación/progresión, economía de acciones y recursos, combate, magia, Familiares, alquimia, rituales, ingeniería, persistencia/multijugador e instalación.
-4. Si no aparecen bloqueos funcionales ni contradicciones canónicas, preparar referencia rápida, glosario e índices sin añadir reglas nuevas.
+La auditoría integral recomendada fue ejecutada y cerrada el 2026-09-24. Su resultado consolidado está en `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md`, acompañado por `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md`.
 
 ## Estado
 
-A1–A9 están resueltos. No quedan deudas de esta auditoría cruzada. El sistema entra en auditoría integral final; sólo deben abrirse cambios nuevos ante un defecto reproducible, una contradicción canónica o un hueco que impida una partida completa.
+A1–A9 permanecen resueltos. **El núcleo 1.0 está completo y jugable.** Las limitaciones contextuales documentadas no son deuda funcional; cualquier cambio posterior del núcleo requiere un defecto reproducible, contradicción canónica, hueco funcional demostrado o decisión de diseño consolidada primero en el Manual.
