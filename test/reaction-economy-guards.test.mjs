@@ -24,6 +24,8 @@ class ActorStub {
   }
   async receiveCharge() { this.calls.push("charge"); this.system.turn.reaction = false; return { ok: true }; }
   async interceptAttack() { this.calls.push("intercept"); this.system.turn.reaction = false; return { ok: true }; }
+  async linkedFamiliarAction() { this.calls.push("familiar"); await new Promise((resolve) => setTimeout(resolve, 10)); this.system.turn.reaction = false; return { ok: true }; }
+  async triggerFamiliarReaction() { this.calls.push("familiar-reactive"); this.system.turn.reaction = false; return { ok: true }; }
 }
 
 installReactionEconomyGuards(ActorStub);
@@ -53,4 +55,21 @@ test("una resolución inválida libera el bloqueo sin inventar gasto", async () 
   const result = await actor.useCounterspell();
   assert.ok(result);
   assert.equal(actor.system.turn.reaction, false);
+});
+
+
+test("Parada y Acción Vinculada concurrentes comparten la misma Reacción", async () => {
+  const actor = new ActorStub();
+  const [parry, familiar] = await Promise.all([actor.parry(), actor.linkedFamiliarAction()]);
+  assert.equal(actor.calls.length, 1);
+  assert.equal(actor.system.turn.reaction, false);
+  assert.equal([parry, familiar].filter(Boolean).length, 1);
+});
+
+test("Contramagia y Coordinación Reactiva concurrentes comparten la misma Reacción", async () => {
+  const actor = new ActorStub();
+  const [counterspell, familiar] = await Promise.all([actor.useCounterspell(), actor.triggerFamiliarReaction()]);
+  assert.equal(actor.calls.length, 1);
+  assert.equal(actor.system.turn.reaction, false);
+  assert.equal([counterspell, familiar].filter(Boolean).length, 1);
 });
