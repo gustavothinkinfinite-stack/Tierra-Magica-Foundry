@@ -184,11 +184,15 @@ export function installMagicGuards(ActorClass) {
     }
 
     if (automatic) {
-      return ChatMessage.create({
+      const message = await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
         content: "<div class='tm-chat-card'><strong>Hechizo: " + foundry.utils.escapeHTML(item.name) +
           "</strong><p>Lanzamiento sin tirada: no existe incertidumbre significativa en esta resolución.</p></div>"
       });
+      // Conserva una señal explícita para las capas posteriores: un lanzamiento
+      // automático válido es éxito aunque no exista un total numérico de tirada.
+      message.tmAutomaticSpell = true;
+      return message;
     }
     return result;
   };
