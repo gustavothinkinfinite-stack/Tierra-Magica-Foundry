@@ -17,11 +17,7 @@ test("uses target defense when the spell declares one", () => {
 
 test("failed sustained casting is removed but successful casting remains", async () => {
   globalThis.game = { user: { targets: new Set() } };
-  class ActorStub {
-    constructor(total) { this.total = total; this.stopped = []; }
-    async useSpell() { return { rolls: [{ total: this.total }] }; }
-    async stopSustainedSpell(id) { this.stopped.push(id); }
-  }
+  class ActorStub { constructor(total) { this.total = total; this.stopped = []; } async useSpell() { return { rolls: [{ total: this.total }] }; } async stopSustainedSpell(id) { this.stopped.push(id); } }
   installSpellOutcomeGuards(ActorStub);
   const spell = { id: "s1", type: "spell", system: { sustained: true, difficulty: 14 } };
   const failed = new ActorStub(13); await failed.useSpell(spell); assert.deepEqual(failed.stopped, ["s1"]);
@@ -32,27 +28,17 @@ test("outcome remains bound to the target declared before the asynchronous roll"
   const originalTarget = { system: { derived: { mentalDefense: 18 } } };
   const easierTarget = { system: { derived: { mentalDefense: 10 } } };
   globalThis.game = { user: { targets: new Set([{ actor: originalTarget }]) } };
-  class ActorStub {
-    constructor() { this.stopped = []; }
-    async useSpell() { globalThis.game.user.targets = new Set([{ actor: easierTarget }]); return { rolls: [{ total: 14 }] }; }
-    async stopSustainedSpell(id) { this.stopped.push(id); }
-  }
+  class ActorStub { constructor() { this.stopped = []; } async useSpell() { globalThis.game.user.targets = new Set([{ actor: easierTarget }]); return { rolls: [{ total: 14 }] }; } async stopSustainedSpell(id) { this.stopped.push(id); } }
   installSpellOutcomeGuards(ActorStub);
-  const actor = new ActorStub();
-  await actor.useSpell({ id: "bound", type: "spell", system: { sustained: true, defense: "mental" } });
+  const actor = new ActorStub(); await actor.useSpell({ id: "bound", type: "spell", system: { sustained: true, defense: "mental" } });
   assert.deepEqual(actor.stopped, ["bound"]);
 });
 
 test("Cierre Restaurador heals only the declared owned target and respects healthCap", async () => {
-  const target = {
-    uuid: "Actor.target", isOwner: true,
-    system: { resources: { health: { value: 5, max: 20 } }, recovery: { healthCap: 7 }, derived: {} },
-    async update(change) { this.system.resources.health.value = change["system.resources.health.value"]; }
-  };
+  const target = { uuid: "Actor.target", isOwner: true, system: { resources: { health: { value: 5, max: 20 } }, recovery: { healthCap: 7 }, derived: {} }, async update(change) { this.system.resources.health.value = change["system.resources.health.value"]; } };
   globalThis.game = { user: { targets: new Set([{ actor: target }]) } };
   class ActorStub { constructor() { this.name = "Maga"; } async useSpell() { return { rolls: [{ total: 20 }] }; } }
-  installSpellOutcomeGuards(ActorStub);
-  await new ActorStub().useSpell({ name: "Cierre Restaurador", type: "spell", system: { difficulty: 12 } });
+  installSpellOutcomeGuards(ActorStub); await new ActorStub().useSpell({ name: "Cierre Restaurador", type: "spell", system: { difficulty: 12 } });
   assert.equal(target.system.resources.health.value, 7);
 });
 
@@ -60,13 +46,34 @@ test("failed Cierre Restaurador never heals", async () => {
   const target = { uuid: "Actor.target", isOwner: true, system: { resources: { health: { value: 5, max: 20 } }, recovery: { healthCap: 20 }, derived: {} }, async update() { throw new Error("must not heal"); } };
   globalThis.game = { user: { targets: new Set([{ actor: target }]) } };
   class ActorStub { async useSpell() { return { rolls: [{ total: 3 }] }; } }
-  installSpellOutcomeGuards(ActorStub);
-  await new ActorStub().useSpell({ name: "Cierre Restaurador", type: "spell", system: { difficulty: 12 } });
+  installSpellOutcomeGuards(ActorStub); await new ActorStub().useSpell({ name: "Cierre Restaurador", type: "spell", system: { difficulty: 12 } });
 });
 
 test("non-sustained spells never mutate sustained state", async () => {
   globalThis.game = { user: { targets: new Set() } };
   class ActorStub { async useSpell() { return { rolls: [{ total: 1 }] }; } async stopSustainedSpell() { throw new Error("must not be called"); } }
+  installSpellOutcomeGuards(ActorStub); await new ActorStub().useSpell({ id: "s2", type: "spell", system: { sustained: false, difficulty: 20 } });
+});
+
+test("Proyectil Igneo requires exactly one target before spending the cast", async () => {
+  const a = { uuid: "A", system: { derived: { defense: 10 } } }; const b = { uuid: "B", system: { derived: { defense: 10 } } };
+  globalThis.game = { user: { targets: new Set([{ actor: a }, { actor: b }]) } }; globalThis.ui = { notifications: { warn: () => "blocked" } };
+  class ActorStub { async useSpell() { throw new Error("cast must not start"); } }
   installSpellOutcomeGuards(ActorStub);
-  await new ActorStub().useSpell({ id: "s2", type: "spell", system: { sustained: false, difficulty: 20 } });
+  assert.equal(await new ActorStub().useSpell({ name: "Proyectil Ígneo", type: "spell", system: { defense: "normal", damage: 5, penetration: 1 } }), "blocked");
+});
+
+test("successful Proyectil Igneo applies fixed damage after penetration and protection", async () => {
+  const target = { uuid: "T", isOwner: true, name: "Objetivo", system: { derived: { defense: 12, protection: 3, severeThreshold: 8 } }, damage: 0, async adjustResource(key, delta) { assert.equal(key, "health"); this.damage += -delta; } };
+  globalThis.game = { user: { targets: new Set([{ actor: target }]) } }; globalThis.ChatMessage = { getSpeaker: () => ({}), create: async () => ({}) };
+  class ActorStub { async useSpell() { return { rolls: [{ total: 12 }] }; } }
+  installSpellOutcomeGuards(ActorStub); await new ActorStub().useSpell({ name: "Proyectil Ígneo", type: "spell", system: { defense: "normal", damage: 5, penetration: 1 } });
+  assert.equal(target.damage, 3);
+});
+
+test("failed Proyectil Igneo never applies damage", async () => {
+  const target = { uuid: "T", isOwner: true, system: { derived: { defense: 15, protection: 0 } }, async adjustResource() { throw new Error("must not damage"); } };
+  globalThis.game = { user: { targets: new Set([{ actor: target }]) } };
+  class ActorStub { async useSpell() { return { rolls: [{ total: 14 }] }; } }
+  installSpellOutcomeGuards(ActorStub); await new ActorStub().useSpell({ name: "Proyectil Ígneo", type: "spell", system: { defense: "normal", damage: 5, penetration: 1 } });
 });
