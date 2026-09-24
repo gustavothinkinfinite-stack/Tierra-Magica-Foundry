@@ -20,10 +20,17 @@ export async function resetActorTurnForCombat(actor, combat, combatant) {
     if (stamp.round <= previousRound) return false;
   }
 
+  // Turn-scoped defenses expire before the fresh economy is granted. Guardia
+  // explicitly lasts until the start of the actor's next turn; Parada and its
+  // success/counterattack window cannot be banked into a later turn.
   await actor.update({
     "system.turn.movement": true,
     "system.turn.action": true,
-    "system.turn.reaction": true
+    "system.turn.reaction": true,
+    "system.combat.guardActive": false,
+    "system.combat.parryActive": false,
+    "system.combat.parrySucceeded": false,
+    "system.combat.counterattackUsed": false
   });
   await actor.setFlag?.("tierra-magica", TURN_FLAG, stamp);
   return true;
