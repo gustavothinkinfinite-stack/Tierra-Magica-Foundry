@@ -85,14 +85,20 @@ export function installCombatDefenseGuards(ActorClass) {
     const target = targets[0];
     if (!target?.system?.combat?.parryActive || isRangedWeapon(item)) {
       const result = await originalRollWeapon.call(this, item, options);
-      if (result && target.system?.combat?.kineticBarrierActive && canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
+      if (result && target.system?.combat?.kineticBarrierActive) {
+        if (canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
+        else ui.notifications.warn("Barrera Cinética se aplicó al ataque, pero un usuario con permisos sobre " + target.name + " debe cerrar su estado.");
+      }
       return result;
     }
     const baseDefense = number(options.df ?? target.system?.derived?.defense);
     if (!Number.isFinite(baseDefense)) return originalRollWeapon.call(this, item, options);
     const result = await originalRollWeapon.call(this, item, { ...options, df: baseDefense + 2 });
     await closeParry(target, rollTotal(result), baseDefense);
-    if (target.system?.combat?.kineticBarrierActive && canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
+    if (target.system?.combat?.kineticBarrierActive) {
+      if (canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
+      else ui.notifications.warn("Barrera Cinética se aplicó al ataque, pero un usuario con permisos sobre " + target.name + " debe cerrar su estado.");
+    }
     return result;
   };
 
@@ -111,9 +117,12 @@ export function installCombatDefenseGuards(ActorClass) {
     const results = [];
     let pendingTotal = 0;
     let parryPending = Boolean(target.system?.combat?.parryActive);
+    const kineticPending = Boolean(target.system?.combat?.kineticBarrierActive);
+    const defenseWithoutKinetic = baseDefense - (kineticPending ? 2 : 0);
     for (const [index, weapon] of [primary, secondary].entries()) {
       const parryThisAttack = parryPending && !isRangedWeapon(weapon);
-      const defense = baseDefense + (parryThisAttack ? 2 : 0);
+      const kineticThisAttack = kineticPending && index === 0;
+      const defense = defenseWithoutKinetic + (kineticThisAttack ? 2 : 0) + (parryThisAttack ? 2 : 0);
       const roll = await this.rollCheck({ label: "Combate Dual " + (index + 1) + ": " + weapon.name, attributeKey: weapon.system.attackAttribute || "agi", skillKey: weapon.system.skill || "lightWeapons", df: defense, modifier: -2 });
       const total = rollTotal(roll);
       const hit = attackHits(total, defense);
@@ -125,7 +134,10 @@ export function installCombatDefenseGuards(ActorClass) {
         else if (damage > 0) pendingTotal += damage;
       }
       results.push({ roll, hit, damage });
-      if (index === 0 && target.system?.combat?.kineticBarrierActive && canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
+      if (kineticThisAttack && target.system?.combat?.kineticBarrierActive) {
+        if (canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
+        else ui.notifications.warn("Barrera Cinética se aplicó al ataque, pero un usuario con permisos sobre " + target.name + " debe cerrar su estado.");
+      }
       if (parryThisAttack) {
         await closeParry(target, total, baseDefense);
         parryPending = false;
@@ -175,7 +187,10 @@ export function installCombatDefenseGuards(ActorClass) {
         });
       }
       if (parryable && target.system?.combat?.parryActive) await closeParry(target, total, baseDefenses[i]);
-      if (target.system?.combat?.kineticBarrierActive && canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
+      if (target.system?.combat?.kineticBarrierActive) {
+        if (canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
+        else ui.notifications.warn("Barrera Cinética se aplicó al ataque, pero un usuario con permisos sobre " + target.name + " debe cerrar su estado.");
+      }
     }
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Barrido — " + foundry.utils.escapeHTML(item.name) + "</strong><p>" + summaries.join(" · ") + "</p></div>" });
     return roll;
