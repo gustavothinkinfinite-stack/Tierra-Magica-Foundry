@@ -9,6 +9,10 @@ const REACTION_GUARD = Symbol("tierraMagicaReactionGuard");
 let turnHookInstalled = false;
 
 export async function runReaction(actor, operation) {
+  if (actor.system.status?.incapacitated || Number(actor.system.resources?.health?.value) <= 0) {
+    ui.notifications.warn(actor.name + " está Incapacitado y no puede ejecutar una Reacción.");
+    return null;
+  }
   if (!(actor.system.turn?.reaction ?? true)) {
     ui.notifications.warn(actor.name + " ya gastó su Reacción.");
     return null;
