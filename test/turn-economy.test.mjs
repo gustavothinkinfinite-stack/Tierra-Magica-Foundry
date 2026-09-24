@@ -23,7 +23,8 @@ const freshTurn = {
   "system.combat.guardActive": false,
   "system.combat.parryActive": false,
   "system.combat.parrySucceeded": false,
-  "system.combat.counterattackUsed": false
+  "system.combat.counterattackUsed": false,
+  "system.combat.kineticBarrierActive": false
 };
 
 test("restores turn economy and expires turn-scoped defenses once per new round", async () => {
@@ -43,6 +44,7 @@ test("stale Guardia, Parada and Contraataque state cannot survive into a fresh t
   assert.equal(a.updates[0]["system.combat.parryActive"], false);
   assert.equal(a.updates[0]["system.combat.parrySucceeded"], false);
   assert.equal(a.updates[0]["system.combat.counterattackUsed"], false);
+  assert.equal(a.updates[0]["system.combat.kineticBarrierActive"], false);
 });
 
 test("turn rewind and duplicate combatants cannot farm resources in the same or an older round", async () => {
