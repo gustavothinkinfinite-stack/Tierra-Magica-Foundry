@@ -1,5 +1,17 @@
 # Historial de cambios
 
+## 1.0.14
+
+- Economía de turno endurecida: ataques físicos, hechizos, fórmulas y dispositivos consumen una única Acción compartida y quedan protegidos contra dobles activaciones concurrentes.
+- Reacciones serializadas entre Parada, Contramagia, Recibir Carga, Intercepción y hechizos reactivos; Barrera Cinética usa correctamente Reacción en vez de Acción.
+- Inicio de turno centralizado: restaura Movimiento, Acción y Reacción una sola vez por Actor/ronda y limpia Guardia, Parada y ventana de Contraataque vencidas.
+- Familiares consolidados bajo una única autoridad canónica, sin Acción/Reacción/Maná independientes ni implementaciones históricas duplicadas.
+- Lanzamientos mágicos fijan objetivo y DF al declararse; un fallo no puede iniciar Sostenimiento.
+- Cierre Restaurador automatiza su curación determinista de 4 Vida con límites y aprobación segura del DJ cuando corresponde.
+- Proyectil Ígneo resuelve impacto determinista con Daño 5, Penetración 1, Protección y entrega segura de daño; las áreas no parametrizadas permanecen contextuales.
+- Resolución ofensiva mágica ampliada con deduplicación de Actores, validación de objetivos y API determinista cubierta por regresiones.
+- Se mantienen contextuales los efectos cuya geometría, duración o consecuencias no están suficientemente parametrizadas, evitando añadir subsistemas especulativos.
+
 ## 1.0.11
 
 - Auditoría retrospectiva corregida: el umbral `5+VIG` coincide exactamente con la mitad de Vida máxima; sigue siendo informativo y no crea Herida Grave.
