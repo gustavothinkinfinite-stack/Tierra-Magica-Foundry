@@ -24,20 +24,49 @@ test("failed sustained casting is removed but successful casting remains", async
   }
   installSpellOutcomeGuards(ActorStub);
   const spell = { id: "s1", type: "spell", system: { sustained: true, difficulty: 14 } };
-  const failed = new ActorStub(13);
-  await failed.useSpell(spell);
-  assert.deepEqual(failed.stopped, ["s1"]);
-  const success = new ActorStub(14);
-  await success.useSpell(spell);
-  assert.deepEqual(success.stopped, []);
+  const failed = new ActorStub(13); await failed.useSpell(spell); assert.deepEqual(failed.stopped, ["s1"]);
+  const success = new ActorStub(14); await success.useSpell(spell); assert.deepEqual(success.stopped, []);
+});
+
+test("outcome remains bound to the target declared before the asynchronous roll", async () => {
+  const originalTarget = { system: { derived: { mentalDefense: 18 } } };
+  const easierTarget = { system: { derived: { mentalDefense: 10 } } };
+  globalThis.game = { user: { targets: new Set([{ actor: originalTarget }]) } };
+  class ActorStub {
+    constructor() { this.stopped = []; }
+    async useSpell() { globalThis.game.user.targets = new Set([{ actor: easierTarget }]); return { rolls: [{ total: 14 }] }; }
+    async stopSustainedSpell(id) { this.stopped.push(id); }
+  }
+  installSpellOutcomeGuards(ActorStub);
+  const actor = new ActorStub();
+  await actor.useSpell({ id: "bound", type: "spell", system: { sustained: true, defense: "mental" } });
+  assert.deepEqual(actor.stopped, ["bound"]);
+});
+
+test("Cierre Restaurador heals only the declared owned target and respects healthCap", async () => {
+  const target = {
+    uuid: "Actor.target", isOwner: true,
+    system: { resources: { health: { value: 5, max: 20 } }, recovery: { healthCap: 7 }, derived: {} },
+    async update(change) { this.system.resources.health.value = change["system.resources.health.value"]; }
+  };
+  globalThis.game = { user: { targets: new Set([{ actor: target }]) } };
+  class ActorStub { constructor() { this.name = "Maga"; } async useSpell() { return { rolls: [{ total: 20 }] }; } }
+  installSpellOutcomeGuards(ActorStub);
+  await new ActorStub().useSpell({ name: "Cierre Restaurador", type: "spell", system: { difficulty: 12 } });
+  assert.equal(target.system.resources.health.value, 7);
+});
+
+test("failed Cierre Restaurador never heals", async () => {
+  const target = { uuid: "Actor.target", isOwner: true, system: { resources: { health: { value: 5, max: 20 } }, recovery: { healthCap: 20 }, derived: {} }, async update() { throw new Error("must not heal"); } };
+  globalThis.game = { user: { targets: new Set([{ actor: target }]) } };
+  class ActorStub { async useSpell() { return { rolls: [{ total: 3 }] }; } }
+  installSpellOutcomeGuards(ActorStub);
+  await new ActorStub().useSpell({ name: "Cierre Restaurador", type: "spell", system: { difficulty: 12 } });
 });
 
 test("non-sustained spells never mutate sustained state", async () => {
   globalThis.game = { user: { targets: new Set() } };
-  class ActorStub {
-    async useSpell() { return { rolls: [{ total: 1 }] }; }
-    async stopSustainedSpell() { throw new Error("must not be called"); }
-  }
+  class ActorStub { async useSpell() { return { rolls: [{ total: 1 }] }; } async stopSustainedSpell() { throw new Error("must not be called"); } }
   installSpellOutcomeGuards(ActorStub);
   await new ActorStub().useSpell({ id: "s2", type: "spell", system: { sustained: false, difficulty: 20 } });
 });
