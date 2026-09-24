@@ -16,18 +16,33 @@ function actor(type = "character", previous = null) {
 const combatant = { id: "c1" };
 const combat = (round) => ({ id: "combat-1", round });
 
-test("restores movement, action and reaction once when an actor enters a new round", async () => {
+const freshTurn = {
+  "system.turn.movement": true,
+  "system.turn.action": true,
+  "system.turn.reaction": true,
+  "system.combat.guardActive": false,
+  "system.combat.parryActive": false,
+  "system.combat.parrySucceeded": false,
+  "system.combat.counterattackUsed": false
+};
+
+test("restores turn economy and expires turn-scoped defenses once per new round", async () => {
   const a = actor();
   assert.equal(await resetActorTurnForCombat(a, combat(1), combatant), true);
-  assert.deepEqual(a.updates[0], {
-    "system.turn.movement": true,
-    "system.turn.action": true,
-    "system.turn.reaction": true
-  });
+  assert.deepEqual(a.updates[0], freshTurn);
   assert.equal(await resetActorTurnForCombat(a, combat(1), combatant), false);
   assert.equal(a.updates.length, 1);
   assert.equal(await resetActorTurnForCombat(a, combat(2), combatant), true);
-  assert.equal(a.updates.length, 2);
+  assert.deepEqual(a.updates[1], freshTurn);
+});
+
+test("stale Guardia, Parada and Contraataque state cannot survive into a fresh turn", async () => {
+  const a = actor("character", { combatId: "combat-1", combatantId: "c1", round: 1 });
+  assert.equal(await resetActorTurnForCombat(a, combat(2), combatant), true);
+  assert.equal(a.updates[0]["system.combat.guardActive"], false);
+  assert.equal(a.updates[0]["system.combat.parryActive"], false);
+  assert.equal(a.updates[0]["system.combat.parrySucceeded"], false);
+  assert.equal(a.updates[0]["system.combat.counterattackUsed"], false);
 });
 
 test("turn rewind and duplicate combatants cannot farm resources in the same or an older round", async () => {
