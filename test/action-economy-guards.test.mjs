@@ -18,6 +18,9 @@ class ActorStub {
   async useFormula() { this.calls += 1; return { ok: true }; }
   async useDevice() { this.calls += 1; return { ok: true }; }
   async overloadDevice() { this.calls += 1; return { ok: true }; }
+  async guard() { this.calls += 1; await new Promise((resolve) => setTimeout(resolve, 10)); this.system.turn.action = false; return { ok: true }; }
+  async commandFamiliar() { this.calls += 1; this.system.turn.action = false; return { ok: true }; }
+  async useFamiliarSense() { this.calls += 1; this.system.turn.action = false; return { ok: true }; }
 }
 
 installActionEconomyGuards(ActorStub);
@@ -71,4 +74,21 @@ test("un hechizo de Reacción inválido no consume la Reacción", async () => {
   assert.equal(await actor.useSpell(barrier), null);
   assert.equal(actor.system.turn.reaction, true);
   assert.equal(actor.system.turn.action, true);
+});
+
+
+test("Guardia y magia concurrentes no reutilizan la misma Acción", async () => {
+  const actor = new ActorStub();
+  const [guard, spell] = await Promise.all([actor.guard(), actor.useSpell({ system: {} })]);
+  assert.equal(actor.calls, 1);
+  assert.equal(actor.system.turn.action, false);
+  assert.equal([guard, spell].filter(Boolean).length, 1);
+});
+
+test("orden al Familiar y consumible concurrentes no reutilizan la misma Acción", async () => {
+  const actor = new ActorStub();
+  const [order, formula] = await Promise.all([actor.commandFamiliar({}), actor.useFormula({})]);
+  assert.equal(actor.calls, 1);
+  assert.equal(actor.system.turn.action, false);
+  assert.equal([order, formula].filter(Boolean).length, 1);
 });
