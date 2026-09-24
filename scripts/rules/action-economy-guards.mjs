@@ -7,6 +7,10 @@ import { runReaction } from "./reaction-economy-guards.mjs";
 const actionLocks = new WeakSet();
 
 export async function runAction(actor, operation) {
+  if (actor.system.status?.incapacitated || Number(actor.system.resources?.health?.value) <= 0) {
+    ui.notifications.warn(actor.name + " está Incapacitado y no puede ejecutar una Acción.");
+    return null;
+  }
   if (!(actor.system.turn?.action ?? true)) {
     ui.notifications.warn(actor.name + " ya gastó su Acción.");
     return null;
