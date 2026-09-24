@@ -2,6 +2,8 @@
 // Sólo consume después de una resolución válida; las validaciones fallidas no queman el turno.
 // Un único bloqueo por Actor impide reutilizar la Acción concurrentemente entre subsistemas.
 
+import { runReaction } from "./reaction-economy-guards.mjs";
+
 const actionLocks = new WeakSet();
 
 export async function runAction(actor, operation) {
@@ -25,6 +27,15 @@ export async function runAction(actor, operation) {
   }
 }
 
+async function runReactionSpell(actor, operation) {
+  return runReaction(actor, async () => {
+    const result = await operation();
+    if (!result) return result;
+    await actor.update({ "system.turn.reaction": false });
+    return result;
+  });
+}
+
 export function installActionEconomyGuards(ActorClass) {
   const originalUseSpell = ActorClass.prototype.useSpell;
   const originalUseFormula = ActorClass.prototype.useFormula;
@@ -34,8 +45,14 @@ export function installActionEconomyGuards(ActorClass) {
   const originalDualWieldAttack = ActorClass.prototype.dualWieldAttack;
   const originalSweepAttack = ActorClass.prototype.sweepAttack;
 
-  ActorClass.prototype.useSpell = async function (...args) {
-    return runAction(this, () => originalUseSpell.apply(this, args));
+  ActorClass.prototype.useSpell = async function (item, ...args) {
+    // Los hechizos cuya ficha declara activación de Reacción pertenecen a esa economía,
+    // no a la Acción. Esto incluye Barrera Cinética y futuras reacciones explícitas,
+    // sin inferir activaciones nuevas por nombre o descripción.
+    if (String(item?.system?.activation ?? "").trim().toLowerCase() === "reacción") {
+      return runReactionSpell(this, () => originalUseSpell.call(this, item, ...args));
+    }
+    return runAction(this, () => originalUseSpell.call(this, item, ...args));
   };
   ActorClass.prototype.useFormula = async function (...args) {
     return runAction(this, () => originalUseFormula.apply(this, args));
