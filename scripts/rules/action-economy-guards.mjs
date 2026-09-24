@@ -44,6 +44,9 @@ export function installActionEconomyGuards(ActorClass) {
   const originalRollWeapon = ActorClass.prototype.rollWeapon;
   const originalDualWieldAttack = ActorClass.prototype.dualWieldAttack;
   const originalSweepAttack = ActorClass.prototype.sweepAttack;
+  const originalGuard = ActorClass.prototype.guard;
+  const originalCommandFamiliar = ActorClass.prototype.commandFamiliar;
+  const originalUseFamiliarSense = ActorClass.prototype.useFamiliarSense;
 
   ActorClass.prototype.useSpell = async function (item, ...args) {
     // Los hechizos cuya ficha declara activación de Reacción pertenecen a esa economía,
@@ -76,5 +79,16 @@ export function installActionEconomyGuards(ActorClass) {
   };
   ActorClass.prototype.sweepAttack = async function (...args) {
     return runAction(this, () => originalSweepAttack.apply(this, args));
+  };
+  // Estas rutas también consumen la Acción y deben compartir el mismo bloqueo
+  // transversal; de lo contrario un doble clic cruzado puede ejecutarlas a la vez.
+  if (originalGuard) ActorClass.prototype.guard = async function (...args) {
+    return runAction(this, () => originalGuard.apply(this, args));
+  };
+  if (originalCommandFamiliar) ActorClass.prototype.commandFamiliar = async function (...args) {
+    return runAction(this, () => originalCommandFamiliar.apply(this, args));
+  };
+  if (originalUseFamiliarSense) ActorClass.prototype.useFamiliarSense = async function (...args) {
+    return runAction(this, () => originalUseFamiliarSense.apply(this, args));
   };
 }
