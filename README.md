@@ -6,7 +6,9 @@ La fuente mecánica canónica es `docs/Foundry_TM_Manual_1.0_Playtest.md`. Las v
 
 Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + 100 C en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**1.0.14 — auditoría integral en curso, con endurecimiento de economía de turno y resolución mágica.** A1–A9 están consolidados; cambios del motor requieren problemas reproducibles y deben conservar la compatibilidad con el canon 1.0.
+**1.0.14 — núcleo 1.0 completo y jugable.** La auditoría cruzada A1–A9 y la auditoría integral final están cerradas. Los cambios del motor requieren un defecto reproducible, una contradicción canónica, un hueco funcional demostrado o una decisión de diseño consolidada primero en el Manual.
+
+Documentación de cierre: `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md` · referencia de mesa: `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md`.
 
 ## Limitaciones deliberadas de automatización
 
