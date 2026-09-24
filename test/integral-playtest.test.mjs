@@ -76,3 +76,17 @@ test("partida integral: no hay autoridad duplicada específica de Proyectil Ígn
   assert.equal(outcome.includes("resolveSpellImpact"), false);
   assert.equal(outcome.includes("pendingDamageRequest"), false);
 });
+
+
+test("exploit: incapacitado no recupera Acción, Movimiento ni Reacción al avanzar turno", async () => {
+  const turn = await read("scripts/rules/turn-economy.mjs");
+  assert.match(turn, /const incapacitated = Boolean\(actor\.system\?\.status\?\.incapacitated\) \|\| Number\(actor\.system\?\.resources\?\.health\?\.value\) <= 0/);
+  for (const field of ["movement", "action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
+});
+
+test("exploit: Acción y Reacción rechazan actores incapacitados antes de entrar al subsistema", async () => {
+  const action = await read("scripts/rules/action-economy-guards.mjs");
+  const reaction = await read("scripts/rules/reaction-economy-guards.mjs");
+  assert.match(action, /status\?\.incapacitated[\s\S]*health\?\.value[\s\S]*Incapacitado/);
+  assert.match(reaction, /status\?\.incapacitated[\s\S]*health\?\.value[\s\S]*Incapacitado/);
+});
