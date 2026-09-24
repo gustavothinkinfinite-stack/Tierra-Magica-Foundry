@@ -30,7 +30,8 @@ export async function resetActorTurnForCombat(actor, combat, combatant) {
     "system.combat.guardActive": false,
     "system.combat.parryActive": false,
     "system.combat.parrySucceeded": false,
-    "system.combat.counterattackUsed": false
+    "system.combat.counterattackUsed": false,
+    "system.combat.kineticBarrierActive": false
   });
   await actor.setFlag?.("tierra-magica", TURN_FLAG, stamp);
   return true;
