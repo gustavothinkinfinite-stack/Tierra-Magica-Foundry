@@ -46,6 +46,11 @@ export function installCombatDefenseGuards(ActorClass) {
       this.system.derived.defense = number(this.system.derived.defense, 0) + 2;
       this.system.derived.guardDefense = 2;
     } else if (this.system?.derived) this.system.derived.guardDefense = 0;
+    if (this.system?.derived) {
+      const kinetic = this.system?.combat?.kineticBarrierActive ? 2 : 0;
+      this.system.derived.defense = number(this.system.derived.defense, 0) + kinetic;
+      this.system.derived.kineticBarrierDefense = kinetic;
+    }
     return result;
   };
 
@@ -78,11 +83,16 @@ export function installCombatDefenseGuards(ActorClass) {
     if (targets.length !== 1) return ui.notifications.warn("El ataque requiere exactamente un objetivo válido.");
     if (!options.tmReactionAttack && !(await spendAction(this))) return null;
     const target = targets[0];
-    if (!target?.system?.combat?.parryActive || isRangedWeapon(item)) return originalRollWeapon.call(this, item, options);
+    if (!target?.system?.combat?.parryActive || isRangedWeapon(item)) {
+      const result = await originalRollWeapon.call(this, item, options);
+      if (result && target.system?.combat?.kineticBarrierActive && canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
+      return result;
+    }
     const baseDefense = number(options.df ?? target.system?.derived?.defense);
     if (!Number.isFinite(baseDefense)) return originalRollWeapon.call(this, item, options);
     const result = await originalRollWeapon.call(this, item, { ...options, df: baseDefense + 2 });
     await closeParry(target, rollTotal(result), baseDefense);
+    if (target.system?.combat?.kineticBarrierActive && canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
     return result;
   };
 
@@ -115,6 +125,7 @@ export function installCombatDefenseGuards(ActorClass) {
         else if (damage > 0) pendingTotal += damage;
       }
       results.push({ roll, hit, damage });
+      if (index === 0 && target.system?.combat?.kineticBarrierActive && canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
       if (parryThisAttack) {
         await closeParry(target, total, baseDefense);
         parryPending = false;
@@ -164,6 +175,7 @@ export function installCombatDefenseGuards(ActorClass) {
         });
       }
       if (parryable && target.system?.combat?.parryActive) await closeParry(target, total, baseDefenses[i]);
+      if (target.system?.combat?.kineticBarrierActive && canUpdate(target)) await target.update({ "system.combat.kineticBarrierActive": false });
     }
     await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Barrido — " + foundry.utils.escapeHTML(item.name) + "</strong><p>" + summaries.join(" · ") + "</p></div>" });
     return roll;
