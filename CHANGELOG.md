@@ -2,6 +2,9 @@
 
 ## 1.0.14
 
+- Auditoría integral final cerrada: el núcleo 1.0 queda declarado completo y jugable, con referencia rápida/glosario y criterios explícitos para cambios posteriores.
+- Pruebas de secuencia consolidan exclusión mutua entre Acción/Reacción, Familiares y magia reactiva; actores Incapacitados no recuperan ni ejecutan economía de turno hasta recuperar Vida.
+
 - Economía de turno endurecida: ataques físicos, hechizos, fórmulas y dispositivos consumen una única Acción compartida y quedan protegidos contra dobles activaciones concurrentes.
 - Reacciones serializadas entre Parada, Contramagia, Recibir Carga, Intercepción y hechizos reactivos; Barrera Cinética usa correctamente Reacción en vez de Acción.
 - Inicio de turno centralizado: restaura Movimiento, Acción y Reacción una sola vez por Actor/ronda y limpia Guardia, Parada y ventana de Contraataque vencidas.
