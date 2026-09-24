@@ -23,7 +23,7 @@ test("partida integral: Reacción es compartida por defensas, magia reactiva y f
 test("partida integral: cambio de turno restaura economía y no concede turno independiente al Familiar", async () => {
   const turn = await read("scripts/rules/turn-economy.mjs");
   assert.match(turn, /\["character", "npc"\]\.includes\(actor\.type\)/);
-  for (const field of ["movement", "action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": true'));
+  for (const field of ["movement", "action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
   for (const field of ["guardActive", "parryActive", "parrySucceeded", "counterattackUsed", "kineticBarrierActive"]) assert.match(turn, new RegExp('"system\\.combat\\.' + field + '": false'));
 });
 
