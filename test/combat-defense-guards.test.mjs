@@ -36,7 +36,7 @@ test("Combate Dual aplica Parada al primer ataque realmente parable de la secuen
   assert.equal(source.includes("ActorClass.prototype.dualWieldAttack = async function"), true);
   assert.equal(source.includes("let parryPending = Boolean(target.system?.combat?.parryActive)"), true);
   assert.equal(source.includes("const parryThisAttack = parryPending && !isRangedWeapon(weapon)"), true);
-  assert.equal(source.includes("baseDefense + (parryThisAttack ? 2 : 0)"), true);
+  assert.equal(source.includes("defenseWithoutKinetic + (kineticThisAttack ? 2 : 0) + (parryThisAttack ? 2 : 0)"), true);
   assert.equal(source.includes("await closeParry(target, total, baseDefense)"), true);
   assert.equal(source.includes("parryPending = false"), true);
 });
