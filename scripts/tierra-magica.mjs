@@ -6,6 +6,7 @@ import { TierraMagicaItemSheet } from "./sheets/item-sheet.mjs";
 import { installFamiliarGuards } from "./rules/familiar-guards.mjs";
 import { installMagicGuards } from "./rules/magic-guards.mjs";
 import { installMagicReactionGuards } from "./rules/magic-reaction-guards.mjs";
+import { installSpellOutcomeGuards } from "./rules/spell-outcome-guards.mjs";
 import { installCombatDefenseGuards } from "./rules/combat-defense-guards.mjs";
 import { installReactiveTechniqueGuards } from "./rules/reactive-technique-guards.mjs";
 import { installFormulaGuards } from "./rules/formula-guards.mjs";
@@ -17,6 +18,7 @@ import { primaryActiveGm, validatePendingDamageRequest } from "./rules/damage-de
 installFamiliarGuards(TierraMagicaActor);
 installMagicGuards(TierraMagicaActor);
 installMagicReactionGuards(TierraMagicaActor);
+installSpellOutcomeGuards(TierraMagicaActor);
 installCombatDefenseGuards(TierraMagicaActor);
 installReactiveTechniqueGuards(TierraMagicaActor);
 installFormulaGuards(TierraMagicaActor);
