@@ -1,5 +1,7 @@
 # Auditoría cruzada — Manual Maestro vs 1.0 vs Foundry 1.0.13
 
+> **Documento histórico para trazabilidad.** Sus hallazgos A1–A9 permanecen útiles como registro, pero el cierre vigente es `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md` sobre Foundry 1.0.14. No debe usarse para revertir reglas o documentación sincronizadas después del 2026-09-24.
+
 Fecha de auditoría inicial: 2026-09-22. Estado reconciliado: 2026-09-23.
 
 ## Alcance y jerarquía
