@@ -60,6 +60,8 @@ Sólo se tira cuando el hechizo lo exige, existe oposición o incertidumbre sign
 
 **Sobrecarga:** sólo si falta exactamente 1 Maná y queda al menos 1; consume el restante; VOL + Canalización DF17. Colapsado no puede Sobrecargar.
 
+**Catálogo nuclear:** 18 hechizos. Barrera Cinética: 3 Maná, Reacción, +2 Defensa normal sólo contra el ataque declarado. Piel Alterada: 4 Maná, Sostenido, Protección 2 sólo contra una categoría coherente declarada y sin acumular con armadura equivalente. Potencia Sobrenatural: 4 Maná, Sostenido, permite interactuar como una categoría de Escala mayor sin aumentar FUE, daño ni Defensa.
+
 ## Alquimia, dispositivos y rituales
 
 Una preparación accesible bajo presión consume normalmente Acción. Una fórmula Saturante bloquea otra aplicación beneficiosa de su familia hasta un Respiro efectivo.
@@ -74,7 +76,13 @@ El Familiar es una criatura independiente, no un segundo PJ. No aporta Acción, 
 
 Acción Vinculada usa normalmente la **Reacción** del personaje. Cambiar una orden táctica compleja consume su **Acción**. Sentidos Compartidos consume Acción. Origen Remoto conserva Maná, tirada y Sostenimiento en el personaje. A 0 Vida el Familiar queda Incapacitado.
 
+**Saturación Mágica juvenil:** inestabilidad narrativa de resonancia durante la maduración de una minoría de jóvenes; no es exceso de Maná ni la Saturación alquímica.
+
+**Cristal de Resonancia:** ancla arcana rara que puede facilitar un Vínculo; no es un huevo, no contiene al Familiar y no lo crea.
+
 ## Glosario
+
+**Canon mecánico:** Manual Básico 1.0. **Canon narrativo:** Canon del Mundo v1.2. Foundry implementa; no crea canon.
 
 **Acción:** recurso principal del turno para ataques, Guardia, magia ordinaria y otros usos que la exijan.  
 **Reacción:** recurso reactivo único entre turnos propios.  
