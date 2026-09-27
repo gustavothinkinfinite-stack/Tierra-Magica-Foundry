@@ -1,6 +1,6 @@
 # Tierra Mágica — Manual Maestro
 
-> **Estado:** construcción editorial canónica iniciada. Este documento será el manual autosuficiente de Tierra Mágica. Mientras una sección no haya sido consolidada aquí, `docs/Foundry_TM_Manual_1.0_Playtest.md` sigue siendo la fuente mecánica vigente y el Manual Unificado v0.3 conserva el lore que el manual 1.0 declara canónico.
+> **Estado:** consolidación editorial en curso. Este documento reúne y organiza el sistema, pero no reemplaza por sí solo las fuentes maestras: `docs/Foundry_TM_Manual_1.0_Playtest.md` gobierna las reglas mecánicas y **Tierra Mágica — Canon del Mundo v1.2** gobierna ambientación y continuidad narrativa. Las contradicciones deben resolverse en la fuente maestra correspondiente antes de propagarse aquí.
 
 ## Política de canon
 
@@ -299,7 +299,7 @@ La magia no concede armadura fallida, ataques de oportunidad por lanzar ni devol
 
 ## 12. Grimorio extendido en consolidación
 
-**Estado de auditoría.** El catálogo implementado 1.0.11 contiene Proyectil Ígneo, Onda de Choque, Barrera Cinética, Potencia Sobrenatural, Piel Alterada, Cierre Restaurador, Regeneración, Reconstrucción, Visión Arcana, Vínculo de Rastreo, Visión Remota, Calma, Sugestión, Llamada Menor, Paso Breve, Trasposición, Umbral y Portal. Las demás entradas de esta sección proceden del diseño consolidado previo, pero no aparecen enumeradas en el Manual 1.0 ni en el contenido inicial 1.0.11; se conservan para revisión y **no se consideran todavía ratificadas por esta auditoría**.
+**Estado canónico.** La auditoría de hechizos extendidos y el cierre 1.0.14 ratifican como catálogo mecánico estable los mismos **18 hechizos** enumerados en el Manual Básico 1.0: Proyectil Ígneo, Onda de Choque, Barrera Cinética, Potencia Sobrenatural, Piel Alterada, Cierre Restaurador, Regeneración, Reconstrucción, Visión Arcana, Vínculo de Rastreo, Visión Remota, Calma, Sugestión, Llamada Menor, Paso Breve, Trasposición, Umbral y Portal. Las demás entradas de esta sección se conservan únicamente como **archivo de diseño**: no son hechizos adicionales, variantes gratuitas ni reglas 1.0 hasta una ratificación mecánica expresa en el Manual Básico.
 
 ### Evocación
 
@@ -436,6 +436,22 @@ Las Técnicas representan entrenamiento, maniobras o capacidades aprendidas. Sus
 **Familiar Mágico** es un Rasgo de Vínculo de 2 PR. El Familiar es una criatura independiente vinculada al personaje, no una extensión perfecta del jugador ni un segundo personaje completo gratuito. Tiene personalidad, deseos, conocimiento, criterio y una naturaleza propia. El vínculo no implica obediencia absoluta.
 
 Un Familiar usa un perfil simplificado: Escala, Movimiento, Vida, Defensa, Protección, Ataque, Percepción, Voluntad, Rasgos y capacidades relevantes. No obtiene por defecto un segundo depósito completo de Maná. Si una criatura concreta posee Maná por su propia naturaleza, esa excepción debe estar expresamente definida.
+
+### Origen del vínculo y Saturación Mágica juvenil
+
+Durante la Edad de los Pactos se documentaron los primeros Vínculos Familiares. En una minoría de niños y jóvenes puede aparecer **Saturación Mágica juvenil**, una inestabilidad de resonancia durante la maduración arcana. No es una reserva de Maná que excede su máximo, no aumenta recursos y no debe confundirse con la **Saturación alquímica**, que es un bloqueo temporal por familia de preparaciones y se limpia mediante un Respiro apropiado. En humanos se vigila especialmente durante la infancia y antes de los quince años; otros pueblos siguen su propia madurez biológica y mágica.
+
+La presencia de una entidad compatible puede estabilizar ese flujo y permitir que el Vínculo se consolide. Este origen narrativo no concede por sí solo Maná, Acciones, Reacciones, Habilidades, Técnicas, hechizos ni modificadores.
+
+### Cristales de Resonancia
+
+Tras la Fractura del Cielo se identificaron **Cristales de Resonancia**, formaciones arcanas excepcionalmente raras capaces de responder a la resonancia individual. El habla popular puede llamarlos «huevos de familiar», pero **no son huevos y no contienen una criatura gestándose**. El cristal no crea al Familiar: funciona como ancla que facilita el encuentro, la manifestación estable o la consolidación de un vínculo con una entidad compatible.
+
+Los Vínculos Familiares son anteriores a estos cristales. Los yacimientos útiles son escasos, regulados o custodiados y no existe un único yacimiento principal fijado para todo Edria.
+
+### Forma y permanencia
+
+El Familiar es una entidad animada con voluntad propia y puede adoptar naturalezas distintas —animal, espíritu, feérico, elemental u otra forma compatible—. No es un objeto, pieza de equipo ni artefacto intercambiable. El vínculo suele concebirse como duradero o vitalicio; la pérdida, ruptura, sustitución o restauración exige una causa extraordinaria y resolución narrativa coherente.
 
 ### Grados de vínculo
 
@@ -691,7 +707,7 @@ No se crea un subsistema nuevo para anticipar un problema hipotético. Primero s
 
 ## 25. Cosmología: los Principios Primordiales
 
-Esta sección consolida el lore declarado canónico en el Manual Unificado v0.3. Las reglas mecánicas antiguas de ese documento no se reintroducen por esta vía.
+Esta sección consolida la cosmología conforme a **Tierra Mágica — Canon del Mundo v1.2** y al material histórico que éste mantiene vigente. Las reglas mecánicas antiguas o no ratificadas no se reintroducen por esta vía.
 
 La cosmología conocida se articula alrededor de siete acontecimientos primordiales: **Primera Semilla, Primera Forja, Primera Guerra, Primera Elección, Primera Luz, Primera Profanación y Primer Tránsito**. Cada uno expresa un principio y está asociado a una deidad primordial. Estos principios no obligan moralmente a los pueblos creados por cada dios: origen, cultura, religión y conducta individual son dimensiones distintas.
 
@@ -705,7 +721,23 @@ La cosmología conocida se articula alrededor de siete acontecimientos primordia
 | Nereth | Primera Profanación | Corrupción / Mal | Demonios; origen de la No Muerte |
 | Vaelun | Primer Tránsito | Tránsito | Ankar |
 
-Con Vaelun se cierra el **Panteón Primordial básico**. El canon permite que aparezcan posteriormente dioses menores, descendientes, entidades regionales, héroes divinizados u otros poderes históricos sin convertirlos retroactivamente en miembros de este grupo original.
+Con Vaelun se cierra el **Panteón Primordial**. El rango primordial describe función cosmológica, no número de fieles, poder político ni exclusividad de dominio.
+
+### Las Cinco Luminarias y el Panteón Central
+
+El Canon del Mundo v1.2 establece además cinco **Dioses Menores reales**, posteriores a los Primordiales y conocidos como las **Cinco Luminarias**. No son nombres alternativos, avatares ni aspectos de los Primordiales, aunque algunos ámbitos puedan solaparse.
+
+| Luminaria | Ámbitos asociados |
+|---|---|
+| **Aurea, la Llama** | vida, hogar, valor, renovación y juramentos de protección |
+| **Nemor, el Guardián** | muerte, memoria, ancestros, límites y custodia de tumbas |
+| **Oria, la Balanza** | ley, intercambio, acuerdos y conocimiento registrado |
+| **Vael, el Navegante** | viaje, cambio, tormentas, descubrimiento y fortuna incierta |
+| **Selene, la Velada** | sueño, misterio, percepción, secretos y fronteras entre mundos |
+
+Los siete Primordiales y las cinco Luminarias forman los **Doce del Panteón Central canónico conocido**. Pueden existir otros dioses, espíritus regionales, santos, ancestros, héroes divinizados y entidades planares, pero su existencia no los incorpora automáticamente al Panteón Central.
+
+Los dominios divinos no son propiedades exclusivas. Eïra y Aurea pueden compartir aspectos de vida; Ilyr y Aurea, protección; Vaelun y Nemor, muerte y memoria; Aster y Vael, viaje y descubrimiento; Ilyr y Oria, justicia y ley; Vaelun y Selene, fronteras espirituales. Estos solapamientos no implican identidad.
 
 ## 26. Eïra y la Primera Semilla
 
@@ -719,7 +751,7 @@ Con Vaelun se cierra el **Panteón Primordial básico**. El canon permite que ap
 
 El canon también reconoce otros hijos de la Primera Semilla, entre ellos Micelios, Verdantes y Coralios. Su existencia no implica todavía paquetes mecánicos jugables completos.
 
-Eïra puede ser Fuente Divina mediante un Vínculo apropiado. Apariencia, manifestaciones, dogma, templos, sacerdocio, festividades, mandamientos, avatares, milagros y detalles de Vínculos Divinos permanecen deliberadamente abiertos donde v0.3 los marcaba como pendientes.
+Eïra puede ser Fuente Divina mediante un Vínculo apropiado. Apariencia, manifestaciones, dogma, templos, sacerdocio, festividades, mandamientos, avatares, milagros y detalles de Vínculos Divinos permanecen deliberadamente abiertos allí donde el canon vigente no los ha fijado.
 
 ## 27. Khorun y la Primera Forja
 
@@ -827,12 +859,14 @@ Los cultos no son equivalentes a las deidades. Instituciones religiosas pueden e
 
 Las deidades pueden actuar como **Fuente Divina** para personajes con un Vínculo apropiado. Esto concede acceso narrativo/mágico según las reglas correspondientes, no autoridad moral automática, inmunidad a consecuencias ni un paquete universal de poderes.
 
-Permanecen abiertos para desarrollo futuro los elementos que v0.3 señalaba expresamente como pendientes: avatares y apariencias definitivas, dogmas completos, estructuras universales de culto, festividades, milagros detallados, Vínculos Divinos específicos, planos, destino último de las almas, Archidemonios concretos, mecánicas completas de corrupción/posesión/Necromancia y numerosos paquetes jugables de pueblos primordiales. El Manual Maestro no rellena esos huecos por inferencia.
+Permanecen abiertos para desarrollo futuro los elementos que el canon vigente y el material histórico mantienen expresamente sin fijar: avatares y apariencias definitivas, dogmas completos, estructuras universales de culto, festividades, milagros detallados, Vínculos Divinos específicos, planos, destino último de las almas, Archidemonios concretos, mecánicas completas de corrupción/posesión/Necromancia y numerosos paquetes jugables de pueblos primordiales. El Manual Maestro no rellena esos huecos por inferencia.
 
 ---
 
 ## Estado de consolidación
 
-**Consolidado y contrastado con 1.0/1.0.11:** núcleo, creación/desarrollo, derivados, turno, combate básico, Vida/Trauma/descanso, Familiares, magia nuclear, Alquimia nuclear, Ingeniería/Sobrecarga, Ritualismo y economía básica. El lore del Panteón se conserva desde v0.3 por remisión expresa del Manual 1.0.
+**Consolidado y contrastado con 1.0/1.0.14 y Canon del Mundo v1.2:** núcleo, creación/desarrollo, derivados, turno, combate básico, Vida/Trauma/descanso, Familiares, magia nuclear, catálogo estable de 18 hechizos, Alquimia nuclear, Ingeniería/Sobrecarga, Ritualismo, economía básica y Panteón Central de doce deidades. La auditoría integral final declara el núcleo 1.0 completo y jugable.
 
-**Pendiente de ratificación o cierre:** fórmulas mecánicas no presentes en 1.0, catálogo extendido de hechizos, paquetes mecánicos de pueblos/Orígenes y otros bloques ampliados que exceden lo definido expresamente en 1.0. Véase `docs/AUDITORIA_MANUAL_MAESTRO_1.0.11.md`. El Manual Maestro todavía no sustituye al Manual 1.0.
+**Material de ampliación todavía no canónico por mera presencia en este documento:** fórmulas mecánicas no presentes en el Manual 1.0, nombres de hechizos fuera del catálogo estable, paquetes mecánicos de pueblos/Orígenes y bloques ampliados como vehículos, monturas, autómatas, mercados o proyectos cuando exceden el núcleo ratificado. Antes de convertirse en regla deben resolver una necesidad real y consolidarse primero en la fuente maestra correspondiente.
+
+**Jerarquía vigente:** Manual Básico 1.0 = mecánica; Canon del Mundo v1.2 = narrativa y continuidad; este Manual Maestro = integración editorial. Ante contradicción, prevalece la fuente maestra del dominio y la discrepancia debe auditarse.
