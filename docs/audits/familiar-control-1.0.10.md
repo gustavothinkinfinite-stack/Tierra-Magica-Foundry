@@ -1,5 +1,7 @@
 # Auditoría 1.0.10 — Familiares: progresión, control y límites
 
+> **Documento histórico de auditoría.** Se conserva para trazabilidad de decisiones. La autoridad vigente es `docs/Foundry_TM_Manual_1.0_Playtest.md`, complementada por `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md` y la jerarquía de `docs/FUENTES_CANONICAS.md`. Estados como «pendiente», «candidato» o «deuda» describen el momento de esta auditoría y no deben leerse como estado actual si fueron cerrados después.
+
 Estado: **regla candidata auditada; pendiente de automatización en Foundry**. Este documento no reemplaza el manual canónico hasta integrar implementación y pruebas.
 
 ## Objetivo
