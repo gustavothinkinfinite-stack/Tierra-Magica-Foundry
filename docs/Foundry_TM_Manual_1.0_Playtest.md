@@ -1,6 +1,6 @@
 # Foundry T.M. — Manual Básico 1.0 Playtest
 
-> Fuente maestra. Sustituye reglas mecánicas anteriores incompatibles.
+> **Documento histórico de cierre mecánico 1.0.** Su contenido vigente fue integrado en `docs/Tierra_Magica_Manual_Maestro.md`, que desde 2026-09-27 es la única fuente activa. Este archivo se conserva para trazabilidad y no debe editarse como fuente paralela.
 
 ## Núcleo
 Prueba: **2d10 + Atributo + Habilidad + modificadores ≥ DF**. Ventaja 3d10 mejores 2; Desventaja 3d10 peores 2; no acumulan. DF 8/10/12/14/16/18/20/22/24+ = muy favorable bajo presión/sencilla/moderada/demandante/difícil/muy difícil/extraordinaria/heroica/sobrenatural. Grados de una prueba con DF: Fallo si el margen es negativo; éxito Ajustado con margen 0–4, Claro con margen 5–9 y Dominante con margen 10+. No se repite una prueba idéntica sin un cambio significativo de situación. Hazaña = **10+10 natural en los dos dados conservados**. Pifia = **1+1 natural en los dos dados conservados**. Ventaja/Desventaja solo consideran los dos dados conservados. Primero se determina éxito o fallo y después el resultado extraordinario: una Hazaña no convierte un fallo en éxito y una Pifia no convierte un éxito en fallo. Por tanto existen éxito, fallo, éxito+Hazaña, fallo+Hazaña, éxito+Pifia y fallo+Pifia cuando la combinación sea matemáticamente posible.
@@ -108,7 +108,7 @@ Las cinco **Luminarias** son Dioses Menores reales e independientes, posteriores
 La **fuente narrativa maestra del mundo es _Tierra Mágica — Canon del Mundo v1.2_**. Puede haber otros dioses, espíritus regionales, santos, ancestros, héroes divinizados y entidades planares, pero su incorporación al Panteón Central requiere una ampliación expresa del canon.
 
 ## Control de canon
-Este Manual Básico es la **fuente maestra de reglas mecánicas**. _Tierra Mágica — Canon del Mundo v1.2_ es la **fuente maestra de ambientación y continuidad narrativa**. Cuando una materia toca ambos dominios —por ejemplo Familiares, religión o cosmología— debe respetar simultáneamente ambos documentos; ninguna implementación puede resolver una contradicción creando canon por su cuenta.
+`docs/Tierra_Magica_Manual_Maestro.md` es la **fuente activa única**. Este Manual Básico 1.0 y _Tierra Mágica — Canon del Mundo v1.2_ se conservan como fuentes históricas de procedencia ya integradas. Cuando una materia toca ambos dominios —por ejemplo Familiares, religión o cosmología— debe respetar simultáneamente ambos documentos; ninguna implementación puede resolver una contradicción creando canon por su cuenta.
 
 Toda mecánica nueva o modificación mecánica debe quedar definida y consolidada aquí antes de implementarse en Foundry. Toda modificación de mundo, historia o continuidad debe quedar consolidada en el Canon del Mundo antes de propagarse a manuales derivados. Foundry automatiza, valida o presenta estas reglas; no crea canon mecánico ni narrativo por sí mismo. Si código, datos, interfaz, pruebas, documentos históricos o historial contradicen una fuente maestra, la discrepancia debe auditarse antes de tratarla como una regla nueva. La secuencia de trabajo es: decisión de diseño → consolidación en la fuente maestra correspondiente → implementación/propagación → pruebas de coherencia y regresión.
 
