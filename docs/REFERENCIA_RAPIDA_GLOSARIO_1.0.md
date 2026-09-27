@@ -82,7 +82,7 @@ Acción Vinculada usa normalmente la **Reacción** del personaje. Cambiar una or
 
 ## Glosario
 
-**Canon mecánico:** Manual Básico 1.0. **Canon narrativo:** Canon del Mundo v1.2. Foundry implementa; no crea canon.
+**Fuente activa única:** `docs/Tierra_Magica_Manual_Maestro.md`. Foundry implementa; no crea canon.
 
 **Acción:** recurso principal del turno para ataques, Guardia, magia ordinaria y otros usos que la exijan.  
 **Reacción:** recurso reactivo único entre turnos propios.  
@@ -100,4 +100,4 @@ Acción Vinculada usa normalmente la **Reacción** del personaje. Cambiar una or
 **Familiar:** criatura vinculada independiente con límites de control y capacidades compradas.  
 **Hazaña/Pifia:** resultados extraordinarios naturales que no sustituyen la determinación previa de éxito/fallo.
 
-Para reglas completas y excepciones prevalece `docs/Foundry_TM_Manual_1.0_Playtest.md`.
+Para reglas completas y excepciones prevalece `docs/Tierra_Magica_Manual_Maestro.md`.
