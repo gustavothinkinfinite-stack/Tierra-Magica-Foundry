@@ -48,6 +48,14 @@ Desde este cierre, un cambio del núcleo requiere al menos uno de estos motivos:
 
 Las ampliaciones de catálogo o subsistemas no se incorporan preventivamente.
 
+## Sincronización documental posterior — 2026-09-27
+
+Se unificó la jerarquía de fuentes en `docs/FUENTES_CANONICAS.md` y se propagaron al Manual Básico 1.0 y al Manual Maestro los elementos de continuidad ya fijados por **Canon del Mundo v1.2**: Saturación Mágica juvenil, Cristales de Resonancia, naturaleza/permanencia de los Familiares y Panteón Central de siete Primordiales más cinco Luminarias.
+
+También se incorporó al Manual Básico la enumeración explícita de los **18 hechizos** que la auditoría A4 y la implementación 1.0.14 ya trataban como catálogo mecánico estable. Esta sincronización corrige documentación suelta; no abre subsistemas nuevos ni cambia los cierres mecánicos de la auditoría.
+
+Los manuales v0.2, el Canon v1.1 y la auditoría 1.0.11 quedan clasificados como material histórico/sustituido cuando contradicen las fuentes maestras.
+
 ## Estado final
 
 **Núcleo 1.0 completo y jugable.** A1–A9 y la auditoría integral quedan cerrados. El trabajo posterior corresponde a mantenimiento, documentación, contenido o futuras versiones, no a completar el núcleo 1.0.
