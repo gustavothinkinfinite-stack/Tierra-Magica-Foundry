@@ -38,6 +38,16 @@ Escalas Diminuta/Pequeña/Mediana/Grande/Enorme/Colosal, sin bono genérico. Man
 
 **Pruebas de abuso.** Un Familiar volador puede explorar lugares alcanzables, pero cobertura, distancia, clima, detección y pérdida de comunicación siguen importando. Un Familiar Diminuto puede entrar por aberturas físicamente válidas, no atravesar sellos ni puertas cerradas. Un explorador remoto sólo informa lo que puede percibir/comprender/comunicar. Un combatiente sigue sujeto a Acción Vinculada para intervenciones tácticas significativas. Ninguna combinación de vuelo, tamaño, Sentidos Compartidos u Origen Remoto crea acciones, Reacciones, Maná o líneas de efecto adicionales fuera de sus reglas.
 
+### Canon narrativo del vínculo familiar
+
+En una minoría de personas jóvenes puede aparecer **Saturación Mágica juvenil**, una inestabilidad de resonancia durante la maduración arcana. No es Maná acumulado por encima del máximo, no aumenta recursos y no es la misma regla que la Saturación alquímica. En humanos se vigila especialmente durante la infancia y antes de los quince años; otros pueblos siguen ritmos acordes con su madurez biológica y mágica.
+
+Un Familiar compatible puede estabilizar esa resonancia y consolidar un Vínculo, pero el vínculo por sí mismo no concede Maná adicional, Acciones, Reacciones, hechizos, Técnicas ni bonificadores. Los Vínculos Familiares existen desde antes de la Fractura del Cielo.
+
+Los **Cristales de Resonancia** son formaciones arcanas raras que pueden actuar como anclas durante la búsqueda, manifestación o consolidación de un Vínculo. En el habla popular pueden llamarse «huevos de familiar», pero no son huevos, no contienen una criatura gestándose y no crean al Familiar.
+
+El Familiar es una entidad animada con voluntad y naturaleza propias —por ejemplo animal, espíritu, feérico, elemental u otra forma compatible— y no un objeto, pieza de equipo ni reserva de recursos. El vínculo suele concebirse como duradero o vitalicio; su ruptura, sustitución o restauración requiere una causa extraordinaria y resolución narrativa compatible.
+
 ## Magia
 Fuentes Alma/Divina/Ambiental/Externa. Disciplinas Evocación/Alteración/Restauración/Percepción/Influencia/Conjuración. Tirada cuando procede: Atributo relevante + Canalización. Costes Maná: Truco0–1, Menor2, Básico3–4, Avanzado5–7, Maestro8–11, Legendario12+.
 
@@ -53,6 +63,33 @@ Fuentes Alma/Divina/Ambiental/Externa. Disciplinas Evocación/Alteración/Restau
 
 Sobrecarga: falta exactamente1 Maná y queda al menos1; gastar restante; VOL+Canalización DF17. Éxito hechizo+Exhausto; si ya estaba Exhausto queda Colapsado después de resolver. Fallo sin hechizo+Exhausto (o Colapsado si ya estaba Exhausto); Pifia consecuencia mágica contextual. Colapsado no puede Sobrecargar. Dominación directa fuera del catálogo inicial. Sugestión no fuerza suicidio ni traición fundamental automática. Teletransporte forzado ordinario no coloca en destino inválido/inmediatamente letal.
 
+### Catálogo nuclear de hechizos 1.0
+
+Estos **18 hechizos** forman el catálogo mecánico estable del núcleo 1.0. Nombres o variantes del archivo de diseño que no figuren aquí no constituyen reglas adicionales ni versiones gratuitas de estos efectos.
+
+| Hechizo | Disciplina | Grado | Maná | Resolución canónica resumida |
+|---|---|---:|---:|---|
+| Proyectil Ígneo | Evocación | Básico | 3 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 1. |
+| Onda de Choque | Evocación | Básico | 4 | Área frontal corta; Daño 4, Pen 0; una tirada se compara con la Defensa de cada objetivo; empuje 1 cuando corresponda. |
+| Barrera Cinética | Evocación | Básico | 3 | Reacción; +2 Defensa normal sólo contra el ataque declarado; se consume al resolverlo. |
+| Potencia Sobrenatural | Alteración | Básico | 4 | Sostenido; permite interactuar físicamente como una categoría de Escala mayor; no aumenta FUE, daño ni Defensa. |
+| Piel Alterada | Alteración | Básico | 4 | Sostenido; Protección 2 contra una categoría coherente declarada; no se acumula con armadura equivalente. |
+| Cierre Restaurador | Restauración | Básico | 3 | Requiere Medicina; recupera 4 Vida y detiene Sangrado ordinario compatible; no reduce Trauma ni repara automáticamente Herida Grave. |
+| Regeneración | Restauración | Avanzado | 6 | INT; DF 16 cuando corresponda; requiere Medicina; repara una Herida Grave orgánica compatible. |
+| Reconstrucción | Restauración | Maestro | 10 | INT; DF 20 cuando corresponda; requiere Medicina; reconstrucción extraordinaria; no resurrección. |
+| Visión Arcana | Percepción | Menor | 2 | PER; DF 10 cuando exista incertidumbre; duración Escena; requiere Arcana. |
+| Vínculo de Rastreo | Percepción | Básico | 4 | PER; DF 14; información aproximada, no coordenadas GPS. |
+| Visión Remota | Percepción | Avanzado | 7 | PER; DF 18; requiere lugar conocido o Ancla. |
+| Calma | Influencia | Básico | 3 | PRE + Canalización contra Defensa Mental cuando el objetivo resiste; reduce agitación compatible sin borrar voluntad o memoria. |
+| Sugestión | Influencia | Avanzado | 5 | PRE + Canalización contra Defensa Mental; instrucción plausible y limitada; no Dominación, suicidio ni traición fundamental automática. |
+| Llamada Menor | Conjuración | Básico | 4 | INT; DF 14; convoca una entidad menor compatible; invocar no equivale a controlar ni garantiza obediencia. |
+| Paso Breve | Conjuración | Básico | 4 | INT; DF 12 cuando se requiera prueba; teletransporta al lanzador hasta 3 espacios a destino visible, válido y desocupado. |
+| Trasposición | Conjuración | Avanzado | 6 | INT; DF 14; alcance hasta 8 espacios según las condiciones del efecto. |
+| Umbral | Conjuración | Avanzado | 7 | INT; DF 18; transición espacial limitada compatible. |
+| Portal | Conjuración | Maestro | 10 | INT; DF 21; requiere Anclas compatibles y normalmente preparación prolongada. |
+
+Las salvaguardas generales de objetivos, Defensas, Protección, economía de Acción/Reacción, Sostenimiento y Sobrecarga se aplican a todo el catálogo. La geometría, categorías o consecuencias que el canon no parametriza permanecen contextuales; no se inventan bonos o subsistemas para automatizarlas.
+
 ## Alquimia, Ingeniería y Rituales
 Alquimia: Fórmula, Complejidad, Ingredientes, Tiempo, Dosis, Efecto. Rutina competente sin tirada. Saturante bloquea otra aplicación beneficiosa de la misma familia hasta un Respiro efectivo; el Respiro limpia esas Saturaciones compatibles. Bálsamo Restaurador y Poción Restauradora: +4 Vida, familia restaurativa; no reducen Trauma ni reparan Heridas Graves. Poción de Recuperación Arcana: +3 Maná, familia arcana; no supera el máximo ni elimina Fatiga/consecuencias de Sobrecarga. Consumir una preparación accesible en presión requiere normalmente una Acción. Venenos: Vía/Latencia/DF/Efecto/Duración; una resistencia normal; sin Toxicidad universal.
 
@@ -64,10 +101,16 @@ Ritual: un Director y una tirada principal apropiada de Atributo+Ritualismo cont
 PNJ directos, sin PD. Dominantes usan presencia táctica, no inmunidades de jefe/Resistencia Legendaria/HP arbitrarios. Mundo no escala automáticamente. Invocaciones no dan segundo PJ perfecto: Autónoma, Vinculada o Reactiva; cambiar orden táctica compleja de una Vinculada consume Acción. Persuasión no es control mental. Información no implica interpretación. Efectos idénticos no acumulan salvo regla.
 
 ## Panteón
-Canon: Eïra (Vida; Feéricos/Élficos/Terios), Khorun (Materia y Forma; Enanos/Gigantes/Elementales), Varkor (Conflicto; Orcos/Trolls/Ogros/Goblinoides), Aster (Elección; Humanos), Ilyr (Bien; Celestiales/Ángeles), Nereth (Corrupción/Mal; Demonios), Vaelun (Tránsito/Muerte; Ankar). La narrativa extensa del Manual Unificado v0.3 permanece canónica; sus referencias mecánicas se interpretan con este 1.0.
+El **Panteón Central canónico** conocido está formado por doce deidades. Los siete **Primordiales** son Eïra (Vida/Naturaleza; Feéricos, Élficos y Terios), Khorun (Materia y Forma; Enanos, Gigantes y Elementales), Varkor (Conflicto; Orcos, Trolls, Ogros y Goblinoides), Aster (Elección; Humanidad), Ilyr (Bien; Celestiales o Ángeles), Nereth (Corrupción/Mal; Demonios y origen de la No Muerte) y Vaelun (Tránsito; Ankar). Con Vaelun queda cerrado el Panteón Primordial.
+
+Las cinco **Luminarias** son Dioses Menores reales e independientes, posteriores a los Primordiales: Aurea, la Llama (vida, hogar, valor, renovación y juramentos de protección); Nemor, el Guardián (muerte, memoria, ancestros, límites y custodia de tumbas); Oria, la Balanza (ley, intercambio, acuerdos y conocimiento registrado); Vael, el Navegante (viaje, cambio, tormentas, descubrimiento y fortuna incierta); y Selene, la Velada (sueño, misterio, percepción, secretos y fronteras entre mundos). No son nombres alternativos, avatares ni aspectos de los Primordiales. El solapamiento de dominios no implica identidad ni exclusividad.
+
+La **fuente narrativa maestra del mundo es _Tierra Mágica — Canon del Mundo v1.2_**. Puede haber otros dioses, espíritus regionales, santos, ancestros, héroes divinizados y entidades planares, pero su incorporación al Panteón Central requiere una ampliación expresa del canon.
 
 ## Control de canon
-Este Manual Básico es la fuente maestra de reglas. Toda mecánica nueva o modificación mecánica debe quedar definida y consolidada aquí antes de implementarse en Foundry. Foundry automatiza, valida o presenta estas reglas; no crea canon mecánico por sí mismo. Si código, datos, interfaz, pruebas o historial contradicen el Manual, la discrepancia debe auditarse antes de tratarla como una regla nueva. La secuencia de trabajo es: decisión de diseño → consolidación en Manual Básico → implementación en Foundry → pruebas de coherencia y regresión.
+Este Manual Básico es la **fuente maestra de reglas mecánicas**. _Tierra Mágica — Canon del Mundo v1.2_ es la **fuente maestra de ambientación y continuidad narrativa**. Cuando una materia toca ambos dominios —por ejemplo Familiares, religión o cosmología— debe respetar simultáneamente ambos documentos; ninguna implementación puede resolver una contradicción creando canon por su cuenta.
+
+Toda mecánica nueva o modificación mecánica debe quedar definida y consolidada aquí antes de implementarse en Foundry. Toda modificación de mundo, historia o continuidad debe quedar consolidada en el Canon del Mundo antes de propagarse a manuales derivados. Foundry automatiza, valida o presenta estas reglas; no crea canon mecánico ni narrativo por sí mismo. Si código, datos, interfaz, pruebas, documentos históricos o historial contradicen una fuente maestra, la discrepancia debe auditarse antes de tratarla como una regla nueva. La secuencia de trabajo es: decisión de diseño → consolidación en la fuente maestra correspondiente → implementación/propagación → pruebas de coherencia y regresión.
 
 ## Estado
-**T.M. 1.0 estable para playtest.** No añadir subsistemas preventivos. Cambiar núcleo solo ante anomalías reproducibles.
+**T.M. 1.0 estable para playtest; núcleo completo y jugable.** Sincronizado documentalmente con la auditoría final 1.0.14 y con el Canon del Mundo v1.2. Esta sincronización no abre subsistemas nuevos ni modifica por sí sola la implementación. No añadir subsistemas preventivos; cambiar el núcleo sólo ante anomalías reproducibles, contradicción canónica, hueco funcional demostrado o decisión de diseño consolidada.
