@@ -1,5 +1,7 @@
 # A5 — Pueblos y Orígenes: resolución de diseño
 
+> **Documento histórico de auditoría.** Se conserva para trazabilidad de decisiones. La autoridad vigente es `docs/Foundry_TM_Manual_1.0_Playtest.md`, complementada por `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md` y la jerarquía de `docs/FUENTES_CANONICAS.md`. Estados como «pendiente», «candidato» o «deuda» describen el momento de esta auditoría y no deben leerse como estado actual si fueron cerrados después.
+
 Fecha: 2026-09-22.
 
 ## Decisión
