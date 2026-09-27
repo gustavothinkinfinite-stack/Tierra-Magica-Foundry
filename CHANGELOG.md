@@ -1,5 +1,15 @@
 # Historial de cambios
 
+## Sin publicar — sincronización documental 2026-09-27
+
+- Definida una jerarquía única en `docs/FUENTES_CANONICAS.md`: Manual Básico 1.0 para mecánica, Canon del Mundo v1.2 para narrativa/continuidad y Manual Maestro como integración editorial.
+- Manual Básico 1.0 actualizado con el catálogo estable de 18 hechizos ya cerrado por A4, el canon v1.2 de Familiares y el Panteón Central de siete Primordiales más cinco Luminarias.
+- Manual Maestro sincronizado con Foundry 1.0.14 y Canon del Mundo v1.2; los hechizos extendidos no ratificados quedan explícitamente como archivo de diseño.
+- Referencia rápida y auditoría final actualizadas para distinguir Saturación Mágica juvenil de Saturación alquímica y registrar Cristales de Resonancia.
+- La auditoría cruzada 1.0.11 queda marcada como histórica. Manuales v0.2 y Canon v1.1 se consideran sustituidos cuando contradicen las fuentes maestras.
+- Sin cambios de motor ni incremento de versión del sistema: esta entrada corrige y unifica documentación.
+
+
 ## 1.0.14
 
 - Auditoría integral final cerrada: el núcleo 1.0 queda declarado completo y jugable, con referencia rápida/glosario y criterios explícitos para cambios posteriores.
