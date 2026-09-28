@@ -1,6 +1,6 @@
 # Fuentes del proyecto — política de fuente única
 
-Fecha de consolidación: 2026-09-27.
+Fecha de consolidación: 2026-09-28.
 
 ## Fuente activa única
 
@@ -15,6 +15,10 @@ Toda regla o decisión nueva debe incorporarse primero allí. Foundry VTT, refer
 Los Manuales v0.1/v0.2, el Manual Básico mecánico 1.0 separado, los Canon del Mundo v1.1/v1.2 separados y las auditorías se conservan únicamente para trazabilidad, recuperación y comprobación de procedencia. Su contenido útil vigente fue integrado en el Manual Maestro Único. Si un documento histórico contradice el Manual Maestro, prevalece el Manual Maestro.
 
 Git/GitHub conserva el historial de cada modificación. No se debe eliminar una fuente histórica externa por considerarla obsoleta hasta confirmar que el contenido útil fue integrado o archivado dentro del Manual Maestro.
+
+## Estado de CREA-09
+
+CREA-09 — Moneda está consolidada en el Manual Maestro y su implementación Foundry 1.0.15: c/p/o, PEI 20 o, Reserva 2 o, precios en cobres enteros, Unidad Comercial y migración segura del campo legado `crowns`.
 
 ## Implementación
 
