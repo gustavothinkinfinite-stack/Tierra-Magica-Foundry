@@ -12,10 +12,22 @@ DF de referencia: 8 muy favorable bajo presión; 10 sencilla; 12 moderada; 14 de
 ## Personaje
 
 Atributos: FUE, AGI, VIG, INT, PER, VOL, PRE.  
-Creación: atributos parten de 1; 6 aumentos; máximo 3; **25 PD + 3 PR + 100 C**; máximo una Habilidad Experta.  
+Creación: atributos parten de 1; 6 aumentos; máximo 3; **25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o**; máximo una Habilidad Experta.  
 Nivel 2–20: +4 PD/nivel; total acumulado 101 PD a nivel 20. No hay bono universal por nivel.
 
 Rangos de Habilidad 0–5: bonos **+0/+1/+2/+4/+6/+8**; costes acumulados **0/1/3/7/13/21 PD**.
+
+## Moneda y equipo inicial
+
+- **10 c = 1 p; 10 p = 1 o; 100 c = 1 o.**
+- **PEI 20 o:** presupuesto de equipo durante creación; no es dinero.
+- **Reserva 2 o:** saldo líquido que se concede una sola vez al cerrar la preparación material.
+- Paquete de Preparación **o** Compra libre; no se combinan y el sobrante de Paquete se pierde.
+- Foundry conserva una única fuente de valor en cobres; o/p/c son presentación.
+- Unidad Comercial: el precio puede cubrir un lote, por ejemplo 20 flechas = 2 p, 20 virotes = 3 p, 12 disparos = 5 p.
+- Venta rápida: 25%, redondeo final hacia abajo al cobre. Venta directa: precio acordado; ~50% es sólo referencia.
+- Precio, Disponibilidad y acceso legal/social se comprueban por separado.
+- **crowns:** campo legado obsoleto, sin equivalencia automática.
 
 ## Derivados
 
@@ -88,6 +100,13 @@ Acción Vinculada usa normalmente la **Reacción** del personaje. Cambiar una or
 **Reacción:** recurso reactivo único entre turnos propios.  
 **PD:** Puntos de Desarrollo para Habilidades, Técnicas, Disciplinas, hechizos y progresión.  
 **PR:** Puntos de Rasgo; economía separada para Rasgos.  
+**PEI:** Presupuesto de Equipo Inicial; 20 o durante creación, separado de la moneda y no convertible en dinero.  
+**Cobre (c):** unidad monetaria mínima; 1 c.  
+**Plata (p):** 10 c.  
+**Oro (o):** 10 p = 100 c.  
+**Unidad Comercial:** cantidad física cubierta por un precio de catálogo; no tiene por qué ser una sola unidad.  
+**Saldo líquido:** dinero normalizado bajo control inmediato del Actor.  
+
 **DF:** Dificultad final que debe igualarse o superarse.  
 **Protección:** mitigación de daño antes de aplicar Vida.  
 **Penetración:** reduce Protección efectiva, nunca por debajo de 0.  
