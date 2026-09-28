@@ -41,7 +41,7 @@ test("crowns legados nunca reciben una equivalencia automática", () => {
 });
 
 test("crowns sigue pendiente aunque el nuevo template aporte totalCopper 0 por defecto", () => {
-  const plan = planActorCurrencyMigration({ totalCopper: 0, migrationVersion: 1, crowns: 100, gold: null, silver: null, copper: null });
+  const plan = planActorCurrencyMigration({ totalCopper: 0, migrationVersion: 0, crowns: 100, gold: null, silver: null, copper: null });
   assert.equal(plan.totalCopper, 0);
   assert.equal(plan.pending, true);
   assert.equal(plan.reason, "crowns");
