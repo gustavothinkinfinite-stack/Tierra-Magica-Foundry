@@ -40,6 +40,13 @@ test("crowns legados nunca reciben una equivalencia automática", () => {
   assert.equal(plan.reason, "crowns");
 });
 
+test("crowns sigue pendiente aunque el nuevo template aporte totalCopper 0 por defecto", () => {
+  const plan = planActorCurrencyMigration({ totalCopper: 0, migrationVersion: 1, crowns: 100, gold: null, silver: null, copper: null });
+  assert.equal(plan.totalCopper, 0);
+  assert.equal(plan.pending, true);
+  assert.equal(plan.reason, "crowns");
+});
+
 test("denominaciones legadas claras migran exactamente", () => {
   const plan = planActorCurrencyMigration({ gold: 2, silver: 3, copper: 7 });
   assert.equal(plan.totalCopper, 237);
