@@ -1,6 +1,7 @@
 import { TM_CONFIG } from "../config.mjs";
 import { STARTER_CONTENT } from "../content.mjs";
 import { toNumber } from "../rules.mjs";
+import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } from "../rules/currency.mjs";
 
 export class TierraMagicaActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -31,6 +32,25 @@ export class TierraMagicaActorSheet extends ActorSheet {
     context.skillGroups = this.#groupSkills(this.actor.system.skills ?? {});
     context.healthPercent = this.#resourcePercent(this.actor.system.resources?.health);
     context.manaPercent = this.#resourcePercent(this.actor.system.resources?.mana);
+    const currencyTotal = this.actor.getCurrencyTotal?.() ?? 0;
+    const currencyParts = splitCurrency(currencyTotal);
+    context.currency = {
+      ...currencyParts,
+      display: formatCurrency(currencyTotal),
+      migrationPending: Boolean(this.actor.system.currency?.migrationPending),
+      legacyCrowns: this.actor.system.currency?.legacy?.crowns ?? null,
+      hasLegacyCrowns: Number(this.actor.system.currency?.legacy?.crowns) > 0,
+      initialReserveGranted: Boolean(this.actor.system.currency?.initialReserveGranted)
+    };
+    context.creationPei = {
+      active: this.actor.type === "character" && this.actor.system.creation?.equipmentBudgetActive === true,
+      remaining: this.actor.type === "character"
+        ? Math.max(0, Math.floor(toNumber(this.actor.system.creation?.equipmentBudgetCopper, CREATION_PEI_COPPER)))
+        : 0,
+      display: this.actor.type === "character"
+        ? formatCurrency(Math.max(0, Math.floor(toNumber(this.actor.system.creation?.equipmentBudgetCopper, CREATION_PEI_COPPER))))
+        : ""
+    };
     const sustainedIds = Array.isArray(this.actor.system.magic?.sustainedSpellIds) ? this.actor.system.magic.sustainedSpellIds : [];
     context.sustainedSpells = sustainedIds.map((id) => this.actor.items.get(id)).filter(Boolean);
 
@@ -73,6 +93,13 @@ export class TierraMagicaActorSheet extends ActorSheet {
     html.find("[data-action='roll-initiative']").click(() => this.actor.rollInitiativeCheck());
     html.find("[data-action='resource-change']").click((event) => this.actor.adjustResource(event.currentTarget.dataset.resource, event.currentTarget.dataset.amount));
     html.find("[data-action='rest']").click((event) => this.actor.rest(event.currentTarget.dataset.kind));
+    html.find("[data-action='currency-denomination']").change((event) => this.#updateCurrencyBreakdown(event));
+    html.find("[data-action='currency-add']").click(() => this.#adjustCurrencyDialog(1));
+    html.find("[data-action='currency-spend']").click(() => this.#adjustCurrencyDialog(-1));
+    html.find("[data-action='grant-initial-reserve']").click(() => this.actor.grantInitialReserve());
+    html.find("[data-action='close-creation-equipment']").click(() => this.actor.closeCreationEquipment());
+    html.find("[data-action='resolve-legacy-crowns']").click(() => this.#resolveLegacyCrowns());
+    html.find("[data-action='archive-legacy-crowns']").click(() => this.#archiveLegacyCrowns());
 
     html.find("[data-action='set-skill-rank']").change((event) => {
       const key = event.currentTarget.dataset.key;
@@ -176,6 +203,61 @@ export class TierraMagicaActorSheet extends ActorSheet {
     });
     html.find("[data-action='stop-sustained']").click((event) => this.actor.stopSustainedSpell(event.currentTarget.dataset.itemId));
     html.find("[data-action='create-familiar']").click(() => this.#createFamiliar());
+  }
+
+  async #updateCurrencyBreakdown(event) {
+    const panel = event.currentTarget.closest(".tm-currency");
+    if (!panel) return;
+    const read = (key) => Number(panel.querySelector("[data-denomination='" + key + "']")?.value ?? 0);
+    const total = combineCurrency({ gold: read("gold"), silver: read("silver"), copper: read("copper") });
+    if (total === null) return ui.notifications.warn("Oro, plata y cobre deben ser enteros no negativos.");
+    return this.actor.setCurrencyTotal(total);
+  }
+
+  async #adjustCurrencyDialog(direction) {
+    const result = await Dialog.prompt({
+      title: direction > 0 ? "Añadir moneda" : "Gastar moneda",
+      content:
+        "<div class='form-group'><label>Oro</label><input name='gold' type='number' min='0' step='1' value='0'/></div>" +
+        "<div class='form-group'><label>Plata</label><input name='silver' type='number' min='0' step='1' value='0'/></div>" +
+        "<div class='form-group'><label>Cobre</label><input name='copper' type='number' min='0' step='1' value='0'/></div>",
+      label: direction > 0 ? "Añadir" : "Gastar",
+      callback: (html) => combineCurrency({
+        gold: Number(html.find("[name='gold']").val()),
+        silver: Number(html.find("[name='silver']").val()),
+        copper: Number(html.find("[name='copper']").val())
+      }),
+      rejectClose: false
+    });
+    if (result === null || result === undefined) return;
+    return this.actor.adjustCurrency(direction * result);
+  }
+
+  async #resolveLegacyCrowns() {
+    const crowns = Number(this.actor.system.currency?.legacy?.crowns);
+    if (!Number.isSafeInteger(crowns) || crowns <= 0) return ui.notifications.warn("No hay crowns legados pendientes.");
+    const factor = await Dialog.prompt({
+      title: "Migrar crowns legados",
+      content:
+        "<p>Dato legado preservado: <strong>" + crowns + " crowns</strong>. CREA-09 no define una equivalencia automática.</p>" +
+        "<div class='form-group'><label>Valor de 1 crown en cobres</label><input name='factor' type='number' min='1' step='1'/></div>" +
+        "<p>La conversión sólo se aplicará después de tu confirmación explícita.</p>",
+      label: "Convertir",
+      callback: (html) => Number(html.find("[name='factor']").val()),
+      rejectClose: false
+    });
+    if (!Number.isSafeInteger(factor) || factor <= 0) return;
+    return this.actor.resolveLegacyCrowns({ copperPerCrown: factor });
+  }
+
+  async #archiveLegacyCrowns() {
+    const crowns = Number(this.actor.system.currency?.legacy?.crowns);
+    if (!Number.isSafeInteger(crowns) || crowns <= 0) return;
+    const confirmed = await Dialog.confirm({
+      title: "Archivar crowns legados",
+      content: "<p>Se conservará el dato histórico de " + crowns + " crowns, pero no se convertirá en saldo actual. Esta operación no añade dinero.</p>"
+    });
+    if (confirmed) return this.actor.archiveLegacyCrowns();
   }
 
   async #useWeaponTechnique(event) {
