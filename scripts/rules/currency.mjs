@@ -137,17 +137,20 @@ export function planActorCurrencyMigration(currency = {}) {
   if (silver.present) legacy.silver = currency.silver;
   if (copper.present) legacy.copper = currency.copper;
 
-  if (total.present && total.valid) {
-    return { totalCopper: total.value, pending: false, preserveLegacy: legacy, reason: "canonical" };
-  }
-
   if (![crowns, gold, silver, copper].every((entry) => entry.valid)) {
-    return { totalCopper: 0, pending: true, preserveLegacy: legacy, reason: "invalid-legacy" };
+    return { totalCopper: total.valid ? total.value : 0, pending: true, preserveLegacy: legacy, reason: "invalid-legacy" };
   }
 
+  // Active legacy crowns always require explicit resolution. This check deliberately
+  // precedes totalCopper because template defaults may already expose totalCopper=0
+  // when an old Actor is first loaded under the new schema.
   if (crowns.present && crowns.value > 0) {
     const hasOther = (gold.present && gold.value > 0) || (silver.present && silver.value > 0) || (copper.present && copper.value > 0);
-    return { totalCopper: 0, pending: true, preserveLegacy: legacy, reason: hasOther ? "ambiguous-crowns" : "crowns" };
+    return { totalCopper: total.valid ? total.value : 0, pending: true, preserveLegacy: legacy, reason: hasOther ? "ambiguous-crowns" : "crowns" };
+  }
+
+  if (total.present && total.valid && (total.value > 0 || Number(currency.migrationVersion) >= CURRENCY_MIGRATION_VERSION)) {
+    return { totalCopper: total.value, pending: false, preserveLegacy: legacy, reason: "canonical" };
   }
 
   if (gold.present || silver.present || copper.present) {
@@ -164,7 +167,8 @@ export function canonicalItemPrice(name) {
 
 export function planItemPriceMigration(itemLike = {}) {
   const system = itemLike.system ?? {};
-  if (isValidCopper(system.priceCopper) && ["exact", "variable", "unset"].includes(system.priceStatus)) {
+  const hasLegacyPrice = hasOwn(system, "price");
+  if (!hasLegacyPrice && isValidCopper(system.priceCopper) && ["exact", "variable", "unset"].includes(system.priceStatus)) {
     return null;
   }
   const canonical = canonicalItemPrice(itemLike.name);
@@ -278,7 +282,8 @@ export function installCurrencyRules(ActorClass) {
 
 function actorMigrationUpdates(actor) {
   const sourceCurrency = actor?._source?.system?.currency ?? {};
-  if (Number(sourceCurrency.migrationVersion) >= CURRENCY_MIGRATION_VERSION && isValidCopper(sourceCurrency.totalCopper)) return null;
+  const hasActiveLegacy = ["crowns", "gold", "silver", "copper"].some((field) => hasOwn(sourceCurrency, field));
+  if (!hasActiveLegacy && Number(sourceCurrency.migrationVersion) >= CURRENCY_MIGRATION_VERSION && isValidCopper(sourceCurrency.totalCopper)) return null;
   const plan = planActorCurrencyMigration(sourceCurrency);
   const updates = {
     "system.currency.totalCopper": plan.totalCopper,
@@ -295,7 +300,7 @@ function actorMigrationUpdates(actor) {
 
 function itemMigrationUpdates(item) {
   const source = item?._source?.system ?? item?.system ?? {};
-  if (isValidCopper(source.priceCopper) && ["exact", "variable", "unset"].includes(source.priceStatus)) return null;
+  if (!hasOwn(source, "price") && isValidCopper(source.priceCopper) && ["exact", "variable", "unset"].includes(source.priceStatus)) return null;
   const plan = planItemPriceMigration({ name: item.name, system: source });
   const updates = {
     "system.priceCopper": plan.priceCopper,
