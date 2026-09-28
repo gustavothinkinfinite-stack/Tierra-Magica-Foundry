@@ -1,4 +1,5 @@
 import { TM_CONFIG } from "../config.mjs";
+import { formatCurrency } from "../rules/currency.mjs";
 
 export class TierraMagicaItemSheet extends ItemSheet {
   static get defaultOptions() {
@@ -23,6 +24,9 @@ export class TierraMagicaItemSheet extends ItemSheet {
       context["is" + type.charAt(0).toUpperCase() + type.slice(1)] = this.item.type === type;
     }
     context.typeLabel = TM_CONFIG.itemTypes[this.item.type] ?? this.item.type;
+    context.priceDisplay = this.item.system.priceStatus === "exact"
+      ? formatCurrency(this.item.system.priceCopper)
+      : this.item.system.priceStatus === "variable" ? "Precio variable" : "Sin precio establecido";
     context.skillModifiers = (Array.isArray(this.item.system.skillModifiers) ? this.item.system.skillModifiers : [])
       .map((modifier, index) => ({
         index,
