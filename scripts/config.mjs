@@ -51,6 +51,7 @@ export const TM_CONFIG = {
   traitCategories: { innate: "Innato", acquired: "Adquirido", bond: "Vincular", conditional: "Condicional" },
   availability: { common: "Común", professional: "Profesional", restricted: "Restringida", rare: "Rara", exceptional: "Excepcional" },
   qualities: { defective: "Defectuoso", common: "Común", superior: "Superior", exceptional: "Excepcional" },
+  priceStatuses: { exact: "Precio exacto", variable: "Precio variable", unset: "Sin precio establecido" },
   itemTypes: {
     weapon: "Arma", armor: "Armadura", shield: "Escudo", equipment: "Equipo", spell: "Hechizo",
     technique: "Técnica", trait: "Rasgo", specialization: "Especialización", formula: "Fórmula", ritual: "Ritual", device: "Dispositivo"
