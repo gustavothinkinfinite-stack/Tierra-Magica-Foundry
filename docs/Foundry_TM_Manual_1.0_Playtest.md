@@ -8,7 +8,25 @@ Prueba: **2d10 + Atributo + Habilidad + modificadores ≥ DF**. Ventaja 3d10 mej
 ## Personaje
 Atributos FUE, AGI, VIG, INT, PER, VOL, PRE. Escala 0 deficiente, 1 adulto normal, 2 notable, 3 excepcional, 4 élite, 5 límite natural, 6+ sobrenatural. 26 Habilidades: Atletismo, Acrobacia, Sigilo, Supervivencia, Naturaleza, Investigación, Persuasión, Engaño, Intimidación, Empatía, Historia, Religión, Medicina, Arcana, Artesanía, Ingeniería, Alquimia, Latrocinio, Armas Ligeras, Marciales, Pesadas, a Distancia, Canalización, Ritualismo, Manejo y Pilotaje. Rangos +0/+1/+2/+4/+6/+8; coste acumulado 0/1/3/7/13/21 PD.
 
-Creación: atributos parten de 1, 6 aumentos, máximo 3; 25 PD; 3 PR; 100 C; máximo una Habilidad Experta. Niveles 1–20, +4 PD por nivel 2–20, total 101. Sin bono universal por nivel. Especialización 2 PD; Disciplina 3; Técnicas 2/3/5/8+; Hechizos 1/2/3/5/8+. Maestro nivel9+, Gran Maestro15+. Atributos post-creación: 4/6/9/13/18 PD por pasos 0→1→2→3→4→5.
+Creación: atributos parten de 1, 6 aumentos, máximo 3; 25 PD; 3 PR; **PEI 20 o** para equipo inicial; **Reserva líquida 2 o** al cerrar la preparación material; máximo una Habilidad Experta. Niveles 1–20, +4 PD por nivel 2–20, total 101. Sin bono universal por nivel. Especialización 2 PD; Disciplina 3; Técnicas 2/3/5/8+; Hechizos 1/2/3/5/8+. Maestro nivel9+, Gran Maestro15+. Atributos post-creación: 4/6/9/13/18 PD por pasos 0→1→2→3→4→5.
+
+## Moneda, PEI y equipo inicial
+
+La moneda mecánica de referencia usa tres denominaciones: **10 cobres (c) = 1 plata (p)**, **10 platas = 1 oro (o)** y por tanto **100 c = 1 o**. El cobre es la unidad mínima ordinaria. Oro, plata y cobre representan un único valor económico; en Foundry la fuente autoritativa se conserva como un entero de cobres y las tres denominaciones son sólo presentación.
+
+En creación, el **PEI** es un presupuesto material de **20 o (2.000 c)**. No es dinero, no se entrega al Actor y no puede convertirse en PD, PR ni Reserva. El personaje elige un **Paquete de Preparación o Compra libre**; son alternativas excluyentes. El sobrante de un Paquete no puede gastarse mediante Compra libre y se pierde al cerrar la preparación. Tras cerrar el inventario inicial, el personaje recibe una sola vez una **Reserva líquida de 2 o (200 c)**.
+
+Los precios de equipo se expresan directamente en o/p/c y se almacenan en cobres enteros. Una entrada puede tener **Precio exacto**, **Precio variable** o **Sin precio establecido**; 0 c significa gratuito y no equivale a precio desconocido. Cuando un precio corresponde a un lote, la entrada declara su **Unidad Comercial**: 20 flechas = 2 p; 20 virotes = 3 p; 12 disparos ordinarios de arma de fuego = 5 p.
+
+Valores de calibración: Daga 6 p; Espada corta 1 o; Espada larga 2 o; Lanza 5 p; Arco corto 1 o; Arco largo 2 o; Ballesta 3 o; Armadura ligera 1 o 5 p; Malla 10 o; Armadura pesada 16 o; Placa 40 o; Pistola temprana 10 o; Rifle temprano 18 o; Pistola repetidora 35 o (Rara); Rifle repetidor 45 o (Rara).
+
+La **venta rápida** usa como referencia exacta el 25% del valor aplicable y redondea una sola vez hacia abajo al cobre al final de la operación. La **venta directa** no posee un porcentaje universal: alrededor del 50% es sólo una referencia cuando exista comprador y se acuerde ese valor. Precio, Disponibilidad y acceso social/legal siguen siendo dimensiones independientes.
+
+Las monedas regionales continúan existiendo en Edria. c/p/o normaliza valor mecánico; no afirma una acuñación física universal ni fija tipos de cambio regionales. Una moneda extranjera, histórica, pagaré o lingote relevante puede representarse como un bien separado hasta ser aceptado o convertido.
+
+El campo histórico **crowns** queda retirado del sistema activo. No tiene equivalencia automática. Si un Actor legado contiene crowns, el dato se preserva y la migración queda pendiente hasta que una persona introduzca explícitamente una equivalencia en cobres o decida archivarlo sin convertirlo.
+
+**REV-CREA-08-001 — Adaptación de equipo:** recargo menor 25%; recargo mayor 50%; recargo mínimo **1 p = 10 c**. Si el porcentaje produce una fracción de cobre, el recargo se redondea hacia arriba al cobre entero.
 
 ## Derivados y turno
 Vida=10+2×VIG. Maná=6+3×VOL. Defensa=11+AGI+Bono Defensivo+equipo. Corporal=11+VIG. Mental=11+VOL. **Maniobra=11+AGI+Bono Defensivo**. Iniciativa=2d10+PER. Turno: Acción, Movimiento, Reacción. Reacción se recupera al inicio del turno propio. Guardia universal: Acción, +2 Defensa hasta siguiente turno. Sin Ataque de Oportunidad universal.
@@ -113,4 +131,4 @@ La **fuente narrativa maestra del mundo es _Tierra Mágica — Canon del Mundo v
 Toda mecánica nueva o modificación mecánica debe quedar definida y consolidada aquí antes de implementarse en Foundry. Toda modificación de mundo, historia o continuidad debe quedar consolidada en el Canon del Mundo antes de propagarse a manuales derivados. Foundry automatiza, valida o presenta estas reglas; no crea canon mecánico ni narrativo por sí mismo. Si código, datos, interfaz, pruebas, documentos históricos o historial contradicen una fuente maestra, la discrepancia debe auditarse antes de tratarla como una regla nueva. La secuencia de trabajo es: decisión de diseño → consolidación en la fuente maestra correspondiente → implementación/propagación → pruebas de coherencia y regresión.
 
 ## Estado
-**T.M. 1.0 estable para playtest; núcleo completo y jugable.** Sincronizado documentalmente con la auditoría final 1.0.14 y con el Canon del Mundo v1.2. Esta sincronización no abre subsistemas nuevos ni modifica por sí sola la implementación. No añadir subsistemas preventivos; cambiar el núcleo sólo ante anomalías reproducibles, contradicción canónica, hueco funcional demostrado o decisión de diseño consolidada.
+**T.M. 1.0 estable para playtest; núcleo completo y jugable.** Sincronizado documentalmente con CREA-09, la implementación 1.0.15 y el Canon del Mundo v1.2. Esta sincronización no abre subsistemas nuevos ni modifica por sí sola la implementación. No añadir subsistemas preventivos; cambiar el núcleo sólo ante anomalías reproducibles, contradicción canónica, hueco funcional demostrado o decisión de diseño consolidada.
