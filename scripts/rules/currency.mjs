@@ -141,16 +141,16 @@ export function planActorCurrencyMigration(currency = {}) {
     return { totalCopper: total.valid ? total.value : 0, pending: true, preserveLegacy: legacy, reason: "invalid-legacy" };
   }
 
-  // Active legacy crowns always require explicit resolution. This check deliberately
-  // precedes totalCopper because template defaults may already expose totalCopper=0
-  // when an old Actor is first loaded under the new schema.
+  // A positive canonical balance is meaningful even if an obsolete legacy field
+  // still survives beside it: preserve the legacy value for audit, but never add it.
+  // A zero balance only counts as canonical after migrationVersion proves it was resolved.
+  if (total.present && total.valid && (total.value > 0 || Number(currency.migrationVersion) >= CURRENCY_MIGRATION_VERSION)) {
+    return { totalCopper: total.value, pending: false, preserveLegacy: legacy, reason: "canonical" };
+  }
+
   if (crowns.present && crowns.value > 0) {
     const hasOther = (gold.present && gold.value > 0) || (silver.present && silver.value > 0) || (copper.present && copper.value > 0);
     return { totalCopper: total.valid ? total.value : 0, pending: true, preserveLegacy: legacy, reason: hasOther ? "ambiguous-crowns" : "crowns" };
-  }
-
-  if (total.present && total.valid && (total.value > 0 || Number(currency.migrationVersion) >= CURRENCY_MIGRATION_VERSION)) {
-    return { totalCopper: total.value, pending: false, preserveLegacy: legacy, reason: "canonical" };
   }
 
   if (gold.present || silver.present || copper.present) {
