@@ -10,6 +10,16 @@
 - Sin cambios de motor ni incremento de versión del sistema: esta entrada corrige y unifica documentación.
 
 
+## 1.0.15
+
+- CREA-09 — Moneda consolidada: **10 c = 1 p**, **10 p = 1 o**, con una única fuente monetaria en cobres enteros y presentación derivada o/p/c.
+- Creación separa **PEI 20 o** de la **Reserva líquida 2 o**; la Reserva sólo puede concederse una vez al personaje estándar y el PEI no se convierte en dinero.
+- Items adoptan `priceCopper`, `priceQuantity` y estados de precio Exacto/Variable/Sin precio; munición y consumibles pueden declarar Unidad Comercial.
+- El catálogo de armas, armaduras y escudos migra a los precios cerrados por CREA-08/09; las fórmulas con precios antiguos en Coronas se preservan como legado sin inventar equivalencia.
+- `crowns` deja de ser moneda activa. La migración conserva el valor histórico y exige equivalencia explícita antes de convertirlo; nunca se suma silenciosamente a un saldo canónico.
+- Referencia rápida, Manual Básico, Manual Maestro, ficha de personaje y pruebas sincronizados con CREA-09.
+- REV-CREA-08-001 resuelve el mínimo indefinido de adaptación de equipo: mínimo **1 p = 10 c**, con recargo menor 25% y mayor 50%.
+
 ## 1.0.14
 
 - Auditoría integral final cerrada: el núcleo 1.0 queda declarado completo y jugable, con referencia rápida/glosario y criterios explícitos para cambios posteriores.
