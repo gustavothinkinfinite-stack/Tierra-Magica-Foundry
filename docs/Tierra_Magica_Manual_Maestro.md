@@ -144,7 +144,7 @@ Cuando una acción requiere resolución completa, el orden general es: declarar 
 
 ## 3. Creación de personaje paso a paso
 
-La creación de personaje debe poder completarse leyendo únicamente este Manual. La base común es **25 PD + 3 PR + 100 C**, siete Atributos y una identidad narrativa libre de clases obligatorias.
+La creación de personaje debe poder completarse leyendo únicamente este Manual. La base común es **25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o**, siete Atributos y una identidad narrativa libre de clases obligatorias.
 
 ### Resumen del proceso
 
@@ -153,7 +153,7 @@ La creación de personaje debe poder completarse leyendo únicamente este Manual
 3. Gastar los 25 PD en Habilidades, Especializaciones, Técnicas, Disciplinas y Hechizos.
 4. Gastar los 3 PR en Rasgos.
 5. Si posee Familiar Mágico, definir la naturaleza del vínculo y el perfil simplificado del Familiar.
-6. Comprar equipo con 100 C.
+6. Seleccionar equipo con PEI 20 o; al cerrar la preparación material, recibir una Reserva líquida de 2 o.
 7. Calcular valores derivados.
 8. Revisar límites de creación y anotar capacidades, idiomas, contactos y detalles narrativos.
 9. Realizar una comprobación final de coherencia.
@@ -292,11 +292,19 @@ El perfil es simplificado y debe corresponder a la naturaleza concreta del Famil
 
 **Nota de desarrollo:** este Manual conserva la estructura de perfil ratificada, pero no fija todavía una plantilla numérica universal para todos los tipos posibles de Familiar. Cuando se diseñe una criatura concreta, sus valores deben quedar escritos en el propio perfil y auditados contra la economía de acciones; no se asumen valores gratuitos por especie o arquetipo.
 
-### Paso 6 — Equipo inicial: 100 C
+### Paso 6 — Equipo inicial, PEI y Reserva
 
-El personaje comienza normalmente con **100 Coronas (C)**. Ese dinero compra recursos del mundo, no desarrollo personal.
+La preparación material utiliza **PEI 20 o = 2.000 c**. El PEI es presupuesto de creación, no dinero del personaje: no puede convertirse en PD, PR, Reserva ni efectivo posterior.
 
-Compra armas, armadura, escudo, herramientas, consumibles, munición y equipo de viaje usando el capítulo de Equipo y Economía. La disponibilidad y el acceso siguen importando: tener dinero suficiente no convierte automáticamente un objeto Restringido, Militar, Religioso, Raro o Excepcional en una compra legal o accesible.
+Elige **exactamente una** modalidad:
+- un **Paquete de Preparación** cerrado; o
+- **Compra libre** dentro del catálogo permitido y hasta el máximo de PEI.
+
+Paquete y Compra libre son alternativas excluyentes. Si un Paquete vale menos de 20 o, el sobrante no puede gastarse mediante Compra libre y se pierde al cerrar la preparación. El Equipo Personal Básico y, cuando corresponda, el Vínculo de Equipo del Trasfondo se gestionan conforme a CREA-08 y no se convierten en dinero.
+
+Después de cerrar el inventario inicial se descarta cualquier PEI restante y el personaje recibe una sola vez una **Reserva líquida de 2 o = 200 c**. Esa Reserva ya es dinero y puede gastarse normalmente después de comenzar el juego.
+
+La moneda mecánica usa **10 c = 1 p; 10 p = 1 o; 100 c = 1 o**. c/p/o normaliza valor de juego; no elimina las monedas regionales del canon. Precio, Disponibilidad y acceso social/legal siguen siendo comprobaciones independientes.
 
 ### Paso 7 — Valores derivados
 
@@ -344,14 +352,14 @@ Antes de dar por terminado el personaje:
 - Se gastaron como máximo 3 PR.
 - Los Rasgos negativos no financiaron PR adicionales.
 - Pueblo/Origen no añadió recursos mecánicos gratuitos.
-- El equipo respeta 100 C, disponibilidad y acceso.
+- El equipo respeta el PEI de 20 o, la alternativa Paquete/Compra libre, la disponibilidad y el acceso; la Reserva líquida de 2 o se mantiene separada.
 - Vida, Maná y Defensas fueron recalculados después de equipo y Rasgos.
 - Familiar, magia y equipo no generan Acciones, Reacciones, Maná o bonos no escritos.
 - Todo lo que produzca un efecto mecánico aparece expresamente en la ficha.
 
 ### Ejemplo mínimo de flujo
 
-Un jugador decide crear una exploradora arcana. Define primero su identidad y procedencia sin recibir bonos gratuitos. Reparte los 6 aumentos de Atributo, después distribuye sus 25 PD entre Habilidades, una Especialización, una Disciplina y Hechizos del catálogo. Gasta sus 3 PR en propiedades persistentes del personaje, compra equipo con 100 C y finalmente calcula Vida, Maná, Defensas, Iniciativa y Movimiento. Si una elección no aparece como coste, Rasgo, Técnica, Hechizo, equipo o regla explícita, no se transforma en bono por inferencia.
+Un jugador decide crear una exploradora arcana. Define primero su identidad y procedencia sin recibir bonos gratuitos. Reparte los 6 aumentos de Atributo, después distribuye sus 25 PD entre Habilidades, una Especialización, una Disciplina y Hechizos del catálogo. Gasta sus 3 PR en propiedades persistentes del personaje, selecciona equipo con PEI 20 o, cierra la preparación material, recibe su Reserva líquida de 2 o y finalmente calcula Vida, Maná, Defensas, Iniciativa y Movimiento. Si una elección no aparece como coste, Rasgo, Técnica, Hechizo, equipo o regla explícita, no se transforma en bono por inferencia.
 
 ## 4. Desarrollo
 
@@ -441,36 +449,36 @@ No existe un Ataque de Oportunidad universal. Una retirada a distancia contra un
 
 | Arma | Daño | Pen | FUE | Precio | Propiedades principales |
 |---|---:|---:|---:|---:|---|
-| Daga | 3 | 0 | 0 | 5 C | Ligera, Ocultable |
-| Espada corta | 4 | 0 | 0 | 12 C | Ligera |
-| Sable | 4 | 0 | 0 | 18 C | Ágil |
-| Espada larga | 5 | 0 | 1 | 20 C | Versátil |
-| Hacha | 6 | 0 | 2 | 18 C | Impactante |
-| Maza | 5 | 1 | 1 | 16 C | Impactante |
-| Martillo de guerra | 6 | 2 | 2 | 24 C | Impactante |
-| Lanza | 5 | 0 | 1 | 12 C | Alcance, 2 manos |
-| Alabarda | 7 | 1 | 2 | 30 C | Alcance, Pesada, 2 manos |
-| Mandoble | 7 | 0 | 2 | 32 C | Pesada, 2 manos |
-| Gran hacha | 8 | 0 | 3 | 34 C | Pesada, 2 manos |
-| Gran martillo | 7 | 2 | 3 | 40 C | Pesada, 2 manos |
-| Arco corto | 4 | 0 | — | 15 C | Potencia 2 |
-| Arco largo | 5 | 0 | — | 25 C | Potencia 3, 2 manos |
-| Ballesta | 6 | 1 | — | 22 C | Recarga 1 |
-| Ballesta pesada | 8 | 2 | — | 35 C | Recarga 2, 2 manos |
-| Pistola temprana | 6 | 2 | — | 30 C | Recarga 2 |
-| Rifle temprano | 7 | 3 | — | 45 C | Recarga 2, 2 manos |
-| Pistola repetidora | 6 | 1 | — | 50 C | Repetición |
-| Rifle repetidor | 7 | 2 | — | 65 C | Repetición, 2 manos |
+| Daga | 3 | 6 p | 0 | 5 C | Ligera, Ocultable |
+| Espada corta | 4 | 1 o | 0 | 12 C | Ligera |
+| Sable | 4 | 1 o 5 p | 0 | 18 C | Ágil |
+| Espada larga | 5 | 2 o | 1 | 20 C | Versátil |
+| Hacha | 6 | 2 o 5 p | 2 | 18 C | Impactante |
+| Maza | 5 | 1 o | 1 | 16 C | Impactante |
+| Martillo de guerra | 6 | 3 o | 2 | 24 C | Impactante |
+| Lanza | 5 | 5 p | 1 | 12 C | Alcance, 2 manos |
+| Alabarda | 7 | 3 o | 2 | 30 C | Alcance, Pesada, 2 manos |
+| Mandoble | 7 | 4 o | 2 | 32 C | Pesada, 2 manos |
+| Gran hacha | 8 | 5 o | 3 | 34 C | Pesada, 2 manos |
+| Gran martillo | 7 | 5 o | 3 | 40 C | Pesada, 2 manos |
+| Arco corto | 4 | 1 o | — | 15 C | Potencia 2 |
+| Arco largo | 5 | 2 o | — | 25 C | Potencia 3, 2 manos |
+| Ballesta | 6 | 3 o | — | 22 C | Recarga 1 |
+| Ballesta pesada | 8 | 5 o | — | 35 C | Recarga 2, 2 manos |
+| Pistola temprana | 6 | 10 o | — | 30 C | Recarga 2 |
+| Rifle temprano | 7 | 18 o | — | 45 C | Recarga 2, 2 manos |
+| Pistola repetidora | 6 | 35 o | — | 50 C | Repetición |
+| Rifle repetidor | 7 | 45 o | — | 65 C | Repetición, 2 manos |
 
 Los arcos pueden añadir FUE al daño cuando el arma y su Potencia lo permiten; ballestas y armas de fuego no lo hacen normalmente.
 
 | Armadura | Prot | FUE mín. | Precio |
 |---|---:|---:|---:|
-| Ligera | 1 | 0 | 12 C |
-| Reforzada | 2 | 0 | 25 C |
-| Malla | 3 | 1 | 40 C |
-| Pesada | 4 | 2 | 60 C |
-| Placas | 5 | 3 | 85 C |
+| Ligera | 1 | 1 o 5 p | 12 C |
+| Reforzada | 2 | 4 o | 25 C |
+| Malla | 3 | 10 o | 40 C |
+| Pesada | 4 | 16 o | 60 C |
+| Placas | 5 | 40 o | 85 C |
 
 Con FUE un punto por debajo del mínimo, Movimiento -1, Carga Pesada y Desventaja en acciones físicas relevantes. Con dos o más puntos por debajo, la armadura no puede usarse competentemente en combate sin una capacidad específica, aunque su material siga ofreciendo Protección cuando corresponda. Una armadura ruidosa puede causar Desventaja a Sigilo cuando el ruido sea relevante.
 
@@ -701,14 +709,14 @@ La Saturación es binaria y contextual. Una preparación Saturante registra su f
 
 | Fórmula | Grado | Precio | Familia / vía | Efecto |
 |---|---|---:|---|---|
-| Bálsamo Restaurador | Común | 12 C | Restaurativa | +4 Vida; no Trauma ni Herida Grave. |
-| Poción Restauradora | Común | 12 C | Restaurativa / oral | Acción: +4 Vida hasta máximo y límites de lesión. |
-| Poción de Recuperación Arcana | Refinada | 15 C | Arcana / oral | Acción: +3 Maná hasta máximo; no elimina Fatiga ni Sobrecarga. |
-| Tónico de Vigor | Refinada | 10 C | Potenciador | Ventaja en una prueba de VIG por esfuerzo prolongado. |
-| Supresor del Dolor | Refinada | 15 C | Analgésica | Ignora una Desventaja causada por dolor compatible; no repara lesión. |
-| Neutralizante Común | Refinada | 10 C | — | Nueva resistencia con Ventaja contra una toxina compatible. |
-| Toxina Debilitante | Compleja | 18 C | Sangre | VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular. |
-| Bomba Incendiaria | Compleja | 20 C | — | Área pequeña, Daño 6, Pen 1; requiere colocación válida. |
+| Bálsamo Restaurador | Común | Sin precio establecido | Restaurativa | +4 Vida; no Trauma ni Herida Grave. |
+| Poción Restauradora | Común | Sin precio establecido | Restaurativa / oral | Acción: +4 Vida hasta máximo y límites de lesión. |
+| Poción de Recuperación Arcana | Refinada | Sin precio establecido | Arcana / oral | Acción: +3 Maná hasta máximo; no elimina Fatiga ni Sobrecarga. |
+| Tónico de Vigor | Refinada | Sin precio establecido | Potenciador | Ventaja en una prueba de VIG por esfuerzo prolongado. |
+| Supresor del Dolor | Refinada | Sin precio establecido | Analgésica | Ignora una Desventaja causada por dolor compatible; no repara lesión. |
+| Neutralizante Común | Refinada | Sin precio establecido | — | Nueva resistencia con Ventaja contra una toxina compatible. |
+| Toxina Debilitante | Compleja | Sin precio establecido | Sangre | VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular. |
+| Bomba Incendiaria | Compleja | Sin precio establecido | — | Área pequeña, Daño 6, Pen 1; requiere colocación válida. |
 
 Un veneno define Vía, Latencia, DF, Efecto y Duración. Normalmente concede una resistencia y no exige pruebas repetidas sin cambio. Aplicar veneno a un arma requiere preparación/Acción apropiada y la primera aplicación válida consume la dosis.
 
@@ -745,23 +753,95 @@ Los proyectos largos se resuelven por etapas significativas, no mediante una res
 
 ## 19. Economía, disponibilidad y equipo
 
-La moneda de referencia es la **Corona (C)**. Un personaje comienza normalmente con **100 C**. El dinero pertenece a la economía del mundo: puede comprar bienes, servicios, propiedades y acceso cuando estén disponibles, pero no compra PD ni PR.
+### Moneda canónica
 
-El precio no es el único límite. Un objeto o servicio también puede tener una **Disponibilidad** —Común, Profesional, Restringida, Rara o Excepcional— y un régimen de **Acceso** —Libre, Gremial, Licenciado, Militar, Religioso o Prohibido—. El mercado importa: Aldea, Pueblo, Ciudad, Gran Ciudad o Mercado Especializado. Tener suficiente dinero no crea existencias ni elimina requisitos legales, sociales o logísticos.
+La moneda mecánica de referencia usa **cobre (c), plata (p) y oro (o)**:
 
-Herramientas de referencia: un conjunto Básico ronda 10 C, uno Profesional 25 C y equipo Especializado comienza normalmente alrededor de 100 C. Los materiales de fabricación ordinarios suelen representar aproximadamente 30–60% del precio de un producto terminado cuando el proyecto y el mercado lo justifican; esto no es una regla universal de reventa ni permite convertir fabricación en dinero infinito sin tiempo, demanda, acceso y costes reales.
+- **10 c = 1 p**
+- **10 p = 1 o**
+- **100 c = 1 o**
 
-Consumibles de referencia: Bálsamo Restaurador 12 C; Tónico de Vigor 10 C; Supresor del Dolor 15 C; Neutralizante Común 10 C; Bomba Incendiaria 20 C; Toxina Debilitante 18 C. La Poción de Recuperación Arcana existe en el catálogo actual a 15 C y permanece sujeta a Saturación arcana; su impacto sobre la economía de Maná debe seguir auditándose en playtest.
+El cobre es la unidad mínima ordinaria. Oro, plata y cobre son tres formas de presentar un único valor; no son patrimonios independientes. En Foundry la fuente autoritativa se almacena como un entero de cobres.
 
-La munición ordinaria puede manejarse como **Suministro** en expediciones cuando contar cada proyectil no aporte decisiones interesantes. La referencia actual es 3 unidades de Suministro por expedición, ajustable por duración y circunstancias. Munición especial sí puede registrarse individualmente.
+Las monedas regionales continúan existiendo dentro de Edria. c/p/o es una normalización mecánica del valor y no afirma que todas las potencias acuñen la misma moneda física. Cuando una divisa concreta importe, puede registrarse como un bien separado hasta ser aceptada o cambiada. No existe un tipo de cambio regional universal.
 
-Los objetos mágicos no usan una escala universal de “+1/+2/+3”. Sus propiedades deben ser concretas. La riqueza, los negocios y la propiedad pueden producir poder económico real dentro del mundo, pero no se convierten automáticamente en progresión mecánica de PD o PR.
+### PEI y Reserva inicial
+
+La creación estándar usa **PEI 20 o = 2.000 c** como presupuesto material. No es dinero y no puede convertirse en saldo. Se elige un Paquete de Preparación o Compra libre; no se combinan. El remanente de un Paquete se pierde.
+
+Tras cerrar la preparación material, un personaje jugador creado mediante el procedimiento estándar recibe una sola vez una **Reserva líquida de 2 o = 200 c**. NPC, Familiares, plantillas, personajes importados o Actors antiguos no reciben esa Reserva automáticamente.
+
+### Precio, Unidad Comercial y mercado
+
+Un precio puede estar **Exacto**, **Variable** o **Sin precio establecido**. 0 c significa gratuito y no equivale a precio desconocido. Un precio exacto se registra en cobres enteros y se presenta de forma legible en o/p/c.
+
+La **Unidad Comercial** indica cuántas unidades físicas cubre el precio. Ejemplos:
+- 20 flechas = **2 p**
+- 20 virotes = **3 p**
+- 12 disparos ordinarios de arma de fuego = **5 p**
+- repuesto de Kit Médico, 5 usos = **5 p**
+
+El precio no es el único límite. Un objeto o servicio también puede tener **Disponibilidad** —Común, Profesional, Restringida, Rara o Excepcional— y un régimen de acceso social/legal. Tener suficiente dinero no crea existencias ni elimina licencias, requisitos o logística.
+
+### Catálogo monetario de equipo
+
+| Equipo | Precio |
+|---|---:|
+| Cuchillo | 3 p |
+| Daga | 6 p |
+| Espada corta | 1 o |
+| Espada larga | 2 o |
+| Sable | 1 o 5 p |
+| Hacha | 2 o 5 p |
+| Maza | 1 o |
+| Martillo de guerra | 3 o |
+| Lanza | 5 p |
+| Alabarda | 3 o |
+| Mandoble / Espadón equivalente | 4 o |
+| Gran hacha | 5 o |
+| Gran martillo | 5 o |
+| Arco corto | 1 o |
+| Arco largo | 2 o |
+| Ballesta | 3 o |
+| Ballesta pesada | 5 o |
+| Pistola temprana | 10 o |
+| Rifle temprano | 18 o |
+| Pistola repetidora | 35 o · Rara |
+| Rifle repetidor | 45 o · Rara |
+| Armadura ligera | 1 o 5 p |
+| Armadura reforzada | 4 o |
+| Malla | 10 o |
+| Armadura pesada | 16 o |
+| Placas | 40 o |
+| Broquel | 5 p |
+| Escudo estándar | 1 o 5 p |
+| Escudo pesado | 3 o |
+
+Kits: Artesano 1 o; Ingeniería de campo 2 o; Minería 1 o; Médico 2 o; Alquimia de campo 2 o; Infiltración 1 o; Cartográfico 1 o; Navegación 2 o; Campaña 1 o; Escalada 1 o; Escribanía 5 p; Mercantil 1 o; Académico 2 o; Instrumental Arcano de campo 2 o; mantenimiento de armas de fuego 1 o.
+
+Otros: Gancho de escalada 3 p; Palanca 2 p; Pico o pala 2 p; Caja pequeña asegurada 5 p; Catalejo 1 o; Estuche impermeable de documentos/mapas 5 p; Provisiones 7 días 2 p; Combustible de iluminación 5 noches 2 p; Repuesto médico 5 usos 5 p; materiales de escritura 2 p.
+
+Las fórmulas alquímicas y otros bienes cuyo precio anterior estaba expresado en Coronas históricas quedan **sin precio monetario establecido** hasta que su valoración sea ratificada específicamente. No se convierte ese precio legado por inferencia.
+
+### Compra, venta y fabricación
+
+La **venta rápida** usa una referencia exacta del **25%** del valor aplicable, calculada sobre la cantidad real y redondeada una sola vez hacia abajo al cobre. Una **venta directa** no posee una tasa universal; alrededor del 50% es sólo una referencia posible cuando exista comprador y se acuerde ese valor.
+
+Fabricar un objeto produce el objeto, no dinero automático. La rentabilidad exige costes, tiempo, comprador y precio de venta reales. Dinero compra recursos y servicios disponibles; **PD compra desarrollo personal**.
+
+### Adaptación de equipo — REV-CREA-08-001
+
+Adaptación menor: recargo **25%** del precio base. Adaptación mayor: **50%**. El recargo mínimo es **1 p = 10 c**. Si el porcentaje produce fracción de cobre, el recargo se redondea hacia arriba al cobre entero.
+
+### Migración de crowns
+
+**crowns** es un campo legado obsoleto, no una cuarta moneda canónica. No tiene equivalencia automática. Foundry preserva el valor original y marca el Actor como pendiente hasta que una persona indique explícitamente cuántos cobres vale 1 crown o confirme que debe archivarse sin convertirlo. Nunca se suma crowns silenciosamente a un saldo canónico existente.
 
 ## 20. Pueblos, herencias, culturas y orígenes
 
 ### Regla mecánica vigente
 
-Tierra Mágica **no utiliza paquetes mecánicos obligatorios ni gratuitos por pueblo, especie, cultura u Origen**. Todos los personajes se construyen sobre la misma economía de **25 PD + 3 PR + 100 C**.
+Tierra Mágica **no utiliza paquetes mecánicos obligatorios ni gratuitos por pueblo, especie, cultura u Origen**. Todos los personajes se construyen sobre la misma economía de **25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o**.
 
 Los pueblos y Orígenes describen identidad, procedencia, idioma, costumbres, anatomía, contactos, posición social, creencias y ficción. No conceden automáticamente Atributos, Habilidades, PD, PR, Defensa, Vida, Maná, acciones, Técnicas, Disciplinas, hechizos ni competencias.
 
@@ -2914,7 +2994,7 @@ desarrollan juntos.
 ## Núcleo vigente ya consolidado
 
 - Motor 2d10, Dificultades, Ventaja/Desventaja, Hazañas/Pifias y grados de resultado.
-- Creación sobre 25 PD + 3 PR + 100 C, ahora documentada paso a paso.
+- Creación sobre 25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o, ahora documentada paso a paso.
 - Siete Atributos, 26 Habilidades, Especializaciones, progresión y costes.
 - Economía de Acción, Movimiento y Reacción.
 - Combate, Escala, maniobras, armas, armaduras, escudos y técnicas ratificadas.
