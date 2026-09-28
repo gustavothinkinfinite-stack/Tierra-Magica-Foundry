@@ -546,16 +546,31 @@
 
 .tm-check input { width: 20px; }
 
-.tm-currency {
-  display: grid;
-  grid-template-columns: auto repeat(3, minmax(100px, 1fr));
-  gap: 10px;
-  align-items: end;
-}
-
+.tm-currency { display: block; }
 .tm-currency h2 { margin: 0; }
-.tm-currency label { display: flex; align-items: center; gap: 6px; font-weight: 700; }
-.tm-currency input { width: 70px; text-align: center; }
+.tm-currency-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(110px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.tm-currency-fields label { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-weight: 700; }
+.tm-currency-fields input { width: 82px; text-align: center; }
+.tm-currency-actions { margin: 6px 0 10px; flex-wrap: wrap; }
+.tm-currency-creation,
+.tm-currency-migration {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 9px 10px;
+  border: 1px solid rgba(176, 158, 124, 0.55);
+  border-radius: 3px;
+  background: rgba(226, 218, 200, 0.38);
+}
+.tm-currency-migration {
+  border-color: rgba(166, 104, 57, 0.7);
+  background: rgba(181, 120, 65, 0.10);
+}
 
 .tm-chat-card {
   padding: 8px;
