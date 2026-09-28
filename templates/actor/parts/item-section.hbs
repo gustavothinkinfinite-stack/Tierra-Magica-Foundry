@@ -27,6 +27,7 @@
           {{#if (eq item.type "formula")}}<small>Dosis {{item.system.quantity}}{{#if item.system.saturating}} · Saturante: {{item.system.family}}{{/if}}</small>{{/if}}
           {{#if (eq item.type "ritual")}}<small>DF {{item.system.difficulty}} · Director {{item.system.manaDirector}} Maná · {{item.system.time}}</small>{{/if}}
           {{#if (eq item.type "device")}}<small>Energía {{item.system.energy.value}}/{{item.system.energy.max}} · Caudal {{item.system.flow}} · {{item.system.condition}}</small>{{/if}}
+          <small>Precio: {{item.system.priceDisplay}}{{#if (eq item.system.priceStatus "exact")}} · unidad {{item.system.priceQuantity}}{{/if}}</small>
         </div>
         <div class="tm-item-actions">
           {{#if (eq item.type "weapon")}}
