@@ -176,6 +176,72 @@ export class TierraMagicaActor extends Actor {
     });
   }
 
+  async setSkillRank(key, requestedRank) {
+    if (!TM_CONFIG.skills[key]) return ui.notifications.warn("Habilidad no canónica: " + key + ".");
+    const rank = Math.max(0, Math.min(5, Math.floor(toNumber(requestedRank))));
+    const current = Math.max(0, Math.min(5, Math.floor(toNumber(this.system.skills?.[key]?.rank))));
+
+    if (this.type !== "character") {
+      return this.update({ ["system.skills." + key + ".rank"]: rank });
+    }
+    if (rank < current && this.system.creation?.skillBuildActive === false) {
+      return ui.notifications.warn("Reducir rangos requiere creación abierta o una reconstrucción autorizada.");
+    }
+
+    const candidate = {};
+    for (const skillKey of Object.keys(TM_CONFIG.skills)) {
+      candidate[skillKey] = { rank: skillKey === key ? rank : toNumber(this.system.skills?.[skillKey]?.rank) };
+    }
+    const level = Math.max(1, Math.floor(toNumber(this.system.details?.level, 1)));
+    const pdTotal = 25 + Math.max(0, level - 1) * 4;
+    const specializationSkillKeys = this.items
+      .filter((item) => item.type === "specialization" && item.system?.skill)
+      .map((item) => item.system.skill);
+    const validation = validateSkillProgression({
+      skills: candidate,
+      skillDefinitions: TM_CONFIG.skills,
+      level,
+      pdSpent: Math.max(toNumber(this.system.details?.pdSpent), skillsPdCost(candidate, Object.keys(TM_CONFIG.skills))),
+      pdTotal,
+      specializationSkillKeys
+    });
+    const blocking = validation.issues.find((issue) =>
+      ["rank-level", "level-one-expert-limit", "grand-master-specialization", "skills-over-budget"].includes(issue.code)
+    );
+    if (blocking) {
+      const messages = {
+        "rank-level": "El nivel actual no permite ese rango.",
+        "level-one-expert-limit": "A nivel 1 sólo puede existir una Habilidad Experta.",
+        "grand-master-specialization": "Gran Maestro requiere una Especialización coherente cuando la Habilidad posee catálogo.",
+        "skills-over-budget": "Los rangos de Habilidad superarían los PD profesionales disponibles."
+      };
+      return ui.notifications.warn(messages[blocking.code] ?? "El rango solicitado no es válido.");
+    }
+
+    return this.update({ ["system.skills." + key + ".rank"]: rank });
+  }
+
+  async closeSkillBuild() {
+    if (this.type !== "character") return;
+    const level = Math.max(1, Math.floor(toNumber(this.system.details?.level, 1)));
+    const pdTotal = 25 + Math.max(0, level - 1) * 4;
+    const specializationSkillKeys = this.items
+      .filter((item) => item.type === "specialization" && item.system?.skill)
+      .map((item) => item.system.skill);
+    const validation = validateSkillProgression({
+      skills: this.system.skills,
+      skillDefinitions: TM_CONFIG.skills,
+      level,
+      pdSpent: this.system.details?.pdSpent,
+      pdTotal,
+      specializationSkillKeys
+    });
+    if (!validation.valid) {
+      return ui.notifications.warn("No puede cerrarse la construcción de Habilidades mientras existan inconsistencias de rango o PD.");
+    }
+    return this.update({ "system.creation.skillBuildActive": false });
+  }
+
   async rollWeapon(item, { df = null, mode = "normal", modifier = 0, damageBonus = 0, penetrationBonus = 0, technique = "" } = {}) {
     if (!item || item.type !== "weapon") return null;
     const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
