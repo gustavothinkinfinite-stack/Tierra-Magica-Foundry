@@ -71,3 +71,77 @@ export function validateSkillProgression({
 
   return { cost, issues, valid: issues.length === 0 };
 }
+
+export async function migrateWorldSkills(skillDefinitions = {}) {
+  if (!globalThis.game?.user?.isGM) return { actors: 0, items: 0, legacy: 0 };
+  const canonicalKeys = new Set(Object.keys(skillDefinitions));
+  let actors = 0;
+  let items = 0;
+  let legacy = 0;
+
+  for (const actor of game.actors ?? []) {
+    const source = actor.toObject().system ?? {};
+    const storedSkills = source.skills ?? {};
+    const updates = {};
+    const legacySkills = { ...(source.legacySkills ?? {}) };
+    let changed = false;
+
+    for (const key of canonicalKeys) {
+      if (Object.prototype.hasOwnProperty.call(storedSkills, key)) continue;
+      updates["system.skills." + key] = { rank: 0, temporary: 0, other: 0 };
+      changed = true;
+    }
+    for (const [key, value] of Object.entries(storedSkills)) {
+      if (canonicalKeys.has(key)) continue;
+      if (!Object.prototype.hasOwnProperty.call(legacySkills, key)) legacySkills[key] = value;
+      updates["system.skills.-=" + key] = null;
+      legacy += 1;
+      changed = true;
+    }
+    if (Object.keys(legacySkills).length && JSON.stringify(legacySkills) !== JSON.stringify(source.legacySkills ?? {})) {
+      updates["system.legacySkills"] = legacySkills;
+      changed = true;
+    }
+    if (changed) {
+      await actor.update(updates);
+      actors += 1;
+    }
+
+    for (const item of actor.items ?? []) {
+      if (await migrateSkillItem(item)) items += 1;
+    }
+  }
+
+  for (const item of game.items ?? []) {
+    if (await migrateSkillItem(item)) items += 1;
+  }
+
+  return { actors, items, legacy };
+}
+
+async function migrateSkillItem(item) {
+  const updates = {};
+  if (item.type === "specialization" && Number(item.system?.pdCost) === 2) {
+    updates["system.pdCost"] = 1;
+  }
+  if (item.type === "spell") {
+    const requirements = String(item.system?.requirements ?? "").trim();
+    if (item.name === "Cierre Restaurador" && requirements === "Medicina") {
+      updates["system.requirements"] = "";
+    }
+    if (item.name === "Visión Arcana" && requirements === "Arcana") {
+      updates["system.requirements"] = "";
+    }
+    if (item.name === "Regeneración") {
+      if (!item.system?.method || item.system.method === "direct") updates["system.method"] = "ritual";
+      if (requirements === "Medicina") updates["system.requirements"] = "Medicina Entrenada";
+      const skillRequirements = Array.isArray(item.system?.skillRequirements) ? item.system.skillRequirements : [];
+      if (!skillRequirements.some((entry) => entry?.skill === "medicine" && Number(entry?.minRank) === 2)) {
+        updates["system.skillRequirements"] = [{ skill: "medicine", minRank: 2 }];
+      }
+    }
+  }
+  if (!Object.keys(updates).length) return false;
+  await item.update(updates);
+  return true;
+}
