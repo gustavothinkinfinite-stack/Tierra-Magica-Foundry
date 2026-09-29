@@ -7,10 +7,10 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = async (file) => JSON.parse(await readFile(resolve(root, file), "utf8"));
 
-test("el manifiesto describe Foundry T.M. 1.0.15", async () => {
+test("el manifiesto describe Foundry T.M. 1.0.16", async () => {
   const manifest = await readJson("system.json");
   assert.equal(manifest.id, "tierra-magica");
-  assert.equal(manifest.version, "1.0.15");
+  assert.equal(manifest.version, "1.0.16");
   assert.equal(manifest.compatibility.verified, "14");
   assert.equal(manifest.initiative.startsWith("2d10"), true);
   await Promise.all([...manifest.esmodules, ...manifest.styles, ...manifest.languages.map((l) => l.path)]
@@ -27,6 +27,7 @@ test("el esquema contiene actores y tipos de objeto del manual", async () => {
   assert.equal(Object.keys(templates.Actor.templates.base.attributes).length, 7);
   assert.equal(Object.keys(templates.Actor.templates.base.skills).length, 26);
   assert.deepEqual(templates.Item.templates.base.skillModifiers, []);
+  assert.deepEqual(templates.Item.templates.base.skillRequirements, []);
   assert.equal(templates.Item.templates.base.skillModifiersActive, true);
   assert.equal(templates.Item.spell.skillModifiersActive, false);
   await Promise.all(templates.Actor.types.map((type) => access(resolve(root, "templates/actor/" + type + "-sheet.hbs"))));
