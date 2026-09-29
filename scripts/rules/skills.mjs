@@ -45,24 +45,54 @@ export function validateSkillProgression({
   level = 1,
   pdSpent = 0,
   pdTotal = 25,
-  specializationSkillKeys = []
+  specializationSkillKeys = [],
+  specializations = [],
+  creationActive = false
 } = {}) {
   const issues = [];
   const keys = Object.keys(skillDefinitions);
   const normalizedLevel = Math.max(1, Math.floor(Number(level) || 1));
   const expertOrHigher = keys.filter((key) => normalizeSkillRank(skills?.[key]?.rank) >= 3);
+  const specializationEntries = Array.isArray(specializations) && specializations.length
+    ? specializations.map((entry) => ({ skill: entry?.skill ?? "", name: String(entry?.name ?? "") }))
+    : specializationSkillKeys.map((skill) => ({ skill, name: "" }));
+  const effectiveSpecializationKeys = specializationEntries.map((entry) => entry.skill).filter(Boolean);
 
   for (const key of keys) {
     const rank = normalizeSkillRank(skills?.[key]?.rank);
     if (normalizedLevel <= 8 && rank > 3) issues.push({ code: "rank-level", skill: key, rank });
     if (normalizedLevel >= 9 && normalizedLevel <= 14 && rank > 4) issues.push({ code: "rank-level", skill: key, rank });
-    if (rank === 5 && skillDefinitions[key]?.hasSpecializations !== false && !specializationSkillKeys.includes(key)) {
+    if (rank === 5 && skillDefinitions[key]?.hasSpecializations !== false && !effectiveSpecializationKeys.includes(key)) {
       issues.push({ code: "grand-master-specialization", skill: key, rank });
     }
   }
 
   if (normalizedLevel === 1 && expertOrHigher.length > 1) {
     issues.push({ code: "level-one-expert-limit", skills: expertOrHigher });
+  }
+
+  for (const entry of specializationEntries) {
+    if (!entry.skill || !skillDefinitions[entry.skill]) continue;
+    if (normalizeSkillRank(skills?.[entry.skill]?.rank) < 2) {
+      issues.push({ code: "specialization-parent-rank", skill: entry.skill, name: entry.name });
+    }
+  }
+
+  if (creationActive) {
+    const counts = {};
+    for (const entry of specializationEntries) {
+      if (!entry.skill) continue;
+      counts[entry.skill] = (counts[entry.skill] ?? 0) + 1;
+      if (counts[entry.skill] > 2) issues.push({ code: "specialization-creation-limit", skill: entry.skill });
+    }
+  }
+
+  const seenSpecializations = new Set();
+  for (const entry of specializationEntries) {
+    if (!entry.skill || !entry.name) continue;
+    const identity = entry.skill + "::" + entry.name.trim().toLowerCase();
+    if (seenSpecializations.has(identity)) issues.push({ code: "specialization-duplicate", skill: entry.skill, name: entry.name });
+    seenSpecializations.add(identity);
   }
 
   const cost = skillsPdCost(skills, keys);
