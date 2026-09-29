@@ -27,9 +27,24 @@ export class TierraMagicaActor extends Actor {
       skill.other = toNumber(skill.other);
       skill.label = TM_CONFIG.skills[key]?.label ?? key;
       skill.rankLabel = TM_CONFIG.rankLabels[skill.rank] ?? "";
+      skill.pdCost = skillRankCost(skill.rank);
       skill.breakdown = this.#buildSkillBreakdown(key, skill);
       skill.bonus = skill.breakdown.total;
     }
+
+    const level = Math.max(1, Math.floor(toNumber(s.details?.level, 1)));
+    const pdTotal = 25 + Math.max(0, level - 1) * 4;
+    const specializationSkillKeys = this.items
+      .filter((item) => item.type === "specialization" && item.system?.skill)
+      .map((item) => item.system.skill);
+    const skillValidation = validateSkillProgression({
+      skills: s.skills,
+      skillDefinitions: TM_CONFIG.skills,
+      level,
+      pdSpent: s.details?.pdSpent,
+      pdTotal,
+      specializationSkillKeys
+    });
 
     const armor = this.items
       .filter((i) => i.type === "armor" && i.system.equipped)
@@ -54,7 +69,10 @@ export class TierraMagicaActor extends Actor {
       movement: Math.max(1, 6 + toNumber(s.combat?.movementBonus)),
       initiative: toNumber(a.per?.value, 1) + toNumber(s.combat?.initiativeBonus),
       martialDefense,
-      equippedShield: shield
+      equippedShield: shield,
+      skillsPdCost: skillValidation.cost,
+      skillIssues: skillValidation.issues,
+      skillsValid: skillValidation.valid
     };
 
     if (s.resources?.health) s.resources.health.max = s.derived.healthMax;
