@@ -143,8 +143,9 @@ export class TierraMagicaActor extends Actor {
   async configureAndRollSkill(key) {
     const skill = this.system.skills?.[key];
     if (!skill) return null;
+    const suggestedAttribute = TM_CONFIG.skills[key]?.suggestedAttribute ?? "int";
     const options = Object.entries(TM_CONFIG.attributes)
-      .map(([k, v]) => "<option value='" + k + "'>" + v + "</option>").join("");
+      .map(([k, v]) => "<option value='" + k + "'" + (k === suggestedAttribute ? " selected" : "") + ">" + v + "</option>").join("");
     const breakdown = skill.breakdown ?? this.#buildSkillBreakdown(key, skill);
     const result = await Dialog.prompt({
       title: "Tirada de " + (TM_CONFIG.skills[key]?.label ?? key),
