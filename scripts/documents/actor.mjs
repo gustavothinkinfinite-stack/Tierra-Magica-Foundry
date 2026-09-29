@@ -697,27 +697,6 @@ export class TierraMagicaActor extends Actor {
   }
 
   async #chooseAttribute(skillKey) {
-    const defaultMap = {
-      athletics: "fue", acrobatics: "agi", stealth: "agi", survival: "per", nature: "int",
-      investigation: "int", persuasion: "pre", deception: "pre", intimidation: "pre", empathy: "per",
-      history: "int", religion: "int", medicine: "int", arcana: "int", crafting: "int",
-      engineering: "int", alchemy: "int", thievery: "agi", lightWeapons: "agi", martialWeapons: "fue",
-      heavyWeapons: "fue", rangedWeapons: "per", channeling: "int", ritualism: "int", handling: "agi", piloting: "agi"
-    };
-    return defaultMap[skillKey] ?? "int";
-  }
-
-  #meetsSkillRequirement(text) {
-    const lower = text.toLowerCase();
-    const pairs = [
-      ["medicina", "medicine"], ["arcana", "arcana"], ["canalización", "channeling"],
-      ["ritualismo", "ritualism"], ["alquimia", "alchemy"], ["ingeniería", "engineering"]
-    ];
-    for (const [label, key] of pairs) {
-      if (!lower.includes(label)) continue;
-      const rank = toNumber(this.system.skills?.[key]?.rank);
-      if (rank < 1) return false;
-    }
-    return true;
+    return TM_CONFIG.skills[skillKey]?.suggestedAttribute ?? "int";
   }
 }
