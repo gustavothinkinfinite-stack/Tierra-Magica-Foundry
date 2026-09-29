@@ -34,16 +34,17 @@ export class TierraMagicaActor extends Actor {
 
     const level = Math.max(1, Math.floor(toNumber(s.details?.level, 1)));
     const pdTotal = 25 + Math.max(0, level - 1) * 4;
-    const specializationSkillKeys = this.items
+    const specializations = this.items
       .filter((item) => item.type === "specialization" && item.system?.skill)
-      .map((item) => item.system.skill);
+      .map((item) => ({ skill: item.system.skill, name: item.name }));
     const skillValidation = validateSkillProgression({
       skills: s.skills,
       skillDefinitions: TM_CONFIG.skills,
       level,
       pdSpent: s.details?.pdSpent,
       pdTotal,
-      specializationSkillKeys
+      specializations,
+      creationActive: this.system.creation?.skillBuildActive !== false
     });
 
     const armor = this.items
@@ -194,26 +195,31 @@ export class TierraMagicaActor extends Actor {
     }
     const level = Math.max(1, Math.floor(toNumber(this.system.details?.level, 1)));
     const pdTotal = 25 + Math.max(0, level - 1) * 4;
-    const specializationSkillKeys = this.items
+    const specializations = this.items
       .filter((item) => item.type === "specialization" && item.system?.skill)
-      .map((item) => item.system.skill);
+      .map((item) => ({ skill: item.system.skill, name: item.name }));
     const validation = validateSkillProgression({
       skills: candidate,
       skillDefinitions: TM_CONFIG.skills,
       level,
       pdSpent: Math.max(toNumber(this.system.details?.pdSpent), skillsPdCost(candidate, Object.keys(TM_CONFIG.skills))),
       pdTotal,
-      specializationSkillKeys
+      specializations,
+      creationActive: this.system.creation?.skillBuildActive !== false
     });
     const blocking = validation.issues.find((issue) =>
-      ["rank-level", "level-one-expert-limit", "grand-master-specialization", "skills-over-budget"].includes(issue.code)
+      ["rank-level", "level-one-expert-limit", "grand-master-specialization", "skills-over-budget",
+        "specialization-parent-rank", "specialization-creation-limit", "specialization-duplicate"].includes(issue.code)
     );
     if (blocking) {
       const messages = {
         "rank-level": "El nivel actual no permite ese rango.",
         "level-one-expert-limit": "A nivel 1 sólo puede existir una Habilidad Experta.",
         "grand-master-specialization": "Gran Maestro requiere una Especialización coherente cuando la Habilidad posee catálogo.",
-        "skills-over-budget": "Los rangos de Habilidad superarían los PD profesionales disponibles."
+        "skills-over-budget": "Los rangos de Habilidad superarían los PD profesionales disponibles.",
+        "specialization-parent-rank": "Una Especialización requiere su Habilidad madre Entrenada.",
+        "specialization-creation-limit": "Durante creación hay un máximo de 2 Especializaciones por Habilidad madre.",
+        "specialization-duplicate": "La misma Especialización no puede adquirirse dos veces."
       };
       return ui.notifications.warn(messages[blocking.code] ?? "El rango solicitado no es válido.");
     }
@@ -225,16 +231,17 @@ export class TierraMagicaActor extends Actor {
     if (this.type !== "character") return;
     const level = Math.max(1, Math.floor(toNumber(this.system.details?.level, 1)));
     const pdTotal = 25 + Math.max(0, level - 1) * 4;
-    const specializationSkillKeys = this.items
+    const specializations = this.items
       .filter((item) => item.type === "specialization" && item.system?.skill)
-      .map((item) => item.system.skill);
+      .map((item) => ({ skill: item.system.skill, name: item.name }));
     const validation = validateSkillProgression({
       skills: this.system.skills,
       skillDefinitions: TM_CONFIG.skills,
       level,
       pdSpent: this.system.details?.pdSpent,
       pdTotal,
-      specializationSkillKeys
+      specializations,
+      creationActive: this.system.creation?.skillBuildActive !== false
     });
     if (!validation.valid) {
       return ui.notifications.warn("No puede cerrarse la construcción de Habilidades mientras existan inconsistencias de rango o PD.");
