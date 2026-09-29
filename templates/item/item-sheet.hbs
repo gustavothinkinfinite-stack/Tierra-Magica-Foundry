@@ -118,7 +118,10 @@
 
       <label><span>Cantidad</span><input type="number" name="system.quantity" value="{{system.quantity}}" min="0" /></label>
       <label><span>Peso</span><input type="number" name="system.weight" value="{{system.weight}}" min="0" step="0.1" /></label>
-      <label><span>Precio</span><input type="number" name="system.price" value="{{system.price}}" min="0" step="0.1" /></label>
+      <label><span>Estado de precio</span><select name="system.priceStatus">{{selectOptions config.priceStatuses selected=system.priceStatus}}</select></label>
+      <label><span>Precio (cobres)</span><input type="number" name="system.priceCopper" value="{{system.priceCopper}}" min="0" step="1" /></label>
+      <label><span>Unidad Comercial</span><input type="number" name="system.priceQuantity" value="{{system.priceQuantity}}" min="1" step="1" /></label>
+      <label><span>Precio visible</span><input type="text" value="{{priceDisplay}}" disabled /></label>
       <label><span>Disponibilidad</span><select name="system.availability">{{selectOptions config.availability selected=system.availability}}</select></label>
       <label><span>Calidad</span><select name="system.quality">{{selectOptions config.qualities selected=system.quality}}</select></label>
       <label><span>Propiedades</span><input type="text" name="system.properties" value="{{system.properties}}" /></label>

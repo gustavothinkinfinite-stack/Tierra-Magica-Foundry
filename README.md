@@ -4,9 +4,9 @@ Sistema para Foundry VTT v14 basado en **Foundry T.M. 1.0 Playtest**.
 
 La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuente mecánica canónica es `docs/Foundry_TM_Manual_1.0_Playtest.md`; la fuente narrativa y de continuidad es **Tierra Mágica — Canon del Mundo v1.2**. Las versiones históricas, la implementación y los documentos derivados no prevalecen cuando contradicen la fuente maestra de su dominio.
 
-Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + 100 C en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
+Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**1.0.14 — núcleo 1.0 completo y jugable.** La auditoría cruzada A1–A9 y la auditoría integral final están cerradas. Los cambios del motor requieren un defecto reproducible, una contradicción canónica, un hueco funcional demostrado o una decisión de diseño consolidada primero en el Manual.
+**1.0.15 — CREA-09 Moneda integrada.** La auditoría cruzada A1–A9 y la auditoría integral final están cerradas. Los cambios del motor requieren un defecto reproducible, una contradicción canónica, un hueco funcional demostrado o una decisión de diseño consolidada primero en el Manual.
 
 Documentación de cierre: `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md` · referencia de mesa: `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md` · jerarquía de fuentes: `docs/FUENTES_CANONICAS.md`.
 

@@ -1,34 +1,34 @@
 export const STARTER_CONTENT = {
  weapon:[
-  {name:"Daga",system:{skill:"lightWeapons",attackAttribute:"agi",damage:3,penetration:0,strengthMin:0,price:5,properties:"Ligera, Ocultable"}},
-  {name:"Espada corta",system:{skill:"lightWeapons",attackAttribute:"agi",damageAttribute:"fue",damage:4,penetration:0,strengthMin:0,price:12,properties:"Ligera"}},
-  {name:"Sable",system:{skill:"lightWeapons",attackAttribute:"agi",damageAttribute:"fue",damage:4,penetration:0,strengthMin:0,price:18,properties:"Ágil"}},
-  {name:"Espada larga",system:{skill:"martialWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:5,penetration:0,strengthMin:1,price:20,properties:"Versátil"}},
-  {name:"Hacha",system:{skill:"martialWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:6,penetration:0,strengthMin:2,price:18,properties:"Impactante"}},
-  {name:"Maza",system:{skill:"martialWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:5,penetration:1,strengthMin:1,price:16,properties:"Impactante"}},
-  {name:"Martillo de guerra",system:{skill:"martialWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:6,penetration:2,strengthMin:2,price:24,properties:"Impactante"}},
-  {name:"Lanza",system:{skill:"martialWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:5,penetration:0,strengthMin:1,price:12,properties:"Alcance, 2 manos"}},
-  {name:"Alabarda",system:{skill:"heavyWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:7,penetration:1,strengthMin:2,price:30,properties:"Alcance, Pesada, 2 manos"}},
-  {name:"Mandoble",system:{skill:"heavyWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:7,penetration:0,strengthMin:2,price:32,properties:"Pesada, 2 manos"}},
-  {name:"Gran hacha",system:{skill:"heavyWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:8,penetration:0,strengthMin:3,price:34,properties:"Pesada, 2 manos"}},
-  {name:"Gran martillo",system:{skill:"heavyWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:7,penetration:2,strengthMin:3,price:40,properties:"Pesada, 2 manos"}},
-  {name:"Arco corto",system:{skill:"rangedWeapons",attackAttribute:"agi",damageAttribute:"fue",damage:4,penetration:0,power:2,rangeOptimal:15,price:15,properties:"Potencia 2"}},
-  {name:"Arco largo",system:{skill:"rangedWeapons",attackAttribute:"agi",damageAttribute:"fue",damage:5,penetration:0,power:3,rangeOptimal:30,price:25,properties:"Potencia 3, 2 manos"}},
-  {name:"Ballesta",system:{skill:"rangedWeapons",attackAttribute:"per",damage:6,penetration:1,reload:1,rangeOptimal:25,price:22,properties:"Recarga 1"}},
-  {name:"Ballesta pesada",system:{skill:"rangedWeapons",attackAttribute:"per",damage:8,penetration:2,reload:2,rangeOptimal:35,price:35,properties:"Recarga 2, 2 manos"}},
-  {name:"Pistola temprana",system:{skill:"rangedWeapons",attackAttribute:"per",damage:6,penetration:2,reload:2,rangeOptimal:15,price:30,properties:"Recarga 2"}},
-  {name:"Rifle temprano",system:{skill:"rangedWeapons",attackAttribute:"per",damage:7,penetration:3,reload:2,rangeOptimal:40,price:45,properties:"Recarga 2, 2 manos"}},
-  {name:"Pistola repetidora",system:{skill:"rangedWeapons",attackAttribute:"per",damage:6,penetration:1,rangeOptimal:20,price:50,properties:"Repetición"}},
-  {name:"Rifle repetidor",system:{skill:"rangedWeapons",attackAttribute:"per",damage:7,penetration:2,rangeOptimal:35,price:65,properties:"Repetición, 2 manos"}}
+  {name:"Daga",system:{skill:"lightWeapons",attackAttribute:"agi",damage:3,penetration:0,strengthMin:0,priceCopper:60,priceQuantity:1,priceStatus:"exact",legacyPrice:5,properties:"Ligera, Ocultable"}},
+  {name:"Espada corta",system:{skill:"lightWeapons",attackAttribute:"agi",damageAttribute:"fue",damage:4,penetration:0,strengthMin:0,priceCopper:100,priceQuantity:1,priceStatus:"exact",legacyPrice:12,properties:"Ligera"}},
+  {name:"Sable",system:{skill:"lightWeapons",attackAttribute:"agi",damageAttribute:"fue",damage:4,penetration:0,strengthMin:0,priceCopper:150,priceQuantity:1,priceStatus:"exact",legacyPrice:18,properties:"Ágil"}},
+  {name:"Espada larga",system:{skill:"martialWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:5,penetration:0,strengthMin:1,priceCopper:200,priceQuantity:1,priceStatus:"exact",legacyPrice:20,properties:"Versátil"}},
+  {name:"Hacha",system:{skill:"martialWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:6,penetration:0,strengthMin:2,priceCopper:250,priceQuantity:1,priceStatus:"exact",legacyPrice:18,properties:"Impactante"}},
+  {name:"Maza",system:{skill:"martialWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:5,penetration:1,strengthMin:1,priceCopper:100,priceQuantity:1,priceStatus:"exact",legacyPrice:16,properties:"Impactante"}},
+  {name:"Martillo de guerra",system:{skill:"martialWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:6,penetration:2,strengthMin:2,priceCopper:300,priceQuantity:1,priceStatus:"exact",legacyPrice:24,properties:"Impactante"}},
+  {name:"Lanza",system:{skill:"martialWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:5,penetration:0,strengthMin:1,priceCopper:50,priceQuantity:1,priceStatus:"exact",legacyPrice:12,properties:"Alcance, 2 manos"}},
+  {name:"Alabarda",system:{skill:"heavyWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:7,penetration:1,strengthMin:2,priceCopper:300,priceQuantity:1,priceStatus:"exact",legacyPrice:30,properties:"Alcance, Pesada, 2 manos"}},
+  {name:"Mandoble",system:{skill:"heavyWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:7,penetration:0,strengthMin:2,priceCopper:400,priceQuantity:1,priceStatus:"exact",legacyPrice:32,properties:"Pesada, 2 manos"}},
+  {name:"Gran hacha",system:{skill:"heavyWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:8,penetration:0,strengthMin:3,priceCopper:500,priceQuantity:1,priceStatus:"exact",legacyPrice:34,properties:"Pesada, 2 manos"}},
+  {name:"Gran martillo",system:{skill:"heavyWeapons",attackAttribute:"fue",damageAttribute:"fue",damage:7,penetration:2,strengthMin:3,priceCopper:500,priceQuantity:1,priceStatus:"exact",legacyPrice:40,properties:"Pesada, 2 manos"}},
+  {name:"Arco corto",system:{skill:"rangedWeapons",attackAttribute:"agi",damageAttribute:"fue",damage:4,penetration:0,power:2,rangeOptimal:15,priceCopper:100,priceQuantity:1,priceStatus:"exact",legacyPrice:15,properties:"Potencia 2"}},
+  {name:"Arco largo",system:{skill:"rangedWeapons",attackAttribute:"agi",damageAttribute:"fue",damage:5,penetration:0,power:3,rangeOptimal:30,priceCopper:200,priceQuantity:1,priceStatus:"exact",legacyPrice:25,properties:"Potencia 3, 2 manos"}},
+  {name:"Ballesta",system:{skill:"rangedWeapons",attackAttribute:"per",damage:6,penetration:1,reload:1,rangeOptimal:25,priceCopper:300,priceQuantity:1,priceStatus:"exact",legacyPrice:22,properties:"Recarga 1"}},
+  {name:"Ballesta pesada",system:{skill:"rangedWeapons",attackAttribute:"per",damage:8,penetration:2,reload:2,rangeOptimal:35,priceCopper:500,priceQuantity:1,priceStatus:"exact",legacyPrice:35,properties:"Recarga 2, 2 manos"}},
+  {name:"Pistola temprana",system:{skill:"rangedWeapons",attackAttribute:"per",damage:6,penetration:2,reload:2,rangeOptimal:15,priceCopper:1000,priceQuantity:1,priceStatus:"exact",legacyPrice:30,properties:"Recarga 2"}},
+  {name:"Rifle temprano",system:{skill:"rangedWeapons",attackAttribute:"per",damage:7,penetration:3,reload:2,rangeOptimal:40,priceCopper:1800,priceQuantity:1,priceStatus:"exact",legacyPrice:45,properties:"Recarga 2, 2 manos"}},
+  {name:"Pistola repetidora",system:{availability:"rare",skill:"rangedWeapons",attackAttribute:"per",damage:6,penetration:1,rangeOptimal:20,priceCopper:3500,priceQuantity:1,priceStatus:"exact",legacyPrice:50,properties:"Repetición"}},
+  {name:"Rifle repetidor",system:{availability:"rare",skill:"rangedWeapons",attackAttribute:"per",damage:7,penetration:2,rangeOptimal:35,priceCopper:4500,priceQuantity:1,priceStatus:"exact",legacyPrice:65,properties:"Repetición, 2 manos"}}
  ],
  armor:[
-  {name:"Armadura ligera",system:{protection:1,strengthMin:0,price:12}},{name:"Armadura reforzada",system:{protection:2,strengthMin:0,price:25}},
-  {name:"Malla",system:{protection:3,strengthMin:1,price:40}},{name:"Armadura pesada",system:{protection:4,strengthMin:2,price:60}},{name:"Placas",system:{protection:5,strengthMin:3,price:85}}
+  {name:"Armadura ligera",system:{protection:1,strengthMin:0,priceCopper:150,priceQuantity:1,priceStatus:"exact",legacyPrice:12}},{name:"Armadura reforzada",system:{protection:2,strengthMin:0,priceCopper:400,priceQuantity:1,priceStatus:"exact",legacyPrice:25}},
+  {name:"Malla",system:{protection:3,strengthMin:1,priceCopper:1000,priceQuantity:1,priceStatus:"exact",legacyPrice:40}},{name:"Armadura pesada",system:{protection:4,strengthMin:2,priceCopper:1600,priceQuantity:1,priceStatus:"exact",legacyPrice:60}},{name:"Placas",system:{protection:5,strengthMin:3,priceCopper:4000,priceQuantity:1,priceStatus:"exact",legacyPrice:85}}
  ],
  shield:[
-  {name:"Broquel",system:{passiveDefense:1,block:0,strengthMin:0,price:10,properties:"Sin Bloqueo especial"}},
-  {name:"Escudo estándar",system:{passiveDefense:1,block:2,strengthMin:0,price:18,frontalOnly:true,properties:"Bloqueo +2"}},
-  {name:"Escudo pesado",system:{passiveDefense:2,block:2,strengthMin:2,price:30,frontalOnly:true,properties:"Bloqueo +2; Movimiento -1"}}
+  {name:"Broquel",system:{passiveDefense:1,block:0,strengthMin:0,priceCopper:50,priceQuantity:1,priceStatus:"exact",legacyPrice:10,properties:"Sin Bloqueo especial"}},
+  {name:"Escudo estándar",system:{passiveDefense:1,block:2,strengthMin:0,priceCopper:150,priceQuantity:1,priceStatus:"exact",legacyPrice:18,frontalOnly:true,properties:"Bloqueo +2"}},
+  {name:"Escudo pesado",system:{passiveDefense:2,block:2,strengthMin:2,priceCopper:300,priceQuantity:1,priceStatus:"exact",legacyPrice:30,frontalOnly:true,properties:"Bloqueo +2; Movimiento -1"}}
  ],
  spell:[
   {name:"Proyectil Ígneo",system:{discipline:"evocation",grade:"basic",manaCost:3,attribute:"int",defense:"normal",damage:5,penetration:1,range:"Medio"}},
@@ -69,14 +69,14 @@ export const STARTER_CONTENT = {
   {name:"Coordinación Reactiva",system:{grade:"advanced",pdCost:3,requirements:"Familiar Mágico; Vínculo III",effect:"Define un disparador simple y observable para una respuesta; no genera Reacciones adicionales ni cadenas reactivas."}}
  ],
  formula:[
-  {name:"Bálsamo Restaurador",system:{grade:"common",pdCost:1,saturating:true,family:"restaurativa",effect:"Recupera 4 Vida; no Trauma/Herida Grave.",price:12}},
-  {name:"Poción Restauradora",system:{grade:"common",pdCost:1,route:"Oral",saturating:true,family:"restaurativa",effect:"Acción: recupera 4 Vida, hasta el máximo y respetando límites de lesión; no reduce Trauma ni repara Heridas Graves.",price:12}},
-  {name:"Poción de Recuperación Arcana",system:{grade:"refined",pdCost:1,route:"Oral",saturating:true,family:"arcana",effect:"Acción: recupera 3 Maná, hasta el máximo; no elimina Fatiga ni consecuencias de Sobrecarga.",price:15}},
-  {name:"Tónico de Vigor",system:{grade:"refined",pdCost:1,saturating:true,family:"potenciador",effect:"Ventaja en una prueba de VIG por esfuerzo prolongado.",price:10}},
-  {name:"Supresor del Dolor",system:{grade:"refined",pdCost:1,saturating:true,family:"analgésica",effect:"Ignora una Desventaja causada por dolor compatible; no repara lesión.",price:15}},
-  {name:"Neutralizante Común",system:{grade:"refined",pdCost:1,effect:"Nueva resistencia con Ventaja contra toxina compatible.",price:10}},
-  {name:"Toxina Debilitante",system:{grade:"complex",pdCost:2,route:"Sangre",effect:"VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular.",price:18}},
-  {name:"Bomba Incendiaria",system:{grade:"complex",pdCost:2,effect:"Área pequeña; Daño 6 Pen 1; resolución de colocación.",price:20}}
+  {name:"Bálsamo Restaurador",system:{grade:"common",pdCost:1,saturating:true,family:"restaurativa",effect:"Recupera 4 Vida; no Trauma/Herida Grave.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:12}},
+  {name:"Poción Restauradora",system:{grade:"common",pdCost:1,route:"Oral",saturating:true,family:"restaurativa",effect:"Acción: recupera 4 Vida, hasta el máximo y respetando límites de lesión; no reduce Trauma ni repara Heridas Graves.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:12}},
+  {name:"Poción de Recuperación Arcana",system:{grade:"refined",pdCost:1,route:"Oral",saturating:true,family:"arcana",effect:"Acción: recupera 3 Maná, hasta el máximo; no elimina Fatiga ni consecuencias de Sobrecarga.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:15}},
+  {name:"Tónico de Vigor",system:{grade:"refined",pdCost:1,saturating:true,family:"potenciador",effect:"Ventaja en una prueba de VIG por esfuerzo prolongado.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:10}},
+  {name:"Supresor del Dolor",system:{grade:"refined",pdCost:1,saturating:true,family:"analgésica",effect:"Ignora una Desventaja causada por dolor compatible; no repara lesión.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:15}},
+  {name:"Neutralizante Común",system:{grade:"refined",pdCost:1,effect:"Nueva resistencia con Ventaja contra toxina compatible.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:10}},
+  {name:"Toxina Debilitante",system:{grade:"complex",pdCost:2,route:"Sangre",effect:"VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:18}},
+  {name:"Bomba Incendiaria",system:{grade:"complex",pdCost:2,effect:"Área pequeña; Daño 6 Pen 1; resolución de colocación.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:20}}
  ],
  ritual:[
   {name:"Círculo de Protección",system:{grade:"basic",pdCost:2,difficulty:15,time:"30 minutos",usefulAssistants:2,manaDirector:3,manaAssistantMax:1,effect:"Barrera contra categoría sobrenatural definida."}},

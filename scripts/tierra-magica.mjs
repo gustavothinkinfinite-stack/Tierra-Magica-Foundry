@@ -15,6 +15,7 @@ import { installActionEconomyGuards } from "./rules/action-economy-guards.mjs";
 import { installReactionEconomyGuards } from "./rules/reaction-economy-guards.mjs";
 import { primaryActiveGm, validatePendingDamageRequest } from "./rules/damage-delivery.mjs";
 import { applyBoundedHealing, validatePendingHealingRequest } from "./rules/healing-delivery.mjs";
+import { installCurrencyRules, migrateWorldCurrency } from "./rules/currency.mjs";
 
 installFamiliarGuards(TierraMagicaActor);
 installMagicGuards(TierraMagicaActor);
@@ -26,9 +27,10 @@ installFormulaGuards(TierraMagicaActor);
 installRitualGuards(TierraMagicaActor);
 installActionEconomyGuards(TierraMagicaActor);
 installReactionEconomyGuards(TierraMagicaActor);
+installCurrencyRules(TierraMagicaActor);
 
 Hooks.once("init", async () => {
-  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.14");
+  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.15");
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
   CONFIG.Item.documentClass = TierraMagicaItem;
@@ -87,8 +89,15 @@ async function repairCharacterSheet031Data() {
 Hooks.once("ready", async () => {
   console.info("Foundry T.M. | Sistema listo");
   const repaired = await repairCharacterSheet031Data(); const retired = await retireLegacyMechanicalFields();
+  const currencyMigration = await migrateWorldCurrency();
   if (repaired) ui.notifications.info("Tierra Mágica: se repararon " + repaired + " ficha(s) afectadas por el guardado de v0.3.1.");
   if (retired) ui.notifications.info("Tierra Mágica: se retiraron campos mecánicos históricos de " + retired + " actor(es).");
+  if (currencyMigration.actors || currencyMigration.items) {
+    ui.notifications.info("Tierra Mágica: CREA-09 migró " + currencyMigration.actors + " Actor(es) y " + currencyMigration.items + " Item(s) al modelo monetario canónico.");
+  }
+  if (currencyMigration.pending) {
+    ui.notifications.warn("Tierra Mágica: " + currencyMigration.pending + " Actor(es) conservan crowns legados y requieren una equivalencia explícita antes de convertirlos.");
+  }
 });
 
 Hooks.on("renderChatMessage", (message, html) => {

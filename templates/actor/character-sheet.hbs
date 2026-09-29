@@ -463,10 +463,42 @@
         <div><small>Página de equipo</small><h2>Equipo</h2><p>Inventario, recursos y objetos transportados.</p></div>
       </section>
       <section class="tm-panel tm-currency tm-v03-page-panel">
-        <div class="tm-section-heading"><h2>Moneda</h2><span>Recursos disponibles.</span></div>
-        <label>Oro <input type="number" name="system.currency.gold" value="{{system.currency.gold}}" /></label>
-        <label>Plata <input type="number" name="system.currency.silver" value="{{system.currency.silver}}" /></label>
-        <label>Cobre <input type="number" name="system.currency.copper" value="{{system.currency.copper}}" /></label>
+        <div class="tm-section-heading">
+          <h2>Moneda</h2>
+          <span>Saldo líquido: <strong>{{currency.display}}</strong></span>
+        </div>
+        <div class="tm-currency-fields">
+          <label>Oro <input type="number" min="0" step="1" data-action="currency-denomination" data-denomination="gold" value="{{currency.gold}}" /></label>
+          <label>Plata <input type="number" min="0" step="1" data-action="currency-denomination" data-denomination="silver" value="{{currency.silver}}" /></label>
+          <label>Cobre <input type="number" min="0" step="1" data-action="currency-denomination" data-denomination="copper" value="{{currency.copper}}" /></label>
+        </div>
+        <div class="tm-section-buttons tm-currency-actions">
+          <button type="button" data-action="currency-add"><i class="fa-solid fa-plus"></i> Añadir</button>
+          <button type="button" data-action="currency-spend"><i class="fa-solid fa-minus"></i> Gastar</button>
+          {{#unless currency.initialReserveGranted}}
+            <button type="button" data-action="grant-initial-reserve" title="Concede una sola vez la Reserva inicial estándar de 2 o.">Reserva inicial: 2 o</button>
+          {{/unless}}
+        </div>
+        {{#if creationPei.active}}
+          <div class="tm-currency-creation">
+            <strong>PEI restante: {{creationPei.display}}</strong>
+            <span>Presupuesto de creación; no es dinero y el remanente se pierde.</span>
+            <button type="button" data-action="close-creation-equipment">Cerrar equipo y conceder Reserva</button>
+          </div>
+        {{/if}}
+        {{#if currency.migrationPending}}
+          <div class="tm-currency-migration">
+            <strong>Migración monetaria pendiente.</strong>
+            {{#if currency.hasLegacyCrowns}}
+              <span>Dato preservado: {{currency.legacyCrowns}} crowns. No se convierte automáticamente.</span>
+              <div class="tm-section-buttons">
+                <button type="button" data-action="resolve-legacy-crowns">Convertir con equivalencia conocida</button>
+                <button type="button" data-action="archive-legacy-crowns">Archivar sin convertir</button>
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+        <small>10 c = 1 p · 10 p = 1 o. Oro, plata y cobre son una presentación del mismo saldo.</small>
       </section>
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Equipo e inventario" type="equipment" items=itemGroups.equipment}}
     </div>
