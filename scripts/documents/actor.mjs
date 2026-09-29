@@ -327,13 +327,27 @@ export class TierraMagicaActor extends Actor {
 
   async useSpell(item) {
     if (!item || item.type !== "spell") return null;
-    const cost = Math.max(0, toNumber(item.system.manaCost));
-    const mana = toNumber(this.system.resources?.mana?.value);
-    const requirements = String(item.system.requirements ?? "").trim();
-    if (requirements && !this.#meetsSkillRequirement(requirements)) {
-      return ui.notifications.warn("No se cumplen los requisitos de " + item.name + ": " + requirements);
+    const method = String(item.system.method ?? "direct").toLowerCase() === "ritual" ? "ritual" : "direct";
+    const operationalSkill = spellOperationalSkill(method);
+    const operationalRank = toNumber(this.system.skills?.[operationalSkill]?.rank);
+    const minimumRank = minimumSpellRank(item.system.grade);
+    if (operationalRank < minimumRank) {
+      return ui.notifications.warn(
+        item.name + " requiere " + (TM_CONFIG.skills[operationalSkill]?.label ?? operationalSkill) +
+        " " + (TM_CONFIG.rankLabels[minimumRank] ?? minimumRank) + " como competencia operativa."
+      );
+    }
+    const skillRequirements = Array.isArray(item.system.skillRequirements) ? item.system.skillRequirements : [];
+    if (!meetsSkillRequirements(this.system.skills, skillRequirements)) {
+      const labels = skillRequirements.map((requirement) =>
+        (TM_CONFIG.skills[requirement.skill]?.label ?? requirement.skill) + " " +
+        (TM_CONFIG.rankLabels[Number(requirement.minRank) || 0] ?? requirement.minRank)
+      ).join(", ");
+      return ui.notifications.warn("No se cumplen los requisitos de " + item.name + ": " + labels);
     }
 
+    const cost = Math.max(0, toNumber(item.system.manaCost));
+    const mana = toNumber(this.system.resources?.mana?.value);
     const overload = mana < cost;
     if (overload && !(cost - mana === 1 && mana >= 1)) {
       return ui.notifications.warn(this.name + " no tiene Maná suficiente y no cumple las condiciones de Sobrecarga.");
@@ -367,7 +381,7 @@ export class TierraMagicaActor extends Actor {
     const result = await this.rollCheck({
       label: "Hechizo: " + item.name + " · " + (TM_CONFIG.disciplines[item.system.discipline] ?? item.system.discipline),
       attributeKey: item.system.attribute || "int",
-      skillKey: "channeling",
+      skillKey: operationalSkill,
       df
     });
 
