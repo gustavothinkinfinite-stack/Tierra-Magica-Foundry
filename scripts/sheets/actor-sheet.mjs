@@ -56,10 +56,24 @@ export class TierraMagicaActorSheet extends ActorSheet {
 
     const level = Math.max(1, Math.floor(toNumber(this.actor.system.details?.level, 1)));
     const pdSpent = Math.max(0, toNumber(this.actor.system.details?.pdSpent));
+    const pdTotal = 25 + Math.max(0, level - 1) * 4;
+    const skillIssueLabels = {
+      "rank-level": "Hay una Habilidad por encima del rango permitido por nivel.",
+      "level-one-expert-limit": "A nivel 1 sólo puede existir una Habilidad Experta.",
+      "grand-master-specialization": "Una Habilidad Gran Maestro carece de la Especialización requerida.",
+      "skills-over-budget": "Los rangos de Habilidad superan los PD profesionales disponibles.",
+      "pd-spent-below-skills": "PD gastados es menor que el coste mínimo invertido en Habilidades."
+    };
+    const skillIssues = Array.isArray(this.actor.system.derived?.skillIssues)
+      ? this.actor.system.derived.skillIssues.map((issue) => skillIssueLabels[issue.code] ?? issue.code)
+      : [];
     context.development = {
-      pdTotal: 25 + Math.max(0, level - 1) * 4,
+      pdTotal,
       pdSpent,
-      pdAvailable: 25 + Math.max(0, level - 1) * 4 - pdSpent
+      pdAvailable: pdTotal - pdSpent,
+      skillsPdCost: toNumber(this.actor.system.derived?.skillsPdCost),
+      skillIssues,
+      skillBuildActive: this.actor.system.creation?.skillBuildActive !== false
     };
 
     context.turn = {
@@ -101,11 +115,13 @@ export class TierraMagicaActorSheet extends ActorSheet {
     html.find("[data-action='resolve-legacy-crowns']").click(() => this.#resolveLegacyCrowns());
     html.find("[data-action='archive-legacy-crowns']").click(() => this.#archiveLegacyCrowns());
 
-    html.find("[data-action='set-skill-rank']").change((event) => {
+    html.find("[data-action='set-skill-rank']").change(async (event) => {
       const key = event.currentTarget.dataset.key;
       const rank = Math.min(5, Math.max(0, Math.floor(toNumber(event.currentTarget.value))));
-      return this.actor.update({ ["system.skills." + key + ".rank"]: rank });
+      await this.actor.setSkillRank(key, rank);
+      event.currentTarget.value = String(toNumber(this.actor.system.skills?.[key]?.rank));
     });
+    html.find("[data-action='close-skill-build']").click(() => this.actor.closeSkillBuild());
     html.find("[data-action='set-skill-temporary']").change((event) => {
       const key = event.currentTarget.dataset.key;
       return this.actor.update({ ["system.skills." + key + ".temporary"]: toNumber(event.currentTarget.value) });
