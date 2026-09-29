@@ -17,6 +17,15 @@ Nivel 2–20: +4 PD/nivel; total acumulado 101 PD a nivel 20. No hay bono univer
 
 Rangos de Habilidad 0–5: bonos **+0/+1/+2/+4/+6/+8**; costes acumulados **0/1/3/7/13/21 PD**.
 
+**Lista canónica — 26 Habilidades:** Atletismo, Acrobacia, Sigilo; Supervivencia, Naturaleza, Investigación; Persuasión, Engaño, Intimidación, Empatía; Historia, Religión, Medicina, Arcana; Artesanía, Ingeniería, Alquimia, Latrocinio; Armas Ligeras, Armas Marciales, Armas Pesadas, Armas a Distancia; Canalización, Ritualismo; Manejo, Pilotaje.
+
+- Una prueba ordinaria usa **1 Atributo + 1 Habilidad principal**.
+- El Atributo depende del método; no existe pareja fija Atributo/Habilidad.
+- Requisitos como Entrenado o Experto usan el **rango base**, no el total modificado.
+- Nivel 1: máximo 1 Experta. Maestro: nivel 9+. Gran Maestro: nivel 15+.
+- Especialización: **1 PD**, requiere Habilidad madre Entrenada; no concede bono universal.
+- Gran Maestro exige Especialización coherente cuando la Habilidad disponga de catálogo; Canalización y Ritualismo están exentas sólo de ese requisito.
+
 ## Moneda y equipo inicial
 
 - **10 c = 1 p; 10 p = 1 o; 100 c = 1 o.**
