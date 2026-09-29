@@ -7,7 +7,7 @@
   <section class="tm-panel tm-item-fields">
     <div class="tm-form-grid">
       {{#if isWeapon}}
-        <label><span>Habilidad</span><select name="system.skill">{{selectOptions config.skillLabels selected=system.skill}}</select></label>
+        <label><span>Habilidad</span><select name="system.skill">{{selectOptions config.weaponSkillLabels selected=system.skill}}</select></label>
         <label><span>Atributo de ataque</span><select name="system.attackAttribute">{{selectOptions config.attributes selected=system.attackAttribute}}</select></label>
         <label><span>Atributo al daño</span><select name="system.damageAttribute"><option value="">Ninguno</option>{{selectOptions config.attributes selected=system.damageAttribute}}</select></label>
         <label><span>Daño base</span><input type="number" name="system.damage" value="{{system.damage}}" min="0" /></label>
@@ -36,6 +36,7 @@
       {{#if isSpell}}
         <label><span>Fuente</span><select name="system.source">{{selectOptions config.sources selected=system.source}}</select></label>
         <label><span>Disciplina</span><select name="system.discipline">{{selectOptions config.disciplines selected=system.discipline}}</select></label>
+        <label><span>Método</span><select name="system.method">{{selectOptions config.spellMethods selected=system.method}}</select></label>
         <label><span>Coste de Maná</span><input type="number" name="system.manaCost" value="{{system.manaCost}}" min="0" /></label>
         <label><span>Atributo</span><select name="system.attribute">{{selectOptions config.attributes selected=system.attribute}}</select></label>
         <label><span>Defensa</span><select name="system.defense">
@@ -48,7 +49,7 @@
         <label><span>Daño</span><input type="number" name="system.damage" value="{{system.damage}}" min="0" /></label>
         <label><span>Penetración</span><input type="number" name="system.penetration" value="{{system.penetration}}" min="0" /></label>
         <label><span>Alcance</span><input type="text" name="system.range" value="{{system.range}}" /></label>
-        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" placeholder="Medicina, Arcana..." /></label>
+        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" placeholder="Requisitos narrativos o de acceso" /></label>
         <label class="tm-check"><span>Sostenido</span><input type="checkbox" name="system.sustained" {{checked system.sustained}} /></label>
       {{/if}}
 
@@ -68,6 +69,7 @@
 
       {{#if isSpecialization}}
         <label><span>Habilidad base</span><select name="system.skill"><option value="">Elegir</option>{{selectOptions config.skillLabels selected=system.skill}}</select></label>
+        <label><span>Coste PD</span><input type="number" name="system.pdCost" value="{{system.pdCost}}" min="1" max="1" readonly /></label>
         <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" /></label>
         <label><span>Acceso / efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
       {{/if}}
@@ -127,6 +129,34 @@
       <label><span>Propiedades</span><input type="text" name="system.properties" value="{{system.properties}}" /></label>
       {{#if (or isWeapon isArmor isShield isEquipment)}}<label class="tm-check"><span>Equipado</span><input type="checkbox" name="system.equipped" {{checked system.equipped}} /></label>{{/if}}
     </div>
+  </section>
+
+  <section class="tm-panel tm-skill-requirements-editor">
+    <div class="tm-section-heading">
+      <h2>Requisitos de Habilidad</h2>
+      <span>El rango base requerido; los modificadores no cuentan como rango.</span>
+    </div>
+    <div class="tm-skill-modifier-list">
+      {{#each skillRequirements as |requirement|}}
+        <div class="tm-skill-modifier-row">
+          <select data-action="skill-requirement-field" data-index="{{requirement.index}}" data-field="skill" title="Habilidad requerida">
+            <option value="">Elegir Habilidad</option>
+            {{selectOptions @root.config.skillLabels selected=requirement.skill}}
+          </select>
+          <select data-action="skill-requirement-field" data-index="{{requirement.index}}" data-field="minRank" title="Rango mínimo">
+            {{selectOptions @root.config.rankOptionLabels selected=requirement.minRank}}
+          </select>
+          <button type="button" data-action="skill-requirement-delete" data-index="{{requirement.index}}" title="Eliminar requisito">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      {{else}}
+        <p class="tm-empty">Sin requisitos mecánicos de Habilidad.</p>
+      {{/each}}
+    </div>
+    <button type="button" class="tm-skill-modifier-add" data-action="skill-requirement-add">
+      <i class="fa-solid fa-plus"></i> Agregar requisito de Habilidad
+    </button>
   </section>
 
   <section class="tm-panel tm-skill-modifiers-editor">
