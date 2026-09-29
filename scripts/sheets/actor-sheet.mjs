@@ -371,7 +371,9 @@ export class TierraMagicaActorSheet extends ActorSheet {
       groups.get(group).skills.push({
         key,
         label: definition.label,
+        description: definition.description ?? "",
         rank: toNumber(skill.rank),
+        pdCost: TM_CONFIG.rankCosts[toNumber(skill.rank)] ?? 0,
         bonus: toNumber(skill.bonus),
         bonusDisplay: signed(skill.bonus),
         temporary: toNumber(skill.temporary),
