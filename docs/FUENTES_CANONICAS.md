@@ -20,6 +20,10 @@ Git/GitHub conserva el historial de cada modificación. No se debe eliminar una 
 
 CREA-09 — Moneda está consolidada en el Manual Maestro y su implementación Foundry 1.0.15: c/p/o, PEI 20 o, Reserva 2 o, precios en cobres enteros, Unidad Comercial y migración segura del campo legado `crowns`.
 
+## Estado de CREA-10
+
+CREA-10 — Lista definitiva de Habilidades queda preparada para cierre en Foundry 1.0.16: **26 Habilidades**, ocho categorías, rangos +0/+1/+2/+4/+6/+8, costes 0/1/3/7/13/21 PD, requisitos por rango base, Especializaciones a 1 PD y Método Directo/Ritual vinculado a Canalización/Ritualismo.
+
 ## Implementación
 
 `scripts/*`, `template.json`, datos, UI y pruebas implementan y verifican el Manual Maestro. Si la implementación contradice el Manual, se abre una incidencia y se corrige la discrepancia; el código no modifica la regla por sí mismo.

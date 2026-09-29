@@ -5,6 +5,10 @@ import {
 } from "../rules.mjs";
 import { attackHits, resolveWeaponImpact } from "../rules/combat-impact.mjs";
 import { pendingDamageRequest } from "../rules/damage-delivery.mjs";
+import {
+  minimumSpellRank, meetsSkillRequirements, skillRankCost, skillsPdCost,
+  spellOperationalSkill, validateSkillProgression
+} from "../rules/skills.mjs";
 
 export class TierraMagicaActor extends Actor {
   prepareDerivedData() {
@@ -23,9 +27,25 @@ export class TierraMagicaActor extends Actor {
       skill.other = toNumber(skill.other);
       skill.label = TM_CONFIG.skills[key]?.label ?? key;
       skill.rankLabel = TM_CONFIG.rankLabels[skill.rank] ?? "";
+      skill.pdCost = skillRankCost(skill.rank);
       skill.breakdown = this.#buildSkillBreakdown(key, skill);
       skill.bonus = skill.breakdown.total;
     }
+
+    const level = Math.max(1, Math.floor(toNumber(s.details?.level, 1)));
+    const pdTotal = 25 + Math.max(0, level - 1) * 4;
+    const specializations = this.items
+      .filter((item) => item.type === "specialization" && item.system?.skill)
+      .map((item) => ({ skill: item.system.skill, name: item.name }));
+    const skillValidation = validateSkillProgression({
+      skills: s.skills,
+      skillDefinitions: TM_CONFIG.skills,
+      level,
+      pdSpent: s.details?.pdSpent,
+      pdTotal,
+      specializations,
+      creationActive: this.system.creation?.skillBuildActive !== false
+    });
 
     const armor = this.items
       .filter((i) => i.type === "armor" && i.system.equipped)
@@ -50,7 +70,10 @@ export class TierraMagicaActor extends Actor {
       movement: Math.max(1, 6 + toNumber(s.combat?.movementBonus)),
       initiative: toNumber(a.per?.value, 1) + toNumber(s.combat?.initiativeBonus),
       martialDefense,
-      equippedShield: shield
+      equippedShield: shield,
+      skillsPdCost: skillValidation.cost,
+      skillIssues: skillValidation.issues,
+      skillsValid: skillValidation.valid
     };
 
     if (s.resources?.health) s.resources.health.max = s.derived.healthMax;
@@ -121,8 +144,9 @@ export class TierraMagicaActor extends Actor {
   async configureAndRollSkill(key) {
     const skill = this.system.skills?.[key];
     if (!skill) return null;
+    const suggestedAttribute = TM_CONFIG.skills[key]?.suggestedAttribute ?? "int";
     const options = Object.entries(TM_CONFIG.attributes)
-      .map(([k, v]) => "<option value='" + k + "'>" + v + "</option>").join("");
+      .map(([k, v]) => "<option value='" + k + "'" + (k === suggestedAttribute ? " selected" : "") + ">" + v + "</option>").join("");
     const breakdown = skill.breakdown ?? this.#buildSkillBreakdown(key, skill);
     const result = await Dialog.prompt({
       title: "Tirada de " + (TM_CONFIG.skills[key]?.label ?? key),
@@ -151,6 +175,78 @@ export class TierraMagicaActor extends Actor {
       attributeKey: "per",
       modifier: toNumber(this.system.combat?.initiativeBonus)
     });
+  }
+
+  async setSkillRank(key, requestedRank) {
+    if (!TM_CONFIG.skills[key]) return ui.notifications.warn("Habilidad no canónica: " + key + ".");
+    const rank = Math.max(0, Math.min(5, Math.floor(toNumber(requestedRank))));
+    const current = Math.max(0, Math.min(5, Math.floor(toNumber(this.system.skills?.[key]?.rank))));
+
+    if (this.type !== "character") {
+      return this.update({ ["system.skills." + key + ".rank"]: rank });
+    }
+    if (rank < current && this.system.creation?.skillBuildActive === false) {
+      return ui.notifications.warn("Reducir rangos requiere creación abierta o una reconstrucción autorizada.");
+    }
+
+    const candidate = {};
+    for (const skillKey of Object.keys(TM_CONFIG.skills)) {
+      candidate[skillKey] = { rank: skillKey === key ? rank : toNumber(this.system.skills?.[skillKey]?.rank) };
+    }
+    const level = Math.max(1, Math.floor(toNumber(this.system.details?.level, 1)));
+    const pdTotal = 25 + Math.max(0, level - 1) * 4;
+    const specializations = this.items
+      .filter((item) => item.type === "specialization" && item.system?.skill)
+      .map((item) => ({ skill: item.system.skill, name: item.name }));
+    const validation = validateSkillProgression({
+      skills: candidate,
+      skillDefinitions: TM_CONFIG.skills,
+      level,
+      pdSpent: Math.max(toNumber(this.system.details?.pdSpent), skillsPdCost(candidate, Object.keys(TM_CONFIG.skills))),
+      pdTotal,
+      specializations,
+      creationActive: this.system.creation?.skillBuildActive !== false
+    });
+    const blocking = validation.issues.find((issue) =>
+      ["rank-level", "level-one-expert-limit", "grand-master-specialization", "skills-over-budget",
+        "specialization-parent-rank", "specialization-creation-limit", "specialization-duplicate"].includes(issue.code)
+    );
+    if (blocking) {
+      const messages = {
+        "rank-level": "El nivel actual no permite ese rango.",
+        "level-one-expert-limit": "A nivel 1 sólo puede existir una Habilidad Experta.",
+        "grand-master-specialization": "Gran Maestro requiere una Especialización coherente cuando la Habilidad posee catálogo.",
+        "skills-over-budget": "Los rangos de Habilidad superarían los PD profesionales disponibles.",
+        "specialization-parent-rank": "Una Especialización requiere su Habilidad madre Entrenada.",
+        "specialization-creation-limit": "Durante creación hay un máximo de 2 Especializaciones por Habilidad madre.",
+        "specialization-duplicate": "La misma Especialización no puede adquirirse dos veces."
+      };
+      return ui.notifications.warn(messages[blocking.code] ?? "El rango solicitado no es válido.");
+    }
+
+    return this.update({ ["system.skills." + key + ".rank"]: rank });
+  }
+
+  async closeSkillBuild() {
+    if (this.type !== "character") return;
+    const level = Math.max(1, Math.floor(toNumber(this.system.details?.level, 1)));
+    const pdTotal = 25 + Math.max(0, level - 1) * 4;
+    const specializations = this.items
+      .filter((item) => item.type === "specialization" && item.system?.skill)
+      .map((item) => ({ skill: item.system.skill, name: item.name }));
+    const validation = validateSkillProgression({
+      skills: this.system.skills,
+      skillDefinitions: TM_CONFIG.skills,
+      level,
+      pdSpent: this.system.details?.pdSpent,
+      pdTotal,
+      specializations,
+      creationActive: this.system.creation?.skillBuildActive !== false
+    });
+    if (!validation.valid) {
+      return ui.notifications.warn("No puede cerrarse la construcción de Habilidades mientras existan inconsistencias de rango o PD.");
+    }
+    return this.update({ "system.creation.skillBuildActive": false });
   }
 
   async rollWeapon(item, { df = null, mode = "normal", modifier = 0, damageBonus = 0, penetrationBonus = 0, technique = "" } = {}) {
@@ -304,13 +400,27 @@ export class TierraMagicaActor extends Actor {
 
   async useSpell(item) {
     if (!item || item.type !== "spell") return null;
-    const cost = Math.max(0, toNumber(item.system.manaCost));
-    const mana = toNumber(this.system.resources?.mana?.value);
-    const requirements = String(item.system.requirements ?? "").trim();
-    if (requirements && !this.#meetsSkillRequirement(requirements)) {
-      return ui.notifications.warn("No se cumplen los requisitos de " + item.name + ": " + requirements);
+    const method = String(item.system.method ?? "direct").toLowerCase() === "ritual" ? "ritual" : "direct";
+    const operationalSkill = spellOperationalSkill(method);
+    const operationalRank = toNumber(this.system.skills?.[operationalSkill]?.rank);
+    const minimumRank = minimumSpellRank(item.system.grade);
+    if (operationalRank < minimumRank) {
+      return ui.notifications.warn(
+        item.name + " requiere " + (TM_CONFIG.skills[operationalSkill]?.label ?? operationalSkill) +
+        " " + (TM_CONFIG.rankLabels[minimumRank] ?? minimumRank) + " como competencia operativa."
+      );
+    }
+    const skillRequirements = Array.isArray(item.system.skillRequirements) ? item.system.skillRequirements : [];
+    if (!meetsSkillRequirements(this.system.skills, skillRequirements)) {
+      const labels = skillRequirements.map((requirement) =>
+        (TM_CONFIG.skills[requirement.skill]?.label ?? requirement.skill) + " " +
+        (TM_CONFIG.rankLabels[Number(requirement.minRank) || 0] ?? requirement.minRank)
+      ).join(", ");
+      return ui.notifications.warn("No se cumplen los requisitos de " + item.name + ": " + labels);
     }
 
+    const cost = Math.max(0, toNumber(item.system.manaCost));
+    const mana = toNumber(this.system.resources?.mana?.value);
     const overload = mana < cost;
     if (overload && !(cost - mana === 1 && mana >= 1)) {
       return ui.notifications.warn(this.name + " no tiene Maná suficiente y no cumple las condiciones de Sobrecarga.");
@@ -344,7 +454,7 @@ export class TierraMagicaActor extends Actor {
     const result = await this.rollCheck({
       label: "Hechizo: " + item.name + " · " + (TM_CONFIG.disciplines[item.system.discipline] ?? item.system.discipline),
       attributeKey: item.system.attribute || "int",
-      skillKey: "channeling",
+      skillKey: operationalSkill,
       df
     });
 
@@ -660,27 +770,6 @@ export class TierraMagicaActor extends Actor {
   }
 
   async #chooseAttribute(skillKey) {
-    const defaultMap = {
-      athletics: "fue", acrobatics: "agi", stealth: "agi", survival: "per", nature: "int",
-      investigation: "int", persuasion: "pre", deception: "pre", intimidation: "pre", empathy: "per",
-      history: "int", religion: "int", medicine: "int", arcana: "int", crafting: "int",
-      engineering: "int", alchemy: "int", thievery: "agi", lightWeapons: "agi", martialWeapons: "fue",
-      heavyWeapons: "fue", rangedWeapons: "per", channeling: "int", ritualism: "int", handling: "agi", piloting: "agi"
-    };
-    return defaultMap[skillKey] ?? "int";
-  }
-
-  #meetsSkillRequirement(text) {
-    const lower = text.toLowerCase();
-    const pairs = [
-      ["medicina", "medicine"], ["arcana", "arcana"], ["canalización", "channeling"],
-      ["ritualismo", "ritualism"], ["alquimia", "alchemy"], ["ingeniería", "engineering"]
-    ];
-    for (const [label, key] of pairs) {
-      if (!lower.includes(label)) continue;
-      const rank = toNumber(this.system.skills?.[key]?.rank);
-      if (rank < 1) return false;
-    }
-    return true;
+    return TM_CONFIG.skills[skillKey]?.suggestedAttribute ?? "int";
   }
 }

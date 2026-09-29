@@ -1,3 +1,14 @@
+## 1.0.16
+
+- CREA-10 fija definitivamente **26 Habilidades** en ocho categorías, con nombres completos idénticos en Manual, referencia rápida y Foundry.
+- Rangos y costes permanecen +0/+1/+2/+4/+6/+8 y 0/1/3/7/13/21 PD; el Actor deriva el coste mínimo invertido en Habilidades y detecta inconsistencias con PD declarados.
+- La ficha separa rango, modificadores y total; los cambios de rango pasan por validación de nivel, límite de una Experta a nivel 1, presupuesto y Gran Maestro.
+- Especializaciones vuelven a su coste canónico de **1 PD**, requieren Habilidad madre Entrenada, evitan duplicados y respetan el máximo inicial de 2 por Habilidad.
+- Items incorporan requisitos estructurados de Habilidad y rango; se retira la inferencia mecánica a partir de texto libre.
+- Hechizos distinguen Método **Directo → Canalización** y **Ritual → Ritualismo**. Regeneración exige Medicina Entrenada; Cierre Restaurador y Visión Arcana dejan de recibir requisitos implícitos.
+- Migración defensiva completa claves canónicas ausentes, aparta Habilidades históricas desconocidas a legado sin fusionarlas y normaliza Especializaciones a 1 PD sin modificar automáticamente pdSpent.
+- REV-CREA-01-001 permite Gran Maestro sin Especialización sólo a Habilidades cuyo catálogo deliberadamente no contiene ninguna, actualmente Canalización y Ritualismo.
+
 # Historial de cambios
 
 ## Sin publicar — sincronización documental 2026-09-27

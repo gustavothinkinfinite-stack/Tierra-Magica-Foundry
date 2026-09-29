@@ -222,9 +222,43 @@ Las 26 Habilidades son:
 
 Atributo y Habilidad no están emparejados de forma permanente. El Atributo describe **cómo** se intenta algo; la Habilidad, **qué competencia** se aplica. La ficción puede justificar combinaciones diferentes.
 
+**Reglas de uso de Habilidades.** Una prueba ordinaria utiliza un solo Atributo y una sola Habilidad principal. El Atributo se decide por el método empleado antes de tirar; los emparejamientos habituales son sugerencias, no vínculos fijos. El **rango base** es el comprado con PD y es el único que satisface requisitos de Aprendiz/Entrenado/Experto/Maestro/Gran Maestro. Equipo, Rasgos, magia, Técnicas y modificadores pueden cambiar el total de la prueba, pero no elevan el rango. Cambiar de Habilidad no permite repetir gratuitamente la misma resolución si no cambian de forma significativa el método, la información, las herramientas, el riesgo o las circunstancias.
+
+A nivel 1 puede existir como máximo una Habilidad Experta y ninguna Maestro o Gran Maestro. Maestro requiere nivel 9+; Gran Maestro, nivel 15+. Una Habilidad Gran Maestro requiere al menos una Especialización coherente **cuando esa Habilidad disponga de Especializaciones en su catálogo**. Canalización y Ritualismo carecen deliberadamente de Especializaciones básicas y están exentas sólo de ese requisito concreto.
+
+| Habilidad | Ámbito | Especializaciones básicas |
+|---|---|---|
+| Atletismo | Fuerza, resistencia, carrera, escalada y natación. | Escalada; Natación; Carrera y resistencia |
+| Acrobacia | Equilibrio, coordinación, caídas y control corporal. | Equilibrio; Caídas y aterrizajes; Maniobras aéreas |
+| Sigilo | Evitar detección mediante ocultación y movimiento discreto. | Movimiento silencioso; Infiltración urbana; Camuflaje natural |
+| Supervivencia | Subsistencia, orientación y rastreo en entornos hostiles. | Bosque; Montaña; Desierto; Regiones frías |
+| Naturaleza | Flora, fauna, ecosistemas y fenómenos naturales. | Botánica; Zoología; Ecosistemas mágicos |
+| Investigación | Buscar, contrastar, ordenar y correlacionar evidencias. | Archivística; Investigación forense; Criptoanálisis y correlación |
+| Persuasión | Negociación, diplomacia e influencia cooperativa. | Negociación; Diplomacia; Oratoria |
+| Engaño | Mentira, suplantación, disfraz y falsedad deliberada. | Suplantación; Disfraz; Coartadas e identidades de cobertura |
+| Intimidación | Amenaza, presión, coerción e interrogatorio. | Coacción física; Presión social; Interrogatorio |
+| Empatía | Lectura emocional, conducta y dinámica interpersonal. | Lectura emocional; Conducta bajo presión; Dinámicas sociales |
+| Historia | Acontecimientos, instituciones, guerras y contextos del pasado. | Historia antigua; Historia política; Historia militar |
+| Religión | Teología, cultos, organizaciones, ritos y liturgia. | Teología comparada; Ritos y liturgia; Cultos y organizaciones religiosas |
+| Medicina | Diagnóstico, estabilización, tratamiento y cirugía. | Cirugía; Traumatología; Toxicología |
+| Arcana | Teoría mágica, Trama, anomalías, entidades y artefactos. | Teoría de la Trama; Anomalías y zonas de saturación; Entidades externas; Artefactos mágicos |
+| Artesanía | Fabricación, reparación y técnicas de oficio. | Forja y metal; Carpintería; Cuero y textiles; Vidrio y cristal |
+| Ingeniería | Diseño, sistemas, máquinas e infraestructura. | Vapor; Autómatas; Armamento; Acumuladores arcanos |
+| Alquimia | Reactivos, formulación y manipulación de sustancias. | Medicinales; Potenciadores; Toxinas; Reactivos; Explosivos |
+| Latrocinio | Cerraduras, seguridad física, trampas y sustracción. | Cerraduras y mecanismos; Trampas y seguridad física; Carterismo y sustracción discreta |
+| Armas Ligeras | Armamento ligero de mano o arrojadizo. | Cuchillos y dagas; Espadas ligeras; Armas ligeras arrojadizas |
+| Armas Marciales | Armamento cuerpo a cuerpo de guerra ordinario. | Espadas; Hachas; Mazas y martillos; Lanzas |
+| Armas Pesadas | Armamento de gran masa, tamaño o alcance. | Grandes hojas; Grandes contundentes; Armas de asta pesadas |
+| Armas a Distancia | Arcos, ballestas, armas de fuego y proyectiles. | Arcos; Ballestas; Armas de fuego cortas; Armas de fuego largas |
+| Canalización | Control mágico directo y lanzamiento por método Directo. | — |
+| Ritualismo | Preparación y ejecución del método Ritual. | — |
+| Manejo | Monturas, vehículos terrestres y maquinaria móvil de control inmediato. | Monturas; Vehículos terrestres; Maquinaria móvil |
+| Pilotaje | Transporte complejo dependiente de instrumental, trayectoria o infraestructura. | Dirigibles; Embarcaciones; Vehículos ferroviarios |
+
+
 #### Especializaciones
 
-Una Especialización cuesta normalmente **2 PD**. Representa dominio profundo dentro de una Habilidad y no concede un bono numérico universal por sí sola. Sirve para justificar conocimiento especializado, procedimientos, prerrequisitos y Técnicas cuando corresponda.
+Una Especialización cuesta **1 PD** y requiere la Habilidad madre en Entrenado. Representa dominio profundo dentro de una Habilidad y no concede un bono numérico universal por sí sola. Sirve para justificar conocimiento especializado, procedimientos, prerrequisitos y Técnicas cuando corresponda.
 
 Ejemplos: Espadas, Hachas, Lanzas; Cirugía, Traumatología, Toxicología; Vapor, Autómatas, Armamento; Bosque, Montaña, Desierto; Pociones, Venenos, Explosivos.
 
@@ -367,7 +401,7 @@ Tierra Mágica no usa clases. La identidad mecánica surge de Atributos, Habilid
 
 El nivel 1 comienza con 25 PD. Cada nivel del 2 al 20 concede 4 PD, para un total acumulado de 101 PD al nivel 20. No existe bono universal por nivel. Maestro requiere normalmente nivel 9+ y Gran Maestro nivel 15+.
 
-Una Especialización cuesta 2 PD. Las Técnicas cuestan normalmente 2 PD Básica, 3 Avanzada, 5 Maestra y 8+ Legendaria. Los Hechizos siguen 1 PD Menor, 2 Básico, 3 Avanzado, 5 Maestro y 8+ Legendario. Una Disciplina cuesta 3 PD. Los aumentos post-creación de Atributo cuestan 4/6/9/13/18 PD para 0->1, 1->2, 2->3, 3->4 y 4->5 respectivamente. Los valores 6+ son sobrenaturales y no pertenecen a la progresión ordinaria.
+Una Especialización cuesta 1 PD y requiere la Habilidad madre en Entrenado. Las Técnicas cuestan normalmente 2 PD Básica, 3 Avanzada, 5 Maestra y 8+ Legendaria. Los Hechizos siguen 1 PD Menor, 2 Básico, 3 Avanzado, 5 Maestro y 8+ Legendario. Una Disciplina cuesta 3 PD. Los aumentos post-creación de Atributo cuestan 4/6/9/13/18 PD para 0->1, 1->2, 2->3, 3->4 y 4->5 respectivamente. Los valores 6+ son sobrenaturales y no pertenecen a la progresión ordinaria.
 
 ## 5. Rasgos y Puntos de Rasgo
 

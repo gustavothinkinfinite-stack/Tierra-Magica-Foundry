@@ -27,3 +27,13 @@ test("contenido 1.0 cubre economía y subsistemas finales",()=>{assert.equal(STA
 test("tabla auditada conserva identidades de armas sin inflación de Penetración",()=>{const by=(n)=>STARTER_CONTENT.weapon.find(i=>i.name===n).system;assert.deepEqual([by("Hacha").damage,by("Hacha").penetration],[6,0]);assert.deepEqual([by("Maza").damage,by("Maza").penetration],[5,1]);assert.deepEqual([by("Gran martillo").damage,by("Gran martillo").penetration],[7,2]);assert.deepEqual([by("Rifle temprano").damage,by("Rifle temprano").penetration],[7,3]);});
 
 test("pociones auditadas respetan Saturación y límites de recuperación",()=>{const hp=STARTER_CONTENT.formula.find(i=>i.name==="Poción Restauradora").system;const mp=STARTER_CONTENT.formula.find(i=>i.name==="Poción de Recuperación Arcana").system;assert.equal(hp.saturating,true);assert.equal(hp.family,"restaurativa");assert.match(hp.effect,/4 Vida/);assert.equal(mp.saturating,true);assert.equal(mp.family,"arcana");assert.match(mp.effect,/3 Maná/);});
+
+test("CREA-10 estructura Método y requisitos de Habilidad sin inferencias temáticas",()=>{
+  const regeneration=STARTER_CONTENT.spell.find(i=>i.name==="Regeneración").system;
+  const closure=STARTER_CONTENT.spell.find(i=>i.name==="Cierre Restaurador").system;
+  const arcaneSight=STARTER_CONTENT.spell.find(i=>i.name==="Visión Arcana").system;
+  assert.equal(regeneration.method,"ritual");
+  assert.deepEqual(regeneration.skillRequirements,[{skill:"medicine",minRank:2}]);
+  assert.equal(closure.requirements,"");
+  assert.equal(arcaneSight.requirements,"");
+});
