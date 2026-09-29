@@ -62,7 +62,10 @@ export class TierraMagicaActorSheet extends ActorSheet {
       "level-one-expert-limit": "A nivel 1 sólo puede existir una Habilidad Experta.",
       "grand-master-specialization": "Una Habilidad Gran Maestro carece de la Especialización requerida.",
       "skills-over-budget": "Los rangos de Habilidad superan los PD profesionales disponibles.",
-      "pd-spent-below-skills": "PD gastados es menor que el coste mínimo invertido en Habilidades."
+      "pd-spent-below-skills": "PD gastados es menor que el coste mínimo invertido en Habilidades.",
+      "specialization-parent-rank": "Una Especialización tiene su Habilidad madre por debajo de Entrenado.",
+      "specialization-creation-limit": "Hay más de 2 Especializaciones de una misma Habilidad durante creación.",
+      "specialization-duplicate": "Hay una Especialización duplicada para la misma Habilidad."
     };
     const skillIssues = Array.isArray(this.actor.system.derived?.skillIssues)
       ? this.actor.system.derived.skillIssues.map((issue) => skillIssueLabels[issue.code] ?? issue.code)
