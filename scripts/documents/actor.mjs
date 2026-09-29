@@ -5,6 +5,10 @@ import {
 } from "../rules.mjs";
 import { attackHits, resolveWeaponImpact } from "../rules/combat-impact.mjs";
 import { pendingDamageRequest } from "../rules/damage-delivery.mjs";
+import {
+  minimumSpellRank, meetsSkillRequirements, skillRankCost, skillsPdCost,
+  spellOperationalSkill, validateSkillProgression
+} from "../rules/skills.mjs";
 
 export class TierraMagicaActor extends Actor {
   prepareDerivedData() {
