@@ -60,4 +60,5 @@ export const TM_CONFIG = {
   }
 };
 TM_CONFIG.skillLabels = Object.fromEntries(Object.entries(TM_CONFIG.skills).map(([k,v]) => [k, v.label]));
+TM_CONFIG.weaponSkillLabels = Object.fromEntries(["lightWeapons","martialWeapons","heavyWeapons","rangedWeapons"].map((key) => [key, TM_CONFIG.skills[key].label]));
 TM_CONFIG.rankOptionLabels = Object.fromEntries(TM_CONFIG.rankLabels.map((label, rank) => [rank, label + " · +" + TM_CONFIG.rankBonuses[rank] + " · " + TM_CONFIG.rankCosts[rank] + " PD"]));
