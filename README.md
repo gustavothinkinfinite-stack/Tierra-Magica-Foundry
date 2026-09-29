@@ -6,7 +6,7 @@ La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuent
 
 Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**1.0.15 — CREA-09 Moneda integrada.** La auditoría cruzada A1–A9 y la auditoría integral final están cerradas. Los cambios del motor requieren un defecto reproducible, una contradicción canónica, un hueco funcional demostrado o una decisión de diseño consolidada primero en el Manual.
+**1.0.16 — CREA-10 Habilidades integrada.** La lista canónica queda fijada en 26 Habilidades y Foundry valida rangos, PD mínimos, Especializaciones y requisitos estructurados. La auditoría cruzada A1–A9 y la auditoría integral final permanecen cerradas. Los cambios del motor requieren un defecto reproducible, una contradicción canónica, un hueco funcional demostrado o una decisión de diseño consolidada primero en el Manual.
 
 Documentación de cierre: `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md` · referencia de mesa: `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md` · jerarquía de fuentes: `docs/FUENTES_CANONICAS.md`.
 
