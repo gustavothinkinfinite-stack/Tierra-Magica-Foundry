@@ -16,6 +16,7 @@ import { installReactionEconomyGuards } from "./rules/reaction-economy-guards.mj
 import { primaryActiveGm, validatePendingDamageRequest } from "./rules/damage-delivery.mjs";
 import { applyBoundedHealing, validatePendingHealingRequest } from "./rules/healing-delivery.mjs";
 import { installCurrencyRules, migrateWorldCurrency } from "./rules/currency.mjs";
+import { migrateWorldSkills } from "./rules/skills.mjs";
 
 installFamiliarGuards(TierraMagicaActor);
 installMagicGuards(TierraMagicaActor);
@@ -30,7 +31,7 @@ installReactionEconomyGuards(TierraMagicaActor);
 installCurrencyRules(TierraMagicaActor);
 
 Hooks.once("init", async () => {
-  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.15");
+  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.16");
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
   CONFIG.Item.documentClass = TierraMagicaItem;
@@ -53,6 +54,37 @@ Hooks.on("preCreateItem", (item) => {
   if (!item.img || item.img === "icons/svg/item-bag.svg") {
     const fallback = item.type === "shield" ? "armor" : ["weapon","armor","equipment","spell"].includes(item.type) ? item.type : "equipment";
     item.updateSource({ img: "systems/tierra-magica/assets/icons/" + fallback + ".svg" });
+  }
+  if (item.type === "specialization") item.updateSource({ "system.pdCost": 1 });
+});
+
+Hooks.on("preUpdateItem", (item, changes) => {
+  if (item.type !== "specialization" || !item.parent || item.parent.type !== "character") return;
+  const actor = item.parent;
+  const skill = foundry.utils.getProperty(changes, "system.skill") ?? item.system.skill;
+  const name = changes.name ?? item.name;
+  if (!skill) return;
+  if (!TM_CONFIG.skills[skill]) {
+    ui.notifications.warn("La Especialización debe pertenecer a una de las 26 Habilidades canónicas.");
+    return false;
+  }
+  if (Number(actor.system.skills?.[skill]?.rank ?? 0) < 2) {
+    ui.notifications.warn("Una Especialización requiere la Habilidad madre Entrenada.");
+    return false;
+  }
+  const peers = actor.items.filter((entry) =>
+    entry.type === "specialization" && entry.id !== item.id && entry.system.skill === skill
+  );
+  if (peers.some((entry) => entry.name.trim().toLowerCase() === String(name).trim().toLowerCase())) {
+    ui.notifications.warn("La misma Especialización no puede adquirirse dos veces para una Habilidad.");
+    return false;
+  }
+  if (actor.system.creation?.skillBuildActive !== false && peers.length >= 2) {
+    ui.notifications.warn("Durante creación hay un máximo de 2 Especializaciones por Habilidad madre.");
+    return false;
+  }
+  if (Number(foundry.utils.getProperty(changes, "system.pdCost") ?? item.system.pdCost) !== 1) {
+    foundry.utils.setProperty(changes, "system.pdCost", 1);
   }
 });
 
@@ -90,6 +122,7 @@ Hooks.once("ready", async () => {
   console.info("Foundry T.M. | Sistema listo");
   const repaired = await repairCharacterSheet031Data(); const retired = await retireLegacyMechanicalFields();
   const currencyMigration = await migrateWorldCurrency();
+  const skillMigration = await migrateWorldSkills(TM_CONFIG.skills);
   if (repaired) ui.notifications.info("Tierra Mágica: se repararon " + repaired + " ficha(s) afectadas por el guardado de v0.3.1.");
   if (retired) ui.notifications.info("Tierra Mágica: se retiraron campos mecánicos históricos de " + retired + " actor(es).");
   if (currencyMigration.actors || currencyMigration.items) {
@@ -97,6 +130,12 @@ Hooks.once("ready", async () => {
   }
   if (currencyMigration.pending) {
     ui.notifications.warn("Tierra Mágica: " + currencyMigration.pending + " Actor(es) conservan crowns legados y requieren una equivalencia explícita antes de convertirlos.");
+  }
+  if (skillMigration.actors || skillMigration.items || skillMigration.legacy) {
+    ui.notifications.info(
+      "Tierra Mágica: CREA-10 normalizó Habilidades en " + skillMigration.actors +
+      " Actor(es), " + skillMigration.items + " Item(s) y preservó " + skillMigration.legacy + " clave(s) legada(s)."
+    );
   }
 });
 
