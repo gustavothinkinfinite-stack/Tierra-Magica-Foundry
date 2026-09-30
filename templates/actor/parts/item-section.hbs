@@ -2,8 +2,8 @@
   <div class="tm-section-heading">
     <h2>{{title}}</h2>
     <div class="tm-section-buttons">
-      {{#if (or (eq type "weapon") (eq type "armor") (eq type "shield") (eq type "spell") (eq type "technique") (eq type "formula") (eq type "ritual") (eq type "device"))}}
-        <button type="button" class="tm-icon-button" data-action="content-browser" data-type="{{type}}"><i class="fa-solid fa-book"></i> Manual</button>
+      {{#if (or (eq type "weapon") (eq type "armor") (eq type "shield") (eq type "spell") (eq type "technique") (eq type "formula") (eq type "ritual") (eq type "device") (eq type "ancestry") (eq type "origin") (eq type "background") (eq type "discipline") (eq type "specialization") (eq type "trait"))}}
+        <button type="button" class="tm-icon-button" data-action="content-browser" data-type="{{type}}"><i class="fa-solid fa-book"></i> Catálogo</button>
       {{/if}}
       {{#if @root.editable}}
         <button type="button" class="tm-icon-button" data-action="item-create" data-type="{{type}}"><i class="fa-solid fa-plus"></i> Agregar</button>
@@ -22,12 +22,17 @@
           {{#if (eq item.type "spell")}}<small>{{lookup @root.config.disciplines item.system.discipline}} · {{item.system.manaCost}} Maná</small>{{/if}}
           {{#if (eq item.type "technique")}}<small>{{lookup @root.config.techniqueGrades item.system.grade}} · {{item.system.pdCost}} PD</small>{{/if}}
           {{#if (eq item.type "trait")}}<small>{{lookup @root.config.traitCategories item.system.category}} · Coste {{item.system.traitCost}}</small>{{/if}}
-          {{#if (eq item.type "specialization")}}<small>{{item.system.effect}}</small>{{/if}}
+          {{#if (eq item.type "specialization")}}<small>{{lookup @root.config.skillLabels item.system.skill}} · {{item.system.pdCost}} PD</small>{{/if}}
+          {{#if (eq item.type "discipline")}}<small>Disciplina · {{item.system.pdCost}} PD</small>{{/if}}
+          {{#if (eq item.type "ancestry")}}<small>Ascendencia · {{item.system.slug}}</small>{{/if}}
+          {{#if (eq item.type "origin")}}<small>Origen · {{item.system.slug}}</small>{{/if}}
+          {{#if (eq item.type "background")}}<small>Trasfondo · {{item.system.slug}}</small>{{/if}}
+          {{#if (eq item.type "effect")}}<small>Efecto {{#if item.system.active}}activo{{else}}inactivo{{/if}} · {{item.system.expiry}}</small>{{/if}}
           {{#if (eq item.type "equipment")}}<small>Cantidad {{item.system.quantity}} · {{item.system.availability}}</small>{{/if}}
           {{#if (eq item.type "formula")}}<small>Dosis {{item.system.quantity}}{{#if item.system.saturating}} · Saturante: {{item.system.family}}{{/if}}</small>{{/if}}
           {{#if (eq item.type "ritual")}}<small>DF {{item.system.difficulty}} · Director {{item.system.manaDirector}} Maná · {{item.system.time}}</small>{{/if}}
           {{#if (eq item.type "device")}}<small>Energía {{item.system.energy.value}}/{{item.system.energy.max}} · Caudal {{item.system.flow}} · {{item.system.condition}}</small>{{/if}}
-          <small>Precio: {{item.system.priceDisplay}}{{#if (eq item.system.priceStatus "exact")}} · unidad {{item.system.priceQuantity}}{{/if}}</small>
+          {{#if item.system.priceDisplay}}<small>Precio: {{item.system.priceDisplay}}{{#if (eq item.system.priceStatus "exact")}} · unidad {{item.system.priceQuantity}}{{/if}}</small>{{/if}}
         </div>
         <div class="tm-item-actions">
           {{#if (eq item.type "weapon")}}
