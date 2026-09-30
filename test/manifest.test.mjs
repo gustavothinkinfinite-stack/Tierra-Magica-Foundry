@@ -15,6 +15,9 @@ test("el manifiesto describe Foundry T.M. 1.0.17", async () => {
   assert.equal(manifest.initiative.startsWith("2d10"), true);
   await Promise.all([...manifest.esmodules, ...manifest.styles, ...manifest.languages.map((l) => l.path)]
     .map((file) => access(resolve(root, file))));
+  assert.deepEqual(manifest.packs.map((pack) => pack.name), ["character-options","magic","equipment","production"]);
+  assert.equal(manifest.packs.every((pack) => pack.type === "Item" && pack.system === "tierra-magica"), true);
+  await Promise.all(manifest.packs.map((pack) => access(resolve(root, pack.path))));
   await access(resolve(root, "assets/ui/tierra-magica-banner-final.jpg"));
   const banner = await stat(resolve(root, "assets/ui/tierra-magica-banner-final.jpg"));
   assert.equal(banner.size > 30000, true);
