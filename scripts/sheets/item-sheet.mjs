@@ -1,12 +1,20 @@
 import { TM_CONFIG } from "../config.mjs";
 import { formatCurrency } from "../rules/currency.mjs";
 
+const PHYSICAL_TYPES = new Set(["weapon", "armor", "shield", "equipment", "formula", "device"]);
+
+function requirementLeaves(requirements) {
+  if (!requirements) return [];
+  if (Array.isArray(requirements.all)) return requirements.all;
+  return [requirements];
+}
+
 export class TierraMagicaItemSheet extends ItemSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["tierra-magica", "sheet", "item"],
-      width: 620,
-      height: 700,
+      width: 660,
+      height: 760,
       resizable: true
     });
   }
@@ -23,23 +31,50 @@ export class TierraMagicaItemSheet extends ItemSheet {
     for (const type of Object.keys(TM_CONFIG.itemTypes)) {
       context["is" + type.charAt(0).toUpperCase() + type.slice(1)] = this.item.type === type;
     }
+    context.isPhysical = PHYSICAL_TYPES.has(this.item.type);
     context.typeLabel = TM_CONFIG.itemTypes[this.item.type] ?? this.item.type;
-    context.priceDisplay = this.item.system.priceStatus === "exact"
-      ? formatCurrency(this.item.system.priceCopper)
-      : this.item.system.priceStatus === "variable" ? "Precio variable" : "Sin precio establecido";
-    context.skillModifiers = (Array.isArray(this.item.system.skillModifiers) ? this.item.system.skillModifiers : [])
-      .map((modifier, index) => ({
+    context.priceDisplay = context.isPhysical
+      ? this.item.system.priceStatus === "exact"
+        ? formatCurrency(this.item.system.priceCopper)
+        : this.item.system.priceStatus === "variable" ? "Precio variable" : "Sin precio establecido"
+      : "";
+
+    const rules = Array.isArray(this.item.system.rules) ? this.item.system.rules : [];
+    context.skillModifiers = rules
+      .map((rule, index) => ({ rule, index }))
+      .filter(({ rule }) => rule?.key === "FlatModifier" && String(rule.selector ?? "").startsWith("skill."))
+      .map(({ rule, index }) => ({
         index,
-        skill: modifier?.skill ?? "",
-        value: Number(modifier?.value ?? 0) || 0,
-        label: modifier?.label ?? ""
+        skill: String(rule.selector).slice(6),
+        value: Number(rule.value ?? 0) || 0,
+        label: rule.label ?? ""
       }));
-    context.skillRequirements = (Array.isArray(this.item.system.skillRequirements) ? this.item.system.skillRequirements : [])
-      .map((requirement, index) => ({
+
+    context.skillRequirements = requirementLeaves(this.item.system.requirements)
+      .map((requirement, index) => ({ requirement, index }))
+      .filter(({ requirement }) => requirement?.type === "skill")
+      .map(({ requirement, index }) => ({
         index,
-        skill: requirement?.skill ?? "",
-        minRank: Number(requirement?.minRank ?? 0) || 0
+        skill: requirement.key ?? "",
+        minRank: Number(requirement.rank ?? 0) || 0,
+        basis: requirement.basis ?? "base"
       }));
+
+    context.costs = (Array.isArray(this.item.system.costs) ? this.item.system.costs : []).map((cost, index) => ({
+      index,
+      context: cost?.context ?? "any",
+      resource: cost?.resource ?? "none",
+      amount: Number(cost?.amount ?? 0) || 0
+    }));
+    context.costContexts = { any:"Siempre", creation:"Creación", progression:"Progresión" };
+    context.acquisitionDisplay = this.item.parent
+      ? this.item.system.acquisition
+        ? (TM_CONFIG.acquisitionModes[this.item.system.acquisition.mode] ?? this.item.system.acquisition.mode) +
+          " · " + (TM_CONFIG.paidResources[this.item.system.acquisition.paid?.resource] ?? this.item.system.acquisition.paid?.resource ?? "—") +
+          " " + (this.item.system.acquisition.paid?.amount ?? 0)
+        : "Sin adquisición estructurada"
+      : "Catálogo / mundo: todavía no adquirido";
+
     context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description ?? "", {
       async: true, secrets: this.item.isOwner, relativeTo: this.item
     });
@@ -48,79 +83,100 @@ export class TierraMagicaItemSheet extends ItemSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
-
     html.find("[data-action='skill-modifier-add']").click(() => this.#addSkillModifier());
     html.find("[data-action='skill-modifier-delete']").click((event) => this.#deleteSkillModifier(event));
     html.find("[data-action='skill-modifier-field']").change((event) => this.#updateSkillModifier(event));
     html.find("[data-action='skill-requirement-add']").click(() => this.#addSkillRequirement());
     html.find("[data-action='skill-requirement-delete']").click((event) => this.#deleteSkillRequirement(event));
     html.find("[data-action='skill-requirement-field']").change((event) => this.#updateSkillRequirement(event));
+    html.find("[data-action='cost-add']").click(() => this.#addCost());
+    html.find("[data-action='cost-delete']").click((event) => this.#deleteCost(event));
+    html.find("[data-action='cost-field']").change((event) => this.#updateCost(event));
+  }
+
+  #rules() {
+    return foundry.utils.deepClone(Array.isArray(this.item.system.rules) ? this.item.system.rules : []);
   }
 
   async #addSkillModifier() {
-    const modifiers = foundry.utils.deepClone(
-      Array.isArray(this.item.system.skillModifiers) ? this.item.system.skillModifiers : []
-    );
-    modifiers.push({ skill: "", value: 0, label: "" });
-    await this.item.update({ "system.skillModifiers": modifiers });
+    const rules = this.#rules();
+    rules.push({ id:"rule-" + Date.now(), key:"FlatModifier", selector:"skill.athletics", value:0, label:"" });
+    await this.item.update({ "system.rules": rules }, { tmValidated:true });
   }
 
   async #deleteSkillModifier(event) {
     const index = Number(event.currentTarget.dataset.index);
     if (!Number.isInteger(index)) return;
-    const modifiers = foundry.utils.deepClone(
-      Array.isArray(this.item.system.skillModifiers) ? this.item.system.skillModifiers : []
-    );
-    modifiers.splice(index, 1);
-    await this.item.update({ "system.skillModifiers": modifiers });
+    const rules = this.#rules();
+    rules.splice(index, 1);
+    await this.item.update({ "system.rules": rules }, { tmValidated:true });
   }
 
   async #updateSkillModifier(event) {
     const index = Number(event.currentTarget.dataset.index);
     const field = event.currentTarget.dataset.field;
     if (!Number.isInteger(index) || !["skill", "value", "label"].includes(field)) return;
+    const rules = this.#rules();
+    const rule = rules[index];
+    if (!rule || rule.key !== "FlatModifier") return;
+    if (field === "skill") rule.selector = "skill." + event.currentTarget.value;
+    else if (field === "value") rule.value = Number(event.currentTarget.value) || 0;
+    else rule.label = event.currentTarget.value;
+    await this.item.update({ "system.rules": rules }, { tmValidated:true });
+  }
 
-    const modifiers = foundry.utils.deepClone(
-      Array.isArray(this.item.system.skillModifiers) ? this.item.system.skillModifiers : []
-    );
-    if (!modifiers[index]) return;
-
-    modifiers[index][field] = field === "value"
-      ? Number(event.currentTarget.value) || 0
-      : event.currentTarget.value;
-
-    await this.item.update({ "system.skillModifiers": modifiers });
+  #requirementLeaves() {
+    return foundry.utils.deepClone(requirementLeaves(this.item.system.requirements));
   }
 
   async #addSkillRequirement() {
-    const requirements = foundry.utils.deepClone(
-      Array.isArray(this.item.system.skillRequirements) ? this.item.system.skillRequirements : []
-    );
-    requirements.push({ skill: "", minRank: 2 });
-    await this.item.update({ "system.skillRequirements": requirements });
+    const leaves = this.#requirementLeaves();
+    leaves.push({ type:"skill", key:"athletics", rank:2, basis:"base", scope:"acquisition" });
+    await this.item.update({ "system.requirements": { all:leaves } }, { tmValidated:true });
   }
 
   async #deleteSkillRequirement(event) {
     const index = Number(event.currentTarget.dataset.index);
     if (!Number.isInteger(index)) return;
-    const requirements = foundry.utils.deepClone(
-      Array.isArray(this.item.system.skillRequirements) ? this.item.system.skillRequirements : []
-    );
-    requirements.splice(index, 1);
-    await this.item.update({ "system.skillRequirements": requirements });
+    const leaves = this.#requirementLeaves();
+    leaves.splice(index, 1);
+    await this.item.update({ "system.requirements": leaves.length ? { all:leaves } : null }, { tmValidated:true });
   }
 
   async #updateSkillRequirement(event) {
     const index = Number(event.currentTarget.dataset.index);
     const field = event.currentTarget.dataset.field;
-    if (!Number.isInteger(index) || !["skill", "minRank"].includes(field)) return;
-    const requirements = foundry.utils.deepClone(
-      Array.isArray(this.item.system.skillRequirements) ? this.item.system.skillRequirements : []
-    );
-    if (!requirements[index]) return;
-    requirements[index][field] = field === "minRank"
-      ? Math.max(0, Math.min(5, Math.floor(Number(event.currentTarget.value) || 0)))
-      : event.currentTarget.value;
-    await this.item.update({ "system.skillRequirements": requirements });
+    if (!Number.isInteger(index) || !["skill", "minRank", "basis"].includes(field)) return;
+    const leaves = this.#requirementLeaves();
+    const requirement = leaves[index];
+    if (!requirement || requirement.type !== "skill") return;
+    if (field === "skill") requirement.key = event.currentTarget.value;
+    else if (field === "minRank") requirement.rank = Math.max(0, Math.min(5, Math.floor(Number(event.currentTarget.value) || 0)));
+    else requirement.basis = event.currentTarget.value === "effective" ? "effective" : "base";
+    await this.item.update({ "system.requirements": { all:leaves } }, { tmValidated:true });
+  }
+
+  async #addCost() {
+    const costs = foundry.utils.deepClone(Array.isArray(this.item.system.costs) ? this.item.system.costs : []);
+    costs.push({ context:"any", resource:"none", amount:0 });
+    await this.item.update({ "system.costs":costs }, { tmValidated:true });
+  }
+
+  async #deleteCost(event) {
+    const index = Number(event.currentTarget.dataset.index);
+    if (!Number.isInteger(index)) return;
+    const costs = foundry.utils.deepClone(Array.isArray(this.item.system.costs) ? this.item.system.costs : []);
+    costs.splice(index,1);
+    await this.item.update({ "system.costs":costs }, { tmValidated:true });
+  }
+
+  async #updateCost(event) {
+    const index = Number(event.currentTarget.dataset.index);
+    const field = event.currentTarget.dataset.field;
+    if (!Number.isInteger(index) || !["context","resource","amount"].includes(field)) return;
+    const costs = foundry.utils.deepClone(Array.isArray(this.item.system.costs) ? this.item.system.costs : []);
+    if (!costs[index]) return;
+    costs[index][field] = field === "amount" ? Math.max(0, Number(event.currentTarget.value) || 0) : event.currentTarget.value;
+    await this.item.update({ "system.costs":costs }, { tmValidated:true });
   }
 }
