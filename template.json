@@ -20,25 +20,39 @@
         },
         "attributes": {
           "fue": {
-            "value": 1
+            "value": 1,
+            "creationValue": 1,
+            "baseValue": 1
           },
           "agi": {
-            "value": 1
+            "value": 1,
+            "creationValue": 1,
+            "baseValue": 1
           },
           "vig": {
-            "value": 1
+            "value": 1,
+            "creationValue": 1,
+            "baseValue": 1
           },
           "int": {
-            "value": 1
+            "value": 1,
+            "creationValue": 1,
+            "baseValue": 1
           },
           "per": {
-            "value": 1
+            "value": 1,
+            "creationValue": 1,
+            "baseValue": 1
           },
           "vol": {
-            "value": 1
+            "value": 1,
+            "creationValue": 1,
+            "baseValue": 1
           },
           "pre": {
-            "value": 1
+            "value": 1,
+            "creationValue": 1,
+            "baseValue": 1
           }
         },
         "resources": {
@@ -212,8 +226,7 @@
           "totalCopper": 0,
           "migrationVersion": 0,
           "migrationPending": false,
-          "legacy": {},
-          "initialReserveGranted": false
+          "legacy": {}
         },
         "biography": "",
         "notes": "",
@@ -228,7 +241,17 @@
         "alchemy": {
           "saturatedFamilies": []
         },
-        "legacySkills": {}
+        "legacySkills": {},
+        "schemaVersion": 1,
+        "legacyIdentityText": {
+          "ancestry": "",
+          "origin": "",
+          "background": ""
+        },
+        "legacyDevelopment": {
+          "pdSpent": 0,
+          "prSpent": 0
+        }
       }
     },
     "character": {
@@ -236,9 +259,11 @@
         "base"
       ],
       "creation": {
+        "status": "building",
+        "revision": 0,
         "equipmentBudgetCopper": 2000,
-        "equipmentBudgetActive": true,
-        "skillBuildActive": true
+        "initialReserveGranted": false,
+        "legacyWarnings": []
       }
     },
     "npc": {
@@ -264,7 +289,9 @@
         "desires": "",
         "communication": "Emociones y conceptos simples",
         "bondRange": "Corta / aproximada",
-        "independence": "independent"
+        "independence": "independent",
+        "bondId": "",
+        "sourceItemUuid": ""
       },
       "familiar": {
         "scale": "small",
@@ -301,29 +328,50 @@
       "specialization",
       "formula",
       "ritual",
-      "device"
+      "device",
+      "ancestry",
+      "origin",
+      "background",
+      "discipline",
+      "effect"
     ],
     "templates": {
       "base": {
         "description": "",
+        "schemaVersion": 1,
+        "slug": "",
+        "tags": [],
+        "costs": [],
+        "requirementsText": "",
+        "requirements": null,
+        "rules": [],
+        "choices": {},
+        "provenance": {
+          "sourceUuid": "",
+          "sourceSchemaVersion": 0,
+          "sourceRevision": ""
+        },
+        "acquisition": null,
+        "stacking": "unique",
+        "legacy": {}
+      },
+      "physical": {
         "quantity": 1,
         "weight": 0,
         "equipped": false,
         "availability": "common",
         "quality": "common",
         "properties": "",
-        "skillModifiersActive": true,
-        "skillModifiers": [],
         "priceCopper": 0,
         "priceQuantity": 1,
         "priceStatus": "unset",
-        "legacyPrice": null,
-        "skillRequirements": []
+        "legacyPrice": null
       }
     },
     "weapon": {
       "templates": [
-        "base"
+        "base",
+        "physical"
       ],
       "skill": "martialWeapons",
       "attackAttribute": "agi",
@@ -338,14 +386,16 @@
     },
     "armor": {
       "templates": [
-        "base"
+        "base",
+        "physical"
       ],
       "protection": 1,
       "strengthMin": 0
     },
     "shield": {
       "templates": [
-        "base"
+        "base",
+        "physical"
       ],
       "passiveDefense": 1,
       "block": 2,
@@ -354,7 +404,8 @@
     },
     "equipment": {
       "templates": [
-        "base"
+        "base",
+        "physical"
       ],
       "category": "General"
     },
@@ -372,7 +423,6 @@
       "damage": 0,
       "penetration": 0,
       "range": "",
-      "requirements": "",
       "sustained": false,
       "skillModifiersActive": false,
       "grade": "basic",
@@ -386,8 +436,6 @@
         "base"
       ],
       "grade": "basic",
-      "pdCost": 2,
-      "requirements": "",
       "effect": "",
       "activation": "",
       "cost": "",
@@ -399,8 +447,6 @@
         "base"
       ],
       "category": "acquired",
-      "traitCost": 1,
-      "requirements": "",
       "effect": ""
     },
     "specialization": {
@@ -408,16 +454,14 @@
         "base"
       ],
       "skill": "",
-      "requirements": "",
-      "effect": "",
-      "pdCost": 1
+      "effect": ""
     },
     "formula": {
       "templates": [
-        "base"
+        "base",
+        "physical"
       ],
       "grade": "common",
-      "pdCost": 1,
       "preparation": "",
       "ingredients": "",
       "time": "",
@@ -434,7 +478,6 @@
         "base"
       ],
       "grade": "basic",
-      "pdCost": 2,
       "difficulty": 15,
       "time": "30 minutos",
       "participants": "Director 1",
@@ -450,7 +493,8 @@
     },
     "device": {
       "templates": [
-        "base"
+        "base",
+        "physical"
       ],
       "category": "arcano-industrial",
       "energy": {
@@ -463,6 +507,41 @@
       "effect": "",
       "condition": "operative",
       "overloadAllowed": true
+    },
+    "ancestry": {
+      "templates": [
+        "base"
+      ],
+      "category": "ancestry"
+    },
+    "origin": {
+      "templates": [
+        "base"
+      ],
+      "category": "origin"
+    },
+    "background": {
+      "templates": [
+        "base"
+      ],
+      "category": "background"
+    },
+    "discipline": {
+      "templates": [
+        "base"
+      ],
+      "discipline": "evocation"
+    },
+    "effect": {
+      "templates": [
+        "base"
+      ],
+      "sourceActorUuid": "",
+      "sourceItemUuid": "",
+      "stackingKey": "",
+      "duration": "",
+      "expiry": "manual",
+      "active": true
     }
   }
 }
