@@ -1,6 +1,6 @@
 import { TM_CONFIG } from "../config.mjs";
-import { STARTER_CONTENT } from "../content.mjs";
 import { toNumber } from "../rules.mjs";
+import { normalizeSlug } from "../rules/identity.mjs";
 import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } from "../rules/currency.mjs";
 
 export class TierraMagicaActorSheet extends ActorSheet {
@@ -40,23 +40,29 @@ export class TierraMagicaActorSheet extends ActorSheet {
       migrationPending: Boolean(this.actor.system.currency?.migrationPending),
       legacyCrowns: this.actor.system.currency?.legacy?.crowns ?? null,
       hasLegacyCrowns: Number(this.actor.system.currency?.legacy?.crowns) > 0,
-      initialReserveGranted: Boolean(this.actor.system.currency?.initialReserveGranted)
+      initialReserveGranted: Boolean(this.actor.system.creation?.initialReserveGranted)
     };
+    const creationStatus = this.actor.system.creation?.status ?? "complete";
+    const peiRemaining = Math.max(0, toNumber(this.actor.system.derived?.peiAvailable,
+      this.actor.system.creation?.equipmentBudgetCopper ?? CREATION_PEI_COPPER));
     context.creationPei = {
-      active: this.actor.type === "character" && this.actor.system.creation?.equipmentBudgetActive === true,
-      remaining: this.actor.type === "character"
-        ? Math.max(0, Math.floor(toNumber(this.actor.system.creation?.equipmentBudgetCopper, CREATION_PEI_COPPER)))
-        : 0,
-      display: this.actor.type === "character"
-        ? formatCurrency(Math.max(0, Math.floor(toNumber(this.actor.system.creation?.equipmentBudgetCopper, CREATION_PEI_COPPER))))
-        : ""
+      active: this.actor.type === "character" && ["building","rebuilding"].includes(creationStatus),
+      remaining: peiRemaining,
+      display: this.actor.type === "character" ? formatCurrency(peiRemaining) : ""
+    };
+    context.creation = {
+      status: creationStatus,
+      statusLabel: TM_CONFIG.creationStatuses[creationStatus] ?? creationStatus,
+      revision: toNumber(this.actor.system.creation?.revision),
+      isBuilding: creationStatus === "building",
+      isComplete: creationStatus === "complete",
+      isRebuilding: creationStatus === "rebuilding",
+      reserveGranted: Boolean(this.actor.system.creation?.initialReserveGranted),
+      warnings: Array.isArray(this.actor.system.creation?.legacyWarnings) ? this.actor.system.creation.legacyWarnings : []
     };
     const sustainedIds = Array.isArray(this.actor.system.magic?.sustainedSpellIds) ? this.actor.system.magic.sustainedSpellIds : [];
     context.sustainedSpells = sustainedIds.map((id) => this.actor.items.get(id)).filter(Boolean);
 
-    const level = Math.max(1, Math.floor(toNumber(this.actor.system.details?.level, 1)));
-    const pdSpent = Math.max(0, toNumber(this.actor.system.details?.pdSpent));
-    const pdTotal = 25 + Math.max(0, level - 1) * 4;
     const skillIssueLabels = {
       "rank-level": "Hay una Habilidad por encima del rango permitido por nivel.",
       "level-one-expert-limit": "A nivel 1 sólo puede existir una Habilidad Experta.",
@@ -71,12 +77,24 @@ export class TierraMagicaActorSheet extends ActorSheet {
       ? this.actor.system.derived.skillIssues.map((issue) => skillIssueLabels[issue.code] ?? issue.code)
       : [];
     context.development = {
-      pdTotal,
-      pdSpent,
-      pdAvailable: pdTotal - pdSpent,
+      pdTotal: toNumber(this.actor.system.derived?.pdTotal, 25),
+      pdSpent: toNumber(this.actor.system.derived?.pdSpent),
+      pdAvailable: toNumber(this.actor.system.derived?.pdAvailable, 25),
+      prTotal: toNumber(this.actor.system.derived?.prTotal, 3),
+      prSpent: toNumber(this.actor.system.derived?.prSpent),
+      prAvailable: toNumber(this.actor.system.derived?.prAvailable, 3),
+      peiTotal: toNumber(this.actor.system.derived?.peiTotal, CREATION_PEI_COPPER),
+      peiSpent: toNumber(this.actor.system.derived?.peiSpent),
+      peiAvailable: toNumber(this.actor.system.derived?.peiAvailable, CREATION_PEI_COPPER),
       skillsPdCost: toNumber(this.actor.system.derived?.skillsPdCost),
       skillIssues,
-      skillBuildActive: this.actor.system.creation?.skillBuildActive !== false
+      skillBuildActive: creationStatus !== "complete",
+      ruleIssues: Array.isArray(this.actor.system.derived?.ruleIssues) ? this.actor.system.derived.ruleIssues : []
+    };
+    context.identityItems = {
+      ancestry: context.itemGroups.ancestry?.[0] ?? null,
+      origin: context.itemGroups.origin?.[0] ?? null,
+      background: context.itemGroups.background?.[0] ?? null
     };
 
     context.turn = {
@@ -117,6 +135,8 @@ export class TierraMagicaActorSheet extends ActorSheet {
     html.find("[data-action='close-creation-equipment']").click(() => this.actor.closeCreationEquipment());
     html.find("[data-action='resolve-legacy-crowns']").click(() => this.#resolveLegacyCrowns());
     html.find("[data-action='archive-legacy-crowns']").click(() => this.#archiveLegacyCrowns());
+    html.find("[data-action='complete-creation']").click(() => this.actor.completeCreation());
+    html.find("[data-action='begin-rebuild']").click(() => this.actor.beginRebuild());
 
     html.find("[data-action='set-skill-rank']").change(async (event) => {
       const key = event.currentTarget.dataset.key;
@@ -282,26 +302,28 @@ export class TierraMagicaActorSheet extends ActorSheet {
   async #useWeaponTechnique(event) {
     const weapon = this.#getItem(event);
     if (!weapon) return;
-    const owned = new Set(this.actor.items.filter((item) => item.type === "technique").map((item) => item.name));
+    const owned = new Map(this.actor.items
+      .filter((item) => item.type === "technique")
+      .map((item) => [normalizeSlug(item.system?.slug || item.name), item]));
     const options = [];
-    if (owned.has("Golpe Potente")) options.push(["powerful", "Golpe Potente"]);
-    if (owned.has("Estocada Perforante")) options.push(["piercing", "Estocada Perforante"]);
-    if (owned.has("Barrido")) options.push(["sweep", "Barrido"]);
-    if (owned.has("Combate Dual")) options.push(["dual", "Combate Dual"]);
+    if (owned.has("golpe-potente")) options.push(["powerful", owned.get("golpe-potente").name]);
+    if (owned.has("estocada-perforante")) options.push(["piercing", owned.get("estocada-perforante").name]);
+    if (owned.has("barrido")) options.push(["sweep", owned.get("barrido").name]);
+    if (owned.has("combate-dual")) options.push(["dual", owned.get("combate-dual").name]);
     if (!options.length) return ui.notifications.warn("El personaje no posee Técnicas ofensivas compatibles.");
 
     const selected = await Dialog.prompt({
       title: "Técnica con " + weapon.name,
       content: "<div class='form-group'><label>Técnica</label><select name='technique'>" +
-        options.map(([value, label]) => "<option value='" + value + "'>" + label + "</option>").join("") +
+        options.map(([value, label]) => "<option value='" + value + "'>" + foundry.utils.escapeHTML(label) + "</option>").join("") +
         "</select></div>",
       label: "Continuar",
       callback: (html) => String(html.find("[name='technique']").val() ?? ""),
       rejectClose: false
     });
     if (!selected) return;
-    if (selected === "powerful") return this.actor.useCombatTechnique("Golpe Potente", weapon);
-    if (selected === "piercing") return this.actor.useCombatTechnique("Estocada Perforante", weapon);
+    if (selected === "powerful") return this.actor.useCombatTechnique("golpe-potente", weapon);
+    if (selected === "piercing") return this.actor.useCombatTechnique("estocada-perforante", weapon);
     if (selected === "sweep") return this.actor.sweepAttack(weapon);
     if (selected !== "dual") return;
 
@@ -410,11 +432,16 @@ export class TierraMagicaActorSheet extends ActorSheet {
 
   async #createItem(type) {
     if (!type) return;
-    const [item] = await this.actor.createEmbeddedDocuments("Item", [{
+    const data = {
       name: "Nuevo " + (TM_CONFIG.itemTypes[type] ?? "objeto"),
-      type
-    }]);
-    item?.sheet.render(true);
+      type,
+      system: {
+        costs: [{ context:"any", resource:"none", amount:0 }],
+        slug: ""
+      }
+    };
+    const item = this.actor.acquireItem ? await this.actor.acquireItem(data) : (await this.actor.createEmbeddedDocuments("Item", [data]))?.[0];
+    item?.sheet?.render(true);
   }
 
   async #deleteItem(event) {
@@ -433,22 +460,45 @@ export class TierraMagicaActorSheet extends ActorSheet {
   }
 
   async #openContentBrowser(type) {
-    const entries = STARTER_CONTENT[type] ?? [];
-    if (!entries.length) return ui.notifications.warn("No hay contenido de referencia para esta categoría.");
+    const entries = (game.tierraMagica?.catalog ?? []).filter((entry) => entry.type === type);
+    if (!entries.length) return ui.notifications.warn("No hay contenido estructurado disponible para esta categoría.");
     const options = entries.map((entry, index) =>
       "<option value='" + index + "'>" + foundry.utils.escapeHTML(entry.name) + "</option>"
     ).join("");
     const selected = await Dialog.prompt({
       title: "Agregar " + (TM_CONFIG.itemTypes[type] ?? "contenido"),
-      content: "<div class='form-group'><label>Contenido del Manual v0.1</label><select name='entry'>" + options + "</select></div>",
+      content: "<div class='form-group'><label>Catálogo canónico CREA-11</label><select name='entry'>" + options + "</select></div>",
       label: "Agregar",
       callback: (html) => Number(html.find("[name='entry']").val()),
       rejectClose: false
     });
     if (selected === null || selected === undefined) return;
     const source = foundry.utils.deepClone(entries[selected]);
-    const [item] = await this.actor.createEmbeddedDocuments("Item", [{ ...source, type }]);
-    item?.sheet.render(true);
+
+    const singular = ["ancestry","origin","background"].includes(type);
+    const existing = singular ? this.actor.items.find((item) => item.type === type) : null;
+    if (existing) {
+      if (this.actor.system.creation?.status === "complete") {
+        return ui.notifications.warn("Reemplazar " + (TM_CONFIG.itemTypes[type] ?? type) + " requiere una reconstrucción autorizada.");
+      }
+      const confirmed = await Dialog.confirm({
+        title: "Sustituir " + (TM_CONFIG.itemTypes[type] ?? type),
+        content: "<p>¿Sustituir <strong>" + foundry.utils.escapeHTML(existing.name) + "</strong> por <strong>" + foundry.utils.escapeHTML(source.name) + "</strong>?</p>"
+      });
+      if (!confirmed) return;
+      const backup = existing.toObject();
+      await existing.delete({ tmValidated:true });
+      const replacement = await this.actor.acquireItem(source);
+      if (!replacement) {
+        await this.actor.createEmbeddedDocuments("Item", [backup], { tmValidated:true });
+        return;
+      }
+      replacement.sheet?.render(true);
+      return;
+    }
+
+    const item = this.actor.acquireItem ? await this.actor.acquireItem(source) : (await this.actor.createEmbeddedDocuments("Item", [source]))?.[0];
+    item?.sheet?.render(true);
   }
 
   async #configureAttributeRoll(key) {
@@ -488,10 +538,21 @@ export class TierraMagicaActorSheet extends ActorSheet {
     );
     if (existing) return existing.sheet.render(true);
 
+    const trait = this.actor.items.find((item) =>
+      item.type === "trait" && normalizeSlug(item.system?.slug || item.name) === "familiar-magico"
+    );
+    if (!trait) return ui.notifications.warn("El personaje necesita el Rasgo Familiar Mágico para crear el vínculo.");
+
+    const bondId = "bond-" + foundry.utils.randomID();
     const familiar = await Actor.create({
       name: "Familiar de " + this.actor.name,
       type: "familiar",
-      system: { details: { ownerName: this.actor.name, ownerUuid: this.actor.uuid } }
+      system: { details: {
+        ownerName: this.actor.name,
+        ownerUuid: this.actor.uuid,
+        bondId,
+        sourceItemUuid: trait.uuid
+      } }
     });
     familiar?.sheet.render(true);
   }
