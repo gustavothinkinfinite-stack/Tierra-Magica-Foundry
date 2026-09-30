@@ -155,7 +155,8 @@ export function migrateActorSource(source) {
 
   if (actor.type === "familiar") {
     system.details ??= {};
-    system.details.bondId = String(system.details.bondId ?? "");
+    const existingBond = String(system.details.bondId ?? "");
+    system.details.bondId = existingBond || (system.details.ownerUuid ? "legacy-bond-" + String(actor._id ?? actor.id ?? "").replace(/[^A-Za-z0-9_-]/g, "") : "");
     system.details.sourceItemUuid = String(system.details.sourceItemUuid ?? "");
   }
 
