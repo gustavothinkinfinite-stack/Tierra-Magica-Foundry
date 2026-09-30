@@ -40,3 +40,21 @@ test("actual paid acquisition, not catalog price, drives budgets",()=>{
   ];
   assert.equal(budgetSpentByResource(items).pd,3);
 });
+
+test("granted Items retain catalog price but pay zero and unresolved ChoiceSet blocks acquisition",()=>{
+  const actor={system:{creation:{revision:0},skills:{}},items:[]};
+  const candidate={type:"trait",name:"X",system:{
+    slug:"x",
+    costs:[{context:"creation",resource:"pr",amount:3}],
+    rules:[{key:"ChoiceSet",choiceKey:"path",options:["a","b"]}],
+    choices:{}
+  }};
+  const blocked=preflightAcquisition({actor,candidate,stage:"creation",mode:"granted"});
+  assert.equal(blocked.valid,false);
+  candidate.system.choices.path="a";
+  const allowed=preflightAcquisition({actor,candidate,stage:"creation",mode:"granted",sources:[{kind:"grant",uuid:"Item.a"}]});
+  assert.equal(allowed.valid,true);
+  assert.equal(allowed.cost.resource,"none");
+  assert.equal(allowed.acquisition.paid.amount,0);
+  assert.equal(allowed.acquisition.sources.length,1);
+});
