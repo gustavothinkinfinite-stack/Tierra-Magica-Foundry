@@ -78,6 +78,15 @@ export function preflightAcquisition({
   const requirementResult = evaluateRequirements(requirements, actor, { excludeItemId: candidate?.id ?? null });
   if (!requirementResult.valid) issues.push(...requirementResult.issues);
 
+  const choices = candidate?.system?.choices ?? {};
+  for (const rule of Array.isArray(candidate?.system?.rules) ? candidate.system.rules : []) {
+    if (rule?.key !== "ChoiceSet" || rule.optional) continue;
+    const key = String(rule.choiceKey ?? "");
+    if (!key || choices[key] === undefined || choices[key] === null || choices[key] === "") {
+      issues.push({ code: "choice-unresolved", message: "Falta resolver la elección " + (key || "(sin clave)") + "." });
+    }
+  }
+
   const currentRevision = number(actor?.system?.creation?.revision);
   if (expectedRevision !== null && number(expectedRevision) !== currentRevision) {
     issues.push({ code: "revision", message: "La construcción cambió desde el preflight; debe revalidarse." });
