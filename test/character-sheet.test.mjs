@@ -43,7 +43,7 @@ test("auditoría 1.0.2 alinea Maniobra y editores de subsistemas",async()=>{cons
 
 test("Vida 0 y descansos exponen la semántica auditada",async()=>{const guards=await readFile(resolve(root,"scripts/rules/familiar-guards.mjs"),"utf8");const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(model.Actor.templates.base.status.incapacitated,false);assert.equal("zeroTraumaApplied" in model.Actor.templates.base.recovery,false);assert.equal(guards.includes('previous > 0 && next === 0'),true);assert.equal(guards.includes('updates["system.status.trauma"] = 1'),true);assert.equal(sheet.includes("Respiro (~10 min)"),true);assert.equal(sheet.includes("Descanso (~1 h)"),true);assert.equal(sheet.includes("Descanso completo (~8 h)"),true);});
 
-test("magia auditada implementa Sobrecarga y límite de Sostenimiento",async()=>{const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.deepEqual(model.Actor.templates.base.magic.sustainedSpellIds,[]);assert.equal(actor.includes('cost - mana === 1 && mana >= 1'),true);assert.equal(actor.includes('df: 17'),true);assert.equal(actor.includes('i.name === "Doble Sostenimiento"'),true);assert.equal(sheet.includes('data-action="stop-sustained"'),true);});
+test("magia auditada implementa Sobrecarga y límite de Sostenimiento",async()=>{const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.deepEqual(model.Actor.templates.base.magic.sustainedSpellIds,[]);assert.equal(actor.includes('cost - mana === 1 && mana >= 1'),true);assert.equal(actor.includes('df: 17'),true);assert.equal(actor.includes('"doble-sostenimiento"'),true);assert.equal(sheet.includes('data-action="stop-sustained"'),true);});
 
 test("Alquimia consume dosis, aplica Saturación y Respiro la limpia",async()=>{const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");const sheet=await readFile(resolve(root,"templates/actor/parts/item-section.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.deepEqual(model.Actor.templates.base.alchemy.saturatedFamilies,[]);assert.equal(actor.includes("async useFormula(item)"),true);assert.equal(actor.includes('updates["system.alchemy.saturatedFamilies"] = []'),true);assert.equal(actor.includes('"system.quantity": Math.max(0'),true);assert.equal(sheet.includes('data-action="item-formula"'),true);});
 
@@ -59,7 +59,7 @@ test("v1.0.10 corrige banner proporcional y recorte de la columna derecha",async
 
 test("CREA-09 usa saldo único en cobres y no persiste oro/plata/cobre independientes",async()=>{const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(model.Actor.templates.base.currency.totalCopper,0);assert.equal("crowns" in model.Actor.templates.base.currency,false);assert.equal(sheet.includes('name="system.currency.gold"'),false);assert.equal(sheet.includes('data-denomination="gold"'),true);assert.equal(sheet.includes("Reserva inicial: 2 o"),true);});
 
-test("CREA-09 representa precios con cobre y Unidad Comercial",async()=>{const item=await readFile(resolve(root,"templates/item/item-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));for(const field of ["priceCopper","priceQuantity","priceStatus"])assert.equal(field in model.Item.templates.base,true);assert.equal("price" in model.Item.templates.base,false);for(const field of ["system.priceCopper","system.priceQuantity","system.priceStatus"])assert.equal(item.includes(field),true);});
+test("CREA-09 representa precios con cobre y Unidad Comercial",async()=>{const item=await readFile(resolve(root,"templates/item/item-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));for(const field of ["priceCopper","priceQuantity","priceStatus"])assert.equal(field in model.Item.templates.physical,true);assert.equal("price" in model.Item.templates.base,false);for(const field of ["system.priceCopper","system.priceQuantity","system.priceStatus"])assert.equal(item.includes(field),true);});
 
 test("CREA-10 sincroniza modelo, ficha y Actor con la lista canónica",async()=>{
   const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");
@@ -67,8 +67,9 @@ test("CREA-10 sincroniza modelo, ficha y Actor con la lista canónica",async()=>
   const item=await readFile(resolve(root,"templates/item/item-sheet.hbs"),"utf8");
   const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));
   assert.equal(Object.keys(model.Actor.templates.base.skills).length,26);
-  assert.equal(model.Item.specialization.pdCost,1);
-  assert.deepEqual(model.Item.templates.base.skillRequirements,[]);
+  assert.equal("pdCost" in model.Item.specialization,false);
+  assert.deepEqual(model.Item.templates.base.rules,[]);
+  assert.equal(model.Item.templates.base.requirements,null);
   assert.equal(model.Item.spell.method,"direct");
   assert.equal(actor.includes("#meetsSkillRequirement"),false);
   assert.equal(actor.includes("async setSkillRank"),true);
@@ -76,4 +77,20 @@ test("CREA-10 sincroniza modelo, ficha y Actor con la lista canónica",async()=>
   assert.equal(sheet.includes("PD en Habilidades"),true);
   assert.equal(item.includes("Requisitos de Habilidad"),true);
   assert.equal(item.includes("system.method"),true);
+});
+
+test("CREA-11 itemiza identidad y unifica adquisición/reglas",async()=>{
+  const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");
+  const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  const item=await readFile(resolve(root,"templates/item/item-sheet.hbs"),"utf8");
+  const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));
+  for(const type of ["ancestry","origin","background","discipline","effect"])assert.equal(model.Item.types.includes(type),true);
+  assert.equal(model.Actor.character.creation.status,"building");
+  assert.equal(sheet.includes("Elegir Ascendencia"),true);
+  assert.equal(sheet.includes('data-action="complete-creation"'),true);
+  assert.equal(sheet.includes("system.details.ancestry"),false);
+  assert.equal(actor.includes("async acquireItem"),true);
+  assert.equal(actor.includes("async completeCreation"),true);
+  assert.equal(item.includes("Costes de catálogo"),true);
+  assert.equal(item.includes("system.skillModifiersActive"),false);
 });
