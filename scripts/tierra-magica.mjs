@@ -121,6 +121,24 @@ Hooks.on("preCreateItem", (item, data, options = {}) => {
   item.updateSource({ "system.acquisition": preflight.acquisition });
 });
 
+Hooks.on("createItem", async (item, options = {}) => {
+  const actor = item.parent;
+  if (!actor || actor.type !== "character" || options.tmValidated) return;
+  await actor.update({ "system.creation.revision": Number(actor.system.creation?.revision ?? 0) + 1 });
+});
+
+Hooks.on("preDeleteItem", (item, options = {}) => {
+  const actor = item.parent;
+  if (!actor || actor.type !== "character" || options.tmValidated) return;
+  if (item.type === "effect") return;
+  const developmental = new Set(["ancestry","origin","background","discipline","specialization","technique","trait","spell"]);
+  if (!developmental.has(item.type)) return;
+  if (actor.system.creation?.status === "complete") {
+    ui.notifications.warn("Retirar " + item.name + " requiere una reconstrucción autorizada; eliminar el documento no devuelve recursos.");
+    return false;
+  }
+});
+
 Hooks.on("preUpdateItem", (item, changes, options = {}) => {
   if (item.parent?.type === "character" && !options.tmValidated) {
     const protectedPaths = ["system.acquisition", "system.costs", "system.rules", "system.requirements", "system.schemaVersion"];
