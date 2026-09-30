@@ -474,6 +474,8 @@ export class TierraMagicaActorSheet extends ActorSheet {
     });
     if (selected === null || selected === undefined) return;
     const source = foundry.utils.deepClone(entries[selected]);
+    const resolved = await this.#resolveCatalogChoices(source);
+    if (!resolved) return;
 
     const singular = ["ancestry","origin","background"].includes(type);
     const existing = singular ? this.actor.items.find((item) => item.type === type) : null;
@@ -499,6 +501,41 @@ export class TierraMagicaActorSheet extends ActorSheet {
 
     const item = this.actor.acquireItem ? await this.actor.acquireItem(source) : (await this.actor.createEmbeddedDocuments("Item", [source]))?.[0];
     item?.sheet?.render(true);
+  }
+
+  async #resolveCatalogChoices(source) {
+    source.system ??= {};
+    source.system.choices ??= {};
+    for (const rule of Array.isArray(source.system.rules) ? source.system.rules : []) {
+      if (rule?.key !== "ChoiceSet") continue;
+      const key = String(rule.choiceKey ?? "");
+      if (!key || source.system.choices[key] !== undefined) continue;
+      const options = (Array.isArray(rule.options) ? rule.options : []).map((option) =>
+        typeof option === "object"
+          ? { value:String(option.value ?? ""), label:String(option.label ?? option.value ?? "") }
+          : { value:String(option), label:String(option) }
+      ).filter((option) => option.value);
+      if (!options.length) {
+        if (rule.optional) continue;
+        ui.notifications.warn("La elección " + key + " de " + source.name + " no tiene opciones estructuradas.");
+        return null;
+      }
+      const choice = await Dialog.prompt({
+        title: "Elección — " + source.name,
+        content: "<div class='form-group'><label>" + foundry.utils.escapeHTML(rule.label ?? key) +
+          "</label><select name='choice'>" +
+          (rule.optional ? "<option value=''>— Ninguna —</option>" : "") +
+          options.map((option) => "<option value='" + foundry.utils.escapeHTML(option.value) + "'>" +
+            foundry.utils.escapeHTML(option.label) + "</option>").join("") +
+          "</select></div>",
+        label: "Confirmar",
+        callback: (html) => String(html.find("[name='choice']").val() ?? ""),
+        rejectClose: false
+      });
+      if (!choice && !rule.optional) return null;
+      if (choice) source.system.choices[key] = choice;
+    }
+    return source;
   }
 
   async #configureAttributeRoll(key) {
