@@ -13,3 +13,9 @@ test("unique mechanical content detects duplicates by type+slug, not display nam
   const duplicate=duplicateIdentity(items,{type:"discipline",name:"Restauración",system:{slug:"restauracion"}});
   assert.equal(duplicate?.id,"a");
 });
+
+test("specialization uniqueness includes mother skill", () => {
+  const items=[{id:"a",type:"specialization",name:"Campo",system:{slug:"campo",skill:"medicine"}}];
+  assert.equal(duplicateIdentity(items,{type:"specialization",name:"Campo",system:{slug:"campo",skill:"medicine"}})?.id,"a");
+  assert.equal(duplicateIdentity(items,{type:"specialization",name:"Campo",system:{slug:"campo",skill:"arcana"}}),null);
+});
