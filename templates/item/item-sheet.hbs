@@ -5,6 +5,15 @@
   </header>
 
   <section class="tm-panel tm-item-fields">
+    <div class="tm-section-heading"><h2>Identidad estructurada</h2><span>{{acquisitionDisplay}}</span></div>
+    <div class="tm-form-grid">
+      <label><span>Slug mecánico</span><input type="text" name="system.slug" value="{{system.slug}}" /></label>
+      <label><span>Stacking</span><select name="system.stacking">{{selectOptions config.stackingModes selected=system.stacking}}</select></label>
+      <label><span>Requisitos narrativos / acceso</span><input type="text" name="system.requirementsText" value="{{system.requirementsText}}" /></label>
+    </div>
+  </section>
+
+  <section class="tm-panel tm-item-fields">
     <div class="tm-form-grid">
       {{#if isWeapon}}
         <label><span>Habilidad</span><select name="system.skill">{{selectOptions config.weaponSkillLabels selected=system.skill}}</select></label>
@@ -49,34 +58,34 @@
         <label><span>Daño</span><input type="number" name="system.damage" value="{{system.damage}}" min="0" /></label>
         <label><span>Penetración</span><input type="number" name="system.penetration" value="{{system.penetration}}" min="0" /></label>
         <label><span>Alcance</span><input type="text" name="system.range" value="{{system.range}}" /></label>
-        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" placeholder="Requisitos narrativos o de acceso" /></label>
+        <label><span>Requisitos</span><input type="text" name="system.requirementsText" value="{{system.requirementsText}}" placeholder="Requisitos narrativos o de acceso" /></label>
         <label class="tm-check"><span>Sostenido</span><input type="checkbox" name="system.sustained" {{checked system.sustained}} /></label>
       {{/if}}
 
       {{#if isTechnique}}
         <label><span>Grado</span><select name="system.grade">{{selectOptions config.techniqueGrades selected=system.grade}}</select></label>
-        <label><span>Coste PD</span><input type="number" name="system.pdCost" value="{{system.pdCost}}" min="0" /></label>
-        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" /></label>
+        <label><span>Coste PD</span><input type="number" value="{{system.pdCost}}" disabled /></label>
+        <label><span>Requisitos</span><input type="text" name="system.requirementsText" value="{{system.requirementsText}}" /></label>
         <label><span>Efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
       {{/if}}
 
       {{#if isTrait}}
         <label><span>Categoría</span><select name="system.category">{{selectOptions config.traitCategories selected=system.category}}</select></label>
-        <label><span>Coste de Rasgo</span><input type="number" name="system.traitCost" value="{{system.traitCost}}" min="0" /></label>
-        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" /></label>
+        <label><span>Coste de Rasgo</span><input type="number" value="{{system.traitCost}}" disabled /></label>
+        <label><span>Requisitos</span><input type="text" name="system.requirementsText" value="{{system.requirementsText}}" /></label>
         <label><span>Efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
       {{/if}}
 
       {{#if isSpecialization}}
         <label><span>Habilidad base</span><select name="system.skill"><option value="">Elegir</option>{{selectOptions config.skillLabels selected=system.skill}}</select></label>
-        <label><span>Coste PD</span><input type="number" name="system.pdCost" value="{{system.pdCost}}" min="1" max="1" readonly /></label>
-        <label><span>Requisitos</span><input type="text" name="system.requirements" value="{{system.requirements}}" /></label>
+        <label><span>Coste PD</span><input type="number" value="{{system.pdCost}}" disabled /></label>
+        <label><span>Requisitos</span><input type="text" name="system.requirementsText" value="{{system.requirementsText}}" /></label>
         <label><span>Acceso / efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
       {{/if}}
 
       {{#if isFormula}}
         <label><span>Grado</span><input type="text" name="system.grade" value="{{system.grade}}" /></label>
-        <label><span>Coste PD</span><input type="number" name="system.pdCost" value="{{system.pdCost}}" min="0" /></label>
+        <label><span>Coste PD</span><input type="number" value="{{system.pdCost}}" disabled /></label>
         <label><span>Preparación</span><input type="text" name="system.preparation" value="{{system.preparation}}" /></label>
         <label><span>Ingredientes</span><input type="text" name="system.ingredients" value="{{system.ingredients}}" /></label>
         <label><span>Tiempo</span><input type="text" name="system.time" value="{{system.time}}" /></label>
@@ -91,7 +100,7 @@
 
       {{#if isRitual}}
         <label><span>Grado</span><input type="text" name="system.grade" value="{{system.grade}}" /></label>
-        <label><span>Coste PD</span><input type="number" name="system.pdCost" value="{{system.pdCost}}" min="0" /></label>
+        <label><span>Coste PD</span><input type="number" value="{{system.pdCost}}" disabled /></label>
         <label><span>DF</span><input type="number" name="system.difficulty" value="{{system.difficulty}}" min="0" /></label>
         <label><span>Tiempo</span><input type="text" name="system.time" value="{{system.time}}" /></label>
         <label><span>Participantes</span><input type="text" name="system.participants" value="{{system.participants}}" /></label>
@@ -118,7 +127,22 @@
         <label><span>Efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
       {{/if}}
 
+      {{#if isDiscipline}}
+        <label><span>Disciplina</span><select name="system.discipline">{{selectOptions config.disciplines selected=system.discipline}}</select></label>
+      {{/if}}
+
+      {{#if isEffect}}
+        <label><span>Actor fuente UUID</span><input type="text" name="system.sourceActorUuid" value="{{system.sourceActorUuid}}" /></label>
+        <label><span>Item fuente UUID</span><input type="text" name="system.sourceItemUuid" value="{{system.sourceItemUuid}}" /></label>
+        <label><span>Duración</span><input type="text" name="system.duration" value="{{system.duration}}" /></label>
+        <label><span>Expiración</span><select name="system.expiry">{{selectOptions config.effectExpiry selected=system.expiry}}</select></label>
+        <label class="tm-check"><span>Activo</span><input type="checkbox" name="system.active" {{checked system.active}} /></label>
+        <label><span>Clave de acumulación</span><input type="text" value="{{system.stackingKey}}" disabled /></label>
+      {{/if}}
+
+      {{#if isPhysical}}
       <label><span>Cantidad</span><input type="number" name="system.quantity" value="{{system.quantity}}" min="0" /></label>
+
       <label><span>Peso</span><input type="number" name="system.weight" value="{{system.weight}}" min="0" step="0.1" /></label>
       <label><span>Estado de precio</span><select name="system.priceStatus">{{selectOptions config.priceStatuses selected=system.priceStatus}}</select></label>
       <label><span>Precio (cobres)</span><input type="number" name="system.priceCopper" value="{{system.priceCopper}}" min="0" step="1" /></label>
@@ -128,7 +152,32 @@
       <label><span>Calidad</span><select name="system.quality">{{selectOptions config.qualities selected=system.quality}}</select></label>
       <label><span>Propiedades</span><input type="text" name="system.properties" value="{{system.properties}}" /></label>
       {{#if (or isWeapon isArmor isShield isEquipment)}}<label class="tm-check"><span>Equipado</span><input type="checkbox" name="system.equipped" {{checked system.equipped}} /></label>{{/if}}
+      {{/if}}
     </div>
+  </section>
+
+  <section class="tm-panel tm-skill-requirements-editor">
+    <div class="tm-section-heading">
+      <h2>Costes de catálogo</h2>
+      <span>El coste normal se separa de lo realmente pagado por esta instancia.</span>
+    </div>
+    <div class="tm-skill-modifier-list">
+      {{#each costs as |cost|}}
+        <div class="tm-skill-modifier-row">
+          <select data-action="cost-field" data-index="{{cost.index}}" data-field="context">
+            {{selectOptions @root.costContexts selected=cost.context}}
+          </select>
+          <select data-action="cost-field" data-index="{{cost.index}}" data-field="resource">
+            {{selectOptions @root.config.paidResources selected=cost.resource}}
+          </select>
+          <input type="number" min="0" value="{{cost.amount}}" data-action="cost-field" data-index="{{cost.index}}" data-field="amount" />
+          <button type="button" data-action="cost-delete" data-index="{{cost.index}}" title="Eliminar coste"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      {{else}}
+        <p class="tm-empty">Sin coste de catálogo.</p>
+      {{/each}}
+    </div>
+    <button type="button" class="tm-skill-modifier-add" data-action="cost-add"><i class="fa-solid fa-plus"></i> Agregar coste</button>
   </section>
 
   <section class="tm-panel tm-skill-requirements-editor">
@@ -145,6 +194,10 @@
           </select>
           <select data-action="skill-requirement-field" data-index="{{requirement.index}}" data-field="minRank" title="Rango mínimo">
             {{selectOptions @root.config.rankOptionLabels selected=requirement.minRank}}
+          </select>
+          <select data-action="skill-requirement-field" data-index="{{requirement.index}}" data-field="basis" title="Base o efectivo">
+            <option value="base" {{#if (eq requirement.basis "base")}}selected{{/if}}>Rango base</option>
+            <option value="effective" {{#if (eq requirement.basis "effective")}}selected{{/if}}>Rango efectivo</option>
           </select>
           <button type="button" data-action="skill-requirement-delete" data-index="{{requirement.index}}" title="Eliminar requisito">
             <i class="fa-solid fa-trash"></i>
@@ -165,18 +218,7 @@
       <span>Bonificadores o penalizadores que este elemento aporta a Habilidades concretas.</span>
     </div>
 
-    <div class="tm-skill-modifier-toolbar">
-      <label class="tm-check">
-        <span>Modificadores activos</span>
-        <input type="checkbox" name="system.skillModifiersActive" {{checked system.skillModifiersActive}} />
-      </label>
-      {{#if (or isWeapon isArmor isShield isEquipment)}}
-        <small>En armas, armaduras, escudos y equipo también debe estar marcado como Equipado.</small>
-      {{/if}}
-      {{#if isSpell}}
-        <small>Actívalo únicamente mientras el efecto mágico esté vigente.</small>
-      {{/if}}
-    </div>
+    <p><small>Estos modificadores son Rule Elements declarativos. Equipo físico puede condicionarlos mediante predicates de equipamiento; los Effects controlan su propia activación.</small></p>
 
     <div class="tm-skill-modifier-list">
       {{#each skillModifiers as |modifier|}}
