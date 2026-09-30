@@ -60,7 +60,9 @@ export function preflightAcquisition({
   candidate,
   stage = "creation",
   priceContext = null,
-  expectedRevision = null
+  expectedRevision = null,
+  mode = "purchased",
+  sources = []
 } = {}) {
   const issues = [];
   const actorItems = Array.isArray(actor?.items) ? actor.items : actor?.items && typeof actor.items.values === "function" ? [...actor.items.values()] : [];
@@ -81,14 +83,20 @@ export function preflightAcquisition({
     issues.push({ code: "revision", message: "La construcción cambió desde el preflight; debe revalidarse." });
   }
 
-  const cost = selectCatalogCost(candidate?.system?.costs, { stage, priceContext });
-  if (!cost && stage !== "legacy") issues.push({ code: "cost", message: "No existe un coste legal para este contexto." });
+  const actualStage = stage === "rebuilding" ? priceContext : stage;
+  const freeMode = ["granted", "package"].includes(mode);
+  const cost = freeMode
+    ? { context: actualStage ?? "any", resource: "none", amount: 0 }
+    : selectCatalogCost(candidate?.system?.costs, { stage, priceContext });
+  if (!cost && stage !== "legacy" && mode !== "legacy") issues.push({ code: "cost", message: "No existe un coste legal para este contexto." });
 
   return {
     valid: !issues.length,
     issues,
     cost,
-    acquisition: cost ? acquisitionFromCost(cost, { stage: stage === "rebuilding" ? priceContext : stage }) : null,
+    acquisition: mode === "legacy"
+      ? normalizeAcquisition({ mode:"legacy", stage:"legacy", sources, paid:{ resource:"none", amount:0, known:false } })
+      : cost ? acquisitionFromCost(cost, { mode, stage: actualStage ?? stage, sources }) : null,
     revision: currentRevision
   };
 }
