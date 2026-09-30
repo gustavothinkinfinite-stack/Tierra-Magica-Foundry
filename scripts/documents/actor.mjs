@@ -12,7 +12,7 @@ import {
 import { prepareRuleElements, modifiersForSelector } from "../rules/rule-elements.mjs";
 import { deriveDevelopmentBudget, validateCreationState, completionUpdates } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
-import { normalizeSlug } from "../rules/identity.mjs";
+import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
 import { preflightAcquisition, acquisitionFromCost } from "../rules/acquisition.mjs";
 
 export class TierraMagicaActor extends Actor {
@@ -263,13 +263,47 @@ export class TierraMagicaActor extends Actor {
     return ui.notifications.info("CREA-11 utiliza un cierre global de creación. Usa Completar creación cuando todas las elecciones estén listas.");
   }
 
-  async acquireItem(itemData, { stage = null, priceContext = null } = {}) {
+  async acquireItem(itemData, { stage = null, priceContext = null, mode = "purchased", sources = [], transaction = null, grantPath = [] } = {}) {
     if (this.type !== "character") return this.createEmbeddedDocuments("Item", [itemData]);
+    const tx = transaction ?? [];
+    const rootAcquisition = transaction === null;
+    const rollback = async () => {
+      if (!rootAcquisition) return;
+      for (const created of [...tx].reverse()) {
+        const current = this.items.get(created.id);
+        if (current) await current.delete({ tmValidated: true });
+      }
+    };
+    const failAcquisition = async (message) => {
+      ui.notifications.warn(message);
+      await rollback();
+      return null;
+    };
+
     const status = this.system.creation?.status ?? "complete";
     const resolvedStage = stage ?? (status === "building" ? "creation" : status === "rebuilding" ? "rebuilding" : "progression");
     const candidate = foundry.utils.deepClone(itemData);
     candidate.system ??= {};
     candidate.system.slug = normalizeSlug(candidate.system.slug || candidate.name);
+    candidate.system.choices ??= {};
+    const candidateKey = contentIdentityKey(candidate);
+    if (grantPath.includes(candidateKey)) return failAcquisition("Ciclo GrantItem detectado: " + [...grantPath, candidateKey].join(" → ") + ".");
+
+    if (["granted", "package"].includes(mode)) {
+      const existing = duplicateIdentity([...this.items], candidate);
+      if (existing) {
+        const acquisition = foundry.utils.deepClone(existing.system.acquisition ?? {
+          mode, stage: resolvedStage, sources: [], paid: { resource: "none", amount: 0, known: true }
+        });
+        acquisition.sources = Array.isArray(acquisition.sources) ? acquisition.sources : [];
+        for (const source of sources) {
+          const signature = JSON.stringify(source);
+          if (!acquisition.sources.some((entry) => JSON.stringify(entry) === signature)) acquisition.sources.push(source);
+        }
+        await existing.update({ "system.acquisition": acquisition }, { tmValidated: true });
+        return existing;
+      }
+    }
 
     const physical = ["weapon","armor","shield","equipment","formula","device"].includes(candidate.type);
     let preflight;
