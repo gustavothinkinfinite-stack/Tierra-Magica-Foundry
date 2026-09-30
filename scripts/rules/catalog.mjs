@@ -1,5 +1,5 @@
 import { detectGrantCycles } from "./acquisition.mjs";
-import { identityKey, stableSlug } from "./identity.mjs";
+import { contentIdentityKey, identityKey, stableSlug } from "./identity.mjs";
 import { validateRuleElement } from "./rule-elements.mjs";
 
 export function validateCatalog(catalog = [], { knownTypes = [], skillDefinitions = {} } = {}) {
@@ -9,7 +9,7 @@ export function validateCatalog(catalog = [], { knownTypes = [], skillDefinition
 
   for (const item of catalog) {
     const slug = stableSlug(item.system, item.name);
-    const key = identityKey(item.type, slug);
+    const key = contentIdentityKey(item);
     if (!key) issues.push({ code: "catalog-identity", item: item.name, message: "Entrada sin identidad estable." });
     if (known.size && !known.has(item.type)) issues.push({ code: "catalog-type", item: item.name, message: "Tipo desconocido: " + item.type + "." });
     if (seen.has(key)) issues.push({ code: "catalog-duplicate", item: item.name, message: "Identidad duplicada: " + key + "." });
