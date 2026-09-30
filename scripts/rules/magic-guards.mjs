@@ -1,5 +1,6 @@
 // Foundry T.M. — salvaguardas e integración del núcleo mágico.
 import { offensiveSpellNeedsTargets, resolveSpellImpacts, spellAreaKind, validateSpellTargets } from "./spell-impact.mjs";
+import { normalizeSlug } from "./identity.mjs";
 
 const number = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -146,7 +147,7 @@ export function installMagicGuards(ActorClass) {
           await this.update({ "system.magic.sustainedSpellIds": after.filter((id) => id !== item.id) });
         }
       } else {
-        const hasDouble = this.items.some((entry) => entry.type === "technique" && entry.name === "Doble Sostenimiento");
+        const hasDouble = this.items.some((entry) => entry.type === "technique" && normalizeSlug(entry.system?.slug || entry.name) === "doble-sostenimiento");
         const limit = hasDouble ? 2 : 1;
         const validBefore = before.filter((id) => this.items.get(id)?.type === "spell" && id !== item.id);
         const retained = validBefore.slice(Math.max(0, validBefore.length - (limit - 1)));
