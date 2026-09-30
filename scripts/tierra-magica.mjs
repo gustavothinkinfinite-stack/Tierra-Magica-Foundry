@@ -17,6 +17,12 @@ import { primaryActiveGm, validatePendingDamageRequest } from "./rules/damage-de
 import { applyBoundedHealing, validatePendingHealingRequest } from "./rules/healing-delivery.mjs";
 import { installCurrencyRules, migrateWorldCurrency } from "./rules/currency.mjs";
 import { migrateWorldSkills } from "./rules/skills.mjs";
+import { normalizeSlug } from "./rules/identity.mjs";
+import { preflightAcquisition, acquisitionFromCost } from "./rules/acquisition.mjs";
+import { deriveDevelopmentBudget } from "./rules/creation.mjs";
+import { migrateWorldData, TM_SCHEMA_VERSION } from "./rules/data-model-migration.mjs";
+import { validateCatalog } from "./rules/catalog.mjs";
+import { coreCatalog } from "./catalog/core-catalog.mjs";
 
 installFamiliarGuards(TierraMagicaActor);
 installMagicGuards(TierraMagicaActor);
@@ -31,14 +37,14 @@ installReactionEconomyGuards(TierraMagicaActor);
 installCurrencyRules(TierraMagicaActor);
 
 Hooks.once("init", async () => {
-  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.16");
+  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.17");
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
   CONFIG.Item.documentClass = TierraMagicaItem;
   await loadTemplates(["systems/tierra-magica/templates/actor/parts/actor-sheet.hbs", "systems/tierra-magica/templates/actor/parts/item-section.hbs"]);
   Actors.unregisterSheet("core", ActorSheet, { types: ["character", "npc", "familiar"] });
   Actors.registerSheet("tierra-magica", TierraMagicaActorSheet, { types: ["character", "npc", "familiar"], makeDefault: true, label: "Foundry T.M." });
-  const itemTypes = ["weapon", "armor", "shield", "equipment", "spell", "technique", "trait", "specialization", "formula", "ritual", "device"];
+  const itemTypes = Object.keys(TM_CONFIG.itemTypes);
   Items.unregisterSheet("core", ItemSheet, { types: itemTypes });
   Items.registerSheet("tierra-magica", TierraMagicaItemSheet, { types: itemTypes, makeDefault: true, label: "Foundry T.M." });
 });
@@ -50,15 +56,80 @@ Hooks.on("preCreateActor", (actor) => {
   actor.updateSource(updates);
 });
 
-Hooks.on("preCreateItem", (item) => {
+Hooks.on("preCreateItem", (item, data, options = {}) => {
   if (!item.img || item.img === "icons/svg/item-bag.svg") {
     const fallback = item.type === "shield" ? "armor" : ["weapon","armor","equipment","spell"].includes(item.type) ? item.type : "equipment";
     item.updateSource({ img: "systems/tierra-magica/assets/icons/" + fallback + ".svg" });
   }
-  if (item.type === "specialization") item.updateSource({ "system.pdCost": 1 });
+
+  const slug = normalizeSlug(item.system?.slug || item.name);
+  item.updateSource({
+    "system.slug": slug,
+    "system.schemaVersion": TM_SCHEMA_VERSION
+  });
+
+  if (options.tmValidated || item.type === "effect") return;
+  const actor = item.parent;
+  if (!actor || actor.type !== "character") return;
+
+  const candidate = item.toObject();
+  candidate.system.slug = slug;
+  const status = actor.system.creation?.status ?? "complete";
+  const stage = status === "building" ? "creation" : status === "rebuilding" ? "rebuilding" : "progression";
+  const physical = ["weapon","armor","shield","equipment","formula","device"].includes(item.type);
+
+  if (physical && stage !== "creation") {
+    ui.notifications.warn("El equipo adquirido después de creación debe pasar por la operación de compra para descontar moneda.");
+    return false;
+  }
+
+  if (physical) {
+    const amount = Math.max(0, Number(candidate.system.priceCopper ?? 0) || 0);
+    const acquisition = acquisitionFromCost({ resource:"pei", amount }, { stage:"creation" });
+    const budget = deriveDevelopmentBudget(actor, { skillKeys:Object.keys(TM_CONFIG.skills) });
+    if (amount > budget.peiAvailable) {
+      ui.notifications.warn("PEI insuficiente para adquirir " + item.name + ".");
+      return false;
+    }
+    item.updateSource({ "system.acquisition": acquisition });
+    return;
+  }
+
+  const priceContext = stage === "rebuilding" ? "creation" : null;
+  const preflight = preflightAcquisition({
+    actor,
+    candidate,
+    stage,
+    priceContext,
+    expectedRevision: actor.system.creation?.revision
+  });
+  if (!preflight.valid) {
+    ui.notifications.warn(preflight.issues.map((issue) => issue.message).join(" "));
+    return false;
+  }
+
+  const budget = deriveDevelopmentBudget(actor, { skillKeys:Object.keys(TM_CONFIG.skills) });
+  const amount = Math.max(0, Number(preflight.cost?.amount ?? 0) || 0);
+  const resource = preflight.cost?.resource;
+  const available = resource === "pd" ? budget.pdAvailable
+    : resource === "pr" ? budget.prAvailable
+    : Number.POSITIVE_INFINITY;
+  if (amount > available) {
+    ui.notifications.warn("Presupuesto insuficiente para adquirir " + item.name + ".");
+    return false;
+  }
+  item.updateSource({ "system.acquisition": preflight.acquisition });
 });
 
-Hooks.on("preUpdateItem", (item, changes) => {
+Hooks.on("preUpdateItem", (item, changes, options = {}) => {
+  if (item.parent?.type === "character" && !options.tmValidated) {
+    const protectedPaths = ["system.acquisition", "system.costs", "system.rules", "system.requirements", "system.schemaVersion"];
+    const touchesProtected = protectedPaths.some((path) => foundry.utils.hasProperty(changes, path));
+    if (touchesProtected && !game.user?.isGM) {
+      ui.notifications.warn("Los campos mecánicos estructurados de un Item adquirido no se editan directamente.");
+      return false;
+    }
+  }
   if (item.type !== "specialization" || !item.parent || item.parent.type !== "character") return;
   const actor = item.parent;
   const skill = foundry.utils.getProperty(changes, "system.skill") ?? item.system.skill;
@@ -79,7 +150,7 @@ Hooks.on("preUpdateItem", (item, changes) => {
     ui.notifications.warn("La misma Especialización no puede adquirirse dos veces para una Habilidad.");
     return false;
   }
-  if (actor.system.creation?.skillBuildActive !== false && peers.length >= 2) {
+  if (actor.system.creation?.status !== "complete" && peers.length >= 2) {
     ui.notifications.warn("Durante creación hay un máximo de 2 Especializaciones por Habilidad madre.");
     return false;
   }
@@ -123,6 +194,18 @@ Hooks.once("ready", async () => {
   const repaired = await repairCharacterSheet031Data(); const retired = await retireLegacyMechanicalFields();
   const currencyMigration = await migrateWorldCurrency();
   const skillMigration = await migrateWorldSkills(TM_CONFIG.skills);
+  const catalog = coreCatalog();
+  const catalogValidation = validateCatalog(catalog, {
+    knownTypes: Object.keys(TM_CONFIG.itemTypes),
+    skillDefinitions: TM_CONFIG.skills
+  });
+  const dataMigration = await migrateWorldData({ catalog });
+  game.tierraMagica = {
+    ...(game.tierraMagica ?? {}),
+    catalog,
+    catalogValidation,
+    schemaVersion: TM_SCHEMA_VERSION
+  };
   if (repaired) ui.notifications.info("Tierra Mágica: se repararon " + repaired + " ficha(s) afectadas por el guardado de v0.3.1.");
   if (retired) ui.notifications.info("Tierra Mágica: se retiraron campos mecánicos históricos de " + retired + " actor(es).");
   if (currencyMigration.actors || currencyMigration.items) {
@@ -137,6 +220,17 @@ Hooks.once("ready", async () => {
       " Actor(es), " + skillMigration.items + " Item(s) y preservó " + skillMigration.legacy + " clave(s) legada(s)."
     );
   }
+  if (dataMigration.actors || dataMigration.items || dataMigration.identities) {
+    ui.notifications.info(
+      "Tierra Mágica: CREA-11 migró " + dataMigration.actors + " Actor(es), " +
+      dataMigration.items + " Item(s) y vinculó " + dataMigration.identities + " identidad(es) inequívoca(s)."
+    );
+  }
+  if (!catalogValidation.valid) {
+    console.warn("Foundry T.M. | CREA-11 catálogo con incidencias", catalogValidation.issues);
+    ui.notifications.warn("Tierra Mágica: el catálogo CREA-11 contiene " + catalogValidation.issues.length + " incidencia(s); revisa la consola.");
+  }
+
 });
 
 Hooks.on("renderChatMessage", (message, html) => {
