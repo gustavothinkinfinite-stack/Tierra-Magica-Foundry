@@ -18,6 +18,16 @@ export function identityKey(type, slug) {
   return normalizedType && normalizedSlug ? normalizedType + ":" + normalizedSlug : "";
 }
 
+export function contentIdentityKey(item = {}) {
+  const type = String(item.type ?? "").trim();
+  const slug = stableSlug(item.system ?? {}, item.name);
+  if (type === "specialization") {
+    const skill = String(item.system?.skill ?? "").trim();
+    return type && skill && slug ? type + ":" + skill + ":" + slug : identityKey(type, slug);
+  }
+  return identityKey(type, slug);
+}
+
 export function stableSlug(system = {}, name = "") {
   return normalizeSlug(system.slug) || normalizeSlug(name);
 }
@@ -27,11 +37,11 @@ export function isUniqueMechanicalType(type) {
 }
 
 export function duplicateIdentity(items = [], candidate = {}, { ignoreId = null } = {}) {
-  const key = identityKey(candidate.type, stableSlug(candidate.system ?? {}, candidate.name));
+  const key = contentIdentityKey(candidate);
   if (!key || !isUniqueMechanicalType(candidate.type)) return null;
   return items.find((item) => {
     if (ignoreId && item.id === ignoreId) return false;
-    return identityKey(item.type, stableSlug(item.system ?? {}, item.name)) === key;
+    return contentIdentityKey(item) === key;
   }) ?? null;
 }
 
@@ -41,5 +51,5 @@ export function validateIdentity(item = {}) {
   const slug = stableSlug(item.system ?? {}, item.name);
   if (!type) issues.push({ code: "identity-type", message: "Falta el tipo de Item." });
   if (!slug) issues.push({ code: "identity-slug", message: "Falta un slug mecánico estable." });
-  return { valid: !issues.length, type, slug, key: identityKey(type, slug), issues };
+  return { valid: !issues.length, type, slug, key: contentIdentityKey(item), issues };
 }
