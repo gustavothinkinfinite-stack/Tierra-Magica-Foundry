@@ -1,4 +1,4 @@
-import { duplicateIdentity, identityKey, stableSlug } from "./identity.mjs";
+import { contentIdentityKey, duplicateIdentity, identityKey, stableSlug } from "./identity.mjs";
 import { evaluateRequirements } from "./requirements.mjs";
 
 export const PAID_RESOURCES = Object.freeze(["pd", "pr", "pei", "currency", "none"]);
@@ -65,7 +65,7 @@ export function preflightAcquisition({
   const issues = [];
   const actorItems = Array.isArray(actor?.items) ? actor.items : actor?.items && typeof actor.items.values === "function" ? [...actor.items.values()] : [];
   const duplicate = duplicateIdentity(actorItems, candidate);
-  if (duplicate) issues.push({ code: "duplicate", message: "El Actor ya posee " + identityKey(candidate.type, stableSlug(candidate.system, candidate.name)) + "." });
+  if (duplicate) issues.push({ code: "duplicate", message: "El Actor ya posee " + contentIdentityKey(candidate) + "." });
 
   const singular = new Set(["ancestry", "origin", "background"]);
   if (singular.has(candidate?.type) && actorItems.some((item) => item.type === candidate.type)) {
