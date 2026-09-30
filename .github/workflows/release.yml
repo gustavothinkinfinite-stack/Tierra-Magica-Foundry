@@ -22,7 +22,10 @@ jobs:
         with:
           node-version: 24
 
-      - name: Validar sistema
+      - name: Instalar dependencias de construcción
+        run: npm install --ignore-scripts
+
+      - name: Validar sistema y construir Compendios
         run: npm run validate
 
       - name: Determinar versión
