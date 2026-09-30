@@ -397,7 +397,7 @@ export class TierraMagicaActor extends Actor {
     if (!primary || !secondary || primary.type !== "weapon" || secondary.type !== "weapon" || primary.id === secondary.id) {
       return ui.notifications.warn("Combate Dual requiere dos armas distintas.");
     }
-    if (!this.items.some((entry) => entry.type === "technique" && entry.name === "Combate Dual")) {
+    if (!this.items.some((entry) => entry.type === "technique" && normalizeSlug(entry.system?.slug || entry.name) === "combate-dual")) {
       return ui.notifications.warn(this.name + " no posee la Técnica Combate Dual.");
     }
     const compatible = (weapon) => /Ligera/i.test(String(weapon.system?.properties ?? ""));
@@ -445,7 +445,7 @@ export class TierraMagicaActor extends Actor {
 
   async sweepAttack(item) {
     if (!item || item.type !== "weapon") return null;
-    if (!this.items.some((entry) => entry.type === "technique" && entry.name === "Barrido")) {
+    if (!this.items.some((entry) => entry.type === "technique" && normalizeSlug(entry.system?.slug || entry.name) === "barrido")) {
       return ui.notifications.warn(this.name + " no posee la Técnica Barrido.");
     }
     const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
