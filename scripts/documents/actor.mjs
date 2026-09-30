@@ -307,14 +307,14 @@ export class TierraMagicaActor extends Actor {
 
     const physical = ["weapon","armor","shield","equipment","formula","device"].includes(candidate.type);
     let preflight;
-    if (physical && !(candidate.system.costs?.length)) {
+    if (physical && !(candidate.system.costs?.length) && mode === "purchased") {
       const resource = resolvedStage === "creation" ? "pei" : "currency";
       const amount = Math.max(0, toNumber(candidate.system.priceCopper));
       preflight = {
         valid: true,
         issues: [],
         cost: { context: resolvedStage === "creation" ? "creation" : "progression", resource, amount },
-        acquisition: acquisitionFromCost({ resource, amount }, { stage: resolvedStage === "rebuilding" ? (priceContext ?? "progression") : resolvedStage }),
+        acquisition: acquisitionFromCost({ resource, amount }, { mode, stage: resolvedStage === "rebuilding" ? (priceContext ?? "progression") : resolvedStage, sources }),
         revision: toNumber(this.system.creation?.revision)
       };
       const identityCheck = preflightAcquisition({
@@ -322,7 +322,9 @@ export class TierraMagicaActor extends Actor {
         candidate: { ...candidate, system: { ...candidate.system, costs: [{ context:"any", resource:"none", amount:0 }] } },
         stage: resolvedStage === "rebuilding" ? "rebuilding" : "creation",
         priceContext: resolvedStage === "rebuilding" ? (priceContext ?? "creation") : null,
-        expectedRevision: this.system.creation?.revision
+        expectedRevision: this.system.creation?.revision,
+        mode,
+        sources
       });
       if (!identityCheck.valid) preflight = { ...preflight, valid:false, issues:identityCheck.issues };
     } else {
@@ -331,12 +333,14 @@ export class TierraMagicaActor extends Actor {
         candidate,
         stage: resolvedStage,
         priceContext,
-        expectedRevision: this.system.creation?.revision
+        expectedRevision: this.system.creation?.revision,
+        mode,
+        sources
       });
     }
 
     if (!preflight.valid) {
-      return ui.notifications.warn(preflight.issues.map((issue) => issue.message).join(" "));
+      return failAcquisition(preflight.issues.map((issue) => issue.message).join(" "));
     }
 
     const budget = deriveDevelopmentBudget(this, { skillKeys: Object.keys(TM_CONFIG.skills) });
@@ -347,17 +351,44 @@ export class TierraMagicaActor extends Actor {
       : resource === "pei" ? budget.peiAvailable
       : resource === "currency" ? toNumber(this.system.currency?.totalCopper)
       : Number.POSITIVE_INFINITY;
-    if (amount > available) return ui.notifications.warn("Presupuesto insuficiente para adquirir " + candidate.name + ".");
+    if (amount > available) return failAcquisition("Presupuesto insuficiente para adquirir " + candidate.name + ".");
 
     candidate.system.acquisition = preflight.acquisition;
     candidate.system.provenance ??= { sourceUuid:"", sourceSchemaVersion:0, sourceRevision:"" };
     const created = await this.createEmbeddedDocuments("Item", [candidate], { tmValidated: true });
-    if (!created?.length) return created;
+    if (!created?.length) return failAcquisition("No se pudo crear " + candidate.name + ".");
+    const createdItem = created[0];
+    tx.push(createdItem);
 
-    const updates = { "system.creation.revision": toNumber(this.system.creation?.revision) + 1 };
-    if (resource === "currency" && amount) updates["system.currency.totalCopper"] = Math.max(0, toNumber(this.system.currency?.totalCopper) - amount);
-    await this.update(updates);
-    return created[0];
+    const nextPath = [...grantPath, candidateKey];
+    for (const rule of Array.isArray(createdItem.system.rules) ? createdItem.system.rules : []) {
+      if (rule?.key !== "GrantItem") continue;
+      const target = (game.tierraMagica?.catalog ?? []).find((entry) =>
+        entry.type === rule.itemType &&
+        normalizeSlug(entry.system?.slug || entry.name) === normalizeSlug(rule.slug) &&
+        (!rule.skill || entry.system?.skill === rule.skill)
+      );
+      if (!target) return failAcquisition("GrantItem de " + createdItem.name + " apunta a contenido inexistente: " + rule.itemType + ":" + rule.slug + ".");
+      const granted = await this.acquireItem(target, {
+        stage: resolvedStage,
+        priceContext,
+        mode: "granted",
+        sources: [{ kind: "grant", uuid: createdItem.uuid, lifecycle: rule.lifecycle ?? "linked" }],
+        transaction: tx,
+        grantPath: nextPath
+      });
+      if (!granted) {
+        await rollback();
+        return null;
+      }
+    }
+
+    if (rootAcquisition) {
+      const updates = { "system.creation.revision": toNumber(this.system.creation?.revision) + 1 };
+      if (resource === "currency" && amount) updates["system.currency.totalCopper"] = Math.max(0, toNumber(this.system.currency?.totalCopper) - amount);
+      await this.update(updates);
+    }
+    return createdItem;
   }
 
   async completeCreation() {
