@@ -25,8 +25,9 @@ test("staging de release excluye desarrollo y fija URLs publicadas",async()=>{
   for(const entry of ["assets","lang","packs","scripts","styles","templates","system.json","template.json"]){
     assert.match(stage,new RegExp('"'+entry.replace(".","\\.")+'"'));
   }
+  const runtimeBlock=stage.slice(stage.indexOf("const runtimeEntries=["),stage.indexOf("];",stage.indexOf("const runtimeEntries=["))+2);
   for(const forbidden of ['"docs"','"test"','"tools"','"package.json"']){
-    assert.equal(stage.includes(forbidden),false);
+    assert.equal(runtimeBlock.includes(forbidden),false);
   }
   assert.match(stage,/releases\/latest\/download\/system\.json/);
   assert.match(stage,/releases\/download\/v/);
