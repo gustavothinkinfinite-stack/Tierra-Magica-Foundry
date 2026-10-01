@@ -1,6 +1,6 @@
 # REV-CREA-11-001 — Sincronización post-cierre
 
-Estado: CERRADA TÉCNICAMENTE EN 1.0.18 — CI completa superada; efectiva en `main` al fusionar PR #22.
+Estado: **CERRADA E INTEGRADA** en Foundry T.M. 1.0.18 mediante PR #22. Commit de integración en `main`: `52317ae7105a63ced869b152486ada0b7597fca1`. Validación de `main`: GitHub Actions Validate #158 — SUCCESS.
 
 ## Motivo
 
