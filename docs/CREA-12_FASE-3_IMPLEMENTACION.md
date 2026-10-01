@@ -1,9 +1,9 @@
 # CREA-12 — Fase 3: Implementación
 
-**Estado:** EN DESARROLLO  
+**Estado:** FASE 3 COMPLETA · LISTA PARA INTEGRACIÓN  
 **Fase 1:** CERRADA — DER-D01 a DER-D44  
 **Fase 2:** APROBADA — DER-A01 a DER-A30  
-**P-011:** ABIERTO
+**P-011:** RESUELTO
 
 ## Fase 3A — Motor común de derivados
 
@@ -87,8 +87,33 @@ Implementación inicial:
 - La ficha genérica deja de mostrar `martialDefense` como si fuera todo el Bono Defensivo y usa `derived.defensiveBonus`.
 - El panel es colapsable para mantener baja la carga visual; la ficha v0.3 usa una variante compacta.
 
-## Trabajo todavía pendiente dentro de Fase 3
+## Fase 3F — Sincronización cruzada
 
-1. **3F — sincronización cruzada:** pruebas secuenciales de equipo, estados, magia, atributos, guardado y reapertura.
+**Estado: IMPLEMENTADA · CI VERDE (Validate #224)**
 
-CREA-12 no se considera cerrado hasta completar esas etapas y satisfacer DER-D42/DER-D43.
+- Se añadió una prueba secuencial completa que combina Atributos, equipo, estados, Items, Effects, magia sostenida y máximos en una misma evolución del Actor.
+- Equipar/desequipar armadura y escudo recalcula Protección/Defensa sin residuos.
+- Escudo frontal sigue siendo contextual después de múltiples preparaciones.
+- Activar/desactivar Effects modifica y revierte Defensa, Movimiento y máximos usando Rule Elements.
+- Aumentar un máximo no concede recurso actual; reducirlo recorta el actual mediante reconciliación.
+- Cambiar VIG durante la secuencia recalcula Vida máxima y conserva la política de reconciliación.
+- Guardia, Parada y Barrera Cinética pueden activarse y retirarse sin dejar bonos persistentes fuera del motor.
+- Activar/desactivar Piel Alterada conserva su carácter contextual y su regla de no acumulación con armadura.
+- Añadir/quitar Items con modificadores reconstruye máximos sin depender de valores derivados previos.
+- Guardar/reabrir se simula descartando `system.derived`, conservando sólo fuentes persistentes y ejecutando nuevamente migración/preparación.
+- La reapertura con schema v2 es idempotente: no reinterpreta ni inventa procedencia.
+- Espejos `resources.*.max` obsoletos son reemplazados por los máximos derivados al preparar.
+- Desactivar y reactivar Effects después de reapertura produce exactamente los mismos resultados que antes del guardado.
+- Se añadieron invariantes estáticos que fallan si una ruta de juego vuelve a:
+  - mutar campos `system.derived.*` individuales;
+  - usar Movimiento binario fuera de migración;
+  - usar `resources.health.max` / `resources.mana.max` fuera del espejo preparado;
+  - reintroducir los antiguos `combat.*Bonus` fuera de migración/compatibilidad.
+
+### Cierre de CREA-12
+
+DER-D42 y DER-D43 quedan satisfechos en la rama `crea-12-derived-architecture`.
+
+**P-011: RESUELTO.**
+
+CREA-12 queda técnicamente completo en la PR #24 y listo para integración. La validación global de siete personajes/arquetipos continúa fuera de este alcance, en **CREA-13**, según DER-D44.
