@@ -568,7 +568,7 @@ Un hechizo conocido, seguro y rutinario no exige tirada sólo por ser mágico. C
 
 ### Sostenimiento
 
-El límite normal es un efecto Sostenido demandante. **Doble Sostenimiento** permite dos. Un lanzamiento fallido nunca entra en Sostenimiento y el Maná pagado no se devuelve. Si un nuevo hechizo Sostenido entra con éxito cuando ya se alcanzó el límite, se abandona inmediatamente el efecto existente más antiguo necesario para volver al límite. No existe una tirada para superar ese límite.
+El límite normal es un efecto Sostenido demandante. **Doble Sostenimiento** permite dos. Un lanzamiento fallido nunca entra en Sostenimiento y el Maná pagado no se devuelve. Si un nuevo hechizo Sostenido entra con éxito cuando ya se alcanzó el límite, se abandona inmediatamente el efecto existente más antiguo necesario para volver al límite. **Relanzar con éxito el mismo hechizo Sostenido reemplaza su instancia anterior en vez de crear una segunda copia concurrente; un relanzamiento fallido no elimina la instancia que ya estaba activa.** No existe una tirada para superar ese límite.
 
 ### Sobrecarga
 
