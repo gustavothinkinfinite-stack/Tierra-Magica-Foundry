@@ -134,6 +134,7 @@ function contextMatches(requirement, context) {
 }
 
 export function deriveActorState({
+  actorType = "character",
   system = {},
   items = [],
   rulePreparation = {},
@@ -269,10 +270,11 @@ export function deriveActorState({
     formula: "10 + 2 × VIG",
     contributions: healthContributions
   });
+  const manaDisabled = actorType === "familiar";
   const mana = breakdown({
-    base: 6 + vol * 3,
-    formula: "6 + 3 × VOL",
-    contributions: manaContributions
+    base: manaDisabled ? 0 : 6 + vol * 3,
+    formula: manaDisabled ? "Sin reserva de Maná propia" : "6 + 3 × VOL",
+    contributions: manaDisabled ? [] : manaContributions
   });
   const defensive = breakdown({
     base: 0,
@@ -327,8 +329,8 @@ export function deriveActorState({
   });
 
   return {
-    healthMax: health.total,
-    manaMax: mana.total,
+    healthMax: Math.max(0, health.total),
+    manaMax: Math.max(0, mana.total),
     severeThreshold: severeThreshold(vig),
     defensiveBonus: defensive.total,
     defense: defense.total,
