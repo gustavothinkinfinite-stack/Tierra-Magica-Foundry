@@ -1,6 +1,6 @@
 import { normalizeSlug } from "./identity.mjs";
 
-export const TM_SCHEMA_VERSION = 2;
+export const TM_SCHEMA_VERSION = 3;
 
 const SPELL_PD = Object.freeze({ trick: 1, minor: 1, basic: 2, advanced: 3, master: 5, legendary: 8 });
 const TECHNIQUE_PD = Object.freeze({ basic: 2, advanced: 3, master: 5, legendary: 8 });
@@ -116,6 +116,22 @@ function migratedRequirements(system) {
   };
 }
 
+function migrateItemSourceV3(item) {
+  const system = item.system ??= {};
+  if (item.type === "device") {
+    const slug = normalizeSlug(system.slug || item.name);
+    const hasSource = Object.prototype.hasOwnProperty.call(system, "energySourceItemId");
+    const hasActivation = Object.prototype.hasOwnProperty.call(system, "activation");
+    const hasKinetic = Object.prototype.hasOwnProperty.call(system, "kineticDefense");
+
+    if (!hasSource) system.energySourceItemId = "";
+    if (!hasActivation) system.activation = slug === "escudo-de-campo" ? "Reacción" : "Acción";
+    if (!hasKinetic) system.kineticDefense = slug === "escudo-de-campo";
+  }
+  system.schemaVersion = TM_SCHEMA_VERSION;
+  return item;
+}
+
 function migratedRules(system) {
   const existing = Array.isArray(system?.rules) ? clone(system.rules) : [];
   const converted = [];
@@ -141,10 +157,7 @@ export function migrateItemSource(source, { embedded = false } = {}) {
   const system = item.system;
   const currentVersion = number(system.schemaVersion);
   if (currentVersion >= TM_SCHEMA_VERSION) return item;
-  if (currentVersion >= 1) {
-    system.schemaVersion = TM_SCHEMA_VERSION;
-    return item;
-  }
+  if (currentVersion >= 1) return migrateItemSourceV3(item);
 
   const oldRequirements = typeof system.requirements === "string" ? system.requirements : "";
   const oldSkillRequirements = clone(system.skillRequirements ?? []);
@@ -170,7 +183,7 @@ export function migrateItemSource(source, { embedded = false } = {}) {
   system.legacy ??= {};
   if (oldSkillRequirements.length) system.legacy.skillRequirements = oldSkillRequirements;
   if (oldSkillModifiers.length) system.legacy.skillModifiers = oldSkillModifiers;
-  return item;
+  return migrateItemSourceV3(item);
 }
 
 export function migrateActorSource(source) {
