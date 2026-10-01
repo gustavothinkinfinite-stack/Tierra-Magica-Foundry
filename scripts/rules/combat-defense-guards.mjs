@@ -109,7 +109,7 @@ export function installCombatDefenseGuards(ActorClass) {
       "system.combat.parrySucceeded": false,
       "system.combat.counterattackUsed": true
     });
-    return originalRollWeapon.call(this, item, { technique: "Contraataque", tmReactionAttack: true });
+    return this.rollWeapon(item, { technique: "Contraataque", tmReactionAttack: true });
   };
 
   ActorClass.prototype.rollWeapon = async function (item, options = {}) {
