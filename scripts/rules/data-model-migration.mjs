@@ -136,9 +136,9 @@ function migrateItemSourceV4(item) {
   const system = item.system ??= {};
   if (item.type === "spell") {
     const slug = normalizeSlug(system.slug || item.name);
-    if (!Object.prototype.hasOwnProperty.call(system, "remoteOriginCompatible")) {
-      system.remoteOriginCompatible = !["paso-breve", "trasposicion", "umbral", "portal"].includes(slug);
-    }
+    const remoteBlocked = ["paso-breve", "trasposicion", "umbral", "portal"].includes(slug);
+    if (remoteBlocked) system.remoteOriginCompatible = false;
+    else if (!Object.prototype.hasOwnProperty.call(system, "remoteOriginCompatible")) system.remoteOriginCompatible = true;
     if (slug === "llamada-menor") {
       system.sustained = true;
       if (!String(system.duration ?? "").trim() || String(system.duration).trim() === "Instantánea") {
