@@ -51,7 +51,7 @@ test("ruta real valida objetivos antes de gastar recursos y resuelve áreas por 
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
   assert.equal(guards.includes("validateSpellTargets(item, selectedTokens"), true);
   assert.equal(guards.indexOf("validateSpellTargets(item, selectedTokens") < guards.indexOf("originalUseSpell.call(this, item)"), true);
-  assert.equal(guards.includes('spellAreaKind(item) === "area" && needsCheck'), true);
+  assert.equal(guards.includes("spellTargetOutcomes(item, targets, singleTotal, { automatic })"), true);
   assert.equal(guards.includes("spellDfFor(item, target)"), true);
   assert.equal(guards.includes("resolveSpellImpacts(item, hitTargets)"), true);
   assert.equal(guards.includes('adjustResource("health", -impact.damage)'), true);
