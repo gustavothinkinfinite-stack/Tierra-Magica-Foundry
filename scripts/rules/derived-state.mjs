@@ -1,4 +1,5 @@
 import { defenseBonus, severeThreshold } from "../rules.mjs";
+import { normalizeSlug } from "./identity.mjs";
 import { modifiersForSelector } from "./rule-elements.mjs";
 
 const number = (value, fallback = 0) => {
@@ -17,7 +18,9 @@ function contribution({
   sourceType = "rule",
   ruleId = null,
   contextual = false,
-  context = null
+  context = null,
+  stacking = "add",
+  equipmentType = null
 }) {
   return {
     selector: normalizeSelector(selector),
@@ -28,7 +31,9 @@ function contribution({
     sourceType,
     ruleId,
     contextual: Boolean(contextual),
-    context
+    context,
+    stacking,
+    equipmentType
   };
 }
 
@@ -107,6 +112,27 @@ function manualOrLegacy(system, selector, legacyValue, legacyLabel) {
   return structured.length ? structured : legacyContribution(selector, legacyValue, legacyLabel);
 }
 
+function sustainedSpell(items, system, slug) {
+  const active = new Set(Array.isArray(system.magic?.sustainedSpellIds) ? system.magic.sustainedSpellIds : []);
+  return items.find((item) =>
+    item?.type === "spell" &&
+    active.has(item.id) &&
+    normalizeSlug(item.system?.slug || item.name) === slug
+  ) ?? null;
+}
+
+function contextMatches(requirement, context) {
+  if (!requirement) return true;
+  if (typeof requirement === "string") return context?.[requirement] === true;
+  if (Array.isArray(requirement)) return requirement.every((key) => context?.[key] === true);
+  if (typeof requirement === "object") {
+    if (Array.isArray(requirement.all) && !requirement.all.every((key) => context?.[key] === true)) return false;
+    if (Array.isArray(requirement.any) && requirement.any.length && !requirement.any.some((key) => context?.[key] === true)) return false;
+    return true;
+  }
+  return false;
+}
+
 export function deriveActorState({
   system = {},
   items = [],
@@ -134,7 +160,6 @@ export function deriveActorState({
   ];
 
   const defensiveBonusValue = total(defensiveBonusContributions);
-
   const armor = highestEquipped(items, "armor", "protection");
   const shield = highestEquipped(items, "shield", "passiveDefense");
 
@@ -148,6 +173,37 @@ export function deriveActorState({
   const movementContributions = selectorContributions(rulePreparation, "movement");
   const initiativeContributions = selectorContributions(rulePreparation, "initiativeModifier");
 
+  if (system.combat?.guardActive) {
+    defenseContributions.push(contribution({
+      selector: "defense",
+      value: 2,
+      label: "Guardia",
+      sourceType: "state"
+    }));
+  }
+
+  if (system.combat?.kineticBarrierActive) {
+    defenseContributions.push(contribution({
+      selector: "defense",
+      value: 2,
+      label: "Barrera Cinética",
+      sourceType: "state",
+      contextual: true,
+      context: "kineticBarrier"
+    }));
+  }
+
+  if (system.combat?.parryActive) {
+    defenseContributions.push(contribution({
+      selector: "defense",
+      value: 2,
+      label: "Parada",
+      sourceType: "state",
+      contextual: true,
+      context: "parryable"
+    }));
+  }
+
   if (shield) {
     defenseContributions.push(contribution({
       selector: "defense",
@@ -156,6 +212,7 @@ export function deriveActorState({
       sourceItemId: shield.item.id ?? null,
       sourceItemName: shield.item.name ?? "",
       sourceType: "equipment",
+      equipmentType: "shield",
       contextual: Boolean(shield.item.system?.frontalOnly),
       context: shield.item.system?.frontalOnly ? "frontal" : null
     }));
@@ -168,7 +225,23 @@ export function deriveActorState({
       label: "Armadura equipada",
       sourceItemId: armor.item.id ?? null,
       sourceItemName: armor.item.name ?? "",
-      sourceType: "equipment"
+      sourceType: "equipment",
+      equipmentType: "armor"
+    }));
+  }
+
+  const alteredSkin = sustainedSpell(items, system, "piel-alterada");
+  if (alteredSkin) {
+    protectionContributions.push(contribution({
+      selector: "protection",
+      value: 2,
+      label: "Piel Alterada",
+      sourceItemId: alteredSkin.id ?? null,
+      sourceItemName: alteredSkin.name ?? "Piel Alterada",
+      sourceType: "spell",
+      contextual: true,
+      context: "alteredSkinCompatible",
+      stacking: "max-with-armor"
     }));
   }
 
@@ -296,17 +369,24 @@ export function resolveDerivedSelector(derived, selector, context = {}) {
   const contextual = Array.isArray(derived?.contextual?.[canonical])
     ? derived.contextual[canonical]
     : [];
+  const applicable = contextual.filter((entry) => contextMatches(entry?.context, context));
 
-  const applicable = contextual.filter((entry) => {
-    if (!entry?.context) return true;
-    if (entry.context === "frontal") return context.frontal === true;
-    return false;
-  });
+  let resolved = base;
+  for (const entry of applicable) {
+    if (entry.stacking === "max-with-armor" && canonical === "protection") {
+      const armor = (derived?.breakdowns?.protection?.contributions ?? [])
+        .filter((source) => source?.equipmentType === "armor")
+        .reduce((highest, source) => Math.max(highest, number(source.value)), 0);
+      resolved += Math.max(0, number(entry.value) - armor);
+      continue;
+    }
+    resolved += number(entry.value);
+  }
 
   return {
     selector: canonical,
     base,
     contextual: applicable,
-    total: base + total(applicable)
+    total: resolved
   };
 }
