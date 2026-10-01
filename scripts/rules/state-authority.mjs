@@ -7,7 +7,6 @@ const SCOPE = "state-authority";
 const pendingRequests = new Map();
 const authorityQueues = new Map();
 const turnReservations = new Map();
-const TURN_RESERVATION_TTL = 5 * 60 * 1000;
 let bridgeInstalled = false;
 
 const number = (value, fallback = 0) => {
@@ -71,12 +70,7 @@ function turnReservationKey(actor, resource) {
 }
 
 function currentTurnReservation(actor, resource) {
-  const key = turnReservationKey(actor, resource);
-  const reservation = turnReservations.get(key) ?? null;
-  if (!reservation) return null;
-  if (Date.now() - reservation.createdAt <= TURN_RESERVATION_TTL) return reservation;
-  turnReservations.delete(key);
-  return null;
+  return turnReservations.get(turnReservationKey(actor, resource)) ?? null;
 }
 
 async function reserveTurnResource(actor, resource, requesterId = "") {
@@ -416,6 +410,11 @@ export async function spendActorMovementAuthoritatively(actor, amount, { consume
     });
   }
   return spendMovement(actor, amount, currentUser()?.id ?? "", { consumeReaction });
+}
+
+export function clearTurnResourceReservations(actor) {
+  turnReservations.delete(turnReservationKey(actor, "action"));
+  turnReservations.delete(turnReservationKey(actor, "reaction"));
 }
 
 export async function withAuthoritativeTurnState(actor, operation) {
