@@ -114,7 +114,8 @@ export function installFamiliarGuards(ActorClass) {
     if (!familiarOperational(familiar)) return ui.notifications.warn(familiar.name + " está Incapacitado y no puede servir como Origen Remoto.");
     if (!hasBondCapability(this, familiar, "Origen Remoto", 3)) return ui.notifications.warn("Origen Remoto requiere su Técnica y Vínculo III o superior.");
     if (!spell || spell.type !== "spell") return null;
-    // La capa mágica es la única autoridad que resuelve y anuncia Origen Remoto.
+    if (spell.system?.remoteOriginCompatible === false) return ui.notifications.warn(spell.name + " no es compatible con Origen Remoto.");
+    // La capa mágica conserva una segunda validación defensiva y es la autoridad que anuncia Origen Remoto.
     // Evita doble mensaje y mantiene en un solo punto la validación de token/origen.
     return this.useSpell(spell, { remoteOrigin: familiar });
   };
