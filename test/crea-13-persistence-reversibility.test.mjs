@@ -7,6 +7,7 @@ import { prepareRuleElements } from "../scripts/rules/rule-elements.mjs";
 import { deriveActorState, resolveDerivedSelector } from "../scripts/rules/derived-state.mjs";
 import { reconcileActorResources } from "../scripts/rules/resource-reconciliation.mjs";
 import { installFamiliarGuards } from "../scripts/rules/familiar-guards.mjs";
+import { resolveDeviceEnergySource } from "../scripts/rules/device-energy.mjs";
 
 const clone=(value)=>JSON.parse(JSON.stringify(value));
 
@@ -247,4 +248,29 @@ test("CREA-13 13E: Familiar reabierto vuelve a imponer Maná 0 y ausencia de eco
   assert.equal(actor.system.derived.manaMax,0);
   assert.equal(await reconcileActorResources(actor),true);
   assert.equal(actor.system.resources.mana.value,0);
+});
+
+
+test("CREA-13 13F: el vínculo dispositivo → acumulador persiste y no se sustituye por otra fuente",()=>{
+  const cell={
+    id:"cell",name:"Celda",type:"device",
+    system:{schemaVersion:2,energy:{value:4,max:4},flow:2,consumption:0,energySourceItemId:""}
+  };
+  const other={
+    id:"other",name:"Núcleo",type:"device",
+    system:{schemaVersion:2,energy:{value:16,max:16},flow:5,consumption:0,energySourceItemId:""}
+  };
+  const shield={
+    id:"shield",name:"Escudo de campo",type:"device",
+    system:{schemaVersion:2,energy:{value:0,max:0},flow:2,consumption:2,activation:"Reacción",kineticDefense:true,energySourceItemId:"cell"}
+  };
+  const reopened={
+    items:[cell,other,shield].map((entry)=>migrateItemSource(clone(entry),{embedded:true}))
+  };
+  const power=resolveDeviceEnergySource(reopened,reopened.items.find((entry)=>entry.id==="shield"));
+  assert.equal(power.valid,true);
+  assert.equal(power.source.id,"cell");
+  assert.equal(power.flow,2);
+  assert.equal(power.energy,4);
+  assert.equal(power.source.id==="other",false);
 });
