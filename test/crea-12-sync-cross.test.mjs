@@ -4,6 +4,7 @@ import { deriveActorState } from "../scripts/rules/derived-state.mjs";
 import { resolveActorDefense, resolveActorProtection } from "../scripts/rules/defense-context.mjs";
 import { prepareRuleElements } from "../scripts/rules/rule-elements.mjs";
 import { resourceReconciliationUpdates } from "../scripts/rules/resource-reconciliation.mjs";
+import { migrateActorSource } from "../scripts/rules/data-model-migration.mjs";
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
@@ -259,11 +260,13 @@ test("CREA-12 3F: guardar y reabrir reconstruye el mismo estado sin persistir de
 
   const reopened=persistAndReopen(source);
   assert.equal("derived" in reopened.system,false);
+  const migrated=migrateActorSource(reopened);
+  assert.deepEqual(migrated,reopened); // schema v2: reabrir no reinterpreta ni reescribe procedencia
   // Simula un espejo max obsoleto en disco: no debe dominar la reapertura.
-  reopened.system.resources.health.max=999;
-  reopened.system.resources.mana.max=999;
+  migrated.system.resources.health.max=999;
+  migrated.system.resources.mana.max=999;
 
-  const after=prepare(reopened);
+  const after=prepare(migrated);
   const afterSnapshot={
     healthMax:after.healthMax,
     manaMax:after.manaMax,
@@ -271,14 +274,14 @@ test("CREA-12 3F: guardar y reabrir reconstruye el mismo estado sin persistir de
     protection:after.protection,
     movement:after.movement,
     initiativeModifier:after.initiativeModifier,
-    frontal:resolveActorDefense(actorOf(reopened),{frontal:true,kineticBarrier:false}).total,
-    skin:resolveActorProtection(actorOf(reopened),{alteredSkinCompatible:true}).total
+    frontal:resolveActorDefense(actorOf(migrated),{frontal:true,kineticBarrier:false}).total,
+    skin:resolveActorProtection(actorOf(migrated),{alteredSkinCompatible:true}).total
   };
 
   assert.deepEqual(afterSnapshot,beforeSnapshot);
-  assert.equal(reopened.system.resources.health.max,after.healthMax);
-  assert.equal(reopened.system.resources.mana.max,after.manaMax);
-  assert.equal(reopened.system.resources.health.value,15);
+  assert.equal(migrated.system.resources.health.max,after.healthMax);
+  assert.equal(migrated.system.resources.mana.max,after.manaMax);
+  assert.equal(migrated.system.resources.health.value,15);
 });
 
 test("CREA-12 3F: desactivar y reactivar Effects tras reapertura es reversible",()=>{
