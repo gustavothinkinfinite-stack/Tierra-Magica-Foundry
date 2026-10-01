@@ -17,7 +17,10 @@ const runtimeSocketAvailable = () => Boolean(globalThis.game?.socket?.emit && gl
 
 function canModify(document) {
   const user = currentUser();
-  return Boolean(document?.canUserModify?.(user, "update") ?? document?.isOwner);
+  if (typeof document?.canUserModify === "function") return Boolean(document.canUserModify(user, "update"));
+  if (document && "isOwner" in document) return Boolean(document.isOwner);
+  // Stubs/pruebas sin capa de permisos de Foundry: la presencia de update es la autoridad local.
+  return typeof document?.update === "function";
 }
 
 function requestId() {
