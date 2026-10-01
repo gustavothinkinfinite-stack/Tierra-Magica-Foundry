@@ -10,8 +10,8 @@ export function installFormulaGuards(ActorClass) {
   ActorClass.prototype.useFormula = async function (item) {
     if (!item || item.type !== "formula") return null;
     if (AUTOMATED.has(item.name)) return original.call(this, item);
-    const quantity = Math.max(0, number(item.system?.quantity, 1));
-    if (quantity <= 0) return ui.notifications.warn("No quedan dosis de " + item.name + ".");
+    const quantity = Math.max(0, number(item.system?.quantity, 0));
+    if (quantity <= 0) return ui.notifications.warn("No hay una dosis preparada de " + item.name + ".");
     const family = String(item.system?.family ?? "").trim().toLowerCase();
     const saturated = Array.isArray(this.system.alchemy?.saturatedFamilies) ? [...this.system.alchemy.saturatedFamilies] : [];
     if (item.system?.saturating && family && saturated.includes(family)) return ui.notifications.warn(this.name + " ya está Saturado por la familia " + family + ".");
