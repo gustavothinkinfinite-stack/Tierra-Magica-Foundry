@@ -533,6 +533,8 @@ La Acción representa la intervención principal del turno. Las opciones más fr
 
 Un ritual no se convierte en una Acción de combate sólo porque utilice magia. Los rituales conservan su Tiempo propio.
 
+Esta tabla cubre las opciones universales y los usos de subsistemas que aparecen con frecuencia en combate. Una Técnica, hechizo, Rasgo, dispositivo, montura, Familiar o criatura puede añadir una Acción específica; cuando ocurra, su propia entrada indica activación, coste, objetivo y límites. Esa capacidad especial no crea otras Acciones no escritas.
+
 ### Ataque con arma, paso a paso
 
 Un ataque ordinario usa:
