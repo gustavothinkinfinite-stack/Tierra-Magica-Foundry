@@ -20,7 +20,8 @@ test("curar por encima de 0 retira Incapacitado sin borrar Trauma", async () => 
 
 test("Descanso y Descanso Completo usan la autoridad acotada de recuperación y no borran Trauma", async () => {
   const source = await read("scripts/documents/actor.mjs");
-  const rest = source.slice(source.indexOf('async rest(kind = "rest")'), source.indexOf("#buildSkillBreakdown"));
+  const start = source.indexOf('async rest(kind = "rest")');
+  const rest = source.slice(start, source.indexOf("  #buildSkillBreakdown", start));
   assert.match(rest, /boundedHealthRecoveryUpdates/);
   assert.match(rest, /healingCap\(this\)/);
   assert.equal(rest.includes("status.trauma"), false);
