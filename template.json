@@ -533,9 +533,11 @@
         "value": 0,
         "max": 0
       },
+      "energySourceItemId": "",
       "flow": 0,
       "stability": "stable",
       "consumption": 0,
+      "activation": "Acción",
       "effect": "",
       "condition": "operative",
       "overloadAllowed": true
