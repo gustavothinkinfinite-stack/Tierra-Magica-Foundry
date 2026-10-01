@@ -94,6 +94,8 @@ Toda invocación demandante que permanezca activa debe declarar duración y Sost
 
 ### Alteración y equipo
 
+Transmutación Corpórea puede cambiar la Escala como máximo una categoría, pero no reproduce además el efecto funcional de Potencia Sobrenatural. Con Doble Sostenimiento ambas pueden coexistir, pero efectos que pretendan ampliar la interacción de Escala por el mismo concepto no se vuelven a sumar por una adaptación interna de Transmutación.
+
 Miembro Efímero no concede:
 
 - Acción adicional;
@@ -103,6 +105,18 @@ Miembro Efímero no concede:
 Morfología Flexible no permite escape automático de Presas.
 
 Morfología Alada se audita con duración máxima de una Escena además de Sostenimiento para no sustituir el valor persistente de Vuelo Natural.
+
+### Conjuración y equipo
+
+Objeto Efímero no crea munición, consumibles con efecto mecánico ni herramientas que satisfagan por sí solas requisitos de equipo especializado. Puede producir utilería simple sin valor comercial.
+
+### Invisibilidad y Origen Remoto
+
+Una acción ofensiva del canalizador rompe Invisibilidad después de resolverse aunque el origen geométrico haya sido trasladado a un Familiar mediante Origen Remoto. Cambiar el origen no cambia quién realizó la acción.
+
+### Apilamiento defensivo
+
+La búsqueda exhaustiva de las fuentes propuestas usa grupos de exclusión: Barrera Cinética/Escudo de campo comparten cinética y Cobertura/Pantalla Cinética comparten cobertura. Con Guardia, escudo frontal, una defensa cinética, una fuente de cobertura y Duplicado Ilusorio, el máximo teórico de la muestra auditada es +9 Defensa, pero exige preparación, posición, Acción, Reacción y Sostenimiento. Se conserva como caso de estrés para fases posteriores; no se interpreta como bono circunstancial gratuito.
 
 ## Resultados probabilísticos de referencia
 
