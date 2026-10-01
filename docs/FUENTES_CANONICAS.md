@@ -32,7 +32,7 @@ Sus decisiones DAT-D01 a DAT-D666 son CANÓNICAS. CREA-11 no cambia las fórmula
 
 ## REV-CREA-11-001 — Sincronización post-cierre
 
-CREA-11 permanece **CERRADA v1.0**. Foundry **1.0.18** aplica una revisión controlada posterior al cierre para corregir divergencias sin reabrir el diseño: Atributos iniciales (6 aumentos, máximo 3), máximo inicial de 3 Disciplinas, una única tirada para magia de área y sincronización documental de decisiones ya ratificadas de CREA-10/11.
+CREA-11 permanece **CERRADA v1.0**. **REV-CREA-11-001 está CERRADA E INTEGRADA** en Foundry **1.0.18** mediante PR #22 (`52317ae7105a63ced869b152486ada0b7597fca1`). La revisión corrige divergencias sin reabrir el diseño: Atributos iniciales (6 aumentos, máximo 3), máximo inicial de 3 Disciplinas, una única tirada para magia de área y sincronización documental de decisiones ya ratificadas de CREA-10/11.
 
 Protección derivada, FUE mínima y penalizaciones de equipo, Bloqueo/orientación, Movimiento cuantificado y automatización de Sangrado continúan reservados para CREA-12 o su integración correspondiente.
 
