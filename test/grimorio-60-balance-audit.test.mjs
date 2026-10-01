@@ -304,13 +304,18 @@ test("las ilusiones persistentes usan una DF determinista ligada a competencia y
   }
 });
 
-test("los tres candidatos multiobjetivo declaran contrato estructurado",()=>{
-  for(const name of ["Arco Fulminante","Círculo Restaurador","Salto Vinculado"]){
+test("los candidatos multiobjetivo declaran contrato estructurado sin contar dos veces al lanzador",()=>{
+  for(const name of ["Arco Fulminante","Círculo Restaurador"]){
     const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
     assert.equal(spell.targetMode,"multiple",name);
     assert.equal(spell.maxTargets,3,name);
     assert.equal(spell.requiresTarget,true,name);
   }
+  const jump=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Salto Vinculado");
+  assert.equal(jump.targetMode,"multiple");
+  assert.equal(jump.includesCaster,true);
+  assert.equal(jump.maxTargets,2);
+  assert.equal(jump.requiresTarget,true);
 });
 
 
@@ -340,5 +345,23 @@ test("cierre espacial propuesto separa intercambio, paso local, salto grupal y P
   assert.equal(threshold.role,"local-threshold");
   assert.equal(threshold.maxTraversals,1);
   assert.equal(jump.role,"transport");
-  assert.equal(jump.maxTargets,3);
+  assert.equal(jump.includesCaster,true);
+  assert.equal(jump.maxTargets,2);
+});
+
+
+test("rituales mayores conservan sus requisitos adicionales además de la competencia operativa",()=>{
+  const renewal=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Renovación Integral");
+  assert.deepEqual(renewal.skillRequirements,[{skill:"medicine",minRank:3}]);
+
+  const summon=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Llamada Mayor");
+  assert.equal(summon.requiresSummoningLink,true);
+  assert.equal(summon.automaticObedience,false);
+  assert.equal(summon.usesInvocationControlModes,true);
+
+  const travel=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Gran Traslación");
+  assert.equal(travel.requiresTwoAnchors,true);
+  assert.equal(travel.includesCaster,true);
+  assert.equal(travel.maxTargets,8);
+  assert.equal(travel.willingOnly,true);
 });
