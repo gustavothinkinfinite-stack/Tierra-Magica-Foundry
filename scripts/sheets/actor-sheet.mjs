@@ -2,6 +2,7 @@ import { TM_CONFIG } from "../config.mjs";
 import { toNumber } from "../rules.mjs";
 import { normalizeSlug } from "../rules/identity.mjs";
 import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } from "../rules/currency.mjs";
+import { movementAllowance, movementRemaining, spendActorMovement } from "../rules/turn-economy.mjs";
 
 export class TierraMagicaActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -97,8 +98,14 @@ export class TierraMagicaActorSheet extends ActorSheet {
       background: context.itemGroups.background?.[0] ?? null
     };
 
+    const movementMax = movementAllowance(this.actor);
+    const movementLeft = movementRemaining(this.actor);
     context.turn = {
-      movement: this.actor.system.turn?.movement ?? true,
+      movementSpent: Math.max(0, toNumber(this.actor.system.turn?.movementSpent)),
+      extraMovement: Math.max(0, toNumber(this.actor.system.turn?.extraMovement)),
+      movementMax,
+      movementRemaining: movementLeft,
+      movementDepleted: movementLeft <= 0,
       action: this.actor.system.turn?.action ?? true,
       reaction: this.actor.system.turn?.reaction ?? true
     };
@@ -178,18 +185,36 @@ export class TierraMagicaActorSheet extends ActorSheet {
     });
     html.find("[data-action='toggle-turn']").click((event) => {
       const key = event.currentTarget.dataset.key;
-      if (!["movement", "action", "reaction"].includes(key)) return;
+      if (!["action", "reaction"].includes(key)) return;
       const current = this.actor.system.turn?.[key] ?? true;
       return this.actor.update({ ["system.turn." + key]: !current });
     });
+    html.find("[data-action='spend-movement']").click(async () => {
+      const remaining = movementRemaining(this.actor);
+      if (remaining <= 0) return ui.notifications.warn(this.actor.name + " no tiene Movimiento disponible.");
+      const amount = await Dialog.prompt({
+        title: "Gastar Movimiento",
+        content: "<div class='form-group'><label>Espacios a gastar</label><input name='movement' type='number' min='0.1' max='" +
+          remaining + "' step='0.1' value='" + remaining + "'/></div><p>Disponible: " + remaining + " espacios.</p>",
+        label: "Gastar",
+        callback: (html) => toNumber(html.find("[name='movement']").val(), Number.NaN),
+        rejectClose: false
+      });
+      if (amount === null || amount === undefined) return;
+      if (!(await spendActorMovement(this.actor, amount))) {
+        ui.notifications.warn("El gasto solicitado supera el Movimiento restante o no es válido.");
+      }
+    });
     html.find("[data-action='reset-turn']").click(() => this.actor.update({
-      "system.turn.movement": true,
+      "system.turn.movementSpent": 0,
+      "system.turn.extraMovement": 0,
       "system.turn.action": true,
       "system.turn.reaction": true,
       "system.combat.guardActive": false,
       "system.combat.parryActive": false,
       "system.combat.parrySucceeded": false,
-      "system.combat.counterattackUsed": false
+      "system.combat.counterattackUsed": false,
+      "system.combat.kineticBarrierActive": false
     }));
     html.find("[data-action='combat-guard']").click(() => this.actor.guard());
     html.find("[data-action='combat-parry']").click(() => this.actor.parry());
