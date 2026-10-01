@@ -1,6 +1,6 @@
 import { normalizeSlug } from "./identity.mjs";
 
-export const TM_SCHEMA_VERSION = 4;
+export const TM_SCHEMA_VERSION = 5;
 
 const SPELL_PD = Object.freeze({ trick: 1, minor: 1, basic: 2, advanced: 3, master: 5, legendary: 8 });
 const TECHNIQUE_PD = Object.freeze({ basic: 2, advanced: 3, master: 5, legendary: 8 });
@@ -146,6 +146,41 @@ function migrateItemSourceV4(item) {
       }
     }
   }
+  system.schemaVersion = 4;
+  return item;
+}
+
+function migrateItemSourceV5(item) {
+  const system = item.system ??= {};
+  if (item.type === "spell") {
+    const slug = normalizeSlug(system.slug || item.name);
+    if (!["single","multiple","self"].includes(String(system.targetMode ?? "").toLowerCase())) system.targetMode = "single";
+    system.maxTargets = Math.max(1, Math.floor(number(system.maxTargets, 1)));
+    system.requiresTarget = Boolean(system.requiresTarget);
+
+    if (slug === "cierre-restaurador") {
+      system.targetMode = "single";
+      system.maxTargets = 1;
+      system.requiresTarget = true;
+    }
+
+    if (slug === "trasposicion") {
+      system.targetMode = "single";
+      system.maxTargets = 1;
+      system.requiresTarget = true;
+      system.remoteOriginCompatible = false;
+      system.range = "8 espacios";
+      system.effect = "Intercambia la posición del lanzador con una criatura voluntaria dentro de alcance. Ambas posiciones deben ser válidas; no concede Movimiento adicional ni permite un destino inválido o inmediatamente letal.";
+    }
+
+    if (slug === "umbral") {
+      system.targetMode = "single";
+      system.maxTargets = 1;
+      system.requiresTarget = false;
+      system.remoteOriginCompatible = false;
+      system.effect = "Abre un paso espacial local a través de una barrera continua de hasta 2 espacios de espesor. Una criatura voluntaria puede atravesarlo una vez antes de que se cierre; no conecta Anclas ni crea un Portal persistente.";
+    }
+  }
   system.schemaVersion = TM_SCHEMA_VERSION;
   return item;
 }
@@ -175,8 +210,9 @@ export function migrateItemSource(source, { embedded = false } = {}) {
   const system = item.system;
   const currentVersion = number(system.schemaVersion);
   if (currentVersion >= TM_SCHEMA_VERSION) return item;
-  if (currentVersion >= 3) return migrateItemSourceV4(item);
-  if (currentVersion >= 1) return migrateItemSourceV4(migrateItemSourceV3(item));
+  if (currentVersion >= 4) return migrateItemSourceV5(item);
+  if (currentVersion >= 3) return migrateItemSourceV5(migrateItemSourceV4(item));
+  if (currentVersion >= 1) return migrateItemSourceV5(migrateItemSourceV4(migrateItemSourceV3(item)));
 
   const oldRequirements = typeof system.requirements === "string" ? system.requirements : "";
   const oldSkillRequirements = clone(system.skillRequirements ?? []);
@@ -202,7 +238,7 @@ export function migrateItemSource(source, { embedded = false } = {}) {
   system.legacy ??= {};
   if (oldSkillRequirements.length) system.legacy.skillRequirements = oldSkillRequirements;
   if (oldSkillModifiers.length) system.legacy.skillModifiers = oldSkillModifiers;
-  return migrateItemSourceV4(migrateItemSourceV3(item));
+  return migrateItemSourceV5(migrateItemSourceV4(migrateItemSourceV3(item)));
 }
 
 export function migrateActorSource(source) {
