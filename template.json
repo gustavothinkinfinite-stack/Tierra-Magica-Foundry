@@ -461,6 +461,9 @@
       "activation": "Acción",
       "duration": "Instantánea",
       "area": "",
+      "targetMode": "single",
+      "maxTargets": 1,
+      "requiresTarget": false,
       "method": "direct"
     },
     "technique": {

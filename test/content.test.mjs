@@ -48,3 +48,10 @@ test("auditoría mágica: invocación sostenida y tránsito espacial no amplific
   }
   assert.notEqual(spell("Proyectil Ígneo").remoteOriginCompatible,false);
 });
+
+
+test("Cierre Restaurador declara su objetivo antes de pagar Maná",()=>{
+  const spell=STARTER_CONTENT.spell.find(i=>i.name==="Cierre Restaurador").system;
+  assert.equal(spell.requiresTarget,true);
+  assert.equal(spell.targetMode,"single");
+});

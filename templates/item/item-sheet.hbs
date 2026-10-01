@@ -58,6 +58,13 @@
         <label><span>Daño</span><input type="number" name="system.damage" value="{{system.damage}}" min="0" /></label>
         <label><span>Penetración</span><input type="number" name="system.penetration" value="{{system.penetration}}" min="0" /></label>
         <label><span>Alcance</span><input type="text" name="system.range" value="{{system.range}}" /></label>
+        <label><span>Objetivos</span><select name="system.targetMode">
+          <option value="single" {{#if (eq system.targetMode "single")}}selected{{/if}}>Único</option>
+          <option value="multiple" {{#if (eq system.targetMode "multiple")}}selected{{/if}}>Múltiples</option>
+          <option value="self" {{#if (eq system.targetMode "self")}}selected{{/if}}>Personal</option>
+        </select></label>
+        <label><span>Máx. objetivos</span><input type="number" name="system.maxTargets" value="{{system.maxTargets}}" min="1" /></label>
+        <label class="tm-check"><span>Requiere objetivo</span><input type="checkbox" name="system.requiresTarget" {{checked system.requiresTarget}} /></label>
         <label><span>Requisitos</span><input type="text" name="system.requirementsText" value="{{system.requirementsText}}" placeholder="Requisitos narrativos o de acceso" /></label>
         <label class="tm-check"><span>Sostenido</span><input type="checkbox" name="system.sustained" {{checked system.sustained}} /></label>
         <label class="tm-check"><span>Compatible con Origen Remoto</span><input type="checkbox" name="system.remoteOriginCompatible" {{checked system.remoteOriginCompatible}} /></label>

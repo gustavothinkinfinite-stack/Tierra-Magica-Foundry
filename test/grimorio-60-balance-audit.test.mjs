@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { STARTER_CONTENT } from "../scripts/content.mjs";
-import { GRIMORIO_AUDIT_CANDIDATES, AUDIT_REFERENCE_TARGETS } from "./fixtures/grimorio-60-audit.mjs";
+import { GRIMORIO_AUDIT_CANDIDATES, GRIMORIO_SPATIAL_CLOSURE_PROPOSALS, AUDIT_REFERENCE_TARGETS } from "./fixtures/grimorio-60-audit.mjs";
 
 function outcomes2d10(mode="normal") {
   const values=[];
@@ -122,11 +122,11 @@ test("la progresión de ataque mental queda registrada como riesgo y Mente Ancla
   assert.ok(probabilities[2]>0.95); // señal de auditoría: no autoriza hard control.
 });
 
-test("ilusiones usan DF estática y nunca una tirada pescable como potencia persistente",()=>{
+test("ilusiones usan DF determinista y nunca una tirada pescable como potencia persistente",()=>{
   const illusions=GRIMORIO_AUDIT_CANDIDATES.filter((entry)=>String(entry.role).includes("illusion") && entry.name!=="Revelación Sensorial");
   for(const spell of illusions){
     if(spell.name==="Duplicado Ilusorio") continue;
-    assert.equal(spell.illusionDf,"static",spell.name);
+    assert.equal(spell.illusionDf,"11+attribute+channeling",spell.name);
   }
   const equalSpecialists=successProbability({bonus:7,df:18});
   const revealed=successProbability({bonus:7,df:18,mode:"advantage"});
@@ -214,4 +214,154 @@ test("enumeración defensiva impide doble cinética y doble cobertura",()=>{
   assert.ok(maximumSelection.includes("Guardia"));
   assert.ok(maximumSelection.some((name)=>["Barrera Cinética","Escudo de campo"].includes(name)));
   assert.ok(!maximumSelection.includes("Cobertura") || !maximumSelection.includes("Pantalla Cinética"));
+});
+
+
+test("catálogo auditado contiene exactamente 60 hechizos y conserva la distribución decidida",()=>{
+  const canonical=STARTER_CONTENT.spell.map((entry)=>({
+    name:entry.name,
+    discipline:entry.system.discipline,
+    grade:entry.system.grade,
+    mana:entry.system.manaCost
+  }));
+  const all=[...canonical,...GRIMORIO_AUDIT_CANDIDATES];
+  assert.equal(all.length,60);
+  const counts=Object.fromEntries(["evocation","alteration","restoration","perception","influence","conjuration"]
+    .map((discipline)=>[discipline,all.filter((entry)=>entry.discipline===discipline).length]));
+  assert.deepEqual(counts,{evocation:10,alteration:10,restoration:9,perception:11,influence:10,conjuration:10});
+});
+
+test("todos los costes de Maná permanecen dentro de la banda de su Grado",()=>{
+  const canonical=STARTER_CONTENT.spell.map((entry)=>({
+    name:entry.name,grade:entry.system.grade,mana:entry.system.manaCost
+  }));
+  const all=[...canonical,...GRIMORIO_AUDIT_CANDIDATES];
+  const valid=(entry)=>{
+    if(entry.grade==="minor") return entry.mana===2;
+    if(entry.grade==="basic") return entry.mana>=3 && entry.mana<=4;
+    if(entry.grade==="advanced") return entry.mana>=5 && entry.mana<=7;
+    if(entry.grade==="master") return entry.mana>=8 && entry.mana<=11;
+    if(entry.grade==="legendary") return entry.mana>=12;
+    return false;
+  };
+  for(const entry of all) assert.equal(valid(entry),true,entry.name+" queda fuera de la banda de Maná de "+entry.grade);
+});
+
+test("Martillo Cinético usa Defensa Corporal y no una Defensa normal fácil de inflar",()=>{
+  const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Martillo Cinético");
+  assert.equal(spell.defense,"body");
+});
+
+test("los rituales candidatos usan el Método real del motor y no un booleano paralelo",()=>{
+  for(const name of ["Renovación Integral","Llamada Mayor","Gran Traslación"]){
+    const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
+    assert.equal(spell.method,"ritual",name);
+    assert.equal(Object.hasOwn(spell,"ritual"),false,name);
+  }
+});
+
+test("formas mágicas con vuelo no sustituyen un Rasgo permanente",()=>{
+  const winged=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Morfología Alada");
+  const transmutation=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Transmutación Corpórea");
+  assert.equal(winged.maxDuration,"scene");
+  assert.equal(transmutation.maxDuration,"scene");
+});
+
+test("protecciones mentales mágicas equivalentes no se apilan hasta +4",()=>{
+  const valor=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Valor Inspirado");
+  const anchor=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Mente Anclada");
+  assert.equal(valor.mentalDefenseBonus,2);
+  assert.equal(anchor.mentalDefenseBonus,2);
+  assert.equal(valor.stackingGroup,"mental-ward");
+  assert.equal(anchor.stackingGroup,"mental-ward");
+});
+
+test("Restauración Funcional suspende una penalización pero no reconstruye una función ausente",()=>{
+  const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Restauración Funcional");
+  assert.equal(spell.repairsWound,false);
+  assert.equal(spell.maxSuppressedPenalties,1);
+  assert.equal(spell.restoresMissingFunction,false);
+});
+
+test("Jaula Dimensional eleva una única resolución espacial a DF mínima 18",()=>{
+  const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Jaula Dimensional");
+  assert.equal(spell.spatialMinDifficulty,18);
+  assert.equal(spell.secondaryResistance,false);
+});
+
+test("Objeto Efímero no puede acumular una colección paralela por relanzamiento",()=>{
+  const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Objeto Efímero");
+  assert.equal(spell.sustained,true);
+  assert.equal(spell.sameSpellReplaces,true);
+  assert.equal(spell.maxDuration,"scene");
+});
+
+test("las ilusiones persistentes usan una DF determinista ligada a competencia y no una tirada pescable",()=>{
+  const names=["Imagen Menor","Velo Sensorial","Espejismo","Invisibilidad","Dominio Fantasmagórico"];
+  for(const name of names){
+    const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
+    assert.equal(spell.illusionDf,"11+attribute+channeling",name);
+  }
+});
+
+test("los candidatos multiobjetivo declaran contrato estructurado sin contar dos veces al lanzador",()=>{
+  for(const name of ["Arco Fulminante","Círculo Restaurador"]){
+    const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
+    assert.equal(spell.targetMode,"multiple",name);
+    assert.equal(spell.maxTargets,3,name);
+    assert.equal(spell.requiresTarget,true,name);
+  }
+  const jump=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Salto Vinculado");
+  assert.equal(jump.targetMode,"multiple");
+  assert.equal(jump.includesCaster,true);
+  assert.equal(jump.maxTargets,2);
+  assert.equal(jump.requiresTarget,true);
+});
+
+
+test("ilusiones sostenidas y Velo Social no permanecen indefinidamente",()=>{
+  for(const name of ["Imagen Menor","Velo Sensorial","Espejismo","Duplicado Ilusorio","Invisibilidad","Dominio Fantasmagórico","Velo Social"]){
+    const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
+    assert.equal(spell.maxDuration,"scene",name);
+  }
+});
+
+test("Fascinación y Temor son presiones breves, no control persistente",()=>{
+  for(const name of ["Fascinación","Temor"]){
+    const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
+    assert.equal(spell.proposedDuration,"hasta fin del siguiente turno del objetivo",name);
+    assert.notEqual(spell.actionDenial,true,name);
+  }
+});
+
+test("cierre espacial propuesto separa intercambio, paso local, salto grupal y Portal",()=>{
+  const swap=GRIMORIO_SPATIAL_CLOSURE_PROPOSALS["Trasposición"];
+  const threshold=GRIMORIO_SPATIAL_CLOSURE_PROPOSALS["Umbral"];
+  const jump=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Salto Vinculado");
+  assert.equal(swap.status,"proposed-not-canon");
+  assert.equal(threshold.status,"proposed-not-canon");
+  assert.equal(swap.role,"position-swap");
+  assert.equal(swap.willingOnly,true);
+  assert.equal(threshold.role,"local-threshold");
+  assert.equal(threshold.maxTraversals,1);
+  assert.equal(jump.role,"transport");
+  assert.equal(jump.includesCaster,true);
+  assert.equal(jump.maxTargets,2);
+});
+
+
+test("rituales mayores conservan sus requisitos adicionales además de la competencia operativa",()=>{
+  const renewal=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Renovación Integral");
+  assert.deepEqual(renewal.skillRequirements,[{skill:"medicine",minRank:3}]);
+
+  const summon=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Llamada Mayor");
+  assert.equal(summon.requiresSummoningLink,true);
+  assert.equal(summon.automaticObedience,false);
+  assert.equal(summon.usesInvocationControlModes,true);
+
+  const travel=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Gran Traslación");
+  assert.equal(travel.requiresTwoAnchors,true);
+  assert.equal(travel.includesCaster,true);
+  assert.equal(travel.maxTargets,8);
+  assert.equal(travel.willingOnly,true);
 });

@@ -36,7 +36,7 @@ export const STARTER_CONTENT = {
   {name:"Barrera Cinética",system:{discipline:"evocation",grade:"basic",manaCost:3,attribute:"int",activation:"Reacción",effect:"+2 Defensa contra el ataque declarado."}},
   {name:"Potencia Sobrenatural",system:{discipline:"alteration",grade:"basic",manaCost:4,attribute:"int",sustained:true,effect:"Interactúa como una categoría de Escala mayor; no aumenta FUE/daño/Defensa."}},
   {name:"Piel Alterada",system:{discipline:"alteration",grade:"basic",manaCost:4,attribute:"int",sustained:true,effect:"Protección 2 contra categoría coherente; no acumula con armadura."}},
-  {name:"Cierre Restaurador",system:{discipline:"restoration",grade:"basic",manaCost:3,attribute:"int",requirements:"",effect:"Recupera 4 Vida y detiene Sangrado ordinario compatible."}},
+  {name:"Cierre Restaurador",system:{discipline:"restoration",grade:"basic",manaCost:3,attribute:"int",requirements:"",requiresTarget:true,targetMode:"single",effect:"Recupera 4 Vida y detiene Sangrado ordinario compatible."}},
   {name:"Regeneración",system:{discipline:"restoration",grade:"advanced",method:"ritual",manaCost:6,attribute:"int",difficulty:16,requirements:"Medicina Entrenada",skillRequirements:[{skill:"medicine",minRank:2}],effect:"Repara Herida Grave orgánica compatible."}},
   {name:"Reconstrucción",system:{discipline:"restoration",grade:"master",manaCost:10,attribute:"int",difficulty:20,requirements:"Medicina",effect:"Reconstrucción extraordinaria; no resurrección."}},
   {name:"Visión Arcana",system:{discipline:"perception",grade:"minor",manaCost:2,attribute:"per",difficulty:10,duration:"Escena",requirements:""}},

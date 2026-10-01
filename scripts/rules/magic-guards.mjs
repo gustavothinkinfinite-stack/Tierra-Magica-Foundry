@@ -69,6 +69,8 @@ export function installMagicGuards(ActorClass) {
     if (!targetValidation.ok) {
       if (targetValidation.reason === "target-required") return ui.notifications.warn(item.name + " requiere al menos un objetivo válido.");
       if (targetValidation.reason === "single-target") return ui.notifications.warn(item.name + " es de objetivo único: selecciona sólo un objetivo.");
+      if (targetValidation.reason === "too-many-targets") return ui.notifications.warn(item.name + " admite como máximo " + targetValidation.maxTargets + " objetivos.");
+      if (targetValidation.reason === "self-target") return ui.notifications.warn(item.name + " es personal: no selecciones objetivos.");
       return ui.notifications.warn("La selección de objetivos de " + item.name + " no es válida.");
     }
     const targets = targetValidation.targets;
