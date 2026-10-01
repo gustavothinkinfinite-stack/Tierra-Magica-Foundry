@@ -276,6 +276,10 @@ export function deriveActorState({
     formula: manaDisabled ? "Sin reserva de Maná propia" : "6 + 3 × VOL",
     contributions: manaDisabled ? [] : manaContributions
   });
+  const severe = breakdown({
+    base: 5 + vig,
+    formula: "5 + VIG"
+  });
   const defensive = breakdown({
     base: 0,
     formula: "Bono Defensivo",
@@ -331,7 +335,7 @@ export function deriveActorState({
   return {
     healthMax: Math.max(0, health.total),
     manaMax: Math.max(0, mana.total),
-    severeThreshold: severeThreshold(vig),
+    severeThreshold: Math.max(0, severe.total),
     defensiveBonus: defensive.total,
     defense: defense.total,
     maneuverDefense: maneuver.total,
@@ -349,6 +353,7 @@ export function deriveActorState({
     breakdowns: {
       healthMax: health,
       manaMax: mana,
+      severeThreshold: severe,
       defensiveBonus: defensive,
       defense,
       maneuverDefense: maneuver,
