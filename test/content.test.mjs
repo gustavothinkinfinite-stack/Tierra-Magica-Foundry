@@ -55,3 +55,32 @@ test("Cierre Restaurador declara su objetivo antes de pagar Maná",()=>{
   assert.equal(spell.requiresTarget,true);
   assert.equal(spell.targetMode,"single");
 });
+
+
+test("grimorio canónico contiene 60 hechizos y el cierre espacial aprobado",()=>{
+  assert.equal(STARTER_CONTENT.spell.length,60);
+  const names=new Set(STARTER_CONTENT.spell.map((entry)=>entry.name));
+  assert.equal(names.size,60);
+  for(const name of ["Arco Fulminante","Renovación Integral","Dominio Fantasmagórico","Mente Anclada","Gran Traslación"]){
+    assert.equal(names.has(name),true,name);
+  }
+
+  const by=(name)=>STARTER_CONTENT.spell.find((entry)=>entry.name===name).system;
+  assert.equal(by("Trasposición").requiresTarget,true);
+  assert.equal(by("Trasposición").targetMode,"single");
+  assert.match(by("Trasposición").effect,/Intercambia la posición/);
+  assert.match(by("Umbral").effect,/barrera continua de hasta 2 espacios/);
+  assert.equal(by("Salto Vinculado").targetMode,"multiple");
+  assert.equal(by("Salto Vinculado").maxTargets,2);
+  assert.equal(by("Gran Traslación").maxTargets,8);
+  assert.equal(by("Gran Traslación").method,"ritual");
+});
+
+test("protecciones mentales diferidas no atacan al protegido durante el lanzamiento",()=>{
+  const interdiccion=STARTER_CONTENT.spell.find((entry)=>entry.name==="Interdicción").system;
+  const aura=STARTER_CONTENT.spell.find((entry)=>entry.name==="Aura de Autoridad").system;
+  assert.notEqual(interdiccion.defense,"mental");
+  assert.notEqual(aura.defense,"mental");
+  assert.match(interdiccion.effect,/Defensa Mental del atacante/);
+  assert.match(aura.effect,/Defensa Mental de esa criatura/);
+});
