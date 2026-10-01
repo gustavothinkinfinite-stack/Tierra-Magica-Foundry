@@ -80,10 +80,12 @@ test("Guardia Parada y Contraataque respetan Acción/Reacción y no encadenan", 
   assert.equal(source.includes('ActorClass.prototype.parry = async function'), true);
   assert.equal(source.includes('"system.turn.reaction": false'), true);
   assert.equal(source.includes('"system.combat.parryActive": true'), true);
+  const authority = await readFile(new URL("../scripts/rules/state-authority.mjs", import.meta.url), "utf8");
   assert.equal(source.includes('ActorClass.prototype.counterattack = async function'), true);
   assert.equal(source.includes('if (!this.system.combat?.parrySucceeded)'), true);
   assert.equal(source.includes('if (this.system.combat?.counterattackUsed)'), true);
-  assert.equal(source.includes('"system.combat.counterattackUsed": true'), true);
+  assert.equal(source.includes("claimCounterattackAuthoritatively(this)"), true);
+  assert.equal(authority.includes('"system.combat.counterattackUsed": true'), true);
   assert.equal(sheetSource.includes('"system.combat.guardActive": false'), true);
   assert.equal(sheetSource.includes('"system.combat.parryActive": false'), true);
   assert.equal(sheetSource.includes('"system.combat.counterattackUsed": false'), true);
