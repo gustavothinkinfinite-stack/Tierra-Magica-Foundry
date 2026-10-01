@@ -56,6 +56,29 @@ export const GRIMORIO_AUDIT_CANDIDATES = Object.freeze([
   {name:"Gran Traslación",discipline:"conjuration",grade:"legendary",mana:14,role:"transport-ritual",method:"ritual",remoteOriginCompatible:false}
 ]);
 
+export const GRIMORIO_SPATIAL_CLOSURE_PROPOSALS = Object.freeze({
+  "Trasposición": {
+    status:"proposed-not-canon",
+    role:"position-swap",
+    activation:"Acción",
+    range:"8 espacios",
+    difficulty:14,
+    willingOnly:true,
+    effect:"Intercambia la posición del lanzador con una criatura voluntaria dentro de alcance. Ambas posiciones deben ser válidas; no concede Movimiento adicional ni permite destino letal o inválido.",
+    remoteOriginCompatible:false
+  },
+  "Umbral": {
+    status:"proposed-not-canon",
+    role:"local-threshold",
+    activation:"Acción",
+    difficulty:18,
+    maxBarrierThickness:2,
+    maxTraversals:1,
+    effect:"Abre un paso espacial local a través de una barrera continua de hasta 2 espacios de espesor; una criatura voluntaria puede atravesarlo una vez antes de que se cierre. No conecta Anclas ni crea un Portal persistente.",
+    remoteOriginCompatible:false
+  }
+});
+
 export const AUDIT_REFERENCE_TARGETS = Object.freeze([
   {name:"Bandido",defense:13,mental:12,body:12,protection:1},
   {name:"Guardia",defense:14,mental:12,body:13,protection:2},
