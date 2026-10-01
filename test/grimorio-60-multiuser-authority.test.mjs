@@ -58,7 +58,9 @@ const {
   applyHealthDamageAuthoritatively,
   applyHealthHealingAuthoritatively,
   approvePendingDamageAuthoritatively,
-  approvePendingHealingAuthoritatively
+  approvePendingHealingAuthoritatively,
+  claimParryAuthoritatively,
+  resolveParryAuthoritatively
 }=await import("../scripts/rules/state-authority.mjs");
 
 installStateAuthorityBridge();
@@ -207,4 +209,25 @@ test("autoridad de Vida conserva 0 Vida, Incapacitado y Trauma exactamente una v
   assert.equal(target.system.resources.health.value,0);
   assert.equal(target.system.status.incapacitated,true);
   assert.equal(target.system.status.trauma,1);
+});
+
+
+test("defensa compartida: dos atacantes concurrentes no pueden consumir la misma Parada dos veces",async()=>{
+  const target=actor({uuid:"Actor.parry",health:12,owners:[]});
+  target.system.combat={parryActive:true,parrySucceeded:false,counterattackUsed:false};
+  globalThis.game.user=gm;
+
+  const claims=await Promise.all([
+    claimParryAuthoritatively(target),
+    claimParryAuthoritatively(target)
+  ]);
+
+  assert.equal(claims.filter((result)=>result.ok && result.claimed).length,1);
+  assert.equal(claims.filter((result)=>result.ok && !result.claimed).length,1);
+  assert.equal(target.system.combat.parryActive,false);
+
+  const closed=await resolveParryAuthoritatively(target,true);
+  assert.equal(closed.ok,true);
+  assert.equal(target.system.combat.parrySucceeded,true);
+  assert.equal(target.system.combat.counterattackUsed,false);
 });
