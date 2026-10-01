@@ -61,7 +61,11 @@ const {
   approvePendingHealingAuthoritatively,
   claimCounterattackAuthoritatively,
   claimParryAuthoritatively,
-  resolveParryAuthoritatively
+  resolveParryAuthoritatively,
+  reserveTurnResourceAuthoritatively,
+  commitTurnResourceReservation,
+  releaseTurnResourceReservation,
+  spendActorMovementAuthoritatively
 }=await import("../scripts/rules/state-authority.mjs");
 
 installStateAuthorityBridge();
@@ -70,10 +74,11 @@ function actor({uuid="Actor.target",health=10,max=16,cap=max,owners=["player-a",
   const value={
     uuid,id:uuid,name:"Objetivo compartido",type:"npc",
     system:{
-      derived:{healthMax:max},
+      derived:{healthMax:max,movement:6},
       resources:{health:{value:health,max}},
       recovery:{healthCap:cap},
-      status:{incapacitated:false,trauma:0}
+      status:{incapacitated:false,trauma:0},
+      turn:{action:true,reaction:true,movementSpent:0,extraMovement:0}
     },
     canUserModify(user){return Boolean(user?.isGM)||owners.includes(user?.id);},
     async update(changes){await delay();applyChanges(this,changes);return changes;}
@@ -248,4 +253,118 @@ test("defensa compartida: una Parada exitosa habilita un solo Contraataque entre
   assert.equal(claims.filter((result)=>result.ok && !result.claimed).length,1);
   assert.equal(target.system.combat.parrySucceeded,false);
   assert.equal(target.system.combat.counterattackUsed,true);
+});
+
+
+test("economía compartida: dos clientes no pueden reservar la misma Acción",async()=>{
+  const target=actor({uuid:"Actor.action-economy",owners:["player-a","player-b"]});
+
+  globalThis.game.user=playerA;
+  const first=reserveTurnResourceAuthoritatively(target,"action");
+  globalThis.game.user=playerB;
+  const second=reserveTurnResourceAuthoritatively(target,"action");
+  const claims=await Promise.all([first,second]);
+
+  assert.equal(claims.filter((result)=>result.ok && result.claimed).length,1);
+  assert.equal(claims.filter((result)=>result.ok && !result.claimed).length,1);
+
+  const winner=claims[0].claimed ? {user:playerA,result:claims[0]} : {user:playerB,result:claims[1]};
+  globalThis.game.user=winner.user;
+  const committed=await commitTurnResourceReservation(target,"action",winner.result.reservationId);
+  assert.equal(committed.ok,true);
+  assert.equal(target.system.turn.action,false);
+});
+
+test("economía compartida: cancelar una Acción inválida libera la reserva para otro cliente",async()=>{
+  const target=actor({uuid:"Actor.action-release",owners:["player-a","player-b"]});
+  globalThis.game.user=playerA;
+  const claim=await reserveTurnResourceAuthoritatively(target,"action");
+  assert.equal(claim.claimed,true);
+  assert.equal((await releaseTurnResourceReservation(target,"action",claim.reservationId)).ok,true);
+  assert.equal(target.system.turn.action,true);
+
+  globalThis.game.user=playerB;
+  const retry=await reserveTurnResourceAuthoritatively(target,"action");
+  assert.equal(retry.claimed,true);
+  await releaseTurnResourceReservation(target,"action",retry.reservationId);
+});
+
+test("economía compartida: Acción y Reacción siguen siendo recursos independientes",async()=>{
+  const target=actor({uuid:"Actor.action-reaction",owners:["player-a","player-b"]});
+  globalThis.game.user=playerA;
+  const action=reserveTurnResourceAuthoritatively(target,"action");
+  globalThis.game.user=playerB;
+  const reaction=reserveTurnResourceAuthoritatively(target,"reaction");
+  const [a,r]=await Promise.all([action,reaction]);
+  assert.equal(a.claimed,true);
+  assert.equal(r.claimed,true);
+
+  globalThis.game.user=playerA;
+  await releaseTurnResourceReservation(target,"action",a.reservationId);
+  globalThis.game.user=playerB;
+  await releaseTurnResourceReservation(target,"reaction",r.reservationId);
+});
+
+test("economía compartida: dos movimientos de 4 no reutilizan un remanente de 6",async()=>{
+  const target=actor({uuid:"Actor.movement-race",owners:["player-a","player-b"]});
+
+  globalThis.game.user=playerA;
+  const first=spendActorMovementAuthoritatively(target,4);
+  globalThis.game.user=playerB;
+  const second=spendActorMovementAuthoritatively(target,4);
+  const results=await Promise.all([first,second]);
+
+  assert.equal(results.filter((result)=>result.ok && result.spent).length,1);
+  assert.equal(target.system.turn.movementSpent,4);
+});
+
+test("economía compartida: dos movimientos compatibles sí pueden dividir el remanente",async()=>{
+  const target=actor({uuid:"Actor.movement-split",owners:["player-a","player-b"]});
+
+  globalThis.game.user=playerA;
+  const first=spendActorMovementAuthoritatively(target,3);
+  globalThis.game.user=playerB;
+  const second=spendActorMovementAuthoritatively(target,3);
+  const results=await Promise.all([first,second]);
+
+  assert.equal(results.every((result)=>result.ok && result.spent),true);
+  assert.equal(target.system.turn.movementSpent,6);
+});
+
+test("economía compartida: Intercepción no puede robar una Reacción reservada por otro cliente",async()=>{
+  const target=actor({uuid:"Actor.intercept-race",owners:["player-a","player-b"]});
+
+  globalThis.game.user=playerA;
+  const reservation=await reserveTurnResourceAuthoritatively(target,"reaction");
+  assert.equal(reservation.claimed,true);
+
+  globalThis.game.user=playerB;
+  const blocked=await spendActorMovementAuthoritatively(target,2,{consumeReaction:true});
+  assert.equal(blocked.ok,true);
+  assert.equal(blocked.spent,false);
+  assert.equal(blocked.reason,"reaction-reserved");
+  assert.equal(target.system.turn.reaction,true);
+  assert.equal(target.system.turn.movementSpent,0);
+
+  globalThis.game.user=playerA;
+  const allowed=await spendActorMovementAuthoritatively(target,2,{consumeReaction:true});
+  assert.equal(allowed.ok,true);
+  assert.equal(allowed.spent,true);
+  assert.equal(target.system.turn.reaction,false);
+  assert.equal(target.system.turn.movementSpent,2);
+  assert.equal((await commitTurnResourceReservation(target,"reaction",reservation.reservationId)).ok,true);
+});
+
+test("seguridad: un cliente sin permisos no puede reservar Acción ni gastar Movimiento",async()=>{
+  const target=actor({uuid:"Actor.turn-secure",owners:["player-a"]});
+  globalThis.game.user=outsider;
+
+  const action=await reserveTurnResourceAuthoritatively(target,"action");
+  const movement=await spendActorMovementAuthoritatively(target,2);
+  assert.equal(action.ok,false);
+  assert.match(action.error,/no posee permisos/i);
+  assert.equal(movement.ok,false);
+  assert.match(movement.error,/no posee permisos/i);
+  assert.equal(target.system.turn.action,true);
+  assert.equal(target.system.turn.movementSpent,0);
 });
