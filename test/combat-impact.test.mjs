@@ -96,8 +96,10 @@ test("Guardia y Parada usan el motor contextual sin mutar derived en el integrad
   assert.equal(source.includes("this.system.derived.defense ="), false);
   assert.equal(derived.includes('label: "Guardia"'), true);
   assert.equal(derived.includes('label: "Parada"'), true);
+  const authority = await readFile(new URL("../scripts/rules/state-authority.mjs", import.meta.url), "utf8");
   assert.equal(source.includes("total < parryDefense"), true);
-  assert.equal(source.includes('"system.combat.parrySucceeded": succeeded'), true);
+  assert.equal(source.includes("resolveParryAuthoritatively(target, succeeded)"), true);
+  assert.equal(authority.includes('"system.combat.parrySucceeded": payload.succeeded === true'), true);
 });
 
 test("Intercepción consume la reserva cuantificada canónica de Movimiento", async () => {
