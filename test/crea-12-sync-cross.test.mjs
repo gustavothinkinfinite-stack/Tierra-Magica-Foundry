@@ -261,7 +261,8 @@ test("CREA-12 3F: guardar y reabrir reconstruye el mismo estado sin persistir de
   const reopened=persistAndReopen(source);
   assert.equal("derived" in reopened.system,false);
   const migrated=migrateActorSource(reopened);
-  assert.deepEqual(migrated,reopened); // schema v2: reabrir no reinterpreta ni reescribe procedencia
+  assert.equal(migrated.system.schemaVersion,3);
+  assert.deepEqual(migrateActorSource(migrated),migrated); // la migración vigente se aplica una vez y luego es idempotente
   // Simula un espejo max obsoleto en disco: no debe dominar la reapertura.
   migrated.system.resources.health.max=999;
   migrated.system.resources.mana.max=999;
