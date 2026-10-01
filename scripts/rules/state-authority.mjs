@@ -115,6 +115,35 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
     });
   }
 
+  if (action === "claim-parry") {
+    const target = await actorFromUuid(String(payload.targetUuid ?? ""));
+    if (!target?.system || typeof target.update !== "function") return { ok:false, error:"El objetivo de Parada ya no está disponible." };
+    if (!canModify(target)) return { ok:false, error:"El DJ activo no puede modificar el estado de Parada." };
+    return serial("parry:" + (target.uuid ?? target.id ?? target.name), async () => {
+      if (!target.system.combat?.parryActive) return { ok:true, claimed:false };
+      await target.update({
+        "system.combat.parryActive": false,
+        "system.combat.parrySucceeded": false,
+        "system.combat.counterattackUsed": false
+      });
+      return { ok:true, claimed:true };
+    });
+  }
+
+  if (action === "resolve-parry") {
+    const target = await actorFromUuid(String(payload.targetUuid ?? ""));
+    if (!target?.system || typeof target.update !== "function") return { ok:false, error:"El objetivo de Parada ya no está disponible." };
+    if (!canModify(target)) return { ok:false, error:"El DJ activo no puede cerrar el estado de Parada." };
+    return serial("parry:" + (target.uuid ?? target.id ?? target.name), async () => {
+      await target.update({
+        "system.combat.parryActive": false,
+        "system.combat.parrySucceeded": payload.succeeded === true,
+        "system.combat.counterattackUsed": false
+      });
+      return { ok:true, succeeded:payload.succeeded === true };
+    });
+  }
+
   if (action === "apply-health-damage" || action === "apply-health-healing") {
     const target = await actorFromUuid(String(payload.targetUuid ?? ""));
     if (!target) return { ok:false, error:"El objetivo de Vida ya no está disponible." };
@@ -237,6 +266,44 @@ export async function claimKineticBarrier(target) {
       "system.combat.kineticDefenseSource": ""
     });
     return { ok:true, claimed:true, source };
+  });
+}
+
+export async function claimParryAuthoritatively(target) {
+  if (!target?.system?.combat?.parryActive) return { ok:true, claimed:false };
+  if (runtimeSocketAvailable()) {
+    const gm = primaryActiveGm(activeUsers());
+    if (!gm) return { ok:false, claimed:false, error:"Se requiere un DJ activo para consumir Parada con seguridad." };
+    if (!target?.uuid) return { ok:false, claimed:false, error:"El objetivo no posee UUID para arbitrar Parada." };
+    return requestPrimaryGm("claim-parry", { targetUuid:target.uuid });
+  }
+  if (!canModify(target)) return { ok:false, claimed:false, error:"No hay permisos para consumir Parada." };
+  return serial("parry-local:" + (target.uuid ?? target.id ?? target.name), async () => {
+    if (!target.system?.combat?.parryActive) return { ok:true, claimed:false };
+    await target.update({
+      "system.combat.parryActive": false,
+      "system.combat.parrySucceeded": false,
+      "system.combat.counterattackUsed": false
+    });
+    return { ok:true, claimed:true };
+  });
+}
+
+export async function resolveParryAuthoritatively(target, succeeded) {
+  if (runtimeSocketAvailable()) {
+    const gm = primaryActiveGm(activeUsers());
+    if (!gm) return { ok:false, error:"Se requiere un DJ activo para cerrar Parada con seguridad." };
+    if (!target?.uuid) return { ok:false, error:"El objetivo no posee UUID para arbitrar Parada." };
+    return requestPrimaryGm("resolve-parry", { targetUuid:target.uuid, succeeded:succeeded === true });
+  }
+  if (!canModify(target)) return { ok:false, error:"No hay permisos para cerrar Parada." };
+  return serial("parry-local:" + (target.uuid ?? target.id ?? target.name), async () => {
+    await target.update({
+      "system.combat.parryActive": false,
+      "system.combat.parrySucceeded": succeeded === true,
+      "system.combat.counterattackUsed": false
+    });
+    return { ok:true, succeeded:succeeded === true };
   });
 }
 
