@@ -701,8 +701,6 @@ export class TierraMagicaActor extends Actor {
   async performRitual(item, { assistantMana = 0 } = {}) {
     if (!item || item.type !== "ritual") return null;
     const directorCost = Math.max(0, toNumber(item.system.manaDirector));
-    const mana = toNumber(this.system.resources?.mana?.value);
-    if (mana < directorCost) return ui.notifications.warn(this.name + " no tiene el Maná de Director requerido para " + item.name + ".");
 
     const usefulAssistants = Math.max(0, Math.floor(toNumber(item.system.usefulAssistants)));
     const assistantMax = Math.max(0, toNumber(item.system.manaAssistantMax));
@@ -712,7 +710,14 @@ export class TierraMagicaActor extends Actor {
       return ui.notifications.warn("El aporte de asistentes excede el máximo definido por el ritual (" + assistantCap + " Maná).");
     }
 
-    if (directorCost) await this.update({ "system.resources.mana.value": mana - directorCost });
+    const paid = await withActorResourceLock(this, async () => {
+      const mana = toNumber(this.system.resources?.mana?.value);
+      if (mana < directorCost) return false;
+      if (directorCost) await this.update({ "system.resources.mana.value": mana - directorCost });
+      return true;
+    });
+    if (!paid) return ui.notifications.warn(this.name + " no tiene el Maná de Director requerido para " + item.name + ".");
+
     const roll = await this.rollCheck({
       label: "Ritual: " + item.name,
       attributeKey: item.system.attribute || "int",
@@ -818,35 +823,37 @@ export class TierraMagicaActor extends Actor {
 
 
   async rest(kind = "rest") {
-    const updates = {};
-    const hp = this.system.resources.health;
-    const mp = this.system.resources.mana;
-    const recovery = this.system.recovery ?? {};
-    if (kind === "breather") {
-      updates["system.alchemy.saturatedFamilies"] = [];
+    return withActorResourceLock(this, async () => {
+      const updates = {};
+      const hp = this.system.resources.health;
+      const mp = this.system.resources.mana;
+      const recovery = this.system.recovery ?? {};
+      if (kind === "breather") {
+        updates["system.alchemy.saturatedFamilies"] = [];
+        await this.update(updates);
+        return ui.notifications.info(this.name + ": Respiro completado. No recupera Vida ni Maná; limpia Saturación de preparaciones compatibles.");
+      } else if (kind === "rest") {
+        if (!recovery.healthUsed) {
+          Object.assign(updates, boundedHealthRecoveryUpdates(this, toNumber(this.system.attributes.vig.value) + 2).updates);
+          updates["system.recovery.healthUsed"] = true;
+        }
+        if (!recovery.manaUsed) {
+          updates["system.resources.mana.value"] = Math.min(resourceMaximum(this, "mana"), toNumber(mp.value) + toNumber(this.system.attributes.vol.value) + 1);
+          updates["system.recovery.manaUsed"] = true;
+        }
+      } else if (kind === "full") {
+        const currentHealth = Math.max(0, toNumber(hp.value));
+        const cap = healingCap(this);
+        if (cap > currentHealth) {
+          Object.assign(updates, boundedHealthRecoveryUpdates(this, cap - currentHealth).updates);
+        }
+        updates["system.resources.mana.value"] = resourceMaximum(this, "mana");
+        updates["system.recovery.healthUsed"] = false;
+        updates["system.recovery.manaUsed"] = false;
+        updates["system.status.fatigue"] = 0;
+      }
       await this.update(updates);
-      return ui.notifications.info(this.name + ": Respiro completado. No recupera Vida ni Maná; limpia Saturación de preparaciones compatibles.");
-    } else if (kind === "rest") {
-      if (!recovery.healthUsed) {
-        Object.assign(updates, boundedHealthRecoveryUpdates(this, toNumber(this.system.attributes.vig.value) + 2).updates);
-        updates["system.recovery.healthUsed"] = true;
-      }
-      if (!recovery.manaUsed) {
-        updates["system.resources.mana.value"] = Math.min(resourceMaximum(this, "mana"), toNumber(mp.value) + toNumber(this.system.attributes.vol.value) + 1);
-        updates["system.recovery.manaUsed"] = true;
-      }
-    } else if (kind === "full") {
-      const currentHealth = Math.max(0, toNumber(hp.value));
-      const cap = healingCap(this);
-      if (cap > currentHealth) {
-        Object.assign(updates, boundedHealthRecoveryUpdates(this, cap - currentHealth).updates);
-      }
-      updates["system.resources.mana.value"] = resourceMaximum(this, "mana");
-      updates["system.recovery.healthUsed"] = false;
-      updates["system.recovery.manaUsed"] = false;
-      updates["system.status.fatigue"] = 0;
-    }
-    await this.update(updates);
+    });
   }
 
   #buildSkillBreakdown(skillKey, skill, prepared = this._tmRulePreparation) {
