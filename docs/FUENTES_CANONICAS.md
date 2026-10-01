@@ -24,6 +24,12 @@ CREA-09 — Moneda está consolidada en el Manual Maestro y su implementación F
 
 CREA-10 — Lista definitiva de Habilidades queda preparada para cierre en Foundry 1.0.16: **26 Habilidades**, ocho categorías, rangos +0/+1/+2/+4/+6/+8, costes 0/1/3/7/13/21 PD, requisitos por rango base, Especializaciones a 1 PD y Método Directo/Ritual vinculado a Canalización/Ritualismo.
 
+## Estado de CREA-11
+
+CREA-11 — Modelo de datos de creación está implementada como candidata Foundry **1.0.17**. El modelo separa Actor base, Items adquiribles, requisitos tipados, Rule Elements declarativos, adquisición/procedencia, Effects y Compendios. La migración conserva información histórica ambigua como legado y no reconstruye compras por inferencia.
+
+La candidata no cambia las fórmulas definitivas de valores derivados: esa responsabilidad permanece en CREA-12. Hasta el cierre formal y fusión del PR correspondiente, CREA-11 sigue en Fase 10 y sus decisiones no pasan todavía a CANÓNICAS.
+
 ## Implementación
 
 `scripts/*`, `template.json`, datos, UI y pruebas implementan y verifican el Manual Maestro. Si la implementación contradice el Manual, se abre una incidencia y se corrige la discrepancia; el código no modifica la regla por sí mismo.

@@ -1,4 +1,5 @@
-const ownsTechnique = (actor, name) => actor.items?.some?.((item) => item.type === "technique" && item.name === name) ?? false;
+import { normalizeSlug } from "./identity.mjs";
+const ownsTechnique = (actor, name) => { const slug=normalizeSlug(name); return actor.items?.some?.((item) => item.type === "technique" && normalizeSlug(item.system?.slug || item.name) === slug) ?? false; };
 
 const spendReaction = async (actor, technique) => {
   if (!ownsTechnique(actor, technique)) {

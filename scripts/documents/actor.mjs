@@ -6,29 +6,47 @@ import {
 import { attackHits, resolveWeaponImpact } from "../rules/combat-impact.mjs";
 import { pendingDamageRequest } from "../rules/damage-delivery.mjs";
 import {
-  minimumSpellRank, meetsSkillRequirements, skillRankCost, skillsPdCost,
+  minimumSpellRank, skillRankCost, skillsPdCost,
   spellOperationalSkill, validateSkillProgression
 } from "../rules/skills.mjs";
+import { prepareRuleElements, modifiersForSelector } from "../rules/rule-elements.mjs";
+import { deriveDevelopmentBudget, validateCreationState, completionUpdates } from "../rules/creation.mjs";
+import { evaluateRequirements } from "../rules/requirements.mjs";
+import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
+import { preflightAcquisition, acquisitionFromCost } from "../rules/acquisition.mjs";
 
 export class TierraMagicaActor extends Actor {
   prepareDerivedData() {
     super.prepareDerivedData();
     const s = this.system;
     const a = s.attributes ?? {};
+    const rulePreparation = prepareRuleElements([...this.items], { skillDefinitions: TM_CONFIG.skills });
+    this._tmRulePreparation = rulePreparation;
+
+    for (const attribute of Object.values(a)) {
+      const base = clamp(attribute.baseValue ?? attribute.value, 0, 99);
+      attribute.baseValue = base;
+      attribute.creationValue = clamp(attribute.creationValue ?? base, 0, 99);
+      // Compatibilidad hasta CREA-12: value refleja el valor base antes de derivados.
+      attribute.value = base;
+    }
+
     const vig = toNumber(a.vig?.value, 1);
     const agi = toNumber(a.agi?.value, 1);
     const vol = toNumber(a.vol?.value, 1);
 
-    for (const attribute of Object.values(a)) attribute.value = clamp(attribute.value, 0, 99);
     for (const [key, skill] of Object.entries(s.skills ?? {})) {
       skill.rank = clamp(Math.floor(toNumber(skill.rank)), 0, 5);
-      skill.rankBonus = rankBonus(skill.rank, TM_CONFIG.rankBonuses);
+      skill.baseRank = skill.rank;
+      skill.grantedRank = clamp(Math.floor(toNumber(rulePreparation.skillRankUpgrades?.[key])), 0, 5);
+      skill.effectiveRank = Math.max(skill.baseRank, skill.grantedRank);
+      skill.rankBonus = rankBonus(skill.effectiveRank, TM_CONFIG.rankBonuses);
       skill.temporary = toNumber(skill.temporary);
       skill.other = toNumber(skill.other);
       skill.label = TM_CONFIG.skills[key]?.label ?? key;
-      skill.rankLabel = TM_CONFIG.rankLabels[skill.rank] ?? "";
-      skill.pdCost = skillRankCost(skill.rank);
-      skill.breakdown = this.#buildSkillBreakdown(key, skill);
+      skill.rankLabel = TM_CONFIG.rankLabels[skill.effectiveRank] ?? "";
+      skill.pdCost = skillRankCost(skill.baseRank);
+      skill.breakdown = this.#buildSkillBreakdown(key, skill, rulePreparation);
       skill.bonus = skill.breakdown.total;
     }
 
@@ -37,14 +55,16 @@ export class TierraMagicaActor extends Actor {
     const specializations = this.items
       .filter((item) => item.type === "specialization" && item.system?.skill)
       .map((item) => ({ skill: item.system.skill, name: item.name }));
+    const development = deriveDevelopmentBudget(this, { skillKeys: Object.keys(TM_CONFIG.skills) });
+    const creationActive = this.system.creation?.status !== "complete";
     const skillValidation = validateSkillProgression({
       skills: s.skills,
       skillDefinitions: TM_CONFIG.skills,
       level,
-      pdSpent: s.details?.pdSpent,
+      pdSpent: development.pdSpent,
       pdTotal,
       specializations,
-      creationActive: this.system.creation?.skillBuildActive !== false
+      creationActive
     });
 
     const armor = this.items
@@ -73,7 +93,19 @@ export class TierraMagicaActor extends Actor {
       equippedShield: shield,
       skillsPdCost: skillValidation.cost,
       skillIssues: skillValidation.issues,
-      skillsValid: skillValidation.valid
+      skillsValid: skillValidation.valid,
+      pdTotal: development.pdTotal,
+      pdSpent: development.pdSpent,
+      pdAvailable: development.pdAvailable,
+      prTotal: development.prTotal,
+      prSpent: development.prSpent,
+      prAvailable: development.prAvailable,
+      peiTotal: development.peiTotal,
+      peiSpent: development.peiSpent,
+      peiAvailable: development.peiAvailable,
+      rollOptions: rulePreparation.rollOptions,
+      ruleModifiers: rulePreparation.modifiers,
+      ruleIssues: rulePreparation.issues
     };
 
     if (s.resources?.health) s.resources.health.max = s.derived.healthMax;
@@ -185,7 +217,7 @@ export class TierraMagicaActor extends Actor {
     if (this.type !== "character") {
       return this.update({ ["system.skills." + key + ".rank"]: rank });
     }
-    if (rank < current && this.system.creation?.skillBuildActive === false) {
+    if (rank < current && this.system.creation?.status === "complete") {
       return ui.notifications.warn("Reducir rangos requiere creación abierta o una reconstrucción autorizada.");
     }
 
@@ -205,7 +237,7 @@ export class TierraMagicaActor extends Actor {
       pdSpent: Math.max(toNumber(this.system.details?.pdSpent), skillsPdCost(candidate, Object.keys(TM_CONFIG.skills))),
       pdTotal,
       specializations,
-      creationActive: this.system.creation?.skillBuildActive !== false
+      creationActive: this.system.creation?.status !== "complete"
     });
     const blocking = validation.issues.find((issue) =>
       ["rank-level", "level-one-expert-limit", "grand-master-specialization", "skills-over-budget",
@@ -228,26 +260,159 @@ export class TierraMagicaActor extends Actor {
   }
 
   async closeSkillBuild() {
-    if (this.type !== "character") return;
-    const level = Math.max(1, Math.floor(toNumber(this.system.details?.level, 1)));
-    const pdTotal = 25 + Math.max(0, level - 1) * 4;
-    const specializations = this.items
-      .filter((item) => item.type === "specialization" && item.system?.skill)
-      .map((item) => ({ skill: item.system.skill, name: item.name }));
-    const validation = validateSkillProgression({
-      skills: this.system.skills,
-      skillDefinitions: TM_CONFIG.skills,
-      level,
-      pdSpent: this.system.details?.pdSpent,
-      pdTotal,
-      specializations,
-      creationActive: this.system.creation?.skillBuildActive !== false
-    });
-    if (!validation.valid) {
-      return ui.notifications.warn("No puede cerrarse la construcción de Habilidades mientras existan inconsistencias de rango o PD.");
-    }
-    return this.update({ "system.creation.skillBuildActive": false });
+    return ui.notifications.info("CREA-11 utiliza un cierre global de creación. Usa Completar creación cuando todas las elecciones estén listas.");
   }
+
+  async acquireItem(itemData, { stage = null, priceContext = null, mode = "purchased", sources = [], transaction = null, grantPath = [] } = {}) {
+    if (this.type !== "character") return this.createEmbeddedDocuments("Item", [itemData]);
+    const tx = transaction ?? [];
+    const rootAcquisition = transaction === null;
+    const rollback = async () => {
+      if (!rootAcquisition) return;
+      for (const created of [...tx].reverse()) {
+        const current = this.items.get(created.id);
+        if (current) await current.delete({ tmValidated: true });
+      }
+    };
+    const failAcquisition = async (message) => {
+      ui.notifications.warn(message);
+      await rollback();
+      return null;
+    };
+
+    const status = this.system.creation?.status ?? "complete";
+    const resolvedStage = stage ?? (status === "building" ? "creation" : status === "rebuilding" ? "rebuilding" : "progression");
+    const candidate = foundry.utils.deepClone(itemData);
+    candidate.system ??= {};
+    candidate.system.slug = normalizeSlug(candidate.system.slug || candidate.name);
+    candidate.system.choices ??= {};
+    const candidateKey = contentIdentityKey(candidate);
+    if (grantPath.includes(candidateKey)) return failAcquisition("Ciclo GrantItem detectado: " + [...grantPath, candidateKey].join(" → ") + ".");
+
+    if (["granted", "package"].includes(mode)) {
+      const existing = duplicateIdentity([...this.items], candidate);
+      if (existing) {
+        const acquisition = foundry.utils.deepClone(existing.system.acquisition ?? {
+          mode, stage: resolvedStage, sources: [], paid: { resource: "none", amount: 0, known: true }
+        });
+        acquisition.sources = Array.isArray(acquisition.sources) ? acquisition.sources : [];
+        for (const source of sources) {
+          const signature = JSON.stringify(source);
+          if (!acquisition.sources.some((entry) => JSON.stringify(entry) === signature)) acquisition.sources.push(source);
+        }
+        await existing.update({ "system.acquisition": acquisition }, { tmValidated: true });
+        return existing;
+      }
+    }
+
+    const physical = ["weapon","armor","shield","equipment","formula","device"].includes(candidate.type);
+    let preflight;
+    if (physical && !(candidate.system.costs?.length) && mode === "purchased") {
+      const resource = resolvedStage === "creation" ? "pei" : "currency";
+      const amount = Math.max(0, toNumber(candidate.system.priceCopper));
+      preflight = {
+        valid: true,
+        issues: [],
+        cost: { context: resolvedStage === "creation" ? "creation" : "progression", resource, amount },
+        acquisition: acquisitionFromCost({ resource, amount }, { mode, stage: resolvedStage === "rebuilding" ? (priceContext ?? "progression") : resolvedStage, sources }),
+        revision: toNumber(this.system.creation?.revision)
+      };
+      const identityCheck = preflightAcquisition({
+        actor: this,
+        candidate: { ...candidate, system: { ...candidate.system, costs: [{ context:"any", resource:"none", amount:0 }] } },
+        stage: resolvedStage === "rebuilding" ? "rebuilding" : "creation",
+        priceContext: resolvedStage === "rebuilding" ? (priceContext ?? "creation") : null,
+        expectedRevision: this.system.creation?.revision,
+        mode,
+        sources
+      });
+      if (!identityCheck.valid) preflight = { ...preflight, valid:false, issues:identityCheck.issues };
+    } else {
+      preflight = preflightAcquisition({
+        actor: this,
+        candidate,
+        stage: resolvedStage,
+        priceContext,
+        expectedRevision: this.system.creation?.revision,
+        mode,
+        sources
+      });
+    }
+
+    if (!preflight.valid) {
+      return failAcquisition(preflight.issues.map((issue) => issue.message).join(" "));
+    }
+
+    const budget = deriveDevelopmentBudget(this, { skillKeys: Object.keys(TM_CONFIG.skills) });
+    const resource = preflight.cost?.resource;
+    const amount = Math.max(0, toNumber(preflight.cost?.amount));
+    const available = resource === "pd" ? budget.pdAvailable
+      : resource === "pr" ? budget.prAvailable
+      : resource === "pei" ? budget.peiAvailable
+      : resource === "currency" ? toNumber(this.system.currency?.totalCopper)
+      : Number.POSITIVE_INFINITY;
+    if (amount > available) return failAcquisition("Presupuesto insuficiente para adquirir " + candidate.name + ".");
+
+    candidate.system.acquisition = preflight.acquisition;
+    candidate.system.provenance ??= { sourceUuid:"", sourceSchemaVersion:0, sourceRevision:"" };
+    const created = await this.createEmbeddedDocuments("Item", [candidate], { tmValidated: true });
+    if (!created?.length) return failAcquisition("No se pudo crear " + candidate.name + ".");
+    const createdItem = created[0];
+    tx.push(createdItem);
+
+    const nextPath = [...grantPath, candidateKey];
+    for (const rule of Array.isArray(createdItem.system.rules) ? createdItem.system.rules : []) {
+      if (rule?.key !== "GrantItem") continue;
+      const target = (game.tierraMagica?.catalog ?? []).find((entry) =>
+        entry.type === rule.itemType &&
+        normalizeSlug(entry.system?.slug || entry.name) === normalizeSlug(rule.slug) &&
+        (!rule.skill || entry.system?.skill === rule.skill)
+      );
+      if (!target) return failAcquisition("GrantItem de " + createdItem.name + " apunta a contenido inexistente: " + rule.itemType + ":" + rule.slug + ".");
+      const granted = await this.acquireItem(target, {
+        stage: resolvedStage,
+        priceContext,
+        mode: "granted",
+        sources: [{ kind: "grant", uuid: createdItem.uuid, lifecycle: rule.lifecycle ?? "linked" }],
+        transaction: tx,
+        grantPath: nextPath
+      });
+      if (!granted) {
+        await rollback();
+        return null;
+      }
+    }
+
+    if (rootAcquisition) {
+      const updates = { "system.creation.revision": toNumber(this.system.creation?.revision) + 1 };
+      if (resource === "currency" && amount) updates["system.currency.totalCopper"] = Math.max(0, toNumber(this.system.currency?.totalCopper) - amount);
+      await this.update(updates);
+    }
+    return createdItem;
+  }
+
+  async completeCreation() {
+    if (this.type !== "character") return null;
+    const validation = validateCreationState(this, { skillKeys: Object.keys(TM_CONFIG.skills) });
+    const blocking = [
+      ...validation.issues,
+      ...(this.system.derived?.ruleIssues ?? [])
+    ];
+    if (blocking.length) return ui.notifications.warn("No puede completarse la creación: " + blocking.map((issue) => issue.message ?? issue.code).join(" "));
+    const updates = completionUpdates(this);
+    updates["system.creation.revision"] = toNumber(this.system.creation?.revision) + 1;
+    return this.update(updates);
+  }
+
+  async beginRebuild() {
+    if (this.type !== "character") return null;
+    if (!game.user?.isGM) return ui.notifications.warn("Solo el DJ puede abrir una reconstrucción autorizada.");
+    return this.update({
+      "system.creation.status": "rebuilding",
+      "system.creation.revision": toNumber(this.system.creation?.revision) + 1
+    });
+  }
+
 
   async rollWeapon(item, { df = null, mode = "normal", modifier = 0, damageBonus = 0, penetrationBonus = 0, technique = "" } = {}) {
     if (!item || item.type !== "weapon") return null;
@@ -297,7 +462,7 @@ export class TierraMagicaActor extends Actor {
     if (!primary || !secondary || primary.type !== "weapon" || secondary.type !== "weapon" || primary.id === secondary.id) {
       return ui.notifications.warn("Combate Dual requiere dos armas distintas.");
     }
-    if (!this.items.some((entry) => entry.type === "technique" && entry.name === "Combate Dual")) {
+    if (!this.items.some((entry) => entry.type === "technique" && normalizeSlug(entry.system?.slug || entry.name) === "combate-dual")) {
       return ui.notifications.warn(this.name + " no posee la Técnica Combate Dual.");
     }
     const compatible = (weapon) => /Ligera/i.test(String(weapon.system?.properties ?? ""));
@@ -345,7 +510,7 @@ export class TierraMagicaActor extends Actor {
 
   async sweepAttack(item) {
     if (!item || item.type !== "weapon") return null;
-    if (!this.items.some((entry) => entry.type === "technique" && entry.name === "Barrido")) {
+    if (!this.items.some((entry) => entry.type === "technique" && normalizeSlug(entry.system?.slug || entry.name) === "barrido")) {
       return ui.notifications.warn(this.name + " no posee la Técnica Barrido.");
     }
     const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
@@ -385,12 +550,12 @@ export class TierraMagicaActor extends Actor {
 
   async useCombatTechnique(name, item) {
     if (!item || item.type !== "weapon") return null;
-    if (!this.items.some((entry) => entry.type === "technique" && entry.name === name)) {
-      return ui.notifications.warn(this.name + " no posee la Técnica " + name + ".");
-    }
-    if (name === "Golpe Potente") return this.rollWeapon(item, { modifier: -2, damageBonus: 2, technique: name });
-    if (name === "Estocada Perforante") return this.rollWeapon(item, { modifier: -1, damageBonus: -1, penetrationBonus: 2, technique: name });
-    return ui.notifications.warn(name + " requiere una resolución multiataque específica y no se ejecutará como un ataque ordinario.");
+    const slug = normalizeSlug(name);
+    const technique = this.items.find((entry) => entry.type === "technique" && normalizeSlug(entry.system?.slug || entry.name) === slug);
+    if (!technique) return ui.notifications.warn(this.name + " no posee la Técnica " + name + ".");
+    if (slug === "golpe-potente") return this.rollWeapon(item, { modifier: -2, damageBonus: 2, technique: technique.name });
+    if (slug === "estocada-perforante") return this.rollWeapon(item, { modifier: -1, damageBonus: -1, penetrationBonus: 2, technique: technique.name });
+    return ui.notifications.warn(technique.name + " requiere una resolución multiataque específica y no se ejecutará como un ataque ordinario.");
   }
 
   async rollDamage(item) {
@@ -410,12 +575,9 @@ export class TierraMagicaActor extends Actor {
         " " + (TM_CONFIG.rankLabels[minimumRank] ?? minimumRank) + " como competencia operativa."
       );
     }
-    const skillRequirements = Array.isArray(item.system.skillRequirements) ? item.system.skillRequirements : [];
-    if (!meetsSkillRequirements(this.system.skills, skillRequirements)) {
-      const labels = skillRequirements.map((requirement) =>
-        (TM_CONFIG.skills[requirement.skill]?.label ?? requirement.skill) + " " +
-        (TM_CONFIG.rankLabels[Number(requirement.minRank) || 0] ?? requirement.minRank)
-      ).join(", ");
+    const requirementResult = evaluateRequirements(item.system.requirements, this);
+    if (!requirementResult.valid) {
+      const labels = requirementResult.issues.map((issue) => issue.message ?? issue.code).join(", ");
       return ui.notifications.warn("No se cumplen los requisitos de " + item.name + ": " + labels);
     }
 
@@ -472,7 +634,7 @@ export class TierraMagicaActor extends Actor {
     const current = Array.isArray(this.system.magic?.sustainedSpellIds)
       ? this.system.magic.sustainedSpellIds.filter((id) => this.items.get(id)?.type === "spell")
       : [];
-    const hasDouble = this.items.some((i) => i.type === "technique" && i.name === "Doble Sostenimiento");
+    const hasDouble = this.items.some((i) => i.type === "technique" && normalizeSlug(i.system?.slug || i.name) === "doble-sostenimiento");
     const limit = hasDouble ? 2 : 1;
     if (current.includes(item.id)) return;
     const retained = current.slice(Math.max(0, current.length - (limit - 1)));
@@ -490,11 +652,12 @@ export class TierraMagicaActor extends Actor {
     }
 
     const updates = {};
-    if (item.name === "Poción Restauradora" || item.name === "Bálsamo Restaurador") {
+    const formulaSlug = normalizeSlug(item.system?.slug || item.name);
+    if (formulaSlug === "pocion-restauradora" || formulaSlug === "balsamo-restaurador") {
       const hp = this.system.resources.health;
       const cap = Math.max(0, Math.min(toNumber(hp.max), toNumber(this.system.recovery?.healthCap, hp.max)));
       updates["system.resources.health.value"] = Math.min(cap, toNumber(hp.value) + 4);
-    } else if (item.name === "Poción de Recuperación Arcana") {
+    } else if (formulaSlug === "pocion-de-recuperacion-arcana") {
       const mp = this.system.resources.mana;
       updates["system.resources.mana.value"] = Math.min(toNumber(mp.max), toNumber(mp.value) + 3);
     } else {
@@ -626,30 +789,24 @@ export class TierraMagicaActor extends Actor {
     await this.update(updates);
   }
 
-  #buildSkillBreakdown(skillKey, skill) {
-    const rank = toNumber(skill.rankBonus ?? rankBonus(skill.rank, TM_CONFIG.rankBonuses));
+  #buildSkillBreakdown(skillKey, skill, prepared = this._tmRulePreparation) {
+    const rank = toNumber(skill.rankBonus ?? rankBonus(skill.effectiveRank ?? skill.rank, TM_CONFIG.rankBonuses));
     const temporary = toNumber(skill.temporary);
     const other = toNumber(skill.other);
     const sources = [];
 
-    for (const item of this.items) {
-      if (!this.#skillModifierItemActive(item)) continue;
-      const modifiers = Array.isArray(item.system?.skillModifiers) ? item.system.skillModifiers : [];
-      for (const modifier of modifiers) {
-        if (modifier?.skill !== skillKey) continue;
-        const value = toNumber(modifier.value);
-        if (!value) continue;
-        const category = this.#skillSourceCategory(item.type);
-        sources.push({
-          itemId: item.id,
-          name: item.name,
-          itemType: item.type,
-          category,
-          categoryLabel: this.#skillSourceCategoryLabel(category),
-          label: String(modifier.label ?? "").trim(),
-          value
-        });
-      }
+    for (const modifier of modifiersForSelector(prepared, "skill." + skillKey)) {
+      const item = modifier.sourceItemId ? this.items.get(modifier.sourceItemId) : null;
+      const category = this.#skillSourceCategory(item?.type);
+      sources.push({
+        itemId: modifier.sourceItemId,
+        name: modifier.sourceItemName || item?.name || "Regla",
+        itemType: item?.type ?? "",
+        category,
+        categoryLabel: this.#skillSourceCategoryLabel(category),
+        label: modifier.label ?? "",
+        value: toNumber(modifier.value)
+      });
     }
 
     const totalFor = (category) => sources
@@ -666,6 +823,9 @@ export class TierraMagicaActor extends Actor {
 
     return {
       rank,
+      baseRank: toNumber(skill.baseRank ?? skill.rank),
+      grantedRank: toNumber(skill.grantedRank),
+      effectiveRank: toNumber(skill.effectiveRank ?? skill.rank),
       specialization,
       equipment,
       technique,

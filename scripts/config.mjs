@@ -56,8 +56,14 @@ export const TM_CONFIG = {
   priceStatuses: { exact: "Precio exacto", variable: "Precio variable", unset: "Sin precio establecido" },
   itemTypes: {
     weapon: "Arma", armor: "Armadura", shield: "Escudo", equipment: "Equipo", spell: "Hechizo",
-    technique: "Técnica", trait: "Rasgo", specialization: "Especialización", formula: "Fórmula", ritual: "Ritual", device: "Dispositivo"
-  }
+    technique: "Técnica", trait: "Rasgo", specialization: "Especialización", formula: "Fórmula", ritual: "Ritual", device: "Dispositivo",
+    ancestry: "Ascendencia", origin: "Origen", background: "Trasfondo", discipline: "Disciplina", effect: "Efecto"
+  },
+  creationStatuses: { building: "En creación", complete: "Completa", rebuilding: "Reconstrucción" },
+  acquisitionModes: { purchased: "Comprado", granted: "Concedido", package: "Paquete", legacy: "Legado" },
+  paidResources: { pd: "PD", pr: "PR", pei: "PEI", currency: "Moneda", none: "Sin coste" },
+  stackingModes: { unique: "Único", multiple: "Múltiple", quantity: "Cantidad" },
+  effectExpiry: { manual: "Manual", endOfTurn: "Fin de turno", startOfTurn: "Inicio de turno", scene: "Escena", rest: "Descanso", fullRest: "Reposo completo", sustained: "Sostenido" }
 };
 TM_CONFIG.skillLabels = Object.fromEntries(Object.entries(TM_CONFIG.skills).map(([k,v]) => [k, v.label]));
 TM_CONFIG.weaponSkillLabels = Object.fromEntries(["lightWeapons","martialWeapons","heavyWeapons","rangedWeapons"].map((key) => [key, TM_CONFIG.skills[key].label]));

@@ -1,4 +1,5 @@
 import { applyBoundedHealing, healingAmount, pendingHealingRequest } from "./healing-delivery.mjs";
+import { normalizeSlug } from "./identity.mjs";
 
 function number(value, fallback = Number.NaN) { const parsed = Number(value); return Number.isFinite(parsed) ? parsed : fallback; }
 export function spellRollTotal(result) { return number(result?.rolls?.[0]?.total ?? result?.roll?.total ?? result?.total); }
@@ -15,11 +16,12 @@ export function spellSucceeded(actor, item, result, target = undefined, difficul
   return Number.isFinite(total) && Number.isFinite(df) && total >= df;
 }
 async function resolveDeterministicSpellEffect(actor, item, target) {
-  if (item?.name === "Barrera Cinética") {
+  const slug = normalizeSlug(item?.system?.slug || item?.name);
+  if (slug === "barrera-cinetica") {
     await actor.update?.({ "system.combat.kineticBarrierActive": true });
     return;
   }
-  if (item?.name !== "Cierre Restaurador") return;
+  if (slug !== "cierre-restaurador") return;
   if (!target) { globalThis.ui?.notifications?.warn?.("Cierre Restaurador requiere un objetivo declarado."); return; }
   const amount = healingAmount(target, 4); if (amount <= 0) return;
   const canUpdate = target.canUserModify?.(globalThis.game?.user, "update") ?? target.isOwner ?? false;
@@ -34,7 +36,7 @@ export function installSpellOutcomeGuards(ActorClass) {
   async function guardedUseSpell(item, ...args) {
     const declaredActors = [...(globalThis.game?.user?.targets ?? [])].map((token) => token?.actor).filter(Boolean);
     const uniqueTargets = [...new Map(declaredActors.map((actor) => [actor.uuid ?? actor.id, actor])).values()];
-    if (item?.name === "Proyectil Ígneo" && uniqueTargets.length !== 1) return globalThis.ui?.notifications?.warn?.("Proyectil Ígneo requiere exactamente un objetivo válido.");
+    if (normalizeSlug(item?.system?.slug || item?.name) === "proyectil-igneo" && uniqueTargets.length !== 1) return globalThis.ui?.notifications?.warn?.("Proyectil Ígneo requiere exactamente un objetivo válido.");
     const declaredTarget = uniqueTargets[0];
     const declaredDifficulty = item?.type === "spell" ? spellDifficulty(this, item, declaredTarget) : undefined;
     const result = await original.call(this, item, ...args); if (!item || item.type !== "spell" || !result) return result;

@@ -2,7 +2,7 @@
   "id": "tierra-magica",
   "title": "Tierra Mágica — Foundry T.M.",
   "description": "Foundry T.M. 1.0 Playtest: 2d10, desarrollo sin clases, combate, Trauma, magia, alquimia, rituales, ingeniería arcano-industrial y familiares.",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -36,5 +36,35 @@
   "secondaryTokenAttribute": "resources.mana",
   "url": "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry",
   "manifest": "https://raw.githubusercontent.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/main/system.json",
-  "download": "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/tierra-magica.zip"
+  "download": "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/tierra-magica.zip",
+  "packs": [
+    {
+      "name": "character-options",
+      "label": "Tierra Mágica — Opciones de Personaje",
+      "path": "packs/character-options",
+      "type": "Item",
+      "system": "tierra-magica"
+    },
+    {
+      "name": "magic",
+      "label": "Tierra Mágica — Magia",
+      "path": "packs/magic",
+      "type": "Item",
+      "system": "tierra-magica"
+    },
+    {
+      "name": "equipment",
+      "label": "Tierra Mágica — Equipo",
+      "path": "packs/equipment",
+      "type": "Item",
+      "system": "tierra-magica"
+    },
+    {
+      "name": "production",
+      "label": "Tierra Mágica — Alquimia y Producción",
+      "path": "packs/production",
+      "type": "Item",
+      "system": "tierra-magica"
+    }
+  ]
 }

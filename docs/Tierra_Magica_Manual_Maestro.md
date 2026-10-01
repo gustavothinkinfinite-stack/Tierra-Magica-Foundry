@@ -272,7 +272,7 @@ La magia es opcional. No existe una clase de mago obligatoria.
 
 Las Fuentes son **Alma, Divina, Ambiental y Externa**. Las Disciplinas son **Evocación, Alteración, Restauración, Percepción, Influencia y Conjuración**.
 
-Una Disciplina cuesta normalmente **3 PD**. Los Hechizos cuestan por grado **1 PD Menor, 2 PD Básico, 3 PD Avanzado, 5 PD Maestro y 8+ PD Legendario**. Aprender un hechizo y pagar su Maná al lanzarlo son economías distintas.
+Una Disciplina cuesta normalmente **2 PD**. Los Hechizos cuestan por grado **1 PD Menor, 2 PD Básico, 3 PD Avanzado, 5 PD Maestro y 8+ PD Legendario**. Aprender un hechizo y pagar su Maná al lanzarlo son economías distintas.
 
 El catálogo mecánico estable del núcleo contiene 18 hechizos y se encuentra en el capítulo de Grimorio. No se obtienen versiones gratuitas mediante nombres históricos o variantes narrativas.
 
@@ -294,7 +294,7 @@ Catálogo de referencia vigente:
 - Corpulento — 2 PR; +4 Vida.
 - Masivo — 3 PR; +8 Vida; no acumulable con Corpulento.
 - Vínculo Divino — 2 PR; concede acceso, no poder automático.
-- Familiar Mágico — 2 PR.
+- Familiar Mágico — 3 PR.
 - Pacto Externo — 2–3 PR.
 - Prótesis Mayor — 2+ PR.
 - Afinidad Sobrenatural — 1 PR.
@@ -304,7 +304,7 @@ Si el concepto del personaje exige una propiedad fisiológica extraordinaria par
 
 ### Paso 5 — Familiar, si corresponde
 
-**Familiar Mágico cuesta 2 PR.** El Familiar es una criatura independiente con voluntad, personalidad y naturaleza propias, no un segundo PJ gratuito.
+**Familiar Mágico cuesta 3 PR.** El Familiar es una criatura independiente con voluntad, personalidad y naturaleza propias, no un segundo PJ gratuito.
 
 Durante creación debe registrarse al menos:
 
@@ -401,7 +401,7 @@ Tierra Mágica no usa clases. La identidad mecánica surge de Atributos, Habilid
 
 El nivel 1 comienza con 25 PD. Cada nivel del 2 al 20 concede 4 PD, para un total acumulado de 101 PD al nivel 20. No existe bono universal por nivel. Maestro requiere normalmente nivel 9+ y Gran Maestro nivel 15+.
 
-Una Especialización cuesta 1 PD y requiere la Habilidad madre en Entrenado. Las Técnicas cuestan normalmente 2 PD Básica, 3 Avanzada, 5 Maestra y 8+ Legendaria. Los Hechizos siguen 1 PD Menor, 2 Básico, 3 Avanzado, 5 Maestro y 8+ Legendario. Una Disciplina cuesta 3 PD. Los aumentos post-creación de Atributo cuestan 4/6/9/13/18 PD para 0->1, 1->2, 2->3, 3->4 y 4->5 respectivamente. Los valores 6+ son sobrenaturales y no pertenecen a la progresión ordinaria.
+Una Especialización cuesta 1 PD y requiere la Habilidad madre en Entrenado. Las Técnicas cuestan normalmente 2 PD Básica, 3 Avanzada, 5 Maestra y 8+ Legendaria. Los Hechizos siguen 1 PD Menor, 2 Básico, 3 Avanzado, 5 Maestro y 8+ Legendario. Una Disciplina cuesta 2 PD. Los aumentos post-creación de Atributo cuestan 4/6/9/13/18 PD para 0->1, 1->2, 2->3, 3->4 y 4->5 respectivamente. Los valores 6+ son sobrenaturales y no pertenecen a la progresión ordinaria.
 
 ## 5. Rasgos y Puntos de Rasgo
 
@@ -644,7 +644,7 @@ Las Técnicas representan entrenamiento, maniobras o capacidades aprendidas. Sus
 
 ## 14. Familiares, vínculos e invocaciones
 
-**Familiar Mágico** es un Rasgo de Vínculo de 2 PR. El Familiar es una criatura independiente vinculada al personaje, no una extensión perfecta del jugador ni un segundo personaje completo gratuito. Tiene personalidad, deseos, conocimiento, criterio y una naturaleza propia. El vínculo no implica obediencia absoluta.
+**Familiar Mágico** es un Rasgo de Vínculo de 3 PR. El Familiar es una criatura independiente vinculada al personaje, no una extensión perfecta del jugador ni un segundo personaje completo gratuito. Tiene personalidad, deseos, conocimiento, criterio y una naturaleza propia. El vínculo no implica obediencia absoluta.
 
 Un Familiar usa un perfil simplificado: Escala, Movimiento, Vida, Defensa, Protección, Ataque, Percepción, Voluntad, Rasgos y capacidades relevantes. No obtiene por defecto un segundo depósito completo de Maná. Si una criatura concreta posee Maná por su propia naturaleza, esa excepción debe estar expresamente definida.
 
@@ -3056,3 +3056,25 @@ El siguiente trabajo no consiste en volver a repartir información entre varios 
 
 **No crear un segundo manual maestro.** Toda corrección o ampliación se hace en este archivo y se respalda mediante commits de GitHub. Los documentos históricos se consultan únicamente para recuperar información o verificar procedencia.
 
+
+
+## Revisiones documentales de decisiones cerradas
+
+- **REV-CREA-02-001 (documental):** se corrige el Manual Maestro para reflejar la decisión ya cerrada de CREA-02: cada Disciplina cuesta **2 PD**, requiere Canalización Entrenada y el máximo inicial es 3. No cambia la regla; corrige una transcripción posterior de 3 PD.
+- **REV-CREA-05-001 (documental):** se corrige el Manual Maestro para reflejar la decisión ya cerrada de CREA-05: **Familiar Mágico es un Rasgo Mayor de 3 PR en creación y 6 PD posteriormente**. No cambia la regla; corrige una transcripción posterior de 2 PR.
+
+## Modelo de datos de creación en Foundry — CREA-11
+
+Foundry representa las elecciones de personaje mediante documentos estructurados en lugar de campos de texto mecánicos. El **Actor** conserva estado intrínseco: Atributos y Habilidades base, nivel, recursos, moneda, estados y datos narrativos. Las elecciones con identidad propia —Ascendencia, Origen, Trasfondo, Disciplina, Especialización, Técnica, Rasgo, Hechizo y equipo— se representan mediante **Items**.
+
+Una elección puede tener coste, requisitos, procedencia y reglas declarativas. El coste normal del catálogo se mantiene separado de lo que realmente pagó esa instancia: una capacidad concedida por otra fuente puede conservar su coste de referencia sin cobrarlo dos veces. Los requisitos mecánicos se almacenan estructuradamente; el texto explicativo no se interpreta para inventar condiciones.
+
+Los modificadores aportados por Items se preparan de forma reversible: el Item es la fuente y el Actor preparado muestra el resultado. Eliminar o desactivar una fuente retira su contribución sin tener que deshacer escrituras permanentes sobre los valores base. Los efectos temporales o persistentes aplicados a un Actor se representan mediante Items de tipo **Effect**, con fuente y ciclo de vida identificables.
+
+Los **Compendios** son la biblioteca de contenido disponible. Al incorporar una opción al personaje, Foundry valida identidad, cardinalidad, requisitos y presupuesto antes de crear la instancia embebida. Ascendencia, Origen y Trasfondo son singulares; las capacidades repetibles siguen sus propias reglas. La identidad mecánica es estable aunque cambie el nombre visible.
+
+La creación utiliza un estado global de construcción. Al completar el personaje, Foundry valida las elecciones obligatorias y los presupuestos profesionales/materiales, descarta el PEI sobrante y concede una única vez la Reserva líquida inicial. La reconstrucción posterior requiere un flujo autorizado y no convierte el borrado de un Item en un reembolso automático.
+
+La migración desde fichas anteriores es conservadora: cuando una procedencia, coste histórico o identidad no puede demostrarse sin ambigüedad, se preserva como legado y se informa; no se inventan compras, conversiones ni equivalencias para hacer cuadrar la ficha.
+
+**Frontera con CREA-12.** CREA-11 define fuentes estructuradas de modificadores y relaciones. CREA-12 determina la sincronización y agregación definitiva de Vida, Maná, Defensa, Defensa de Maniobra, Defensa Mental, Defensa Corporal, Movimiento, Bono Defensivo, Protección, Iniciativa y demás valores derivados.

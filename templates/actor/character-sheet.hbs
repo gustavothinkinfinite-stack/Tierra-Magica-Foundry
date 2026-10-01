@@ -15,18 +15,30 @@
       <span>Concepto</span>
       <input type="text" name="system.details.concept" value="{{system.details.concept}}" />
     </label>
-    <label>
+    <div>
+      <span>Ascendencia</span>
+      {{#if identityItems.ancestry}}
+        <button type="button" class="item" data-item-id="{{identityItems.ancestry.id}}" data-action="item-edit">{{identityItems.ancestry.name}}</button>
+      {{else}}
+        <button type="button" data-action="content-browser" data-type="ancestry">Elegir Ascendencia</button>
+      {{/if}}
+    </div>
+    <div>
       <span>Origen</span>
-      <input type="text" name="system.details.origin" value="{{system.details.origin}}" />
-    </label>
-    <label>
-      <span>Raza / Ancestría</span>
-      <input type="text" name="system.details.ancestry" value="{{system.details.ancestry}}" />
-    </label>
-    <label class="tm-v03-background-field">
+      {{#if identityItems.origin}}
+        <button type="button" class="item" data-item-id="{{identityItems.origin.id}}" data-action="item-edit">{{identityItems.origin.name}}</button>
+      {{else}}
+        <button type="button" data-action="content-browser" data-type="origin">Elegir Origen</button>
+      {{/if}}
+    </div>
+    <div class="tm-v03-background-field">
       <span>Trasfondo</span>
-      <input type="text" name="system.details.background" value="{{system.details.background}}" />
-    </label>
+      {{#if identityItems.background}}
+        <button type="button" class="item" data-item-id="{{identityItems.background.id}}" data-action="item-edit">{{identityItems.background.name}}</button>
+      {{else}}
+        <button type="button" data-action="content-browser" data-type="background">Elegir Trasfondo</button>
+      {{/if}}
+    </div>
   </section>
 
   <nav class="tm-tabs tm-v03-page-tabs tabs" data-group="primary" aria-label="Páginas de la ficha">
@@ -246,11 +258,9 @@
           </div>
         {{/if}}
         {{#if development.skillBuildActive}}
-          <div class="tm-section-buttons">
-            <button type="button" data-action="close-skill-build">Cerrar construcción de Habilidades</button>
-          </div>
+          <small>La construcción de Habilidades se cierra junto con la creación completa del personaje.</small>
         {{else}}
-          <small>Construcción cerrada: reducir rangos requiere una reconstrucción autorizada.</small>
+          <small>Creación cerrada: reducir rangos requiere una reconstrucción autorizada.</small>
         {{/if}}
       </section>
 
@@ -406,15 +416,8 @@
         <div class="tm-v03-hero-resource"><span>Maná</span><b>{{system.resources.mana.value}}</b><small>/ {{system.derived.manaMax}}</small></div>
       </section>
 
+      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Disciplinas conocidas" type="discipline" items=itemGroups.discipline}}
       <section class="tm-panel tm-v03-page-panel">
-        <div class="tm-v03-discipline-grid">
-          <div><i class="fa-solid fa-fire"></i><span>Evocación</span></div>
-          <div><i class="fa-solid fa-shuffle"></i><span>Alteración</span></div>
-          <div><i class="fa-solid fa-hand-holding-medical"></i><span>Restauración</span></div>
-          <div><i class="fa-solid fa-eye"></i><span>Percepción</span></div>
-          <div><i class="fa-solid fa-comments"></i><span>Influencia</span></div>
-          <div><i class="fa-solid fa-door-open"></i><span>Conjuración</span></div>
-        </div>
         <div class="tm-v03-magic-skill-strip">
           <span>Canalización <b>+{{system.skills.channeling.bonus}}</b></span>
           <span>Ritualismo <b>+{{system.skills.ritualism.bonus}}</b></span>
@@ -447,20 +450,35 @@
           <span>Nivel</span>
           <input type="number" value="{{system.details.level}}" min="1" max="20" data-action="set-numeric-field" data-field="system.details.level" />
         </label>
+        <div><span>Estado</span><b>{{creation.statusLabel}}</b></div>
         <div><span>PD totales</span><b>{{development.pdTotal}}</b></div>
-        <label>
-          <span>PD gastados</span>
-          <input type="number" value="{{system.details.pdSpent}}" min="0" data-action="set-numeric-field" data-field="system.details.pdSpent" />
-        </label>
+        <div><span>PD gastados</span><b>{{development.pdSpent}}</b></div>
         <div class="tm-v03-pd-available"><span>PD disponibles</span><b>{{development.pdAvailable}}</b></div>
+        <div><span>PR</span><b>{{development.prSpent}} / {{development.prTotal}}</b></div>
+        <div><span>PEI restante</span><b>{{creationPei.display}}</b></div>
         <div><span>PD en Habilidades</span><b>{{development.skillsPdCost}}</b></div>
       </section>
+
+      <section class="tm-panel tm-v03-page-panel">
+        <div class="tm-section-heading"><h2>Construcción estructurada</h2><span>Revisión {{creation.revision}} · Reserva {{#if creation.reserveGranted}}concedida{{else}}pendiente{{/if}}</span></div>
+        {{#if creation.warnings.length}}
+          <div class="tm-warning"><strong>Advertencias de legado</strong><ul>{{#each creation.warnings as |warning|}}<li>{{warning}}</li>{{/each}}</ul></div>
+        {{/if}}
+        {{#if development.ruleIssues.length}}
+          <div class="tm-warning"><strong>Incidencias de reglas</strong><ul>{{#each development.ruleIssues as |issue|}}<li>{{issue.message}}</li>{{/each}}</ul></div>
+        {{/if}}
+        <div class="tm-section-buttons">
+          {{#if creation.isBuilding}}<button type="button" data-action="complete-creation">Completar creación</button>{{/if}}
+          {{#if creation.isRebuilding}}<button type="button" data-action="complete-creation">Cerrar reconstrucción</button>{{/if}}
+          {{#if creation.isComplete}}<button type="button" data-action="begin-rebuild">Abrir reconstrucción (DJ)</button>{{/if}}
+        </div>
+      </section>>
 
       <section class="tm-panel tm-v03-page-panel">
         <div class="tm-section-heading"><h2>Atributos</h2><span>Edición de valores base.</span></div>
         <div class="tm-v03-attribute-editor">
           {{#each system.attributes as |attribute key|}}
-            <label><span>{{lookup ../config.attributes key}}</span><input type="number" name="system.attributes.{{key}}.value" value="{{attribute.value}}" min="0" max="8" /></label>
+            <label><span>{{lookup ../config.attributes key}}</span><input type="number" name="system.attributes.{{key}}.baseValue" value="{{attribute.baseValue}}" min="0" max="8" /></label>
           {{/each}}
         </div>
       </section>
@@ -474,7 +492,12 @@
         </div>
       </section>
 
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Especializaciones" type="specialization" items=itemGroups.specialization}}
+      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Ascendencia" type="ancestry" items=itemGroups.ancestry}}
+      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Origen" type="origin" items=itemGroups.origin}}
+      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Trasfondo" type="background" items=itemGroups.background}}
+            {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Especializaciones" type="specialization" items=itemGroups.specialization}}
+      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Técnicas" type="technique" items=itemGroups.technique}}
+      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Disciplinas" type="discipline" items=itemGroups.discipline}}
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Rasgos" type="trait" items=itemGroups.trait}}
     </div>
 
@@ -496,15 +519,13 @@
         <div class="tm-section-buttons tm-currency-actions">
           <button type="button" data-action="currency-add"><i class="fa-solid fa-plus"></i> Añadir</button>
           <button type="button" data-action="currency-spend"><i class="fa-solid fa-minus"></i> Gastar</button>
-          {{#unless currency.initialReserveGranted}}
-            <button type="button" data-action="grant-initial-reserve" title="Concede una sola vez la Reserva inicial estándar de 2 o.">Reserva inicial: 2 o</button>
-          {{/unless}}
+          {{#unless currency.initialReserveGranted}}<span>Reserva inicial: 2 o — se concede una sola vez al completar globalmente la creación.</span>{{/unless}}
         </div>
         {{#if creationPei.active}}
           <div class="tm-currency-creation">
             <strong>PEI restante: {{creationPei.display}}</strong>
             <span>Presupuesto de creación; no es dinero y el remanente se pierde.</span>
-            <button type="button" data-action="close-creation-equipment">Cerrar equipo y conceder Reserva</button>
+            <span>El PEI se cierra junto con la creación completa.</span>
           </div>
         {{/if}}
         {{#if currency.migrationPending}}

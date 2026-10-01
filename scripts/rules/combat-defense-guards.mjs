@@ -1,12 +1,13 @@
 import { attackHits, resolveWeaponImpact } from "./combat-impact.mjs";
 import { pendingDamageRequest } from "./damage-delivery.mjs";
+import { normalizeSlug } from "./identity.mjs";
 
 const number = (value, fallback = Number.NaN) => {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : fallback;
 };
 
-const ownsTechnique = (actor, name) => actor.items?.some?.((item) => item.type === "technique" && item.name === name) ?? false;
+const ownsTechnique = (actor, name) => { const slug=normalizeSlug(name); return actor.items?.some?.((item) => item.type === "technique" && normalizeSlug(item.system?.slug || item.name) === slug) ?? false; };
 const canUpdate = (actor) => actor.canUserModify?.(game.user, "update") ?? actor.isOwner ?? false;
 const rollTotal = (result) => number(result?.rolls?.[0]?.total ?? result?.roll?.total ?? result?.total);
 const isRangedWeapon = (weapon) => String(weapon?.system?.skill ?? "") === "rangedWeapons";

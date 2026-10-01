@@ -1,3 +1,4 @@
+import { normalizeSlug } from "./identity.mjs";
 // Foundry T.M. — salvaguardas de Familiares y Trauma.
 // Mantiene estas reglas separadas del documento base para que puedan auditarse sin
 // convertir al Familiar en un segundo PJ ni extender Trauma a actores no orgánicos.
@@ -10,7 +11,7 @@ const number = (value, fallback = 0) => {
 const validFamiliar = (owner, familiar) => Boolean(
   familiar && familiar.type === "familiar" && familiar.system?.details?.ownerUuid === owner.uuid
 );
-const hasTechnique = (owner, name) => owner.items?.some?.((item) => item.type === "technique" && item.name === name) ?? false;
+const hasTechnique = (owner, name) => { const slug=normalizeSlug(name); return owner.items?.some?.((item) => item.type === "technique" && normalizeSlug(item.system?.slug || item.name) === slug) ?? false; };
 const hasBondCapability = (owner, familiar, name, minimumBond) =>
   validFamiliar(owner, familiar) && number(familiar.system?.familiar?.bondLevel, 1) >= minimumBond && hasTechnique(owner, name);
 const familiarOperational = (familiar) => !familiar.system?.familiar?.incapacitated && number(familiar.system?.resources?.health?.value) > 0;
