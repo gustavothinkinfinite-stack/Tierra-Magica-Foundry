@@ -97,6 +97,12 @@ test("incapacitated Actors have no movement allowance", async () => {
   await resetActorTurnForCombat(a, combat(1), combatant);
   assert.equal(a.updates[0]["system.turn.action"], false);
   assert.equal(a.updates[0]["system.turn.reaction"], false);
+  assert.equal(a.updates[0]["system.turn.movementSpent"], 8);
+
+  // Recuperarse durante este mismo turno no concede Movimiento retroactivo.
+  a.system.status.incapacitated = false;
+  a.system.resources.health.value = 1;
+  assert.equal(movementRemaining(a), 0);
 });
 
 test("stale Guardia, Parada and Contraataque state cannot survive into a fresh turn", async () => {
