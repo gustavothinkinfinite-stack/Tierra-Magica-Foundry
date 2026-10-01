@@ -102,3 +102,25 @@ test("schema v2 migra dispositivos al modelo de fuente energética sin reinterpr
   assert.equal(migratedGeneric.system.activation,"Acción");
   assert.equal(migratedGeneric.system.kineticDefense,false);
 });
+
+
+test("schema v3 migra invocaciones y compatibilidad de Origen Remoto sin reinterpretar hechizos ajenos",()=>{
+  const summon=migrateItemSource({name:"Llamada Menor",type:"spell",system:{
+    schemaVersion:3,slug:"llamada-menor",sustained:false,duration:"Instantánea"
+  }},{embedded:true});
+  assert.equal(summon.system.schemaVersion,TM_SCHEMA_VERSION);
+  assert.equal(summon.system.sustained,true);
+  assert.equal(summon.system.duration,"Sostenida");
+  assert.equal(summon.system.remoteOriginCompatible,true);
+
+  for (const [name,slug] of [["Paso Breve","paso-breve"],["Trasposición","trasposicion"],["Umbral","umbral"],["Portal","portal"]]) {
+    const migrated=migrateItemSource({name,type:"spell",system:{schemaVersion:3,slug}},{embedded:true});
+    assert.equal(migrated.system.remoteOriginCompatible,false,name);
+    assert.deepEqual(migrateItemSource(migrated,{embedded:true}),migrated);
+  }
+
+  const ordinary=migrateItemSource({name:"Proyectil Ígneo",type:"spell",system:{
+    schemaVersion:3,slug:"proyectil-igneo"
+  }},{embedded:true});
+  assert.equal(ordinary.system.remoteOriginCompatible,true);
+});
