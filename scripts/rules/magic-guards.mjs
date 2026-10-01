@@ -79,6 +79,9 @@ export function installMagicGuards(ActorClass) {
     }
 
     if (options.remoteOrigin) {
+      if (item.system?.remoteOriginCompatible === false) {
+        return ui.notifications.warn(item.name + " no es compatible con Origen Remoto.");
+      }
       const familiar = options.remoteOrigin;
       const activeToken = familiar.getActiveTokens?.()[0] ?? null;
       if (!activeToken) return ui.notifications.warn("Origen Remoto requiere un token activo del Familiar para fijar el origen geométrico.");
