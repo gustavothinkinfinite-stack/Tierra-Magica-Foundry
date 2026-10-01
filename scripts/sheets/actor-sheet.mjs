@@ -662,7 +662,9 @@ export class TierraMagicaActorSheet extends ActorSheet {
           label: String(entry.label ?? "Modificador"),
           valueDisplay: signed(entry.value),
           source: String(entry.sourceItemName || sourceLabels[entry.sourceType] || entry.sourceType || "Fuente"),
-          sourceType: String(sourceLabels[entry.sourceType] || entry.sourceType || ""),
+          sourceType: entry.sourceItemName
+            ? String(sourceLabels[entry.sourceType] || entry.sourceType || "")
+            : "",
           itemId: entry.sourceItemId ?? null
         })),
         contextual: contextual.map((entry) => ({
