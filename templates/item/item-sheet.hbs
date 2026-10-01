@@ -60,6 +60,7 @@
         <label><span>Alcance</span><input type="text" name="system.range" value="{{system.range}}" /></label>
         <label><span>Requisitos</span><input type="text" name="system.requirementsText" value="{{system.requirementsText}}" placeholder="Requisitos narrativos o de acceso" /></label>
         <label class="tm-check"><span>Sostenido</span><input type="checkbox" name="system.sustained" {{checked system.sustained}} /></label>
+        <label class="tm-check"><span>Compatible con Origen Remoto</span><input type="checkbox" name="system.remoteOriginCompatible" {{checked system.remoteOriginCompatible}} /></label>
       {{/if}}
 
       {{#if isTechnique}}
