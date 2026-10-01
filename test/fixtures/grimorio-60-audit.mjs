@@ -18,7 +18,7 @@ export const GRIMORIO_AUDIT_CANDIDATES = Object.freeze([
   {name:"Cuerpo Mineral",discipline:"alteration",grade:"advanced",mana:6,role:"defense",sustained:true,protection:3,movementPenalty:2,stackingGroup:"armor-equivalent"},
   {name:"Fase Parcial",discipline:"alteration",grade:"advanced",mana:7,role:"mobility",sustained:false},
   {name:"Morfología Alada",discipline:"alteration",grade:"master",mana:8,role:"mobility",sustained:true,maxDuration:"scene"},
-  {name:"Transmutación Corpórea",discipline:"alteration",grade:"legendary",mana:12,role:"adaptation",sustained:true,fixedForm:true,maxMajorAdaptations:2},
+  {name:"Transmutación Corpórea",discipline:"alteration",grade:"legendary",mana:12,role:"adaptation",sustained:true,fixedForm:true,maxMajorAdaptations:2,maxScaleChange:1,extraScaleInteraction:false},
 
   // Restauración
   {name:"Conservación Orgánica",discipline:"restoration",grade:"minor",mana:2,role:"utility",healing:0},
@@ -34,7 +34,7 @@ export const GRIMORIO_AUDIT_CANDIDATES = Object.freeze([
   {name:"Espejismo",discipline:"perception",grade:"basic",mana:4,role:"illusion",sustained:true,illusionDf:"static"},
   {name:"Revelación Sensorial",discipline:"perception",grade:"advanced",mana:5,role:"counter-illusion",illusionCheckAdvantage:true},
   {name:"Duplicado Ilusorio",discipline:"perception",grade:"advanced",mana:6,role:"defense-illusion",sustained:true,defenseBonus:2,visionDependent:true,secondaryAttackNegationRoll:false},
-  {name:"Invisibilidad",discipline:"perception",grade:"master",mana:9,role:"illusion",sustained:true,maxDuration:"scene",breaksAfterOffense:true,indetectable:false,illusionDf:"static"},
+  {name:"Invisibilidad",discipline:"perception",grade:"master",mana:9,role:"illusion",sustained:true,maxDuration:"scene",breaksAfterOffense:true,breaksAfterRemoteOffense:true,indetectable:false,illusionDf:"static"},
   {name:"Dominio Fantasmagórico",discipline:"perception",grade:"legendary",mana:13,role:"illusion-area",sustained:true,maxDuration:"scene",illusionDf:"static",physicalForce:false},
   {name:"Sintonía Emocional",discipline:"perception",grade:"minor",mana:2,role:"information",mindReading:false,lieDetection:false},
 
@@ -49,7 +49,7 @@ export const GRIMORIO_AUDIT_CANDIDATES = Object.freeze([
   {name:"Mente Anclada",discipline:"influence",grade:"basic",mana:3,role:"mental-defense",activation:"Reacción",mentalDefenseBonus:2,singleDeclaredEffect:true},
 
   // Conjuración
-  {name:"Objeto Efímero",discipline:"conjuration",grade:"minor",mana:2,role:"utility",commercialValue:false,complexMechanism:false},
+  {name:"Objeto Efímero",discipline:"conjuration",grade:"minor",mana:2,role:"utility",commercialValue:false,complexMechanism:false,ammunition:false,satisfiesSpecializedToolRequirement:false},
   {name:"Salto Vinculado",discipline:"conjuration",grade:"advanced",mana:7,role:"transport",maxTargets:3,targetMode:"multiple",remoteOriginCompatible:false},
   {name:"Jaula Dimensional",discipline:"conjuration",grade:"master",mana:9,role:"spatial-control",sustained:true,secondaryResistance:false},
   {name:"Llamada Mayor",discipline:"conjuration",grade:"master",mana:10,role:"summon",ritual:true,sustained:true,automaticObedience:false},
