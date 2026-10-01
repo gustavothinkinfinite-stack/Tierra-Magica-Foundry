@@ -1,5 +1,5 @@
 // Foundry T.M. — salvaguardas e integración del núcleo mágico.
-import { offensiveSpellNeedsTargets, resolveSpellImpacts, spellAreaKind, validateSpellTargets } from "./spell-impact.mjs";
+import { offensiveSpellNeedsTargets, resolveSpellImpacts, validateSpellTargets } from "./spell-impact.mjs";
 import { normalizeSlug } from "./identity.mjs";
 
 const number = (value, fallback = 0) => {
