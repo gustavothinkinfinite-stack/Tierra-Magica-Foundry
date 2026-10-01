@@ -76,11 +76,14 @@ test("partida integral: dispositivo valida fuente, Caudal y Energía antes del c
   assert.match(authority, /"system\.energy\.value": energy - amount/);
 });
 
-test("partida integral: daño físico y mágico desembocan en adjustResource health", async () => {
+test("partida integral: daño físico y mágico desembocan en autoridad compartida de Vida", async () => {
   const actor = await read("scripts/documents/actor.mjs");
   const magic = await read("scripts/rules/magic-guards.mjs");
-  assert.match(actor, /adjustResource\("health", -impact\.damage\)/);
-  assert.match(magic, /adjustResource\("health", -impact\.damage\)/);
+  const authority = await read("scripts/rules/state-authority.mjs");
+  assert.match(actor, /applyHealthDamageAuthoritatively\(target, impact\.damage\)/);
+  assert.match(magic, /applyHealthDamageAuthoritatively\(impact\.actor, impact\.damage\)/);
+  assert.match(authority, /apply-health-damage/);
+  assert.match(authority, /serial\("health:/);
 });
 
 test("partida integral: no hay autoridad duplicada específica de Proyectil Ígneo", async () => {
