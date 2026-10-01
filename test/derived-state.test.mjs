@@ -114,3 +114,12 @@ test("modificadores negativos nunca producen máximos de recurso inferiores a 0"
   assert.equal(derived.healthMax,0);
   assert.equal(derived.manaMax,0);
 });
+
+
+test("Daño Grave expone fórmula auditable en breakdowns", () => {
+  const derived=deriveActorState({system:baseSystem()});
+  assert.equal(derived.severeThreshold,8);
+  assert.equal(derived.breakdowns.severeThreshold.formula,"5 + VIG");
+  assert.equal(derived.breakdowns.severeThreshold.base,8);
+  assert.equal(derived.breakdowns.severeThreshold.total,8);
+});
