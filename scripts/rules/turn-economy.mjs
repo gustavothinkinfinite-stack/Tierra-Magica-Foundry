@@ -65,7 +65,7 @@ export async function resetActorTurnForCombat(actor, combat, combatant) {
 
   // Movimiento es cuantificado: se reinicia el gasto, no un interruptor booleano.
   // Guardia, Parada y sus ventanas asociadas caducan antes de conceder la nueva economía.
-  clearTurnResourceReservations(actor);
+  await clearTurnResourceReservations(actor);
   const incapacitated = actorIncapacitated(actor);
   const movementSpent = incapacitated ? Math.max(0, number(actor.system?.derived?.movement)) : 0;
   await actor.update({

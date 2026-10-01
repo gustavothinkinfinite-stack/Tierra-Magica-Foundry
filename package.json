@@ -13,6 +13,7 @@
     "audit:grimorio:concurrency": "node --test test/grimorio-60-real-concurrency.test.mjs",
     "audit:grimorio:multiuser": "node --test test/grimorio-60-multiuser-authority.test.mjs",
     "audit:grimorio:economy-multiuser": "node --test test/grimorio-60-multiuser-authority.test.mjs test/action-economy-guards.test.mjs test/reaction-economy-guards.test.mjs test/turn-economy.test.mjs",
+    "audit:grimorio:recovery": "node --test test/grimorio-60-recovery.test.mjs",
     "build:packs": "node tools/build-packs.mjs",
     "stage:release": "node tools/stage-release.mjs"
   },

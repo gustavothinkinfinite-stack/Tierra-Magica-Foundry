@@ -6,7 +6,8 @@ const CHANNEL = "system.tierra-magica";
 const SCOPE = "state-authority";
 const pendingRequests = new Map();
 const authorityQueues = new Map();
-const turnReservations = new Map();
+const turnReservations = new Map(); // fallback para stubs/documentos sin flags persistentes.
+const TURN_RESERVATION_FLAG = "turnReservations";
 let bridgeInstalled = false;
 
 const number = (value, fallback = 0) => {
@@ -69,8 +70,37 @@ function turnReservationKey(actor, resource) {
   return actorAuthorityKey(actor) + ":" + resource;
 }
 
+function persistentTurnReservations(actor) {
+  if (typeof actor?.getFlag !== "function") return null;
+  const value = actor.getFlag("tierra-magica", TURN_RESERVATION_FLAG);
+  return value && typeof value === "object" ? { ...value } : {};
+}
+
 function currentTurnReservation(actor, resource) {
+  const persisted = persistentTurnReservations(actor);
+  if (persisted) return persisted[resource] ?? null;
   return turnReservations.get(turnReservationKey(actor, resource)) ?? null;
+}
+
+async function setTurnReservation(actor, resource, reservation) {
+  const persisted = persistentTurnReservations(actor);
+  if (persisted && typeof actor?.setFlag === "function") {
+    const next = { ...persisted, [resource]:reservation };
+    await actor.setFlag("tierra-magica", TURN_RESERVATION_FLAG, next);
+    return;
+  }
+  turnReservations.set(turnReservationKey(actor, resource), reservation);
+}
+
+async function deleteTurnReservation(actor, resource) {
+  const persisted = persistentTurnReservations(actor);
+  if (persisted && typeof actor?.setFlag === "function") {
+    const next = { ...persisted };
+    delete next[resource];
+    await actor.setFlag("tierra-magica", TURN_RESERVATION_FLAG, next);
+    return;
+  }
+  turnReservations.delete(turnReservationKey(actor, resource));
 }
 
 async function reserveTurnResource(actor, resource, requesterId = "") {
@@ -83,7 +113,7 @@ async function reserveTurnResource(actor, resource, requesterId = "") {
     if (!(actor.system.turn?.[resource] ?? true)) return { ok:true, claimed:false, reason:"spent" };
     if (currentTurnReservation(actor, resource)) return { ok:true, claimed:false, reason:"reserved" };
     const reservationId = requestId();
-    turnReservations.set(turnReservationKey(actor, resource), {
+    await setTurnReservation(actor, resource, {
       id:reservationId,
       requesterId:String(requesterId ?? ""),
       createdAt:Date.now()
@@ -102,7 +132,7 @@ async function finishTurnReservation(actor, resource, reservationId, requesterId
     if (commit && (actor.system.turn?.[resource] ?? true)) {
       await actor.update({ ["system.turn." + resource]: false });
     }
-    turnReservations.delete(turnReservationKey(actor, resource));
+    await deleteTurnReservation(actor, resource);
     return { ok:true, committed:commit === true };
   });
 }
@@ -369,6 +399,40 @@ export function canResolveSharedMutation(document = null) {
   return Boolean(primaryActiveGm(activeUsers()));
 }
 
+export async function adjudicateStaleTurnReservation(actor, resource, resolution = "spend") {
+  const kind = String(resource ?? "").trim().toLowerCase();
+  const decision = String(resolution ?? "").trim().toLowerCase();
+  if (!["action", "reaction"].includes(kind)) return { ok:false, error:"Recurso de turno desconocido." };
+  if (!["spend", "release"].includes(decision)) return { ok:false, error:"La recuperación debe decidir spend o release." };
+
+  const primary = primaryActiveGm(activeUsers());
+  if (runtimeSocketAvailable()) {
+    if (!currentUser()?.isGM || !primary || primary.id !== currentUser()?.id) {
+      return { ok:false, error:"Sólo el DJ activo principal puede resolver una reserva huérfana." };
+    }
+  } else if (!currentUser()?.isGM) {
+    return { ok:false, error:"Sólo un DJ puede resolver una reserva huérfana." };
+  }
+
+  if (!actor?.system || typeof actor.update !== "function") return { ok:false, error:"El Actor de economía ya no está disponible." };
+  return serial("turn-state:" + actorAuthorityKey(actor), async () => {
+    const reservation = currentTurnReservation(actor, kind);
+    if (!reservation) return { ok:true, resolved:false, alreadyClear:true };
+
+    if (decision === "spend" && (actor.system.turn?.[kind] ?? true)) {
+      await actor.update({ ["system.turn." + kind]: false });
+    }
+    await deleteTurnReservation(actor, kind);
+    return {
+      ok:true,
+      resolved:true,
+      decision,
+      requesterId:String(reservation.requesterId ?? ""),
+      reservationId:String(reservation.id ?? "")
+    };
+  });
+}
+
 export async function reserveTurnResourceAuthoritatively(actor, resource) {
   const kind = String(resource ?? "").trim().toLowerCase();
   if (!["action", "reaction"].includes(kind)) return { ok:false, claimed:false, error:"Recurso de turno desconocido." };
@@ -418,7 +482,12 @@ export async function spendActorMovementAuthoritatively(actor, amount, { consume
   return spendMovement(actor, amount, currentUser()?.id ?? "", { consumeReaction });
 }
 
-export function clearTurnResourceReservations(actor) {
+export async function clearTurnResourceReservations(actor) {
+  const persisted = persistentTurnReservations(actor);
+  if (persisted && typeof actor?.setFlag === "function") {
+    await actor.setFlag("tierra-magica", TURN_RESERVATION_FLAG, {});
+    return;
+  }
   turnReservations.delete(turnReservationKey(actor, "action"));
   turnReservations.delete(turnReservationKey(actor, "reaction"));
 }
