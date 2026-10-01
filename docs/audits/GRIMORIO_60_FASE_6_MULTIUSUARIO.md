@@ -120,6 +120,19 @@ La fase detectó una segunda carrera distribuida.
 
 Magia sigue sin consumir Parada porque el núcleo establece que no se aplica por defecto a hechizos.
 
+### Contraataque
+
+Una Parada exitosa habilita como máximo un Contraataque. Antes, dos clientes que compartieran control del defensor podían leer simultáneamente `parrySucceeded=true` y ambos ejecutar la respuesta.
+
+Ahora `claim-counterattack` se serializa por Actor:
+
+- exige una Parada exitosa todavía disponible;
+- exige que Contraataque no haya sido consumido;
+- valida que el solicitante posea permisos sobre el Actor;
+- consume `parrySucceeded` y fija `counterattackUsed=true` antes de lanzar el ataque.
+
+La primera reclamación gana; las demás son rechazadas sin ejecutar ataque.
+
 ## Pruebas multiusuario
 
 `test/grimorio-60-multiuser-authority.test.mjs` simula:
@@ -131,7 +144,8 @@ Magia sigue sin consumir Parada porque el núcleo establece que no se aplica por
 5. dos mensajes de daño distintos aprobados simultáneamente contra el mismo PNJ;
 6. doble aprobación concurrente de una curación con `healthCap`;
 7. dos impactos concurrentes llevando a 0 Vida y aplicando Incapacitado/Trauma una sola vez;
-8. dos atacantes intentando consumir simultáneamente la misma Parada.
+8. dos atacantes intentando consumir simultáneamente la misma Parada;
+9. dos clientes intentando ejecutar el mismo Contraataque habilitado.
 
 Comando aislado:
 
@@ -148,7 +162,8 @@ La fase exige:
 - curación siempre vuelve a respetar máximo y límite de lesión;
 - llegar a 0 Vida mantiene las consecuencias del núcleo;
 - el atacante nunca recibe permisos de escritura sobre el PNJ por utilizar el sistema de autoridad;
-- Parada sólo puede beneficiar a un ataque parable por activación, incluso con atacantes concurrentes.
+- Parada sólo puede beneficiar a un ataque parable por activación, incluso con atacantes concurrentes;
+- una Parada exitosa habilita como máximo un Contraataque, incluso si varios clientes controlan al defensor.
 
 ## Límite restante
 
