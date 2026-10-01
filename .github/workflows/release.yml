@@ -22,33 +22,78 @@ jobs:
         with:
           node-version: 24
 
+      - name: Verificar identidad de release
+        shell: bash
+        run: |
+          VERSION=$(node -p "JSON.parse(require('fs').readFileSync('system.json','utf8')).version")
+          PACKAGE_VERSION=$(node -p "JSON.parse(require('fs').readFileSync('package.json','utf8')).version")
+          if [ "$VERSION" != "$PACKAGE_VERSION" ]; then
+            echo "::error::system.json ($VERSION) y package.json ($PACKAGE_VERSION) no coinciden."
+            exit 1
+          fi
+
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            RELEASE_TAG="$GITHUB_REF_NAME"
+          else
+            RELEASE_TAG="${GITHUB_REF_NAME#release/}"
+          fi
+
+          EXPECTED_TAG="v$VERSION"
+          if [ "$RELEASE_TAG" != "$EXPECTED_TAG" ]; then
+            echo "::error::La referencia solicita $RELEASE_TAG pero el manifiesto declara $EXPECTED_TAG."
+            exit 1
+          fi
+
+          if [ "$GITHUB_REF_TYPE" != "tag" ] && git ls-remote --exit-code --tags origin "refs/tags/$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "::error::El tag $RELEASE_TAG ya existe; no se republica una versión inmutable desde una rama."
+            exit 1
+          fi
+
+          echo "TM_RELEASE_TAG=$RELEASE_TAG" >> "$GITHUB_ENV"
+          echo "TM_RELEASE_VERSION=$VERSION" >> "$GITHUB_ENV"
+
       - name: Instalar dependencias de construcción
         run: npm install --ignore-scripts
 
       - name: Validar sistema y construir Compendios
         run: npm run validate
 
-      - name: Determinar versión
-        shell: bash
+      - name: Preparar paquete runtime
         run: |
-          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
-            echo "TM_RELEASE_TAG=$GITHUB_REF_NAME" >> "$GITHUB_ENV"
-          else
-            VERSION=$(node -p "JSON.parse(require('fs').readFileSync('system.json','utf8')).version")
-            echo "TM_RELEASE_TAG=v$VERSION" >> "$GITHUB_ENV"
-          fi
-
-      - name: Preparar paquete
-        run: |
-          mkdir -p package/tierra-magica
-          rsync -a --exclude='.git' --exclude='.github' --exclude='package' --exclude='test' --exclude='node_modules' --exclude='*.zip' ./ package/tierra-magica/
+          npm run stage:release
           cd package
           zip -r ../tierra-magica.zip tierra-magica
+
+      - name: Verificar paquete
+        shell: bash
+        run: |
+          unzip -l tierra-magica.zip | tee release-contents.txt
+          grep -q "tierra-magica/system.json" release-contents.txt
+          grep -q "tierra-magica/packs/character-options/" release-contents.txt
+          grep -q "tierra-magica/packs/magic/" release-contents.txt
+          grep -q "tierra-magica/packs/equipment/" release-contents.txt
+          grep -q "tierra-magica/packs/production/" release-contents.txt
+
+          if grep -Eq "tierra-magica/(docs/|test/|tools/|node_modules/|\.pack-source/|package\.json)" release-contents.txt; then
+            echo "::error::El ZIP contiene archivos de desarrollo."
+            exit 1
+          fi
+
+          node - <<'NODE'
+          const fs=require("fs");
+          const manifest=JSON.parse(fs.readFileSync("package/tierra-magica/system.json","utf8"));
+          const expected="v"+manifest.version;
+          if (process.env.TM_RELEASE_TAG!==expected) throw new Error("Tag y manifiesto no coinciden.");
+          if (!manifest.manifest.endsWith("/releases/latest/download/system.json")) throw new Error("Manifest URL de release no es estable.");
+          if (!manifest.download.endsWith("/releases/download/"+expected+"/tierra-magica.zip")) throw new Error("Download URL no está fijada a la versión.");
+          NODE
 
       - name: Crear publicación
         uses: softprops/action-gh-release@v3
         with:
-          files: tierra-magica.zip
+          files: |
+            tierra-magica.zip
+            package/tierra-magica/system.json
           generate_release_notes: true
           tag_name: ${{ env.TM_RELEASE_TAG }}
           target_commitish: ${{ github.sha }}
