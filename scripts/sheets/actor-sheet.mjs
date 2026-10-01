@@ -681,6 +681,13 @@ export class TierraMagicaActorSheet extends ActorSheet {
       message: String(issue.message ?? issue.code ?? "Incidencia de regla"),
       source: String(issue.itemName ?? "")
     }));
+    for (const issue of Array.isArray(derived.equipmentIssues) ? derived.equipmentIssues : []) {
+      issues.push({
+        code: String(issue.code ?? "equipment"),
+        message: String(issue.message ?? issue.code ?? "Incidencia de equipo"),
+        source: String(issue.itemName ?? "")
+      });
+    }
     const health = toNumber(this.actor.system.resources?.health?.value);
     const mana = toNumber(this.actor.system.resources?.mana?.value);
     if (health > toNumber(derived.healthMax)) {
