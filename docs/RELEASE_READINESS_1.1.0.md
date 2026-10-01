@@ -1,7 +1,7 @@
 # Release Readiness — Foundry T.M. 1.1.0
 
 **Fecha:** 2026-10-01  
-**Estado:** LISTA PARA INTEGRACIÓN · publicación pública no ejecutada.
+**Estado:** LISTA PARA PUBLICACIÓN · pre-release validada; publicación pública pendiente de ejecutar.
 
 ## Alcance
 
