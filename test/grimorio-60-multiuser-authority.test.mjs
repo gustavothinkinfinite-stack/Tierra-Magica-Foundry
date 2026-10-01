@@ -71,6 +71,7 @@ const {
 installStateAuthorityBridge();
 
 function actor({uuid="Actor.target",health=10,max=16,cap=max,owners=["player-a","player-b"]}={}){
+  const flags={};
   const value={
     uuid,id:uuid,name:"Objetivo compartido",type:"npc",
     system:{
@@ -81,6 +82,13 @@ function actor({uuid="Actor.target",health=10,max=16,cap=max,owners=["player-a",
       turn:{action:true,reaction:true,movementSpent:0,extraMovement:0}
     },
     canUserModify(user){return Boolean(user?.isGM)||owners.includes(user?.id);},
+    getFlag(scope,key){return flags[scope]?.[key];},
+    async setFlag(scope,key,value){
+      await delay();
+      flags[scope] ??= {};
+      flags[scope][key]=value;
+      return value;
+    },
     async update(changes){await delay();applyChanges(this,changes);return changes;}
   };
   actors.set(uuid,value);
