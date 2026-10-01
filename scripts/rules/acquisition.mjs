@@ -3,6 +3,11 @@ import { evaluateRequirements } from "./requirements.mjs";
 
 export const PAID_RESOURCES = Object.freeze(["pd", "pr", "pei", "currency", "none"]);
 export const ACQUISITION_MODES = Object.freeze(["purchased", "granted", "package", "legacy"]);
+export const PHYSICAL_PURCHASE_TYPES = Object.freeze(["weapon", "armor", "shield", "equipment", "device"]);
+
+export function isPhysicalPurchaseType(type) {
+  return PHYSICAL_PURCHASE_TYPES.includes(String(type ?? ""));
+}
 
 function number(value, fallback = 0) {
   const n = Number(value);
@@ -119,6 +124,56 @@ export function preflightAcquisition({
       ? normalizeAcquisition({ mode:"legacy", stage:"legacy", sources, paid:{ resource:"none", amount:0, known:false } })
       : cost ? acquisitionFromCost(cost, { mode, stage: actualStage ?? stage, sources }) : null,
     revision: currentRevision
+  };
+}
+
+export function preflightPhysicalPurchase({
+  actor,
+  candidate,
+  stage = "creation",
+  priceContext = null,
+  expectedRevision = null,
+  mode = "purchased",
+  sources = []
+} = {}) {
+  const issues = [];
+  if (!isPhysicalPurchaseType(candidate?.type)) {
+    issues.push({ code: "physical-type", message: "El Item no pertenece a una categoría de compra física." });
+  }
+
+  const price = Number(candidate?.system?.priceCopper);
+  if (candidate?.system?.priceStatus !== "exact" || !Number.isSafeInteger(price) || price < 0) {
+    issues.push({ code: "physical-price", message: (candidate?.name ?? "El objeto") + " no tiene un precio exacto utilizable para Compra libre." });
+  }
+
+  const identity = preflightAcquisition({
+    actor,
+    candidate: {
+      ...candidate,
+      system: {
+        ...(candidate?.system ?? {}),
+        costs: [{ context: "any", resource: "none", amount: 0 }]
+      }
+    },
+    stage,
+    priceContext,
+    expectedRevision,
+    mode,
+    sources
+  });
+  issues.push(...identity.issues.filter((issue) => issue.code !== "cost"));
+
+  const actualStage = stage === "rebuilding" ? (priceContext ?? "progression") : stage;
+  const freeMode = ["granted", "package"].includes(mode);
+  const resource = freeMode ? "none" : actualStage === "creation" ? "pei" : "currency";
+  const cost = { context: actualStage ?? "creation", resource, amount: freeMode ? 0 : Math.max(0, number(price)) };
+
+  return {
+    valid: !issues.length,
+    issues,
+    cost,
+    acquisition: !issues.length ? acquisitionFromCost(cost, { mode, stage: actualStage ?? stage, sources }) : null,
+    revision: identity.revision
   };
 }
 
