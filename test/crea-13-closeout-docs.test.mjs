@@ -25,7 +25,7 @@ test("Manual Maestro permanece como fuente activa única en los documentos de ci
   assert.equal(audit.includes("La fuente mecánica canónica continúa siendo `docs/Foundry_TM_Manual_1.0_Playtest.md`"),false);
 });
 
-test("CREA-13 sigue registrada como integrada aunque el sistema avance a 1.1.0",async()=>{
+test("CREA-13 sigue registrada como integrada aunque el sistema avance a 1.1.1",async()=>{
   const closeout=await read("docs/CREA-13_VALIDACION_GLOBAL.md");
   const changelog=await read("CHANGELOG.md");
   const system=JSON.parse(await read("system.json"));
@@ -35,6 +35,6 @@ test("CREA-13 sigue registrada como integrada aunque el sistema avance a 1.1.0",
   assert.match(closeout,/59883673c3b9d215b7b108f7078e9bbff1f5505f/);
   assert.match(changelog,/cierre documental post-CREA-13/);
   assert.match(changelog,/Sin cambios de motor ni incremento de versión/);
-  assert.equal(system.version,"1.1.0");
-  assert.equal(pkg.version,"1.1.0");
+  assert.equal(system.version,"1.1.1");
+  assert.equal(pkg.version,"1.1.1");
 });
