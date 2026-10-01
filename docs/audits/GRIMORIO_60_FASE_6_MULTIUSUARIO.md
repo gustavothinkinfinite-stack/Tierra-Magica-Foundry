@@ -104,6 +104,22 @@ Cierre Restaurador:
 
 Esto evita que una curación pendiente antigua sobrepase un límite cambiado entre el lanzamiento y la aprobación.
 
+## Defensa reactiva compartida: Parada
+
+La fase detectó una segunda carrera distribuida.
+
+**Contraejemplo:** un defensor mantiene Parada activa y dos atacantes resuelven ataques cuerpo a cuerpo casi simultáneos. Ambos clientes podían leer `parryActive=true` antes de que ninguno cerrara la defensa, de modo que los dos ataques recibían el +2 aunque la regla protege sólo frente al siguiente ataque parable.
+
+**Corrección:**
+
+1. antes de resolver un ataque parable, el atacante intenta `claim-parry` mediante la autoridad del DJ;
+2. la cola `parry:<Actor UUID>` entrega la defensa a un único ataque y desactiva inmediatamente `parryActive`;
+3. sólo ese ataque recibe +2 Defensa;
+4. después de la tirada se envía `resolve-parry` para registrar si el +2 convirtió un impacto en fallo y, por tanto, habilita Contraataque;
+5. ataques concurrentes posteriores reciben `claimed:false` y no reutilizan la misma Parada.
+
+Magia sigue sin consumir Parada porque el núcleo establece que no se aplica por defecto a hechizos.
+
 ## Pruebas multiusuario
 
 `test/grimorio-60-multiuser-authority.test.mjs` simula:
@@ -114,7 +130,8 @@ Esto evita que una curación pendiente antigua sobrepase un límite cambiado ent
 4. doble aprobación concurrente del mismo daño pendiente;
 5. dos mensajes de daño distintos aprobados simultáneamente contra el mismo PNJ;
 6. doble aprobación concurrente de una curación con `healthCap`;
-7. dos impactos concurrentes llevando a 0 Vida y aplicando Incapacitado/Trauma una sola vez.
+7. dos impactos concurrentes llevando a 0 Vida y aplicando Incapacitado/Trauma una sola vez;
+8. dos atacantes intentando consumir simultáneamente la misma Parada.
 
 Comando aislado:
 
@@ -130,7 +147,8 @@ La fase exige:
 - mensajes distintos se acumulan correctamente;
 - curación siempre vuelve a respetar máximo y límite de lesión;
 - llegar a 0 Vida mantiene las consecuencias del núcleo;
-- el atacante nunca recibe permisos de escritura sobre el PNJ por utilizar el sistema de autoridad.
+- el atacante nunca recibe permisos de escritura sobre el PNJ por utilizar el sistema de autoridad;
+- Parada sólo puede beneficiar a un ataque parable por activación, incluso con atacantes concurrentes.
 
 ## Límite restante
 
