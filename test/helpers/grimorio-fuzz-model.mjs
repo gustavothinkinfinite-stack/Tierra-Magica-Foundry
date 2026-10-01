@@ -161,11 +161,21 @@ export function castSpell(state,spell,{success=true,remote=false,offensive=false
   }
   spendEconomy(state,activation);
 
+  const breakInvisibility=()=>{
+    if(!offensive || !state.invisible) return;
+    state.sustained=state.sustained.filter((id)=>id!=="Invisibilidad");
+    state.invisible=false;
+  };
+
   if(payment.overload && !success){
     // La Sobrecarga fallida ya pagó Maná y Fatiga, pero no crea efecto.
+    breakInvisibility();
     return accept(state,"cast-failed-overload",{spell:spell.name,overload:true});
   }
-  if(!success) return accept(state,"cast-failed",{spell:spell.name,overload:payment.overload});
+  if(!success){
+    breakInvisibility();
+    return accept(state,"cast-failed",{spell:spell.name,overload:payment.overload});
+  }
 
   if(spell.sustained) applySustain(state,spell.name);
   if(spell.name==="Invisibilidad") state.invisible=true;
@@ -176,10 +186,7 @@ export function castSpell(state,spell,{success=true,remote=false,offensive=false
       clearSustainSideEffects(state);
     }
   }
-  if(offensive && state.invisible){
-    state.sustained=state.sustained.filter((id)=>id!=="Invisibilidad");
-    state.invisible=false;
-  }
+  breakInvisibility();
   return accept(state,"cast",{spell:spell.name,overload:payment.overload});
 }
 
