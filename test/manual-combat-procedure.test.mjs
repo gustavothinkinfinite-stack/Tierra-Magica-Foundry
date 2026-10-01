@@ -64,7 +64,7 @@ test("la guía de combate conserva las reacciones y límites esenciales del núc
   assert.match(combat,/no provoca un Ataque de Oportunidad universal/i);
   assert.match(combat,/No hay una ronda universal de sorpresa/i);
   assert.match(combat,/sin crear una Acción adicional/i);
-  assert.match(combat,/no conceden turnos extra/i);
+  assert.match(combat,/sin conceder turnos extra/i);
 });
 
 test("el ejemplo de tres rondas demuestra iniciativa, daño, Parada, Contraataque y Guardia",async()=>{
