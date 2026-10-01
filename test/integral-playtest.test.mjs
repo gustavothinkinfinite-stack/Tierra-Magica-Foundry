@@ -62,13 +62,16 @@ test("partida integral: alquimia no permite duplicar dosis ni saltarse Saturaci�
 test("partida integral: dispositivo valida fuente, Caudal y Energía antes del consumo", async () => {
   const actor = await read("scripts/documents/actor.mjs");
   const energy = await read("scripts/rules/device-energy.mjs");
+  const authority = await read("scripts/rules/state-authority.mjs");
   assert.match(actor, /resolveDeviceEnergySource\(this, item\)/);
   assert.match(actor, /if \(consumption > power\.flow\)/);
   assert.match(actor, /if \(consumption > power\.energy\)/);
-  assert.match(actor, /power\.source\.update\(\{ "system\.energy\.value": power\.energy - consumption \}\)/);
+  assert.match(actor, /consumeDeviceEnergyAuthoritatively\(this, power\.source, consumption/);
   assert.match(actor, /success && consumption/);
   assert.match(energy, /energySourceItemId/);
   assert.match(energy, /sourceQueues/);
+  assert.match(authority, /serial\("energy:/);
+  assert.match(authority, /"system\.energy\.value": energy - amount/);
 });
 
 test("partida integral: daño físico y mágico desembocan en adjustResource health", async () => {
