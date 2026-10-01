@@ -1,3 +1,13 @@
+## Sin publicar — preparación de publicación v1.0.18 — 2026-10-01
+
+- Auditoría de release detecta desfase entre el manifiesto 1.0.18 y la última publicación pública v1.0.14.
+- El workflow exige ahora coincidencia exacta entre `system.json`, `package.json` y la referencia `v<versión>`.
+- Las ramas de release no pueden reutilizar un tag ya existente.
+- Los Compendios se limpian antes de recompilar para impedir residuos de contenido retirado.
+- El paquete instalable se genera desde un staging runtime explícito y excluye pruebas, herramientas, documentación editorial y fuentes intermedias.
+- Cada release adjunta `system.json` además del ZIP; el manifiesto publicado usa una URL estable para futuras actualizaciones y una descarga fijada a su propia versión.
+- Sin cambios de reglas; la candidata de publicación continúa siendo v1.0.18.
+
 ## Sin publicar — cierre documental post-CREA-13 — 2026-10-01
 
 - CREA-12 y CREA-13 quedan registradas como cerradas e integradas en `main`.
