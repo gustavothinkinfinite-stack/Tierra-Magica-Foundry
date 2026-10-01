@@ -132,8 +132,8 @@ export function installMagicGuards(ActorClass) {
       for (const target of targets) {
         if (!target?.system?.combat?.kineticBarrierActive) continue;
         const canUpdateTarget = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
-        if (canUpdateTarget) await target.update({ "system.combat.kineticBarrierActive": false });
-        else ui.notifications.warn("Barrera Cinética se aplicó al hechizo, pero un usuario con permisos sobre " + target.name + " debe cerrar su estado.");
+        if (canUpdateTarget) await target.update({ "system.combat.kineticBarrierActive": false, "system.combat.kineticDefenseSource": "" });
+        else ui.notifications.warn((target.system.combat?.kineticDefenseSource || "Defensa cinética") + " se aplicó al hechizo, pero un usuario con permisos sobre " + target.name + " debe cerrar su estado.");
       }
     }
 
