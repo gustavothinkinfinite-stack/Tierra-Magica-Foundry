@@ -2,7 +2,7 @@ import { attackHits, resolveWeaponImpact } from "./combat-impact.mjs";
 import { resolveActorDefense } from "./defense-context.mjs";
 import { pendingDamageRequest } from "./damage-delivery.mjs";
 import { normalizeSlug } from "./identity.mjs";
-import { claimKineticBarrier, canResolveSharedMutation } from "./state-authority.mjs";
+import { applyHealthDamageAuthoritatively, claimKineticBarrier, canResolveSharedMutation } from "./state-authority.mjs";
 
 const number = (value, fallback = Number.NaN) => {
   const parsed = Number(value);
@@ -201,8 +201,13 @@ export function installCombatDefenseGuards(ActorClass) {
           protectionContext: options.tmProtectionContext ?? {}
         });
         damage = impact.damage;
-        if (damage > 0 && canUpdate(target)) await target.adjustResource("health", -damage);
-        else if (damage > 0) pendingTotal += damage;
+        if (damage > 0 && canUpdate(target)) {
+          const delivery = await applyHealthDamageAuthoritatively(target, damage);
+          if (!delivery.ok) {
+            ui.notifications.warn(delivery.error);
+            pendingTotal += damage;
+          }
+        } else if (damage > 0) pendingTotal += damage;
       }
       results.push({ roll, hit, damage });
 
@@ -280,9 +285,12 @@ export function installCombatDefenseGuards(ActorClass) {
           protectionContext: options.tmProtectionContext ?? {}
         });
         damage = impact.damage;
-        if (damage > 0 && canUpdate(target)) await target.adjustResource("health", -damage);
+        if (damage > 0 && canUpdate(target)) {
+          const delivery = await applyHealthDamageAuthoritatively(target, damage);
+          if (!delivery.ok) ui.notifications.warn(delivery.error);
+        }
       }
-      const pendingDamage = !canUpdate(target) ? pendingDamageRequest({
+      const pendingDamage = damage > 0 && !canUpdate(target) ? pendingDamageRequest({
         targetUuid: target.uuid,
         damage,
         source: "Barrido — " + item.name,
