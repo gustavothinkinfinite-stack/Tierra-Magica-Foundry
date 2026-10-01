@@ -63,9 +63,7 @@ function applySustain(state,id){
   const existing=state.sustained.filter((entry)=>entry!==id);
   const retained=existing.slice(Math.max(0,existing.length-(limit-1)));
   state.sustained=[...retained,id];
-  if(id!=="Invisibilidad") state.invisible=state.sustained.includes("Invisibilidad");
-  state.summons.minor=state.sustained.includes("Llamada Menor");
-  state.summons.major=state.sustained.includes("Llamada Mayor");
+  clearSustainSideEffects(state);
 }
 function clearSustainSideEffects(state){
   state.invisible=state.sustained.includes("Invisibilidad");
