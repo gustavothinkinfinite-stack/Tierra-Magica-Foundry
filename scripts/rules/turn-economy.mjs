@@ -29,14 +29,19 @@ export function movementRemaining(actor) {
   return Math.max(0, allowance - spent);
 }
 
-export async function spendActorMovement(actor, amount) {
+export async function spendActorMovement(actor, amount, companionUpdates = {}) {
   if (!actor || !["character", "npc"].includes(actor.type) || actorIncapacitated(actor)) return false;
   const requested = number(amount, Number.NaN);
-  if (!Number.isFinite(requested) || requested <= 0) return false;
+  if (!Number.isFinite(requested) || requested < 0) return false;
   const remaining = movementRemaining(actor);
   if (requested > remaining) return false;
+  const extras = companionUpdates && typeof companionUpdates === "object" ? companionUpdates : {};
+  if (requested === 0 && !Object.keys(extras).length) return false;
   const spent = Math.max(0, number(actor.system?.turn?.movementSpent));
-  await actor.update({ "system.turn.movementSpent": spent + requested });
+  await actor.update({
+    ...extras,
+    "system.turn.movementSpent": spent + requested
+  });
   return true;
 }
 
