@@ -18,7 +18,7 @@ import { applyBoundedHealing, validatePendingHealingRequest } from "./rules/heal
 import { installCurrencyRules, migrateWorldCurrency } from "./rules/currency.mjs";
 import { migrateWorldSkills } from "./rules/skills.mjs";
 import { normalizeSlug } from "./rules/identity.mjs";
-import { preflightAcquisition, acquisitionFromCost } from "./rules/acquisition.mjs";
+import { preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType } from "./rules/acquisition.mjs";
 import { deriveDevelopmentBudget } from "./rules/creation.mjs";
 import { migrateWorldData, TM_SCHEMA_VERSION } from "./rules/data-model-migration.mjs";
 import { installResourceReconciliationHooks, reconcileActorResources } from "./rules/resource-reconciliation.mjs";
@@ -82,7 +82,7 @@ Hooks.on("preCreateItem", (item, data, options = {}) => {
   candidate.system.slug = slug;
   const status = actor.system.creation?.status ?? "complete";
   const stage = status === "building" ? "creation" : status === "rebuilding" ? "rebuilding" : "progression";
-  const physical = ["weapon","armor","shield","equipment","formula","device"].includes(item.type);
+  const physical = isPhysicalPurchaseType(item.type);
 
   if (physical && stage !== "creation") {
     ui.notifications.warn("El equipo adquirido después de creación debe pasar por la operación de compra para descontar moneda.");
@@ -90,14 +90,23 @@ Hooks.on("preCreateItem", (item, data, options = {}) => {
   }
 
   if (physical) {
-    const amount = Math.max(0, Number(candidate.system.priceCopper ?? 0) || 0);
-    const acquisition = acquisitionFromCost({ resource:"pei", amount }, { stage:"creation" });
+    const preflight = preflightPhysicalPurchase({
+      actor,
+      candidate,
+      stage:"creation",
+      expectedRevision:actor.system.creation?.revision
+    });
+    if (!preflight.valid) {
+      ui.notifications.warn(preflight.issues.map((issue) => issue.message).join(" "));
+      return false;
+    }
     const budget = deriveDevelopmentBudget(actor, { skillKeys:Object.keys(TM_CONFIG.skills) });
+    const amount = Math.max(0, Number(preflight.cost?.amount ?? 0) || 0);
     if (amount > budget.peiAvailable) {
       ui.notifications.warn("PEI insuficiente para adquirir " + item.name + ".");
       return false;
     }
-    item.updateSource({ "system.acquisition": acquisition });
+    item.updateSource({ "system.acquisition": preflight.acquisition });
     return;
   }
 
