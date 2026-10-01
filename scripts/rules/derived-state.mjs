@@ -77,6 +77,21 @@ function highestEquipped(items, type, field) {
   return candidates[0] ?? null;
 }
 
+function structuredManualContributions(system, selector) {
+  const canonical = normalizeSelector(selector);
+  const manual = system?.modifiers?.manual;
+  if (!manual || typeof manual !== "object") return [];
+  return Object.values(manual)
+    .filter((entry) => normalizeSelector(entry?.selector) === canonical && number(entry?.value) !== 0)
+    .map((entry) => contribution({
+      selector: canonical,
+      value: entry.value,
+      label: entry.label ?? "Ajuste manual",
+      sourceType: "manual",
+      ruleId: entry.id ?? null
+    }));
+}
+
 function legacyContribution(selector, value, label) {
   const numeric = number(value);
   return numeric ? [contribution({
@@ -85,6 +100,11 @@ function legacyContribution(selector, value, label) {
     label,
     sourceType: "legacy-manual"
   })] : [];
+}
+
+function manualOrLegacy(system, selector, legacyValue, legacyLabel) {
+  const structured = structuredManualContributions(system, selector);
+  return structured.length ? structured : legacyContribution(selector, legacyValue, legacyLabel);
 }
 
 export function deriveActorState({
@@ -110,7 +130,7 @@ export function deriveActorState({
       sourceType: "base"
     }),
     ...selectorContributions(rulePreparation, "defensiveBonus"),
-    ...legacyContribution("defensiveBonus", system.combat?.defenseBonus, "Modificador manual legado")
+    ...manualOrLegacy(system, "defensiveBonus", system.combat?.defenseBonus, "Modificador manual legado")
   ];
 
   const defensiveBonusValue = total(defensiveBonusContributions);
@@ -152,17 +172,20 @@ export function deriveActorState({
     }));
   }
 
-  protectionContributions.push(...legacyContribution(
+  protectionContributions.push(...manualOrLegacy(
+    system,
     "protection",
     system.combat?.protectionBonus,
     "Protección manual legada"
   ));
-  movementContributions.push(...legacyContribution(
+  movementContributions.push(...manualOrLegacy(
+    system,
     "movement",
     system.combat?.movementBonus,
     "Movimiento manual legado"
   ));
-  initiativeContributions.push(...legacyContribution(
+  initiativeContributions.push(...manualOrLegacy(
+    system,
     "initiativeModifier",
     system.combat?.initiativeBonus,
     "Iniciativa manual legada"
