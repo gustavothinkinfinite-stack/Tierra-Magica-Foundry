@@ -1,3 +1,11 @@
+## Publicación v1.1.1 — 2026-10-01
+
+- **v1.1.1 fue publicada** desde el commit `aaf12f5667991c291e34c26a038a6383b49ce34f` mediante `Publicar sistema #28`.
+- GitHub reconoce v1.1.1 como la release **Latest**, no prerelease.
+- Assets publicados: `system.json` y `tierra-magica.zip`.
+- El workflow reconstruyó los cuatro Compendios, ejecutó la validación completa, verificó el paquete y publicó correctamente.
+- El canal estable `releases/latest/download/system.json` queda actualizado a v1.1.1.
+
 ## 1.1.1 — Hotfix de compatibilidad Foundry v13/v14 — 2026-10-01
 
 - Registra explícitamente en `system.json` todos los subtipos de Actor e Item declarados por `template.json`, evitando que Foundry rechace `discipline` y otros Items canónicos como tipos inválidos.
