@@ -87,11 +87,15 @@ export function damage(state,amount){
   return accept(state,"damage",{amount:previous-state.health});
 }
 
-export function ordinaryHeal(state,amount){
+function recoverHealth(state,amount){
   const previous=state.health;
   state.health=clamp(state.health+Math.max(0,amount),0,state.healthMax);
   if(state.health>0) state.incapacitated=false;
-  return accept(state,"heal",{amount:state.health-previous});
+  return state.health-previous;
+}
+
+export function ordinaryHeal(state,amount){
+  return accept(state,"heal",{amount:recoverHealth(state,amount)});
 }
 
 export function beginTurn(state){
@@ -220,7 +224,7 @@ export function usePotion(state,family){
   state.doses[key]-=1;
   state.saturatedFamilies=[...new Set([...state.saturatedFamilies,family])];
   if(family==="arcana") state.mana=clamp(state.mana+3,0,state.manaMax);
-  else ordinaryHeal(state,4);
+  else recoverHealth(state,4);
   return accept(state,"potion",{family});
 }
 
@@ -231,7 +235,7 @@ export function breather(state){
 
 export function rest(state){
   if(!state.recovery.healthUsed){
-    ordinaryHeal(state,5);
+    recoverHealth(state,5);
     state.recovery.healthUsed=true;
   }
   if(!state.recovery.manaUsed){
