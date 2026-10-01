@@ -221,7 +221,9 @@ Hooks.once("ready", async () => {
   });
   const dataMigration = await migrateWorldData({ catalog });
   let resourceReconciliations = 0;
-  for (const actor of game.actors) if (await reconcileActorResources(actor)) resourceReconciliations += 1;
+  if (game.user.isGM) {
+    for (const actor of game.actors) if (await reconcileActorResources(actor)) resourceReconciliations += 1;
+  }
   game.tierraMagica = {
     ...(game.tierraMagica ?? {}),
     catalog,
