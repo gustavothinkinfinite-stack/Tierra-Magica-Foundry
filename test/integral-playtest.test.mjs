@@ -46,8 +46,8 @@ test("partida integral: Respiro limpia Saturación pero no recupera Vida ni Man�
 
 test("partida integral: Descanso y descanso completo respetan topes y reinician sólo recursos declarados", async () => {
   const actor = await read("scripts/documents/actor.mjs");
-  assert.match(actor, /Math\.min\(toNumber\(hp\.max\), toNumber\(hp\.value\) \+ toNumber\(this\.system\.attributes\.vig\.value\) \+ 2\)/);
-  assert.match(actor, /Math\.min\(toNumber\(mp\.max\), toNumber\(mp\.value\) \+ toNumber\(this\.system\.attributes\.vol\.value\) \+ 1\)/);
+  assert.match(actor, /Math\.min\(resourceMaximum\(this, "health"\), toNumber\(hp\.value\) \+ toNumber\(this\.system\.attributes\.vig\.value\) \+ 2\)/);
+  assert.match(actor, /Math\.min\(resourceMaximum\(this, "mana"\), toNumber\(mp\.value\) \+ toNumber\(this\.system\.attributes\.vol\.value\) \+ 1\)/);
   assert.match(actor, /updates\["system\.status\.fatigue"\] = 0/);
 });
 
