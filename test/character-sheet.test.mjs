@@ -96,3 +96,15 @@ test("CREA-11 itemiza identidad y unifica adquisición/reglas",async()=>{
   assert.equal(item.includes("Costes de catálogo"),true);
   assert.equal(item.includes("system.skillModifiersActive"),false);
 });
+
+
+test("CREA-12 retira controles binarios y campos manuales legados de la ficha",async()=>{
+  const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  assert.equal(sheet.includes('data-key="movement"'),false);
+  assert.equal(sheet.includes('data-action="spend-movement"'),true);
+  for(const legacy of ["system.combat.defenseBonus","system.combat.protectionBonus","system.combat.movementBonus","system.combat.initiativeBonus"]) {
+    assert.equal(sheet.includes(legacy),false,legacy);
+  }
+  assert.equal(sheet.includes("system.modifiers.manual.defensiveBonus.value"),true);
+  assert.equal(sheet.includes("system.modifiers.manual.initiativeModifier.value"),true);
+});
