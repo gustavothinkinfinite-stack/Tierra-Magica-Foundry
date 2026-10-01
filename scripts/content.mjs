@@ -28,7 +28,7 @@ export const STARTER_CONTENT = {
  shield:[
   {name:"Broquel",system:{passiveDefense:1,block:0,strengthMin:0,priceCopper:50,priceQuantity:1,priceStatus:"exact",legacyPrice:10,properties:"Sin Bloqueo especial"}},
   {name:"Escudo estándar",system:{passiveDefense:1,block:2,strengthMin:0,priceCopper:150,priceQuantity:1,priceStatus:"exact",legacyPrice:18,frontalOnly:true,properties:"Bloqueo +2"}},
-  {name:"Escudo pesado",system:{passiveDefense:2,block:2,strengthMin:2,priceCopper:300,priceQuantity:1,priceStatus:"exact",legacyPrice:30,frontalOnly:true,properties:"Bloqueo +2; Movimiento -1"}}
+  {name:"Escudo pesado",system:{passiveDefense:2,block:2,strengthMin:2,movementPenalty:-1,priceCopper:300,priceQuantity:1,priceStatus:"exact",legacyPrice:30,frontalOnly:true,properties:"Bloqueo +2; Movimiento -1"}}
  ],
  spell:[
   {name:"Proyectil Ígneo",system:{discipline:"evocation",grade:"basic",manaCost:3,attribute:"int",defense:"normal",damage:5,penetration:1,range:"Medio"}},
