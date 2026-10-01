@@ -45,8 +45,8 @@ export const STARTER_CONTENT = {
 
   // Alteración
   {name:"Respiración Adaptada",system:{discipline:"alteration",grade:"minor",manaCost:2,attribute:"int",sustained:true,duration:"Sostenida",effect:"Adapta la respiración a aire o agua compatible. No protege de toxinas, presión, temperatura ni otros peligros ambientales."}},
-  {name:"Potencia Sobrenatural",system:{discipline:"alteration",grade:"basic",manaCost:4,attribute:"int",sustained:true,effect:"Interactúa como una categoría de Escala mayor; no aumenta FUE, daño, Defensa, tamaño ni alcance."}},
-  {name:"Piel Alterada",system:{discipline:"alteration",grade:"basic",manaCost:4,attribute:"int",sustained:true,effect:"Protección 2 contra una categoría coherente declarada; no se acumula con armadura equivalente."}},
+  {name:"Potencia Sobrenatural",system:{discipline:"alteration",grade:"basic",manaCost:4,attribute:"int",sustained:true,effect:"Interactúa como una categoría de Escala mayor; no aumenta FUE/daño/Defensa, tamaño ni alcance."}},
+  {name:"Piel Alterada",system:{discipline:"alteration",grade:"basic",manaCost:4,attribute:"int",sustained:true,effect:"Protección 2 contra categoría coherente; no acumula con armadura equivalente."}},
   {name:"Adherencia",system:{discipline:"alteration",grade:"basic",manaCost:3,attribute:"int",sustained:true,duration:"Sostenida",effect:"Permite desplazarse por paredes y techos físicamente compatibles. No aumenta Movimiento; superficies móviles, frágiles o sobrenaturales pueden exigir prueba contextual."}},
   {name:"Morfología Flexible",system:{discipline:"alteration",grade:"basic",manaCost:4,attribute:"int",sustained:true,duration:"Sostenida",effect:"Permite deformarse para atravesar huecos estrechos y facilita escapar de restricciones compatibles. No cambia Escala, ocupación, alcance ni fuerza y no escapa automáticamente de una Presa."}},
   {name:"Miembro Efímero",system:{discipline:"alteration",grade:"advanced",manaCost:5,attribute:"int",sustained:true,duration:"Sostenida",effect:"Crea un miembro adicional capaz de sostener o manipular. No concede Acción, Reacción, ataque adicional ni beneficio mecánico extra de escudo."}},
