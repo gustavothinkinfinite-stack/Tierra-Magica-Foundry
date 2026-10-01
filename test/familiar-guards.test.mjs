@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { installFamiliarGuards } from "../scripts/rules/familiar-guards.mjs";
+import { reconcileActorResources } from "../scripts/rules/resource-reconciliation.mjs";
 
 const warnings = [];
 globalThis.ui = { notifications: { warn: (message) => { warnings.push(message); return message; } } };
@@ -9,7 +10,12 @@ globalThis.ChatMessage = { getSpeaker: ({ actor }) => ({ actor: actor.uuid }), c
 
 class FakeActor {
   constructor({ uuid, name, type = "character", system = {}, items = [] }) { Object.assign(this, { uuid, name, type, system, items }); this.updates = []; this.spellUses = []; }
-  prepareDerivedData() {}
+  prepareDerivedData() {
+    if (this.type === "familiar") {
+      this.system.derived = { healthMax: this.system.resources.health.max, manaMax: 0 };
+      this.system.resources.mana.max = 0;
+    }
+  }
   async update(changes) {
     this.updates.push(changes);
     for (const [path, value] of Object.entries(changes)) {
@@ -27,9 +33,12 @@ const technique = (name) => ({ type: "technique", name });
 const owner = (items = []) => new FakeActor({ uuid: "Actor.owner", name: "Dueño", items, system: { turn: { action: true, reaction: true }, resources: { health: { value: 10, max: 10 }, mana: { value: 9, max: 9 } }, status: { trauma: 0 } } });
 const familiar = ({ ownerUuid = "Actor.owner", health = 5, bondLevel = 3 } = {}) => new FakeActor({ uuid: "Actor.familiar", name: "Familiar", type: "familiar", system: { details: { ownerUuid }, familiar: { bondLevel, incapacitated: false }, turn: { action: true, reaction: true }, resources: { health: { value: health, max: 5 }, mana: { value: 6, max: 6 } }, status: { trauma: 0 } } });
 
-test("Familiar no hereda Maná ni economía de turno propia", () => {
+test("Familiar no hereda Maná ni economía de turno propia", async () => {
   const pet = familiar(); pet.prepareDerivedData();
-  assert.equal(pet.system.resources.mana.value, 0); assert.equal(pet.system.resources.mana.max, 0);
+  assert.equal(pet.system.derived.manaMax, 0);
+  assert.equal(pet.system.resources.mana.max, 0);
+  await reconcileActorResources(pet);
+  assert.equal(pet.system.resources.mana.value, 0);
   assert.equal(pet.system.turn.action, false); assert.equal(pet.system.turn.reaction, false);
 });
 
