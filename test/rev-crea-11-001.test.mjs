@@ -13,9 +13,10 @@ test("REV-CREA-11-001 mantiene Manual y decisiones CREA-10/11 sincronizados",asy
   assert.equal(manual.includes("Truco, Menor y Básico requieren Entrenado; Avanzado requiere Experto; Maestro requiere Maestro; Legendario requiere Gran Maestro"),true);
   assert.equal(manual.includes("| Daga | 3 | 0 | 0 | 6 p |"),true);
   assert.equal(manual.includes("| Armadura ligera | 1 | 0 | 1 o 5 p |"),true);
-  assert.equal(manual.includes("| Cierre Restaurador | Restauración | Básico | 3 | Recupera 4 Vida"),true);
-  assert.equal(manual.includes("| Visión Arcana | Percepción | Menor | 2 | PER; DF 10 cuando exista incertidumbre; duración Escena. |"),true);
-  assert.equal(manual.includes("Regeneración | Restauración | Avanzado | 6 | Método Ritual"),true);
+  assert.equal(manual.includes("| Cierre Restaurador | Básico | 3 | Objetivo único. Recupera 4 Vida"),true);
+  assert.equal(manual.includes("| Visión Arcana | Menor | 2 | PER; DF 10 cuando exista incertidumbre; duración Escena."),true);
+  assert.equal(manual.includes("| Regeneración | Avanzado | 6 | Método Ritual"),true);
+  assert.equal(manual.includes("catálogo mecánico canónico está formado por **60 hechizos**"),true);
 });
 
 test("REV-CREA-11-001 deja derivados pendientes fuera de alcance",async()=>{
