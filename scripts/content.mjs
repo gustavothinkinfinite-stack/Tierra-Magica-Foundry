@@ -87,6 +87,6 @@ export const STARTER_CONTENT = {
   {name:"Celda arcana menor",system:{energy:{value:4,max:4},flow:2,stability:"stable",consumption:0}},
   {name:"Acumulador estándar",system:{energy:{value:8,max:8},flow:3,stability:"stable",consumption:0}},
   {name:"Núcleo pesado",system:{energy:{value:16,max:16},flow:5,stability:"sensitive",consumption:0}},
-  {name:"Escudo de campo",system:{flow:2,stability:"stable",consumption:2,effect:"Reacción: +2 Defensa; no acumula con Barrera Cinética equivalente."}}
+  {name:"Escudo de campo",system:{flow:2,stability:"stable",consumption:2,activation:"Reacción",effect:"Reacción: +2 Defensa; no acumula con Barrera Cinética equivalente."}}
  ]
 };
