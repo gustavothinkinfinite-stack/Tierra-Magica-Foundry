@@ -17,3 +17,13 @@ test("las fórmulas automatizadas conservan la ruta existente", async () => {
   const source = await readFile(new URL("../scripts/rules/formula-guards.mjs", import.meta.url), "utf8");
   assert.equal(source.includes("if (AUTOMATED.has(item.name)) return original.call(this, item)"), true);
 });
+
+
+test("CREA-13: aprender una Fórmula no crea una dosis preparada implícita", async () => {
+  const source = await readFile(new URL("../scripts/rules/formula-guards.mjs", import.meta.url), "utf8");
+  const actor = await readFile(new URL("../scripts/documents/actor.mjs", import.meta.url), "utf8");
+  assert.equal(source.includes("number(item.system?.quantity, 0)"), true);
+  assert.equal(actor.includes("toNumber(item.system.quantity, 0)"), true);
+  assert.equal(source.includes("quantity, 1"), false);
+  assert.equal(actor.includes("item.system.quantity, 1"), false);
+});
