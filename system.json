@@ -35,7 +35,7 @@
   "primaryTokenAttribute": "resources.health",
   "secondaryTokenAttribute": "resources.mana",
   "url": "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry",
-  "manifest": "https://raw.githubusercontent.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/main/system.json",
+  "manifest": "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/system.json",
   "download": "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/tierra-magica.zip",
   "packs": [
     {
