@@ -1,6 +1,6 @@
 import { compilePack } from "@foundryvtt/foundryvtt-cli";
 import { createHash } from "node:crypto";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { coreCatalog } from "../scripts/catalog/core-catalog.mjs";
 
@@ -17,6 +17,8 @@ const groups = {
 
 const idFor = (type, slug) => createHash("sha256").update(type + ":" + slug).digest("hex").slice(0,16);
 
+await rm(sourceRoot,{recursive:true,force:true});
+await rm(outputRoot,{recursive:true,force:true});
 await mkdir(sourceRoot,{recursive:true});
 await mkdir(outputRoot,{recursive:true});
 
