@@ -54,10 +54,25 @@ Implementación inicial:
 - Daño físico y mágico aceptan el mismo contexto de Protección sin convertir efectos condicionales en Protección universal.
 - `resolveActorDefense()` y `resolveActorProtection()` son las autoridades de resolución contextual.
 
+## Fase 3D — Recursos y reconciliación
+
+**Estado: IMPLEMENTADA · CI VERDE (Validate #209)**
+
+- `derived.healthMax` y `derived.manaMax` son la autoridad de máximos.
+- `resources.health.max` y `resources.mana.max` permanecen sólo como espejos preparados para compatibilidad con Foundry; no son autoridad persistente.
+- Si un máximo disminuye por Atributo, Item, Rule Element u otra fuente, el valor actual se reconcilia con `min(actual, nuevoMáximo)`.
+- Si un máximo aumenta, el valor actual no cambia: aumentar capacidad no cura ni restaura Maná.
+- La reconciliación se ejecuta fuera de `prepareDerivedData()` mediante hooks de Actor/Items y una pasada controlada al cargar el mundo.
+- Las escrituras de reconciliación llevan `tmResourceReconcile` y están protegidas contra recursión.
+- Cambios encadenados durante una reconciliación se serializan y vuelven a comprobar para no dejar recursos por encima del último máximo.
+- Curación, alquimia, descansos y `adjustResource()` consultan `resourceMaximum()`, no el `.max` guardado.
+- Los máximos nunca pueden quedar por debajo de 0.
+- Familiares usan el mismo motor derivado, pero su política de tipo fija `manaMax = 0`; el Maná persistente legado se reconcilia a 0.
+- Si una reducción legítima de máximo lleva Vida a 0, se mantienen las consecuencias canónicas de Incapacitado y Trauma de personaje.
+
 ## Trabajo todavía pendiente dentro de Fase 3
 
-1. **3D — recursos y reconciliación:** limitar Vida/Maná actuales cuando disminuyan máximos sin otorgar recuperación al aumentarlos.
-2. **3E — ficha y diagnóstico:** exponer fórmula, contribuciones y valores contextuales.
-3. **3F — sincronización cruzada:** pruebas secuenciales de equipo, estados, magia, atributos, guardado y reapertura.
+1. **3E — ficha y diagnóstico:** exponer fórmula, contribuciones y valores contextuales.
+2. **3F — sincronización cruzada:** pruebas secuenciales de equipo, estados, magia, atributos, guardado y reapertura.
 
 CREA-12 no se considera cerrado hasta completar esas etapas y satisfacer DER-D42/DER-D43.
