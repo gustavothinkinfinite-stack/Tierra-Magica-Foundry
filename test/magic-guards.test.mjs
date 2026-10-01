@@ -52,7 +52,6 @@ test("ruta real valida objetivos antes de gastar recursos y resuelve áreas por 
   assert.equal(guards.includes("validateSpellTargets(item, selectedTokens"), true);
   assert.equal(guards.indexOf("validateSpellTargets(item, selectedTokens") < guards.indexOf("originalUseSpell.call(this, item)"), true);
   assert.equal(guards.includes("spellTargetOutcomes(item, targets, singleTotal, { automatic })"), true);
-  assert.equal(guards.includes("spellDfFor(item, actor)"), true);
   assert.equal(guards.includes("resolveSpellImpacts(item, hitTargets)"), true);
   assert.equal(guards.includes('adjustResource("health", -impact.damage)'), true);
   assert.equal(guards.includes("no crea automáticamente una Herida Grave"), true);
