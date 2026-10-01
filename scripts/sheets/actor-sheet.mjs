@@ -138,6 +138,12 @@ export class TierraMagicaActorSheet extends ActorSheet {
     html.find("[data-action='complete-creation']").click(() => this.actor.completeCreation());
     html.find("[data-action='begin-rebuild']").click(() => this.actor.beginRebuild());
 
+    html.find("[data-action='set-creation-attribute']").change(async (event) => {
+      const key = event.currentTarget.dataset.key;
+      const value = Math.floor(toNumber(event.currentTarget.value, 1));
+      await this.actor.setCreationAttribute(key, value);
+      event.currentTarget.value = String(toNumber(this.actor.system.attributes?.[key]?.creationValue, 1));
+    });
     html.find("[data-action='set-skill-rank']").change(async (event) => {
       const key = event.currentTarget.dataset.key;
       const rank = Math.min(5, Math.max(0, Math.floor(toNumber(event.currentTarget.value))));
