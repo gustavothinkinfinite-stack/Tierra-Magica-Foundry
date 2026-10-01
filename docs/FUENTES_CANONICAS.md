@@ -1,6 +1,6 @@
 # Fuentes del proyecto — política de fuente única
 
-Fecha de consolidación: 2026-09-28.
+Fecha de consolidación: 2026-10-01.
 
 ## Fuente activa única
 
@@ -22,19 +22,31 @@ CREA-09 — Moneda está consolidada en el Manual Maestro y su implementación F
 
 ## Estado de CREA-10
 
-CREA-10 — Lista definitiva de Habilidades queda preparada para cierre en Foundry 1.0.16: **26 Habilidades**, ocho categorías, rangos +0/+1/+2/+4/+6/+8, costes 0/1/3/7/13/21 PD, requisitos por rango base, Especializaciones a 1 PD y Método Directo/Ritual vinculado a Canalización/Ritualismo.
+CREA-10 — Lista definitiva de Habilidades está **CERRADA** e integrada en Foundry **1.0.16**: **26 Habilidades**, ocho categorías, rangos +0/+1/+2/+4/+6/+8, costes 0/1/3/7/13/21 PD, requisitos por rango base, Especializaciones a 1 PD y Método Directo/Ritual vinculado a Canalización/Ritualismo.
 
 ## Estado de CREA-11
 
 CREA-11 — Modelo de datos de creación está **CERRADA v1.0** e integrada en Foundry **1.0.17**. El modelo separa Actor base, Items adquiribles, requisitos tipados, Rule Elements declarativos, adquisición/procedencia, Effects y Compendios. La migración conserva información histórica ambigua como legado y no reconstruye compras por inferencia.
 
-Sus decisiones DAT-D01 a DAT-D666 son CANÓNICAS. CREA-11 no cambia las fórmulas definitivas de valores derivados: esa responsabilidad permanece en CREA-12, próxima tarea prevista.
+Sus decisiones DAT-D01 a DAT-D666 son CANÓNICAS. La reserva histórica de valores derivados para CREA-12 quedó satisfecha posteriormente por su integración en `main`.
 
 ## REV-CREA-11-001 — Sincronización post-cierre
 
 CREA-11 permanece **CERRADA v1.0**. **REV-CREA-11-001 está CERRADA E INTEGRADA** en Foundry **1.0.18** mediante PR #22 (`52317ae7105a63ced869b152486ada0b7597fca1`). La revisión corrige divergencias sin reabrir el diseño: Atributos iniciales (6 aumentos, máximo 3), máximo inicial de 3 Disciplinas, una única tirada para magia de área y sincronización documental de decisiones ya ratificadas de CREA-10/11.
 
-Protección derivada, FUE mínima y penalizaciones de equipo, Bloqueo/orientación, Movimiento cuantificado y automatización de Sangrado continúan reservados para CREA-12 o su integración correspondiente.
+La reserva histórica de Protección derivada, FUE mínima/equipo y Movimiento cuantificado fue absorbida por CREA-12. Las reglas que continúan deliberadamente contextuales no se consideran pendientes sólo por no estar automatizadas.
+
+## Estado de CREA-12
+
+CREA-12 — Valores derivados y sincronización está **CERRADA E INTEGRADA** mediante PR #24, cuyo squash en `main` es `98cb40556826675827eead6161c2ef97103c9315`. Consolidó una autoridad común para Vida, Maná, Defensa, Protección, Movimiento e Iniciativa; Movimiento cuantificado; contexto defensivo; equipo/FUE mínima; reconciliación de recursos y diagnóstico de procedencia.
+
+## Estado de CREA-13
+
+CREA-13 — Validación global de siete personajes/arquetipos está **CERRADA E INTEGRADA** mediante PR #25, cuyo squash en `main` es `59883673c3b9d215b7b108f7078e9bbff1f5505f`.
+
+La validación cubre Soldado, Ingeniera, Sanador, Exploradora, Alquimista, Canalizador y Vinculado. El cierre incluye schema v3 para dispositivos, fuente energética explícita, compra física centralizada, identidad alquímica estable por `slug` y autoridad compartida para consumo de Energía y defensa cinética. La limitación 13C-L01 queda resuelta.
+
+No existe una fase CREA-14 definida por las fuentes activas del repositorio. Una fase posterior sólo debe declararse mediante una decisión explícita de proyecto y, si introduce reglas, incorporarse primero al Manual Maestro.
 
 ## Implementación
 
