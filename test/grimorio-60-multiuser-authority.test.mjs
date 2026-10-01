@@ -59,6 +59,7 @@ const {
   applyHealthHealingAuthoritatively,
   approvePendingDamageAuthoritatively,
   approvePendingHealingAuthoritatively,
+  claimCounterattackAuthoritatively,
   claimParryAuthoritatively,
   resolveParryAuthoritatively
 }=await import("../scripts/rules/state-authority.mjs");
@@ -230,4 +231,21 @@ test("defensa compartida: dos atacantes concurrentes no pueden consumir la misma
   assert.equal(closed.ok,true);
   assert.equal(target.system.combat.parrySucceeded,true);
   assert.equal(target.system.combat.counterattackUsed,false);
+});
+
+
+test("defensa compartida: una Parada exitosa habilita un solo Contraataque entre clientes",async()=>{
+  const target=actor({uuid:"Actor.counterattack",health:12,owners:["player-a","player-b"]});
+  target.system.combat={parryActive:false,parrySucceeded:true,counterattackUsed:false};
+
+  globalThis.game.user=playerA;
+  const first=claimCounterattackAuthoritatively(target);
+  globalThis.game.user=playerB;
+  const second=claimCounterattackAuthoritatively(target);
+
+  const claims=await Promise.all([first,second]);
+  assert.equal(claims.filter((result)=>result.ok && result.claimed).length,1);
+  assert.equal(claims.filter((result)=>result.ok && !result.claimed).length,1);
+  assert.equal(target.system.combat.parrySucceeded,false);
+  assert.equal(target.system.combat.counterattackUsed,true);
 });
