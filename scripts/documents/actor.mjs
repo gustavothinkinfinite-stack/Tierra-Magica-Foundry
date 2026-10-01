@@ -748,6 +748,12 @@ export class TierraMagicaActor extends Actor {
         return ui.notifications.warn(power.source.name + " no tiene Energía suficiente para activar " + item.name + ".");
       }
       if (consumption) await power.source.update({ "system.energy.value": power.energy - consumption });
+      if (item.system.kineticDefense === true) {
+        await this.update({
+          "system.combat.kineticBarrierActive": true,
+          "system.combat.kineticDefenseSource": item.name
+        });
+      }
       return ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
         content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(item.name) + "</strong><p>Fuente: " +
@@ -783,6 +789,12 @@ export class TierraMagicaActor extends Actor {
         else await power.source.update({ "system.energy.value": power.energy - consumption });
       }
       await item.update(deviceUpdates);
+      if (success && item.system.kineticDefense === true) {
+        await this.update({
+          "system.combat.kineticBarrierActive": true,
+          "system.combat.kineticDefenseSource": item.name
+        });
+      }
       const outcome = success
         ? "La activación se resuelve con Caudal efectivo " + effectiveFlow + ", consume " + consumption + " Energía de " + power.source.name + " y el dispositivo queda Dañado."
         : "La activación no se produce y el dispositivo queda Deshabilitado; no consume Energía.";
