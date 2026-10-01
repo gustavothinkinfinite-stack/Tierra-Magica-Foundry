@@ -124,3 +124,38 @@ test("schema v3 migra invocaciones y compatibilidad de Origen Remoto sin reinter
   }},{embedded:true});
   assert.equal(ordinary.system.remoteOriginCompatible,true);
 });
+
+
+test("schema v4 migra contratos de objetivo y definiciones espaciales a v5",()=>{
+  const closure=migrateItemSource({name:"Cierre Restaurador",type:"spell",system:{
+    schemaVersion:4,slug:"cierre-restaurador",requiresTarget:false,targetMode:"single",maxTargets:1
+  }},{embedded:true});
+  assert.equal(closure.system.schemaVersion,TM_SCHEMA_VERSION);
+  assert.equal(closure.system.requiresTarget,true);
+  assert.equal(closure.system.targetMode,"single");
+
+  const swap=migrateItemSource({name:"Trasposición",type:"spell",system:{
+    schemaVersion:4,slug:"trasposicion",remoteOriginCompatible:true
+  }},{embedded:true});
+  assert.equal(swap.system.requiresTarget,true);
+  assert.equal(swap.system.targetMode,"single");
+  assert.equal(swap.system.maxTargets,1);
+  assert.equal(swap.system.remoteOriginCompatible,false);
+  assert.equal(swap.system.range,"8 espacios");
+  assert.match(swap.system.effect,/Intercambia la posición/);
+
+  const threshold=migrateItemSource({name:"Umbral",type:"spell",system:{
+    schemaVersion:4,slug:"umbral",remoteOriginCompatible:true
+  }},{embedded:true});
+  assert.equal(threshold.system.requiresTarget,false);
+  assert.equal(threshold.system.remoteOriginCompatible,false);
+  assert.match(threshold.system.effect,/barrera continua de hasta 2 espacios/);
+
+  const ordinary=migrateItemSource({name:"Proyectil Ígneo",type:"spell",system:{
+    schemaVersion:4,slug:"proyectil-igneo"
+  }},{embedded:true});
+  assert.equal(ordinary.system.targetMode,"single");
+  assert.equal(ordinary.system.maxTargets,1);
+  assert.equal(ordinary.system.requiresTarget,false);
+  assert.deepEqual(migrateItemSource(ordinary,{embedded:true}),ordinary);
+});

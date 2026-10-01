@@ -1,7 +1,7 @@
 # Grimorio 60 — Auditoría final de reglas y balance
 
 **Fecha:** 2026-10-01  
-**Estado:** CIERRE DE AUDITORÍA · los 42 hechizos nuevos siguen siendo propuestas hasta canonización explícita.  
+**Estado:** CERRADA Y CANONIZADA · el paquete espacial fue aprobado e incorporado al Manual Maestro y al catálogo Foundry.  
 **Base:** núcleo posterior a fases 3–9, con fuzzing, concurrencia, autoridad multiusuario, recuperación e idempotencia verdes.
 
 ## 1. Resultado ejecutivo
@@ -37,8 +37,8 @@ Los 60 respetan las bandas de Maná del Manual:
 - Maestro: 8–11;
 - Legendario: 12+.
 
-**Dictamen de reglas:** 57 hechizos quedan internamente coherentes como candidatos finales.  
-**Condicionales:** Trasposición, Umbral y Salto Vinculado forman un único paquete espacial que requiere fijar dos definiciones canónicas antes de publicar el tercero.
+**Dictamen de reglas:** los 60 hechizos quedan internamente coherentes y canónicos.  
+**Cierre espacial:** Trasposición, Umbral y Salto Vinculado fueron fijados como intercambio táctico, paso local y transporte de grupo respectivamente.
 
 No queda ningún rojo numérico de daño, curación, Maná o economía de turno.
 
@@ -106,13 +106,13 @@ Para impedir que magia barata sustituya capacidades permanentes:
 
 Fascinación y Temor se auditan como presiones breves: hasta el final del siguiente turno del objetivo. Concordia usa una Escena social y no termina automáticamente un combate.
 
-Conservación Orgánica queda propuesta con **24 horas** de preservación. Esta cifra pertenece al candidato final, no al canon 1.0 vigente.
+Conservación Orgánica queda canónica con **24 horas** de preservación.
 
 ### Ilusiones
 
 La potencia de una ilusión persistente no almacena una tirada.
 
-Propuesta final:
+Regla canónica:
 
 **DF de Ilusión = 11 + Atributo pertinente + bono de Canalización.**
 
@@ -310,20 +310,18 @@ Una capacidad debe decir expresamente que se aplica a una invocación.
 
 Esto evita convertir Llamada Mayor en un Familiar Mágico temporal de 10 Maná con todo el árbol de vínculo.
 
-## 9. Paquete espacial pendiente
+## 9. Paquete espacial canonizado
 
-Las fuentes canónicas actuales no definen Trasposición y Umbral con suficiente precisión para distinguirlos sin inferencia.
+La auditoría detectó que Trasposición y Umbral carecían de precisión suficiente. La canonización resuelve esa ambigüedad con funciones distintas.
 
 Texto vigente:
 
 - Trasposición: “alcance hasta 8 espacios según condiciones del efecto”.
 - Umbral: “transición espacial limitada compatible”.
 
-Por tanto la auditoría **no presenta como canon** una definición que la fuente no contiene.
+El Manual Maestro incorpora el siguiente cierre:
 
-Para cerrar el catálogo se recomienda este paquete:
-
-### Trasposición — propuesta
+### Trasposición — canónico
 
 **Rol:** intercambio táctico.
 
@@ -331,7 +329,7 @@ Acción; INT; DF 14 cuando corresponda; hasta 8 espacios.
 
 Intercambia la posición del lanzador con una criatura voluntaria dentro de alcance. Ambas posiciones deben ser físicamente válidas. No concede Movimiento adicional, no usa objetivos hostiles y no permite destino inválido o inmediatamente letal.
 
-### Umbral — propuesta
+### Umbral — canónico
 
 **Rol:** paso local a través de barrera.
 
@@ -339,7 +337,7 @@ Acción; INT; DF 18.
 
 Abre un paso espacial local a través de una barrera continua de hasta 2 espacios de espesor. Una criatura voluntaria puede atravesarlo una vez antes de que se cierre. No conecta Anclas y no crea un Portal persistente.
 
-### Salto Vinculado — condicionado a ese cierre
+### Salto Vinculado — canónico
 
 **Rol:** transporte de grupo.
 
@@ -358,7 +356,7 @@ Con estas definiciones:
 
 No hay dos hechizos haciendo la misma función.
 
-**Estado:** propuesta de cierre, todavía no canonizada.
+**Estado:** cierre canónico incorporado.
 
 ## 10. Implementación Foundry
 
@@ -411,19 +409,17 @@ Estas deudas **no cambian las reglas propuestas**; indican cuánto resolverá Fo
 | Restauración | Verde |
 | Percepción | Verde |
 | Influencia | Verde bajo la restricción permanente de no hard control |
-| Conjuración | Verde excepto paquete Trasposición–Umbral–Salto Vinculado |
+| Conjuración | Verde |
 
-## 12. Criterio para canonización
+## 12. Canonización completada
 
-No se recomienda introducir los 42 candidatos en `scripts/content.mjs` todavía.
+El cierre se ejecutó en el orden previsto:
 
-Orden de cierre:
+1. auditoría completa validada;
+2. paquete espacial aprobado;
+3. Manual Maestro actualizado como fuente activa;
+4. 42 incorporaciones convertidas en contenido canónico junto a los 18 hechizos previos;
+5. schema de datos ampliado para objetivos y migración segura;
+6. regresiones actualizadas para validar el catálogo canónico de 60.
 
-1. validar esta auditoría completa en CI;
-2. aceptar o modificar explícitamente el paquete espacial propuesto;
-3. actualizar primero el Manual Maestro con las definiciones aprobadas;
-4. convertir los 42 candidatos a datos canónicos de Foundry;
-5. añadir automatización específica donde aporte seguridad mecánica;
-6. ejecutar de nuevo fases 3–9 contra el catálogo ya canonizado.
-
-Hasta el punto 2, el resultado correcto es **57 verdes + 3 condicionados**, no “60 canonizados”.
+La automatización específica pendiente descrita en la sección 10 sigue siendo una cuestión de ergonomía y ejecución en Foundry, no una condición de validez de las reglas.

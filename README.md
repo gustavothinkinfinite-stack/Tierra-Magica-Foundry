@@ -6,7 +6,7 @@ La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuent
 
 Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**Estado de desarrollo post-1.0.18.** CREA-12 y CREA-13 están cerradas e integradas en `main`. CREA-12 consolidó derivados, Movimiento cuantificado, equipo/Protección y reconciliación de recursos. CREA-13 validó siete perfiles completos, persistencia/reversibilidad y endureció compra física, Alquimia, Energía/Caudal y defensa cinética concurrente.
+**Estado de desarrollo 1.1.0.** CREA-12 y CREA-13 están cerradas e integradas. El grimorio ampliado quedó auditado y canonizado en **60 hechizos**, con schema v5 para contratos de objetivos y cierre espacial definido. Las capas de concurrencia, recuperación e idempotencia siguen formando parte del núcleo validado.
 
 El núcleo 1.0 permanece **completo y jugable**. No existe una fase **CREA-14** definida en el repositorio. Cualquier ampliación mecánica futura debe partir de una decisión explícita incorporada primero al Manual Maestro; no se infiere una fase nueva a partir del código.
 

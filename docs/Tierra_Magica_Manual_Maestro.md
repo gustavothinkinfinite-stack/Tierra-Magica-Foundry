@@ -584,49 +584,134 @@ La magia no concede armadura fallida, ataques de oportunidad por lanzar ni devol
 
 **Contramagia — Avanzada, 3 PD.** Reacción después de declarar un lanzamiento y antes de resolverlo. Requiere compatibilidad narrativa/mágica y produce una interferencia contextual. No es una cancelación automática universal. **Auditoría:** el Manual 1.0 y la implementación no fijan todavía una fórmula universal de tirada, DF o modificador para Contramagia; cualquier fórmula más específica queda pendiente de decisión canónica.
 
-## 12. Grimorio estable 1.0
+## 12. Grimorio canónico
 
-El catálogo mecánico estable del núcleo está formado por **18 hechizos**. Nombres históricos, variantes de diseño, trucos no ratificados o entradas antiguas no crean hechizos adicionales ni versiones gratuitas. Un efecto nuevo sólo entra en el catálogo cuando se define aquí con coste, objetivo, alcance, duración, resistencia y límites suficientes.
+El catálogo mecánico canónico está formado por **60 hechizos**. Nombres históricos, variantes de diseño, trucos no ratificados o entradas antiguas no crean hechizos adicionales ni versiones gratuitas. Un efecto nuevo sólo entra en el catálogo cuando se define aquí con coste, objetivo, alcance, duración, resistencia y límites suficientes.
 
-| Hechizo | Disciplina | Grado | Maná | Resolución vigente resumida |
-|---|---|---:|---:|---|
-| Proyectil Ígneo | Evocación | Básico | 3 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 1. |
-| Onda de Choque | Evocación | Básico | 4 | Área frontal corta; Daño 4, Pen 0; una tirada se compara con la Defensa de cada objetivo; empuje 1 cuando corresponda. |
-| Barrera Cinética | Evocación | Básico | 3 | Reacción; +2 Defensa normal únicamente contra el ataque declarado; se consume al resolverlo. |
-| Potencia Sobrenatural | Alteración | Básico | 4 | Sostenido; permite interactuar físicamente como una categoría de Escala mayor; no aumenta FUE, daño ni Defensa. |
-| Piel Alterada | Alteración | Básico | 4 | Sostenido; Protección 2 contra una categoría coherente declarada; no se acumula con armadura equivalente. |
-| Cierre Restaurador | Restauración | Básico | 3 | Recupera 4 Vida y detiene Sangrado ordinario compatible; no reduce Trauma ni repara automáticamente Herida Grave. |
-| Regeneración | Restauración | Avanzado | 6 | Método Ritual; INT; DF 16 cuando corresponda; requiere Medicina Entrenada; repara una Herida Grave orgánica compatible. |
-| Reconstrucción | Restauración | Maestro | 10 | INT; DF 20 cuando corresponda; requiere Medicina; reconstrucción extraordinaria; no resurrección. |
-| Visión Arcana | Percepción | Menor | 2 | PER; DF 10 cuando exista incertidumbre; duración Escena. |
-| Vínculo de Rastreo | Percepción | Básico | 4 | PER; DF 14; información aproximada, no coordenadas GPS. |
-| Visión Remota | Percepción | Avanzado | 7 | PER; DF 18; requiere lugar conocido o Ancla. |
-| Calma | Influencia | Básico | 3 | PRE + Canalización contra Defensa Mental cuando el objetivo resiste; reduce agitación compatible sin borrar voluntad o memoria. |
-| Sugestión | Influencia | Avanzado | 5 | PRE + Canalización contra Defensa Mental; instrucción plausible y limitada; no Dominación, suicidio ni traición fundamental automática. |
-| Llamada Menor | Conjuración | Básico | 4 | INT; DF 14; Sostenido; convoca una entidad menor compatible; invocar no equivale a controlar ni garantiza obediencia. |
-| Paso Breve | Conjuración | Básico | 4 | INT; DF 12 cuando se requiera prueba; teletransporta al lanzador hasta 3 espacios a destino visible, válido y desocupado. |
-| Trasposición | Conjuración | Avanzado | 6 | INT; DF 14; alcance hasta 8 espacios según condiciones del efecto. |
-| Umbral | Conjuración | Avanzado | 7 | INT; DF 18; transición espacial limitada compatible. |
-| Portal | Conjuración | Maestro | 10 | INT; DF 21; requiere Anclas compatibles y normalmente preparación prolongada. |
+Los costes de PD por Grado son los definidos en Magia: Menor 1 PD, Básico 2 PD, Avanzado 3 PD, Maestro 5 PD y Legendario 8+ PD. La competencia operativa mínima sigue dependiendo del Método: Directo usa Canalización y Ritual usa Ritualismo.
+
+### Evocación
+
+| Hechizo | Grado | Maná | Resolución canónica |
+|---|---:|---:|---|
+| Luz Arcana | Menor | 2 | Crea luz arcana real en un punto u objeto a hasta 3 espacios; ilumina aproximadamente 4 espacios durante una Escena. No revela invisibilidad, no ciega y no detecta magia. |
+| Proyectil Ígneo | Básico | 3 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 1. |
+| Onda de Choque | Básico | 4 | Área frontal corta; Daño 4, Pen 0; una tirada se compara con la Defensa de cada objetivo. Empuja 1 espacio cuando corresponda; aliados incluidos salvo discriminación expresa. |
+| Barrera Cinética | Básico | 3 | Reacción; +2 Defensa normal sólo contra el ataque declarado; se consume al resolverlo. |
+| Aguja Gélida | Avanzado | 5 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 1. Si impacta, Movimiento -2 hasta el final del siguiente turno del objetivo, mínimo 1. No se acumula; repetir refresca. |
+| Arco Fulminante | Avanzado | 6 | INT + Canalización contra Defensa; Daño 4, Pen 1. Cadena selectiva de hasta 3 objetivos; cada objetivo posterior debe estar a 3 espacios o menos del anterior. Un Actor sólo recibe un impacto. |
+| Martillo Cinético | Avanzado | 5 | INT + Canalización contra Defensa Corporal; alcance Medio; Daño 3. Desplaza 2 espacios a Escala igual/menor, 1 a una categoría mayor y 0 a dos o más categorías mayor o anclada. |
+| Pantalla Cinética | Maestro | 8 | Sostenida, máximo una Escena. Pantalla de hasta 3 espacios que cuenta como cobertura cinética +2 Defensa contra ataques que la atraviesan. No se acumula con cobertura equivalente y no es pared física. |
+| Rayo de Ruptura | Maestro | 10 | Línea de 8 espacios; Daño 8, Pen 4. Afecta a todas las criaturas de la línea, aliados incluidos. |
+| Tormenta Arcana | Legendario | 12 | Punto a alcance Medio, radio 3 espacios; Daño 8, Pen 2. Una resolución contra la Defensa de cada criatura; aliados incluidos. No deja daño persistente. |
+
+### Alteración
+
+| Hechizo | Grado | Maná | Resolución canónica |
+|---|---:|---:|---|
+| Respiración Adaptada | Menor | 2 | Sostenido. Adapta la respiración a aire o agua compatible. No protege de toxinas, presión, temperatura u otros peligros ambientales. |
+| Potencia Sobrenatural | Básico | 4 | Sostenido. Permite interactuar físicamente como una categoría de Escala mayor; no aumenta FUE, daño, Defensa, tamaño ni alcance. |
+| Piel Alterada | Básico | 4 | Sostenido. Protección 2 contra una categoría coherente declarada; no se acumula con armadura equivalente. |
+| Adherencia | Básico | 3 | Sostenido. Permite desplazarse por paredes y techos físicamente compatibles sin aumentar Movimiento. Superficies móviles, frágiles o sobrenaturales pueden exigir prueba contextual. |
+| Morfología Flexible | Básico | 4 | Sostenido. Permite deformarse para huecos estrechos y facilita escapar de restricciones compatibles. No cambia Escala, ocupación, alcance ni fuerza y no escapa automáticamente de una Presa. |
+| Miembro Efímero | Avanzado | 5 | Sostenido. Crea un miembro adicional para sostener o manipular. No concede Acción, Reacción, ataque adicional ni beneficio mecánico extra de escudo. |
+| Cuerpo Mineral | Avanzado | 6 | Sostenido. Protección 3 contra daño físico ordinario y Movimiento -2. No se acumula con armadura equivalente ni con Piel Alterada equivalente. |
+| Fase Parcial | Avanzado | 7 | Acción. Durante el Movimiento asociado permite cruzar una barrera sólida de hasta 1 espacio de espesor. Debe terminar en espacio válido y libre; no es teletransporte ni permite permanecer dentro de materia. |
+| Morfología Alada | Maestro | 8 | Sostenida, máximo una Escena. Permite volar hasta el Movimiento normal. No duplica Movimiento, no concede maniobrabilidad perfecta, inmunidad a caídas ni capacidad de ignorar peso. |
+| Transmutación Corpórea | Legendario | 12 | Sostenida, máximo una Escena. Adopta una Morfología Legendaria registrada: Escala +/-1 como máximo y hasta 2 Adaptaciones Mayores predefinidas. No concede conocimientos, Habilidades, hechizos, Maná, Reacciones ni poderes no registrados. |
+
+### Restauración
+
+| Hechizo | Grado | Maná | Resolución canónica |
+|---|---:|---:|---|
+| Conservación Orgánica | Menor | 2 | Preserva tejido, órganos o un cuerpo frente a degradación natural durante 24 horas. No cura, resucita ni mantiene indefinidamente con vida. |
+| Cierre Restaurador | Básico | 3 | Objetivo único. Recupera 4 Vida y detiene Sangrado ordinario compatible; no reduce Trauma ni repara automáticamente Herida Grave. |
+| Transferencia Vital | Básico | 4 | Objetivo único. El lanzador pierde hasta 3 Vida y el objetivo recupera exactamente esa cantidad. El lanzador no puede quedar por debajo de 1 Vida; Protección no reduce la pérdida. |
+| Regeneración | Avanzado | 6 | Método Ritual; INT + Ritualismo; DF 16 cuando corresponda; requiere Medicina Entrenada. Repara una Herida Grave orgánica compatible. |
+| Círculo Restaurador | Avanzado | 6 | Hasta 3 criaturas cercanas recuperan 2 Vida cada una. No detiene Sangrado ni repara Heridas Graves. |
+| Restauración Funcional | Avanzado | 7 | Objetivo único; Sostenida, máximo una Escena. Suspende una penalización mecánica compatible de una Herida Grave. No cura la Herida, reduce Trauma, regenera partes ausentes ni vuelve posible una función inexistente. |
+| Reconstrucción | Maestro | 10 | INT; DF 20 cuando corresponda; requiere Medicina. Reconstrucción extraordinaria de daño orgánico compatible; no resurrección. |
+| Matriz Vital | Maestro | 9 | Objetivo único; Sostenida, máximo 3 rondas. Recupera 2 Vida al final de cada ronda, hasta 3 pulsos. No pulsa al lanzar, no gana pulsos al reaplicar, termina a 0 Vida y no levanta desde 0. |
+| Renovación Integral | Legendario | 14 | Método Ritual; INT + Ritualismo; DF 23; requiere Medicina Experta. Recupera 10 Vida y repara hasta 2 Heridas Graves orgánicas compatibles. No reduce Trauma ni resucita. |
+
+### Percepción e Ilusión
+
+Una ilusión engaña la percepción; no modifica físicamente aquello que representa. Una ilusión persistente usa una potencia determinista:
+
+**DF de Ilusión = 11 + Atributo usado al lanzar + bono de Canalización.**
+
+No se almacena una tirada alta como potencia permanente. Sólo se examina una ilusión cuando existe motivo para sospechar, contradicción relevante o una capacidad que habilite el examen. Revelación Sensorial concede Ventaja a ese examen.
+
+| Hechizo | Grado | Maná | Resolución canónica |
+|---|---:|---:|---|
+| Imagen Menor | Menor | 2 | Sostenida, máximo una Escena. Crea una imagen simple o un sonido simple. Sin sustancia, conversación autónoma, imitación perfecta de persona ni información desconocida. |
+| Visión Arcana | Menor | 2 | PER; DF 10 cuando exista incertidumbre; duración Escena. Percibe manifestaciones arcanas compatibles sin conceder conocimiento automático de su naturaleza. |
+| Sintonía Emocional | Menor | 2 | Alcance Corta. Percibe la emoción dominante compatible. No lee pensamientos, detecta mentiras ni revela automáticamente su causa. |
+| Velo Sensorial | Básico | 3 | Sostenido, máximo una Escena. Oculta o disfraza un detalle sensorial concreto; no concede invisibilidad completa. |
+| Espejismo | Básico | 4 | Sostenido, máximo una Escena. Ilusión visual y auditiva en área pequeña; sin inteligencia, sustancia ni información desconocida. |
+| Vínculo de Rastreo | Básico | 4 | PER; DF 14. Mediante vínculo válido obtiene dirección o región aproximada; no coordenadas GPS. |
+| Revelación Sensorial | Avanzado | 5 | Escena. Ventaja al examinar ilusiones, ocultación mágica, invisibilidad y manipulación sensorial compatibles. No concede omnisciencia ni visión a través de paredes. |
+| Duplicado Ilusorio | Avanzado | 6 | Sostenido, máximo una Escena. Tres duplicados cercanos; +2 Defensa contra ataques dependientes de visión mientras quede al menos uno. Cada ataque que falle por ese +2 destruye un duplicado. No ocupan casillas, atacan, bloquean ni flanquean. |
+| Visión Remota | Avanzado | 7 | PER; DF 18; requiere lugar conocido o Ancla. |
+| Invisibilidad | Maestro | 9 | Objetivo único; Sostenida, máximo una Escena. Imperceptibilidad visual, no indetectabilidad. Sonido, huellas, agua, humo, polvo, olor y sentidos no visuales pueden delatar. Una acción ofensiva termina el efecto después de resolverse, incluso por Origen Remoto. |
+| Dominio Fantasmagórico | Legendario | 13 | Sostenido, máximo una Escena; área amplia. Ilusión multisensorial compleja. No produce daño, fuerza, soporte ni obstáculos físicos; contradicción física directa puede revelar la falsedad pertinente. |
+
+### Influencia
+
+Influencia modifica estados emocionales, atención, disposición y decisiones dentro de límites expresos. El grimorio ordinario no incluye Dominación total, órdenes suicidas, pérdida repetida de Acción, reescritura arbitraria de personalidad ni borrado arbitrario de memoria.
+
+**Valor Inspirado** y **Mente Anclada** pertenecen al mismo grupo de protección mental mágica: se usa el mejor beneficio; no se suman para obtener +4.
+
+| Hechizo | Grado | Maná | Resolución canónica |
+|---|---:|---:|---|
+| Calma | Básico | 3 | PRE + Canalización contra Defensa Mental cuando resiste. Reduce agitación compatible sin borrar voluntad, memoria o razones racionales. |
+| Valor Inspirado | Básico | 3 | Objetivo único; Sostenido, máximo una Escena. +2 Defensa Mental sólo contra miedo sobrenatural o intimidación compatible; no se acumula con protección mental mágica equivalente. |
+| Fascinación | Básico | 4 | PRE + Canalización contra Defensa Mental; hasta fin del siguiente turno del objetivo. Prioriza atención hacia un foco concreto sin inmovilizar ni negar Acción automáticamente. |
+| Temor | Básico | 4 | PRE + Canalización contra Defensa Mental; hasta fin del siguiente turno del objetivo. La fuente designada se percibe como amenaza intensa; el objetivo conserva control de sus acciones. |
+| Mente Anclada | Básico | 3 | Reacción; +2 Defensa Mental contra el efecto mental declarado. No se acumula con Valor Inspirado u otra protección mental mágica equivalente. |
+| Concordia | Avanzado | 5 | Área social corta; PRE + Canalización contra Defensa Mental de quien resista; duración Escena. Reduce hostilidad inmediata y abre disposición a escuchar sin crear amistad, perdón, acuerdo ni terminar automáticamente un combate. |
+| Velo Social | Avanzado | 5 | Sostenido, máximo una Escena. El lanzador resulta mentalmente poco notable mientras actúe ordinariamente, pero sigue físicamente visible. Conductas obviamente relevantes rompen esa irrelevancia. |
+| Interdicción | Avanzado | 6 | Objetivo protegido único; Sostenido, máximo una Escena. Las acciones hostiles directas contra el protegido sufren Desventaja tras la oposición mental pertinente. No niega Acciones. Si el protegido daña al afectado, deja de proteger frente a él. |
+| Sugestión | Avanzado | 5 | PRE + Canalización contra Defensa Mental. Instrucción plausible y limitada; no Dominación, suicidio, pérdida repetida de Acción ni traición fundamental automática. |
+| Aura de Autoridad | Maestro | 9 | Sostenida, máximo una Escena; radio 3 espacios. Las acciones hostiles directas contra el lanzador sufren Desventaja tras la oposición mental pertinente. No niega Acciones; si el lanzador daña a una criatura, deja de protegerlo frente a ella durante la Escena. |
+
+### Conjuración
+
+| Hechizo | Grado | Maná | Resolución canónica |
+|---|---:|---:|---|
+| Objeto Efímero | Menor | 2 | Sostenido, máximo una Escena. Conjura un objeto simple, pequeño, inerte y de una mano. No crea dinero, munición, consumibles útiles, explosivos, cristales de resonancia, mecanismos complejos ni herramientas que satisfagan por sí solas requisitos especializados. Relanzar reemplaza la instancia. |
+| Llamada Menor | Básico | 4 | INT; DF 14; Sostenida. Convoca entidad menor compatible; invocar no equivale a controlar ni garantiza obediencia. |
+| Paso Breve | Básico | 4 | INT; DF 12 cuando se requiera prueba. Teletransporta al lanzador hasta 3 espacios a destino visible, válido y desocupado. |
+| Trasposición | Avanzado | 6 | INT; DF 14; alcance 8 espacios. Intercambia la posición del lanzador con una criatura voluntaria. Ambas posiciones deben ser válidas; no concede Movimiento adicional ni permite destino inválido o inmediatamente letal. |
+| Salto Vinculado | Avanzado | 7 | El lanzador y hasta 2 criaturas voluntarias a 1 espacio o menos se trasladan hasta 6 espacios. Los destinos deben ser visibles, libres, válidos y próximos entre sí. |
+| Umbral | Avanzado | 7 | INT; DF 18. Abre un paso local a través de una barrera continua de hasta 2 espacios de espesor. Una criatura voluntaria puede atravesarlo una vez antes de que se cierre. No conecta Anclas ni crea Portal persistente. |
+| Jaula Dimensional | Maestro | 9 | Sostenida, máximo una Escena; radio 3 espacios. Todo efecto que cruce su frontera mediante teletransporte, Portal o invocación usa **DF efectiva = max(DF normal, 18)**. No añade segunda resistencia, no bloquea movimiento ordinario/proyectiles y afecta a aliados. |
+| Llamada Mayor | Maestro | 10 | Método Ritual; INT + Ritualismo; DF 21; Sostenida; requiere vínculo de invocación válido. Convoca entidad significativa predefinida. Invocar establece presencia, no obediencia; conserva voluntad y usa modos Autónoma, Vinculada o Reactiva sin convertirse en un segundo PJ gratuito. |
+| Portal | Maestro | 10 | INT; DF 21; requiere Anclas compatibles y normalmente preparación prolongada. Abre conexión transitable temporal entre las Anclas. |
+| Gran Traslación | Legendario | 14 | Método Ritual; INT + Ritualismo; DF 24; requiere dos Anclas compatibles. Traslada al lanzador y hasta 8 criaturas voluntarias cercanas entre Anclas operativas. No admite objetivos hostiles, aparición dentro de materia, Anclas destruidas ni tránsito planar arbitrario. |
 
 ### Reglas de interpretación del catálogo
 
 - **Barrera Cinética** aplica su +2 únicamente a Defensa normal contra el ataque que la disparó. No modifica Defensa Mental ni Corporal y no se almacena para turnos futuros.
 - **Piel Alterada** no se convierte en +2 Protección universal. La categoría protegida se declara de forma coherente y no se acumula con armadura equivalente.
 - **Potencia Sobrenatural** cambia qué magnitud física puede afrontar el personaje, no sus valores de FUE, daño, Defensa, tamaño o alcance.
-- **Cierre Restaurador** recupera Vida hasta el máximo permitido y respeta límites de lesión; no borra Trauma.
-- **Onda de Choque** tiene geometría contextual: la mesa determina qué objetivos están realmente dentro del frente corto.
-- **Regeneración** y **Reconstrucción** requieren la adjudicación médica y narrativa indicada; no generan cantidades de curación adicionales no escritas.
-- El requisito de Medicina de **Reconstrucción** permanece canónico pero todavía no tiene un rango mínimo cuantificado; Foundry no debe inventar uno hasta una decisión específica.
-- Hechizos de información, influencia y teletransporte no conceden conocimiento, control, posición o línea de efecto que no estén definidos.
-- **Llamada Menor** ocupa Sostenimiento mientras la entidad convocada permanezca presente como invocación demandante. Un nuevo Sostenimiento incompatible la reemplaza conforme al límite normal; el hechizo no permite acumular un ejército mediante lanzamientos sucesivos.
-- **Paso Breve, Trasposición, Umbral y Portal** no son compatibles con Origen Remoto salvo que una regla posterior modifique expresamente esa compatibilidad.
+- **Cierre Restaurador**, Círculo Restaurador, Matriz Vital y Renovación Integral respetan máximo de Vida y límites de lesión. Ninguno reduce Trauma salvo regla posterior expresa.
+- **Regeneración**, Reconstrucción, Restauración Funcional y Renovación Integral requieren la adjudicación médica y anatómica descrita; no crean efectos adicionales no escritos.
+- El requisito de Medicina de **Reconstrucción** permanece canónico sin rango mínimo cuantificado; Foundry no inventa uno.
+- **Pantalla Cinética** comparte grupo de apilamiento con cobertura equivalente.
+- **Cuerpo Mineral**, Piel Alterada y armadura equivalente no crean capas acumulativas equivalentes.
+- **Valor Inspirado** y **Mente Anclada** comparten grupo de protección mental mágica.
+- **Duplicado Ilusorio** modifica Defensa; nunca provoca una segunda tirada para anular un impacto ya resuelto.
+- **Objeto Efímero** no tiene valor comercial persistente y desaparece al terminar el efecto.
+- **Llamada Menor** y **Llamada Mayor** ocupan Sostenimiento mientras la entidad permanezca como invocación demandante. Las invocaciones no obtienen automáticamente capacidades de Familiar como Acción Vinculada, Coordinación Reactiva u Origen Remoto.
+- **Paso Breve, Trasposición, Salto Vinculado, Umbral, Portal y Gran Traslación** no son compatibles con Origen Remoto.
+- Teletransporte voluntario exige destinos válidos y libres. Ninguno de estos hechizos ordinarios puede colocar a una criatura involuntaria en un destino inválido o inmediatamente letal.
 - Los efectos idénticos no se acumulan salvo regla expresa.
-- Las salvaguardas generales de Acción/Reacción, objetivos, Defensas, Protección, Sostenimiento, Sobrecarga y línea de efecto se aplican a todo el catálogo.
+- Las salvaguardas generales de Acción/Reacción, objetivos, Defensas, Protección, Sostenimiento, Sobrecarga, línea de efecto y autoridad multiusuario se aplican a todo el catálogo.
 
 ### Archivo de nombres históricos
 
-Nombres como Chispa, Pulso, Descarga, Lanza, Impulso, Paso Ligero, Molde, Ajuste, Adaptación, Alterar Forma, Forma Adaptativa, Alivio, Estabilización, Purificación, Diagnóstico, Realce, Marca, Eco, Lectura de Huella, Matiz, Susurro, Impulso Emocional, Silencio Mental, Señal, Mano, Ancla o Restauración Profunda pertenecen al **archivo de diseño**, no al catálogo mecánico 1.0. Si un uso narrativo reproduce un efecto mecánico de los 18 hechizos estables, debe pagar y respetar el hechizo estable correspondiente.
+Nombres como Chispa, Pulso, Descarga, Lanza, Impulso, Paso Ligero, Molde, Ajuste, Adaptación, Alterar Forma, Forma Adaptativa, Alivio, Estabilización, Purificación, Diagnóstico, Realce, Marca, Eco, Lectura de Huella, Matiz, Susurro, Impulso Emocional, Silencio Mental, Señal, Mano, Ancla o Restauración Profunda pertenecen al **archivo de diseño**, no al catálogo mecánico canónico. Si un uso narrativo reproduce un efecto mecánico de uno de los 60 hechizos, debe pagar y respetar el hechizo correspondiente.
 
 ## 13. Técnicas
 

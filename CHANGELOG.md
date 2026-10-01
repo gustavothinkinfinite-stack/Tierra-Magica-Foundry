@@ -1,3 +1,14 @@
+## 1.1.0 — Grimorio 60 canonizado — 2026-10-01
+
+- El Manual Maestro amplía el grimorio canónico de 18 a **60 hechizos** tras auditorías de balance, secuencias largas, concurrencia, autoridad multiusuario, recuperación e idempotencia.
+- Distribución canónica: Evocación 10, Alteración 10, Restauración 9, Percepción 11, Influencia 10 y Conjuración 10.
+- Se canoniza el cierre espacial: Trasposición = intercambio táctico, Umbral = paso local a través de barrera y Salto Vinculado = transporte de grupo.
+- Schema **v5** añade contratos mágicos `targetMode`, `maxTargets` y `requiresTarget`; Cierre Restaurador valida objetivo antes de pagar recursos.
+- Migración v5 actualiza copias existentes de Cierre Restaurador, Trasposición y Umbral sin reinterpretar hechizos ajenos.
+- Se fijan DF determinista de Ilusión, límites de duración, apilamiento de protecciones mentales, Método Ritual de los rituales mayores y límites de invocación/transporte.
+- Interdicción y Aura de Autoridad resuelven su oposición mental contra el atacante cuando ocurre la hostilidad, no contra la criatura protegida durante el lanzamiento.
+- Los Compendios reconstruidos incluyen el catálogo canónico completo; las automatizaciones específicas no esenciales permanecen adjudicables manualmente conforme al Manual.
+
 ## Publicación v1.0.18 — 2026-10-01
 
 - Auditoría de release detecta desfase entre el manifiesto 1.0.18 y la última publicación pública v1.0.14.
