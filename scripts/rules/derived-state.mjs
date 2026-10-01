@@ -231,7 +231,7 @@ export function deriveActorState({
     defenseContributions.push(contribution({
       selector: "defense",
       value: 2,
-      label: "Barrera Cinética",
+      label: String(system.combat?.kineticDefenseSource || "Barrera Cinética"),
       sourceType: "state",
       contextual: true,
       context: "kineticBarrier"
