@@ -1,6 +1,6 @@
 # REV-CREA-11-001 — Sincronización post-cierre
 
-Estado: IMPLEMENTADA EN CANDIDATA 1.0.18 — pendiente de CI/fusión.
+Estado: CERRADA TÉCNICAMENTE EN 1.0.18 — CI completa superada; efectiva en `main` al fusionar PR #22.
 
 ## Motivo
 
