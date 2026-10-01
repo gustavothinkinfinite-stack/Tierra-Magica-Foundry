@@ -6,9 +6,11 @@ La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuent
 
 Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**1.0.18 — REV-CREA-11-001 Sincronización post-cierre.** Corrige el constructor de Atributos iniciales, aplica el máximo de 3 Disciplinas de creación, hace que la magia de área reutilice una única tirada y sincroniza Manual/Referencia con decisiones ya cerradas de CREA-10/11. CREA-11 permanece cerrada; CREA-12 conserva la responsabilidad de derivados, Movimiento cuantificado, equipo/Protección y estados pendientes.
+**Estado de desarrollo post-1.0.18.** CREA-12 y CREA-13 están cerradas e integradas en `main`. CREA-12 consolidó derivados, Movimiento cuantificado, equipo/Protección y reconciliación de recursos. CREA-13 validó siete perfiles completos, persistencia/reversibilidad y endureció compra física, Alquimia, Energía/Caudal y defensa cinética concurrente.
 
-CREA-11 está formalmente cerrada e integrada en `main`; sus decisiones DAT-D01 a DAT-D666 son canónicas. CREA-12 queda como próxima tarea prevista.
+El núcleo 1.0 permanece **completo y jugable**. No existe una fase **CREA-14** definida en el repositorio. Cualquier ampliación mecánica futura debe partir de una decisión explícita incorporada primero al Manual Maestro; no se infiere una fase nueva a partir del código.
+
+El manifiesto instalable continúa en **1.0.18** hasta que exista una decisión explícita de publicación/versionado; este cierre documental no incrementa versión.
 
 Documentación de cierre: `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md` · referencia de mesa: `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md` · jerarquía de fuentes: `docs/FUENTES_CANONICAS.md`.
 

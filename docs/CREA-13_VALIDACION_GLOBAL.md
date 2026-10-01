@@ -295,22 +295,14 @@ Persisten únicamente límites de contenido que el canon no cuantifica y que por
 - el vínculo energético modela una fuente explícita por dispositivo y no pretende representar redes, infraestructura o suma de Caudal no definidas;
 - fabricación, reparación, Primeros Auxilios y otras resoluciones contextuales siguen dependiendo de las condiciones que el Manual deja a la ficción/mesa.
 
-CREA-13 queda técnicamente completa en la PR #25 y preparada para revisión final antes de integración en `main`.
+CREA-13 está **CERRADA E INTEGRADA** mediante PR #25. El squash integrado en `main` es `59883673c3b9d215b7b108f7078e9bbff1f5505f`.
 
 
-## Revisión post-auditoría de sincronización
+## Registro de integración
 
-**Estado: CORREGIDA · Validate #318 — SUCCESS**
+La revisión post-auditoría quedó absorbida por los hallazgos 13F-04 a 13F-06. El último head revisado antes de integración pasó **Validate #320**; posteriormente la PR #25 fue fusionada por squash en `main`.
 
-La revisión posterior al cierre técnico detectó cuatro rutas que no estaban cubiertas por la matriz inicial. Se corrigieron dentro de la misma PR antes de integración:
-
-1. **Compra física sin precio por ruta directa.** `preCreateItem` reutiliza ahora el mismo `preflightPhysicalPurchase()` que la adquisición programática. Armas, armaduras, escudos, equipo y dispositivos sin `priceStatus:"exact"` no pueden entrar como 0 PEI. `formula` deja de clasificarse como compra física: aprender una Fórmula conserva su coste profesional en PD y su cantidad preparada sigue siendo un estado separado.
-2. **Identidad mecánica de Fórmulas.** Las fórmulas automatizadas se reconocen por `slug` estable, no por nombre visible. Renombrar una Poción/Bálsamo no cambia su ruta mecánica.
-3. **Consumo de defensa cinética.** Barrera Cinética y Escudo de campo se reclaman y consumen mediante una autoridad compartida antes de resolver la Defensa del ataque. El +2 se conserva para ese ataque declarado, pero el estado no puede reaparecer por falta de permisos del atacante.
-4. **Concurrencia de Energía entre clientes.** Las mutaciones compartidas de Energía se arbitran por el DJ activo primario mediante el socket del sistema. El DJ revalida Energía, Caudal y estado de la fuente dentro de una cola autoritativa antes de descontar. Si existe socket de juego pero no hay DJ activo, la operación compartida se bloquea en lugar de asumir atomicidad local.
-
-La autoridad local por `WeakMap` se conserva sólo como protección intra-cliente y como fallback de pruebas sin runtime Foundry; ya no es la garantía declarada para concurrencia multiusuario.
-
+No se abrió CREA-14 ni se incrementó la versión instalable como parte de este cierre.
 
 ## Regla de cierre
 
