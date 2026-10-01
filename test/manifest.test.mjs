@@ -7,10 +7,10 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = async (file) => JSON.parse(await readFile(resolve(root, file), "utf8"));
 
-test("el manifiesto describe Foundry T.M. 1.1.0", async () => {
+test("el manifiesto describe Foundry T.M. 1.1.1", async () => {
   const manifest = await readJson("system.json");
   assert.equal(manifest.id, "tierra-magica");
-  assert.equal(manifest.version, "1.1.0");
+  assert.equal(manifest.version, "1.1.1");
   assert.equal(manifest.compatibility.verified, "14");
   assert.equal(manifest.initiative.startsWith("2d10"), true);
   assert.equal(manifest.manifest, "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/system.json");
@@ -19,6 +19,8 @@ test("el manifiesto describe Foundry T.M. 1.1.0", async () => {
     .map((file) => access(resolve(root, file))));
   assert.deepEqual(manifest.packs.map((pack) => pack.name), ["character-options","magic","equipment","production"]);
   assert.equal(manifest.packs.every((pack) => pack.type === "Item" && pack.system === "tierra-magica"), true);
+  assert.deepEqual(Object.keys(manifest.documentTypes.Actor), ["character","npc","familiar"]);
+  assert.deepEqual(Object.keys(manifest.documentTypes.Item), ["weapon","armor","shield","equipment","spell","technique","trait","specialization","formula","ritual","device","ancestry","origin","background","discipline","effect"]);
   await Promise.all(manifest.packs.map((pack) => access(resolve(root, pack.path))));
   await access(resolve(root, "assets/ui/tierra-magica-banner-final.jpg"));
   const banner = await stat(resolve(root, "assets/ui/tierra-magica-banner-final.jpg"));
