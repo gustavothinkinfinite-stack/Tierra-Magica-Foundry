@@ -11,6 +11,9 @@ class ActorStub {
     this.system = { turn: { reaction: true } };
     this.calls = [];
   }
+  async update(changes) {
+    if (Object.hasOwn(changes, "system.turn.reaction")) this.system.turn.reaction = changes["system.turn.reaction"];
+  }
   async parry() {
     this.calls.push("parry");
     await new Promise((resolve) => setTimeout(resolve, 10));
