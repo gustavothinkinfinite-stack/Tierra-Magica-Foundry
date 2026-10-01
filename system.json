@@ -2,7 +2,7 @@
   "id": "tierra-magica",
   "title": "Tierra Mágica — Foundry T.M.",
   "description": "Foundry T.M. 1.1: 2d10, desarrollo sin clases, combate, Trauma, Grimorio 60, alquimia, rituales, ingeniería arcano-industrial y familiares.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -66,5 +66,30 @@
       "type": "Item",
       "system": "tierra-magica"
     }
-  ]
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {},
+      "npc": {},
+      "familiar": {}
+    },
+    "Item": {
+      "weapon": {},
+      "armor": {},
+      "shield": {},
+      "equipment": {},
+      "spell": {},
+      "technique": {},
+      "trait": {},
+      "specialization": {},
+      "formula": {},
+      "ritual": {},
+      "device": {},
+      "ancestry": {},
+      "origin": {},
+      "background": {},
+      "discipline": {},
+      "effect": {}
+    }
+  }
 }
