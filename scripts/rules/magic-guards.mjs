@@ -111,6 +111,7 @@ export function installMagicGuards(ActorClass) {
       if (!needsCheck) this.rollCheck = actorRollCheck;
     }
     if (!result) return result;
+    if (result.tmSpellAborted === true) return result;
 
     const outcomes = [];
     const automatic = !needsCheck && intercepted;
