@@ -41,12 +41,14 @@ test("Barrido resuelve contexto defensivo por objetivo", async () => {
   assert.equal(source.includes("const resolutions = targets.map((target)"), true);
   assert.equal(source.includes("attackHits(total, resolved.defense)"), true);
   assert.equal(source.includes("resolved.parry"), true);
-  assert.equal(source.includes("resolved.kinetic"), true);
+  assert.equal(source.includes("claims.get(target.uuid ?? target.id)"), true);
+  assert.equal(source.includes("const kineticBonus = kinetic ? 2 : 0"), true);
 });
 
 test("magia no usa Parada y resuelve Defensa normal por el mismo motor", async () => {
   const magic = await readFile(new URL("../scripts/rules/magic-guards.mjs", import.meta.url), "utf8");
-  assert.equal(magic.includes('resolveActorDefense(target, { kind: "normal", kineticBarrier: true, parryable: false, frontal: false })'), true);
+  assert.equal(magic.includes('resolveActorDefense(target, { kind: "normal", kineticBarrier: false, parryable: false, frontal: false })'), true);
+  assert.equal(magic.includes("claimKineticBarrier"), true);
   assert.equal(magic.includes("parryActive"), false);
   assert.equal(magic.includes("closeParry"), false);
 });

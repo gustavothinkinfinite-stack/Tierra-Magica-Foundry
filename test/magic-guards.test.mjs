@@ -51,8 +51,8 @@ test("ruta real valida objetivos antes de gastar recursos y resuelve áreas por 
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
   assert.equal(guards.includes("validateSpellTargets(item, selectedTokens"), true);
   assert.equal(guards.indexOf("validateSpellTargets(item, selectedTokens") < guards.indexOf("originalUseSpell.call(this, item)"), true);
-  assert.equal(guards.includes("spellTargetOutcomes(item, targets, singleTotal, { automatic })"), true);
-  assert.equal(guards.includes("spellDfFor(item, actor)"), true);
+  assert.equal(guards.includes("spellTargetOutcomes(item, targets, singleTotal, { automatic, kineticBarrierTargets })"), true);
+  assert.equal(guards.includes("spellDfFor(item, actor, { kineticBarrier })"), true);
   assert.equal(guards.includes("resolveSpellImpacts(item, hitTargets, { protectionContext:"), true);
   assert.equal(guards.includes('adjustResource("health", -impact.damage)'), true);
   assert.equal(guards.includes("no crea automáticamente una Herida Grave"), true);
@@ -99,5 +99,18 @@ test("un área reutiliza una sola tirada contra las Defensas de todos los objeti
 
 test("Defensa normal mágica usa contexto de Barrera pero no Parada ni frente implícito", async () => {
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
-  assert.equal(guards.includes('resolveActorDefense(target, { kind: "normal", kineticBarrier: true, parryable: false, frontal: false })'), true);
+  assert.equal(guards.includes('resolveActorDefense(target, { kind: "normal", kineticBarrier: false, parryable: false, frontal: false })'), true);
+  assert.equal(guards.includes("kineticBarrierTargets"), true);
+  assert.equal(guards.includes("claimKineticBarrier"), true);
+});
+
+
+test("Defensa normal conserva +2 cinético aunque el estado se reclame antes de resolver", async () => {
+  const { spellTargetOutcomes } = await import("../scripts/rules/magic-guards.mjs");
+  const item={system:{defense:"normal",difficulty:12}};
+  const target={id:"t",system:{derived:{defense:14},combat:{kineticBarrierActive:false}}};
+  const claimed=new Set(["t"]);
+  const [outcome]=spellTargetOutcomes(item,[target],15,{kineticBarrierTargets:claimed});
+  assert.equal(outcome.df,16);
+  assert.equal(outcome.success,false);
 });

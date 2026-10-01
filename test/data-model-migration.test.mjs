@@ -62,7 +62,7 @@ test("schema v1 migra Movimiento y bonos manuales sin reabrir CREA-11",()=>{
   assert.deepEqual(migrateActorSource(migrated),migrated);
 });
 
-test("schema v2 preserva el Movimiento histórico de Familiares como autoridad base",()=>{
+test("schema actual preserva el Movimiento histórico de Familiares como autoridad base",()=>{
   const source={type:"familiar",system:{
     schemaVersion:1,
     familiar:{movement:9,protection:1},
@@ -73,4 +73,32 @@ test("schema v2 preserva el Movimiento histórico de Familiares como autoridad b
   assert.equal(migrated.system.movement.base,9);
   assert.equal("movement" in migrated.system.familiar,false);
   assert.equal(migrated.system.turn.movementSpent,0);
+});
+
+
+test("schema v2 migra dispositivos al modelo de fuente energética sin reinterpretar ediciones explícitas",()=>{
+  const legacyShield={name:"Escudo de campo",type:"device",system:{
+    schemaVersion:2,slug:"escudo-de-campo",energy:{value:0,max:0},flow:2,consumption:2
+  }};
+  const migratedShield=migrateItemSource(legacyShield,{embedded:true});
+  assert.equal(migratedShield.system.schemaVersion,TM_SCHEMA_VERSION);
+  assert.equal(migratedShield.system.energySourceItemId,"");
+  assert.equal(migratedShield.system.activation,"Reacción");
+  assert.equal(migratedShield.system.kineticDefense,true);
+  assert.deepEqual(migrateItemSource(migratedShield,{embedded:true}),migratedShield);
+
+  const explicit={name:"Escudo de campo",type:"device",system:{
+    schemaVersion:2,slug:"escudo-de-campo",energy:{value:3,max:3},flow:2,consumption:2,
+    energySourceItemId:"custom-source",activation:"Acción",kineticDefense:false
+  }};
+  const preserved=migrateItemSource(explicit,{embedded:true});
+  assert.equal(preserved.system.energySourceItemId,"custom-source");
+  assert.equal(preserved.system.activation,"Acción");
+  assert.equal(preserved.system.kineticDefense,false);
+
+  const generic={name:"Herramienta",type:"device",system:{schemaVersion:2,slug:"herramienta",energy:{value:2,max:2},flow:1,consumption:1}};
+  const migratedGeneric=migrateItemSource(generic,{embedded:true});
+  assert.equal(migratedGeneric.system.energySourceItemId,"");
+  assert.equal(migratedGeneric.system.activation,"Acción");
+  assert.equal(migratedGeneric.system.kineticDefense,false);
 });

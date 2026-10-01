@@ -61,8 +61,9 @@ export async function resetActorTurnForCombat(actor, combat, combatant) {
   // Movimiento es cuantificado: se reinicia el gasto, no un interruptor booleano.
   // Guardia, Parada y sus ventanas asociadas caducan antes de conceder la nueva economía.
   const incapacitated = actorIncapacitated(actor);
+  const movementSpent = incapacitated ? Math.max(0, number(actor.system?.derived?.movement)) : 0;
   await actor.update({
-    "system.turn.movementSpent": 0,
+    "system.turn.movementSpent": movementSpent,
     "system.turn.extraMovement": 0,
     "system.turn.action": !incapacitated,
     "system.turn.reaction": !incapacitated,
@@ -70,7 +71,8 @@ export async function resetActorTurnForCombat(actor, combat, combatant) {
     "system.combat.parryActive": false,
     "system.combat.parrySucceeded": false,
     "system.combat.counterattackUsed": false,
-    "system.combat.kineticBarrierActive": false
+    "system.combat.kineticBarrierActive": false,
+    "system.combat.kineticDefenseSource": ""
   });
   await actor.setFlag?.("tierra-magica", TURN_FLAG, stamp);
   return true;

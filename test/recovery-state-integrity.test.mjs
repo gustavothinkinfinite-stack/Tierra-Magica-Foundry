@@ -18,11 +18,13 @@ test("curar por encima de 0 retira Incapacitado sin borrar Trauma", async () => 
   assert.equal(recovery.includes("system.status.trauma"), false);
 });
 
-test("Descanso Completo respeta healthCap y no borra Trauma", async () => {
+test("Descanso y Descanso Completo usan la autoridad acotada de recuperación y no borran Trauma", async () => {
   const source = await read("scripts/documents/actor.mjs");
-  const full = source.slice(source.indexOf('} else if (kind === "full")'), source.indexOf("await this.update(updates)", source.indexOf('} else if (kind === "full")')));
-  assert.match(full, /recovery\.healthCap/);
-  assert.equal(full.includes("status.trauma"), false);
+  const start = source.indexOf('async rest(kind = "rest")');
+  const rest = source.slice(start, source.indexOf("  #buildSkillBreakdown", start));
+  assert.match(rest, /boundedHealthRecoveryUpdates/);
+  assert.match(rest, /healingCap\(this\)/);
+  assert.equal(rest.includes("status.trauma"), false);
 });
 
 test("Respiro no recupera Vida ni Maná y sólo limpia Saturación", async () => {
@@ -48,7 +50,7 @@ test("economía de turno no revive funcionalmente a un actor a 0 Vida", async ()
   assert.match(source, /actorIncapacitated/);
   assert.match(source, /resources\?\.health\?\.value/);
   assert.match(source, /movementAllowance\(actor\)/);
-  assert.match(source, /"system\.turn\.movementSpent": 0/);
+  assert.match(source, /"system\.turn\.movementSpent": movementSpent/);
   for (const field of ["action", "reaction"]) {
     assert.match(source, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
   }

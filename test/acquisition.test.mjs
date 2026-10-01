@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { selectCatalogCost, preflightAcquisition, detectGrantCycles, budgetSpentByResource } from "../scripts/rules/acquisition.mjs";
+import { selectCatalogCost, preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType, detectGrantCycles, budgetSpentByResource } from "../scripts/rules/acquisition.mjs";
 
 test("context selects legal cost and rebuilding requires declared price context",()=>{
   const costs=[{context:"creation",resource:"pr",amount:3},{context:"progression",resource:"pd",amount:6}];
@@ -76,4 +76,46 @@ test("preflight impide una cuarta Disciplina durante creación pero no en progre
   assert.ok(creation.issues.some((i)=>i.code==="discipline-creation-limit"));
   const progression=preflightAcquisition({actor,candidate,stage:"progression",expectedRevision:1});
   assert.equal(progression.issues.some((i)=>i.code==="discipline-creation-limit"),false);
+});
+
+
+test("CREA-13: un objeto físico sin precio exacto no puede tratarse como 0 PEI",()=>{
+  const actor={system:{creation:{revision:0,status:"building"},skills:{}},items:[]};
+  const weapon={type:"weapon",name:"Arma sin precio",system:{slug:"arma-sin-precio",priceStatus:"unset",priceCopper:0}};
+  const missing=preflightPhysicalPurchase({actor,candidate:weapon,stage:"creation",expectedRevision:0});
+  assert.equal(missing.valid,false);
+  assert.ok(missing.issues.some((issue)=>issue.code==="physical-price"));
+
+  const exactZero={...weapon,system:{...weapon.system,priceStatus:"exact"}};
+  const exact=preflightPhysicalPurchase({actor,candidate:exactZero,stage:"creation",expectedRevision:0});
+  assert.equal(exact.valid,true);
+  assert.equal(exact.cost.resource,"pei");
+  assert.equal(exact.cost.amount,0);
+});
+
+
+test("CREA-13 cierre: Compra libre física exige precio exacto y Fórmula no usa PEI",()=>{
+  const actor={system:{creation:{revision:0,status:"building"},skills:{}},items:[]};
+  const device={type:"device",name:"Escudo de campo",system:{slug:"escudo-de-campo",priceStatus:"unset",priceCopper:0}};
+  const physical=preflightPhysicalPurchase({actor,candidate:device,stage:"creation",expectedRevision:0});
+  assert.equal(physical.valid,false);
+  assert.ok(physical.issues.some((issue)=>issue.code==="physical-price"));
+
+  const formula={type:"formula",name:"Poción Restauradora",system:{
+    slug:"pocion-restauradora",
+    costs:[{context:"any",resource:"pd",amount:1}]
+  }};
+  assert.equal(isPhysicalPurchaseType(formula.type),false);
+  const knowledge=preflightAcquisition({actor,candidate:formula,stage:"creation",expectedRevision:0});
+  assert.equal(knowledge.valid,true);
+  assert.equal(knowledge.cost.resource,"pd");
+  assert.equal(knowledge.cost.amount,1);
+});
+
+test("CREA-13 cierre: el hook de creación reutiliza el preflight físico común", async ()=>{
+  const source=await import("node:fs/promises").then(({readFile})=>
+    readFile(new URL("../scripts/tierra-magica.mjs",import.meta.url),"utf8")
+  );
+  assert.equal(source.includes("preflightPhysicalPurchase({"),true);
+  assert.equal(source.includes('["weapon","armor","shield","equipment","formula","device"]'),false);
 });

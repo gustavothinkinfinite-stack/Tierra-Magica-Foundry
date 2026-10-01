@@ -239,7 +239,7 @@
           "saturatedFamilies": []
         },
         "legacySkills": {},
-        "schemaVersion": 2,
+        "schemaVersion": 3,
         "legacyIdentityText": {
           "ancestry": "",
           "origin": "",
@@ -369,7 +369,7 @@
     "templates": {
       "base": {
         "description": "",
-        "schemaVersion": 2,
+        "schemaVersion": 3,
         "slug": "",
         "tags": [],
         "costs": [],
@@ -492,6 +492,7 @@
         "base",
         "physical"
       ],
+      "quantity": 0,
       "grade": "common",
       "preparation": "",
       "ingredients": "",
@@ -532,9 +533,12 @@
         "value": 0,
         "max": 0
       },
+      "energySourceItemId": "",
       "flow": 0,
       "stability": "stable",
       "consumption": 0,
+      "activation": "Acción",
+      "kineticDefense": false,
       "effect": "",
       "condition": "operative",
       "overloadAllowed": true

@@ -2,6 +2,7 @@
 import { offensiveSpellNeedsTargets, resolveSpellImpacts, validateSpellTargets } from "./spell-impact.mjs";
 import { normalizeSlug } from "./identity.mjs";
 import { resolveActorDefense } from "./defense-context.mjs";
+import { claimKineticBarrier, canResolveSharedMutation } from "./state-authority.mjs";
 
 const number = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -10,19 +11,24 @@ const number = (value, fallback = 0) => {
 
 const rollTotal = (message) => number(message?.rolls?.[0]?.total ?? message?.roll?.total ?? message?.total, Number.NaN);
 
-function spellDfFor(item, target = null) {
+function spellDfFor(item, target = null, { kineticBarrier = null } = {}) {
   let df = number(item.system.difficulty, 12);
   if (item.system.defense === "mental" && target) df = resolveActorDefense(target, { kind: "mental" }).total;
   if (item.system.defense === "body" && target) df = resolveActorDefense(target, { kind: "body" }).total;
   if (item.system.defense === "normal" && target) {
-    df = resolveActorDefense(target, { kind: "normal", kineticBarrier: true, parryable: false, frontal: false }).total;
+    const useKinetic = kineticBarrier === null
+      ? Boolean(target.system?.combat?.kineticBarrierActive)
+      : kineticBarrier === true;
+    df = resolveActorDefense(target, { kind: "normal", kineticBarrier: false, parryable: false, frontal: false }).total + (useKinetic ? 2 : 0);
   }
   return df;
 }
 
-export function spellTargetOutcomes(item, targets = [], total = Number.NaN, { automatic = false } = {}) {
+export function spellTargetOutcomes(item, targets = [], total = Number.NaN, { automatic = false, kineticBarrierTargets = null } = {}) {
   return targets.map((actor) => {
-    const df = spellDfFor(item, actor);
+    const key = actor?.uuid ?? actor?.id;
+    const kineticBarrier = kineticBarrierTargets instanceof Set ? kineticBarrierTargets.has(key) : null;
+    const df = spellDfFor(item, actor, { kineticBarrier });
     return {
       actor,
       total: automatic ? Number.POSITIVE_INFINITY : total,
@@ -65,6 +71,12 @@ export function installMagicGuards(ActorClass) {
       return ui.notifications.warn("La selección de objetivos de " + item.name + " no es válida.");
     }
     const targets = targetValidation.targets;
+    const defenseKind = String(item.system?.defense ?? "");
+    if (defenseKind === "normal" && targets.some((target) =>
+      target.system?.combat?.kineticBarrierActive && !canResolveSharedMutation(target)
+    )) {
+      return ui.notifications.warn("No hay una autoridad activa capaz de consumir la defensa cinética de todos los objetivos.");
+    }
 
     if (options.remoteOrigin) {
       const familiar = options.remoteOrigin;
@@ -111,30 +123,31 @@ export function installMagicGuards(ActorClass) {
       if (!needsCheck) this.rollCheck = actorRollCheck;
     }
     if (!result) return result;
+    if (result.tmSpellAborted === true) return result;
+
+    const kineticBarrierTargets = new Set();
+    if (defenseKind === "normal") {
+      for (const target of targets) {
+        const claim = await claimKineticBarrier(target);
+        if (!claim.ok) {
+          ui.notifications.warn(claim.error);
+          return result;
+        }
+        if (claim.claimed) kineticBarrierTargets.add(target.uuid ?? target.id);
+      }
+    }
 
     const outcomes = [];
     const automatic = !needsCheck && intercepted;
     if (targets.length) {
       const singleTotal = automatic ? Number.POSITIVE_INFINITY : rollTotal(result);
-      outcomes.push(...spellTargetOutcomes(item, targets, singleTotal, { automatic }));
+      outcomes.push(...spellTargetOutcomes(item, targets, singleTotal, { automatic, kineticBarrierTargets }));
     } else {
       outcomes.push({ actor: null, total: automatic ? Number.POSITIVE_INFINITY : rollTotal(result),
         df: spellDfFor(item), success: automatic || rollTotal(result) >= spellDfFor(item) });
     }
 
     const castSuccess = outcomes.some((entry) => entry.success);
-
-    // Barrera Cinética modifica únicamente Defensa normal y pertenece al ataque
-    // declarado. Tras resolver ese ataque mágico, su +2 no puede persistir para
-    // una segunda agresión. Las Defensas Mental/Corporal no la consumen.
-    if (String(item.system?.defense ?? "") === "normal") {
-      for (const target of targets) {
-        if (!target?.system?.combat?.kineticBarrierActive) continue;
-        const canUpdateTarget = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
-        if (canUpdateTarget) await target.update({ "system.combat.kineticBarrierActive": false });
-        else ui.notifications.warn("Barrera Cinética se aplicó al hechizo, pero un usuario con permisos sobre " + target.name + " debe cerrar su estado.");
-      }
-    }
 
     const after = Array.isArray(this.system.magic?.sustainedSpellIds)
       ? [...this.system.magic.sustainedSpellIds]

@@ -28,7 +28,7 @@ export const STARTER_CONTENT = {
  shield:[
   {name:"Broquel",system:{passiveDefense:1,block:0,strengthMin:0,priceCopper:50,priceQuantity:1,priceStatus:"exact",legacyPrice:10,properties:"Sin Bloqueo especial"}},
   {name:"Escudo estándar",system:{passiveDefense:1,block:2,strengthMin:0,priceCopper:150,priceQuantity:1,priceStatus:"exact",legacyPrice:18,frontalOnly:true,properties:"Bloqueo +2"}},
-  {name:"Escudo pesado",system:{passiveDefense:2,block:2,strengthMin:2,priceCopper:300,priceQuantity:1,priceStatus:"exact",legacyPrice:30,frontalOnly:true,properties:"Bloqueo +2; Movimiento -1"}}
+  {name:"Escudo pesado",system:{passiveDefense:2,block:2,strengthMin:2,movementPenalty:-1,priceCopper:300,priceQuantity:1,priceStatus:"exact",legacyPrice:30,frontalOnly:true,properties:"Bloqueo +2; Movimiento -1"}}
  ],
  spell:[
   {name:"Proyectil Ígneo",system:{discipline:"evocation",grade:"basic",manaCost:3,attribute:"int",defense:"normal",damage:5,penetration:1,range:"Medio"}},
@@ -69,14 +69,14 @@ export const STARTER_CONTENT = {
   {name:"Coordinación Reactiva",system:{grade:"advanced",pdCost:3,requirements:"Familiar Mágico; Vínculo III",effect:"Define un disparador simple y observable para una respuesta; no genera Reacciones adicionales ni cadenas reactivas."}}
  ],
  formula:[
-  {name:"Bálsamo Restaurador",system:{grade:"common",pdCost:1,saturating:true,family:"restaurativa",effect:"Recupera 4 Vida; no Trauma/Herida Grave.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:12}},
-  {name:"Poción Restauradora",system:{grade:"common",pdCost:1,route:"Oral",saturating:true,family:"restaurativa",effect:"Acción: recupera 4 Vida, hasta el máximo y respetando límites de lesión; no reduce Trauma ni repara Heridas Graves.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:12}},
-  {name:"Poción de Recuperación Arcana",system:{grade:"refined",pdCost:1,route:"Oral",saturating:true,family:"arcana",effect:"Acción: recupera 3 Maná, hasta el máximo; no elimina Fatiga ni consecuencias de Sobrecarga.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:15}},
-  {name:"Tónico de Vigor",system:{grade:"refined",pdCost:1,saturating:true,family:"potenciador",effect:"Ventaja en una prueba de VIG por esfuerzo prolongado.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:10}},
-  {name:"Supresor del Dolor",system:{grade:"refined",pdCost:1,saturating:true,family:"analgésica",effect:"Ignora una Desventaja causada por dolor compatible; no repara lesión.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:15}},
-  {name:"Neutralizante Común",system:{grade:"refined",pdCost:1,effect:"Nueva resistencia con Ventaja contra toxina compatible.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:10}},
-  {name:"Toxina Debilitante",system:{grade:"complex",pdCost:2,route:"Sangre",effect:"VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:18}},
-  {name:"Bomba Incendiaria",system:{grade:"complex",pdCost:2,effect:"Área pequeña; Daño 6 Pen 1; resolución de colocación.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:20}}
+  {name:"Bálsamo Restaurador",system:{quantity:0,grade:"common",pdCost:1,saturating:true,family:"restaurativa",effect:"Recupera 4 Vida; no Trauma/Herida Grave.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:12}},
+  {name:"Poción Restauradora",system:{quantity:0,grade:"common",pdCost:1,route:"Oral",saturating:true,family:"restaurativa",effect:"Acción: recupera 4 Vida, hasta el máximo y respetando límites de lesión; no reduce Trauma ni repara Heridas Graves.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:12}},
+  {name:"Poción de Recuperación Arcana",system:{quantity:0,grade:"refined",pdCost:1,route:"Oral",saturating:true,family:"arcana",effect:"Acción: recupera 3 Maná, hasta el máximo; no elimina Fatiga ni consecuencias de Sobrecarga.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:15}},
+  {name:"Tónico de Vigor",system:{quantity:0,grade:"refined",pdCost:1,saturating:true,family:"potenciador",effect:"Ventaja en una prueba de VIG por esfuerzo prolongado.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:10}},
+  {name:"Supresor del Dolor",system:{quantity:0,grade:"refined",pdCost:1,saturating:true,family:"analgésica",effect:"Ignora una Desventaja causada por dolor compatible; no repara lesión.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:15}},
+  {name:"Neutralizante Común",system:{quantity:0,grade:"refined",pdCost:1,effect:"Nueva resistencia con Ventaja contra toxina compatible.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:10}},
+  {name:"Toxina Debilitante",system:{quantity:0,grade:"complex",pdCost:2,route:"Sangre",effect:"VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:18}},
+  {name:"Bomba Incendiaria",system:{quantity:0,grade:"complex",pdCost:2,effect:"Área pequeña; Daño 6 Pen 1; resolución de colocación.",priceCopper:0,priceQuantity:1,priceStatus:"unset",legacyPrice:20}}
  ],
  ritual:[
   {name:"Círculo de Protección",system:{grade:"basic",pdCost:2,difficulty:15,time:"30 minutos",usefulAssistants:2,manaDirector:3,manaAssistantMax:1,effect:"Barrera contra categoría sobrenatural definida."}},
@@ -87,6 +87,6 @@ export const STARTER_CONTENT = {
   {name:"Celda arcana menor",system:{energy:{value:4,max:4},flow:2,stability:"stable",consumption:0}},
   {name:"Acumulador estándar",system:{energy:{value:8,max:8},flow:3,stability:"stable",consumption:0}},
   {name:"Núcleo pesado",system:{energy:{value:16,max:16},flow:5,stability:"sensitive",consumption:0}},
-  {name:"Escudo de campo",system:{flow:2,stability:"stable",consumption:2,effect:"Reacción: +2 Defensa; no acumula con Barrera Cinética equivalente."}}
+  {name:"Escudo de campo",system:{flow:2,stability:"stable",consumption:2,activation:"Reacción",kineticDefense:true,effect:"Reacción: +2 Defensa; no acumula con Barrera Cinética equivalente."}}
  ]
 };

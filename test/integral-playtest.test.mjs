@@ -23,7 +23,7 @@ test("partida integral: Reacción es compartida por defensas, magia reactiva y f
 test("partida integral: cambio de turno restaura economía cuantificada y no concede turno independiente al Familiar", async () => {
   const turn = await read("scripts/rules/turn-economy.mjs");
   assert.match(turn, /\["character", "npc"\]\.includes\(actor\.type\)/);
-  assert.match(turn, /"system\.turn\.movementSpent": 0/);
+  assert.match(turn, /"system\.turn\.movementSpent": movementSpent/);
   assert.match(turn, /"system\.turn\.extraMovement": 0/);
   for (const field of ["action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
   for (const field of ["guardActive", "parryActive", "parrySucceeded", "counterattackUsed", "kineticBarrierActive"]) assert.match(turn, new RegExp('"system\\.combat\\.' + field + '": false'));
@@ -46,7 +46,8 @@ test("partida integral: Respiro limpia Saturación pero no recupera Vida ni Man�
 
 test("partida integral: Descanso y descanso completo respetan topes y reinician sólo recursos declarados", async () => {
   const actor = await read("scripts/documents/actor.mjs");
-  assert.match(actor, /Math\.min\(resourceMaximum\(this, "health"\), toNumber\(hp\.value\) \+ toNumber\(this\.system\.attributes\.vig\.value\) \+ 2\)/);
+  assert.match(actor, /boundedHealthRecoveryUpdates\(this, toNumber\(this\.system\.attributes\.vig\.value\) \+ 2\)/);
+  assert.match(actor, /healingCap\(this\)/);
   assert.match(actor, /Math\.min\(resourceMaximum\(this, "mana"\), toNumber\(mp\.value\) \+ toNumber\(this\.system\.attributes\.vol\.value\) \+ 1\)/);
   assert.match(actor, /updates\["system\.status\.fatigue"\] = 0/);
 });
@@ -58,12 +59,21 @@ test("partida integral: alquimia no permite duplicar dosis ni saltarse Saturaci�
   assert.match(formula, /quantity - 1/);
 });
 
-test("partida integral: dispositivo valida Caudal y Energía antes del consumo", async () => {
+test("partida integral: dispositivo valida fuente, Caudal y Energía antes del consumo", async () => {
   const actor = await read("scripts/documents/actor.mjs");
-  assert.match(actor, /if \(consumption > flow\)/);
-  assert.match(actor, /if \(consumption > energy\)/);
-  assert.match(actor, /"system\.energy\.value": energy - consumption/);
+  const energy = await read("scripts/rules/device-energy.mjs");
+  const authority = await read("scripts/rules/state-authority.mjs");
+  assert.match(actor, /resolveDeviceEnergySource\(this, item\)/);
+  assert.match(actor, /if \(consumption > power\.flow\)/);
+  assert.match(actor, /if \(consumption > power\.energy\)/);
+  assert.match(actor, /consumeDeviceEnergyAuthoritatively\(this, power\.source, consumption/);
   assert.match(actor, /success && consumption/);
+  assert.match(energy, /energySourceItemId/);
+  assert.match(actor, /consumeDeviceEnergyAuthoritatively/);
+  assert.match(authority, /consume-device-energy/);
+  assert.match(authority, /primaryActiveGm/);
+  assert.match(authority, /serial\("energy:/);
+  assert.match(authority, /"system\.energy\.value": energy - amount/);
 });
 
 test("partida integral: daño físico y mágico desembocan en adjustResource health", async () => {
@@ -84,7 +94,7 @@ test("exploit: incapacitado no recupera Acción, Movimiento ni Reacción al avan
   const turn = await read("scripts/rules/turn-economy.mjs");
   assert.match(turn, /actorIncapacitated/);
   assert.match(turn, /movementAllowance/);
-  assert.match(turn, /"system\.turn\.movementSpent": 0/);
+  assert.match(turn, /"system\.turn\.movementSpent": movementSpent/);
   for (const field of ["action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
 });
 

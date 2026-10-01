@@ -13,10 +13,13 @@ import { prepareRuleElements, modifiersForSelector } from "../rules/rule-element
 import { deriveActorState } from "../rules/derived-state.mjs";
 import { resolveActorDefense } from "../rules/defense-context.mjs";
 import { resourceMaximum } from "../rules/resource-reconciliation.mjs";
+import { boundedHealthRecoveryUpdates, healingCap } from "../rules/healing-delivery.mjs";
+import { resolveDeviceEnergySource, withDeviceEnergyLock } from "../rules/device-energy.mjs";
+import { consumeDeviceEnergyAuthoritatively } from "../rules/state-authority.mjs";
 import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
-import { preflightAcquisition, acquisitionFromCost } from "../rules/acquisition.mjs";
+import { preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType } from "../rules/acquisition.mjs";
 
 export class TierraMagicaActor extends Actor {
   prepareDerivedData() {
@@ -326,28 +329,18 @@ export class TierraMagicaActor extends Actor {
       }
     }
 
-    const physical = ["weapon","armor","shield","equipment","formula","device"].includes(candidate.type);
+    const physical = isPhysicalPurchaseType(candidate.type);
     let preflight;
     if (physical && !(candidate.system.costs?.length) && mode === "purchased") {
-      const resource = resolvedStage === "creation" ? "pei" : "currency";
-      const amount = Math.max(0, toNumber(candidate.system.priceCopper));
-      preflight = {
-        valid: true,
-        issues: [],
-        cost: { context: resolvedStage === "creation" ? "creation" : "progression", resource, amount },
-        acquisition: acquisitionFromCost({ resource, amount }, { mode, stage: resolvedStage === "rebuilding" ? (priceContext ?? "progression") : resolvedStage, sources }),
-        revision: toNumber(this.system.creation?.revision)
-      };
-      const identityCheck = preflightAcquisition({
+      preflight = preflightPhysicalPurchase({
         actor: this,
-        candidate: { ...candidate, system: { ...candidate.system, costs: [{ context:"any", resource:"none", amount:0 }] } },
-        stage: resolvedStage === "rebuilding" ? "rebuilding" : "creation",
-        priceContext: resolvedStage === "rebuilding" ? (priceContext ?? "creation") : null,
+        candidate,
+        stage: resolvedStage,
+        priceContext,
         expectedRevision: this.system.creation?.revision,
         mode,
         sources
       });
-      if (!identityCheck.valid) preflight = { ...preflight, valid:false, issues:identityCheck.issues };
     } else {
       preflight = preflightAcquisition({
         actor: this,
@@ -623,7 +616,10 @@ export class TierraMagicaActor extends Actor {
       const success = toNumber(roll?.total) >= 17;
       const previousFatigue = toNumber(this.system.status?.fatigue);
       await this.update({ "system.status.fatigue": previousFatigue >= 2 ? 3 : 2 });
-      if (!success) return ui.notifications.warn("La Sobrecarga falla: el hechizo no se produce. La Pifia, si aparece, requiere una consecuencia mágica contextual.");
+      if (!success) {
+        ui.notifications.warn("La Sobrecarga falla: el hechizo no se produce. La Pifia, si aparece, requiere una consecuencia mágica contextual.");
+        return { tmSpellAborted: true, tmActionResolved: true, overload: true, roll };
+      }
     } else if (cost) {
       await this.update({ "system.resources.mana.value": mana - cost });
     }
@@ -664,7 +660,7 @@ export class TierraMagicaActor extends Actor {
 
   async useFormula(item) {
     if (!item || item.type !== "formula") return null;
-    if (toNumber(item.system.quantity, 1) <= 0) return ui.notifications.warn("No quedan dosis de " + item.name + ".");
+    if (toNumber(item.system.quantity, 0) <= 0) return ui.notifications.warn("No hay una dosis preparada de " + item.name + ".");
 
     const family = String(item.system.family ?? "").trim().toLowerCase();
     const saturated = Array.isArray(this.system.alchemy?.saturatedFamilies) ? [...this.system.alchemy.saturatedFamilies] : [];
@@ -675,10 +671,7 @@ export class TierraMagicaActor extends Actor {
     const updates = {};
     const formulaSlug = normalizeSlug(item.system?.slug || item.name);
     if (formulaSlug === "pocion-restauradora" || formulaSlug === "balsamo-restaurador") {
-      const hp = this.system.resources.health;
-      const maximum = resourceMaximum(this, "health");
-      const cap = Math.max(0, Math.min(maximum, toNumber(this.system.recovery?.healthCap, maximum)));
-      updates["system.resources.health.value"] = Math.min(cap, toNumber(hp.value) + 4);
+      Object.assign(updates, boundedHealthRecoveryUpdates(this, 4).updates);
     } else if (formulaSlug === "pocion-de-recuperacion-arcana") {
       const mp = this.system.resources.mana;
       updates["system.resources.mana.value"] = Math.min(resourceMaximum(this, "mana"), toNumber(mp.value) + 3);
@@ -690,7 +683,7 @@ export class TierraMagicaActor extends Actor {
       updates["system.alchemy.saturatedFamilies"] = [...new Set([...saturated, family])];
     }
     await this.update(updates);
-    await item.update({ "system.quantity": Math.max(0, toNumber(item.system.quantity, 1) - 1) });
+    await item.update({ "system.quantity": Math.max(0, toNumber(item.system.quantity, 0) - 1) });
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(this.name) + " usa " + foundry.utils.escapeHTML(item.name) + "</strong><p>" + foundry.utils.escapeHTML(item.system.effect ?? "") + "</p></div>"
@@ -730,15 +723,32 @@ export class TierraMagicaActor extends Actor {
     if (!item || item.type !== "device") return null;
     const condition = String(item.system.condition ?? "operative");
     if (condition === "disabled") return ui.notifications.warn(item.name + " está Deshabilitado.");
-    const consumption = Math.max(0, toNumber(item.system.consumption));
-    const energy = Math.max(0, toNumber(item.system.energy?.value));
-    const flow = Math.max(0, toNumber(item.system.flow));
-    if (consumption > flow) return ui.notifications.warn(item.name + " requiere más Caudal del que puede entregar.");
-    if (consumption > energy) return ui.notifications.warn(item.name + " no tiene Energía suficiente.");
-    if (consumption) await item.update({ "system.energy.value": energy - consumption });
-    return ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor: this }),
-      content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(item.name) + "</strong><p>Consumo " + consumption + " Energía · Caudal " + flow + "</p><p>" + foundry.utils.escapeHTML(item.system.effect ?? "") + "</p></div>"
+    const initialPower = resolveDeviceEnergySource(this, item);
+    if (!initialPower.valid) return ui.notifications.warn(initialPower.issue);
+    return withDeviceEnergyLock(initialPower.source, async () => {
+      const power = resolveDeviceEnergySource(this, item);
+      if (!power.valid) return ui.notifications.warn(power.issue);
+      const consumption = Math.max(0, toNumber(item.system.consumption));
+      if (consumption > power.flow) {
+        return ui.notifications.warn(item.name + " requiere " + consumption + " de Caudal y " + power.source.name + " sólo entrega " + power.flow + ".");
+      }
+      if (consumption > power.energy) {
+        return ui.notifications.warn(power.source.name + " no tiene Energía suficiente para activar " + item.name + ".");
+      }
+      const energyResult = await consumeDeviceEnergyAuthoritatively(this, power.source, consumption);
+      if (!energyResult.ok) return ui.notifications.warn(energyResult.error);
+      if (item.system.kineticDefense === true) {
+        await this.update({
+          "system.combat.kineticBarrierActive": true,
+          "system.combat.kineticDefenseSource": item.name
+        });
+      }
+      return ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(item.name) + "</strong><p>Fuente: " +
+          foundry.utils.escapeHTML(power.source.name) + " · Consumo " + consumption + " Energía · Caudal disponible " + power.flow +
+          "</p><p>" + foundry.utils.escapeHTML(item.system.effect ?? "") + "</p></div>"
+      });
     });
   }
 
@@ -746,26 +756,43 @@ export class TierraMagicaActor extends Actor {
     if (!item || item.type !== "device") return null;
     if (!item.system.overloadAllowed) return ui.notifications.warn(item.name + " no admite Sobrecarga Controlada.");
     if (String(item.system.condition ?? "operative") === "disabled") return ui.notifications.warn(item.name + " está Deshabilitado.");
-    const consumption = Math.max(0, toNumber(item.system.consumption));
-    const energy = Math.max(0, toNumber(item.system.energy?.value));
-    const effectiveFlow = Math.max(0, toNumber(item.system.flow)) + 1;
-    if (consumption > effectiveFlow) return ui.notifications.warn(item.name + " excede incluso el Caudal de Sobrecarga (" + effectiveFlow + ").");
-    if (consumption > energy) return ui.notifications.warn(item.name + " no tiene Energía suficiente para esta activación.");
-    const roll = await this.rollCheck({
-      label: "Sobrecarga Controlada: " + item.name,
-      attributeKey: "int",
-      skillKey: "engineering",
-      df: 16
+    const initialPower = resolveDeviceEnergySource(this, item);
+    if (!initialPower.valid) return ui.notifications.warn(initialPower.issue);
+    return withDeviceEnergyLock(initialPower.source, async () => {
+      const power = resolveDeviceEnergySource(this, item);
+      if (!power.valid) return ui.notifications.warn(power.issue);
+      const consumption = Math.max(0, toNumber(item.system.consumption));
+      const effectiveFlow = power.flow + 1;
+      if (consumption > effectiveFlow) return ui.notifications.warn(item.name + " excede incluso el Caudal de Sobrecarga (" + effectiveFlow + ").");
+      if (consumption > power.energy) return ui.notifications.warn(power.source.name + " no tiene Energía suficiente para esta activación.");
+      const roll = await this.rollCheck({
+        label: "Sobrecarga Controlada: " + item.name,
+        attributeKey: "int",
+        skillKey: "engineering",
+        df: 16
+      });
+      const success = toNumber(roll?.total) >= 16;
+      if (success && consumption) {
+        const energyResult = await consumeDeviceEnergyAuthoritatively(this, power.source, consumption, { flowBonus: 1 });
+        if (!energyResult.ok) {
+          ui.notifications.warn(energyResult.error);
+          return { tmDeviceAborted:true, tmActionResolved:true, overload:true, roll };
+        }
+      }
+      const deviceUpdates = { "system.condition": success ? "damaged" : "disabled" };
+      await item.update(deviceUpdates);
+      if (success && item.system.kineticDefense === true) {
+        await this.update({
+          "system.combat.kineticBarrierActive": true,
+          "system.combat.kineticDefenseSource": item.name
+        });
+      }
+      const outcome = success
+        ? "La activación se resuelve con Caudal efectivo " + effectiveFlow + ", consume " + consumption + " Energía de " + power.source.name + " y el dispositivo queda Dañado."
+        : "La activación no se produce y el dispositivo queda Deshabilitado; no consume Energía.";
+      await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Sobrecarga Controlada</strong><p>" + foundry.utils.escapeHTML(outcome) + "</p><p>La Pifia puede añadir una consecuencia energética contextual.</p></div>" });
+      return roll;
     });
-    const success = toNumber(roll?.total) >= 16;
-    const updates = { "system.condition": success ? "damaged" : "disabled" };
-    if (success && consumption) updates["system.energy.value"] = energy - consumption;
-    await item.update(updates);
-    const outcome = success
-      ? "La activación se resuelve con Caudal efectivo " + effectiveFlow + ", consume " + consumption + " Energía y el dispositivo queda Dañado."
-      : "La activación no se produce y el dispositivo queda Deshabilitado; no consume Energía.";
-    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Sobrecarga Controlada</strong><p>" + outcome + "</p><p>La Pifia puede añadir una consecuencia energética contextual.</p></div>" });
-    return roll;
   }
 
 
@@ -793,7 +820,7 @@ export class TierraMagicaActor extends Actor {
       return ui.notifications.info(this.name + ": Respiro completado. No recupera Vida ni Maná; limpia Saturación de preparaciones compatibles.");
     } else if (kind === "rest") {
       if (!recovery.healthUsed) {
-        updates["system.resources.health.value"] = Math.min(resourceMaximum(this, "health"), toNumber(hp.value) + toNumber(this.system.attributes.vig.value) + 2);
+        Object.assign(updates, boundedHealthRecoveryUpdates(this, toNumber(this.system.attributes.vig.value) + 2).updates);
         updates["system.recovery.healthUsed"] = true;
       }
       if (!recovery.manaUsed) {
@@ -801,9 +828,11 @@ export class TierraMagicaActor extends Actor {
         updates["system.recovery.manaUsed"] = true;
       }
     } else if (kind === "full") {
-      const healthMaximum = resourceMaximum(this, "health");
-      const cap = Math.max(0, Math.min(healthMaximum, toNumber(recovery.healthCap, healthMaximum)));
-      updates["system.resources.health.value"] = cap;
+      const currentHealth = Math.max(0, toNumber(hp.value));
+      const cap = healingCap(this);
+      if (cap > currentHealth) {
+        Object.assign(updates, boundedHealthRecoveryUpdates(this, cap - currentHealth).updates);
+      }
       updates["system.resources.mana.value"] = resourceMaximum(this, "mana");
       updates["system.recovery.healthUsed"] = false;
       updates["system.recovery.manaUsed"] = false;

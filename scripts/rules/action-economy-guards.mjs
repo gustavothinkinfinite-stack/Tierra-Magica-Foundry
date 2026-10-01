@@ -32,12 +32,12 @@ export async function runAction(actor, operation) {
   }
 }
 
-async function runReactionSpell(actor, operation) {
+async function runReactionOperation(actor, operation) {
   // runReaction ya aporta la exclusión transversal con Parada/Contramagia/Familiar.
   // Este bloqueo local además impide dos lanzamientos reactivos simultáneos antes
   // de que el primero alcance a persistir el gasto de Reacción.
   if (reactionLocksByActor.has(actor)) {
-    ui.notifications.warn(actor.name + " ya está resolviendo un hechizo de Reacción.");
+    ui.notifications.warn(actor.name + " ya está resolviendo una Reacción.");
     return null;
   }
   reactionLocksByActor.add(actor);
@@ -70,18 +70,24 @@ export function installActionEconomyGuards(ActorClass) {
     // no a la Acción. Esto incluye Barrera Cinética y futuras reacciones explícitas,
     // sin inferir activaciones nuevas por nombre o descripción.
     if (String(item?.system?.activation ?? "").trim().toLowerCase() === "reacción") {
-      return runReactionSpell(this, () => originalUseSpell.call(this, item, ...args));
+      return runReactionOperation(this, () => originalUseSpell.call(this, item, ...args));
     }
     return runAction(this, () => originalUseSpell.call(this, item, ...args));
   };
   ActorClass.prototype.useFormula = async function (...args) {
     return runAction(this, () => originalUseFormula.apply(this, args));
   };
-  ActorClass.prototype.useDevice = async function (...args) {
-    return runAction(this, () => originalUseDevice.apply(this, args));
+  ActorClass.prototype.useDevice = async function (item, ...args) {
+    if (String(item?.system?.activation ?? "").trim().toLowerCase() === "reacción") {
+      return runReactionOperation(this, () => originalUseDevice.call(this, item, ...args));
+    }
+    return runAction(this, () => originalUseDevice.call(this, item, ...args));
   };
-  ActorClass.prototype.overloadDevice = async function (...args) {
-    return runAction(this, () => originalOverloadDevice.apply(this, args));
+  ActorClass.prototype.overloadDevice = async function (item, ...args) {
+    if (String(item?.system?.activation ?? "").trim().toLowerCase() === "reacción") {
+      return runReactionOperation(this, () => originalOverloadDevice.call(this, item, ...args));
+    }
+    return runAction(this, () => originalOverloadDevice.call(this, item, ...args));
   };
 
   // Combate ya valida y persiste el gasto internamente. Esta envoltura añade la

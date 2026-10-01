@@ -174,6 +174,50 @@ export function deriveActorState({
   const movementContributions = selectorContributions(rulePreparation, "movement");
   const initiativeContributions = selectorContributions(rulePreparation, "initiativeModifier");
 
+  const equipmentIssues = [];
+  const fue = number(attributes.fue?.value, 1);
+
+  if (armor) {
+    const minimum = Math.max(0, number(armor.item.system?.strengthMin));
+    const deficit = Math.max(0, minimum - fue);
+    if (deficit >= 1) {
+      movementContributions.push(contribution({
+        selector: "movement",
+        value: -1,
+        label: "Armadura por debajo de FUE mínima",
+        sourceItemId: armor.item.id ?? null,
+        sourceItemName: armor.item.name ?? "",
+        sourceType: "equipment",
+        equipmentType: "armor"
+      }));
+      equipmentIssues.push(deficit === 1 ? {
+        code: "armor-strength-deficit",
+        message: armor.item.name + ": FUE un punto por debajo del mínimo; Carga Pesada y Desventaja en acciones físicas relevantes.",
+        itemId: armor.item.id ?? null,
+        itemName: armor.item.name ?? "",
+        severity: "warning"
+      } : {
+        code: "armor-strength-incompetent",
+        message: armor.item.name + ": FUE dos o más puntos por debajo del mínimo; no puede usarse competentemente en combate sin una capacidad específica.",
+        itemId: armor.item.id ?? null,
+        itemName: armor.item.name ?? "",
+        severity: "warning"
+      });
+    }
+  }
+
+  if (shield && number(shield.item.system?.movementPenalty) !== 0) {
+    movementContributions.push(contribution({
+      selector: "movement",
+      value: number(shield.item.system.movementPenalty),
+      label: "Penalización de escudo",
+      sourceItemId: shield.item.id ?? null,
+      sourceItemName: shield.item.name ?? "",
+      sourceType: "equipment",
+      equipmentType: "shield"
+    }));
+  }
+
   if (system.combat?.guardActive) {
     defenseContributions.push(contribution({
       selector: "defense",
@@ -187,7 +231,7 @@ export function deriveActorState({
     defenseContributions.push(contribution({
       selector: "defense",
       value: 2,
-      label: "Barrera Cinética",
+      label: String(system.combat?.kineticDefenseSource || "Barrera Cinética"),
       sourceType: "state",
       contextual: true,
       context: "kineticBarrier"
@@ -366,7 +410,8 @@ export function deriveActorState({
     contextual: {
       defense: defenseContextual,
       protection: protectionContextual
-    }
+    },
+    equipmentIssues
   };
 }
 
