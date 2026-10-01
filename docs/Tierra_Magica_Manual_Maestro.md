@@ -676,24 +676,18 @@ Las Técnicas no conceden economía adicional salvo que lo indiquen.
 
 ### Magia durante el combate
 
-Un hechizo conocido y rutinario no exige una tirada sólo por ser mágico. Cuando existe oposición o incertidumbre, normalmente se usa:
+El procedimiento completo está en el capítulo **11. Magia**. En combate se conserva esta secuencia:
 
-**2d10 + Atributo relevante + Canalización >= DF o Defensa pertinente.**
-
-Secuencia típica de un hechizo Directo en combate:
-
-1. declara el hechizo y su objetivo, área o punto de origen;
-2. comprueba competencia operativa, alcance, línea válida, requisitos y objetivos;
-3. abre cualquier ventana de Reacción pertinente, como Contramagia;
-4. paga el Maná requerido;
-5. realiza la tirada si existe oposición o incertidumbre;
-6. compara contra Defensa, Defensa Mental, Defensa Corporal o DF según el hechizo;
+1. declara el hechizo, objetivos/área y elecciones previas;
+2. valida competencia, requisitos, alcance, línea y economía de Acción/Reacción;
+3. paga el Maná o resuelve Sobrecarga cuando sea legal;
+4. abre la ventana de Reacciones mágicas, como Contramagia;
+5. determina si existe una tirada;
+6. resuelve **Atributo + Canalización** contra la Defensa o DF pertinente cuando corresponda;
 7. aplica daño, curación, estado, desplazamiento u otro efecto;
-8. si es Sostenido y tuvo éxito, entra en Sostenimiento respetando el límite normal de uno o dos con Doble Sostenimiento.
+8. si el lanzamiento Sostenido tuvo éxito, registra el Sostenimiento respetando su límite.
 
-Un lanzamiento fallido no devuelve el Maná y nunca entra en Sostenimiento.
-
-Un área usa una sola resolución y compara el resultado con la Defensa pertinente de cada objetivo. Un mismo Actor sólo recibe una vez esa resolución aunque aparezca mediante varios tokens.
+Un lanzamiento válido que falla consume el recurso de Acción/Reacción y el Maná. Una declaración inválida se detiene antes del pago. Un hechizo conocido, seguro y sin oposición no tira sólo por ser mágico.
 
 ### Primeros Auxilios, fórmulas, dispositivos y Familiares
 
@@ -917,31 +911,511 @@ Condiciones universales: Derribado, Agarrado, Desprevenido, Desorientado, Incapa
 
 ## 11. Magia
 
-La magia no usa un Atributo de Magia separado. Sus Fuentes son **Alma, Divina, Ambiental y Externa**. Sus seis Disciplinas son **Evocación, Alteración, Restauración, Percepción, Influencia y Conjuración**. Canalización representa el dominio práctico del lanzamiento activo; Ritualismo es una Habilidad independiente.
+La magia usa las mismas reglas fundamentales de Acción, Reacción, objetivos y oposición que el resto del sistema, pero añade **Maná, competencia mágica, Método y Sostenimiento**.
 
-El Maná máximo es 6 + 3xVOL y no crece automáticamente por nivel. Costes de referencia: Truco 0-1, Menor 2, Básico 3-4, Avanzado 5-7, Maestro 8-11, Legendario 12+.
+No existe un Atributo de Magia separado. Sus Fuentes son **Alma, Divina, Ambiental y Externa**. Sus seis Disciplinas son **Evocación, Alteración, Restauración, Percepción, Influencia y Conjuración**.
 
-La **competencia operativa mínima** usa el rango base de la Habilidad correspondiente al Método: Directo → Canalización; Ritual → Ritualismo. Truco, Menor y Básico requieren Entrenado; Avanzado requiere Experto; Maestro requiere Maestro; Legendario requiere Gran Maestro.
+**Canalización** representa el dominio práctico del lanzamiento Directo. **Ritualismo** es una Habilidad independiente utilizada por el Método Ritual.
 
-Un hechizo conocido, seguro y rutinario no exige tirada sólo por ser mágico. Cuando existe oposición o incertidumbre, se usa **2d10 + Atributo relevante + Canalización** contra DF o Defensa. Los ataques físicos o energéticos usan Defensa; la influencia mental usa Defensa Mental; la alteración directa de un organismo usa Defensa Corporal cuando corresponda. Una tirada mágica ofensiva exitosa no genera una segunda resistencia salvo regla expresa.
+El Maná máximo es:
+
+**6 + 3xVOL.**
+
+Costes de referencia:
+
+| Grado | Maná de referencia |
+|---|---:|
+| Truco | 0–1 |
+| Menor | 2 |
+| Básico | 3–4 |
+| Avanzado | 5–7 |
+| Maestro | 8–11 |
+| Legendario | 12+ |
+
+### Competencia operativa
+
+Para lanzar un hechizo no basta con conocerlo: el personaje debe poseer la competencia operativa mínima del Método correspondiente.
+
+| Grado | Rango mínimo |
+|---|---|
+| Truco | Entrenado |
+| Menor | Entrenado |
+| Básico | Entrenado |
+| Avanzado | Experto |
+| Maestro | Maestro |
+| Legendario | Gran Maestro |
+
+Método **Directo** → usa Canalización.  
+Método **Ritual** → usa Ritualismo.
+
+En forma resumida: **Truco, Menor y Básico requieren Entrenado; Avanzado requiere Experto; Maestro requiere Maestro; Legendario requiere Gran Maestro.**
+
+Los requisitos adicionales del hechizo —por ejemplo Medicina, un Ancla o un vínculo válido— se cumplen además de la competencia operativa.
+
+### Acción, Reacción y Ritual
+
+La mayoría de los hechizos Directos de combate consumen **la Acción**.
+
+Un hechizo que indique **Reacción** consume la Reacción en lugar de la Acción y sólo puede utilizarse cuando ocurre su disparador válido. Barrera Cinética es el ejemplo canónico.
+
+Un hechizo de Método **Ritual** conserva el procedimiento y Tiempo de Ritualismo. No se comprime en una Acción de combate salvo que una regla lo diga expresamente.
+
+Lanzar un hechizo válido y fallar su tirada **consume igualmente la Acción o Reacción utilizada y el Maná pagado**. Una declaración inválida que no supera las comprobaciones previas de objetivo, competencia o requisitos no inicia el lanzamiento y no debe consumir recursos.
+
+### Lanzar un hechizo Directo, paso a paso
+
+Éste es el procedimiento general.
+
+#### 1. Declara el hechizo
+
+El jugador indica:
+
+- qué hechizo utiliza;
+- qué objetivo, objetivos, área o punto elige;
+- desde qué origen se lanza si existe una regla especial;
+- cualquier elección que el hechizo exija antes de resolverlo.
+
+No se puede esperar al resultado de la tirada para decidir retrospectivamente el objetivo o una opción que debía declararse antes.
+
+#### 2. Comprueba que el lanzamiento sea válido
+
+Antes de gastar recursos se comprueba:
+
+- que el personaje conoce o posee el hechizo;
+- que cumple la competencia operativa mínima;
+- que cumple requisitos adicionales;
+- que el objetivo o número de objetivos es válido;
+- que el alcance y la línea de efecto son posibles;
+- que el origen elegido es legal;
+- que la criatura puede actuar y no está impedida por una condición;
+- que dispone de Acción o Reacción según la activación.
+
+Si cualquiera de estas condiciones invalida el lanzamiento, el intento se detiene antes de pagar Maná.
+
+#### 3. Comprueba y paga el Maná
+
+Si el personaje posee Maná suficiente, paga el coste completo.
+
+El Maná se gasta aunque después:
+
+- la tirada falle;
+- el objetivo resista;
+- Contramagia interfiera el lanzamiento;
+- un ataque mágico no alcance la Defensa;
+- el efecto no consiga afectar a ningún objetivo de un área.
+
+No existe devolución universal de Maná por fallo.
+
+Si falta exactamente 1 Maná y se cumplen las condiciones de **Sobrecarga**, se utiliza el procedimiento de Sobrecarga descrito más adelante.
+
+#### 4. Abre la ventana de Reacciones mágicas
+
+Una vez que existe un lanzamiento válido y comprometido, pero antes de resolver su efecto, pueden declararse Reacciones cuyo disparador corresponda.
+
+La principal es **Contramagia**.
+
+Contramagia:
+
+- se declara después de que exista un lanzamiento identificable;
+- se resuelve antes del efecto final;
+- consume la Reacción del usuario;
+- requiere compatibilidad narrativa y mágica;
+- no cancela automáticamente cualquier hechizo;
+- no devuelve automáticamente el Maná ya comprometido.
+
+El sistema todavía no posee una fórmula universal de tirada/DF para Contramagia. Su interferencia concreta sigue siendo contextual salvo que una capacidad o escenario establezca una resolución específica.
+
+#### 5. Determina si hace falta una tirada
+
+Un hechizo conocido, seguro y rutinario **no tira sólo por ser mágico**.
+
+Se realiza una tirada cuando exista:
+
+- una Defensa que superar;
+- una DF indicada por el hechizo;
+- oposición relevante;
+- incertidumbre significativa;
+- una consecuencia que dependa de una prueba.
+
+Cuando no existe ninguna de esas circunstancias, el lanzamiento puede resolverse automáticamente después de pagar sus costes y cumplir sus requisitos.
+
+#### 6. Determina Atributo, Habilidad y oposición
+
+Un hechizo Directo con tirada usa normalmente:
+
+**2d10 + Atributo relevante + Canalización.**
+
+Un Ritual usa:
+
+**2d10 + Atributo relevante + Ritualismo**
+
+cuando el procedimiento ritual exige prueba.
+
+La oposición depende del efecto:
+
+| Tipo de efecto | Oposición habitual |
+|---|---|
+| Ataque físico o energético | Defensa |
+| Influencia o intrusión mental | Defensa Mental |
+| Alteración directa del organismo | Defensa Corporal |
+| Maniobra espacial, percepción o efecto técnico | DF del hechizo cuando corresponda |
+| Uso seguro, conocido y sin oposición | normalmente sin tirada |
+
+Una tirada ofensiva mágica exitosa **no genera una segunda resistencia** salvo que una regla lo diga expresamente.
+
+#### 7. Tira y compara
+
+Si el total iguala o supera la Defensa o DF aplicable, el efecto tiene éxito contra ese objetivo.
+
+Si falla:
+
+- el efecto no afecta a ese objetivo;
+- el Maná permanece gastado;
+- la Acción/Reacción permanece gastada;
+- un hechizo Sostenido nuevo no entra en Sostenimiento;
+- una instancia Sostenida anterior del mismo hechizo no desaparece sólo porque el relanzamiento haya fallado.
+
+#### 8. Aplica el efecto
+
+Después del éxito se resuelve lo que el hechizo indique:
+
+- daño;
+- curación;
+- desplazamiento;
+- condición;
+- ilusión;
+- transformación;
+- invocación;
+- información;
+- protección;
+- otro efecto específico.
+
+Un hechizo sólo hace lo que su entrada define. No se añaden automáticamente efectos secundarios por ser de una Disciplina determinada.
+
+#### 9. Si es Sostenido, registra el Sostenimiento
+
+Sólo un lanzamiento exitoso puede iniciar o reemplazar un efecto Sostenido.
+
+El límite normal es **1 efecto Sostenido demandante**. Doble Sostenimiento permite **2**.
+
+Si un nuevo efecto Sostenido entra con éxito y se supera el límite, se abandona el efecto más antiguo necesario para volver al límite.
+
+Si se relanza con éxito el **mismo hechizo Sostenido**, la nueva instancia reemplaza la anterior: no se crean dos copias concurrentes del mismo efecto.
+
+### Hechizos con objetivo único
+
+Un hechizo de objetivo único requiere una criatura u objeto válido cuando su entrada así lo indique.
+
+Procedimiento:
+
+1. declarar el objetivo;
+2. comprobar alcance, línea y requisitos;
+3. pagar Maná;
+4. abrir Reacciones pertinentes;
+5. realizar una única tirada si corresponde;
+6. comparar contra la Defensa o DF;
+7. aplicar el efecto sólo si tiene éxito.
+
+Ejemplo: Proyectil Ígneo usa una tirada de INT + Canalización contra la Defensa del objetivo.
+
+### Hechizos multiobjetivo
+
+Un hechizo con varios objetivos declara todos sus objetivos válidos antes de resolverlo.
+
+No se convierte automáticamente en un área.
+
+Por ejemplo, Arco Fulminante selecciona hasta 3 objetivos y aplica sus requisitos de encadenamiento. La misma resolución del hechizo determina qué objetivos son afectados según sus Defensas.
+
+Si el hechizo establece un máximo de objetivos, no puede superarse pagando Maná adicional salvo regla expresa.
+
+### Hechizos de área
+
+Un área usa **una sola resolución de lanzamiento**.
+
+El total se compara por separado con la Defensa pertinente de cada criatura del área.
+
+Consecuencias:
+
+- algunas criaturas pueden ser afectadas y otras no;
+- los aliados también son afectados salvo discriminación explícita;
+- un Actor sólo recibe una vez la misma resolución aunque esté representado por varios tokens;
+- el Maná se paga una sola vez por el lanzamiento, no por objetivo.
+
+### Daño mágico, Protección y Penetración
+
+Los hechizos con daño utilizan las mismas reglas generales de daño físico cuando corresponda.
+
+**Protección efectiva = max(0, Protección - Penetración).**
+
+**Daño final = max(0, daño base + bonos permitidos - Protección efectiva).**
+
+El hechizo especifica si añade algún Atributo al daño. No se añade uno por defecto sólo porque la tirada haya usado INT, PRE, PER u otro Atributo.
+
+La Penetración nunca vuelve negativa la Protección.
+
+### Curación mágica
+
+La curación respeta:
+
+- Vida máxima;
+- límites de lesión;
+- Heridas Graves;
+- Trauma;
+- restricciones específicas del hechizo.
+
+Recuperar Vida no reduce Trauma automáticamente.
+
+Cierre Restaurador, por ejemplo, requiere un objetivo válido, recupera 4 Vida y puede detener Sangrado ordinario compatible, pero no repara automáticamente una Herida Grave ni reduce Trauma.
+
+### Influencia mental
+
+Cuando una criatura puede resistir una influencia, la oposición habitual es:
+
+**PRE + Canalización contra Defensa Mental.**
+
+Un éxito no concede capacidades que el hechizo no describa.
+
+El grimorio ordinario no contiene Dominación total, órdenes suicidas, pérdida repetida de Acción, reescritura arbitraria de personalidad ni borrado arbitrario de memoria.
+
+### Ilusiones
+
+Una ilusión engaña la percepción; no crea materia ni fuerza física salvo regla expresa.
+
+La potencia determinista de una ilusión persistente es:
+
+**DF de Ilusión = 11 + Atributo usado al lanzar + bono de Canalización.**
+
+No se almacena una tirada especialmente alta para volver la ilusión más difícil de detectar.
+
+Una criatura examina una ilusión cuando existe:
+
+- motivo para sospechar;
+- contradicción física relevante;
+- una capacidad que habilite el examen.
+
+Revelación Sensorial concede Ventaja a ese examen.
 
 ### Sostenimiento
 
-El límite normal es un efecto Sostenido demandante. **Doble Sostenimiento** permite dos. Un lanzamiento fallido nunca entra en Sostenimiento y el Maná pagado no se devuelve. Si un nuevo hechizo Sostenido entra con éxito cuando ya se alcanzó el límite, se abandona inmediatamente el efecto existente más antiguo necesario para volver al límite. **Relanzar con éxito el mismo hechizo Sostenido reemplaza su instancia anterior en vez de crear una segunda copia concurrente; un relanzamiento fallido no elimina la instancia que ya estaba activa.** No existe una tirada para superar ese límite.
+El límite normal es **1 efecto Sostenido demandante**.
 
-### Sobrecarga
+**Doble Sostenimiento** permite 2.
 
-Sólo puede intentarse si al personaje le falta exactamente 1 Maná para pagar el hechizo, conserva al menos 1 Maná y cumple los demás requisitos. Gasta todo el Maná restante y realiza **2d10 + VOL + Canalización contra DF 17**. Con éxito, el hechizo se produce y el personaje queda Exhausto; si ya estaba Exhausto, queda Colapsado después de resolver. Con fallo, el hechizo no se produce y queda Exhausto, o Colapsado si ya lo estaba. Una Pifia puede añadir una consecuencia mágica grave contextual. Un personaje Colapsado no puede Sobrecargar.
+Reglas:
 
-### Áreas, control y límites
+- un lanzamiento fallido nunca entra en Sostenimiento;
+- el Maná de un lanzamiento fallido no se devuelve;
+- relanzar con éxito el mismo hechizo reemplaza su instancia anterior;
+- relanzarlo y fallar no elimina la instancia anterior;
+- un nuevo Sostenido exitoso por encima del límite obliga a abandonar el más antiguo necesario;
+- no existe una tirada para exceder el límite.
 
-Un área usa una resolución de lanzamiento y compara el resultado con las Defensas pertinentes de cada objetivo. Los aliados también son afectados salvo discriminación explícita. Un Actor sólo recibe una vez la misma resolución aunque esté representado por varios tokens.
+Abandonar un Sostenimiento termina el efecto cuando su descripción no diga otra cosa.
 
-La magia no concede armadura fallida, ataques de oportunidad por lanzar ni devolución universal de Maná por Hazaña. Efectos numéricos mágicos idénticos no se acumulan salvo regla. Invisibilidad no equivale a indetectabilidad. Transformaciones deben indicar qué reemplazan y qué conservan. El teletransporte forzado ordinario no puede colocar a un objetivo involuntario en un destino inválido o inmediatamente letal sin una regla ofensiva y resistencia específicas.
+### Sobrecarga, paso a paso
 
-**Origen Remoto y tránsito espacial.** Origen Remoto cambia el punto geométrico desde el que emana un hechizo compatible, pero no mueve al lanzador hasta el Familiar ni convierte su posición en un destino gratuito. No es compatible con hechizos cuyo efecto principal traslade al propio lanzador, utilice al lanzador como uno de los extremos de una conexión espacial o abra una conexión espacial, salvo autorización expresa del propio hechizo.
+Sobrecarga sólo existe si:
 
-**Contramagia — Avanzada, 3 PD.** Reacción después de declarar un lanzamiento y antes de resolverlo. Requiere compatibilidad narrativa/mágica y produce una interferencia contextual. No es una cancelación automática universal. **Auditoría:** el Manual 1.0 y la implementación no fijan todavía una fórmula universal de tirada, DF o modificador para Contramagia; cualquier fórmula más específica queda pendiente de decisión canónica.
+- al personaje le falta **exactamente 1 Maná** para pagar el hechizo;
+- conserva al menos **1 Maná**;
+- cumple todos los demás requisitos;
+- no está Colapsado.
+
+Procedimiento:
+
+1. declara un lanzamiento válido;
+2. comprueba que falta exactamente 1 Maná;
+3. gasta **todo el Maná restante**;
+4. tira **2d10 + VOL + Canalización contra DF 17**;
+5. si falla, el hechizo no se produce;
+6. si tiene éxito, el lanzamiento continúa y se resuelve normalmente contra cualquier Defensa/DF propia del hechizo;
+7. el personaje queda Exhausto;
+8. si ya estaba Exhausto antes de Sobrecargar, queda Colapsado después de resolver.
+
+Si falla la Sobrecarga:
+
+- no se produce el hechizo;
+- no se devuelve Maná;
+- el personaje queda Exhausto o Colapsado según su estado previo;
+- una Pifia puede añadir una consecuencia mágica grave contextual.
+
+Superar la tirada de Sobrecarga **no significa impactar automáticamente** a un objetivo. Sólo permite que el hechizo se produzca pese a la insuficiencia de Maná; si el hechizo es ofensivo, todavía se resuelve su oposición normal.
+
+### Origen Remoto
+
+Origen Remoto permite utilizar la posición de un Familiar válido como **origen geométrico** de un hechizo compatible.
+
+No significa que el personaje se encuentre allí.
+
+Procedimiento:
+
+1. el Familiar debe estar vinculado, operativo y situado válidamente;
+2. el personaje declara Origen Remoto antes de resolver el lanzamiento;
+3. el hechizo utiliza la posición del Familiar para geometría compatible;
+4. el personaje sigue pagando el Maná;
+5. el personaje realiza la tirada;
+6. el personaje sigue ocupando su posición real;
+7. Sostenimiento y demás límites siguen perteneciendo al personaje.
+
+Origen Remoto no concede:
+
+- percepción automática desde el Familiar;
+- conocimiento de objetivos que el personaje no posee;
+- línea de efecto imposible;
+- alcance sensorial gratuito;
+- desplazamiento del personaje.
+
+No es compatible con hechizos cuyo efecto principal:
+
+- traslada al propio lanzador;
+- utiliza al lanzador como extremo de una conexión espacial;
+- abre una conexión espacial,
+
+salvo autorización expresa.
+
+Paso Breve, Trasposición, Salto Vinculado, Umbral, Portal y Gran Traslación no son compatibles con Origen Remoto.
+
+### Hechizos reactivos
+
+Un hechizo con activación **Reacción** sigue pagando Maná y sólo puede utilizarse si su disparador es válido.
+
+Ejemplo: Barrera Cinética.
+
+1. un ataque válido es declarado;
+2. antes de resolverlo, el defensor declara Barrera Cinética;
+3. gasta su Reacción;
+4. paga 3 Maná;
+5. obtiene +2 Defensa normal contra ese ataque;
+6. el ataque se resuelve;
+7. Barrera se consume para esa resolución.
+
+No se guarda el +2 para un ataque posterior.
+
+### Contramagia
+
+Contramagia es una Técnica Avanzada de 3 PD.
+
+Su ventana es:
+
+**después de comprometer un lanzamiento válido y antes de resolver su efecto.**
+
+Contramagia consume la Reacción del usuario.
+
+No existe todavía una fórmula universal de:
+
+- tirada;
+- DF;
+- modificador;
+- cancelación automática.
+
+Por tanto, sólo se utiliza cuando la ficción y la compatibilidad mágica permiten una interferencia adjudicable. Una futura regla más precisa debe incorporarse primero a este Manual.
+
+### Rituales y combate
+
+Los hechizos de Método Ritual utilizan Ritualismo y conservan su Tiempo correspondiente.
+
+No se transforman en hechizos de una Acción por estar dentro de una ronda.
+
+Si un Ritual comienza o continúa durante una escena de combate:
+
+- el tiempo real del Ritual sigue contando;
+- interrupciones, peligro y participantes se resuelven según Ritualismo;
+- el Director sigue siendo único;
+- asistentes no crean tiradas principales adicionales;
+- un combate no reduce horas o minutos de Ritual a un turno salvo regla expresa.
+
+### Ejemplo completo: tres turnos de un canalizador
+
+Este ejemplo muestra un ataque mágico, una Reacción mágica, un hechizo Sostenido y Sobrecarga.
+
+Los valores de dados son ilustrativos.
+
+**Nara**, canalizadora:
+- INT 3;
+- VOL 2;
+- Canalización Experta: +4;
+- bonificador habitual de lanzamiento Directo con INT: **+7**;
+- Maná inicial: **10**;
+- conoce Proyectil Ígneo, Piel Alterada y Onda de Choque.
+
+**Rival arcano**:
+- Defensa 13;
+- Protección 1;
+- conoce Barrera Cinética;
+- conserva su Reacción al comenzar el ejemplo.
+
+#### Turno 1 — Proyectil Ígneo y Barrera Cinética
+
+Nara declara Proyectil Ígneo contra el Rival.
+
+1. comprueba que el objetivo es válido y está a alcance Medio;
+2. posee Canalización suficiente para un hechizo Básico;
+3. paga **3 Maná**: pasa de 10 a **7**;
+4. el Rival utiliza su Reacción en **Barrera Cinética** y paga sus 3 Maná;
+5. Barrera concede +2 Defensa para ese ataque: Defensa 13 pasa a **15**;
+6. Nara tira **2d10 + 7**;
+7. obtiene 7 en los dados: total **14**;
+8. 14 no alcanza Defensa 15: Proyectil Ígneo falla;
+9. Nara no recupera los 3 Maná gastados;
+10. el Rival ya gastó su Reacción y la Barrera no queda guardada.
+
+El ataque habría alcanzado Defensa 13 sin Barrera, pero la Reacción mágica lo evita.
+
+#### Turno 2 — Piel Alterada y Sostenimiento
+
+Al comenzar su turno siguiente, Nara dispone otra vez de Acción y su Reacción propia.
+
+Declara **Piel Alterada** sobre sí misma para protegerse contra una categoría de daño físico coherente.
+
+1. cumple competencia y requisitos;
+2. paga **4 Maná**: pasa de 7 a **3**;
+3. no existe oposición ni incertidumbre significativa;
+4. no realiza tirada sólo por ser magia;
+5. Piel Alterada tiene éxito automáticamente;
+6. obtiene Protección 2 contra la categoría declarada;
+7. como el hechizo es Sostenido, entra en su único espacio normal de Sostenimiento.
+
+Mientras mantenga Piel Alterada, Nara puede seguir actuando normalmente. Sostener el hechizo no consume automáticamente su Acción cada turno.
+
+#### Turno 3 — Onda de Choque mediante Sobrecarga
+
+Nara conserva sólo **3 Maná**, pero Onda de Choque cuesta 4.
+
+Le falta exactamente 1, conserva al menos 1 y no está Colapsada, por lo que puede intentar Sobrecarga.
+
+1. declara Onda de Choque y su área frontal;
+2. comprueba objetivos, geometría y que el lanzamiento es válido;
+3. gasta sus **3 Maná restantes**: queda en 0;
+4. tira Sobrecarga: **2d10 + VOL 2 + Canalización 4**, total +6, contra DF 17;
+5. obtiene 11 en los dados: total **17**;
+6. la Sobrecarga tiene éxito y Nara queda Exhausta;
+7. Onda de Choque todavía debe resolverse normalmente;
+8. Nara tira su lanzamiento ofensivo con su bonificador habitual +7;
+9. obtiene 9 en los dados: total **16**;
+10. el total se compara por separado con la Defensa de cada criatura del área;
+11. una criatura con Defensa 13 es afectada; otra con Defensa 17 no;
+12. sobre el objetivo afectado, Onda causa Daño 4, Penetración 0;
+13. si tiene Protección 1, el daño final es **3**.
+
+La Sobrecarga permitió producir el hechizo, pero no convirtió automáticamente la tirada ofensiva en éxito.
+
+Piel Alterada continúa Sostenida porque Onda de Choque no es Sostenida. Nara, ahora Exhausta, aplica además los efectos normales de ese estado, incluido Movimiento -2, mínimo 1.
+
+### Resumen rápido del lanzamiento mágico
+
+**Declarar** -> comprobar competencia/requisitos/objetivos/alcance -> **pagar Maná** -> abrir Reacciones como Contramagia -> determinar si hay tirada -> tirar contra Defensa/DF -> aplicar efecto -> registrar Sostenimiento si corresponde.
+
+**Fallo válido:** Acción/Reacción y Maná gastados; no hay efecto nuevo.
+
+**Sin oposición real:** el hechizo puede resolverse sin tirada.
+
+**Área:** una tirada, comparación contra cada Defensa.
+
+**Sostenido:** sólo entra con éxito; límite 1, o 2 con Doble Sostenimiento.
+
+**Sobrecarga:** sólo si falta exactamente 1 Maná; VOL + Canalización DF 17 antes de la resolución normal.
+
+**Ritual:** usa Ritualismo y su Tiempo; no se comprime en una Acción.
 
 ## 12. Grimorio canónico
 
