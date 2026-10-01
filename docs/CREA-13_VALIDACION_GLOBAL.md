@@ -297,6 +297,21 @@ Persisten únicamente límites de contenido que el canon no cuantifica y que por
 
 CREA-13 queda técnicamente completa en la PR #25 y preparada para revisión final antes de integración en `main`.
 
+
+## Revisión post-auditoría de sincronización
+
+**Estado: CORREGIDA · Validate #318 — SUCCESS**
+
+La revisión posterior al cierre técnico detectó cuatro rutas que no estaban cubiertas por la matriz inicial. Se corrigieron dentro de la misma PR antes de integración:
+
+1. **Compra física sin precio por ruta directa.** `preCreateItem` reutiliza ahora el mismo `preflightPhysicalPurchase()` que la adquisición programática. Armas, armaduras, escudos, equipo y dispositivos sin `priceStatus:"exact"` no pueden entrar como 0 PEI. `formula` deja de clasificarse como compra física: aprender una Fórmula conserva su coste profesional en PD y su cantidad preparada sigue siendo un estado separado.
+2. **Identidad mecánica de Fórmulas.** Las fórmulas automatizadas se reconocen por `slug` estable, no por nombre visible. Renombrar una Poción/Bálsamo no cambia su ruta mecánica.
+3. **Consumo de defensa cinética.** Barrera Cinética y Escudo de campo se reclaman y consumen mediante una autoridad compartida antes de resolver la Defensa del ataque. El +2 se conserva para ese ataque declarado, pero el estado no puede reaparecer por falta de permisos del atacante.
+4. **Concurrencia de Energía entre clientes.** Las mutaciones compartidas de Energía se arbitran por el DJ activo primario mediante el socket del sistema. El DJ revalida Energía, Caudal y estado de la fuente dentro de una cola autoritativa antes de descontar. Si existe socket de juego pero no hay DJ activo, la operación compartida se bloquea en lugar de asumir atomicidad local.
+
+La autoridad local por `WeakMap` se conserva sólo como protección intra-cliente y como fallback de pruebas sin runtime Foundry; ya no es la garantía declarada para concurrencia multiusuario.
+
+
 ## Regla de cierre
 
 CREA-13 no se cerrará porque siete fixtures “carguen”. Deben completar sus secuencias principales y demostrar que las reglas compartidas producen resultados consistentes entre perfiles distintos.
