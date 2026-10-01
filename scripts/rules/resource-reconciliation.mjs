@@ -47,19 +47,32 @@ export function resourceReconciliationUpdates(actor) {
 }
 
 const reconcilingActors = new WeakSet();
+const pendingActors = new WeakSet();
 
 export async function reconcileActorResources(actor) {
-  if (!actor?.system || reconcilingActors.has(actor)) return false;
+  if (!actor?.system) return false;
+  if (reconcilingActors.has(actor)) {
+    pendingActors.add(actor);
+    return false;
+  }
+
   const updates = resourceReconciliationUpdates(actor);
   if (!Object.keys(updates).length) return false;
 
   reconcilingActors.add(actor);
+  let changed = false;
   try {
     await actor.update(updates, { tmResourceReconcile: true });
-    return true;
+    changed = true;
   } finally {
     reconcilingActors.delete(actor);
   }
+
+  if (pendingActors.has(actor)) {
+    pendingActors.delete(actor);
+    await reconcileActorResources(actor);
+  }
+  return changed;
 }
 
 function sameOriginatingUser(userId) {
