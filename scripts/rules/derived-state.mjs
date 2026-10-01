@@ -180,7 +180,7 @@ export function deriveActorState({
   if (armor) {
     const minimum = Math.max(0, number(armor.item.system?.strengthMin));
     const deficit = Math.max(0, minimum - fue);
-    if (deficit === 1) {
+    if (deficit >= 1) {
       movementContributions.push(contribution({
         selector: "movement",
         value: -1,
@@ -190,15 +190,13 @@ export function deriveActorState({
         sourceType: "equipment",
         equipmentType: "armor"
       }));
-      equipmentIssues.push({
+      equipmentIssues.push(deficit === 1 ? {
         code: "armor-strength-deficit",
         message: armor.item.name + ": FUE un punto por debajo del mínimo; Carga Pesada y Desventaja en acciones físicas relevantes.",
         itemId: armor.item.id ?? null,
         itemName: armor.item.name ?? "",
         severity: "warning"
-      });
-    } else if (deficit >= 2) {
-      equipmentIssues.push({
+      } : {
         code: "armor-strength-incompetent",
         message: armor.item.name + ": FUE dos o más puntos por debajo del mínimo; no puede usarse competentemente en combate sin una capacidad específica.",
         itemId: armor.item.id ?? null,
