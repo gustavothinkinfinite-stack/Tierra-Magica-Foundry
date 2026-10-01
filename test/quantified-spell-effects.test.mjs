@@ -26,11 +26,13 @@ test("Barrera Cinética concede +2 Defensa y expira tras el ataque declarado", a
   const turn = await readFile(resolve(root, "scripts/rules/turn-economy.mjs"), "utf8");
   const derived = await readFile(resolve(root, "scripts/rules/derived-state.mjs"), "utf8");
   assert.equal(outcome.includes('"system.combat.kineticBarrierActive": true'), true);
-  assert.equal(derived.includes('label: "Barrera Cinética"'), true);
+  assert.equal(derived.includes('kineticDefenseSource || "Barrera Cinética"'), true);
   assert.equal(derived.includes('context: "kineticBarrier"'), true);
   assert.equal(combat.includes("const kineticThisAttack = kineticPending && index === 0"), true);
   assert.equal(magic.includes('kineticBarrier: true'), true);
   assert.equal(turn.includes('"system.combat.kineticBarrierActive": false'), true);
+  assert.equal(turn.includes('"system.combat.kineticDefenseSource": ""'), true);
+  assert.equal(magic.includes('"system.combat.kineticDefenseSource": ""'), true);
 });
 
 test("Piel Alterada no se convierte incorrectamente en Protección universal", async () => {
