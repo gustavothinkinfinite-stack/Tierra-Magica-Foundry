@@ -38,6 +38,17 @@ Rangos de Habilidad 0–5: bonos **+0/+1/+2/+4/+6/+8**; costes acumulados **0/1/
 - Precio, Disponibilidad y acceso legal/social se comprueban por separado.
 - **crowns:** campo legado obsoleto, sin equivalencia automática.
 
+
+## Creación estructurada en Foundry
+
+- **Ascendencia, Origen y Trasfondo** son elecciones singulares representadas como Items; Disciplina, Especialización, Técnica, Rasgo y Hechizo son Items adquiribles según sus reglas.
+- Arrastrar/adquirir una elección valida requisitos, duplicados y presupuesto antes de incorporarla al Actor.
+- **Comprado** indica coste realmente pagado; **Concedido** indica una capacidad otorgada por otra fuente sin doble cobro; **Legado** conserva contenido histórico cuyo coste no puede reconstruirse con seguridad.
+- Los Items usan una identidad mecánica estable independiente del nombre visible. Renombrar una capacidad no cambia qué regla representa.
+- Los bonificadores de Items se aplican como contribuciones preparadas y reversibles; no reescriben permanentemente los valores base sólo para representar un modificador.
+- Los Compendios contienen el catálogo disponible; el Actor contiene únicamente las elecciones adquiridas y su estado.
+- Completar creación valida PD, PR, PEI y elecciones obligatorias; el PEI sobrante se descarta y la Reserva inicial se concede una sola vez.
+
 ## Derivados
 
 - Vida = 10 + 2×VIG.
