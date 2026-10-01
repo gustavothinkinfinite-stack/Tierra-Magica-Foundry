@@ -13,6 +13,8 @@ test("el manifiesto describe Foundry T.M. 1.0.18", async () => {
   assert.equal(manifest.version, "1.0.18");
   assert.equal(manifest.compatibility.verified, "14");
   assert.equal(manifest.initiative.startsWith("2d10"), true);
+  assert.equal(manifest.manifest, "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/system.json");
+  assert.equal(manifest.download, "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/tierra-magica.zip");
   await Promise.all([...manifest.esmodules, ...manifest.styles, ...manifest.languages.map((l) => l.path)]
     .map((file) => access(resolve(root, file))));
   assert.deepEqual(manifest.packs.map((pack) => pack.name), ["character-options","magic","equipment","production"]);
