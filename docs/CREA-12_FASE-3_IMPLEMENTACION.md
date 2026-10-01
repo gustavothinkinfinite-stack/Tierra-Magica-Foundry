@@ -70,9 +70,25 @@ Implementación inicial:
 - Familiares usan el mismo motor derivado, pero su política de tipo fija `manaMax = 0`; el Maná persistente legado se reconcilia a 0.
 - Si una reducción legítima de máximo lleva Vida a 0, se mantienen las consecuencias canónicas de Incapacitado y Trauma de personaje.
 
+## Fase 3E — Ficha y diagnóstico
+
+**Estado: IMPLEMENTADA · CI VERDE (Validate #220)**
+
+- Personajes, PNJ y Familiares exponen un panel común de diagnóstico de derivados.
+- El panel es estrictamente de sólo lectura: no contiene campos `system.*` editables ni acciones que puedan convertirse en una segunda autoridad.
+- Cada derivado muestra total, fórmula, base y suma de modificadores.
+- Las contribuciones aplicadas muestran etiqueta, valor y procedencia: Base, Rule Element, Manual, Equipo, Estado o Hechizo.
+- Las contribuciones contextuales se muestran separadas y explícitamente fuera del total universal.
+- Escudo frontal, Parada, Barrera Cinética y Piel Alterada explican la condición requerida para aplicarse.
+- Piel Alterada informa además que usa el mayor valor frente a armadura y no se acumula con ella.
+- Las incidencias de Rule Elements se muestran en el mismo diagnóstico con código, mensaje y fuente.
+- Si Vida/Maná actual superan temporalmente el máximo derivado, la ficha señala que existe una reconciliación pendiente.
+- Daño Grave incorpora breakdown propio con fórmula `5 + VIG`.
+- La ficha genérica deja de mostrar `martialDefense` como si fuera todo el Bono Defensivo y usa `derived.defensiveBonus`.
+- El panel es colapsable para mantener baja la carga visual; la ficha v0.3 usa una variante compacta.
+
 ## Trabajo todavía pendiente dentro de Fase 3
 
-1. **3E — ficha y diagnóstico:** exponer fórmula, contribuciones y valores contextuales.
-2. **3F — sincronización cruzada:** pruebas secuenciales de equipo, estados, magia, atributos, guardado y reapertura.
+1. **3F — sincronización cruzada:** pruebas secuenciales de equipo, estados, magia, atributos, guardado y reapertura.
 
 CREA-12 no se considera cerrado hasta completar esas etapas y satisfacer DER-D42/DER-D43.
