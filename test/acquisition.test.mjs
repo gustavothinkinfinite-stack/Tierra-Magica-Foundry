@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { selectCatalogCost, preflightAcquisition, detectGrantCycles, budgetSpentByResource } from "../scripts/rules/acquisition.mjs";
+import { selectCatalogCost, preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType, detectGrantCycles, budgetSpentByResource } from "../scripts/rules/acquisition.mjs";
 
 test("context selects legal cost and rebuilding requires declared price context",()=>{
   const costs=[{context:"creation",resource:"pr",amount:3},{context:"progression",resource:"pd",amount:6}];
@@ -85,4 +85,31 @@ test("CREA-13: un objeto físico sin precio exacto no puede tratarse como 0 PEI"
   );
   assert.equal(source.includes('candidate.system.priceStatus !== "exact"'), true);
   assert.equal(source.includes('no tiene un precio exacto utilizable para Compra libre'), true);
+});
+
+
+test("CREA-13 cierre: Compra libre física exige precio exacto y Fórmula no usa PEI",()=>{
+  const actor={system:{creation:{revision:0,status:"building"},skills:{}},items:[]};
+  const device={type:"device",name:"Escudo de campo",system:{slug:"escudo-de-campo",priceStatus:"unset",priceCopper:0}};
+  const physical=preflightPhysicalPurchase({actor,candidate:device,stage:"creation",expectedRevision:0});
+  assert.equal(physical.valid,false);
+  assert.ok(physical.issues.some((issue)=>issue.code==="physical-price"));
+
+  const formula={type:"formula",name:"Poción Restauradora",system:{
+    slug:"pocion-restauradora",
+    costs:[{context:"any",resource:"pd",amount:1}]
+  }};
+  assert.equal(isPhysicalPurchaseType(formula.type),false);
+  const knowledge=preflightAcquisition({actor,candidate:formula,stage:"creation",expectedRevision:0});
+  assert.equal(knowledge.valid,true);
+  assert.equal(knowledge.cost.resource,"pd");
+  assert.equal(knowledge.cost.amount,1);
+});
+
+test("CREA-13 cierre: el hook de creación reutiliza el preflight físico común", async ()=>{
+  const source=await import("node:fs/promises").then(({readFile})=>
+    readFile(new URL("../scripts/tierra-magica.mjs",import.meta.url),"utf8")
+  );
+  assert.equal(source.includes("preflightPhysicalPurchase({"),true);
+  assert.equal(source.includes('["weapon","armor","shield","equipment","formula","device"]'),false);
 });
