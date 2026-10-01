@@ -95,3 +95,22 @@ test("campos manuales legados siguen siendo compatibles antes de migrar", () => 
   system.combat.movementBonus = -2;
   assert.equal(deriveActorState({ system }).movement, 4);
 });
+
+
+test("Familiares comparten motor pero no obtienen reserva propia de Maná", () => {
+  const system=baseSystem();
+  system.attributes.vol.value=5;
+  const derived=deriveActorState({actorType:"familiar",system});
+  assert.equal(derived.manaMax,0);
+  assert.equal(derived.breakdowns.manaMax.formula,"Sin reserva de Maná propia");
+});
+
+test("modificadores negativos nunca producen máximos de recurso inferiores a 0", () => {
+  const rulePreparation={modifiers:[
+    {selector:"healthMax",value:-999,label:"Prueba"},
+    {selector:"manaMax",value:-999,label:"Prueba"}
+  ]};
+  const derived=deriveActorState({system:baseSystem(),rulePreparation});
+  assert.equal(derived.healthMax,0);
+  assert.equal(derived.manaMax,0);
+});
