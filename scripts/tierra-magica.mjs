@@ -22,6 +22,7 @@ import { preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType
 import { deriveDevelopmentBudget } from "./rules/creation.mjs";
 import { migrateWorldData, TM_SCHEMA_VERSION } from "./rules/data-model-migration.mjs";
 import { installResourceReconciliationHooks, reconcileActorResources } from "./rules/resource-reconciliation.mjs";
+import { installStateAuthorityBridge } from "./rules/state-authority.mjs";
 import { validateCatalog } from "./rules/catalog.mjs";
 import { coreCatalog } from "./catalog/core-catalog.mjs";
 
@@ -224,6 +225,7 @@ async function repairCharacterSheet031Data() {
 
 Hooks.once("ready", async () => {
   console.info("Foundry T.M. | Sistema listo");
+  installStateAuthorityBridge();
   const repaired = await repairCharacterSheet031Data(); const retired = await retireLegacyMechanicalFields();
   const currencyMigration = await migrateWorldCurrency();
   const skillMigration = await migrateWorldSkills(TM_CONFIG.skills);
