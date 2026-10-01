@@ -21,6 +21,9 @@ export function resolveDeviceEnergySource(actor,device){
   if(source.type!=="device"){
     return {valid:false,source:null,external:true,energy:0,flow:0,issue:"La fuente de Energía vinculada a "+device.name+" no es un dispositivo/acumulador válido."};
   }
+  if(String(source.system?.condition ?? "operative") === "disabled"){
+    return {valid:false,source,external:source!==device,energy:0,flow:0,issue:source.name+" está Deshabilitado y no puede aportar Energía."};
+  }
   if(sourceId && source===device){
     return {valid:true,source:device,external:false,energy:Math.max(0,number(device.system?.energy?.value)),flow:Math.max(0,number(device.system?.flow)),issue:""};
   }
