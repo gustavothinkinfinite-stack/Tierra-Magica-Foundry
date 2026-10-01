@@ -51,6 +51,15 @@ function baseActor(profile) {
         health:{value:1,max:1},
         mana:{value:1,max:1}
       },
+      movement:{base:6},
+      combat:{
+        defensiveRank:Number(profile.defensiveRank ?? 0),
+        guardActive:false,parryActive:false,parrySucceeded:false,
+        counterattackUsed:false,kineticBarrierActive:false
+      },
+      magic:{sustainedSpellIds:[]},
+      modifiers:{manual:{}},
+      status:{trauma:0,fatigue:0,bleeding:0,conditions:"",incapacitated:false},
       currency:{totalCopper:0}
     },
     items: []
@@ -105,6 +114,7 @@ function acquire(actor, candidate, audit) {
   });
   if (!preflight.valid) return false;
 
+  candidate.id ??= actor.id + "-" + candidate.type + "-" + normalizeSlug(candidate.system?.slug || candidate.name);
   candidate.system.acquisition = preflight.acquisition;
   actor.items.push(candidate);
   actor.system.creation.revision += 1;
@@ -172,7 +182,7 @@ const PROFILES = Object.freeze([
     id:"C13-01",key:"soldier",label:"Soldado",
     attributes:{fue:3,agi:2,vig:3,int:1,per:1,vol:1,pre:2},
     skills:{martialWeapons:3,athletics:2,intimidation:2,medicine:1},
-    specialization:"martialWeapons",
+    specialization:"martialWeapons",defensiveRank:3,
     items:[
       ["technique","Parada"],["technique","Golpe Potente"],["technique","Intercepción"],
       ["weapon","Espada larga"],["armor","Malla"],["shield","Escudo estándar"]
