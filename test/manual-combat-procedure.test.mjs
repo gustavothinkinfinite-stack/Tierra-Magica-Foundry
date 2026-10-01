@@ -32,7 +32,9 @@ test("el Manual contiene un procedimiento completo de combate paso a paso",async
   ]) assert.equal(combat.includes(heading),true,heading);
 
   assert.match(combat,/2d10 \+ PER \+ modificadores/);
-  assert.match(combat,/Movimiento \+ Acción \+ Reacción/);
+  assert.match(combat,/\*\*Movimiento\*\*/);
+  assert.match(combat,/\*\*1 Acción\*\*/);
+  assert.match(combat,/\*\*1 Reacción\*\*/);
   assert.match(combat,/2d10 \+ Atributo pertinente \+ Habilidad de arma \+ modificadores >= Defensa/);
   assert.match(combat,/Protección efectiva = max\(0, Protección - Penetración\)/);
   assert.match(combat,/Defensa Corporal/);
@@ -61,7 +63,7 @@ test("la guía de combate conserva las reacciones y límites esenciales del núc
 
   assert.match(combat,/no provoca un Ataque de Oportunidad universal/i);
   assert.match(combat,/No hay una ronda universal de sorpresa/i);
-  assert.match(combat,/no crea una Acción adicional/i);
+  assert.match(combat,/sin crear una Acción adicional/i);
   assert.match(combat,/no conceden turnos extra/i);
 });
 
