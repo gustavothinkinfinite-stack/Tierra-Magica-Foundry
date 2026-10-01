@@ -122,6 +122,7 @@
         <label><span>Fuente de Energía</span><select name="system.energySourceItemId">{{selectOptions deviceEnergySources selected=system.energySourceItemId}}</select></label>
         <label><span>Caudal</span><input type="number" name="system.flow" value="{{system.flow}}" min="0" /></label>
         <label><span>Activación</span><select name="system.activation"><option value="Acción" {{#if (eq system.activation "Acción")}}selected{{/if}}>Acción</option><option value="Reacción" {{#if (eq system.activation "Reacción")}}selected{{/if}}>Reacción</option></select></label>
+        <label class="tm-check"><span>Defensa cinética equivalente (+2)</span><input type="checkbox" name="system.kineticDefense" {{checked system.kineticDefense}} /></label>
         <label><span>Estabilidad</span><input type="text" name="system.stability" value="{{system.stability}}" /></label>
         <label><span>Estado</span><select name="system.condition"><option value="operative" {{#if (eq system.condition "operative")}}selected{{/if}}>Operativo</option><option value="damaged" {{#if (eq system.condition "damaged")}}selected{{/if}}>Dañado</option><option value="disabled" {{#if (eq system.condition "disabled")}}selected{{/if}}>Deshabilitado</option></select></label>
         <label class="tm-check"><span>Admite Sobrecarga</span><input type="checkbox" name="system.overloadAllowed" {{checked system.overloadAllowed}} /></label>
