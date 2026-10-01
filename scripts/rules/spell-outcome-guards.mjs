@@ -1,4 +1,5 @@
-import { applyBoundedHealing, healingAmount, pendingHealingRequest } from "./healing-delivery.mjs";
+import { healingAmount, pendingHealingRequest } from "./healing-delivery.mjs";
+import { applyHealthHealingAuthoritatively } from "./state-authority.mjs";
 import { normalizeSlug } from "./identity.mjs";
 import { resolveActorDefense } from "./defense-context.mjs";
 
@@ -28,7 +29,11 @@ async function resolveDeterministicSpellEffect(actor, item, target) {
   if (!target) { globalThis.ui?.notifications?.warn?.("Cierre Restaurador requiere un objetivo declarado."); return; }
   const amount = healingAmount(target, 4); if (amount <= 0) return;
   const canUpdate = target.canUserModify?.(globalThis.game?.user, "update") ?? target.isOwner ?? false;
-  if (canUpdate) { await applyBoundedHealing(target, amount); return; }
+  if (canUpdate) {
+    const delivery = await applyHealthHealingAuthoritatively(target, 4);
+    if (delivery.ok) return;
+    globalThis.ui?.notifications?.warn?.(delivery.error);
+  }
   const pendingHealing = pendingHealingRequest({ targetUuid: target.uuid, healing: amount, source: item.name, caster: actor?.name ?? "" });
   if (!pendingHealing || !globalThis.ChatMessage?.create) return;
   await globalThis.ChatMessage.create({ speaker: globalThis.ChatMessage.getSpeaker?.({ actor }), flags: { "tierra-magica": { pendingHealing } }, content: "<div class='tm-chat-card'><strong>Cierre Restaurador</strong><p>" + amount + " Vida pendiente de aprobación del DJ.</p></div>" });

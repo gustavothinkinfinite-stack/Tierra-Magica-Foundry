@@ -11,6 +11,7 @@
     "audit:grimorio": "node --test test/grimorio-60-balance-audit.test.mjs",
     "audit:grimorio:fuzz": "node --test test/grimorio-60-sequence-fuzz.test.mjs",
     "audit:grimorio:concurrency": "node --test test/grimorio-60-real-concurrency.test.mjs",
+    "audit:grimorio:multiuser": "node --test test/grimorio-60-multiuser-authority.test.mjs",
     "build:packs": "node tools/build-packs.mjs",
     "stage:release": "node tools/stage-release.mjs"
   },

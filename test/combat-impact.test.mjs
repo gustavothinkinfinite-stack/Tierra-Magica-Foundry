@@ -40,7 +40,7 @@ test("la ficha usa una ruta atómica y no ofrece un segundo botón explotable de
   const sheetSource = await readFile(new URL("../templates/actor/parts/item-section.hbs", import.meta.url), "utf8");
   assert.equal(actorSource.includes("uniqueTargets.length !== 1"), true);
   assert.equal(actorSource.includes("attackHits(total, targetDf)"), true);
-  assert.equal(actorSource.includes('target.adjustResource("health", -impact.damage)'), true);
+  assert.equal(actorSource.includes("applyHealthDamageAuthoritatively(target, impact.damage)"), true);
   assert.equal(actorSource.includes("El daño físico se resuelve únicamente como parte del ataque"), true);
   assert.equal(sheetSource.includes('data-action="item-damage"'), false);
 });
@@ -80,10 +80,12 @@ test("Guardia Parada y Contraataque respetan Acción/Reacción y no encadenan", 
   assert.equal(source.includes('ActorClass.prototype.parry = async function'), true);
   assert.equal(source.includes('"system.turn.reaction": false'), true);
   assert.equal(source.includes('"system.combat.parryActive": true'), true);
+  const authority = await readFile(new URL("../scripts/rules/state-authority.mjs", import.meta.url), "utf8");
   assert.equal(source.includes('ActorClass.prototype.counterattack = async function'), true);
   assert.equal(source.includes('if (!this.system.combat?.parrySucceeded)'), true);
   assert.equal(source.includes('if (this.system.combat?.counterattackUsed)'), true);
-  assert.equal(source.includes('"system.combat.counterattackUsed": true'), true);
+  assert.equal(source.includes("claimCounterattackAuthoritatively(this)"), true);
+  assert.equal(authority.includes('"system.combat.counterattackUsed": true'), true);
   assert.equal(sheetSource.includes('"system.combat.guardActive": false'), true);
   assert.equal(sheetSource.includes('"system.combat.parryActive": false'), true);
   assert.equal(sheetSource.includes('"system.combat.counterattackUsed": false'), true);
@@ -96,8 +98,10 @@ test("Guardia y Parada usan el motor contextual sin mutar derived en el integrad
   assert.equal(source.includes("this.system.derived.defense ="), false);
   assert.equal(derived.includes('label: "Guardia"'), true);
   assert.equal(derived.includes('label: "Parada"'), true);
+  const authority = await readFile(new URL("../scripts/rules/state-authority.mjs", import.meta.url), "utf8");
   assert.equal(source.includes("total < parryDefense"), true);
-  assert.equal(source.includes('"system.combat.parrySucceeded": succeeded'), true);
+  assert.equal(source.includes("resolveParryAuthoritatively(target, succeeded)"), true);
+  assert.equal(authority.includes('"system.combat.parrySucceeded": payload.succeeded === true'), true);
 });
 
 test("Intercepción consume la reserva cuantificada canónica de Movimiento", async () => {

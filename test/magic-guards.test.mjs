@@ -60,7 +60,7 @@ test("ruta real valida objetivos antes de gastar recursos y resuelve áreas por 
   assert.equal(guards.includes("spellTargetOutcomes(item, targets, singleTotal, { automatic, kineticBarrierTargets })"), true);
   assert.equal(guards.includes("spellDfFor(item, actor, { kineticBarrier })"), true);
   assert.equal(guards.includes("resolveSpellImpacts(item, hitTargets, { protectionContext:"), true);
-  assert.equal(guards.includes('adjustResource("health", -impact.damage)'), true);
+  assert.equal(guards.includes("applyHealthDamageAuthoritatively(impact.actor, impact.damage)"), true);
   assert.equal(guards.includes("no crea automáticamente una Herida Grave"), true);
 });
 
@@ -77,11 +77,12 @@ test("Origen Remoto respeta compatibilidad declarativa antes de resolver el lanz
   assert.equal(guards.indexOf("remoteOriginCompatible === false") < guards.indexOf("getActiveTokens?.()[0]"), true);
 });
 
-test("daño mágico se aplica una sola vez por Actor y respeta permisos", async () => {
+test("daño mágico se aplica una sola vez por Actor, usa autoridad y conserva aprobación pendiente", async () => {
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
   assert.equal(guards.includes('canUserModify?.(game.user, "update")'), true);
-  assert.equal(guards.includes('adjustResource("health", -impact.damage)'), true);
-  assert.equal(guards.includes("permisos insuficientes"), true);
+  assert.equal(guards.includes("applyHealthDamageAuthoritatively(impact.actor, impact.damage)"), true);
+  assert.equal(guards.includes("pendingDamageRequest({"), true);
+  assert.equal(guards.includes("pendiente de aprobación del DJ"), true);
 });
 
 test("la ruta de lanzamiento pregunta la incertidumbre contextual sin alterar hechizos automáticos u opuestos", async () => {

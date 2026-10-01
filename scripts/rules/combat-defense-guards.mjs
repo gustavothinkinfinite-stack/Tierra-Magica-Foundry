@@ -2,7 +2,14 @@ import { attackHits, resolveWeaponImpact } from "./combat-impact.mjs";
 import { resolveActorDefense } from "./defense-context.mjs";
 import { pendingDamageRequest } from "./damage-delivery.mjs";
 import { normalizeSlug } from "./identity.mjs";
-import { claimKineticBarrier, canResolveSharedMutation } from "./state-authority.mjs";
+import {
+  applyHealthDamageAuthoritatively,
+  claimKineticBarrier,
+  claimCounterattackAuthoritatively,
+  claimParryAuthoritatively,
+  resolveParryAuthoritatively,
+  canResolveSharedMutation
+} from "./state-authority.mjs";
 
 const number = (value, fallback = Number.NaN) => {
   const parsed = Number(value);
@@ -26,22 +33,18 @@ async function spendAction(actor) {
   return true;
 }
 
-async function closeParry(target, total, baseDefense, parryDefense) {
-  if (!target.system?.combat?.parryActive) return false;
-  const succeeded = Number.isFinite(total) &&
+function parrySucceeded(total, baseDefense, parryDefense) {
+  return Number.isFinite(total) &&
     Number.isFinite(baseDefense) &&
     Number.isFinite(parryDefense) &&
     total >= baseDefense &&
     total < parryDefense;
-  if (canUpdate(target)) {
-    await target.update({
-      "system.combat.parryActive": false,
-      "system.combat.parrySucceeded": succeeded,
-      "system.combat.counterattackUsed": false
-    });
-  } else {
-    ui.notifications.warn("La Parada se aplicó al ataque, pero un usuario con permisos sobre " + target.name + " debe cerrar su estado.");
-  }
+}
+
+async function closeClaimedParry(target, total, baseDefense, parryDefense) {
+  const succeeded = parrySucceeded(total, baseDefense, parryDefense);
+  const closed = await resolveParryAuthoritatively(target, succeeded);
+  if (!closed.ok) ui.notifications.warn(closed.error);
   return succeeded;
 }
 
@@ -95,11 +98,14 @@ export function installCombatDefenseGuards(ActorClass) {
     if (!ownsTechnique(this, "Contraataque")) return ui.notifications.warn(this.name + " no posee la Técnica Contraataque.");
     if (!this.system.combat?.parrySucceeded) return ui.notifications.warn("Contraataque requiere una Parada exitosa contra el ataque desencadenante.");
     if (this.system.combat?.counterattackUsed) return ui.notifications.warn("Esta Reacción ya resolvió un Contraataque.");
-    await this.update({
-      "system.combat.parryActive": false,
-      "system.combat.parrySucceeded": false,
-      "system.combat.counterattackUsed": true
-    });
+
+    const claim = await claimCounterattackAuthoritatively(this);
+    if (!claim.ok) return ui.notifications.warn(claim.error);
+    if (!claim.claimed) {
+      return ui.notifications.warn(claim.reason === "used"
+        ? "Esta Reacción ya resolvió un Contraataque."
+        : "Contraataque requiere una Parada exitosa contra el ataque desencadenante.");
+    }
     return this.rollWeapon(item, { technique: "Contraataque", tmReactionAttack: true });
   };
 
@@ -110,31 +116,33 @@ export function installCombatDefenseGuards(ActorClass) {
     if (targets.length !== 1) return ui.notifications.warn("El ataque requiere exactamente un objetivo válido.");
 
     const target = targets[0];
+    const parryableAttack = !isRangedWeapon(item);
     if (target.system?.combat?.kineticBarrierActive && !canResolveSharedMutation(target)) {
       return ui.notifications.warn("No hay una autoridad activa capaz de consumir la defensa cinética del objetivo.");
+    }
+    if (parryableAttack && target.system?.combat?.parryActive && !canResolveSharedMutation(target)) {
+      return ui.notifications.warn("No hay una autoridad activa capaz de consumir la Parada del objetivo.");
     }
     if (!options.tmReactionAttack && !(await spendAction(this))) return null;
 
     const kineticClaim = await claimKineticBarrier(target);
     if (!kineticClaim.ok) return ui.notifications.warn(kineticClaim.error);
+    const parryClaim = parryableAttack ? await claimParryAuthoritatively(target) : { ok:true, claimed:false };
+    if (!parryClaim.ok) return ui.notifications.warn(parryClaim.error);
+
     const frontal = options.tmFrontal === true;
     const kineticPending = kineticClaim.claimed === true;
-    const parryPending = Boolean(target.system?.combat?.parryActive) && !isRangedWeapon(item);
+    const parryPending = parryClaim.claimed === true;
     const baseResolved = attackDefense(target, item, {
       frontal,
       parryable: false,
       kineticBarrier: false
     });
-    const fullResolved = attackDefense(target, item, {
-      frontal,
-      parryable: parryPending,
-      kineticBarrier: false
-    });
     const explicitDf = number(options.df);
     const kineticBonus = kineticPending ? 2 : 0;
+    const parryBonus = parryPending ? 2 : 0;
     const baseDefense = (Number.isFinite(explicitDf) ? explicitDf : baseResolved.total) + kineticBonus;
-    const parryDelta = parryPending ? fullResolved.total - baseResolved.total : 0;
-    const defense = baseDefense + parryDelta;
+    const defense = baseDefense + parryBonus;
 
     const result = await originalRollWeapon.call(this, item, {
       ...options,
@@ -142,7 +150,7 @@ export function installCombatDefenseGuards(ActorClass) {
       protectionContext: options.tmProtectionContext ?? {}
     });
 
-    if (parryPending) await closeParry(target, rollTotal(result), baseDefense, defense);
+    if (parryPending) await closeClaimedParry(target, rollTotal(result), baseDefense, defense);
     return result;
   };
 
@@ -158,16 +166,22 @@ export function installCombatDefenseGuards(ActorClass) {
     const targets = [...new Map(selected.map((actor) => [actor.uuid ?? actor.id, actor])).values()];
     if (targets.length !== 1) return ui.notifications.warn("Combate Dual requiere exactamente un objetivo válido.");
     const target = targets[0];
+    const hasParryableAttack = [primary, secondary].some((weapon) => !isRangedWeapon(weapon));
     if (target.system?.combat?.kineticBarrierActive && !canResolveSharedMutation(target)) {
       return ui.notifications.warn("No hay una autoridad activa capaz de consumir la defensa cinética del objetivo.");
+    }
+    if (hasParryableAttack && target.system?.combat?.parryActive && !canResolveSharedMutation(target)) {
+      return ui.notifications.warn("No hay una autoridad activa capaz de consumir la Parada del objetivo.");
     }
     if (!(await spendAction(this))) return null;
     const kineticClaim = await claimKineticBarrier(target);
     if (!kineticClaim.ok) return ui.notifications.warn(kineticClaim.error);
+    const parryClaim = hasParryableAttack ? await claimParryAuthoritatively(target) : { ok:true, claimed:false };
+    if (!parryClaim.ok) return ui.notifications.warn(parryClaim.error);
 
     const results = [];
     let pendingTotal = 0;
-    let parryPending = Boolean(target.system?.combat?.parryActive);
+    let parryPending = parryClaim.claimed === true;
     const kineticPending = kineticClaim.claimed === true;
     const frontal = options.tmFrontal === true;
 
@@ -180,11 +194,7 @@ export function installCombatDefenseGuards(ActorClass) {
         parryable: false,
         kineticBarrier: false
       }).total + kineticBonus;
-      const defense = attackDefense(target, weapon, {
-        frontal,
-        parryable: parryThisAttack,
-        kineticBarrier: false
-      }).total + kineticBonus;
+      const defense = baseDefense + (parryThisAttack ? 2 : 0);
 
       const roll = await this.rollCheck({
         label: "Combate Dual " + (index + 1) + ": " + weapon.name,
@@ -201,13 +211,18 @@ export function installCombatDefenseGuards(ActorClass) {
           protectionContext: options.tmProtectionContext ?? {}
         });
         damage = impact.damage;
-        if (damage > 0 && canUpdate(target)) await target.adjustResource("health", -damage);
-        else if (damage > 0) pendingTotal += damage;
+        if (damage > 0 && canUpdate(target)) {
+          const delivery = await applyHealthDamageAuthoritatively(target, damage);
+          if (!delivery.ok) {
+            ui.notifications.warn(delivery.error);
+            pendingTotal += damage;
+          }
+        } else if (damage > 0) pendingTotal += damage;
       }
       results.push({ roll, hit, damage });
 
       if (parryThisAttack) {
-        await closeParry(target, total, baseDefense, defense);
+        await closeClaimedParry(target, total, baseDefense, defense);
         parryPending = false;
       }
     }
@@ -235,26 +250,35 @@ export function installCombatDefenseGuards(ActorClass) {
     const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
     const targets = [...new Map(selected.map((actor) => [actor.uuid ?? actor.id, actor])).values()];
     if (targets.length < 1 || targets.length > 2) return ui.notifications.warn("Barrido requiere uno o dos objetivos válidos.");
+    const parryable = !isRangedWeapon(item);
     if (targets.some((target) => target.system?.combat?.kineticBarrierActive && !canResolveSharedMutation(target))) {
       return ui.notifications.warn("No hay una autoridad activa capaz de consumir todas las defensas cinéticas de Barrido.");
+    }
+    if (parryable && targets.some((target) => target.system?.combat?.parryActive && !canResolveSharedMutation(target))) {
+      return ui.notifications.warn("No hay una autoridad activa capaz de consumir todas las Paradas de Barrido.");
     }
     if (!(await spendAction(this))) return null;
 
     const claims = new Map();
+    const parryClaims = new Map();
     for (const target of targets) {
       const claim = await claimKineticBarrier(target);
       if (!claim.ok) return ui.notifications.warn(claim.error);
       claims.set(target.uuid ?? target.id, claim.claimed === true);
+
+      const parryClaim = parryable ? await claimParryAuthoritatively(target) : { ok:true, claimed:false };
+      if (!parryClaim.ok) return ui.notifications.warn(parryClaim.error);
+      parryClaims.set(target.uuid ?? target.id, parryClaim.claimed === true);
     }
 
-    const parryable = !isRangedWeapon(item);
     const frontal = options.tmFrontal === true;
     const resolutions = targets.map((target) => {
-      const kinetic = claims.get(target.uuid ?? target.id) === true;
-      const parry = parryable && Boolean(target.system?.combat?.parryActive);
+      const key = target.uuid ?? target.id;
+      const kinetic = claims.get(key) === true;
+      const parry = parryClaims.get(key) === true;
       const kineticBonus = kinetic ? 2 : 0;
       const base = attackDefense(target, item, { frontal, parryable: false, kineticBarrier: false }).total + kineticBonus;
-      const defense = attackDefense(target, item, { frontal, parryable: parry, kineticBarrier: false }).total + kineticBonus;
+      const defense = base + (parry ? 2 : 0);
       return { target, kinetic, parry, base, defense };
     });
     if (resolutions.some((entry) => !Number.isFinite(entry.defense))) {
@@ -275,14 +299,19 @@ export function installCombatDefenseGuards(ActorClass) {
       const { target } = resolved;
       const hit = attackHits(total, resolved.defense);
       let damage = 0;
+      let appliedDamage = false;
       if (hit) {
         const impact = resolveWeaponImpact(item, this, target, {
           protectionContext: options.tmProtectionContext ?? {}
         });
         damage = impact.damage;
-        if (damage > 0 && canUpdate(target)) await target.adjustResource("health", -damage);
+        if (damage > 0 && canUpdate(target)) {
+          const delivery = await applyHealthDamageAuthoritatively(target, damage);
+          appliedDamage = delivery.ok;
+          if (!delivery.ok) ui.notifications.warn(delivery.error);
+        }
       }
-      const pendingDamage = !canUpdate(target) ? pendingDamageRequest({
+      const pendingDamage = damage > 0 && !appliedDamage ? pendingDamageRequest({
         targetUuid: target.uuid,
         damage,
         source: "Barrido — " + item.name,
@@ -303,7 +332,7 @@ export function installCombatDefenseGuards(ActorClass) {
             " daño pendiente de aprobación del DJ.</p></div>"
         });
       }
-      if (resolved.parry) await closeParry(target, total, resolved.base, resolved.defense);
+      if (resolved.parry) await closeClaimedParry(target, total, resolved.base, resolved.defense);
     }
 
     await ChatMessage.create({

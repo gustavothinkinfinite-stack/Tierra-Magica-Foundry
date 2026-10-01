@@ -14,7 +14,7 @@ import { installRitualGuards } from "./rules/ritual-guards.mjs";
 import { installActionEconomyGuards } from "./rules/action-economy-guards.mjs";
 import { installReactionEconomyGuards } from "./rules/reaction-economy-guards.mjs";
 import { primaryActiveGm, validatePendingDamageRequest } from "./rules/damage-delivery.mjs";
-import { applyBoundedHealing, validatePendingHealingRequest } from "./rules/healing-delivery.mjs";
+import { validatePendingHealingRequest } from "./rules/healing-delivery.mjs";
 import { installCurrencyRules, migrateWorldCurrency } from "./rules/currency.mjs";
 import { migrateWorldSkills } from "./rules/skills.mjs";
 import { normalizeSlug } from "./rules/identity.mjs";
@@ -22,7 +22,7 @@ import { preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType
 import { deriveDevelopmentBudget } from "./rules/creation.mjs";
 import { migrateWorldData, TM_SCHEMA_VERSION } from "./rules/data-model-migration.mjs";
 import { installResourceReconciliationHooks, reconcileActorResources } from "./rules/resource-reconciliation.mjs";
-import { installStateAuthorityBridge } from "./rules/state-authority.mjs";
+import { approvePendingDamageAuthoritatively, approvePendingHealingAuthoritatively, installStateAuthorityBridge } from "./rules/state-authority.mjs";
 import { validateCatalog } from "./rules/catalog.mjs";
 import { coreCatalog } from "./catalog/core-catalog.mjs";
 
@@ -285,10 +285,9 @@ Hooks.on("renderChatMessage", (message, html) => {
   button.textContent = "Aplicar " + request.damage + " daño"; button.title = "Aplicación explícita por el DJ. No concede permisos al jugador atacante.";
   button.addEventListener("click", async () => {
     button.disabled = true; const current = validatePendingDamageRequest(message.getFlag("tierra-magica", "pendingDamage")); if (!current) return;
-    const target = await fromUuid(current.targetUuid);
-    if (!target || typeof target.adjustResource !== "function") { ui.notifications.warn("Tierra Mágica: el objetivo de esta solicitud ya no está disponible."); button.disabled = false; return; }
-    if (!(target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false)) { ui.notifications.warn("Tierra Mágica: el DJ activo no puede modificar el objetivo."); button.disabled = false; return; }
-    await target.adjustResource("health", -current.damage); await message.setFlag("tierra-magica", "pendingDamage", { ...current, resolved: true }); button.textContent = "Daño aplicado";
+    const result = await approvePendingDamageAuthoritatively(message);
+    if (!result.ok) { ui.notifications.warn("Tierra Mágica: " + result.error); button.disabled = false; return; }
+    button.textContent = result.alreadyResolved ? "Daño ya resuelto" : "Daño aplicado";
   });
   card.append(button);
 });
@@ -303,11 +302,9 @@ Hooks.on("renderChatMessage", (message, html) => {
   button.textContent = "Aplicar hasta " + request.healing + " Vida"; button.title = "Curación explícita por el DJ, limitada por Vida máxima y límite de lesión.";
   button.addEventListener("click", async () => {
     button.disabled = true; const current = validatePendingHealingRequest(message.getFlag("tierra-magica", "pendingHealing")); if (!current) return;
-    const target = await fromUuid(current.targetUuid);
-    if (!target || typeof target.update !== "function") { ui.notifications.warn("Tierra Mágica: el objetivo de esta curación ya no está disponible."); button.disabled = false; return; }
-    if (!(target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false)) { ui.notifications.warn("Tierra Mágica: el DJ activo no puede modificar el objetivo."); button.disabled = false; return; }
-    const applied = await applyBoundedHealing(target, current.healing);
-    await message.setFlag("tierra-magica", "pendingHealing", { ...current, resolved: true }); button.textContent = applied ? "Curación aplicada: " + applied : "Sin Vida recuperable";
+    const result = await approvePendingHealingAuthoritatively(message);
+    if (!result.ok) { ui.notifications.warn("Tierra Mágica: " + result.error); button.disabled = false; return; }
+    button.textContent = result.alreadyResolved ? "Curación ya resuelta" : (result.applied ? "Curación aplicada: " + result.applied : "Sin Vida recuperable");
   });
   card.append(button);
 });

@@ -16,7 +16,7 @@ import { resourceMaximum } from "../rules/resource-reconciliation.mjs";
 import { withActorResourceLock } from "../rules/resource-mutation.mjs";
 import { boundedHealthRecoveryUpdates, healingCap } from "../rules/healing-delivery.mjs";
 import { resolveDeviceEnergySource, withDeviceEnergyLock } from "../rules/device-energy.mjs";
-import { consumeDeviceEnergyAuthoritatively } from "../rules/state-authority.mjs";
+import { applyHealthDamageAuthoritatively, consumeDeviceEnergyAuthoritatively } from "../rules/state-authority.mjs";
 import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
@@ -456,8 +456,13 @@ export class TierraMagicaActor extends Actor {
     }
     const impact = resolveWeaponImpact(item, this, target, { damageBonus, penetrationBonus, protectionContext });
     const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
-    if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
-    const pendingDamage = !canUpdate ? pendingDamageRequest({
+    let appliedDamage = impact.damage <= 0;
+    if (impact.damage > 0 && canUpdate) {
+      const delivery = await applyHealthDamageAuthoritatively(target, impact.damage);
+      appliedDamage = delivery.ok;
+      if (!delivery.ok) ui.notifications.warn(delivery.error);
+    }
+    const pendingDamage = impact.damage > 0 && !appliedDamage ? pendingDamageRequest({
       targetUuid: target.uuid, damage: impact.damage, source: item.name, attacker: this.name
     }) : null;
     await ChatMessage.create({
@@ -505,8 +510,13 @@ export class TierraMagicaActor extends Actor {
       if (attackHits(total, defense)) {
         const impact = resolveWeaponImpact(weapon, this, target);
         const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
-        if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
-        if (impact.damage > 0 && !canUpdate) pendingTotal += impact.damage;
+        if (impact.damage > 0 && canUpdate) {
+          const delivery = await applyHealthDamageAuthoritatively(target, impact.damage);
+          if (!delivery.ok) {
+            ui.notifications.warn(delivery.error);
+            pendingTotal += impact.damage;
+          }
+        } else if (impact.damage > 0) pendingTotal += impact.damage;
         results.push({ roll, hit: true, damage: impact.damage });
       } else results.push({ roll, hit: false, damage: 0 });
     }
@@ -546,8 +556,13 @@ export class TierraMagicaActor extends Actor {
       if (!attackHits(total, defenses[i])) continue;
       const impact = resolveWeaponImpact(item, this, target);
       const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
-      if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
-      const pendingDamage = !canUpdate ? pendingDamageRequest({
+      let appliedDamage = impact.damage <= 0;
+      if (impact.damage > 0 && canUpdate) {
+        const delivery = await applyHealthDamageAuthoritatively(target, impact.damage);
+        appliedDamage = delivery.ok;
+        if (!delivery.ok) ui.notifications.warn(delivery.error);
+      }
+      const pendingDamage = impact.damage > 0 && !appliedDamage ? pendingDamageRequest({
         targetUuid: target.uuid, damage: impact.damage, source: "Barrido — " + item.name, attacker: this.name
       }) : null;
       await ChatMessage.create({

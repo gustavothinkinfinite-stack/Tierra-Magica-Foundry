@@ -19,13 +19,14 @@ test("Guardia persiste estado pero no muta derived manualmente", async () => {
   assert.equal(source.includes("guardDefense"), false);
 });
 
-test("Parada se consume sólo frente a un ataque parable y mide si cambió impacto por fallo", async () => {
+test("Parada se reclama antes del ataque parable y mide si cambió impacto por fallo", async () => {
   const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
   assert.equal(source.includes('if (!ownsTechnique(this, "Parada"))'), true);
-  assert.equal(source.includes("parryable && !isRangedWeapon(weapon)"), true);
+  assert.equal(source.includes("claimParryAuthoritatively(target)"), true);
+  assert.equal(source.includes("const parryBonus = parryPending ? 2 : 0"), true);
   assert.equal(source.includes("total >= baseDefense"), true);
   assert.equal(source.includes("total < parryDefense"), true);
-  assert.equal(source.includes('"system.combat.parrySucceeded": succeeded'), true);
+  assert.equal(source.includes("resolveParryAuthoritatively(target, succeeded)"), true);
 });
 
 test("Combate Dual aplica Barrera sólo al primer ataque y Parada al primer ataque parable", async () => {
@@ -33,7 +34,7 @@ test("Combate Dual aplica Barrera sólo al primer ataque y Parada al primer ataq
   assert.equal(source.includes("const kineticThisAttack = kineticPending && index === 0"), true);
   assert.equal(source.includes("const parryThisAttack = parryPending && !isRangedWeapon(weapon)"), true);
   assert.equal(source.includes("attackDefense(target, weapon"), true);
-  assert.equal(source.includes("await closeParry(target, total, baseDefense, defense)"), true);
+  assert.equal(source.includes("await closeClaimedParry(target, total, baseDefense, defense)"), true);
 });
 
 test("Barrido resuelve contexto defensivo por objetivo", async () => {
@@ -41,7 +42,8 @@ test("Barrido resuelve contexto defensivo por objetivo", async () => {
   assert.equal(source.includes("const resolutions = targets.map((target)"), true);
   assert.equal(source.includes("attackHits(total, resolved.defense)"), true);
   assert.equal(source.includes("resolved.parry"), true);
-  assert.equal(source.includes("claims.get(target.uuid ?? target.id)"), true);
+  assert.equal(source.includes("claims.get(key)"), true);
+  assert.equal(source.includes("parryClaims.get(key)"), true);
   assert.equal(source.includes("const kineticBonus = kinetic ? 2 : 0"), true);
 });
 
@@ -50,12 +52,13 @@ test("magia no usa Parada y resuelve Defensa normal por el mismo motor", async (
   assert.equal(magic.includes('resolveActorDefense(target, { kind: "normal", kineticBarrier: false, parryable: false, frontal: false })'), true);
   assert.equal(magic.includes("claimKineticBarrier"), true);
   assert.equal(magic.includes("parryActive"), false);
-  assert.equal(magic.includes("closeParry"), false);
+  assert.equal(magic.includes("claimParryAuthoritatively"), false);
 });
 
 
-test("Contraataque reutiliza el wrapper contextual y no salta consumo de Barrera", async () => {
+test("Contraataque reclama una única oportunidad y reutiliza el wrapper contextual", async () => {
   const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
+  assert.equal(source.includes("claimCounterattackAuthoritatively(this)"), true);
   assert.equal(source.includes('return this.rollWeapon(item, { technique: "Contraataque", tmReactionAttack: true })'), true);
   assert.equal(source.includes('return originalRollWeapon.call(this, item, { technique: "Contraataque", tmReactionAttack: true })'), false);
 });
