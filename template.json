@@ -66,16 +66,13 @@
           }
         },
         "turn": {
-          "movement": true,
+          "movementSpent": 0,
+          "extraMovement": 0,
           "action": true,
           "reaction": true
         },
         "combat": {
-          "defensiveRank": 0,
-          "defenseBonus": 0,
-          "initiativeBonus": 0,
-          "protectionBonus": 0,
-          "movementBonus": 0
+          "defensiveRank": 0
         },
         "skills": {
           "athletics": {
@@ -242,7 +239,7 @@
           "saturatedFamilies": []
         },
         "legacySkills": {},
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "legacyIdentityText": {
           "ancestry": "",
           "origin": "",
@@ -251,6 +248,41 @@
         "legacyDevelopment": {
           "pdSpent": 0,
           "prSpent": 0
+        },
+        "movement": {
+          "base": 6
+        },
+        "modifiers": {
+          "manual": {
+            "defensiveBonus": {
+              "id": "manual-defense",
+              "selector": "defensiveBonus",
+              "value": 0,
+              "label": "Ajuste manual de Defensa",
+              "sourceType": "manual"
+            },
+            "protection": {
+              "id": "manual-protection",
+              "selector": "protection",
+              "value": 0,
+              "label": "Ajuste manual de Protección",
+              "sourceType": "manual"
+            },
+            "movement": {
+              "id": "manual-movement",
+              "selector": "movement",
+              "value": 0,
+              "label": "Ajuste manual de Movimiento",
+              "sourceType": "manual"
+            },
+            "initiativeModifier": {
+              "id": "manual-initiative",
+              "selector": "initiativeModifier",
+              "value": 0,
+              "label": "Ajuste manual de Iniciativa",
+              "sourceType": "manual"
+            }
+          }
         }
       }
     },
@@ -295,7 +327,6 @@
       },
       "familiar": {
         "scale": "small",
-        "movement": 6,
         "perception": 0,
         "will": 0,
         "attackBonus": 0,
@@ -338,7 +369,7 @@
     "templates": {
       "base": {
         "description": "",
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "slug": "",
         "tags": [],
         "costs": [],
