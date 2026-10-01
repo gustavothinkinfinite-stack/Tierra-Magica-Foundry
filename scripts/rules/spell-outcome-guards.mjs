@@ -1,13 +1,16 @@
 import { applyBoundedHealing, healingAmount, pendingHealingRequest } from "./healing-delivery.mjs";
 import { normalizeSlug } from "./identity.mjs";
+import { resolveActorDefense } from "./defense-context.mjs";
 
 function number(value, fallback = Number.NaN) { const parsed = Number(value); return Number.isFinite(parsed) ? parsed : fallback; }
 export function spellRollTotal(result) { return number(result?.rolls?.[0]?.total ?? result?.roll?.total ?? result?.total); }
 export function spellDifficulty(actor, item, target = undefined) {
   const declaredTarget = target === undefined ? [...(globalThis.game?.user?.targets ?? [])][0]?.actor : target;
-  if (item?.system?.defense === "mental" && declaredTarget) return number(declaredTarget.system?.derived?.mentalDefense, 12);
-  if (item?.system?.defense === "body" && declaredTarget) return number(declaredTarget.system?.derived?.bodyDefense, 12);
-  if (item?.system?.defense === "normal" && declaredTarget) return number(declaredTarget.system?.derived?.defense, 12);
+  if (item?.system?.defense === "mental" && declaredTarget) return resolveActorDefense(declaredTarget, { kind: "mental" }).total;
+  if (item?.system?.defense === "body" && declaredTarget) return resolveActorDefense(declaredTarget, { kind: "body" }).total;
+  if (item?.system?.defense === "normal" && declaredTarget) {
+    return resolveActorDefense(declaredTarget, { kind: "normal", kineticBarrier: true, parryable: false, frontal: false }).total;
+  }
   return number(item?.system?.difficulty, 12);
 }
 export function spellSucceeded(actor, item, result, target = undefined, difficulty = undefined) {

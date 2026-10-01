@@ -74,12 +74,14 @@
           <div><span>Daño Grave</span><strong>{{system.derived.severeThreshold}}</strong></div>
         </div>
         <div class="tm-derived-list">
-          <button type="button" data-action="roll-initiative"><i class="fa-solid fa-dice"></i> Iniciativa <strong>+{{system.derived.initiative}}</strong></button>
+          <button type="button" data-action="roll-initiative"><i class="fa-solid fa-dice"></i> Iniciativa <strong>+{{system.derived.initiativeModifier}}</strong></button>
           <div><span>Movimiento</span><strong>{{system.derived.movement}} esp.</strong></div>
           <div><span>Escala</span><strong>{{lookup config.sizes system.traits.size}}</strong></div>
-          <div><span>Bono defensivo</span><strong>+{{system.derived.martialDefense}}</strong></div>
+          <div><span>Bono defensivo</span><strong>{{system.derived.defensiveBonus}}</strong></div>
         </div>
       </section>
+
+      {{> "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"}}
 
       <section class="tm-panel tm-wide">
         <h2>Estado y recuperación</h2>
@@ -133,9 +135,11 @@
       <h2>Configuración defensiva</h2>
       <div class="tm-form-grid">
         <label><span>Rango marcial relevante</span><select name="system.combat.defensiveRank">{{selectOptions config.rankLabels selected=system.combat.defensiveRank}}</select></label>
-        <label><span>Mod. Defensa</span><input type="number" name="system.combat.defenseBonus" value="{{system.combat.defenseBonus}}" /></label>
-        <label><span>Mod. Protección</span><input type="number" name="system.combat.protectionBonus" value="{{system.combat.protectionBonus}}" /></label>
-        <label><span>Mod. Movimiento</span><input type="number" name="system.combat.movementBonus" value="{{system.combat.movementBonus}}" /></label>
+        <label><span>Movimiento base</span><input type="number" name="system.movement.base" value="{{system.movement.base}}" min="1" /></label>
+        <label><span>Ajuste Defensa</span><input type="number" name="system.modifiers.manual.defensiveBonus.value" value="{{system.modifiers.manual.defensiveBonus.value}}" /></label>
+        <label><span>Ajuste Protección</span><input type="number" name="system.modifiers.manual.protection.value" value="{{system.modifiers.manual.protection.value}}" /></label>
+        <label><span>Ajuste Movimiento</span><input type="number" name="system.modifiers.manual.movement.value" value="{{system.modifiers.manual.movement.value}}" /></label>
+        <label><span>Ajuste Iniciativa</span><input type="number" name="system.modifiers.manual.initiativeModifier.value" value="{{system.modifiers.manual.initiativeModifier.value}}" /></label>
       </div>
     </section>
     {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Armas" type="weapon" items=itemGroups.weapon}}

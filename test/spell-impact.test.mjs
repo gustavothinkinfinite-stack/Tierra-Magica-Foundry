@@ -54,3 +54,16 @@ test("aliados no se excluyen silenciosamente: solo se bloquean cuando la acción
   assert.equal(validateSpellTargets(spell,[ally],{caster}).ok,true);
   assert.equal(validateSpellTargets(spell,[ally],{caster,allowFriendly:false}).reason,"friendly-target");
 });
+
+
+test("impacto mágico aplica Piel Alterada sólo cuando el contexto confirma compatibilidad", () => {
+  const spell={type:"spell",system:{damage:5,penetration:0}};
+  const target={id:"A",system:{derived:{
+    protection:1,
+    severeThreshold:9,
+    contextual:{protection:[{value:2,context:"alteredSkinCompatible",stacking:"max-with-armor"}]},
+    breakdowns:{protection:{contributions:[{value:1,equipmentType:"armor"}]}}
+  }}};
+  assert.equal(resolveSpellImpacts(spell,[target])[0].protection,1);
+  assert.equal(resolveSpellImpacts(spell,[target],{protectionContext:{alteredSkinCompatible:true}})[0].protection,2);
+});

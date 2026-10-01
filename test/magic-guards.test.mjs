@@ -53,7 +53,7 @@ test("ruta real valida objetivos antes de gastar recursos y resuelve áreas por 
   assert.equal(guards.indexOf("validateSpellTargets(item, selectedTokens") < guards.indexOf("originalUseSpell.call(this, item)"), true);
   assert.equal(guards.includes("spellTargetOutcomes(item, targets, singleTotal, { automatic })"), true);
   assert.equal(guards.includes("spellDfFor(item, actor)"), true);
-  assert.equal(guards.includes("resolveSpellImpacts(item, hitTargets)"), true);
+  assert.equal(guards.includes("resolveSpellImpacts(item, hitTargets, { protectionContext:"), true);
   assert.equal(guards.includes('adjustResource("health", -impact.damage)'), true);
   assert.equal(guards.includes("no crea automáticamente una Herida Grave"), true);
 });
@@ -94,4 +94,10 @@ test("un área reutiliza una sola tirada contra las Defensas de todos los objeti
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
   assert.equal(guards.includes("· objetivo "),false);
   assert.equal(guards.includes("targets.slice(1)"),false);
+});
+
+
+test("Defensa normal mágica usa contexto de Barrera pero no Parada ni frente implícito", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
+  assert.equal(guards.includes('resolveActorDefense(target, { kind: "normal", kineticBarrier: true, parryable: false, frontal: false })'), true);
 });

@@ -1,3 +1,4 @@
+import { resolveActorProtection } from "./defense-context.mjs";
 // Foundry T.M. — resolución pura de impactos mágicos deterministas.
 const number = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -29,7 +30,7 @@ export function spellImpact({ damage = 0, bonus = 0, penetration = 0, protection
   };
 }
 
-export function resolveSpellImpact(spell, target) {
+export function resolveSpellImpact(spell, target, { protectionContext = {} } = {}) {
   if (!spell || spell.type !== "spell") throw new TypeError("Se requiere un hechizo válido.");
   const actor = actorOf(target);
   if (!actor?.system) throw new TypeError("El objetivo debe ser un Actor válido.");
@@ -37,15 +38,15 @@ export function resolveSpellImpact(spell, target) {
     damage: spell.system?.damage,
     bonus: spell.system?.damageBonus,
     penetration: spell.system?.penetration,
-    protection: actor.system.derived?.protection,
+    protection: resolveActorProtection(actor, protectionContext).total,
     severeThreshold: actor.system.derived?.severeThreshold
   });
 }
 
-export function resolveSpellImpacts(spell, targets = []) {
+export function resolveSpellImpacts(spell, targets = [], { protectionContext = {} } = {}) {
   return uniqueSpellTargets(targets).map((target) => {
     const actor = actorOf(target);
-    return { actor, ...resolveSpellImpact(spell, actor) };
+    return { actor, ...resolveSpellImpact(spell, actor, { protectionContext }) };
   });
 }
 

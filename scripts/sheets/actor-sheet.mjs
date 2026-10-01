@@ -2,6 +2,7 @@ import { TM_CONFIG } from "../config.mjs";
 import { toNumber } from "../rules.mjs";
 import { normalizeSlug } from "../rules/identity.mjs";
 import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } from "../rules/currency.mjs";
+import { movementAllowance, movementRemaining, spendActorMovement } from "../rules/turn-economy.mjs";
 
 export class TierraMagicaActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -97,11 +98,19 @@ export class TierraMagicaActorSheet extends ActorSheet {
       background: context.itemGroups.background?.[0] ?? null
     };
 
+    const movementMax = movementAllowance(this.actor);
+    const movementLeft = movementRemaining(this.actor);
     context.turn = {
-      movement: this.actor.system.turn?.movement ?? true,
+      movementSpent: Math.max(0, toNumber(this.actor.system.turn?.movementSpent)),
+      extraMovement: Math.max(0, toNumber(this.actor.system.turn?.extraMovement)),
+      movementMax,
+      movementRemaining: movementLeft,
+      movementDepleted: movementLeft <= 0,
       action: this.actor.system.turn?.action ?? true,
       reaction: this.actor.system.turn?.reaction ?? true
     };
+
+    context.derivedDiagnostics = this.#buildDerivedDiagnostics();
 
     context.familiar = game.actors.find((actor) =>
       actor.type === "familiar" && actor.system.details?.ownerUuid === this.actor.uuid
@@ -178,19 +187,45 @@ export class TierraMagicaActorSheet extends ActorSheet {
     });
     html.find("[data-action='toggle-turn']").click((event) => {
       const key = event.currentTarget.dataset.key;
-      if (!["movement", "action", "reaction"].includes(key)) return;
+      if (!["action", "reaction"].includes(key)) return;
       const current = this.actor.system.turn?.[key] ?? true;
-      return this.actor.update({ ["system.turn." + key]: !current });
+      const next = !current;
+      const incapacitated = Boolean(this.actor.system.status?.incapacitated) ||
+        toNumber(this.actor.system.resources?.health?.value, 1) <= 0;
+      if (next && incapacitated) return ui.notifications.warn(this.actor.name + " está Incapacitado.");
+      return this.actor.update({ ["system.turn." + key]: next });
     });
-    html.find("[data-action='reset-turn']").click(() => this.actor.update({
-      "system.turn.movement": true,
-      "system.turn.action": true,
-      "system.turn.reaction": true,
-      "system.combat.guardActive": false,
-      "system.combat.parryActive": false,
-      "system.combat.parrySucceeded": false,
-      "system.combat.counterattackUsed": false
-    }));
+    html.find("[data-action='spend-movement']").click(async () => {
+      const remaining = movementRemaining(this.actor);
+      if (remaining <= 0) return ui.notifications.warn(this.actor.name + " no tiene Movimiento disponible.");
+      const amount = await Dialog.prompt({
+        title: "Gastar Movimiento",
+        content: "<div class='form-group'><label>Espacios a gastar</label><input name='movement' type='number' min='0.1' max='" +
+          remaining + "' step='0.1' value='" + remaining + "'/></div><p>Disponible: " + remaining + " espacios.</p>",
+        label: "Gastar",
+        callback: (html) => toNumber(html.find("[name='movement']").val(), Number.NaN),
+        rejectClose: false
+      });
+      if (amount === null || amount === undefined) return;
+      if (!(await spendActorMovement(this.actor, amount))) {
+        ui.notifications.warn("El gasto solicitado supera el Movimiento restante o no es válido.");
+      }
+    });
+    html.find("[data-action='reset-turn']").click(() => {
+      const incapacitated = Boolean(this.actor.system.status?.incapacitated) ||
+        toNumber(this.actor.system.resources?.health?.value, 1) <= 0;
+      return this.actor.update({
+        "system.turn.movementSpent": 0,
+        "system.turn.extraMovement": 0,
+        "system.turn.action": !incapacitated,
+        "system.turn.reaction": !incapacitated,
+        "system.combat.guardActive": false,
+        "system.combat.parryActive": false,
+        "system.combat.parrySucceeded": false,
+        "system.combat.counterattackUsed": false,
+        "system.combat.kineticBarrierActive": false
+      });
+    });
     html.find("[data-action='combat-guard']").click(() => this.actor.guard());
     html.find("[data-action='combat-parry']").click(() => this.actor.parry());
     html.find("[data-action='combat-counterattack']").click(async (event) => {
@@ -561,6 +596,106 @@ export class TierraMagicaActorSheet extends ActorSheet {
     });
     if (!result) return;
     return this.actor.rollAttribute(key, result);
+  }
+
+  #buildDerivedDiagnostics() {
+    const derived = this.actor.system.derived ?? {};
+    const labels = {
+      healthMax: "Vida máxima",
+      manaMax: "Maná máximo",
+      severeThreshold: "Daño Grave",
+      defensiveBonus: "Bono Defensivo",
+      defense: "Defensa",
+      maneuverDefense: "Defensa de Maniobra",
+      mentalDefense: "Defensa Mental",
+      bodyDefense: "Defensa Corporal",
+      protection: "Protección",
+      movement: "Movimiento",
+      initiativeModifier: "Iniciativa"
+    };
+    const order = [
+      "healthMax", "manaMax", "severeThreshold", "defensiveBonus",
+      "defense", "maneuverDefense", "mentalDefense", "bodyDefense",
+      "protection", "movement", "initiativeModifier"
+    ];
+    const sourceLabels = {
+      base: "Base",
+      rule: "Rule Element",
+      manual: "Manual",
+      "legacy-manual": "Manual legado",
+      equipment: "Equipo",
+      state: "Estado",
+      spell: "Hechizo"
+    };
+    const contextLabels = {
+      frontal: "Sólo con frente confirmado",
+      parryable: "Sólo contra ataque parable",
+      kineticBarrier: "Sólo para el ataque cubierto por Barrera Cinética",
+      alteredSkinCompatible: "Sólo si la categoría es coherente con Piel Alterada"
+    };
+    const stackingLabels = {
+      "max-with-armor": "usa el mayor valor frente a la armadura; no suma"
+    };
+    const signed = (value) => {
+      const n = toNumber(value);
+      return n > 0 ? "+" + n : String(n);
+    };
+    const entries = order.map((key) => {
+      const breakdown = derived.breakdowns?.[key] ?? {};
+      const contributions = Array.isArray(breakdown.contributions) ? breakdown.contributions : [];
+      const contextual = Array.isArray(derived.contextual?.[key])
+        ? derived.contextual[key]
+        : Array.isArray(breakdown.contextual) ? breakdown.contextual : [];
+      return {
+        key,
+        label: labels[key] ?? key,
+        value: toNumber(derived[key]),
+        valueDisplay: key === "initiativeModifier" || key === "defensiveBonus"
+          ? signed(derived[key])
+          : String(toNumber(derived[key])),
+        formula: String(breakdown.formula ?? ""),
+        baseDisplay: String(toNumber(breakdown.base)),
+        modifierDisplay: signed(breakdown.modifier),
+        hasContributions: contributions.length > 0,
+        hasContextual: contextual.length > 0,
+        contributions: contributions.map((entry) => ({
+          label: String(entry.label ?? "Modificador"),
+          valueDisplay: signed(entry.value),
+          source: String(entry.sourceItemName || sourceLabels[entry.sourceType] || entry.sourceType || "Fuente"),
+          sourceType: entry.sourceItemName
+            ? String(sourceLabels[entry.sourceType] || entry.sourceType || "")
+            : "",
+          itemId: entry.sourceItemId ?? null
+        })),
+        contextual: contextual.map((entry) => ({
+          label: String(entry.label ?? "Condicional"),
+          valueDisplay: signed(entry.value),
+          condition: String(contextLabels[entry.context] || entry.context || "Contexto requerido"),
+          stacking: String(stackingLabels[entry.stacking] || "")
+        }))
+      };
+    });
+
+    const issues = (Array.isArray(derived.ruleIssues) ? derived.ruleIssues : []).map((issue) => ({
+      code: String(issue.code ?? "rule"),
+      message: String(issue.message ?? issue.code ?? "Incidencia de regla"),
+      source: String(issue.itemName ?? "")
+    }));
+    const health = toNumber(this.actor.system.resources?.health?.value);
+    const mana = toNumber(this.actor.system.resources?.mana?.value);
+    if (health > toNumber(derived.healthMax)) {
+      issues.push({ code:"health-over-max", message:"Vida actual por encima del máximo derivado; reconciliación pendiente.", source:"Recursos" });
+    }
+    if (mana > toNumber(derived.manaMax)) {
+      issues.push({ code:"mana-over-max", message:"Maná actual por encima del máximo derivado; reconciliación pendiente.", source:"Recursos" });
+    }
+
+    return {
+      entries,
+      issues,
+      hasIssues: issues.length > 0,
+      hasContextual: entries.some((entry) => entry.hasContextual)
+    };
   }
 
   #linkedFamiliar() {

@@ -1,7 +1,7 @@
 import { TM_CONFIG } from "../config.mjs";
 import {
-  toNumber, clamp, rankBonus, defenseBonus, rollFormula,
-  classifyResult, extraordinaryTag, finalDamage, severeThreshold
+  toNumber, clamp, rankBonus, rollFormula,
+  classifyResult, extraordinaryTag, finalDamage
 } from "../rules.mjs";
 import { attackHits, resolveWeaponImpact } from "../rules/combat-impact.mjs";
 import { pendingDamageRequest } from "../rules/damage-delivery.mjs";
@@ -10,6 +10,9 @@ import {
   spellOperationalSkill, validateSkillProgression
 } from "../rules/skills.mjs";
 import { prepareRuleElements, modifiersForSelector } from "../rules/rule-elements.mjs";
+import { deriveActorState } from "../rules/derived-state.mjs";
+import { resolveActorDefense } from "../rules/defense-context.mjs";
+import { resourceMaximum } from "../rules/resource-reconciliation.mjs";
 import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
@@ -67,30 +70,16 @@ export class TierraMagicaActor extends Actor {
       creationActive
     });
 
-    const armor = this.items
-      .filter((i) => i.type === "armor" && i.system.equipped)
-      .reduce((max, i) => Math.max(max, toNumber(i.system.protection)), 0);
-    const shield = this.items
-      .filter((i) => i.type === "shield" && i.system.equipped)
-      .reduce((max, i) => Math.max(max, toNumber(i.system.passiveDefense)), 0);
-
-    const martialRank = clamp(Math.floor(toNumber(s.combat?.defensiveRank)), 0, 5);
-    const martialDefense = defenseBonus(martialRank, TM_CONFIG.defensiveRankBonuses);
-    const extraDefense = toNumber(s.combat?.defenseBonus);
+    const derivedState = deriveActorState({
+      actorType: this.type,
+      system: s,
+      items: [...this.items],
+      rulePreparation,
+      defensiveRankBonuses: TM_CONFIG.defensiveRankBonuses
+    });
 
     s.derived = {
-      healthMax: 10 + vig * 2,
-      manaMax: 6 + vol * 3,
-      severeThreshold: severeThreshold(vig),
-      defense: 11 + agi + martialDefense + shield + extraDefense,
-      maneuverDefense: 11 + agi + martialDefense + extraDefense,
-      mentalDefense: 11 + vol,
-      bodyDefense: 11 + vig,
-      protection: armor + toNumber(s.combat?.protectionBonus),
-      movement: Math.max(1, 6 + toNumber(s.combat?.movementBonus)),
-      initiative: toNumber(a.per?.value, 1) + toNumber(s.combat?.initiativeBonus),
-      martialDefense,
-      equippedShield: shield,
+      ...derivedState,
       skillsPdCost: skillValidation.cost,
       skillIssues: skillValidation.issues,
       skillsValid: skillValidation.valid,
@@ -202,10 +191,14 @@ export class TierraMagicaActor extends Actor {
   }
 
   async rollInitiativeCheck() {
-    return this.rollCheck({
-      label: "Iniciativa",
-      attributeKey: "per",
-      modifier: toNumber(this.system.combat?.initiativeBonus)
+    const modifier = toNumber(this.system.derived?.initiativeModifier, toNumber(this.system.attributes?.per?.value, 1));
+    const roll = await new Roll(rollFormula("normal", modifier), this.getRollData()).evaluate();
+    return roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: "<div class='tm-chat-card'><strong>Iniciativa · " +
+        foundry.utils.escapeHTML(this.name) + "</strong><p>2d10 + modificador preparado (" +
+        this.#signed(modifier) + ")</p></div>",
+      rollMode: game.settings.get("core", "rollMode")
     });
   }
 
@@ -442,13 +435,13 @@ export class TierraMagicaActor extends Actor {
   }
 
 
-  async rollWeapon(item, { df = null, mode = "normal", modifier = 0, damageBonus = 0, penetrationBonus = 0, technique = "" } = {}) {
+  async rollWeapon(item, { df = null, mode = "normal", modifier = 0, damageBonus = 0, penetrationBonus = 0, technique = "", protectionContext = {}, tmFrontal = false } = {}) {
     if (!item || item.type !== "weapon") return null;
     const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
     const uniqueTargets = [...new Map(selected.map((actor) => [actor.uuid ?? actor.id, actor])).values()];
     if (uniqueTargets.length !== 1) return ui.notifications.warn("El ataque requiere exactamente un objetivo válido.");
     const target = uniqueTargets[0];
-    const targetDf = df ?? target.system?.derived?.defense;
+    const targetDf = df ?? resolveActorDefense(target, { kind: "normal", frontal: tmFrontal === true }).total;
     const roll = await this.rollCheck({
       label: "Ataque con " + item.name,
       attributeKey: item.system.attackAttribute || "agi",
@@ -467,7 +460,7 @@ export class TierraMagicaActor extends Actor {
       });
       return roll;
     }
-    const impact = resolveWeaponImpact(item, this, target, { damageBonus, penetrationBonus });
+    const impact = resolveWeaponImpact(item, this, target, { damageBonus, penetrationBonus, protectionContext });
     const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
     if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
     const pendingDamage = !canUpdate ? pendingDamageRequest({
@@ -637,9 +630,9 @@ export class TierraMagicaActor extends Actor {
 
     const target = [...(game.user.targets ?? [])][0]?.actor;
     let df = toNumber(item.system.difficulty, 12);
-    if (item.system.defense === "mental" && target) df = toNumber(target.system.derived?.mentalDefense);
-    if (item.system.defense === "body" && target) df = toNumber(target.system.derived?.bodyDefense);
-    if (item.system.defense === "normal" && target) df = toNumber(target.system.derived?.defense);
+    if (item.system.defense === "mental" && target) df = resolveActorDefense(target, { kind: "mental" }).total;
+    if (item.system.defense === "body" && target) df = resolveActorDefense(target, { kind: "body" }).total;
+    if (item.system.defense === "normal" && target) df = resolveActorDefense(target, { kind: "normal", kineticBarrier: true }).total;
 
     const result = await this.rollCheck({
       label: "Hechizo: " + item.name + " · " + (TM_CONFIG.disciplines[item.system.discipline] ?? item.system.discipline),
@@ -683,11 +676,12 @@ export class TierraMagicaActor extends Actor {
     const formulaSlug = normalizeSlug(item.system?.slug || item.name);
     if (formulaSlug === "pocion-restauradora" || formulaSlug === "balsamo-restaurador") {
       const hp = this.system.resources.health;
-      const cap = Math.max(0, Math.min(toNumber(hp.max), toNumber(this.system.recovery?.healthCap, hp.max)));
+      const maximum = resourceMaximum(this, "health");
+      const cap = Math.max(0, Math.min(maximum, toNumber(this.system.recovery?.healthCap, maximum)));
       updates["system.resources.health.value"] = Math.min(cap, toNumber(hp.value) + 4);
     } else if (formulaSlug === "pocion-de-recuperacion-arcana") {
       const mp = this.system.resources.mana;
-      updates["system.resources.mana.value"] = Math.min(toNumber(mp.max), toNumber(mp.value) + 3);
+      updates["system.resources.mana.value"] = Math.min(resourceMaximum(this, "mana"), toNumber(mp.value) + 3);
     } else {
       return ui.notifications.info(item.name + ": efecto contextual. Aplica la fórmula según su descripción.");
     }
@@ -799,17 +793,18 @@ export class TierraMagicaActor extends Actor {
       return ui.notifications.info(this.name + ": Respiro completado. No recupera Vida ni Maná; limpia Saturación de preparaciones compatibles.");
     } else if (kind === "rest") {
       if (!recovery.healthUsed) {
-        updates["system.resources.health.value"] = Math.min(toNumber(hp.max), toNumber(hp.value) + toNumber(this.system.attributes.vig.value) + 2);
+        updates["system.resources.health.value"] = Math.min(resourceMaximum(this, "health"), toNumber(hp.value) + toNumber(this.system.attributes.vig.value) + 2);
         updates["system.recovery.healthUsed"] = true;
       }
       if (!recovery.manaUsed) {
-        updates["system.resources.mana.value"] = Math.min(toNumber(mp.max), toNumber(mp.value) + toNumber(this.system.attributes.vol.value) + 1);
+        updates["system.resources.mana.value"] = Math.min(resourceMaximum(this, "mana"), toNumber(mp.value) + toNumber(this.system.attributes.vol.value) + 1);
         updates["system.recovery.manaUsed"] = true;
       }
     } else if (kind === "full") {
-      const cap = Math.max(0, Math.min(toNumber(hp.max), toNumber(recovery.healthCap, hp.max)));
+      const healthMaximum = resourceMaximum(this, "health");
+      const cap = Math.max(0, Math.min(healthMaximum, toNumber(recovery.healthCap, healthMaximum)));
       updates["system.resources.health.value"] = cap;
-      updates["system.resources.mana.value"] = toNumber(mp.max);
+      updates["system.resources.mana.value"] = resourceMaximum(this, "mana");
       updates["system.recovery.healthUsed"] = false;
       updates["system.recovery.manaUsed"] = false;
       updates["system.status.fatigue"] = 0;

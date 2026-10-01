@@ -20,10 +20,12 @@ test("partida integral: Reacción es compartida por defensas, magia reactiva y f
   assert.match(familiar, /no puede encadenar otra respuesta reactiva/);
 });
 
-test("partida integral: cambio de turno restaura economía y no concede turno independiente al Familiar", async () => {
+test("partida integral: cambio de turno restaura economía cuantificada y no concede turno independiente al Familiar", async () => {
   const turn = await read("scripts/rules/turn-economy.mjs");
   assert.match(turn, /\["character", "npc"\]\.includes\(actor\.type\)/);
-  for (const field of ["movement", "action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
+  assert.match(turn, /"system\.turn\.movementSpent": 0/);
+  assert.match(turn, /"system\.turn\.extraMovement": 0/);
+  for (const field of ["action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
   for (const field of ["guardActive", "parryActive", "parrySucceeded", "counterattackUsed", "kineticBarrierActive"]) assert.match(turn, new RegExp('"system\\.combat\\.' + field + '": false'));
 });
 
@@ -44,8 +46,8 @@ test("partida integral: Respiro limpia Saturación pero no recupera Vida ni Man�
 
 test("partida integral: Descanso y descanso completo respetan topes y reinician sólo recursos declarados", async () => {
   const actor = await read("scripts/documents/actor.mjs");
-  assert.match(actor, /Math\.min\(toNumber\(hp\.max\), toNumber\(hp\.value\) \+ toNumber\(this\.system\.attributes\.vig\.value\) \+ 2\)/);
-  assert.match(actor, /Math\.min\(toNumber\(mp\.max\), toNumber\(mp\.value\) \+ toNumber\(this\.system\.attributes\.vol\.value\) \+ 1\)/);
+  assert.match(actor, /Math\.min\(resourceMaximum\(this, "health"\), toNumber\(hp\.value\) \+ toNumber\(this\.system\.attributes\.vig\.value\) \+ 2\)/);
+  assert.match(actor, /Math\.min\(resourceMaximum\(this, "mana"\), toNumber\(mp\.value\) \+ toNumber\(this\.system\.attributes\.vol\.value\) \+ 1\)/);
   assert.match(actor, /updates\["system\.status\.fatigue"\] = 0/);
 });
 
@@ -80,8 +82,10 @@ test("partida integral: no hay autoridad duplicada específica de Proyectil Ígn
 
 test("exploit: incapacitado no recupera Acción, Movimiento ni Reacción al avanzar turno", async () => {
   const turn = await read("scripts/rules/turn-economy.mjs");
-  assert.match(turn, /const incapacitated = Boolean\(actor\.system\?\.status\?\.incapacitated\) \|\| Number\(actor\.system\?\.resources\?\.health\?\.value\) <= 0/);
-  for (const field of ["movement", "action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
+  assert.match(turn, /actorIncapacitated/);
+  assert.match(turn, /movementAllowance/);
+  assert.match(turn, /"system\.turn\.movementSpent": 0/);
+  for (const field of ["action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
 });
 
 test("exploit: Acción y Reacción rechazan actores incapacitados antes de entrar al subsistema", async () => {
@@ -89,4 +93,13 @@ test("exploit: Acción y Reacción rechazan actores incapacitados antes de entra
   const reaction = await read("scripts/rules/reaction-economy-guards.mjs");
   assert.match(action, /status\?\.incapacitated[\s\S]*health\?\.value[\s\S]*Incapacitado/);
   assert.match(reaction, /status\?\.incapacitated[\s\S]*health\?\.value[\s\S]*Incapacitado/);
+});
+
+
+test("CREA-12: Intercepción consume Movimiento cuantificado y Reacción en una actualización", async () => {
+  const reactive = await read("scripts/rules/reactive-technique-guards.mjs");
+  assert.match(reactive, /movementRemaining\(this\)/);
+  assert.match(reactive, /spendActorMovement\(this, cost, \{ "system\.turn\.reaction": false \}\)/);
+  assert.equal(reactive.includes("system.turn.movementRemaining"), false);
+  assert.equal(reactive.includes('"system.turn.movement": false'), false);
 });

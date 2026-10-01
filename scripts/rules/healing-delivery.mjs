@@ -1,11 +1,12 @@
+import { resourceMaximum } from "./resource-reconciliation.mjs";
+
 function number(value, fallback = 0) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
 export function healingCap(actor) {
-  const health = actor?.system?.resources?.health ?? {};
-  const maximum = Math.max(0, number(health.max));
+  const maximum = resourceMaximum(actor, "health");
   const configured = number(actor?.system?.recovery?.healthCap, maximum);
   return Math.max(0, Math.min(maximum, configured));
 }

@@ -1,6 +1,7 @@
 // Foundry T.M. — salvaguardas e integración del núcleo mágico.
 import { offensiveSpellNeedsTargets, resolveSpellImpacts, validateSpellTargets } from "./spell-impact.mjs";
 import { normalizeSlug } from "./identity.mjs";
+import { resolveActorDefense } from "./defense-context.mjs";
 
 const number = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -11,9 +12,11 @@ const rollTotal = (message) => number(message?.rolls?.[0]?.total ?? message?.rol
 
 function spellDfFor(item, target = null) {
   let df = number(item.system.difficulty, 12);
-  if (item.system.defense === "mental" && target) df = number(target.system.derived?.mentalDefense);
-  if (item.system.defense === "body" && target) df = number(target.system.derived?.bodyDefense);
-  if (item.system.defense === "normal" && target) df = number(target.system.derived?.defense);
+  if (item.system.defense === "mental" && target) df = resolveActorDefense(target, { kind: "mental" }).total;
+  if (item.system.defense === "body" && target) df = resolveActorDefense(target, { kind: "body" }).total;
+  if (item.system.defense === "normal" && target) {
+    df = resolveActorDefense(target, { kind: "normal", kineticBarrier: true, parryable: false, frontal: false }).total;
+  }
   return df;
 }
 
@@ -155,7 +158,7 @@ export function installMagicGuards(ActorClass) {
 
     if (number(item.system.damage) > 0 && targets.length) {
       const hitTargets = outcomes.filter((entry) => entry.success).map((entry) => entry.actor);
-      const impacts = resolveSpellImpacts(item, hitTargets);
+      const impacts = resolveSpellImpacts(item, hitTargets, { protectionContext: options.tmProtectionContext ?? {} });
       const applied = [];
       for (const impact of impacts) {
         if (impact.damage <= 0) {

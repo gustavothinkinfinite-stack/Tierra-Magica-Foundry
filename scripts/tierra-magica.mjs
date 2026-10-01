@@ -21,6 +21,7 @@ import { normalizeSlug } from "./rules/identity.mjs";
 import { preflightAcquisition, acquisitionFromCost } from "./rules/acquisition.mjs";
 import { deriveDevelopmentBudget } from "./rules/creation.mjs";
 import { migrateWorldData, TM_SCHEMA_VERSION } from "./rules/data-model-migration.mjs";
+import { installResourceReconciliationHooks, reconcileActorResources } from "./rules/resource-reconciliation.mjs";
 import { validateCatalog } from "./rules/catalog.mjs";
 import { coreCatalog } from "./catalog/core-catalog.mjs";
 
@@ -35,13 +36,18 @@ installRitualGuards(TierraMagicaActor);
 installActionEconomyGuards(TierraMagicaActor);
 installReactionEconomyGuards(TierraMagicaActor);
 installCurrencyRules(TierraMagicaActor);
+installResourceReconciliationHooks(Hooks);
 
 Hooks.once("init", async () => {
   console.info("Foundry T.M. | Iniciando Tierra Mágica v1.0.17");
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
   CONFIG.Item.documentClass = TierraMagicaItem;
-  await loadTemplates(["systems/tierra-magica/templates/actor/parts/actor-sheet.hbs", "systems/tierra-magica/templates/actor/parts/item-section.hbs"]);
+  await loadTemplates([
+    "systems/tierra-magica/templates/actor/parts/actor-sheet.hbs",
+    "systems/tierra-magica/templates/actor/parts/item-section.hbs",
+    "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"
+  ]);
   Actors.unregisterSheet("core", ActorSheet, { types: ["character", "npc", "familiar"] });
   Actors.registerSheet("tierra-magica", TierraMagicaActorSheet, { types: ["character", "npc", "familiar"], makeDefault: true, label: "Foundry T.M." });
   const itemTypes = Object.keys(TM_CONFIG.itemTypes);
@@ -218,6 +224,10 @@ Hooks.once("ready", async () => {
     skillDefinitions: TM_CONFIG.skills
   });
   const dataMigration = await migrateWorldData({ catalog });
+  let resourceReconciliations = 0;
+  if (game.user.isGM) {
+    for (const actor of game.actors) if (await reconcileActorResources(actor)) resourceReconciliations += 1;
+  }
   game.tierraMagica = {
     ...(game.tierraMagica ?? {}),
     catalog,
@@ -243,6 +253,9 @@ Hooks.once("ready", async () => {
       "Tierra Mágica: CREA-11 migró " + dataMigration.actors + " Actor(es), " +
       dataMigration.items + " Item(s) y vinculó " + dataMigration.identities + " identidad(es) inequívoca(s)."
     );
+  }
+  if (resourceReconciliations) {
+    ui.notifications.info("Tierra Mágica: CREA-12 reconcilió Vida/Maná en " + resourceReconciliations + " Actor(es) contra sus máximos derivados.");
   }
   if (!catalogValidation.valid) {
     console.warn("Foundry T.M. | CREA-11 catálogo con incidencias", catalogValidation.issues);

@@ -45,8 +45,11 @@ test("Descanso normal limita cada recuperación a una vez antes del Completo", a
 
 test("economía de turno no revive funcionalmente a un actor a 0 Vida", async () => {
   const source = await read("scripts/rules/turn-economy.mjs");
-  assert.match(source, /health\?\.value\) <= 0/);
-  for (const field of ["movement", "action", "reaction"]) {
+  assert.match(source, /actorIncapacitated/);
+  assert.match(source, /resources\?\.health\?\.value/);
+  assert.match(source, /movementAllowance\(actor\)/);
+  assert.match(source, /"system\.turn\.movementSpent": 0/);
+  for (const field of ["action", "reaction"]) {
     assert.match(source, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
   }
 });

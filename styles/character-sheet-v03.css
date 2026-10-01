@@ -3267,3 +3267,49 @@ form.tm-character-sheet-v03 {
     height: 100% !important;
   }
 }
+
+
+/* CREA-12 · diagnóstico compacto para ficha v0.3 */
+.tm-character-sheet-v03 .tm-derived-diagnostics-panel {
+  padding: 7px;
+  background:
+    linear-gradient(180deg, rgba(249,241,217,.96), rgba(232,216,178,.94));
+  border-color: #9c773e;
+}
+.tm-character-sheet-v03 .tm-derived-diagnostics-heading {
+  margin: 0 2px 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(143,104,52,.34);
+}
+.tm-character-sheet-v03 .tm-derived-diagnostics-heading h2 {
+  color: #123d49;
+  font-size: 12px;
+}
+.tm-character-sheet-v03 .tm-derived-diagnostics-heading small {
+  font-size: 7px;
+}
+.tm-character-sheet-v03 .tm-derived-diagnostics-context-flag {
+  max-width: 108px;
+  font-size: 6px;
+  line-height: 1.2;
+  text-align: center;
+}
+.tm-character-sheet-v03 .tm-derived-diagnostics-grid {
+  grid-template-columns: 1fr;
+  gap: 3px;
+}
+.tm-character-sheet-v03 .tm-derived-diagnostic {
+  background: rgba(255,250,235,.50);
+  border-color: rgba(133,96,47,.32);
+}
+.tm-character-sheet-v03 .tm-derived-diagnostic > summary {
+  min-height: 25px;
+  padding: 3px 5px;
+}
+.tm-character-sheet-v03 .tm-derived-diagnostic > summary span { font-size: 8px; }
+.tm-character-sheet-v03 .tm-derived-diagnostic > summary b {
+  color: #123d49;
+  font-size: 11px;
+}
+.tm-character-sheet-v03 .tm-derived-diagnostic-body { padding: 5px 6px 6px; }
+.tm-character-sheet-v03 .tm-derived-formula { padding: 4px 5px; }

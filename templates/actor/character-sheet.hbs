@@ -127,10 +127,10 @@
               <button type="button" data-action="reset-turn" title="Restablecer Movimiento, Acción y Reacción"><i class="fa-solid fa-rotate-right"></i></button>
             </div>
             <div class="tm-v03-turn-actions">
-              <button type="button" class="{{#unless turn.movement}}spent{{/unless}}" data-action="toggle-turn" data-key="movement">
+              <button type="button" class="{{#if turn.movementDepleted}}spent{{/if}}" data-action="spend-movement">
                 <i class="fa-solid fa-person-running"></i>
                 <span>Movimiento</span>
-                <small>{{#if turn.movement}}Disponible{{else}}Gastado{{/if}}</small>
+                <small>{{turn.movementRemaining}} / {{turn.movementMax}} esp.</small>
               </button>
               <button type="button" class="{{#unless turn.action}}spent{{/unless}}" data-action="toggle-turn" data-key="action">
                 <i class="fa-solid fa-bolt"></i>
@@ -162,12 +162,14 @@
               <div class="tm-v09-defense tm-v09-defense-body"><i class="fa-solid fa-person"></i><span>Corporal</span><b>{{system.derived.bodyDefense}}</b></div>
             </div>
             <div class="tm-v03-derived-list">
-              <button type="button" data-action="roll-initiative"><span>Iniciativa</span><b>+{{system.derived.initiative}}</b><i class="fa-solid fa-dice"></i></button>
+              <button type="button" data-action="roll-initiative"><span>Iniciativa</span><b>+{{system.derived.initiativeModifier}}</b><i class="fa-solid fa-dice"></i></button>
               <div><span>Protección</span><b>{{system.derived.protection}}</b></div>
               <div><span>Daño Grave</span><b>{{system.derived.severeThreshold}}</b></div>
               <div><span>Movimiento</span><b>{{system.derived.movement}}</b></div>
             </div>
           </section>
+
+          {{> "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"}}
 
           <section class="tm-v03-panel tm-v03-state">
             <header class="tm-v03-panel-heading"><h2>Estado</h2></header>
@@ -390,9 +392,11 @@
         <div class="tm-section-heading"><h2>Configuración defensiva</h2><span>Ajustes y entrenamiento marcial.</span></div>
         <div class="tm-form-grid">
           <label><span>Rango marcial relevante</span><select name="system.combat.defensiveRank">{{selectOptions config.rankLabels selected=system.combat.defensiveRank}}</select></label>
-          <label><span>Mod. Defensa</span><input type="number" name="system.combat.defenseBonus" value="{{system.combat.defenseBonus}}" /></label>
-          <label><span>Mod. Protección</span><input type="number" name="system.combat.protectionBonus" value="{{system.combat.protectionBonus}}" /></label>
-          <label><span>Mod. Movimiento</span><input type="number" name="system.combat.movementBonus" value="{{system.combat.movementBonus}}" /></label>
+          <label><span>Movimiento base</span><input type="number" name="system.movement.base" value="{{system.movement.base}}" min="1" /></label>
+          <label><span>Ajuste Defensa</span><input type="number" name="system.modifiers.manual.defensiveBonus.value" value="{{system.modifiers.manual.defensiveBonus.value}}" /></label>
+          <label><span>Ajuste Protección</span><input type="number" name="system.modifiers.manual.protection.value" value="{{system.modifiers.manual.protection.value}}" /></label>
+          <label><span>Ajuste Movimiento</span><input type="number" name="system.modifiers.manual.movement.value" value="{{system.modifiers.manual.movement.value}}" /></label>
+          <label><span>Ajuste Iniciativa</span><input type="number" name="system.modifiers.manual.initiativeModifier.value" value="{{system.modifiers.manual.initiativeModifier.value}}" /></label>
         </div>
       </section>
       <section class="tm-panel tm-v03-page-panel">

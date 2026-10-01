@@ -78,7 +78,8 @@ test("Guardia Parada y Contraataque respetan Acción/Reacción y no encadenan", 
   assert.equal(source.includes('ActorClass.prototype.guard = async function'), true);
   assert.equal(source.includes('"system.turn.action": false, "system.combat.guardActive": true'), true);
   assert.equal(source.includes('ActorClass.prototype.parry = async function'), true);
-  assert.equal(source.includes('"system.turn.reaction": false, "system.combat.parryActive": true'), true);
+  assert.equal(source.includes('"system.turn.reaction": false'), true);
+  assert.equal(source.includes('"system.combat.parryActive": true'), true);
   assert.equal(source.includes('ActorClass.prototype.counterattack = async function'), true);
   assert.equal(source.includes('if (!this.system.combat?.parrySucceeded)'), true);
   assert.equal(source.includes('if (this.system.combat?.counterattackUsed)'), true);
@@ -89,19 +90,33 @@ test("Guardia Parada y Contraataque respetan Acción/Reacción y no encadenan", 
   for (const action of ["combat-guard", "combat-parry", "combat-counterattack"]) assert.equal(template.includes('data-action="' + action + '"'), true);
 });
 
-test("Guardia modifica Defensa y Parada sólo habilita Contraataque cuando cambia el resultado", async () => {
+test("Guardia y Parada usan el motor contextual sin mutar derived en el integrador", async () => {
   const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
-  assert.equal(source.includes('this.system.derived.defense = number(this.system.derived.defense, 0) + 2'), true);
-  assert.equal(source.includes('const succeeded = Number.isFinite(total) && total >= baseDefense && total < baseDefense + 2'), true);
-  assert.equal(source.includes('"system.combat.parryActive": false'), true);
+  const derived = await readFile(new URL("../scripts/rules/derived-state.mjs", import.meta.url), "utf8");
+  assert.equal(source.includes("this.system.derived.defense ="), false);
+  assert.equal(derived.includes('label: "Guardia"'), true);
+  assert.equal(derived.includes('label: "Parada"'), true);
+  assert.equal(source.includes("total < parryDefense"), true);
   assert.equal(source.includes('"system.combat.parrySucceeded": succeeded'), true);
-  assert.equal(source.includes('if (!this.system.combat?.parrySucceeded)'), true);
 });
 
-test("Intercepción respeta la economía binaria de Movimiento sin crear una reserva paralela", async () => {
+test("Intercepción consume la reserva cuantificada canónica de Movimiento", async () => {
   const reactive = await readFile(new URL("../scripts/rules/reactive-technique-guards.mjs", import.meta.url), "utf8");
-  assert.equal(reactive.includes('const tracksDistance = Object.prototype.hasOwnProperty.call(this.system.turn ?? {}, "movementRemaining")'), true);
-  assert.equal(reactive.includes('if (!movementAvailable && cost > 0)'), true);
-  assert.equal(reactive.includes('else if (cost > 0) await this.update({ "system.turn.movement": false })'), true);
-  assert.equal(reactive.includes('"system.turn.movementRemaining": Math.max(0, available - cost)'), true);
+  assert.equal(reactive.includes("const available = movementRemaining(this)"), true);
+  assert.equal(reactive.includes('spendActorMovement(this, cost, { "system.turn.reaction": false })'), true);
+  assert.equal(reactive.includes('"system.turn.movement": false'), false);
+  assert.equal(reactive.includes("system.turn.movementRemaining"), false);
+});
+
+
+test("impacto físico acepta Protección contextual sin convertirla en universal", () => {
+  const target=actor({}, {
+    protection:1,
+    severeThreshold:9,
+    contextual:{protection:[{value:2,context:"alteredSkinCompatible",stacking:"max-with-armor"}]},
+    breakdowns:{protection:{contributions:[{value:1,equipmentType:"armor"}]}}
+  });
+  const w=weapon({damage:5,penetration:0});
+  assert.equal(resolveWeaponImpact(w,actor(),target).protection,1);
+  assert.equal(resolveWeaponImpact(w,actor(),target,{protectionContext:{alteredSkinCompatible:true}}).protection,2);
 });

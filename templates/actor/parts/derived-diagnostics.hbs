@@ -1,0 +1,69 @@
+<section class="tm-derived-diagnostics-panel {{#if isCharacter}}tm-v03-panel{{else}}tm-panel{{/if}}">
+  <header class="tm-derived-diagnostics-heading">
+    <div>
+      <h2>Diagnóstico de derivados</h2>
+      <small>Sólo lectura · muestra fórmula, fuentes y condiciones no universales.</small>
+    </div>
+    {{#if derivedDiagnostics.hasContextual}}<span class="tm-derived-diagnostics-context-flag">Hay contexto pendiente</span>{{/if}}
+  </header>
+
+  <div class="tm-derived-diagnostics-grid">
+    {{#each derivedDiagnostics.entries as |entry|}}
+      <details class="tm-derived-diagnostic" data-derived-key="{{entry.key}}">
+        <summary>
+          <span>{{entry.label}}</span>
+          <b>{{entry.valueDisplay}}</b>
+        </summary>
+        <div class="tm-derived-diagnostic-body">
+          <div class="tm-derived-formula">
+            <span>{{entry.formula}}</span>
+            <small>Base {{entry.baseDisplay}} · modificadores {{entry.modifierDisplay}}</small>
+          </div>
+
+          {{#if entry.hasContributions}}
+            <div class="tm-derived-source-group">
+              <strong>Fuentes aplicadas</strong>
+              <ul>
+                {{#each entry.contributions as |source|}}
+                  <li>
+                    <span>{{source.label}}</span>
+                    <b>{{source.valueDisplay}}</b>
+                    <small>{{source.source}}{{#if source.sourceType}} · {{source.sourceType}}{{/if}}</small>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+          {{else}}
+            <p class="tm-derived-empty">Sin modificadores aplicados.</p>
+          {{/if}}
+
+          {{#if entry.hasContextual}}
+            <div class="tm-derived-context-group">
+              <strong>Condicionales no incluidos en el total universal</strong>
+              <ul>
+                {{#each entry.contextual as |source|}}
+                  <li>
+                    <span>{{source.label}}</span>
+                    <b>{{source.valueDisplay}}</b>
+                    <small>{{source.condition}}{{#if source.stacking}} · {{source.stacking}}{{/if}}</small>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+          {{/if}}
+        </div>
+      </details>
+    {{/each}}
+  </div>
+
+  {{#if derivedDiagnostics.hasIssues}}
+    <div class="tm-derived-diagnostics-issues">
+      <strong>Incidencias</strong>
+      <ul>
+        {{#each derivedDiagnostics.issues as |issue|}}
+          <li><b>{{issue.code}}</b><span>{{issue.message}}{{#if issue.source}} · {{issue.source}}{{/if}}</span></li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+</section>

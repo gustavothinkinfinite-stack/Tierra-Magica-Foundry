@@ -19,7 +19,7 @@ test("la página Habilidades muestra el desglose completo y permite ajustes manu
 
 test("la ficha mantiene economía de turno y acceso al familiar",async()=>{const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");for(const marker of ["Acción","Movimiento","Reacción","Familiar"])assert.equal(sheet.includes(marker),true);});
 
-test("el modelo base incluye economía de turno y modificadores manuales de Habilidad",async()=>{const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(typeof model.Actor.templates.base.turn.action,"boolean");assert.equal(typeof model.Actor.templates.base.turn.movement,"boolean");assert.equal(typeof model.Actor.templates.base.turn.reaction,"boolean");});
+test("el modelo base incluye economía de turno cuantificada y modificadores manuales estructurados",async()=>{const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));const base=model.Actor.templates.base;assert.equal(typeof base.turn.action,"boolean");assert.equal(typeof base.turn.movementSpent,"number");assert.equal(typeof base.turn.extraMovement,"number");assert.equal(typeof base.turn.reaction,"boolean");assert.equal(base.movement.base,6);assert.equal(base.modifiers.manual.movement.selector,"movement");assert.equal(base.modifiers.manual.initiativeModifier.selector,"initiativeModifier");});
 
 test("los Items permiten configurar fuentes estructuradas de modificadores",async()=>{const item=await readFile(resolve(root,"templates/item/item-sheet.hbs"),"utf8");assert.equal(item.includes("modifiers"),true);});
 
@@ -39,7 +39,7 @@ test("la dirección visual v0.9.0 usa el emblema hero y la composición aprobada
 
 test("v0.9.1 integra el banner ilustrado aprobado y limpia el gutter lateral",async()=>{const css=await readFile(resolve(root,"styles/character-sheet-v03.css"),"utf8");assert.equal(css.length>1000,true);});
 
-test("auditoría 1.0.2 alinea Maniobra y editores de subsistemas",async()=>{const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");const item=await readFile(resolve(root,"templates/item/item-sheet.hbs"),"utf8");assert.equal(actor.includes("maneuverDefense: 11 + agi + martialDefense + extraDefense"),true);assert.equal(actor.includes("Math.max(toNumber(a.fue"),false);for(const flag of ["isFormula","isRitual","isDevice"])assert.equal(item.includes(flag),true);for(const field of ["system.saturating","system.manaDirector","system.energy.value","system.flow"])assert.equal(item.includes(field),true);});
+test("auditoría 1.0.2 alinea Maniobra y editores de subsistemas",async()=>{const actor=await readFile(resolve(root,"scripts/documents/actor.mjs"),"utf8");const item=await readFile(resolve(root,"templates/item/item-sheet.hbs"),"utf8");assert.equal(actor.includes("deriveActorState({"),true);assert.equal(actor.includes("Math.max(toNumber(a.fue"),false);for(const flag of ["isFormula","isRitual","isDevice"])assert.equal(item.includes(flag),true);for(const field of ["system.saturating","system.manaDirector","system.energy.value","system.flow"])assert.equal(item.includes(field),true);});
 
 test("Vida 0 y descansos exponen la semántica auditada",async()=>{const guards=await readFile(resolve(root,"scripts/rules/familiar-guards.mjs"),"utf8");const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(model.Actor.templates.base.status.incapacitated,false);assert.equal("zeroTraumaApplied" in model.Actor.templates.base.recovery,false);assert.equal(guards.includes('previous > 0 && next === 0'),true);assert.equal(guards.includes('updates["system.status.trauma"] = 1'),true);assert.equal(sheet.includes("Respiro (~10 min)"),true);assert.equal(sheet.includes("Descanso (~1 h)"),true);assert.equal(sheet.includes("Descanso completo (~8 h)"),true);});
 
@@ -95,4 +95,44 @@ test("CREA-11 itemiza identidad y unifica adquisición/reglas",async()=>{
   assert.equal(actor.includes("async completeCreation"),true);
   assert.equal(item.includes("Costes de catálogo"),true);
   assert.equal(item.includes("system.skillModifiersActive"),false);
+});
+
+
+test("CREA-12 retira controles binarios y campos manuales legados de la ficha",async()=>{
+  const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  assert.equal(sheet.includes('data-key="movement"'),false);
+  assert.equal(sheet.includes('data-action="spend-movement"'),true);
+  for(const legacy of ["system.combat.defenseBonus","system.combat.protectionBonus","system.combat.movementBonus","system.combat.initiativeBonus"]) {
+    assert.equal(sheet.includes(legacy),false,legacy);
+  }
+  assert.equal(sheet.includes("system.modifiers.manual.defensiveBonus.value"),true);
+  assert.equal(sheet.includes("system.modifiers.manual.initiativeModifier.value"),true);
+});
+
+
+test("CREA-12 3E expone diagnóstico derivado de sólo lectura en todas las fichas",async()=>{
+  const logic=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");
+  const character=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  const shared=await readFile(resolve(root,"templates/actor/parts/actor-sheet.hbs"),"utf8");
+  const diagnostics=await readFile(resolve(root,"templates/actor/parts/derived-diagnostics.hbs"),"utf8");
+  const entry=await readFile(resolve(root,"scripts/tierra-magica.mjs"),"utf8");
+
+  assert.equal(logic.includes("context.derivedDiagnostics = this.#buildDerivedDiagnostics()"),true);
+  assert.equal(logic.includes('"Sólo con frente confirmado"'),true);
+  assert.equal(logic.includes('"Sólo contra ataque parable"'),true);
+  assert.equal(logic.includes('"Sólo si la categoría es coherente con Piel Alterada"'),true);
+  assert.equal(character.includes('parts/derived-diagnostics.hbs'),true);
+  assert.equal(shared.includes('parts/derived-diagnostics.hbs'),true);
+  assert.equal(entry.includes('parts/derived-diagnostics.hbs'),true);
+  assert.equal(diagnostics.includes("Fuentes aplicadas"),true);
+  assert.equal(diagnostics.includes("Condicionales no incluidos en el total universal"),true);
+  assert.equal(diagnostics.includes("Incidencias"),true);
+  assert.equal(diagnostics.includes('name="system.'),false);
+  assert.equal(diagnostics.includes("data-action="),false);
+});
+
+test("CREA-12 3E muestra el Bono Defensivo total y no sólo el tramo marcial",async()=>{
+  const shared=await readFile(resolve(root,"templates/actor/parts/actor-sheet.hbs"),"utf8");
+  assert.equal(shared.includes("system.derived.defensiveBonus"),true);
+  assert.equal(shared.includes("system.derived.martialDefense}}</strong></div>"),false);
 });
