@@ -5,7 +5,7 @@ import { TM_SCHEMA_VERSION } from "../scripts/rules/data-model-migration.mjs";
 import { prepareRuleElements } from "../scripts/rules/rule-elements.mjs";
 import { deriveActorState } from "../scripts/rules/derived-state.mjs";
 import { buildAllCrea13Fixtures } from "./fixtures/crea-13-builds.mjs";
-import { CREA13_REQUIRED_PILLARS } from "./fixtures/crea-13-archetypes.mjs";
+import { CREA13_ARCHETYPES, CREA13_REQUIRED_PILLARS } from "./fixtures/crea-13-archetypes.mjs";
 
 function prepare(actor){
   const rules=prepareRuleElements(actor.items,{skillDefinitions:TM_CONFIG.skills});
@@ -45,9 +45,11 @@ test("CREA-13 13F: siete perfiles cierran legalidad, schema, derivados y cobertu
     assert.ok(derived.manaMax>=0,build.profile.id+" Maná");
     assert.ok(derived.movement>=1,build.profile.id+" Movimiento");
 
-    for(const tag of build.profile.coverage ?? []) covered.add(tag);
   }
 
+  for(const archetype of CREA13_ARCHETYPES){
+    for(const tag of archetype.coverage ?? []) covered.add(tag);
+  }
   for(const pillar of CREA13_REQUIRED_PILLARS){
     assert.equal(covered.has(pillar),true,"cobertura global "+pillar);
   }
