@@ -70,6 +70,7 @@ export class TierraMagicaActor extends Actor {
     });
 
     const derivedState = deriveActorState({
+      actorType: this.type,
       system: s,
       items: [...this.items],
       rulePreparation,
