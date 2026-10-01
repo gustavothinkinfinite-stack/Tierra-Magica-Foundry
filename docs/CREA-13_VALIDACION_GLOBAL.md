@@ -1,6 +1,6 @@
 # CREA-13 — Validación global de siete personajes/arquetipos
 
-**Estado:** 13A–13E COMPLETAS · 13F pendiente  
+**Estado:** CREA-13 COMPLETA · 13A–13F CERRADAS  
 **Base:** main @ 98cb40556826675827eead6161c2ef97103c9315  
 **Dependencia:** CREA-12 integrado; P-011 resuelto.
 
@@ -124,12 +124,7 @@ La prueba transversal confirma además que Barrera Cinética y otra Reacción �
 
 Esto no automatiza fabricación ni inventa costes de ingredientes: sólo elimina la creación gratuita de materia a partir de PD.
 
-**Limitación 13C-L01 — ABIERTA, no inferida:** los dispositivos que dependen de un acumulador externo todavía no poseen en el modelo una relación explícita de conexión entre el dispositivo consumidor y el acumulador que aporta Energía/Caudal. El Manual distingue claramente acumulador y dispositivo, y además establece que conectar acumuladores no suma Caudal automáticamente. Por tanto:
-
-- 13C valida la ruta energética con un dispositivo autosuficiente permitido por el esquema;
-- no se considera que cualquier acumulador del inventario esté conectado por defecto;
-- el Escudo de campo del catálogo no se usa como prueba de consumo externo hasta que exista un vínculo estructurado de fuente de Energía;
-- este hueco es de modelado de conexión, no una autorización para crear Energía o Caudal implícitos.
+**Limitación 13C-L01 — RESUELTA EN 13F:** en 13C todavía no existía una relación estructurada acumulador externo → dispositivo consumidor. La auditoría 13F cerró ese hueco usando únicamente reglas ya presentes en el Manual: una fuente energética explícita, sin búsqueda automática, sin suma implícita de Caudal y sin creación de Energía.
 
 Medicina permanece deliberadamente contextual en lo que corresponde a Primeros Auxilios: una tirada médica no restaura Vida automáticamente. La secuencia del Sanador valida los límites de recuperación sin convertir Medicina en curación gratuita.
 
@@ -204,11 +199,82 @@ No apareció un defecto nuevo que requiriera cambio de reglas o de implementaci�
 
 **Resultado 13E:** el pipeline mantiene la separación entre estado persistente y estado derivado. Activar/desactivar o equipar/desequipar modifica sólo las contribuciones que corresponden, y volver al estado anterior reconstruye el mismo resultado sin drift.
 
-La limitación **13C-L01** permanece fuera de esta validación: como todavía no existe un vínculo estructurado acumulador externo → dispositivo consumidor, 13E no puede probar persistencia de una conexión que el modelo aún no representa.
+La limitación **13C-L01** seguía abierta al terminar 13E. Fue modelada, migrada y validada posteriormente en 13F.
 
 
 ### 13F — Auditoría global y cierre
-Comparar los siete resultados, registrar hallazgos, corregir defectos reproducibles y cerrar CREA-13 sólo con CI verde.
+
+**Estado: COMPLETA · Validate #297 — SUCCESS · 294 pruebas**
+
+La auditoría final comparó los siete fixtures como sistema completo y reabrió cualquier punto que todavía dependiera de texto no mecanizado. El cierre global exige simultáneamente legalidad de creación, schema vigente, derivados finitos, ausencia de Rule Elements inválidos, cobertura de los pilares mecánicos y ausencia de campos históricos retirados.
+
+**Hallazgo 13F-01 — RESUELTO: fuente energética externa no modelada.**  
+El Manual ya distingue acumulador y dispositivo, define Energía/Caudal/Consumo y establece que conectar acumuladores no suma Caudal automáticamente. Sobre esa base se incorporó un vínculo explícito y único:
+
+- `device.energySourceItemId` señala una fuente energética concreta del mismo Actor;
+- vacío significa reserva propia;
+- una referencia ausente o inválida bloquea la activación: nunca cae silenciosamente a otra fuente;
+- una fuente Deshabilitada no puede aportar Energía;
+- Energía y Caudal se leen exclusivamente de la fuente vinculada;
+- otros acumuladores del inventario no se suman ni sustituyen automáticamente;
+- consumos concurrentes sobre la misma fuente se serializan para impedir doble gasto de una misma reserva;
+- Sobrecarga usa el mismo vínculo y nunca crea Energía.
+
+La ficha de Item permite seleccionar explícitamente la fuente. Esto cierra **13C-L01** sin inventar una red energética automática ni una regla de combinación de acumuladores.
+
+**Hallazgo 13F-02 — RESUELTO: Escudo de campo sólo existía como texto.**  
+El catálogo declaraba “Reacción: +2 Defensa; no acumula con Barrera Cinética equivalente”, pero la activación de dispositivos no aplicaba ese efecto a la Defensa real.
+
+Se estructuró:
+
+- `device.activation`, con Escudo de campo = **Reacción**;
+- `device.kineticDefense`, con Escudo de campo = `true`;
+- una activación válida abre la misma ventana `kineticBarrierActive` que Barrera Cinética;
+- la ventana aporta un único **+2 Defensa contextual**, por lo que Escudo de campo y Barrera Cinética no pueden acumularse;
+- `kineticDefenseSource` conserva procedencia diagnóstica sin crear una segunda autoridad;
+- ataques físicos y hechizos contra Defensa normal consumen la misma ventana y limpian también su procedencia;
+- un nuevo turno elimina cualquier ventana cinética residual.
+
+**Hallazgo 13F-03 — RESUELTO: compatibilidad de datos previos.**  
+Los nuevos campos de dispositivos requieren persistencia. El schema interno sube de **v2 a v3**:
+
+- Actors e Items nuevos nacen directamente en v3;
+- dispositivos v2 migran `energySourceItemId`, `activation` y `kineticDefense`;
+- un Escudo de campo v2 sin esos campos recibe sus valores canónicos Reacción/defensa cinética;
+- configuraciones explícitas ya existentes no se sobrescriben;
+- la migración es idempotente;
+- el vínculo dispositivo → acumulador sobrevive guardar/reabrir.
+
+**Invariantes globales de cierre:**
+
+| Área | Resultado |
+|---|---|
+| 7 fixtures | exactamente siete, todos legales |
+| PD / PR / PEI | dentro de presupuesto |
+| Schema | Actor e Items en v3 |
+| Derivados | finitos, deterministas y sin usar `.max` persistido como autoridad |
+| Equipo / Effects / Sostenimiento | reversibles, sin drift |
+| Acción / Movimiento / Reacción | una sola economía compartida |
+| Vida / Trauma / recuperación | transición coherente y acotada |
+| Maná / Sobrecarga | costes y fallos sin devolución de economía |
+| Alquimia | conocimiento separado de dosis; Saturación respetada |
+| Ingeniería | Energía/Caudal explícitos, sin creación ni suma automática |
+| Familiar | sin segundo turno, Trauma ni reserva propia de Maná |
+| Campos históricos | no requeridos por los fixtures actuales |
+
+### Resultado de CREA-13
+
+Los siete perfiles completan creación, derivados, equipamiento, secuencia funcional, daño/recuperación/economía y persistencia sin divergencias conocidas entre las autoridades mecánicas.
+
+No queda un bloqueo de implementación abierto dentro del alcance de CREA-13.
+
+Persisten únicamente límites de contenido que el canon no cuantifica y que por diseño **no se infieren**:
+
+- los dispositivos de referencia continúan sin precio canónico exacto; por eso Compra libre permanece bloqueada para ellos;
+- el vínculo energético modela una fuente explícita por dispositivo y no pretende representar redes, infraestructura o suma de Caudal no definidas;
+- fabricación, reparación, Primeros Auxilios y otras resoluciones contextuales siguen dependiendo de las condiciones que el Manual deja a la ficción/mesa.
+
+CREA-13 queda técnicamente completa en la PR #25 y preparada para revisión final antes de integración en `main`.
 
 ## Regla de cierre
 
