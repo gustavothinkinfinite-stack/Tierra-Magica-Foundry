@@ -11,6 +11,7 @@ import {
 } from "../rules/skills.mjs";
 import { prepareRuleElements, modifiersForSelector } from "../rules/rule-elements.mjs";
 import { deriveActorState } from "../rules/derived-state.mjs";
+import { resolveActorDefense } from "../rules/defense-context.mjs";
 import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
@@ -432,13 +433,13 @@ export class TierraMagicaActor extends Actor {
   }
 
 
-  async rollWeapon(item, { df = null, mode = "normal", modifier = 0, damageBonus = 0, penetrationBonus = 0, technique = "" } = {}) {
+  async rollWeapon(item, { df = null, mode = "normal", modifier = 0, damageBonus = 0, penetrationBonus = 0, technique = "", protectionContext = {}, tmFrontal = false } = {}) {
     if (!item || item.type !== "weapon") return null;
     const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
     const uniqueTargets = [...new Map(selected.map((actor) => [actor.uuid ?? actor.id, actor])).values()];
     if (uniqueTargets.length !== 1) return ui.notifications.warn("El ataque requiere exactamente un objetivo válido.");
     const target = uniqueTargets[0];
-    const targetDf = df ?? target.system?.derived?.defense;
+    const targetDf = df ?? resolveActorDefense(target, { kind: "normal", frontal: tmFrontal === true }).total;
     const roll = await this.rollCheck({
       label: "Ataque con " + item.name,
       attributeKey: item.system.attackAttribute || "agi",
@@ -457,7 +458,7 @@ export class TierraMagicaActor extends Actor {
       });
       return roll;
     }
-    const impact = resolveWeaponImpact(item, this, target, { damageBonus, penetrationBonus });
+    const impact = resolveWeaponImpact(item, this, target, { damageBonus, penetrationBonus, protectionContext });
     const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
     if (impact.damage > 0 && canUpdate) await target.adjustResource("health", -impact.damage);
     const pendingDamage = !canUpdate ? pendingDamageRequest({
@@ -627,9 +628,9 @@ export class TierraMagicaActor extends Actor {
 
     const target = [...(game.user.targets ?? [])][0]?.actor;
     let df = toNumber(item.system.difficulty, 12);
-    if (item.system.defense === "mental" && target) df = toNumber(target.system.derived?.mentalDefense);
-    if (item.system.defense === "body" && target) df = toNumber(target.system.derived?.bodyDefense);
-    if (item.system.defense === "normal" && target) df = toNumber(target.system.derived?.defense);
+    if (item.system.defense === "mental" && target) df = resolveActorDefense(target, { kind: "mental" }).total;
+    if (item.system.defense === "body" && target) df = resolveActorDefense(target, { kind: "body" }).total;
+    if (item.system.defense === "normal" && target) df = resolveActorDefense(target, { kind: "normal", kineticBarrier: true }).total;
 
     const result = await this.rollCheck({
       label: "Hechizo: " + item.name + " · " + (TM_CONFIG.disciplines[item.system.discipline] ?? item.system.discipline),
