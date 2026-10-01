@@ -26,9 +26,9 @@ CREA-10 — Lista definitiva de Habilidades queda preparada para cierre en Found
 
 ## Estado de CREA-11
 
-CREA-11 — Modelo de datos de creación está implementada como candidata Foundry **1.0.17**. El modelo separa Actor base, Items adquiribles, requisitos tipados, Rule Elements declarativos, adquisición/procedencia, Effects y Compendios. La migración conserva información histórica ambigua como legado y no reconstruye compras por inferencia.
+CREA-11 — Modelo de datos de creación está **CERRADA v1.0** e integrada en Foundry **1.0.17**. El modelo separa Actor base, Items adquiribles, requisitos tipados, Rule Elements declarativos, adquisición/procedencia, Effects y Compendios. La migración conserva información histórica ambigua como legado y no reconstruye compras por inferencia.
 
-La candidata no cambia las fórmulas definitivas de valores derivados: esa responsabilidad permanece en CREA-12. Hasta el cierre formal y fusión del PR correspondiente, CREA-11 sigue en Fase 10 y sus decisiones no pasan todavía a CANÓNICAS.
+Sus decisiones DAT-D01 a DAT-D666 son CANÓNICAS. CREA-11 no cambia las fórmulas definitivas de valores derivados: esa responsabilidad permanece en CREA-12, próxima tarea prevista.
 
 ## Implementación
 

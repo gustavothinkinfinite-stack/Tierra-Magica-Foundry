@@ -6,9 +6,9 @@ La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuent
 
 Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**1.0.17 — CREA-11 Modelo de datos de creación candidata.** Ascendencia, Origen, Trasfondo y Disciplina pasan a Items estructurados; las demás elecciones adquiribles comparten identidad estable, costes, requisitos, adquisición y reglas declarativas. El Actor conserva estado intrínseco; los Compendios son catálogo; los efectos activos son Items `effect`; la migración preserva legado sin inventar compras históricas. CREA-12 conserva la responsabilidad de las fórmulas y agregación final de valores derivados.
+**1.0.17 — CREA-11 Modelo de datos de creación cerrada.** Ascendencia, Origen, Trasfondo y Disciplina pasan a Items estructurados; las demás elecciones adquiribles comparten identidad estable, costes, requisitos, adquisición y reglas declarativas. El Actor conserva estado intrínseco; los Compendios son catálogo; los efectos activos son Items `effect`; la migración preserva legado sin inventar compras históricas. CREA-12 conserva la responsabilidad de las fórmulas y agregación final de valores derivados.
 
-La candidata 1.0.17 está en validación de cierre de CREA-11 y no se considera canónica hasta su fusión y registro formal.
+CREA-11 está formalmente cerrada e integrada en `main`; sus decisiones DAT-D01 a DAT-D666 son canónicas. CREA-12 queda como próxima tarea prevista.
 
 Documentación de cierre: `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md` · referencia de mesa: `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md` · jerarquía de fuentes: `docs/FUENTES_CANONICAS.md`.
 

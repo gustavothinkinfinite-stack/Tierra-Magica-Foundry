@@ -1,4 +1,4 @@
-## 1.0.17 — candidata CREA-11
+## 1.0.17 — CREA-11 cerrada
 
 - Nuevo modelo estructurado de creación: Actor para estado intrínseco; Items para Ascendencia, Origen, Trasfondo, Disciplina, Especialización, Técnica, Rasgo, Hechizo y equipo.
 - Añadidos tipos `ancestry`, `origin`, `background`, `discipline` y `effect`; los Items físicos separan su plantilla material del contrato mecánico común.
