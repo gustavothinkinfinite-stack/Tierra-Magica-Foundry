@@ -77,9 +77,11 @@
           <button type="button" data-action="roll-initiative"><i class="fa-solid fa-dice"></i> Iniciativa <strong>+{{system.derived.initiativeModifier}}</strong></button>
           <div><span>Movimiento</span><strong>{{system.derived.movement}} esp.</strong></div>
           <div><span>Escala</span><strong>{{lookup config.sizes system.traits.size}}</strong></div>
-          <div><span>Bono defensivo</span><strong>+{{system.derived.martialDefense}}</strong></div>
+          <div><span>Bono defensivo</span><strong>{{system.derived.defensiveBonus}}</strong></div>
         </div>
       </section>
+
+      {{> "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"}}
 
       <section class="tm-panel tm-wide">
         <h2>Estado y recuperación</h2>
