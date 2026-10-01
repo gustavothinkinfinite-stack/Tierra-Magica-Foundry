@@ -1,4 +1,5 @@
 import { normalizeSlug } from "./identity.mjs";
+import { resourceMaximum } from "./resource-reconciliation.mjs";
 // Foundry T.M. — salvaguardas de Familiares y Trauma.
 // Mantiene estas reglas separadas del documento base para que puedan auditarse sin
 // convertir al Familiar en un segundo PJ ni extender Trauma a actores no orgánicos.
@@ -21,10 +22,6 @@ export function installFamiliarGuards(ActorClass) {
   ActorClass.prototype.prepareDerivedData = function () {
     originalPrepare.call(this);
     if (this.type !== "familiar") return;
-    if (this.system.resources?.mana) {
-      this.system.resources.mana.value = 0;
-      this.system.resources.mana.max = 0;
-    }
     if (this.system.turn) {
       this.system.turn.action = false;
       this.system.turn.reaction = false;
@@ -35,7 +32,7 @@ export function installFamiliarGuards(ActorClass) {
     const data = this.system.resources?.[resource];
     if (!data) return null;
     const previous = number(data.value);
-    const next = Math.min(number(data.max), Math.max(0, previous + number(amount)));
+    const next = Math.min(resourceMaximum(this, resource), Math.max(0, previous + number(amount)));
     const updates = { [`system.resources.${resource}.value`]: next };
     if (resource === "health") {
       if (previous > 0 && next === 0) {
