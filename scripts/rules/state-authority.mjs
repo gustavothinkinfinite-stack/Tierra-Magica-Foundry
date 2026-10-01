@@ -1,4 +1,6 @@
-import { primaryActiveGm } from "./damage-delivery.mjs";
+import { primaryActiveGm, validatePendingDamageRequest } from "./damage-delivery.mjs";
+import { validatePendingHealingRequest } from "./healing-delivery.mjs";
+import { resourceMaximum } from "./resource-reconciliation.mjs";
 
 const CHANNEL = "system.tierra-magica";
 const SCOPE = "state-authority";
@@ -48,6 +50,51 @@ async function actorFromUuid(uuid) {
   return globalThis.fromUuid(uuid);
 }
 
+function healthMutationUpdates(target, next, previous) {
+  const updates = { "system.resources.health.value": next };
+  if (previous > 0 && next === 0) {
+    updates["system.status.incapacitated"] = true;
+    if (target.type === "familiar") updates["system.familiar.incapacitated"] = true;
+    if (target.type === "character" && number(target.system.status?.trauma) === 0) updates["system.status.trauma"] = 1;
+  } else if (next > 0) {
+    updates["system.status.incapacitated"] = false;
+    if (target.type === "familiar") updates["system.familiar.incapacitated"] = false;
+  }
+  return updates;
+}
+
+function healingLimit(target) {
+  const maximum = resourceMaximum(target, "health");
+  const configured = number(target.system?.recovery?.healthCap, maximum);
+  return Math.max(0, Math.min(maximum, configured));
+}
+
+async function mutateHealth(target, { damage = 0, healing = 0 } = {}) {
+  if (!target?.system || typeof target.update !== "function") return { ok:false, error:"El objetivo de Vida ya no está disponible." };
+  if (!canModify(target)) return { ok:false, error:"El DJ activo no puede modificar la Vida del objetivo." };
+
+  return serial("health:" + (target.uuid ?? target.id ?? target.name), async () => {
+    const maximum = resourceMaximum(target, "health");
+    const previous = Math.max(0, number(target.system.resources?.health?.value));
+    let next = previous;
+    let applied = 0;
+
+    const damageAmount = Math.max(0, number(damage));
+    const healingAmount = Math.max(0, number(healing));
+    if (damageAmount > 0) {
+      next = Math.max(0, previous - damageAmount);
+      applied = previous - next;
+    } else if (healingAmount > 0) {
+      next = Math.min(healingLimit(target), previous + healingAmount);
+      applied = Math.max(0, next - previous);
+    }
+
+    next = Math.min(maximum, next);
+    if (next !== previous) await target.update(healthMutationUpdates(target, next, previous));
+    return { ok:true, healthBefore:previous, healthAfter:next, applied };
+  });
+}
+
 async function executeAuthorityAction(action, payload = {}) {
   if (action === "claim-kinetic") {
     const target = await actorFromUuid(String(payload.targetUuid ?? ""));
@@ -66,6 +113,13 @@ async function executeAuthorityAction(action, payload = {}) {
       });
       return { ok:true, claimed:true, source };
     });
+  }
+
+  if (action === "apply-health-damage" || action === "apply-health-healing") {
+    const target = await actorFromUuid(String(payload.targetUuid ?? ""));
+    if (!target) return { ok:false, error:"El objetivo de Vida ya no está disponible." };
+    if (action === "apply-health-damage") return mutateHealth(target, { damage:payload.amount });
+    return mutateHealth(target, { healing:payload.amount });
   }
 
   if (action === "consume-device-energy") {
@@ -179,6 +233,62 @@ export async function claimKineticBarrier(target) {
       "system.combat.kineticDefenseSource": ""
     });
     return { ok:true, claimed:true, source };
+  });
+}
+
+export async function applyHealthDamageAuthoritatively(target, damage) {
+  const amount = Math.max(0, number(damage));
+  if (!amount) return { ok:true, healthBefore:number(target?.system?.resources?.health?.value), healthAfter:number(target?.system?.resources?.health?.value), applied:0 };
+
+  if (runtimeSocketAvailable()) {
+    const gm = primaryActiveGm(activeUsers());
+    if (!gm) return { ok:false, error:"Se requiere un DJ activo para aplicar daño compartido con seguridad." };
+    if (!target?.uuid) return { ok:false, error:"El objetivo no posee UUID para arbitrar su Vida." };
+    return requestPrimaryGm("apply-health-damage", { targetUuid:target.uuid, amount });
+  }
+  return mutateHealth(target, { damage:amount });
+}
+
+export async function applyHealthHealingAuthoritatively(target, healing) {
+  const amount = Math.max(0, number(healing));
+  if (!amount) return { ok:true, healthBefore:number(target?.system?.resources?.health?.value), healthAfter:number(target?.system?.resources?.health?.value), applied:0 };
+
+  if (runtimeSocketAvailable()) {
+    const gm = primaryActiveGm(activeUsers());
+    if (!gm) return { ok:false, error:"Se requiere un DJ activo para aplicar curación compartida con seguridad." };
+    if (!target?.uuid) return { ok:false, error:"El objetivo no posee UUID para arbitrar su Vida." };
+    return requestPrimaryGm("apply-health-healing", { targetUuid:target.uuid, amount });
+  }
+  return mutateHealth(target, { healing:amount });
+}
+
+export async function approvePendingDamageAuthoritatively(message) {
+  const messageId = String(message?.id ?? message?._id ?? "");
+  if (!messageId) return { ok:false, error:"La solicitud de daño no posee identidad persistente." };
+  return serial("pending-damage:" + messageId, async () => {
+    const request = validatePendingDamageRequest(message.getFlag?.("tierra-magica", "pendingDamage"));
+    if (!request) return { ok:true, resolved:false, alreadyResolved:true, applied:0 };
+    const target = await actorFromUuid(request.targetUuid);
+    if (!target) return { ok:false, error:"El objetivo de esta solicitud ya no está disponible." };
+    const result = await applyHealthDamageAuthoritatively(target, request.damage);
+    if (!result.ok) return result;
+    await message.setFlag?.("tierra-magica", "pendingDamage", { ...request, resolved:true });
+    return { ...result, resolved:true, alreadyResolved:false };
+  });
+}
+
+export async function approvePendingHealingAuthoritatively(message) {
+  const messageId = String(message?.id ?? message?._id ?? "");
+  if (!messageId) return { ok:false, error:"La solicitud de curación no posee identidad persistente." };
+  return serial("pending-healing:" + messageId, async () => {
+    const request = validatePendingHealingRequest(message.getFlag?.("tierra-magica", "pendingHealing"));
+    if (!request) return { ok:true, resolved:false, alreadyResolved:true, applied:0 };
+    const target = await actorFromUuid(request.targetUuid);
+    if (!target) return { ok:false, error:"El objetivo de esta curación ya no está disponible." };
+    const result = await applyHealthHealingAuthoritatively(target, request.healing);
+    if (!result.ok) return result;
+    await message.setFlag?.("tierra-magica", "pendingHealing", { ...request, resolved:true });
+    return { ...result, resolved:true, alreadyResolved:false };
   });
 }
 
