@@ -30,16 +30,19 @@ test("sólo un DJ activo determinista queda encargado de aprobar", () => {
   assert.equal(primaryActiveGm(users.filter((u) => !u.isGM)), null);
 });
 
-test("el flujo multijugador no usa sockets ni concede actualización del PNJ al atacante", async () => {
+test("el flujo multijugador mantiene aprobación explícita y delega la mutación compartida a autoridad", async () => {
   const actor = await readFile(new URL("../scripts/documents/actor.mjs", import.meta.url), "utf8");
   const bootstrap = await readFile(new URL("../scripts/tierra-magica.mjs", import.meta.url), "utf8");
   const defenses = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
+  const authority = await readFile(new URL("../scripts/rules/state-authority.mjs", import.meta.url), "utf8");
   assert.equal(actor.includes("pendingDamageRequest"), true);
   assert.equal(actor.includes("pendiente de aprobación del DJ"), true);
+  assert.equal(actor.includes("applyHealthDamageAuthoritatively"), true);
   assert.equal(bootstrap.includes('button.dataset.tmApproveDamage = "true"'), true);
-  assert.equal(bootstrap.includes('message.setFlag("tierra-magica", "pendingDamage"'), true);
-  assert.equal(bootstrap.includes("game.socket"), false);
-  assert.equal(bootstrap.includes("fromUuid(current.targetUuid)"), true);
+  assert.equal(bootstrap.includes("approvePendingDamageAuthoritatively(message)"), true);
+  assert.equal(bootstrap.includes("fromUuid(current.targetUuid)"), false);
+  assert.equal(authority.includes('requestPrimaryGm("apply-health-damage"'), true);
+  assert.equal(authority.includes('serial("health:"'), true);
   assert.equal(defenses.includes("pendingDamageRequest"), true);
   assert.equal(defenses.includes("pendingTotal += damage"), true);
   assert.equal(defenses.includes("Barrido — aprobación de daño"), true);
