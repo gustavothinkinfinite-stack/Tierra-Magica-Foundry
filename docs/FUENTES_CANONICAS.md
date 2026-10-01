@@ -48,6 +48,12 @@ La validación cubre Soldado, Ingeniera, Sanador, Exploradora, Alquimista, Canal
 
 No existe una fase CREA-14 definida por las fuentes activas del repositorio. Una fase posterior sólo debe declararse mediante una decisión explícita de proyecto y, si introduce reglas, incorporarse primero al Manual Maestro.
 
+## Estado del Grimorio 60
+
+La ampliación del grimorio está **CERRADA Y CANONIZADA**. El Manual Maestro define 60 hechizos: 10 Evocación, 10 Alteración, 9 Restauración, 11 Percepción, 10 Influencia y 10 Conjuración. El cierre espacial fija Trasposición como intercambio táctico, Umbral como paso local a través de barrera y Salto Vinculado como transporte de grupo. Las auditorías previas conservan trazabilidad, pero no sustituyen estas definiciones.
+
+Foundry adopta schema v5 para contratos de objetivos mágicos y migración del cierre espacial.
+
 ## Implementación
 
 `scripts/*`, `template.json`, datos, UI y pruebas implementan y verifican el Manual Maestro. Si la implementación contradice el Manual, se abre una incidencia y se corrige la discrepancia; el código no modifica la regla por sí mismo.
