@@ -6,8 +6,11 @@ const CHANNEL = "system.tierra-magica";
 const SCOPE = "state-authority";
 const pendingRequests = new Map();
 const authorityQueues = new Map();
+const authorityRequestInflight = new Map();
 const turnReservations = new Map(); // fallback para stubs/documentos sin flags persistentes.
 const TURN_RESERVATION_FLAG = "turnReservations";
+const AUTHORITY_RECEIPTS_FLAG = "authorityReceipts";
+const MAX_AUTHORITY_RECEIPTS = 128;
 let bridgeInstalled = false;
 
 const number = (value, fallback = 0) => {
@@ -50,6 +53,120 @@ async function serial(key, operation) {
 async function actorFromUuid(uuid) {
   if (!uuid || typeof globalThis.fromUuid !== "function") return null;
   return globalThis.fromUuid(uuid);
+}
+
+function canonicalValue(value) {
+  if (Array.isArray(value)) return value.map(canonicalValue);
+  if (!value || typeof value !== "object") return value;
+  return Object.fromEntries(Object.keys(value).sort().map((key) => [key, canonicalValue(value[key])]));
+}
+
+function authorityRequestFingerprint(message) {
+  return JSON.stringify(canonicalValue({
+    requesterId:String(message?.requesterId ?? ""),
+    action:String(message?.action ?? ""),
+    payload:message?.payload ?? {}
+  }));
+}
+
+function authorityReceiptKey(message) {
+  return String(message?.requesterId ?? "") + ":" + String(message?.requestId ?? "");
+}
+
+async function authorityReceiptDocument(action, payload = {}) {
+  if (["reserve-turn-resource", "commit-turn-resource", "release-turn-resource", "spend-movement", "consume-device-energy"].includes(action)) {
+    const actor = await actorFromUuid(String(payload.actorUuid ?? ""));
+    if (action !== "consume-device-energy") return actor;
+    return actor?.items?.get?.(String(payload.sourceItemId ?? "")) ?? actor;
+  }
+  if (["claim-kinetic", "claim-parry", "resolve-parry", "claim-counterattack", "apply-health-damage", "apply-health-healing"].includes(action)) {
+    return actorFromUuid(String(payload.targetUuid ?? ""));
+  }
+  return null;
+}
+
+function readAuthorityReceipts(document) {
+  if (typeof document?.getFlag !== "function") return {};
+  const receipts = document.getFlag("tierra-magica", AUTHORITY_RECEIPTS_FLAG);
+  return receipts && typeof receipts === "object" ? { ...receipts } : {};
+}
+
+async function writeAuthorityReceipt(document, key, receipt) {
+  if (typeof document?.setFlag !== "function") return false;
+  const receipts = readAuthorityReceipts(document);
+  const timestamp = number(receipt?.completedAt, number(receipt?.startedAt, Date.now()));
+  const next = {
+    ...receipts,
+    [key]: {
+      ...receipt,
+      journalAt:timestamp
+    }
+  };
+  const entries = Object.entries(next)
+    .sort((a,b) => number(b[1]?.journalAt) - number(a[1]?.journalAt))
+    .slice(0, MAX_AUTHORITY_RECEIPTS);
+  await document.setFlag("tierra-magica", AUTHORITY_RECEIPTS_FLAG, Object.fromEntries(entries));
+  return true;
+}
+
+async function executeAuthorityRequestIdempotently(message) {
+  const requestIdValue = String(message?.requestId ?? "");
+  const requesterId = String(message?.requesterId ?? "");
+  if (!requestIdValue || !requesterId) return { ok:false, error:"Solicitud de autoridad sin identidad idempotente." };
+
+  const key = authorityReceiptKey(message);
+  const fingerprint = authorityRequestFingerprint(message);
+  const inflight = authorityRequestInflight.get(key);
+  if (inflight) return inflight;
+
+  const promise = (async () => {
+    const document = await authorityReceiptDocument(String(message.action ?? ""), message.payload ?? {});
+    if (!document) return { ok:false, error:"La solicitud de autoridad no posee un documento persistente válido." };
+
+    const docKey = String(document.uuid ?? document.id ?? document.name ?? "authority");
+    return serial("authority-request:" + docKey, async () => {
+      const receipt = readAuthorityReceipts(document)[key] ?? null;
+      if (receipt) {
+        if (String(receipt.fingerprint ?? "") !== fingerprint) {
+          return { ok:false, error:"Colisión de requestId: la solicitud idempotente no coincide con el payload original." };
+        }
+        if (receipt.state === "pending") {
+          return {
+            ok:false,
+            pending:true,
+            error:"La solicitud idempotente quedó pendiente en una ejecución anterior; no se repetirá automáticamente."
+          };
+        }
+        return receipt.result ?? { ok:false, error:"Recibo idempotente incompleto." };
+      }
+
+      if (typeof document?.setFlag === "function") {
+        await writeAuthorityReceipt(document, key, {
+          state:"pending",
+          fingerprint,
+          startedAt:Date.now()
+        });
+      }
+
+      const result = await executeAuthorityAction(message.action, message.payload, requesterId);
+      if (typeof document?.setFlag === "function") {
+        await writeAuthorityReceipt(document, key, {
+          state:"completed",
+          fingerprint,
+          result,
+          completedAt:Date.now()
+        });
+      }
+      return result;
+    });
+  })();
+
+  authorityRequestInflight.set(key, promise);
+  try {
+    return await promise;
+  } finally {
+    if (authorityRequestInflight.get(key) === promise) authorityRequestInflight.delete(key);
+  }
 }
 
 function actorAuthorityKey(actor) {
@@ -382,7 +499,7 @@ export function installStateAuthorityBridge() {
     const gm = primaryActiveGm(activeUsers());
     if (!gm || gm.id !== currentUser()?.id) return;
 
-    const result = await executeAuthorityAction(message.action, message.payload, message.requesterId);
+    const result = await executeAuthorityRequestIdempotently(message);
     game.socket.emit(CHANNEL, {
       scope:SCOPE,
       kind:"response",
@@ -392,6 +509,14 @@ export function installStateAuthorityBridge() {
     });
   });
   return true;
+}
+
+export async function executeAuthorityRequestForAudit(message) {
+  const gm = primaryActiveGm(activeUsers());
+  if (!currentUser()?.isGM || !gm || gm.id !== currentUser()?.id) {
+    return { ok:false, error:"Sólo el DJ activo principal puede ejecutar una solicitud de autoridad auditada." };
+  }
+  return executeAuthorityRequestIdempotently(message);
 }
 
 export function canResolveSharedMutation(document = null) {
