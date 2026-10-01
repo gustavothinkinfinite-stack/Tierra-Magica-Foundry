@@ -22,11 +22,11 @@ export const GRIMORIO_AUDIT_CANDIDATES = Object.freeze([
 
   // Restauración
   {name:"Conservación Orgánica",discipline:"restoration",grade:"minor",mana:2,role:"utility",healing:0,proposedDuration:"24 horas"},
-  {name:"Transferencia Vital",discipline:"restoration",grade:"basic",mana:4,role:"healing-transfer",maxTransfer:3,netHealing:0,minCasterHealth:1},
+  {name:"Transferencia Vital",discipline:"restoration",grade:"basic",mana:4,role:"healing-transfer",requiresTarget:true,targetMode:"single",maxTransfer:3,netHealing:0,minCasterHealth:1},
   {name:"Círculo Restaurador",discipline:"restoration",grade:"advanced",mana:6,role:"multiple-healing",healing:2,requiresTarget:true,maxTargets:3,targetMode:"multiple"},
-  {name:"Restauración Funcional",discipline:"restoration",grade:"advanced",mana:7,role:"injury-support",sustained:true,maxDuration:"scene",repairsWound:false,maxSuppressedPenalties:1,restoresMissingFunction:false},
-  {name:"Matriz Vital",discipline:"restoration",grade:"master",mana:9,role:"periodic-healing",healingPerPulse:2,pulses:3,canHealAtZero:false,reapplyExtraPulse:false,sustained:true},
-  {name:"Renovación Integral",discipline:"restoration",grade:"legendary",mana:14,role:"ritual-healing",method:"ritual",healing:10,graveWounds:2,reducesTrauma:false,resurrection:false},
+  {name:"Restauración Funcional",discipline:"restoration",grade:"advanced",mana:7,role:"injury-support",requiresTarget:true,targetMode:"single",sustained:true,maxDuration:"scene",repairsWound:false,maxSuppressedPenalties:1,restoresMissingFunction:false},
+  {name:"Matriz Vital",discipline:"restoration",grade:"master",mana:9,role:"periodic-healing",requiresTarget:true,targetMode:"single",healingPerPulse:2,pulses:3,canHealAtZero:false,reapplyExtraPulse:false,sustained:true},
+  {name:"Renovación Integral",discipline:"restoration",grade:"legendary",mana:14,role:"ritual-healing",method:"ritual",requiresTarget:true,targetMode:"single",skillRequirements:[{skill:"medicine",minRank:3}],healing:10,graveWounds:2,reducesTrauma:false,resurrection:false},
 
   // Percepción / Ilusión
   {name:"Imagen Menor",discipline:"perception",grade:"minor",mana:2,role:"illusion",sustained:true,maxDuration:"scene",illusionDf:"11+attribute+channeling"},
@@ -50,10 +50,10 @@ export const GRIMORIO_AUDIT_CANDIDATES = Object.freeze([
 
   // Conjuración
   {name:"Objeto Efímero",discipline:"conjuration",grade:"minor",mana:2,role:"utility",sustained:true,maxDuration:"scene",commercialValue:false,complexMechanism:false,ammunition:false,satisfiesSpecializedToolRequirement:false,sameSpellReplaces:true},
-  {name:"Salto Vinculado",discipline:"conjuration",grade:"advanced",mana:7,role:"transport",requiresTarget:true,maxTargets:3,targetMode:"multiple",remoteOriginCompatible:false},
-  {name:"Jaula Dimensional",discipline:"conjuration",grade:"master",mana:9,role:"spatial-control",sustained:true,spatialMinDifficulty:18,secondaryResistance:false},
-  {name:"Llamada Mayor",discipline:"conjuration",grade:"master",mana:10,role:"summon",method:"ritual",sustained:true,automaticObedience:false},
-  {name:"Gran Traslación",discipline:"conjuration",grade:"legendary",mana:14,role:"transport-ritual",method:"ritual",remoteOriginCompatible:false}
+  {name:"Salto Vinculado",discipline:"conjuration",grade:"advanced",mana:7,role:"transport",requiresTarget:true,maxTargets:2,targetMode:"multiple",includesCaster:true,willingOnly:true,companionStartRange:1,maxDistance:6,remoteOriginCompatible:false},
+  {name:"Jaula Dimensional",discipline:"conjuration",grade:"master",mana:9,role:"spatial-control",sustained:true,areaRadius:3,spatialMinDifficulty:18,secondaryResistance:false},
+  {name:"Llamada Mayor",discipline:"conjuration",grade:"master",mana:10,role:"summon",method:"ritual",sustained:true,requiresSummoningLink:true,automaticObedience:false,usesInvocationControlModes:true},
+  {name:"Gran Traslación",discipline:"conjuration",grade:"legendary",mana:14,role:"transport-ritual",method:"ritual",targetMode:"multiple",maxTargets:8,includesCaster:true,willingOnly:true,requiresTwoAnchors:true,remoteOriginCompatible:false}
 ]);
 
 export const GRIMORIO_SPATIAL_CLOSURE_PROPOSALS = Object.freeze({
