@@ -1,4 +1,5 @@
 import { normalizeSlug } from "./identity.mjs";
+import { movementRemaining, spendActorMovement } from "./turn-economy.mjs";
 const ownsTechnique = (actor, name) => { const slug=normalizeSlug(name); return actor.items?.some?.((item) => item.type === "technique" && normalizeSlug(item.system?.slug || item.name) === slug) ?? false; };
 
 const spendReaction = async (actor, technique) => {
@@ -33,19 +34,15 @@ export function installReactiveTechniqueGuards(ActorClass) {
 
   ActorClass.prototype.interceptAttack = async function ({ ally = null, attacker = null, movementCost = 0, area = false } = {}) {
     if (area) return ui.notifications.warn("Intercepción no funciona contra áreas.");
+    if (!ownsTechnique(this, "Intercepción")) return ui.notifications.warn(this.name + " no posee la Técnica Intercepción.");
+    if (!(this.system.turn?.reaction ?? true)) return ui.notifications.warn(this.name + " ya gastó su Reacción.");
     const cost = Number(movementCost);
     if (!Number.isFinite(cost) || cost < 0) return ui.notifications.warn("Intercepción requiere un coste de Movimiento válido.");
-    const tracksDistance = Object.prototype.hasOwnProperty.call(this.system.turn ?? {}, "movementRemaining");
-    const movementAvailable = this.system.turn?.movement ?? true;
-    const available = tracksDistance ? Number(this.system.turn.movementRemaining) : Number(this.system.derived?.movement ?? 0);
-    if (!movementAvailable && cost > 0) return ui.notifications.warn(this.name + " ya gastó su Movimiento.");
-    if (!Number.isFinite(available) || cost > available) return ui.notifications.warn("Intercepción excede el Movimiento disponible.");
-    if (!(await spendReaction(this, "Intercepción"))) return null;
-    // El núcleo usa Movimiento como economía binaria. No creamos una segunda reserva
-    // cuantificada sólo para Intercepción: si no existe movementRemaining canónico,
-    // cualquier desplazamiento real consume el Movimiento del turno.
-    if (tracksDistance) await this.update({ "system.turn.movementRemaining": Math.max(0, available - cost) });
-    else if (cost > 0) await this.update({ "system.turn.movement": false });
+    const available = movementRemaining(this);
+    if (cost > available) return ui.notifications.warn("Intercepción excede el Movimiento disponible.");
+    if (!(await spendActorMovement(this, cost, { "system.turn.reaction": false }))) {
+      return ui.notifications.warn("No se pudo consumir de forma válida la Reacción y el Movimiento de Intercepción.");
+    }
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>Intercepción</strong><p>" + foundry.utils.escapeHTML(this.name) + " consume su Reacción y " + cost + " de Movimiento para interponerse" + (ally?.name ? " por " + foundry.utils.escapeHTML(ally.name) : "") + ". El ataque debe cambiar su objetivo a este personaje; no obtiene Defensa adicional. La trayectoria, percepción y validez física deben estar confirmadas en la escena.</p></div>"
