@@ -110,6 +110,8 @@ export class TierraMagicaActorSheet extends ActorSheet {
       reaction: this.actor.system.turn?.reaction ?? true
     };
 
+    context.derivedDiagnostics = this.#buildDerivedDiagnostics();
+
     context.familiar = game.actors.find((actor) =>
       actor.type === "familiar" && actor.system.details?.ownerUuid === this.actor.uuid
     ) ?? null;
@@ -594,6 +596,104 @@ export class TierraMagicaActorSheet extends ActorSheet {
     });
     if (!result) return;
     return this.actor.rollAttribute(key, result);
+  }
+
+  #buildDerivedDiagnostics() {
+    const derived = this.actor.system.derived ?? {};
+    const labels = {
+      healthMax: "Vida máxima",
+      manaMax: "Maná máximo",
+      severeThreshold: "Daño Grave",
+      defensiveBonus: "Bono Defensivo",
+      defense: "Defensa",
+      maneuverDefense: "Defensa de Maniobra",
+      mentalDefense: "Defensa Mental",
+      bodyDefense: "Defensa Corporal",
+      protection: "Protección",
+      movement: "Movimiento",
+      initiativeModifier: "Iniciativa"
+    };
+    const order = [
+      "healthMax", "manaMax", "severeThreshold", "defensiveBonus",
+      "defense", "maneuverDefense", "mentalDefense", "bodyDefense",
+      "protection", "movement", "initiativeModifier"
+    ];
+    const sourceLabels = {
+      base: "Base",
+      rule: "Rule Element",
+      manual: "Manual",
+      "legacy-manual": "Manual legado",
+      equipment: "Equipo",
+      state: "Estado",
+      spell: "Hechizo"
+    };
+    const contextLabels = {
+      frontal: "Sólo con frente confirmado",
+      parryable: "Sólo contra ataque parable",
+      kineticBarrier: "Sólo para el ataque cubierto por Barrera Cinética",
+      alteredSkinCompatible: "Sólo si la categoría es coherente con Piel Alterada"
+    };
+    const stackingLabels = {
+      "max-with-armor": "usa el mayor valor frente a la armadura; no suma"
+    };
+    const signed = (value) => {
+      const n = toNumber(value);
+      return n > 0 ? "+" + n : String(n);
+    };
+    const entries = order.map((key) => {
+      const breakdown = derived.breakdowns?.[key] ?? {};
+      const contributions = Array.isArray(breakdown.contributions) ? breakdown.contributions : [];
+      const contextual = Array.isArray(derived.contextual?.[key])
+        ? derived.contextual[key]
+        : Array.isArray(breakdown.contextual) ? breakdown.contextual : [];
+      return {
+        key,
+        label: labels[key] ?? key,
+        value: toNumber(derived[key]),
+        valueDisplay: key === "initiativeModifier" || key === "defensiveBonus"
+          ? signed(derived[key])
+          : String(toNumber(derived[key])),
+        formula: String(breakdown.formula ?? ""),
+        baseDisplay: String(toNumber(breakdown.base)),
+        modifierDisplay: signed(breakdown.modifier),
+        hasContributions: contributions.length > 0,
+        hasContextual: contextual.length > 0,
+        contributions: contributions.map((entry) => ({
+          label: String(entry.label ?? "Modificador"),
+          valueDisplay: signed(entry.value),
+          source: String(entry.sourceItemName || sourceLabels[entry.sourceType] || entry.sourceType || "Fuente"),
+          sourceType: String(sourceLabels[entry.sourceType] || entry.sourceType || ""),
+          itemId: entry.sourceItemId ?? null
+        })),
+        contextual: contextual.map((entry) => ({
+          label: String(entry.label ?? "Condicional"),
+          valueDisplay: signed(entry.value),
+          condition: String(contextLabels[entry.context] || entry.context || "Contexto requerido"),
+          stacking: String(stackingLabels[entry.stacking] || "")
+        }))
+      };
+    });
+
+    const issues = (Array.isArray(derived.ruleIssues) ? derived.ruleIssues : []).map((issue) => ({
+      code: String(issue.code ?? "rule"),
+      message: String(issue.message ?? issue.code ?? "Incidencia de regla"),
+      source: String(issue.itemName ?? "")
+    }));
+    const health = toNumber(this.actor.system.resources?.health?.value);
+    const mana = toNumber(this.actor.system.resources?.mana?.value);
+    if (health > toNumber(derived.healthMax)) {
+      issues.push({ code:"health-over-max", message:"Vida actual por encima del máximo derivado; reconciliación pendiente.", source:"Recursos" });
+    }
+    if (mana > toNumber(derived.manaMax)) {
+      issues.push({ code:"mana-over-max", message:"Maná actual por encima del máximo derivado; reconciliación pendiente.", source:"Recursos" });
+    }
+
+    return {
+      entries,
+      issues,
+      hasIssues: issues.length > 0,
+      hasContextual: entries.some((entry) => entry.hasContextual)
+    };
   }
 
   #linkedFamiliar() {
