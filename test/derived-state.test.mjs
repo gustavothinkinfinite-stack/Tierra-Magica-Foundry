@@ -72,12 +72,14 @@ test("escudo frontal queda contextual y no infla la Defensa preparada", () => {
   assert.equal(resolveDerivedSelector(derived, "defense", { frontal:true }).total, 16);
 });
 
-test("bonos manuales legados pasan por el mismo breakdown durante la transición", () => {
+test("modificadores manuales estructurados pasan por el mismo motor", () => {
   const system = baseSystem();
-  system.combat.defenseBonus = 2;
-  system.combat.protectionBonus = 1;
-  system.combat.movementBonus = -1;
-  system.combat.initiativeBonus = 3;
+  system.modifiers = { manual: {
+    defensiveBonus: { id:"manual-defense", selector:"defensiveBonus", value:2, label:"Ajuste de Defensa" },
+    protection: { id:"manual-protection", selector:"protection", value:1, label:"Ajuste de Protección" },
+    movement: { id:"manual-movement", selector:"movement", value:-1, label:"Ajuste de Movimiento" },
+    initiativeModifier: { id:"manual-initiative", selector:"initiativeModifier", value:3, label:"Ajuste de Iniciativa" }
+  } };
   const derived = deriveActorState({ system });
   assert.equal(derived.defensiveBonus, 3);
   assert.equal(derived.defense, 16);
@@ -85,5 +87,11 @@ test("bonos manuales legados pasan por el mismo breakdown durante la transición
   assert.equal(derived.protection, 1);
   assert.equal(derived.movement, 5);
   assert.equal(derived.initiativeModifier, 7);
-  assert.equal(derived.breakdowns.defensiveBonus.contributions.some((entry) => entry.sourceType === "legacy-manual"), true);
+  assert.equal(derived.breakdowns.defensiveBonus.contributions.some((entry) => entry.sourceType === "manual"), true);
+});
+
+test("campos manuales legados siguen siendo compatibles antes de migrar", () => {
+  const system = baseSystem();
+  system.combat.movementBonus = -2;
+  assert.equal(deriveActorState({ system }).movement, 4);
 });
