@@ -627,7 +627,10 @@ export class TierraMagicaActor extends Actor {
       const success = toNumber(roll?.total) >= 17;
       const previousFatigue = toNumber(this.system.status?.fatigue);
       await this.update({ "system.status.fatigue": previousFatigue >= 2 ? 3 : 2 });
-      if (!success) return ui.notifications.warn("La Sobrecarga falla: el hechizo no se produce. La Pifia, si aparece, requiere una consecuencia mágica contextual.");
+      if (!success) {
+        ui.notifications.warn("La Sobrecarga falla: el hechizo no se produce. La Pifia, si aparece, requiere una consecuencia mágica contextual.");
+        return { tmSpellAborted: true, tmActionResolved: true, overload: true, roll };
+      }
     } else if (cost) {
       await this.update({ "system.resources.mana.value": mana - cost });
     }
