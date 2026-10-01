@@ -1,6 +1,6 @@
 # CREA-13 — Validación global de siete personajes/arquetipos
 
-**Estado:** 13A–13D COMPLETAS · 13E pendiente  
+**Estado:** 13A–13E COMPLETAS · 13F pendiente  
 **Base:** main @ 98cb40556826675827eead6161c2ef97103c9315  
 **Dependencia:** CREA-12 integrado; P-011 resuelto.
 
@@ -182,7 +182,30 @@ No se alteró la estructura ratificada de Sobrecarga exitosa: la prueba DF17 y l
 
 
 ### 13E — Persistencia y reversibilidad
-Guardar/reabrir, activar/desactivar, equipar/desequipar y volver a preparar sin drift.
+
+**Estado: COMPLETA · Validate #264 — SUCCESS**
+
+Se validó persistencia mediante snapshots serializables, reapertura con las migraciones vigentes y nueva preparación completa. Los derivados preparados no se consideran autoridad persistida: se reconstruyen desde Atributos, Habilidades, Items, estado de equipo, Sostenimiento y Rule Elements.
+
+Pruebas ejecutadas:
+
+| Caso | Resultado |
+|---|---|
+| Guardar/reabrir los siete fixtures | Derivados, breakdowns, Rule Elements, Sostenimiento y Saturación reconstruyen exactamente el mismo estado. |
+| Migración repetida | `migrateActorSource()` y `migrateItemSource()` son idempotentes sobre snapshots actuales; una segunda apertura no añade ni transforma estado. |
+| Equipar → desequipar → equipar | Protección, Defensa contextual y procedencia vuelven exactamente al valor inicial, sin residuos. |
+| Piel Alterada sostenida → detenida → sostenida | La Protección contextual pasa 2 → 0 → 2 y mantiene una sola contribución; no acumula instancias. |
+| Effect activo → inactivo → activo | FlatModifier y RollOption desaparecen y reaparecen una sola vez; no existe duplicación de Rule Elements. |
+| Re-preparación repetida | Cinco preparaciones consecutivas de cada fixture producen estructuras idénticas. |
+| Reducción/restauración de máximos | Reconciliar recorta recursos cuando baja el máximo; restaurar el máximo no concede Vida o Maná gratis. |
+| Familiar reabierto | La preparación vuelve a imponer Acción/Reacción propias desactivadas; la reconciliación fuerza Maná 0. |
+
+No apareció un defecto nuevo que requiriera cambio de reglas o de implementación en esta fase.
+
+**Resultado 13E:** el pipeline mantiene la separación entre estado persistente y estado derivado. Activar/desactivar o equipar/desequipar modifica sólo las contribuciones que corresponden, y volver al estado anterior reconstruye el mismo resultado sin drift.
+
+La limitación **13C-L01** permanece fuera de esta validación: como todavía no existe un vínculo estructurado acumulador externo → dispositivo consumidor, 13E no puede probar persistencia de una conexión que el modelo aún no representa.
+
 
 ### 13F — Auditoría global y cierre
 Comparar los siete resultados, registrar hallazgos, corregir defectos reproducibles y cerrar CREA-13 sólo con CI verde.
