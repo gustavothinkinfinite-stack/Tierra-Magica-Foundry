@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { STARTER_CONTENT } from "../scripts/content.mjs";
-import { GRIMORIO_AUDIT_CANDIDATES, AUDIT_REFERENCE_TARGETS } from "./fixtures/grimorio-60-audit.mjs";
+import { GRIMORIO_AUDIT_CANDIDATES, GRIMORIO_SPATIAL_CLOSURE_PROPOSALS, AUDIT_REFERENCE_TARGETS } from "./fixtures/grimorio-60-audit.mjs";
 
 function outcomes2d10(mode="normal") {
   const values=[];
@@ -311,4 +311,34 @@ test("los tres candidatos multiobjetivo declaran contrato estructurado",()=>{
     assert.equal(spell.maxTargets,3,name);
     assert.equal(spell.requiresTarget,true,name);
   }
+});
+
+
+test("ilusiones sostenidas y Velo Social no permanecen indefinidamente",()=>{
+  for(const name of ["Imagen Menor","Velo Sensorial","Espejismo","Duplicado Ilusorio","Invisibilidad","Dominio Fantasmagórico","Velo Social"]){
+    const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
+    assert.equal(spell.maxDuration,"scene",name);
+  }
+});
+
+test("Fascinación y Temor son presiones breves, no control persistente",()=>{
+  for(const name of ["Fascinación","Temor"]){
+    const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
+    assert.equal(spell.proposedDuration,"hasta fin del siguiente turno del objetivo",name);
+    assert.notEqual(spell.actionDenial,true,name);
+  }
+});
+
+test("cierre espacial propuesto separa intercambio, paso local, salto grupal y Portal",()=>{
+  const swap=GRIMORIO_SPATIAL_CLOSURE_PROPOSALS["Trasposición"];
+  const threshold=GRIMORIO_SPATIAL_CLOSURE_PROPOSALS["Umbral"];
+  const jump=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Salto Vinculado");
+  assert.equal(swap.status,"proposed-not-canon");
+  assert.equal(threshold.status,"proposed-not-canon");
+  assert.equal(swap.role,"position-swap");
+  assert.equal(swap.willingOnly,true);
+  assert.equal(threshold.role,"local-threshold");
+  assert.equal(threshold.maxTraversals,1);
+  assert.equal(jump.role,"transport");
+  assert.equal(jump.maxTargets,3);
 });
