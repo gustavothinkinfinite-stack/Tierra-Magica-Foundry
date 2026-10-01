@@ -1,15 +1,18 @@
+import { normalizeSlug } from "./identity.mjs";
+
 const number = (value, fallback = 0) => {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : fallback;
 };
 
-const AUTOMATED = new Set(["Poción Restauradora", "Bálsamo Restaurador", "Poción de Recuperación Arcana"]);
+const AUTOMATED = new Set(["pocion-restauradora", "balsamo-restaurador", "pocion-de-recuperacion-arcana"]);
 
 export function installFormulaGuards(ActorClass) {
   const original = ActorClass.prototype.useFormula;
   ActorClass.prototype.useFormula = async function (item) {
     if (!item || item.type !== "formula") return null;
-    if (AUTOMATED.has(item.name)) return original.call(this, item);
+    const slug = normalizeSlug(item.system?.slug || item.name);
+    if (AUTOMATED.has(slug)) return original.call(this, item);
     const quantity = Math.max(0, number(item.system?.quantity, 0));
     if (quantity <= 0) return ui.notifications.warn("No hay una dosis preparada de " + item.name + ".");
     const family = String(item.system?.family ?? "").trim().toLowerCase();
