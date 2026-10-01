@@ -1,6 +1,6 @@
 # CREA-13 — Validación global de siete personajes/arquetipos
 
-**Estado:** 13A–13C COMPLETAS · 13D pendiente  
+**Estado:** 13A–13D COMPLETAS · 13E pendiente  
 **Base:** main @ 98cb40556826675827eead6161c2ef97103c9315  
 **Dependencia:** CREA-12 integrado; P-011 resuelto.
 
@@ -135,7 +135,51 @@ Medicina permanece deliberadamente contextual en lo que corresponde a Primeros A
 
 
 ### 13D — Daño, recuperación y economía
-Cruzar 0 Vida/Trauma, descansos, curación, Maná, Saturación, Acción/Movimiento/Reacción y recursos de Familiar.
+
+**Estado: COMPLETA · Validate #262 — SUCCESS**
+
+La fase se ejecutó como prueba de secuencias cruzadas, no como siete casos aislados. Se validaron conjuntamente caída a 0 Vida, Trauma, recuperación limitada por lesión, descansos, Saturación, Maná, Sobrecarga, economía de turno y recursos del Familiar.
+
+Secuencias cubiertas:
+
+| Secuencia | Resultado |
+|---|---|
+| Vida positiva → 0 Vida → daño adicional → curación | La primera caída aplica Incapacitado y Trauma 0→1; daño adicional en 0 no escala Trauma; recuperar Vida retira Incapacitado pero no Trauma. |
+| 0 Vida → Respiro → Descanso → segundo Descanso → Completo | Respiro sólo limpia Saturación; Descanso recupera VIG+2 / VOL+1 una sola vez y respeta `healthCap`; Completo recupera hasta el límite de lesión, Maná máximo y Fatiga 0 sin borrar Trauma. |
+| Poción restauradora → Saturación → segundo intento → Respiro → nueva dosis | La primera dosis consume Acción y dosis; la misma familia saturada bloquea el segundo intento sin gastar Acción ni dosis; Respiro reabre la familia sin recuperar Vida/Maná por sí mismo. |
+| Sobrecarga inválida / fallida / exitosa | Falta distinta de exactamente 1 Maná no inicia Sobrecarga ni gasta Acción; una Sobrecarga fallida consume Maná restante, aplica Fatiga y consume Acción; una exitosa conserva la prueba DF17 y la resolución ordinaria posterior ya ratificada. |
+| Turno iniciado a 0 Vida → curación durante el mismo turno | Curarse no devuelve Acción, Reacción ni Movimiento de forma retroactiva; la economía vuelve recién en un turno nuevo válido. |
+| Familiar a 0 Vida → curación → reconciliación | El Familiar usa Vida propia, queda Incapacitado a 0, no recibe Trauma, al recuperarse limpia su incapacidad y su Maná se reconcilia a 0; no obtiene turno independiente. |
+
+**Hallazgo 13D-01 — RESUELTO: recuperación con autoridades divergentes.**  
+`Cierre Restaurador` y otras rutas de curación acotada podían aumentar Vida mediante `update()` sin limpiar `Incapacitado`. Además, el Descanso de una hora ignoraba `healthCap`, y el Descanso Completo podía reducir Vida si el personaje ya estaba por encima de dicho límite.
+
+Se creó una única autoridad de recuperación acotada en `healing-delivery.mjs`:
+
+- `boundedHealthRecoveryUpdates()` calcula la recuperación permitida;
+- recuperar Vida por encima de 0 limpia `status.incapacitated`;
+- en Familiares también limpia `familiar.incapacitated`;
+- Trauma nunca se reduce por esta vía;
+- `healthCap` limita cuánto puede recuperarse, pero no convierte recuperación en daño;
+- pociones restauradoras y descansos usan la misma autoridad.
+
+**Hallazgo 13D-02 — RESUELTO: Movimiento retroactivo tras curación.**  
+Un personaje que comenzaba su turno a 0 Vida recibía Acción/Reacción falsas, pero `movementSpent` se reiniciaba a 0. Si era curado durante ese mismo turno, `movementAllowance()` volvía a exponer todo su Movimiento.
+
+Ahora, si el turno comienza Incapacitado, la asignación de Movimiento del turno queda consumida. Curarse durante ese turno no devuelve Movimiento, Acción ni Reacción; el siguiente turno válido restaura la economía normalmente.
+
+**Hallazgo 13D-03 — RESUELTO: Sobrecarga fallida devolvía la Acción.**  
+Una Sobrecarga mágica fallida era una resolución válida —gastaba todo el Maná restante y aplicaba Exhausto/Colapsado— pero devolvía `null`. La capa transversal interpretaba ese retorno como validación fallida y no consumía Acción.
+
+La ruta devuelve ahora una resolución explícita abortada (`tmSpellAborted`) que:
+
+- consume la Acción;
+- conserva el gasto de Maná y Fatiga;
+- no ejecuta efectos, daño ni Sostenimiento del hechizo;
+- no confunde el fallo de Sobrecarga con un requisito inválido.
+
+No se alteró la estructura ratificada de Sobrecarga exitosa: la prueba DF17 y la resolución ordinaria del hechizo siguen siendo independientes cuando ambas corresponden.
+
 
 ### 13E — Persistencia y reversibilidad
 Guardar/reabrir, activar/desactivar, equipar/desequipar y volver a preparar sin drift.
