@@ -441,43 +441,400 @@ Una criatura Agarrada tiene Movimiento 0 para alejarse del agarre. Puede realiza
 
 ## 8. Combate
 
-Un ataque usa **2d10 + Atributo pertinente + Habilidad de arma + modificadores >= Defensa**. El Atributo depende del arma y del método. Las armas de fuego, ballestas y otros mecanismos cuya fuerza no procede del usuario no añaden un Atributo al daño salvo regla expresa.
+El combate usa la misma lógica general del sistema, pero organiza las decisiones en un orden estricto para que todos sepan **cuándo pueden actuar, qué recurso consumen y contra qué valor se resuelve cada acción**.
 
-### Daño, Protección y Penetración
+### Ronda, turno y economía básica
 
-**Protección efectiva = max(0, Protección - Penetración).**
+Una **ronda** representa una vuelta completa por el orden de iniciativa. Durante una ronda, cada combatiente obtiene normalmente un **turno**.
 
-**Daño final = max(0, daño base + un Atributo de daño cuando sea lógico + bonos - Protección efectiva).**
+En su turno una criatura dispone normalmente de:
 
-La Penetración nunca vuelve negativa la Protección y su exceso se pierde. Un impacto que queda en 0 daño permanece en 0. Un efecto de lesión normalmente requiere al menos 1 punto de daño después de Protección salvo que su regla diga otra cosa.
+- **Movimiento**: una reserva de espacios que puede gastar durante el turno;
+- **1 Acción**: el recurso principal para atacar, lanzar la mayoría de hechizos, realizar maniobras, usar objetos complejos y otras intervenciones significativas;
+- **1 Reacción**: una respuesta que puede utilizarse cuando aparece un disparador válido, incluso fuera del turno propio.
+
+El Movimiento no es una Acción separada. Puede dividirse antes y después de la Acción cuando la situación lo permite. Una Reacción utilizada queda gastada hasta el inicio del siguiente turno propio. Una Reacción no utilizada se pierde cuando es reemplazada por la nueva al comenzar ese turno.
+
+Una capacidad sólo concede Acciones, Reacciones, ataques o Movimiento adicionales cuando lo dice expresamente. Tener varias armas, varios miembros, un Familiar, un dispositivo o varios hechizos disponibles no crea por sí mismo economía adicional.
+
+### Cómo comienza un combate
+
+Cuando una situación deja de poder resolverse cómodamente en conversación libre y pasa a requerir un orden preciso de acciones, comienza el combate.
+
+Procedimiento:
+
+1. **Fija la situación inicial.** Determina posiciones, distancias, cobertura, armas preparadas, quién puede percibir a quién y cualquier condición ya activa.
+2. **Resuelve una iniciación no percibida, si existe.** No hay una ronda universal de sorpresa. Si alguien inicia una acción que un objetivo no pudo percibir, se resuelve el disparador pertinente y se aplican las reglas de Desprevenido cuando corresponda.
+3. **Tira Iniciativa.** Cada combatiente realiza **2d10 + PER + modificadores**.
+4. **Establece el orden.** Los resultados de Iniciativa determinan el orden de los turnos de la ronda. Un resultado mayor actúa antes. El Manual no establece un modificador universal adicional para empates; si ocurre uno, la mesa o el DJ fija un orden consistente sin conceder turnos extra.
+5. **Comienza la primera ronda.** El primer combatiente toma su turno completo; después actúa el siguiente y así sucesivamente.
+6. **Comienza una nueva ronda** cuando todos los combatientes que debían actuar completaron su turno. Se mantiene el orden salvo Retrasar u otra regla que lo modifique.
+
+### Estructura de un turno, paso a paso
+
+Al comenzar tu turno:
+
+1. **Recuperas tu Reacción.** La Reacción anterior, usada o no, es reemplazada por la nueva.
+2. **Dispones de tu Acción y Movimiento del turno**, salvo que una condición o regla diga lo contrario.
+3. **Resuelve efectos de inicio de turno** que indiquen expresamente ese momento.
+
+Durante el turno puedes combinar Movimiento y Acción en el orden permitido por la situación. Por ejemplo:
+
+- mover 2 espacios;
+- atacar;
+- mover los 4 espacios restantes.
+
+También puedes gastar toda tu Acción antes de moverte o no moverte en absoluto.
+
+La Reacción no necesita usarse durante tu propio turno. Puede quedar disponible para responder a un ataque, un movimiento enemigo, un lanzamiento o cualquier otro disparador válido antes de que vuelva a comenzar tu turno.
+
+Al terminar tu turno:
+
+1. resuelve efectos que indiquen **fin de turno**;
+2. aplica Sangrado u otros estados que especifiquen ese momento;
+3. conserva cualquier Reacción que no hayas gastado hasta que aparezca un disparador o comience tu próximo turno.
+
+### Movimiento en combate
+
+Un humanoide Mediano tiene como referencia **Movimiento 6**, aproximadamente 9 metros por turno.
+
+El Movimiento puede gastarse en varios tramos. Reglas frecuentes:
+
+| Situación | Coste / efecto |
+|---|---|
+| Desplazamiento ordinario | 1 punto por espacio |
+| Terreno difícil | 2 puntos por espacio |
+| Levantarse desde Derribado | normalmente 2 puntos |
+| Correr | consume la Acción y concede otro tramo equivalente al Movimiento base |
+| Agarrado | Movimiento 0 para alejarse de la Presa |
+| Exhausto | Movimiento -2, mínimo 1 |
+
+Moverse fuera del alcance de un enemigo **no provoca un Ataque de Oportunidad universal**. Una reacción ofensiva sólo existe si una Técnica, capacidad, preparación o regla concreta la habilita.
+
+### Qué puedes hacer con tu Acción
+
+La Acción representa la intervención principal del turno. Las opciones más frecuentes son:
+
+| Acción | Qué hace |
+|---|---|
+| **Atacar con un arma** | Realiza un ataque contra un objetivo válido. |
+| **Derribar, Empujar o Agarrar** | Maniobra física contra Defensa de Maniobra cuando corresponda. |
+| **Escapar de una Presa** | FUE + Atletismo o AGI + Acrobacia contra la DF de Presa, salvo otro método válido. |
+| **Lanzar un hechizo Directo** | La mayoría de los hechizos de combate usan la Acción salvo que indiquen Reacción, ritual u otra activación. |
+| **Guardia** | +2 Defensa hasta el inicio del siguiente turno propio y conserva la Reacción. |
+| **Preparar** | Declara una respuesta y un disparador observable; la respuesta se resuelve más tarde con la Reacción. |
+| **Correr** | Añade otro tramo equivalente al Movimiento base. |
+| **Recargar** | Gasta las Acciones de Recarga exigidas por el arma; Recarga Experta puede reducir el coste. |
+| **Primeros Auxilios bajo presión** | Puede detener Sangrado ordinario, estabilizar y preparar una lesión para tratamiento. |
+| **Usar una fórmula o poción** | Cuando la preparación indique Acción, consume la Acción y la dosis correspondiente. |
+| **Activar un dispositivo** | Usa Acción cuando el dispositivo así lo indique; algunos dispositivos defensivos usan Reacción. |
+| **Orden táctica compleja a Familiar o invocación** | Consume normalmente la Acción del personaje cuando cambia una orden táctica compleja. |
+| **Sentidos Compartidos** | Con la Técnica correspondiente, usa la Acción para percibir mediante los sentidos reales del Familiar. |
+
+Un ritual no se convierte en una Acción de combate sólo porque utilice magia. Los rituales conservan su Tiempo propio.
+
+### Ataque con arma, paso a paso
+
+Un ataque ordinario usa:
+
+**2d10 + Atributo pertinente + Habilidad de arma + modificadores >= Defensa.**
+
+El procedimiento es:
+
+1. **Declara el atacante, arma y objetivo.**
+2. **Comprueba alcance, línea válida, posición y requisitos del arma.**
+3. **Declara cualquier Técnica o modificador del ataque** que deba decidirse antes de tirar, como Golpe Potente o Estocada Perforante.
+4. **Abre la ventana de Reacción defensiva.** El defensor puede usar Parada, Bloqueo, Intercepción, Barrera Cinética, Escudo de campo u otra respuesta válida si cumple su disparador.
+5. **Calcula la Defensa aplicable** después de esos modificadores.
+6. **Tira el ataque.** Si el total iguala o supera la Defensa, impacta.
+7. **Calcula Protección efectiva:**  
+   **Protección efectiva = max(0, Protección - Penetración).**
+8. **Calcula daño final:**  
+   **Daño final = max(0, daño base + un Atributo de daño cuando sea lógico + bonos - Protección efectiva).**
+9. **Aplica el daño y efectos del impacto.**
+10. **Evalúa consecuencias especiales**, como Sangrado, Derribado, una capacidad de arma o el umbral informativo de Daño Grave.
+
+La Penetración nunca vuelve negativa la Protección. Si la Protección efectiva reduce el daño a 0, el impacto causa 0 daño salvo regla expresa.
+
+### Defensas: qué representan y cuándo se usan
+
+En la mayoría de los ataques el defensor **no hace una tirada defensiva separada**. El atacante tira contra una Defensa estática.
+
+| Defensa | Fórmula / uso principal |
+|---|---|
+| **Defensa** | 11 + AGI + Bono Defensivo aplicable + equipo/modificadores. Ataques físicos o energéticos ordinarios. |
+| **Defensa Corporal** | 11 + VIG. Efectos que alteran directamente el cuerpo cuando corresponda. |
+| **Defensa Mental** | 11 + VOL. Influencia y efectos mentales resistidos. |
+| **Defensa de Maniobra** | 11 + AGI + Bono Defensivo aplicable. Derribar, Empujar y Agarrar. |
+
+**Defenderse no consume Acción por sí mismo.** La Defensa base está siempre presente mientras la criatura pueda beneficiarse de ella. Lo que consume Reacción son respuestas activas como Parada o Bloqueo.
+
+La cobertura parcial concede normalmente **+2 Defensa**. Cobertura total impide ser objetivo directo cuando no existe una línea válida.
+
+### Reacciones de combate
+
+Una Reacción se gasta sólo cuando existe un disparador válido. Las respuestas más frecuentes son:
+
+| Reacción | Disparador y efecto |
+|---|---|
+| **Parada** | Ataque cuerpo a cuerpo parable; requiere arma apropiada y Habilidad marcial Entrenada. +2 Defensa contra ese ataque. |
+| **Bloqueo con escudo** | Un escudo estándar o pesado puede usar su Bloqueo mediante Reacción para +2 Defensa cuando corresponda; la defensa pasiva frontal del escudo se calcula por separado. |
+| **Intercepción** | Un aliado cercano es objetivo de un ataque perceptible. Te desplazas lo mínimo para interponerte y pasas a ser el objetivo. No concede Defensa extra, no excede Movimiento y no funciona contra áreas. |
+| **Recibir Carga** | Con arma de Alcance, cuando un enemigo entra voluntariamente en tu alcance mediante un desplazamiento directo hacia ti, realizas el ataque indicado antes de completar su aproximación. |
+| **Contraataque** | Si Parada convierte un impacto en fallo y posees la Técnica, realizas un ataque inmediato dentro de esa misma Reacción. No genera una cadena de Reacciones ofensivas. |
+| **Tirador Preparado** | Después de Preparar un disparo con la Acción, lo resuelve con la Reacción cuando ocurre el disparador. |
+| **Contramagia** | Después de declarar un lanzamiento y antes de resolverlo; requiere compatibilidad narrativa/mágica. No es una cancelación automática universal. |
+| **Barrera Cinética** | Hechizo reactivo: +2 Defensa normal contra el ataque declarado y se consume al resolverlo. |
+| **Escudo de campo** | Dispositivo reactivo compatible: +2 Defensa cuando corresponda; no se acumula con Barrera Cinética equivalente. |
+| **Acción Vinculada / Coordinación Reactiva** | Un Familiar puede intervenir cuando el vínculo y la capacidad concreta lo permiten. No crea una Reacción adicional. |
+
+Una misma Reacción no se utiliza dos veces sobre el mismo disparador salvo regla expresa.
+
+### Parada y Contraataque
+
+Parada y Contraataque forman una secuencia concreta:
+
+1. un enemigo declara un ataque cuerpo a cuerpo parable;
+2. antes de resolverlo, el defensor gasta su Reacción en **Parada**;
+3. su Defensa aumenta en +2 para ese ataque;
+4. se resuelve la tirada enemiga;
+5. si el ataque habría impactado la Defensa original pero falla gracias al +2 de Parada, se considera una **Parada exitosa** a efectos de Contraataque;
+6. si el defensor posee **Contraataque**, puede realizar inmediatamente un ataque dentro de esa misma Reacción;
+7. ese ataque reactivo no abre una cadena de nuevas respuestas ofensivas reactivas salvo regla expresa.
+
+Si el ataque enemigo ya fallaba contra la Defensa original, Parada puede haberse gastado, pero no habilita Contraataque por haber “convertido” el resultado.
+
+### Guardia
+
+Guardia es una opción universal y no requiere Técnica.
+
+- consume la Acción;
+- concede **+2 Defensa**;
+- dura hasta el inicio del siguiente turno propio;
+- conserva la Reacción.
+
+Por tanto, una criatura en Guardia todavía puede usar Parada, Bloqueo u otra Reacción válida durante el intervalo. Los bonos sólo se acumulan cuando las reglas de apilamiento permiten que procedan de fuentes distintas.
+
+### Preparar
+
+Preparar permite cambiar **cuándo** se resuelve una respuesta sin crear una Acción adicional.
+
+1. gastas tu Acción;
+2. declaras una respuesta concreta y un disparador observable;
+3. esperas;
+4. cuando ocurre el disparador, gastas tu Reacción y resuelves la respuesta;
+5. si el disparador no ocurre, la preparación expira al inicio de tu siguiente turno.
+
+Preparar un ataque requiere una capacidad que lo habilite, como Tirador Preparado.
+
+### Retrasar
+
+Retrasar no crea una Acción guardada.
+
+La criatura desplaza su turno a un momento posterior de la ronda. A partir de entonces conserva esa nueva posición de iniciativa. Nunca obtiene dos turnos en la misma ronda por Retrasar.
+
+### Maniobras: Derribar, Empujar y Agarrar
+
+Las maniobras físicas iniciales se resuelven normalmente contra **Defensa de Maniobra**.
+
+La Escala importa: una diferencia de una categoría puede permitir interacción directa; con dos categorías de diferencia la criatura menor normalmente necesita palanca, posición o una capacidad apropiada, y con tres o más la fuerza corporal convencional suele ser insuficiente.
+
+Una vez establecida una Presa:
+
+**DF de Presa = 11 + FUE del atacante + bono reducido de Atletismo.**
+
+Bono reducido de Atletismo:
+
+- Sin Entrenar / Aprendiz: 0;
+- Entrenado: 1;
+- Experto: 2;
+- Maestro: 3;
+- Gran Maestro: 4;
+- Presa Entrenada, cuando una capacidad la concede: +1 adicional.
+
+Escapar requiere una Acción y una prueba apropiada, normalmente FUE + Atletismo o AGI + Acrobacia, contra esa DF.
+
+### Técnicas ofensivas y defensivas frecuentes
+
+Las Técnicas no conceden economía adicional salvo que lo indiquen.
+
+| Técnica | Uso en combate |
+|---|---|
+| **Golpe Potente** | Ataque compatible: -2 al ataque, +2 daño si impacta. |
+| **Estocada Perforante** | Ataque compatible: -1 ataque, -1 daño, Penetración +2. |
+| **Combate Dual** | Una Acción produce dos ataques a -2 con armas compatibles. |
+| **Barrido** | Una tirada a -2 contra hasta dos objetivos adyacentes válidos; daño separado. |
+| **Parada** | Reacción: +2 Defensa contra un ataque cuerpo a cuerpo parable. |
+| **Contraataque** | Si Parada convierte impacto en fallo, ataque inmediato dentro de la misma Reacción. |
+| **Intercepción** | Reacción para interponerse entre un aliado cercano y un ataque perceptible. |
+| **Recibir Carga** | Reacción con arma de Alcance contra un enemigo que entra voluntariamente en alcance mediante carga directa. |
+| **Tirador Preparado** | Habilita preparar un disparo con Acción y resolverlo con Reacción. |
+| **Recarga Experta** | Reduce la Recarga en 1 Acción respetando los mínimos físicos. |
+| **Contramagia** | Reacción que interfiere un lanzamiento compatible antes de resolverlo. |
+
+### Magia durante el combate
+
+Un hechizo conocido y rutinario no exige una tirada sólo por ser mágico. Cuando existe oposición o incertidumbre, normalmente se usa:
+
+**2d10 + Atributo relevante + Canalización >= DF o Defensa pertinente.**
+
+Secuencia típica de un hechizo Directo en combate:
+
+1. declara el hechizo y su objetivo, área o punto de origen;
+2. comprueba competencia operativa, alcance, línea válida, requisitos y objetivos;
+3. abre cualquier ventana de Reacción pertinente, como Contramagia;
+4. paga el Maná requerido;
+5. realiza la tirada si existe oposición o incertidumbre;
+6. compara contra Defensa, Defensa Mental, Defensa Corporal o DF según el hechizo;
+7. aplica daño, curación, estado, desplazamiento u otro efecto;
+8. si es Sostenido y tuvo éxito, entra en Sostenimiento respetando el límite normal de uno o dos con Doble Sostenimiento.
+
+Un lanzamiento fallido no devuelve el Maná y nunca entra en Sostenimiento.
+
+Un área usa una sola resolución y compara el resultado con la Defensa pertinente de cada objetivo. Un mismo Actor sólo recibe una vez esa resolución aunque aparezca mediante varios tokens.
+
+### Primeros Auxilios, fórmulas, dispositivos y Familiares
+
+Estas opciones utilizan la misma economía de combate:
+
+- **Primeros Auxilios bajo presión:** Acción. Puede detener Sangrado ordinario, estabilizar y preparar una lesión para tratamiento.
+- **Poción Restauradora:** Acción; recupera 4 Vida hasta máximo y límites de lesión.
+- **Poción de Recuperación Arcana:** Acción; recupera 3 Maná hasta máximo; no elimina Fatiga ni Sobrecarga.
+- **Dispositivos:** consumen Acción o Reacción según su diseño y además deben respetar Energía, Caudal, condición y fuente.
+- **Familiar Vinculado:** una intervención táctica significativa usa normalmente la Acción Vinculada y consume la Reacción del personaje.
+- **Orden táctica compleja:** cambiarla consume normalmente la Acción del personaje.
+- **Coordinación Reactiva:** permite un disparador observable, pero no concede Reacciones extra.
 
 ### Desprevenido
 
 Una criatura Desprevenida pierde su Bono Defensivo y cualquier defensa pasiva de escudo que dependa de orientarse frente a la amenaza. También puede perder Reacciones defensivas frente a un ataque que no pudo percibir o al que no pudo reaccionar. No pierde AGI de su Defensa.
 
-No existe una ronda universal de sorpresa. Una iniciación no percibida resuelve el disparador pertinente y después se usa la iniciativa normal.
+No existe una ronda universal de sorpresa. El estado surge de la situación concreta.
 
-### Técnicas de combate fundamentales
+### 0 Vida, Daño Grave y final de un combate
 
-**Parada — Básica, 2 PD.** Reacción; requiere arma apropiada y al menos Entrenado en la Habilidad marcial correspondiente. +2 Defensa contra un ataque cuerpo a cuerpo parable.
+Llegar a **0 Vida** causa Incapacitado, no muerte automática. Para un personaje orgánico, la primera caída pertinente desde Vida positiva a 0 mientras tiene Trauma 0 eleva Trauma a 1.
 
-**Golpe Potente — Básica, 2 PD.** -2 a la tirada de ataque y +2 al daño si impacta.
+El **umbral de Daño Grave = 5 + VIG** es informativo. Si un impacto alcanza o supera ese daño final, se evalúa si la naturaleza del golpe y la ficción justifican una Herida Grave; no aparece automáticamente por alcanzar el número.
 
-**Estocada Perforante — Avanzada, 3 PD.** -1 ataque, -1 daño y Penetración +2.
+El combate deja de necesitar iniciativa cuando ya no existe oposición activa que requiera resolución secuenciada: por ejemplo, todos los enemigos están Incapacitados, se rindieron, huyeron de forma efectiva o la escena dejó de ser un conflicto táctico. Los estados, Sangrado, Sostenimientos y consecuencias que continúen activos siguen resolviéndose según sus propias reglas.
 
-**Contraataque — Avanzada, 3 PD; requiere Parada.** Si una Parada convierte un impacto en fallo, permite un ataque inmediato dentro de esa misma Reacción. No inicia una cadena de Reacciones ofensivas.
+### Ejemplo completo: tres rondas
 
-**Intercepción — Básica, 2 PD.** Reacción. Cuando un aliado cercano es objetivo de un ataque que puedes percibir, puedes desplazarte lo mínimo indispensable para interponerte si existe una trayectoria física válida. Pasas a ser el objetivo de ese ataque. No concede Defensa adicional, no teletransporta, no permite exceder el Movimiento disponible y no funciona contra áreas. El desplazamiento realizado cuenta contra el Movimiento disponible del personaje para ese turno cuando corresponda.
+Este ejemplo muestra la economía de turno, ataque, Parada, Contraataque y Guardia. Los resultados de dados son ilustrativos.
 
-**Combate Dual — Avanzada, 3 PD.** Con dos armas Ligeras o compatibles, una Acción produce dos ataques, cada uno con -2. Un modificador que afecte al ataque completo se aplica sólo a uno salvo regla expresa. No permite otra Acción ofensiva adicional.
+**Mara**, aventurera:
+- Movimiento 6;
+- Defensa 14;
+- Protección 2;
+- FUE 2;
+- PER 2;
+- Armas Marciales Entrenada (+2);
+- espada larga: Daño 5;
+- ataque total habitual con esa espada: +4;
+- posee Parada, Contraataque y Golpe Potente.
 
-**Barrido — Avanzada, 3 PD.** Una tirada con -2 contra hasta dos objetivos adyacentes válidos; el daño se resuelve por separado. Una Hazaña puede ampliar a un objetivo adicional sólo cuando la capacidad correspondiente lo indique.
+**Bandido**, usando el perfil de referencia:
+- Vida 12;
+- Defensa 13;
+- Protección 1;
+- Movimiento 6;
+- Iniciativa +2;
+- espada corta: ataque +4, daño 6.
 
-**Tirador Preparado — Básica, 2 PD.** Habilita preparar un disparo y resolverlo con la Reacción al cumplirse el disparador.
+#### Inicio del combate
 
-**Recarga Experta — Básica, 2 PD.** Reduce la Recarga en una Acción, respetando los mínimos físicos y las limitaciones del arma.
+Mara y el Bandido se ven y ambos comprenden que comienza la pelea. Nadie está Desprevenido.
 
-No existe un Ataque de Oportunidad universal. Una retirada a distancia contra un adversario de velocidad equivalente no garantiza ataques gratuitos: posición, persecución y economía de acciones determinan si puede mantenerse la distancia.
+- Mara tira 13 en 2d10 y suma PER 2: **Iniciativa 15**.
+- El Bandido obtiene **12** después de su modificador.
+
+Mara actúa primero.
+
+#### Ronda 1 — turno de Mara
+
+Mara está a 3 espacios.
+
+1. Gasta 3 puntos de Movimiento para acercarse.
+2. Usa su Acción para atacar con la espada larga.
+3. Su ataque es **2d10 + 4**.
+4. Obtiene 10 en los dados: total **14**.
+5. La Defensa del Bandido es 13: impacta.
+6. Daño base 5 + FUE 2 = 7.
+7. El Bandido tiene Protección 1 y la espada no tiene Penetración: Protección efectiva 1.
+8. Daño final: **7 - 1 = 6**.
+9. El Bandido pasa de Vida 12 a **Vida 6**.
+
+Mara todavía conserva su Reacción.
+
+#### Ronda 1 — turno del Bandido
+
+El Bandido ataca a Mara.
+
+1. Declara el ataque.
+2. Su total habitual es **2d10 + 4**.
+3. Antes de resolverlo, Mara usa su Reacción en **Parada**.
+4. La Defensa de Mara pasa de 14 a **16** sólo contra ese ataque.
+5. El Bandido obtiene 11 en 2d10: total **15**.
+6. Sin Parada, 15 habría superado Defensa 14. Con Parada, 15 no alcanza 16: falla.
+7. Como Parada convirtió un impacto en fallo y Mara posee **Contraataque**, puede atacar inmediatamente dentro de esa misma Reacción.
+8. Mara contraataca con +4, obtiene 8 en los dados y totaliza **12**.
+9. La Defensa del Bandido es 13: el Contraataque falla.
+
+La Reacción de Mara ya está gastada.
+
+#### Ronda 2 — turno de Mara
+
+Al comenzar su turno, Mara recupera su Reacción.
+
+Decide no arriesgar otro intercambio directo:
+
+1. mueve 2 espacios hacia una posición mejor;
+2. usa su Acción en **Guardia**;
+3. obtiene +2 Defensa hasta el inicio de su siguiente turno;
+4. su Defensa pasa temporalmente de 14 a **16**;
+5. conserva su Reacción.
+
+#### Ronda 2 — turno del Bandido
+
+El Bandido se acerca y vuelve a atacar.
+
+1. tira su ataque +4;
+2. obtiene un total de **14**;
+3. Mara tiene Defensa 16 por Guardia;
+4. el ataque falla sin necesidad de gastar Parada.
+
+Mara conserva su Reacción porque la Defensa pasiva de Guardia fue suficiente.
+
+#### Ronda 3 — turno de Mara
+
+Al comenzar el turno termina la Guardia anterior y Mara recupera/reemplaza su Reacción. Su Defensa vuelve a 14.
+
+Mara decide terminar el combate con **Golpe Potente**.
+
+1. declara Golpe Potente antes de tirar;
+2. su ataque habitual +4 recibe -2: queda en **+2**;
+3. tira 11 en 2d10: total **13**;
+4. iguala la Defensa 13 del Bandido: impacta;
+5. daño de espada larga 5 + FUE 2 + Golpe Potente 2 = **9**;
+6. Protección del Bandido 1: daño final **8**;
+7. el Bandido tenía Vida 6 y cae a **0 Vida**: queda Incapacitado.
+
+El impacto de 8 también supera el umbral informativo de Daño Grave del Bandido de referencia, por lo que se evalúa si la ficción justifica una Herida Grave. El número por sí solo no la crea automáticamente.
+
+Como ya no existe oposición activa, la escena puede salir de iniciativa. Si quedaran Sangrado, Heridas Graves, Sostenimientos u otros efectos activos, continuarían según sus propias reglas.
+
+### Resumen rápido del flujo
+
+**Inicio del combate:** posición y percepción -> disparador no percibido si existe -> Iniciativa -> orden de turnos.
+
+**Tu turno:** inicio de turno -> recupera Reacción -> Movimiento y Acción en el orden válido -> efectos de fin de turno.
+
+**Ataque:** declarar -> abrir Reacciones -> tirar contra Defensa -> Protección/Penetración -> daño -> consecuencias.
+
+**Entre tus turnos:** puedes gastar tu Reacción cuando aparezca un disparador válido.
+
+**Nueva ronda:** después de que todos hayan actuado, continúa el mismo orden salvo reglas como Retrasar.
 
 ## 9. Armas, armaduras y escudos
 
