@@ -88,6 +88,8 @@ test("CREA-11 itemiza identidad y unifica adquisición/reglas",async()=>{
   assert.equal(model.Actor.character.creation.status,"building");
   assert.equal(sheet.includes("Elegir Ascendencia"),true);
   assert.equal(sheet.includes('data-action="complete-creation"'),true);
+  assert.equal(sheet.includes('data-action="set-creation-attribute"'),true);
+  assert.equal(sheet.includes('max="3"'),true);
   assert.equal(sheet.includes("system.details.ancestry"),false);
   assert.equal(actor.includes("async acquireItem"),true);
   assert.equal(actor.includes("async completeCreation"),true);
