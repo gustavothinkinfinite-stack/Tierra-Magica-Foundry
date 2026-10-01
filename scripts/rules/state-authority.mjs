@@ -117,7 +117,13 @@ async function spendMovement(actor, amount, requesterId = "", { consumeReaction 
 
   return serial("turn-state:" + actorAuthorityKey(actor), async () => {
     if (actorIncapacitated(actor)) return { ok:true, spent:false, reason:"incapacitated" };
-    if (consumeReaction && !(actor.system.turn?.reaction ?? true)) return { ok:true, spent:false, reason:"reaction" };
+    if (consumeReaction) {
+      if (!(actor.system.turn?.reaction ?? true)) return { ok:true, spent:false, reason:"reaction" };
+      const reservation = currentTurnReservation(actor, "reaction");
+      if (reservation?.requesterId && reservation.requesterId !== String(requesterId ?? "")) {
+        return { ok:true, spent:false, reason:"reaction-reserved" };
+      }
+    }
     const prepared = Math.max(0, number(actor.system?.derived?.movement));
     const extra = Math.max(0, number(actor.system?.turn?.extraMovement));
     const spentBefore = Math.max(0, number(actor.system?.turn?.movementSpent));
