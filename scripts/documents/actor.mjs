@@ -1,7 +1,7 @@
 import { TM_CONFIG } from "../config.mjs";
 import {
-  toNumber, clamp, rankBonus, defenseBonus, rollFormula,
-  classifyResult, extraordinaryTag, finalDamage, severeThreshold
+  toNumber, clamp, rankBonus, rollFormula,
+  classifyResult, extraordinaryTag, finalDamage
 } from "../rules.mjs";
 import { attackHits, resolveWeaponImpact } from "../rules/combat-impact.mjs";
 import { pendingDamageRequest } from "../rules/damage-delivery.mjs";
@@ -10,6 +10,7 @@ import {
   spellOperationalSkill, validateSkillProgression
 } from "../rules/skills.mjs";
 import { prepareRuleElements, modifiersForSelector } from "../rules/rule-elements.mjs";
+import { deriveActorState } from "../rules/derived-state.mjs";
 import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
@@ -67,30 +68,15 @@ export class TierraMagicaActor extends Actor {
       creationActive
     });
 
-    const armor = this.items
-      .filter((i) => i.type === "armor" && i.system.equipped)
-      .reduce((max, i) => Math.max(max, toNumber(i.system.protection)), 0);
-    const shield = this.items
-      .filter((i) => i.type === "shield" && i.system.equipped)
-      .reduce((max, i) => Math.max(max, toNumber(i.system.passiveDefense)), 0);
-
-    const martialRank = clamp(Math.floor(toNumber(s.combat?.defensiveRank)), 0, 5);
-    const martialDefense = defenseBonus(martialRank, TM_CONFIG.defensiveRankBonuses);
-    const extraDefense = toNumber(s.combat?.defenseBonus);
+    const derivedState = deriveActorState({
+      system: s,
+      items: [...this.items],
+      rulePreparation,
+      defensiveRankBonuses: TM_CONFIG.defensiveRankBonuses
+    });
 
     s.derived = {
-      healthMax: 10 + vig * 2,
-      manaMax: 6 + vol * 3,
-      severeThreshold: severeThreshold(vig),
-      defense: 11 + agi + martialDefense + shield + extraDefense,
-      maneuverDefense: 11 + agi + martialDefense + extraDefense,
-      mentalDefense: 11 + vol,
-      bodyDefense: 11 + vig,
-      protection: armor + toNumber(s.combat?.protectionBonus),
-      movement: Math.max(1, 6 + toNumber(s.combat?.movementBonus)),
-      initiative: toNumber(a.per?.value, 1) + toNumber(s.combat?.initiativeBonus),
-      martialDefense,
-      equippedShield: shield,
+      ...derivedState,
       skillsPdCost: skillValidation.cost,
       skillIssues: skillValidation.issues,
       skillsValid: skillValidation.valid,
@@ -202,10 +188,14 @@ export class TierraMagicaActor extends Actor {
   }
 
   async rollInitiativeCheck() {
-    return this.rollCheck({
-      label: "Iniciativa",
-      attributeKey: "per",
-      modifier: toNumber(this.system.combat?.initiativeBonus)
+    const modifier = toNumber(this.system.derived?.initiativeModifier, toNumber(this.system.attributes?.per?.value, 1));
+    const roll = await new Roll(rollFormula("normal", modifier), this.getRollData()).evaluate();
+    return roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: "<div class='tm-chat-card'><strong>Iniciativa · " +
+        foundry.utils.escapeHTML(this.name) + "</strong><p>2d10 + modificador preparado (" +
+        this.#signed(modifier) + ")</p></div>",
+      rollMode: game.settings.get("core", "rollMode")
     });
   }
 
