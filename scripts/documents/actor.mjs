@@ -667,7 +667,7 @@ export class TierraMagicaActor extends Actor {
 
   async useFormula(item) {
     if (!item || item.type !== "formula") return null;
-    if (toNumber(item.system.quantity, 1) <= 0) return ui.notifications.warn("No quedan dosis de " + item.name + ".");
+    if (toNumber(item.system.quantity, 0) <= 0) return ui.notifications.warn("No hay una dosis preparada de " + item.name + ".");
 
     const family = String(item.system.family ?? "").trim().toLowerCase();
     const saturated = Array.isArray(this.system.alchemy?.saturatedFamilies) ? [...this.system.alchemy.saturatedFamilies] : [];
@@ -693,7 +693,7 @@ export class TierraMagicaActor extends Actor {
       updates["system.alchemy.saturatedFamilies"] = [...new Set([...saturated, family])];
     }
     await this.update(updates);
-    await item.update({ "system.quantity": Math.max(0, toNumber(item.system.quantity, 1) - 1) });
+    await item.update({ "system.quantity": Math.max(0, toNumber(item.system.quantity, 0) - 1) });
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(this.name) + " usa " + foundry.utils.escapeHTML(item.name) + "</strong><p>" + foundry.utils.escapeHTML(item.system.effect ?? "") + "</p></div>"
