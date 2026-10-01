@@ -217,25 +217,23 @@ test("enumeración defensiva impide doble cinética y doble cobertura",()=>{
 });
 
 
-test("catálogo auditado contiene exactamente 60 hechizos y conserva la distribución decidida",()=>{
-  const canonical=STARTER_CONTENT.spell.map((entry)=>({
+test("catálogo canónico contiene exactamente 60 hechizos y conserva la distribución decidida",()=>{
+  const all=STARTER_CONTENT.spell.map((entry)=>({
     name:entry.name,
     discipline:entry.system.discipline,
     grade:entry.system.grade,
     mana:entry.system.manaCost
   }));
-  const all=[...canonical,...GRIMORIO_AUDIT_CANDIDATES];
   assert.equal(all.length,60);
   const counts=Object.fromEntries(["evocation","alteration","restoration","perception","influence","conjuration"]
     .map((discipline)=>[discipline,all.filter((entry)=>entry.discipline===discipline).length]));
   assert.deepEqual(counts,{evocation:10,alteration:10,restoration:9,perception:11,influence:10,conjuration:10});
 });
 
-test("todos los costes de Maná permanecen dentro de la banda de su Grado",()=>{
-  const canonical=STARTER_CONTENT.spell.map((entry)=>({
+test("todos los costes de Maná canónicos permanecen dentro de la banda de su Grado",()=>{
+  const all=STARTER_CONTENT.spell.map((entry)=>({
     name:entry.name,grade:entry.system.grade,mana:entry.system.manaCost
   }));
-  const all=[...canonical,...GRIMORIO_AUDIT_CANDIDATES];
   const valid=(entry)=>{
     if(entry.grade==="minor") return entry.mana===2;
     if(entry.grade==="basic") return entry.mana>=3 && entry.mana<=4;
@@ -334,12 +332,12 @@ test("Fascinación y Temor son presiones breves, no control persistente",()=>{
   }
 });
 
-test("cierre espacial propuesto separa intercambio, paso local, salto grupal y Portal",()=>{
+test("cierre espacial canónico separa intercambio, paso local, salto grupal y Portal",()=>{
   const swap=GRIMORIO_SPATIAL_CLOSURE_PROPOSALS["Trasposición"];
   const threshold=GRIMORIO_SPATIAL_CLOSURE_PROPOSALS["Umbral"];
   const jump=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Salto Vinculado");
-  assert.equal(swap.status,"proposed-not-canon");
-  assert.equal(threshold.status,"proposed-not-canon");
+  assert.equal(swap.status,"canonical");
+  assert.equal(threshold.status,"canonical");
   assert.equal(swap.role,"position-swap");
   assert.equal(swap.willingOnly,true);
   assert.equal(threshold.role,"local-threshold");
