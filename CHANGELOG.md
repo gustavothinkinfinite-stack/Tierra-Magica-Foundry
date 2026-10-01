@@ -1,3 +1,12 @@
+## Sin publicar — cierre documental post-CREA-13 — 2026-10-01
+
+- CREA-12 y CREA-13 quedan registradas como cerradas e integradas en `main`.
+- README deja de anunciar CREA-12 como próxima tarea y registra que no existe CREA-14 definida.
+- `docs/FUENTES_CANONICAS.md` consolida el estado de CREA-10 a CREA-13 y mantiene al Manual Maestro como fuente activa única.
+- La auditoría integral deja de señalar al Manual 1.0 Playtest histórico como fuente canónica activa.
+- El cierre reconoce la validación global de siete perfiles, schema v3 de dispositivos, fuente energética explícita, compra física centralizada, identidad alquímica por `slug` y autoridad compartida para Energía/defensa cinética.
+- Sin cambios de motor ni incremento de versión: el manifiesto permanece en 1.0.18 hasta una decisión explícita de publicación/versionado.
+
 ## 1.0.18 — REV-CREA-11-001 Sincronización post-cierre
 
 - Creación inicial de Atributos: siete Atributos parten de 1, se reparten exactamente 6 aumentos gratuitos y ningún Atributo puede superar 3 antes del cierre.
