@@ -38,11 +38,26 @@ Implementación inicial:
 - La migración `movement:false` conserva semántica histórica convirtiéndola en Movimiento gastado equivalente.
 - Controles manuales de Acción/Reacción continúan respetando Incapacitado/0 Vida.
 
+## Fase 3C — Contexto defensivo
+
+**Estado: IMPLEMENTADA · CI VERDE (Validate #192 antes del cierre documental)**
+
+- Guardia ya no muta `system.derived.defense` desde una envoltura: se prepara como contribución de estado.
+- Parada es una contribución contextual `parryable`; sólo entra contra el ataque cuerpo a cuerpo que realmente puede pararse.
+- Barrera Cinética es una contribución contextual `kineticBarrier`; afecta únicamente la Defensa normal del ataque declarado y se consume después de resolverlo.
+- Combate Dual conserva Barrera sólo para el primer ataque de la secuencia y Parada para el primer ataque realmente parable.
+- Barrido resuelve Defensa individual por objetivo usando el mismo motor.
+- Los hechizos contra Defensa normal usan el mismo resolvedor; Defensas Mental y Corporal no consumen Barrera ni Parada.
+- Los escudos `frontalOnly` permanecen fuera de la Defensa preparada y sólo se aplican con contexto `frontal:true`.
+- Piel Alterada queda registrada como Protección contextual 2 con `alteredSkinCompatible:true`; no se presume compatibilidad porque el canon no define una taxonomía automatizable.
+- Piel Alterada usa `max-with-armor`: sustituye una armadura inferior cuando corresponde, pero nunca suma sus 2 puntos a la Protección de armadura.
+- Daño físico y mágico aceptan el mismo contexto de Protección sin convertir efectos condicionales en Protección universal.
+- `resolveActorDefense()` y `resolveActorProtection()` son las autoridades de resolución contextual.
+
 ## Trabajo todavía pendiente dentro de Fase 3
 
-1. **3C — contexto defensivo:** integrar Guardia, Parada, Barrera Cinética, orientación de escudos y Protección condicional mediante el resolvedor común.
-2. **3D — recursos y reconciliación:** limitar Vida/Maná actuales cuando disminuyan máximos sin otorgar recuperación al aumentarlos.
-3. **3E — ficha y diagnóstico:** exponer fórmula, contribuciones y valores contextuales.
-4. **3F — sincronización cruzada:** pruebas secuenciales de equipo, estados, magia, atributos, guardado y reapertura.
+1. **3D — recursos y reconciliación:** limitar Vida/Maná actuales cuando disminuyan máximos sin otorgar recuperación al aumentarlos.
+2. **3E — ficha y diagnóstico:** exponer fórmula, contribuciones y valores contextuales.
+3. **3F — sincronización cruzada:** pruebas secuenciales de equipo, estados, magia, atributos, guardado y reapertura.
 
 CREA-12 no se considera cerrado hasta completar esas etapas y satisfacer DER-D42/DER-D43.
