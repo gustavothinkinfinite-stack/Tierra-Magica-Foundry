@@ -64,9 +64,15 @@ export function uniqueSpellTargets(targets = []) {
   return result;
 }
 
-export function spellAreaKind(spell) {
+export function spellTargetMode(spell) {
   const area = String(spell?.system?.area ?? "").trim();
-  return area ? "area" : "single";
+  if (area) return "area";
+  const mode = String(spell?.system?.targetMode ?? "single").trim().toLowerCase();
+  return ["single", "multiple", "self"].includes(mode) ? mode : "single";
+}
+
+export function spellAreaKind(spell) {
+  return spellTargetMode(spell) === "area" ? "area" : "single";
 }
 
 export function offensiveSpellNeedsTargets(spell) {
@@ -81,8 +87,21 @@ function dispositionOf(target) {
 
 export function validateSpellTargets(spell, targets = [], { caster = null, allowFriendly = true } = {}) {
   const unique = uniqueSpellTargets(targets);
-  if (offensiveSpellNeedsTargets(spell) && unique.length === 0) return { ok: false, reason: "target-required", targets: unique };
-  if (spellAreaKind(spell) !== "area" && unique.length > 1) return { ok: false, reason: "single-target", targets: unique };
+  const mode = spellTargetMode(spell);
+  const requiresTarget = Boolean(spell?.system?.requiresTarget) || offensiveSpellNeedsTargets(spell);
+
+  if (mode === "self") {
+    if (unique.length > 0) return { ok: false, reason: "self-target", targets: unique };
+    return { ok: true, reason: null, targets: [] };
+  }
+
+  if (requiresTarget && unique.length === 0) return { ok: false, reason: "target-required", targets: unique };
+  if (mode === "single" && unique.length > 1) return { ok: false, reason: "single-target", targets: unique };
+  if (mode === "multiple") {
+    const maximum = Math.max(1, Math.floor(number(spell?.system?.maxTargets, 1)));
+    if (unique.length > maximum) return { ok: false, reason: "too-many-targets", targets: unique, maxTargets: maximum };
+  }
+
   if (!allowFriendly && caster) {
     const casterDisposition = dispositionOf(caster);
     if (casterDisposition != null && unique.some((target) => dispositionOf(target) === casterDisposition)) {
