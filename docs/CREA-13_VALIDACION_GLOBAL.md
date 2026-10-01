@@ -1,6 +1,6 @@
 # CREA-13 — Validación global de siete personajes/arquetipos
 
-**Estado:** INICIADA · Fase 1 en curso  
+**Estado:** 13A COMPLETA · 13B pendiente  
 **Base:** main @ 98cb40556826675827eead6161c2ef97103c9315  
 **Dependencia:** CREA-12 integrado; P-011 resuelto.
 
@@ -43,7 +43,27 @@ Cada personaje de prueba deberá:
 ## Fases
 
 ### 13A — Fixtures y legalidad de creación
-Construir los siete personajes como datos reproducibles y verificar PD, PR, PEI, límites de Atributos, Habilidades, Disciplinas y requisitos.
+
+**Estado: COMPLETA · Validate #231 — SUCCESS**
+
+Los siete fixtures se construyen desde `coreCatalog()` y cada adquisición registra el recurso realmente pagado. La validación combina `validateCreationState()`, `validateSkillProgression()`, requisitos estructurados y una comprobación adicional de legalidad mágica: cada Hechizo debe poseer su Disciplina y la Habilidad operativa mínima correspondiente.
+
+| ID | Fixture | PD | PR | PEI | Experto | Resultado |
+|---|---|---:|---:|---:|---|---|
+| C13-01 | Soldado | 21/25 | 0/3 | 1350/2000 c | Armas Marciales | válido |
+| C13-02 | Ingeniera | 17/25 | 0/3 | 210/2000 c | Ingeniería | válido |
+| C13-03 | Sanador | 19/25 | 0/3 | 60/2000 c | Medicina | válido |
+| C13-04 | Exploradora | 21/25 | 0/3 | 1950/2000 c | Armas a Distancia | válido |
+| C13-05 | Alquimista | 23/25 | 0/3 | 60/2000 c | Alquimia | válido |
+| C13-06 | Canalizador | 23/25 | 0/3 | 60/2000 c | Canalización | válido |
+| C13-07 | Vinculado | 17/25 | 3/3 | 250/2000 c | — | válido |
+
+Todos usan exactamente siete Atributos, parten de 1, distribuyen seis aumentos y respetan máximo inicial 3. Ningún fixture tiene más de una Habilidad Experta. Canalizador y Vinculado adquieren Disciplinas sólo después de cumplir Canalización Entrenada y poseen la Disciplina de cada Hechizo adquirido.
+
+**Hallazgo 13A-01 — RESUELTO:** los dispositivos de referencia carecen todavía de precio exacto. El flujo de adquisición trataba esa ausencia como `0 PEI`. Esto contradice la regla canónica que distingue “sin precio establecido” de “gratuito”. CREA-13 no inventa precios: Compra libre de objetos físicos sin `priceStatus:"exact"` queda bloqueada. Los dispositivos podrán probarse en fases funcionales como recursos de escenario/concesiones explícitas hasta que exista precio canónico.
+
+El Manual Maestro vigente fija Disciplina en **2 PD**. La mención de 3 PD del documento histórico Playtest no se usa como autoridad.
+
 
 ### 13B — Derivados y equipamiento
 Validar Vida, Maná, Defensas, Protección, Movimiento, Iniciativa, umbral Grave y procedencia de contribuciones.
