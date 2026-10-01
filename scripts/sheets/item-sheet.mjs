@@ -39,6 +39,15 @@ export class TierraMagicaItemSheet extends ItemSheet {
         : this.item.system.priceStatus === "variable" ? "Precio variable" : "Sin precio establecido"
       : "";
 
+    context.deviceEnergySources = { "": "Reserva propia" };
+    if (this.item.type === "device" && this.item.parent?.items) {
+      for (const candidate of this.item.parent.items) {
+        if (candidate.id === this.item.id || candidate.type !== "device") continue;
+        if (Number(candidate.system?.energy?.max ?? 0) <= 0) continue;
+        context.deviceEnergySources[candidate.id] = candidate.name;
+      }
+    }
+
     const rules = Array.isArray(this.item.system.rules) ? this.item.system.rules : [];
     context.skillModifiers = rules
       .map((rule, index) => ({ rule, index }))
