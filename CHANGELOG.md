@@ -1,3 +1,16 @@
+## 1.0.17 — candidata CREA-11
+
+- Nuevo modelo estructurado de creación: Actor para estado intrínseco; Items para Ascendencia, Origen, Trasfondo, Disciplina, Especialización, Técnica, Rasgo, Hechizo y equipo.
+- Añadidos tipos `ancestry`, `origin`, `background`, `discipline` y `effect`; los Items físicos separan su plantilla material del contrato mecánico común.
+- Identidad estable por `slug`, procedencia de catálogo, adquisición real y costes contextuales; Items concedidos no duplican gasto.
+- Requisitos tipados con lógica `all/any/not` y base/efectivo; el texto narrativo deja de ser fuente mecánica.
+- Rule Elements TM iniciales: FlatModifier, RollOption, UpgradeSkillRank, ChoiceSet y GrantItem, sin JavaScript arbitrario de contenido.
+- Estado global de creación con revisión, presupuesto derivado PD/PR/PEI y Reserva inicial idempotente.
+- Migración versionada e idempotente: preserva identidad, costes y datos históricos ambiguos como legado en lugar de inferirlos.
+- Catálogo fuente validado y cuatro Compendios generados para opciones de personaje, magia, equipo y producción.
+- Mecánicas existentes dejan de depender progresivamente de nombres visibles y usan identidad estable por slug.
+- CREA-12 sigue siendo responsable de Vida, Maná, Defensa, Protección, Movimiento y demás derivados finales.
+
 ## 1.0.16
 
 - CREA-10 fija definitivamente **26 Habilidades** en ocho categorías, con nombres completos idénticos en Manual, referencia rápida y Foundry.
