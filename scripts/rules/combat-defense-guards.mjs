@@ -5,6 +5,7 @@ import { normalizeSlug } from "./identity.mjs";
 import {
   applyHealthDamageAuthoritatively,
   claimKineticBarrier,
+  claimCounterattackAuthoritatively,
   claimParryAuthoritatively,
   resolveParryAuthoritatively,
   canResolveSharedMutation
@@ -97,11 +98,14 @@ export function installCombatDefenseGuards(ActorClass) {
     if (!ownsTechnique(this, "Contraataque")) return ui.notifications.warn(this.name + " no posee la Técnica Contraataque.");
     if (!this.system.combat?.parrySucceeded) return ui.notifications.warn("Contraataque requiere una Parada exitosa contra el ataque desencadenante.");
     if (this.system.combat?.counterattackUsed) return ui.notifications.warn("Esta Reacción ya resolvió un Contraataque.");
-    await this.update({
-      "system.combat.parryActive": false,
-      "system.combat.parrySucceeded": false,
-      "system.combat.counterattackUsed": true
-    });
+
+    const claim = await claimCounterattackAuthoritatively(this);
+    if (!claim.ok) return ui.notifications.warn(claim.error);
+    if (!claim.claimed) {
+      return ui.notifications.warn(claim.reason === "used"
+        ? "Esta Reacción ya resolvió un Contraataque."
+        : "Contraataque requiere una Parada exitosa contra el ataque desencadenante.");
+    }
     return this.rollWeapon(item, { technique: "Contraataque", tmReactionAttack: true });
   };
 
