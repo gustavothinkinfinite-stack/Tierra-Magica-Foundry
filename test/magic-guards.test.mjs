@@ -47,6 +47,12 @@ test("superar Sostenimiento abandona un efecto previo en vez de invalidar el lan
   assert.equal(guards.includes("se abandona el efecto sostenido más antiguo"), true);
 });
 
+test("relanzar el mismo Sostenido reemplaza la instancia anterior en vez de duplicarla", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
+  assert.equal(guards.includes("const replacesSameSpell = before.includes(item.id)"), true);
+  assert.equal(guards.includes("reemplaza su instancia Sostenida anterior; no crea una copia adicional"), true);
+});
+
 test("ruta real valida objetivos antes de gastar recursos y resuelve áreas por Defensa", async () => {
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
   assert.equal(guards.includes("validateSpellTargets(item, selectedTokens"), true);
