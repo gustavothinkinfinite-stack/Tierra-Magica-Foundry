@@ -21,35 +21,35 @@ export const GRIMORIO_AUDIT_CANDIDATES = Object.freeze([
   {name:"Transmutación Corpórea",discipline:"alteration",grade:"legendary",mana:12,role:"adaptation",sustained:true,maxDuration:"scene",fixedForm:true,maxMajorAdaptations:2,maxScaleChange:1,extraScaleInteraction:false},
 
   // Restauración
-  {name:"Conservación Orgánica",discipline:"restoration",grade:"minor",mana:2,role:"utility",healing:0},
+  {name:"Conservación Orgánica",discipline:"restoration",grade:"minor",mana:2,role:"utility",healing:0,proposedDuration:"24 horas"},
   {name:"Transferencia Vital",discipline:"restoration",grade:"basic",mana:4,role:"healing-transfer",maxTransfer:3,netHealing:0,minCasterHealth:1},
   {name:"Círculo Restaurador",discipline:"restoration",grade:"advanced",mana:6,role:"multiple-healing",healing:2,requiresTarget:true,maxTargets:3,targetMode:"multiple"},
-  {name:"Restauración Funcional",discipline:"restoration",grade:"advanced",mana:7,role:"injury-support",sustained:true,repairsWound:false},
+  {name:"Restauración Funcional",discipline:"restoration",grade:"advanced",mana:7,role:"injury-support",sustained:true,repairsWound:false,maxSuppressedPenalties:1,restoresMissingFunction:false},
   {name:"Matriz Vital",discipline:"restoration",grade:"master",mana:9,role:"periodic-healing",healingPerPulse:2,pulses:3,canHealAtZero:false,reapplyExtraPulse:false,sustained:true},
   {name:"Renovación Integral",discipline:"restoration",grade:"legendary",mana:14,role:"ritual-healing",method:"ritual",healing:10,graveWounds:2,reducesTrauma:false,resurrection:false},
 
   // Percepción / Ilusión
-  {name:"Imagen Menor",discipline:"perception",grade:"minor",mana:2,role:"illusion",sustained:true,illusionDf:"static"},
-  {name:"Velo Sensorial",discipline:"perception",grade:"basic",mana:3,role:"illusion",sustained:true,illusionDf:"static"},
-  {name:"Espejismo",discipline:"perception",grade:"basic",mana:4,role:"illusion",sustained:true,illusionDf:"static"},
+  {name:"Imagen Menor",discipline:"perception",grade:"minor",mana:2,role:"illusion",sustained:true,illusionDf:"11+attribute+channeling"},
+  {name:"Velo Sensorial",discipline:"perception",grade:"basic",mana:3,role:"illusion",sustained:true,illusionDf:"11+attribute+channeling"},
+  {name:"Espejismo",discipline:"perception",grade:"basic",mana:4,role:"illusion",sustained:true,illusionDf:"11+attribute+channeling"},
   {name:"Revelación Sensorial",discipline:"perception",grade:"advanced",mana:5,role:"counter-illusion",illusionCheckAdvantage:true},
   {name:"Duplicado Ilusorio",discipline:"perception",grade:"advanced",mana:6,role:"defense-illusion",sustained:true,defenseBonus:2,visionDependent:true,secondaryAttackNegationRoll:false},
-  {name:"Invisibilidad",discipline:"perception",grade:"master",mana:9,role:"illusion",sustained:true,maxDuration:"scene",breaksAfterOffense:true,breaksAfterRemoteOffense:true,indetectable:false,illusionDf:"static"},
-  {name:"Dominio Fantasmagórico",discipline:"perception",grade:"legendary",mana:13,role:"illusion-area",sustained:true,maxDuration:"scene",illusionDf:"static",physicalForce:false},
+  {name:"Invisibilidad",discipline:"perception",grade:"master",mana:9,role:"illusion",sustained:true,maxDuration:"scene",breaksAfterOffense:true,breaksAfterRemoteOffense:true,indetectable:false,illusionDf:"11+attribute+channeling"},
+  {name:"Dominio Fantasmagórico",discipline:"perception",grade:"legendary",mana:13,role:"illusion-area",sustained:true,maxDuration:"scene",illusionDf:"11+attribute+channeling",physicalForce:false},
   {name:"Sintonía Emocional",discipline:"perception",grade:"minor",mana:2,role:"information",mindReading:false,lieDetection:false},
 
   // Influencia
-  {name:"Valor Inspirado",discipline:"influence",grade:"basic",mana:3,role:"mental-defense",sustained:true,mentalDefenseBonus:2,scope:"fear"},
+  {name:"Valor Inspirado",discipline:"influence",grade:"basic",mana:3,role:"mental-defense",sustained:true,maxDuration:"scene",mentalDefenseBonus:2,scope:"fear",stackingGroup:"mental-ward"},
   {name:"Fascinación",discipline:"influence",grade:"basic",mana:4,role:"attention",defense:"mental",actionDenial:false},
   {name:"Temor",discipline:"influence",grade:"basic",mana:4,role:"emotion",defense:"mental",forcedAction:false,actionDenial:false},
   {name:"Concordia",discipline:"influence",grade:"advanced",mana:5,role:"social-area",defense:"mental",combatEndsAutomatically:false,actionDenial:false},
   {name:"Velo Social",discipline:"influence",grade:"advanced",mana:5,role:"social-stealth",sustained:true,grantsInvisibility:false},
-  {name:"Interdicción",discipline:"influence",grade:"advanced",mana:6,role:"mental-defense",defense:"mental",sustained:true,imposesDisadvantage:true,actionDenial:false,endsWhenProtectedDamages:true},
+  {name:"Interdicción",discipline:"influence",grade:"advanced",mana:6,role:"mental-defense",defense:"mental",sustained:true,maxDuration:"scene",imposesDisadvantage:true,actionDenial:false,endsWhenProtectedDamages:true},
   {name:"Aura de Autoridad",discipline:"influence",grade:"master",mana:9,role:"mental-defense-area",defense:"mental",sustained:true,maxDuration:"scene",imposesDisadvantage:true,actionDenial:false,endsPerTargetWhenCasterDamages:true},
-  {name:"Mente Anclada",discipline:"influence",grade:"basic",mana:3,role:"mental-defense",activation:"Reacción",mentalDefenseBonus:2,singleDeclaredEffect:true},
+  {name:"Mente Anclada",discipline:"influence",grade:"basic",mana:3,role:"mental-defense",activation:"Reacción",mentalDefenseBonus:2,singleDeclaredEffect:true,stackingGroup:"mental-ward"},
 
   // Conjuración
-  {name:"Objeto Efímero",discipline:"conjuration",grade:"minor",mana:2,role:"utility",sustained:true,maxDuration:"scene",commercialValue:false,complexMechanism:false,ammunition:false,satisfiesSpecializedToolRequirement:false},
+  {name:"Objeto Efímero",discipline:"conjuration",grade:"minor",mana:2,role:"utility",sustained:true,maxDuration:"scene",commercialValue:false,complexMechanism:false,ammunition:false,satisfiesSpecializedToolRequirement:false,sameSpellReplaces:true},
   {name:"Salto Vinculado",discipline:"conjuration",grade:"advanced",mana:7,role:"transport",requiresTarget:true,maxTargets:3,targetMode:"multiple",remoteOriginCompatible:false},
   {name:"Jaula Dimensional",discipline:"conjuration",grade:"master",mana:9,role:"spatial-control",sustained:true,spatialMinDifficulty:18,secondaryResistance:false},
   {name:"Llamada Mayor",discipline:"conjuration",grade:"master",mana:10,role:"summon",method:"ritual",sustained:true,automaticObedience:false},
