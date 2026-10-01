@@ -1,3 +1,13 @@
+## 1.0.18 — REV-CREA-11-001 Sincronización post-cierre
+
+- Creación inicial de Atributos: siete Atributos parten de 1, se reparten exactamente 6 aumentos gratuitos y ningún Atributo puede superar 3 antes del cierre.
+- La ficha edita `creationValue` y `baseValue` conjuntamente durante la construcción inicial, evitando cobrar esos aumentos como progresión por PD.
+- Máximo inicial de **3 Disciplinas** validado tanto en adquisición como al completar creación.
+- Los hechizos de área usan **una única tirada** y comparan ese mismo total con la Defensa individual de cada objetivo.
+- Manual Maestro corregido: residual de Familiar Mágico, tablas de armas/armaduras/escudos, máximo inicial de Especializaciones, competencia operativa por grado y requisitos ya cerrados de Cierre Restaurador, Regeneración y Visión Arcana.
+- `README` vuelve a señalar correctamente al Manual Maestro único como fuente activa.
+- No se adelantan tareas de CREA-12: Protección derivada, FUE mínima/equipo, Bloqueo, Movimiento cuantificado y automatización de Sangrado permanecen fuera de esta revisión.
+
 ## 1.0.17 — CREA-11 cerrada
 
 - Nuevo modelo estructurado de creación: Actor para estado intrínseco; Items para Ascendencia, Origen, Trasfondo, Disciplina, Especialización, Técnica, Rasgo, Hechizo y equipo.

@@ -66,12 +66,25 @@ export function preflightAcquisition({
 } = {}) {
   const issues = [];
   const actorItems = Array.isArray(actor?.items) ? actor.items : actor?.items && typeof actor.items.values === "function" ? [...actor.items.values()] : [];
+  const actualStage = stage === "rebuilding" ? priceContext : stage;
   const duplicate = duplicateIdentity(actorItems, candidate);
   if (duplicate) issues.push({ code: "duplicate", message: "El Actor ya posee " + contentIdentityKey(candidate) + "." });
 
   const singular = new Set(["ancestry", "origin", "background"]);
   if (singular.has(candidate?.type) && actorItems.some((item) => item.type === candidate.type)) {
     issues.push({ code: "cardinality", message: "El Actor ya posee un Item singular de tipo " + candidate.type + "." });
+  }
+
+  if (candidate?.type === "discipline" && actualStage === "creation") {
+    const initialDisciplines = actorItems.filter((item) =>
+      item.type === "discipline" && (
+        item.system?.acquisition?.stage === "creation" ||
+        (!item.system?.acquisition && (actor?.system?.creation?.status ?? "") === "building")
+      )
+    ).length;
+    if (initialDisciplines >= 3) {
+      issues.push({ code: "discipline-creation-limit", message: "Durante creación puede adquirirse un máximo de 3 Disciplinas." });
+    }
   }
 
   const requirements = candidate?.system?.requirements;
@@ -92,7 +105,6 @@ export function preflightAcquisition({
     issues.push({ code: "revision", message: "La construcción cambió desde el preflight; debe revalidarse." });
   }
 
-  const actualStage = stage === "rebuilding" ? priceContext : stage;
   const freeMode = ["granted", "package"].includes(mode);
   const cost = freeMode
     ? { context: actualStage ?? "any", resource: "none", amount: 0 }

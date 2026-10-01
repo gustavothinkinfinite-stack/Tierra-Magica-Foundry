@@ -1,5 +1,5 @@
 // Foundry T.M. — salvaguardas e integración del núcleo mágico.
-import { offensiveSpellNeedsTargets, resolveSpellImpacts, spellAreaKind, validateSpellTargets } from "./spell-impact.mjs";
+import { offensiveSpellNeedsTargets, resolveSpellImpacts, validateSpellTargets } from "./spell-impact.mjs";
 import { normalizeSlug } from "./identity.mjs";
 
 const number = (value, fallback = 0) => {
@@ -15,6 +15,18 @@ function spellDfFor(item, target = null) {
   if (item.system.defense === "body" && target) df = number(target.system.derived?.bodyDefense);
   if (item.system.defense === "normal" && target) df = number(target.system.derived?.defense);
   return df;
+}
+
+export function spellTargetOutcomes(item, targets = [], total = Number.NaN, { automatic = false } = {}) {
+  return targets.map((actor) => {
+    const df = spellDfFor(item, actor);
+    return {
+      actor,
+      total: automatic ? Number.POSITIVE_INFINITY : total,
+      df,
+      success: automatic || (Number.isFinite(total) && total >= df)
+    };
+  });
 }
 
 export function spellNeedsCheck(item, { contextualCheck = false } = {}) {
@@ -100,24 +112,8 @@ export function installMagicGuards(ActorClass) {
     const outcomes = [];
     const automatic = !needsCheck && intercepted;
     if (targets.length) {
-      const firstTotal = automatic ? Number.POSITIVE_INFINITY : rollTotal(result);
-      outcomes.push({ actor: targets[0], total: firstTotal, df: spellDfFor(item, targets[0]),
-        success: automatic || (Number.isFinite(firstTotal) && firstTotal >= spellDfFor(item, targets[0])) });
-      if (spellAreaKind(item) === "area" && needsCheck) {
-        for (const target of targets.slice(1)) {
-          const df = spellDfFor(item, target);
-          const message = await actorRollCheck.call(this, {
-            label: "Hechizo: " + item.name + " · objetivo " + target.name,
-            attributeKey: item.system.attribute || "int",
-            skillKey: "channeling",
-            df
-          });
-          const total = rollTotal(message);
-          outcomes.push({ actor: target, total, df, success: Number.isFinite(total) && total >= df });
-        }
-      } else if (spellAreaKind(item) === "area" && automatic) {
-        for (const target of targets.slice(1)) outcomes.push({ actor: target, total: Number.POSITIVE_INFINITY, df: spellDfFor(item, target), success: true });
-      }
+      const singleTotal = automatic ? Number.POSITIVE_INFINITY : rollTotal(result);
+      outcomes.push(...spellTargetOutcomes(item, targets, singleTotal, { automatic }));
     } else {
       outcomes.push({ actor: null, total: automatic ? Number.POSITIVE_INFINITY : rollTotal(result),
         df: spellDfFor(item), success: automatic || rollTotal(result) >= spellDfFor(item) });

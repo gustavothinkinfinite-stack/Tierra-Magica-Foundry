@@ -51,8 +51,8 @@ test("ruta real valida objetivos antes de gastar recursos y resuelve áreas por 
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
   assert.equal(guards.includes("validateSpellTargets(item, selectedTokens"), true);
   assert.equal(guards.indexOf("validateSpellTargets(item, selectedTokens") < guards.indexOf("originalUseSpell.call(this, item)"), true);
-  assert.equal(guards.includes('spellAreaKind(item) === "area" && needsCheck'), true);
-  assert.equal(guards.includes("spellDfFor(item, target)"), true);
+  assert.equal(guards.includes("spellTargetOutcomes(item, targets, singleTotal, { automatic })"), true);
+  assert.equal(guards.includes("spellDfFor(item, actor)"), true);
   assert.equal(guards.includes("resolveSpellImpacts(item, hitTargets)"), true);
   assert.equal(guards.includes('adjustResource("health", -impact.damage)'), true);
   assert.equal(guards.includes("no crea automáticamente una Herida Grave"), true);
@@ -77,4 +77,21 @@ test("la ruta de lanzamiento pregunta la incertidumbre contextual sin alterar he
   assert.equal(guards.includes('await Dialog.confirm({'), true);
   assert.equal(guards.includes('¿Existe incertidumbre significativa, oposición o una dificultad real en este lanzamiento?'), true);
   assert.equal(guards.includes('const needsCheck = spellNeedsCheck(item, { contextualCheck })'), true);
+});
+
+
+test("un área reutiliza una sola tirada contra las Defensas de todos los objetivos", async () => {
+  const { spellTargetOutcomes } = await import("../scripts/rules/magic-guards.mjs");
+  const item={system:{defense:"normal",difficulty:12}};
+  const targets=[
+    {id:"a",system:{derived:{defense:12}}},
+    {id:"b",system:{derived:{defense:16}}}
+  ];
+  const outcomes=spellTargetOutcomes(item,targets,14);
+  assert.deepEqual(outcomes.map((o)=>o.total),[14,14]);
+  assert.deepEqual(outcomes.map((o)=>o.success),[true,false]);
+
+  const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
+  assert.equal(guards.includes("· objetivo "),false);
+  assert.equal(guards.includes("targets.slice(1)"),false);
 });

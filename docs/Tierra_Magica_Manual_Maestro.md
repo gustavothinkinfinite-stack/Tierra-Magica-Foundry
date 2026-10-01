@@ -258,7 +258,7 @@ A nivel 1 puede existir como máximo una Habilidad Experta y ninguna Maestro o G
 
 #### Especializaciones
 
-Una Especialización cuesta **1 PD** y requiere la Habilidad madre en Entrenado. Representa dominio profundo dentro de una Habilidad y no concede un bono numérico universal por sí sola. Sirve para justificar conocimiento especializado, procedimientos, prerrequisitos y Técnicas cuando corresponda.
+Una Especialización cuesta **1 PD** y requiere la Habilidad madre en Entrenado. Durante la creación inicial hay un máximo de **2 Especializaciones por Habilidad madre**. Representa dominio profundo dentro de una Habilidad y no concede un bono numérico universal por sí sola. Sirve para justificar conocimiento especializado, procedimientos, prerrequisitos y Técnicas cuando corresponda.
 
 Ejemplos: Espadas, Hachas, Lanzas; Cirugía, Traumatología, Toxicología; Vapor, Autómatas, Armamento; Bosque, Montaña, Desierto; Pociones, Venenos, Explosivos.
 
@@ -407,7 +407,7 @@ Una Especialización cuesta 1 PD y requiere la Habilidad madre en Entrenado. Las
 
 Los Rasgos representan propiedades persistentes del personaje que no encajan como entrenamiento ordinario. En creación se dispone de **3 PR**, separados de los PD. Los PR y los PD no se convierten entre sí. Un Rasgo puede ser Innato, Adquirido, de Vínculo o Condicional. Como referencia, un Rasgo Menor cuesta 1 PR, Significativo 2, Mayor 3 y Excepcional 4+. Los rasgos negativos no generan PR adicionales.
 
-Catálogo de referencia: Sentido Agudo 1 PR; Visión en la Oscuridad 2; Anfibio 1; Trepador Natural 1; Cola Prensil 1; Miembros Extra 2, sin conceder acciones adicionales; Vuelo Natural 4 y de carácter excepcional; Corpulento 2, +4 Vida; Masivo 3, +8 Vida y no acumulable con Corpulento; Vínculo Divino 2, que concede acceso y no poder automático; Familiar Mágico 2; Pacto Externo 2–3; Prótesis Mayor 2+; Afinidad Sobrenatural 1; Resistencia Ambiental 1–2.
+Catálogo de referencia: Sentido Agudo 1 PR; Visión en la Oscuridad 2; Anfibio 1; Trepador Natural 1; Cola Prensil 1; Miembros Extra 2, sin conceder acciones adicionales; Vuelo Natural 4 y de carácter excepcional; Corpulento 2, +4 Vida; Masivo 3, +8 Vida y no acumulable con Corpulento; Vínculo Divino 2, que concede acceso y no poder automático; Familiar Mágico 3; Pacto Externo 2–3; Prótesis Mayor 2+; Afinidad Sobrenatural 1; Resistencia Ambiental 1–2.
 
 ## 6. Turno, movimiento y posición
 
@@ -481,42 +481,46 @@ No existe un Ataque de Oportunidad universal. Una retirada a distancia contra un
 
 ## 9. Armas, armaduras y escudos
 
-| Arma | Daño | Pen | FUE | Precio | Propiedades principales |
+| Arma | Daño | Pen | FUE mín. | Precio | Propiedades principales |
 |---|---:|---:|---:|---:|---|
-| Daga | 3 | 6 p | 0 | 5 C | Ligera, Ocultable |
-| Espada corta | 4 | 1 o | 0 | 12 C | Ligera |
-| Sable | 4 | 1 o 5 p | 0 | 18 C | Ágil |
-| Espada larga | 5 | 2 o | 1 | 20 C | Versátil |
-| Hacha | 6 | 2 o 5 p | 2 | 18 C | Impactante |
-| Maza | 5 | 1 o | 1 | 16 C | Impactante |
-| Martillo de guerra | 6 | 3 o | 2 | 24 C | Impactante |
-| Lanza | 5 | 5 p | 1 | 12 C | Alcance, 2 manos |
-| Alabarda | 7 | 3 o | 2 | 30 C | Alcance, Pesada, 2 manos |
-| Mandoble | 7 | 4 o | 2 | 32 C | Pesada, 2 manos |
-| Gran hacha | 8 | 5 o | 3 | 34 C | Pesada, 2 manos |
-| Gran martillo | 7 | 5 o | 3 | 40 C | Pesada, 2 manos |
-| Arco corto | 4 | 1 o | — | 15 C | Potencia 2 |
-| Arco largo | 5 | 2 o | — | 25 C | Potencia 3, 2 manos |
-| Ballesta | 6 | 3 o | — | 22 C | Recarga 1 |
-| Ballesta pesada | 8 | 5 o | — | 35 C | Recarga 2, 2 manos |
-| Pistola temprana | 6 | 10 o | — | 30 C | Recarga 2 |
-| Rifle temprano | 7 | 18 o | — | 45 C | Recarga 2, 2 manos |
-| Pistola repetidora | 6 | 35 o | — | 50 C | Repetición |
-| Rifle repetidor | 7 | 45 o | — | 65 C | Repetición, 2 manos |
+| Daga | 3 | 0 | 0 | 6 p | Ligera, Ocultable |
+| Espada corta | 4 | 0 | 0 | 1 o | Ligera |
+| Sable | 4 | 0 | 0 | 1 o 5 p | Ágil |
+| Espada larga | 5 | 0 | 1 | 2 o | Versátil |
+| Hacha | 6 | 0 | 2 | 2 o 5 p | Impactante |
+| Maza | 5 | 1 | 1 | 1 o | Impactante |
+| Martillo de guerra | 6 | 2 | 2 | 3 o | Impactante |
+| Lanza | 5 | 0 | 1 | 5 p | Alcance, 2 manos |
+| Alabarda | 7 | 1 | 2 | 3 o | Alcance, Pesada, 2 manos |
+| Mandoble | 7 | 0 | 2 | 4 o | Pesada, 2 manos |
+| Gran hacha | 8 | 0 | 3 | 5 o | Pesada, 2 manos |
+| Gran martillo | 7 | 2 | 3 | 5 o | Pesada, 2 manos |
+| Arco corto | 4 | 0 | — | 1 o | Potencia 2 |
+| Arco largo | 5 | 0 | — | 2 o | Potencia 3, 2 manos |
+| Ballesta | 6 | 1 | — | 3 o | Recarga 1 |
+| Ballesta pesada | 8 | 2 | — | 5 o | Recarga 2, 2 manos |
+| Pistola temprana | 6 | 2 | — | 10 o | Recarga 2 |
+| Rifle temprano | 7 | 3 | — | 18 o | Recarga 2, 2 manos |
+| Pistola repetidora | 6 | 1 | — | 35 o | Repetición |
+| Rifle repetidor | 7 | 2 | — | 45 o | Repetición, 2 manos |
 
 Los arcos pueden añadir FUE al daño cuando el arma y su Potencia lo permiten; ballestas y armas de fuego no lo hacen normalmente.
 
 | Armadura | Prot | FUE mín. | Precio |
 |---|---:|---:|---:|
-| Ligera | 1 | 1 o 5 p | 12 C |
-| Reforzada | 2 | 4 o | 25 C |
-| Malla | 3 | 10 o | 40 C |
-| Pesada | 4 | 16 o | 60 C |
-| Placas | 5 | 40 o | 85 C |
+| Armadura ligera | 1 | 0 | 1 o 5 p |
+| Armadura reforzada | 2 | 0 | 4 o |
+| Malla | 3 | 1 | 10 o |
+| Armadura pesada | 4 | 2 | 16 o |
+| Placas | 5 | 3 | 40 o |
 
 Con FUE un punto por debajo del mínimo, Movimiento -1, Carga Pesada y Desventaja en acciones físicas relevantes. Con dos o más puntos por debajo, la armadura no puede usarse competentemente en combate sin una capacidad específica, aunque su material siga ofreciendo Protección cuando corresponda. Una armadura ruidosa puede causar Desventaja a Sigilo cuando el ruido sea relevante.
 
-**Broquel, 10 C:** +1 Defensa frontal, sin Bloqueo especial. **Escudo estándar, 18 C:** +1 Defensa frontal y Bloqueo, Reacción +2 Defensa adicional. **Escudo pesado, 30 C, FUE 2:** +2 Defensa frontal, Movimiento -1 y Bloqueo +2.
+| Escudo | Defensa pasiva | Bloqueo | FUE mín. | Precio | Propiedades |
+|---|---:|---:|---:|---:|---|
+| Broquel | +1 frontal | — | 0 | 5 p | Sin Bloqueo especial |
+| Escudo estándar | +1 frontal | +2 | 0 | 1 o 5 p | Bloqueo mediante Reacción |
+| Escudo pesado | +2 frontal | +2 | 2 | 3 o | Movimiento -1; Bloqueo mediante Reacción |
 
 La calidad Defectuosa/Común/Superior/Excepcional describe fabricación y propiedades concretas; no concede un +1/+2/+3 universal.
 
@@ -558,6 +562,8 @@ La magia no usa un Atributo de Magia separado. Sus Fuentes son **Alma, Divina, A
 
 El Maná máximo es 6 + 3xVOL y no crece automáticamente por nivel. Costes de referencia: Truco 0-1, Menor 2, Básico 3-4, Avanzado 5-7, Maestro 8-11, Legendario 12+.
 
+La **competencia operativa mínima** usa el rango base de la Habilidad correspondiente al Método: Directo → Canalización; Ritual → Ritualismo. Truco, Menor y Básico requieren Entrenado; Avanzado requiere Experto; Maestro requiere Maestro; Legendario requiere Gran Maestro.
+
 Un hechizo conocido, seguro y rutinario no exige tirada sólo por ser mágico. Cuando existe oposición o incertidumbre, se usa **2d10 + Atributo relevante + Canalización** contra DF o Defensa. Los ataques físicos o energéticos usan Defensa; la influencia mental usa Defensa Mental; la alteración directa de un organismo usa Defensa Corporal cuando corresponda. Una tirada mágica ofensiva exitosa no genera una segunda resistencia salvo regla expresa.
 
 ### Sostenimiento
@@ -587,10 +593,10 @@ El catálogo mecánico estable del núcleo está formado por **18 hechizos**. No
 | Barrera Cinética | Evocación | Básico | 3 | Reacción; +2 Defensa normal únicamente contra el ataque declarado; se consume al resolverlo. |
 | Potencia Sobrenatural | Alteración | Básico | 4 | Sostenido; permite interactuar físicamente como una categoría de Escala mayor; no aumenta FUE, daño ni Defensa. |
 | Piel Alterada | Alteración | Básico | 4 | Sostenido; Protección 2 contra una categoría coherente declarada; no se acumula con armadura equivalente. |
-| Cierre Restaurador | Restauración | Básico | 3 | Requiere Medicina; recupera 4 Vida y detiene Sangrado ordinario compatible; no reduce Trauma ni repara automáticamente Herida Grave. |
-| Regeneración | Restauración | Avanzado | 6 | INT; DF 16 cuando corresponda; requiere Medicina; repara una Herida Grave orgánica compatible. |
+| Cierre Restaurador | Restauración | Básico | 3 | Recupera 4 Vida y detiene Sangrado ordinario compatible; no reduce Trauma ni repara automáticamente Herida Grave. |
+| Regeneración | Restauración | Avanzado | 6 | Método Ritual; INT; DF 16 cuando corresponda; requiere Medicina Entrenada; repara una Herida Grave orgánica compatible. |
 | Reconstrucción | Restauración | Maestro | 10 | INT; DF 20 cuando corresponda; requiere Medicina; reconstrucción extraordinaria; no resurrección. |
-| Visión Arcana | Percepción | Menor | 2 | PER; DF 10 cuando exista incertidumbre; duración Escena; requiere Arcana. |
+| Visión Arcana | Percepción | Menor | 2 | PER; DF 10 cuando exista incertidumbre; duración Escena. |
 | Vínculo de Rastreo | Percepción | Básico | 4 | PER; DF 14; información aproximada, no coordenadas GPS. |
 | Visión Remota | Percepción | Avanzado | 7 | PER; DF 18; requiere lugar conocido o Ancla. |
 | Calma | Influencia | Básico | 3 | PRE + Canalización contra Defensa Mental cuando el objetivo resiste; reduce agitación compatible sin borrar voluntad o memoria. |
@@ -609,6 +615,7 @@ El catálogo mecánico estable del núcleo está formado por **18 hechizos**. No
 - **Cierre Restaurador** recupera Vida hasta el máximo permitido y respeta límites de lesión; no borra Trauma.
 - **Onda de Choque** tiene geometría contextual: la mesa determina qué objetivos están realmente dentro del frente corto.
 - **Regeneración** y **Reconstrucción** requieren la adjudicación médica y narrativa indicada; no generan cantidades de curación adicionales no escritas.
+- El requisito de Medicina de **Reconstrucción** permanece canónico pero todavía no tiene un rango mínimo cuantificado; Foundry no debe inventar uno hasta una decisión específica.
 - Hechizos de información, influencia y teletransporte no conceden conocimiento, control, posición o línea de efecto que no estén definidos.
 - Los efectos idénticos no se acumulan salvo regla expresa.
 - Las salvaguardas generales de Acción/Reacción, objetivos, Defensas, Protección, Sostenimiento, Sobrecarga y línea de efecto se aplican a todo el catálogo.
@@ -3062,6 +3069,8 @@ El siguiente trabajo no consiste en volver a repartir información entre varios 
 
 - **REV-CREA-02-001 (documental):** se corrige el Manual Maestro para reflejar la decisión ya cerrada de CREA-02: cada Disciplina cuesta **2 PD**, requiere Canalización Entrenada y el máximo inicial es 3. No cambia la regla; corrige una transcripción posterior de 3 PD.
 - **REV-CREA-05-001 (documental):** se corrige el Manual Maestro para reflejar la decisión ya cerrada de CREA-05: **Familiar Mágico es un Rasgo Mayor de 3 PR en creación y 6 PD posteriormente**. No cambia la regla; corrige una transcripción posterior de 2 PR.
+
+- **REV-CREA-11-001 (sincronización post-cierre):** sin reabrir CREA-11, Foundry 1.0.18 corrige tres discrepancias detectadas tras el cierre: la creación inicial exige exactamente **6 aumentos gratuitos de Atributo** con máximo inicial **3**, la adquisición inicial admite como máximo **3 Disciplinas**, y los hechizos de área usan **una sola resolución de lanzamiento** comparada contra todas las Defensas pertinentes. La misma revisión corrige documentación residual de Familiar Mágico, tabla de equipo, máximo inicial de Especializaciones y competencia operativa de Hechizos.
 
 ## Modelo de datos de creación en Foundry — CREA-11
 

@@ -2,11 +2,11 @@
 
 Sistema para Foundry VTT v14 basado en **Foundry T.M. 1.0 Playtest**.
 
-La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuente mecánica canónica es `docs/Foundry_TM_Manual_1.0_Playtest.md`; la fuente narrativa y de continuidad es **Tierra Mágica — Canon del Mundo v1.2**. Las versiones históricas, la implementación y los documentos derivados no prevalecen cuando contradicen la fuente maestra de su dominio.
+La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuente activa única para reglas, creación, canon narrativo y desarrollo editorial es `docs/Tierra_Magica_Manual_Maestro.md`. Las versiones históricas, la implementación y los documentos derivados no prevalecen cuando contradicen esa fuente.
 
 Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**1.0.17 — CREA-11 Modelo de datos de creación cerrada.** Ascendencia, Origen, Trasfondo y Disciplina pasan a Items estructurados; las demás elecciones adquiribles comparten identidad estable, costes, requisitos, adquisición y reglas declarativas. El Actor conserva estado intrínseco; los Compendios son catálogo; los efectos activos son Items `effect`; la migración preserva legado sin inventar compras históricas. CREA-12 conserva la responsabilidad de las fórmulas y agregación final de valores derivados.
+**1.0.18 — REV-CREA-11-001 Sincronización post-cierre.** Corrige el constructor de Atributos iniciales, aplica el máximo de 3 Disciplinas de creación, hace que la magia de área reutilice una única tirada y sincroniza Manual/Referencia con decisiones ya cerradas de CREA-10/11. CREA-11 permanece cerrada; CREA-12 conserva la responsabilidad de derivados, Movimiento cuantificado, equipo/Protección y estados pendientes.
 
 CREA-11 está formalmente cerrada e integrada en `main`; sus decisiones DAT-D01 a DAT-D666 son canónicas. CREA-12 queda como próxima tarea prevista.
 

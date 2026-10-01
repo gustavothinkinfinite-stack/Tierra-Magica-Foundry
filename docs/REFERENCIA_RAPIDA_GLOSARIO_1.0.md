@@ -23,7 +23,7 @@ Rangos de Habilidad 0–5: bonos **+0/+1/+2/+4/+6/+8**; costes acumulados **0/1/
 - El Atributo depende del método; no existe pareja fija Atributo/Habilidad.
 - Requisitos como Entrenado o Experto usan el **rango base**, no el total modificado.
 - Nivel 1: máximo 1 Experta. Maestro: nivel 9+. Gran Maestro: nivel 15+.
-- Especialización: **1 PD**, requiere Habilidad madre Entrenada; no concede bono universal.
+- Especialización: **1 PD**, requiere Habilidad madre Entrenada; no concede bono universal; durante creación, máximo **2 por Habilidad madre**.
 - Gran Maestro exige Especialización coherente cuando la Habilidad disponga de catálogo; Canalización y Ritualismo están exentas sólo de ese requisito.
 
 ## Moneda y equipo inicial
@@ -41,7 +41,7 @@ Rangos de Habilidad 0–5: bonos **+0/+1/+2/+4/+6/+8**; costes acumulados **0/1/
 
 ## Creación estructurada en Foundry
 
-- **Ascendencia, Origen y Trasfondo** son elecciones singulares representadas como Items; Disciplina, Especialización, Técnica, Rasgo y Hechizo son Items adquiribles según sus reglas.
+- **Ascendencia, Origen y Trasfondo** son elecciones singulares representadas como Items; Disciplina, Especialización, Técnica, Rasgo y Hechizo son Items adquiribles según sus reglas. Durante creación pueden adquirirse como máximo **3 Disciplinas**.
 - Arrastrar/adquirir una elección valida requisitos, duplicados y presupuesto antes de incorporarla al Actor.
 - **Comprado** indica coste realmente pagado; **Concedido** indica una capacidad otorgada por otra fuente sin doble cobro; **Legado** conserva contenido histórico cuyo coste no puede reconstruirse con seguridad.
 - Los Items usan una identidad mecánica estable independiente del nombre visible. Renombrar una capacidad no cambia qué regla representa.
@@ -86,7 +86,9 @@ Trauma: 0 Sin; 1 Grave; 2 Crítico; 3 Terminal. No aplica penalizadores universa
 Fuentes: Alma, Divina, Ambiental, Externa.  
 Disciplinas: Evocación, Alteración, Restauración, Percepción, Influencia, Conjuración.
 
-Sólo se tira cuando el hechizo lo exige, existe oposición o incertidumbre significativa. Un hechizo enfrentado a Defensa normal/Mental/Corporal siempre requiere prueba.
+Sólo se tira cuando el hechizo lo exige, existe oposición o incertidumbre significativa. Un hechizo enfrentado a Defensa normal/Mental/Corporal siempre requiere prueba. En áreas se realiza **una sola tirada** y ese mismo total se compara con cada Defensa.
+
+Competencia operativa por grado, usando rango base: **Truco/Menor/Básico → Entrenado; Avanzado → Experto; Maestro → Maestro; Legendario → Gran Maestro**. Método Directo usa Canalización; Método Ritual usa Ritualismo.
 
 **Sostenimiento:** límite 1; Doble Sostenimiento permite 2. Un fallo nunca entra. Si un éxito excede el límite, entra el nuevo y se abandona el más antiguo necesario.
 

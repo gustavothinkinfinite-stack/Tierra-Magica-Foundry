@@ -58,3 +58,22 @@ test("granted Items retain catalog price but pay zero and unresolved ChoiceSet b
   assert.equal(allowed.acquisition.paid.amount,0);
   assert.equal(allowed.acquisition.sources.length,1);
 });
+
+
+test("preflight impide una cuarta Disciplina durante creación pero no en progresión",()=>{
+  const actor={system:{creation:{revision:1,status:"building"},skills:{channeling:{rank:2}}},items:
+    ["evocation","alteration","restoration"].map((slug)=>({
+      type:"discipline",name:slug,system:{slug,acquisition:{mode:"purchased",stage:"creation",paid:{resource:"pd",amount:2,known:true}}}
+    }))
+  };
+  const candidate={type:"discipline",name:"Percepción",system:{
+    slug:"perception",
+    costs:[{context:"any",resource:"pd",amount:2}],
+    requirements:{type:"skill",key:"channeling",rank:2,basis:"base"}
+  }};
+  const creation=preflightAcquisition({actor,candidate,stage:"creation",expectedRevision:1});
+  assert.equal(creation.valid,false);
+  assert.ok(creation.issues.some((i)=>i.code==="discipline-creation-limit"));
+  const progression=preflightAcquisition({actor,candidate,stage:"progression",expectedRevision:1});
+  assert.equal(progression.issues.some((i)=>i.code==="discipline-creation-limit"),false);
+});
