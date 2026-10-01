@@ -1,20 +1,9 @@
-const TURN_FLAG = "lastTurnReset";
-const turnMutationQueues = new WeakMap();
+import {
+  spendActorMovementAuthoritatively,
+  withAuthoritativeTurnState
+} from "./state-authority.mjs";
 
-async function withTurnMutationLock(actor, operation) {
-  if (!actor || (typeof actor !== "object" && typeof actor !== "function")) return operation();
-  const previous = turnMutationQueues.get(actor) ?? Promise.resolve();
-  let release;
-  const current = new Promise((resolve) => { release = resolve; });
-  turnMutationQueues.set(actor, current);
-  await previous;
-  try {
-    return await operation();
-  } finally {
-    release();
-    if (turnMutationQueues.get(actor) === current) turnMutationQueues.delete(actor);
-  }
-}
+const TURN_FLAG = "lastTurnReset";
 
 const number = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -46,25 +35,21 @@ export function movementRemaining(actor) {
 }
 
 export async function spendActorMovement(actor, amount, companionUpdates = {}) {
-  return withTurnMutationLock(actor, async () => {
-    if (!actor || !["character", "npc"].includes(actor.type) || actorIncapacitated(actor)) return false;
-    const requested = number(amount, Number.NaN);
-    if (!Number.isFinite(requested) || requested < 0) return false;
-    const remaining = movementRemaining(actor);
-    if (requested > remaining) return false;
-    const extras = companionUpdates && typeof companionUpdates === "object" ? companionUpdates : {};
-    if (requested === 0 && !Object.keys(extras).length) return false;
-    const spent = Math.max(0, number(actor.system?.turn?.movementSpent));
-    await actor.update({
-      ...extras,
-      "system.turn.movementSpent": spent + requested
-    });
-    return true;
-  });
+  if (!actor || !["character", "npc"].includes(actor.type) || actorIncapacitated(actor)) return false;
+  const extras = companionUpdates && typeof companionUpdates === "object" ? companionUpdates : {};
+  const extraKeys = Object.keys(extras);
+  const consumeReaction = extraKeys.length === 1 &&
+    extraKeys[0] === "system.turn.reaction" &&
+    extras["system.turn.reaction"] === false;
+  if (extraKeys.length && !consumeReaction) return false;
+
+  const result = await spendActorMovementAuthoritatively(actor, amount, { consumeReaction });
+  if (!result?.ok && result?.error) globalThis.ui?.notifications?.warn?.(result.error);
+  return result?.ok === true && result.spent === true;
 }
 
 export async function resetActorTurnForCombat(actor, combat, combatant) {
-  return withTurnMutationLock(actor, async () => {
+  return withAuthoritativeTurnState(actor, async () => {
     if (!actor || !["character", "npc"].includes(actor.type)) return false;
     const stamp = combatTurnStamp(combat, combatant);
     if (!stamp) return false;
