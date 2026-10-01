@@ -329,8 +329,11 @@ export class TierraMagicaActor extends Actor {
     const physical = ["weapon","armor","shield","equipment","formula","device"].includes(candidate.type);
     let preflight;
     if (physical && !(candidate.system.costs?.length) && mode === "purchased") {
+      if (candidate.system.priceStatus !== "exact" || !Number.isSafeInteger(Number(candidate.system.priceCopper)) || Number(candidate.system.priceCopper) < 0) {
+        return failAcquisition(candidate.name + " no tiene un precio exacto utilizable para Compra libre.");
+      }
       const resource = resolvedStage === "creation" ? "pei" : "currency";
-      const amount = Math.max(0, toNumber(candidate.system.priceCopper));
+      const amount = Math.max(0, Number(candidate.system.priceCopper));
       preflight = {
         valid: true,
         issues: [],
