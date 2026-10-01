@@ -29,10 +29,22 @@ export function validatePendingHealingRequest(request) {
   return { targetUuid: String(request.targetUuid), healing, source: String(request.source ?? ""), caster: String(request.caster ?? ""), resolved: false };
 }
 
-export async function applyBoundedHealing(actor, requested) {
+export function boundedHealthRecoveryUpdates(actor, requested) {
   const amount = healingAmount(actor, requested);
-  if (amount <= 0) return 0;
+  if (amount <= 0) return { amount: 0, updates: {} };
   const current = Math.max(0, number(actor.system?.resources?.health?.value));
-  await actor.update({ "system.resources.health.value": current + amount });
-  return amount;
+  const next = current + amount;
+  const updates = { "system.resources.health.value": next };
+  if (next > 0) {
+    updates["system.status.incapacitated"] = false;
+    if (actor?.type === "familiar") updates["system.familiar.incapacitated"] = false;
+  }
+  return { amount, updates };
+}
+
+export async function applyBoundedHealing(actor, requested) {
+  const recovery = boundedHealthRecoveryUpdates(actor, requested);
+  if (recovery.amount <= 0) return 0;
+  await actor.update(recovery.updates);
+  return recovery.amount;
 }
