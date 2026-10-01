@@ -492,6 +492,7 @@
         "base",
         "physical"
       ],
+      "quantity": 0,
       "grade": "common",
       "preparation": "",
       "ingredients": "",
