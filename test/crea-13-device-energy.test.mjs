@@ -159,3 +159,15 @@ test("13F: Escudo de campo y Barrera Cinética comparten una sola ventana +2",as
   assert.equal(after.contextual.defense.filter((entry)=>entry.context==="kineticBarrier").length,1);
   assert.equal(after.contextual.defense[0].label,"Escudo de campo");
 });
+
+
+test("13F: un acumulador Deshabilitado no puede alimentar una activación",async()=>{
+  const source=device({id:"source",name:"Celda averiada",energy:4,flow:2});
+  source.system.condition="disabled";
+  const consumer=device({id:"consumer",name:"Herramienta",consumption:1,source:"source"});
+  const a=actor([source,consumer]);
+  const result=await a.useDevice(consumer);
+  assert.equal(result,null);
+  assert.equal(source.system.energy.value,4);
+  assert.equal(a.system.turn.action,true);
+});
