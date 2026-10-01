@@ -10,7 +10,15 @@ Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 
 
 El núcleo 1.0 permanece **completo y jugable**. No existe una fase **CREA-14** definida en el repositorio. Cualquier ampliación mecánica futura debe partir de una decisión explícita incorporada primero al Manual Maestro; no se infiere una fase nueva a partir del código.
 
-El manifiesto instalable continúa en **1.0.18** hasta que exista una decisión explícita de publicación/versionado; este cierre documental no incrementa versión.
+La release pública actual es **v1.0.18**. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
+
+## Instalación
+
+En Foundry VTT, usa esta URL en **Instalar sistema → Manifest URL**:
+
+`https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/system.json`
+
+Ese manifiesto apunta siempre al ZIP de su propia versión, evitando que cambios posteriores en `main` adelanten una actualización todavía no publicada.
 
 Documentación de cierre: `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md` · referencia de mesa: `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md` · jerarquía de fuentes: `docs/FUENTES_CANONICAS.md`.
 
