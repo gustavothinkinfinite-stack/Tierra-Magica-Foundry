@@ -1,0 +1,163 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { STARTER_CONTENT } from "../scripts/content.mjs";
+import { GRIMORIO_AUDIT_CANDIDATES, AUDIT_REFERENCE_TARGETS } from "./fixtures/grimorio-60-audit.mjs";
+
+function outcomes2d10(mode="normal") {
+  const values=[];
+  if(mode==="normal"){
+    for(let a=1;a<=10;a+=1) for(let b=1;b<=10;b+=1) values.push(a+b);
+    return values;
+  }
+  for(let a=1;a<=10;a+=1) for(let b=1;b<=10;b+=1) for(let c=1;c<=10;c+=1){
+    const dice=[a,b,c].sort((x,y)=>x-y);
+    values.push(mode==="advantage" ? dice[1]+dice[2] : dice[0]+dice[1]);
+  }
+  return values;
+}
+
+function successProbability({bonus=0,df,mode="normal"}={}) {
+  const outcomes=outcomes2d10(mode);
+  return outcomes.filter((sum)=>sum+bonus>=df).length/outcomes.length;
+}
+
+function finalDamage({damage=0,penetration=0,protection=0}={}) {
+  return Math.max(0,damage-Math.max(0,protection-penetration));
+}
+
+function expectedDamage({bonus,defense,damage,penetration=0,protection=0,mode="normal"}) {
+  return successProbability({bonus,df:defense,mode})*finalDamage({damage,penetration,protection});
+}
+
+test("auditoría probabilística usa enumeración exacta para normal, Ventaja y Desventaja",()=>{
+  assert.equal(outcomes2d10("normal").length,100);
+  assert.equal(outcomes2d10("advantage").length,1000);
+  assert.equal(outcomes2d10("disadvantage").length,1000);
+  const normal=successProbability({bonus:7,df:14});
+  const advantage=successProbability({bonus:7,df:14,mode:"advantage"});
+  const disadvantage=successProbability({bonus:7,df:14,mode:"disadvantage"});
+  assert.equal(normal,0.85);
+  assert.ok(advantage>normal);
+  assert.ok(disadvantage<normal);
+});
+
+test("benchmark nivel 1: magia ofensiva no desplaza el daño individual de armas especializadas",()=>{
+  const soldier=AUDIT_REFERENCE_TARGETS.find((entry)=>entry.name==="Soldado");
+  const spell=STARTER_CONTENT.spell.find((entry)=>entry.name==="Proyectil Ígneo").system;
+  const sword=STARTER_CONTENT.weapon.find((entry)=>entry.name==="Espada larga").system;
+  const rifle=STARTER_CONTENT.weapon.find((entry)=>entry.name==="Rifle temprano").system;
+
+  const projectile=expectedDamage({bonus:7,defense:soldier.defense,damage:spell.damage,penetration:spell.penetration,protection:soldier.protection});
+  const swordDamage=expectedDamage({bonus:7,defense:soldier.defense,damage:sword.damage+3,penetration:sword.penetration,protection:soldier.protection});
+  const rifleDamage=expectedDamage({bonus:7,defense:soldier.defense,damage:rifle.damage,penetration:rifle.penetration,protection:soldier.protection});
+
+  assert.ok(projectile<swordDamage);
+  assert.ok(projectile<rifleDamage);
+  assert.ok(Math.abs(projectile-2.55)<1e-12);
+  assert.ok(Math.abs(swordDamage-4.25)<1e-12);
+  assert.ok(Math.abs(rifleDamage-5.95)<1e-12);
+});
+
+test("Onda de Choque y Arco Fulminante conservan eficiencia multiobjetivo equivalente",()=>{
+  const targets=["Bandido","Guardia","Soldado"].map((name)=>AUDIT_REFERENCE_TARGETS.find((entry)=>entry.name===name));
+  const onda=STARTER_CONTENT.spell.find((entry)=>entry.name==="Onda de Choque").system;
+  const arco=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Arco Fulminante");
+
+  const expected=(spell)=>targets.reduce((sum,target)=>sum+expectedDamage({
+    bonus:7,defense:target.defense,damage:spell.damage,penetration:spell.penetration,protection:target.protection
+  }),0);
+  const ondaEfficiency=expected(onda)/onda.manaCost;
+  const arcoEfficiency=expected(arco)/arco.mana;
+
+  assert.ok(Math.abs(ondaEfficiency-arcoEfficiency)<0.01);
+  assert.ok(Math.abs(ondaEfficiency-1.3125)<1e-12);
+});
+
+test("los nuevos daños individuales pagan más Maná cuando igualan o superan Proyectil Ígneo",()=>{
+  const projectile=STARTER_CONTENT.spell.find((entry)=>entry.name==="Proyectil Ígneo").system;
+  const direct=GRIMORIO_AUDIT_CANDIDATES.filter((entry)=>entry.role==="single-damage-control");
+  for(const spell of direct){
+    if(spell.damage>=projectile.damage && spell.penetration>=projectile.penetration){
+      assert.ok(spell.mana>projectile.manaCost,spell.name);
+    }
+  }
+});
+
+test("Restauración no supera Cierre Restaurador en creación neta eficiente de Vida",()=>{
+  const closureRate=4/3;
+  const candidates=GRIMORIO_AUDIT_CANDIDATES.filter((entry)=>entry.discipline==="restoration");
+  for(const spell of candidates){
+    if(spell.netHealing===0) continue;
+    if(spell.role==="multiple-healing"){
+      assert.ok((spell.healing*spell.maxTargets)/spell.mana<=closureRate,spell.name);
+    } else if(spell.role==="periodic-healing"){
+      assert.ok((spell.healingPerPulse*spell.pulses)/spell.mana<=closureRate,spell.name);
+      assert.equal(spell.canHealAtZero,false,spell.name);
+      assert.equal(spell.reapplyExtraPulse,false,spell.name);
+    } else if(Number.isFinite(spell.healing)) {
+      assert.ok(spell.healing/spell.mana<=closureRate,spell.name);
+    }
+  }
+});
+
+test("ninguna propuesta de Influencia reintroduce Dominación o pérdida repetida de Acción",()=>{
+  const influence=GRIMORIO_AUDIT_CANDIDATES.filter((entry)=>entry.discipline==="influence");
+  for(const spell of influence){
+    assert.notEqual(spell.actionDenial,true,spell.name);
+    assert.notEqual(spell.forcedAction,true,spell.name);
+    assert.notEqual(spell.combatEndsAutomatically,true,spell.name);
+  }
+});
+
+test("la progresión de ataque mental queda registrada como riesgo y Mente Anclada reduce la probabilidad",()=>{
+  const stages=[
+    {attack:7,mental:14},
+    {attack:10,mental:15},
+    {attack:13,mental:16}
+  ];
+  const probabilities=stages.map((stage)=>successProbability({bonus:stage.attack,df:stage.mental}));
+  const anchored=stages.map((stage)=>successProbability({bonus:stage.attack,df:stage.mental+2}));
+  assert.deepEqual(probabilities,[0.85,0.94,0.99]);
+  assert.deepEqual(anchored,[0.72,0.85,0.94]);
+  assert.ok(probabilities[2]>0.95); // señal de auditoría: no autoriza hard control.
+});
+
+test("ilusiones usan DF estática y nunca una tirada pescable como potencia persistente",()=>{
+  const illusions=GRIMORIO_AUDIT_CANDIDATES.filter((entry)=>String(entry.role).includes("illusion") && entry.name!=="Revelación Sensorial");
+  for(const spell of illusions){
+    if(spell.name==="Duplicado Ilusorio") continue;
+    assert.equal(spell.illusionDf,"static",spell.name);
+  }
+  const equalSpecialists=successProbability({bonus:7,df:18});
+  const revealed=successProbability({bonus:7,df:18,mode:"advantage"});
+  assert.equal(equalSpecialists,0.55);
+  assert.ok(Math.abs(revealed-0.785)<1e-12);
+});
+
+test("teletransporte y conexiones espaciales no amplifican Origen Remoto",()=>{
+  for(const name of ["Paso Breve","Trasposición","Umbral","Portal"]){
+    const system=STARTER_CONTENT.spell.find((entry)=>entry.name===name).system;
+    assert.equal(system.remoteOriginCompatible,false,name);
+  }
+  for(const name of ["Salto Vinculado","Gran Traslación"]){
+    const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
+    assert.equal(spell.remoteOriginCompatible,false,name);
+  }
+});
+
+test("invocaciones demandantes ocupan Sostenimiento y no conceden obediencia automática",()=>{
+  const minor=STARTER_CONTENT.spell.find((entry)=>entry.name==="Llamada Menor").system;
+  const major=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Llamada Mayor");
+  assert.equal(minor.sustained,true);
+  assert.equal(major.sustained,true);
+  assert.equal(major.automaticObedience,false);
+});
+
+test("adaptaciones no crean acciones, ataques o beneficios de escudo adicionales",()=>{
+  const limb=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Miembro Efímero");
+  assert.equal(limb.extraAction,false);
+  assert.equal(limb.extraAttack,false);
+  assert.equal(limb.extraShieldBenefit,false);
+  const flexible=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Morfología Flexible");
+  assert.equal(flexible.automaticGrappleEscape,false);
+});
