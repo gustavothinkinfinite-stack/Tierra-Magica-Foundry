@@ -77,3 +77,12 @@ test("preflight impide una cuarta Disciplina durante creación pero no en progre
   const progression=preflightAcquisition({actor,candidate,stage:"progression",expectedRevision:1});
   assert.equal(progression.issues.some((i)=>i.code==="discipline-creation-limit"),false);
 });
+
+
+test("CREA-13: un objeto físico sin precio exacto no puede tratarse como 0 PEI", async () => {
+  const source = await import("node:fs/promises").then(({ readFile }) =>
+    readFile(new URL("../scripts/documents/actor.mjs", import.meta.url), "utf8")
+  );
+  assert.equal(source.includes('candidate.system.priceStatus !== "exact"'), true);
+  assert.equal(source.includes('no tiene un precio exacto utilizable para Compra libre'), true);
+});
