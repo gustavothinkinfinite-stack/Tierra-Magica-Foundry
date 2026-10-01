@@ -88,3 +88,29 @@ test("reconciliar persiste sólo cuando hace falta y marca su propia actualizaci
   assert.equal(await reconcileActorResources(stable),false);
   assert.equal(stable.updates.length,0);
 });
+
+
+test("dos reducciones encadenadas no dejan el recurso por encima del último máximo", async () => {
+  const a=actor({sourceHealth:20,health:20,healthMax:12});
+  let releaseFirst;
+  const firstGate=new Promise((resolve)=>{releaseFirst=resolve;});
+  let calls=0;
+  a.update=async function(changes,options){
+    calls+=1;
+    this.updates.push({changes,options});
+    if(calls===1) await firstGate;
+    if(Object.prototype.hasOwnProperty.call(changes,"system.resources.health.value")){
+      this._source.system.resources.health.value=changes["system.resources.health.value"];
+      this.system.resources.health.value=changes["system.resources.health.value"];
+    }
+  };
+
+  const first=reconcileActorResources(a);
+  await Promise.resolve();
+  a.system.derived.healthMax=8;
+  const overlapping=await reconcileActorResources(a);
+  assert.equal(overlapping,false);
+  releaseFirst();
+  assert.equal(await first,true);
+  assert.deepEqual(a.updates.map((entry)=>entry.changes["system.resources.health.value"]),[12,8]);
+});
