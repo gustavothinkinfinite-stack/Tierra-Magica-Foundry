@@ -56,8 +56,9 @@ test("magia no usa Parada y resuelve Defensa normal por el mismo motor", async (
 });
 
 
-test("Contraataque reutiliza el wrapper contextual y no salta consumo de Barrera", async () => {
+test("Contraataque reclama una única oportunidad y reutiliza el wrapper contextual", async () => {
   const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
+  assert.equal(source.includes("claimCounterattackAuthoritatively(this)"), true);
   assert.equal(source.includes('return this.rollWeapon(item, { technique: "Contraataque", tmReactionAttack: true })'), true);
   assert.equal(source.includes('return originalRollWeapon.call(this, item, { technique: "Contraataque", tmReactionAttack: true })'), false);
 });
