@@ -580,6 +580,8 @@ Un área usa una resolución de lanzamiento y compara el resultado con las Defen
 
 La magia no concede armadura fallida, ataques de oportunidad por lanzar ni devolución universal de Maná por Hazaña. Efectos numéricos mágicos idénticos no se acumulan salvo regla. Invisibilidad no equivale a indetectabilidad. Transformaciones deben indicar qué reemplazan y qué conservan. El teletransporte forzado ordinario no puede colocar a un objetivo involuntario en un destino inválido o inmediatamente letal sin una regla ofensiva y resistencia específicas.
 
+**Origen Remoto y tránsito espacial.** Origen Remoto cambia el punto geométrico desde el que emana un hechizo compatible, pero no mueve al lanzador hasta el Familiar ni convierte su posición en un destino gratuito. No es compatible con hechizos cuyo efecto principal traslade al propio lanzador, utilice al lanzador como uno de los extremos de una conexión espacial o abra una conexión espacial, salvo autorización expresa del propio hechizo.
+
 **Contramagia — Avanzada, 3 PD.** Reacción después de declarar un lanzamiento y antes de resolverlo. Requiere compatibilidad narrativa/mágica y produce una interferencia contextual. No es una cancelación automática universal. **Auditoría:** el Manual 1.0 y la implementación no fijan todavía una fórmula universal de tirada, DF o modificador para Contramagia; cualquier fórmula más específica queda pendiente de decisión canónica.
 
 ## 12. Grimorio estable 1.0
@@ -601,7 +603,7 @@ El catálogo mecánico estable del núcleo está formado por **18 hechizos**. No
 | Visión Remota | Percepción | Avanzado | 7 | PER; DF 18; requiere lugar conocido o Ancla. |
 | Calma | Influencia | Básico | 3 | PRE + Canalización contra Defensa Mental cuando el objetivo resiste; reduce agitación compatible sin borrar voluntad o memoria. |
 | Sugestión | Influencia | Avanzado | 5 | PRE + Canalización contra Defensa Mental; instrucción plausible y limitada; no Dominación, suicidio ni traición fundamental automática. |
-| Llamada Menor | Conjuración | Básico | 4 | INT; DF 14; convoca una entidad menor compatible; invocar no equivale a controlar ni garantiza obediencia. |
+| Llamada Menor | Conjuración | Básico | 4 | INT; DF 14; Sostenido; convoca una entidad menor compatible; invocar no equivale a controlar ni garantiza obediencia. |
 | Paso Breve | Conjuración | Básico | 4 | INT; DF 12 cuando se requiera prueba; teletransporta al lanzador hasta 3 espacios a destino visible, válido y desocupado. |
 | Trasposición | Conjuración | Avanzado | 6 | INT; DF 14; alcance hasta 8 espacios según condiciones del efecto. |
 | Umbral | Conjuración | Avanzado | 7 | INT; DF 18; transición espacial limitada compatible. |
@@ -617,6 +619,8 @@ El catálogo mecánico estable del núcleo está formado por **18 hechizos**. No
 - **Regeneración** y **Reconstrucción** requieren la adjudicación médica y narrativa indicada; no generan cantidades de curación adicionales no escritas.
 - El requisito de Medicina de **Reconstrucción** permanece canónico pero todavía no tiene un rango mínimo cuantificado; Foundry no debe inventar uno hasta una decisión específica.
 - Hechizos de información, influencia y teletransporte no conceden conocimiento, control, posición o línea de efecto que no estén definidos.
+- **Llamada Menor** ocupa Sostenimiento mientras la entidad convocada permanezca presente como invocación demandante. Un nuevo Sostenimiento incompatible la reemplaza conforme al límite normal; el hechizo no permite acumular un ejército mediante lanzamientos sucesivos.
+- **Paso Breve, Trasposición, Umbral y Portal** no son compatibles con Origen Remoto salvo que una regla posterior modifique expresamente esa compatibilidad.
 - Los efectos idénticos no se acumulan salvo regla expresa.
 - Las salvaguardas generales de Acción/Reacción, objetivos, Defensas, Protección, Sostenimiento, Sobrecarga y línea de efecto se aplican a todo el catálogo.
 
