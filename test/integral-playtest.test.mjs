@@ -63,7 +63,6 @@ test("partida integral: dispositivo valida fuente, Caudal y Energía antes del c
   const actor = await read("scripts/documents/actor.mjs");
   const energy = await read("scripts/rules/device-energy.mjs");
   const authority = await read("scripts/rules/state-authority.mjs");
-  const authority = await read("scripts/rules/state-authority.mjs");
   assert.match(actor, /resolveDeviceEnergySource\(this, item\)/);
   assert.match(actor, /if \(consumption > power\.flow\)/);
   assert.match(actor, /if \(consumption > power\.energy\)/);
