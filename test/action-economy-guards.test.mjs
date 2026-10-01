@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { installActionEconomyGuards } from "../scripts/rules/action-economy-guards.mjs";
@@ -102,4 +103,12 @@ test("dos hechizos reactivos concurrentes no duplican gasto ni beneficio", async
   assert.equal(actor.system.turn.reaction, false);
   assert.equal(actor.system.turn.action, true);
   assert.equal([first, second].filter(Boolean).length, 1);
+});
+
+
+test("la Acción usa reserva distribuida además del bloqueo local", async () => {
+  const source = await readFile(new URL("../scripts/rules/action-economy-guards.mjs", import.meta.url), "utf8");
+  assert.equal(source.includes('reserveTurnResourceAuthoritatively(actor, "action")'), true);
+  assert.equal(source.includes('commitTurnResourceReservation(actor, "action"'), true);
+  assert.equal(source.includes('releaseTurnResourceReservation(actor, "action"'), true);
 });

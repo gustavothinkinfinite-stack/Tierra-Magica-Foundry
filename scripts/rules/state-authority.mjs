@@ -6,6 +6,7 @@ const CHANNEL = "system.tierra-magica";
 const SCOPE = "state-authority";
 const pendingRequests = new Map();
 const authorityQueues = new Map();
+const turnReservations = new Map();
 let bridgeInstalled = false;
 
 const number = (value, fallback = 0) => {
@@ -48,6 +49,93 @@ async function serial(key, operation) {
 async function actorFromUuid(uuid) {
   if (!uuid || typeof globalThis.fromUuid !== "function") return null;
   return globalThis.fromUuid(uuid);
+}
+
+function actorAuthorityKey(actor) {
+  return String(actor?.uuid ?? actor?.id ?? actor?.name ?? "");
+}
+
+function requesterMayModify(actor, requesterId = "") {
+  const requester = activeUsers().find((user) => String(user?.id ?? "") === String(requesterId ?? "")) ?? currentUser();
+  return Boolean(requester?.isGM) ||
+    (typeof actor?.canUserModify === "function" ? Boolean(actor.canUserModify(requester, "update")) : Boolean(actor?.isOwner ?? typeof actor?.update === "function"));
+}
+
+function actorIncapacitated(actor) {
+  return Boolean(actor?.system?.status?.incapacitated) || number(actor?.system?.resources?.health?.value, 1) <= 0;
+}
+
+function turnReservationKey(actor, resource) {
+  return actorAuthorityKey(actor) + ":" + resource;
+}
+
+function currentTurnReservation(actor, resource) {
+  return turnReservations.get(turnReservationKey(actor, resource)) ?? null;
+}
+
+async function reserveTurnResource(actor, resource, requesterId = "") {
+  if (!["action", "reaction"].includes(resource)) return { ok:false, claimed:false, error:"Recurso de turno desconocido." };
+  if (!actor?.system || typeof actor.update !== "function") return { ok:false, claimed:false, error:"El Actor de economía ya no está disponible." };
+  if (!requesterMayModify(actor, requesterId)) return { ok:false, claimed:false, error:"El solicitante no posee permisos para usar la economía del Actor." };
+
+  return serial("turn-state:" + actorAuthorityKey(actor), async () => {
+    if (actorIncapacitated(actor)) return { ok:true, claimed:false, reason:"incapacitated" };
+    if (!(actor.system.turn?.[resource] ?? true)) return { ok:true, claimed:false, reason:"spent" };
+    if (currentTurnReservation(actor, resource)) return { ok:true, claimed:false, reason:"reserved" };
+    const reservationId = requestId();
+    turnReservations.set(turnReservationKey(actor, resource), {
+      id:reservationId,
+      requesterId:String(requesterId ?? ""),
+      createdAt:Date.now()
+    });
+    return { ok:true, claimed:true, reservationId };
+  });
+}
+
+async function finishTurnReservation(actor, resource, reservationId, requesterId = "", { commit = false } = {}) {
+  if (!["action", "reaction"].includes(resource)) return { ok:false, error:"Recurso de turno desconocido." };
+  if (!actor?.system || typeof actor.update !== "function") return { ok:false, error:"El Actor de economía ya no está disponible." };
+  return serial("turn-state:" + actorAuthorityKey(actor), async () => {
+    const reservation = currentTurnReservation(actor, resource);
+    if (!reservation || reservation.id !== String(reservationId ?? "")) return { ok:false, error:"La reserva de economía ya no es válida." };
+    if (reservation.requesterId && String(requesterId ?? "") !== reservation.requesterId) return { ok:false, error:"La reserva de economía pertenece a otro usuario." };
+    if (commit && (actor.system.turn?.[resource] ?? true)) {
+      await actor.update({ ["system.turn." + resource]: false });
+    }
+    turnReservations.delete(turnReservationKey(actor, resource));
+    return { ok:true, committed:commit === true };
+  });
+}
+
+async function spendMovement(actor, amount, requesterId = "", { consumeReaction = false } = {}) {
+  if (!actor?.system || typeof actor.update !== "function") return { ok:false, spent:false, error:"El Actor de Movimiento ya no está disponible." };
+  if (!requesterMayModify(actor, requesterId)) return { ok:false, spent:false, error:"El solicitante no posee permisos para mover el Actor." };
+  if (!["character", "npc"].includes(actor.type)) return { ok:true, spent:false, reason:"type" };
+
+  const requested = number(amount, Number.NaN);
+  if (!Number.isFinite(requested) || requested < 0) return { ok:true, spent:false, reason:"amount" };
+
+  return serial("turn-state:" + actorAuthorityKey(actor), async () => {
+    if (actorIncapacitated(actor)) return { ok:true, spent:false, reason:"incapacitated" };
+    if (consumeReaction) {
+      if (!(actor.system.turn?.reaction ?? true)) return { ok:true, spent:false, reason:"reaction" };
+      const reservation = currentTurnReservation(actor, "reaction");
+      if (reservation?.requesterId && reservation.requesterId !== String(requesterId ?? "")) {
+        return { ok:true, spent:false, reason:"reaction-reserved" };
+      }
+    }
+    const prepared = Math.max(0, number(actor.system?.derived?.movement));
+    const extra = Math.max(0, number(actor.system?.turn?.extraMovement));
+    const spentBefore = Math.max(0, number(actor.system?.turn?.movementSpent));
+    const remaining = Math.max(0, prepared + extra - spentBefore);
+    if (requested > remaining) return { ok:true, spent:false, reason:"movement", remaining };
+    if (requested === 0 && !consumeReaction) return { ok:true, spent:false, reason:"zero" };
+
+    const updates = { "system.turn.movementSpent": spentBefore + requested };
+    if (consumeReaction) updates["system.turn.reaction"] = false;
+    await actor.update(updates);
+    return { ok:true, spent:true, movementBefore:spentBefore, movementAfter:spentBefore + requested, remainingAfter:remaining - requested };
+  });
 }
 
 function healthMutationUpdates(target, next, previous) {
@@ -96,6 +184,20 @@ async function mutateHealth(target, { damage = 0, healing = 0 } = {}) {
 }
 
 async function executeAuthorityAction(action, payload = {}, requesterId = "") {
+  if (action === "reserve-turn-resource" || action === "commit-turn-resource" || action === "release-turn-resource" || action === "spend-movement") {
+    const actor = await actorFromUuid(String(payload.actorUuid ?? ""));
+    if (!actor) return { ok:false, error:"El Actor de economía ya no está disponible." };
+
+    if (action === "reserve-turn-resource") return reserveTurnResource(actor, String(payload.resource ?? ""), requesterId);
+    if (action === "commit-turn-resource") {
+      return finishTurnReservation(actor, String(payload.resource ?? ""), String(payload.reservationId ?? ""), requesterId, { commit:true });
+    }
+    if (action === "release-turn-resource") {
+      return finishTurnReservation(actor, String(payload.resource ?? ""), String(payload.reservationId ?? ""), requesterId, { commit:false });
+    }
+    return spendMovement(actor, payload.amount, requesterId, { consumeReaction:payload.consumeReaction === true });
+  }
+
   if (action === "claim-kinetic") {
     const target = await actorFromUuid(String(payload.targetUuid ?? ""));
     if (!target?.system || typeof target.update !== "function") {
@@ -265,6 +367,64 @@ export function installStateAuthorityBridge() {
 export function canResolveSharedMutation(document = null) {
   if (!runtimeSocketAvailable()) return !document || canModify(document);
   return Boolean(primaryActiveGm(activeUsers()));
+}
+
+export async function reserveTurnResourceAuthoritatively(actor, resource) {
+  const kind = String(resource ?? "").trim().toLowerCase();
+  if (!["action", "reaction"].includes(kind)) return { ok:false, claimed:false, error:"Recurso de turno desconocido." };
+
+  if (runtimeSocketAvailable()) {
+    const gm = primaryActiveGm(activeUsers());
+    if (!gm) return { ok:false, claimed:false, error:"Se requiere un DJ activo para reservar la economía de turno." };
+    if (!actor?.uuid) return { ok:false, claimed:false, error:"El Actor no posee UUID para arbitrar su economía." };
+    return requestPrimaryGm("reserve-turn-resource", { actorUuid:actor.uuid, resource:kind });
+  }
+  return reserveTurnResource(actor, kind, currentUser()?.id ?? "");
+}
+
+export async function commitTurnResourceReservation(actor, resource, reservationId) {
+  const kind = String(resource ?? "").trim().toLowerCase();
+  if (runtimeSocketAvailable()) {
+    const gm = primaryActiveGm(activeUsers());
+    if (!gm) return { ok:false, error:"Se requiere un DJ activo para confirmar la economía de turno." };
+    if (!actor?.uuid) return { ok:false, error:"El Actor no posee UUID para arbitrar su economía." };
+    return requestPrimaryGm("commit-turn-resource", { actorUuid:actor.uuid, resource:kind, reservationId:String(reservationId ?? "") });
+  }
+  return finishTurnReservation(actor, kind, String(reservationId ?? ""), currentUser()?.id ?? "", { commit:true });
+}
+
+export async function releaseTurnResourceReservation(actor, resource, reservationId) {
+  const kind = String(resource ?? "").trim().toLowerCase();
+  if (runtimeSocketAvailable()) {
+    const gm = primaryActiveGm(activeUsers());
+    if (!gm) return { ok:false, error:"Se requiere un DJ activo para liberar la economía de turno." };
+    if (!actor?.uuid) return { ok:false, error:"El Actor no posee UUID para arbitrar su economía." };
+    return requestPrimaryGm("release-turn-resource", { actorUuid:actor.uuid, resource:kind, reservationId:String(reservationId ?? "") });
+  }
+  return finishTurnReservation(actor, kind, String(reservationId ?? ""), currentUser()?.id ?? "", { commit:false });
+}
+
+export async function spendActorMovementAuthoritatively(actor, amount, { consumeReaction = false } = {}) {
+  if (runtimeSocketAvailable()) {
+    const gm = primaryActiveGm(activeUsers());
+    if (!gm) return { ok:false, spent:false, error:"Se requiere un DJ activo para gastar Movimiento compartido." };
+    if (!actor?.uuid) return { ok:false, spent:false, error:"El Actor no posee UUID para arbitrar su Movimiento." };
+    return requestPrimaryGm("spend-movement", {
+      actorUuid:actor.uuid,
+      amount:number(amount, Number.NaN),
+      consumeReaction:consumeReaction === true
+    });
+  }
+  return spendMovement(actor, amount, currentUser()?.id ?? "", { consumeReaction });
+}
+
+export function clearTurnResourceReservations(actor) {
+  turnReservations.delete(turnReservationKey(actor, "action"));
+  turnReservations.delete(turnReservationKey(actor, "reaction"));
+}
+
+export async function withAuthoritativeTurnState(actor, operation) {
+  return serial("turn-state:" + actorAuthorityKey(actor), operation);
 }
 
 export async function claimKineticBarrier(target) {

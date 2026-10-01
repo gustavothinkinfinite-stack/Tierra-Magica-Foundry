@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { installReactionEconomyGuards } from "../scripts/rules/reaction-economy-guards.mjs";
@@ -9,6 +10,9 @@ class ActorStub {
     this.name = "Prueba";
     this.system = { turn: { reaction: true } };
     this.calls = [];
+  }
+  async update(changes) {
+    if (Object.hasOwn(changes, "system.turn.reaction")) this.system.turn.reaction = changes["system.turn.reaction"];
   }
   async parry() {
     this.calls.push("parry");
@@ -72,4 +76,12 @@ test("Contramagia y Coordinación Reactiva concurrentes comparten la misma Reacc
   assert.equal(actor.calls.length, 1);
   assert.equal(actor.system.turn.reaction, false);
   assert.equal([counterspell, familiar].filter(Boolean).length, 1);
+});
+
+
+test("la Reacción usa reserva distribuida además del bloqueo local", async () => {
+  const source = await readFile(new URL("../scripts/rules/reaction-economy-guards.mjs", import.meta.url), "utf8");
+  assert.equal(source.includes('reserveTurnResourceAuthoritatively(actor, "reaction")'), true);
+  assert.equal(source.includes('commitTurnResourceReservation(actor, "reaction"'), true);
+  assert.equal(source.includes('releaseTurnResourceReservation(actor, "reaction"'), true);
 });

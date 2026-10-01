@@ -3,6 +3,11 @@
 // impide que dos rutas asíncronas reutilicen simultáneamente la misma Reacción.
 
 import { resetCurrentCombatantTurn } from "./turn-economy.mjs";
+import {
+  commitTurnResourceReservation,
+  releaseTurnResourceReservation,
+  reserveTurnResourceAuthoritatively
+} from "./state-authority.mjs";
 
 const reactionLocks = new WeakSet();
 const REACTION_GUARD = Symbol("tierraMagicaReactionGuard");
@@ -23,8 +28,29 @@ export async function runReaction(actor, operation) {
   }
 
   reactionLocks.add(actor);
+  let reservation = null;
   try {
-    return await operation();
+    reservation = await reserveTurnResourceAuthoritatively(actor, "reaction");
+    if (!reservation?.ok) {
+      ui.notifications.warn(reservation?.error ?? actor.name + " no pudo reservar su Reacción.");
+      return null;
+    }
+    if (!reservation.claimed) {
+      ui.notifications.warn(actor.name + (reservation.reason === "reserved" ? " ya está resolviendo su Reacción." : " ya gastó su Reacción."));
+      return null;
+    }
+
+    const result = await operation();
+    if (!result) {
+      await releaseTurnResourceReservation(actor, "reaction", reservation.reservationId);
+      return result;
+    }
+    const committed = await commitTurnResourceReservation(actor, "reaction", reservation.reservationId);
+    if (!committed?.ok) ui.notifications.warn(committed?.error ?? "No se pudo confirmar el gasto de Reacción.");
+    return result;
+  } catch (error) {
+    if (reservation?.claimed) await releaseTurnResourceReservation(actor, "reaction", reservation.reservationId);
+    throw error;
   } finally {
     reactionLocks.delete(actor);
   }
