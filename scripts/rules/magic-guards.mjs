@@ -79,6 +79,9 @@ export function installMagicGuards(ActorClass) {
     }
 
     if (options.remoteOrigin) {
+      if (item.system?.remoteOriginCompatible === false) {
+        return ui.notifications.warn(item.name + " no es compatible con Origen Remoto.");
+      }
       const familiar = options.remoteOrigin;
       const activeToken = familiar.getActiveTokens?.()[0] ?? null;
       if (!activeToken) return ui.notifications.warn("Origen Remoto requiere un token activo del Familiar para fijar el origen geométrico.");
@@ -161,11 +164,13 @@ export function installMagicGuards(ActorClass) {
       } else {
         const hasDouble = this.items.some((entry) => entry.type === "technique" && normalizeSlug(entry.system?.slug || entry.name) === "doble-sostenimiento");
         const limit = hasDouble ? 2 : 1;
+        const replacesSameSpell = before.includes(item.id);
         const validBefore = before.filter((id) => this.items.get(id)?.type === "spell" && id !== item.id);
         const retained = validBefore.slice(Math.max(0, validBefore.length - (limit - 1)));
         const desired = [...retained, item.id];
         if (JSON.stringify(after) !== JSON.stringify(desired)) await this.update({ "system.magic.sustainedSpellIds": desired });
-        if (validBefore.length >= limit) ui.notifications.info(item.name + " queda Sostenido; se abandona el efecto sostenido más antiguo para respetar el límite.");
+        if (replacesSameSpell) ui.notifications.info(item.name + " reemplaza su instancia Sostenida anterior; no crea una copia adicional.");
+        else if (validBefore.length >= limit) ui.notifications.info(item.name + " queda Sostenido; se abandona el efecto sostenido más antiguo para respetar el límite.");
       }
     }
 

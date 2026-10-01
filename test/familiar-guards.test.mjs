@@ -73,6 +73,17 @@ test("Origen Remoto exige Técnica y Vínculo III y conserva al dueño como lanz
   assert.equal(result.spell, spell); assert.equal(result.options.remoteOrigin, pet); assert.equal(pet.system.resources.mana.value, 6); assert.equal(pc.spellUses.length, 1);
 });
 
+test("Origen Remoto rechaza hechizos incompatibles antes de alcanzar la capa mágica", async () => {
+  const pc=owner([technique("Origen Remoto")]);
+  const pet=familiar({bondLevel:3});
+  const spell={type:"spell",name:"Paso Breve",system:{remoteOriginCompatible:false}};
+  const result=await pc.castFromFamiliar(pet,spell);
+  assert.equal(typeof result,"string");
+  assert.equal(pc.spellUses.length,0);
+  assert.equal(pc.system.turn.action,true);
+  assert.equal(pc.system.resources.mana.value,9);
+});
+
 test("Origen Remoto inválido nunca alcanza la capa mágica", async () => {
   const spell = { type: "spell", name: "Prueba" };
   const cases = [

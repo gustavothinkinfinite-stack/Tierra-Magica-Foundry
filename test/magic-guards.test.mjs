@@ -47,6 +47,12 @@ test("superar Sostenimiento abandona un efecto previo en vez de invalidar el lan
   assert.equal(guards.includes("se abandona el efecto sostenido más antiguo"), true);
 });
 
+test("relanzar el mismo Sostenido reemplaza la instancia anterior en vez de duplicarla", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
+  assert.equal(guards.includes("const replacesSameSpell = before.includes(item.id)"), true);
+  assert.equal(guards.includes("reemplaza su instancia Sostenida anterior; no crea una copia adicional"), true);
+});
+
 test("ruta real valida objetivos antes de gastar recursos y resuelve áreas por Defensa", async () => {
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
   assert.equal(guards.includes("validateSpellTargets(item, selectedTokens"), true);
@@ -63,6 +69,12 @@ test("Origen Remoto fija un token de origen sin inventar alcance narrativo", asy
   assert.equal(guards.includes("options.remoteOrigin"), true);
   assert.equal(guards.includes("getActiveTokens?.()[0]"), true);
   assert.equal(guards.includes("no concede percepción, conocimiento del objetivo ni línea de efecto"), true);
+});
+
+test("Origen Remoto respeta compatibilidad declarativa antes de resolver el lanzamiento", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
+  assert.equal(guards.includes("item.system?.remoteOriginCompatible === false"), true);
+  assert.equal(guards.indexOf("remoteOriginCompatible === false") < guards.indexOf("getActiveTokens?.()[0]"), true);
 });
 
 test("daño mágico se aplica una sola vez por Actor y respeta permisos", async () => {

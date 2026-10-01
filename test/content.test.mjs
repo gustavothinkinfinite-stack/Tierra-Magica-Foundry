@@ -37,3 +37,14 @@ test("CREA-10 estructura Método y requisitos de Habilidad sin inferencias temá
   assert.equal(closure.requirements,"");
   assert.equal(arcaneSight.requirements,"");
 });
+
+
+test("auditoría mágica: invocación sostenida y tránsito espacial no amplifican Origen Remoto",()=>{
+  const spell=(name)=>STARTER_CONTENT.spell.find((item)=>item.name===name).system;
+  assert.equal(spell("Llamada Menor").sustained,true);
+  assert.equal(spell("Llamada Menor").duration,"Sostenida");
+  for(const name of ["Paso Breve","Trasposición","Umbral","Portal"]) {
+    assert.equal(spell(name).remoteOriginCompatible,false,name);
+  }
+  assert.notEqual(spell("Proyectil Ígneo").remoteOriginCompatible,false);
+});
