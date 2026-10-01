@@ -948,6 +948,8 @@ Para lanzar un hechizo no basta con conocerlo: el personaje debe poseer la compe
 Método **Directo** → usa Canalización.  
 Método **Ritual** → usa Ritualismo.
 
+En forma resumida: **Truco, Menor y Básico requieren Entrenado; Avanzado requiere Experto; Maestro requiere Maestro; Legendario requiere Gran Maestro.**
+
 Los requisitos adicionales del hechizo —por ejemplo Medicina, un Ancla o un vínculo válido— se cumplen además de la competencia operativa.
 
 ### Acción, Reacción y Ritual
