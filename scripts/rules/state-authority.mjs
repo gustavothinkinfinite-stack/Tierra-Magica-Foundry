@@ -144,6 +144,26 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
     });
   }
 
+  if (action === "claim-counterattack") {
+    const target = await actorFromUuid(String(payload.targetUuid ?? ""));
+    if (!target?.system || typeof target.update !== "function") return { ok:false, error:"El Actor de Contraataque ya no está disponible." };
+    const requester = activeUsers().find((user) => String(user?.id ?? "") === String(requesterId ?? "")) ?? currentUser();
+    const requesterMayUpdate = Boolean(requester?.isGM) ||
+      (typeof target.canUserModify === "function" ? Boolean(target.canUserModify(requester, "update")) : Boolean(target.isOwner));
+    if (!requesterMayUpdate) return { ok:false, error:"El solicitante no posee permisos para consumir Contraataque." };
+
+    return serial("counterattack:" + (target.uuid ?? target.id ?? target.name), async () => {
+      if (!target.system.combat?.parrySucceeded) return { ok:true, claimed:false, reason:"parry" };
+      if (target.system.combat?.counterattackUsed) return { ok:true, claimed:false, reason:"used" };
+      await target.update({
+        "system.combat.parryActive": false,
+        "system.combat.parrySucceeded": false,
+        "system.combat.counterattackUsed": true
+      });
+      return { ok:true, claimed:true };
+    });
+  }
+
   if (action === "apply-health-damage" || action === "apply-health-healing") {
     const target = await actorFromUuid(String(payload.targetUuid ?? ""));
     if (!target) return { ok:false, error:"El objetivo de Vida ya no está disponible." };
@@ -304,6 +324,27 @@ export async function resolveParryAuthoritatively(target, succeeded) {
       "system.combat.counterattackUsed": false
     });
     return { ok:true, succeeded:succeeded === true };
+  });
+}
+
+export async function claimCounterattackAuthoritatively(target) {
+  if (runtimeSocketAvailable()) {
+    const gm = primaryActiveGm(activeUsers());
+    if (!gm) return { ok:false, claimed:false, error:"Se requiere un DJ activo para consumir Contraataque con seguridad." };
+    if (!target?.uuid) return { ok:false, claimed:false, error:"El Actor no posee UUID para arbitrar Contraataque." };
+    return requestPrimaryGm("claim-counterattack", { targetUuid:target.uuid });
+  }
+
+  if (!canModify(target)) return { ok:false, claimed:false, error:"No hay permisos para consumir Contraataque." };
+  return serial("counterattack-local:" + (target.uuid ?? target.id ?? target.name), async () => {
+    if (!target.system?.combat?.parrySucceeded) return { ok:true, claimed:false, reason:"parry" };
+    if (target.system?.combat?.counterattackUsed) return { ok:true, claimed:false, reason:"used" };
+    await target.update({
+      "system.combat.parryActive": false,
+      "system.combat.parrySucceeded": false,
+      "system.combat.counterattackUsed": true
+    });
+    return { ok:true, claimed:true };
   });
 }
 
