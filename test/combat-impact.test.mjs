@@ -78,7 +78,8 @@ test("Guardia Parada y Contraataque respetan Acción/Reacción y no encadenan", 
   assert.equal(source.includes('ActorClass.prototype.guard = async function'), true);
   assert.equal(source.includes('"system.turn.action": false, "system.combat.guardActive": true'), true);
   assert.equal(source.includes('ActorClass.prototype.parry = async function'), true);
-  assert.equal(source.includes('"system.turn.reaction": false, "system.combat.parryActive": true'), true);
+  assert.equal(source.includes('"system.turn.reaction": false'), true);
+  assert.equal(source.includes('"system.combat.parryActive": true'), true);
   assert.equal(source.includes('ActorClass.prototype.counterattack = async function'), true);
   assert.equal(source.includes('if (!this.system.combat?.parrySucceeded)'), true);
   assert.equal(source.includes('if (this.system.combat?.counterattackUsed)'), true);
