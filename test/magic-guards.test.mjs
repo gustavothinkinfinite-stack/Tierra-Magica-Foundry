@@ -65,6 +65,12 @@ test("Origen Remoto fija un token de origen sin inventar alcance narrativo", asy
   assert.equal(guards.includes("no concede percepción, conocimiento del objetivo ni línea de efecto"), true);
 });
 
+test("Origen Remoto respeta compatibilidad declarativa antes de resolver el lanzamiento", async () => {
+  const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
+  assert.equal(guards.includes("item.system?.remoteOriginCompatible === false"), true);
+  assert.equal(guards.indexOf("remoteOriginCompatible === false") < guards.indexOf("getActiveTokens?.()[0]"), true);
+});
+
 test("daño mágico se aplica una sola vez por Actor y respeta permisos", async () => {
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
   assert.equal(guards.includes('canUserModify?.(game.user, "update")'), true);
