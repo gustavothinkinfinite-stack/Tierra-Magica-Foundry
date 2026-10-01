@@ -187,6 +187,7 @@ test("CREA-13 13C C13-04 Exploradora: Movimiento fraccionado y rifle no añaden 
   equip(actor);
   const derived=prepare(actor);
   const mover={
+    type:"character",
     system:{derived:{movement:derived.movement},turn:{movementSpent:0,extraMovement:0},status:{incapacitated:false},resources:{health:{value:10}}},
     async update(changes){applySystemChanges(this,changes);}
   };
