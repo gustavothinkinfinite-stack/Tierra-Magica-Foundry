@@ -4,7 +4,7 @@ import { deriveActorState } from "../scripts/rules/derived-state.mjs";
 import { resolveActorDefense, resolveActorProtection } from "../scripts/rules/defense-context.mjs";
 import { prepareRuleElements } from "../scripts/rules/rule-elements.mjs";
 import { resourceReconciliationUpdates } from "../scripts/rules/resource-reconciliation.mjs";
-import { migrateActorSource } from "../scripts/rules/data-model-migration.mjs";
+import { migrateActorSource, TM_SCHEMA_VERSION } from "../scripts/rules/data-model-migration.mjs";
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
@@ -261,7 +261,7 @@ test("CREA-12 3F: guardar y reabrir reconstruye el mismo estado sin persistir de
   const reopened=persistAndReopen(source);
   assert.equal("derived" in reopened.system,false);
   const migrated=migrateActorSource(reopened);
-  assert.equal(migrated.system.schemaVersion,3);
+  assert.equal(migrated.system.schemaVersion,TM_SCHEMA_VERSION);
   assert.deepEqual(migrateActorSource(migrated),migrated); // la migración vigente se aplica una vez y luego es idempotente
   // Simula un espejo max obsoleto en disco: no debe dominar la reapertura.
   migrated.system.resources.health.max=999;
