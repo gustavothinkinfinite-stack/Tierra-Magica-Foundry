@@ -183,6 +183,15 @@ export function castSpell(state,spell,{success=true,remote=false,offensive=false
   return accept(state,"cast",{spell:spell.name,overload:payment.overload});
 }
 
+export function castClosure(state,{success=true}={}){
+  const result=castSpell(state,{name:"Cierre Restaurador",mana:3,activation:"Acción",sustained:false},{success});
+  if(result.accepted && result.kind==="cast" && success){
+    result.healing=recoverHealth(state,4);
+    result.kind="closure";
+  }
+  return result;
+}
+
 export function matrixPulse(state){
   if(state.matrixPulses<=0 || !state.sustained.includes("Matriz Vital")) return reject(state,"no-matrix");
   if(state.health<=0){
@@ -204,14 +213,21 @@ export function matrixPulse(state){
 export function transferVital(state,amount){
   const n=Math.min(3,Math.max(0,Math.floor(Number(amount)||0)));
   if(n<=0 || state.health-n<1 || state.allyHealth>=state.allyHealthMax) return reject(state,"transfer");
-  if(!canSpendEconomy(state,"Acción") || state.mana<4) return reject(state,"transfer-cost");
+  if(!canSpendEconomy(state,"Acción")) return reject(state,"transfer-cost");
   const effective=Math.min(n,state.allyHealthMax-state.allyHealth);
   if(effective<=0) return reject(state,"transfer-cap");
-  state.mana-=4;
+  const manaBefore=state.mana;
+  const fatigueBefore=state.fatigue;
+  const payment=paySpell(state,4);
+  if(!payment.ok){
+    state.mana=manaBefore;
+    state.fatigue=fatigueBefore;
+    return reject(state,"transfer-cost");
+  }
   spendEconomy(state,"Acción");
   state.health-=effective;
   state.allyHealth+=effective;
-  return accept(state,"transfer",{amount:effective});
+  return accept(state,"transfer",{amount:effective,overload:payment.overload});
 }
 
 export function usePotion(state,family){
