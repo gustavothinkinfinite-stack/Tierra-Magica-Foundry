@@ -6,7 +6,7 @@ Fecha de cierre: 2026-09-24.
 
 El núcleo mecánico **Tierra Mágica / Foundry T.M. 1.0** queda considerado **completo y jugable**. La auditoría integral no mantiene bloqueos funcionales conocidos para una partida completa.
 
-La fuente mecánica canónica continúa siendo `docs/Foundry_TM_Manual_1.0_Playtest.md`. Foundry implementa, valida y presenta esas reglas; no crea canon nuevo.
+La fuente activa única para reglas, creación, canon narrativo y desarrollo editorial es `docs/Tierra_Magica_Manual_Maestro.md`, conforme a `docs/FUENTES_CANONICAS.md`. Foundry implementa, valida y presenta esas reglas; no crea canon nuevo.
 
 ## Alcance verificado
 
@@ -56,6 +56,17 @@ También se incorporó al Manual Básico la enumeración explícita de los **18 
 
 Los manuales v0.2, el Canon v1.1 y la auditoría 1.0.11 quedan clasificados como material histórico/sustituido cuando contradicen las fuentes maestras.
 
+## Sincronización post-CREA-13 — 2026-10-01
+
+CREA-12 y CREA-13 fueron integradas posteriormente sin reabrir la declaración de núcleo 1.0 completo y jugable.
+
+- **CREA-12** consolidó derivados, Movimiento cuantificado, equipo/Protección, contexto defensivo y reconciliación de Vida/Maná mediante una única autoridad preparada.
+- **CREA-13** validó siete perfiles completos de personaje, secuencias funcionales, daño/recuperación/economía y persistencia/reversibilidad. Su cierre incorporó schema v3 para dispositivos, fuente energética explícita, compra física centralizada, identidad alquímica por `slug` y arbitraje compartido de Energía/defensa cinética.
+- La PR #25 terminó con validación verde sobre su head revisado antes del squash e integración en `main`.
+- Las limitaciones deliberadas siguen siendo limitaciones de parametrización/canon, no tareas implícitas que deban automatizarse por inferencia.
+
+No existe una fase **CREA-14** definida en el repositorio tras este cierre. Un trabajo mecánico posterior requiere una decisión explícita y, cuando afecte reglas, debe consolidarse primero en el Manual Maestro.
+
 ## Estado final
 
-**Núcleo 1.0 completo y jugable.** A1–A9 y la auditoría integral quedan cerrados. El trabajo posterior corresponde a mantenimiento, documentación, contenido o futuras versiones, no a completar el núcleo 1.0.
+**Núcleo 1.0 completo y jugable.** A1–A9, CREA-09 a CREA-13 y sus revisiones de cierre quedan integrados o cerrados según su documentación específica. El trabajo posterior corresponde a mantenimiento, documentación, contenido o futuras versiones explícitamente definidas, no a completar el núcleo 1.0.
