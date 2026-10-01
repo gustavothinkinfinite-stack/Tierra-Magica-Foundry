@@ -13,6 +13,7 @@ import { prepareRuleElements, modifiersForSelector } from "../rules/rule-element
 import { deriveActorState } from "../rules/derived-state.mjs";
 import { resolveActorDefense } from "../rules/defense-context.mjs";
 import { resourceMaximum } from "../rules/resource-reconciliation.mjs";
+import { boundedHealthRecoveryUpdates, healingCap } from "../rules/healing-delivery.mjs";
 import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
@@ -678,10 +679,7 @@ export class TierraMagicaActor extends Actor {
     const updates = {};
     const formulaSlug = normalizeSlug(item.system?.slug || item.name);
     if (formulaSlug === "pocion-restauradora" || formulaSlug === "balsamo-restaurador") {
-      const hp = this.system.resources.health;
-      const maximum = resourceMaximum(this, "health");
-      const cap = Math.max(0, Math.min(maximum, toNumber(this.system.recovery?.healthCap, maximum)));
-      updates["system.resources.health.value"] = Math.min(cap, toNumber(hp.value) + 4);
+      Object.assign(updates, boundedHealthRecoveryUpdates(this, 4).updates);
     } else if (formulaSlug === "pocion-de-recuperacion-arcana") {
       const mp = this.system.resources.mana;
       updates["system.resources.mana.value"] = Math.min(resourceMaximum(this, "mana"), toNumber(mp.value) + 3);
@@ -796,7 +794,7 @@ export class TierraMagicaActor extends Actor {
       return ui.notifications.info(this.name + ": Respiro completado. No recupera Vida ni Maná; limpia Saturación de preparaciones compatibles.");
     } else if (kind === "rest") {
       if (!recovery.healthUsed) {
-        updates["system.resources.health.value"] = Math.min(resourceMaximum(this, "health"), toNumber(hp.value) + toNumber(this.system.attributes.vig.value) + 2);
+        Object.assign(updates, boundedHealthRecoveryUpdates(this, toNumber(this.system.attributes.vig.value) + 2).updates);
         updates["system.recovery.healthUsed"] = true;
       }
       if (!recovery.manaUsed) {
@@ -804,9 +802,11 @@ export class TierraMagicaActor extends Actor {
         updates["system.recovery.manaUsed"] = true;
       }
     } else if (kind === "full") {
-      const healthMaximum = resourceMaximum(this, "health");
-      const cap = Math.max(0, Math.min(healthMaximum, toNumber(recovery.healthCap, healthMaximum)));
-      updates["system.resources.health.value"] = cap;
+      const currentHealth = Math.max(0, toNumber(hp.value));
+      const cap = healingCap(this);
+      if (cap > currentHealth) {
+        Object.assign(updates, boundedHealthRecoveryUpdates(this, cap - currentHealth).updates);
+      }
       updates["system.resources.mana.value"] = resourceMaximum(this, "mana");
       updates["system.recovery.healthUsed"] = false;
       updates["system.recovery.manaUsed"] = false;
