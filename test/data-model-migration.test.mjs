@@ -114,7 +114,7 @@ test("schema v3 migra invocaciones y compatibilidad de Origen Remoto sin reinter
   assert.equal(summon.system.remoteOriginCompatible,true);
 
   for (const [name,slug] of [["Paso Breve","paso-breve"],["Trasposición","trasposicion"],["Umbral","umbral"],["Portal","portal"]]) {
-    const migrated=migrateItemSource({name,type:"spell",system:{schemaVersion:3,slug}},{embedded:true});
+    const migrated=migrateItemSource({name,type:"spell",system:{schemaVersion:3,slug,remoteOriginCompatible:true}},{embedded:true});
     assert.equal(migrated.system.remoteOriginCompatible,false,name);
     assert.deepEqual(migrateItemSource(migrated,{embedded:true}),migrated);
   }
