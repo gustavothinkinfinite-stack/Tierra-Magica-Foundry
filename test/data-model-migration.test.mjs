@@ -35,3 +35,42 @@ test("item migration preserves text and converts structured skill data once",()=
   assert.equal(migrated.system.acquisition.paid.known,false);
   assert.deepEqual(migrateItemSource(migrated,{embedded:true}),migrated);
 });
+
+
+test("schema v1 migra Movimiento y bonos manuales sin reabrir CREA-11",()=>{
+  const source={type:"character",system:{
+    schemaVersion:1,
+    creation:{status:"building",revision:7,equipmentBudgetCopper:1234,initialReserveGranted:true,legacyWarnings:[]},
+    combat:{defensiveRank:2,defenseBonus:2,protectionBonus:1,movementBonus:-2,initiativeBonus:3},
+    turn:{movement:false,action:false,reaction:true},
+    attributes:{fue:{value:2,baseValue:2,creationValue:2}}
+  }};
+  const migrated=migrateActorSource(source);
+  assert.equal(migrated.system.schemaVersion,TM_SCHEMA_VERSION);
+  assert.equal(migrated.system.creation.status,"building");
+  assert.equal(migrated.system.creation.revision,7);
+  assert.equal(migrated.system.movement.base,6);
+  assert.equal(migrated.system.turn.movementSpent,4);
+  assert.equal(migrated.system.turn.extraMovement,0);
+  assert.equal("movement" in migrated.system.turn,false);
+  assert.equal(migrated.system.modifiers.manual.defensiveBonus.value,2);
+  assert.equal(migrated.system.modifiers.manual.protection.value,1);
+  assert.equal(migrated.system.modifiers.manual.movement.value,-2);
+  assert.equal(migrated.system.modifiers.manual.initiativeModifier.value,3);
+  assert.equal("defenseBonus" in migrated.system.combat,false);
+  assert.equal("movementBonus" in migrated.system.combat,false);
+  assert.deepEqual(migrateActorSource(migrated),migrated);
+});
+
+test("schema v2 preserva el Movimiento histórico de Familiares como autoridad base",()=>{
+  const source={type:"familiar",system:{
+    schemaVersion:1,
+    familiar:{movement:9,protection:1},
+    combat:{defensiveRank:0},
+    turn:{movement:true,action:false,reaction:false}
+  }};
+  const migrated=migrateActorSource(source);
+  assert.equal(migrated.system.movement.base,9);
+  assert.equal("movement" in migrated.system.familiar,false);
+  assert.equal(migrated.system.turn.movementSpent,0);
+});
