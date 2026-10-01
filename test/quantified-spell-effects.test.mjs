@@ -30,7 +30,8 @@ test("Barrera Cinética concede +2 Defensa y expira tras el ataque declarado", a
   assert.equal(derived.includes('kineticDefenseSource || "Barrera Cinética"'), true);
   assert.equal(derived.includes('context: "kineticBarrier"'), true);
   assert.equal(combat.includes("const kineticThisAttack = kineticPending && index === 0"), true);
-  assert.equal(magic.includes('kineticBarrier: true'), true);
+  assert.equal(magic.includes('kineticBarrier: false'), true);
+  assert.equal(magic.includes("kineticBarrierTargets"), true);
   assert.equal(turn.includes('"system.combat.kineticBarrierActive": false'), true);
   assert.equal(turn.includes('"system.combat.kineticDefenseSource": ""'), true);
   assert.equal(combat.includes("claimKineticBarrier"), true);
