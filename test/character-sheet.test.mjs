@@ -19,7 +19,7 @@ test("la página Habilidades muestra el desglose completo y permite ajustes manu
 
 test("la ficha mantiene economía de turno y acceso al familiar",async()=>{const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");for(const marker of ["Acción","Movimiento","Reacción","Familiar"])assert.equal(sheet.includes(marker),true);});
 
-test("el modelo base incluye economía de turno y modificadores manuales de Habilidad",async()=>{const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));assert.equal(typeof model.Actor.templates.base.turn.action,"boolean");assert.equal(typeof model.Actor.templates.base.turn.movement,"boolean");assert.equal(typeof model.Actor.templates.base.turn.reaction,"boolean");});
+test("el modelo base incluye economía de turno cuantificada y modificadores manuales estructurados",async()=>{const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));const base=model.Actor.templates.base;assert.equal(typeof base.turn.action,"boolean");assert.equal(typeof base.turn.movementSpent,"number");assert.equal(typeof base.turn.extraMovement,"number");assert.equal(typeof base.turn.reaction,"boolean");assert.equal(base.movement.base,6);assert.equal(base.modifiers.manual.movement.selector,"movement");assert.equal(base.modifiers.manual.initiativeModifier.selector,"initiativeModifier");});
 
 test("los Items permiten configurar fuentes estructuradas de modificadores",async()=>{const item=await readFile(resolve(root,"templates/item/item-sheet.hbs"),"utf8");assert.equal(item.includes("modifiers"),true);});
 
