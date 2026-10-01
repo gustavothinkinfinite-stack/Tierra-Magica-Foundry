@@ -122,11 +122,11 @@ test("la progresión de ataque mental queda registrada como riesgo y Mente Ancla
   assert.ok(probabilities[2]>0.95); // señal de auditoría: no autoriza hard control.
 });
 
-test("ilusiones usan DF estática y nunca una tirada pescable como potencia persistente",()=>{
+test("ilusiones usan DF determinista y nunca una tirada pescable como potencia persistente",()=>{
   const illusions=GRIMORIO_AUDIT_CANDIDATES.filter((entry)=>String(entry.role).includes("illusion") && entry.name!=="Revelación Sensorial");
   for(const spell of illusions){
     if(spell.name==="Duplicado Ilusorio") continue;
-    assert.equal(spell.illusionDf,"static",spell.name);
+    assert.equal(spell.illusionDf,"11+attribute+channeling",spell.name);
   }
   const equalSpecialists=successProbability({bonus:7,df:18});
   const revealed=successProbability({bonus:7,df:18,mode:"advantage"});
