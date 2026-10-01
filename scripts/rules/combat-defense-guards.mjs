@@ -280,6 +280,7 @@ export function installCombatDefenseGuards(ActorClass) {
       const { target } = resolved;
       const hit = attackHits(total, resolved.defense);
       let damage = 0;
+      let appliedDamage = false;
       if (hit) {
         const impact = resolveWeaponImpact(item, this, target, {
           protectionContext: options.tmProtectionContext ?? {}
@@ -287,10 +288,11 @@ export function installCombatDefenseGuards(ActorClass) {
         damage = impact.damage;
         if (damage > 0 && canUpdate(target)) {
           const delivery = await applyHealthDamageAuthoritatively(target, damage);
+          appliedDamage = delivery.ok;
           if (!delivery.ok) ui.notifications.warn(delivery.error);
         }
       }
-      const pendingDamage = damage > 0 && !canUpdate(target) ? pendingDamageRequest({
+      const pendingDamage = damage > 0 && !appliedDamage ? pendingDamageRequest({
         targetUuid: target.uuid,
         damage,
         source: "Barrido — " + item.name,
