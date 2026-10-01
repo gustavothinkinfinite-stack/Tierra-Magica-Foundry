@@ -455,6 +455,7 @@
       "penetration": 0,
       "range": "",
       "sustained": false,
+      "remoteOriginCompatible": true,
       "skillModifiersActive": false,
       "grade": "basic",
       "activation": "Acción",
