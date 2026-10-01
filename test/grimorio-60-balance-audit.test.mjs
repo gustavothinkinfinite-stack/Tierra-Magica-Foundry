@@ -161,3 +161,57 @@ test("adaptaciones no crean acciones, ataques o beneficios de escudo adicionales
   const flexible=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Morfología Flexible");
   assert.equal(flexible.automaticGrappleEscape,false);
 });
+
+
+test("Objeto Efímero no reemplaza munición ni herramientas especializadas",()=>{
+  const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Objeto Efímero");
+  assert.equal(spell.ammunition,false);
+  assert.equal(spell.satisfiesSpecializedToolRequirement,false);
+  assert.equal(spell.commercialValue,false);
+});
+
+test("Transmutación Corpórea no apila una segunda categoría funcional sobre Potencia Sobrenatural",()=>{
+  const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Transmutación Corpórea");
+  assert.equal(spell.maxScaleChange,1);
+  assert.equal(spell.extraScaleInteraction,false);
+});
+
+test("una ofensiva desde Origen Remoto también rompe Invisibilidad",()=>{
+  const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Invisibilidad");
+  assert.equal(spell.breaksAfterOffense,true);
+  assert.equal(spell.breaksAfterRemoteOffense,true);
+});
+
+test("enumeración defensiva impide doble cinética y doble cobertura",()=>{
+  const sources=[
+    {name:"Escudo frontal",bonus:1,group:"shield"},
+    {name:"Guardia",bonus:2,group:"guard",action:true},
+    {name:"Barrera Cinética",bonus:2,group:"kinetic",reaction:true},
+    {name:"Escudo de campo",bonus:2,group:"kinetic",reaction:true},
+    {name:"Cobertura",bonus:2,group:"cover"},
+    {name:"Pantalla Cinética",bonus:2,group:"cover",sustained:true},
+    {name:"Duplicado Ilusorio",bonus:2,group:"illusion-defense",sustained:true}
+  ];
+  let maximum=0;
+  let maximumSelection=[];
+  for(let mask=0;mask<(1<<sources.length);mask+=1){
+    const selected=sources.filter((_,index)=>(mask&(1<<index))!==0);
+    const groups=new Set();
+    let valid=true;
+    let actionCount=0,reactionCount=0,sustainedCount=0,total=0;
+    for(const source of selected){
+      if(groups.has(source.group)){ valid=false; break; }
+      groups.add(source.group);
+      if(source.action) actionCount+=1;
+      if(source.reaction) reactionCount+=1;
+      if(source.sustained) sustainedCount+=1;
+      total+=source.bonus;
+    }
+    if(!valid || actionCount>1 || reactionCount>1 || sustainedCount>2) continue;
+    if(total>maximum){maximum=total;maximumSelection=selected.map((entry)=>entry.name);}
+  }
+  assert.equal(maximum,9);
+  assert.ok(maximumSelection.includes("Guardia"));
+  assert.ok(maximumSelection.some((name)=>["Barrera Cinética","Escudo de campo"].includes(name)));
+  assert.ok(!maximumSelection.includes("Cobertura") || !maximumSelection.includes("Pantalla Cinética"));
+});
