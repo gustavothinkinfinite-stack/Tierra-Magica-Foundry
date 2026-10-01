@@ -30,6 +30,12 @@ CREA-11 — Modelo de datos de creación está **CERRADA v1.0** e integrada en F
 
 Sus decisiones DAT-D01 a DAT-D666 son CANÓNICAS. CREA-11 no cambia las fórmulas definitivas de valores derivados: esa responsabilidad permanece en CREA-12, próxima tarea prevista.
 
+## REV-CREA-11-001 — Sincronización post-cierre
+
+CREA-11 permanece **CERRADA v1.0**. Foundry **1.0.18** aplica una revisión controlada posterior al cierre para corregir divergencias sin reabrir el diseño: Atributos iniciales (6 aumentos, máximo 3), máximo inicial de 3 Disciplinas, una única tirada para magia de área y sincronización documental de decisiones ya ratificadas de CREA-10/11.
+
+Protección derivada, FUE mínima y penalizaciones de equipo, Bloqueo/orientación, Movimiento cuantificado y automatización de Sangrado continúan reservados para CREA-12 o su integración correspondiente.
+
 ## Implementación
 
 `scripts/*`, `template.json`, datos, UI y pruebas implementan y verifican el Manual Maestro. Si la implementación contradice el Manual, se abre una incidencia y se corrige la discrepancia; el código no modifica la regla por sí mismo.
