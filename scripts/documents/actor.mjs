@@ -15,6 +15,7 @@ import { resolveActorDefense } from "../rules/defense-context.mjs";
 import { resourceMaximum } from "../rules/resource-reconciliation.mjs";
 import { boundedHealthRecoveryUpdates, healingCap } from "../rules/healing-delivery.mjs";
 import { resolveDeviceEnergySource, withDeviceEnergyLock } from "../rules/device-energy.mjs";
+import { consumeDeviceEnergyAuthoritatively } from "../rules/state-authority.mjs";
 import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
@@ -734,7 +735,8 @@ export class TierraMagicaActor extends Actor {
       if (consumption > power.energy) {
         return ui.notifications.warn(power.source.name + " no tiene Energía suficiente para activar " + item.name + ".");
       }
-      if (consumption) await power.source.update({ "system.energy.value": power.energy - consumption });
+      const energyResult = await consumeDeviceEnergyAuthoritatively(this, power.source, consumption);
+      if (!energyResult.ok) return ui.notifications.warn(energyResult.error);
       if (item.system.kineticDefense === true) {
         await this.update({
           "system.combat.kineticBarrierActive": true,
@@ -770,11 +772,14 @@ export class TierraMagicaActor extends Actor {
         df: 16
       });
       const success = toNumber(roll?.total) >= 16;
-      const deviceUpdates = { "system.condition": success ? "damaged" : "disabled" };
       if (success && consumption) {
-        if (power.source === item) deviceUpdates["system.energy.value"] = power.energy - consumption;
-        else await power.source.update({ "system.energy.value": power.energy - consumption });
+        const energyResult = await consumeDeviceEnergyAuthoritatively(this, power.source, consumption, { flowBonus: 1 });
+        if (!energyResult.ok) {
+          ui.notifications.warn(energyResult.error);
+          return { tmDeviceAborted:true, tmActionResolved:true, overload:true, roll };
+        }
       }
+      const deviceUpdates = { "system.condition": success ? "damaged" : "disabled" };
       await item.update(deviceUpdates);
       if (success && item.system.kineticDefense === true) {
         await this.update({
