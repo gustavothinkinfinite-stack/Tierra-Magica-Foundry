@@ -280,6 +280,7 @@ test("economía compartida: cancelar una Acción inválida libera la reserva par
   globalThis.game.user=playerA;
   const claim=await reserveTurnResourceAuthoritatively(target,"action");
   assert.equal(claim.claimed,true);
+  globalThis.game.user=playerA;
   assert.equal((await releaseTurnResourceReservation(target,"action",claim.reservationId)).ok,true);
   assert.equal(target.system.turn.action,true);
 
@@ -352,6 +353,7 @@ test("economía compartida: Intercepción no puede robar una Reacción reservada
   assert.equal(allowed.spent,true);
   assert.equal(target.system.turn.reaction,false);
   assert.equal(target.system.turn.movementSpent,2);
+  globalThis.game.user=playerA;
   assert.equal((await commitTurnResourceReservation(target,"reaction",reservation.reservationId)).ok,true);
 });
 
@@ -360,6 +362,7 @@ test("seguridad: un cliente sin permisos no puede reservar Acción ni gastar Mov
   globalThis.game.user=outsider;
 
   const action=await reserveTurnResourceAuthoritatively(target,"action");
+  globalThis.game.user=outsider;
   const movement=await spendActorMovementAuthoritatively(target,2);
   assert.equal(action.ok,false);
   assert.match(action.error,/no posee permisos/i);
