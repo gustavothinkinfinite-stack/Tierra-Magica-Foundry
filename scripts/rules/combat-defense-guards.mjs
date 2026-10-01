@@ -28,7 +28,7 @@ async function spendAction(actor) {
 async function consumeKineticBarrier(target, label = "ataque") {
   if (!target?.system?.combat?.kineticBarrierActive) return false;
   if (canUpdate(target)) {
-    await target.update({ "system.combat.kineticBarrierActive": false });
+    await target.update({ "system.combat.kineticBarrierActive": false, "system.combat.kineticDefenseSource": "" });
     return true;
   }
   ui.notifications.warn("Barrera Cinética se aplicó al " + label + ", pero un usuario con permisos sobre " + target.name + " debe cerrar su estado.");
