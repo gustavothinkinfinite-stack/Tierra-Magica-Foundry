@@ -108,3 +108,31 @@ test("CREA-12 retira controles binarios y campos manuales legados de la ficha",a
   assert.equal(sheet.includes("system.modifiers.manual.defensiveBonus.value"),true);
   assert.equal(sheet.includes("system.modifiers.manual.initiativeModifier.value"),true);
 });
+
+
+test("CREA-12 3E expone diagnóstico derivado de sólo lectura en todas las fichas",async()=>{
+  const logic=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");
+  const character=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  const shared=await readFile(resolve(root,"templates/actor/parts/actor-sheet.hbs"),"utf8");
+  const diagnostics=await readFile(resolve(root,"templates/actor/parts/derived-diagnostics.hbs"),"utf8");
+  const entry=await readFile(resolve(root,"scripts/tierra-magica.mjs"),"utf8");
+
+  assert.equal(logic.includes("context.derivedDiagnostics = this.#buildDerivedDiagnostics()"),true);
+  assert.equal(logic.includes('"Sólo con frente confirmado"'),true);
+  assert.equal(logic.includes('"Sólo contra ataque parable"'),true);
+  assert.equal(logic.includes('"Sólo si la categoría es coherente con Piel Alterada"'),true);
+  assert.equal(character.includes('parts/derived-diagnostics.hbs'),true);
+  assert.equal(shared.includes('parts/derived-diagnostics.hbs'),true);
+  assert.equal(entry.includes('parts/derived-diagnostics.hbs'),true);
+  assert.equal(diagnostics.includes("Fuentes aplicadas"),true);
+  assert.equal(diagnostics.includes("Condicionales no incluidos en el total universal"),true);
+  assert.equal(diagnostics.includes("Incidencias"),true);
+  assert.equal(diagnostics.includes('name="system.'),false);
+  assert.equal(diagnostics.includes("data-action="),false);
+});
+
+test("CREA-12 3E muestra el Bono Defensivo total y no sólo el tramo marcial",async()=>{
+  const shared=await readFile(resolve(root,"templates/actor/parts/actor-sheet.hbs"),"utf8");
+  assert.equal(shared.includes("system.derived.defensiveBonus"),true);
+  assert.equal(shared.includes("system.derived.martialDefense}}</strong></div>"),false);
+});
