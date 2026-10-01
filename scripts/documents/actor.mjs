@@ -10,7 +10,7 @@ import {
   spellOperationalSkill, validateSkillProgression
 } from "../rules/skills.mjs";
 import { prepareRuleElements, modifiersForSelector } from "../rules/rule-elements.mjs";
-import { deriveDevelopmentBudget, validateCreationState, completionUpdates } from "../rules/creation.mjs";
+import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
 import { preflightAcquisition, acquisitionFromCost } from "../rules/acquisition.mjs";
@@ -206,6 +206,34 @@ export class TierraMagicaActor extends Actor {
       label: "Iniciativa",
       attributeKey: "per",
       modifier: toNumber(this.system.combat?.initiativeBonus)
+    });
+  }
+
+  async setCreationAttribute(key, value) {
+    if (this.type !== "character") return null;
+    if ((this.system.creation?.status ?? "complete") !== "building") {
+      return ui.notifications.warn("Los aumentos gratuitos de Atributo sólo se editan durante la creación inicial.");
+    }
+    const attributes = this.system.attributes ?? {};
+    if (!Object.prototype.hasOwnProperty.call(attributes, key)) return null;
+    const next = Math.floor(toNumber(value, INITIAL_ATTRIBUTE_BASE));
+    if (next < INITIAL_ATTRIBUTE_BASE || next > INITIAL_ATTRIBUTE_MAX) {
+      return ui.notifications.warn("Durante creación cada Atributo debe quedar entre 1 y 3.");
+    }
+    let increases = 0;
+    for (const [attributeKey, attribute] of Object.entries(attributes)) {
+      const current = attributeKey === key
+        ? next
+        : Math.floor(toNumber(attribute?.creationValue ?? attribute?.baseValue ?? attribute?.value, INITIAL_ATTRIBUTE_BASE));
+      increases += Math.max(0, current - INITIAL_ATTRIBUTE_BASE);
+    }
+    if (increases > INITIAL_ATTRIBUTE_INCREASES) {
+      return ui.notifications.warn("La creación dispone de exactamente 6 aumentos gratuitos de Atributo.");
+    }
+    return this.update({
+      ["system.attributes." + key + ".creationValue"]: next,
+      ["system.attributes." + key + ".baseValue"]: next,
+      "system.creation.revision": toNumber(this.system.creation?.revision) + 1
     });
   }
 
