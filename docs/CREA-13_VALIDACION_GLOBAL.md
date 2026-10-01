@@ -204,7 +204,7 @@ La limitación **13C-L01** seguía abierta al terminar 13E. Fue modelada, migrad
 
 ### 13F — Auditoría global y cierre
 
-**Estado: COMPLETA · Validate #297 — SUCCESS · 294 pruebas**
+**Estado: COMPLETA · Validate #318 — SUCCESS · 301 pruebas**
 
 La auditoría final comparó los siete fixtures como sistema completo y reabrió cualquier punto que todavía dependiera de texto no mecanizado. El cierre global exige simultáneamente legalidad de creación, schema vigente, derivados finitos, ausencia de Rule Elements inválidos, cobertura de los pilares mecánicos y ausencia de campos históricos retirados.
 
@@ -245,6 +245,27 @@ Los nuevos campos de dispositivos requieren persistencia. El schema interno sube
 - la migración es idempotente;
 - el vínculo dispositivo → acumulador sobrevive guardar/reabrir.
 
+**Hallazgo 13F-04 — RESUELTO: compra física podía divergir por ruta de entrada.**  
+La validación de precio físico se centralizó en `preflightPhysicalPurchase()`:
+
+- armas, armaduras, escudos, equipo y dispositivos requieren precio exacto para Compra libre;
+- un objeto físico sin precio exacto no se convierte en coste 0;
+- creación, operación de compra y drag-and-drop reutilizan la misma prevalidación;
+- las Fórmulas quedan fuera de esta categoría porque adquirir la Fórmula representa conocimiento y conserva su coste en PD; las dosis preparadas siguen separadas por `quantity`.
+
+**Hallazgo 13F-05 — RESUELTO: identidad alquímica dependiente del nombre visible.**  
+Las Fórmulas automatizadas usan ahora `system.slug` como identidad estable. Renombrar una Fórmula no cambia su ruta mecánica ni permite eludir la lógica de consumo/Saturación.
+
+**Hallazgo 13F-06 — RESUELTO: mutaciones compartidas concurrentes entre clientes.**  
+Se añadió una autoridad común para estados que pueden ser disputados simultáneamente:
+
+- el DJ activo primario arbitra mutaciones compartidas cuando existe socket de Foundry;
+- el consumo de Energía se serializa por fuente y no puede duplicar una reserva;
+- la defensa cinética se reclama de forma atómica: sólo una resolución obtiene su +2;
+- ataques físicos, Barrido, Combate Dual y hechizos con Defensa normal usan el mismo reclamo;
+- sin autoridad capaz de resolver la mutación, la operación se bloquea en lugar de asumir permisos o duplicar estado;
+- en ejecución local/pruebas, la misma serialización se conserva sin inventar una segunda regla.
+
 **Invariantes globales de cierre:**
 
 | Área | Resultado |
@@ -257,8 +278,8 @@ Los nuevos campos de dispositivos requieren persistencia. El schema interno sube
 | Acción / Movimiento / Reacción | una sola economía compartida |
 | Vida / Trauma / recuperación | transición coherente y acotada |
 | Maná / Sobrecarga | costes y fallos sin devolución de economía |
-| Alquimia | conocimiento separado de dosis; Saturación respetada |
-| Ingeniería | Energía/Caudal explícitos, sin creación ni suma automática |
+| Alquimia | conocimiento separado de dosis; identidad estable por slug; Saturación respetada |
+| Ingeniería | Energía/Caudal explícitos, consumo autoritativo y sin creación ni suma automática |
 | Familiar | sin segundo turno, Trauma ni reserva propia de Maná |
 | Campos históricos | no requeridos por los fixtures actuales |
 
