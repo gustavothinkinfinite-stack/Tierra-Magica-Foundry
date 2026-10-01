@@ -1,5 +1,5 @@
-// Snapshot de auditoría del grimorio ampliado.
-// NO es catálogo canónico: permite probar las 42 propuestas sin incorporarlas a STARTER_CONTENT.
+// Snapshot auxiliar de metadatos de auditoría de las 42 incorporaciones al grimorio.
+// El catálogo canónico vive en STARTER_CONTENT y en el Manual Maestro; este archivo conserva invariantes de balance.
 export const GRIMORIO_AUDIT_CANDIDATES = Object.freeze([
   // Evocación
   {name:"Luz Arcana",discipline:"evocation",grade:"minor",mana:2,role:"utility"},
@@ -44,8 +44,8 @@ export const GRIMORIO_AUDIT_CANDIDATES = Object.freeze([
   {name:"Temor",discipline:"influence",grade:"basic",mana:4,role:"emotion",defense:"mental",proposedDuration:"hasta fin del siguiente turno del objetivo",forcedAction:false,actionDenial:false},
   {name:"Concordia",discipline:"influence",grade:"advanced",mana:5,role:"social-area",defense:"mental",proposedDuration:"scene",combatEndsAutomatically:false,actionDenial:false},
   {name:"Velo Social",discipline:"influence",grade:"advanced",mana:5,role:"social-stealth",sustained:true,maxDuration:"scene",grantsInvisibility:false},
-  {name:"Interdicción",discipline:"influence",grade:"advanced",mana:6,role:"mental-defense",defense:"mental",sustained:true,maxDuration:"scene",imposesDisadvantage:true,actionDenial:false,endsWhenProtectedDamages:true},
-  {name:"Aura de Autoridad",discipline:"influence",grade:"master",mana:9,role:"mental-defense-area",defense:"mental",sustained:true,maxDuration:"scene",imposesDisadvantage:true,actionDenial:false,endsPerTargetWhenCasterDamages:true},
+  {name:"Interdicción",discipline:"influence",grade:"advanced",mana:6,role:"mental-defense",opposition:"mental-on-hostility",sustained:true,maxDuration:"scene",imposesDisadvantage:true,actionDenial:false,endsWhenProtectedDamages:true},
+  {name:"Aura de Autoridad",discipline:"influence",grade:"master",mana:9,role:"mental-defense-area",opposition:"mental-on-hostility",sustained:true,maxDuration:"scene",imposesDisadvantage:true,actionDenial:false,endsPerTargetWhenCasterDamages:true},
   {name:"Mente Anclada",discipline:"influence",grade:"basic",mana:3,role:"mental-defense",activation:"Reacción",mentalDefenseBonus:2,singleDeclaredEffect:true,stackingGroup:"mental-ward"},
 
   // Conjuración
@@ -58,7 +58,7 @@ export const GRIMORIO_AUDIT_CANDIDATES = Object.freeze([
 
 export const GRIMORIO_SPATIAL_CLOSURE_PROPOSALS = Object.freeze({
   "Trasposición": {
-    status:"proposed-not-canon",
+    status:"canonical",
     role:"position-swap",
     activation:"Acción",
     range:"8 espacios",
@@ -68,7 +68,7 @@ export const GRIMORIO_SPATIAL_CLOSURE_PROPOSALS = Object.freeze({
     remoteOriginCompatible:false
   },
   "Umbral": {
-    status:"proposed-not-canon",
+    status:"canonical",
     role:"local-threshold",
     activation:"Acción",
     difficulty:18,
