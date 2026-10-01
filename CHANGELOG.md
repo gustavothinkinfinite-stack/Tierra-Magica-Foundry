@@ -1,3 +1,11 @@
+## 1.1.1 — Hotfix de compatibilidad Foundry v13/v14 — 2026-10-01
+
+- Registra explícitamente en `system.json` todos los subtipos de Actor e Item declarados por `template.json`, evitando que Foundry rechace `discipline` y otros Items canónicos como tipos inválidos.
+- Corrige `TierraMagicaActor.prepareDerivedData()`: los helpers usados durante la construcción del Documento dejan de ser métodos privados `#...`, evitando el error de private-brand que interrumpía la preparación de datos antes de completar la inicialización del Actor.
+- Añade regresiones para exigir sincronía entre `documentTypes` y `template.json`, y para impedir llamadas a métodos privados desde `prepareDerivedData()`.
+- Actualiza la identificación de arranque y el canal estable a v1.1.1.
+- Sin cambios de reglas, balance ni canon.
+
 ## Publicación v1.1.0 — 2026-10-01
 
 - **v1.1.0 fue publicada** desde el commit `0fc8ffab5c0376533ebb20433d7ff1948d919b08` mediante `Publicar sistema #27`.
