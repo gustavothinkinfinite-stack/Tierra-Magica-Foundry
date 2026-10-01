@@ -1,6 +1,6 @@
 import { normalizeSlug } from "./identity.mjs";
 
-export const TM_SCHEMA_VERSION = 1;
+export const TM_SCHEMA_VERSION = 2;
 
 const SPELL_PD = Object.freeze({ trick: 1, minor: 1, basic: 2, advanced: 3, master: 5, legendary: 8 });
 const TECHNIQUE_PD = Object.freeze({ basic: 2, advanced: 3, master: 5, legendary: 8 });
@@ -12,6 +12,67 @@ function clone(value) {
 function number(value, fallback = 0) {
   const n = Number(value);
   return Number.isFinite(n) ? n : fallback;
+}
+
+function manualModifier(id, selector, value, label) {
+  return {
+    id,
+    selector,
+    value: number(value),
+    label,
+    sourceType: "manual"
+  };
+}
+
+function migrateActorSourceV2(actor) {
+  const system = actor.system ??= {};
+  const combat = system.combat ??= {};
+  const legacyMovementBonus = number(combat.movementBonus);
+  const familiarMovement = actor.type === "familiar" ? number(system.familiar?.movement, 6) : 6;
+  const movementBase = Math.max(1, number(system.movement?.base, familiarMovement));
+
+  system.movement = {
+    ...(system.movement && typeof system.movement === "object" ? system.movement : {}),
+    base: movementBase
+  };
+
+  system.turn ??= {};
+  if (!Number.isFinite(Number(system.turn.movementSpent))) {
+    system.turn.movementSpent = system.turn.movement === false
+      ? Math.max(1, movementBase + legacyMovementBonus)
+      : 0;
+  } else {
+    system.turn.movementSpent = Math.max(0, number(system.turn.movementSpent));
+  }
+  system.turn.extraMovement = Math.max(0, number(system.turn.extraMovement));
+  delete system.turn.movement;
+
+  system.modifiers ??= {};
+  const manual = system.modifiers.manual && typeof system.modifiers.manual === "object" && !Array.isArray(system.modifiers.manual)
+    ? clone(system.modifiers.manual)
+    : {};
+  const defaults = {
+    defensiveBonus: manualModifier("manual-defense", "defensiveBonus", combat.defenseBonus, "Ajuste manual de Defensa"),
+    protection: manualModifier("manual-protection", "protection", combat.protectionBonus, "Ajuste manual de Protección"),
+    movement: manualModifier("manual-movement", "movement", combat.movementBonus, "Ajuste manual de Movimiento"),
+    initiativeModifier: manualModifier("manual-initiative", "initiativeModifier", combat.initiativeBonus, "Ajuste manual de Iniciativa")
+  };
+  for (const [key, entry] of Object.entries(defaults)) {
+    manual[key] = {
+      ...entry,
+      ...(manual[key] && typeof manual[key] === "object" ? manual[key] : {})
+    };
+  }
+  system.modifiers.manual = manual;
+
+  delete combat.defenseBonus;
+  delete combat.protectionBonus;
+  delete combat.movementBonus;
+  delete combat.initiativeBonus;
+  if (actor.type === "familiar" && system.familiar) delete system.familiar.movement;
+
+  system.schemaVersion = TM_SCHEMA_VERSION;
+  return actor;
 }
 
 function normalizedCosts(item) {
@@ -78,7 +139,12 @@ export function migrateItemSource(source, { embedded = false } = {}) {
   const item = clone(source ?? {});
   item.system ??= {};
   const system = item.system;
-  if (number(system.schemaVersion) >= TM_SCHEMA_VERSION) return item;
+  const currentVersion = number(system.schemaVersion);
+  if (currentVersion >= TM_SCHEMA_VERSION) return item;
+  if (currentVersion >= 1) {
+    system.schemaVersion = TM_SCHEMA_VERSION;
+    return item;
+  }
 
   const oldRequirements = typeof system.requirements === "string" ? system.requirements : "";
   const oldSkillRequirements = clone(system.skillRequirements ?? []);
@@ -111,7 +177,9 @@ export function migrateActorSource(source) {
   const actor = clone(source ?? {});
   actor.system ??= {};
   const system = actor.system;
-  if (number(system.schemaVersion) >= TM_SCHEMA_VERSION) return actor;
+  const currentVersion = number(system.schemaVersion);
+  if (currentVersion >= TM_SCHEMA_VERSION) return actor;
+  if (currentVersion >= 1) return migrateActorSourceV2(actor);
 
   const oldCreation = clone(system.creation ?? {});
   const oldCurrency = clone(system.currency ?? {});
@@ -160,7 +228,7 @@ export function migrateActorSource(source) {
     system.details.sourceItemUuid = String(system.details.sourceItemUuid ?? "");
   }
 
-  return actor;
+  return migrateActorSourceV2(actor);
 }
 
 export async function migrateWorldData({ catalog = [] } = {}) {
@@ -171,12 +239,19 @@ export async function migrateWorldData({ catalog = [] } = {}) {
     const source = actor.toObject();
     if (number(source.system?.schemaVersion) < TM_SCHEMA_VERSION) {
       const migrated = migrateActorSource(source);
-      await actor.update({
+      const updates = {
         system: migrated.system,
         "system.currency.-=initialReserveGranted": null,
         "system.creation.-=skillBuildActive": null,
-        "system.creation.-=equipmentBudgetActive": null
-      });
+        "system.creation.-=equipmentBudgetActive": null,
+        "system.turn.-=movement": null,
+        "system.combat.-=defenseBonus": null,
+        "system.combat.-=protectionBonus": null,
+        "system.combat.-=movementBonus": null,
+        "system.combat.-=initiativeBonus": null
+      };
+      if (actor.type === "familiar") updates["system.familiar.-=movement"] = null;
+      await actor.update(updates);
       actors += 1;
     }
 
