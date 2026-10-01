@@ -1,4 +1,4 @@
-import { defenseBonus, severeThreshold } from "../rules.mjs";
+import { defenseBonus } from "../rules.mjs";
 import { normalizeSlug } from "./identity.mjs";
 import { modifiersForSelector } from "./rule-elements.mjs";
 
