@@ -1,54 +1,65 @@
-# Preparación de publicación — Foundry T.M. 1.0.18
+# Publicación — Foundry T.M. 1.0.18
 
-Fecha de auditoría: 2026-10-01.
+Fecha de auditoría y publicación: 2026-10-01.
 
-## Estado observado
+## Resultado
 
-- `system.json` y `package.json` declaran **1.0.18**.
-- La última release pública disponible antes de esta preparación es **v1.0.14**.
-- No existen tags públicos `v1.0.15`, `v1.0.16`, `v1.0.17` ni `v1.0.18`.
-- CREA-12 y CREA-13 ya están cerradas e integradas en `main`.
-- El repositorio decidió explícitamente mantener el manifiesto en **1.0.18** durante el cierre post-CREA-13; esta preparación no inventa 1.0.19.
+**v1.0.18 está PUBLICADA.**
 
-Por lo tanto, la próxima publicación candidata es **v1.0.18**, acumulando los cambios aún no publicados desde v1.0.14.
+La release se generó desde el commit validado de `main`:
 
-## Hallazgos de release
+`23d26ebee32065f422e71938707ceb1a7c005d47`
 
-### REL-01 — publicación pública desfasada
+Workflow: **Publicar sistema #26 — SUCCESS**.
 
-Antes de publicar v1.0.18, el manifiesto de desarrollo podía anunciar 1.0.18 mientras `releases/latest/download/tierra-magica.zip` seguía resolviendo a v1.0.14.
+La publicación adjunta:
 
-La nueva ruta de publicación adjunta dos artefactos:
+- `system.json` — 1.955 bytes — SHA-256 `b7c6152ba7eaa2888c70d74a8a4bfe5d970792c881b6022ed2a5447fcc60c329`;
+- `tierra-magica.zip` — 226.149 bytes — SHA-256 `d02c8b955544de2d002bc7b74c9b24ac25bda5b85928557986b3e723be24668a`.
 
-- `system.json`: manifiesto estable de la última release;
-- `tierra-magica.zip`: paquete instalable de esa versión.
+## Situación previa
 
-El manifiesto publicado usa una URL estable para futuras comprobaciones y una URL de descarga fijada a su propia versión.
+Antes de esta publicación:
 
-### REL-02 — ramas de release demasiado permisivas
+- `system.json` y `package.json` ya declaraban **1.0.18**;
+- la última release pública seguía siendo **v1.0.14**;
+- no existían tags públicos v1.0.15–v1.0.18;
+- CREA-12 y CREA-13 ya estaban cerradas e integradas.
 
-El workflow aceptaba cualquier rama `release/v*` y derivaba el tag desde `system.json`, incluso si el nombre de la rama no coincidía.
+Se conservó **1.0.18** porque era la versión explícita vigente del proyecto; no se inventó 1.0.19 para resolver un problema de publicación.
 
-La publicación exige ahora:
+## Hallazgos cerrados
+
+### REL-01 — publicación pública desfasada — RESUELTO
+
+La release `latest` ya es v1.0.18. El paquete publicado contiene un manifiesto cuya URL de actualización es estable:
+
+`https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/system.json`
+
+y cuya descarga queda fijada a su propia versión:
+
+`https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/download/v1.0.18/tierra-magica.zip`
+
+### REL-02 — ramas de release demasiado permisivas — RESUELTO
+
+El workflow exige:
 
 - misma versión en `system.json` y `package.json`;
 - referencia exacta `v<versión>`;
-- rama exacta `release/v<versión>` cuando se publique por rama;
-- ausencia previa del tag cuando el disparador sea una rama.
+- rama exacta `release/v<versión>` cuando el disparador sea una rama;
+- ausencia previa del tag para impedir republicación mutable desde una rama.
 
-### REL-03 — compendios potencialmente residuales
+### REL-03 — compendios potencialmente residuales — RESUELTO
 
-La construcción escribía sobre `.pack-source/` y `packs/` sin limpiar primero. Una entrada retirada del catálogo podía sobrevivir físicamente en una reconstrucción posterior.
+`.pack-source/` y `packs/` se eliminan antes de cada compilación. Un Item retirado del catálogo no puede sobrevivir por residuo de una compilación anterior.
 
-Ambos directorios se eliminan antes de compilar.
+### REL-04 — paquete mezclaba runtime y desarrollo — RESUELTO
 
-### REL-04 — paquete mezclaba runtime y desarrollo
-
-El ZIP anterior copiaba casi todo el repositorio. El staging nuevo incluye sólo:
+El staging de release contiene únicamente runtime y documentación operativa mínima:
 
 - assets;
 - idioma;
-- compendios construidos;
+- Compendios compilados;
 - scripts;
 - estilos;
 - plantillas;
@@ -56,10 +67,10 @@ El ZIP anterior copiaba casi todo el repositorio. El staging nuevo incluye sólo
 - `template.json`;
 - README y CHANGELOG.
 
-No incluye pruebas, herramientas, documentación editorial, dependencias ni fuentes intermedias de compendio.
+El workflow verificó que el ZIP no incluyera `docs/`, `test/`, `tools/`, `node_modules/`, `.pack-source/` ni `package.json`.
 
-## Condición de publicación
+## Canal oficial
 
-v1.0.18 puede publicarse cuando esta preparación esté integrada en `main` y su validación sea verde. La publicación debe partir exactamente del commit de `main` validado mediante la rama `release/v1.0.18` o el tag `v1.0.18`.
+El `system.json` de desarrollo y el README apuntan al manifiesto estable de la última release. Las futuras modificaciones de `main` no deben considerarse publicadas hasta que exista una nueva release con su propio tag.
 
-No se cambia ninguna regla del juego en esta preparación.
+No se modificó ninguna regla de juego durante este cierre.
