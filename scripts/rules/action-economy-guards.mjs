@@ -3,6 +3,11 @@
 // Un único bloqueo por Actor impide reutilizar la Acción concurrentemente entre subsistemas.
 
 import { runReaction } from "./reaction-economy-guards.mjs";
+import {
+  commitTurnResourceReservation,
+  releaseTurnResourceReservation,
+  reserveTurnResourceAuthoritatively
+} from "./state-authority.mjs";
 
 const actionLocks = new WeakSet();
 const reactionLocksByActor = new WeakSet();
@@ -22,11 +27,29 @@ export async function runAction(actor, operation) {
   }
 
   actionLocks.add(actor);
+  let reservation = null;
   try {
+    reservation = await reserveTurnResourceAuthoritatively(actor, "action");
+    if (!reservation?.ok) {
+      ui.notifications.warn(reservation?.error ?? actor.name + " no pudo reservar su Acción.");
+      return null;
+    }
+    if (!reservation.claimed) {
+      ui.notifications.warn(actor.name + (reservation.reason === "reserved" ? " ya está resolviendo su Acción." : " ya gastó su Acción."));
+      return null;
+    }
+
     const result = await operation();
-    if (!result) return result;
-    await actor.update({ "system.turn.action": false });
+    if (!result) {
+      await releaseTurnResourceReservation(actor, "action", reservation.reservationId);
+      return result;
+    }
+    const committed = await commitTurnResourceReservation(actor, "action", reservation.reservationId);
+    if (!committed?.ok) ui.notifications.warn(committed?.error ?? "No se pudo confirmar el gasto de Acción.");
     return result;
+  } catch (error) {
+    if (reservation?.claimed) await releaseTurnResourceReservation(actor, "action", reservation.reservationId);
+    throw error;
   } finally {
     actionLocks.delete(actor);
   }
@@ -42,12 +65,7 @@ async function runReactionOperation(actor, operation) {
   }
   reactionLocksByActor.add(actor);
   try {
-    return await runReaction(actor, async () => {
-      const result = await operation();
-      if (!result) return result;
-      await actor.update({ "system.turn.reaction": false });
-      return result;
-    });
+    return await runReaction(actor, operation);
   } finally {
     reactionLocksByActor.delete(actor);
   }
