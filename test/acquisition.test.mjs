@@ -79,12 +79,18 @@ test("preflight impide una cuarta Disciplina durante creación pero no en progre
 });
 
 
-test("CREA-13: un objeto físico sin precio exacto no puede tratarse como 0 PEI", async () => {
-  const source = await import("node:fs/promises").then(({ readFile }) =>
-    readFile(new URL("../scripts/documents/actor.mjs", import.meta.url), "utf8")
-  );
-  assert.equal(source.includes('candidate.system.priceStatus !== "exact"'), true);
-  assert.equal(source.includes('no tiene un precio exacto utilizable para Compra libre'), true);
+test("CREA-13: un objeto físico sin precio exacto no puede tratarse como 0 PEI",()=>{
+  const actor={system:{creation:{revision:0,status:"building"},skills:{}},items:[]};
+  const weapon={type:"weapon",name:"Arma sin precio",system:{slug:"arma-sin-precio",priceStatus:"unset",priceCopper:0}};
+  const missing=preflightPhysicalPurchase({actor,candidate:weapon,stage:"creation",expectedRevision:0});
+  assert.equal(missing.valid,false);
+  assert.ok(missing.issues.some((issue)=>issue.code==="physical-price"));
+
+  const exactZero={...weapon,system:{...weapon.system,priceStatus:"exact"}};
+  const exact=preflightPhysicalPurchase({actor,candidate:exactZero,stage:"creation",expectedRevision:0});
+  assert.equal(exact.valid,true);
+  assert.equal(exact.cost.resource,"pei");
+  assert.equal(exact.cost.amount,0);
 });
 
 
