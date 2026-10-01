@@ -14,6 +14,7 @@ import { deriveActorState } from "../rules/derived-state.mjs";
 import { resolveActorDefense } from "../rules/defense-context.mjs";
 import { resourceMaximum } from "../rules/resource-reconciliation.mjs";
 import { boundedHealthRecoveryUpdates, healingCap } from "../rules/healing-delivery.mjs";
+import { resolveDeviceEnergySource, withDeviceEnergyLock } from "../rules/device-energy.mjs";
 import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
@@ -734,15 +735,25 @@ export class TierraMagicaActor extends Actor {
     if (!item || item.type !== "device") return null;
     const condition = String(item.system.condition ?? "operative");
     if (condition === "disabled") return ui.notifications.warn(item.name + " está Deshabilitado.");
-    const consumption = Math.max(0, toNumber(item.system.consumption));
-    const energy = Math.max(0, toNumber(item.system.energy?.value));
-    const flow = Math.max(0, toNumber(item.system.flow));
-    if (consumption > flow) return ui.notifications.warn(item.name + " requiere más Caudal del que puede entregar.");
-    if (consumption > energy) return ui.notifications.warn(item.name + " no tiene Energía suficiente.");
-    if (consumption) await item.update({ "system.energy.value": energy - consumption });
-    return ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor: this }),
-      content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(item.name) + "</strong><p>Consumo " + consumption + " Energía · Caudal " + flow + "</p><p>" + foundry.utils.escapeHTML(item.system.effect ?? "") + "</p></div>"
+    const initialPower = resolveDeviceEnergySource(this, item);
+    if (!initialPower.valid) return ui.notifications.warn(initialPower.issue);
+    return withDeviceEnergyLock(initialPower.source, async () => {
+      const power = resolveDeviceEnergySource(this, item);
+      if (!power.valid) return ui.notifications.warn(power.issue);
+      const consumption = Math.max(0, toNumber(item.system.consumption));
+      if (consumption > power.flow) {
+        return ui.notifications.warn(item.name + " requiere " + consumption + " de Caudal y " + power.source.name + " sólo entrega " + power.flow + ".");
+      }
+      if (consumption > power.energy) {
+        return ui.notifications.warn(power.source.name + " no tiene Energía suficiente para activar " + item.name + ".");
+      }
+      if (consumption) await power.source.update({ "system.energy.value": power.energy - consumption });
+      return ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(item.name) + "</strong><p>Fuente: " +
+          foundry.utils.escapeHTML(power.source.name) + " · Consumo " + consumption + " Energía · Caudal disponible " + power.flow +
+          "</p><p>" + foundry.utils.escapeHTML(item.system.effect ?? "") + "</p></div>"
+      });
     });
   }
 
@@ -750,26 +761,34 @@ export class TierraMagicaActor extends Actor {
     if (!item || item.type !== "device") return null;
     if (!item.system.overloadAllowed) return ui.notifications.warn(item.name + " no admite Sobrecarga Controlada.");
     if (String(item.system.condition ?? "operative") === "disabled") return ui.notifications.warn(item.name + " está Deshabilitado.");
-    const consumption = Math.max(0, toNumber(item.system.consumption));
-    const energy = Math.max(0, toNumber(item.system.energy?.value));
-    const effectiveFlow = Math.max(0, toNumber(item.system.flow)) + 1;
-    if (consumption > effectiveFlow) return ui.notifications.warn(item.name + " excede incluso el Caudal de Sobrecarga (" + effectiveFlow + ").");
-    if (consumption > energy) return ui.notifications.warn(item.name + " no tiene Energía suficiente para esta activación.");
-    const roll = await this.rollCheck({
-      label: "Sobrecarga Controlada: " + item.name,
-      attributeKey: "int",
-      skillKey: "engineering",
-      df: 16
+    const initialPower = resolveDeviceEnergySource(this, item);
+    if (!initialPower.valid) return ui.notifications.warn(initialPower.issue);
+    return withDeviceEnergyLock(initialPower.source, async () => {
+      const power = resolveDeviceEnergySource(this, item);
+      if (!power.valid) return ui.notifications.warn(power.issue);
+      const consumption = Math.max(0, toNumber(item.system.consumption));
+      const effectiveFlow = power.flow + 1;
+      if (consumption > effectiveFlow) return ui.notifications.warn(item.name + " excede incluso el Caudal de Sobrecarga (" + effectiveFlow + ").");
+      if (consumption > power.energy) return ui.notifications.warn(power.source.name + " no tiene Energía suficiente para esta activación.");
+      const roll = await this.rollCheck({
+        label: "Sobrecarga Controlada: " + item.name,
+        attributeKey: "int",
+        skillKey: "engineering",
+        df: 16
+      });
+      const success = toNumber(roll?.total) >= 16;
+      const deviceUpdates = { "system.condition": success ? "damaged" : "disabled" };
+      if (success && consumption) {
+        if (power.source === item) deviceUpdates["system.energy.value"] = power.energy - consumption;
+        else await power.source.update({ "system.energy.value": power.energy - consumption });
+      }
+      await item.update(deviceUpdates);
+      const outcome = success
+        ? "La activación se resuelve con Caudal efectivo " + effectiveFlow + ", consume " + consumption + " Energía de " + power.source.name + " y el dispositivo queda Dañado."
+        : "La activación no se produce y el dispositivo queda Deshabilitado; no consume Energía.";
+      await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Sobrecarga Controlada</strong><p>" + foundry.utils.escapeHTML(outcome) + "</p><p>La Pifia puede añadir una consecuencia energética contextual.</p></div>" });
+      return roll;
     });
-    const success = toNumber(roll?.total) >= 16;
-    const updates = { "system.condition": success ? "damaged" : "disabled" };
-    if (success && consumption) updates["system.energy.value"] = energy - consumption;
-    await item.update(updates);
-    const outcome = success
-      ? "La activación se resuelve con Caudal efectivo " + effectiveFlow + ", consume " + consumption + " Energía y el dispositivo queda Dañado."
-      : "La activación no se produce y el dispositivo queda Deshabilitado; no consume Energía.";
-    await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Sobrecarga Controlada</strong><p>" + outcome + "</p><p>La Pifia puede añadir una consecuencia energética contextual.</p></div>" });
-    return roll;
   }
 
 
