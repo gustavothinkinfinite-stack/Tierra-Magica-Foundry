@@ -91,21 +91,22 @@ function readAuthorityReceipts(document) {
   return receipts && typeof receipts === "object" ? { ...receipts } : {};
 }
 
-async function writeAuthorityReceipt(document, key, fingerprint, result) {
-  if (typeof document?.setFlag !== "function") return;
+async function writeAuthorityReceipt(document, key, receipt) {
+  if (typeof document?.setFlag !== "function") return false;
   const receipts = readAuthorityReceipts(document);
+  const timestamp = number(receipt?.completedAt, number(receipt?.startedAt, Date.now()));
   const next = {
     ...receipts,
     [key]: {
-      fingerprint,
-      result,
-      completedAt:Date.now()
+      ...receipt,
+      journalAt:timestamp
     }
   };
   const entries = Object.entries(next)
-    .sort((a,b) => number(b[1]?.completedAt) - number(a[1]?.completedAt))
+    .sort((a,b) => number(b[1]?.journalAt) - number(a[1]?.journalAt))
     .slice(0, MAX_AUTHORITY_RECEIPTS);
   await document.setFlag("tierra-magica", AUTHORITY_RECEIPTS_FLAG, Object.fromEntries(entries));
+  return true;
 }
 
 async function executeAuthorityRequestIdempotently(message) {
@@ -129,11 +130,33 @@ async function executeAuthorityRequestIdempotently(message) {
         if (String(receipt.fingerprint ?? "") !== fingerprint) {
           return { ok:false, error:"Colisión de requestId: la solicitud idempotente no coincide con el payload original." };
         }
+        if (receipt.state === "pending") {
+          return {
+            ok:false,
+            pending:true,
+            error:"La solicitud idempotente quedó pendiente en una ejecución anterior; no se repetirá automáticamente."
+          };
+        }
         return receipt.result ?? { ok:false, error:"Recibo idempotente incompleto." };
       }
 
+      if (typeof document?.setFlag === "function") {
+        await writeAuthorityReceipt(document, key, {
+          state:"pending",
+          fingerprint,
+          startedAt:Date.now()
+        });
+      }
+
       const result = await executeAuthorityAction(message.action, message.payload, requesterId);
-      await writeAuthorityReceipt(document, key, fingerprint, result);
+      if (typeof document?.setFlag === "function") {
+        await writeAuthorityReceipt(document, key, {
+          state:"completed",
+          fingerprint,
+          result,
+          completedAt:Date.now()
+        });
+      }
       return result;
     });
   })();
