@@ -3056,3 +3056,20 @@ El siguiente trabajo no consiste en volver a repartir información entre varios 
 
 **No crear un segundo manual maestro.** Toda corrección o ampliación se hace en este archivo y se respalda mediante commits de GitHub. Los documentos históricos se consultan únicamente para recuperar información o verificar procedencia.
 
+
+
+## Modelo de datos de creación en Foundry — CREA-11
+
+Foundry representa las elecciones de personaje mediante documentos estructurados en lugar de campos de texto mecánicos. El **Actor** conserva estado intrínseco: Atributos y Habilidades base, nivel, recursos, moneda, estados y datos narrativos. Las elecciones con identidad propia —Ascendencia, Origen, Trasfondo, Disciplina, Especialización, Técnica, Rasgo, Hechizo y equipo— se representan mediante **Items**.
+
+Una elección puede tener coste, requisitos, procedencia y reglas declarativas. El coste normal del catálogo se mantiene separado de lo que realmente pagó esa instancia: una capacidad concedida por otra fuente puede conservar su coste de referencia sin cobrarlo dos veces. Los requisitos mecánicos se almacenan estructuradamente; el texto explicativo no se interpreta para inventar condiciones.
+
+Los modificadores aportados por Items se preparan de forma reversible: el Item es la fuente y el Actor preparado muestra el resultado. Eliminar o desactivar una fuente retira su contribución sin tener que deshacer escrituras permanentes sobre los valores base. Los efectos temporales o persistentes aplicados a un Actor se representan mediante Items de tipo **Effect**, con fuente y ciclo de vida identificables.
+
+Los **Compendios** son la biblioteca de contenido disponible. Al incorporar una opción al personaje, Foundry valida identidad, cardinalidad, requisitos y presupuesto antes de crear la instancia embebida. Ascendencia, Origen y Trasfondo son singulares; las capacidades repetibles siguen sus propias reglas. La identidad mecánica es estable aunque cambie el nombre visible.
+
+La creación utiliza un estado global de construcción. Al completar el personaje, Foundry valida las elecciones obligatorias y los presupuestos profesionales/materiales, descarta el PEI sobrante y concede una única vez la Reserva líquida inicial. La reconstrucción posterior requiere un flujo autorizado y no convierte el borrado de un Item en un reembolso automático.
+
+La migración desde fichas anteriores es conservadora: cuando una procedencia, coste histórico o identidad no puede demostrarse sin ambigüedad, se preserva como legado y se informa; no se inventan compras, conversiones ni equivalencias para hacer cuadrar la ficha.
+
+**Frontera con CREA-12.** CREA-11 define fuentes estructuradas de modificadores y relaciones. CREA-12 determina la sincronización y agregación definitiva de Vida, Maná, Defensa, Defensa de Maniobra, Defensa Mental, Defensa Corporal, Movimiento, Bono Defensivo, Protección, Iniciativa y demás valores derivados.
