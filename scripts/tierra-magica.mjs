@@ -43,7 +43,11 @@ Hooks.once("init", async () => {
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
   CONFIG.Item.documentClass = TierraMagicaItem;
-  await loadTemplates(["systems/tierra-magica/templates/actor/parts/actor-sheet.hbs", "systems/tierra-magica/templates/actor/parts/item-section.hbs"]);
+  await loadTemplates([
+    "systems/tierra-magica/templates/actor/parts/actor-sheet.hbs",
+    "systems/tierra-magica/templates/actor/parts/item-section.hbs",
+    "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"
+  ]);
   Actors.unregisterSheet("core", ActorSheet, { types: ["character", "npc", "familiar"] });
   Actors.registerSheet("tierra-magica", TierraMagicaActorSheet, { types: ["character", "npc", "familiar"], makeDefault: true, label: "Foundry T.M." });
   const itemTypes = Object.keys(TM_CONFIG.itemTypes);
