@@ -1,4 +1,20 @@
 const TURN_FLAG = "lastTurnReset";
+const turnMutationQueues = new WeakMap();
+
+async function withTurnMutationLock(actor, operation) {
+  if (!actor || (typeof actor !== "object" && typeof actor !== "function")) return operation();
+  const previous = turnMutationQueues.get(actor) ?? Promise.resolve();
+  let release;
+  const current = new Promise((resolve) => { release = resolve; });
+  turnMutationQueues.set(actor, current);
+  await previous;
+  try {
+    return await operation();
+  } finally {
+    release();
+    if (turnMutationQueues.get(actor) === current) turnMutationQueues.delete(actor);
+  }
+}
 
 const number = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -30,27 +46,30 @@ export function movementRemaining(actor) {
 }
 
 export async function spendActorMovement(actor, amount, companionUpdates = {}) {
-  if (!actor || !["character", "npc"].includes(actor.type) || actorIncapacitated(actor)) return false;
-  const requested = number(amount, Number.NaN);
-  if (!Number.isFinite(requested) || requested < 0) return false;
-  const remaining = movementRemaining(actor);
-  if (requested > remaining) return false;
-  const extras = companionUpdates && typeof companionUpdates === "object" ? companionUpdates : {};
-  if (requested === 0 && !Object.keys(extras).length) return false;
-  const spent = Math.max(0, number(actor.system?.turn?.movementSpent));
-  await actor.update({
-    ...extras,
-    "system.turn.movementSpent": spent + requested
+  return withTurnMutationLock(actor, async () => {
+    if (!actor || !["character", "npc"].includes(actor.type) || actorIncapacitated(actor)) return false;
+    const requested = number(amount, Number.NaN);
+    if (!Number.isFinite(requested) || requested < 0) return false;
+    const remaining = movementRemaining(actor);
+    if (requested > remaining) return false;
+    const extras = companionUpdates && typeof companionUpdates === "object" ? companionUpdates : {};
+    if (requested === 0 && !Object.keys(extras).length) return false;
+    const spent = Math.max(0, number(actor.system?.turn?.movementSpent));
+    await actor.update({
+      ...extras,
+      "system.turn.movementSpent": spent + requested
+    });
+    return true;
   });
-  return true;
 }
 
 export async function resetActorTurnForCombat(actor, combat, combatant) {
-  if (!actor || !["character", "npc"].includes(actor.type)) return false;
-  const stamp = combatTurnStamp(combat, combatant);
-  if (!stamp) return false;
+  return withTurnMutationLock(actor, async () => {
+    if (!actor || !["character", "npc"].includes(actor.type)) return false;
+    const stamp = combatTurnStamp(combat, combatant);
+    if (!stamp) return false;
 
-  const previous = actor.getFlag?.("tierra-magica", TURN_FLAG) ?? null;
+    const previous = actor.getFlag?.("tierra-magica", TURN_FLAG) ?? null;
   if (previous?.combatId === stamp.combatId) {
     const previousRound = Number(previous.round) || 0;
     // Un Actor recibe su economía sólo una vez por ronda. Esto impide que
@@ -74,8 +93,9 @@ export async function resetActorTurnForCombat(actor, combat, combatant) {
     "system.combat.kineticBarrierActive": false,
     "system.combat.kineticDefenseSource": ""
   });
-  await actor.setFlag?.("tierra-magica", TURN_FLAG, stamp);
-  return true;
+    await actor.setFlag?.("tierra-magica", TURN_FLAG, stamp);
+    return true;
+  });
 }
 
 export async function resetCurrentCombatantTurn(combat) {

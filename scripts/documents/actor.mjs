@@ -13,6 +13,7 @@ import { prepareRuleElements, modifiersForSelector } from "../rules/rule-element
 import { deriveActorState } from "../rules/derived-state.mjs";
 import { resolveActorDefense } from "../rules/defense-context.mjs";
 import { resourceMaximum } from "../rules/resource-reconciliation.mjs";
+import { withActorResourceLock } from "../rules/resource-mutation.mjs";
 import { boundedHealthRecoveryUpdates, healingCap } from "../rules/healing-delivery.mjs";
 import { resolveDeviceEnergySource, withDeviceEnergyLock } from "../rules/device-energy.mjs";
 import { consumeDeviceEnergyAuthoritatively } from "../rules/state-authority.mjs";
@@ -596,32 +597,37 @@ export class TierraMagicaActor extends Actor {
     }
 
     const cost = Math.max(0, toNumber(item.system.manaCost));
-    const mana = toNumber(this.system.resources?.mana?.value);
-    const overload = mana < cost;
-    if (overload && !(cost - mana === 1 && mana >= 1)) {
+    const payment = await withActorResourceLock(this, async () => {
+      const mana = toNumber(this.system.resources?.mana?.value);
+      const overload = mana < cost;
+      if (overload && !(cost - mana === 1 && mana >= 1)) return { ok:false, reason:"mana" };
+      if (overload && toNumber(this.system.status?.fatigue) >= 3) return { ok:false, reason:"collapsed" };
+
+      if (overload) {
+        await this.update({ "system.resources.mana.value": 0 });
+        const roll = await this.rollCheck({
+          label: "Sobrecarga: " + item.name,
+          attributeKey: "vol",
+          skillKey: "channeling",
+          df: 17
+        });
+        const success = toNumber(roll?.total) >= 17;
+        const previousFatigue = toNumber(this.system.status?.fatigue);
+        await this.update({ "system.status.fatigue": previousFatigue >= 2 ? 3 : 2 });
+        return { ok:true, overload:true, success, roll };
+      }
+
+      if (cost) await this.update({ "system.resources.mana.value": mana - cost });
+      return { ok:true, overload:false, success:true, roll:null };
+    });
+
+    if (!payment.ok) {
+      if (payment.reason === "collapsed") return ui.notifications.warn(this.name + " está Colapsado y no puede usar Sobrecarga.");
       return ui.notifications.warn(this.name + " no tiene Maná suficiente y no cumple las condiciones de Sobrecarga.");
     }
-    if (overload && toNumber(this.system.status?.fatigue) >= 3) {
-      return ui.notifications.warn(this.name + " está Colapsado y no puede usar Sobrecarga.");
-    }
-
-    if (overload) {
-      await this.update({ "system.resources.mana.value": 0 });
-      const roll = await this.rollCheck({
-        label: "Sobrecarga: " + item.name,
-        attributeKey: "vol",
-        skillKey: "channeling",
-        df: 17
-      });
-      const success = toNumber(roll?.total) >= 17;
-      const previousFatigue = toNumber(this.system.status?.fatigue);
-      await this.update({ "system.status.fatigue": previousFatigue >= 2 ? 3 : 2 });
-      if (!success) {
-        ui.notifications.warn("La Sobrecarga falla: el hechizo no se produce. La Pifia, si aparece, requiere una consecuencia mágica contextual.");
-        return { tmSpellAborted: true, tmActionResolved: true, overload: true, roll };
-      }
-    } else if (cost) {
-      await this.update({ "system.resources.mana.value": mana - cost });
+    if (payment.overload && !payment.success) {
+      ui.notifications.warn("La Sobrecarga falla: el hechizo no se produce. La Pifia, si aparece, requiere una consecuencia mágica contextual.");
+      return { tmSpellAborted: true, tmActionResolved: true, overload: true, roll: payment.roll };
     }
 
     const target = [...(game.user.targets ?? [])][0]?.actor;
@@ -662,39 +668,39 @@ export class TierraMagicaActor extends Actor {
     if (!item || item.type !== "formula") return null;
     if (toNumber(item.system.quantity, 0) <= 0) return ui.notifications.warn("No hay una dosis preparada de " + item.name + ".");
 
-    const family = String(item.system.family ?? "").trim().toLowerCase();
-    const saturated = Array.isArray(this.system.alchemy?.saturatedFamilies) ? [...this.system.alchemy.saturatedFamilies] : [];
-    if (item.system.saturating && family && saturated.includes(family)) {
-      return ui.notifications.warn(this.name + " ya está Saturado por la familia " + family + ".");
-    }
+    return withActorResourceLock(this, async () => {
+      const family = String(item.system.family ?? "").trim().toLowerCase();
+      const saturated = Array.isArray(this.system.alchemy?.saturatedFamilies) ? [...this.system.alchemy.saturatedFamilies] : [];
+      if (item.system.saturating && family && saturated.includes(family)) {
+        return ui.notifications.warn(this.name + " ya está Saturado por la familia " + family + ".");
+      }
 
-    const updates = {};
-    const formulaSlug = normalizeSlug(item.system?.slug || item.name);
-    if (formulaSlug === "pocion-restauradora" || formulaSlug === "balsamo-restaurador") {
-      Object.assign(updates, boundedHealthRecoveryUpdates(this, 4).updates);
-    } else if (formulaSlug === "pocion-de-recuperacion-arcana") {
-      const mp = this.system.resources.mana;
-      updates["system.resources.mana.value"] = Math.min(resourceMaximum(this, "mana"), toNumber(mp.value) + 3);
-    } else {
-      return ui.notifications.info(item.name + ": efecto contextual. Aplica la fórmula según su descripción.");
-    }
+      const updates = {};
+      const formulaSlug = normalizeSlug(item.system?.slug || item.name);
+      if (formulaSlug === "pocion-restauradora" || formulaSlug === "balsamo-restaurador") {
+        Object.assign(updates, boundedHealthRecoveryUpdates(this, 4).updates);
+      } else if (formulaSlug === "pocion-de-recuperacion-arcana") {
+        const mp = this.system.resources.mana;
+        updates["system.resources.mana.value"] = Math.min(resourceMaximum(this, "mana"), toNumber(mp.value) + 3);
+      } else {
+        return ui.notifications.info(item.name + ": efecto contextual. Aplica la fórmula según su descripción.");
+      }
 
-    if (item.system.saturating && family) {
-      updates["system.alchemy.saturatedFamilies"] = [...new Set([...saturated, family])];
-    }
-    await this.update(updates);
-    await item.update({ "system.quantity": Math.max(0, toNumber(item.system.quantity, 0) - 1) });
-    return ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor: this }),
-      content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(this.name) + " usa " + foundry.utils.escapeHTML(item.name) + "</strong><p>" + foundry.utils.escapeHTML(item.system.effect ?? "") + "</p></div>"
+      if (item.system.saturating && family) {
+        updates["system.alchemy.saturatedFamilies"] = [...new Set([...saturated, family])];
+      }
+      await this.update(updates);
+      await item.update({ "system.quantity": Math.max(0, toNumber(item.system.quantity, 0) - 1) });
+      return ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(this.name) + " usa " + foundry.utils.escapeHTML(item.name) + "</strong><p>" + foundry.utils.escapeHTML(item.system.effect ?? "") + "</p></div>"
+      });
     });
   }
 
   async performRitual(item, { assistantMana = 0 } = {}) {
     if (!item || item.type !== "ritual") return null;
     const directorCost = Math.max(0, toNumber(item.system.manaDirector));
-    const mana = toNumber(this.system.resources?.mana?.value);
-    if (mana < directorCost) return ui.notifications.warn(this.name + " no tiene el Maná de Director requerido para " + item.name + ".");
 
     const usefulAssistants = Math.max(0, Math.floor(toNumber(item.system.usefulAssistants)));
     const assistantMax = Math.max(0, toNumber(item.system.manaAssistantMax));
@@ -704,7 +710,14 @@ export class TierraMagicaActor extends Actor {
       return ui.notifications.warn("El aporte de asistentes excede el máximo definido por el ritual (" + assistantCap + " Maná).");
     }
 
-    if (directorCost) await this.update({ "system.resources.mana.value": mana - directorCost });
+    const paid = await withActorResourceLock(this, async () => {
+      const mana = toNumber(this.system.resources?.mana?.value);
+      if (mana < directorCost) return false;
+      if (directorCost) await this.update({ "system.resources.mana.value": mana - directorCost });
+      return true;
+    });
+    if (!paid) return ui.notifications.warn(this.name + " no tiene el Maná de Director requerido para " + item.name + ".");
+
     const roll = await this.rollCheck({
       label: "Ritual: " + item.name,
       attributeKey: item.system.attribute || "int",
@@ -810,35 +823,37 @@ export class TierraMagicaActor extends Actor {
 
 
   async rest(kind = "rest") {
-    const updates = {};
-    const hp = this.system.resources.health;
-    const mp = this.system.resources.mana;
-    const recovery = this.system.recovery ?? {};
-    if (kind === "breather") {
-      updates["system.alchemy.saturatedFamilies"] = [];
+    return withActorResourceLock(this, async () => {
+      const updates = {};
+      const hp = this.system.resources.health;
+      const mp = this.system.resources.mana;
+      const recovery = this.system.recovery ?? {};
+      if (kind === "breather") {
+        updates["system.alchemy.saturatedFamilies"] = [];
+        await this.update(updates);
+        return ui.notifications.info(this.name + ": Respiro completado. No recupera Vida ni Maná; limpia Saturación de preparaciones compatibles.");
+      } else if (kind === "rest") {
+        if (!recovery.healthUsed) {
+          Object.assign(updates, boundedHealthRecoveryUpdates(this, toNumber(this.system.attributes.vig.value) + 2).updates);
+          updates["system.recovery.healthUsed"] = true;
+        }
+        if (!recovery.manaUsed) {
+          updates["system.resources.mana.value"] = Math.min(resourceMaximum(this, "mana"), toNumber(mp.value) + toNumber(this.system.attributes.vol.value) + 1);
+          updates["system.recovery.manaUsed"] = true;
+        }
+      } else if (kind === "full") {
+        const currentHealth = Math.max(0, toNumber(hp.value));
+        const cap = healingCap(this);
+        if (cap > currentHealth) {
+          Object.assign(updates, boundedHealthRecoveryUpdates(this, cap - currentHealth).updates);
+        }
+        updates["system.resources.mana.value"] = resourceMaximum(this, "mana");
+        updates["system.recovery.healthUsed"] = false;
+        updates["system.recovery.manaUsed"] = false;
+        updates["system.status.fatigue"] = 0;
+      }
       await this.update(updates);
-      return ui.notifications.info(this.name + ": Respiro completado. No recupera Vida ni Maná; limpia Saturación de preparaciones compatibles.");
-    } else if (kind === "rest") {
-      if (!recovery.healthUsed) {
-        Object.assign(updates, boundedHealthRecoveryUpdates(this, toNumber(this.system.attributes.vig.value) + 2).updates);
-        updates["system.recovery.healthUsed"] = true;
-      }
-      if (!recovery.manaUsed) {
-        updates["system.resources.mana.value"] = Math.min(resourceMaximum(this, "mana"), toNumber(mp.value) + toNumber(this.system.attributes.vol.value) + 1);
-        updates["system.recovery.manaUsed"] = true;
-      }
-    } else if (kind === "full") {
-      const currentHealth = Math.max(0, toNumber(hp.value));
-      const cap = healingCap(this);
-      if (cap > currentHealth) {
-        Object.assign(updates, boundedHealthRecoveryUpdates(this, cap - currentHealth).updates);
-      }
-      updates["system.resources.mana.value"] = resourceMaximum(this, "mana");
-      updates["system.recovery.healthUsed"] = false;
-      updates["system.recovery.manaUsed"] = false;
-      updates["system.status.fatigue"] = 0;
-    }
-    await this.update(updates);
+    });
   }
 
   #buildSkillBreakdown(skillKey, skill, prepared = this._tmRulePreparation) {

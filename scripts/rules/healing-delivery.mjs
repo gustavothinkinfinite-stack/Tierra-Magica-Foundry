@@ -1,4 +1,5 @@
 import { resourceMaximum } from "./resource-reconciliation.mjs";
+import { withActorResourceLock } from "./resource-mutation.mjs";
 
 function number(value, fallback = 0) {
   const parsed = Number(value);
@@ -43,8 +44,10 @@ export function boundedHealthRecoveryUpdates(actor, requested) {
 }
 
 export async function applyBoundedHealing(actor, requested) {
-  const recovery = boundedHealthRecoveryUpdates(actor, requested);
-  if (recovery.amount <= 0) return 0;
-  await actor.update(recovery.updates);
-  return recovery.amount;
+  return withActorResourceLock(actor, async () => {
+    const recovery = boundedHealthRecoveryUpdates(actor, requested);
+    if (recovery.amount <= 0) return 0;
+    await actor.update(recovery.updates);
+    return recovery.amount;
+  });
 }
