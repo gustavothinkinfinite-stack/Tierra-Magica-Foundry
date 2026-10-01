@@ -34,7 +34,7 @@ export const GRIMORIO_AUDIT_CANDIDATES = Object.freeze([
   {name:"Espejismo",discipline:"perception",grade:"basic",mana:4,role:"illusion",sustained:true,illusionDf:"static"},
   {name:"Revelación Sensorial",discipline:"perception",grade:"advanced",mana:5,role:"counter-illusion",illusionCheckAdvantage:true},
   {name:"Duplicado Ilusorio",discipline:"perception",grade:"advanced",mana:6,role:"defense-illusion",sustained:true,defenseBonus:2,visionDependent:true,secondaryAttackNegationRoll:false},
-  {name:"Invisibilidad",discipline:"perception",grade:"master",mana:9,role:"illusion",sustained:true,maxDuration:"scene",breaksAfterOffense:true,indetectable:false},
+  {name:"Invisibilidad",discipline:"perception",grade:"master",mana:9,role:"illusion",sustained:true,maxDuration:"scene",breaksAfterOffense:true,indetectable:false,illusionDf:"static"},
   {name:"Dominio Fantasmagórico",discipline:"perception",grade:"legendary",mana:13,role:"illusion-area",sustained:true,maxDuration:"scene",illusionDf:"static",physicalForce:false},
   {name:"Sintonía Emocional",discipline:"perception",grade:"minor",mana:2,role:"information",mindReading:false,lieDetection:false},
 
