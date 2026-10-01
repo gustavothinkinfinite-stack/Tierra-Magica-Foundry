@@ -44,11 +44,11 @@ export const STARTER_CONTENT = {
   {name:"Visión Remota",system:{discipline:"perception",grade:"advanced",manaCost:7,attribute:"per",difficulty:18,requirements:"Lugar conocido o ancla"}},
   {name:"Calma",system:{discipline:"influence",grade:"basic",manaCost:3,attribute:"pre",defense:"mental"}},
   {name:"Sugestión",system:{discipline:"influence",grade:"advanced",manaCost:5,attribute:"pre",defense:"mental",effect:"Instrucción plausible; no Dominación/suicidio/traición fundamental automática."}},
-  {name:"Llamada Menor",system:{discipline:"conjuration",grade:"basic",manaCost:4,attribute:"int",difficulty:14,effect:"Entidad menor compatible; no obediencia automática."}},
-  {name:"Paso Breve",system:{discipline:"conjuration",grade:"basic",manaCost:4,attribute:"int",difficulty:12,range:"3 espacios",effect:"Destino visible, válido y desocupado."}},
-  {name:"Trasposición",system:{discipline:"conjuration",grade:"advanced",manaCost:6,attribute:"int",difficulty:14,range:"8 espacios"}},
-  {name:"Umbral",system:{discipline:"conjuration",grade:"advanced",manaCost:7,attribute:"int",difficulty:18}},
-  {name:"Portal",system:{discipline:"conjuration",grade:"master",manaCost:10,attribute:"int",difficulty:21,requirements:"Anclas compatibles"}}
+  {name:"Llamada Menor",system:{discipline:"conjuration",grade:"basic",manaCost:4,attribute:"int",difficulty:14,sustained:true,duration:"Sostenida",effect:"Entidad menor compatible; no obediencia automática; ocupa Sostenimiento mientras permanezca presente."}},
+  {name:"Paso Breve",system:{discipline:"conjuration",grade:"basic",manaCost:4,attribute:"int",difficulty:12,range:"3 espacios",remoteOriginCompatible:false,effect:"Destino visible, válido y desocupado."}},
+  {name:"Trasposición",system:{discipline:"conjuration",grade:"advanced",manaCost:6,attribute:"int",difficulty:14,range:"8 espacios",remoteOriginCompatible:false}},
+  {name:"Umbral",system:{discipline:"conjuration",grade:"advanced",manaCost:7,attribute:"int",difficulty:18,remoteOriginCompatible:false}},
+  {name:"Portal",system:{discipline:"conjuration",grade:"master",manaCost:10,attribute:"int",difficulty:21,requirements:"Anclas compatibles",remoteOriginCompatible:false}}
  ],
  technique:[
   {name:"Parada",system:{grade:"basic",pdCost:2,activation:"Reacción",effect:"+2 Defensa contra ataque cuerpo a cuerpo parable."}},
