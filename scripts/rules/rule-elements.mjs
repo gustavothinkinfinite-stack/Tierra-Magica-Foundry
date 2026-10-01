@@ -3,7 +3,18 @@ export const RULE_ELEMENT_KEYS = Object.freeze([
 ]);
 
 export const CORE_SELECTORS = new Set([
-  "defense", "healthMax", "movement", "protection", "manaMax", "initiative"
+  "defensiveBonus",
+  "defense",
+  "maneuverDefense",
+  "mentalDefense",
+  "bodyDefense",
+  "healthMax",
+  "manaMax",
+  "movement",
+  "protection",
+  "initiativeModifier",
+  // Alias transitorio durante CREA-12.
+  "initiative"
 ]);
 
 function number(value, fallback = 0) {
