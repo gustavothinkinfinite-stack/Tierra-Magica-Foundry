@@ -29,13 +29,13 @@ function applyChanges(document,changes){
   }
 }
 
-function device({id,name,energy=0,max=energy,flow=0,consumption=0,activation="Acción",source=""}){
+function device({id,name,energy=0,max=energy,flow=0,consumption=0,activation="Acción",source="",kineticDefense=false}){
   return {
     id,type:"device",name,
     system:{
       condition:"operative",overloadAllowed:true,
       energy:{value:energy,max},energySourceItemId:source,
-      flow,consumption,activation,effect:"Prueba"
+      flow,consumption,activation,kineticDefense,effect:"Prueba"
     },
     async update(changes){applyChanges(this,changes);return changes;}
   };
@@ -84,7 +84,7 @@ test("13F: una fuente explícita aporta Energía/Caudal y fuentes no vinculadas 
 
 test("13F: Escudo de campo vinculado consume la Celda y usa Reacción, no Acción",async()=>{
   const cell=device({id:"cell",name:"Celda arcana menor",energy:4,flow:2});
-  const shield=device({id:"shield",name:"Escudo de campo",flow:2,consumption:2,activation:"Reacción",source:"cell"});
+  const shield=device({id:"shield",name:"Escudo de campo",flow:2,consumption:2,activation:"Reacción",source:"cell",kineticDefense:true});
   const a=actor([cell,shield]);
   const result=await a.useDevice(shield);
   assert.ok(result);
@@ -92,6 +92,8 @@ test("13F: Escudo de campo vinculado consume la Celda y usa Reacción, no Acció
   assert.equal(shield.system.energy.value,0);
   assert.equal(a.system.turn.reaction,false);
   assert.equal(a.system.turn.action,true);
+  assert.equal(a.system.combat.kineticBarrierActive,true);
+  assert.equal(a.system.combat.kineticDefenseSource,"Escudo de campo");
 });
 
 test("13F: un acumulador insuficiente bloquea aunque exista otro acumulador mejor no vinculado",async()=>{
@@ -138,4 +140,22 @@ test("13F: Sobrecarga exitosa de dispositivo externo gasta la fuente y daña el 
   assert.equal(consumer.system.condition,"damaged");
   assert.equal(source.system.condition,"operative");
   assert.equal(a.system.turn.action,false);
+});
+
+test("13F: Escudo de campo y Barrera Cinética comparten una sola ventana +2",async()=>{
+  const source=device({id:"source",name:"Celda",energy:4,flow:2});
+  const shield=device({id:"shield",name:"Escudo de campo",consumption:2,activation:"Reacción",source:"source",kineticDefense:true});
+  const a=actor([source,shield]);
+  a.system.combat={kineticBarrierActive:true,kineticDefenseSource:"Barrera Cinética"};
+  a.system.turn.reaction=true;
+
+  const before=(await import("../scripts/rules/derived-state.mjs")).deriveActorState({system:a.system,items:a.items});
+  assert.equal((await import("../scripts/rules/derived-state.mjs")).resolveDerivedSelector(before,"defense",{kineticBarrier:true}).total-before.defense,2);
+
+  const result=await a.useDevice(shield);
+  assert.ok(result);
+  const after=(await import("../scripts/rules/derived-state.mjs")).deriveActorState({system:a.system,items:a.items});
+  assert.equal((await import("../scripts/rules/derived-state.mjs")).resolveDerivedSelector(after,"defense",{kineticBarrier:true}).total-after.defense,2);
+  assert.equal(after.contextual.defense.filter((entry)=>entry.context==="kineticBarrier").length,1);
+  assert.equal(after.contextual.defense[0].label,"Escudo de campo");
 });
