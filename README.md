@@ -1,6 +1,6 @@
 # Tierra Mágica — Foundry T.M.
 
-Sistema para Foundry VTT v14 basado en **Foundry T.M. 1.0 Playtest**.
+Sistema para Foundry VTT v14 basado en **Foundry T.M. 1.1**.
 
 La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuente activa única para reglas, creación, canon narrativo y desarrollo editorial es `docs/Tierra_Magica_Manual_Maestro.md`. Las versiones históricas, la implementación y los documentos derivados no prevalecen cuando contradicen esa fuente.
 
@@ -10,7 +10,7 @@ Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 
 
 El núcleo 1.0 permanece **completo y jugable**. No existe una fase **CREA-14** definida en el repositorio. Cualquier ampliación mecánica futura debe partir de una decisión explícita incorporada primero al Manual Maestro; no se infiere una fase nueva a partir del código.
 
-La release pública actual es **v1.0.18**. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
+La release pública actual es **v1.1.0**. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
 
 ## Instalación
 
