@@ -239,7 +239,7 @@
           "saturatedFamilies": []
         },
         "legacySkills": {},
-        "schemaVersion": 3,
+        "schemaVersion": 5,
         "legacyIdentityText": {
           "ancestry": "",
           "origin": "",
@@ -369,7 +369,7 @@
     "templates": {
       "base": {
         "description": "",
-        "schemaVersion": 3,
+        "schemaVersion": 5,
         "slug": "",
         "tags": [],
         "costs": [],
