@@ -399,6 +399,40 @@ export function canResolveSharedMutation(document = null) {
   return Boolean(primaryActiveGm(activeUsers()));
 }
 
+export async function adjudicateStaleTurnReservation(actor, resource, resolution = "spend") {
+  const kind = String(resource ?? "").trim().toLowerCase();
+  const decision = String(resolution ?? "").trim().toLowerCase();
+  if (!["action", "reaction"].includes(kind)) return { ok:false, error:"Recurso de turno desconocido." };
+  if (!["spend", "release"].includes(decision)) return { ok:false, error:"La recuperación debe decidir spend o release." };
+
+  const primary = primaryActiveGm(activeUsers());
+  if (runtimeSocketAvailable()) {
+    if (!currentUser()?.isGM || !primary || primary.id !== currentUser()?.id) {
+      return { ok:false, error:"Sólo el DJ activo principal puede resolver una reserva huérfana." };
+    }
+  } else if (!currentUser()?.isGM) {
+    return { ok:false, error:"Sólo un DJ puede resolver una reserva huérfana." };
+  }
+
+  if (!actor?.system || typeof actor.update !== "function") return { ok:false, error:"El Actor de economía ya no está disponible." };
+  return serial("turn-state:" + actorAuthorityKey(actor), async () => {
+    const reservation = currentTurnReservation(actor, kind);
+    if (!reservation) return { ok:true, resolved:false, alreadyClear:true };
+
+    if (decision === "spend" && (actor.system.turn?.[kind] ?? true)) {
+      await actor.update({ ["system.turn." + kind]: false });
+    }
+    await deleteTurnReservation(actor, kind);
+    return {
+      ok:true,
+      resolved:true,
+      decision,
+      requesterId:String(reservation.requesterId ?? ""),
+      reservationId:String(reservation.id ?? "")
+    };
+  });
+}
+
 export async function reserveTurnResourceAuthoritatively(actor, resource) {
   const kind = String(resource ?? "").trim().toLowerCase();
   if (!["action", "reaction"].includes(kind)) return { ok:false, claimed:false, error:"Recurso de turno desconocido." };
