@@ -215,3 +215,100 @@ test("enumeración defensiva impide doble cinética y doble cobertura",()=>{
   assert.ok(maximumSelection.some((name)=>["Barrera Cinética","Escudo de campo"].includes(name)));
   assert.ok(!maximumSelection.includes("Cobertura") || !maximumSelection.includes("Pantalla Cinética"));
 });
+
+
+test("catálogo auditado contiene exactamente 60 hechizos y conserva la distribución decidida",()=>{
+  const canonical=STARTER_CONTENT.spell.map((entry)=>({
+    name:entry.name,
+    discipline:entry.system.discipline,
+    grade:entry.system.grade,
+    mana:entry.system.manaCost
+  }));
+  const all=[...canonical,...GRIMORIO_AUDIT_CANDIDATES];
+  assert.equal(all.length,60);
+  const counts=Object.fromEntries(["evocation","alteration","restoration","perception","influence","conjuration"]
+    .map((discipline)=>[discipline,all.filter((entry)=>entry.discipline===discipline).length]));
+  assert.deepEqual(counts,{evocation:10,alteration:10,restoration:9,perception:11,influence:10,conjuration:10});
+});
+
+test("todos los costes de Maná permanecen dentro de la banda de su Grado",()=>{
+  const canonical=STARTER_CONTENT.spell.map((entry)=>({
+    name:entry.name,grade:entry.system.grade,mana:entry.system.manaCost
+  }));
+  const all=[...canonical,...GRIMORIO_AUDIT_CANDIDATES];
+  const valid=(entry)=>{
+    if(entry.grade==="minor") return entry.mana===2;
+    if(entry.grade==="basic") return entry.mana>=3 && entry.mana<=4;
+    if(entry.grade==="advanced") return entry.mana>=5 && entry.mana<=7;
+    if(entry.grade==="master") return entry.mana>=8 && entry.mana<=11;
+    if(entry.grade==="legendary") return entry.mana>=12;
+    return false;
+  };
+  for(const entry of all) assert.equal(valid(entry),true,entry.name+" queda fuera de la banda de Maná de "+entry.grade);
+});
+
+test("Martillo Cinético usa Defensa Corporal y no una Defensa normal fácil de inflar",()=>{
+  const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Martillo Cinético");
+  assert.equal(spell.defense,"body");
+});
+
+test("los rituales candidatos usan el Método real del motor y no un booleano paralelo",()=>{
+  for(const name of ["Renovación Integral","Llamada Mayor","Gran Traslación"]){
+    const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
+    assert.equal(spell.method,"ritual",name);
+    assert.equal(Object.hasOwn(spell,"ritual"),false,name);
+  }
+});
+
+test("formas mágicas con vuelo no sustituyen un Rasgo permanente",()=>{
+  const winged=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Morfología Alada");
+  const transmutation=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Transmutación Corpórea");
+  assert.equal(winged.maxDuration,"scene");
+  assert.equal(transmutation.maxDuration,"scene");
+});
+
+test("protecciones mentales mágicas equivalentes no se apilan hasta +4",()=>{
+  const valor=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Valor Inspirado");
+  const anchor=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Mente Anclada");
+  assert.equal(valor.mentalDefenseBonus,2);
+  assert.equal(anchor.mentalDefenseBonus,2);
+  assert.equal(valor.stackingGroup,"mental-ward");
+  assert.equal(anchor.stackingGroup,"mental-ward");
+});
+
+test("Restauración Funcional suspende una penalización pero no reconstruye una función ausente",()=>{
+  const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Restauración Funcional");
+  assert.equal(spell.repairsWound,false);
+  assert.equal(spell.maxSuppressedPenalties,1);
+  assert.equal(spell.restoresMissingFunction,false);
+});
+
+test("Jaula Dimensional eleva una única resolución espacial a DF mínima 18",()=>{
+  const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Jaula Dimensional");
+  assert.equal(spell.spatialMinDifficulty,18);
+  assert.equal(spell.secondaryResistance,false);
+});
+
+test("Objeto Efímero no puede acumular una colección paralela por relanzamiento",()=>{
+  const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name==="Objeto Efímero");
+  assert.equal(spell.sustained,true);
+  assert.equal(spell.sameSpellReplaces,true);
+  assert.equal(spell.maxDuration,"scene");
+});
+
+test("las ilusiones persistentes usan una DF determinista ligada a competencia y no una tirada pescable",()=>{
+  const names=["Imagen Menor","Velo Sensorial","Espejismo","Invisibilidad","Dominio Fantasmagórico"];
+  for(const name of names){
+    const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
+    assert.equal(spell.illusionDf,"11+attribute+channeling",name);
+  }
+});
+
+test("los tres candidatos multiobjetivo declaran contrato estructurado",()=>{
+  for(const name of ["Arco Fulminante","Círculo Restaurador","Salto Vinculado"]){
+    const spell=GRIMORIO_AUDIT_CANDIDATES.find((entry)=>entry.name===name);
+    assert.equal(spell.targetMode,"multiple",name);
+    assert.equal(spell.maxTargets,3,name);
+    assert.equal(spell.requiresTarget,true,name);
+  }
+});
