@@ -95,7 +95,7 @@ async function mutateHealth(target, { damage = 0, healing = 0 } = {}) {
   });
 }
 
-async function executeAuthorityAction(action, payload = {}) {
+async function executeAuthorityAction(action, payload = {}, requesterId = "") {
   if (action === "claim-kinetic") {
     const target = await actorFromUuid(String(payload.targetUuid ?? ""));
     if (!target?.system || typeof target.update !== "function") {
@@ -118,6 +118,10 @@ async function executeAuthorityAction(action, payload = {}) {
   if (action === "apply-health-damage" || action === "apply-health-healing") {
     const target = await actorFromUuid(String(payload.targetUuid ?? ""));
     if (!target) return { ok:false, error:"El objetivo de Vida ya no está disponible." };
+    const requester = activeUsers().find((user) => String(user?.id ?? "") === String(requesterId ?? "")) ?? currentUser();
+    const requesterMayUpdate = Boolean(requester?.isGM) ||
+      (typeof target.canUserModify === "function" ? Boolean(target.canUserModify(requester, "update")) : Boolean(target.isOwner));
+    if (!requesterMayUpdate) return { ok:false, error:"El solicitante no posee permisos para modificar directamente la Vida del objetivo." };
     if (action === "apply-health-damage") return mutateHealth(target, { damage:payload.amount });
     return mutateHealth(target, { healing:payload.amount });
   }
@@ -155,7 +159,7 @@ async function executeAuthorityAction(action, payload = {}) {
 async function requestPrimaryGm(action, payload) {
   const gm = primaryActiveGm(activeUsers());
   if (!gm) return { ok:false, error:"Se requiere un DJ activo para resolver esta mutación compartida con seguridad." };
-  if (gm.id === currentUser()?.id) return executeAuthorityAction(action, payload);
+  if (gm.id === currentUser()?.id) return executeAuthorityAction(action, payload, currentUser()?.id ?? "");
   if (!runtimeSocketAvailable()) return { ok:false, error:"No está disponible el canal de autoridad del sistema." };
 
   installStateAuthorityBridge();
@@ -197,7 +201,7 @@ export function installStateAuthorityBridge() {
     const gm = primaryActiveGm(activeUsers());
     if (!gm || gm.id !== currentUser()?.id) return;
 
-    const result = await executeAuthorityAction(message.action, message.payload);
+    const result = await executeAuthorityAction(message.action, message.payload, message.requesterId);
     game.socket.emit(CHANNEL, {
       scope:SCOPE,
       kind:"response",
@@ -263,6 +267,8 @@ export async function applyHealthHealingAuthoritatively(target, healing) {
 }
 
 export async function approvePendingDamageAuthoritatively(message) {
+  const primary = primaryActiveGm(activeUsers());
+  if (!currentUser()?.isGM || !primary || primary.id !== currentUser()?.id) return { ok:false, error:"Sólo el DJ activo principal puede aprobar daño pendiente." };
   const messageId = String(message?.id ?? message?._id ?? "");
   if (!messageId) return { ok:false, error:"La solicitud de daño no posee identidad persistente." };
   return serial("pending-damage:" + messageId, async () => {
@@ -278,6 +284,8 @@ export async function approvePendingDamageAuthoritatively(message) {
 }
 
 export async function approvePendingHealingAuthoritatively(message) {
+  const primary = primaryActiveGm(activeUsers());
+  if (!currentUser()?.isGM || !primary || primary.id !== currentUser()?.id) return { ok:false, error:"Sólo el DJ activo principal puede aprobar curación pendiente." };
   const messageId = String(message?.id ?? message?._id ?? "");
   if (!messageId) return { ok:false, error:"La solicitud de curación no posee identidad persistente." };
   return serial("pending-healing:" + messageId, async () => {
