@@ -1,6 +1,6 @@
 # CREA-13 — Validación global de siete personajes/arquetipos
 
-**Estado:** 13A COMPLETA · 13B pendiente  
+**Estado:** 13A–13B COMPLETAS · 13C pendiente  
 **Base:** main @ 98cb40556826675827eead6161c2ef97103c9315  
 **Dependencia:** CREA-12 integrado; P-011 resuelto.
 
@@ -66,7 +66,36 @@ El Manual Maestro vigente fija Disciplina en **2 PD**. La mención de 3 PD del d
 
 
 ### 13B — Derivados y equipamiento
-Validar Vida, Maná, Defensas, Protección, Movimiento, Iniciativa, umbral Grave y procedencia de contribuciones.
+
+**Estado: COMPLETA · Validate #238 — SUCCESS**
+
+Los siete fixtures fueron preparados con el mismo pipeline de CREA-12: `prepareRuleElements()` + `deriveActorState()` + resolución contextual. El equipamiento relevante se activa explícitamente y se comprueba también el estado posterior a desequiparlo.
+
+| ID | Fixture | Vida | Maná | Grave | Def. | Maniobra | Mental | Corporal | Prot. | Mov. | Inic. |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| C13-01 | Soldado | 16 | 9 | 8 | 15 | 15 | 12 | 14 | 3 | 6 | +1 |
+| C13-02 | Ingeniera | 14 | 12 | 7 | 13 | 13 | 13 | 13 | 1 | 6 | +2 |
+| C13-03 | Sanador | 14 | 15 | 7 | 12 | 12 | 14 | 13 | 0 | 6 | +2 |
+| C13-04 | Exploradora | 14 | 9 | 7 | 14 | 14 | 12 | 13 | 1 | 6 | +3 |
+| C13-05 | Alquimista | 14 | 12 | 7 | 13 | 13 | 13 | 13 | 0 | 6 | +2 |
+| C13-06 | Canalizador | 14 | 15 | 7 | 12 | 12 | 14 | 13 | 0 | 6 | +2 |
+| C13-07 | Vinculado | 14 | 12 | 7 | 13 | 13 | 13 | 13 | 1 | 6 | +3 |
+
+El Soldado configura como rango marcial relevante Armas Marciales Experto, por lo que su Bono Defensivo preparado es +2. El Escudo estándar permanece contextual: Defensa universal 15 y Defensa frontal 16. Desequipar escudo y Malla devuelve exactamente a Defensa 15 y Protección 0, sin contribuciones residuales.
+
+Piel Alterada conserva la arquitectura de CREA-12: no aumenta la Protección universal. Con el hechizo sostenido, Protección sigue en 0 y sólo resuelve a 2 cuando el contexto declara una categoría compatible.
+
+**Hallazgo 13B-01 — RESUELTO:** `strengthMin` de armaduras y la penalización de Movimiento del Escudo pesado existían en el catálogo/manual, pero no alimentaban `derived.movement`. Se corrigió sin crear una segunda autoridad:
+
+- armadura equipada por debajo de FUE mínima aporta `-1 Movimiento` con procedencia de Equipo;
+- a 1 punto por debajo se informa Carga Pesada + Desventaja física contextual;
+- a 2+ puntos por debajo se informa que no puede usarse competentemente en combate sin capacidad específica;
+- Escudo pesado declara estructuradamente `movementPenalty:-1`;
+- las incidencias de FUE mínima se muestran en el diagnóstico derivado;
+- desequipar el objeto elimina de inmediato la penalización y la incidencia.
+
+Las partes no cuantificadas por el Manual —qué acciones físicas concretas sufren Desventaja en cada ficción— permanecen contextuales; 13B no inventa selectores ni penalizadores universales adicionales.
+
 
 ### 13C — Secuencias funcionales por arquetipo
 Ejecutar el flujo característico de cada fixture y buscar interacciones rotas entre subsistemas.
