@@ -1,6 +1,6 @@
 # CREA-13 — Validación global de siete personajes/arquetipos
 
-**Estado:** 13A–13B COMPLETAS · 13C pendiente  
+**Estado:** 13A–13C COMPLETAS · 13D pendiente  
 **Base:** main @ 98cb40556826675827eead6161c2ef97103c9315  
 **Dependencia:** CREA-12 integrado; P-011 resuelto.
 
@@ -98,7 +98,41 @@ Las partes no cuantificadas por el Manual —qué acciones físicas concretas su
 
 
 ### 13C — Secuencias funcionales por arquetipo
-Ejecutar el flujo característico de cada fixture y buscar interacciones rotas entre subsistemas.
+
+**Estado: COMPLETA · Validate #246 — SUCCESS**
+
+Se ejecutó una secuencia característica para cada fixture y una prueba transversal de economía reactiva:
+
+| ID | Fixture | Secuencia validada |
+|---|---|---|
+| C13-01 | Soldado | Guardia + Parada + escudo frontal sobre una misma Defensa; impacto de Espada larga contra Protección y umbral Grave. |
+| C13-02 | Ingeniera | Activación de dispositivo autosuficiente con Energía 4 / Caudal 2 / Consumo 2; dos activaciones agotan exactamente la reserva y una tercera falla sin gastar Acción. |
+| C13-03 | Sanador | Curación acotada por Vida máxima y `healthCap`; recuperar Vida no reduce Trauma ni atraviesa límites de lesión. |
+| C13-04 | Exploradora | Movimiento 6 gastado en tramos 2,5 + 3,5; el rifle aplica Penetración y no añade FUE al daño. |
+| C13-05 | Alquimista | Una Fórmula aprendida con 0 dosis no puede usarse; una dosis preparada explícita se consume una sola vez. |
+| C13-06 | Canalizador | Proyectil Ígneo contra Defensa y Protección; Piel Alterada sostenida conserva Protección contextual; Barrera Cinética comparte la misma Reacción transversal. |
+| C13-07 | Vinculado | Acción Vinculada consume la Reacción del dueño, fija la orden del Familiar y no crea Acción/Reacción propia al Familiar. |
+
+La prueba transversal confirma además que Barrera Cinética y otra Reacción —Parada, Contramagia o intervención del Familiar— no pueden resolverse concurrentemente usando dos bloqueos independientes.
+
+**Hallazgo 13C-01 — RESUELTO: conocimiento alquímico ≠ dosis preparada.**  
+`formula` heredaba `quantity:1` del template físico y `useFormula()` también usaba 1 como fallback. En la práctica, aprender una Fórmula concedía una preparación gratuita. Se corrigió en tres niveles:
+
+- el tipo `formula` sobreescribe su cantidad inicial a `0`;
+- las Fórmulas del catálogo nacen con `quantity:0`;
+- las rutas automatizadas y contextuales requieren ahora una dosis explícita `> 0`.
+
+Esto no automatiza fabricación ni inventa costes de ingredientes: sólo elimina la creación gratuita de materia a partir de PD.
+
+**Limitación 13C-L01 — ABIERTA, no inferida:** los dispositivos que dependen de un acumulador externo todavía no poseen en el modelo una relación explícita de conexión entre el dispositivo consumidor y el acumulador que aporta Energía/Caudal. El Manual distingue claramente acumulador y dispositivo, y además establece que conectar acumuladores no suma Caudal automáticamente. Por tanto:
+
+- 13C valida la ruta energética con un dispositivo autosuficiente permitido por el esquema;
+- no se considera que cualquier acumulador del inventario esté conectado por defecto;
+- el Escudo de campo del catálogo no se usa como prueba de consumo externo hasta que exista un vínculo estructurado de fuente de Energía;
+- este hueco es de modelado de conexión, no una autorización para crear Energía o Caudal implícitos.
+
+Medicina permanece deliberadamente contextual en lo que corresponde a Primeros Auxilios: una tirada médica no restaura Vida automáticamente. La secuencia del Sanador valida los límites de recuperación sin convertir Medicina en curación gratuita.
+
 
 ### 13D — Daño, recuperación y economía
 Cruzar 0 Vida/Trauma, descansos, curación, Maná, Saturación, Acción/Movimiento/Reacción y recursos de Familiar.
