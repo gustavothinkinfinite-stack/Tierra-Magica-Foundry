@@ -272,7 +272,7 @@ La magia es opcional. No existe una clase de mago obligatoria.
 
 Las Fuentes son **Alma, Divina, Ambiental y Externa**. Las Disciplinas son **Evocación, Alteración, Restauración, Percepción, Influencia y Conjuración**.
 
-Una Disciplina cuesta normalmente **3 PD**. Los Hechizos cuestan por grado **1 PD Menor, 2 PD Básico, 3 PD Avanzado, 5 PD Maestro y 8+ PD Legendario**. Aprender un hechizo y pagar su Maná al lanzarlo son economías distintas.
+Una Disciplina cuesta normalmente **2 PD**. Los Hechizos cuestan por grado **1 PD Menor, 2 PD Básico, 3 PD Avanzado, 5 PD Maestro y 8+ PD Legendario**. Aprender un hechizo y pagar su Maná al lanzarlo son economías distintas.
 
 El catálogo mecánico estable del núcleo contiene 18 hechizos y se encuentra en el capítulo de Grimorio. No se obtienen versiones gratuitas mediante nombres históricos o variantes narrativas.
 
@@ -294,7 +294,7 @@ Catálogo de referencia vigente:
 - Corpulento — 2 PR; +4 Vida.
 - Masivo — 3 PR; +8 Vida; no acumulable con Corpulento.
 - Vínculo Divino — 2 PR; concede acceso, no poder automático.
-- Familiar Mágico — 2 PR.
+- Familiar Mágico — 3 PR.
 - Pacto Externo — 2–3 PR.
 - Prótesis Mayor — 2+ PR.
 - Afinidad Sobrenatural — 1 PR.
@@ -304,7 +304,7 @@ Si el concepto del personaje exige una propiedad fisiológica extraordinaria par
 
 ### Paso 5 — Familiar, si corresponde
 
-**Familiar Mágico cuesta 2 PR.** El Familiar es una criatura independiente con voluntad, personalidad y naturaleza propias, no un segundo PJ gratuito.
+**Familiar Mágico cuesta 3 PR.** El Familiar es una criatura independiente con voluntad, personalidad y naturaleza propias, no un segundo PJ gratuito.
 
 Durante creación debe registrarse al menos:
 
@@ -401,7 +401,7 @@ Tierra Mágica no usa clases. La identidad mecánica surge de Atributos, Habilid
 
 El nivel 1 comienza con 25 PD. Cada nivel del 2 al 20 concede 4 PD, para un total acumulado de 101 PD al nivel 20. No existe bono universal por nivel. Maestro requiere normalmente nivel 9+ y Gran Maestro nivel 15+.
 
-Una Especialización cuesta 1 PD y requiere la Habilidad madre en Entrenado. Las Técnicas cuestan normalmente 2 PD Básica, 3 Avanzada, 5 Maestra y 8+ Legendaria. Los Hechizos siguen 1 PD Menor, 2 Básico, 3 Avanzado, 5 Maestro y 8+ Legendario. Una Disciplina cuesta 3 PD. Los aumentos post-creación de Atributo cuestan 4/6/9/13/18 PD para 0->1, 1->2, 2->3, 3->4 y 4->5 respectivamente. Los valores 6+ son sobrenaturales y no pertenecen a la progresión ordinaria.
+Una Especialización cuesta 1 PD y requiere la Habilidad madre en Entrenado. Las Técnicas cuestan normalmente 2 PD Básica, 3 Avanzada, 5 Maestra y 8+ Legendaria. Los Hechizos siguen 1 PD Menor, 2 Básico, 3 Avanzado, 5 Maestro y 8+ Legendario. Una Disciplina cuesta 2 PD. Los aumentos post-creación de Atributo cuestan 4/6/9/13/18 PD para 0->1, 1->2, 2->3, 3->4 y 4->5 respectivamente. Los valores 6+ son sobrenaturales y no pertenecen a la progresión ordinaria.
 
 ## 5. Rasgos y Puntos de Rasgo
 
@@ -644,7 +644,7 @@ Las Técnicas representan entrenamiento, maniobras o capacidades aprendidas. Sus
 
 ## 14. Familiares, vínculos e invocaciones
 
-**Familiar Mágico** es un Rasgo de Vínculo de 2 PR. El Familiar es una criatura independiente vinculada al personaje, no una extensión perfecta del jugador ni un segundo personaje completo gratuito. Tiene personalidad, deseos, conocimiento, criterio y una naturaleza propia. El vínculo no implica obediencia absoluta.
+**Familiar Mágico** es un Rasgo de Vínculo de 3 PR. El Familiar es una criatura independiente vinculada al personaje, no una extensión perfecta del jugador ni un segundo personaje completo gratuito. Tiene personalidad, deseos, conocimiento, criterio y una naturaleza propia. El vínculo no implica obediencia absoluta.
 
 Un Familiar usa un perfil simplificado: Escala, Movimiento, Vida, Defensa, Protección, Ataque, Percepción, Voluntad, Rasgos y capacidades relevantes. No obtiene por defecto un segundo depósito completo de Maná. Si una criatura concreta posee Maná por su propia naturaleza, esa excepción debe estar expresamente definida.
 
@@ -3057,6 +3057,11 @@ El siguiente trabajo no consiste en volver a repartir información entre varios 
 **No crear un segundo manual maestro.** Toda corrección o ampliación se hace en este archivo y se respalda mediante commits de GitHub. Los documentos históricos se consultan únicamente para recuperar información o verificar procedencia.
 
 
+
+## Revisiones documentales de decisiones cerradas
+
+- **REV-CREA-02-001 (documental):** se corrige el Manual Maestro para reflejar la decisión ya cerrada de CREA-02: cada Disciplina cuesta **2 PD**, requiere Canalización Entrenada y el máximo inicial es 3. No cambia la regla; corrige una transcripción posterior de 3 PD.
+- **REV-CREA-05-001 (documental):** se corrige el Manual Maestro para reflejar la decisión ya cerrada de CREA-05: **Familiar Mágico es un Rasgo Mayor de 3 PR en creación y 6 PD posteriormente**. No cambia la regla; corrige una transcripción posterior de 2 PR.
 
 ## Modelo de datos de creación en Foundry — CREA-11
 
