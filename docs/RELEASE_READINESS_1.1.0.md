@@ -1,7 +1,7 @@
 # Release Readiness — Foundry T.M. 1.1.0
 
 **Fecha:** 2026-10-01  
-**Estado:** LISTA PARA PUBLICACIÓN · pre-release validada; publicación pública pendiente de ejecutar.
+**Estado:** PUBLICADA · v1.1.0 publicada correctamente el 2026-10-01.
 
 ## Alcance
 
@@ -78,8 +78,13 @@ Hasta automatizarse, estos efectos se adjudican con el texto canónico del Manua
 
 ## Publicación
 
-La versión de desarrollo está fijada en `1.1.0` en `system.json` y `package.json`.
+**v1.1.0 fue publicada correctamente** desde el commit `0fc8ffab5c0376533ebb20433d7ff1948d919b08` mediante `Publicar sistema #27`.
 
-La release pública vigente sigue siendo **v1.0.18** hasta que se ejecute explícitamente el workflow de publicación para la etiqueta `v1.1.0`.
+- Tag: `v1.1.0`.
+- Release ID: `401363638`.
+- Estado: publicada, no prerelease, reconocida como Latest.
+- Asset `system.json`: SHA-256 `bbd078f33e31336352b3b317a66b00ebb1e56b3953100e790b9b9fb55a938be2`.
+- Asset `tierra-magica.zip`: SHA-256 `724b7407c162a48349fcca319005258ca681f148d9c184be63317a647f0827a2`.
+- El workflow validó el sistema, reconstruyó los cuatro Compendios, verificó el contenido del ZIP y comprobó que el manifiesto empaquetado apunta al ZIP fijado de v1.1.0.
 
-No crear ni reutilizar la etiqueta antes de que `main` contenga este cierre y su CI post-merge esté verde.
+El canal estable de instalación continúa siendo `releases/latest/download/system.json`, que actualmente resuelve a v1.1.0.

@@ -1,3 +1,11 @@
+## Publicación v1.1.0 — 2026-10-01
+
+- **v1.1.0 fue publicada** desde el commit `0fc8ffab5c0376533ebb20433d7ff1948d919b08` mediante `Publicar sistema #27`.
+- GitHub reconoce v1.1.0 como la release **Latest**, no prerelease.
+- Assets publicados: `system.json` y `tierra-magica.zip`.
+- El workflow reconstruyó los cuatro Compendios, ejecutó la validación completa y verificó el paquete antes de publicar.
+- El canal estable `releases/latest/download/system.json` queda actualizado a v1.1.0.
+
 ## 1.1.0 — Grimorio 60 canonizado — 2026-10-01
 
 - El Manual Maestro amplía el grimorio canónico de 18 a **60 hechizos** tras auditorías de balance, secuencias largas, concurrencia, autoridad multiusuario, recuperación e idempotencia.
