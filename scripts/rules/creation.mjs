@@ -2,6 +2,9 @@ import { budgetSpentByResource } from "./acquisition.mjs";
 import { skillsPdCost } from "./skills.mjs";
 
 export const ATTRIBUTE_UPGRADE_COSTS = Object.freeze({ 0: 4, 1: 6, 2: 9, 3: 13, 4: 18 });
+export const INITIAL_ATTRIBUTE_BASE = 1;
+export const INITIAL_ATTRIBUTE_INCREASES = 6;
+export const INITIAL_ATTRIBUTE_MAX = 3;
 
 function number(value, fallback = 0) {
   const n = Number(value);
@@ -20,6 +23,31 @@ export function attributeProgressionCost(attributes = {}) {
     for (let value = from; value < to; value += 1) total += ATTRIBUTE_UPGRADE_COSTS[value] ?? 0;
   }
   return total;
+}
+
+export function validateInitialAttributes(attributes = {}) {
+  const issues = [];
+  const entries = Object.entries(attributes ?? {});
+  let increases = 0;
+  if (entries.length !== 7) {
+    issues.push({ code: "attribute-count", message: "La creación requiere exactamente siete Atributos." });
+  }
+  for (const [key, attribute] of entries) {
+    const rawCreation = number(attribute?.creationValue ?? attribute?.baseValue ?? attribute?.value, INITIAL_ATTRIBUTE_BASE);
+    const creationValue = Math.floor(rawCreation);
+    const baseValue = Math.floor(number(attribute?.baseValue ?? attribute?.value, creationValue));
+    if (!Number.isInteger(rawCreation) || creationValue < INITIAL_ATTRIBUTE_BASE || creationValue > INITIAL_ATTRIBUTE_MAX) {
+      issues.push({ code: "attribute-creation-range", attribute: key, message: key + " debe quedar entre 1 y 3 durante creación." });
+    }
+    increases += Math.max(0, creationValue - INITIAL_ATTRIBUTE_BASE);
+    if (baseValue !== creationValue) {
+      issues.push({ code: "attribute-creation-base-mismatch", attribute: key, message: key + " no puede comprar progresión de Atributo antes de cerrar creación." });
+    }
+  }
+  if (increases !== INITIAL_ATTRIBUTE_INCREASES) {
+    issues.push({ code: "attribute-creation-pool", increases, message: "Deben repartirse exactamente 6 aumentos gratuitos de Atributo." });
+  }
+  return { valid: !issues.length, issues, increases };
 }
 
 function actorItems(actor) {
@@ -58,6 +86,20 @@ export function validateCreationState(actor, { skillKeys = null } = {}) {
   for (const type of ["ancestry", "origin", "background"]) {
     const count = items.filter((item) => item.type === type).length;
     if (count !== 1) issues.push({ code: "identity-" + type, message: "Se requiere exactamente un " + type + "." });
+  }
+
+  if ((actor?.system?.creation?.status ?? "complete") === "building") {
+    issues.push(...validateInitialAttributes(actor?.system?.attributes ?? {}).issues);
+  }
+
+  const initialDisciplines = items.filter((item) =>
+    item.type === "discipline" && (
+      item.system?.acquisition?.stage === "creation" ||
+      (!item.system?.acquisition && (actor?.system?.creation?.status ?? "") === "building")
+    )
+  ).length;
+  if (initialDisciplines > 3) {
+    issues.push({ code: "discipline-creation-limit", message: "Durante creación puede haber como máximo 3 Disciplinas." });
   }
 
   for (const item of items) {
