@@ -2,7 +2,8 @@
 import { offensiveSpellNeedsTargets, resolveSpellImpacts, validateSpellTargets } from "./spell-impact.mjs";
 import { normalizeSlug } from "./identity.mjs";
 import { resolveActorDefense } from "./defense-context.mjs";
-import { claimKineticBarrier, canResolveSharedMutation } from "./state-authority.mjs";
+import { applyHealthDamageAuthoritatively, claimKineticBarrier, canResolveSharedMutation } from "./state-authority.mjs";
+import { pendingDamageRequest } from "./damage-delivery.mjs";
 
 const number = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -178,24 +179,33 @@ export function installMagicGuards(ActorClass) {
       const hitTargets = outcomes.filter((entry) => entry.success).map((entry) => entry.actor);
       const impacts = resolveSpellImpacts(item, hitTargets, { protectionContext: options.tmProtectionContext ?? {} });
       const applied = [];
+      const pending = [];
       for (const impact of impacts) {
         if (impact.damage <= 0) {
           applied.push({ ...impact, applied: true });
           continue;
         }
         const canUpdate = impact.actor.canUserModify?.(game.user, "update") ?? impact.actor.isOwner ?? false;
-        if (!canUpdate) {
-          applied.push({ ...impact, applied: false });
-          continue;
+        let delivered = false;
+        if (canUpdate) {
+          const delivery = await applyHealthDamageAuthoritatively(impact.actor, impact.damage);
+          delivered = delivery.ok;
+          if (!delivery.ok) ui.notifications.warn(delivery.error);
         }
-        await impact.actor.adjustResource("health", -impact.damage);
-        applied.push({ ...impact, applied: true });
+        const request = !delivered ? pendingDamageRequest({
+          targetUuid: impact.actor.uuid,
+          damage: impact.damage,
+          source: item.name,
+          attacker: this.name
+        }) : null;
+        if (request) pending.push({ impact, request });
+        applied.push({ ...impact, applied: delivered, pending: Boolean(request) });
       }
       const rows = applied.map((impact) =>
         "<p><strong>" + foundry.utils.escapeHTML(impact.actor.name) + "</strong>: " + impact.damage +
         " daño (Protección " + impact.protection + ", efectiva " + impact.effectiveProtection + ")" +
         (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") +
-        (impact.applied ? "" : " · <em>sin aplicar: permisos insuficientes</em>") + "</p>"
+        (impact.pending ? " · <em>pendiente de aprobación del DJ</em>" : "") + "</p>"
       ).join("");
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
@@ -203,6 +213,15 @@ export function installMagicGuards(ActorClass) {
           "</strong>" + (rows || "<p>Ningún objetivo fue impactado.</p>") +
           "<p>El umbral de Daño Grave es informativo: no crea automáticamente una Herida Grave.</p></div>"
       });
+      for (const { impact, request } of pending) {
+        await ChatMessage.create({
+          speaker: ChatMessage.getSpeaker({ actor: this }),
+          flags: { "tierra-magica": { pendingDamage: request } },
+          content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(item.name) +
+            " — aprobación de daño</strong><p>" + foundry.utils.escapeHTML(impact.actor.name) +
+            ": " + impact.damage + " daño pendiente de aprobación del DJ.</p></div>"
+        });
+      }
     }
 
     if (options.remoteOrigin) {
