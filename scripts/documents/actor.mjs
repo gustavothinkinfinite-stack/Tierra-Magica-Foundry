@@ -18,7 +18,7 @@ import { resolveDeviceEnergySource, withDeviceEnergyLock } from "../rules/device
 import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
-import { preflightAcquisition, acquisitionFromCost } from "../rules/acquisition.mjs";
+import { preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType } from "../rules/acquisition.mjs";
 
 export class TierraMagicaActor extends Actor {
   prepareDerivedData() {
@@ -328,31 +328,18 @@ export class TierraMagicaActor extends Actor {
       }
     }
 
-    const physical = ["weapon","armor","shield","equipment","formula","device"].includes(candidate.type);
+    const physical = isPhysicalPurchaseType(candidate.type);
     let preflight;
     if (physical && !(candidate.system.costs?.length) && mode === "purchased") {
-      if (candidate.system.priceStatus !== "exact" || !Number.isSafeInteger(Number(candidate.system.priceCopper)) || Number(candidate.system.priceCopper) < 0) {
-        return failAcquisition(candidate.name + " no tiene un precio exacto utilizable para Compra libre.");
-      }
-      const resource = resolvedStage === "creation" ? "pei" : "currency";
-      const amount = Math.max(0, Number(candidate.system.priceCopper));
-      preflight = {
-        valid: true,
-        issues: [],
-        cost: { context: resolvedStage === "creation" ? "creation" : "progression", resource, amount },
-        acquisition: acquisitionFromCost({ resource, amount }, { mode, stage: resolvedStage === "rebuilding" ? (priceContext ?? "progression") : resolvedStage, sources }),
-        revision: toNumber(this.system.creation?.revision)
-      };
-      const identityCheck = preflightAcquisition({
+      preflight = preflightPhysicalPurchase({
         actor: this,
-        candidate: { ...candidate, system: { ...candidate.system, costs: [{ context:"any", resource:"none", amount:0 }] } },
-        stage: resolvedStage === "rebuilding" ? "rebuilding" : "creation",
-        priceContext: resolvedStage === "rebuilding" ? (priceContext ?? "creation") : null,
+        candidate,
+        stage: resolvedStage,
+        priceContext,
         expectedRevision: this.system.creation?.revision,
         mode,
         sources
       });
-      if (!identityCheck.valid) preflight = { ...preflight, valid:false, issues:identityCheck.issues };
     } else {
       preflight = preflightAcquisition({
         actor: this,
