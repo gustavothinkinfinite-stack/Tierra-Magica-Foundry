@@ -1,5 +1,6 @@
 import { normalizeSlug } from "./identity.mjs";
 import { resourceMaximum } from "./resource-reconciliation.mjs";
+import { withActorResourceLock } from "./resource-mutation.mjs";
 // Foundry T.M. — salvaguardas de Familiares y Trauma.
 // Mantiene estas reglas separadas del documento base para que puedan auditarse sin
 // convertir al Familiar en un segundo PJ ni extender Trauma a actores no orgánicos.
@@ -29,22 +30,24 @@ export function installFamiliarGuards(ActorClass) {
   };
 
   ActorClass.prototype.adjustResource = async function (resource, amount) {
-    const data = this.system.resources?.[resource];
-    if (!data) return null;
-    const previous = number(data.value);
-    const next = Math.min(resourceMaximum(this, resource), Math.max(0, previous + number(amount)));
-    const updates = { [`system.resources.${resource}.value`]: next };
-    if (resource === "health") {
-      if (previous > 0 && next === 0) {
-        updates["system.status.incapacitated"] = true;
-        if (this.type === "familiar") updates["system.familiar.incapacitated"] = true;
-        if (this.type === "character" && number(this.system.status?.trauma) === 0) updates["system.status.trauma"] = 1;
-      } else if (next > 0) {
-        updates["system.status.incapacitated"] = false;
-        if (this.type === "familiar") updates["system.familiar.incapacitated"] = false;
+    return withActorResourceLock(this, async () => {
+      const data = this.system.resources?.[resource];
+      if (!data) return null;
+      const previous = number(data.value);
+      const next = Math.min(resourceMaximum(this, resource), Math.max(0, previous + number(amount)));
+      const updates = { [`system.resources.${resource}.value`]: next };
+      if (resource === "health") {
+        if (previous > 0 && next === 0) {
+          updates["system.status.incapacitated"] = true;
+          if (this.type === "familiar") updates["system.familiar.incapacitated"] = true;
+          if (this.type === "character" && number(this.system.status?.trauma) === 0) updates["system.status.trauma"] = 1;
+        } else if (next > 0) {
+          updates["system.status.incapacitated"] = false;
+          if (this.type === "familiar") updates["system.familiar.incapacitated"] = false;
+        }
       }
-    }
-    return this.update(updates);
+      return this.update(updates);
+    });
   };
 
   ActorClass.prototype.linkedFamiliarAction = async function (familiar, order = "") {
