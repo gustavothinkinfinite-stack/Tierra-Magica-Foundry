@@ -538,6 +538,7 @@
       "stability": "stable",
       "consumption": 0,
       "activation": "Acción",
+      "kineticDefense": false,
       "effect": "",
       "condition": "operative",
       "overloadAllowed": true
