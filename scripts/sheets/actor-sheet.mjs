@@ -187,7 +187,11 @@ export class TierraMagicaActorSheet extends ActorSheet {
       const key = event.currentTarget.dataset.key;
       if (!["action", "reaction"].includes(key)) return;
       const current = this.actor.system.turn?.[key] ?? true;
-      return this.actor.update({ ["system.turn." + key]: !current });
+      const next = !current;
+      const incapacitated = Boolean(this.actor.system.status?.incapacitated) ||
+        toNumber(this.actor.system.resources?.health?.value, 1) <= 0;
+      if (next && incapacitated) return ui.notifications.warn(this.actor.name + " está Incapacitado.");
+      return this.actor.update({ ["system.turn." + key]: next });
     });
     html.find("[data-action='spend-movement']").click(async () => {
       const remaining = movementRemaining(this.actor);
@@ -205,17 +209,21 @@ export class TierraMagicaActorSheet extends ActorSheet {
         ui.notifications.warn("El gasto solicitado supera el Movimiento restante o no es válido.");
       }
     });
-    html.find("[data-action='reset-turn']").click(() => this.actor.update({
-      "system.turn.movementSpent": 0,
-      "system.turn.extraMovement": 0,
-      "system.turn.action": true,
-      "system.turn.reaction": true,
-      "system.combat.guardActive": false,
-      "system.combat.parryActive": false,
-      "system.combat.parrySucceeded": false,
-      "system.combat.counterattackUsed": false,
-      "system.combat.kineticBarrierActive": false
-    }));
+    html.find("[data-action='reset-turn']").click(() => {
+      const incapacitated = Boolean(this.actor.system.status?.incapacitated) ||
+        toNumber(this.actor.system.resources?.health?.value, 1) <= 0;
+      return this.actor.update({
+        "system.turn.movementSpent": 0,
+        "system.turn.extraMovement": 0,
+        "system.turn.action": !incapacitated,
+        "system.turn.reaction": !incapacitated,
+        "system.combat.guardActive": false,
+        "system.combat.parryActive": false,
+        "system.combat.parrySucceeded": false,
+        "system.combat.counterattackUsed": false,
+        "system.combat.kineticBarrierActive": false
+      });
+    });
     html.find("[data-action='combat-guard']").click(() => this.actor.guard());
     html.find("[data-action='combat-parry']").click(() => this.actor.parry());
     html.find("[data-action='combat-counterattack']").click(async (event) => {
