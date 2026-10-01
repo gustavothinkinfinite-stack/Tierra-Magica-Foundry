@@ -23,7 +23,7 @@ test("partida integral: Reacción es compartida por defensas, magia reactiva y f
 test("partida integral: cambio de turno restaura economía cuantificada y no concede turno independiente al Familiar", async () => {
   const turn = await read("scripts/rules/turn-economy.mjs");
   assert.match(turn, /\["character", "npc"\]\.includes\(actor\.type\)/);
-  assert.match(turn, /"system\.turn\.movementSpent": 0/);
+  assert.match(turn, /"system\.turn\.movementSpent": movementSpent/);
   assert.match(turn, /"system\.turn\.extraMovement": 0/);
   for (const field of ["action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
   for (const field of ["guardActive", "parryActive", "parrySucceeded", "counterattackUsed", "kineticBarrierActive"]) assert.match(turn, new RegExp('"system\\.combat\\.' + field + '": false'));
@@ -85,7 +85,7 @@ test("exploit: incapacitado no recupera Acción, Movimiento ni Reacción al avan
   const turn = await read("scripts/rules/turn-economy.mjs");
   assert.match(turn, /actorIncapacitated/);
   assert.match(turn, /movementAllowance/);
-  assert.match(turn, /"system\.turn\.movementSpent": 0/);
+  assert.match(turn, /"system\.turn\.movementSpent": movementSpent/);
   for (const field of ["action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
 });
 
