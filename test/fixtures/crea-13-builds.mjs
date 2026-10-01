@@ -3,6 +3,7 @@ import { coreCatalog } from "../../scripts/catalog/core-catalog.mjs";
 import { acquisitionFromCost, preflightAcquisition } from "../../scripts/rules/acquisition.mjs";
 import { deriveDevelopmentBudget, validateCreationState } from "../../scripts/rules/creation.mjs";
 import { normalizeSlug } from "../../scripts/rules/identity.mjs";
+import { TM_SCHEMA_VERSION } from "../../scripts/rules/data-model-migration.mjs";
 import {
   minimumSpellRank,
   spellOperationalSkill,
@@ -42,7 +43,7 @@ function baseActor(profile) {
     name: profile.label,
     type: "character",
     system: {
-      schemaVersion: 2,
+      schemaVersion: TM_SCHEMA_VERSION,
       creation: { status:"building", revision:0, initialReserveGranted:false },
       details: { level:1 },
       attributes: attributes(profile.attributes),
