@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { offensiveSpellNeedsTargets, resolveSpellImpacts, spellImpact, spellAreaKind, uniqueSpellTargets, validateSpellTargets } from "../scripts/rules/spell-impact.mjs";
+import { offensiveSpellNeedsTargets, resolveSpellImpacts, spellImpact, spellAreaKind, spellTargetMode, uniqueSpellTargets, validateSpellTargets } from "../scripts/rules/spell-impact.mjs";
 
 test("Penetración reduce Protección pero nunca la vuelve negativa", () => {
   assert.deepEqual(spellImpact({damage:8, penetration:3, protection:5, severeThreshold:6}), {base:8,bonus:0,penetration:3,protection:5,effectiveProtection:2,damage:6,severe:true});
@@ -66,4 +66,28 @@ test("impacto mágico aplica Piel Alterada sólo cuando el contexto confirma com
   }}};
   assert.equal(resolveSpellImpacts(spell,[target])[0].protection,1);
   assert.equal(resolveSpellImpacts(spell,[target],{protectionContext:{alteredSkinCompatible:true}})[0].protection,2);
+});
+
+
+test("objetivo múltiple no se convierte en área y respeta maxTargets", () => {
+  const spell={type:"spell",system:{damage:0,requiresTarget:true,targetMode:"multiple",maxTargets:3}};
+  const a={id:"A"},b={id:"B"},c={id:"C"},d={id:"D"};
+  assert.equal(spellTargetMode(spell),"multiple");
+  assert.equal(spellAreaKind(spell),"single");
+  assert.equal(validateSpellTargets(spell,[a,b,c]).ok,true);
+  const tooMany=validateSpellTargets(spell,[a,b,c,d]);
+  assert.equal(tooMany.reason,"too-many-targets");
+  assert.equal(tooMany.maxTargets,3);
+});
+
+test("hechizo beneficioso puede exigir objetivo antes de gastar recursos", () => {
+  const spell={type:"spell",system:{damage:0,defense:"df",requiresTarget:true,targetMode:"single"}};
+  assert.equal(offensiveSpellNeedsTargets(spell),false);
+  assert.equal(validateSpellTargets(spell,[]).reason,"target-required");
+});
+
+test("hechizo personal rechaza selección externa", () => {
+  const spell={type:"spell",system:{targetMode:"self"}};
+  assert.equal(validateSpellTargets(spell,[]).ok,true);
+  assert.equal(validateSpellTargets(spell,[{id:"A"}]).reason,"self-target");
 });
