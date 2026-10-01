@@ -53,7 +53,7 @@ export class TierraMagicaActor extends Actor {
       skill.label = TM_CONFIG.skills[key]?.label ?? key;
       skill.rankLabel = TM_CONFIG.rankLabels[skill.effectiveRank] ?? "";
       skill.pdCost = skillRankCost(skill.baseRank);
-      skill.breakdown = this.#buildSkillBreakdown(key, skill, rulePreparation);
+      skill.breakdown = this._buildSkillBreakdown(key, skill, rulePreparation);
       skill.bonus = skill.breakdown.total;
     }
 
@@ -172,7 +172,7 @@ export class TierraMagicaActor extends Actor {
     const suggestedAttribute = TM_CONFIG.skills[key]?.suggestedAttribute ?? "int";
     const options = Object.entries(TM_CONFIG.attributes)
       .map(([k, v]) => "<option value='" + k + "'" + (k === suggestedAttribute ? " selected" : "") + ">" + v + "</option>").join("");
-    const breakdown = skill.breakdown ?? this.#buildSkillBreakdown(key, skill);
+    const breakdown = skill.breakdown ?? this._buildSkillBreakdown(key, skill);
     const result = await Dialog.prompt({
       title: "Tirada de " + (TM_CONFIG.skills[key]?.label ?? key),
       content:
@@ -871,7 +871,7 @@ export class TierraMagicaActor extends Actor {
     });
   }
 
-  #buildSkillBreakdown(skillKey, skill, prepared = this._tmRulePreparation) {
+  _buildSkillBreakdown(skillKey, skill, prepared = this._tmRulePreparation) {
     const rank = toNumber(skill.rankBonus ?? rankBonus(skill.effectiveRank ?? skill.rank, TM_CONFIG.rankBonuses));
     const temporary = toNumber(skill.temporary);
     const other = toNumber(skill.other);
@@ -879,13 +879,13 @@ export class TierraMagicaActor extends Actor {
 
     for (const modifier of modifiersForSelector(prepared, "skill." + skillKey)) {
       const item = modifier.sourceItemId ? this.items.get(modifier.sourceItemId) : null;
-      const category = this.#skillSourceCategory(item?.type);
+      const category = this._skillSourceCategory(item?.type);
       sources.push({
         itemId: modifier.sourceItemId,
         name: modifier.sourceItemName || item?.name || "Regla",
         itemType: item?.type ?? "",
         category,
-        categoryLabel: this.#skillSourceCategoryLabel(category),
+        categoryLabel: this._skillSourceCategoryLabel(category),
         label: modifier.label ?? "",
         value: toNumber(modifier.value)
       });
@@ -938,7 +938,7 @@ export class TierraMagicaActor extends Actor {
     return true;
   }
 
-  #skillSourceCategory(type) {
+  _skillSourceCategory(type) {
     if (type === "specialization") return "specialization";
     if (["weapon", "armor", "shield", "equipment"].includes(type)) return "equipment";
     if (type === "technique") return "technique";
@@ -947,7 +947,7 @@ export class TierraMagicaActor extends Actor {
     return "other";
   }
 
-  #skillSourceCategoryLabel(category) {
+  _skillSourceCategoryLabel(category) {
     return {
       specialization: "Especialización",
       equipment: "Equipo",
