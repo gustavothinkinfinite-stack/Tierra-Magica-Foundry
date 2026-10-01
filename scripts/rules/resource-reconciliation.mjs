@@ -17,7 +17,10 @@ function sourceResourceValue(actor, resource) {
 export function resourceMaximum(actor, resource) {
   const derivedKey = RESOURCE_DERIVED_KEYS[resource];
   if (!derivedKey) return 0;
-  return Math.max(0, number(actor?.system?.derived?.[derivedKey]));
+  const prepared = actor?.system?.derived?.[derivedKey];
+  if (Number.isFinite(Number(prepared))) return Math.max(0, number(prepared));
+  // Sólo como salvaguarda antes de la primera preparación del Actor.
+  return Math.max(0, number(actor?.system?.resources?.[resource]?.max));
 }
 
 export function resourceReconciliationUpdates(actor) {
