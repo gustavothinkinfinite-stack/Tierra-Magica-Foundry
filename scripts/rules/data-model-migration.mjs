@@ -1,6 +1,6 @@
 import { normalizeSlug } from "./identity.mjs";
 
-export const TM_SCHEMA_VERSION = 3;
+export const TM_SCHEMA_VERSION = 4;
 
 const SPELL_PD = Object.freeze({ trick: 1, minor: 1, basic: 2, advanced: 3, master: 5, legendary: 8 });
 const TECHNIQUE_PD = Object.freeze({ basic: 2, advanced: 3, master: 5, legendary: 8 });
@@ -128,6 +128,24 @@ function migrateItemSourceV3(item) {
     if (!hasActivation) system.activation = slug === "escudo-de-campo" ? "Reacción" : "Acción";
     if (!hasKinetic) system.kineticDefense = slug === "escudo-de-campo";
   }
+  system.schemaVersion = 3;
+  return item;
+}
+
+function migrateItemSourceV4(item) {
+  const system = item.system ??= {};
+  if (item.type === "spell") {
+    const slug = normalizeSlug(system.slug || item.name);
+    if (!Object.prototype.hasOwnProperty.call(system, "remoteOriginCompatible")) {
+      system.remoteOriginCompatible = !["paso-breve", "trasposicion", "umbral", "portal"].includes(slug);
+    }
+    if (slug === "llamada-menor") {
+      system.sustained = true;
+      if (!String(system.duration ?? "").trim() || String(system.duration).trim() === "Instantánea") {
+        system.duration = "Sostenida";
+      }
+    }
+  }
   system.schemaVersion = TM_SCHEMA_VERSION;
   return item;
 }
@@ -157,7 +175,8 @@ export function migrateItemSource(source, { embedded = false } = {}) {
   const system = item.system;
   const currentVersion = number(system.schemaVersion);
   if (currentVersion >= TM_SCHEMA_VERSION) return item;
-  if (currentVersion >= 1) return migrateItemSourceV3(item);
+  if (currentVersion >= 3) return migrateItemSourceV4(item);
+  if (currentVersion >= 1) return migrateItemSourceV4(migrateItemSourceV3(item));
 
   const oldRequirements = typeof system.requirements === "string" ? system.requirements : "";
   const oldSkillRequirements = clone(system.skillRequirements ?? []);
@@ -183,7 +202,7 @@ export function migrateItemSource(source, { embedded = false } = {}) {
   system.legacy ??= {};
   if (oldSkillRequirements.length) system.legacy.skillRequirements = oldSkillRequirements;
   if (oldSkillModifiers.length) system.legacy.skillModifiers = oldSkillModifiers;
-  return migrateItemSourceV3(item);
+  return migrateItemSourceV4(migrateItemSourceV3(item));
 }
 
 export function migrateActorSource(source) {
