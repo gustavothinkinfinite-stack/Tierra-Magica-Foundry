@@ -21,7 +21,7 @@ export function spellSucceeded(actor, item, result, target = undefined, difficul
 async function resolveDeterministicSpellEffect(actor, item, target) {
   const slug = normalizeSlug(item?.system?.slug || item?.name);
   if (slug === "barrera-cinetica") {
-    await actor.update?.({ "system.combat.kineticBarrierActive": true });
+    await actor.update?.({ "system.combat.kineticBarrierActive": true, "system.combat.kineticDefenseSource": "Barrera Cinética" });
     return;
   }
   if (slug !== "cierre-restaurador") return;
