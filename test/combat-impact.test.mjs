@@ -48,10 +48,10 @@ test("la ficha usa una ruta atómica y no ofrece un segundo botón explotable de
 test("técnicas ofensivas base y overrides no duplican modificadores ni eluden restricciones", async () => {
   const actorSource = await readFile(new URL("../scripts/documents/actor.mjs", import.meta.url), "utf8");
   const guards = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
-  assert.equal(actorSource.includes('name === "Golpe Potente"'), true);
-  assert.equal(actorSource.includes('{ modifier: -2, damageBonus: 2, technique: name }'), true);
-  assert.equal(actorSource.includes('name === "Estocada Perforante"'), true);
-  assert.equal(actorSource.includes('{ modifier: -1, damageBonus: -1, penetrationBonus: 2, technique: name }'), true);
+  assert.equal(actorSource.includes('slug === "golpe-potente"'), true);
+  assert.equal(actorSource.includes('{ modifier: -2, damageBonus: 2, technique: technique.name }'), true);
+  assert.equal(actorSource.includes('slug === "estocada-perforante"'), true);
+  assert.equal(actorSource.includes('{ modifier: -1, damageBonus: -1, penetrationBonus: 2, technique: technique.name }'), true);
   assert.equal(guards.includes("Barrido requiere uno o dos objetivos válidos."), true);
   assert.equal(guards.includes('modifier: -2'), true);
   assert.equal(guards.includes("Combate Dual requiere dos armas distintas."), true);
@@ -63,12 +63,12 @@ test("la ficha expone Técnicas ofensivas y selecciona la segunda arma sin dupli
   const sheetLogic = await readFile(new URL("../scripts/sheets/actor-sheet.mjs", import.meta.url), "utf8");
   const sheetTemplate = await readFile(new URL("../templates/actor/parts/item-section.hbs", import.meta.url), "utf8");
   assert.equal(sheetTemplate.includes('data-action="item-combat-technique"'), true);
-  for (const name of ["Golpe Potente", "Estocada Perforante", "Barrido", "Combate Dual"]) assert.equal(sheetLogic.includes(name), true);
+  for (const slug of ["golpe-potente", "estocada-perforante", "barrido", "combate-dual"]) assert.equal(sheetLogic.includes(slug), true);
   assert.equal(sheetLogic.includes('item.id !== weapon.id && item.system.equipped'), true);
   assert.equal(sheetLogic.includes('/Ligera/i.test'), true);
   assert.equal(sheetLogic.includes('this.actor.dualWieldAttack(weapon, this.actor.items.get(secondaryId))'), true);
   assert.equal(sheetLogic.includes('this.actor.sweepAttack(weapon)'), true);
-  assert.equal(sheetLogic.includes('this.actor.useCombatTechnique("Golpe Potente", weapon)'), true);
+  assert.equal(sheetLogic.includes('this.actor.useCombatTechnique("golpe-potente", weapon)'), true);
 });
 
 test("Guardia Parada y Contraataque respetan Acción/Reacción y no encadenan", async () => {
