@@ -1,3 +1,13 @@
+## En desarrollo — equipo y suministros
+
+- El capítulo 9 pasa a **Armas, armaduras, equipo y suministros**.
+- Explica cómo leer armas y qué propiedades poseen efecto mecánico real.
+- Añade munición, Recarga, herramientas, Kits, raciones, combustible, consumibles, pociones y dispositivos.
+- Provisiones 7 días quedan definidas como 7 raciones personales ordinarias por 2 p.
+- El uso de equipo no crea bonos universales ocultos; herramientas y Kits habilitan métodos cuando corresponde.
+- Se mantiene explícitamente fuera del núcleo un sistema universal de hambre, sed, peso o slots de inventario.
+- Economía y capítulo práctico quedan enlazados y las unidades comerciales se mantienen sincronizadas.
+
 ## En desarrollo — guía práctica de Habilidades
 
 - El Manual Maestro explica operativamente las **26 Habilidades** canónicas.
