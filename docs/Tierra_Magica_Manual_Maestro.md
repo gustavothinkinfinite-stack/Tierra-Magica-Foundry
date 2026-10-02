@@ -6223,6 +6223,7 @@ Reglas:
 - Encantamiento II ocupa 2 puntos.
 - Encantamiento III ocupa 3 puntos.
 - no puede superarse el total de 3;
+- una criatura no puede mantener Sintonizados simultáneamente dos objetos con el **mismo Patrón de Encantamiento** o el mismo Hechizo Vinculado; debe elegir uno;
 - varios Encantamientos del mismo objeto no reducen su coste, aunque el núcleo ordinario sólo permite uno;
 - la Sintonización no depende del tipo físico de objeto: espada, anillo, capa y amuleto consumen capacidad según su Encantamiento, no según una ranura anatómica.
 
@@ -6691,6 +6692,7 @@ El sistema no presupone compradores automáticos para objetos Restringidos, Raro
 - un objeto ordinario sólo posee un Encantamiento autónomo.
 - desintonizar vacía RE.
 - cambiar de objeto durante el día no concede una reserva nueva.
+- no pueden apilarse varias reservas Sintonizadas del mismo Patrón o Hechizo Vinculado.
 - RE no es Maná ni Energía.
 - no existe Sobrecarga de RE.
 - PE sustituye, no se suma a, atributos/Habilidades del usuario.
