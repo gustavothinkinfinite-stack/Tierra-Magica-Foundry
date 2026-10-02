@@ -2630,6 +2630,8 @@ Cuando un Kit es esencial para una tarea profesional, carecer de él puede volve
 
 ### Raciones, provisiones y combustible
 
+Las distancias diarias, forraje, agua, campamento y efectos de viajar fuera de caminos se explican en **Viajes y desplazamiento de larga distancia**, dentro del capítulo 6.
+
 **Provisiones 7 días — 2 p** representa siete raciones diarias de comida conservable para **un viajero ordinario** durante condiciones normales.
 
 - una jornada ordinaria consume 1 ración;
@@ -3779,6 +3781,8 @@ Al crear un personaje conviene registrar:
 Estos datos son importantes porque la ficción establece acceso, conocimiento, leyes, reputación, permisos, información y consecuencias. Sin embargo, no funcionan como bonos numéricos ocultos.
 
 ## 22. Vehículos, monturas y autómatas
+
+Las reglas de distancia diaria para **viaje a pie, caballo y carreta**, así como terreno, ritmo, marcha forzada y navegación, están en el capítulo 6. Ferrocarriles, dirigibles, embarcaciones y otros transportes de infraestructura usan la velocidad y horario de su ruta o perfil concreto; no heredan automáticamente la tabla de viaje terrestre.
 
 Vehículos, monturas y autómatas usan perfiles reducidos con **Escala, Movimiento, Vida, Defensa, Protección, Maniobra, Tripulación, Capacidad y Sistemas/Rasgos**. No necesitan reproducir toda la ficha de un PJ.
 
