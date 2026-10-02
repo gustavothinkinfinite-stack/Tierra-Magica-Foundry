@@ -6599,9 +6599,11 @@ No puede detectar:
 - afiliación política;
 - «enemigos» como categoría abstracta.
 
-Al activarse, el Sello consume su carga autónoma.
+Al activarse, el Sello consume su carga autónoma y queda **Descargado**.
 
 Una descarga que requiera tirada utiliza PE del Grado.
+
+Un Sello Descargado conserva su matriz, pero no puede volver a producir el efecto hasta rearmarse. A efectos comerciales, su valor aplicable se reduce respecto del Sello cargado en **dos veces el coste material de rearme**. De ese modo, utilizar la carga y vender después el Sello no conserva artificialmente el valor de una activación ya consumida.
 
 **Rearmar un Sello** requiere:
 
@@ -6609,6 +6611,8 @@ Una descarga que requiera tirada utiliza PE del Grado.
 - 25% del tiempo de Encantamiento original, mínimo 4 h;
 - competencia e instalación suficientes;
 - restaurar además cualquier carga física o componente consumido.
+
+Al completar el rearme recupera el valor de referencia del Sello cargado.
 
 No existe rearme automático.
 
