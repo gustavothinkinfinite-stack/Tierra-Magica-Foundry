@@ -22,8 +22,9 @@ test("Empujar desplaza 1/2/3 espacios y respeta Escala",()=>{
   assert.equal(pushDistance(14,14).spaces,1);
   assert.equal(pushDistance(19,14).spaces,2);
   assert.equal(pushDistance(24,14).spaces,3);
-  assert.equal(pushDistance(14,14,{scaleDifference:1}).spaces,0);
+  assert.equal(pushDistance(14,14,{scaleDifference:1}).spaces,1);
   assert.equal(pushDistance(19,14,{scaleDifference:1}).spaces,1);
+  assert.equal(pushDistance(24,14,{scaleDifference:1}).spaces,2);
   assert.equal(pushDistance(30,14,{scaleDifference:2}).spaces,0);
   assert.equal(pushDistance(13,14).spaces,0);
 });
