@@ -70,7 +70,7 @@ const {
 
 installStateAuthorityBridge();
 
-function actor({uuid="Actor.target",health=10,max=16,cap=max,owners=["player-a","player-b"]}={}){
+function actor({uuid="Actor.target",health=10,max=16,cap=max,owners=["player-a","player-b"],sustained=[]}={}){
   const flags={};
   const value={
     uuid,id:uuid,name:"Objetivo compartido",type:"npc",
@@ -79,6 +79,7 @@ function actor({uuid="Actor.target",health=10,max=16,cap=max,owners=["player-a",
       resources:{health:{value:health,max}},
       recovery:{healthCap:cap},
       status:{incapacitated:false,trauma:0},
+      magic:{sustainedSpellIds:[...sustained]},
       turn:{action:true,reaction:true,movementSpent:0,extraMovement:0}
     },
     canUserModify(user){return Boolean(user?.isGM)||owners.includes(user?.id);},
@@ -125,6 +126,16 @@ test("multiusuario: dos clientes propietarios acumulan daño en la cola única d
   assert.equal(results.every((result)=>result.ok),true);
   assert.equal(target.system.resources.health.value,2);
   assert.deepEqual(results.map((result)=>result.applied),[4,4]);
+});
+
+test("multiusuario: caer a 0 Vida corta Sostenimientos en la autoridad compartida",async()=>{
+  const target=actor({uuid:"Actor.sustain-zero",health:5,sustained:["spell-a","spell-b"]});
+  globalThis.game.user=playerA;
+  const result=await applyHealthDamageAuthoritatively(target,5);
+  assert.equal(result.ok,true);
+  assert.equal(target.system.resources.health.value,0);
+  assert.equal(target.system.status.incapacitated,true);
+  assert.deepEqual(target.system.magic.sustainedSpellIds,[]);
 });
 
 test("multiusuario: daño y curación de clientes distintos terminan en un orden serial legal",async()=>{
