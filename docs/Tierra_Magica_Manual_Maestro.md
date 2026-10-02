@@ -5460,7 +5460,7 @@ Referencia en suelo excavable con herramientas:
 - cada espacio adicional de profundidad: +1 Jornada;
 - suelo duro, roca, agua, raíces o necesidad de entibado pueden multiplicar el tiempo o exigir Ingeniería/Artesanía.
 
-El pozo abierto es un peligro Visible. Ocultarlo utiliza la tabla de Ocultación y requiere un soporte que pueda sostener tránsito normal hasta activarse.
+El pozo abierto es un peligro Visible. **Ocultarlo como trampa de colapso exige al menos un Armazón Estándar**, además del tiempo de excavación, y un soporte que pueda sostener tránsito normal hasta activarse. La DF, tiempo y materiales adicionales de Ocultación se calculan sobre ese Armazón.
 
 Al caer se usa la profundidad real y las reglas de Caída. CRAFT-06 no añade daño por «ser una trampa».
 
