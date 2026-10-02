@@ -50,16 +50,16 @@ Hooks.once("init", async () => {
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
   CONFIG.Item.documentClass = TierraMagicaItem;
-  await loadTemplates([
+  await foundry.applications.handlebars.loadTemplates([
     "systems/tierra-magica/templates/actor/parts/actor-sheet.hbs",
     "systems/tierra-magica/templates/actor/parts/item-section.hbs",
     "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"
   ]);
-  Actors.unregisterSheet("core", ActorSheet, { types: ["character", "npc", "familiar"] });
-  Actors.registerSheet("tierra-magica", TierraMagicaActorSheet, { types: ["character", "npc", "familiar"], makeDefault: true, label: "Foundry T.M." });
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet, { types: ["character", "npc", "familiar"] });
+  foundry.documents.collections.Actors.registerSheet("tierra-magica", TierraMagicaActorSheet, { types: ["character", "npc", "familiar"], makeDefault: true, label: "Foundry T.M." });
   const itemTypes = Object.keys(TM_CONFIG.itemTypes);
-  Items.unregisterSheet("core", ItemSheet, { types: itemTypes });
-  Items.registerSheet("tierra-magica", TierraMagicaItemSheet, { types: itemTypes, makeDefault: true, label: "Foundry T.M." });
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet, { types: itemTypes });
+  foundry.documents.collections.Items.registerSheet("tierra-magica", TierraMagicaItemSheet, { types: itemTypes, makeDefault: true, label: "Foundry T.M." });
 });
 
 Hooks.on("preCreateActor", (actor) => {
@@ -281,11 +281,11 @@ Hooks.once("ready", async () => {
 
 });
 
-Hooks.on("renderChatMessage", (message, html) => {
+Hooks.on("renderChatMessageHTML", (message, html) => {
   const request = validatePendingDamageRequest(message.getFlag("tierra-magica", "pendingDamage"));
   if (!request || !game.user?.isGM) return;
   const primary = primaryActiveGm(game.users ?? []); if (!primary || primary.id !== game.user.id) return;
-  const root = html?.[0] ?? html; const card = root?.querySelector?.(".tm-chat-card");
+  const card = html?.querySelector?.(".tm-chat-card");
   if (!card || card.querySelector("[data-tm-approve-damage]")) return;
   const button = document.createElement("button"); button.type = "button"; button.dataset.tmApproveDamage = "true";
   button.textContent = "Aplicar " + request.damage + " daño"; button.title = "Aplicación explícita por el DJ. No concede permisos al jugador atacante.";
@@ -298,11 +298,11 @@ Hooks.on("renderChatMessage", (message, html) => {
   card.append(button);
 });
 
-Hooks.on("renderChatMessage", (message, html) => {
+Hooks.on("renderChatMessageHTML", (message, html) => {
   const request = validatePendingHealingRequest(message.getFlag("tierra-magica", "pendingHealing"));
   if (!request || !game.user?.isGM) return;
   const primary = primaryActiveGm(game.users ?? []); if (!primary || primary.id !== game.user.id) return;
-  const root = html?.[0] ?? html; const card = root?.querySelector?.(".tm-chat-card");
+  const card = html?.querySelector?.(".tm-chat-card");
   if (!card || card.querySelector("[data-tm-approve-healing]")) return;
   const button = document.createElement("button"); button.type = "button"; button.dataset.tmApproveHealing = "true";
   button.textContent = "Aplicar hasta " + request.healing + " Vida"; button.title = "Curación explícita por el DJ, limitada por Vida máxima y límite de lesión.";
