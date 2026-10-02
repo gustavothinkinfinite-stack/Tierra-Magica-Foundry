@@ -2140,7 +2140,53 @@ Como ya no existe oposición activa, la escena puede salir de iniciativa. Si que
 
 **Nueva ronda:** después de que todos hayan actuado, continúa el mismo orden salvo reglas como Retrasar.
 
-## 9. Armas, armaduras y escudos
+## 9. Armas, armaduras, equipo y suministros
+
+Este capítulo explica **qué hace el equipo durante el juego**. Los precios, Disponibilidad y reglas comerciales completas se encuentran en **Economía, disponibilidad y equipo**.
+
+Un objeto sólo concede los beneficios escritos en su entrada. Llevar dos copias del mismo objeto, varias armaduras o varios escudos no multiplica automáticamente sus beneficios.
+
+### Cómo leer un arma
+
+Cada arma puede indicar:
+
+- **Habilidad:** qué Habilidad de armas se utiliza;
+- **Atributo de ataque:** el Atributo habitual de la tirada;
+- **Daño:** base antes de Atributo de daño y mitigación;
+- **Atributo de daño:** sólo se suma cuando la entrada del arma lo posee;
+- **Penetración (Pen):** reduce Protección efectiva;
+- **FUE mínima:** requisito físico cuando corresponde;
+- **Alcance óptimo:** referencia para armas a distancia;
+- **Recarga:** Acciones necesarias antes de volver a disparar cuando se indique;
+- **Propiedades:** etiquetas y reglas particulares.
+
+Un ataque ordinario sigue el procedimiento del capítulo de Combate:
+
+**2d10 + Atributo pertinente + Habilidad de arma + modificadores contra Defensa.**
+
+El daño se calcula después del impacto. Una Habilidad alta no cambia por sí sola el Daño, la Penetración, el número de ataques ni las propiedades físicas del arma.
+
+### Propiedades de armas
+
+Algunas propiedades poseen una función mecánica expresa; otras describen construcción o compatibilidad y sólo producen un efecto cuando otra regla las menciona.
+
+| Propiedad | Uso canónico |
+|---|---|
+| **Ligera** | Arma compatible con Armas Ligeras y con Técnicas que exigen armas Ligeras o compatibles, como Combate Dual. No concede por sí sola un ataque adicional. |
+| **Ocultable** | Puede ocultarse físicamente en situaciones donde un arma mayor no podría. No concede un bono numérico universal a Sigilo o Engaño. |
+| **Ágil** | Describe un arma maniobrable. No concede actualmente un bono universal a ataque, Defensa o Iniciativa. |
+| **Versátil** | Describe un arma utilizable de formas distintas según ficción y Técnica. No posee actualmente un modo alternativo universal de daño. |
+| **Impactante** | Describe la naturaleza del golpe y puede importar para objetos, lesiones o ficción. No añade daño o Derribo automáticamente. |
+| **Alcance** | Cumple requisitos que mencionan arma de Alcance, como Recibir Carga. No añade por sí sola un número universal de espacios de alcance. |
+| **Pesada** | Identifica armamento de gran masa/tamaño y normalmente usa Armas Pesadas. Sus requisitos de FUE, manos y otras propiedades siguen aplicándose. |
+| **2 manos** | Requiere ambas manos disponibles para utilizar el arma normalmente. Un objeto sostenido con dos manos recibe además la protección contra Desarmar definida en Escala y maniobras. |
+| **Potencia N** | Clasifica la potencia física de un arco. No se suma como un +N adicional. El perfil del arma determina si FUE participa en su daño. |
+| **Recarga N** | Después de disparar, requiere N Acciones de Recarga antes del siguiente disparo. Recarga Experta puede reducir ese coste en 1 respetando los mínimos físicos. |
+| **Repetición** | Describe un mecanismo de repetición. El núcleo actual no concede ataques adicionales, cargador infinito ni una capacidad universal de ráfaga por esta etiqueta. |
+
+Cuando una propiedad descriptiva deba producir un modificador numérico concreto, esa regla debe aparecer en el arma, Técnica o subsistema pertinente.
+
+### Armas canónicas
 
 | Arma | Daño | Pen | FUE mín. | Precio | Propiedades principales |
 |---|---:|---:|---:|---:|---|
@@ -2165,7 +2211,25 @@ Como ya no existe oposición activa, la escena puede salir de iniciativa. Si que
 | Pistola repetidora | 6 | 1 | — | 35 o | Repetición |
 | Rifle repetidor | 7 | 2 | — | 45 o | Repetición, 2 manos |
 
-Los arcos pueden añadir FUE al daño cuando el arma y su Potencia lo permiten; ballestas y armas de fuego no lo hacen normalmente.
+Los arcos pueden añadir FUE al daño cuando el perfil del arma lo establece; **Potencia N no es un bono adicional**. Ballestas y armas de fuego no añaden FUE al daño salvo regla expresa.
+
+### Munición y Recarga
+
+Un ataque con un arma que utiliza munición consume normalmente **1 unidad de munición** cuando el disparo se realiza, acierte o falle.
+
+Unidades comerciales canónicas:
+
+- 20 flechas = **2 p**;
+- 20 virotes = **3 p**;
+- 12 disparos ordinarios de arma de fuego = **5 p**.
+
+La compra cubre esa cantidad física real. Dividir el lote divide también su valor proporcional.
+
+No existe un porcentaje universal de recuperación de flechas o virotes después de un combate. Pueden recuperarse unidades intactas cuando la ficción, el lugar y el tiempo de búsqueda lo permitan; un proyectil roto, perdido o inaccesible se pierde.
+
+**Recarga N** consume Acciones, no Movimiento. Pueden repartirse las Acciones de Recarga entre turnos si el arma y la situación siguen bajo control del personaje. Una interrupción no borra automáticamente una Acción de Recarga ya completada, salvo que físicamente deshaga el proceso.
+
+### Armaduras
 
 | Armadura | Prot | FUE mín. | Precio |
 |---|---:|---:|---:|
@@ -2175,9 +2239,13 @@ Los arcos pueden añadir FUE al daño cuando el arma y su Potencia lo permiten; 
 | Armadura pesada | 4 | 2 | 16 o |
 | Placas | 5 | 3 | 40 o |
 
+Sólo se aplica la **Protección relevante más alta** entre capas equivalentes salvo regla expresa. Vestir varias armaduras no suma toda su Protección.
+
 Con FUE un punto por debajo del mínimo, Movimiento -1, Carga Pesada y Desventaja en acciones físicas relevantes. Con dos o más puntos por debajo, la armadura no puede usarse competentemente en combate sin una capacidad específica, aunque su material siga ofreciendo Protección cuando corresponda. Una armadura ruidosa puede causar Desventaja a Sigilo cuando el ruido sea relevante.
 
 **Armadura y magia.** Llevar armadura no provoca fallo mágico, penalización a Canalización o penalización a Ritualismo por sí solo. Tierra Mágica no usa una restricción universal de “mago sin armadura”. Las penalizaciones por no cumplir FUE mínima se aplican a las acciones físicas para las que sean relevantes, no automáticamente a una tirada mágica. Un escudo, arma o armadura sólo dificulta un hechizo si la entrada concreta exige manipular un foco, componente, objeto o movimiento que ese equipo haga imposible.
+
+### Escudos
 
 | Escudo | Defensa pasiva | Bloqueo | FUE mín. | Precio | Propiedades |
 |---|---:|---:|---:|---:|---|
@@ -2185,7 +2253,160 @@ Con FUE un punto por debajo del mínimo, Movimiento -1, Carga Pesada y Desventaj
 | Escudo estándar | +1 frontal | +2 | 0 | 1 o 5 p | Bloqueo mediante Reacción |
 | Escudo pesado | +2 frontal | +2 | 2 | 3 o | Movimiento -1; Bloqueo mediante Reacción |
 
+La Defensa pasiva de escudo sólo se aplica cuando el ataque entra por un frente que el escudo puede cubrir. **Bloqueo** es una Reacción independiente y se usa conforme al capítulo de Combate.
+
+Un personaje no suma la Defensa pasiva de varios escudos a la vez. Se usa el escudo pertinente.
+
 La calidad Defectuosa/Común/Superior/Excepcional describe fabricación y propiedades concretas; no concede un +1/+2/+3 universal.
+
+### Equipo de aventura y herramientas
+
+El equipo ordinario permite realizar tareas que de otro modo serían difíciles o imposibles. Poseer la herramienta apropiada **no concede un bono universal**: habilita el método, satisface un requisito o evita una penalización cuando corresponda.
+
+Precios canónicos de referencia:
+
+| Equipo | Precio | Uso habitual |
+|---|---:|---|
+| Gancho de escalada | 3 p | asegurar cuerda o una ruta de escalada cuando exista punto válido |
+| Palanca | 2 p | aplicar fuerza sobre puertas, tapas, cajas o mecanismos |
+| Pico o pala | 2 p | excavar, romper terreno o trabajo de campaña |
+| Caja pequeña asegurada | 5 p | proteger y transportar objetos pequeños |
+| Catalejo | 1 o | observación a distancia cuando exista línea visual |
+| Estuche impermeable de documentos/mapas | 5 p | proteger papeles y mapas de humedad ordinaria |
+| Materiales de escritura | 2 p | registrar notas, mapas, cuentas o documentos |
+| Repuesto médico, 5 usos | 5 p | reponer consumibles de un Kit Médico |
+
+Un objeto no reemplaza la Habilidad pertinente. Una palanca no convierte automáticamente en posible mover una estructura demasiado pesada; un Kit Médico no sustituye Medicina; un Catalejo no permite ver a través de paredes.
+
+### Kits profesionales
+
+Los Kits reúnen herramientas ordinarias para un campo de trabajo.
+
+| Kit | Precio |
+|---|---:|
+| Artesano | 1 o |
+| Ingeniería de campo | 2 o |
+| Minería | 1 o |
+| Médico | 2 o |
+| Alquimia de campo | 2 o |
+| Infiltración | 1 o |
+| Cartográfico | 1 o |
+| Navegación | 2 o |
+| Campaña | 1 o |
+| Escalada | 1 o |
+| Escribanía | 5 p |
+| Mercantil | 1 o |
+| Académico | 2 o |
+| Instrumental Arcano de campo | 2 o |
+| Mantenimiento de armas de fuego | 1 o |
+
+Un Kit representa **herramientas reutilizables**, no una reserva infinita de consumibles. Si una tarea consume vendas, reactivos, combustible, munición u otro material, ese recurso debe existir por separado.
+
+Cuando un Kit es esencial para una tarea profesional, carecer de él puede volver la acción imposible o exigir un método alternativo, no simplemente imponer siempre un -1 o -2.
+
+### Raciones, provisiones y combustible
+
+**Provisiones 7 días — 2 p** representa siete raciones diarias de comida conservable para **un viajero ordinario** durante condiciones normales.
+
+- una jornada ordinaria consume 1 ración;
+- compartir provisiones divide los días disponibles entre quienes las consumen;
+- no incluye automáticamente agua potable cuando el acceso al agua sea un problema relevante;
+- no incluye alimento especial para criaturas con necesidades extraordinarias;
+- no recupera Vida, Maná ni Fatiga por sí sola.
+
+El núcleo no utiliza una tabla universal de hambre o sed. Quedarse sin alimento o agua importa cuando la escena, viaje o entorno lo convierten en un riesgo: puede exigir Supervivencia, producir Fatiga u otras consecuencias ambientales coherentes. No causa automáticamente una cantidad fija de daño por día.
+
+**Combustible de iluminación 5 noches — 2 p** representa combustible suficiente para cinco noches de uso personal ordinario de una fuente compatible. No equivale a cinco días continuos de funcionamiento industrial.
+
+Una fuente de luz sólo ilumina si existe un objeto compatible —lámpara, farol u otro dispositivo—; comprar combustible no crea ese objeto.
+
+### Consumibles, pociones y fórmulas
+
+Un consumible existe como **cantidad física**. Conocer una Fórmula no crea dosis.
+
+Reglas generales:
+
+- usar una dosis consume esa dosis;
+- si su Activación es Acción, consume la Acción;
+- una dosis no puede utilizarse dos veces;
+- Saturación se aplica cuando la Fórmula indique familia Saturante;
+- un precio **Sin precio establecido** no significa gratis.
+
+Fórmulas de referencia:
+
+| Consumible | Uso |
+|---|---|
+| Bálsamo Restaurador | recupera 4 Vida; no reduce Trauma ni repara Herida Grave |
+| Poción Restauradora | Acción; recupera 4 Vida hasta máximo y límites de lesión |
+| Poción de Recuperación Arcana | Acción; recupera 3 Maná hasta máximo; no elimina Fatiga ni Sobrecarga |
+| Tónico de Vigor | Ventaja en una prueba de VIG por esfuerzo prolongado |
+| Supresor del Dolor | ignora una Desventaja causada por dolor compatible; no cura la lesión |
+| Neutralizante Común | nueva resistencia con Ventaja contra una toxina compatible |
+| Toxina Debilitante | VIG DF14; con fallo, Desventaja en acciones físicas dependientes de fuerza muscular |
+| Bomba Incendiaria | área pequeña; Daño 6, Pen 1; requiere colocación válida |
+
+Sus precios monetarios permanecen **sin establecer** hasta ratificación específica; no se convierten precios históricos por inferencia.
+
+### Dispositivos arcano-industriales
+
+Un dispositivo es equipo físico, no una extensión gratuita del Maná personal.
+
+Para activarlo deben cumplirse:
+
+- Energía disponible suficiente;
+- Consumo <= Energía;
+- Consumo <= Caudal;
+- estado operativo;
+- Acción o Reacción requerida;
+- cualquier requisito propio del dispositivo.
+
+La activación reduce Energía. Un dispositivo no concede Acciones adicionales salvo regla expresa.
+
+Ejemplos: lámparas arcanas, herramientas motorizadas, visor espectral, estabilizador de tiro, cámara de penetración, propulsor de impacto, prótesis motorizadas, escudo de campo, arnés de carga y autómatas auxiliares. Las reglas completas están en **Ingeniería arcano-industrial**.
+
+### Llevar, guardar y acceder al equipo
+
+El núcleo actual **no utiliza una fórmula universal de peso, espacios de inventario o capacidad de carga**.
+
+Se supone que un personaje puede portar un equipo personal razonable para su Escala y FUE. Cuando una carga es evidentemente excesiva:
+
+- puede necesitar transporte, montura, vehículo o ayuda;
+- puede requerir Atletismo si la incertidumbre es significativa;
+- puede ser físicamente imposible;
+- no se resuelve inventando una penalización numérica universal.
+
+La ficción importa también para acceder al equipo. Un arma envainada, una poción dentro de una mochila cerrada o una herramienta guardada no son idénticos a un objeto ya preparado en la mano. Cuando el acceso durante combate sea relevante y ninguna regla específica indique otra cosa, el DJ adjudica el coste a partir de Acción/Movimiento y de la complejidad real de la manipulación, sin crear Acciones gratuitas.
+
+### Comprar y vender equipo
+
+La moneda usa:
+
+- 10 c = 1 p;
+- 10 p = 1 o;
+- 100 c = 1 o.
+
+Precio, Disponibilidad y acceso son independientes. Tener dinero suficiente no garantiza encontrar un objeto Raro, Restringido o Excepcional.
+
+La **venta rápida** utiliza 25% del valor aplicable. La venta directa no tiene una tasa universal; alrededor de 50% es sólo una referencia posible cuando existe comprador.
+
+Durante creación, PEI es presupuesto y **no dinero**. Después de comenzar el juego, el equipo se compra con moneda, fabricación, recompensa u otra fuente física válida.
+
+### Ejemplo de preparación para una expedición
+
+Una exploradora compra:
+
+- arco largo: 2 o;
+- 20 flechas: 2 p;
+- armadura ligera: 1 o 5 p;
+- Kit Cartográfico: 1 o;
+- Kit de Escalada: 1 o;
+- Provisiones para 7 días: 2 p;
+- combustible de iluminación para 5 noches: 2 p;
+- estuche impermeable de mapas: 5 p.
+
+Total: **6 o 6 p**.
+
+Ese equipo no concede bonos ocultos. El arco usa sus estadísticas; la armadura concede Protección 1; los Kits habilitan sus métodos apropiados; las flechas, provisiones y combustible se consumen físicamente cuando se utilizan.
 
 ## 10. Vida, heridas, Trauma y recuperación
 
@@ -3097,6 +3318,8 @@ Los proyectos largos se resuelven por etapas significativas, no mediante una res
 
 ## 19. Economía, disponibilidad y equipo
 
+Las reglas de **uso práctico** de armas, armaduras, escudos, munición, Kits, raciones, consumibles y dispositivos están en el capítulo **9. Armas, armaduras y escudos**. Este capítulo define principalmente precio, Disponibilidad, mercado y adquisición.
+
 ### Moneda canónica
 
 La moneda mecánica de referencia usa **cobre (c), plata (p) y oro (o)**:
@@ -3163,7 +3386,7 @@ El precio no es el único límite. Un objeto o servicio también puede tener **D
 
 Kits: Artesano 1 o; Ingeniería de campo 2 o; Minería 1 o; Médico 2 o; Alquimia de campo 2 o; Infiltración 1 o; Cartográfico 1 o; Navegación 2 o; Campaña 1 o; Escalada 1 o; Escribanía 5 p; Mercantil 1 o; Académico 2 o; Instrumental Arcano de campo 2 o; mantenimiento de armas de fuego 1 o.
 
-Otros: Gancho de escalada 3 p; Palanca 2 p; Pico o pala 2 p; Caja pequeña asegurada 5 p; Catalejo 1 o; Estuche impermeable de documentos/mapas 5 p; Provisiones 7 días 2 p; Combustible de iluminación 5 noches 2 p; Repuesto médico 5 usos 5 p; materiales de escritura 2 p.
+Otros: Gancho de escalada 3 p; Palanca 2 p; Pico o pala 2 p; Caja pequeña asegurada 5 p; Catalejo 1 o; Estuche impermeable de documentos/mapas 5 p; Provisiones personales 7 días (7 raciones) 2 p; Combustible de iluminación personal 5 noches 2 p; Repuesto médico 5 usos 5 p; materiales de escritura 2 p.
 
 Las fórmulas alquímicas y otros bienes cuyo precio anterior estaba expresado en Coronas históricas quedan **sin precio monetario establecido** hasta que su valoración sea ratificada específicamente. No se convierte ese precio legado por inferencia.
 

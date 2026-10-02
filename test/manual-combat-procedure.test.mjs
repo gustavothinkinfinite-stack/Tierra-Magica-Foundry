@@ -7,7 +7,7 @@ const manualUrl=new URL("../docs/Tierra_Magica_Manual_Maestro.md",import.meta.ur
 test("el Manual contiene un procedimiento completo de combate paso a paso",async()=>{
   const manual=await readFile(manualUrl,"utf8");
   const start=manual.indexOf("## 8. Combate");
-  const end=manual.indexOf("## 9. Armas, armaduras y escudos",start);
+  const end=manual.indexOf("## 9. Armas, armaduras, equipo y suministros",start);
   assert.ok(start>=0);
   assert.ok(end>start);
   const combat=manual.slice(start,end);
@@ -45,7 +45,7 @@ test("el Manual contiene un procedimiento completo de combate paso a paso",async
 test("la guía de combate conserva las reacciones y límites esenciales del núcleo",async()=>{
   const manual=await readFile(manualUrl,"utf8");
   const start=manual.indexOf("## 8. Combate");
-  const end=manual.indexOf("## 9. Armas, armaduras y escudos",start);
+  const end=manual.indexOf("## 9. Armas, armaduras, equipo y suministros",start);
   const combat=manual.slice(start,end);
 
   for(const term of [

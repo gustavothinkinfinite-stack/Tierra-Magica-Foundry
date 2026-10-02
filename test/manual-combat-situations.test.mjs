@@ -32,7 +32,7 @@ test("el Manual define las cuatro maniobras universales con consecuencias explí
 
 test("Intimidar en combate presiona sin convertirse en control mental",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const combat=section(manual,"## 8. Combate","## 9. Armas, armaduras y escudos");
+  const combat=section(manual,"## 8. Combate","## 9. Armas, armaduras, equipo y suministros");
 
   assert.match(combat,/### Intimidar o Amenazar en combate/);
   assert.match(combat,/PRE \+ Intimidación contra Defensa Mental/);
@@ -45,7 +45,7 @@ test("Intimidar en combate presiona sin convertirse en control mental",async()=>
 
 test("armadura y cuerpo a cuerpo no crean penalizaciones mágicas importadas de otros sistemas",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const armor=section(manual,"## 9. Armas, armaduras y escudos","## 10. Vida, heridas, Trauma y recuperación");
+  const armor=section(manual,"## 9. Armas, armaduras, equipo y suministros","## 10. Vida, heridas, Trauma y recuperación");
   const magic=section(manual,"## 11. Magia","## 12. Grimorio canónico");
 
   assert.match(armor,/Llevar armadura no provoca fallo mágico/i);
