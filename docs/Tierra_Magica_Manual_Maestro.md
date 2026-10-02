@@ -4261,8 +4261,8 @@ La receta cubre exactamente la Unidad Comercial vigente.
 
 | Munición | Unidad | Comp. | Principal | Inst. | Tiempo | Notas |
 |---|---:|---|---|---|---:|---|
-| Flechas | 20 | Simple | Artesanía Aprendiz · Carpintería | Improvisada | 2 h | incluye puntas ordinarias dentro del CM |
-| Virotes | 20 | Simple | Artesanía Aprendiz · Carpintería o Forja y metal | Improvisada | 2 h | diseño compatible con ballesta |
+| Flechas | 20 | Simple | Artesanía Aprendiz | Improvisada | 2 h | método ordinario; Carpintería puede ser pertinente sin ser requisito |
+| Virotes | 20 | Simple | Artesanía Aprendiz | Improvisada | 2 h | diseño compatible con ballesta; Carpintería/Forja pueden ser pertinentes sin ser requisito |
 | Disparos ordinarios de arma de fuego | 12 | Estándar | Artesanía Entrenada · Forja y metal | Adecuada | 2 h | requiere propelente compatible ya disponible |
 
 Fabricar el **propelente** o una carga alquímica especial no forma parte de esta receta y puede requerir Alquimia. La receta de munición sólo ensambla componentes seguros y conocidos.
@@ -4299,8 +4299,8 @@ Fabricar un escudo no modifica sus reglas de frente, Defensa pasiva o Bloqueo.
 
 | Objeto | Comp. | Principal | Auxiliar | Inst. | Plano | Tiempo |
 |---|---|---|---|---|---|---:|
-| Gancho de escalada | Simple | Artesanía Aprendiz · Forja y metal | — | Improvisada | Oficio | 2 h |
-| Palanca | Simple | Artesanía Aprendiz · Forja y metal | — | Improvisada | Oficio | 2 h |
+| Gancho de escalada | Simple | Artesanía Aprendiz | — | Improvisada | Oficio | 2 h |
+| Palanca | Simple | Artesanía Aprendiz | — | Improvisada | Oficio | 2 h |
 | Pico o pala | Estándar | Artesanía Entrenada · Forja y metal | — | Adecuada | Oficio | 4 h |
 | Caja pequeña asegurada | Estándar | Artesanía Entrenada · Carpintería | Latrocinio Aprendiz si fabrica también el cierre | Adecuada | Oficio | 6 h |
 | Catalejo | Complejo | Artesanía Experta · Vidrio y cristal | Ingeniería Aprendiz | Profesional | Estable | 3 Jornadas |
@@ -4326,9 +4326,9 @@ Un Kit profesional representa un **conjunto funcional de herramientas reutilizab
 | Infiltración | Estándar | Artesanía Entrenada · Forja y metal | Latrocinio Aprendiz | Adecuada | 1 Jornada |
 | Cartográfico | Estándar | Artesanía Entrenada · Carpintería o Vidrio y cristal | Supervivencia o Investigación Aprendiz | Adecuada | 1 Jornada |
 | Navegación | Estándar | Artesanía Entrenada · Vidrio y cristal o Forja y metal | Pilotaje Aprendiz | Adecuada | 2 Jornadas |
-| Campaña | Simple | Artesanía Aprendiz · especialización coherente | — | Improvisada | 4 h |
+| Campaña | Simple | Artesanía Aprendiz | — | Improvisada | 4 h |
 | Escalada | Estándar | Artesanía Entrenada · Forja y metal o Cuero y textiles | Atletismo Aprendiz | Adecuada | 1 Jornada |
-| Escribanía | Simple | Artesanía Aprendiz · especialización coherente | — | Improvisada | 4 h |
+| Escribanía | Simple | Artesanía Aprendiz | — | Improvisada | 4 h |
 | Mercantil | Estándar | Artesanía Entrenada · especialización coherente | Investigación Aprendiz | Adecuada | 1 Jornada |
 | Académico | Estándar | Artesanía Entrenada · especialización coherente | Investigación Aprendiz | Adecuada | 2 Jornadas |
 | Instrumental Arcano de campo | Complejo | Artesanía Experta · Vidrio y cristal | Arcana Entrenada | Profesional | 3 Jornadas |
