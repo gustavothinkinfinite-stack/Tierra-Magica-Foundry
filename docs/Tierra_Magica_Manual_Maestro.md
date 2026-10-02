@@ -5586,12 +5586,12 @@ Un perfil futuro puede definir una modificación específica de trampa; no se ex
 CRAFT-06 no define todavía:
 
 - runas, Piedras de Impronta y engarces (definidos en CRAFT-07);
-- encantamientos persistentes;
-- sensores o disparadores mágicos;
-- torretas automáticas, alimentación mecánica continua o dispositivos avanzados;
-- precios alquímicos todavía no ratificados;
+- encantamientos persistentes (definidos posteriormente en CRAFT-08);
+- sensores o disparadores mágicos (limitados posteriormente por CRAFT-08/09);
+- torretas automáticas, alimentación mecánica continua o dispositivos avanzados (requieren Perfil específico conforme a CRAFT-09/10);
+- precios alquímicos (ratificados posteriormente en CRAFT-11);
 - ingeniería civil completa con HP estructural universal;
-- investigación de nuevos mecanismos fuera del catálogo.
+- investigación de nuevos mecanismos fuera del catálogo (definida posteriormente en CRAFT-10).
 
 CRAFT-07 se desarrolla a continuación.
 
@@ -8755,7 +8755,7 @@ Kits: Artesano 1 o; Ingeniería de campo 2 o; Minería 1 o; Médico 2 o; Alquimi
 
 Otros: Gancho de escalada 3 p; Palanca 2 p; Pico o pala 2 p; Caja pequeña asegurada 5 p; Catalejo 1 o; Estuche impermeable de documentos/mapas 5 p; Provisiones personales 7 días (7 raciones) 2 p; Combustible de iluminación personal 5 noches 2 p; Repuesto médico 5 usos 5 p; materiales de escritura 2 p.
 
-Las fórmulas alquímicas y otros bienes cuyo precio anterior estaba expresado en Coronas históricas quedan **sin precio monetario establecido** hasta que su valoración sea ratificada específicamente. No se convierte ese precio legado por inferencia.
+Las ocho Fórmulas alquímicas vigentes poseen precio monetario ratificado en **CRAFT-11 — Catálogo de proyectos y recetas de referencia**. Otros bienes cuyo único precio histórico estuviera expresado en Coronas permanecen **sin precio monetario establecido** hasta una ratificación específica; no se convierte ese precio legado por inferencia.
 
 ### Compra, venta y fabricación
 
