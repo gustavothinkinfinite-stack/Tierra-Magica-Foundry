@@ -2,6 +2,7 @@ import { TM_CONFIG } from "../config.mjs";
 import { formatCurrency } from "../rules/currency.mjs";
 
 const ItemSheetV1 = foundry.appv1.sheets.ItemSheet;
+const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
 const PHYSICAL_TYPES = new Set(["weapon", "armor", "shield", "equipment", "formula", "device"]);
 
 function requirementLeaves(requirements) {
@@ -85,7 +86,7 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
         : "Sin adquisición estructurada"
       : "Catálogo / mundo: todavía no adquirido";
 
-    context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description ?? "", {
+    context.enrichedDescription = await TextEditorImpl.enrichHTML(this.item.system.description ?? "", {
       async: true, secrets: this.item.isOwner, relativeTo: this.item
     });
     return context;
