@@ -841,15 +841,117 @@ Las bandas narrativas de distancia son Contacto, Cerca, Media, Lejos y Extrema. 
 
 Las categorías de Escala son **Diminuta, Pequeña, Mediana, Grande, Enorme y Colosal**. No conceden bonos genéricos a ataque, Defensa o daño. Como referencia espacial: Diminuta ocupa menos de un espacio; Pequeña y Mediana uno; Grande 2x2; Enorme 3x3; Colosal 4x4 o más.
 
-Una diferencia de una categoría puede permitir interacción física directa según la ficción. Con dos categorías de diferencia, la criatura menor normalmente no puede imponer fuerza corporal directa a la mayor sin palanca, posición o capacidad apropiada. Con tres o más, la fuerza corporal convencional suele ser insuficiente.
+Una diferencia de una categoría permite normalmente interacción física directa, aunque puede reducir cuánto puede desplazarse o controlar al objetivo. Con dos categorías de diferencia, la criatura menor normalmente no puede imponer fuerza corporal directa a la mayor sin palanca, posición, Potencia Sobrenatural o capacidad apropiada. Con tres o más, la fuerza corporal convencional suele ser insuficiente.
 
-La **Defensa de Maniobra** es 11 + AGI + Bono Defensivo aplicable. Derribar, Empujar y Agarrar inicialmente se resuelven contra ella.
+La **Defensa de Maniobra** es:
 
-Una Presa establecida tiene una **DF de Presa = 11 + FUE del atacante + bono reducido de Atletismo**. El bono reducido es 0 para Sin Entrenar/Aprendiz, 1 Entrenado, 2 Experto, 3 Maestro y 4 Gran Maestro; Presa Entrenada, si una capacidad la concede, añade +1. Escapar requiere una Acción y una prueba apropiada, normalmente FUE + Atletismo o AGI + Acrobacia, contra la DF de Presa.
+**11 + AGI + Bono Defensivo aplicable.**
 
-Una criatura Agarrada tiene Movimiento 0 para alejarse del agarre. Puede realizar acciones físicamente plausibles, pero las que requieran libertad corporal pueden sufrir Desventaja o resultar imposibles. Una criatura de la misma Escala puede desplazar a una víctima agarrada aproximadamente a la mitad de su Movimiento cuando anatomía, fuerza y posición lo permiten.
+Derribar, Empujar, Agarrar y Desarmar son **Acciones universales**. No requieren una Técnica para intentarse, aunque una Técnica o capacidad puede mejorarlas.
+
+El atacante usa el Atributo y Habilidad que correspondan al método declarado. Como referencia:
+
+- fuerza bruta, agarre o empuje: **FUE + Atletismo**;
+- barrido, zancadilla o control corporal preciso: **AGI + Acrobacia** cuando la ficción lo justifique;
+- Desarmar con el arma propia: **FUE o AGI + Habilidad de arma pertinente**;
+- otra combinación sólo cuando el método la sostenga claramente.
+
+### Derribar
+
+Procedimiento:
+
+1. gasta la Acción;
+2. declara cómo intentas derribar al objetivo;
+3. tira contra su Defensa de Maniobra;
+4. con éxito, el objetivo queda **Derribado**.
+
+Una criatura Derribada:
+
+- puede levantarse gastando normalmente **2 puntos de Movimiento**;
+- mientras permanezca en el suelo, desplazarse cuesta **2 puntos de Movimiento por espacio**;
+- no puede Correr mientras siga Derribada;
+- sufre Desventaja en pruebas físicas que requieran apoyo, carrera o postura estable;
+- no pierde automáticamente su Defensa ni concede Ventaja universal a todos los ataques.
+
+Una criatura no puede acumular varias instancias de Derribado.
+
+### Empujar
+
+Empujar usa normalmente **FUE + Atletismo contra Defensa de Maniobra**.
+
+Si tiene éxito:
+
+- margen Ajustado 0–4: desplaza **1 espacio**;
+- margen Claro 5–9: desplaza **2 espacios**;
+- margen Dominante 10+: desplaza **3 espacios**.
+
+El desplazamiento debe ser físicamente coherente y alejar al objetivo del punto de fuerza.
+
+Escala:
+
+- objetivo de Escala igual o menor: distancia completa;
+- objetivo una categoría mayor: la distancia se reduce en 1 espacio, mínimo 1 si la maniobra tuvo éxito;
+- objetivo dos o más categorías mayor: no puede ser desplazado por fuerza corporal ordinaria sin palanca o capacidad apropiada.
+
+Si un obstáculo sólido impide completar el desplazamiento, el objetivo se detiene; no recibe daño adicional automáticamente. Si el desplazamiento lo lleva fuera de una superficie válida, comienza una caída y se aplican las reglas de Caídas.
+
+### Agarrar
+
+Agarrar usa normalmente **FUE + Atletismo contra Defensa de Maniobra**.
+
+Con éxito, el objetivo queda **Agarrado** y se establece:
+
+**DF de Presa = 11 + FUE del atacante + bono reducido de Atletismo.**
+
+Bono reducido de Atletismo:
+
+- Sin Entrenar / Aprendiz: 0;
+- Entrenado: 1;
+- Experto: 2;
+- Maestro: 3;
+- Gran Maestro: 4;
+- Presa Entrenada, cuando una capacidad la concede: +1 adicional.
+
+Mientras mantiene la Presa:
+
+- el objetivo tiene Movimiento 0 para alejarse del agarre;
+- puede realizar acciones físicamente plausibles;
+- una acción que necesite libertad corporal real puede sufrir Desventaja o ser imposible;
+- el atacante ocupa al menos una extremidad apropiada para mantener el agarre;
+- mantener una Presa no consume una Acción nueva cada turno;
+- el atacante puede soltarla voluntariamente sin gastar Acción;
+- si el atacante queda Incapacitado, pierde el alcance o ya no puede mantener físicamente la Presa, ésta termina.
+
+Una criatura de la misma Escala o menor puede ser desplazada por quien la agarra aproximadamente a **la mitad del Movimiento** del atacante cuando anatomía, fuerza y posición lo permiten. Contra una criatura mayor se aplican los límites de Escala.
+
+Escapar requiere una Acción y una prueba apropiada, normalmente **FUE + Atletismo** o **AGI + Acrobacia**, contra la DF de Presa.
+
+### Desarmar
+
+Desarmar es una Acción contra **Defensa de Maniobra**.
+
+El método habitual es FUE o AGI + una Habilidad de arma pertinente; Atletismo también puede servir cuando se trata de arrancar, retorcer o separar físicamente un objeto.
+
+Modificadores y límites:
+
+- un objeto sostenido con dos manos concede **+2 Defensa de Maniobra** sólo contra Desarmar;
+- un objeto asegurado con correas, bloqueo, cadena, montaje o mecanismo que impida soltarlo no puede retirarse mediante un Desarmar ordinario;
+- armas naturales, miembros corporales y objetos integrados no son objetivos de Desarmar;
+- la maniobra no causa daño por sí sola.
+
+Resultados:
+
+- éxito Ajustado: el objeto cae en el espacio del objetivo o en el lugar válido más cercano;
+- éxito Claro: quien desarma puede hacer que caiga en un espacio adyacente válido dentro de su alcance;
+- éxito Dominante: si tiene una mano libre y la ficción lo permite, puede **apoderarse del objeto** en lugar de dejarlo caer.
+
+Recoger del suelo un objeto accesible dentro del propio alcance cuesta normalmente **2 puntos de Movimiento**. Si el objeto está bajo control físico de otra criatura, detrás de un obstáculo o en un espacio inaccesible, recuperarlo puede requerir otra Acción o ser imposible.
+
+### Potencia Sobrenatural y maniobras
 
 **Potencia Sobrenatural** no cambia la Escala real: permite interactuar físicamente como una categoría mayor. No aumenta FUE, tamaño, alcance, Defensa, armas ni resistencias y no se acumula con equivalentes.
+
+Para Derribar, Empujar o Agarrar puede reducir en una categoría la diferencia funcional de Escala cuando el efecto sea compatible. No convierte automáticamente en posible una maniobra contra algo anclado, inmóvil o anatómicamente imposible.
 
 ## 8. Combate
 
@@ -931,7 +1033,9 @@ La Acción representa la intervención principal del turno. Las opciones más fr
 |---|---|
 | **Atacar con un arma** | Realiza un ataque contra un objetivo válido. |
 | **Derribar, Empujar o Agarrar** | Maniobra física contra Defensa de Maniobra cuando corresponda. |
+| **Desarmar** | Maniobra contra Defensa de Maniobra para hacer soltar un objeto; un agarre a dos manos concede +2 contra esta maniobra. |
 | **Escapar de una Presa** | FUE + Atletismo o AGI + Acrobacia contra la DF de Presa, salvo otro método válido. |
+| **Intimidar / Amenazar** | Acción social bajo presión: normalmente PRE + Intimidación contra Defensa Mental cuando el objetivo resiste. |
 | **Lanzar un hechizo Directo** | La mayoría de los hechizos de combate usan la Acción salvo que indiquen Reacción, ritual u otra activación. |
 | **Guardia** | +2 Defensa hasta el inicio del siguiente turno propio y conserva la Reacción. |
 | **Preparar** | Declara una respuesta y un disparador observable; la respuesta se resuelve más tarde con la Reacción. |
@@ -1047,26 +1151,48 @@ Retrasar no crea una Acción guardada.
 
 La criatura desplaza su turno a un momento posterior de la ronda. A partir de entonces conserva esa nueva posición de iniciativa. Nunca obtiene dos turnos en la misma ronda por Retrasar.
 
-### Maniobras: Derribar, Empujar y Agarrar
+### Maniobras: Derribar, Empujar, Agarrar y Desarmar
 
-Las maniobras físicas iniciales se resuelven normalmente contra **Defensa de Maniobra**.
+Las reglas completas están en **Escala y maniobras**. En combate todas consumen la Acción y se resuelven antes de aplicar su consecuencia.
 
-La Escala importa: una diferencia de una categoría puede permitir interacción directa; con dos categorías de diferencia la criatura menor normalmente necesita palanca, posición o una capacidad apropiada, y con tres o más la fuerza corporal convencional suele ser insuficiente.
+Resumen:
 
-Una vez establecida una Presa:
+| Maniobra | Tirada habitual | Éxito |
+|---|---|---|
+| Derribar | FUE + Atletismo o AGI + Acrobacia vs Defensa de Maniobra | objetivo Derribado |
+| Empujar | FUE + Atletismo vs Defensa de Maniobra | 1/2/3 espacios según margen, limitado por Escala |
+| Agarrar | FUE + Atletismo vs Defensa de Maniobra | objetivo Agarrado y se establece DF de Presa |
+| Desarmar | FUE/AGI + Habilidad de arma o Atletismo vs Defensa de Maniobra | el objeto cae, puede desplazarse o ser tomado según margen |
 
-**DF de Presa = 11 + FUE del atacante + bono reducido de Atletismo.**
+Una maniobra no causa daño salvo que una regla, el entorno o una capacidad lo indique expresamente.
 
-Bono reducido de Atletismo:
+### Intimidar o Amenazar en combate
 
-- Sin Entrenar / Aprendiz: 0;
-- Entrenado: 1;
-- Experto: 2;
-- Maestro: 3;
-- Gran Maestro: 4;
-- Presa Entrenada, cuando una capacidad la concede: +1 adicional.
+**Amenazar** describe la intención. **Intimidación** es la Habilidad usada para imponer presión mediante miedo, coerción o una consecuencia creíble.
 
-Escapar requiere una Acción y una prueba apropiada, normalmente FUE + Atletismo o AGI + Acrobacia, contra esa DF.
+En combate consume la **Acción**.
+
+Procedimiento:
+
+1. declara una amenaza concreta que el objetivo pueda percibir y comprender;
+2. si existe resistencia real, tira normalmente **PRE + Intimidación contra Defensa Mental**;
+3. otro Atributo puede sustituir PRE si el método lo justifica claramente —por ejemplo FUE para una demostración física inmediata—, pero sigue siendo una sola prueba de Intimidación;
+4. con éxito, hasta el final del siguiente turno del objetivo, **la próxima prueba hostil que realice directamente contra quien lo intimidó sufre Desventaja**;
+5. una vez aplicada esa Desventaja, el efecto termina.
+
+Intimidar no:
+
+- elimina la Acción del objetivo;
+- obliga a huir;
+- obliga a rendirse;
+- fuerza una traición, suicidio o revelación de secretos;
+- convierte una amenaza absurda o imposible en creíble.
+
+Si el objetivo no puede percibir la amenaza, no comprende su significado o no tiene motivo posible para temer la consecuencia, la prueba puede ser imposible.
+
+Una criatura que ya fue afectada o resistió una amenaza concreta no puede ser sometida una y otra vez a la misma amenaza durante la misma Escena sin un cambio material de circunstancias.
+
+Fuera del combate, Intimidación usa los mismos principios, pero el éxito produce consecuencias sociales coherentes con la amenaza y la situación en vez de una penalización táctica obligatoria.
 
 ### Técnicas ofensivas y defensivas frecuentes
 
@@ -1281,6 +1407,8 @@ Los arcos pueden añadir FUE al daño cuando el arma y su Potencia lo permiten; 
 
 Con FUE un punto por debajo del mínimo, Movimiento -1, Carga Pesada y Desventaja en acciones físicas relevantes. Con dos o más puntos por debajo, la armadura no puede usarse competentemente en combate sin una capacidad específica, aunque su material siga ofreciendo Protección cuando corresponda. Una armadura ruidosa puede causar Desventaja a Sigilo cuando el ruido sea relevante.
 
+**Armadura y magia.** Llevar armadura no provoca fallo mágico, penalización a Canalización o penalización a Ritualismo por sí solo. Tierra Mágica no usa una restricción universal de “mago sin armadura”. Las penalizaciones por no cumplir FUE mínima se aplican a las acciones físicas para las que sean relevantes, no automáticamente a una tirada mágica. Un escudo, arma o armadura sólo dificulta un hechizo si la entrada concreta exige manipular un foco, componente, objeto o movimiento que ese equipo haga imposible.
+
 | Escudo | Defensa pasiva | Bloqueo | FUE mín. | Precio | Propiedades |
 |---|---:|---:|---:|---:|---|
 | Broquel | +1 frontal | — | 0 | 5 p | Sin Bloqueo especial |
@@ -1294,6 +1422,56 @@ La calidad Defectuosa/Común/Superior/Excepcional describe fabricación y propie
 La Vida máxima es 10 + 2xVIG. Llegar a 0 Vida causa **Incapacitado**, no muerte automática. Para un personaje orgánico, la primera caída pertinente desde Vida positiva a 0 mientras tiene Trauma 0 eleva Trauma a 1. Golpear repetidamente a una criatura ya en 0 no incrementa Trauma de manera automática. Una lesión deliberadamente grave, una ejecución o una fuerza devastadora pueden producir consecuencias mayores según la ficción.
 
 El **umbral de Daño Grave = 5 + VIG**, exactamente la mitad de la Vida máxima ordinaria. Es una señal para evaluar una lesión, no una orden de crearla automáticamente.
+
+### Caídas
+
+Una caída ordinaria de **1 espacio o menos** no causa daño por sí sola salvo que la superficie sea especialmente peligrosa.
+
+A partir de 2 espacios:
+
+**Daño de caída = 2 × (espacios efectivos de caída - 1).**
+
+Ejemplos antes de mitigaciones especiales:
+
+| Caída | Daño |
+|---:|---:|
+| 1 espacio | 0 |
+| 2 espacios | 2 |
+| 3 espacios | 4 |
+| 4 espacios | 6 |
+| 6 espacios | 10 |
+| 8 espacios | 14 |
+| 12 espacios | 22 |
+
+#### Caída controlada
+
+Una criatura consciente, capaz de reaccionar y con espacio corporal suficiente puede intentar amortiguar la caída con **AGI + Acrobacia**.
+
+La DF es:
+
+**DF = min(24, 10 + 2 × max(0, espacios de caída - 2)).**
+
+Si tiene éxito, reduce los espacios efectivos antes de calcular daño:
+
+- éxito Ajustado: -1 espacio;
+- éxito Claro: -2 espacios;
+- éxito Dominante: -3 espacios.
+
+Una caída voluntaria o un salto preparado también puede usar esta regla si existe una forma razonable de aterrizar. Estar Agarrado, inmovilizado, Colapsado o caer de forma totalmente inesperada puede impedir la prueba.
+
+#### Superficie y Protección
+
+Una superficie especialmente favorable —red, nieve profunda, acolchado, vegetación densa u otra amortiguación real— puede reducir normalmente entre 1 y 3 espacios efectivos. Una superficie peligrosa puede añadir una consecuencia separada.
+
+El agua **no elimina automáticamente** el daño de una caída desde gran altura.
+
+La Protección de una armadura ordinaria **no reduce el daño de caída**. Sólo una fuente que proteja de manera pertinente contra impactos, fuerza cinética, caídas o daño físico amplio puede reducirlo cuando su descripción sea compatible.
+
+Después de aplicar el daño:
+
+- se compara normalmente con el umbral de Daño Grave;
+- una lesión compatible puede producir una Herida Grave;
+- llegar a 0 Vida causa Incapacitado y aplica Trauma según las reglas ordinarias.
 
 ### Trauma
 
@@ -1373,6 +1551,27 @@ Un hechizo que indique **Reacción** consume la Reacción en lugar de la Acción
 Un hechizo de Método **Ritual** conserva el procedimiento y Tiempo de Ritualismo. No se comprime en una Acción de combate salvo que una regla lo diga expresamente.
 
 Lanzar un hechizo válido y fallar su tirada **consume igualmente la Acción o Reacción utilizada y el Maná pagado**. Una declaración inválida que no supera las comprobaciones previas de objetivo, competencia o requisitos no inicia el lanzamiento y no debe consumir recursos.
+
+### Magia bajo presión: cuerpo a cuerpo, Presas, armadura y daño
+
+**Estar frente a frente con un enemigo no penaliza el lanzamiento por sí solo.** Lanzar un hechizo Directo estando adyacente o en alcance cuerpo a cuerpo:
+
+- no provoca un Ataque de Oportunidad universal;
+- no impone Desventaja automática;
+- no permite Parada contra el hechizo salvo que una regla diga que ese efecto es parable;
+- sigue permitiendo Reacciones mágicas o defensivas que tengan un disparador válido.
+
+Tierra Mágica tampoco posee componentes verbales, somáticos o de mano libre **universales**. Un personaje puede Canalizar llevando arma, escudo o armadura salvo que el hechizo, Ritual, foco, dispositivo o situación exija expresamente una manipulación incompatible.
+
+**Agarrado.** Estar Agarrado no impide automáticamente lanzar magia. El personaje conserva Movimiento 0 para alejarse de la Presa y se aplican las restricciones físicas normales de Agarrado. Si un hechizo exige una manipulación concreta que la Presa hace difícil, puede sufrir Desventaja; si la Presa la vuelve físicamente imposible, el lanzamiento es inválido. La mera existencia de una Presa no añade una penalización mágica universal.
+
+**Armadura.** Llevar armadura, incluso pesada, no produce fallo arcano ni penalización mágica automática. No cumplir la FUE mínima de la armadura afecta las acciones físicas pertinentes, no Canalización o Ritualismo por sí solos.
+
+**Recibir daño.** Recibir daño no exige una tirada universal de “concentración” y no rompe automáticamente un Sostenimiento. Un efecto Sostenido termina por sus reglas normales: duración, abandono, reemplazo, límite de Sostenimiento o una condición que lo haga imposible.
+
+**Incapacitado o Inconsciente.** Una criatura Incapacitada o Inconsciente no puede mantener efectos Sostenidos demandantes. Al entrar en uno de esos estados, sus Sostenimientos demandantes terminan inmediatamente y no reaparecen al recuperarse; deben lanzarse de nuevo.
+
+Si una Reacción o interrupción válida deja al lanzador Incapacitado **antes de que el hechizo Directo termine de resolverse**, el hechizo no produce su efecto; los costes ya comprometidos permanecen gastados.
 
 ### Lanzar un hechizo Directo, paso a paso
 
