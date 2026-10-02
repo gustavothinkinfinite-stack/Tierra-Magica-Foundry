@@ -39,6 +39,12 @@ installReactionEconomyGuards(TierraMagicaActor);
 installCurrencyRules(TierraMagicaActor);
 installResourceReconciliationHooks(Hooks);
 
+function forcedDeletion() {
+  const ForcedDeletion = globalThis.foundry?.data?.operators?.ForcedDeletion;
+  if (typeof ForcedDeletion !== "function") throw new Error("Foundry ForcedDeletion no está disponible.");
+  return new ForcedDeletion();
+}
+
 Hooks.once("init", async () => {
   console.info("Foundry T.M. | Iniciando Tierra Mágica v1.1.1");
   CONFIG.TM = TM_CONFIG;
@@ -203,8 +209,8 @@ async function retireLegacyMechanicalFields() {
   if (!game.user.isGM) return 0; let repaired = 0;
   for (const actor of game.actors) {
     const source = actor.toObject().system ?? {}; const updates = {};
-    if (Object.prototype.hasOwnProperty.call(source.recovery ?? {}, "zeroTraumaApplied")) updates["system.recovery.-=zeroTraumaApplied"] = null;
-    if (actor.type === "familiar") for (const key of ["sharedSenses", "enhancedCommunication", "remoteOrigin"]) if (Object.prototype.hasOwnProperty.call(source.familiar ?? {}, key)) updates["system.familiar.-=" + key] = null;
+    if (Object.prototype.hasOwnProperty.call(source.recovery ?? {}, "zeroTraumaApplied")) updates["system.recovery.zeroTraumaApplied"] = forcedDeletion();
+    if (actor.type === "familiar") for (const key of ["sharedSenses", "enhancedCommunication", "remoteOrigin"]) if (Object.prototype.hasOwnProperty.call(source.familiar ?? {}, key)) updates["system.familiar." + key] = forcedDeletion();
     if (!Object.keys(updates).length) continue; await actor.update(updates); repaired += 1;
   }
   return repaired;
