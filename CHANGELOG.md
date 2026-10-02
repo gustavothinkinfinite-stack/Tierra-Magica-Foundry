@@ -1,3 +1,13 @@
+## En desarrollo — guía práctica de Habilidades
+
+- El Manual Maestro explica operativamente las **26 Habilidades** canónicas.
+- Cada Habilidad define Atributo sugerido, usos frecuentes, límites, oposición y fronteras con competencias vecinas.
+- Se aclara cuándo tirar, qué puede intentar alguien Sin Entrenar, cómo elegir Atributo y qué significan Ajustado/Claro/Dominante en una prueba de Habilidad.
+- Las Especializaciones siguen sin bono numérico universal.
+- Persuasión, Engaño e Intimidación preservan agencia y no funcionan como control mental.
+- Se fijan fronteras Investigación/Supervivencia/Naturaleza, Empatía/Engaño, Ingeniería/Artesanía, Alquimia/Medicina, Arcana/Canalización/Ritualismo y Manejo/Pilotaje.
+- Se añade regresión que compara el Manual contra las 26 definiciones de `TM_CONFIG.skills`.
+
 ## En desarrollo — situaciones y maniobras de combate
 
 - Cierra Derribar, Empujar, Agarrar y Desarmar como maniobras universales contra Defensa de Maniobra.

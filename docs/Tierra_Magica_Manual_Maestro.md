@@ -292,6 +292,8 @@ A nivel 1 puede existir como máximo una Habilidad Experta y ninguna Maestro o G
 | Manejo | Monturas, vehículos terrestres y maquinaria móvil de control inmediato. | Monturas; Vehículos terrestres; Maquinaria móvil |
 | Pilotaje | Transporte complejo dependiente de instrumental, trayectoria o infraestructura. | Dirigibles; Embarcaciones; Vehículos ferroviarios |
 
+La **guía práctica de cada Habilidad**, con Atributos habituales, usos, oposición, límites y ejemplos de frontera entre competencias, se encuentra en el capítulo **4. Desarrollo y subida de nivel**, apartado **Cómo se usan las Habilidades**.
+
 
 #### Especializaciones
 
@@ -640,6 +642,773 @@ Puertas de nivel:
 - niveles 15–20: puede alcanzarse Gran Maestro.
 
 Una Habilidad Gran Maestro requiere al menos una Especialización coherente cuando esa Habilidad disponga de Especializaciones en su catálogo. Canalización y Ritualismo carecen de Especializaciones básicas y están exentas sólo de ese requisito.
+
+### Cómo se usan las Habilidades
+
+Una Habilidad no es una lista cerrada de botones. Representa entrenamiento en un campo y se combina con el Atributo que describa **cómo** se intenta la acción.
+
+La estructura normal es:
+
+**2d10 + Atributo pertinente + Habilidad + modificadores >= DF**
+
+o una prueba enfrentada cuando dos actores compiten directamente y no existe una Defensa pasiva apropiada.
+
+#### Cuándo tirar
+
+Se tira sólo cuando existen simultáneamente:
+
+- una acción posible;
+- incertidumbre real;
+- una consecuencia relevante por éxito o fallo.
+
+No se tira para tareas rutinarias que una persona suficientemente competente pueda completar con tiempo, herramientas y condiciones adecuadas.
+
+Tampoco se tira para volver posible una acción que la ficción, la anatomía, el equipo o la falta absoluta de información hacen imposible.
+
+#### Sin Entrenar
+
+**Sin Entrenar** significa rango 0 y bono +0, no incapacidad universal.
+
+Una criatura Sin Entrenar puede intentar usos ordinarios de una Habilidad cuando cualquier persona razonablemente podría intentarlos. Sin embargo, una tarea puede exigir Entrenado o un rango superior cuando:
+
+- una regla lo especifica;
+- utiliza conocimiento profesional especializado;
+- exige una licencia, procedimiento, lenguaje técnico o método que el personaje no conoce;
+- el intento sería físicamente posible pero no inteligible sin formación previa.
+
+No se reemplaza una carencia de formación con una tirada extremadamente alta. Una tirada no concede conocimiento que el personaje no posee.
+
+#### Elegir Atributo
+
+Cada Habilidad tiene un Atributo **sugerido**, que cubre su uso más habitual. No es obligatorio en todos los casos.
+
+Ejemplos:
+
+- FUE + Atletismo para forzar una compuerta;
+- VIG + Atletismo para sostener una marcha agotadora;
+- PER + Supervivencia para seguir huellas;
+- INT + Supervivencia para planificar una ruta con mapas;
+- PER + Medicina para detectar síntomas;
+- INT + Medicina para diagnosticar su causa;
+- PRE + Intimidación para amenazar verbalmente;
+- FUE + Intimidación para una demostración física inmediata y creíble.
+
+El método se declara antes de tirar. No se cambia de Atributo después de ver un mal resultado.
+
+#### Grados de resultado
+
+Cuando importe la calidad del éxito:
+
+- **Ajustado, margen 0–4:** consigue el objetivo principal;
+- **Claro, margen 5–9:** consigue el objetivo con una ventaja de calidad, tiempo, precisión o información que ya estaba disponible en la situación;
+- **Dominante, margen 10+:** obtiene el mejor resultado razonable que esa acción podía producir.
+
+Estos grados no crean capacidades nuevas, información inexistente, daño gratuito ni efectos que pertenecen a otra regla.
+
+#### Herramientas y tiempo
+
+Una Habilidad no sustituye herramientas, materiales, acceso o tiempo.
+
+Una cerradura puede requerir ganzúas; una cirugía necesita instrumental; fabricar una pieza requiere material; analizar un archivo exige acceso al archivo. La ausencia de algo esencial puede hacer la acción imposible en vez de imponer simplemente una DF mayor.
+
+#### Especializaciones
+
+Una Especialización representa dominio focalizado dentro de una Habilidad.
+
+Por sí sola **no concede un bono numérico universal**. Puede:
+
+- satisfacer un requisito que mencione esa Especialización;
+- establecer que el personaje posee experiencia concreta;
+- permitir tratar como rutinaria una tarea que sería incierta para alguien sin ese foco, cuando la ficción lo justifique;
+- recibir un modificador sólo cuando otra regla, objeto o efecto lo conceda expresamente.
+
+No se suma automáticamente +1, Ventaja ni un segundo bono por poseerla.
+
+#### Habilidades sociales y agencia
+
+Persuasión, Engaño e Intimidación no son control mental.
+
+Una prueba social puede modificar disposición, obtener cooperación plausible, sostener una mentira o crear presión, pero no obliga automáticamente a:
+
+- suicidarse;
+- traicionar convicciones fundamentales;
+- olvidar información;
+- entregar algo que el objetivo jamás entregaría sin una razón suficiente;
+- aceptar una afirmación físicamente imposible frente a evidencia directa;
+- perder Acciones repetidamente.
+
+La posición inicial, los intereses, la evidencia y las consecuencias creíbles importan antes de tirar.
+
+#### Habilidades de conocimiento
+
+Historia, Religión, Naturaleza, Medicina, Arcana, Ingeniería y otras Habilidades de conocimiento sólo revelan información que:
+
+- existe;
+- puede inferirse de las pruebas disponibles;
+- pertenece razonablemente al campo del personaje.
+
+Un Dominante no vuelve omnisciente al personaje.
+
+### Guía práctica de las 26 Habilidades
+
+#### Atletismo
+
+**Atributo sugerido:** FUE.
+
+Atletismo representa fuerza aplicada, resistencia física y desplazamiento exigente.
+
+Usos frecuentes:
+
+- escalar;
+- nadar;
+- correr bajo presión;
+- saltar cuando distancia o riesgo importan;
+- empujar, agarrar o forcejear;
+- levantar, arrastrar o sostener cargas dentro de límites físicamente posibles;
+- resistir esfuerzo prolongado.
+
+Atributos alternativos habituales:
+
+- **VIG + Atletismo** para resistencia prolongada;
+- **AGI + Atletismo** sólo cuando el método dependa más de impulso y coordinación que de fuerza.
+
+Oposición:
+
+- Derribar, Empujar y Agarrar pueden usar Atletismo contra Defensa de Maniobra;
+- una competencia física directa puede ser una prueba enfrentada;
+- escalar, nadar o saltar usan una DF definida por superficie, distancia, corriente y riesgo.
+
+Atletismo no:
+
+- aumenta Movimiento automáticamente;
+- ignora Escala;
+- sustituye Acrobacia para equilibrio o aterrizajes;
+- convierte una carga físicamente imposible en posible.
+
+**Especializaciones:** Escalada; Natación; Carrera y resistencia.
+
+#### Acrobacia
+
+**Atributo sugerido:** AGI.
+
+Acrobacia representa equilibrio, coordinación, aterrizajes y control corporal preciso.
+
+Usos frecuentes:
+
+- mantener equilibrio;
+- atravesar superficies estrechas o inestables;
+- aterrizar de forma controlada;
+- ejecutar una zancadilla o maniobra corporal cuando AGI sea el método apropiado;
+- maniobrar en vuelo cuando una fuente válida ya permite volar;
+- pasar por una abertura o postura difícil cuando la anatomía lo permite.
+
+Las caídas usan la regla específica de **Caída controlada** del capítulo de Vida y daño.
+
+Acrobacia no concede:
+
+- una esquiva universal;
+- Defensa adicional por tirar cada vez que alguien ataca;
+- vuelo;
+- Movimiento adicional;
+- la capacidad de atravesar físicamente un espacio imposible.
+
+**Especializaciones:** Equilibrio; Caídas y aterrizajes; Maniobras aéreas.
+
+#### Sigilo
+
+**Atributo sugerido:** AGI.
+
+Sigilo representa ocultación, movimiento discreto y evitar ser detectado.
+
+Usos frecuentes:
+
+- moverse sin hacer ruido;
+- esconderse cuando existe cobertura u ocultación plausible;
+- cruzar una zona vigilada;
+- preparar camuflaje personal;
+- reducir rastros evidentes cuando el método lo permita.
+
+Cuando otra criatura busca activamente al personaje, la oposición utiliza la competencia apropiada del observador: por ejemplo PER + Investigación para una búsqueda sistemática o PER + Supervivencia para seguir huellas.
+
+La DF aumenta o disminuye según luz, ruido, cobertura, distancia, superficie y atención de los observadores.
+
+Sigilo no permite desaparecer a plena vista sin una explicación física o mágica.
+
+**Especializaciones:** Movimiento silencioso; Infiltración urbana; Camuflaje natural.
+
+#### Supervivencia
+
+**Atributo sugerido:** PER.
+
+Supervivencia representa desenvolverse en entornos hostiles, orientarse y seguir señales naturales.
+
+Usos frecuentes:
+
+- seguir huellas;
+- orientarse;
+- encontrar refugio;
+- localizar agua o recursos ordinarios del entorno;
+- anticipar riesgos meteorológicos observables;
+- elegir una ruta segura;
+- organizar una marcha o campamento.
+
+Atributos alternativos:
+
+- **INT + Supervivencia** para planificación de ruta, mapas o logística;
+- **VIG + Supervivencia** cuando la tarea principal sea soportar exposición prolongada aplicando técnicas conocidas.
+
+Rastrear no produce coordenadas perfectas. La calidad y antigüedad de las huellas, terreno, clima y contramedidas determinan la DF.
+
+Supervivencia no sustituye Naturaleza para identificar científicamente una especie ni Medicina para tratar una lesión.
+
+**Especializaciones:** Bosque; Montaña; Desierto; Regiones frías.
+
+#### Naturaleza
+
+**Atributo sugerido:** INT.
+
+Naturaleza cubre flora, fauna, ecosistemas y fenómenos naturales, incluidos los ecosistemas afectados por magia.
+
+Usos frecuentes:
+
+- identificar plantas o animales;
+- reconocer hábitos y señales biológicas;
+- estimar riesgos naturales;
+- interpretar relaciones ecológicas;
+- identificar una sustancia natural conocida;
+- recordar conocimiento sobre una criatura natural.
+
+**PER + Naturaleza** puede utilizarse cuando el desafío principal sea reconocer una característica observable en el terreno.
+
+Naturaleza no:
+
+- concede automáticamente rastreo;
+- sustituye Supervivencia para viajar;
+- sustituye Alquimia para formular reactivos;
+- revela propiedades mágicas que requieran Arcana.
+
+**Especializaciones:** Botánica; Zoología; Ecosistemas mágicos.
+
+#### Investigación
+
+**Atributo sugerido:** INT.
+
+Investigación representa buscar, ordenar, contrastar y correlacionar evidencias.
+
+Usos frecuentes:
+
+- registrar una habitación de forma sistemática;
+- reconstruir una secuencia a partir de indicios;
+- comparar testimonios y documentos;
+- trabajar con archivos;
+- detectar patrones;
+- relacionar pruebas;
+- analizar códigos, cifras o información fragmentaria.
+
+**PER + Investigación** es apropiado cuando el desafío principal es localizar físicamente un indicio.  
+**INT + Investigación** se usa cuando el desafío es comprender cómo se relacionan las pruebas.
+
+Investigar no crea pistas que no existen. Un fallo no borra evidencia; puede significar que no se identifica su importancia, que hace falta más tiempo o que el personaje llega a una conclusión insuficiente según la situación.
+
+**Especializaciones:** Archivística; Investigación forense; Criptoanálisis y correlación.
+
+#### Persuasión
+
+**Atributo sugerido:** PRE.
+
+Persuasión representa negociación, diplomacia e influencia cooperativa.
+
+Usos frecuentes:
+
+- negociar un precio o condición;
+- conseguir una audiencia;
+- pedir cooperación razonable;
+- mediar;
+- argumentar una posición;
+- pronunciar un discurso;
+- mejorar la disposición de alguien cuando existen razones para escuchar.
+
+Una interacción rutinaria con una persona receptiva puede no necesitar tirada.
+
+Cuando hay resistencia, la DF depende de intereses, riesgo, autoridad, relación previa, evidencia y coste de aceptar la propuesta. Una negociación competitiva puede resolverse como prueba enfrentada si ambas partes intentan imponer activamente términos distintos.
+
+Persuasión no convierte una petición imposible en razonable ni elimina la agencia del objetivo.
+
+**Especializaciones:** Negociación; Diplomacia; Oratoria.
+
+#### Engaño
+
+**Atributo sugerido:** PRE.
+
+Engaño cubre mentira deliberada, suplantación, disfraz y construcción de una falsedad creíble.
+
+Usos frecuentes:
+
+- mentir;
+- ocultar una intención;
+- sostener una identidad falsa;
+- improvisar una coartada;
+- representar un papel;
+- presentar información falsa de forma plausible.
+
+La oposición depende de cómo se compruebe el engaño:
+
+- **PER + Empatía** para leer comportamiento y emoción;
+- **INT + Investigación** para contrastar hechos;
+- una Habilidad de conocimiento pertinente para verificar el contenido técnico.
+
+Una mentira bien dicha no cambia registros, pruebas físicas ni recuerdos de testigos.
+
+**Especializaciones:** Suplantación; Disfraz; Coartadas e identidades de cobertura.
+
+#### Intimidación
+
+**Atributo sugerido:** PRE.
+
+Intimidación representa amenaza, presión, coerción e interrogatorio.
+
+Usos frecuentes:
+
+- hacer creíble una amenaza;
+- quebrar resistencia en una negociación hostil;
+- presionar durante un interrogatorio;
+- imponer presencia;
+- utilizar una demostración de fuerza como advertencia.
+
+**FUE + Intimidación** puede utilizarse cuando la amenaza depende principalmente de una demostración física inmediata.
+
+En combate se aplica la regla específica de **Intimidar o Amenazar**: normalmente PRE + Intimidación contra Defensa Mental.
+
+Fuera de combate, el éxito produce una reacción coherente con lo que el objetivo realmente teme y con las opciones disponibles. No fuerza rendición, confesión verdadera o traición automática.
+
+**Especializaciones:** Coacción física; Presión social; Interrogatorio.
+
+#### Empatía
+
+**Atributo sugerido:** PER.
+
+Empatía representa lectura emocional, conducta y dinámica interpersonal.
+
+Usos frecuentes:
+
+- identificar una emoción dominante observable;
+- notar tensión, miedo, hostilidad o incomodidad;
+- valorar la dinámica de un grupo;
+- detectar que una conducta no coincide con el contexto;
+- interpretar reacciones durante una conversación.
+
+Puede oponerse a Engaño cuando el método sea leer a la persona, no comprobar los hechos.
+
+Empatía **no es un detector de mentiras**. Puede indicar que algo resulta extraño, que una persona parece contener información o que una emoción no encaja; no revela automáticamente cuál es la verdad ni lee pensamientos.
+
+**Especializaciones:** Lectura emocional; Conducta bajo presión; Dinámicas sociales.
+
+#### Historia
+
+**Atributo sugerido:** INT.
+
+Historia representa conocimiento sobre acontecimientos, instituciones, guerras y contextos del pasado.
+
+Usos frecuentes:
+
+- recordar fechas o procesos históricos relevantes;
+- reconocer un emblema antiguo;
+- contextualizar una ruina;
+- identificar una institución desaparecida;
+- conocer campañas, tratados o conflictos históricos;
+- relacionar un objeto con una época.
+
+Historia no revela automáticamente secretos actuales ni sustituye Investigación para descubrir qué ocurrió en una escena concreta.
+
+**Especializaciones:** Historia antigua; Historia política; Historia militar.
+
+#### Religión
+
+**Atributo sugerido:** INT.
+
+Religión cubre teología, cultos, organizaciones, ritos y liturgia.
+
+Usos frecuentes:
+
+- reconocer símbolos religiosos;
+- identificar ritos conocidos;
+- recordar doctrina;
+- conocer estructuras de una iglesia o culto;
+- interpretar prácticas litúrgicas;
+- distinguir tradiciones religiosas.
+
+Religión puede determinar que un personaje conoce cómo debe realizarse un rito, pero no concede por sí sola:
+
+- autoridad religiosa;
+- favor divino;
+- Maná;
+- magia;
+- una Fuente Divina;
+- capacidad de completar un Ritual mágico para el que falten otros requisitos.
+
+**Especializaciones:** Teología comparada; Ritos y liturgia; Cultos y organizaciones religiosas.
+
+#### Medicina
+
+**Atributo sugerido:** INT.
+
+Medicina cubre diagnóstico, estabilización, tratamiento y cirugía.
+
+Usos frecuentes:
+
+- diagnosticar una lesión;
+- identificar síntomas;
+- detener Sangrado ordinario mediante Primeros Auxilios;
+- estabilizar;
+- planificar tratamiento;
+- realizar cirugía con tiempo, instrumental y condiciones apropiadas;
+- reconocer toxinas o patologías dentro de su campo.
+
+Atributos alternativos:
+
+- **PER + Medicina** para detectar signos clínicos;
+- **AGI + Medicina** cuando la dificultad principal sea una intervención manual de precisión y el conocimiento médico ya esté establecido.
+
+**Primeros Auxilios bajo presión consume una Acción.**
+
+Con tiempo, competencia y equipo adecuados, una tarea médica rutinaria no requiere tirada.
+
+Medicina no:
+
+- devuelve Vida automáticamente;
+- reduce Trauma por sí sola;
+- regenera miembros;
+- sustituye hechizos de Restauración;
+- permite cirugía compleja sin instrumental o condiciones mínimas.
+
+Algunos hechizos exigen expresamente Medicina Entrenada o Experta.
+
+**Especializaciones:** Cirugía; Traumatología; Toxicología.
+
+#### Arcana
+
+**Atributo sugerido:** INT.
+
+Arcana representa teoría mágica, la Trama, anomalías, entidades y artefactos.
+
+Usos frecuentes:
+
+- reconocer un fenómeno mágico;
+- identificar principios de un ritual o artefacto;
+- analizar una anomalía;
+- recordar teoría sobre entidades externas;
+- interpretar residuos o patrones arcanos;
+- examinar una ilusión cuando la naturaleza mágica del fenómeno justifique sustituir Investigación.
+
+**PER + Arcana** puede utilizarse cuando el desafío sea distinguir una manifestación mágica observable y el personaje ya posee la competencia necesaria para interpretarla.
+
+Arcana no concede:
+
+- Canalización;
+- Ritualismo;
+- una Disciplina;
+- Hechizos;
+- Maná;
+- identificación perfecta de un efecto desconocido sin evidencia.
+
+**Especializaciones:** Teoría de la Trama; Anomalías y zonas de saturación; Entidades externas; Artefactos mágicos.
+
+#### Artesanía
+
+**Atributo sugerido:** AGI.
+
+Artesanía representa manufactura, reparación y técnicas de oficio.
+
+Usos frecuentes:
+
+- fabricar un objeto ordinario dentro del oficio conocido;
+- reparar una pieza;
+- evaluar calidad de manufactura;
+- ajustar una herramienta;
+- trabajar metal, madera, cuero, textil, vidrio o cristal.
+
+Atributos alternativos:
+
+- **INT + Artesanía** para planificar un proceso, interpretar un diseño o diagnosticar un defecto;
+- **FUE + Artesanía** cuando una fase concreta dependa principalmente de fuerza aplicada y la técnica ya sea conocida.
+
+Fabricar exige materiales, herramientas y tiempo. Una tirada no crea materia ni reemplaza el coste físico de producción.
+
+Artesanía no sustituye Ingeniería cuando el problema principal es diseñar un sistema complejo.
+
+**Especializaciones:** Forja y metal; Carpintería; Cuero y textiles; Vidrio y cristal.
+
+#### Ingeniería
+
+**Atributo sugerido:** INT.
+
+Ingeniería cubre diseño, análisis de sistemas, máquinas e infraestructura.
+
+Usos frecuentes:
+
+- comprender una máquina;
+- diagnosticar una avería sistémica;
+- diseñar un mecanismo;
+- calcular cargas o funcionamiento;
+- trabajar con vapor, autómatas, armamento o acumuladores;
+- planificar modificaciones de infraestructura.
+
+**PER + Ingeniería** puede servir para inspección técnica cuando el problema sea detectar un defecto visible.
+
+Ingeniería permite saber **qué** debe hacerse; fabricar o reparar físicamente puede requerir además Artesanía, herramientas, piezas, tiempo y el procedimiento de Proyecto correspondiente.
+
+No concede automáticamente dispositivos, Energía, componentes ni planos desconocidos.
+
+**Especializaciones:** Vapor; Autómatas; Armamento; Acumuladores arcanos.
+
+#### Alquimia
+
+**Atributo sugerido:** INT.
+
+Alquimia representa reactivos, formulación y manipulación de sustancias.
+
+Usos frecuentes:
+
+- reconocer un reactivo;
+- analizar una mezcla;
+- seguir o adaptar una Fórmula conocida cuando el sistema lo permite;
+- preparar sustancias;
+- identificar riesgos de combinación;
+- trabajar con medicinales, potenciadores, toxinas, reactivos o explosivos.
+
+**PER + Alquimia** puede usarse para examinar signos físicos de una sustancia cuando existe conocimiento suficiente para interpretarlos.
+
+Conocer Alquimia o conocer una Fórmula **no significa poseer una dosis preparada**. Preparar una Fórmula sigue exigiendo sus materiales, tiempo, procedimiento y demás requisitos.
+
+Alquimia no sustituye Medicina para diagnosticar un paciente ni Ingeniería para diseñar un dispositivo.
+
+**Especializaciones:** Medicinales; Potenciadores; Toxinas; Reactivos; Explosivos.
+
+#### Latrocinio
+
+**Atributo sugerido:** AGI.
+
+Latrocinio cubre cerraduras, seguridad física, trampas y sustracción discreta.
+
+Usos frecuentes:
+
+- abrir una cerradura con herramientas;
+- manipular un mecanismo de seguridad;
+- desactivar una trampa conocida;
+- hurtar un objeto;
+- ocultar una manipulación física;
+- reconocer cómo operar un mecanismo ilícito conocido.
+
+Atributos alternativos:
+
+- **PER + Latrocinio** para inspeccionar una cerradura o trampa ya localizada;
+- **INT + Latrocinio** para comprender un mecanismo complejo conocido.
+
+Encontrar una trampa oculta suele usar Investigación; desactivarla suele usar Latrocinio.
+
+La ausencia de herramientas esenciales puede volver imposible una apertura o desactivación.
+
+**Especializaciones:** Cerraduras y mecanismos; Trampas y seguridad física; Carterismo y sustracción discreta.
+
+#### Armas Ligeras
+
+**Atributo sugerido:** AGI.
+
+Armas Ligeras cubre cuchillos, dagas, espadas ligeras y armas ligeras arrojadizas.
+
+Usos frecuentes:
+
+- atacar con un arma de esa categoría;
+- realizar maniobras con el arma cuando la maniobra las admita;
+- cumplir requisitos de Técnicas compatibles;
+- usar Parada cuando se cumplan todos sus requisitos.
+
+Un ataque usa normalmente:
+
+**2d10 + Atributo pertinente + Armas Ligeras + modificadores contra Defensa.**
+
+El arma define su Atributo de ataque cuando corresponde. Poseer rango alto no concede ataques adicionales ni permite ignorar las propiedades del arma.
+
+**Especializaciones:** Cuchillos y dagas; Espadas ligeras; Armas ligeras arrojadizas.
+
+#### Armas Marciales
+
+**Atributo sugerido:** FUE.
+
+Armas Marciales cubre armamento cuerpo a cuerpo de guerra ordinario: espadas, hachas, mazas, martillos y lanzas dentro de esta categoría.
+
+Usos frecuentes:
+
+- ataques;
+- maniobras armadas;
+- Técnicas compatibles;
+- Parada con un arma apropiada.
+
+El ataque se resuelve contra Defensa y el daño sigue la entrada concreta del arma.
+
+Armas Marciales no permite utilizar competentemente un arma clasificada como Pesada sólo porque sea cuerpo a cuerpo.
+
+**Especializaciones:** Espadas; Hachas; Mazas y martillos; Lanzas.
+
+#### Armas Pesadas
+
+**Atributo sugerido:** FUE.
+
+Armas Pesadas cubre grandes hojas, grandes contundentes y armas de asta pesadas.
+
+Usos frecuentes:
+
+- ataques con armamento pesado;
+- maniobras que utilicen su masa o alcance;
+- Técnicas compatibles.
+
+La FUE mínima, propiedad Pesada, Alcance y demás propiedades del arma siguen aplicándose. El rango de Habilidad no elimina requisitos físicos del equipo.
+
+**Especializaciones:** Grandes hojas; Grandes contundentes; Armas de asta pesadas.
+
+#### Armas a Distancia
+
+**Atributo sugerido:** PER.
+
+Armas a Distancia cubre arcos, ballestas, armas de fuego y proyectiles.
+
+Usos frecuentes:
+
+- disparar;
+- realizar ataques preparados;
+- usar Técnicas de tiro;
+- operar correctamente el arma durante una resolución de ataque.
+
+El arma determina alcance, Recarga, Penetración y demás propiedades.
+
+Estar adyacente a un enemigo no impone por sí solo una penalización universal a todo ataque a distancia; el arma, la línea disponible, la situación física y cualquier regla específica determinan si el disparo es viable o sufre modificadores.
+
+Armas a Distancia no elimina Recarga ni genera munición.
+
+**Especializaciones:** Arcos; Ballestas; Armas de fuego cortas; Armas de fuego largas.
+
+#### Canalización
+
+**Atributo sugerido:** INT, pero el hechizo puede indicar otro.
+
+Canalización representa control mágico directo.
+
+Se usa para:
+
+- lanzar hechizos de Método Directo cuando existe una tirada;
+- cumplir competencia operativa por Grado;
+- resolver Sobrecarga;
+- determinar la DF de Ilusiones persistentes;
+- satisfacer requisitos mágicos que indiquen Canalización.
+
+El Atributo del lanzamiento depende del hechizo: INT, PER, PRE u otro cuando la entrada lo establezca.
+
+Canalización por sí sola no concede:
+
+- Disciplinas;
+- Hechizos;
+- Maná adicional;
+- una Fuente;
+- efectos mágicos no escritos.
+
+No posee Especializaciones básicas.
+
+#### Ritualismo
+
+**Atributo sugerido:** INT.
+
+Ritualismo representa preparación y ejecución del Método Ritual.
+
+Se usa para:
+
+- dirigir Rituales;
+- lanzar hechizos de Método Ritual cuando exista una prueba;
+- cumplir competencia operativa ritual por Grado;
+- coordinar procedimientos, participantes y condiciones rituales.
+
+Un Ritual puede usar otro Atributo si su naturaleza lo exige, pero la Habilidad operativa sigue siendo Ritualismo.
+
+Ritualismo no convierte un Ritual en una Acción de combate ni elimina su Tiempo, componentes, participantes o requisitos.
+
+No posee Especializaciones básicas.
+
+#### Manejo
+
+**Atributo sugerido:** AGI.
+
+Manejo cubre control inmediato de monturas, vehículos terrestres y maquinaria móvil.
+
+Usos frecuentes:
+
+- controlar una montura bajo presión;
+- conducir un carro o vehículo terrestre;
+- mantener control durante una maniobra brusca;
+- operar maquinaria móvil conocida;
+- evitar perder el control ante un obstáculo.
+
+Atributos alternativos:
+
+- **PER + Manejo** cuando el problema principal sea anticipar obstáculos o interpretar la respuesta de una montura;
+- **PRE + Manejo** sólo cuando el control dependa principalmente de relación, voz y autoridad sobre una criatura entrenada.
+
+Conducir en condiciones normales puede no requerir tirada.
+
+Manejo no sustituye Pilotaje para navegación instrumental compleja ni Ingeniería para reparar el vehículo.
+
+**Especializaciones:** Monturas; Vehículos terrestres; Maquinaria móvil.
+
+#### Pilotaje
+
+**Atributo sugerido:** AGI.
+
+Pilotaje cubre transporte complejo dependiente de trayectoria, instrumental o infraestructura.
+
+Usos frecuentes:
+
+- pilotar dirigibles;
+- gobernar embarcaciones;
+- operar vehículos ferroviarios;
+- mantener rumbo durante una emergencia;
+- ejecutar una maniobra compleja usando controles e instrumentos.
+
+Atributos alternativos:
+
+- **PER + Pilotaje** para navegación basada en observación inmediata;
+- **INT + Pilotaje** para interpretar instrumental, calcular ruta o ejecutar un procedimiento técnico de navegación.
+
+Operación rutinaria en condiciones seguras puede no requerir tirada.
+
+Pilotaje no sustituye Ingeniería para reparar el sistema ni Manejo para una montura o vehículo terrestre simple.
+
+**Especializaciones:** Dirigibles; Embarcaciones; Vehículos ferroviarios.
+
+### Elegir entre Habilidades parecidas
+
+Cuando dos Habilidades parecen posibles, se elige la que corresponda al **objetivo inmediato** de la acción.
+
+| Situación | Habilidad habitual |
+|---|---|
+| Seguir huellas en el terreno | Supervivencia |
+| Buscar sistemáticamente una habitación | Investigación |
+| Identificar la especie que dejó una huella | Naturaleza |
+| Detectar nerviosismo en un sospechoso | Empatía |
+| Contrastar la coartada con documentos | Investigación |
+| Convencer mediante razones | Persuasión |
+| Hacer creíble una mentira | Engaño |
+| Presionar mediante una amenaza | Intimidación |
+| Encontrar una trampa oculta | Investigación |
+| Desactivar la trampa encontrada | Latrocinio |
+| Diagnosticar una máquina | Ingeniería |
+| Reparar físicamente una pieza ordinaria | Artesanía |
+| Reconocer una sustancia alquímica | Alquimia |
+| Diagnosticar el efecto de esa sustancia en un paciente | Medicina |
+| Comprender un fenómeno mágico | Arcana |
+| Producir un hechizo Directo | Canalización |
+| Ejecutar un Ritual mágico | Ritualismo |
+| Conducir un carro | Manejo |
+| Pilotar un dirigible | Pilotaje |
+
+Si cambiar de Habilidad no cambia de verdad el método, la información, las herramientas o el riesgo, no permite repetir gratuitamente una prueba fallida.
 
 ### Gastar PD en Especializaciones
 
