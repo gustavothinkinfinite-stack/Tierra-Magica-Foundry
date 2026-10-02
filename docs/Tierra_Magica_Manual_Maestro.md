@@ -1204,7 +1204,7 @@ Atributos alternativos:
 - **PER + Latrocinio** para inspeccionar una cerradura o trampa ya localizada;
 - **INT + Latrocinio** para comprender un mecanismo complejo conocido.
 
-Encontrar una trampa oculta suele usar Investigación; desactivarla suele usar Latrocinio.
+Encontrar una trampa oculta suele usar Investigación; desactivarla suele usar Latrocinio. **CRAFT-06 — Trampas y construcciones** fija las DF de Ocultación, Detección y Mecanismo para trampas fabricadas.
 
 La ausencia de herramientas esenciales puede volver imposible una apertura o desactivación.
 
@@ -3912,7 +3912,7 @@ CRAFT-01 fija el motor de resolución, pero deliberadamente **no fija todavía**
 - recetas concretas de armas, armaduras y herramientas;
 - propiedades de Calidad;
 - catálogo de materiales especiales;
-- construcción detallada de trampas;
+- construcción detallada de trampas (definida posteriormente en CRAFT-06);
 - runas, piedras engarzadas y encantamientos;
 - límites de sintonización;
 - investigación avanzada.
@@ -5067,7 +5067,7 @@ En un objeto intacto, la suma de recuperación ordinaria + especial no supera po
 
 CRAFT-05 no define todavía:
 
-- trampas completas;
+- trampas completas (definidas posteriormente en CRAFT-06);
 - catálogo de componentes obtenidos de criaturas concretas;
 - propiedades específicas de materiales Fundadores todavía desconocidos;
 - runas, piedras de engarce o sintonización;
@@ -5075,7 +5075,517 @@ CRAFT-05 no define todavía:
 - nuevos dispositivos arcano-industriales;
 - investigación para crear materiales inéditos.
 
-El siguiente cierre es **CRAFT-06 — Trampas y construcciones**.
+CRAFT-06 se desarrolla a continuación.
+
+### CRAFT-06 — Trampas y construcciones
+
+> **VIGENTE · CERRADO.** CRAFT-06 define trampas físicas, disparadores, mecanismos, cargas, ocultación, detección, desactivación, rearme y construcciones de campaña. Reutiliza efectos ya cuantificados del sistema en vez de crear una economía paralela de daño. Las runas, encantamientos y dispositivos avanzados permanecen para CRAFT posteriores.
+
+#### Principio de una trampa
+
+Una **Trampa** es un Proyecto que conecta:
+
+**Disparador -> Mecanismo -> Carga/Efecto**
+
+y puede añadir:
+
+**Ocultación -> Método de desactivación -> Bypass -> Rearme**
+
+La trampa determina **cuándo** y **cómo** se libera un efecto. No inventa gratuitamente un efecto más potente que la carga real instalada.
+
+Toda entrada de trampa debe registrar:
+
+- nombre;
+- Complejidad;
+- disparador;
+- mecanismo;
+- carga o efecto;
+- objetivo/área;
+- Precisión de mecanismo cuando corresponda;
+- DF de Mecanismo;
+- Ocultación y DF de Detección;
+- método de Desactivación;
+- Bypass, si existe;
+- si es de un solo uso o rearmable;
+- coste del armazón;
+- coste de la carga;
+- tiempo de montaje;
+- componentes recuperables.
+
+#### Armazón de Trampa
+
+El **Armazón** incluye disparador, fijaciones, transmisiones, resortes, cables, soportes y piezas ordinarias necesarias para que la trampa funcione. La carga se paga por separado.
+
+| Armazón | Comp. | Requisito principal | Instalación | VR del armazón | Tiempo | Precisión | DF de Mecanismo |
+|---|---|---|---|---:|---:|---:|---:|
+| **Simple** | Simple | Latrocinio Aprendiz | Improvisada | 2 p | 30 min | +2 | 10 |
+| **Estándar** | Estándar | Latrocinio Entrenado · Trampas y seguridad física | Adecuada | 1 o | 2 h | +4 | 12 |
+| **Complejo** | Complejo | Latrocinio Experto · Trampas y seguridad física | Profesional | 4 o | 1 Jornada | +6 | 14 |
+| **Magistral** | Magistral | Latrocinio Maestro · Trampas y seguridad física | Especializada | 12 o | 3 Jornadas | +8 | 16 |
+| **Extraordinario** | Extraordinario | Latrocinio Gran Maestro · Trampas y seguridad física | Excepcional | Variable, normalmente 30 o+ | por etapas | +10 | 18 |
+
+El CM del armazón usa CRAFT-02, normalmente 50% de su VR.
+
+**Precisión** sólo se usa cuando el mecanismo debe realizar una tirada de ataque o maniobra. No se suma a una carga que ya posea su propia resolución.
+
+La **DF de Mecanismo** se usa como referencia para Desactivación y, cuando corresponda, para escapar de una sujeción mecánica. Ocultación utiliza una DF separada.
+
+Un Armazón Extraordinario no autoriza por sí mismo daño Extraordinario, identificación inteligente de objetivos, múltiples ataques o magia.
+
+#### Competencias auxiliares
+
+Latrocinio gobierna integración, seguridad, disparadores y desactivación, pero no sustituye otros oficios.
+
+Puede requerirse además:
+
+- **Artesanía** para fabricar piezas, marcos, resortes, carpintería, metal o textiles;
+- **Ingeniería** para mecanismos complejos, temporizadores, transmisión, presión o integración técnica;
+- **Alquimia** para preparar una carga alquímica;
+- **Armas** sólo cuando una acción posterior de una persona, y no el mecanismo, utiliza realmente esa arma;
+- **Arcana/Ritualismo** únicamente si un subsistema mágico futuro habilita una carga compatible.
+
+Como referencia:
+
+- Armazón Simple/Estándar puede usar piezas ordinarias adquiridas dentro de su CM.
+- Complejo exige **Artesanía o Ingeniería Entrenada** cuando el mecanismo dependa de piezas no comerciales o integración técnica.
+- Magistral exige normalmente **Ingeniería Experta** o Artesanía Experta apropiada como Auxiliar.
+- Extraordinario define sus Auxiliares por etapas.
+
+Un personaje puede fabricar por separado los componentes con CRAFT-03. No paga dos veces el mismo componente.
+
+#### Excepción: trampa de supervivencia
+
+Una alarma, lazo o trampa de captura **Simple**, construida principalmente con recursos naturales y sin carga dañina de arma, explosivo, veneno o dispositivo, puede usar **Supervivencia Aprendiz** como Principal en lugar de Latrocinio.
+
+Esta excepción no permite fabricar mecanismos Estándar+, ocultación profesional, armas automáticas o seguridad compleja mediante Supervivencia.
+
+#### Disparadores
+
+Un disparador sólo responde a aquello que físicamente puede detectar.
+
+| Disparador | Requisito mínimo | Regla |
+|---|---|---|
+| **Manual** | Simple | una persona acciona físicamente el mecanismo |
+| **Contacto/presión** | Simple | se activa al ejercer la presión o contacto definido |
+| **Cable/paso** | Simple | se activa al tensar, cortar o desplazar un elemento físico |
+| **Apertura/manipulación** | Estándar | puerta, tapa, cofre, cerradura u objeto mueve el mecanismo |
+| **Liberación de peso** | Estándar | se activa al retirar o añadir una carga física definida |
+| **Retardo mecánico** | Complejo | temporizador o demora física calibrada |
+| **Transmisión remota física** | Complejo | cable, conducto o enlace material hasta un operador/mecanismo |
+| **Condición física múltiple** | Magistral | exige una combinación concreta de dos condiciones mecánicas observables |
+
+Un disparador ordinario **no reconoce aliados, enemigos, especie, intención, nombre, aura o identidad**. Para esa selectividad se necesita un sensor/dispositivo/regla que realmente la proporcione.
+
+**Disparador manual en combate:** activarlo consume normalmente la **Acción** del operador. Si desea hacerlo como respuesta a un evento durante la ronda, utiliza las reglas de **Preparar** y su Reacción salvo que una capacidad específica autorice otra economía.
+
+Un disparador automático ya preparado no consume la Acción o Reacción del constructor cuando se activa posteriormente. Esa ventaja ha sido pagada mediante preparación previa, posición, materiales y riesgo de ser detectado.
+
+#### Cargas y efectos
+
+CRAFT-06 clasifica cargas por cómo obtienen su efecto.
+
+##### Alarma
+
+Campana, chasquido, caída de señal, cuerda tensada u otro aviso físico.
+
+- no realiza ataque;
+- informa sólo a quien pueda percibir realmente la señal;
+- no concede Iniciativa, Acción o conocimiento perfecto de quién activó la trampa;
+- si inicia un conflicto, se aplican las reglas normales de percepción e Iniciativa.
+
+##### Maniobra mecánica
+
+Un lazo, red, cable, placa móvil u otro mecanismo puede intentar **Derribar** o **Agarrar**.
+
+Resuelve:
+
+**2d10 + Precisión del Armazón contra Defensa de Maniobra.**
+
+Si el efecto es **Derribar**, un éxito aplica Derribado y no causa daño por sí mismo.
+
+Si es **Agarrar**, un éxito aplica Agarrado por el mecanismo. Escapar requiere una Acción y normalmente **FUE + Atletismo o AGI + Acrobacia contra la DF de Mecanismo**.
+
+La trampa no arrastra, estrangula, causa daño repetido ni inmoviliza extremidades adicionales salvo que una entrada específica lo defina.
+
+##### Golpe mecánico
+
+Una trampa puede liberar un arma, proyectil o pieza de impacto físicamente preparada.
+
+Resuelve:
+
+**2d10 + Precisión del Armazón contra Defensa.**
+
+En un impacto utiliza **el Daño y Pen impresos de la carga instalada**, sin Atributo de daño del constructor, usuario o víctima.
+
+La carga compatible queda limitada por el Armazón:
+
+| Armazón | Límite ordinario de carga de Golpe |
+|---|---|
+| Simple | no admite carga dañina automática |
+| Estándar | Daño impreso hasta 5 y Pen hasta 1 |
+| Complejo | Daño impreso hasta 8 y Pen hasta 2 |
+| Magistral | cualquier arma ordinaria del catálogo, respetando sus requisitos físicos de montaje |
+| Extraordinario | perfil específico auditado; no se infiere poder adicional |
+
+Montar un arma no duplica su precio dentro del armazón: el arma existe como carga y debe comprarse, fabricarse o aportarse físicamente.
+
+Un arma con munición consume munición al activarse. Una carga que requiere recarga queda descargada después del disparo y debe rearmarse conforme a sus requisitos.
+
+##### Carga alquímica
+
+Una preparación alquímica o explosiva puede integrarse si existe físicamente y su forma de activación es compatible.
+
+Al activarse utiliza **exactamente su efecto normal**.
+
+Ejemplo: una Bomba Incendiaria mantiene **área pequeña, Daño 6, Pen 1**. El Armazón no aumenta Daño, Pen ni área.
+
+Si la carga ya define resistencia, ataque, colocación u otra resolución, se utiliza esa regla. No se añade una segunda prueba defensiva genérica sólo porque esté dentro de una trampa.
+
+La dosis/carga se consume normalmente al activarse.
+
+##### Caída o entorno
+
+Una trampa puede retirar soporte, abrir un hueco, soltar un contrapeso o exponer a un peligro que ya existe físicamente.
+
+- una caída utiliza la **profundidad real** y las reglas de Caídas;
+- una criatura totalmente sorprendida por la pérdida de apoyo puede no cumplir las condiciones para Caída controlada;
+- una criatura que ya detectó el peligro puede evitar el espacio o resolver la maniobra apropiada si todavía existe incertidumbre;
+- agua, fuego, presión, derrumbe u otro entorno utiliza sus reglas reales o un perfil previamente definido.
+
+CRAFT-06 no inventa una tabla genérica de «daño de roca», «daño de tronco» o «daño ambiental» para superar los límites existentes.
+
+##### Dispositivo o efecto externo
+
+Una trampa puede accionar un dispositivo existente **sólo si ese dispositivo admite físicamente activación externa o el diseño correspondiente la añade mediante su propio subsistema**.
+
+CRAFT-06 no concede Energía, Caudal, Maná, hechizos, sensores mágicos ni activación remota sobrenatural.
+
+#### Un disparador, una liberación principal
+
+Por defecto, un Armazón tiene **un disparador funcional y una liberación principal**.
+
+No se pueden conectar diez armas al mismo cable y resolver diez ataques independientes mediante un Armazón Estándar.
+
+Un sistema enlazado puede ser Complejo o superior, pero:
+
+- varios elementos idénticos liberados por el mismo evento contra el mismo objetivo se resuelven como **un solo efecto** salvo perfil expreso;
+- un arreglo puede cubrir zonas distintas cuando la geometría real lo justifique;
+- múltiples trampas físicamente independientes pueden activarse en momentos distintos si realmente existen disparadores distintos;
+- subdividir narrativamente un único mecanismo no crea múltiples ataques.
+
+Un diseño que pretenda varios impactos separados sobre el mismo objetivo es un perfil específico y debe auditar su economía de acciones y daño.
+
+#### Ocultación
+
+**Ocultación** es independiente de Complejidad y de potencia.
+
+| Grado de ocultación | DF Detección | Requisito | Trabajo adicional | Material adicional sobre VR del armazón |
+|---|---:|---|---:|---:|
+| **Visible** | — | ninguno | — | — |
+| **Disimulada** | 10 | Latrocinio Aprendiz o método ambiental válido | +10 min | 0% |
+| **Oculta** | 12 | Latrocinio Entrenado · Trampas y seguridad física | +25% tiempo | +10% |
+| **Experta** | 14 | Latrocinio Experto · Trampas y seguridad física | +50% tiempo | +25% |
+| **Maestra** | 16 | Latrocinio Maestro · Trampas y seguridad física | +100% tiempo | +50% |
+| **Excepcional** | 18 | Latrocinio Gran Maestro · Trampas y seguridad física | +150% tiempo | +100% |
+
+Los materiales adicionales se calculan sobre el VR del Armazón y forman parte del Proyecto; un entorno que proporcione físicamente esos materiales puede aportar VI compatible.
+
+La Ocultación no modifica Precisión, DF de Mecanismo, Daño, Pen, área ni dificultad de escape.
+
+Una trampa no puede ocultarse mejor de lo que permite el lugar. Un cable sobre suelo desnudo y bien iluminado puede ser imposible de volver Excepcional sin reconstruir el entorno.
+
+#### Detectar una trampa
+
+Encontrar una trampa oculta utiliza normalmente:
+
+**PER + Investigación contra DF de Detección.**
+
+Cuando el desafío sea reconocer un mecanismo ya parcialmente localizado, puede usarse **PER + Latrocinio** conforme a las reglas de la Habilidad.
+
+No existe una prueba universal automática por entrar en cada espacio.
+
+- si los personajes buscan sistemáticamente una zona donde puede haber trampas, una prueba puede cubrir esa **zona significativa**;
+- repetir la misma búsqueda sin cambio de método, tiempo, herramientas o información no concede nuevas tiradas;
+- señales evidentes pueden hacer innecesaria la prueba;
+- una trampa Visible se percibe cuando la ficción permita verla.
+
+Grados de resultado en una búsqueda:
+
+- **Ajustado:** localiza la presencia y posición aproximada del peligro;
+- **Claro:** además identifica el disparador o la ruta segura evidente;
+- **Dominante:** además comprende información accesible sobre mecanismo/carga, pero no desactiva automáticamente la trampa.
+
+Detectar no desactiva.
+
+#### Trampa no percibida y Desprevenido
+
+Si una trampa realiza un ataque contra una criatura que **no pudo percibir la amenaza antes de que se resolviera**, puede aplicarse **Desprevenido** conforme al capítulo de Combate.
+
+Esto no significa que toda trampa oculta impacte automáticamente.
+
+- Golpe mecánico sigue tirando contra Defensa;
+- la criatura conserva AGI;
+- pierde únicamente lo que Desprevenido ya establece;
+- una carga de área o caída usa su propia resolución.
+
+Después de activarse, una trampa normalmente deja de estar oculta para quienes puedan percibir razonablemente su mecanismo o consecuencia.
+
+#### Desactivar
+
+Una trampa localizada se desactiva normalmente con:
+
+**AGI o INT + Latrocinio contra DF de Mecanismo.**
+
+El Atributo depende del método: AGI para manipulación, INT para secuencia o diagnóstico cuando corresponda.
+
+- Simple puede ser intentada sin Especialización si el método es inteligible.
+- Estándar+ puede exigir **Trampas y seguridad física** cuando el procedimiento sea profesional.
+- Ingeniería puede sustituir Latrocinio sólo cuando el desafío real sea técnico y no de seguridad/contramedida.
+- cortar el suministro, retirar la carga o evitar físicamente el disparador puede resolver el problema sin tirada cuando sea seguro y evidente.
+
+Un fallo **no activa automáticamente** la trampa. La activación accidental debe haber sido una consecuencia plausible declarada antes de tirar.
+
+Una Pifia puede activar la trampa, bloquear el mecanismo, dañar una herramienta o empeorar el acceso cuando ese riesgo ya existía.
+
+No se repite la misma desactivación hasta obtener éxito sin un cambio material de enfoque.
+
+#### Bypass
+
+Un Bypass es un procedimiento físico para cruzar, abrir o manipular la instalación sin activar la trampa.
+
+Ejemplos:
+
+- pisar una zona concreta;
+- liberar primero una clavija;
+- utilizar una llave mecánica;
+- aplicar una secuencia de presión;
+- desconectar un cable accesible.
+
+Conocer un Bypass válido permite utilizarlo sin tirada cuando las condiciones son normales.
+
+El Bypass:
+
+- no es telepatía ni identificación de aliados;
+- puede dejar de funcionar si la trampa fue dañada o alterada;
+- debe registrarse cuando se construye;
+- no concede al constructor conocimiento remoto del estado de la trampa.
+
+Añadir un Bypass complejo puede aumentar la Complejidad si el diseño lo exige.
+
+#### Rearme y consumo
+
+Una trampa es **de un solo disparo por defecto**.
+
+Después de activarse:
+
+- la carga consumida se repone;
+- munición o Fórmulas gastadas deben existir de nuevo;
+- piezas dañadas deben repararse;
+- el Armazón se rearma.
+
+Si el Armazón quedó Operativo, rearmarlo requiere normalmente **25% del tiempo base del Armazón**, mínimo 10 minutos.
+
+Una trampa mecánica no se rearma automáticamente durante combate.
+
+El **rearme automático** no forma parte de CRAFT-06 ordinario. Requiere un dispositivo, infraestructura o perfil posterior que proporcione energía, almacenamiento, alimentación y control reales.
+
+Esto impide que una trampa preparada sea una fuente infinita de ataques gratuitos.
+
+#### Recuperación
+
+Una trampa no activada puede desmontarse conforme a CRAFT-02.
+
+- el Armazón se trata como objeto físico según su estado;
+- una carga intacta y separable puede recuperarse como su propio objeto;
+- una carga consumida no se recupera;
+- partes del entorno usadas como camuflaje no se convierten automáticamente en VI portátil;
+- componentes especiales siguen las reglas de CRAFT-05.
+
+No se contabiliza dos veces el mismo componente dentro del valor del armazón y como objeto separado.
+
+#### Construcciones de campaña
+
+CRAFT-06 también cubre obras temporales o semipermanentes cuya utilidad proviene de la geometría y materiales reales, no de otorgar estadísticas abstractas.
+
+No introduce Vida/HP universal para paredes, puertas, puentes o barricadas. Si una estructura es atacada, su material, grosor, herramientas del atacante y la ficción determinan si hace falta un Proyecto, una prueba o una regla específica.
+
+##### Barricada de cobertura
+
+Una barricada de aproximadamente **1 espacio de frente**:
+
+- **Complejidad:** Simple;
+- **Principal:** Artesanía Aprendiz o Supervivencia Aprendiz cuando se construya con material de campaña;
+- **tiempo:** 2 h;
+- **VR de materiales preparados:** 1 o; CM 5 p;
+- recursos locales adecuados pueden aportar VI.
+
+Si bloquea sólo parte de la silueta, concede la cobertura parcial normal: **+2 Defensa** contra ataques que la atraviesen.
+
+Una barricada que bloquee realmente toda línea válida proporciona cobertura total conforme a la regla normal, pero requiere dimensiones, anclaje y posición que físicamente lo justifiquen. No se obtiene cobertura total simplemente pagando más.
+
+##### Barrera sólida de campaña
+
+Segmento de aproximadamente **1 espacio de frente**:
+
+- **Complejidad:** Estándar;
+- **Principal:** Artesanía Entrenada · especialización coherente;
+- **Auxiliar:** Ingeniería Aprendiz cuando soporte/carga no sean obvios;
+- **tiempo:** 1 Jornada;
+- **VR:** 3 o; CM 1 o 5 p.
+
+Puede cerrar un paso o crear cobertura total sólo cuando su altura, grosor y colocación eliminan realmente la línea. Puertas, troneras o aberturas cambian esa geometría.
+
+##### Pasarela o puente corto
+
+Para salvar un hueco pequeño y estable de hasta aproximadamente **2 espacios**:
+
+- **Complejidad:** Estándar;
+- **Principal:** Artesanía Entrenada · Carpintería o Forja y metal según material;
+- **Auxiliar:** Ingeniería Aprendiz si el soporte no es trivial;
+- **tiempo:** 4 h;
+- **VR:** 2 o; CM 1 o.
+
+Permite cruzar cuando está correctamente apoyado y la carga es razonable. No concede Movimiento adicional.
+
+Aumentar luz, carga, altura, corriente, movimiento o ausencia de apoyos puede convertirlo en Proyecto Complejo+ y exigir Ingeniería.
+
+##### Pozo de trampa
+
+Excavar un pozo para una criatura de Escala ordinaria se trata principalmente como **trabajo físico de sitio**.
+
+Referencia en suelo excavable con herramientas:
+
+- área de aproximadamente 1 espacio;
+- **2 espacios de profundidad:** 1 Jornada de trabajo;
+- cada espacio adicional de profundidad: +1 Jornada;
+- suelo duro, roca, agua, raíces o necesidad de entibado pueden multiplicar el tiempo o exigir Ingeniería/Artesanía.
+
+El pozo abierto es un peligro Visible. Ocultarlo utiliza la tabla de Ocultación y requiere un soporte que pueda sostener tránsito normal hasta activarse.
+
+Al caer se usa la profundidad real y las reglas de Caída. CRAFT-06 no añade daño por «ser una trampa».
+
+##### Alarma de perímetro
+
+Una línea de aviso Simple que cubra una entrada o tramo razonable:
+
+- Armazón Simple;
+- puede usar Latrocinio Aprendiz o Supervivencia Aprendiz;
+- carga de Alarma;
+- tiempo 30 min antes de Ocultación;
+- se detecta y desactiva conforme a sus grados.
+
+Extenderla a un perímetro grande aumenta materiales y tiempo proporcionalmente; una única receta no cubre kilómetros de terreno.
+
+##### Lazo de captura
+
+- Armazón Estándar;
+- carga Maniobra mecánica: Agarrar;
+- Precisión +4 contra Defensa de Maniobra;
+- escape contra DF 12;
+- no causa daño por sí mismo;
+- puede incorporar Ocultación.
+
+Un lazo que eleve, arrastre o suspenda a una criatura necesita un sistema de fuerza compatible y un perfil específico; no se infiere de esta receta.
+
+##### Cable de derribo
+
+- Armazón Estándar;
+- carga Maniobra mecánica: Derribar;
+- Precisión +4 contra Defensa de Maniobra;
+- no causa daño;
+- puede ser Disimulado/Oculto si el terreno lo permite.
+
+##### Golpe oculto Estándar
+
+- Armazón Estándar;
+- carga física con Daño impreso máximo 5, Pen máximo 1;
+- ataque +4 contra Defensa;
+- la carga debe existir;
+- un objetivo que no percibió la amenaza puede estar Desprevenido.
+
+##### Golpe oculto Complejo
+
+- Armazón Complejo;
+- carga física con Daño impreso máximo 8, Pen máximo 2;
+- ataque +6 contra Defensa;
+- exige sus Auxiliares y puede integrar armas mecánicamente más exigentes.
+
+##### Trampa con Bomba Incendiaria
+
+- Armazón mínimo Complejo cuando la activación segura exija integración profesional;
+- carga: una Bomba Incendiaria físicamente preparada;
+- al dispararse: área pequeña, Daño 6, Pen 1;
+- la Bomba se consume;
+- el Armazón no amplía área, Daño o Pen.
+
+Esta receta no fija todavía el precio de la Bomba, que continúa Sin precio establecido en Alquimia.
+
+#### Construcciones mayores
+
+Puentes largos, edificios, torres, fortificaciones, túneles, presas, vías, talleres permanentes y obras equivalentes usan CRAFT-01 como **Proyectos por etapas**.
+
+CRAFT-06 no intenta reducir arquitectura e ingeniería civil a una única tabla de coste por espacio.
+
+Una obra mayor debe definir:
+
+- diseño;
+- terreno;
+- materiales;
+- cargas y función;
+- etapas;
+- dotación de trabajadores;
+- Ingeniería y Artesanía necesarias;
+- tiempo;
+- acceso/logística;
+- resultado físico.
+
+La existencia de una construcción grande no concede automáticamente bonificadores tácticos distintos de lo que su geometría y reglas específicas produzcan.
+
+#### Interacción con Calidad y Materiales
+
+Un Armazón portátil o reutilizable puede tener Calidad y Material Especial cuando sea físicamente apropiado.
+
+Sin embargo:
+
+- Calidad no aumenta automáticamente Precisión o DF de Mecanismo;
+- las Modificaciones de CRAFT-04 sólo aplican si son compatibles con el objeto real;
+- un material especial no aumenta daño de la carga salvo que su perfil lo indique;
+- Ocultación no consume CapM;
+- una trampa instalada en el terreno no gana valor de Calidad por usar tierra, ramas o piedras locales.
+
+Un perfil futuro puede definir una modificación específica de trampa; no se extrapolan las de armas/herramientas sin compatibilidad.
+
+#### Salvaguardas de CRAFT-06
+
+- detección, desactivación y potencia son valores separados;
+- una trampa oculta no impacta automáticamente;
+- el constructor no añade sus Atributos al daño;
+- un Armazón no aumenta el efecto de una carga alquímica;
+- una carga se paga y existe físicamente;
+- un disparador automático no crea munición ni rearme;
+- un evento no se divide en diez ataques mediante un único mecanismo;
+- Desprevenido utiliza exactamente sus reglas existentes;
+- una trampa no reconoce identidades sin sensor real;
+- detectar no desactiva;
+- fallar al desactivar no activa automáticamente salvo riesgo declarado;
+- un pozo usa daño real de caída;
+- las trampas no crean nuevas excepciones a 0 Vida, Trauma o Heridas Graves;
+- no existe HP universal de estructuras;
+- construir cobertura sólo concede la cobertura que la geometría real justifique.
+
+#### Límites de CRAFT-06
+
+CRAFT-06 no define todavía:
+
+- runas, piedras, sellos mágicos o trampas rúnicas;
+- encantamientos persistentes;
+- sensores o disparadores mágicos;
+- torretas automáticas, alimentación mecánica continua o dispositivos avanzados;
+- precios alquímicos todavía no ratificados;
+- ingeniería civil completa con HP estructural universal;
+- investigación de nuevos mecanismos fuera del catálogo.
+
+El siguiente cierre es **CRAFT-07 — Runas, piedras y engarces**.
 
 
 ## 19. Economía, disponibilidad y equipo
