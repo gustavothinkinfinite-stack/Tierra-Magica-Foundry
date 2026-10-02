@@ -6809,7 +6809,7 @@ Cuando existe servicio comercial estable, el precio de referencia de una recarga
 
 Un acumulador Operativo puede aceptar durante un único intervalo hasta:
 
-**Estabilidad +1 E**
+**2 × Estabilidad E**
 
 si la fuente puede entregarlas y existe espacio libre.
 
