@@ -148,15 +148,29 @@ La creación de personaje debe poder completarse leyendo únicamente este Manual
 
 ### Resumen del proceso
 
-1. Definir concepto, pueblo/herencia, cultura y origen narrativo.
-2. Repartir los siete Atributos.
-3. Gastar los 25 PD en Habilidades, Especializaciones, Técnicas, Disciplinas y Hechizos.
-4. Gastar los 3 PR en Rasgos.
-5. Si posee Familiar Mágico, definir la naturaleza del vínculo y el perfil simplificado del Familiar.
-6. Seleccionar equipo con PEI 20 o; al cerrar la preparación material, recibir una Reserva líquida de 2 o.
-7. Calcular valores derivados.
-8. Revisar límites de creación y anotar capacidades, idiomas, contactos y detalles narrativos.
-9. Realizar una comprobación final de coherencia.
+Un personaje de nivel 1 se construye con **cuatro economías separadas**:
+
+- **6 aumentos gratuitos de Atributo**: sólo para repartir los siete Atributos iniciales;
+- **25 PD**: Habilidades, Especializaciones, Técnicas, Disciplinas y Hechizos;
+- **3 PR**: Rasgos de creación;
+- **PEI 20 o = 2.000 c**: equipo inicial; al cerrar la preparación se recibe además una **Reserva líquida de 2 o = 200 c**.
+
+No se convierten unas en otras.
+
+Procedimiento:
+
+1. definir concepto, pueblo/herencia, cultura y origen narrativo;
+2. repartir los siete Atributos;
+3. planificar los 25 PD y comprobar requisitos antes de comprar;
+4. comprar Habilidades;
+5. comprar Especializaciones y Técnicas;
+6. si usa magia, comprar Disciplinas y Hechizos;
+7. gastar los 3 PR en Rasgos;
+8. si posee Familiar Mágico, definir vínculo y perfil simplificado;
+9. seleccionar equipo con PEI 20 o y cerrar la preparación material;
+10. calcular valores derivados;
+11. completar identidad y datos narrativos;
+12. ejecutar la lista final de legalidad antes de comenzar a jugar.
 
 ### Paso 1 — Concepto, pueblo/herencia y origen
 
@@ -197,6 +211,29 @@ Durante creación se dispone de **25 PD**. Se pueden gastar en:
 - Hechizos.
 
 Durante la creación puede existir como máximo **una Habilidad en rango Experto**.
+
+#### Cómo gastar los 25 PD
+
+Conviene comprar en este orden porque los requisitos pueden depender de elecciones anteriores:
+
+1. **Habilidades base** que habilitan el concepto.
+2. **Especializaciones** de Habilidades ya Entrenadas.
+3. **Técnicas** cuyos requisitos ya se cumplen.
+4. **Canalización y Disciplinas** si el personaje usa magia.
+5. **Hechizos** de las Disciplinas adquiridas.
+6. Revisar el total y corregir cualquier compra cuyo requisito haya quedado incompleto.
+
+Los costes de rango de Habilidad son acumulados, pero durante creación se paga simplemente el coste acumulado del rango final. Por ejemplo, dejar una Habilidad en Entrenado cuesta 3 PD en total; dejarla en Experto cuesta 7 PD en total. No se paga 1 + 3 + 7.
+
+Durante creación:
+
+- como máximo una Habilidad puede quedar en Experto;
+- ninguna puede quedar en Maestro o Gran Maestro;
+- una Especialización exige su Habilidad madre en Entrenado;
+- hay como máximo 2 Especializaciones iniciales por Habilidad madre;
+- una Disciplina cuesta 2 PD y exige Canalización Entrenada;
+- pueden adquirirse como máximo 3 Disciplinas iniciales;
+- cada Técnica y Hechizo debe cumplir sus propios requisitos.
 
 #### Habilidades
 
@@ -274,7 +311,7 @@ Las Fuentes son **Alma, Divina, Ambiental y Externa**. Las Disciplinas son **Evo
 
 Una Disciplina cuesta normalmente **2 PD**. Los Hechizos cuestan por grado **1 PD Menor, 2 PD Básico, 3 PD Avanzado, 5 PD Maestro y 8+ PD Legendario**. Aprender un hechizo y pagar su Maná al lanzarlo son economías distintas.
 
-El catálogo mecánico estable del núcleo contiene 18 hechizos y se encuentra en el capítulo de Grimorio. No se obtienen versiones gratuitas mediante nombres históricos o variantes narrativas.
+El Grimorio canónico contiene **60 hechizos** y se encuentra en el capítulo correspondiente. No se obtienen versiones gratuitas mediante nombres históricos o variantes narrativas.
 
 ### Paso 4 — Rasgos: 3 PR
 
@@ -304,7 +341,7 @@ Si el concepto del personaje exige una propiedad fisiológica extraordinaria par
 
 ### Paso 5 — Familiar, si corresponde
 
-**Familiar Mágico cuesta 3 PR.** El Familiar es una criatura independiente con voluntad, personalidad y naturaleza propias, no un segundo PJ gratuito.
+**Familiar Mágico cuesta 3 PR durante creación.** Si se adquiere posteriormente mediante progresión, su coste canónico es **6 PD**. El Familiar es una criatura independiente con voluntad, personalidad y naturaleza propias, no un segundo PJ gratuito.
 
 Durante creación debe registrarse al menos:
 
@@ -391,17 +428,392 @@ Antes de dar por terminado el personaje:
 - Familiar, magia y equipo no generan Acciones, Reacciones, Maná o bonos no escritos.
 - Todo lo que produzca un efecto mecánico aparece expresamente en la ficha.
 
-### Ejemplo mínimo de flujo
+### Ejemplo completo de creación de nivel 1
 
-Un jugador decide crear una exploradora arcana. Define primero su identidad y procedencia sin recibir bonos gratuitos. Reparte los 6 aumentos de Atributo, después distribuye sus 25 PD entre Habilidades, una Especialización, una Disciplina y Hechizos del catálogo. Gasta sus 3 PR en propiedades persistentes del personaje, selecciona equipo con PEI 20 o, cierra la preparación material, recibe su Reserva líquida de 2 o y finalmente calcula Vida, Maná, Defensas, Iniciativa y Movimiento. Si una elección no aparece como coste, Rasgo, Técnica, Hechizo, equipo o regla explícita, no se transforma en bono por inferencia.
+El ejemplo construye a **Iria**, una exploradora arcana. No es un arquetipo obligatorio: sólo demuestra el procedimiento.
 
-## 4. Desarrollo
+#### 1. Concepto
 
-Tierra Mágica no usa clases. La identidad mecánica surge de Atributos, Habilidades, Especializaciones, Técnicas, Hechizos y Rasgos. Los arquetipos, cuando existan, son referencias y no paquetes obligatorios.
+Iria es una exploradora de ruinas capaz de defenderse con armas ligeras y utilizar Evocación básica. Su pueblo, cultura y origen explican quién es, pero no le conceden rangos o bonos gratuitos.
 
-El nivel 1 comienza con 25 PD. Cada nivel del 2 al 20 concede 4 PD, para un total acumulado de 101 PD al nivel 20. No existe bono universal por nivel. Maestro requiere normalmente nivel 9+ y Gran Maestro nivel 15+.
+#### 2. Atributos
 
-Una Especialización cuesta 1 PD y requiere la Habilidad madre en Entrenado. Las Técnicas cuestan normalmente 2 PD Básica, 3 Avanzada, 5 Maestra y 8+ Legendaria. Los Hechizos siguen 1 PD Menor, 2 Básico, 3 Avanzado, 5 Maestro y 8+ Legendario. Una Disciplina cuesta 2 PD. Los aumentos post-creación de Atributo cuestan 4/6/9/13/18 PD para 0->1, 1->2, 2->3, 3->4 y 4->5 respectivamente. Los valores 6+ son sobrenaturales y no pertenecen a la progresión ordinaria.
+Todos comienzan en 1. Iria distribuye exactamente 6 aumentos:
+
+| Atributo | Valor | Aumentos usados |
+|---|---:|---:|
+| FUE | 1 | 0 |
+| AGI | 3 | 2 |
+| VIG | 2 | 1 |
+| INT | 2 | 1 |
+| PER | 2 | 1 |
+| VOL | 2 | 1 |
+| PRE | 1 | 0 |
+| **Total** | **13** | **6** |
+
+Ningún Atributo supera el máximo inicial 3.
+
+#### 3. Habilidades
+
+Iria compra:
+
+| Compra | Coste |
+|---|---:|
+| Canalización Entrenada | 3 PD |
+| Armas Ligeras Entrenada | 3 PD |
+| Supervivencia Entrenada | 3 PD |
+| Sigilo Entrenada | 3 PD |
+| Arcana Aprendiz | 1 PD |
+| Investigación Aprendiz | 1 PD |
+| **Subtotal** | **14 PD** |
+
+No tiene ninguna Habilidad Experta, por lo que respeta el límite inicial.
+
+#### 4. Especializaciones y Técnica
+
+Compra:
+
+| Compra | Coste |
+|---|---:|
+| Sigilo — Camuflaje natural | 1 PD |
+| Supervivencia — Bosque | 1 PD |
+| Parada | 2 PD |
+| **Subtotal adicional** | **4 PD** |
+
+Ambas Especializaciones son legales porque sus Habilidades madre están Entrenadas. Parada debe cumplir sus requisitos normales al utilizarse.
+
+PD acumulados hasta aquí: **18**.
+
+#### 5. Disciplina y Hechizos
+
+Como Canalización está Entrenada, Iria puede comprar una Disciplina.
+
+| Compra | Coste |
+|---|---:|
+| Evocación | 2 PD |
+| Luz Arcana — Menor | 1 PD |
+| Proyectil Ígneo — Básico | 2 PD |
+| Barrera Cinética — Básico | 2 PD |
+| **Subtotal mágico** | **7 PD** |
+
+Total final: **18 + 7 = 25 PD**.
+
+Los 25 PD están completamente utilizados y todas las compras mágicas pertenecen a una Disciplina que Iria posee.
+
+#### 6. Rasgos
+
+Iria dispone de 3 PR. Como ejemplo elige:
+
+- Visión en la Oscuridad — 2 PR;
+- Sentido Agudo — 1 PR.
+
+Total: **3 PR**.
+
+Los PR no reducen ni aumentan sus 25 PD.
+
+#### 7. Equipo inicial
+
+Iria elige Paquete de Preparación o Compra libre, nunca ambos. Si utiliza Compra libre, el valor total no puede superar **2.000 c**.
+
+Al cerrar la preparación:
+
+- cualquier PEI sobrante se descarta;
+- recibe una sola vez **200 c de Reserva líquida**;
+- esa Reserva sí es dinero de juego.
+
+#### 8. Valores derivados
+
+Antes de aplicar equipo o modificadores adicionales:
+
+- Vida máxima = 10 + 2×VIG = **14**;
+- Maná máximo = 6 + 3×VOL = **12**;
+- Defensa Corporal = 11 + VIG = **13**;
+- Defensa Mental = 11 + VOL = **13**;
+- Iniciativa = **2d10 + 2** antes de otros modificadores;
+- Movimiento de referencia = **6**;
+- Defensa y Defensa de Maniobra se calculan con AGI, Bono Defensivo aplicable y el equipo correspondiente;
+- umbral informativo de Daño Grave = 5 + VIG = **7**.
+
+#### 9. Revisión final
+
+Iria es legal porque:
+
+- usó exactamente 6 aumentos de Atributo;
+- ningún Atributo inicial supera 3;
+- gastó exactamente 25 PD;
+- no posee más de una Habilidad Experta;
+- tiene como máximo 2 Especializaciones por Habilidad madre;
+- posee Canalización Entrenada antes de adquirir Evocación;
+- sólo adquirió una Disciplina;
+- gastó exactamente 3 PR;
+- su equipo respeta PEI;
+- ninguna parte de su identidad narrativa añadió un bono mecánico gratuito.
+
+## 4. Desarrollo y subida de nivel
+
+Tierra Mágica no usa clases. Subir de nivel **no entrega un paquete fijo de clase ni un bono universal a las tiradas**. El personaje crece gastando PD en las capacidades que decide desarrollar.
+
+### Cuántos PD concede cada nivel
+
+El nivel 1 comienza con **25 PD totales**.
+
+Cada nivel del 2 al 20 aumenta ese total en **4 PD**.
+
+**PD totales = 25 + 4 × (nivel - 1).**
+
+Los PD son acumulativos. Si no se gastan inmediatamente, permanecen disponibles dentro del total del personaje y pueden ahorrarse para una compra futura más costosa.
+
+| Nivel | PD totales | Nivel | PD totales |
+|---:|---:|---:|---:|
+| 1 | 25 | 11 | 65 |
+| 2 | 29 | 12 | 69 |
+| 3 | 33 | 13 | 73 |
+| 4 | 37 | 14 | 77 |
+| 5 | 41 | 15 | 81 |
+| 6 | 45 | 16 | 85 |
+| 7 | 49 | 17 | 89 |
+| 8 | 53 | 18 | 93 |
+| 9 | 57 | 19 | 97 |
+| 10 | 61 | 20 | 101 |
+
+No existe un bono universal por nivel a ataque, Defensa, Vida, Maná, Iniciativa, Movimiento o pruebas.
+
+### Qué ocurre al subir un nivel
+
+Procedimiento:
+
+1. **Aumenta el nivel en 1.**
+2. **Aumenta el total de PD disponibles en 4.**
+3. Calcula: **PD disponibles = PD totales del nivel - PD ya gastados**.
+4. Decide si gastarlos ahora o conservarlos.
+5. Antes de comprar, comprueba requisitos y puertas de nivel.
+6. Realiza las compras elegidas.
+7. Recalcula cualquier valor derivado afectado.
+8. Revisa recursos actuales: aumentar un máximo no rellena automáticamente Vida o Maná.
+9. Anota las capacidades nuevas y su procedencia.
+
+Subir de nivel no concede automáticamente:
+
+- PR;
+- PEI;
+- dinero;
+- Atributos;
+- rangos de Habilidad;
+- Especializaciones;
+- Técnicas;
+- Disciplinas;
+- Hechizos;
+- Rasgos;
+- equipo;
+- Vida o Maná actuales.
+
+Todo cambio mecánico debe proceder de una compra o regla explícita.
+
+### Gastar PD en Habilidades
+
+Los costes acumulados son:
+
+| Rango | Bono | Coste acumulado |
+|---|---:|---:|
+| Sin Entrenar | +0 | 0 PD |
+| Aprendiz | +1 | 1 PD |
+| Entrenado | +2 | 3 PD |
+| Experto | +4 | 7 PD |
+| Maestro | +6 | 13 PD |
+| Gran Maestro | +8 | 21 PD |
+
+Al mejorar una Habilidad ya comprada se paga **la diferencia entre el coste acumulado nuevo y el coste acumulado anterior**.
+
+Ejemplos:
+
+- Sin Entrenar → Aprendiz: 1 PD;
+- Aprendiz → Entrenado: 2 PD;
+- Entrenado → Experto: 4 PD;
+- Experto → Maestro: 6 PD;
+- Maestro → Gran Maestro: 8 PD.
+
+Puertas de nivel:
+
+- nivel 1: como máximo una Habilidad Experta;
+- niveles 2–8: Experto es el máximo permitido;
+- niveles 9–14: puede alcanzarse Maestro;
+- niveles 15–20: puede alcanzarse Gran Maestro.
+
+Una Habilidad Gran Maestro requiere al menos una Especialización coherente cuando esa Habilidad disponga de Especializaciones en su catálogo. Canalización y Ritualismo carecen de Especializaciones básicas y están exentas sólo de ese requisito.
+
+### Gastar PD en Especializaciones
+
+Una Especialización cuesta **1 PD** y requiere la Habilidad madre en Entrenado.
+
+El máximo de 2 Especializaciones por Habilidad madre es un límite de **creación inicial**. Después de comenzar la progresión no se aplica ese máximo inicial, pero:
+
+- no puede adquirirse dos veces la misma Especialización;
+- sigue exigiéndose la Habilidad madre Entrenada;
+- deben cumplirse requisitos particulares si los hubiera.
+
+Una Especialización no concede por sí misma un bono numérico universal.
+
+### Gastar PD en Técnicas
+
+Costes normales:
+
+- Básica: 2 PD;
+- Avanzada: 3 PD;
+- Maestra: 5 PD;
+- Legendaria: 8+ PD.
+
+El coste no reemplaza los requisitos. Si una Técnica exige otra Técnica, un rango de Habilidad, Familiar Mágico, Vínculo u otra condición, debe cumplirse al adquirirla y utilizarla según corresponda.
+
+### Gastar PD en Magia
+
+Una Disciplina cuesta **2 PD** y exige **Canalización Entrenada**.
+
+El máximo de 3 Disciplinas es sólo de creación inicial. Mediante progresión pueden adquirirse Disciplinas adicionales si se cumplen sus requisitos y se paga su coste.
+
+Aprender Hechizos cuesta:
+
+- Menor: 1 PD;
+- Básico: 2 PD;
+- Avanzado: 3 PD;
+- Maestro: 5 PD;
+- Legendario: 8+ PD.
+
+Aprender un hechizo no paga su Maná de lanzamiento.
+
+Además, poder lanzar un hechizo sigue sujeto a competencia operativa:
+
+- Truco, Menor y Básico: Entrenado;
+- Avanzado: Experto;
+- Maestro: Maestro;
+- Legendario: Gran Maestro;
+
+usando Canalización para Método Directo y Ritualismo para Método Ritual.
+
+Por tanto, comprar un hechizo de grado alto no permite ignorar el rango operativo que exige.
+
+### Gastar PD en Atributos después de creación
+
+Los 6 aumentos gratuitos sólo existen durante creación. Después, mejorar Atributos cuesta PD por cada paso:
+
+| Mejora | Coste del paso |
+|---|---:|
+| 0 → 1 | 4 PD |
+| 1 → 2 | 6 PD |
+| 2 → 3 | 9 PD |
+| 3 → 4 | 13 PD |
+| 4 → 5 | 18 PD |
+
+Para un personaje ordinario creado con Atributos mínimos 1, los pasos relevantes suelen comenzar en 1→2.
+
+El coste se paga por cada aumento realizado. Por ejemplo:
+
+- subir AGI 3→4 cuesta 13 PD;
+- subir AGI 3→5 exige primero 3→4 y después 4→5: **13 + 18 = 31 PD**.
+
+Los valores 6+ son sobrenaturales y no pertenecen a la progresión ordinaria.
+
+### Rasgos después de creación
+
+Los **3 PR no se renuevan al subir de nivel** y no existe una conversión universal de PR a PD.
+
+Un Rasgo adquirido después de creación necesita un coste o regla de progresión explícita. No se puede asumir que “1 PR = cierta cantidad de PD”.
+
+La excepción canónica ya cuantificada es:
+
+**Familiar Mágico: 3 PR en creación o 6 PD mediante progresión posterior.**
+
+Otros Rasgos sólo se compran con PD si su propia entrada o una regla posterior establece expresamente un coste de progresión.
+
+### Equipo y dinero al subir de nivel
+
+El **PEI 20 o** pertenece únicamente a la creación inicial. No se renueva con los niveles.
+
+Después de comenzar el juego, armas, armaduras, herramientas, dispositivos, componentes y otros objetos físicos se adquieren mediante:
+
+- dinero;
+- fabricación;
+- recompensa;
+- acceso narrativo;
+- otra fuente explícita del mundo.
+
+Gastar PD en una capacidad no crea automáticamente el objeto físico asociado. Conocer una Fórmula, por ejemplo, no crea dosis preparadas.
+
+### Recalcular la ficha después de una mejora
+
+Tras cualquier compra que modifique Atributos, equipo o efectos persistentes, se recalculan los derivados afectados.
+
+Ejemplos:
+
+- VIG mayor puede aumentar Vida máxima, Defensa Corporal y umbral de Daño Grave;
+- VOL mayor puede aumentar Maná máximo y Defensa Mental;
+- AGI mayor puede aumentar Defensa y Defensa de Maniobra;
+- PER mayor modifica la Iniciativa;
+- un rango marcial puede modificar el Bono Defensivo aplicable;
+- un Rasgo o equipo puede modificar Vida, Protección, Movimiento u otro derivado si lo indica expresamente.
+
+**Aumentar un máximo no recupera el recurso actual.** Si Vida máxima pasa de 14 a 16, la Vida actual no aumenta sólo por haber subido el máximo. Lo mismo ocurre con Maná. La recuperación se obtiene mediante las reglas normales de curación, descanso u otras fuentes válidas.
+
+Si un máximo disminuye, el valor actual no puede permanecer por encima del nuevo máximo y se reconcilia hacia abajo.
+
+### Lista de comprobación de subida de nivel
+
+Antes de cerrar la progresión:
+
+- el nivel está entre 1 y 20;
+- el total de PD corresponde a la fórmula del nivel;
+- los PD gastados no superan ese total;
+- cada mejora de Habilidad pagó sólo la diferencia correcta;
+- ningún rango supera la puerta de nivel;
+- Gran Maestro cumple Especialización cuando corresponde;
+- Especializaciones poseen Habilidad madre Entrenada;
+- Técnicas cumplen requisitos;
+- Disciplinas cuestan 2 PD y exigen Canalización Entrenada;
+- Hechizos cumplen Disciplina, coste y competencia operativa;
+- Atributos pagaron todos los pasos post-creación;
+- no se generaron PR, PEI, dinero o equipo gratuitos;
+- máximos y Defensas fueron recalculados;
+- Vida/Maná actuales no aumentaron sólo por aumentar su máximo.
+
+### Ejemplo de subida de nivel: nivel 1 → nivel 2
+
+Iria terminó nivel 1 con **25 PD gastados de 25**.
+
+Al alcanzar nivel 2:
+
+1. su total de desarrollo pasa a **29 PD**;
+2. tiene **4 PD disponibles**;
+3. decide mejorar Investigación de Aprendiz a Entrenado;
+4. Investigación costaba 1 PD acumulado y Entrenado cuesta 3, por lo que paga **2 PD**;
+5. conserva 2 PD;
+6. aprende **Onda de Choque**, un hechizo Básico de Evocación, por **2 PD**;
+7. ya posee Evocación y Canalización Entrenada, por lo que cumple el marco operativo del hechizo;
+8. termina con **29 PD gastados de 29**.
+
+No recibe automáticamente Vida, Maná, PR, dinero ni equipo por haber alcanzado nivel 2.
+
+### Ejemplo de ahorro para un Atributo
+
+Supón que, después de otras compras, Iria decide ahorrar para elevar AGI de 3 a 4.
+
+Ese paso cuesta **13 PD**.
+
+Puede conservar PD no gastados durante varios niveles. El sistema no obliga a consumir los 4 PD recibidos en el mismo nivel.
+
+Cuando finalmente tenga al menos 13 PD disponibles:
+
+1. paga 13 PD;
+2. AGI pasa de 3 a 4;
+3. recalcula Defensa y Defensa de Maniobra;
+4. no recibe Vida o Maná porque AGI no modifica esos máximos;
+5. conserva cualquier PD restante.
+
+### Ejemplo de puerta de rango
+
+Una Habilidad Experta cuesta 7 PD acumulados.
+
+Aunque un personaje tenga PD suficientes para pagar Maestro antes, **no puede alcanzar Maestro hasta nivel 9**. En nivel 9, pasar de Experto a Maestro cuesta 6 PD adicionales.
+
+Del mismo modo, Gran Maestro sólo puede alcanzarse desde nivel 15 y cuesta 8 PD adicionales desde Maestro, además de exigir una Especialización cuando la Habilidad tenga catálogo de Especializaciones.
 
 ## 5. Rasgos y Puntos de Rasgo
 
