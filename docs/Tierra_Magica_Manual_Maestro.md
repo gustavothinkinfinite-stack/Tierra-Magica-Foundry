@@ -4042,7 +4042,7 @@ Cuando un objeto ordinario terminado ya está disponible en mercado y una cotiza
 
 #### Venta de objetos y estado
 
-El **Valor Aplicable (VA)** para vender un objeto parte de su VR y de su estado físico.
+El **Valor Aplicable (VA)** para vender un objeto parte de su VR y de su estado físico. Para objetos Superior/Excepcional, CRAFT-04 reemplaza esta base por el **VRQ** correspondiente.
 
 | Estado | VA respecto del VR |
 |---|---:|
@@ -4078,7 +4078,7 @@ Salvo que una receta indique otra cosa:
 | Deshabilitado -> Operativo | 25% del VR | 50% |
 | Arruinado recuperable -> Operativo | 50% del VR | 75% |
 
-Los materiales de reparación se redondean hacia arriba al cobre. El tiempo nunca baja de **10 minutos** cuando la reparación requiere trabajo efectivo.
+Los materiales de reparación se redondean hacia arriba al cobre. El tiempo nunca baja de **10 minutos** cuando la reparación requiere trabajo efectivo. Para objetos Superior/Excepcional, CRAFT-04 calcula estos porcentajes sobre VRQ y sobre el tiempo de fabricación de esa Calidad.
 
 La reparación usa la competencia, herramientas e instalación coherentes con el objeto. La Complejidad puede ser la del proyecto original o una específica de reparación cuando la receta lo indique.
 
@@ -4102,7 +4102,7 @@ La recuperación genérica máxima es:
 | Arruinado recuperable | 5% |
 | Destruido | 0% salvo componentes identificables supervivientes |
 
-El VI recuperado se redondea hacia abajo al cobre. El tiempo ordinario de desmantelamiento es **25% del tiempo base de fabricación**, con un mínimo de 10 minutos, salvo receta específica.
+El VI recuperado se redondea hacia abajo al cobre. El tiempo ordinario de desmantelamiento es **25% del tiempo base de fabricación**, con un mínimo de 10 minutos, salvo receta específica. La Calidad no multiplica esta recuperación genérica: CRAFT-04 mantiene como base el VR Común.
 
 La recuperación produce **materiales**, no monedas. Desmantelar un objeto intacto y vender después los materiales no debe ser una forma mejor de obtener efectivo que vender el objeto intacto.
 
@@ -4511,7 +4511,7 @@ Un objeto Defectuoso posee normalmente **un Defecto significativo** apropiado a 
 | **Pesado** | objeto con FUE mínima | FUE mínima +1 |
 | **Ruidoso** | armadura/equipo móvil | puede causar Desventaja a Sigilo por ruido ordinario cuando sea relevante |
 | **Desbalanceado** | arma, escudo o herramienta sostenida | -1 a Defensa de Maniobra contra Desarmar mientras se utilice ese objeto |
-| **Impreciso** | arma a distancia | -1 a ataques realizados más allá de alcance cercano o en situaciones donde la precisión del mecanismo sea relevante |
+| **Impreciso** | arma a distancia | -1 a los ataques realizados con esa arma; representa desalineación o tolerancias deficientes del mecanismo |
 | **Filo/perfil deficiente** | arma compatible | Daño -1 **o** Pen -1, elegido al registrar el defecto; nunca por debajo de 0 |
 | **Recarga torpe** | arma con Recarga | Recarga +1 |
 | **Frágil** | objeto físico compatible | si una consecuencia de esfuerzo físico directo lo haría pasar de Operativo a Dañado, pasa a Deshabilitado en su lugar |
