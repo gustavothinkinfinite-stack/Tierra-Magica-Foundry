@@ -3318,6 +3318,8 @@ Los proyectos largos se resuelven por etapas significativas, no mediante una res
 
 ## 19. Economía, disponibilidad y equipo
 
+Las reglas de **uso práctico** de armas, armaduras, escudos, munición, Kits, raciones, consumibles y dispositivos están en el capítulo **9. Armas, armaduras y escudos**. Este capítulo define principalmente precio, Disponibilidad, mercado y adquisición.
+
 ### Moneda canónica
 
 La moneda mecánica de referencia usa **cobre (c), plata (p) y oro (o)**:
@@ -3384,7 +3386,7 @@ El precio no es el único límite. Un objeto o servicio también puede tener **D
 
 Kits: Artesano 1 o; Ingeniería de campo 2 o; Minería 1 o; Médico 2 o; Alquimia de campo 2 o; Infiltración 1 o; Cartográfico 1 o; Navegación 2 o; Campaña 1 o; Escalada 1 o; Escribanía 5 p; Mercantil 1 o; Académico 2 o; Instrumental Arcano de campo 2 o; mantenimiento de armas de fuego 1 o.
 
-Otros: Gancho de escalada 3 p; Palanca 2 p; Pico o pala 2 p; Caja pequeña asegurada 5 p; Catalejo 1 o; Estuche impermeable de documentos/mapas 5 p; Provisiones 7 días 2 p; Combustible de iluminación 5 noches 2 p; Repuesto médico 5 usos 5 p; materiales de escritura 2 p.
+Otros: Gancho de escalada 3 p; Palanca 2 p; Pico o pala 2 p; Caja pequeña asegurada 5 p; Catalejo 1 o; Estuche impermeable de documentos/mapas 5 p; Provisiones personales 7 días (7 raciones) 2 p; Combustible de iluminación personal 5 noches 2 p; Repuesto médico 5 usos 5 p; materiales de escritura 2 p.
 
 Las fórmulas alquímicas y otros bienes cuyo precio anterior estaba expresado en Coronas históricas quedan **sin precio monetario establecido** hasta que su valoración sea ratificada específicamente. No se convierte ese precio legado por inferencia.
 
