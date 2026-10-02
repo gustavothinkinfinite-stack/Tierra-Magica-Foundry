@@ -7595,6 +7595,13 @@ Experimental no es un estado de daño.
 
 Un Prototipo puede ser Operativo y Experimental a la vez.
 
+Mientras siga Experimental:
+
+- fabricar otra unidad usa nuevamente el procedimiento de Prototipo —125% CMP, 150% TBP y su prueba—; no se trata como producción rutinaria;
+- reparar o recalibrar **la propiedad experimental** no es rutinario y exige la competencia de investigación apropiada; cuando exista incertidumbre usa la DF base de la Complejidad;
+- una reparación puramente física que no afecte la parte experimental puede seguir las reglas normales;
+- estabilizar más tarde el diseño elimina estas restricciones para futuras unidades y reparaciones cubiertas por el Plano.
+
 #### Validación
 
 La Validación demuestra que el Prototipo funciona en condiciones distintas y relevantes.
@@ -7976,6 +7983,7 @@ La investigación puede producir un Perfil híbrido válido sin crear conversió
 - Clase de novedad mide incertidumbre, no potencia;
 - Investigación no autoriza superar límites sin un Perfil que lo diga expresamente;
 - Prototipo funcional no equivale a Plano estable;
+- fabricar más prototipos no convierte por cantidad el procedimiento en rutinario;
 - Hazaña de Prototipo no estabiliza;
 - Validación no se omite por margen;
 - Réplica es obligatoria para estabilizar;
