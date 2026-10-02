@@ -2583,6 +2583,8 @@ Un personaje no suma la Defensa pasiva de varios escudos a la vez. Se usa el esc
 
 La calidad Defectuosa/Común/Superior/Excepcional describe fabricación y propiedades concretas; no concede un +1/+2/+3 universal. **CRAFT-04 — Calidad y modificaciones** define sus costes, requisitos, Capacidad de Modificación y propiedades concretas.
 
+**CRAFT-07 — Runas, piedras y engarces** define la Capacidad Rúnica de equipo Superior/Excepcional, las Runas inscritas y las Piedras de Impronta. Sus efectos no aparecen automáticamente por Calidad.
+
 Las recetas de fabricación de armas, armaduras, escudos, munición y herramientas del catálogo vigente se encuentran en **CRAFT-03 — Armas, armaduras y herramientas**, dentro del capítulo 18.
 
 ### Equipo de aventura y herramientas
@@ -4641,7 +4643,7 @@ La Modificación Mantenible reduce el tiempo, no la competencia ni el coste mate
 CRAFT-04 reserva explícitamente espacios de diseño para sistemas posteriores:
 
 - CRAFT-05 otorga propiedades por **material**, separadas de CapM;
-- CRAFT-07 puede definir engarces, piedras y capacidad rúnica;
+- CRAFT-07 define engarces, Piedras de Impronta y Capacidad Rúnica;
 - CRAFT-08 puede definir encantamientos y sintonización;
 - Ingeniería puede añadir componentes con Energía/Caudal/Consumo.
 
@@ -4969,7 +4971,7 @@ Los **Cristales de Resonancia** no forman parte del catálogo de materiales de e
 
 Su función canónica continúa vinculada a la resonancia individual y a los Familiares.
 
-CRAFT-07 utilizará otra familia de piedras o soportes para engarces y runas; no reutilizará silenciosamente los Cristales de Resonancia.
+CRAFT-07 utiliza **Piedras de Impronta**, fabricadas a partir de matrices arcanas procesadas, y no reutiliza los Cristales de Resonancia.
 
 #### Reactivos alquímicos
 
@@ -5577,7 +5579,7 @@ Un perfil futuro puede definir una modificación específica de trampa; no se ex
 
 CRAFT-06 no define todavía:
 
-- runas, piedras, sellos mágicos o trampas rúnicas;
+- runas, Piedras de Impronta y engarces (definidos posteriormente en CRAFT-07);
 - encantamientos persistentes;
 - sensores o disparadores mágicos;
 - torretas automáticas, alimentación mecánica continua o dispositivos avanzados;
@@ -5585,7 +5587,580 @@ CRAFT-06 no define todavía:
 - ingeniería civil completa con HP estructural universal;
 - investigación de nuevos mecanismos fuera del catálogo.
 
-El siguiente cierre es **CRAFT-07 — Runas, piedras y engarces**.
+CRAFT-07 se desarrolla a continuación.
+
+### CRAFT-07 — Runas, piedras y engarces
+
+> **VIGENTE · CERRADO.** CRAFT-07 define Capacidad Rúnica, matrices, inscripciones permanentes, Piedras de Impronta intercambiables, activación mediante Maná personal, costes, compatibilidades, extracción, sustitución y un catálogo inicial de Improntas. No define todavía encantamientos autónomos, sintonización mayor ni objetos mágicos completos: esos elementos pertenecen a CRAFT-08.
+
+#### Principio: Impronta, no dos sistemas de poder
+
+Una **Impronta** es un patrón mágico estable con un efecto definido.
+
+Puede estar implementada de dos formas:
+
+1. **Runa inscrita:** el patrón queda integrado de manera estable en el objeto.
+2. **Piedra de Impronta:** el patrón queda fijado en una piedra artificial intercambiable que funciona sólo al estar colocada en un Engarce compatible.
+
+Runa y Piedra **no son fuentes acumulativas distintas**. Si contienen la misma Impronta, producen el mismo efecto, usan las mismas reglas de activación y pertenecen al mismo grupo de apilamiento.
+
+La diferencia es logística:
+
+- la Runa es más barata, más difícil de perder y no puede cambiarse rápidamente;
+- la Piedra cuesta más, puede extraerse y trasladarse entre objetos compatibles.
+
+#### Capacidad Rúnica
+
+La **Capacidad Rúnica (CRu)** es la cantidad estructural de Impronta que un objeto puede sostener.
+
+| Calidad | CRu máxima |
+|---|---:|
+| Defectuosa | 0 |
+| Común | 0 |
+| Superior | 1 |
+| Excepcional | 2 |
+
+CRu es independiente de la **CapM** de CRAFT-04.
+
+- CRu no consume CapM.
+- CapM no aumenta CRu.
+- dinero adicional no permite superar la CRu máxima;
+- un material especial no concede CRu salvo regla expresa;
+- una runa o piedra no concede una nueva ranura por existir.
+
+CRAFT-07 aplica a equipo persistente con una función real: armas, armaduras, escudos, herramientas, Kits, instrumental y otros objetos con receta equivalente.
+
+No se autoriza utilizar anillos, cuentas, dijes, botones, piedras sueltas u otros objetos triviales como «granjas de ranuras». Los accesorios mágicos dedicados se diseñan como objetos mágicos en CRAFT-08.
+
+#### Preparar una Matriz Rúnica
+
+La CRu máxima no aparece automáticamente por alcanzar Calidad Superior o Excepcional. Cada punto debe prepararse físicamente como una **Matriz Rúnica**.
+
+Cada punto de CRu preparado requiere:
+
+- materiales equivalentes al **20% del VR Común**, mínimo **5 p**;
+- **25% del tiempo base de fabricación**, mínimo **2 h**;
+- cristal arcano refinado, conductor o componentes equivalentes incluidos dentro de ese coste;
+- un Plano estable de matriz compatible.
+
+El valor añadido al objeto por la preparación es el doble del coste material real de esa matriz.
+
+Requisitos mínimos:
+
+| CRu total preparada | Complejidad mínima | Principal físico | Auxiliar arcano | Instalación |
+|---|---|---|---|---|
+| **1** | Complejo | Artesanía Experta · especialización coherente | Arcana Entrenada · Artefactos mágicos | Profesional |
+| **2** | Magistral | Artesanía Maestra · especialización coherente | Arcana Experta · Artefactos mágicos | Especializada |
+
+Si Calidad, Material Especial o receta base exigen requisitos superiores, se usa el requisito superior.
+
+La preparación puede integrarse durante la fabricación inicial o añadirse después mediante Proyecto. No exige tirada si el Plano, competencias, componentes, herramientas, instalación y tiempo son adecuados.
+
+Cada punto preparado debe configurarse como:
+
+- **Canal de Inscripción**, destinado a una Runa; o
+- **Engarce**, destinado a una Piedra de Impronta.
+
+Un objeto Excepcional con CRu 2 puede tener:
+
+- dos Canales;
+- dos Engarces;
+- un Canal y un Engarce;
+- o una configuración doble destinada a una Impronta de Grado II.
+
+Reconfigurar un punto ya preparado entre Canal y Engarce cuesta:
+
+- **10% del VR Común**, mínimo 5 p;
+- 25% del tiempo base, mínimo 2 h;
+- los mismos requisitos profesionales de la CRu total del objeto.
+
+No recupera materiales de la configuración anterior.
+
+#### Grados de Impronta
+
+CRAFT-07 usa sólo dos grados:
+
+| Grado | CRu ocupada | Función |
+|---|---:|---|
+| **I** | 1 | efecto menor, especializado o de activación limitada |
+| **II** | 2 | efecto más potente o combinación controlada de funciones |
+
+Estos grados **no son Grados de hechizo**. Una Impronta II no es automáticamente un hechizo Básico, Avanzado o Maestro y no utiliza sus costes de PD.
+
+Un objeto Superior sólo puede alojar Improntas I.
+
+Un objeto Excepcional puede alojar:
+
+- dos Improntas I; o
+- una Impronta II.
+
+No puede albergar una Impronta II y otra I simultáneamente mediante CRAFT-07.
+
+#### Patrón Rúnico estable
+
+Toda Impronta necesita un **Patrón Rúnico estable**.
+
+Un Patrón funciona como Plano:
+
+- permite reproducir una Impronta conocida;
+- no concede competencia;
+- no crea componentes;
+- no proporciona Maná;
+- no vuelve común una pieza Rara;
+- no revela automáticamente cómo diseñar una Impronta nueva.
+
+Los Patrones de Grado I son normalmente **Profesionales o Restringidos** según la jurisdicción y el efecto.
+
+Los Patrones de Grado II son normalmente **Raros**.
+
+Una Impronta desconocida, una variación nueva o una propiedad fuera del catálogo entra en CRAFT-10.
+
+#### Inscribir una Runa
+
+Una Runa utiliza un Canal de Inscripción preparado.
+
+##### Impronta I inscrita
+
+- **Complejidad:** Complejo.
+- **Principal:** Ritualismo Experto.
+- **Auxiliares:** Arcana Entrenada · Artefactos mágicos y Artesanía Entrenada con especialización coherente.
+- **Instalación:** Profesional.
+- **Materiales rúnicos:** **20% del VR Común**, mínimo **1 o**.
+- **Tiempo:** 25% del tiempo base del objeto, mínimo 4 h.
+- **CRu:** 1.
+
+##### Impronta II inscrita
+
+- **Complejidad:** Magistral.
+- **Principal:** Ritualismo Maestro.
+- **Auxiliares:** Arcana Experta · Artefactos mágicos y Artesanía Experta con especialización coherente.
+- **Instalación:** Especializada.
+- **Materiales rúnicos:** **40% del VR Común**, mínimo **2 o**.
+- **Tiempo:** 50% del tiempo base del objeto, mínimo 1 Jornada.
+- **CRu:** 2.
+
+Si el objeto exige rangos o instalación superiores por Calidad/Material, se mantienen los superiores.
+
+El valor añadido al objeto por una Runa inscrita es **2 × su coste material rúnico**.
+
+La inscripción conocida y estable es rutinaria si se cumplen todos los requisitos.
+
+Una Runa queda vinculada físicamente a ese objeto. No puede retirarse como un componente intacto.
+
+#### Borrar o sustituir una Runa
+
+Borrar una Runa conocida y accesible es un Proyecto rutinario:
+
+- requiere 25% del tiempo de inscripción correspondiente, mínimo 1 h;
+- no devuelve VI;
+- libera la CRu;
+- no convierte la Runa en una Piedra.
+
+Inscribir después otra Impronta paga su coste completo.
+
+Una consecuencia que destruya específicamente la matriz rúnica elimina la Impronta aunque el objeto pueda seguir siendo físicamente utilizable. Restaurarla requiere reparar primero la Matriz y luego reinscribir el patrón perdido cuando corresponda.
+
+#### Piedras de Impronta
+
+Las **Piedras de Impronta** son componentes fabricados a partir de cristal arcano refinado, matriz mineral o vítrea estable y un Patrón Rúnico.
+
+No son formaciones naturales equivalentes a los Cristales de Resonancia.
+
+Una Piedra sólo produce su efecto cuando:
+
+- está Operativa;
+- está instalada en un Engarce compatible;
+- el objeto posee CRu libre suficiente;
+- el usuario realiza una activación válida.
+
+Portarla en un bolsillo no concede el efecto.
+
+##### Piedra de Impronta I
+
+- **VR:** 4 o.
+- **CM:** 2 o.
+- **Complejidad:** Complejo.
+- **Principal:** Ritualismo Experto.
+- **Auxiliares:** Artesanía Experta · Vidrio y cristal y Arcana Entrenada · Artefactos mágicos.
+- **Instalación:** Profesional.
+- **Tiempo:** 1 Jornada.
+- **CRu ocupada:** 1.
+- **Disponibilidad habitual:** Profesional o Restringida.
+
+##### Piedra de Impronta II
+
+- **VR:** 10 o.
+- **CM:** 5 o.
+- **Complejidad:** Magistral.
+- **Principal:** Ritualismo Maestro.
+- **Auxiliares:** Artesanía Maestra · Vidrio y cristal y Arcana Experta · Artefactos mágicos.
+- **Instalación:** Especializada.
+- **Tiempo:** 3 Jornadas.
+- **CRu ocupada:** 2.
+- **Disponibilidad habitual:** Rara.
+
+El CM ya incluye la cantidad ordinaria necesaria de cristal arcano refinado. Un Lote compatible puede reducir ese CM mediante VI; no se cobra además un SM por el mismo cristal ya contabilizado.
+
+Una Piedra no utiliza la escala Defectuosa/Común/Superior/Excepcional de CRAFT-04. Su Grado de Impronta define su estructura.
+
+#### Insertar y extraer una Piedra
+
+Con herramientas apropiadas y sin presión:
+
+- insertar una Piedra compatible: **10 min**;
+- extraerla intacta: **10 min**;
+- no requiere tirada.
+
+No es una Acción de combate.
+
+Forzar la extracción bajo peligro, con Engarce deformado o sin herramientas apropiadas puede requerir CRAFT-01 y poner la Piedra en riesgo.
+
+Retirar una Piedra termina inmediatamente cualquier efecto suyo que dependa de permanecer instalada.
+
+El Engarce queda en el objeto y puede recibir otra Piedra compatible.
+
+#### Activación rúnica
+
+Las Improntas de CRAFT-07 utilizan **Maná personal del usuario**.
+
+La Matriz proporciona la forma mágica estable; el personaje aporta la energía.
+
+Por ello una activación rúnica:
+
+- no exige Canalización;
+- no exige conocer una Disciplina;
+- no es un hechizo;
+- no utiliza el coste de PD de un hechizo;
+- no puede usar Sobrecarga;
+- no recibe reducciones de coste destinadas a hechizos;
+- no puede pagar Maná con Energía de un acumulador;
+- no permite que Energía y Maná se sustituyan entre sí.
+
+Si el usuario no dispone del Maná completo, la activación no ocurre y no existe pago parcial.
+
+Una Impronta puede tener uno de estos tiempos:
+
+- **Acción:** consume la Acción.
+- **Reacción:** consume la Reacción y necesita un disparador válido.
+- **Vinculada:** se declara como parte de una Acción/prueba compatible que ya se estaba realizando con el objeto. No consume una segunda Acción, pero **no crea esa Acción**.
+
+Sólo puede activarse **una Impronta Vinculada por resolución**.
+
+Por ejemplo, un ataque no puede activar simultáneamente Filo Arcano I y Aguja Rúnica I aunque un objeto Excepcional contenga ambas.
+
+Una activación rúnica nunca crea ataques, Acciones o Reacciones adicionales.
+
+#### Control del objeto
+
+Para activar una Impronta el usuario debe estar utilizando realmente su soporte:
+
+- arma: empuñada y empleada en la acción correspondiente;
+- armadura: vestida;
+- escudo: disponible y controlado;
+- herramienta/Kit: utilizado en la operación;
+- instrumental: conectado o manipulado conforme a su función.
+
+Una Impronta no concede beneficios desde una mochila, almacén o colección de objetos no utilizados.
+
+CRAFT-07 no incorpora activación automática, reconocimiento de aliados, sensores mágicos ni disparadores remotos.
+
+Una trampa no puede gastar Maná del constructor a distancia para activar una Runa. Eso requiere un subsistema posterior de dispositivo/encantamiento.
+
+#### Apilamiento rúnico
+
+Reglas universales:
+
+- la misma Impronta no se acumula consigo misma;
+- dos Improntas que modifican la misma magnitud usan el mejor efecto salvo regla expresa;
+- una propiedad rúnica equivalente a Calidad, Material, dispositivo o hechizo no se acumula por proceder de una fuente distinta;
+- varias Ventajas no se acumulan;
+- una Reacción sólo permite una respuesta que consuma esa Reacción;
+- sólo una Impronta Vinculada puede aplicarse a la misma resolución;
+- CRAFT-07 no aumenta Pen por encima de **3**;
+- CRAFT-07 no concede por sí solo Protección permanente;
+- CRAFT-07 no reduce Recarga;
+- CRAFT-07 no aumenta CapM, CRu, Energía, Caudal ni Maná máximo.
+
+#### Catálogo de Improntas — Grado I
+
+##### Lumen I
+
+- **Compatibilidad:** equipo persistente.
+- **Activación:** Acción.
+- **Coste:** 1 Maná.
+- **Duración:** Escena.
+- **Efecto:** el objeto emite una iluminación estable comparable a una fuente personal ordinaria de luz.
+- **Límites:** no ciega, no causa daño, no revela invisibilidad, no atraviesa oscuridad sobrenatural por inferencia.
+
+##### Brasa I
+
+- **Compatibilidad:** arma, herramienta o instrumental resistente al calor ordinario.
+- **Activación:** Acción.
+- **Coste:** 1 Maná.
+- **Efecto:** calienta un pequeño objeto inerte en contacto o enciende material combustible ordinario preparado.
+- **Límites:** no causa daño de combate, no funde metal instantáneamente y no incendia automáticamente equipo portado por otra criatura.
+
+##### Filo Arcano I
+
+- **Compatibilidad:** arma con perfil de daño.
+- **Activación:** Vinculada a un ataque realizado con el arma.
+- **Coste:** 2 Maná.
+- **Efecto:** **+1 Daño** en esa resolución. El impacto cuenta además como mágicamente potenciado cuando una regla concreta distinga entre ataque mundano y mágico.
+- **Apilamiento:** no se acumula con Golpe optimizado ni con otra mejora del objeto que aporte el mismo +1 Daño; se usa el mejor beneficio compatible.
+
+##### Aguja Rúnica I
+
+- **Compatibilidad:** arma con Penetración.
+- **Activación:** Vinculada a un ataque realizado con el arma.
+- **Coste:** 2 Maná.
+- **Efecto:** **Pen +1** para esa resolución, máximo Pen 3 por CRAFT-07.
+- **Apilamiento:** no se acumula con Perfil penetrante, Cámara de penetración u otro aumento equivalente; se usa el mejor.
+
+##### Guardia Rúnica I
+
+- **Compatibilidad:** armadura, escudo o arma controlada.
+- **Activación:** Reacción cuando el usuario es objetivo de un ataque perceptible.
+- **Coste:** 2 Maná.
+- **Efecto:** **+1 Defensa** contra ese ataque.
+- **Límites:** utiliza la Reacción normal. No se acumula con Barrera Cinética, Escudo de campo u otra defensa mágica equivalente.
+
+##### Ancla Rúnica I
+
+- **Compatibilidad:** armadura o escudo.
+- **Activación:** Reacción al ser objetivo de Derribar, Empujar o Agarrar.
+- **Coste:** 1 Maná.
+- **Efecto:** **+2 Defensa de Maniobra** contra esa maniobra.
+- **Límites:** no cambia Escala, FUE, masa ni vuelve posible resistir algo físicamente imposible.
+
+##### Resguardo Térmico I
+
+- **Compatibilidad:** armadura, escudo o equipo corporal preparado.
+- **Activación:** Reacción cuando el usuario va a recibir daño Térmico.
+- **Coste:** 2 Maná.
+- **Efecto:** después de la mitigación ordinaria, reduce el daño final en **2**, mínimo 0.
+- **Apilamiento:** no se acumula con otra reducción rúnica/mágica equivalente; se aplica la mejor.
+
+##### Silencio de Materia I
+
+- **Compatibilidad:** arma, armadura, herramienta o Kit.
+- **Activación:** Acción.
+- **Coste:** 1 Maná.
+- **Duración:** Escena.
+- **Efecto:** el objeto no produce por sí mismo ruido incidental ordinario por roce, crujido o vibración.
+- **Apilamiento:** es equivalente a Silenciosa de CRAFT-04 y a la Amortiguación acústica material cuando se aplican a la misma fuente.
+- **Límites:** no silencia pasos, voz, disparos, impactos, explosiones ni otras fuentes externas.
+
+##### Claridad de Oficio I
+
+- **Compatibilidad:** herramienta, Kit o instrumental profesional.
+- **Activación:** Vinculada a una prueba no ofensiva en la que ese objeto sea realmente pertinente.
+- **Coste:** 2 Maná.
+- **Efecto:** concede **Ventaja** a esa prueba.
+- **Límites:** no sustituye Habilidad, Especialización, materiales, instalación, información ni acceso; no puede aplicarse a tiradas de ataque, Canalización o Ritualismo.
+
+#### Catálogo de Improntas — Grado II
+
+##### Barrera Rúnica II
+
+- **Compatibilidad:** armadura o escudo.
+- **Activación:** Reacción contra un ataque perceptible.
+- **Coste:** 3 Maná.
+- **Efecto:** **+2 Defensa** contra ese ataque.
+- **Apilamiento:** pertenece al mismo grupo funcional que Barrera Cinética y Escudo de campo; se usa el mejor, no la suma.
+- **Límites:** no modifica Defensa Mental, Corporal o de Maniobra salvo regla expresa.
+
+##### Filo Penetrante II
+
+- **Compatibilidad:** arma con perfil de daño y Penetración.
+- **Activación:** Vinculada a un ataque realizado con el arma.
+- **Coste:** 3 Maná.
+- **Efecto:** **+1 Daño y Pen +1**, con Pen máximo 3 por CRAFT-07. El impacto cuenta como mágicamente potenciado cuando corresponda.
+- **Apilamiento:** cada parte del beneficio usa el mejor efecto disponible y no se suma con Golpe optimizado, Perfil penetrante, Cámara de penetración u otros equivalentes.
+
+##### Resguardo Térmico II
+
+- **Compatibilidad:** armadura, escudo o equipo corporal preparado.
+- **Activación:** Reacción cuando el usuario va a recibir daño Térmico.
+- **Coste:** 3 Maná.
+- **Efecto:** después de la mitigación ordinaria, reduce el daño final en **4**, mínimo 0.
+- **Apilamiento:** reemplaza, no suma, Resguardo Térmico I u otra reducción equivalente.
+
+##### Estabilidad Rúnica II
+
+- **Compatibilidad:** equipo persistente reparable.
+- **Activación:** Reacción cuando una consecuencia va a empeorar el estado físico del propio objeto.
+- **Coste:** 2 Maná.
+- **Efecto:** reduce en **un paso** ese empeoramiento, si la naturaleza de la consecuencia permite una estabilización mágica del soporte.
+- **Límites:** no evita pérdida, desintegración, destrucción causalmente absoluta ni daño al usuario.
+- **Apilamiento:** no se acumula con Tenacidad de Kharum u otra reducción equivalente; se usa el mejor efecto.
+
+##### Impulso Cinético II
+
+- **Compatibilidad:** arma cuerpo a cuerpo.
+- **Activación:** Vinculada a un ataque realizado con el arma.
+- **Coste:** 3 Maná.
+- **Efecto:** si el ataque impacta, puede desplazar al objetivo **1 espacio** cuando sea de Escala igual o menor y exista trayectoria válida.
+- **Límites:** no añade daño; no desplaza una criatura una categoría mayor o más; no mueve objetivos anclados; no se acumula con un Propulsor de impacto o efecto equivalente en la misma resolución.
+
+#### Identificación de Runas y Piedras
+
+Una Impronta conocida puede identificarse sin tirada por un personaje con Arcana apropiada, tiempo y acceso físico suficientes.
+
+Cuando exista incertidumbre real:
+
+- **PER + Arcana** puede examinar signos visibles o flujo;
+- **INT + Arcana** puede interpretar función y patrón;
+- Artefactos mágicos puede ser requisito para Improntas complejas.
+
+Identificar una Piedra no concede su Patrón Rúnico estable ni permite reproducirla automáticamente. Copiar o reconstruir un patrón desconocido pertenece a CRAFT-10.
+
+#### Runas y lanzamiento de hechizos
+
+Una Impronta activada:
+
+- cuenta como efecto mágico para interacciones que distingan magia de fenómenos mundanos;
+- no cuenta como un hechizo conocido;
+- no satisface requisitos de Disciplina;
+- no puede utilizar Técnicas o reglas que modifiquen un lanzamiento salvo autorización expresa;
+- no aumenta la DF, potencia o coste de los hechizos del usuario;
+- no ocupa por sí sola un espacio universal de Sostenimiento de hechizos.
+
+Una Impronta no puede almacenar o lanzar un hechizo del catálogo sólo porque su nombre o estética se parezcan a ese hechizo.
+
+Reproducir de forma autónoma un hechizo, mantenerlo sin Maná personal o dotar al objeto de una reserva propia pertenece a CRAFT-08/09.
+
+#### Interacción con trampas
+
+CRAFT-07 no crea trampas rúnicas automáticas.
+
+Una trampa de CRAFT-06 puede contener un objeto rúnico como componente físico, pero:
+
+- el Armazón no puede gastar Maná remoto del constructor;
+- no obtiene reconocimiento de objetivos;
+- no activa una Impronta Vinculada sin una Acción/prueba compatible;
+- no convierte una Runa en sensor.
+
+Un sello mágico automático, mina rúnica, alarma arcana o trampa que se active sola requiere una regla posterior de encantamiento/dispositivo.
+
+#### Valor, venta y reparación
+
+Para una Runa integrada, se calcula:
+
+**Valor rúnico añadido = 2 × coste material real de Matriz + 2 × coste material real de Inscripción.**
+
+Ese valor se suma al valor vigente del objeto después de Calidad y Material Especial.
+
+El resultado puede registrarse como **Valor de Referencia Final (VRF)**.
+
+Una Piedra es un objeto separado con su propio VR y estado. Si se vende instalada junto con el soporte, se suman los valores; no se cuenta dos veces.
+
+Las reparaciones del soporte pueden utilizar VRF cuando la matriz esté integrada en la parte dañada. Si el daño no afecta físicamente el Engarce/Piedra separable, la Piedra continúa siendo un objeto independiente.
+
+Una Piedra Dañada/Deshabilitada usa las reglas de estado de CRAFT-02 sobre su propio VR.
+
+#### Recuperación y desmantelamiento
+
+La precisión ritual de una Runa no se convierte íntegramente en materia recuperable.
+
+Además de las recuperaciones ya permitidas por CRAFT-02/05, los componentes rúnicos integrados pueden aportar como máximo:
+
+| Estado del soporte | VI rúnico recuperable respecto del coste material integrado de Matriz + Inscripción |
+|---|---:|
+| Operativo | 25% |
+| Dañado | 15% |
+| Deshabilitado | 10% |
+| Arruinado | 5% |
+| Destruido | 0% salvo componente superviviente explícito |
+
+Una Piedra intacta debe extraerse y tratarse como Piedra, no como VI rúnico genérico.
+
+Borrar una Runa deliberadamente no produce VI.
+
+#### Ejemplos
+
+**Espada larga Superior con Filo Arcano I inscrito.**
+
+- VR Común: 2 o.
+- Calidad Superior: VRQ 3 o.
+- CRu máxima: 1.
+- Preparar 1 CRu: 5 p de materiales por mínimo; valor añadido 1 o.
+- Inscribir Filo Arcano I: 1 o por mínimo; valor añadido 2 o.
+- VRF sin Material Especial: **6 o**.
+- Al atacar puede pagar 2 Maná como activación Vinculada para +1 Daño en esa resolución.
+- Si además posee Golpe optimizado por otra fuente, no obtiene +2: usa el mejor beneficio equivalente.
+
+**Placas Excepcionales con dos Engarces I.**
+
+- CRu máxima: 2.
+- pueden alojar dos Piedras I;
+- sólo una activación Vinculada puede afectar una misma resolución;
+- si ambas Piedras concedieran defensas de Reacción, el usuario sigue teniendo sólo una Reacción;
+- retirar una Piedra requiere 10 minutos.
+
+**Escudo Excepcional con Barrera Rúnica II.**
+
+- ocupa CRu 2 completa;
+- Reacción, 3 Maná;
+- +2 Defensa contra un ataque;
+- no se acumula con Barrera Cinética ni Escudo de campo;
+- no concede una segunda Reacción.
+
+**Piedra de Lumen I.**
+
+- Piedra I: VR 4 o, CM 2 o;
+- necesita un Engarce I;
+- en un bolsillo no hace nada;
+- instalada puede gastar 1 Maná y una Acción para emitir luz durante una Escena;
+- puede trasladarse a otro soporte compatible con 10 minutos de extracción y 10 de inserción.
+
+#### Salvaguardas de CRAFT-07
+
+- Runa y Piedra son dos soportes de Impronta, no dos capas acumulables.
+- Calidad limita CRu máxima.
+- CRu debe prepararse; no aparece gratis.
+- CapM y CRu son independientes.
+- accesorios triviales no crean ranuras.
+- toda Impronta de CRAFT-07 usa Maná personal.
+- Energía no sustituye Maná.
+- no existe Sobrecarga rúnica.
+- una activación Vinculada no crea una Acción.
+- sólo una Impronta Vinculada puede afectar una resolución.
+- el mismo beneficio no se acumula por provenir de Runa, Piedra, Calidad, Material, hechizo o dispositivo.
+- Pen no supera 3 por CRAFT-07.
+- CRAFT-07 no concede Protección permanente.
+- no hay reducción de Recarga.
+- no hay ataques automáticos ni sensores mágicos.
+- una Piedra fuera de un Engarce es inerte.
+- intercambiar Piedras no es una Acción de combate.
+- Cristales de Resonancia permanecen fuera del sistema.
+- identificar una Impronta no concede su Patrón.
+- borrar una Runa no recupera valor.
+- ninguna Impronta almacena hechizos ni Maná por defecto.
+
+#### Cristales de Resonancia: separación definitiva
+
+Las Piedras de Impronta se fabrican deliberadamente a partir de matrices arcanas procesadas y **no son Cristales de Resonancia**.
+
+Los Cristales de Resonancia conservan exclusivamente su función canónica vinculada a Familiares y resonancia individual.
+
+No existe conversión automática entre ambos sistemas.
+
+#### Límites de CRAFT-07
+
+CRAFT-07 no define todavía:
+
+- encantamientos autónomos;
+- objetos que mantengan efectos sin pagar Maná personal;
+- objetos con reserva propia de cargas mágicas;
+- sintonización de objetos mágicos mayores;
+- accesorios mágicos dedicados como anillos, amuletos o capas;
+- almacenamiento o lanzamiento de hechizos desde un objeto;
+- sensores mágicos automáticos;
+- trampas rúnicas autónomas;
+- combinación de runas con Energía/Caudal de dispositivos;
+- artefactos únicos.
+
+El siguiente cierre es **CRAFT-08 — Objetos mágicos, encantamientos y sintonización**.
 
 
 ## 19. Economía, disponibilidad y equipo
