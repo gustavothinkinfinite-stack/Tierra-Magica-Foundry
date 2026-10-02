@@ -23,7 +23,7 @@ test("el Manual contiene un procedimiento completo de combate paso a paso",async
     "### Guardia",
     "### Preparar",
     "### Retrasar",
-    "### Maniobras: Derribar, Empujar y Agarrar",
+    "### Maniobras: Derribar, Empujar, Agarrar y Desarmar",
     "### Magia durante el combate",
     "### Primeros Auxilios, fórmulas, dispositivos y Familiares",
     "### 0 Vida, Daño Grave y final de un combate",
