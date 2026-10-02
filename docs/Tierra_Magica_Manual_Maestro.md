@@ -2581,7 +2581,7 @@ La Defensa pasiva de escudo sólo se aplica cuando el ataque entra por un frente
 
 Un personaje no suma la Defensa pasiva de varios escudos a la vez. Se usa el escudo pertinente.
 
-La calidad Defectuosa/Común/Superior/Excepcional describe fabricación y propiedades concretas; no concede un +1/+2/+3 universal.
+La calidad Defectuosa/Común/Superior/Excepcional describe fabricación y propiedades concretas; no concede un +1/+2/+3 universal. **CRAFT-04 — Calidad y modificaciones** define sus costes, requisitos, Capacidad de Modificación y propiedades concretas.
 
 Las recetas de fabricación de armas, armaduras, escudos, munición y herramientas del catálogo vigente se encuentran en **CRAFT-03 — Armas, armaduras y herramientas**, dentro del capítulo 18.
 
@@ -3876,7 +3876,7 @@ CRAFT-01 establece estas salvaguardas:
 - una propiedad especial debe proceder de diseño, material, modificación, runa, encantamiento, dispositivo u otra fuente mecánica identificable;
 - reparar un objeto restaura lo que ya posee; no añade una mejora gratuita.
 
-La cuantificación completa de Calidad y modificaciones pertenece a CRAFT-04.
+La cuantificación completa de Calidad y modificaciones está definida en **CRAFT-04 — Calidad y modificaciones**, dentro de este capítulo.
 
 ### Proyectos dentro de combate
 
@@ -4403,7 +4403,296 @@ CRAFT-03 no define todavía:
 - nuevos dispositivos arcano-industriales;
 - investigación de diseños nuevos.
 
-El siguiente cierre es **CRAFT-04 — Calidad y modificaciones**.
+CRAFT-04 se desarrolla a continuación.
+
+### CRAFT-04 — Calidad y modificaciones
+
+> **VIGENTE · CERRADO.** CRAFT-04 define la Calidad de manufactura, su coste, requisitos y valor; establece la Capacidad de Modificación de los objetos persistentes; y proporciona un catálogo inicial de modificaciones mundanas. No sustituye CRAFT-05 para materiales especiales ni CRAFT-07/08 para runas, piedras y objetos mágicos.
+
+#### Qué representa la Calidad
+
+La **Calidad** describe la precisión, tolerancias, selección de componentes, acabado funcional y control de manufactura de un objeto. Es independiente de:
+
+- su estado físico actual;
+- la rareza o Disponibilidad;
+- el material especial del que esté hecho;
+- sus runas, encantamientos o componentes mágicos;
+- el rango del personaje que lo utiliza.
+
+Un objeto Superior puede estar Dañado y continuar siendo Superior. Reparar su estado no cambia automáticamente su Calidad. Del mismo modo, un objeto Común perfectamente conservado no se vuelve Superior por mantenimiento.
+
+CRAFT-04 se aplica por defecto a **equipo persistente**: armas, armaduras, escudos, herramientas, Kits y otros objetos reutilizables compatibles. Munición, fórmulas alquímicas, cargas, consumibles y objetos de un solo uso no adquieren Calidad Superior/Excepcional mediante esta regla salvo que su receta lo autorice expresamente.
+
+#### Escala de Calidad
+
+| Calidad | Valor de calidad respecto del VR Común | Capacidad de Modificación | Función |
+|---|---:|---:|---|
+| **Defectuosa** | 50% | 0 | objeto usable con un Defecto de manufactura significativo |
+| **Común** | 100% | 0 | perfil normal del catálogo |
+| **Superior** | 150% | 1 | manufactura avanzada; admite 1 punto de Modificación |
+| **Excepcional** | 250% | 2 | manufactura extraordinaria; admite 2 puntos de Modificación |
+
+La **Capacidad de Modificación (CapM)** es un límite estructural del objeto, no una moneda del personaje. No se compra con PD, PR ni dinero por separado, no se transfiere entre objetos y no se recupera como recurso. Una modificación ocupa 1 o 2 puntos de la CapM mientras forme parte del objeto.
+
+Un objeto no puede superar Calidad Excepcional mediante manufactura mundana ordinaria. Artefactos, materiales sobrenaturales o reliquias pueden romper este límite sólo mediante reglas expresas posteriores.
+
+#### Valor de Referencia de Calidad
+
+El **Valor de Referencia de Calidad (VRQ)** se calcula sobre el VR Común:
+
+- Defectuosa: **VRQ = 50% VR**;
+- Común: **VRQ = VR**;
+- Superior: **VRQ = 150% VR**;
+- Excepcional: **VRQ = 250% VR**.
+
+Para precios y costes se trabaja en cobres. Los costes se redondean hacia arriba; ventas y recuperaciones, hacia abajo conforme a CRAFT-02.
+
+Para fabricar desde cero una pieza de Calidad Superior o Excepcional, el Coste de Materiales sigue siendo 50% de su VRQ:
+
+| Calidad objetivo | CM total respecto del VR Común |
+|---|---:|
+| Común | 50% |
+| Superior | 75% |
+| Excepcional | 125% |
+
+El incremento representa selección de materia prima ordinaria de mejor consistencia, descartes, tolerancias, piezas de ajuste y trabajo de preparación. No introduce por sí mismo un material especial de CRAFT-05.
+
+#### Requisitos para Calidad Superior y Excepcional
+
+La Calidad aumenta la exigencia profesional de la receta base.
+
+Para determinar el **rango mínimo de Calidad** se avanza en la escala Aprendiz -> Entrenado -> Experto -> Maestro -> Gran Maestro.
+
+- **Superior:** un rango por encima del mínimo de la receta y nunca menos de **Experto**.
+- **Excepcional:** dos rangos por encima del mínimo de la receta y nunca menos de **Maestro**.
+- Si el avance excedería Gran Maestro, permanece en **Gran Maestro**; la exigencia adicional se expresa mediante instalación, tiempo, materiales y demás requisitos.
+
+La instalación también aumenta:
+
+- **Superior:** un grado por encima de la instalación mínima de la receta;
+- **Excepcional:** dos grados por encima;
+- nunca se exige más de instalación **Excepcional**.
+
+El tiempo de fabricación aumenta sobre el tiempo base de CRAFT-03 o la receta correspondiente:
+
+- **Superior:** ×1,5;
+- **Excepcional:** ×2.
+
+Estos multiplicadores se aplican antes de Ayuda de trabajo o Aceleración.
+
+Ejemplos de progresión:
+
+- una receta Estándar/Entrenada requiere **Experto** para Superior y **Maestro** para Excepcional;
+- una receta Compleja/Experta requiere **Maestro** para Superior y **Gran Maestro** para Excepcional;
+- una receta Magistral/Maestra requiere **Gran Maestro** tanto para Superior como para Excepcional, pero Excepcional mantiene mayores costes, tiempo e instalación.
+
+Una tirada alta, Hazaña o margen Dominante nunca sustituye estos requisitos.
+
+#### Calidad Defectuosa
+
+Defectuosa **no es una opción universal para abaratar deliberadamente cualquier receta**. Aparece cuando una regla, consecuencia, improvisación, prototipo o procedencia del objeto establece que el resultado es usable pero posee un defecto de manufactura.
+
+Un objeto Defectuoso:
+
+- conserva su perfil base salvo lo que cambie su Defecto;
+- posee **CapM 0**;
+- no puede sostener modificaciones positivas de CRAFT-04;
+- usa 50% del VR Común como VRQ para mercado y estado;
+- requiere corregir su Defecto antes de poder elevarse a Superior o Excepcional.
+
+Un proyecto puede autorizar expresamente producción deliberadamente Defectuosa —por ejemplo equipo de emergencia—, pero debe definir su coste y consecuencia. CRAFT-04 no concede un descuento universal por elegirla.
+
+#### Defectos de manufactura
+
+Un objeto Defectuoso posee normalmente **un Defecto significativo** apropiado a su familia. El Defecto debe registrarse en el Item.
+
+| Defecto | Aplicación | Efecto |
+|---|---|---|
+| **Pesado** | objeto con FUE mínima | FUE mínima +1 |
+| **Ruidoso** | armadura/equipo móvil | puede causar Desventaja a Sigilo por ruido ordinario cuando sea relevante |
+| **Desbalanceado** | arma, escudo o herramienta sostenida | -1 a Defensa de Maniobra contra Desarmar mientras se utilice ese objeto |
+| **Impreciso** | arma a distancia | -1 a ataques realizados más allá de alcance cercano o en situaciones donde la precisión del mecanismo sea relevante |
+| **Filo/perfil deficiente** | arma compatible | Daño -1 **o** Pen -1, elegido al registrar el defecto; nunca por debajo de 0 |
+| **Recarga torpe** | arma con Recarga | Recarga +1 |
+| **Frágil** | objeto físico compatible | si una consecuencia de esfuerzo físico directo lo haría pasar de Operativo a Dañado, pasa a Deshabilitado en su lugar |
+| **Mal calibrado** | herramienta o Kit | una operación profesional específica declarada sufre Desventaja cuando dependa de esa calibración |
+
+No todos los Defectos son válidos para todos los objetos. Si ningún Defecto de la tabla representa la falla real, se registra uno específico con impacto comparable antes de utilizar el objeto.
+
+Los Defectos no conceden descuentos, CapM ni beneficios compensatorios.
+
+#### Corregir y elevar Calidad
+
+Una Calidad puede mejorarse sólo cuando la estructura del objeto admite retrabajo. Una receta puede declarar una pieza no actualizable.
+
+Como referencia universal:
+
+| Cambio | Materiales adicionales | Trabajo adicional |
+|---|---:|---:|
+| Defectuosa -> Común | 25% del VR Común | 50% del tiempo base |
+| Común -> Superior | 25% del VR Común | 50% del tiempo base |
+| Superior -> Excepcional | 50% del VR Común | 50% del tiempo base |
+| Común -> Excepcional directamente | 75% del VR Común | 100% del tiempo base |
+
+Se utilizan los requisitos de rango e instalación de la **Calidad objetivo**.
+
+Defectuosa -> Común elimina el Defecto si éste es físicamente corregible. Un defecto originado por material intrínsecamente inadecuado puede exigir sustituir piezas o hacer imposible la mejora.
+
+Al elevar a Superior puede elegirse hasta 1 punto de Modificación como parte del retrabajo sin pagar además el coste de instalación posterior. Al elevar de Superior a Excepcional puede elegirse el nuevo punto de CapM que queda disponible. Una modificación ya instalada no se cambia gratuitamente durante el ascenso salvo que forme parte del rediseño declarado y se paguen sus costes correspondientes.
+
+Estas proporciones mantienen continuidad económica: mejorar una pieza no crea valor de reventa gratuito sin aportar materiales y trabajo.
+
+#### Modificaciones
+
+Una **Modificación** es una propiedad concreta de manufactura que ocupa CapM. Debe estar físicamente justificada por diseño y ser compatible con el objeto.
+
+Reglas universales:
+
+- una misma Modificación no puede instalarse dos veces en el mismo objeto;
+- una propiedad de 2 puntos requiere Calidad Excepcional;
+- no puede utilizarse CapM inexistente;
+- una Modificación sólo afecta el objeto que la posee;
+- si dos propiedades de equipo producen el mismo beneficio mecánico, se utiliza el mayor salvo que una regla diga expresamente que se acumulan;
+- reducciones de FUE mínima procedentes de manufactura no se acumulan entre sí;
+- CRAFT-04 no puede elevar por sí solo Penetración por encima de **3**;
+- CRAFT-04 no puede reducir una Recarga existente por debajo de **1 Acción**;
+- ninguna combinación de Modificaciones concede Acciones, Reacciones o ataques adicionales;
+- una Modificación no crea Energía, Maná, ranuras rúnicas, encantamientos ni propiedades de material especial.
+
+La CapM de CRAFT-04 es independiente de cualquier capacidad rúnica, energética o de engarce que definan CRAFT posteriores.
+
+#### Instalar o sustituir una Modificación después de fabricar
+
+Si un objeto ya posee CapM libre, una Modificación puede añadirse posteriormente mediante un Proyecto compatible.
+
+Por cada punto de CapM que ocupe la nueva Modificación:
+
+- materiales: **10% del VR Común**;
+- trabajo: **25% del tiempo base de fabricación**;
+- mínimo de trabajo total: **1 hora**.
+
+El proyecto exige al menos el rango e instalación de la Calidad actual del objeto.
+
+Si la Modificación se definió durante la fabricación inicial Superior/Excepcional o durante el ascenso de Calidad que creó esa CapM, su instalación queda incluida en el coste y tiempo de esa Calidad.
+
+Sustituir una Modificación existente utiliza el mismo coste y tiempo que instalar la nueva. La propiedad anterior deja de funcionar. No existe recuperación monetaria o de materiales automática por retirarla.
+
+Quitar una modificación sin reemplazarla libera su CapM cuando sea físicamente posible; requiere como referencia 10% del tiempo base, mínimo 30 minutos, y no produce VI automático.
+
+#### Catálogo inicial — Modificaciones de 1 punto
+
+| Modificación | Objetos compatibles | Efecto |
+|---|---|---|
+| **Mantenible** | equipo persistente reparable | el tiempo de reparación de CRAFT-02 se reduce a la mitad; materiales sin cambio; mínimo 10 minutos |
+| **Modular** | armas, herramientas, Kits y equipo con componentes separables | se declara una familia de módulo ordinario; con herramientas apropiadas puede intercambiarse en 10 minutos sin Proyecto de Adaptación; el módulo debe existir y no altera estadísticas salvo regla propia |
+| **Compacta** | arma o herramienta de una mano que no sea Pesada, de Alcance ni de 2 manos | puede ocultarse donde su versión ordinaria sería evidente; un arma obtiene la propiedad **Ocultable** |
+| **Retención segura** | arma o herramienta sostenida | +1 Defensa de Maniobra contra Desarmar mientras ese objeto sea el que se intenta arrebatar |
+| **Equilibrada para Parada** | arma válida para Parada | al usar **Parada** con esa arma, su bono es +3 Defensa en vez de +2 |
+| **Estabilizada** | arma a distancia no arrojadiza | +1 al ataque si el usuario no gastó Movimiento antes de ese ataque, no está siendo desplazado materialmente y el objetivo se encuentra dentro del alcance óptimo aplicable |
+| **Silenciosa** | armadura o equipo corporal compatible | el objeto no causa por sí solo Desventaja a Sigilo por el ruido ordinario de movimiento; correr, golpear superficies u otras fuentes de ruido siguen siendo relevantes |
+| **Articulada** | armadura con FUE mínima 1+ | si el usuario está exactamente 1 punto por debajo de la FUE mínima, elimina sólo la Desventaja física causada por esa insuficiencia; Movimiento -1 y Carga Pesada permanecen |
+| **Bloqueo afinado** | escudo con Bloqueo | la Reacción Bloqueo concede +3 Defensa en vez de +2 |
+| **Herramienta especializada** | herramienta o Kit | elige una operación profesional estrecha y registrada; el objeto satisface el requisito de herramienta ordinaria dedicada para esa operación, pero no sustituye Habilidad, materiales ni instalación |
+| **Preparada para campo** | herramienta o Kit | elige una operación registrada cuyo mínimo normal sea instalación Adecuada; si físicamente puede ejecutarse en una instalación Improvisada, ignora la Desventaja causada **sólo** por ese déficit de un grado; otros déficits permanecen |
+
+Los modificadores numéricos de esta tabla pertenecen a la fuente **manufactura del objeto**. No se suman con otra propiedad de manufactura que modifique exactamente la misma magnitud en la misma resolución.
+
+#### Catálogo inicial — Modificaciones de 2 puntos
+
+| Modificación | Objetos compatibles | Efecto |
+|---|---|---|
+| **Aligerada** | arma, armadura o escudo con FUE mínima 1+ | reduce FUE mínima en 1, mínimo 0; no cambia Daño, Protección ni propiedades; no se acumula con otra reducción de FUE mínima |
+| **Golpe optimizado** | arma con perfil de daño propio | Daño +1; es el máximo aumento de Daño que CRAFT-04 puede aportar a ese arma |
+| **Perfil penetrante** | arma con Pen 0–2 | Pen +1, máximo Pen 3 mediante CRAFT-04 |
+| **Mecanismo de recarga refinado** | arma con Recarga 2+ | Recarga -1; después de todas las reducciones de manufactura y Técnicas, una arma que requiere Recarga no baja de 1 Acción salvo regla expresa posterior |
+| **Bastidor móvil** | Escudo pesado | elimina el Movimiento -1 intrínseco del Escudo pesado mientras el usuario cumpla su FUE mínima; no reduce esa FUE mínima |
+
+Una pieza Excepcional puede utilizar dos Modificaciones de 1 punto o una de 2 puntos. No puede tener tres propiedades de 1 punto por pagar dinero adicional: el límite es estructural.
+
+#### Interacción con Técnicas y reglas existentes
+
+**Parada.** Equilibrada para Parada modifica el valor de la Reacción Parada cuando se usa ese arma. No concede una Reacción adicional ni habilita Parada a quien no cumpla sus requisitos.
+
+**Bloqueo.** Bloqueo afinado modifica la Reacción existente del escudo; no concede Bloqueo a un Broquel u objeto que carezca de esa regla.
+
+**Recarga Experta.** Mecanismo de recarga refinado y Recarga Experta pueden reducir una Recarga válida, pero la Recarga final no puede ser inferior a 1 Acción mediante estas fuentes. Ninguna convierte un arma con Recarga en un arma de disparo gratuito.
+
+**Armadura.** Aligerada reduce el requisito de FUE. Articulada sólo suaviza una de las consecuencias de estar exactamente un punto por debajo; no cambia el requisito. Si una armadura posee ambas, primero se calcula su nueva FUE mínima por Aligerada y después se evalúa Articulada.
+
+**Sigilo.** Silenciosa elimina únicamente el ruido ordinario atribuible a la propia construcción. No vuelve invisible al usuario ni cancela terreno, carga, velocidad o ruido producido por otras fuentes.
+
+#### Calidad, estado y reparación
+
+Para un objeto Superior o Excepcional:
+
+- el **VRQ**, no el VR Común, se utiliza para calcular Valor Aplicable y venta;
+- los porcentajes de **materiales de reparación** de CRAFT-02 se calculan sobre VRQ;
+- el tiempo de reparación se calcula sobre el **tiempo de fabricación de esa Calidad**;
+- preservar la Calidad y sus Modificaciones exige cumplir los requisitos profesionales de esa Calidad.
+
+Un artesano que sólo cumple los requisitos de la receta Común puede estabilizar, desmontar o realizar tareas simples cuando la ficción lo permita, pero no completa una reparación que certifique nuevamente una pieza Superior/Excepcional sin cumplir sus requisitos.
+
+**Recuperación por desmantelamiento:** la recuperación genérica de CRAFT-02 se calcula sobre el **VR Común**, no sobre VRQ. El valor añadido por precisión y mano de obra de Calidad no se transforma en más metal, cuero o madera al desmontar la pieza. Componentes especiales recuperables se siguen tratando por separado.
+
+La Modificación Mantenible reduce el tiempo, no la competencia ni el coste material de reparar.
+
+#### Interacción con materiales, runas y magia
+
+CRAFT-04 reserva explícitamente espacios de diseño para sistemas posteriores:
+
+- CRAFT-05 puede otorgar propiedades por **material**, separadas de CapM;
+- CRAFT-07 puede definir engarces, piedras y capacidad rúnica;
+- CRAFT-08 puede definir encantamientos y sintonización;
+- Ingeniería puede añadir componentes con Energía/Caudal/Consumo.
+
+Esas fuentes no obtienen CapM gratis ni consumen CapM salvo que su propia regla lo indique.
+
+Si una propiedad posterior reproduce exactamente un beneficio de CRAFT-04 —por ejemplo reducir FUE mínima, aumentar Daño o aumentar Pen— **no se acumula por defecto**. Se utiliza el mejor efecto salvo autorización explícita.
+
+#### Ejemplos
+
+**Espada larga Superior.** VR Común 2 o. VRQ 3 o; CM 1 o 5 p. La receta base es Compleja/Experta, por lo que Superior exige Artesanía Maestra · Forja y metal e instalación Especializada. Tiempo: 3 Jornadas. CapM 1. Puede elegirse, por ejemplo, Equilibrada para Parada o Retención segura, pero no Golpe optimizado.
+
+**Espada larga Excepcional.** VRQ 5 o; CM 2 o 5 p. Exige Gran Maestro, instalación Excepcional y 4 Jornadas. CapM 2. Puede tomar Golpe optimizado (+1 Daño), Perfil penetrante (+1 Pen hasta 3) **o** dos modificaciones de 1 punto.
+
+**Malla Superior.** VR Común 10 o; VRQ 15 o; CM 7 o 5 p. Requiere Artesanía Experta · Forja y metal, instalación Profesional y 7,5 Jornadas. CapM 1. Silenciosa es una opción válida; Aligerada no, porque cuesta 2.
+
+**Placas Excepcionales.** VR Común 40 o; VRQ 100 o; CM 50 o. Requieren Artesanía Gran Maestra · Forja y metal, instalación Excepcional y 20 Jornadas. CapM 2. Pueden ser Aligeradas, reduciendo FUE mínima 3 -> 2, o combinar dos propiedades de 1 punto como Silenciosa + Mantenible.
+
+**Rifle temprano Excepcional.** VR Común 18 o; VRQ 45 o; CM 22 o 5 p. Requiere el rango de Calidad correspondiente, instalación Excepcional y 12 Jornadas. Puede usar Golpe optimizado para Daño 8, pero Perfil penetrante no puede aumentar su Pen 3 mediante CRAFT-04.
+
+**Escudo estándar Superior.** VR Común 1 o 5 p; VRQ 2 o 2 p 5 c; CapM 1. Bloqueo afinado eleva Bloqueo +2 -> +3 sin alterar su Defensa pasiva frontal.
+
+#### Salvaguardas de CRAFT-04
+
+- Calidad no es estado ni rareza.
+- Superior/Excepcional no entregan un +1/+2 universal.
+- CapM es capacidad del objeto, no una nueva economía del personaje.
+- No se compra CapM adicional con oro.
+- Un Maestro no obtiene Calidad Superior gratis por superar una prueba.
+- Un objeto Común no recibe una Modificación positiva sólo por personalización narrativa.
+- Daño sólo puede aumentar +1 por CRAFT-04.
+- Pen sólo puede aumentar +1 y nunca superar 3 por CRAFT-04.
+- Recarga no baja de 1 Acción por manufactura/Técnica ordinaria.
+- FUE mínima sólo puede reducirse 1 por manufactura.
+- Ninguna Modificación añade acciones, ataques, Reacciones, Maná o Energía.
+- Defectos nunca financian mejoras positivas.
+- La recuperación de chatarra no multiplica el valor de Calidad.
+- Reparar un objeto de Calidad no permite mantener esa Calidad con competencia insuficiente.
+- Una propiedad material, rúnica o mágica equivalente no se acumula por defecto.
+
+#### Límites de CRAFT-04
+
+CRAFT-04 no define todavía:
+
+- materiales especiales concretos y sus propiedades;
+- extracción/refinado de dichos materiales;
+- trampas;
+- runas, piedras, engarces, encantamientos y sintonización;
+- dispositivos arcano-industriales nuevos;
+- investigación de propiedades no catalogadas.
+
+El siguiente cierre es **CRAFT-05 — Materiales especiales**.
 
 
 ## 19. Economía, disponibilidad y equipo
