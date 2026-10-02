@@ -4640,7 +4640,7 @@ La Modificación Mantenible reduce el tiempo, no la competencia ni el coste mate
 
 CRAFT-04 reserva explícitamente espacios de diseño para sistemas posteriores:
 
-- CRAFT-05 puede otorgar propiedades por **material**, separadas de CapM;
+- CRAFT-05 otorga propiedades por **material**, separadas de CapM;
 - CRAFT-07 puede definir engarces, piedras y capacidad rúnica;
 - CRAFT-08 puede definir encantamientos y sintonización;
 - Ingeniería puede añadir componentes con Energía/Caudal/Consumo.
@@ -4692,7 +4692,390 @@ CRAFT-04 no define todavía:
 - dispositivos arcano-industriales nuevos;
 - investigación de propiedades no catalogadas.
 
-El siguiente cierre es **CRAFT-05 — Materiales especiales**.
+CRAFT-05 se desarrolla a continuación.
+
+### CRAFT-05 — Materiales especiales
+
+> **VIGENTE · CERRADO.** CRAFT-05 define cómo los materiales Especializados, Raros y Excepcionales entran en un Proyecto; separa sus propiedades de Calidad y Modificaciones; fija coste, dificultad de trabajo, recuperación y compatibilidad; y ratifica un primer catálogo material basado en recursos y regiones que ya existen en el canon.
+
+#### Relación con el canon del mundo
+
+El canon previo ya establece, entre otros elementos, que:
+
+- Kharum produce acero, aleaciones y piezas de precisión de alta calidad;
+- Erelia comercializa madera tratada, plantas raras y recursos ambientales;
+- existen grandes depósitos de cristal arcano y éste se refina para acumuladores, instrumentos y laboratorios;
+- el Desierto de Vidrio contiene regiones vitrificadas por un fenómeno mágico antiguo;
+- el Bosque de las Mil Voces presenta anomalías acústicas y mágicas;
+- existen ruinas y maquinaria de los Fundadores;
+- los Cristales de Resonancia son formaciones excepcionalmente raras vinculadas a los Familiares.
+
+CRAFT-05 **añade ahora canon mecánico** sobre esa base. Los nombres normalizados y propiedades de material de las tablas siguientes no implican que toda materia procedente de una región posea esas propiedades. «Acero de Kharum», por ejemplo, designa aquí una calidad material especial certificada o equivalente, no cualquier pieza de acero producida dentro de Kharum.
+
+#### Material ordinario y material especial
+
+Una receta de CRAFT-03 presupone materiales ordinarios adecuados y ya preparados.
+
+Un **Material Especial** posee:
+
+- **Nombre**;
+- **Familia**: Metal, Madera, Cristal, Vidrio/Mineral, Orgánico, Técnico u otra;
+- **Grado de recurso**: Especializado, Raro o Excepcional;
+- **Cobertura mínima** necesaria para obtener su propiedad;
+- **Disponibilidad**;
+- **Propiedad material**;
+- cualquier requisito de preparación o compatibilidad.
+
+La propiedad material es una fuente mecánica distinta de:
+
+- Calidad;
+- Modificaciones de CRAFT-04;
+- runas o piedras;
+- encantamientos;
+- dispositivos;
+- efectos mágicos temporales.
+
+No consume CapM y tampoco concede CapM.
+
+#### Cobertura material
+
+El material especial debe ocupar una parte físicamente relevante del objeto.
+
+| Cobertura | Coeficiente | Ejemplo conceptual |
+|---|---:|---|
+| **Componente** | 25% | lente, núcleo, mecanismo, placa funcional concreta |
+| **Mayor** | 50% | hoja parcial, arco principal, revestimiento funcional importante |
+| **Dominante** | 100% | estructura principal, cuerpo, placas principales, armazón |
+
+La entrada del material indica qué cobertura mínima necesita para conceder su propiedad.
+
+Un objeto puede tener **un Material Dominante**. Puede contener además materiales especiales como Componentes o partes Mayores sólo cuando la receta o el diseño identifique una función física real para ellos. Añadir incrustaciones decorativas no crea una propiedad.
+
+Varios materiales pueden coexistir si ocupan funciones diferentes, pero dos propiedades que modifican exactamente la misma magnitud no se acumulan salvo regla expresa.
+
+#### Suplemento Material
+
+CRAFT-02 ya cubre el material ordinario de una receta. Sustituir una parte por material especial añade un **Suplemento Material (SM)**.
+
+Para una sustitución Dominante:
+
+| Grado | SM respecto del VR Común |
+|---|---:|
+| **Especializado** | +25% |
+| **Raro** | +50% |
+| **Excepcional** | +100% |
+
+Para cobertura Mayor o Componente se multiplica por su coeficiente.
+
+**SM = VR Común × porcentaje del Grado × coeficiente de Cobertura**, redondeado hacia arriba al cobre.
+
+El coste material total de fabricación es:
+
+**CM total = CM de la Calidad + suma de SM + componentes especiales separados.**
+
+Un Lote de Material Especial compatible puede pagar su SM mediante su Valor de Insumo. El VI utilizado se consume físicamente en el Proyecto.
+
+#### Valor de Referencia Total
+
+El valor añadido por material especial se calcula sin crear arbitraje:
+
+**Valor Material Añadido = 2 × SM.**
+
+**Valor de Referencia Total (VRT) = VRQ + suma de Valores Materiales Añadidos.**
+
+VRQ procede de CRAFT-04; en un objeto Común, VRQ = VR Común.
+
+El estado físico, venta rápida y venta directa se calculan sobre VRT.
+
+Esta relación es deliberada: una venta directa ordinaria de referencia recupera aproximadamente la mitad de VRT, por lo que el incremento de valor por material nunca supera el SM invertido antes de contar trabajo.
+
+#### Dificultad de trabajar materiales especiales
+
+La dificultad material se acumula con la exigencia de Calidad.
+
+| Grado | Ajuste de Proyecto | Instalación | Tiempo |
+|---|---|---|---:|
+| **Especializado** | sin subir categoría; mínimo Artesanía/competencia Entrenada cuando corresponda | sin cambio | ×1 |
+| **Raro** | +1 categoría efectiva de Complejidad | +1 grado | ×1,25 |
+| **Excepcional** | +2 categorías efectivas de Complejidad | +2 grados | ×1,5 |
+
+Los límites siguen siendo Extraordinario, Gran Maestro e instalación Excepcional.
+
+Los ajustes de **Calidad y Material** se aplican ambos. Ejemplo: una receta Compleja/Experta fabricada como Superior con un material Raro exige normalmente el equivalente profesional de Gran Maestro.
+
+Cuando el material sólo es un Componente adquirido ya preparado, su entrada puede declarar que no aumenta la Complejidad de todo el objeto y que sólo exige una fase de integración. Si no lo declara, se aplica la regla general.
+
+La fabricación sigue siendo rutinaria y sin tirada cuando todos los requisitos resultantes se cumplen.
+
+#### Lotes: Bruto y Preparado
+
+Un Lote de Material Especial registra además su estado:
+
+- **Bruto:** extraído, recuperado o hallado, pero todavía no apto para sustituir material de una receta salvo regla expresa.
+- **Preparado:** refinado, estabilizado, curado, cortado o procesado hasta ser utilizable.
+
+Preparar un Lote **no aumenta automáticamente su VI**. Cambia su usabilidad, no crea materia ni valor de la nada.
+
+La preparación usa la competencia que corresponda a la naturaleza del material:
+
+- Artesanía para metal, madera, cuero, vidrio y trabajo material ordinario;
+- Ingeniería para componentes técnicos o procesos industriales;
+- Alquimia para reactivos o estabilización química;
+- Arcana cuando el problema principal sea una propiedad mágica;
+- Naturaleza/Supervivencia cuando la extracción o conservación dependa principalmente de un recurso vivo o ambiental.
+
+Puede ser un Proyecto multidisciplinario.
+
+#### Extracción y rendimiento
+
+CRAFT-05 no genera una cantidad universal de material por tirada.
+
+La escena, yacimiento, criatura, ruina o recompensa determina cuánto material físicamente existe y cuál es su **VI máximo recuperable**.
+
+Una prueba puede decidir:
+
+- si se localiza una veta utilizable;
+- si la extracción preserva una propiedad;
+- si se evita contaminación;
+- cuánto material físicamente presente se pierde;
+- si un componente puede recuperarse intacto.
+
+Un margen alto nunca multiplica una reserva más allá de lo que estaba presente.
+
+Los recursos agotados no reaparecen porque se repita la prueba.
+
+#### Identificación
+
+Un material conocido puede identificarse sin tirada por un personaje competente con tiempo y medios adecuados.
+
+Un material desconocido, adulterado o anómalo puede exigir Investigación, Artesanía, Ingeniería, Arcana, Naturaleza o Alquimia según el problema.
+
+Identificar un material no revela automáticamente una propiedad que todavía no exista como canon. Un material de criatura o Fundador sin perfil estable requiere investigación antes de obtener beneficios mecánicos.
+
+#### Catálogo inicial de Materiales Especiales
+
+##### Acero de Kharum
+
+- **Familia:** Metal.
+- **Grado:** Especializado.
+- **Cobertura mínima:** Dominante.
+- **Disponibilidad:** Profesional; el acceso puede ser más sencillo en Kharum.
+- **Compatibilidad habitual:** armas metálicas, armaduras, escudos, herramientas y estructuras.
+- **Propiedad — Tenacidad de Kharum:** cuando una sola consecuencia de impacto, torsión o esfuerzo físico directo fuera a empeorar el estado del objeto **dos o más pasos de una vez**, reduce ese empeoramiento en un paso. No reduce daño sufrido por el usuario y no protege automáticamente contra fuego, corrosión, magia o un efecto que destruya material por otra causa.
+- **Apilamiento:** no se combina con otra propiedad que reduzca la misma degradación estructural; se usa la mejor.
+
+Esta entrada representa acero producido con estándares y tratamiento capaces de justificar la propiedad, no todo acero originario de Kharum.
+
+##### Madera tratada de Erelia
+
+- **Familia:** Madera.
+- **Grado:** Especializado.
+- **Cobertura mínima:** Mayor.
+- **Disponibilidad:** Profesional.
+- **Compatibilidad habitual:** arcos, astas, escudos, herramientas, cajas, componentes de vehículos o estructuras.
+- **Propiedad — Estabilidad ambiental:** humedad ordinaria, lluvia, hongos comunes, secado y cambios normales de temperatura no causan por sí solos Desventaja por deformación del objeto ni deterioro de estado. No protege de fuego, congelación extrema, sustancias corrosivas, zonas mágicas hostiles o abandono prolongado.
+- **Apilamiento:** una propiedad mágica o material equivalente no añade una segunda inmunidad.
+
+La frase «madera tratada» ya existe en el comercio de Erelia; CRAFT-05 fija ahora esta variante mecánica especial.
+
+##### Cristal arcano refinado
+
+- **Familia:** Cristal / Arcano.
+- **Grado:** Especializado.
+- **Cobertura mínima:** Componente.
+- **Disponibilidad:** Profesional; puede ser Restringida según jurisdicción y uso.
+- **Compatibilidad habitual:** acumuladores, instrumentos arcanos, laboratorios, dispositivos y futuros soportes rúnicos compatibles.
+- **Propiedad — Conductor arcano:** cuenta como conductor/foco material compatible cuando una receta de dispositivo, instrumento o subsistema arcano exija cristal conductor. No produce Energía, Caudal, Estabilidad, Maná, hechizos, CapM ni ranuras por sí mismo.
+- **Integración:** cuando se adquiere ya refinado como Componente, no aumenta por sí solo la Complejidad total; la receta del dispositivo define la fase de integración.
+- **Exclusión:** no es un Cristal de Resonancia.
+
+##### Aleación de precisión de Kharum
+
+- **Familia:** Metal.
+- **Grado:** Raro.
+- **Cobertura mínima:** Mayor.
+- **Disponibilidad:** Rara.
+- **Compatibilidad habitual:** armas de fuego, ballestas complejas, mecanismos, herramientas de precisión, dispositivos.
+- **Propiedad — Mecanizado fino:** no aumenta CapM, pero facilita modificaciones posteriores compatibles con sus piezas metálicas. Instalar o sustituir Modificaciones de CRAFT-04 en la parte fabricada con esta aleación cuesta **5% del VR Común en materiales por punto de CapM** en lugar de 10%, y **15% del tiempo base por punto** en lugar de 25%, con los mismos mínimos y requisitos profesionales.
+- **Límite:** no reduce coste/tiempo de una modificación que dependa principalmente de otra parte del objeto ni permite instalar una Modificación incompatible.
+
+Esta aleación es una extensión mecánica de la tradición canónica de acero, aleaciones y piezas de precisión de Kharum.
+
+##### Vidrio del Desierto
+
+- **Familia:** Vidrio / Mineral.
+- **Grado:** Raro.
+- **Cobertura mínima:** Componente en instrumentos ópticos; Mayor en objetos cuya función dependa del vidrio.
+- **Disponibilidad:** Rara.
+- **Compatibilidad habitual:** catalejos, visores, instrumentos arcanos, óptica especializada.
+- **Propiedad — Refracción liminal:** cuando un instrumento óptico funcional utiliza Vidrio del Desierto en su elemento principal, concede **Ventaja a PER + Arcana** para analizar una distorsión, anomalía o manifestación mágica **visualmente observable a través del instrumento**.
+- **Límites:** no detecta magia invisible, no identifica automáticamente un hechizo, no ve a través de obstáculos y no anula por sí sola una ilusión.
+- **Preparación:** tallar y estabilizar una pieza funcional utiliza las reglas de material Raro y Artesanía · Vidrio y cristal.
+
+El Desierto de Vidrio y sus anomalías visuales son canónicos; la persistencia útil de esta propiedad en piezas seleccionadas queda ratificada por CRAFT-05.
+
+##### Madera de las Mil Voces
+
+- **Familia:** Madera.
+- **Grado:** Raro.
+- **Cobertura mínima:** Mayor.
+- **Disponibilidad:** Rara y potencialmente regulada por comunidades de Erelia.
+- **Compatibilidad habitual:** arcos, astas, instrumentos, herramientas, componentes corporales o estructuras ligeras.
+- **Propiedad — Amortiguación acústica:** el objeto no produce por sí mismo el crujido, resonancia o ruido incidental ordinario que normalmente delataría su manipulación. Cuando se aplica a equipo corporal compatible, cuenta como un efecto equivalente a **Silenciosa** de CRAFT-04 y no se acumula con ella.
+- **Límites:** no silencia impactos, pasos, voz, disparos, mecanismos explosivos ni ruido producido por otra fuente.
+
+El Bosque de las Mil Voces es canónico; que determinadas piezas tratadas conserven esta propiedad es una ratificación mecánica nueva de CRAFT-05.
+
+##### Material de los Fundadores recuperado
+
+- **Familia:** Técnico / variable.
+- **Grado:** Excepcional.
+- **Cobertura:** depende del Lote.
+- **Disponibilidad:** Excepcional; normalmente procede de ruinas, maquinaria o expediciones.
+- **Propiedad universal:** **ninguna**.
+- **Regla:** cada Lote debe identificarse y, si se pretende explotar una propiedad no conocida, pasar por Investigación/Prototipo conforme a CRAFT-10. No existe una «aleación Fundadora +X» genérica.
+- **Uso:** un Plano estable concreto puede autorizarlo como material Excepcional y definir entonces su propiedad, cobertura y compatibilidad.
+- **Salvaguarda:** la procedencia Fundadora no permite copiar automáticamente tecnología ni superar Caudal, Energía, Protección, daño o límites mágicos.
+
+El canon establece maquinaria y complejos de los Fundadores, pero no una composición material universal; CRAFT-05 preserva deliberadamente esa incertidumbre.
+
+#### Materiales de criaturas
+
+Piel, hueso, quitina, escamas, fibras, tejidos mineralizados u otras partes de criaturas pueden existir como Lotes de Material.
+
+Regla universal:
+
+**una parte de criatura no hereda automáticamente las capacidades de la criatura.**
+
+Ejemplos de inferencias prohibidas sin perfil expreso:
+
+- piel de troll no concede Regeneración;
+- hueso de criatura voladora no concede vuelo;
+- escama de criatura resistente al fuego no concede automáticamente inmunidad al fuego;
+- tejido mágico no concede Maná.
+
+Una criatura o Proyecto futuro puede definir un **Perfil de Material** con Grado, Familia, Cobertura, SM y propiedad. Hasta entonces el Lote sólo puede aportar VI como material físicamente compatible y no posee un beneficio extraordinario.
+
+#### Cristales de Resonancia: exclusión expresa
+
+Los **Cristales de Resonancia** no forman parte del catálogo de materiales de equipo de CRAFT-05.
+
+- no se usan como gema de arma o armadura por defecto;
+- no conceden ranuras;
+- no añaden Maná;
+- no actúan como batería;
+- no tienen un VI universal para fabricación;
+- no pueden triturarse o subdividirse para obtener beneficios de crafting sin una regla futura expresa.
+
+Su función canónica continúa vinculada a la resonancia individual y a los Familiares.
+
+CRAFT-07 utilizará otra familia de piedras o soportes para engarces y runas; no reutilizará silenciosamente los Cristales de Resonancia.
+
+#### Reactivos alquímicos
+
+Los reactivos raros exportados por Erelia y archipiélagos existen en el canon, pero **no son automáticamente materiales persistentes de CRAFT-05**.
+
+Cuando un reactivo se consume en una Fórmula, pertenece a Alquimia y a la receta de esa Fórmula. Sólo entra en CRAFT-05 si una entrada concreta establece que permanece como componente físico del objeto terminado.
+
+#### Calidad + Material + Modificación
+
+Las tres fuentes se resuelven en este orden:
+
+1. **Receta base** de CRAFT-03.
+2. **Calidad** de CRAFT-04.
+3. **Material Especial** de CRAFT-05.
+4. **Modificaciones** que ocupe la CapM disponible.
+
+Los requisitos profesionales e instalación se acumulan según sus reglas; los techos permanecen Gran Maestro e instalación Excepcional.
+
+Los multiplicadores de tiempo de Calidad y Material se multiplican entre sí.
+
+Ejemplo: una receta de 4 Jornadas, Superior (×1,5) y con material Raro (×1,25) requiere **7,5 Jornadas** antes de Ayuda o Aceleración.
+
+Las propiedades no se acumulan sólo por proceder de fuentes distintas. Si Material y Modificación producen el mismo beneficio, se aplica el mejor salvo regla expresa.
+
+#### Incorporar material a un objeto existente
+
+Un **Componente** o parte Mayor puede reemplazarse después de fabricar sólo cuando la estructura del objeto lo permita.
+
+Como referencia:
+
+- sustituir un Componente: SM correspondiente + **25% del tiempo base**;
+- sustituir una parte Mayor: SM correspondiente + **50% del tiempo base**;
+- mínimo 1 hora;
+- se aplican los requisitos profesionales del material y de la Calidad actual.
+
+Cambiar el **Material Dominante** no es una modificación menor. Requiere reconstrucción conforme a una receta específica o fabricar nuevamente el objeto; el equipo existente puede aportar VI mediante desmantelamiento y recuperación.
+
+Esto impide convertir una espada de hierro en «espada de material legendario» reemplazando narrativamente una pieza trivial.
+
+#### Reparación de materiales especiales
+
+El VRT reemplaza a VRQ como base de Valor Aplicable y de los porcentajes genéricos de materiales de reparación.
+
+Si la parte dañada que sostiene la propiedad material debe ser reemplazada, la reparación requiere material especial compatible. Sustituirla por material ordinario puede restaurar el estado Operativo, pero elimina la propiedad material correspondiente y obliga a recalcular VRT.
+
+Un componente especial con precio/adquisición separado sigue la regla de CRAFT-02: si se sustituye explícitamente, no se cobra una segunda vez dentro del porcentaje genérico.
+
+#### Desmantelamiento y recuperación material
+
+La recuperación ordinaria de CRAFT-02 sigue calculándose sobre VR Común. La Calidad no crea materia adicional.
+
+Además puede recuperarse parte del SM como **VI del Material Especial compatible**:
+
+| Estado | VI especial recuperable respecto del SM original |
+|---|---:|
+| Operativo / intacto | 50% |
+| Dañado | 30% |
+| Deshabilitado | 20% |
+| Arruinado recuperable | 10% |
+| Destruido | 0% salvo componente especial físicamente superviviente |
+
+Se redondea hacia abajo al cobre.
+
+Un componente especial identificable recuperado por separado se excluye de esta tabla para no recuperarlo dos veces.
+
+En un objeto intacto, la suma de recuperación ordinaria + especial no supera por defecto la venta rápida equivalente del objeto materialmente mejorado.
+
+#### Ejemplos económicos
+
+**Espada larga Común de Acero de Kharum.** VR Común 2 o. CM ordinario 1 o. SM Dominante Especializado = 5 p. CM total = 1 o 5 p. Valor Material Añadido = 1 o. VRT = 3 o. Su propiedad es Tenacidad de Kharum; no obtiene Daño ni Pen adicionales.
+
+**Arco largo Común de Madera tratada de Erelia.** VR 2 o. Como cobertura Dominante Especializada, SM = 5 p. CM total = 1 o 5 p. VRT = 3 o. La pieza gana Estabilidad ambiental.
+
+**Catalejo Común con Vidrio del Desierto.** VR 1 o. Cobertura Componente Rara: SM = 1 p 3 c. Valor añadido = 2 p 6 c. VRT = 1 o 2 p 6 c. La fase material es Rara y debe cumplir sus requisitos; el instrumento concede su Ventaja sólo para el análisis visual definido.
+
+**Placas Excepcionales de Acero de Kharum.** VR Común 40 o. VRQ Excepcional 100 o. CM de Calidad 50 o. SM Dominante Especializado = 10 o. CM total = 60 o. VRT = 120 o. Conservan Protección 5: el material añade Tenacidad, no Protección.
+
+#### Salvaguardas de CRAFT-05
+
+- un material especial no consume ni concede CapM;
+- no toda materia de Kharum, Erelia, el Desierto o el Bosque posee automáticamente la entrada especial;
+- una propiedad material equivalente a una Modificación no se acumula por proceder de otra fuente;
+- el dinero no garantiza acceso a recursos Raros/Excepcionales;
+- un margen alto no crea más mineral, cristal, madera o partes de criatura de los que existen;
+- preparar un Lote no aumenta automáticamente su VI;
+- un material de criatura no hereda poderes sin Perfil de Material;
+- material Fundador no concede tecnología gratuita;
+- Cristales de Resonancia no son gemas de crafting;
+- cristal arcano refinado no genera Energía ni Maná;
+- sustituir el Material Dominante requiere reconstrucción o receta expresa;
+- el VRT preserva la economía anti-arbitraje de CRAFT-02;
+- la recuperación especial nunca duplica un componente recuperado por separado.
+
+#### Límites de CRAFT-05
+
+CRAFT-05 no define todavía:
+
+- trampas completas;
+- catálogo de componentes obtenidos de criaturas concretas;
+- propiedades específicas de materiales Fundadores todavía desconocidos;
+- runas, piedras de engarce o sintonización;
+- encantamientos;
+- nuevos dispositivos arcano-industriales;
+- investigación para crear materiales inéditos.
+
+El siguiente cierre es **CRAFT-06 — Trampas y construcciones**.
 
 
 ## 19. Economía, disponibilidad y equipo
@@ -4774,6 +5157,8 @@ Las fórmulas alquímicas y otros bienes cuyo precio anterior estaba expresado e
 La **venta rápida** usa exactamente **25% del Valor Aplicable (VA)** definido por CRAFT-02 y redondea hacia abajo al cobre. Una **venta directa** no posee una tasa universal; alrededor de **50% del VA** es la referencia ordinaria cuando existe comprador.
 
 La economía completa de fabricación se encuentra en el capítulo 18, **CRAFT-02 — Economía de fabricación**. Como referencia universal, una fabricación ordinaria sin receta económica propia consume materiales equivalentes al **50% del Valor de Referencia**, redondeados hacia arriba. Fabricar un objeto produce el objeto, no dinero automático.
+
+Los materiales Especializados, Raros y Excepcionales se resuelven mediante **CRAFT-05 — Materiales especiales**. Su valor, propiedades y disponibilidad no se infieren del precio ordinario del objeto.
 
 Un trabajo realizado para un comprador preacordado es un **Encargo** y remunera materiales, trabajo e infraestructura conforme a CRAFT-02. Producir primero y buscar comprador después utiliza las reglas normales de venta.
 
