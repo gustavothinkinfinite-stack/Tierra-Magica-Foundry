@@ -2585,6 +2585,8 @@ La calidad Defectuosa/Común/Superior/Excepcional describe fabricación y propie
 
 **CRAFT-07 — Runas, piedras y engarces** define la Capacidad Rúnica de equipo Superior/Excepcional, las Runas inscritas y las Piedras de Impronta. Sus efectos no aparecen automáticamente por Calidad.
 
+**CRAFT-08 — Objetos mágicos, encantamientos y sintonización** define Encantamientos autónomos, Reserva Encantada, Hechizos Vinculados, accesorios mágicos y el límite universal de Sintonización.
+
 Las recetas de fabricación de armas, armaduras, escudos, munición y herramientas del catálogo vigente se encuentran en **CRAFT-03 — Armas, armaduras y herramientas**, dentro del capítulo 18.
 
 ### Equipo de aventura y herramientas
@@ -4644,7 +4646,7 @@ CRAFT-04 reserva explícitamente espacios de diseño para sistemas posteriores:
 
 - CRAFT-05 otorga propiedades por **material**, separadas de CapM;
 - CRAFT-07 define engarces, Piedras de Impronta y Capacidad Rúnica;
-- CRAFT-08 puede definir encantamientos y sintonización;
+- CRAFT-08 define Encantamientos autónomos y Sintonización;
 - Ingeniería puede añadir componentes con Energía/Caudal/Consumo.
 
 Esas fuentes no obtienen CapM gratis ni consumen CapM salvo que su propia regla lo indique.
@@ -6150,17 +6152,570 @@ No existe conversión automática entre ambos sistemas.
 CRAFT-07 no define todavía:
 
 - encantamientos autónomos;
-- objetos que mantengan efectos sin pagar Maná personal;
-- objetos con reserva propia de cargas mágicas;
-- sintonización de objetos mágicos mayores;
-- accesorios mágicos dedicados como anillos, amuletos o capas;
-- almacenamiento o lanzamiento de hechizos desde un objeto;
-- sensores mágicos automáticos;
-- trampas rúnicas autónomas;
+- objetos que mantengan efectos sin pagar Maná personal (definidos en CRAFT-08);
+- objetos con Reserva Encantada propia (definidos en CRAFT-08);
+- Sintonización de objetos mágicos mayores (definida en CRAFT-08);
+- accesorios mágicos dedicados como anillos, amuletos o capas (definidos en CRAFT-08);
+- Hechizos Vinculados desde objetos (definidos en CRAFT-08);
+- sensores mágicos automáticos limitados mediante Sellos de Custodia (definidos en CRAFT-08);
+- trampas mágicas autónomas limitadas mediante Sellos de Custodia (definidas en CRAFT-08);
 - combinación de runas con Energía/Caudal de dispositivos;
 - artefactos únicos.
 
-El siguiente cierre es **CRAFT-08 — Objetos mágicos, encantamientos y sintonización**.
+CRAFT-08 se desarrolla a continuación.
+
+### CRAFT-08 — Objetos mágicos, encantamientos y sintonización
+
+> **VIGENTE · CERRADO.** CRAFT-08 define objetos mágicos autónomos, Encantamientos, accesorios mágicos dedicados, Reserva Encantada, vinculación de hechizos, Sintonización y sellos autónomos de custodia. Mantiene separados Maná personal, Energía/Caudal de dispositivos y magia almacenada en un objeto. Los artefactos únicos, maldiciones complejas e investigación de efectos inéditos permanecen para CRAFT-10.
+
+#### Runa frente a Encantamiento
+
+CRAFT-07 y CRAFT-08 cumplen funciones diferentes.
+
+**Impronta rúnica de CRAFT-07:**
+
+- utiliza CRu;
+- consume Maná personal al activarse;
+- puede existir como Runa o Piedra de Impronta;
+- no posee reserva autónoma.
+
+**Encantamiento de CRAFT-08:**
+
+- no consume CRu ni CapM;
+- utiliza Sintonización cuando tiene potencia mecánica persistente o activa;
+- puede poseer Reserva Encantada propia;
+- puede mantener una propiedad pasiva catalogada;
+- puede reproducir un hechizo canónico compatible mediante un Patrón estable.
+
+Un objeto ordinario puede contener como máximo **un Encantamiento autónomo de CRAFT-08**, además de las Runas/Piedras que su CRu permita. Un artefacto con varios Encantamientos autónomos es un diseño especial y no se infiere de estas reglas.
+
+#### Grados de Encantamiento
+
+| Grado | Sintonización | Reserva Encantada | Potencia de Encantamiento | Disponibilidad habitual |
+|---|---:|---:|---:|---|
+| **I** | 1 | 6 | +4 | Restringida |
+| **II** | 2 | 10 | +6 | Rara |
+| **III** | 3 | 14 | +8 | Excepcional |
+
+La **Reserva Encantada (RE)** es energía mágica estabilizada por el vínculo objeto-usuario.
+
+No es:
+
+- Maná personal;
+- Energía de acumulador;
+- Caudal;
+- Cargas alquímicas;
+- PD o PR.
+
+La **Potencia de Encantamiento (PE)** sustituye la competencia de lanzamiento cuando un objeto reproduce un efecto que necesita una tirada.
+
+Los Grados de Encantamiento no son Grados de hechizo. La correspondencia para Hechizos Vinculados se define más adelante.
+
+#### Sintonización
+
+Todo personaje posee una **Capacidad de Sintonización de 3**, independiente de VOL, nivel, Canalización, especie u origen.
+
+Sintonizar significa establecer un vínculo temporal y deliberado con un objeto mágico.
+
+Reglas:
+
+- Encantamiento I ocupa 1 punto.
+- Encantamiento II ocupa 2 puntos.
+- Encantamiento III ocupa 3 puntos.
+- no puede superarse el total de 3;
+- varios Encantamientos del mismo objeto no reducen su coste, aunque el núcleo ordinario sólo permite uno;
+- la Sintonización no depende del tipo físico de objeto: espada, anillo, capa y amuleto consumen capacidad según su Encantamiento, no según una ranura anatómica.
+
+**Establecer Sintonización** requiere:
+
+- 1 hora de contacto y uso deliberado;
+- que el objeto esté Operativo;
+- que el personaje conozca al menos su función general;
+- no requiere Canalización ni Ritualismo.
+
+Puede realizarse durante un Descanso compatible.
+
+Romper voluntariamente una Sintonización es inmediato. Volver a establecerla requiere nuevamente 1 hora.
+
+Un objeto no puede estar Sintonizado con varias criaturas a la vez salvo regla expresa.
+
+Mientras no está Sintonizado:
+
+- sus Encantamientos que exijan Sintonización permanecen inactivos;
+- no puede gastar RE;
+- sus propiedades físicas normales siguen existiendo;
+- Runas de CRAFT-07 siguen sus propias reglas y no dependen de Sintonización.
+
+#### Reserva Encantada y recarga
+
+Al completar una nueva Sintonización, la RE del objeto comienza en **0**.
+
+Un **Descanso Completo efectivo** rellena toda la RE de un objeto si:
+
+- permaneció Sintonizado con la misma criatura durante todo ese Descanso Completo;
+- el objeto permaneció Operativo;
+- no existe una condición que bloquee su recarga.
+
+Desintonizar el objeto reduce su RE a **0**.
+
+Por tanto no puede utilizarse una mochila llena de objetos cargados, cambiar Sintonización durante el día y obtener múltiples reservas completas.
+
+La RE:
+
+- no puede transferirse a Maná;
+- no puede transferirse a otro objeto;
+- no se restaura con Poción de Recuperación Arcana;
+- no puede usar Sobrecarga;
+- no se obtiene conectando un acumulador;
+- no aumenta por VOL.
+
+Una regla futura puede definir un método extraordinario de recarga, pero no se infiere.
+
+#### Coste y requisitos del Encantamiento
+
+El **Coste de Encantamiento (CE)** se calcula sobre el VR Común del soporte:
+
+| Grado | CE |
+|---|---:|
+| **I** | máximo entre **5 o** y **25% del VR Común** |
+| **II** | máximo entre **15 o** y **50% del VR Común** |
+| **III** | máximo entre **40 o** y **100% del VR Común** |
+
+CE es coste material, en componentes arcanos, catalizadores, estabilización y consumibles rituales.
+
+Un Lote compatible puede reducir CE mediante VI. No se cuenta además como SM si el mismo componente ya está incluido en CE.
+
+El Encantamiento añade al valor del objeto:
+
+**Valor Encantado Añadido = 2 × CE.**
+
+El valor final del objeto es:
+
+**VRF = valor vigente del soporte + Valor Encantado Añadido.**
+
+Si el soporte ya posee Calidad, Material Especial y/o Runa, su valor vigente se calcula primero por sus reglas correspondientes.
+
+Requisitos:
+
+| Grado | Complejidad | Principal | Auxiliares | Instalación | Tiempo |
+|---|---|---|---|---|---:|
+| **I** | Magistral | Ritualismo Maestro | Arcana Experta · Artefactos mágicos; Artesanía Experta coherente | Especializada | máx. 3 Jornadas o 50% del tiempo base |
+| **II** | Extraordinario | Ritualismo Gran Maestro | Arcana Maestra · Artefactos mágicos; Artesanía Maestra coherente | Excepcional | máx. 8 Jornadas o 100% del tiempo base |
+| **III** | Extraordinario | Ritualismo Gran Maestro | Arcana Maestra · Artefactos mágicos; Artesanía Maestra coherente | Excepcional | máx. 20 Jornadas o 200% del tiempo base |
+
+En la columna Tiempo, **máx.** significa que se utiliza el mayor de los dos valores.
+
+Un Encantamiento III exige además un Patrón estable específico y al menos un componente arcano **Raro o Excepcional** compatible incluido dentro del CE.
+
+Una tirada alta no sustituye estos requisitos.
+
+#### Soporte existente
+
+Un equipo ordinario puede encantarse si cumple:
+
+- **Encantamiento I:** Calidad Superior o Excepcional.
+- **Encantamiento II:** Calidad Excepcional.
+- **Encantamiento III:** Calidad Excepcional y soporte físicamente apropiado para el Patrón.
+
+El Encantamiento no consume CapM ni CRu.
+
+Si el soporte es Defectuoso o Común, primero debe mejorarse o utilizarse un Soporte Mágico Dedicado.
+
+#### Soportes Mágicos Dedicados
+
+Anillos, amuletos, capas, broches, brazales, coronas menores, talismanes y accesorios semejantes pueden construirse como **Soportes Mágicos Dedicados**.
+
+No obtienen CapM ni CRu por su mera existencia.
+
+| Soporte | Grado máximo | Comp. física | Principal | Instalación | VR base | CM base | Tiempo |
+|---|---:|---|---|---|---:|---:|---:|
+| **Dedicado I** | I | Complejo | Artesanía Experta coherente | Profesional | 2 o | 1 o | 1 Jornada |
+| **Dedicado II** | II | Magistral | Artesanía Maestra coherente | Especializada | 5 o | 2 o 5 p | 3 Jornadas |
+| **Dedicado III** | III | Extraordinario | Artesanía Gran Maestra coherente | Excepcional | 10 o | 5 o | 5 Jornadas |
+
+El soporte no posee beneficio mecánico propio. El Encantamiento se fabrica después o como parte del mismo Proyecto y paga CE completo.
+
+Cambiar la forma narrativa de un Soporte —anillo por medallón, broche por brazal— no modifica su capacidad.
+
+#### Encantamientos utilitarios sin Sintonización
+
+Un objeto puede poseer un **Encantamiento Utilitario** sin Sintonización sólo si el efecto:
+
+- no modifica tiradas;
+- no modifica Defensa, Protección, daño, Pen, Movimiento o economía de acciones;
+- no recupera Vida, Maná, RE o Energía;
+- no concede invisibilidad, vuelo, teletransporte, sensores sobrenaturales o resistencia de combate;
+- no sustituye una herramienta profesional;
+- no produce un recurso comercial consumible.
+
+Un Encantamiento Utilitario:
+
+- Complejidad Compleja;
+- Ritualismo Experto;
+- Arcana Entrenada · Artefactos mágicos;
+- instalación Profesional;
+- CE 1 o;
+- tiempo 1 Jornada;
+- valor añadido 2 o.
+
+Ejemplos:
+
+- **Seco:** el objeto repele lluvia ordinaria y humedad superficial.
+- **Pulcro:** suciedad ordinaria no se adhiere de forma persistente.
+- **Templado:** mantiene una temperatura de uso confortable en clima ordinario; no protege contra daño Térmico.
+- **Luz de Cortesía:** emite o apaga una luz tenue utilitaria; no equivale a una fuente táctica intensa ni revela magia.
+- **Croma:** cambia entre una paleta de colores o motivos predefinidos.
+
+Un objeto sólo puede tener **un** Encantamiento Utilitario mediante esta regla. No ocupa el Encantamiento autónomo principal sólo cuando su efecto permanece estrictamente dentro de estos límites.
+
+#### Encantamiento Pasivo Sintonizado
+
+Un efecto pasivo con beneficio mecánico requiere Sintonización y un perfil catalogado.
+
+No puede obtenerse simplemente declarando que un hechizo Sostenido es «permanente».
+
+Catálogo inicial:
+
+##### Amuleto de Firmeza — Grado I
+
+- **Soporte:** equipo corporal o Soporte Dedicado I+.
+- **Sintonización:** 1.
+- **Efecto:** +2 Defensa Mental sólo contra miedo sobrenatural o Intimidación compatible.
+- **Apilamiento:** mismo grupo que Valor Inspirado, Mente Anclada y protección equivalente; se usa el mejor.
+
+##### Broche de Caída — Grado I
+
+- **Soporte:** equipo corporal o Soporte Dedicado I+.
+- **Sintonización:** 1.
+- **Efecto:** reduce en 1 los espacios efectivos de una caída antes de calcular daño, mínimo 0.
+- **Límite:** no concede vuelo, no evita caer y no se duplica llevando varios Broches.
+
+##### Lentes de Revelación — Grado II
+
+- **Soporte:** óptica o Soporte Dedicado II+.
+- **Sintonización:** 2.
+- **Efecto:** Ventaja al examinar ilusiones, ocultación mágica, invisibilidad y manipulación sensorial compatibles.
+- **Apilamiento:** equivalente a Revelación Sensorial para esta finalidad; varias Ventajas no se acumulan.
+- **Límites:** no concede omnisciencia ni visión a través de paredes.
+
+##### Talismán de Estabilidad — Grado II
+
+- **Soporte:** equipo corporal o Soporte Dedicado II+.
+- **Sintonización:** 2.
+- **Efecto:** una vez por Escena, cuando un efecto mágico intentaría desplazar al portador contra su voluntad, reduce ese desplazamiento en 1 espacio, mínimo 0.
+- **Límites:** no cambia Escala, no afecta fuerza mundana y no vuelve posible resistir un efecto que explícitamente ignore estabilidad o anclaje.
+
+No existen Encantamientos Pasivos III universales en CRAFT-08. Un beneficio pasivo de esa magnitud requiere un Perfil específico e Investigación.
+
+#### Hechizo Vinculado
+
+Un objeto puede reproducir **un solo hechizo canónico de Método Directo** mediante un Encantamiento.
+
+Correspondencia:
+
+| Encantamiento | Hechizo máximo |
+|---|---|
+| **I** | Menor o Básico |
+| **II** | Avanzado |
+| **III** | Maestro |
+
+Los hechizos Legendarios no pueden vincularse mediante el procedimiento estándar.
+
+Los hechizos de Método Ritual tampoco se comprimen en un objeto estándar de CRAFT-08. Crear un artefacto que ejecute un Ritual pertenece a Investigación y diseño específico.
+
+El Proyecto necesita un **Patrón de Encantamiento estable** para ese hechizo.
+
+El Patrón puede:
+
+- adquirirse como conocimiento protegido;
+- haberse desarrollado previamente por CRAFT-10;
+- derivarse de una investigación en la que participe alguien que conozca y pueda operar el hechizo correspondiente.
+
+Poseer el Patrón terminado no concede el hechizo al artesano.
+
+#### Activar un Hechizo Vinculado
+
+La activación utiliza:
+
+- la misma Acción o Reacción que el hechizo;
+- los mismos objetivos, alcance, área y restricciones;
+- el mismo coste numérico indicado en Maná, pero pagado desde **RE**;
+- la misma duración;
+- las mismas reglas de Sostenimiento;
+- los mismos límites de daño, curación, desplazamiento, invocación y apilamiento.
+
+El usuario no paga Maná personal.
+
+Si el hechizo exige una tirada que normalmente usaría Atributo + Canalización, Ritualismo o un Atributo del lanzador, el objeto realiza:
+
+**2d10 + PE**
+
+contra la misma Defensa o DF.
+
+Si el hechizo define una DF derivada de la competencia del lanzador —por ejemplo una ilusión— se utiliza:
+
+**DF de Encantamiento = 11 + PE.**
+
+Una DF fija del hechizo permanece fija.
+
+Si el hechizo no requiere tirada, el objeto tampoco inventa una.
+
+La PE sustituye la competencia; **no se suma INT, PRE, PER, Canalización, Arcana ni otra Habilidad del usuario**.
+
+#### Sostenimiento mediante objeto
+
+Cuando un Hechizo Vinculado produce un efecto **Sostenido demandante**:
+
+- ocupa el límite normal de Sostenimiento de la criatura que lo activó;
+- Doble Sostenimiento puede ampliar ese límite exactamente como ya establece su regla general;
+- Incapacitado o Inconsciente termina el efecto conforme al sistema;
+- el objeto debe continuar Sintonizado y controlado/portado cuando su naturaleza lo requiera.
+
+El objeto paga RE sólo al activar el hechizo salvo que el propio hechizo indique otro coste.
+
+CRAFT-08 no convierte un hechizo Sostenido en permanente.
+
+#### Contramagia
+
+Una activación de Hechizo Vinculado es un fenómeno mágico identificable.
+
+Contramagia u otra interferencia puede afectarla cuando sea compatible con su descripción.
+
+Si la activación es válida y el gasto de RE ya fue comprometido, una interferencia posterior no devuelve RE automáticamente.
+
+#### Catálogo de objetos vinculados de referencia
+
+##### Broche de Barrera
+
+- Encantamiento I.
+- Hechizo Vinculado: Barrera Cinética.
+- Sintonización 1.
+- RE 6.
+- cada uso consume 3 RE y una Reacción.
+- permite hasta 2 activaciones entre recargas si conserva reserva suficiente.
+- no se acumula con Guardia/Barrera Rúnica o Escudo de campo equivalente.
+
+##### Anillo de Paso Breve
+
+- Encantamiento I.
+- Hechizo Vinculado: Paso Breve.
+- Sintonización 1.
+- RE 6.
+- cada uso consume 4 RE y la Acción correspondiente.
+- el objeto usa PE +4 contra DF 12 cuando la prueba sea necesaria.
+- no convierte el movimiento en Reacción ni permite destino inválido.
+
+##### Lentes de Visión Arcana
+
+- Encantamiento I.
+- Hechizo Vinculado: Visión Arcana.
+- Sintonización 1.
+- RE 6.
+- cada uso consume 2 RE.
+- puede activarse hasta 3 veces entre recargas.
+- no identifica automáticamente lo percibido.
+
+##### Brazal de Aguja Gélida
+
+- Encantamiento II.
+- Hechizo Vinculado: Aguja Gélida.
+- Sintonización 2.
+- RE 10.
+- ataque: 2d10 +6 contra Defensa.
+- coste 5 RE.
+- conserva Daño 5, Pen 1 y Movimiento -2 conforme al hechizo.
+- permite hasta 2 usos con reserva completa.
+
+##### Capa de Invisibilidad
+
+- Encantamiento III.
+- Hechizo Vinculado: Invisibilidad.
+- Sintonización 3.
+- RE 14.
+- coste 9 RE.
+- Sostenida, máximo una Escena;
+- ocupa Sostenimiento normal;
+- una acción ofensiva termina el efecto conforme al hechizo;
+- no produce indetectabilidad total.
+
+##### Vara de Ruptura
+
+- Encantamiento III.
+- Hechizo Vinculado: Rayo de Ruptura.
+- Sintonización 3.
+- RE 14.
+- coste 10 RE.
+- utiliza PE +8 cuando la resolución necesite tirada;
+- conserva línea de 8 espacios, Daño 8 y Pen 4;
+- normalmente sólo puede utilizarse una vez antes del próximo Descanso Completo.
+
+#### No se compra aprendizaje con un objeto
+
+Usar un Hechizo Vinculado:
+
+- no enseña el hechizo;
+- no concede la Disciplina;
+- no satisface requisitos de Técnicas mágicas;
+- no permite copiar el Patrón sin investigación;
+- no convierte PE en Canalización;
+- no permite lanzar el mismo hechizo con Maná personal si el personaje no lo conoce.
+
+El poder comprado en un objeto es acceso material limitado, no desarrollo del personaje.
+
+#### Sellos Autónomos de Custodia
+
+CRAFT-08 permite una forma limitada de trampa/seguridad mágica autónoma.
+
+Un **Sello de Custodia**:
+
+- se fija a una estructura, puerta, cofre, umbral o instalación;
+- no es equipo portátil utilizable como objeto Sintonizado;
+- posee una sola carga autónoma;
+- no se recarga mediante Descanso;
+- utiliza un Encantamiento I o II;
+- sólo puede liberar un efecto instantáneo o de duración no demandante autorizado por su Perfil.
+
+Un Sello III no forma parte del procedimiento estándar.
+
+El Sello necesita:
+
+- el Proyecto de Encantamiento del Grado correspondiente;
+- un soporte físico o Armazón de CRAFT-06 cuando el disparador lo exija;
+- un disparador definido.
+
+Disparadores mágicos estándar:
+
+- contacto con el soporte;
+- apertura/manipulación;
+- cruce de un umbral definido;
+- presencia de una **marca/llave mágica específica** preparada con el Sello para permitir Bypass.
+
+No puede detectar:
+
+- intención hostil;
+- moralidad;
+- culpabilidad;
+- nombre verdadero;
+- afiliación política;
+- «enemigos» como categoría abstracta.
+
+Al activarse, el Sello consume su carga autónoma.
+
+Una descarga que requiera tirada utiliza PE del Grado.
+
+**Rearmar un Sello** requiere:
+
+- 25% del CE original, redondeado hacia arriba;
+- 25% del tiempo de Encantamiento original, mínimo 4 h;
+- competencia e instalación suficientes;
+- restaurar además cualquier carga física o componente consumido.
+
+No existe rearme automático.
+
+Esto permite alarmas, cierres y trampas mágicas preparadas sin crear una torreta infinita.
+
+#### Acciones y objetos mágicos
+
+Un objeto mágico no concede automáticamente economía adicional.
+
+- activar un efecto de Acción consume Acción;
+- activar una Reacción consume Reacción;
+- un objeto pasivo no crea nuevas acciones;
+- poseer tres objetos Sintonizados no concede tres Reacciones;
+- un Hechizo Vinculado conserva la economía del hechizo;
+- un efecto automático sólo existe en un Sello/Perfil que lo autorice y consume su propia carga.
+
+No se pueden activar simultáneamente varios objetos «porque estaban preparados» salvo que cada efecto tenga una economía válida propia.
+
+#### Apilamiento
+
+Reglas universales:
+
+- efectos equivalentes usan el mejor beneficio salvo autorización expresa;
+- varias Ventajas no se acumulan;
+- Protección equivalente no se suma;
+- Barrera Cinética, Barrera Rúnica, Broche de Barrera, Escudo de campo y defensas mágicas equivalentes no se convierten en una pila de +2;
+- una reducción de daño equivalente usa el mejor valor;
+- un Encantamiento no aumenta CapM o CRu;
+- un Encantamiento no aumenta Maná máximo;
+- RE no puede alimentar Runas de CRAFT-07;
+- Maná no recarga RE durante una Escena;
+- Energía/Caudal no alimentan Encantamientos salvo regla futura específica.
+
+#### Estado, reparación y desmantelamiento
+
+El Encantamiento forma parte del valor del objeto mediante VRF.
+
+Para reparación:
+
+- si el daño afecta sólo una parte física ordinaria, se aplican las reglas normales pertinentes;
+- si afecta la matriz de Encantamiento, preservar o restaurar el Encantamiento exige los requisitos profesionales de su Grado;
+- un objeto Deshabilitado no puede utilizar su Encantamiento;
+- un objeto Dañado puede conservarlo si la matriz no fue afectada, según la consecuencia concreta.
+
+El CE integrado no se recupera íntegramente al desmantelar.
+
+VI máximo recuperable del Encantamiento integrado:
+
+| Estado | VI respecto del CE |
+|---|---:|
+| Operativo | 25% |
+| Dañado | 15% |
+| Deshabilitado | 10% |
+| Arruinado | 5% |
+| Destruido | 0% salvo componente explícitamente superviviente |
+
+No se cuenta dos veces un componente especial recuperado por separado.
+
+Un Soporte Dedicado recupera además sus materiales ordinarios conforme a CRAFT-02.
+
+#### Auditoría económica
+
+El valor añadido por Encantamiento es siempre **2 × CE**.
+
+La venta directa ordinaria de referencia recupera aproximadamente 50% de ese incremento, por lo que no supera el CE invertido antes de trabajo.
+
+Los Soportes Dedicados usan igualmente CM = 50% de su VR base.
+
+El sistema no presupone compradores automáticos para objetos Restringidos, Raros o Excepcionales.
+
+#### Salvaguardas de CRAFT-08
+
+- Sintonización máxima universal = 3.
+- VOL no aumenta Sintonización.
+- una joya no crea capacidad adicional por ser pequeña.
+- un objeto ordinario sólo posee un Encantamiento autónomo.
+- desintonizar vacía RE.
+- cambiar de objeto durante el día no concede una reserva nueva.
+- RE no es Maná ni Energía.
+- no existe Sobrecarga de RE.
+- PE sustituye, no se suma a, atributos/Habilidades del usuario.
+- un objeto no convierte un Ritual en Acción.
+- los Hechizos Legendarios no se vinculan por receta estándar.
+- un Sostenimiento de objeto ocupa el límite normal de Sostenimiento.
+- una propiedad pasiva no se obtiene declarando permanente un hechizo Sostenido.
+- usar un objeto no enseña su hechizo.
+- no se acumulan defensas mágicas equivalentes.
+- un Sello autónomo tiene una carga y no se rearma solo.
+- los Encantamientos Utilitarios no producen ventajas mecánicas encubiertas.
+- Cristales de Resonancia continúan fuera del sistema de equipo.
+- CRAFT-08 no crea acciones, ataques o Reacciones adicionales.
+
+#### Límites de CRAFT-08
+
+CRAFT-08 no define todavía:
+
+- dispositivos híbridos que conviertan Energía en magia de Encantamiento;
+- encantamientos alimentados por acumuladores;
+- torretas o máquinas mágicas de activación repetida;
+- autómatas encantados complejos;
+- investigación de nuevos Encantamientos;
+- maldiciones;
+- artefactos únicos con varias propiedades mayores;
+- objetos Legendarios reproducibles;
+- excepciones a Sintonización.
+
+La integración entre Encantamiento y maquinaria pertenece a **CRAFT-09 — Ingeniería y dispositivos**. El diseño de efectos inéditos y artefactos pertenece a **CRAFT-10 — Investigación**.
 
 
 ## 19. Economía, disponibilidad y equipo
