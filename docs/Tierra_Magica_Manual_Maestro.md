@@ -1598,6 +1598,330 @@ Un humanoide Mediano tiene como referencia Movimiento 6, aproximadamente 9 metro
 
 Las bandas narrativas de distancia son Contacto, Cerca, Media, Lejos y Extrema. Cuando se usa cuadrícula, la geometría concreta prevalece. La cobertura parcial concede normalmente +2 Defensa; una cobertura total impide ser objetivo directo si no existe una línea válida. Tierra Mágica no concede un bono universal por rodear a un enemigo.
 
+### Viajes y desplazamiento de larga distancia
+
+El Movimiento de combate no se multiplica directamente para calcular kilómetros por día. Un viaje incluye pausas, orientación, comida, agua, terreno, cuidado de monturas y preparación de campamento.
+
+Una **jornada estándar de viaje** supone aproximadamente **8 horas de desplazamiento efectivo** dentro de un día que todavía permite pausas y preparar un Descanso Completo normal.
+
+#### Distancia base por día
+
+En **camino mantenido**, clima ordinario y ritmo normal:
+
+| Medio | Distancia base |
+|---|---:|
+| A pie | **24 km/día** |
+| Caballo de viaje con un jinete | **40 km/día** |
+| Carreta o carro tirado | **24 km/día** |
+
+Estas cifras son referencias de viaje sostenido, no velocidades máximas de carrera.
+
+Un caballo puede desplazarse mucho más rápido durante períodos breves, pero no mantiene esa velocidad durante ocho horas sin consecuencias. Viajar montado tampoco elimina la necesidad de agua, alimento, descanso y cuidado del animal.
+
+La velocidad de un grupo la determina normalmente **el miembro, montura o vehículo más lento que deba permanecer con el grupo**.
+
+#### Caminos, senderos y campo traviesa
+
+La distancia base se multiplica por la condición del terreno:
+
+| Terreno de viaje | Multiplicador | Ejemplos |
+|---|---:|---|
+| **Camino mantenido** | ×1 | calzada, carretera estable, ruta comercial mantenida |
+| **Sendero / terreno abierto** | ×0,75 | senda reconocible, pradera, terreno firme sin calzada |
+| **Campo traviesa difícil** | ×0,50 | bosque, colinas rotas, terreno pedregoso, matorral denso |
+| **Terreno severo** | ×0,25 | pantano, montaña abrupta, jungla densa, nieve profunda, ruinas muy quebradas |
+
+A ritmo normal esto produce:
+
+| Medio | Camino | Sendero / abierto | Difícil | Severo |
+|---|---:|---:|---:|---:|
+| A pie | 24 km | 18 km | 12 km | 6 km |
+| Caballo | 40 km | 30 km | 20 km | 10 km |
+| Carreta | 24 km | 18 km | 12 km | normalmente impracticable |
+
+Una carreta sólo utiliza una distancia de campo traviesa si **las ruedas pueden físicamente atravesar el terreno**. Un bosque sin paso, un lodazal profundo, una pendiente rocosa o un vado imposible pueden detenerla por completo aunque la tabla muestre una referencia numérica.
+
+Un caballo tampoco ignora el terreno: raíces, pendientes, barro, vegetación y necesidad de elegir pasos reducen su ventaja.
+
+#### Efectos de abandonar los caminos
+
+Seguir un camino mantenido normalmente ofrece:
+
+- distancia completa;
+- navegación evidente;
+- puentes, vados o pasos preparados;
+- mayor compatibilidad con carretas;
+- más posibilidades de encontrar posadas, puestos, aldeas o ayuda;
+- menor exposición a peligros puramente ambientales.
+
+Abandonar el camino puede permitir:
+
+- evitar controles, peajes o rutas vigiladas;
+- aproximarse por un lugar inesperado;
+- buscar recursos naturales;
+- seguir una ruta que ninguna carretera conecta.
+
+Pero normalmente implica:
+
+- menor distancia diaria;
+- necesidad de orientación;
+- mayor riesgo de perder tiempo o desviarse;
+- más exposición a clima, cruces de agua, barrancos, vegetación, fauna o zonas mágicas;
+- menor acceso a refugio, reparación, alimento preparado y asistencia;
+- posibilidad de que una carreta o vehículo de ruedas no pueda continuar.
+
+Salir del camino **no provoca automáticamente un encuentro hostil**. El peligro puede manifestarse como pérdida de tiempo, clima, terreno, recursos, una lesión, una criatura, una patrulla, bandidos o una anomalía mágica según la región.
+
+#### Ritmo de viaje
+
+Antes de comenzar la jornada el grupo declara un ritmo:
+
+| Ritmo | Distancia | Efecto |
+|---|---:|---|
+| **Cauteloso** | 75% | Ventaja en la prueba de Viaje; permite observar, explorar y reaccionar con mayor margen |
+| **Normal** | 100% | sin modificador |
+| **Rápido** | 125% | Desventaja en la prueba de Viaje; aumenta el riesgo de Fatiga |
+
+Ejemplos sobre camino:
+
+- a pie cauteloso: 18 km;
+- a pie normal: 24 km;
+- a pie rápido: 30 km;
+- caballo normal: 40 km;
+- caballo rápido: 50 km;
+- carreta normal: 24 km;
+- carreta rápida: 30 km.
+
+El ritmo se aplica después del modificador de terreno.
+
+#### Fatiga por ritmo Rápido
+
+Al final de una jornada completa a ritmo Rápido:
+
+- quien viaja por su propio esfuerzo realiza **VIG + Atletismo contra DF 14**;
+- para una montura o equipo de tiro, si existe un perfil con VIG se utiliza su resistencia apropiada; si no existe perfil detallado, el jinete o conductor realiza **PER o AGI + Manejo contra DF 14** como prueba de administración del esfuerzo.
+
+Con fallo, la criatura o equipo de viaje aumenta su Fatiga un paso: Fresco → Fatigado → Exhausto → Colapsado.
+
+Un resultado Colapsado impide continuar un esfuerzo significativo.
+
+Un Descanso Completo efectivo trata la Fatiga conforme a las reglas normales. El ritmo Rápido es por tanto más peligroso cuando la jornada termina en una situación donde el grupo no puede descansar con seguridad.
+
+#### Marcha forzada
+
+Viajar más de las 8 horas estándar es **marcha forzada**.
+
+Cada bloque adicional de **2 horas** añade aproximadamente **25% de la distancia de una jornada normal ya modificada por terreno**, antes de redondear la llegada real.
+
+Por cada bloque adicional se realiza una prueba de esfuerzo:
+
+- primer bloque: **DF 14**;
+- segundo bloque: **DF 16**.
+
+A pie se usa normalmente VIG + Atletismo. Para monturas o equipos de tiro se usa su resistencia o, si no existe perfil detallado, Manejo del jinete/conductor.
+
+Con fallo, aumenta la Fatiga un paso.
+
+El núcleo normal sólo contempla **hasta dos bloques adicionales** —12 horas totales de desplazamiento—. Superar ese límite es una situación excepcional y puede impedir un Descanso Completo, agotar animales o producir consecuencias adicionales según las condiciones.
+
+#### Prueba de Viaje
+
+No se tira todos los kilómetros.
+
+En un camino mantenido, con clima normal, ruta conocida y sin una amenaza especial, **no hace falta prueba de Viaje**.
+
+Cuando existe incertidumbre de navegación, terreno o exposición, el guía del grupo realiza normalmente:
+
+**PER + Supervivencia contra DF de Viaje.**
+
+| Situación | DF base |
+|---|---:|
+| Sendero, terreno abierto o ruta parcialmente marcada | 12 |
+| Bosque, colinas, terreno quebrado o ruta pobre | 14 |
+| Pantano, montaña abrupta, jungla, nieve profunda o terreno severo | 17 |
+| Distorsión mágica, tormenta extrema o región excepcional | 18+ |
+
+Una jornada utiliza normalmente **una sola prueba de Viaje**, salvo que ocurra un cambio material de situación —por ejemplo entrar en una tormenta, cruzar una frontera mágica o abandonar una ruta para internarse en otra región—.
+
+Ritmo Cauteloso concede Ventaja. Ritmo Rápido impone Desventaja.
+
+Mapas fiables, hitos claros o conocimiento local pueden eliminar la incertidumbre y hacer innecesaria una prueba. No conceden un +X universal.
+
+#### Resultado de la prueba de Viaje
+
+**Ajustado:** el grupo mantiene la ruta prevista y completa la distancia calculada.
+
+**Claro:** además, el guía identifica a tiempo un riesgo ordinario, un buen lugar de campamento o una decisión de ruta útil.
+
+**Dominante:** además, puede encontrar una ruta especialmente eficiente o segura cuando la geografía realmente la permita. Un atajo real puede aumentar hasta aproximadamente 10% el progreso de ese día; no se crea un camino inexistente.
+
+**Fallo:** el Director aplica **una** consecuencia que derive de la situación. Ejemplos:
+
+- perder aproximadamente 25% del progreso del día;
+- desviarse hacia una zona vecina o tomar un ramal incorrecto;
+- consumir tiempo o suministros adicionales;
+- exigir una prueba de Fatiga;
+- quedar expuesto a un obstáculo o peligro que podría haberse evitado;
+- llegar tarde y perder una oportunidad temporal.
+
+Un fallo no obliga a introducir un combate aleatorio.
+
+Una **Pifia** puede justificar dos consecuencias compatibles o una complicación especialmente grave, pero sigue respetando la geografía y el peligro existente.
+
+La misma jornada no se repite una y otra vez con distintos guías hasta obtener un resultado mejor si no cambian de forma significativa mapa, información, ruta, tiempo o método.
+
+#### Clima y visibilidad
+
+El clima puede empeorar la categoría efectiva del terreno.
+
+Como referencia:
+
+- lluvia fuerte, barro, nieve moderada o visibilidad mala: **empeoran una categoría**;
+- tormenta severa, inundación, ventisca o fenómeno mágico importante pueden empeorar más o detener por completo el viaje.
+
+Ejemplo: una carretera embarrada que empeora una categoría se trata como Sendero para distancia y DF.
+
+Viajar de noche sin iluminación o visión adecuada puede empeorar una categoría y hacer necesarias pruebas que durante el día serían rutinarias.
+
+#### Ríos, barrancos y obstáculos
+
+La distancia diaria no permite atravesar automáticamente un obstáculo.
+
+Un río sin puente, un barranco, una muralla natural, una zona de derrumbe o un paso cerrado debe resolverse antes de continuar.
+
+La solución puede requerir:
+
+- encontrar un vado;
+- usar Atletismo;
+- emplear cuerda o equipo;
+- buscar otro camino;
+- construir o reparar un paso;
+- usar una montura o vehículo apropiado;
+- recurrir a magia.
+
+El tiempo utilizado cuenta contra la jornada.
+
+#### Forraje y alimentación durante el viaje
+
+Las provisiones del capítulo de Equipo representan comida preparada para viajeros. Una jornada ordinaria consume **1 ración por persona**.
+
+Buscar alimento en el entorno requiere normalmente **2 horas** y:
+
+**PER + Supervivencia.**
+
+| Disponibilidad | DF |
+|---|---:|
+| Abundante | 10 |
+| Ordinaria | 13 |
+| Escasa | 16 |
+| Hostil o muy pobre | 19 |
+
+Resultado:
+
+- Ajustado: 1 ración;
+- Claro: 2 raciones;
+- Dominante: 4 raciones;
+- Fallo: ninguna ración útil.
+
+Estas raciones son alimento ordinario, local y normalmente perecedero para la expedición; no se convierten automáticamente en mercancía de mercado.
+
+Si todo el grupo debe detenerse mientras alguien forrajea, esas 2 horas reducen aproximadamente **25%** la distancia disponible de la jornada. Si un explorador puede forrajear sin retrasar realmente al grupo, no se aplica esa reducción.
+
+Las provisiones humanas no incluyen automáticamente alimento para monturas. Un caballo puede pastar donde exista forraje suficiente; en desierto, invierno duro, ciudad o terreno sin pasto debe conseguirse alimento apropiado por otra vía.
+
+#### Agua
+
+El núcleo no fija litros universales por criatura porque Escala, clima y biología varían.
+
+En regiones con agua accesible, el abastecimiento puede ser rutinario. En desierto, alta montaña, invierno severo o zonas contaminadas, encontrar agua es parte de la prueba de Supervivencia y puede convertirse en el principal límite del viaje.
+
+No disponer de agua suficiente puede producir Fatiga, impedir una marcha rápida o volver imposible continuar. No existe un daño fijo universal por día sin agua.
+
+#### Campamento y descanso
+
+La distancia diaria presupone tiempo para detenerse y preparar campamento.
+
+Un campamento ordinario no exige tirada cuando:
+
+- existe un lugar razonablemente seguro;
+- hay equipo suficiente;
+- las condiciones son normales.
+
+Supervivencia puede ser necesaria para encontrar refugio, protegerse de clima, ocultar el campamento o hacerlo viable en terreno hostil.
+
+El hecho de detenerse ocho horas no garantiza por sí solo un Descanso Completo si ataques, frío extremo, inundación, vigilancia continua u otra circunstancia impiden descansar realmente.
+
+#### Monturas
+
+Una montura de viaje permite aumentar la distancia sostenida, pero no elimina la logística.
+
+Un caballo necesita:
+
+- descanso;
+- agua;
+- alimento o pasto;
+- terreno transitable;
+- cuidado básico.
+
+Montar una ruta rutinaria no exige Manejo. Se tira Manejo cuando existe incertidumbre real: pendiente peligrosa, animal asustado, salto, cruce difícil, velocidad excesiva o maniobra bajo presión.
+
+Una montura sobrecargada o con dos jinetes no conserva automáticamente los 40 km/día. Si la carga excede lo razonable para el animal, se utiliza una velocidad menor o la situación puede ser imposible según su capacidad.
+
+#### Carretas y carros
+
+Una carreta es eficiente cuando existe infraestructura adecuada y especialmente útil para transportar carga, pero depende mucho más del terreno.
+
+En camino mantenido puede sostener aproximadamente **24 km/día**.
+
+Fuera del camino:
+
+- terreno abierto o sendero firme: 18 km/día;
+- terreno difícil pero físicamente transitable: 12 km/día;
+- terreno severo: normalmente no puede avanzar.
+
+Cruzar barro, pendientes fuertes, bosques cerrados, vados o puentes dañados puede exigir Manejo, trabajo físico, reparación o una ruta alternativa.
+
+Una avería no aparece sólo porque se haya hecho una tirada baja de viaje; debe corresponder a un riesgo real de la ruta, carga, vehículo o situación.
+
+#### Caminos también tienen peligros
+
+Viajar por carretera no significa seguridad absoluta.
+
+Un camino puede concentrar:
+
+- peajes;
+- guardias;
+- fronteras;
+- controles de licencia;
+- bandidos;
+- emboscadas en pasos previsibles;
+- tránsito;
+- enfermedades en postas;
+- vigilancia política.
+
+La diferencia es que estos riesgos proceden principalmente de **personas, infraestructura y lugares conocidos**, mientras que el campo traviesa añade además orientación y peligros ambientales.
+
+#### Ejemplo de viaje
+
+Un grupo necesita recorrer **70 km** hasta una ciudad.
+
+**A pie por camino mantenido:** 24 km/día.  
+En dos días recorre 48 km y necesita una tercera jornada para los 22 km restantes.
+
+**A caballo por el mismo camino:** 40 km/día.  
+Completa 40 km el primer día y los 30 km restantes durante el segundo.
+
+**En carreta:** 24 km/día.  
+También necesita tres jornadas, pero puede transportar mucha más carga.
+
+El grupo descubre un supuesto atajo de **36 km a través de bosque difícil**.
+
+- a pie: 12 km/día → 3 jornadas;
+- a caballo: 20 km/día → algo menos de 2 jornadas de desplazamiento;
+- carreta: 12 km/día sólo si existe paso real para ruedas.
+
+El atajo es más corto en kilómetros, pero exige prueba de Viaje **PER + Supervivencia contra DF 14**, ofrece menos acceso a refugio y puede ser intransitable para la carreta. Por eso “fuera del camino” no significa automáticamente “más rápido”.
+
 ### Guardia, Preparar y Retrasar
 
 **Guardia** es universal: Acción, +2 Defensa hasta el inicio del siguiente turno propio y conserva la Reacción.
@@ -2305,6 +2629,8 @@ Un Kit representa **herramientas reutilizables**, no una reserva infinita de con
 Cuando un Kit es esencial para una tarea profesional, carecer de él puede volver la acción imposible o exigir un método alternativo, no simplemente imponer siempre un -1 o -2.
 
 ### Raciones, provisiones y combustible
+
+Las distancias diarias, forraje, agua, campamento y efectos de viajar fuera de caminos se explican en **Viajes y desplazamiento de larga distancia**, dentro del capítulo 6.
 
 **Provisiones 7 días — 2 p** representa siete raciones diarias de comida conservable para **un viajero ordinario** durante condiciones normales.
 
@@ -3455,6 +3781,8 @@ Al crear un personaje conviene registrar:
 Estos datos son importantes porque la ficción establece acceso, conocimiento, leyes, reputación, permisos, información y consecuencias. Sin embargo, no funcionan como bonos numéricos ocultos.
 
 ## 22. Vehículos, monturas y autómatas
+
+Las reglas de distancia diaria para **viaje a pie, caballo y carreta**, así como terreno, ritmo, marcha forzada y navegación, están en el capítulo 6. Ferrocarriles, dirigibles, embarcaciones y otros transportes de infraestructura usan la velocidad y horario de su ruta o perfil concreto; no heredan automáticamente la tabla de viaje terrestre.
 
 Vehículos, monturas y autómatas usan perfiles reducidos con **Escala, Movimiento, Vida, Defensa, Protección, Maniobra, Tripulación, Capacidad y Sistemas/Rasgos**. No necesitan reproducir toda la ficha de un PJ.
 

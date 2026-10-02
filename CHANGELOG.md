@@ -1,3 +1,15 @@
+## En desarrollo — viajes y movimiento terrestre
+
+- Añade viaje de larga distancia a pie, caballo y carreta.
+- Jornada estándar de 8 horas: 24 km a pie, 40 km a caballo y 24 km en carreta por camino mantenido.
+- Terreno usa multiplicadores ×1 / ×0,75 / ×0,50 / ×0,25.
+- Ritmos Cauteloso/Normal/Rápido usan 75% / 100% / 125% y modifican la prueba de Viaje.
+- Marcha forzada añade bloques de 2 horas con riesgo creciente de Fatiga.
+- Campo traviesa usa PER + Supervivencia con DF 12/14/17 y consecuencias contextuales sin combate aleatorio obligatorio.
+- Se añaden reglas de clima, obstáculos, campamento, agua, forraje, monturas y carretas.
+- Forraje: 2 horas, DF 10/13/16/19 y 1/2/4 raciones por grado.
+- Ferrocarriles, dirigibles y embarcaciones permanecen dependientes de perfiles/rutas específicas.
+
 ## En desarrollo — equipo y suministros
 
 - El capítulo 9 pasa a **Armas, armaduras, equipo y suministros**.
