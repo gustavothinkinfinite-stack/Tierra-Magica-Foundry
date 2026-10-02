@@ -307,6 +307,7 @@ export class TierraMagicaActor extends Actor {
 
     const status = this.system.creation?.status ?? "complete";
     const resolvedStage = stage ?? (status === "building" ? "creation" : status === "rebuilding" ? "rebuilding" : "progression");
+    const resolvedPriceContext = priceContext ?? (resolvedStage === "rebuilding" ? "creation" : null);
     const candidate = foundry.utils.deepClone(itemData);
     candidate.system ??= {};
     candidate.system.slug = normalizeSlug(candidate.system.slug || candidate.name);
@@ -337,7 +338,7 @@ export class TierraMagicaActor extends Actor {
         actor: this,
         candidate,
         stage: resolvedStage,
-        priceContext,
+        priceContext: resolvedPriceContext,
         expectedRevision: this.system.creation?.revision,
         mode,
         sources
@@ -347,7 +348,7 @@ export class TierraMagicaActor extends Actor {
         actor: this,
         candidate,
         stage: resolvedStage,
-        priceContext,
+        priceContext: resolvedPriceContext,
         expectedRevision: this.system.creation?.revision,
         mode,
         sources
@@ -386,7 +387,7 @@ export class TierraMagicaActor extends Actor {
       if (!target) return failAcquisition("GrantItem de " + createdItem.name + " apunta a contenido inexistente: " + rule.itemType + ":" + rule.slug + ".");
       const granted = await this.acquireItem(target, {
         stage: resolvedStage,
-        priceContext,
+        priceContext: resolvedPriceContext,
         mode: "granted",
         sources: [{ kind: "grant", uuid: createdItem.uuid, lifecycle: rule.lifecycle ?? "linked" }],
         transaction: tx,

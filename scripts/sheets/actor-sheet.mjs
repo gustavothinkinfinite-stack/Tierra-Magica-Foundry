@@ -4,7 +4,10 @@ import { normalizeSlug } from "../rules/identity.mjs";
 import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } from "../rules/currency.mjs";
 import { movementAllowance, movementRemaining, spendActorMovement } from "../rules/turn-economy.mjs";
 
-export class TierraMagicaActorSheet extends ActorSheet {
+const ActorSheetV1 = foundry.appv1.sheets.ActorSheet;
+const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
+
+export class TierraMagicaActorSheet extends ActorSheetV1 {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["tierra-magica", "sheet", "actor"],
@@ -116,10 +119,10 @@ export class TierraMagicaActorSheet extends ActorSheet {
       actor.type === "familiar" && actor.system.details?.ownerUuid === this.actor.uuid
     ) ?? null;
 
-    context.enrichedBiography = await TextEditor.enrichHTML(this.actor.system.biography ?? "", {
+    context.enrichedBiography = await TextEditorImpl.enrichHTML(this.actor.system.biography ?? "", {
       async: true, secrets: this.actor.isOwner, relativeTo: this.actor
     });
-    context.enrichedNotes = await TextEditor.enrichHTML(this.actor.system.notes ?? "", {
+    context.enrichedNotes = await TextEditorImpl.enrichHTML(this.actor.system.notes ?? "", {
       async: true, secrets: this.actor.isOwner, relativeTo: this.actor
     });
     return context;

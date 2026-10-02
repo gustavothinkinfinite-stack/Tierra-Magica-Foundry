@@ -14,6 +14,12 @@ function number(value, fallback = 0) {
   return Number.isFinite(n) ? n : fallback;
 }
 
+function forcedDeletion() {
+  const ForcedDeletion = globalThis.foundry?.data?.operators?.ForcedDeletion;
+  if (typeof ForcedDeletion !== "function") throw new Error("Foundry ForcedDeletion no está disponible.");
+  return new ForcedDeletion();
+}
+
 function manualModifier(id, selector, value, label) {
   return {
     id,
@@ -309,16 +315,16 @@ export async function migrateWorldData({ catalog = [] } = {}) {
       const migrated = migrateActorSource(source);
       const updates = {
         system: migrated.system,
-        "system.currency.-=initialReserveGranted": null,
-        "system.creation.-=skillBuildActive": null,
-        "system.creation.-=equipmentBudgetActive": null,
-        "system.turn.-=movement": null,
-        "system.combat.-=defenseBonus": null,
-        "system.combat.-=protectionBonus": null,
-        "system.combat.-=movementBonus": null,
-        "system.combat.-=initiativeBonus": null
+        "system.currency.initialReserveGranted": forcedDeletion(),
+        "system.creation.skillBuildActive": forcedDeletion(),
+        "system.creation.equipmentBudgetActive": forcedDeletion(),
+        "system.turn.movement": forcedDeletion(),
+        "system.combat.defenseBonus": forcedDeletion(),
+        "system.combat.protectionBonus": forcedDeletion(),
+        "system.combat.movementBonus": forcedDeletion(),
+        "system.combat.initiativeBonus": forcedDeletion()
       };
-      if (actor.type === "familiar") updates["system.familiar.-=movement"] = null;
+      if (actor.type === "familiar") updates["system.familiar.movement"] = forcedDeletion();
       await actor.update(updates);
       actors += 1;
     }
@@ -329,8 +335,8 @@ export async function migrateWorldData({ catalog = [] } = {}) {
       const migrated = migrateItemSource(itemSource, { embedded: true });
       await item.update({
         system: migrated.system,
-        "system.-=skillRequirements": null,
-        "system.-=skillModifiers": null
+        "system.skillRequirements": forcedDeletion(),
+        "system.skillModifiers": forcedDeletion()
       });
       items += 1;
     }
@@ -356,8 +362,8 @@ export async function migrateWorldData({ catalog = [] } = {}) {
     const migrated = migrateItemSource(source, { embedded: false });
     await item.update({
       system: migrated.system,
-      "system.-=skillRequirements": null,
-      "system.-=skillModifiers": null
+      "system.skillRequirements": forcedDeletion(),
+      "system.skillModifiers": forcedDeletion()
     });
     items += 1;
   }

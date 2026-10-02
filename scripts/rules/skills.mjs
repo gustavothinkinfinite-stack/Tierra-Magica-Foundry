@@ -1,6 +1,12 @@
 export const SKILL_RANK_COSTS = Object.freeze([0, 1, 3, 7, 13, 21]);
 export const SKILL_RANK_BONUSES = Object.freeze([0, 1, 2, 4, 6, 8]);
 
+function forcedDeletion() {
+  const ForcedDeletion = globalThis.foundry?.data?.operators?.ForcedDeletion;
+  if (typeof ForcedDeletion !== "function") throw new Error("Foundry ForcedDeletion no está disponible.");
+  return new ForcedDeletion();
+}
+
 export function normalizeSkillRank(value) {
   const number = Number(value);
   if (!Number.isFinite(number)) return 0;
@@ -124,7 +130,7 @@ export async function migrateWorldSkills(skillDefinitions = {}) {
     for (const [key, value] of Object.entries(storedSkills)) {
       if (canonicalKeys.has(key)) continue;
       if (!Object.prototype.hasOwnProperty.call(legacySkills, key)) legacySkills[key] = value;
-      updates["system.skills.-=" + key] = null;
+      updates["system.skills." + key] = forcedDeletion();
       legacy += 1;
       changed = true;
     }
