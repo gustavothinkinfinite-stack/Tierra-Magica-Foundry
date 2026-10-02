@@ -2,7 +2,7 @@
   "id": "tierra-magica",
   "title": "Tierra Mágica — Foundry T.M.",
   "description": "Foundry T.M. 1.1: 2d10, desarrollo sin clases, combate, Trauma, Grimorio 60, alquimia, rituales, ingeniería arcano-industrial y familiares.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -27,7 +27,7 @@
     }
   ],
   "socket": true,
-  "initiative": "2d10 + @attributes.per.value + @combat.initiativeBonus",
+  "initiative": "2d10 + @derived.initiativeModifier",
   "grid": {
     "distance": 1.5,
     "units": "m"
