@@ -53,7 +53,7 @@ test("armadura y cuerpo a cuerpo no crean penalizaciones mágicas importadas de 
   assert.match(magic,/Estar frente a frente con un enemigo no penaliza el lanzamiento por sí solo/i);
   assert.match(magic,/no provoca un Ataque de Oportunidad universal/i);
   assert.match(magic,/no impone Desventaja automática/i);
-  assert.match(magic,/no posee componentes verbales, somáticos o de mano libre \*\*universales\*\*/i);
+  assert.match(magic,/tampoco posee componentes verbales, somáticos o de mano libre \*\*universales\*\*/i);
   assert.match(magic,/Estar Agarrado no impide automáticamente lanzar magia/i);
 });
 
