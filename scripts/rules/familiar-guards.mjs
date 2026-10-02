@@ -39,6 +39,7 @@ export function installFamiliarGuards(ActorClass) {
       if (resource === "health") {
         if (previous > 0 && next === 0) {
           updates["system.status.incapacitated"] = true;
+          updates["system.magic.sustainedSpellIds"] = [];
           if (this.type === "familiar") updates["system.familiar.incapacitated"] = true;
           if (this.type === "character" && number(this.system.status?.trauma) === 0) updates["system.status.trauma"] = 1;
         } else if (next > 0) {
