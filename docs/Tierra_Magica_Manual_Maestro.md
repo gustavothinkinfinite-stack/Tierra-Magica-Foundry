@@ -2713,7 +2713,7 @@ La moneda usa:
 
 Precio, Disponibilidad y acceso son independientes. Tener dinero suficiente no garantiza encontrar un objeto Raro, Restringido o Excepcional.
 
-La **venta rápida** utiliza 25% del valor aplicable. La venta directa no tiene una tasa universal; alrededor de 50% es sólo una referencia posible cuando existe comprador.
+La **venta rápida** utiliza 25% del Valor Aplicable definido por CRAFT-02. La venta directa no tiene una tasa universal; alrededor de 50% del Valor Aplicable es sólo una referencia posible cuando existe comprador. Estado, reparación, Encargos y desmantelamiento se resuelven en el capítulo 18.
 
 Durante creación, PEI es presupuesto y **no dinero**. Después de comenzar el juego, el equipo se compra con moneda, fabricación, recompensa u otra fuente física válida.
 
@@ -3917,6 +3917,266 @@ CRAFT-01 fija el motor de resolución, pero deliberadamente **no fija todavía**
 
 Esos elementos deben utilizar este motor y se cierran en CRAFT-02 y posteriores.
 
+### CRAFT-02 — Economía de fabricación
+
+> **VIGENTE · CERRADO.** CRAFT-02 fija la economía universal de fabricación ordinaria: valor de referencia, coste material, valor de insumos, trabajo profesional, acceso a instalaciones, reparación, desmantelamiento, recuperación, lotes, venta y encargos. Las recetas concretas y las ampliaciones de Calidad, materiales especiales, runas, objetos mágicos e ingeniería pueden reemplazar un valor universal sólo cuando lo indiquen expresamente.
+
+#### Valor de Referencia y Coste de Materiales
+
+El **Valor de Referencia (VR)** es el precio comercial de una unidad terminada, Común y sin modificaciones del objeto que se intenta producir.
+
+- Si el precio es **Exacto**, ese valor se usa directamente.
+- Si es **Variable**, debe fijarse y registrarse para el proyecto antes de adquirir los materiales.
+- Si figura **Sin precio establecido**, no puede inferirse un coste de fabricación mediante esta regla: la receta debe definir un presupuesto de materiales antes de comenzar.
+- Los costes se calculan siempre en cobres y se presentan después en o/p/c.
+
+Para una fabricación ordinaria que no tenga una receta económica propia:
+
+**Coste de Materiales (CM) = 50% del VR, redondeado hacia arriba al cobre.**
+
+El CM representa materias primas ordinarias, consumibles de proceso, combustible normal de taller, adhesivos, abrasivos, fundentes y merma razonable ya incorporada al procedimiento estable. No incluye:
+
+- herramientas reutilizables;
+- compra o construcción de la instalación;
+- salarios o trabajo contratado;
+- licencias, impuestos, transporte o sobornos;
+- componentes especiales identificados cuyo precio o adquisición estén definidos por separado;
+- propiedades de Calidad, modificaciones, runas, encantamientos o dispositivos que indiquen un coste adicional.
+
+Cuando una receta defina un **despiece o presupuesto exacto**, ese valor reemplaza el 50% universal para esa receta. No se suman ambas fórmulas.
+
+Pagar el CM no conjura materiales. Sólo puede pagarse como compra abstracta cuando existe acceso real a suministros compatibles. Disponibilidad, legalidad, transporte y rareza siguen siendo límites independientes.
+
+#### Lotes de materiales y Valor de Insumo
+
+Los materiales obtenidos como botín, extracción, recompensa, compra o recuperación pueden registrarse como un **Lote de Materiales**. Debe indicar:
+
+- descripción o familia material;
+- categoría de recurso: Común, Especializado, Raro o Excepcional;
+- **Valor de Insumo (VI)** en cobres;
+- cualquier restricción de compatibilidad relevante.
+
+Un Lote compatible reduce el CM pendiente **uno por uno según su VI**. El VI representa cuánto coste de materiales puede sustituir en un proyecto compatible; no es dinero y no puede gastarse en otra cosa.
+
+Un material incompatible no se convierte en compatible por poseer suficiente valor monetario. CRAFT-05 definirá materiales especiales, afinidades y propiedades sin cambiar esta regla económica.
+
+Si un Lote de Materiales se vende como mercancía, se trata como un bien físico y utiliza las reglas normales de venta sobre su propio valor comercial. Su VI no se convierte automáticamente en efectivo.
+
+#### Trabajo profesional
+
+CRAFT-02 usa una tabla de **tarifa de proyecto** para valorar trabajo contratado o remuneración por un encargo. No representa un salario universal para toda Edria ni fija niveles de vida; es una referencia mecánica para servicios de fabricación.
+
+| Nivel de servicio | Tarifa por Jornada de Trabajo de 8 h |
+|---|---:|
+| Apoyo no técnico | 5 c |
+| Aprendiz | 1 p = 10 c |
+| Entrenado | 2 p = 20 c |
+| Experto | 5 p = 50 c |
+| Maestro | 1 o = 100 c |
+| Gran Maestro | 2 o = 200 c |
+
+Para valorar el trabajo principal de una receta se usa normalmente el **rango mínimo que exige el proyecto**, no el rango superior que posea voluntariamente el artesano. Contratar deliberadamente a un profesional de mayor prestigio puede costar más si así se acuerda.
+
+La tarifa se prorratea por el tiempo de trabajo efectivo y se redondea una sola vez hacia arriba al cobre. Para encargos independientes, la unidad mínima facturable ordinaria es **1 hora**. Varias unidades idénticas del mismo pedido se agrupan como lote cuando corresponda; no se fracciona artificialmente un único encargo para multiplicar mínimos de facturación.
+
+Un mismo período de trabajo no se cobra dos veces porque una persona cubra dos Habilidades. Cuando el proyecto exige especialistas distintos trabajando horas diferentes, se contabilizan sus horas reales por separado.
+
+La Ayuda de trabajo de CRAFT-01 puede reducir duración, pero un colaborador contratado debe ser pagado por sus horas efectivas. La Ayuda técnica no convierte a un ayudante en trabajo gratuito.
+
+#### Acceso a instalaciones
+
+Poseer, pertenecer legítimamente o recibir acceso gratuito a una instalación no genera un coste abstracto por proyecto.
+
+Cuando se alquila acceso comercial, se usan como referencia:
+
+| Instalación | Tarifa por 8 h de uso |
+|---|---:|
+| Improvisada | normalmente sin tarifa de instalación |
+| Adecuada | 1 p = 10 c |
+| Profesional | 2 p = 20 c |
+| Especializada | 5 p = 50 c |
+| Excepcional | 1 o = 100 c |
+
+La tarifa se prorratea por horas efectivas y se redondea hacia arriba al cobre. El acceso a una instalación no elimina la necesidad de herramientas personales, consumibles o licencias que la receta exija.
+
+Alquilar una herramienta o Kit reutilizable ordinario, cuando el mercado lo permita y no esté incluido en la instalación, cuesta como referencia **10% de su precio de compra por Jornada de Trabajo**, prorrateado por horas y redondeado hacia arriba al cobre. Un equipo extraordinario puede definir otra tarifa.
+
+No existe un impuesto universal de mantenimiento sobre herramientas, armas o talleres. El desgaste sólo se cobra cuando una regla, consecuencia o servicio concreto lo vuelve relevante.
+
+#### Fabricar para uso propio
+
+Un personaje que realiza personalmente todo el trabajo paga:
+
+- CM pendiente después de aplicar materiales propios;
+- componentes especiales que correspondan;
+- alquileres de herramientas o instalaciones que realmente necesite;
+- cualquier coste narrativo o legal explícito.
+
+**No se cobra a sí mismo una tarifa de trabajo.**
+
+Por eso fabricar personalmente un objeto ordinario puede ahorrar de forma real aproximadamente la mitad de su precio comercial si el personaje ya posee competencia, herramientas e instalación. Ese ahorro es el retorno de haber invertido desarrollo, tiempo e infraestructura.
+
+El tiempo utilizado sigue siendo un recurso: fabricar ocupa Jornadas de Trabajo que no pueden emplearse simultáneamente en otra actividad incompatible.
+
+#### Encargos y trabajo remunerado
+
+Un **Encargo** existe cuando hay un comprador o contratante acordado antes de fabricar. No es lo mismo que producir un objeto sin comprador y después intentar venderlo.
+
+Una cotización estándar de Encargo incluye:
+
+**materiales pendientes + componentes especiales + trabajo requerido + alquileres necesarios**
+
+y puede incluir además transporte, permisos, impuestos o condiciones locales cuando existan.
+
+Si el cliente proporciona materiales, componentes, herramientas o instalación, esos elementos no se cobran de nuevo.
+
+En un contrato ordinario a precio cerrado, el trabajo se cotiza según el **tiempo base planificado antes de Ayuda o Aceleración**. Una ejecución eficiente puede mejorar el margen del artesano; una Aceleración fallida puede reducirlo mediante retrabajo. Un contrato por horas puede pactar otra cosa.
+
+El dinero adelantado para comprar materiales es **capital del Encargo**, no beneficio hasta que se cumpla el contrato.
+
+Aceptar Encargos puede proporcionar ingresos durante tiempo de campaña o descanso, pero **no existe una cola infinita de clientes**. Disponibilidad, demanda, reputación, legalidad, localización y tiempo determinan si existe realmente un Encargo. No se realizan tiradas repetidas hasta fabricar dinero.
+
+Cuando un objeto ordinario terminado ya está disponible en mercado y una cotización personalizada resulta igual o superior a su precio comercial, no se presupone que un comprador acepte el Encargo sin una razón: personalización, disponibilidad, urgencia, prestigio, acceso o alguna otra ventaja real.
+
+#### Venta de objetos y estado
+
+El **Valor Aplicable (VA)** para vender un objeto parte de su VR y de su estado físico.
+
+| Estado | VA respecto del VR |
+|---|---:|
+| Operativo / intacto | 100% |
+| Dañado | 60% |
+| Deshabilitado / inutilizable reparable | 40% |
+| Arruinado pero recuperable | 20% |
+| Destruido sin recuperación significativa | 0% |
+
+El VA se redondea hacia abajo al cobre.
+
+Una pieza sin un estado mecánico de daño se considera Operativa mientras ninguna consecuencia establezca lo contrario. CRAFT-02 **no introduce puntos de durabilidad ni desgaste periódico universal**.
+
+Sobre el VA:
+
+- **Venta rápida:** 25% exacto, redondeado hacia abajo al cobre.
+- **Venta directa:** no posee tasa obligatoria; **50% del VA** sigue siendo la referencia ordinaria cuando existe comprador.
+- Un comprador puede ofrecer más o menos por escasez, demanda, procedencia, legalidad, estado o negociación, pero no existe un mercado automático dispuesto a pagar cualquier cifra.
+
+Para un objeto Común recién fabricado, el CM universal redondea hacia arriba al 50% del VR mientras la venta directa de referencia redondea hacia abajo alrededor del 50%. Por tanto, **fabricar un objeto sin comprador no produce beneficio automático incluso si el artesano ignora el valor de su propio tiempo**.
+
+Una venta preacordada que remunera la fabricación es un Encargo y usa las reglas anteriores, no la tasa de reventa de un objeto ya producido.
+
+#### Reparación
+
+No existe un coste de mantenimiento obligatorio por uso normal. La reparación económica aparece cuando un objeto recibe un estado o una consecuencia concreta que la exige.
+
+Salvo que una receta indique otra cosa:
+
+| Estado a reparar | Materiales de reparación | Tiempo respecto de fabricación base |
+|---|---:|---:|
+| Dañado -> Operativo | 10% del VR | 25% |
+| Deshabilitado -> Operativo | 25% del VR | 50% |
+| Arruinado recuperable -> Operativo | 50% del VR | 75% |
+
+Los materiales de reparación se redondean hacia arriba al cobre. El tiempo nunca baja de **10 minutos** cuando la reparación requiere trabajo efectivo.
+
+La reparación usa la competencia, herramientas e instalación coherentes con el objeto. La Complejidad puede ser la del proyecto original o una específica de reparación cuando la receta lo indique.
+
+Los estados arcano-industriales **Dañado** y **Deshabilitado** utilizan directamente estas categorías salvo regla específica del dispositivo.
+
+Un componente especial destruido o perdido no reaparece pagando un porcentaje del VR. Si el proyecto identifica un núcleo, cristal, acumulador, runa, gema, mecanismo o componente con adquisición propia, debe repararse o reemplazarse conforme a su regla. Su valor no se cobra simultáneamente dentro del porcentaje genérico si ya está siendo sustituido por separado.
+
+Reparar restaura las propiedades válidas que el objeto ya poseía; no mejora Calidad ni añade modificaciones.
+
+#### Desmantelamiento y recuperación
+
+Desmantelar deliberadamente un objeto permite recuperar materiales compatibles en vez de venderlo. Con herramientas y condiciones adecuadas es trabajo rutinario y no requiere tirada.
+
+La recuperación genérica máxima es:
+
+| Estado antes de desmantelar | VI recuperable respecto del VR |
+|---|---:|
+| Operativo / intacto | 25% |
+| Dañado | 15% |
+| Deshabilitado | 10% |
+| Arruinado recuperable | 5% |
+| Destruido | 0% salvo componentes identificables supervivientes |
+
+El VI recuperado se redondea hacia abajo al cobre. El tiempo ordinario de desmantelamiento es **25% del tiempo base de fabricación**, con un mínimo de 10 minutos, salvo receta específica.
+
+La recuperación produce **materiales**, no monedas. Desmantelar un objeto intacto y vender después los materiales no debe ser una forma mejor de obtener efectivo que vender el objeto intacto.
+
+Un componente especial explícitamente desmontable e intacto puede recuperarse como componente. En ese caso su valor se excluye de la base utilizada para calcular recuperación genérica, evitando recuperarlo dos veces.
+
+Si se intenta desmantelar bajo presión, sin herramienta adecuada o tratando de preservar un componente especialmente delicado, se aplica CRAFT-01 y sólo se tira cuando existe incertidumbre significativa.
+
+#### Materiales perdidos por complicaciones
+
+Un fallo de Proyecto no consume materiales adicionales automáticamente.
+
+Cuando **pérdida de materiales** haya sido declarada como una consecuencia plausible de una prueba:
+
+- una pérdida ordinaria de referencia equivale al **10% del CM del proyecto o etapa afectada**;
+- una Pifia puede elevar esa pérdida de referencia al **25%**;
+- se redondea hacia arriba al cobre;
+- un componente especial sólo queda en riesgo si se identificó expresamente antes de la prueba o si la consecuencia física lo afecta de manera evidente.
+
+La consecuencia concreta puede ser menor, mayor o distinta cuando el proceso lo justifique, pero no se inventa después de ver el resultado.
+
+#### Lotes, producción repetida y economías de escala
+
+El coste material de varias unidades escala linealmente salvo receta expresa:
+
+**CM total = suma de los CM de las unidades o lotes producidos.**
+
+No existe un descuento universal por fabricar diez, cien o mil unidades. La materia no desaparece por producción en serie.
+
+El tiempo tampoco recibe un descuento universal. Una receta puede definir **Unidad Comercial**, lote, molde, plantilla, línea de montaje, herramienta especializada o instalación industrial que permita producir varias unidades con menor tiempo por unidad.
+
+Cuando un mismo comprador encarga varias unidades idénticas, se trata como un lote a efectos de facturación y organización; no se multiplican artificialmente los mínimos de una hora.
+
+La producción industrial puede mejorar productividad, pero debe hacerlo mediante infraestructura o recetas explícitas, no apilando trabajadores o redondeos.
+
+#### Salvaguardas económicas
+
+CRAFT-02 establece las siguientes restricciones universales:
+
+- PD y PR nunca se convierten directamente en materiales, moneda o valor de reventa.
+- Un Plano no crea materiales ni mercado.
+- Fabricar para uno mismo puede ahorrar dinero; **revender sin comprador preacordado no genera beneficio automático**.
+- Los Encargos remuneran tiempo profesional porque existe un cliente real, no porque el sistema garantice demanda.
+- Materiales saqueados o extraídos legítimamente pueden reducir el coste monetario de un proyecto; eso representa una recompensa física obtenida en juego, no creación de valor desde la nada.
+- Comprar un objeto, desmantelarlo y revender sus materiales es económicamente desfavorable por defecto.
+- Una reparación puede aumentar legítimamente el valor de un objeto dañado porque consume materiales, competencia y tiempo.
+- Los redondeos de costes se realizan hacia arriba; recuperaciones y ventas se redondean hacia abajo.
+- No se puede dividir artificialmente un proyecto, lote, material o Encargo para beneficiarse repetidamente de redondeos o tarifas mínimas.
+- Precio, Disponibilidad y acceso legal/social siguen siendo controles separados.
+
+#### Ejemplos económicos de control
+
+**Espada larga ordinaria.** VR 2 o = 200 c. CM 1 o = 100 c. Una venta rápida intacta produce 50 c; una venta directa ordinaria ronda 100 c. Fabricarla sin Encargo no produce margen automático. Si el artesano la quiere para sí mismo y posee medios de trabajo, ahorra aproximadamente 1 o a cambio de competencia y tiempo.
+
+**Placas ordinarias.** VR 40 o = 4.000 c. CM 20 o = 2.000 c. Su venta directa ordinaria de referencia ronda igualmente 20 o. La fabricación propia puede justificar una inversión importante en Artesanía, instalación y tiempo, pero producir placas sin comprador no duplica dinero.
+
+**Proyecto Estándar hipotético de una Jornada.** Si exige servicio Entrenado, el trabajo de referencia vale 2 p por la jornada. Si además necesita alquilar una instalación Adecuada, añade 1 p. Estos importes remuneran trabajo e infraestructura sin alterar el CM.
+
+**Dispositivo Dañado.** Repararlo consume normalmente 10% de su VR en materiales y 25% de su tiempo base. Esto hace que una Sobrecarga Controlada exitosa, que deja el dispositivo Dañado, tenga un coste material real sin equivaler a reconstruir el dispositivo entero.
+
+**Botín dañado.** Un objeto Dañado puede venderse rápido por 25% de su VA o desmontarse para obtener hasta 15% del VR como VI. Repararlo antes de venderlo puede ser rentable si existen materiales, tiempo y comprador; esa diferencia remunera una actividad real de restauración y no es un bucle sin coste.
+
+#### Límites de CRAFT-02
+
+CRAFT-02 no fija todavía:
+
+- la Complejidad y tiempo exactos de cada arma, armadura y herramienta;
+- recetas individuales;
+- propiedades y costes de Calidad;
+- materiales especiales concretos;
+- trampas;
+- runas, piedras, encantamientos y sintonización;
+- dispositivos específicos adicionales;
+- investigación e invención.
+
+Esos elementos comienzan en **CRAFT-03 — Armas, armaduras y herramientas** y deben respetar este marco económico.
+
 
 ## 19. Economía, disponibilidad y equipo
 
@@ -3994,9 +4254,13 @@ Las fórmulas alquímicas y otros bienes cuyo precio anterior estaba expresado e
 
 ### Compra, venta y fabricación
 
-La **venta rápida** usa una referencia exacta del **25%** del valor aplicable, calculada sobre la cantidad real y redondeada una sola vez hacia abajo al cobre. Una **venta directa** no posee una tasa universal; alrededor del 50% es sólo una referencia posible cuando exista comprador y se acuerde ese valor.
+La **venta rápida** usa exactamente **25% del Valor Aplicable (VA)** definido por CRAFT-02 y redondea hacia abajo al cobre. Una **venta directa** no posee una tasa universal; alrededor de **50% del VA** es la referencia ordinaria cuando existe comprador.
 
-Fabricar un objeto produce el objeto, no dinero automático. La rentabilidad exige costes, tiempo, comprador y precio de venta reales. Dinero compra recursos y servicios disponibles; **PD compra desarrollo personal**.
+La economía completa de fabricación se encuentra en el capítulo 18, **CRAFT-02 — Economía de fabricación**. Como referencia universal, una fabricación ordinaria sin receta económica propia consume materiales equivalentes al **50% del Valor de Referencia**, redondeados hacia arriba. Fabricar un objeto produce el objeto, no dinero automático.
+
+Un trabajo realizado para un comprador preacordado es un **Encargo** y remunera materiales, trabajo e infraestructura conforme a CRAFT-02. Producir primero y buscar comprador después utiliza las reglas normales de venta.
+
+La rentabilidad exige costes, tiempo y demanda reales. Dinero compra recursos y servicios disponibles; **PD compra desarrollo personal**.
 
 ### Adaptación de equipo — REV-CREA-08-001
 
