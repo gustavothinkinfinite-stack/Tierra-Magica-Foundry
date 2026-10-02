@@ -1019,6 +1019,7 @@ El Movimiento puede gastarse en varios tramos. Reglas frecuentes:
 | Desplazamiento ordinario | 1 punto por espacio |
 | Terreno difícil | 2 puntos por espacio |
 | Levantarse desde Derribado | normalmente 2 puntos |
+| Recoger un objeto accesible del suelo | normalmente 2 puntos |
 | Correr | consume la Acción y concede otro tramo equivalente al Movimiento base |
 | Agarrado | Movimiento 0 para alejarse de la Presa |
 | Exhausto | Movimiento -2, mínimo 1 |
