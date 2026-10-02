@@ -27,7 +27,7 @@ export function pushDistance(total, defense, { scaleDifference = 0 } = {}) {
   if (delta >= 2) return { ...outcome, spaces:0, blockedByScale:true };
 
   let spaces = outcome.degree === "dominant" ? 3 : outcome.degree === "clear" ? 2 : 1;
-  if (delta === 1) spaces = Math.max(0, spaces - 1);
+  if (delta === 1) spaces = Math.max(1, spaces - 1);
   return { ...outcome, spaces, blockedByScale:false };
 }
 
