@@ -2583,6 +2583,8 @@ Un personaje no suma la Defensa pasiva de varios escudos a la vez. Se usa el esc
 
 La calidad Defectuosa/Común/Superior/Excepcional describe fabricación y propiedades concretas; no concede un +1/+2/+3 universal.
 
+Las recetas de fabricación de armas, armaduras, escudos, munición y herramientas del catálogo vigente se encuentran en **CRAFT-03 — Armas, armaduras y herramientas**, dentro del capítulo 18.
+
 ### Equipo de aventura y herramientas
 
 El equipo ordinario permite realizar tareas que de otro modo serían difíciles o imposibles. Poseer la herramienta apropiada **no concede un bono universal**: habilita el método, satisface un requisito o evita una penalización cuando corresponda.
@@ -4177,6 +4179,232 @@ CRAFT-02 no fija todavía:
 
 Esos elementos comienzan en **CRAFT-03 — Armas, armaduras y herramientas** y deben respetar este marco económico.
 
+### CRAFT-03 — Armas, armaduras y herramientas
+
+> **VIGENTE · CERRADO.** CRAFT-03 convierte el catálogo material ordinario vigente en recetas fabricables mediante CRAFT-01 y CRAFT-02. Salvo indicación expresa, todas las recetas producen una pieza **Común**, con materiales ordinarios y exactamente las estadísticas ya definidas en el capítulo 9; fabricar no altera Daño, Penetración, Protección, Defensa, Recarga ni propiedades.
+
+#### Convenciones de receta
+
+Las tablas de CRAFT-03 usan estas abreviaturas:
+
+- **Comp.**: Complejidad de CRAFT-01.
+- **Principal**: Habilidad y Especialización que gobiernan la fabricación.
+- **Aux.**: competencia auxiliar mínima cuando sea esencial.
+- **Inst.**: instalación mínima.
+- **Plano**:
+  - **Oficio**: diseño profesional ordinario; quien cumple la competencia puede conocerlo como parte del oficio y no necesita portar un plano físico;
+  - **Estable**: requiere Plano estable, aprendizaje equivalente registrado o una fase previa de Diseño válida.
+- **Tiempo**: trabajo efectivo de una unidad o Unidad Comercial.
+- **CM**: se obtiene por CRAFT-02, normalmente 50% del VR.
+
+Una receta asume materiales preparados para trabajar —madera estacionada, metal utilizable, cuero curtido, vidrio adecuado, etc.—. Obtener, refinar o estabilizar la materia prima puede constituir otro Proyecto y no está incluido en el tiempo de ensamblado.
+
+La fabricación ordinaria de estas recetas es rutinaria y **no requiere tirada** si se cumplen todos los requisitos. Calidad Superior/Excepcional, materiales especiales, modificaciones, runas o encantamientos se resuelven en sus propios CRAFT posteriores.
+
+#### Ajuste y talla
+
+Fabricar una prenda, armadura, empuñadura, arnés o herramienta **desde cero para un usuario conocido incluye el ajuste ordinario de talla** dentro del tiempo y CM de la receta. Tomar medidas normales no es una Adaptación adicional.
+
+La regla de **Adaptación menor +25% / Adaptación mayor +50%** sigue aplicándose cuando:
+
+- se modifica un objeto ya terminado para otro usuario;
+- la anatomía, Escala o estructura exige cambios no incluidos en el patrón ordinario;
+- se transforma significativamente la configuración física sin crear todavía una modificación de rendimiento de CRAFT-04.
+
+Para una Adaptación realizada como Proyecto, el recargo canónico se trata como **VR del servicio**; CRAFT-02 determina sus materiales y trabajo. Como referencia, una Adaptación menor consume 25% del tiempo base de fabricación y una mayor 50%, con mínimo de 1 hora. Si la adaptación exige rediseño estructural puede elevar la Complejidad conforme a CRAFT-01.
+
+#### Armas cuerpo a cuerpo
+
+Todas las armas metálicas requieren acceso a un **Kit de Artesano** apropiado o herramientas equivalentes. Cuando una receta menciona Forja y metal, el material del mango, asta, remaches o empuñadura se considera parte normal del CM y no exige otra Habilidad salvo que se fabrique mediante un método no ordinario.
+
+| Arma | Comp. | Principal | Inst. | Plano | Tiempo |
+|---|---|---|---|---|---:|
+| Daga | Estándar | Artesanía Entrenada · Forja y metal | Adecuada | Oficio | 4 h |
+| Espada corta | Estándar | Artesanía Entrenada · Forja y metal | Adecuada | Oficio | 1 Jornada |
+| Sable | Estándar | Artesanía Entrenada · Forja y metal | Adecuada | Oficio | 1,5 Jornadas |
+| Espada larga | Complejo | Artesanía Experta · Forja y metal | Profesional | Oficio | 2 Jornadas |
+| Hacha | Estándar | Artesanía Entrenada · Forja y metal | Adecuada | Oficio | 1 Jornada |
+| Maza | Estándar | Artesanía Entrenada · Forja y metal | Adecuada | Oficio | 4 h |
+| Martillo de guerra | Estándar | Artesanía Entrenada · Forja y metal | Adecuada | Oficio | 1 Jornada |
+| Lanza | Estándar | Artesanía Entrenada · Carpintería o Forja y metal | Adecuada | Oficio | 4 h |
+| Alabarda | Complejo | Artesanía Experta · Forja y metal | Profesional | Estable | 2 Jornadas |
+| Mandoble | Complejo | Artesanía Experta · Forja y metal | Profesional | Estable | 3 Jornadas |
+| Gran hacha | Complejo | Artesanía Experta · Forja y metal | Profesional | Oficio | 2 Jornadas |
+| Gran martillo | Complejo | Artesanía Experta · Forja y metal | Profesional | Oficio | 2 Jornadas |
+
+La exigencia de Plano estable en Alabarda y Mandoble refleja geometría, balance y unión de componentes; no las convierte en objetos mágicos ni Raros.
+
+El **Cuchillo** del catálogo económico puede fabricarse como herramienta utilitaria Estándar con Artesanía Entrenada · Forja y metal, instalación Adecuada y 3 h de trabajo. CRAFT-03 no le inventa un perfil de combate distinto: si se utiliza como arma, debe existir una entrada mecánica que lo autorice.
+
+#### Armas de proyectil y fuego
+
+| Arma | Comp. | Principal | Auxiliar esencial | Inst. | Plano | Tiempo |
+|---|---|---|---|---|---|---:|
+| Arco corto | Estándar | Artesanía Entrenada · Carpintería | — | Adecuada | Oficio | 1 Jornada |
+| Arco largo | Estándar | Artesanía Entrenada · Carpintería | — | Adecuada | Oficio | 2 Jornadas |
+| Ballesta | Complejo | Artesanía Experta · Carpintería **o** Forja y metal | componentes compatibles de la otra fase | Profesional | Estable | 2 Jornadas |
+| Ballesta pesada | Complejo | Artesanía Experta · Carpintería **o** Forja y metal | componentes compatibles de la otra fase | Profesional | Estable | 3 Jornadas |
+| Pistola temprana | Complejo | Artesanía Experta · Forja y metal | Ingeniería Entrenada · Armamento | Profesional | Estable | 4 Jornadas |
+| Rifle temprano | Complejo | Artesanía Experta · Forja y metal | Ingeniería Entrenada · Armamento | Profesional | Estable | 6 Jornadas |
+| Pistola repetidora | Magistral | Ingeniería Maestra · Armamento | Artesanía Entrenada · Forja y metal | Especializada | Estable | 8 Jornadas |
+| Rifle repetidor | Magistral | Ingeniería Maestra · Armamento | Artesanía Entrenada · Forja y metal | Especializada | Estable | 12 Jornadas |
+
+En una Ballesta, “componentes compatibles de la otra fase” significa que el artesano puede adquirir o reutilizar un arco, mecanismo o herrajes ya fabricados dentro del CM. Fabricar absolutamente todos los componentes desde materia prima puede exigir ambas Especializaciones o colaboración.
+
+Las armas de fuego tempranas son fabricables por un especialista Experto. Las repetidoras permanecen Raras y exigen Ingeniería Maestra, instalación Especializada y Plano estable; su disponibilidad comercial y legal continúa siendo independiente del mero conocimiento técnico.
+
+CRAFT-03 no concede ataques adicionales, cargadores implícitos ni propiedades nuevas a **Repetición**.
+
+#### Munición
+
+La receta cubre exactamente la Unidad Comercial vigente.
+
+| Munición | Unidad | Comp. | Principal | Inst. | Tiempo | Notas |
+|---|---:|---|---|---|---:|---|
+| Flechas | 20 | Simple | Artesanía Aprendiz · Carpintería | Improvisada | 2 h | incluye puntas ordinarias dentro del CM |
+| Virotes | 20 | Simple | Artesanía Aprendiz · Carpintería o Forja y metal | Improvisada | 2 h | diseño compatible con ballesta |
+| Disparos ordinarios de arma de fuego | 12 | Estándar | Artesanía Entrenada · Forja y metal | Adecuada | 2 h | requiere propelente compatible ya disponible |
+
+Fabricar el **propelente** o una carga alquímica especial no forma parte de esta receta y puede requerir Alquimia. La receta de munición sólo ensambla componentes seguros y conocidos.
+
+No existe descuento material universal por fabricar varias Unidades Comerciales; una prensa, molde o línea de producción futura puede definirlo expresamente.
+
+#### Armaduras
+
+El ajuste ordinario al usuario está incluido. Las recetas producen la Protección y requisitos de FUE ya existentes; no reducen penalizaciones, ruido ni carga por estar “hechas a medida” salvo una propiedad posterior explícita.
+
+| Armadura | Comp. | Principal | Auxiliar | Inst. | Plano | Tiempo |
+|---|---|---|---|---|---|---:|
+| Armadura ligera | Estándar | Artesanía Entrenada · Cuero y textiles | — | Adecuada | Oficio | 1 Jornada |
+| Armadura reforzada | Estándar | Artesanía Entrenada · Cuero y textiles | componentes metálicos ordinarios | Adecuada | Oficio | 2 Jornadas |
+| Malla | Estándar | Artesanía Entrenada · Forja y metal | — | Adecuada | Oficio | 5 Jornadas |
+| Armadura pesada | Complejo | Artesanía Experta · Forja y metal | Cuero y textiles mediante componentes o colaborador | Profesional | Estable | 5 Jornadas |
+| Placas | Complejo | Artesanía Experta · Forja y metal | Cuero y textiles mediante componentes o colaborador | Profesional | Estable | 10 Jornadas |
+
+La **Malla** ilustra que Complejidad y tiempo son independientes: su patrón puede ser un trabajo conocido por un artesano Entrenado, pero requiere muchas horas repetitivas.
+
+Para Armadura pesada y Placas, correas, acolchado y piezas textiles comerciales compatibles pueden adquirirse dentro del CM. Fabricar también esas piezas desde materia prima exige la competencia auxiliar correspondiente, pero no duplica el CM.
+
+#### Escudos
+
+| Escudo | Comp. | Principal | Inst. | Plano | Tiempo |
+|---|---|---|---|---|---:|
+| Broquel | Estándar | Artesanía Entrenada · Forja y metal | Adecuada | Oficio | 4 h |
+| Escudo estándar | Estándar | Artesanía Entrenada · Carpintería o Forja y metal | Adecuada | Oficio | 1 Jornada |
+| Escudo pesado | Complejo | Artesanía Experta · Forja y metal | Profesional | Estable | 2 Jornadas |
+
+Fabricar un escudo no modifica sus reglas de frente, Defensa pasiva o Bloqueo.
+
+#### Herramientas y equipo de aventura
+
+| Objeto | Comp. | Principal | Auxiliar | Inst. | Plano | Tiempo |
+|---|---|---|---|---|---|---:|
+| Gancho de escalada | Simple | Artesanía Aprendiz · Forja y metal | — | Improvisada | Oficio | 2 h |
+| Palanca | Simple | Artesanía Aprendiz · Forja y metal | — | Improvisada | Oficio | 2 h |
+| Pico o pala | Estándar | Artesanía Entrenada · Forja y metal | — | Adecuada | Oficio | 4 h |
+| Caja pequeña asegurada | Estándar | Artesanía Entrenada · Carpintería | Latrocinio Aprendiz si fabrica también el cierre | Adecuada | Oficio | 6 h |
+| Catalejo | Complejo | Artesanía Experta · Vidrio y cristal | Ingeniería Aprendiz | Profesional | Estable | 3 Jornadas |
+| Estuche impermeable de documentos/mapas | Estándar | Artesanía Entrenada · Cuero y textiles | — | Adecuada | Oficio | 4 h |
+
+Una Caja pequeña asegurada puede utilizar un cierre comercial compatible dentro del CM; en ese caso no exige Latrocinio. Fabricar el mecanismo de cierre desde cero sí requiere la competencia auxiliar indicada.
+
+Los **Materiales de escritura** son un consumible comercial, no una herramienta reutilizable única. Pueden producirse mediante recetas de oficio locales, pero CRAFT-03 no fija una única técnica universal para tinta, papel, pergamino, carbón y soportes equivalentes.
+
+Los **Repuestos médicos, provisiones y combustible** son consumibles y no pertenecen a las recetas de herramienta reutilizable de CRAFT-03.
+
+#### Kits profesionales
+
+Un Kit profesional representa un **conjunto funcional de herramientas reutilizables**, no un solo objeto. Fabricarlo desde materia prima puede resolverse como un Proyecto de lote. La Habilidad auxiliar garantiza que el fabricante entiende qué instrumentos debe contener y cómo deben quedar calibrados o dispuestos; no sustituye la Habilidad cuando el Kit se usa después.
+
+| Kit | Comp. | Principal | Auxiliar esencial | Inst. | Tiempo |
+|---|---|---|---|---|---:|
+| Artesano | Estándar | Artesanía Entrenada · especialización coherente | — | Adecuada | 1 Jornada |
+| Ingeniería de campo | Estándar | Artesanía Entrenada · Forja y metal | Ingeniería Aprendiz | Adecuada | 2 Jornadas |
+| Minería | Estándar | Artesanía Entrenada · Forja y metal | — | Adecuada | 1 Jornada |
+| Médico | Estándar | Artesanía Entrenada · Forja y metal o Cuero y textiles | Medicina Aprendiz | Adecuada | 2 Jornadas |
+| Alquimia de campo | Estándar | Artesanía Entrenada · Vidrio y cristal | Alquimia Aprendiz | Adecuada | 2 Jornadas |
+| Infiltración | Estándar | Artesanía Entrenada · Forja y metal | Latrocinio Aprendiz | Adecuada | 1 Jornada |
+| Cartográfico | Estándar | Artesanía Entrenada · Carpintería o Vidrio y cristal | Supervivencia o Investigación Aprendiz | Adecuada | 1 Jornada |
+| Navegación | Estándar | Artesanía Entrenada · Vidrio y cristal o Forja y metal | Pilotaje Aprendiz | Adecuada | 2 Jornadas |
+| Campaña | Simple | Artesanía Aprendiz · especialización coherente | — | Improvisada | 4 h |
+| Escalada | Estándar | Artesanía Entrenada · Forja y metal o Cuero y textiles | Atletismo Aprendiz | Adecuada | 1 Jornada |
+| Escribanía | Simple | Artesanía Aprendiz · especialización coherente | — | Improvisada | 4 h |
+| Mercantil | Estándar | Artesanía Entrenada · especialización coherente | Investigación Aprendiz | Adecuada | 1 Jornada |
+| Académico | Estándar | Artesanía Entrenada · especialización coherente | Investigación Aprendiz | Adecuada | 2 Jornadas |
+| Instrumental Arcano de campo | Complejo | Artesanía Experta · Vidrio y cristal | Arcana Entrenada | Profesional | 3 Jornadas |
+| Mantenimiento de armas de fuego | Estándar | Artesanía Entrenada · Forja y metal | Ingeniería Aprendiz · Armamento si dispone de ella | Adecuada | 1 Jornada |
+
+Cuando un Kit contenga una pieza extraordinaria cuya fabricación tenga una receta propia —por ejemplo óptica excepcional, acumulador, instrumental mágico avanzado o explosivo— esa pieza se fabrica o adquiere por separado; el Kit no permite saltarse su requisito.
+
+Un Kit fabricado mediante estas reglas habilita exactamente los mismos métodos que un Kit comercial del mismo tipo. No obtiene bonos adicionales por haber sido fabricado por un PJ.
+
+#### Componentes comerciales y colaboración
+
+CRAFT-03 permite comprar un componente ordinario compatible dentro del CM cuando la receta lo indica. Esto representa una cadena de producción real: un armero puede comprar una culata, una hebilla o un cierre sin dominar necesariamente cada oficio del mundo.
+
+Cuando el personaje decide fabricar él mismo un componente que normalmente podría comprar:
+
+- no paga dos veces el CM;
+- debe cumplir la competencia de esa subpieza;
+- el tiempo de esa subpieza se añade si no estaba incluido en la receta principal;
+- un colaborador puede producirla como Proyecto separado.
+
+Un componente **especial, Raro o Excepcional** nunca queda incluido silenciosamente como “pieza comercial ordinaria”.
+
+#### Reparación por familia
+
+CRAFT-02 fija porcentajes universales. CRAFT-03 identifica quién puede ejecutarlos normalmente:
+
+- armas cuerpo a cuerpo, armaduras, escudos y herramientas ordinarias: **Artesanía** con la Especialización coherente;
+- arcos y astas: **Artesanía · Carpintería**;
+- ballestas: **Artesanía**, normalmente Carpintería o Forja y metal según la avería;
+- armas de fuego tempranas: **Artesanía · Forja y metal**, con Ingeniería cuando la avería sea sistémica;
+- repetidoras: **Ingeniería · Armamento**, con Artesanía cuando exista daño físico de piezas;
+- óptica: **Artesanía · Vidrio y cristal**, con Ingeniería si falla el mecanismo;
+- Kits: la competencia necesaria para reparar la pieza realmente dañada.
+
+Una reparación rutinaria conocida no exige tirada. Diagnósticos inciertos, piezas improvisadas o daño atípico utilizan CRAFT-01.
+
+#### Salvaguardas de CRAFT-03
+
+- Fabricar una entrada existente produce **esa entrada**, no una versión mejor.
+- Conocer una receta no concede competencia para usar el objeto en combate.
+- Una Habilidad de combate no sustituye Artesanía o Ingeniería para fabricarlo.
+- Un arma fabricada por un Maestro no obtiene daño, Penetración o Defensa extra sin CRAFT-04.
+- Hacer una armadura a medida no reduce FUE mínima ni Movimiento por sí solo.
+- Un Plano de repetidora no convierte su Disponibilidad Rara en Común.
+- Comprar componentes ordinarios no permite incluir materiales especiales no pagados.
+- Los Kits fabricados no contienen consumibles infinitos.
+- Fabricar munición no crea propelente alquímico.
+- CRAFT-03 no crea puntos de durabilidad, desgaste diario ni tiradas de mantenimiento.
+
+#### Ejemplos completos
+
+**Espada larga Común.** VR 2 o; CM 1 o. Complejo; Artesanía Experta · Forja y metal; instalación Profesional; 2 Jornadas. Con todos los requisitos se fabrica sin tirada. Si el personaje alquila la instalación durante ambas jornadas, CRAFT-02 añade 4 p de alquiler. No adquiere ningún +1 por ser artesanal.
+
+**Malla Común.** VR 10 o; CM 5 o. Estándar; Artesanía Entrenada · Forja y metal; instalación Adecuada; 5 Jornadas. Su largo tiempo procede del volumen de trabajo, no de una exigencia de rango Experto.
+
+**Placas Comunes.** VR 40 o; CM 20 o. Complejo; Artesanía Experta · Forja y metal; instalación Profesional; Plano estable; 10 Jornadas. El ajuste normal al usuario está incluido.
+
+**Rifle temprano Común.** VR 18 o; CM 9 o. Complejo; Artesanía Experta · Forja y metal + Ingeniería Entrenada · Armamento; instalación Profesional; Plano estable; 6 Jornadas. El proyecto produce el perfil existente y nada más.
+
+**Pistola repetidora Común.** VR 35 o; CM 17 o 5 p. Magistral; Ingeniería Maestra · Armamento + Artesanía Entrenada · Forja y metal; instalación Especializada; Plano estable; 8 Jornadas. Sigue siendo Rara aunque el personaje conozca el Plano.
+
+#### Límites de CRAFT-03
+
+CRAFT-03 no define todavía:
+
+- Calidad Superior y Excepcional;
+- propiedades de manufactura;
+- materiales especiales;
+- modificaciones de rendimiento;
+- trampas;
+- runas, piedras, encantamientos o sintonización;
+- nuevos dispositivos arcano-industriales;
+- investigación de diseños nuevos.
+
+El siguiente cierre es **CRAFT-04 — Calidad y modificaciones**.
+
 
 ## 19. Economía, disponibilidad y equipo
 
@@ -4265,6 +4493,8 @@ La rentabilidad exige costes, tiempo y demanda reales. Dinero compra recursos y 
 ### Adaptación de equipo — REV-CREA-08-001
 
 Adaptación menor: recargo **25%** del precio base. Adaptación mayor: **50%**. El recargo mínimo es **1 p = 10 c**. Si el porcentaje produce fracción de cobre, el recargo se redondea hacia arriba al cobre entero.
+
+CRAFT-03 aclara que fabricar desde cero para un usuario conocido incluye el ajuste ordinario de talla. El recargo de Adaptación se aplica al modificar equipo terminado o cuando anatomía, Escala o estructura exigen un cambio real fuera del patrón ordinario. Cuando la Adaptación se realiza personalmente como Proyecto, el recargo funciona como VR del servicio y CRAFT-02 determina sus costes.
 
 ### Migración de crowns
 
