@@ -298,9 +298,11 @@ function actorMigrationUpdates(actor) {
     "system.currency.totalCopper": plan.totalCopper,
     "system.currency.migrationVersion": CURRENCY_MIGRATION_VERSION,
     "system.currency.migrationPending": plan.pending,
-    "system.currency.legacy": plan.preserveLegacy,
-    "system.creation.initialReserveGranted": Boolean(sourceCreation.initialReserveGranted ?? sourceCurrency.initialReserveGranted)
+    "system.currency.legacy": plan.preserveLegacy
   };
+  if (actor?.type === "character") {
+    updates["system.creation.initialReserveGranted"] = Boolean(sourceCreation.initialReserveGranted ?? sourceCurrency.initialReserveGranted);
+  }
   for (const field of ["crowns", "gold", "silver", "copper"]) {
     if (hasOwn(sourceCurrency, field)) updates["system.currency." + field] = forcedDeletion();
   }
