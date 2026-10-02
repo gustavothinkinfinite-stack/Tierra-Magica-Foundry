@@ -6857,7 +6857,7 @@ No crea Energía, no eleva Consumo permitido en más de 1 y no puede repetirse s
 
 #### Una fuente activa por defecto
 
-Un dispositivo portátil utiliza **un acumulador activo** por defecto.
+Un dispositivo portátil utiliza **un acumulador activo** por defecto. Salvo que un Perfil diga expresamente lo contrario, el **VR y CM del dispositivo o Módulo no incluyen el acumulador ni el Host**: fuente, Host y Módulo se adquieren o fabrican por separado.
 
 Conectar físicamente varias fuentes:
 
@@ -6900,6 +6900,8 @@ Una versión Magistral puede coordinar dos acumuladores:
 - cada activación que utilice ese +1 de Caudal consume además **1 E de sobrecoste** del banco.
 
 No permite superar Caudal 5 mediante la receta estándar y nunca crea Energía.
+
+La salida de un Banco o Acoplador **no cuenta como un acumulador individual válido para alimentar otro Acoplador**. Los Acopladores no pueden encadenarse para repetir el +1 de Caudal.
 
 Una infraestructura fija de mayor Caudal requiere un Perfil propio.
 
@@ -7086,6 +7088,8 @@ Fuera de combate puede elegir por etapa:
 
 No proporciona ambas sobre la misma etapa.
 
+El Autómata auxiliar **no satisface por sí solo el rango mínimo, Especialización, Disciplina Principal o Disciplina Auxiliar obligatoria** de un Proyecto. Debe existir un responsable competente cuando la receta lo exija.
+
 En combate:
 
 - no posee Iniciativa, Acción o Reacción independientes;
@@ -7250,6 +7254,7 @@ Con Acoplador de Caudal:
 - conectar acumuladores no suma Caudal automáticamente.
 - Banco simple suma reserva, no Caudal.
 - Acoplador estándar sólo aumenta Caudal +1 y nunca supera 5.
+- los Acopladores no pueden encadenarse para repetir ese +1.
 - ninguna recarga supera Energía máxima.
 - Carga forzada y Sobrecarga tienen consecuencias de estado.
 - un dispositivo Dañado no puede volver a sobrecargarse.
@@ -7262,7 +7267,7 @@ Con Acoplador de Caudal:
 - Escudo de campo consume Reacción.
 - Arnés de carga no aumenta capacidad ofensiva.
 - Prótesis motorizada no concede miembro/ataque extra.
-- Autómata auxiliar no es un segundo Actor.
+- Autómata auxiliar no es un segundo Actor ni sustituye prerrequisitos profesionales.
 - Energía no activa Runas ni recarga Encantamientos.
 - un Sello y un dispositivo pagan cada recurso por separado.
 - reparación no rellena Energía.
