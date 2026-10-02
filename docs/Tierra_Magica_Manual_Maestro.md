@@ -4332,7 +4332,7 @@ Un Kit profesional representa un **conjunto funcional de herramientas reutilizab
 | Mercantil | Estándar | Artesanía Entrenada · especialización coherente | Investigación Aprendiz | Adecuada | 1 Jornada |
 | Académico | Estándar | Artesanía Entrenada · especialización coherente | Investigación Aprendiz | Adecuada | 2 Jornadas |
 | Instrumental Arcano de campo | Complejo | Artesanía Experta · Vidrio y cristal | Arcana Entrenada | Profesional | 3 Jornadas |
-| Mantenimiento de armas de fuego | Estándar | Artesanía Entrenada · Forja y metal | Ingeniería Aprendiz · Armamento si dispone de ella | Adecuada | 1 Jornada |
+| Mantenimiento de armas de fuego | Estándar | Artesanía Entrenada · Forja y metal | Ingeniería Aprendiz; Armamento si Ingeniería está Entrenada | Adecuada | 1 Jornada |
 
 Cuando un Kit contenga una pieza extraordinaria cuya fabricación tenga una receta propia —por ejemplo óptica excepcional, acumulador, instrumental mágico avanzado o explosivo— esa pieza se fabrica o adquiere por separado; el Kit no permite saltarse su requisito.
 
