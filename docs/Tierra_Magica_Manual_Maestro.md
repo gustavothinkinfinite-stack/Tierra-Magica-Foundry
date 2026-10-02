@@ -2694,7 +2694,7 @@ Para activarlo deben cumplirse:
 
 La activación reduce Energía. Un dispositivo no concede Acciones adicionales salvo regla expresa.
 
-Ejemplos: lámparas arcanas, herramientas motorizadas, visor espectral, estabilizador de tiro, cámara de penetración, propulsor de impacto, prótesis motorizadas, escudo de campo, arnés de carga y autómatas auxiliares. Las reglas completas están en **Ingeniería arcano-industrial**.
+Ejemplos: lámparas arcanas, herramientas motorizadas, visor espectral, estabilizador de tiro, cámara de penetración, propulsor de impacto, prótesis motorizadas, escudo de campo, arnés de carga y autómatas auxiliares. **CRAFT-09 — Ingeniería y dispositivos** completa sus perfiles de fabricación, Energía, Caudal, recarga y módulos; el marco conceptual permanece en **Ingeniería arcano-industrial**.
 
 ### Llevar, guardar y acceder al equipo
 
@@ -3623,7 +3623,9 @@ Los explosivos usan una prueba de colocación cuando existe incertidumbre, norma
 
 Las máquinas no usan Maná personal por defecto. Un acumulador se define por **Energía**, **Caudal** máximo por activación y **Estabilidad**. Un dispositivo define su **Consumo**. Para activarlo debe cumplirse Consumo <= Energía disponible y Consumo <= Caudal; la activación reduce Energía, no Maná.
 
-Acumuladores portátiles de referencia: celda menor 4 Energía/Caudal 2; acumulador estándar 8/3; núcleo pesado 16/5. Transferir Energía nunca crea Energía y conectar acumuladores no suma automáticamente Caudal sin infraestructura diseñada para ello.
+**CRAFT-09 — Ingeniería y dispositivos** define Estabilidad como la Energía máxima que un acumulador puede recibir de forma segura por intervalo de carga de 10 minutos y completa las recetas, costes, recarga y módulos.
+
+Acumuladores portátiles de referencia: celda menor **4 E / C2 / Est1**; acumulador estándar **8/3/2**; núcleo pesado **16/5/4**. Transferir Energía nunca crea Energía y conectar acumuladores no suma automáticamente Caudal sin infraestructura diseñada para ello.
 
 Estados de avería: **Operativo -> Dañado -> Deshabilitado**.
 
@@ -6721,7 +6723,569 @@ CRAFT-08 no define todavía:
 - objetos Legendarios reproducibles;
 - excepciones a Sintonización.
 
-La integración entre Encantamiento y maquinaria pertenece a **CRAFT-09 — Ingeniería y dispositivos**. El diseño de efectos inéditos y artefactos pertenece a **CRAFT-10 — Investigación**.
+La integración entre Encantamiento y maquinaria se define a continuación. El diseño de efectos inéditos y artefactos pertenece a **CRAFT-10 — Investigación**.
+
+### CRAFT-09 — Ingeniería y dispositivos
+
+> **VIGENTE · CERRADO.** CRAFT-09 cuantifica acumuladores, Estabilidad, recarga, transferencia, módulos técnicos, dispositivos portátiles y autómatas auxiliares. Conserva la separación entre Energía, Maná y Reserva Encantada y convierte los dispositivos de referencia del capítulo 17 en equipo fabricable y utilizable.
+
+#### Arquitectura energética
+
+Un sistema arcano-industrial distingue:
+
+- **Energía (E):** cantidad almacenada.
+- **Caudal (C):** Energía máxima que una fuente puede entregar a una sola activación.
+- **Estabilidad (Est):** Energía máxima que un acumulador puede **recibir de forma segura durante un intervalo de carga de 10 minutos**.
+- **Consumo:** Energía que una activación concreta necesita.
+
+Una activación es válida sólo si:
+
+**Consumo <= Energía disponible**  
+y  
+**Consumo <= Caudal efectivo.**
+
+Una activación válida compromete y gasta su Energía aunque una tirada posterior falle o el objetivo evite el efecto, igual que un hechizo válido gasta Maná.
+
+Una declaración que no puede activarse porque falta Energía, Caudal, estado, objetivo o economía de acciones se detiene antes del gasto.
+
+#### Acumuladores portátiles
+
+Los tres acumuladores ya establecidos quedan cuantificados completamente:
+
+| Acumulador | Energía máx. | Caudal | Estabilidad | VR | Disponibilidad | Fabricación |
+|---|---:|---:|---:|---:|---|---|
+| **Celda menor** | 4 | 2 | 1 | 2 o | Profesional | Estándar; Ingeniería Entrenada · Acumuladores arcanos; 1 Jornada; Adecuada |
+| **Acumulador estándar** | 8 | 3 | 2 | 5 o | Profesional/Restringida | Complejo; Ingeniería Experta · Acumuladores arcanos; 2 Jornadas; Profesional |
+| **Núcleo pesado** | 16 | 5 | 4 | 15 o | Rara/Restringida | Magistral; Ingeniería Maestra · Acumuladores arcanos; 5 Jornadas; Especializada |
+
+La fabricación requiere además Artesanía coherente para carcasa, contactos y cristal cuando no se adquieran como componentes preparados. El CM usa CRAFT-02 y ya incluye la cantidad ordinaria de cristal arcano refinado necesaria para la receta; no se cobra además un SM por ese mismo cristal.
+
+Los acumuladores se venden y valoran como **hardware vacío**. Una carga energética presente no aumenta automáticamente su VR ni garantiza mayor oferta de reventa.
+
+Calidad Superior/Excepcional puede aplicarse al objeto físico conforme a CRAFT-04, pero **no aumenta Energía, Caudal ni Estabilidad** sin una propiedad específica.
+
+#### Recarga estable
+
+Una fuente de carga debe definir **Caudal de Carga**.
+
+Durante cada intervalo de 10 minutos:
+
+**Energía transferida <= min(Caudal de Carga de la fuente, Estabilidad del acumulador objetivo, espacio libre de Energía).**
+
+La transferencia no crea Energía.
+
+Si otro acumulador actúa como fuente:
+
+- su Caudal funciona como Caudal de Carga;
+- pierde exactamente la Energía transferida;
+- no puede entregar más de su Energía restante;
+- su propio estado debe permitir descarga.
+
+Ejemplos:
+
+- una Celda menor vacía con Estabilidad 1 recibe como máximo 1 E cada 10 minutos;
+- un Acumulador estándar vacío recibe hasta 2 E cada 10 minutos;
+- un Núcleo pesado vacío recibe hasta 4 E cada 10 minutos.
+
+Con una fuente suficientemente capaz, sus tiempos mínimos de carga completa son por tanto aproximadamente 40, 40 y 40 minutos.
+
+#### Estación de carga de taller
+
+Una **Estación de carga de taller** es infraestructura, no un acumulador.
+
+- **Caudal de Carga:** 4.
+- **VR:** 10 o.
+- **Complejidad:** Complejo.
+- **Principal:** Ingeniería Experta · Acumuladores arcanos.
+- **Auxiliar:** Artesanía Entrenada y acceso a fuente energética compatible.
+- **Instalación:** Profesional.
+- **Tiempo:** 3 Jornadas.
+
+La estación no crea Energía: debe estar conectada a red, generador, reserva ambiental o fuente explícita.
+
+Cuando existe servicio comercial estable, el precio de referencia de una recarga es **1 c por cada E transferida**, sin que ello garantice disponibilidad en todas las regiones. Una fuente propia utiliza su combustible, infraestructura o coste real.
+
+#### Carga forzada
+
+Un acumulador Operativo puede aceptar durante un único intervalo hasta:
+
+**Estabilidad +1 E**
+
+si la fuente puede entregarlas y existe espacio libre.
+
+Esto exige **INT + Ingeniería DF 16**.
+
+- **Éxito:** se transfiere la Energía y el acumulador queda **Dañado**.
+- **Fallo:** no se transfiere Energía y el acumulador queda **Deshabilitado**.
+- **Pifia:** además puede dañar fuente, conexión o entorno cuando sea causalmente plausible.
+- un acumulador Dañado no puede intentar Carga forzada.
+
+Nunca puede superarse su Energía máxima.
+
+#### Estados de dispositivos y acumuladores
+
+Se conservan:
+
+**Operativo -> Dañado -> Deshabilitado.**
+
+Regla universal de CRAFT-09:
+
+- **Operativo:** funcionamiento completo.
+- **Dañado:** puede funcionar normalmente si su Perfil no dice otra cosa, pero no puede utilizar Sobrecarga Controlada ni Carga forzada; un nuevo empeoramiento de estado lo lleva a Deshabilitado.
+- **Deshabilitado:** no puede activar, descargar ni recibir carga hasta ser reparado cuando corresponda.
+
+CRAFT-09 no introduce puntos de durabilidad.
+
+Las reparaciones utilizan CRAFT-02 y la competencia del dispositivo.
+
+#### Sobrecarga Controlada
+
+Se conserva la regla del capítulo 17:
+
+- sólo una construcción compatible y Operativa;
+- debe existir Energía suficiente;
+- la activación debe ser válida salvo por necesitar **exactamente +1 de Caudal**;
+- **INT + Ingeniería DF 16**.
+
+**Éxito:** Caudal efectivo +1 para esa activación; el efecto se ejecuta, consume Energía y el dispositivo queda Dañado.
+
+**Fallo:** no se activa y queda Deshabilitado.
+
+**Pifia:** puede añadir consecuencia energética contextual.
+
+No crea Energía, no eleva Consumo permitido en más de 1 y no puede repetirse sobre un dispositivo Dañado.
+
+#### Una fuente activa por defecto
+
+Un dispositivo portátil utiliza **un acumulador activo** por defecto.
+
+Conectar físicamente varias fuentes:
+
+- no suma Energía disponible para la activación;
+- no suma Caudal;
+- no permite seleccionar retroactivamente de cuál se pagó una activación.
+
+Para combinar reservas hace falta infraestructura diseñada.
+
+Cambiar un acumulador portátil accesible durante combate consume normalmente **una Acción**. Una batería alojada tras carcasa, tornillos, aislamiento o calibración puede requerir más tiempo.
+
+Fuera de presión, cambiar una fuente compatible es rutinario.
+
+#### Banco y Acoplador de Caudal
+
+Un **Banco de Acumuladores** permite usar dos acumuladores compatibles como una sola reserva.
+
+##### Banco simple
+
+- **VR:** 4 o.
+- **Complejidad:** Complejo.
+- **Principal:** Ingeniería Experta · Acumuladores arcanos.
+- **Instalación:** Profesional.
+- **Tiempo:** 1 Jornada.
+- **Energía disponible:** suma de la Energía actual de ambas fuentes.
+- **Caudal de salida:** el mayor Caudal individual instalado, nunca la suma.
+
+La Energía se descuenta de las fuentes según el cableado registrado. Cambiar ese orden fuera de presión es rutinario.
+
+##### Acoplador de Caudal
+
+Una versión Magistral puede coordinar dos acumuladores:
+
+- **VR:** 10 o.
+- **Complejidad:** Magistral.
+- **Principal:** Ingeniería Maestra · Acumuladores arcanos.
+- **Instalación:** Especializada.
+- **Tiempo:** 4 Jornadas.
+- **Caudal efectivo de salida:** máximo entre los acumuladores +1, con techo **5**.
+- cada activación que utilice ese +1 de Caudal consume además **1 E de sobrecoste** del banco.
+
+No permite superar Caudal 5 mediante la receta estándar y nunca crea Energía.
+
+Una infraestructura fija de mayor Caudal requiere un Perfil propio.
+
+#### Dispositivo, Host y Módulo técnico
+
+Un **Dispositivo** debe registrar:
+
+- efecto;
+- activación;
+- Consumo;
+- Caudal mínimo;
+- duración;
+- fuente compatible;
+- si es autónomo, portátil, fijo o Módulo;
+- requisitos de fabricación;
+- estado.
+
+Un **Módulo técnico** se instala en un Host compatible —arma, herramienta, armadura, visor, arnés u otra plataforma— y utiliza la Energía de una fuente conectada.
+
+Reglas universales:
+
+- un Host ordinario admite **un Módulo técnico activo** mediante CRAFT-09;
+- instalar un segundo Módulo simultáneo requiere un Perfil específico; no se obtiene por Calidad;
+- un Módulo no consume CapM ni CRu;
+- la Modificación **Modular** de CRAFT-04 permite cambiar rápidamente una familia declarada de Módulos compatibles, pero no aumenta el número simultáneo;
+- sin Modular, instalar o reemplazar un Módulo requiere normalmente 25% del tiempo base del Host, mínimo 1 h;
+- un Módulo no concede una Acción adicional;
+- si modifica una Acción o ataque existente, su activación es **Vinculada** a esa resolución;
+- la Energía se compromete antes de la tirada modificada.
+
+Efectos equivalentes de Módulo, Calidad, Material, Runa, Encantamiento o hechizo usan el mejor beneficio salvo autorización expresa.
+
+#### Lámpara arcana
+
+- **VR:** 2 o.
+- **Complejidad:** Estándar.
+- **Principal:** Ingeniería Entrenada · Acumuladores arcanos.
+- **Auxiliar:** Artesanía Entrenada · Vidrio y cristal o componente preparado.
+- **Instalación:** Adecuada.
+- **Tiempo:** 1 Jornada.
+- **Consumo/Caudal:** 1/1.
+- **Activación:** Acción.
+- **Duración:** Escena.
+- **Efecto:** iluminación personal estable equivalente a una fuente ordinaria útil.
+
+No revela invisibilidad ni detecta magia. Apagarla voluntariamente no devuelve Energía.
+
+#### Herramienta motorizada
+
+- **VR:** 4 o.
+- **Complejidad:** Complejo.
+- **Principal:** Ingeniería Experta; especialización según máquina.
+- **Instalación:** Profesional.
+- **Tiempo:** 2 Jornadas.
+- **Consumo/Caudal:** 1/1 por hora o fracción de trabajo efectivo.
+- **Efecto:** se registra una operación física concreta —taladrar, cortar, pulir, prensar u otra—. Para una etapa realmente dominada por esa operación reduce su tiempo base **25%** y cuenta como herramienta adecuada.
+
+No reduce tiempos de secado, espera, investigación o trabajo no mecanizable. No se acumulan varias herramientas motorizadas para reducir indefinidamente una misma etapa y se mantienen los pisos temporales de CRAFT-01.
+
+#### Visor espectral
+
+- **VR:** 6 o.
+- **Complejidad:** Complejo.
+- **Principal:** Ingeniería Experta · Acumuladores arcanos.
+- **Auxiliar:** Arcana Entrenada.
+- **Instalación:** Profesional.
+- **Tiempo:** 2 Jornadas.
+- **Consumo/Caudal:** 1/1.
+- **Activación:** Acción.
+- **Duración:** Escena.
+- **Efecto:** Ventaja a **PER + Arcana** o **PER + Ingeniería** para examinar manifestaciones arcanas activas, flujos energéticos o funcionamiento energético que el sensor pueda captar físicamente.
+
+No ve a través de paredes, no concede Visión Arcana completa, no identifica automáticamente un hechizo y varias Ventajas no se acumulan.
+
+#### Estabilizador de tiro
+
+- **Tipo:** Módulo para arma a distancia no arrojadiza.
+- **VR:** 6 o.
+- **Complejidad:** Complejo.
+- **Principal:** Ingeniería Experta · Armamento.
+- **Instalación:** Profesional.
+- **Tiempo:** 2 Jornadas.
+- **Consumo/Caudal:** 1/1.
+- **Activación:** Vinculada a un ataque.
+- **Efecto:** +1 al ataque si el usuario no gastó Movimiento antes de ese ataque y no está siendo desplazado materialmente.
+
+Es equivalente a **Estabilizada** de CRAFT-04 para apilamiento.
+
+#### Cámara de penetración
+
+- **Tipo:** Módulo para arma de fuego compatible.
+- **VR:** 10 o.
+- **Complejidad:** Complejo.
+- **Principal:** Ingeniería Experta · Armamento.
+- **Auxiliar:** Artesanía Entrenada · Forja y metal.
+- **Instalación:** Profesional.
+- **Tiempo:** 3 Jornadas.
+- **Consumo/Caudal:** 2/2.
+- **Activación:** Vinculada a un disparo.
+- **Efecto:** **Pen +2** para esa resolución, máximo **Pen 5** mediante CRAFT-09.
+
+No se acumula con Perfil penetrante, Aguja Rúnica, Filo Penetrante u otro aumento equivalente; se usa el mejor.
+
+#### Propulsor de impacto
+
+- **Tipo:** Módulo para arma cuerpo a cuerpo compatible.
+- **VR:** 10 o.
+- **Complejidad:** Complejo.
+- **Principal:** Ingeniería Experta · Armamento.
+- **Instalación:** Profesional.
+- **Tiempo:** 3 Jornadas.
+- **Consumo/Caudal:** 2/2.
+- **Activación:** Vinculada a un ataque.
+- al fabricar se elige **un** diseño:
+  - **Impacto:** +2 Daño para esa resolución; o
+  - **Impulso:** si impacta, desplaza 1 espacio a objetivo de Escala igual o menor con trayectoria válida.
+
+El diseño elegido no cambia gratuitamente entre ataques.
+
+Impacto no se acumula con Golpe optimizado, Filo Arcano o equivalente. Impulso no se acumula con Impulso Cinético u otro desplazamiento equivalente.
+
+#### Escudo de campo
+
+- **VR:** 12 o.
+- **Complejidad:** Complejo.
+- **Principal:** Ingeniería Experta · Acumuladores arcanos.
+- **Auxiliar:** Arcana Entrenada.
+- **Instalación:** Profesional.
+- **Tiempo:** 3 Jornadas.
+- **Consumo/Caudal:** 2/2.
+- **Activación:** Reacción ante un ataque perceptible.
+- **Efecto:** +2 Defensa contra ese ataque.
+
+No se acumula con Barrera Cinética, Barrera Rúnica, Broche de Barrera u otra defensa mágica/energética equivalente. Consume la Reacción normal.
+
+#### Arnés de carga
+
+- **VR:** 8 o.
+- **Complejidad:** Complejo.
+- **Principal:** Ingeniería Experta · Vapor o Acumuladores arcanos según diseño.
+- **Instalación:** Profesional.
+- **Tiempo:** 3 Jornadas.
+- **Consumo/Caudal:** 1/1.
+- **Activación:** Acción para iniciar.
+- **Duración:** Escena.
+- **Efecto:** para **levantar, sostener, arrastrar o transportar carga**, el usuario interactúa como una categoría de Escala mayor cuando la estructura y el apoyo lo permiten.
+
+No aumenta FUE, daño, Defensa, Movimiento, maniobras contra criaturas ni capacidad de utilizar armas sobredimensionadas.
+
+#### Prótesis motorizada
+
+- **VR:** 12 o.
+- **Complejidad:** Complejo.
+- **Principal:** Ingeniería Experta.
+- **Auxiliares:** Artesanía Entrenada y Medicina Entrenada para ajuste anatómico cuando corresponda.
+- **Instalación:** Profesional.
+- **Tiempo:** 5 Jornadas.
+- **Consumo/Caudal:** 1/1 por Escena de uso exigente.
+- **Efecto:** sustituye una función mecánica ordinaria compatible del miembro o articulación para la que fue diseñada.
+
+No concede FUE adicional, Movimiento adicional, ataque adicional, miembro adicional ni elimina por sí sola una Herida Grave o Trauma. Su interacción médica concreta depende de la lesión y ajuste.
+
+Sin Energía puede conservar funciones pasivas que su diseño físico permita, pero no asistencia motorizada.
+
+#### Autómata auxiliar
+
+- **VR:** 20 o.
+- **Complejidad:** Magistral.
+- **Principal:** Ingeniería Maestra · Autómatas.
+- **Auxiliar:** Artesanía Experta coherente.
+- **Instalación:** Especializada.
+- **Tiempo:** 6 Jornadas.
+- **Fuente:** Celda menor o Acumulador estándar compatible.
+- **Consumo/Caudal:** 1/1 por hora o fracción de trabajo profesional efectivo.
+
+Un Autómata auxiliar de CRAFT-09 es **equipo**, no un segundo Actor completo.
+
+Al fabricarlo se registra una función profesional estrecha y las herramientas correspondientes.
+
+Fuera de combate puede elegir por etapa:
+
+- contar como **un colaborador efectivo de Ayuda de trabajo** de CRAFT-01; o
+- proporcionar **Ayuda técnica** cuando su función realmente contribuya a la incertidumbre.
+
+No proporciona ambas sobre la misma etapa.
+
+En combate:
+
+- no posee Iniciativa, Acción o Reacción independientes;
+- no ataca;
+- no lanza hechizos;
+- no activa objetos por cuenta propia;
+- una intervención táctica significativa requiere la Acción del controlador salvo Perfil posterior.
+
+Un autómata verdaderamente independiente utiliza un Perfil de PNJ/constructo y no se obtiene automáticamente a partir de esta receta.
+
+#### Alimentación y duración
+
+Cuando un dispositivo expresa Consumo «por Escena», paga una sola vez al activarse y permanece hasta el final de esa Escena salvo apagado, pérdida de fuente o regla propia.
+
+Cuando expresa Consumo «por hora o fracción», cada bloque iniciado consume nuevamente Energía.
+
+Una duración de Escena no permite mantener gratuitamente un dispositivo durante horas sólo porque nunca se declaró el final narrativo de la escena.
+
+#### Integración con Runas
+
+Un dispositivo puede poseer Calidad y CRu si cumple CRAFT-04/07.
+
+Sin embargo:
+
+- una Runa o Piedra sigue gastando **Maná personal**;
+- Energía no paga una Impronta;
+- un acumulador no aumenta CRu;
+- una Impronta no aumenta Caudal;
+- una activación de Módulo y una Impronta Vinculada pueden coexistir en la misma resolución sólo si afectan magnitudes diferentes y ambas economías son válidas;
+- efectos equivalentes no se suman.
+
+Ejemplo válido: Cámara de penetración + Filo Arcano I puede aplicar Pen +2 del Módulo y +1 Daño de la Impronta, pagando 2 E y 2 Maná.
+
+Ejemplo inválido: Cámara de penetración + Aguja Rúnica I no suma Pen +3; se utiliza el mejor aumento compatible.
+
+CRAFT-09 **no establece una conversión universal Energía -> Maná**.
+
+#### Integración con Encantamientos
+
+Un dispositivo puede ser soporte de CRAFT-08 si cumple sus requisitos.
+
+La Reserva Encantada permanece separada:
+
+- Energía no recarga RE;
+- RE no alimenta un Módulo;
+- Sintonización no aumenta Caudal;
+- un Hechizo Vinculado conserva su propia Acción/Reacción;
+- activar un dispositivo no activa gratis su Encantamiento.
+
+Una combinación que pretenda una única activación híbrida Energía + Encantamiento necesita un Perfil específico o CRAFT-10. No se infiere.
+
+#### Integración con Sellos y automatización
+
+Un Sello de Custodia puede actuar como disparador de un mecanismo cuando ambos Perfiles sean compatibles, pero:
+
+- el Sello consume su propia carga;
+- el dispositivo consume su propia Energía;
+- no se convierten entre sí;
+- el resultado no obtiene dos acciones o dos ataques si ambos describen la misma liberación.
+
+Una máquina autónoma repetitiva, torreta o autómata combatiente requiere un Perfil propio con:
+
+- sensores;
+- criterio de objetivo;
+- economía de acciones;
+- fuente;
+- Consumo/Caudal;
+- ataque/Defensas;
+- estado.
+
+No existe una plantilla universal que convierta un Módulo en una torreta gratuita.
+
+#### Reparación
+
+Competencia habitual:
+
+- acumuladores: Ingeniería · Acumuladores arcanos;
+- armamento motorizado: Ingeniería · Armamento y Artesanía cuando haya piezas físicas dañadas;
+- autómatas: Ingeniería · Autómatas;
+- estructuras de vapor: Ingeniería · Vapor;
+- componente arcano desconocido: puede requerir Arcana.
+
+CRAFT-02 fija materiales y tiempo por estado.
+
+La Energía almacenada no reaparece al reparar un acumulador. Un acumulador reparado conserva únicamente la Energía que físicamente hubiera quedado o vuelve vacío si el daño justificó pérdida/descarga.
+
+#### Desmantelamiento
+
+El hardware usa CRAFT-02/05.
+
+La Energía restante puede transferirse antes del desmantelamiento si el acumulador funciona y existe un receptor válido.
+
+Desmantelar no convierte Energía restante en VI.
+
+Cristal arcano o componentes especiales recuperables se cuentan una sola vez.
+
+#### Calidad, Material y Módulos
+
+CRAFT-09 no modifica las escalas anteriores:
+
+- Calidad no aumenta E/C/Est.
+- Material Especial no aumenta E/C/Est salvo Perfil expreso.
+- CapM no es capacidad energética.
+- CRu no es Caudal.
+- Encantamiento no es una batería industrial.
+- Módulo no es una Modificación de CRAFT-04 aunque pueda ser físicamente intercambiable mediante Modular.
+
+Estas capacidades deben registrarse por separado en la ficha.
+
+#### Ejemplo completo: rifle con Cámara de penetración
+
+Rifle temprano Común:
+
+- Daño 7, Pen 3;
+- Cámara de penetración instalada;
+- fuente: Acumulador estándar 8 E / C3;
+- activación del Módulo: 2 E / C2.
+
+Antes de tirar el disparo se declaran y gastan 2 E.
+
+Ese ataque utiliza **Pen 5**.
+
+Si falla, la Energía ya gastada no se devuelve.
+
+Tras cuatro activaciones completas el acumulador queda sin Energía.
+
+La Cámara no elimina Recarga 2.
+
+#### Ejemplo completo: Escudo de campo
+
+Con Acumulador estándar:
+
+- 8 E;
+- cada Reacción cuesta 2;
+- máximo teórico de 4 activaciones antes de recarga;
+- cada activación consume la Reacción normal;
+- no se combina con Barrera Cinética o Barrera Rúnica para obtener +4.
+
+#### Ejemplo completo: banco de dos Celdas menores
+
+Dos Celdas:
+
+- Energía conjunta 8;
+- Caudal individual 2.
+
+Con Banco simple:
+
+- Energía disponible 8;
+- Caudal 2.
+
+No se convierte en Caudal 4.
+
+Con Acoplador de Caudal:
+
+- Caudal efectivo 3;
+- una activación que realmente use ese tercer punto paga además 1 E de sobrecoste.
+
+#### Salvaguardas de CRAFT-09
+
+- Energía, Maná y RE son recursos distintos.
+- Estabilidad sólo gobierna recepción segura de Energía.
+- conectar acumuladores no suma Caudal automáticamente.
+- Banco simple suma reserva, no Caudal.
+- Acoplador estándar sólo aumenta Caudal +1 y nunca supera 5.
+- ninguna recarga supera Energía máxima.
+- Carga forzada y Sobrecarga tienen consecuencias de estado.
+- un dispositivo Dañado no puede volver a sobrecargarse.
+- un Host ordinario admite un Módulo técnico activo.
+- Modular permite intercambio, no más Módulos simultáneos.
+- Módulos no conceden Acciones.
+- efectos equivalentes no se acumulan.
+- Cámara de penetración no supera Pen 5.
+- un Propulsor no concede simultáneamente daño y empuje.
+- Escudo de campo consume Reacción.
+- Arnés de carga no aumenta capacidad ofensiva.
+- Prótesis motorizada no concede miembro/ataque extra.
+- Autómata auxiliar no es un segundo Actor.
+- Energía no activa Runas ni recarga Encantamientos.
+- un Sello y un dispositivo pagan cada recurso por separado.
+- reparación no rellena Energía.
+- desmantelar no convierte Energía en VI.
+
+#### Límites de CRAFT-09
+
+CRAFT-09 no define todavía:
+
+- generadores portátiles universales;
+- redes eléctricas/arcano-industriales completas;
+- vehículos específicos;
+- artillería;
+- torretas con Perfil de combate;
+- autómatas independientes;
+- conversión Energía <-> Maná o RE;
+- dispositivos de Caudal superior a 5 como receta universal;
+- prototipos híbridos fuera del catálogo;
+- tecnología de los Fundadores.
+
+Esos diseños requieren Perfiles específicos y, cuando sean nuevos, **CRAFT-10 — Investigación**.
+
+El siguiente cierre es **CRAFT-10 — Investigación, prototipos y estabilización de diseños**.
 
 
 ## 19. Economía, disponibilidad y equipo
