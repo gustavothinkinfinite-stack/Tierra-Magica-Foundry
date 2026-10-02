@@ -1,3 +1,4 @@
+import { classifyResult } from "../rules.mjs";
 // Foundry T.M. — reglas puras para maniobras y caídas.
 // Mantiene cuantificados los casos ambientales sin acoplarlos a una interfaz concreta.
 
@@ -9,15 +10,10 @@ const number = (value, fallback = 0) => {
 export function maneuverMargin(total, defense) {
   const attack = number(total, Number.NaN);
   const target = number(defense, Number.NaN);
-  if (!Number.isFinite(attack) || !Number.isFinite(target) || attack < target) {
-    return { success:false, margin:Number.isFinite(attack) && Number.isFinite(target) ? attack-target : null, degree:"failure" };
+  if (!Number.isFinite(attack) || !Number.isFinite(target)) {
+    return { success:false, margin:null, degree:"Fallo" };
   }
-  const margin = attack - target;
-  return {
-    success:true,
-    margin,
-    degree:margin >= 10 ? "dominant" : margin >= 5 ? "clear" : "adjusted"
-  };
+  return classifyResult(attack, target);
 }
 
 export function pushDistance(total, defense, { scaleDifference = 0 } = {}) {
@@ -26,7 +22,7 @@ export function pushDistance(total, defense, { scaleDifference = 0 } = {}) {
   const delta = Math.trunc(number(scaleDifference));
   if (delta >= 2) return { ...outcome, spaces:0, blockedByScale:true };
 
-  let spaces = outcome.degree === "dominant" ? 3 : outcome.degree === "clear" ? 2 : 1;
+  let spaces = outcome.degree === "Dominante" ? 3 : outcome.degree === "Claro" ? 2 : 1;
   if (delta === 1) spaces = Math.max(1, spaces - 1);
   return { ...outcome, spaces, blockedByScale:false };
 }
@@ -43,12 +39,12 @@ export function disarmOutcome(total, baseDefense, {
 } = {}) {
   const defense = disarmDefense(baseDefense, { twoHanded, secured });
   if (!Number.isFinite(defense)) {
-    return { success:false, defense, margin:null, degree:"failure", result:"secured" };
+    return { success:false, defense, margin:null, degree:"Fallo", result:"secured" };
   }
   const outcome = maneuverMargin(total, defense);
   if (!outcome.success) return { ...outcome, defense, result:"none" };
-  if (outcome.degree === "dominant" && freeHand) return { ...outcome, defense, result:"seized" };
-  if (outcome.degree === "clear" || outcome.degree === "dominant") return { ...outcome, defense, result:"adjacent" };
+  if (outcome.degree === "Dominante" && freeHand) return { ...outcome, defense, result:"seized" };
+  if (outcome.degree === "Claro" || outcome.degree === "Dominante") return { ...outcome, defense, result:"adjacent" };
   return { ...outcome, defense, result:"dropped" };
 }
 
