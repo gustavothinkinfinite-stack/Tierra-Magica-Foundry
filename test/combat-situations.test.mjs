@@ -12,10 +12,10 @@ import {
 } from "../scripts/rules/combat-situations.mjs";
 
 test("margen de maniobra usa Ajustado Claro y Dominante",()=>{
-  assert.deepEqual(maneuverMargin(13,14),{success:false,margin:-1,degree:"failure"});
-  assert.deepEqual(maneuverMargin(14,14),{success:true,margin:0,degree:"adjusted"});
-  assert.deepEqual(maneuverMargin(19,14),{success:true,margin:5,degree:"clear"});
-  assert.deepEqual(maneuverMargin(24,14),{success:true,margin:10,degree:"dominant"});
+  assert.deepEqual(maneuverMargin(13,14),{success:false,margin:-1,degree:"Fallo"});
+  assert.deepEqual(maneuverMargin(14,14),{success:true,margin:0,degree:"Ajustado"});
+  assert.deepEqual(maneuverMargin(19,14),{success:true,margin:5,degree:"Claro"});
+  assert.deepEqual(maneuverMargin(24,14),{success:true,margin:10,degree:"Dominante"});
 });
 
 test("Empujar desplaza 1/2/3 espacios y respeta Escala",()=>{
