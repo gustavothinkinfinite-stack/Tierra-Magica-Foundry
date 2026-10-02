@@ -3906,7 +3906,7 @@ La Viabilidad puede ser:
 
 Una tirada alta no atraviesa una imposibilidad establecida.
 
-Un prototipo no se convierte automáticamente en Plano estable por funcionar una vez. CRAFT-10 desarrollará las reglas de investigación, innovación y estabilización sin modificar este principio.
+Un prototipo no se convierte automáticamente en Plano estable por funcionar una vez. **CRAFT-10 — Investigación, prototipos y estabilización de diseños** define las Preguntas, Prototipo, Validación, Réplica y estabilización.
 
 ### Límites de CRAFT-01
 
@@ -3921,7 +3921,7 @@ CRAFT-01 fija el motor de resolución, pero deliberadamente **no fija todavía**
 - construcción detallada de trampas (definida posteriormente en CRAFT-06);
 - runas y Piedras de Impronta (definidas en CRAFT-07) y encantamientos (reservados a CRAFT-08);
 - límites de sintonización;
-- investigación avanzada.
+- investigación avanzada (definida posteriormente en CRAFT-10).
 
 Esos elementos deben utilizar este motor y se cierran en CRAFT-02 y posteriores.
 
@@ -7288,9 +7288,722 @@ CRAFT-09 no define todavía:
 - prototipos híbridos fuera del catálogo;
 - tecnología de los Fundadores.
 
-Esos diseños requieren Perfiles específicos y, cuando sean nuevos, **CRAFT-10 — Investigación**.
+Esos diseños requieren Perfiles específicos y, cuando sean nuevos, **CRAFT-10 — Investigación, prototipos y estabilización de diseños**.
 
-El siguiente cierre es **CRAFT-10 — Investigación, prototipos y estabilización de diseños**.
+CRAFT-10 se desarrolla a continuación.
+
+### CRAFT-10 — Investigación, prototipos y estabilización de diseños
+
+> **VIGENTE · CERRADO.** CRAFT-10 define cómo transformar una idea, muestra, efecto desconocido o combinación nueva en conocimiento reproducible. Conserva el ciclo **Concepto -> Viabilidad -> Investigación -> Prototipo -> Fórmula/Plano/Patrón estable**, sin puntos universales de progreso y sin permitir que una tirada alta atraviese límites establecidos por el canon.
+
+#### Principio de investigación
+
+Investigar no significa tirar repetidamente hasta obtener un resultado alto.
+
+Cada Proyecto de Investigación debe responder preguntas distintas y producir cambios verificables de conocimiento.
+
+CRAFT-10 distingue:
+
+- **Concepto:** qué se intenta descubrir o construir.
+- **Viabilidad:** si el objetivo puede existir con los principios actuales.
+- **Preguntas de Investigación:** incógnitas concretas que deben resolverse.
+- **Prototipo:** primera implementación funcional, todavía experimental.
+- **Validación:** prueba de que funciona en condiciones declaradas.
+- **Plano provisional:** documentación suficiente para intentar reproducirlo.
+- **Réplica:** segunda implementación construida desde la documentación.
+- **Plano/Fórmula/Patrón estable:** procedimiento reproducible.
+
+No existe una reserva de «puntos de investigación».
+
+#### Ficha de Investigación
+
+Antes de comenzar debe registrarse:
+
+- **Objetivo exacto**.
+- **Perfil mecánico pretendido**, cuando corresponda.
+- **Análogo canónico más cercano**.
+- **Clase de novedad**.
+- **Complejidad prevista** del resultado.
+- **Disciplina Principal**.
+- **Disciplinas Auxiliares**.
+- **Condiciones de Viabilidad**.
+- **Coste Material Proyectado (CMP)** de una unidad estable.
+- **Tiempo Base Proyectado (TBP)** de una unidad estable.
+- **Preguntas de Investigación**.
+- **Condiciones de Validación**.
+- **Riesgos conocidos**.
+- **Estado de Desarrollo**.
+
+Si el objetivo todavía es demasiado impreciso para asignar un Perfil, CMP o TBP, sólo puede realizarse investigación exploratoria hasta obtener datos suficientes.
+
+#### Concepto
+
+El Concepto debe declarar qué se quiere conseguir en términos verificables.
+
+No es suficiente:
+
+> «quiero inventar un arma mejor».
+
+Debe expresarse algo como:
+
+> «quiero desarrollar un mecanismo de rifle que acepte un Módulo de estabilización sin aumentar su Recarga ni añadir ataques».
+
+o:
+
+> «quiero identificar si este material Fundador conserva una propiedad energética reproducible».
+
+La investigación sólo puede producir aquello que fue realmente planteado o una conclusión razonablemente derivada de la evidencia. Un margen alto no añade beneficios no declarados.
+
+#### Viabilidad
+
+La Viabilidad se determina **antes** de las pruebas de desarrollo.
+
+Puede ser:
+
+##### Posible
+
+Los principios necesarios existen y el objetivo no contradice límites conocidos.
+
+##### Posible con condiciones
+
+El objetivo puede desarrollarse sólo si primero se cumplen una o más condiciones explícitas, por ejemplo:
+
+- conseguir una muestra;
+- disponer de un material Raro/Excepcional;
+- conocer un hechizo o Patrón relacionado;
+- acceder a una instalación concreta;
+- obtener una fuente energética compatible;
+- estudiar un fenómeno o ruina;
+- resolver una Pregunta de Investigación previa;
+- reducir el alcance del objetivo.
+
+Las condiciones son requisitos, no bonificadores.
+
+##### Actualmente imposible
+
+El objetivo contradice una regla o principio actualmente establecido o depende de un fenómeno que el sistema no ha demostrado posible.
+
+Ejemplos estándar:
+
+- energía infinita sin fuente;
+- convertir universalmente Energía en Maná por mera Ingeniería;
+- Resurrección estándar;
+- crear materia comercial permanente mediante Objeto Efímero;
+- ignorar una imposibilidad física sólo mediante una tirada alta.
+
+Una Viabilidad Actualmente imposible puede cambiar únicamente cuando el mundo, la campaña o una nueva regla establezcan una premisa nueva. No cambia por repetir la prueba.
+
+#### Investigación exploratoria
+
+Cuando no existe todavía un producto objetivo claro, puede investigarse una **Pregunta Exploratoria**.
+
+Ejemplos:
+
+- «¿qué función cumplía esta pieza Fundadora?»;
+- «¿por qué este cristal se desestabiliza al recibir Caudal?»;
+- «¿qué propiedad conserva esta escama después de curtirla?».
+
+Una Investigación Exploratoria produce:
+
+- un **Hallazgo documentado**;
+- una condición nueva de Viabilidad;
+- una hipótesis falsada;
+- una propiedad identificada;
+- o evidencia suficiente para formular un Concepto.
+
+No produce automáticamente un Plano ni una propiedad de objeto.
+
+Un Hallazgo puede convertirse en requisito/evidencia de un Proyecto posterior.
+
+#### Clase de novedad
+
+La novedad mide cuánto se desconoce del procedimiento; **no mide poder**.
+
+| Clase | Uso | Preguntas mínimas | Ajuste a DF de Investigación | Validaciones |
+|---|---|---:|---:|---:|
+| **Adaptación** | modificar un diseño estable dentro de principios ya conocidos | 1 | +0 | 1 |
+| **Reconstrucción** | recuperar un diseño existente a partir de muestra/documentación incompleta | 2 | +0 | 1 |
+| **Combinación** | integrar dos subsistemas estables de forma no catalogada | 2 | +2 | 2 |
+| **Innovación** | crear un Perfil nuevo dentro de principios conocidos | 3 | +2 | 2 |
+| **Frontera** | trabajar con principio desconocido, límite excepcional o tecnología no estabilizada | 4 | +4 | 3 |
+
+Las Preguntas mínimas deben ser **diferentes**. No pueden escribirse cuatro variantes de «¿funciona?» para cumplir el requisito.
+
+Un proyecto puede necesitar más Preguntas si realmente contiene más incógnitas.
+
+La Clase de novedad no autoriza por sí sola a superar límites de Daño, Pen, Protección, Sintonización, Caudal, acciones u otras reglas. Si el Concepto pretende romper un límite estándar, la Viabilidad debe autorizar expresamente esa excepción como parte del nuevo Perfil.
+
+#### DF de Investigación
+
+Cada Pregunta utiliza como base la DF de la Complejidad prevista del resultado:
+
+| Complejidad | DF base |
+|---|---:|
+| Simple | 10 |
+| Estándar | 12 |
+| Complejo | 14 |
+| Magistral | 16 |
+| Extraordinario | 18 |
+
+Después se aplica el ajuste de Clase de novedad.
+
+Ejemplo:
+
+- diseño Complejo de Innovación: DF 16;
+- diseño Magistral de Frontera: DF 20;
+- diseño Extraordinario de Frontera: DF 22.
+
+La Habilidad utilizada depende de la Pregunta concreta.
+
+#### Disciplina Principal por familia
+
+Como referencia:
+
+- **Ingeniería:** máquinas, mecanismos, acumuladores, autómatas, armamento, infraestructura.
+- **Artesanía:** procesos materiales, manufactura, modificación física y técnicas de oficio.
+- **Alquimia:** Fórmulas, reactivos, toxinas, explosivos, estabilización química.
+- **Ritualismo:** nuevos Patrones rúnicos, Encantamientos, procedimientos rituales.
+- **Arcana:** principios mágicos, artefactos, anomalías, teoría de la Trama.
+- **Latrocinio:** seguridad, disparadores, contramedidas y mecanismos de trampa.
+- **Medicina:** dispositivos/procedimientos biomédicos cuando el problema principal sea anatómico o clínico.
+- **Naturaleza:** propiedades biológicas/ecológicas cuando la investigación sea principalmente natural.
+
+**Investigación** es frecuente como Auxiliar para archivos, correlación, comparación de muestras y evidencia. No sustituye automáticamente la disciplina técnica que debe explicar el fenómeno.
+
+Un Proyecto puede cambiar de Habilidad entre Preguntas si realmente cambia la naturaleza del problema.
+
+#### Tiempo de una Pregunta de Investigación
+
+Tiempo base por Pregunta:
+
+| Complejidad prevista | Tiempo por Pregunta |
+|---|---:|
+| Simple | 2 h |
+| Estándar | 1 Jornada |
+| Complejo | 3 Jornadas |
+| Magistral | 5 Jornadas |
+| Extraordinario | 10 Jornadas |
+
+Es trabajo efectivo.
+
+Una Pregunta puede ser documental y no consumir materiales. Si requiere experimentación física, utiliza como referencia:
+
+**10% del CMP**, mínimo **1 p**, en consumibles/componentes por Pregunta.
+
+El coste debe corresponder a experimentos reales. No se cobra metal o cristal abstracto por una fase puramente archivística.
+
+CRAFT-01 puede reducir tiempo por Ayuda de trabajo sólo cuando la fase sea realmente paralelizable. Más investigadores no convierten una Pregunta conceptual en veinte tiradas simultáneas.
+
+#### Resolver una Pregunta
+
+Cuando existe incertidumbre, se realiza una sola prueba apropiada.
+
+**Éxito:** la Pregunta queda resuelta dentro de la evidencia disponible.
+
+**Fallo:** se identifica un **Bloqueo de Investigación**. Para volver a abordar esa misma Pregunta debe cambiar al menos una condición material:
+
+- nueva muestra;
+- nueva fuente documental;
+- otra metodología;
+- mejor instalación;
+- instrumento distinto;
+- colaborador con competencia realmente nueva;
+- material diferente;
+- Concepto revisado.
+
+Gastar simplemente más tiempo y repetir la misma tirada no es un cambio válido.
+
+**Pifia:** además del Bloqueo puede producir una consecuencia plausible declarada: contaminación, daño de muestra, accidente, lectura falsa detectada posteriormente u otra consecuencia física/epistémica coherente.
+
+Una Hazaña no resuelve Preguntas adicionales automáticamente.
+
+#### Coste Material Proyectado
+
+El **CMP** es el coste material estimado de fabricar una unidad estable del resultado pretendido.
+
+Se determina usando CRAFT-02 a 09 siempre que exista un análogo suficiente.
+
+Puede incluir:
+
+- CM;
+- SM;
+- CapM/Calidad;
+- matrices rúnicas;
+- CE;
+- acumuladores;
+- Módulos;
+- componentes especiales.
+
+Si el efecto no tiene todavía una economía comparable, la Viabilidad debe fijar un CMP provisional antes de entrar en prototipado material.
+
+El CMP **no fija automáticamente el VR comercial** del futuro objeto.
+
+#### Tiempo Base Proyectado
+
+El **TBP** es el tiempo estimado de fabricación de una unidad estable una vez que exista Plano.
+
+Se deriva de las recetas y subsistemas conocidos.
+
+Si todavía no puede estimarse, el proyecto permanece exploratorio.
+
+#### Prototipo
+
+Cuando todas las Preguntas obligatorias están resueltas, puede construirse un **Prototipo Experimental**.
+
+Coste:
+
+**125% del CMP**, redondeado hacia arriba al cobre.
+
+Tiempo:
+
+**150% del TBP.**
+
+La construcción del Prototipo es una situación incierta y requiere una prueba de la Disciplina Principal.
+
+DF:
+
+**DF base de Complejidad +2.**
+
+Para Clase **Frontera**, utiliza en su lugar:
+
+**DF base +4.**
+
+**Éxito:** el Prototipo funciona con el Perfil declarado bajo las condiciones que después deben validarse.
+
+**Fallo:** no se obtiene un Prototipo funcional del Perfil objetivo y queda identificada al menos una **Falla de Diseño**. Antes de construir otro Prototipo debe resolverse una Pregunta Correctiva específica.
+
+El fallo no destruye automáticamente todos los materiales. El estado físico de lo construido y la recuperación posible se resuelven mediante CRAFT-02/05 y la consecuencia real.
+
+**Pifia:** puede añadir daño de instalación, componente, muestra o peligro contextual cuando ese riesgo existía.
+
+**Hazaña:** produce un Prototipo funcional; no lo convierte en Plano estable, no eleva Calidad y no añade propiedades.
+
+#### Estado Experimental
+
+Un Prototipo funcional lleva el estado **Experimental**.
+
+Esto significa:
+
+- su Perfil declarado funciona en las condiciones ya demostradas;
+- todavía no existe procedimiento rutinario reproducible;
+- no concede un Plano estable;
+- no establece Disponibilidad de mercado;
+- no tiene una tasa universal de reventa;
+- utilizarlo fuera de su envolvente validada puede volver a introducir incertidumbre conforme a CRAFT-01.
+
+Experimental no es un estado de daño.
+
+Un Prototipo puede ser Operativo y Experimental a la vez.
+
+#### Validación
+
+La Validación demuestra que el Prototipo funciona en condiciones distintas y relevantes.
+
+Antes de construirlo deben declararse las condiciones que se validarán.
+
+Ejemplos:
+
+- funcionamiento continuo;
+- uso bajo carga máxima;
+- precisión después de varios ciclos;
+- compatibilidad con otro subsistema;
+- conservación de una Fórmula;
+- comportamiento con materiales alternativos;
+- seguridad de una activación;
+- estabilidad rúnica;
+- respuesta energética.
+
+Cada condición usa una prueba sólo si realmente existe incertidumbre.
+
+DF normal:
+
+**DF base de Complejidad.**
+
+La Habilidad puede ser la Principal o una Auxiliar si esa condición evalúa otro aspecto.
+
+Tiempo de una condición controlada:
+
+**25% del TBP**, mínimo 1 h.
+
+Si la prueba consume materiales, reactivos, munición, energía o muestras, se pagan físicamente. Como referencia para ensayo destructivo/consumptivo:
+
+**5% del CMP**, mínimo 1 p.
+
+Un uso real durante una aventura puede contar como Validación si:
+
+- la condición estaba declarada;
+- el Prototipo fue realmente sometido a ella;
+- se pudo observar el resultado;
+- se acepta el riesgo normal de esa escena.
+
+**Fallo de Validación:** descubre una Falla de Diseño. No se puede simplemente volver a realizar la misma prueba. Requiere una Pregunta Correctiva y, si la corrección cambia físicamente el Prototipo, el trabajo/material correspondiente.
+
+Una Hazaña no sustituye Validaciones pendientes.
+
+#### Plano provisional
+
+Después de completar las Validaciones se redacta un **Plano provisional**.
+
+Tiempo:
+
+**25% del TBP**, mínimo 2 h.
+
+No exige materiales significativos más allá de soportes/documentación ordinarios.
+
+Un Plano provisional:
+
+- permite intentar una Réplica;
+- todavía no convierte la producción en rutinaria;
+- no se vende ni licencia como Plano estable por las reglas universales.
+
+#### Réplica de estabilización
+
+La prueba final de reproducibilidad consiste en fabricar una segunda unidad **desde el Plano provisional**.
+
+Coste:
+
+**100% del CMP.**
+
+Tiempo:
+
+**100% del TBP.**
+
+Debe ejecutarla una persona que cumpla los requisitos profesionales previstos para la producción estable. Puede ser el inventor u otro profesional.
+
+Como el procedimiento todavía no está estabilizado, se realiza una única prueba final:
+
+**Disciplina Principal contra DF base de la Complejidad.**
+
+**Éxito:** la Réplica funciona conforme al Perfil y el Plano pasa a estado **Estable**.
+
+**Fallo:** el Plano aún contiene una inconsistencia reproducible. La unidad puede quedar incompleta/Defectuosa según la consecuencia, pero el Prototipo original no deja de funcionar por ello. Debe resolverse una Pregunta Correctiva antes de una nueva Réplica.
+
+**Pifia:** puede añadir una consecuencia física plausible, no borrar automáticamente toda la investigación.
+
+**Hazaña:** estabiliza el diseño, pero no añade Calidad ni reduce sus futuros costes.
+
+A partir del éxito de Réplica, una fabricación posterior con Plano estable y requisitos completos vuelve a ser rutinaria y **no tira**, conforme a CRAFT-01.
+
+#### Resultado estable
+
+El resultado final puede ser:
+
+- **Plano estable** — objeto, mecanismo, arma, herramienta, dispositivo, trampa o construcción.
+- **Fórmula estable** — Alquimia.
+- **Patrón Rúnico estable** — CRAFT-07.
+- **Patrón de Encantamiento estable** — CRAFT-08.
+- **Perfil de Material estable** — CRAFT-05.
+- **Perfil de Dispositivo estable** — CRAFT-09.
+- **Procedimiento Ritual estable** — cuando el diseño corresponda a Ritualismo.
+- **Hallazgo documentado** — investigación exploratoria sin receta reproducible.
+
+El documento final debe incluir todos los campos necesarios de su subsistema: costes, tiempo, requisitos, activación, límites, efectos, compatibilidad y consecuencias.
+
+#### Investigación Correctiva
+
+Una Falla de Diseño o Validación crea una nueva Pregunta Correctiva.
+
+La Pregunta:
+
+- debe describir el problema descubierto;
+- utiliza la misma DF que correspondería a una Pregunta de su Clase original, salvo que el problema sea objetivamente más simple;
+- consume su tiempo y experimentos;
+- no aumenta por sí sola el número de beneficios del producto.
+
+Corregir un problema no autoriza rediseñar gratuitamente otra parte.
+
+#### Ingeniería inversa
+
+La **Reconstrucción** recupera conocimiento de un diseño que ya existe.
+
+Requiere:
+
+- muestra física, documentación parcial o evidencia técnica suficiente;
+- acceso a los componentes relevantes;
+- competencia apropiada.
+
+Identificar un objeto no equivale a reconstruir su Plano.
+
+##### Estudio no destructivo
+
+Conserva la muestra y utiliza normalmente las dos Preguntas mínimas de Reconstrucción sin bonificación automática.
+
+##### Desmontaje reversible
+
+Cuando el objeto puede desmontarse y volver a ensamblarse:
+
+- queda temporalmente Deshabilitado durante el análisis;
+- concede **Ventaja a una** Pregunta de Reconstrucción pertinente;
+- volver a montarlo requiere como referencia 25% de su tiempo base, mínimo 1 h.
+
+##### Análisis destructivo
+
+Cuando se secciona, consume o destruye una parte relevante:
+
+- la muestra queda Arruinada, Destruida o pierde el componente según corresponda;
+- concede **Ventaja a hasta dos Preguntas diferentes** de Reconstrucción cuando el acceso interno realmente ayude.
+
+Ventaja no se acumula consigo misma.
+
+La pérdida de la muestra no garantiza éxito.
+
+#### Tecnología desconocida y Fundadores
+
+Una muestra de los Fundadores no recibe un Plano reproducible sólo porque sea desmontada.
+
+La investigación puede producir:
+
+- función identificada;
+- materiales reconocidos;
+- principio parcialmente comprendido;
+- condición nueva de Viabilidad;
+- Perfil limitado;
+- o conclusión de que el principio sigue fuera de capacidad actual.
+
+Si una pieza depende de una premisa tecnológica no comprendida, la Viabilidad puede seguir siendo **Posible con condiciones** o **Actualmente imposible**.
+
+CRAFT-10 no convierte «tecnología Fundadora» en un +X genérico.
+
+#### Nuevos materiales de criatura
+
+Para convertir una parte de criatura en **Perfil de Material** deben investigarse al menos:
+
+- conservación/preparación;
+- propiedad persistente después del procesado;
+- cobertura necesaria;
+- compatibilidades;
+- límites.
+
+El Perfil sólo conserva propiedades demostradas después de la preparación. No hereda automáticamente poderes de la criatura.
+
+#### Nuevas Fórmulas alquímicas
+
+Una Fórmula nueva utiliza Alquimia como Principal.
+
+La investigación debe fijar:
+
+- Grado;
+- Preparación;
+- Componentes;
+- Herramientas;
+- Vía;
+- Activación;
+- Duración;
+- Saturación;
+- Efecto;
+- Preservación.
+
+Estabilizar una Fórmula produce el documento reproducible, pero **no elimina los costes de desarrollo personal**.
+
+Si el sistema exige PD para conocer esa Fórmula, un personaje debe pagar esos PD normalmente antes de tratarla como conocimiento propio rutinario.
+
+Poseer el documento no convierte automáticamente la Fórmula en una capacidad personal gratuita.
+
+#### Nuevas Improntas y Encantamientos
+
+Un nuevo Patrón Rúnico usa normalmente Ritualismo como Principal y Arcana como Auxiliar.
+
+Un nuevo Encantamiento usa CRAFT-08 y debe declarar:
+
+- Grado;
+- Sintonización;
+- RE/PE cuando corresponda;
+- activación;
+- apilamiento;
+- coste;
+- soporte;
+- límites.
+
+CRAFT-10 no permite que un Encantamiento:
+
+- ignore Sintonización porque «es experimental»;
+- convierta RE en Maná;
+- comprima automáticamente un Ritual en Acción;
+- vincule un Hechizo Legendario mediante la receta estándar;
+- cree varias Acciones/Reacciones.
+
+Una excepción sólo existe si la Viabilidad del nuevo Perfil la autoriza expresamente como regla nueva.
+
+#### Investigación de hechizos
+
+CRAFT-10 puede utilizarse para desarrollar una **propuesta completa de hechizo o Ritual** cuando la campaña permita creación mágica.
+
+Debe fijar como mínimo:
+
+- Disciplina/Fuente;
+- Método;
+- Grado;
+- coste de Maná;
+- objetivo/área;
+- alcance;
+- duración;
+- resistencia;
+- efecto;
+- límites;
+- PD de aprendizaje conforme al sistema.
+
+Completar la investigación **no otorga el hechizo gratis**.
+
+El personaje debe adquirirlo mediante el coste normal de desarrollo que corresponda.
+
+Un efecto que contradiga una prohibición canónica —por ejemplo Resurrección estándar actualmente— permanece Actualmente imposible hasta que el canon cambie.
+
+#### Investigación y PD/PR
+
+CRAFT-10 no convierte:
+
+- dinero en PD;
+- materiales en PD;
+- una Hazaña en una Técnica;
+- una muestra en una Especialización;
+- un Plano en un Hechizo conocido;
+- un Proyecto en PR.
+
+Si el resultado pertenece a una categoría de desarrollo personal, conserva su coste normal.
+
+#### Copia, propiedad y mercado de conocimiento
+
+Un Plano/Fórmula/Patrón estable es **información**, no materia equivalente al valor del producto.
+
+Puede copiarse, robarse, cifrarse, protegerse, venderse o licenciarse según el mundo.
+
+No utiliza automáticamente:
+
+- 25% de venta rápida;
+- 50% de venta directa;
+- el VR del objeto fabricado.
+
+No existe un comprador infinito de copias.
+
+Su precio depende de:
+
+- secreto;
+- demanda;
+- exclusividad;
+- legalidad;
+- dificultad de acceso;
+- monopolio;
+- utilidad;
+- negociación.
+
+Copiar un documento no crea automáticamente más valor económico, de la misma forma que copiar un Plano no crea los objetos que describe.
+
+Gremios, academias, estados y talleres pueden proteger legal o físicamente sus diseños.
+
+#### Mercado del nuevo producto
+
+Estabilizar un diseño **no fija automáticamente su precio ni Disponibilidad comercial**.
+
+Antes de incorporarlo a un catálogo de mercado debe ratificarse:
+
+- VR;
+- Disponibilidad;
+- Unidad Comercial si corresponde;
+- licencias/restricciones;
+- componentes especiales.
+
+El CMP sirve para desarrollo y fabricación, no para declarar unilateralmente cuánto pagará el mercado.
+
+Un objeto puede ser perfectamente fabricable y no tener compradores disponibles.
+
+#### Ejemplo — reconstruir una pistola repetidora
+
+Objetivo: recuperar el Plano estable de una pistola repetidora existente.
+
+- Perfil ya canónico.
+- Complejidad: Magistral.
+- Clase: Reconstrucción.
+- Principal: Ingeniería · Armamento.
+- Preguntas mínimas: 2.
+- DF de cada Pregunta: 16.
+- una muestra desmontada de forma reversible puede dar Ventaja a una de ellas.
+- CMP estable: 17 o 5 p.
+- TBP estable: 8 Jornadas.
+- Prototipo: 125% CMP y 12 Jornadas; prueba DF 18.
+- Validación: 1 condición relevante.
+- Réplica: CMP normal, 8 Jornadas, prueba DF 16.
+- sólo entonces se obtiene un Plano estable reproducible.
+
+Conseguir una pistola no entrega automáticamente el Plano.
+
+#### Ejemplo — Perfil de Material de criatura
+
+El grupo obtiene escamas de una criatura que resistió fuego.
+
+Concepto:
+
+> determinar si esa resistencia persiste después de preparar las escamas como material de armadura.
+
+No se asume que sí.
+
+La investigación puede concluir:
+
+- que la propiedad desaparece al procesar;
+- que requiere un tratamiento concreto;
+- que sólo reduce una categoría específica de daño;
+- o que no existe un beneficio persistente.
+
+Sólo un Perfil de Material estabilizado entra después en CRAFT-05.
+
+#### Ejemplo — híbrido dispositivo/Encantamiento
+
+Concepto:
+
+> un mecanismo cuyo disparador técnico pueda activar un Encantamiento pagando Energía y RE en una única activación.
+
+CRAFT-09 no lo concede automáticamente.
+
+Se clasifica al menos como **Combinación** y debe especificar:
+
+- qué recurso paga cada componente;
+- Acción/Reacción;
+- Consumo/Caudal;
+- gasto de RE;
+- orden de resolución;
+- apilamiento;
+- fallo de una mitad;
+- estado.
+
+La investigación puede producir un Perfil híbrido válido sin crear conversión Energía -> RE.
+
+#### Salvaguardas de CRAFT-10
+
+- no existen puntos universales de investigación;
+- cada tirada responde una Pregunta distinta;
+- un fallo bloquea el método, no invita a repetir;
+- Viabilidad se decide antes de tirar;
+- Actualmente imposible no se atraviesa con Hazaña;
+- Clase de novedad mide incertidumbre, no potencia;
+- Investigación no autoriza superar límites sin un Perfil que lo diga expresamente;
+- Prototipo funcional no equivale a Plano estable;
+- Hazaña de Prototipo no estabiliza;
+- Validación no se omite por margen;
+- Réplica es obligatoria para estabilizar;
+- Falla de Diseño exige Pregunta Correctiva;
+- una muestra no concede ingeniería inversa automática;
+- destruir una muestra da información, no éxito garantizado;
+- tecnología Fundadora no crea un +X;
+- partes de criatura no heredan poderes;
+- investigación no elimina PD/PR;
+- estabilizar un producto no crea mercado;
+- copiar Planos no imprime dinero;
+- un diseño nuevo sigue pagando materiales, tiempo, herramientas e instalación cuando se fabrica.
+
+#### Límites de CRAFT-10
+
+CRAFT-10 no define por sí solo:
+
+- el catálogo futuro de todos los inventos posibles;
+- precio comercial automático de una tecnología nueva;
+- disponibilidad automática;
+- tecnología Fundadora todavía desconocida;
+- excepciones gratuitas a los límites de CRAFT anteriores;
+- artefactos únicos sin Perfil;
+- campañas completas de industria, patentes o producción masiva.
+
+Esos elementos se resuelven mediante Perfiles concretos, mundo y catálogo.
+
+El siguiente cierre es **CRAFT-11 — Catálogo de proyectos y recetas de referencia**.
 
 
 ## 19. Economía, disponibilidad y equipo
