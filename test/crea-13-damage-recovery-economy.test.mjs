@@ -89,12 +89,14 @@ function item(data){
 test("CREA-13 13D: 0 Vida aplica una sola vez Trauma y curar por encima de 0 sólo retira Incapacitado",async()=>{
   const actor=character({
     "system.resources.health.value":3,
-    "system.recovery.healthCap":8
+    "system.recovery.healthCap":8,
+    "system.magic.sustainedSpellIds":["spell-a","spell-b"]
   });
   await actor.adjustResource("health",-3);
   assert.equal(actor.system.resources.health.value,0);
   assert.equal(actor.system.status.incapacitated,true);
   assert.equal(actor.system.status.trauma,1);
+  assert.deepEqual(actor.system.magic.sustainedSpellIds,[]);
 
   await actor.adjustResource("health",-5);
   assert.equal(actor.system.resources.health.value,0);
