@@ -3915,7 +3915,7 @@ CRAFT-01 fija el motor de resolución, pero deliberadamente **no fija todavía**
 - propiedades de Calidad;
 - catálogo de materiales especiales;
 - construcción detallada de trampas (definida posteriormente en CRAFT-06);
-- runas, piedras engarzadas y encantamientos;
+- runas y Piedras de Impronta (definidas en CRAFT-07) y encantamientos (reservados a CRAFT-08);
 - límites de sintonización;
 - investigación avanzada.
 
@@ -4175,7 +4175,7 @@ CRAFT-02 no fija todavía:
 - propiedades y costes de Calidad;
 - materiales especiales concretos;
 - trampas;
-- runas, piedras, encantamientos y sintonización;
+- runas y Piedras de Impronta (definidas en CRAFT-07), encantamientos y sintonización;
 - dispositivos específicos adicionales;
 - investigación e invención.
 
@@ -4401,7 +4401,7 @@ CRAFT-03 no define todavía:
 - materiales especiales;
 - modificaciones de rendimiento;
 - trampas;
-- runas, piedras, encantamientos o sintonización;
+- runas y Piedras de Impronta (definidas en CRAFT-07), encantamientos o sintonización;
 - nuevos dispositivos arcano-industriales;
 - investigación de diseños nuevos.
 
@@ -4690,7 +4690,7 @@ CRAFT-04 no define todavía:
 - materiales especiales concretos y sus propiedades;
 - extracción/refinado de dichos materiales;
 - trampas;
-- runas, piedras, engarces, encantamientos y sintonización;
+- runas, Piedras de Impronta y engarces (definidos en CRAFT-07), encantamientos y sintonización;
 - dispositivos arcano-industriales nuevos;
 - investigación de propiedades no catalogadas.
 
@@ -5072,7 +5072,7 @@ CRAFT-05 no define todavía:
 - trampas completas (definidas posteriormente en CRAFT-06);
 - catálogo de componentes obtenidos de criaturas concretas;
 - propiedades específicas de materiales Fundadores todavía desconocidos;
-- runas, piedras de engarce o sintonización;
+- runas y Piedras de Impronta (definidas en CRAFT-07) o sintonización;
 - encantamientos;
 - nuevos dispositivos arcano-industriales;
 - investigación para crear materiales inéditos.
@@ -5579,7 +5579,7 @@ Un perfil futuro puede definir una modificación específica de trampa; no se ex
 
 CRAFT-06 no define todavía:
 
-- runas, Piedras de Impronta y engarces (definidos posteriormente en CRAFT-07);
+- runas, Piedras de Impronta y engarces (definidos en CRAFT-07);
 - encantamientos persistentes;
 - sensores o disparadores mágicos;
 - torretas automáticas, alimentación mecánica continua o dispositivos avanzados;
