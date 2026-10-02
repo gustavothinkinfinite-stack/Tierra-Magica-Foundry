@@ -1,3 +1,14 @@
+## 1.1.2 — Hotfix de reconstrucción y compatibilidad Foundry v14 — 2026-10-01
+
+- Corrige la adquisición durante `rebuilding`: la reconstrucción autorizada usa explícitamente el contexto de costes de creación, por lo que Ascendencia, Origen, Trasfondo y demás opciones vuelven a poder añadirse desde la ficha.
+- Unifica `initialReserveGranted` bajo `system.creation`; la Reserva inicial deja de tener dos autoridades persistidas entre `creation` y `currency`.
+- Migra todos los borrados runtime restantes desde la sintaxis legacy `-=` al operador `ForcedDeletion` de Foundry.
+- Sustituye accesos globales deprecados del sistema por namespaces v13+: ActorSheet/ItemSheet, TextEditor, loadTemplates y colecciones Actors/Items.
+- Migra los hooks propios de `renderChatMessage` a `renderChatMessageHTML`.
+- La fórmula de iniciativa del manifiesto usa `@derived.initiativeModifier`, coherente con la autoridad derivada del Actor, y deja de referenciar `@combat.initiativeBonus` retirado.
+- Añade regresiones para reconstrucción, Reserva inicial, borrados modernos y APIs namespaced.
+- Sin cambios de reglas, balance ni canon.
+
 ## Publicación v1.1.1 — 2026-10-01
 
 - **v1.1.1 fue publicada** desde el commit `aaf12f5667991c291e34c26a038a6383b49ce34f` mediante `Publicar sistema #28`.
