@@ -4,6 +4,12 @@ export const CREATION_PEI_COPPER = 2000;
 
 const hasOwn = (object, key) => Object.prototype.hasOwnProperty.call(object ?? {}, key);
 
+function forcedDeletion() {
+  const ForcedDeletion = globalThis.foundry?.data?.operators?.ForcedDeletion;
+  if (typeof ForcedDeletion !== "function") throw new Error("Foundry ForcedDeletion no está disponible.");
+  return new ForcedDeletion();
+}
+
 export function isValidCopper(value) {
   const number = Number(value);
   return Number.isSafeInteger(number) && number >= 0;
@@ -219,12 +225,12 @@ export function installCurrencyRules(ActorClass) {
     if (this._tmGrantingInitialReserve) return null;
     this._tmGrantingInitialReserve = true;
     try {
-      if (this.system.currency?.initialReserveGranted) return ui.notifications.info("La Reserva inicial ya fue concedida.");
+      if (this.system.creation?.initialReserveGranted) return ui.notifications.info("La Reserva inicial ya fue concedida.");
       const previous = this.getCurrencyTotal();
       const next = previous + INITIAL_RESERVE_COPPER;
       await this.update({
         "system.currency.totalCopper": next,
-        "system.currency.initialReserveGranted": true
+        "system.creation.initialReserveGranted": true
       });
       return { previous, delta: INITIAL_RESERVE_COPPER, next };
     } finally {
@@ -281,8 +287,11 @@ export function installCurrencyRules(ActorClass) {
 }
 
 function actorMigrationUpdates(actor) {
-  const sourceCurrency = actor?._source?.system?.currency ?? {};
-  const hasActiveLegacy = ["crowns", "gold", "silver", "copper"].some((field) => hasOwn(sourceCurrency, field));
+  const sourceSystem = actor?._source?.system ?? {};
+  const sourceCurrency = sourceSystem.currency ?? {};
+  const sourceCreation = sourceSystem.creation ?? {};
+  const hasLegacyReserve = hasOwn(sourceCurrency, "initialReserveGranted");
+  const hasActiveLegacy = hasLegacyReserve || ["crowns", "gold", "silver", "copper"].some((field) => hasOwn(sourceCurrency, field));
   if (!hasActiveLegacy && Number(sourceCurrency.migrationVersion) >= CURRENCY_MIGRATION_VERSION && isValidCopper(sourceCurrency.totalCopper)) return null;
   const plan = planActorCurrencyMigration(sourceCurrency);
   const updates = {
@@ -290,11 +299,12 @@ function actorMigrationUpdates(actor) {
     "system.currency.migrationVersion": CURRENCY_MIGRATION_VERSION,
     "system.currency.migrationPending": plan.pending,
     "system.currency.legacy": plan.preserveLegacy,
-    "system.currency.initialReserveGranted": Boolean(sourceCurrency.initialReserveGranted)
+    "system.creation.initialReserveGranted": Boolean(sourceCreation.initialReserveGranted ?? sourceCurrency.initialReserveGranted)
   };
   for (const field of ["crowns", "gold", "silver", "copper"]) {
-    if (hasOwn(sourceCurrency, field)) updates["system.currency.-=" + field] = null;
+    if (hasOwn(sourceCurrency, field)) updates["system.currency." + field] = forcedDeletion();
   }
+  if (hasLegacyReserve) updates["system.currency.initialReserveGranted"] = forcedDeletion();
   return updates;
 }
 
@@ -308,7 +318,7 @@ function itemMigrationUpdates(item) {
     "system.priceStatus": plan.priceStatus,
     "system.legacyPrice": plan.legacyPrice
   };
-  if (hasOwn(source, "price")) updates["system.-=price"] = null;
+  if (hasOwn(source, "price")) updates["system.price"] = forcedDeletion();
   return updates;
 }
 
