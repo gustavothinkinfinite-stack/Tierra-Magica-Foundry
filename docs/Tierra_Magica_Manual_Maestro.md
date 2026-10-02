@@ -3606,18 +3606,20 @@ La Saturación es binaria y contextual. Una preparación Saturante registra su f
 
 | Fórmula | Grado | Precio | Familia / vía | Efecto |
 |---|---|---:|---|---|
-| Bálsamo Restaurador | Común | Sin precio establecido | Restaurativa | +4 Vida; no Trauma ni Herida Grave. |
-| Poción Restauradora | Común | Sin precio establecido | Restaurativa / oral | Acción: +4 Vida hasta máximo y límites de lesión. |
-| Poción de Recuperación Arcana | Refinada | Sin precio establecido | Arcana / oral | Acción: +3 Maná hasta máximo; no elimina Fatiga ni Sobrecarga. |
-| Tónico de Vigor | Refinada | Sin precio establecido | Potenciador | Ventaja en una prueba de VIG por esfuerzo prolongado. |
-| Supresor del Dolor | Refinada | Sin precio establecido | Analgésica | Ignora una Desventaja causada por dolor compatible; no repara lesión. |
-| Neutralizante Común | Refinada | Sin precio establecido | — | Nueva resistencia con Ventaja contra una toxina compatible. |
-| Toxina Debilitante | Compleja | Sin precio establecido | Sangre | VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular. |
-| Bomba Incendiaria | Compleja | Sin precio establecido | — | Área pequeña, Daño 6, Pen 1; requiere colocación válida. |
+| Bálsamo Restaurador | Común | 5 p | Restaurativa | +4 Vida; no Trauma ni Herida Grave. |
+| Poción Restauradora | Común | 8 p | Restaurativa / oral | Acción: +4 Vida hasta máximo y límites de lesión. |
+| Poción de Recuperación Arcana | Refinada | 1 o 5 p | Arcana / oral | Acción: +3 Maná hasta máximo; no elimina Fatiga ni Sobrecarga. |
+| Tónico de Vigor | Refinada | 8 p | Potenciador | Ventaja en una prueba de VIG por esfuerzo prolongado. |
+| Supresor del Dolor | Refinada | 8 p | Analgésica | Ignora una Desventaja causada por dolor compatible; no repara lesión. |
+| Neutralizante Común | Refinada | 1 o | — | Nueva resistencia con Ventaja contra una toxina compatible. |
+| Toxina Debilitante | Compleja | 1 o 5 p | Sangre | VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular. |
+| Bomba Incendiaria | Compleja | 3 o | — | Área pequeña, Daño 6, Pen 1; requiere colocación válida. |
 
 Un veneno define Vía, Latencia, DF, Efecto y Duración. Normalmente concede una resistencia y no exige pruebas repetidas sin cambio. Aplicar veneno a un arma requiere preparación/Acción apropiada y la primera aplicación válida consume la dosis.
 
 Los explosivos usan una prueba de colocación cuando existe incertidumbre, normalmente AGI + Armas a Distancia u otra combinación apropiada; cobertura y posición importan. No añaden una segunda tirada defensiva genérica si la resolución ya establece cómo afecta el área.
+
+**CRAFT-11 — Catálogo de proyectos y recetas de referencia** fija precio, CM, tiempo, competencia y activación completa de estas ocho Fórmulas.
 
 ## 17. Ingeniería arcano-industrial
 
@@ -5524,7 +5526,7 @@ Un lazo que eleve, arrastre o suspenda a una criatura necesita un sistema de fue
 - la Bomba se consume;
 - el Armazón no amplía área, Daño o Pen.
 
-Esta receta no fija todavía el precio de la Bomba, que continúa Sin precio establecido en Alquimia.
+CRAFT-11 fija la Bomba Incendiaria en **3 o** por unidad, con CM **1 o 5 p** y 1 Jornada de preparación estable.
 
 #### Construcciones mayores
 
@@ -8011,7 +8013,674 @@ CRAFT-10 no define por sí solo:
 
 Esos elementos se resuelven mediante Perfiles concretos, mundo y catálogo.
 
-El siguiente cierre es **CRAFT-11 — Catálogo de proyectos y recetas de referencia**.
+CRAFT-11 se desarrolla a continuación.
+
+### CRAFT-11 — Catálogo de proyectos y recetas de referencia
+
+> **VIGENTE · CERRADO.** CRAFT-11 no añade un motor nuevo. Reúne proyectos listos para usar que aplican CRAFT-01 a CRAFT-10 y completa las ocho Fórmulas alquímicas vigentes con precio y receta de preparación. El catálogo sirve como patrón para crear nuevas entradas sin recalcular cada subsistema durante la partida.
+
+#### Cómo leer el catálogo
+
+Salvo que una ficha diga otra cosa:
+
+- **Materiales** significa desembolso físico de fabricación, ya con los redondeos de CRAFT-02 a CRAFT-10.
+- no incluye salario del propio PJ;
+- no incluye alquiler de instalación, licencias, transporte, compra del Plano/Patrón ni acceso ilegal/social;
+- los tiempos indicados suponen un responsable principal y etapas secuenciales; colaboradores pueden aplicar CRAFT-01 cuando las etapas sean paralelizables;
+- poseer componentes como botín o Lotes de Material puede reducir el desembolso mediante VI;
+- una receta conocida con todos sus requisitos se completa sin tirada;
+- las pruebas sólo aparecen donde la propia ficha o CRAFT-01/10 mantienen incertidumbre;
+- un resultado compuesto conserva todas las salvaguardas de apilamiento de sus subsistemas.
+
+El catálogo base de CRAFT-03 ya contiene las recetas ordinarias de armas, armaduras, escudos, munición, herramientas y Kits. CRAFT-11 se concentra en **combinaciones, servicios y proyectos que atraviesan varios CRAFT**.
+
+---
+
+## A. Equipo compuesto
+
+### REF-EQ-01 — Espada de Guardia de Kharum
+
+**Resultado:** Espada larga Superior de Acero de Kharum con **Equilibrada para Parada**.
+
+- VR Común: 2 o.
+- Calidad Superior: CM 1 o 5 p; VRQ 3 o.
+- Acero de Kharum Dominante: SM 5 p; valor añadido 1 o.
+- **Materiales totales:** **2 o**.
+- **Valor de Referencia Total:** **4 o**.
+- **Tiempo:** **3 Jornadas**.
+- **Principal:** Artesanía Maestra · Forja y metal.
+- **Instalación:** Especializada.
+- **Resultado mecánico:** Daño 5, Pen 0, FUE 1, Tenacidad de Kharum; Parada con esa arma concede +3 Defensa en lugar de +2.
+
+La Tenacidad no aumenta Daño/Pen y Equilibrada no concede una Reacción adicional.
+
+### REF-EQ-02 — Espada Rúnica de Guardia de Kharum
+
+Parte de REF-EQ-01 y añade **CRu 1 + Filo Arcano I inscrito**.
+
+- soporte previo: 2 o de materiales y 3 Jornadas;
+- Matriz CRu 1: 5 p; 4 h;
+- Filo Arcano I: 1 o; 4 h;
+- **Materiales totales desde cero:** **3 o 5 p**;
+- **Tiempo total:** **4 Jornadas**;
+- **VR final:** **7 o**.
+- **Requisitos adicionales:** Ritualismo Experto; Arcana Entrenada · Artefactos mágicos; Patrón Rúnico estable.
+- **Activación:** Vinculada, 2 Maná.
+- **Efecto:** +1 Daño en ese ataque y cuenta como mágicamente potenciado cuando corresponda.
+
+Filo Arcano no se suma con Golpe optimizado u otro +1 Daño equivalente.
+
+### REF-EQ-03 — Malla Superior Silenciosa
+
+- VR Común: 10 o.
+- **Materiales:** **7 o 5 p**.
+- **VRQ:** **15 o**.
+- **Tiempo:** **7,5 Jornadas**.
+- **Principal:** Artesanía Experta · Forja y metal.
+- **Instalación:** Profesional.
+- **CapM:** 1, ocupada por **Silenciosa**.
+- **Resultado:** Protección 3, FUE 1; la malla no causa por sí sola Desventaja a Sigilo por ruido ordinario.
+
+### REF-EQ-04 — Placas Excepcionales de Kharum Aligeradas
+
+- VR Común: 40 o.
+- Calidad Excepcional: CM 50 o; VRQ 100 o.
+- Acero de Kharum Dominante: SM 10 o; valor añadido 20 o.
+- **Materiales totales:** **60 o**.
+- **VRT:** **120 o**.
+- **Tiempo:** **20 Jornadas**.
+- **Principal:** Artesanía Gran Maestra · Forja y metal.
+- **Instalación:** Excepcional.
+- **CapM 2:** ocupada por **Aligerada**.
+- **Resultado:** Protección 5, FUE mínima 2, Tenacidad de Kharum.
+
+No obtiene Protección 6.
+
+### REF-EQ-05 — Placas Excepcionales con Doble Engarce
+
+Placas Excepcionales ordinarias con sus dos puntos de CRu preparados como Engarces I.
+
+- Calidad Excepcional: 50 o de materiales; 20 Jornadas.
+- dos Matrices CRu: 8 o cada una.
+- **Materiales totales:** **66 o**.
+- **Tiempo total:** **25 Jornadas**.
+- **VR final antes de Piedras:** **132 o**.
+- **Principal físico:** Artesanía Gran Maestra · Forja y metal.
+- **Auxiliar:** Arcana Experta · Artefactos mágicos.
+- **Instalación:** Excepcional.
+- **Resultado:** CRu 2 preparada como dos Engarces; no incluye Piedras de Impronta.
+
+Las Piedras se adquieren/fabrican por separado.
+
+### REF-EQ-06 — Arco Largo de Madera Tratada de Erelia
+
+- VR Común: 2 o.
+- CM ordinario: 1 o.
+- SM Especializado Dominante: 5 p.
+- **Materiales:** **1 o 5 p**.
+- **VRT:** **3 o**.
+- **Tiempo:** **2 Jornadas**.
+- **Principal:** Artesanía Entrenada · Carpintería.
+- **Instalación:** Adecuada.
+- **Resultado:** perfil normal de Arco largo —Daño 5, Potencia 3, 2 manos— más **Estabilidad ambiental**.
+
+### REF-EQ-07 — Catalejo de Vidrio del Desierto
+
+- VR Común: 1 o.
+- CM ordinario: 5 p.
+- SM Raro de Componente: 1 p 3 c.
+- **Materiales:** **6 p 3 c**.
+- **VRT:** **1 o 2 p 6 c**.
+- **Tiempo:** **3,75 Jornadas**.
+- **Complejidad efectiva:** Magistral.
+- **Principal:** Artesanía Maestra · Vidrio y cristal.
+- **Auxiliar:** Ingeniería Aprendiz.
+- **Instalación:** Especializada.
+- **Resultado:** catalejo normal más Refracción liminal: Ventaja a PER + Arcana para analizar distorsiones o manifestaciones mágicas visualmente observables a través del instrumento.
+
+### REF-EQ-08 — Kit de Infiltración Superior preparado para campo
+
+- VR Común: 1 o.
+- **Materiales:** **7 p 5 c**.
+- **VRQ:** **1 o 5 p**.
+- **Tiempo:** **1,5 Jornadas**.
+- **Principal:** Artesanía Experta · Forja y metal.
+- **Auxiliar:** Latrocinio Aprendiz.
+- **Instalación:** Profesional.
+- **CapM 1:** **Preparada para campo**, registrada para manipulación de cerraduras mecánicas ordinarias.
+- **Resultado:** cuando esa operación sea físicamente posible en instalación Improvisada, ignora sólo la Desventaja causada por ese déficit de un grado.
+
+No sustituye Latrocinio ni una herramienta especial que una cerradura concreta exija.
+
+---
+
+## B. Fórmulas alquímicas listas para preparar
+
+Las siguientes entradas completan el catálogo vigente de Alquimia. Los componentes se expresan deliberadamente como **categorías ficticias de reactivos**, no como formulaciones reales.
+
+Salvo indicación contraria:
+
+- una dosis es la Unidad Comercial;
+- el CM es 50% del precio;
+- requiere Kit de Alquimia o instrumental equivalente;
+- la preparación estable no tira;
+- una dosis sellada permanece utilizable mientras el envase y sus condiciones de conservación sigan intactos; CRAFT-11 no introduce caducidad calendaria universal.
+
+| Código | Fórmula | Precio | CM | Proyecto | Tiempo |
+|---|---|---:|---:|---|---:|
+| REF-ALQ-01 | Bálsamo Restaurador | 5 p | 2 p 5 c | Estándar · Alquimia Entrenada · Medicinales · Adecuada | 2 h |
+| REF-ALQ-02 | Poción Restauradora | 8 p | 4 p | Estándar · Alquimia Entrenada · Medicinales · Adecuada | 2 h |
+| REF-ALQ-03 | Poción de Recuperación Arcana | 1 o 5 p | 7 p 5 c | Complejo · Alquimia Experta · Reactivos · Profesional | 4 h |
+| REF-ALQ-04 | Tónico de Vigor | 8 p | 4 p | Complejo · Alquimia Experta · Potenciadores · Profesional | 4 h |
+| REF-ALQ-05 | Supresor del Dolor | 8 p | 4 p | Complejo · Alquimia Experta · Medicinales · Profesional | 4 h |
+| REF-ALQ-06 | Neutralizante Común | 1 o | 5 p | Complejo · Alquimia Experta · Toxinas · Profesional | 4 h |
+| REF-ALQ-07 | Toxina Debilitante | 1 o 5 p | 7 p 5 c | Complejo · Alquimia Experta · Toxinas · Profesional | 1 Jornada |
+| REF-ALQ-08 | Bomba Incendiaria | 3 o | 1 o 5 p | Complejo · Alquimia Experta · Explosivos · Profesional | 1 Jornada |
+
+### REF-ALQ-01 — Bálsamo Restaurador
+
+- **Grado:** Común; conocimiento 1 PD.
+- **Componentes:** reactivos restaurativos comunes y base tópica estable.
+- **Vía:** tópica.
+- **Activación:** 1 minuto de aplicación; no es una Acción de combate por defecto.
+- **Saturación:** Restaurativa.
+- **Efecto:** +4 Vida; no repara Trauma ni Herida Grave.
+
+### REF-ALQ-02 — Poción Restauradora
+
+- **Grado:** Común; 1 PD.
+- **Vía:** oral.
+- **Activación:** Acción.
+- **Saturación:** Restaurativa.
+- **Efecto:** +4 Vida hasta máximo y límites de lesión.
+
+Bálsamo y Poción comparten Saturación Restaurativa.
+
+### REF-ALQ-03 — Poción de Recuperación Arcana
+
+- **Grado:** Refinada; 1 PD.
+- **Componentes:** reactivos arcanos estabilizados.
+- **Vía:** oral.
+- **Activación:** Acción.
+- **Saturación:** Arcana.
+- **Efecto:** +3 Maná hasta máximo; no elimina Fatiga ni Sobrecarga.
+
+### REF-ALQ-04 — Tónico de Vigor
+
+- **Grado:** Refinada; 1 PD.
+- **Vía:** oral.
+- **Activación:** 1 minuto.
+- **Saturación:** Potenciador.
+- **Duración:** hasta aplicarse a una prueba compatible de VIG por esfuerzo prolongado o hasta terminar la Escena.
+- **Efecto:** Ventaja en esa prueba.
+
+### REF-ALQ-05 — Supresor del Dolor
+
+- **Grado:** Refinada; 1 PD.
+- **Vía:** oral.
+- **Activación:** Acción.
+- **Saturación:** Analgésica.
+- **Duración:** Escena.
+- **Efecto:** ignora una Desventaja causada por dolor compatible; no repara la lesión ni elimina Sangrado.
+
+### REF-ALQ-06 — Neutralizante Común
+
+- **Grado:** Refinada; 1 PD.
+- **Vía:** se define al preparar la dosis para una familia de toxina compatible.
+- **Activación:** Acción cuando la vía preparada puede administrarse en combate.
+- **Duración:** hasta la siguiente resistencia compatible durante la Escena.
+- **Efecto:** concede una nueva resistencia con Ventaja contra esa toxina.
+- **Saturación:** —.
+
+No es un antídoto universal.
+
+### REF-ALQ-07 — Toxina Debilitante
+
+- **Grado:** Compleja; 2 PD.
+- **Vía:** Sangre.
+- **Latencia:** inmediata tras una aplicación válida.
+- **Resistencia:** VIG DF 14.
+- **Fallo:** Desventaja en acciones físicas dependientes de fuerza muscular.
+- **Duración:** Escena.
+- **Saturación:** —.
+- la primera aplicación válida consume la dosis.
+
+### REF-ALQ-08 — Bomba Incendiaria
+
+- **Grado:** Compleja; 2 PD.
+- **Componentes:** reactivos incendiarios ficticios estabilizados y carcasa compatible.
+- **Activación:** colocación/lanzamiento conforme a las reglas de explosivos.
+- **Efecto:** área pequeña, Daño 6, Pen 1.
+- **Duración:** resolución instantánea del efecto mecánico.
+- **Saturación:** —.
+- una activación consume la Bomba.
+
+No existe una receta real de explosivos detrás de esta entrada; sus componentes son categorías de ficción del sistema.
+
+---
+
+## C. Runas, Piedras y objetos mágicos
+
+### REF-RUN-01 — Piedra de Lumen I
+
+- **Piedra I:** VR 4 o; CM 2 o.
+- **Tiempo:** 1 Jornada.
+- **Principal:** Ritualismo Experto.
+- **Auxiliares:** Artesanía Experta · Vidrio y cristal; Arcana Entrenada · Artefactos mágicos.
+- **Instalación:** Profesional.
+- **Requisito:** Patrón Rúnico estable de Lumen I.
+- **Uso:** ocupa CRu 1; Acción, 1 Maná; luz durante una Escena.
+
+### REF-RUN-02 — Daga Excepcional de Filo Penetrante II
+
+Daga Excepcional con **Retención segura + Mantenible**, CRu 2 y Filo Penetrante II inscrito.
+
+- VR Común: 6 p.
+- Calidad Excepcional: 7 p 5 c de materiales; VRQ 1 o 5 p; 8 h.
+- dos Matrices CRu: 1 o; 4 h.
+- Filo Penetrante II: 2 o; 1 Jornada.
+- **Materiales totales:** **3 o 7 p 5 c**.
+- **Tiempo total:** **2,5 Jornadas**.
+- **VR final:** **7 o 5 p**.
+- **Principal físico:** Artesanía Maestra · Forja y metal.
+- **Rúnico:** Ritualismo Maestro; Arcana Experta · Artefactos mágicos.
+- **Instalación:** Especializada.
+- **Activación:** Vinculada, 3 Maná.
+- **Resultado del ataque:** Daño base 3 y Pen 0; al activar, +1 Daño y Pen +1, sujeto a apilamiento normal.
+
+### REF-MAG-01 — Broche de Barrera
+
+Soporte Dedicado I + Encantamiento I de Barrera Cinética.
+
+- soporte: CM 1 o; 1 Jornada.
+- CE I: 5 o; 3 Jornadas.
+- **Materiales totales:** **6 o**.
+- **Tiempo total:** **4 Jornadas**.
+- **VR final:** **12 o**.
+- **Sintonización:** 1.
+- **RE/PE:** 6 / +4.
+- **Uso:** Reacción, 3 RE; +2 Defensa según Barrera Cinética; hasta 2 usos con reserva completa.
+- **Principal del Encantamiento:** Ritualismo Maestro.
+- **Auxiliares:** Arcana Experta · Artefactos mágicos; Artesanía Experta.
+- **Instalación:** Especializada.
+
+### REF-MAG-02 — Brazal de Aguja Gélida
+
+Soporte Dedicado II + Encantamiento II.
+
+- soporte: CM 2 o 5 p; 3 Jornadas.
+- CE II: 15 o; 8 Jornadas.
+- **Materiales:** **17 o 5 p**.
+- **Tiempo:** **11 Jornadas**.
+- **VR final:** **35 o**.
+- **Sintonización:** 2.
+- **RE/PE:** 10 / +6.
+- **Uso:** 5 RE; ataque 2d10 +6; Daño 5, Pen 1, Movimiento -2 conforme al hechizo.
+- **Requisitos:** Ritualismo Gran Maestro; Arcana Maestra · Artefactos mágicos; Artesanía Maestra; instalación Excepcional.
+
+### REF-MAG-03 — Capa de Invisibilidad
+
+Soporte Dedicado III + Encantamiento III de Invisibilidad.
+
+- soporte: CM 5 o; 5 Jornadas.
+- CE III: 40 o; 20 Jornadas; incluye un componente arcano Raro/Excepcional compatible.
+- **Materiales:** **45 o**.
+- **Tiempo:** **25 Jornadas**.
+- **VR final:** **90 o**.
+- **Sintonización:** 3.
+- **RE/PE:** 14 / +8.
+- **Uso:** 9 RE; Sostenida, máximo una Escena; ocupa Sostenimiento normal; una acción ofensiva termina el efecto conforme al hechizo.
+- **Requisitos:** Ritualismo Gran Maestro; Arcana Maestra · Artefactos mágicos; Artesanía Gran Maestra · Cuero y textiles; instalación Excepcional.
+
+---
+
+## D. Trampas y construcciones
+
+### REF-TRP-01 — Alarma de perímetro Disimulada
+
+- Armazón Simple: CM 1 p.
+- Ocultación Disimulada: sin material adicional.
+- **Materiales:** **1 p**.
+- **Tiempo:** **40 min**.
+- **Principal:** Latrocinio Aprendiz o Supervivencia Aprendiz.
+- **DF Detección:** 10.
+- **Efecto:** señal física perceptible; no ataca.
+
+### REF-TRP-02 — Cable de derribo Oculto
+
+- Armazón Estándar: CM 5 p.
+- Ocultación Oculta: +1 p.
+- **Materiales:** **6 p**.
+- **Tiempo:** **2 h 30 min**.
+- **Principal:** Latrocinio Entrenado · Trampas y seguridad física.
+- **Instalación:** Adecuada.
+- **Ataque:** +4 contra Defensa de Maniobra.
+- **Éxito:** Derribado.
+- **DF Detección:** 12.
+- **DF Mecanismo:** 12.
+
+### REF-TRP-03 — Golpe oculto con Lanza
+
+Incluye fabricar una Lanza Común y montar un Armazón Estándar con Ocultación Oculta.
+
+- Lanza: CM 2 p 5 c; 4 h.
+- Armazón: CM 5 p; 2 h.
+- Ocultación: +1 p; +30 min.
+- **Materiales totales:** **8 p 5 c**.
+- **Tiempo total:** **6 h 30 min**.
+- **Ataque:** +4 contra Defensa.
+- **Impacto:** Daño 5, Pen 0; no suma FUE del constructor.
+- **DF Detección:** 12.
+- **Uso:** un disparo; después requiere rearme.
+
+### REF-TRP-04 — Pozo oculto de 4 espacios
+
+En suelo excavable y estable.
+
+- excavación: 3 Jornadas;
+- Armazón Estándar para soporte de colapso: CM 5 p; 2 h;
+- Ocultación Oculta: +1 p; +30 min.
+- **Materiales preparados:** **6 p**, además del terreno disponible.
+- **Tiempo total:** **3 Jornadas + 2 h 30 min**.
+- **DF Detección:** 12.
+- **Caída:** 4 espacios; Daño 6 antes de mitigaciones compatibles.
+
+Suelo difícil, roca, agua o entibado modifican el Proyecto.
+
+### REF-CON-01 — Barricada de cobertura
+
+- **Materiales:** **5 p**.
+- **Tiempo:** **2 h**.
+- **Principal:** Artesanía Aprendiz o Supervivencia Aprendiz con materiales de campaña.
+- **Resultado:** aproximadamente 1 espacio de frente; +2 Defensa cuando la geometría realmente proporciona cobertura parcial.
+
+### REF-CON-02 — Pasarela/Puente corto
+
+- **Materiales:** **1 o**.
+- **Tiempo:** **4 h**.
+- **Principal:** Artesanía Entrenada · Carpintería o Forja y metal.
+- **Auxiliar:** Ingeniería Aprendiz cuando el soporte no sea trivial.
+- **Resultado:** cruza un hueco estable de hasta aproximadamente 2 espacios bajo carga razonable.
+
+---
+
+## E. Ingeniería y dispositivos
+
+### REF-ING-01 — Acumulador estándar
+
+- **VR:** 5 o.
+- **CM:** **2 o 5 p**.
+- **Tiempo:** **2 Jornadas**.
+- **Principal:** Ingeniería Experta · Acumuladores arcanos.
+- **Instalación:** Profesional.
+- **Resultado:** 8 E / C3 / Est2.
+
+### REF-ING-02 — Estación de carga de taller
+
+- **VR:** 10 o.
+- **CM:** **5 o**.
+- **Tiempo:** **3 Jornadas**.
+- **Principal:** Ingeniería Experta · Acumuladores arcanos.
+- **Auxiliar:** Artesanía Entrenada.
+- **Instalación:** Profesional.
+- **Resultado:** Caudal de Carga 4; requiere fuente energética real.
+
+### REF-ING-03 — Escudo de campo completo
+
+Escudo de campo + Acumulador estándar.
+
+- dispositivo: CM 6 o; 3 Jornadas.
+- acumulador: CM 2 o 5 p; 2 Jornadas.
+- **Materiales:** **8 o 5 p**.
+- **Tiempo secuencial:** **5 Jornadas**.
+- **Valor de hardware:** **17 o**.
+- **Uso:** Reacción; 2 E/C2; +2 Defensa.
+- **Autonomía:** hasta 4 activaciones con acumulador lleno.
+- **Requisitos:** Ingeniería Experta · Acumuladores arcanos; Arcana Entrenada; instalación Profesional.
+
+### REF-ING-04 — Autómata auxiliar de taller
+
+Autómata auxiliar + Acumulador estándar.
+
+- autómata: CM 10 o; 6 Jornadas.
+- acumulador: CM 2 o 5 p; 2 Jornadas.
+- **Materiales:** **12 o 5 p**.
+- **Tiempo:** **8 Jornadas**.
+- **Valor de hardware:** **25 o**.
+- **Autonomía:** hasta 8 h de trabajo con acumulador lleno.
+- **Principal:** Ingeniería Maestra · Autómatas.
+- **Auxiliar:** Artesanía Experta.
+- **Instalación:** Especializada.
+- **Resultado:** Ayuda técnica o Ayuda de trabajo en su función registrada; no sustituye prerrequisitos ni posee turno propio.
+
+### REF-ING-05 — Banco portátil de dos Celdas menores
+
+Incluye Banco simple + dos Celdas menores fabricadas.
+
+- dos Celdas: 2 o de materiales; 2 Jornadas.
+- Banco simple: 2 o; 1 Jornada.
+- **Materiales:** **4 o**.
+- **Tiempo secuencial:** **3 Jornadas**.
+- **Valor de hardware:** **8 o**.
+- **Resultado:** hasta 8 E totales, Caudal 2.
+
+No se convierte en Caudal 4.
+
+### REF-ING-06 — Acoplador con dos acumuladores estándar
+
+- dos acumuladores estándar: 5 o de materiales; 4 Jornadas.
+- Acoplador: 5 o; 4 Jornadas.
+- **Materiales:** **10 o**.
+- **Tiempo secuencial:** **8 Jornadas**.
+- **Valor de hardware:** **20 o**.
+- **Principal:** Ingeniería Maestra · Acumuladores arcanos.
+- **Instalación:** Especializada.
+- **Resultado:** hasta 16 E; Caudal efectivo 4.
+- una activación que use C4 paga además +1 E.
+- no puede alimentar otro Acoplador para repetir el aumento.
+
+### REF-ING-07 — Rifle perforador de precisión
+
+Rifle temprano de Aleación de precisión de Kharum + Cámara de penetración + Acumulador estándar.
+
+**Host:**
+- CM ordinario 9 o.
+- SM Raro Mayor 4 o 5 p.
+- materiales del rifle: 13 o 5 p.
+- VRT del rifle: 27 o.
+- tiempo: 7,5 Jornadas.
+- Complejidad efectiva Magistral; Artesanía Maestra · Forja y metal; instalación Especializada.
+
+**Módulo:**
+- Cámara de penetración: CM 5 o; 3 Jornadas.
+
+**Fuente:**
+- Acumulador estándar: CM 2 o 5 p; 2 Jornadas.
+
+**Conjunto:**
+- **Materiales:** **21 o**.
+- **Tiempo secuencial:** **12,5 Jornadas**.
+- **Valor de hardware:** **42 o**.
+- **Perfil base:** Daño 7, Pen 3, Recarga 2.
+- **Cámara activa:** 2 E/C2; Pen 5 para ese disparo.
+- **Autonomía:** 4 activaciones con acumulador lleno.
+
+La Aleación no da Pen adicional; abarata futuras modificaciones compatibles conforme a CRAFT-05.
+
+---
+
+## F. Reparación, mejora y servicio
+
+### REF-SRV-01 — Reparar Placas Comunes Dañadas
+
+- VR: 40 o.
+- **Materiales:** 10% = **4 o**.
+- **Tiempo:** 25% de 10 Jornadas = **2,5 Jornadas**.
+- **Principal:** Artesanía Experta · Forja y metal.
+- **Instalación:** Profesional.
+- **Resultado:** Operativas; Protección y Calidad originales restauradas.
+
+### REF-SRV-02 — Reparar Acumulador estándar Dañado
+
+- VR: 5 o.
+- **Materiales:** **5 p**.
+- **Tiempo:** **4 h**.
+- **Principal:** Ingeniería Experta · Acumuladores arcanos.
+- **Instalación:** Profesional.
+- **Resultado:** Operativo.
+- la reparación no rellena Energía.
+
+### REF-SRV-03 — Espada larga Común a Superior Equilibrada
+
+Retrabajo de Calidad ya existente.
+
+- **Materiales:** 25% VR = **5 p**.
+- **Tiempo:** 50% del tiempo base = **1 Jornada**.
+- **Objetivo:** Superior, CapM 1 ocupada por Equilibrada para Parada.
+- **Requisito:** Artesanía Maestra · Forja y metal; instalación Especializada.
+- **Valor final:** 3 o.
+- **Resultado:** perfil normal de Espada larga; Parada +3 con esa arma.
+
+### REF-SRV-04 — Añadir CRu 1 + Filo Arcano I a una Espada larga Superior
+
+El soporte ya existe y no tiene Matriz.
+
+- Matriz: 5 p; 4 h.
+- Runa: 1 o; 4 h.
+- **Materiales:** **1 o 5 p**.
+- **Tiempo:** **1 Jornada**.
+- **Valor añadido:** 3 o.
+- **Requisitos:** Artesanía Maestra · Forja y metal; Arcana Entrenada · Artefactos mágicos; Ritualismo Experto; Patrón estable; instalación Especializada.
+- **Resultado:** CRu 1 ocupada por Filo Arcano I.
+
+### REF-SRV-05 — Recarga comercial de Acumulador estándar vacío
+
+Con Estación de carga suficiente y Energía disponible:
+
+- Energía requerida: 8 E.
+- **Precio de servicio de referencia:** **8 c**.
+- **Tiempo mínimo:** **40 min**.
+- no altera VR del acumulador;
+- no repara estados;
+- no crea Energía sin una fuente real.
+
+---
+
+## G. Investigación e ingeniería inversa
+
+### REF-INV-01 — Reconstruir el Plano de una Pistola repetidora
+
+Parte de una muestra existente y usa CRAFT-10 Reconstrucción.
+
+- Complejidad: Magistral.
+- Principal: Ingeniería · Armamento.
+- Preguntas: 2.
+- **DF por Pregunta:** 16.
+- **Tiempo de Preguntas:** 5 Jornadas cada una.
+- desmontaje reversible puede dar Ventaja a una Pregunta.
+- CMP estable: 17 o 5 p.
+- TBP: 8 Jornadas.
+
+**Prototipo:**
+- materiales: **21 o 8 p 8 c**;
+- tiempo: **12 Jornadas**;
+- prueba: DF 18.
+
+**Validación:**
+- 1 condición;
+- tiempo: 2 Jornadas;
+- ensayo consumptivo, si corresponde: referencia **8 p 8 c**.
+
+**Plano provisional:** 2 Jornadas.
+
+**Réplica:**
+- materiales: **17 o 5 p**;
+- tiempo: 8 Jornadas;
+- prueba: DF 16.
+
+Con éxito de Réplica se obtiene el Plano estable. En una secuencia sin Bloqueos y sin experimentos materiales adicionales en las Preguntas, el trabajo base suma **34 Jornadas**.
+
+### REF-INV-02 — Reconstruir el Patrón de una Piedra de Impronta I
+
+Se parte de una Piedra I identificada cuyo Patrón no se conoce.
+
+- Complejidad: Compleja.
+- Clase: Reconstrucción.
+- Principal: Ritualismo.
+- Auxiliares: Arcana · Artefactos mágicos y Artesanía · Vidrio y cristal.
+- Preguntas: 2.
+- **DF por Pregunta:** 14.
+- **Tiempo:** 3 Jornadas por Pregunta.
+- CMP de Piedra estable: 2 o.
+- TBP: 1 Jornada.
+
+**Prototipo:**
+- materiales: **2 o 5 p**;
+- tiempo: 1,5 Jornadas;
+- prueba: DF 16.
+
+**Validación:**
+- 1 condición;
+- tiempo: 2 h;
+- si es consumptiva: referencia mínima **1 p**.
+
+**Plano provisional:** 2 h.
+
+**Réplica:**
+- materiales: **2 o**;
+- tiempo: 1 Jornada;
+- prueba: DF 14.
+
+Una secuencia sin Bloqueos requiere aproximadamente **9 Jornadas** de trabajo efectivo, más el coste de cualquier experimento material realizado durante las Preguntas. El resultado estable es el **Patrón de esa Impronta concreta**, no un patrón universal de todas las Piedras.
+
+---
+
+## Índice rápido del catálogo
+
+CRAFT-11 añade **41 fichas de referencia** distribuidas así:
+
+- 8 proyectos de equipo compuesto;
+- 8 Fórmulas alquímicas completas;
+- 5 proyectos rúnicos/mágicos;
+- 6 trampas y construcciones;
+- 7 dispositivos o conjuntos de Ingeniería;
+- 5 servicios de reparación/mejora/recarga;
+- 2 proyectos de investigación.
+
+Junto con las recetas ordinarias de CRAFT-03, estas fichas cubren el recorrido habitual de un PJ artesano desde equipo básico hasta manufactura Excepcional, magia integrada, dispositivos e investigación.
+
+#### Uso como plantilla
+
+Al añadir una nueva receta al catálogo debe copiarse la entrada más cercana y cambiar **sólo** las variables que el nuevo Perfil justifique.
+
+No se debe inferir:
+
+- +Daño porque el objeto sea más caro;
+- más CapM/CRu por tener más componentes;
+- más Caudal por usar varias fuentes;
+- menor Sintonización por miniaturización;
+- propiedades monstruosas por procedencia;
+- automatización por añadir un disparador;
+- producción rutinaria mientras el diseño siga Experimental.
+
+#### Salvaguardas de CRAFT-11
+
+- ninguna ficha reemplaza las reglas de su CRAFT de origen;
+- los totales no incluyen costes que la ficha declare externos;
+- varios componentes no se cuentan dos veces;
+- las recetas compuestas respetan apilamiento;
+- una receta avanzada no modifica Disponibilidad por sí sola;
+- comprar/fabricar un objeto no concede el Plano si éste es requisito;
+- Fórmulas conocidas siguen exigiendo PD cuando corresponda;
+- el catálogo no convierte Cristales de Resonancia en recursos de crafting;
+- un precio de catálogo no garantiza stock, permiso o comprador;
+- las fichas de Investigación no eliminan Bloqueos, Validaciones o Réplica.
+
+#### Resultado de cierre
+
+CRAFT-11 convierte CRAFT-01 a CRAFT-10 en un conjunto directamente utilizable en mesa y elimina la necesidad de reconstruir manualmente los cálculos más frecuentes.
+
+El siguiente cierre es **CRAFT-12 — Auditoría integral del sistema de fabricación**.
 
 
 ## 19. Economía, disponibilidad y equipo
