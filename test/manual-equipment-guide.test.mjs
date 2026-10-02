@@ -15,7 +15,7 @@ function section(manual,startHeading,endHeading){
 
 test("el capítulo de equipo explica uso práctico además de tablas",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const equipment=section(manual,"## 9. Armas, armaduras y escudos","## 10. Vida, heridas, Trauma y recuperación");
+  const equipment=section(manual,"## 9. Armas, armaduras, equipo y suministros","## 10. Vida, heridas, Trauma y recuperación");
 
   for(const heading of [
     "### Cómo leer un arma",
@@ -37,7 +37,7 @@ test("el capítulo de equipo explica uso práctico además de tablas",async()=>{
 
 test("tablas de armas, armaduras y escudos conservan el catálogo canónico",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const equipment=section(manual,"## 9. Armas, armaduras y escudos","## 10. Vida, heridas, Trauma y recuperación");
+  const equipment=section(manual,"## 9. Armas, armaduras, equipo y suministros","## 10. Vida, heridas, Trauma y recuperación");
 
   for(const weapon of STARTER_CONTENT.weapon){
     assert.equal(equipment.includes("| "+weapon.name+" |"),true,weapon.name);
@@ -53,7 +53,7 @@ test("tablas de armas, armaduras y escudos conservan el catálogo canónico",asy
 
 test("propiedades descriptivas no generan bonos universales no implementados",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const equipment=section(manual,"## 9. Armas, armaduras y escudos","## 10. Vida, heridas, Trauma y recuperación");
+  const equipment=section(manual,"## 9. Armas, armaduras, equipo y suministros","## 10. Vida, heridas, Trauma y recuperación");
 
   assert.match(equipment,/\*\*Ágil\*\*.*No concede actualmente un bono universal/s);
   assert.match(equipment,/\*\*Versátil\*\*.*No posee actualmente un modo alternativo universal de daño/s);
@@ -64,7 +64,7 @@ test("propiedades descriptivas no generan bonos universales no implementados",as
 
 test("munición y Recarga tienen unidades comerciales y consumo explícito",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const equipment=section(manual,"## 9. Armas, armaduras y escudos","## 10. Vida, heridas, Trauma y recuperación");
+  const equipment=section(manual,"## 9. Armas, armaduras, equipo y suministros","## 10. Vida, heridas, Trauma y recuperación");
 
   assert.match(equipment,/consume normalmente \*\*1 unidad de munición\*\*/);
   assert.match(equipment,/20 flechas = \*\*2 p\*\*/);
@@ -75,7 +75,7 @@ test("munición y Recarga tienen unidades comerciales y consumo explícito",asyn
 
 test("raciones y combustible quedan cuantificados sin inventar hambre universal",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const equipment=section(manual,"## 9. Armas, armaduras y escudos","## 10. Vida, heridas, Trauma y recuperación");
+  const equipment=section(manual,"## 9. Armas, armaduras, equipo y suministros","## 10. Vida, heridas, Trauma y recuperación");
 
   assert.match(equipment,/Provisiones 7 días — 2 p/);
   assert.match(equipment,/siete raciones diarias de comida conservable/);
@@ -88,7 +88,7 @@ test("raciones y combustible quedan cuantificados sin inventar hambre universal"
 
 test("Kits habilitan trabajo pero no conceden bonus universal",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const equipment=section(manual,"## 9. Armas, armaduras y escudos","## 10. Vida, heridas, Trauma y recuperación");
+  const equipment=section(manual,"## 9. Armas, armaduras, equipo y suministros","## 10. Vida, heridas, Trauma y recuperación");
 
   assert.match(equipment,/herramientas reutilizables/);
   assert.match(equipment,/no una reserva infinita de consumibles/);
@@ -98,7 +98,7 @@ test("Kits habilitan trabajo pero no conceden bonus universal",async()=>{
 
 test("consumibles conservan dosis, Saturación y precios no establecidos",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const equipment=section(manual,"## 9. Armas, armaduras y escudos","## 10. Vida, heridas, Trauma y recuperación");
+  const equipment=section(manual,"## 9. Armas, armaduras, equipo y suministros","## 10. Vida, heridas, Trauma y recuperación");
 
   for(const formula of STARTER_CONTENT.formula){
     assert.equal(equipment.includes("| "+formula.name+" |"),true,formula.name);
@@ -110,7 +110,7 @@ test("consumibles conservan dosis, Saturación y precios no establecidos",async(
 
 test("el Manual no crea una fórmula universal de inventario o carga",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const equipment=section(manual,"## 9. Armas, armaduras y escudos","## 10. Vida, heridas, Trauma y recuperación");
+  const equipment=section(manual,"## 9. Armas, armaduras, equipo y suministros","## 10. Vida, heridas, Trauma y recuperación");
 
   assert.match(equipment,/no utiliza una fórmula universal de peso, espacios de inventario o capacidad de carga/i);
   assert.match(equipment,/equipo personal razonable para su Escala y FUE/);
