@@ -1,6 +1,7 @@
 import { TM_CONFIG } from "../config.mjs";
 import { formatCurrency } from "../rules/currency.mjs";
 
+const ItemSheetV1 = foundry.appv1.sheets.ItemSheet;
 const PHYSICAL_TYPES = new Set(["weapon", "armor", "shield", "equipment", "formula", "device"]);
 
 function requirementLeaves(requirements) {
@@ -9,7 +10,7 @@ function requirementLeaves(requirements) {
   return [requirements];
 }
 
-export class TierraMagicaItemSheet extends ItemSheet {
+export class TierraMagicaItemSheet extends ItemSheetV1 {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["tierra-magica", "sheet", "item"],
