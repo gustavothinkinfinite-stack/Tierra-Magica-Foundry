@@ -4626,13 +4626,13 @@ Una pieza Excepcional puede utilizar dos Modificaciones de 1 punto o una de 2 pu
 Para un objeto Superior o Excepcional:
 
 - el **VRQ**, no el VR Común, se utiliza para calcular Valor Aplicable y venta;
-- los porcentajes de **materiales de reparación** de CRAFT-02 se calculan sobre VRQ;
+- los porcentajes de **materiales de reparación** de CRAFT-02 se calculan sobre VRQ mientras no exista un Material Especial; CRAFT-05 utiliza VRT cuando corresponde;
 - el tiempo de reparación se calcula sobre el **tiempo de fabricación de esa Calidad**;
 - preservar la Calidad y sus Modificaciones exige cumplir los requisitos profesionales de esa Calidad.
 
 Un artesano que sólo cumple los requisitos de la receta Común puede estabilizar, desmontar o realizar tareas simples cuando la ficción lo permita, pero no completa una reparación que certifique nuevamente una pieza Superior/Excepcional sin cumplir sus requisitos.
 
-**Recuperación por desmantelamiento:** la recuperación genérica de CRAFT-02 se calcula sobre el **VR Común**, no sobre VRQ. El valor añadido por precisión y mano de obra de Calidad no se transforma en más metal, cuero o madera al desmontar la pieza. Componentes especiales recuperables se siguen tratando por separado.
+**Recuperación por desmantelamiento:** la recuperación genérica de CRAFT-02 se calcula sobre el **VR Común**, no sobre VRQ. El valor añadido por precisión y mano de obra de Calidad no se transforma en más metal, cuero o madera al desmontar la pieza. CRAFT-05 añade, cuando corresponda, recuperación separada del Suplemento Material; componentes especiales recuperables siguen tratándose por separado.
 
 La Modificación Mantenible reduce el tiempo, no la competencia ni el coste material de reparar.
 
