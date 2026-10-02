@@ -1,3 +1,12 @@
+## En desarrollo — situaciones y maniobras de combate
+
+- Cierra Derribar, Empujar, Agarrar y Desarmar como maniobras universales contra Defensa de Maniobra.
+- Añade Intimidar/Amenazar en combate sin convertirlo en hard control.
+- Define magia cuerpo a cuerpo, magia estando Agarrado y compatibilidad de armaduras/escudos con Canalización.
+- Recibir daño no provoca concentración universal; quedar Incapacitado corta Sostenimientos demandantes.
+- Añade daño por caída, aterrizaje controlado con Acrobacia y límites de Protección.
+- Incorpora núcleo puro y regresiones para maniobras, caídas y autoridad multiusuario.
+
 ## Publicación v1.1.2 — 2026-10-02
 
 - **v1.1.2 fue publicada** desde el commit `f9c8aa21beccd81c76bc03ee68cfbb1b4054a1ce` mediante `Publicar sistema #29`.

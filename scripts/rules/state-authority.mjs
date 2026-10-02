@@ -289,6 +289,7 @@ function healthMutationUpdates(target, next, previous) {
   const updates = { "system.resources.health.value": next };
   if (previous > 0 && next === 0) {
     updates["system.status.incapacitated"] = true;
+    updates["system.magic.sustainedSpellIds"] = [];
     if (target.type === "familiar") updates["system.familiar.incapacitated"] = true;
     if (target.type === "character" && number(target.system.status?.trauma) === 0) updates["system.status.trauma"] = 1;
   } else if (next > 0) {
