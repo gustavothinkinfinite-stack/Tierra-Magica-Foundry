@@ -3631,15 +3631,291 @@ Ingeniería diseña, construye y repara mecanismos; Arcana comprende fenómenos 
 
 ## 18. Proyectos, fabricación e investigación
 
-Los proyectos siguen el ciclo **Diseño -> Requisitos -> Trabajo -> Complicaciones -> Resultado**. Las categorías de complejidad son Simple, Estándar, Complejo, Magistral y Extraordinario; la competencia esperada progresa aproximadamente de Aprendiz a Gran Maestro.
+> **CRAFT-01 — VIGENTE · CERRADO.** Este capítulo contiene el motor universal de proyectos y fabricación. Las ampliaciones CRAFT-02 y posteriores cuantifican economía, recetas, calidad, materiales especiales, trampas, runas, objetos mágicos, ingeniería avanzada e investigación sin reemplazar este motor salvo revisión explícita del canon.
 
-Una tarea reproducible, conocida y realizada con tiempo, herramientas, materiales e instalaciones apropiadas no necesita tirada. Las Especializaciones autorizan, reducen dificultades contextuales o desbloquean trabajo; no conceden un +X universal.
+### Principio general
 
-Un proyecto multidisciplinario tiene una disciplina Principal y una o más Auxiliares. Las escalas de tiempo son Minutos, Horas, Días, Semanas y Meses. Acelerar un proyecto puede reducir un grado de tiempo cuando sea plausible, a cambio de riesgo, coste o calidad comprometida. Los recursos se clasifican como Comunes, Especializados, Raros o Excepcionales; las instalaciones como Improvisadas, Adecuadas, Profesionales, Especializadas o Excepcionales.
+Los proyectos siguen el ciclo **Diseño -> Requisitos -> Trabajo -> Complicaciones -> Resultado**.
 
-Un plano estable vuelve reproducible un trabajo rutinario para quien tenga la competencia y medios requeridos. La investigación sigue **Concepto -> Viabilidad -> Investigación -> Prototipo -> Fórmula/Plano estable**. La Viabilidad puede ser Posible, Posible con condiciones o Actualmente imposible. Una tirada alta no atraviesa la imposibilidad establecida.
+El mismo motor se utiliza, cuando corresponda, para fabricar, montar, modificar o reparar objetos; construir mecanismos; preparar trampas; integrar componentes arcano-industriales; trabajar soportes rúnicos o mágicos; y desarrollar proyectos multidisciplinarios.
 
-Los proyectos largos se resuelven por etapas significativas, no mediante una reserva universal de puntos de progreso. Un fallo genera consecuencias, retrasos, costes o necesidad de cambiar el enfoque según la situación; no reinicia automáticamente todo el proyecto.
+**Complejidad no equivale a tamaño, tiempo, precio, rareza ni poder.** Describe principalmente la competencia, precisión y coordinación técnica necesarias. Un objeto voluminoso pero sencillo puede requerir mucho material y tiempo con baja Complejidad; un mecanismo pequeño y extremadamente preciso puede ser Magistral.
+
+Una Habilidad no sustituye materiales, herramientas, instalaciones, tiempo, planos o competencias auxiliares que sean realmente necesarios. Una tirada alta tampoco vuelve posible un diseño físicamente, técnica o mágicamente imposible.
+
+### Registro mínimo de un Proyecto
+
+Cuando un trabajo necesita seguimiento mecánico, su entrada debe indicar como mínimo:
+
+- **Resultado:** qué objeto, reparación, modificación o estado final se pretende obtener.
+- **Complejidad:** Simple, Estándar, Complejo, Magistral o Extraordinario.
+- **Disciplina Principal:** Habilidad que gobierna el trabajo.
+- **Especialización requerida**, si existe.
+- **Disciplinas Auxiliares**, si son indispensables.
+- **Diseño/Plano/Fórmula:** si el procedimiento es conocido, requiere un plano estable o necesita una fase previa de diseño.
+- **Materiales y componentes** necesarios.
+- **Herramientas** necesarias.
+- **Instalación** mínima.
+- **Tiempo base de trabajo efectivo.**
+- **Etapas**, sólo cuando existan cambios de procedimiento, responsables o riesgos que justifiquen separarlas.
+- **Riesgo y DF**, únicamente si alguna fase contiene incertidumbre significativa.
+- **Resultado mecánico exacto** del objeto o modificación.
+
+Los catálogos posteriores pueden añadir campos, pero no omitir silenciosamente un requisito que sea esencial.
+
+### Complejidad y competencia
+
+| Complejidad | Rango mínimo habitual de la Disciplina Principal | Instalación mínima habitual | Especialización | DF base cuando realmente existe incertidumbre |
+|---|---|---|---|---:|
+| **Simple** | Aprendiz | Improvisada | Normalmente no | 10 |
+| **Estándar** | Entrenado | Adecuada | Según el oficio | 12 |
+| **Complejo** | Experto | Profesional | Normalmente requerida | 14 |
+| **Magistral** | Maestro | Especializada | Requerida | 16 |
+| **Extraordinario** | Gran Maestro | Excepcional | Requerida | 18 |
+
+Estos son mínimos universales de referencia, no una obligación de que todos los proyectos de una categoría posean exactamente la misma infraestructura. Una receta concreta puede exigir una instalación superior por su naturaleza —por ejemplo presión, temperatura, esterilidad o contención arcana— sin cambiar por ello su Complejidad.
+
+Un personaje por debajo del rango mínimo no puede sustituir esa falta de competencia mediante una tirada afortunada. Debe conseguir supervisión competente, aprender lo necesario o utilizar otro procedimiento expresamente habilitado.
+
+Las DF de la tabla **no crean una tirada automática**. Sólo son la referencia inicial cuando el proyecto ya ha entrado en una situación incierta. Si la incertidumbre concreta es distinta, se utiliza la escala general de DF del sistema.
+
+### Tiempo de trabajo
+
+El tiempo se registra como **trabajo efectivo**, no como tiempo de calendario. Una **Jornada de Trabajo** representa aproximadamente 8 horas de trabajo productivo con pausas normales.
+
+Cuando una receta todavía no tenga un tiempo específico, pueden utilizarse estos intervalos de diseño como referencia:
+
+| Complejidad | Intervalo orientativo inicial |
+|---|---|
+| Simple | 10 minutos a 2 horas |
+| Estándar | 2 horas a 1 Jornada |
+| Complejo | 2 a 5 Jornadas |
+| Magistral | 1 a 3 semanas de trabajo |
+| Extraordinario | varias semanas o meses y normalmente varias etapas |
+
+Estos intervalos son una guía de asignación para diseñar recetas, no una conversión automática entre Complejidad y tiempo. Volumen, cantidad de unidades, secado, enfriamiento, transporte, disponibilidad de maquinaria y otros procesos físicos pueden aumentar o reducir el tiempo sin cambiar la dificultad técnica.
+
+Una interrupción no borra automáticamente el trabajo realizado. Las etapas completadas y las piezas físicamente terminadas permanecen, salvo que el proceso sea perecedero, continuo o se deteriore por una causa concreta.
+
+### Fabricación rutinaria: no se tira
+
+Una tarea es **rutinaria** cuando se cumplen simultáneamente estas condiciones:
+
+1. el resultado es conocido y reproducible;
+2. el personaje cumple el rango mínimo y cualquier Especialización requerida;
+3. posee o comprende el Diseño/Plano/Fórmula necesario;
+4. dispone de materiales y componentes suficientes;
+5. dispone de herramientas e instalación adecuadas;
+6. dispone del tiempo requerido;
+7. no trabaja bajo presión, peligro o condiciones extraordinarias;
+8. no intenta alterar simultáneamente el diseño, acelerar el proceso o sustituir un requisito crítico.
+
+En esas condiciones **el proyecto se completa sin tirada**. La competencia se expresa precisamente en poder producir resultados fiables.
+
+No se realizan tiradas por cada hora, pieza o jornada para simular trabajo ordinario.
+
+### Cuándo se realiza una prueba
+
+Se realiza una prueba sólo cuando existe incertidumbre significativa. Casos frecuentes:
+
+- trabajar bajo presión o peligro;
+- acelerar el proceso;
+- utilizar herramientas o una instalación por debajo de lo requerido cuando siga siendo físicamente plausible;
+- adaptar un plano a una función diferente;
+- integrar componentes cuya compatibilidad no esté resuelta;
+- reparar daño atípico o diagnosticar una avería incierta;
+- ejecutar una etapa experimental;
+- fabricar un prototipo;
+- trabajar con materiales inestables;
+- improvisar un procedimiento que la ficción permita pero que todavía no sea rutinario.
+
+Una misma incertidumbre se resuelve **una vez**. No se encadenan tiradas repetidas para conseguir finalmente un resultado alto. Si un proyecto tiene varias pruebas, cada una debe corresponder a una etapa con decisión, riesgo o consecuencia propia.
+
+Antes de tirar deben quedar claros la intención, la DF y las consecuencias razonablemente posibles del fallo.
+
+### Requisitos esenciales y condiciones deficientes
+
+Un requisito **esencial** no se reemplaza por una penalización. Si falta el horno capaz de alcanzar la temperatura necesaria, el reactivo indispensable, la pieza estructural, el conocimiento obligatorio o una herramienta sin alternativa funcional, el procedimiento no puede realizarse de esa manera.
+
+Cuando una deficiencia admite un método alternativo plausible:
+
+- una instalación **un grado** por debajo de la requerida puede permitir el intento con **Desventaja**, si el procedimiento puede ejecutarse materialmente;
+- una instalación **dos o más grados** por debajo vuelve el procedimiento imposible salvo regla o método específico;
+- una herramienta inferior o sustituta puede producir Desventaja cuando siga permitiendo el trabajo;
+- varias deficiencias no acumulan múltiples Desventajas, conforme a la regla general;
+- la misma causa no aplica simultáneamente Desventaja y un aumento automático de DF.
+
+La sustitución de materiales sólo es válida si el material alternativo puede cumplir físicamente la función. Cuando cambie las propiedades del resultado o exija rediseño, se trata como adaptación y se aplican las reglas específicas de materiales y modificaciones.
+
+### Diseño, Plano y procedimiento conocido
+
+Un diseño ordinario ampliamente conocido puede considerarse parte del oficio y no requiere transportar un plano físico.
+
+Cuando una entrada indique **Plano requerido**, debe cumplirse una de estas condiciones:
+
+- el personaje dispone de un Plano estable y comprensible;
+- conoce de forma estable ese diseño por aprendizaje previo expresamente reconocido;
+- completa primero una fase válida de Diseño que produzca el Plano necesario.
+
+Poseer un Plano no concede el rango de Habilidad, Especialización, materiales, herramientas ni instalaciones exigidos.
+
+Un **Plano estable** convierte en reproducible el procedimiento que describe para quien cumpla todos los demás requisitos. No convierte en rutinario un prototipo, un material desconocido o una modificación no contenida en el Plano.
+
+### Proyectos multidisciplinarios
+
+Un proyecto multidisciplinario posee una **Disciplina Principal** y una o más **Auxiliares**.
+
+La Disciplina Principal:
+
+- determina el rango mínimo principal;
+- gobierna la fabricación o integración central;
+- realiza la prueba de una etapa incierta cuando esa incertidumbre pertenece al núcleo del proyecto.
+
+Una Disciplina Auxiliar esencial debe ser aportada por el mismo personaje o por un colaborador competente. Su mera presencia no añade un bono numérico a la prueba Principal.
+
+Si una fase auxiliar tiene una incertidumbre y consecuencias propias —por ejemplo diagnosticar una matriz arcana antes de montarla— puede resolverse como una etapa separada con la Habilidad correspondiente. No se crean pruebas auxiliares sólo para aumentar la cantidad de dados lanzados.
+
+### Ayuda técnica y ayuda de trabajo
+
+La ayuda distingue dos funciones.
+
+**Ayuda técnica:** un colaborador competente participa directamente en una resolución incierta. Cuando cumple la regla general de Ayuda, concede **Ventaja**. Más colaboradores no conceden más dados.
+
+**Ayuda de trabajo:** colaboradores capaces realizan partes paralelizables del trabajo. Cuando el proyecto permite dividir el trabajo:
+
+- un colaborador efectivo reduce el tiempo base de esa etapa un **25%**;
+- dos o más colaboradores efectivos reducen el tiempo base un **50%**;
+- la reducción universal por cantidad de ayudantes no supera el **50%**;
+- proyectos de obra, industria, vehículos o gran escala pueden definir expresamente una dotación de trabajadores y otra relación de tiempo.
+
+Para trabajo técnico, un colaborador debe ser capaz de ejecutar realmente la parte asignada; como referencia, posee al menos un rango por debajo del mínimo de la Disciplina Principal o satisface una Disciplina Auxiliar pertinente. Trabajo puramente físico o repetitivo puede admitir ayudantes distintos cuando la ficción lo permita.
+
+Un mismo colaborador no proporciona simultáneamente **Ayuda técnica** y **Ayuda de trabajo** sobre la misma etapa.
+
+### Acelerar un Proyecto
+
+Acelerar es una decisión voluntaria y sólo puede declararse cuando el proceso sea físicamente comprimible.
+
+La aceleración universal:
+
+1. se declara antes de trabajar la etapa;
+2. intenta completar esa etapa en **50% de su tiempo base restante**;
+3. exige una prueba de la Disciplina Principal a la DF apropiada para la Complejidad, normalmente **DF base +2**;
+4. sólo puede aplicarse una vez sobre la misma etapa mediante esta regla universal.
+
+**Éxito:** la etapa se completa en el tiempo reducido.
+
+**Fallo:** la etapa no se pierde, pero la prisa genera retrabajo; terminarla requiere tiempo adicional hasta que el tiempo total invertido alcance **125% del tiempo base original** de esa etapa, salvo que una consecuencia física concreta exija otra cosa.
+
+**Pifia:** además del retrabajo, se aplica una complicación material, técnica o de seguridad que ya fuera plausible para el procedimiento. No destruye automáticamente el proyecto completo.
+
+**Hazaña:** completa la aceleración con éxito, pero no crea Calidad, modificaciones, materiales ni propiedades gratuitas.
+
+Las reducciones universales por Ayuda de trabajo y Aceleración nunca reducen una etapa por debajo del **25% de su tiempo base original**. Una receta específica puede establecer otra relación cuando maquinaria, moldes, producción en serie u otra infraestructura lo justifiquen.
+
+### Improvisación y adaptación
+
+**Improvisar** significa resolver un procedimiento válido sin todos los medios ideales, pero nunca ignorar un requisito esencial.
+
+**Adaptar** significa modificar un diseño conocido para una función, anatomía, soporte, componente o condición diferente.
+
+Cuando una improvisación o adaptación tenga incertidumbre:
+
+- se declara qué se está cambiando;
+- se determina si sigue siendo viable;
+- se identifica qué Habilidad gobierna el cambio;
+- se realiza una única prueba para esa incertidumbre o una etapa separada si tiene consecuencias propias;
+- el éxito produce exactamente el resultado declarado, no mejoras no solicitadas.
+
+Una tirada alta no permite añadir una segunda propiedad, aumentar daño, Protección, Caudal, capacidad rúnica u otro parámetro que el proyecto no haya pagado o habilitado por sus reglas específicas.
+
+### Resolución de una prueba de Proyecto
+
+Las pruebas de Proyecto utilizan el motor general **2d10 + Atributo + Habilidad + modificadores >= DF**.
+
+El Atributo depende del método real. INT es frecuente en diseño, diagnóstico e integración; AGI puede dominar trabajos manuales de precisión; FUE puede ser apropiada para una fase cuyo desafío sea fuerza aplicada. La Habilidad sigue representando la competencia técnica.
+
+Cuando importe el margen:
+
+- **Ajustado (0–4):** consigue el objetivo declarado.
+- **Claro (5–9):** consigue el objetivo y puede obtener una ventaja que ya estuviera en juego —por ejemplo menor exposición a una consecuencia, mejor control del procedimiento o información adicional—.
+- **Dominante (10+):** obtiene un control excepcional dentro del objetivo declarado.
+
+El margen **no mejora automáticamente la Calidad**, no crea materiales, no reduce costes todavía no arriesgados y no incorpora propiedades adicionales.
+
+### Fallos, Pifias y conservación del trabajo
+
+Un fallo de Proyecto no significa automáticamente «el objeto explota» ni reinicia todo el trabajo.
+
+Antes de una prueba deben existir consecuencias plausibles. Según la situación pueden incluir:
+
+- retraso o retrabajo;
+- pérdida o daño de un componente;
+- deterioro de una pieza intermedia;
+- resultado provisional que no cumple todavía la especificación;
+- avería de herramienta o instalación;
+- exposición a calor, presión, toxinas, energía u otro peligro;
+- necesidad de cambiar el método o conseguir información adicional;
+- una complicación externa coherente.
+
+Una **Pifia** puede agravar una consecuencia que ya fuera plausible, pero no justifica destruir meses de trabajo, matar automáticamente a un personaje o consumir recursos excepcionales si ese riesgo no existía en la situación.
+
+Las etapas válidamente completadas se conservan. Un fallo posterior sólo las invalida cuando la nueva consecuencia las daña físicamente o demuestra que dependían de una premisa incorrecta.
+
+### Calidad y propiedades
+
+La Calidad vigente continúa siendo **Defectuosa / Común / Superior / Excepcional**.
+
+CRAFT-01 establece estas salvaguardas:
+
+- la Calidad objetivo debe declararse y cumplir los requisitos que defina su subsistema;
+- un margen alto o una Hazaña no elevan gratuitamente la Calidad;
+- Superior y Excepcional no significan +1/+2/+3 universal;
+- una propiedad especial debe proceder de diseño, material, modificación, runa, encantamiento, dispositivo u otra fuente mecánica identificable;
+- reparar un objeto restaura lo que ya posee; no añade una mejora gratuita.
+
+La cuantificación completa de Calidad y modificaciones pertenece a CRAFT-04.
+
+### Proyectos dentro de combate
+
+El trabajo normal de Proyecto se mide en tiempo de fabricación y **no se convierte automáticamente en una Acción de combate**.
+
+Una reparación, montaje, ajuste, colocación de trampa o activación durante una Escena sólo puede resolverse en Acciones/Reacciones cuando una regla, objeto o procedimiento concreto indique que esa operación cabe físicamente en esa escala temporal.
+
+No existe «fabricación instantánea» por obtener una Hazaña.
+
+### Investigación y prototipos
+
+La investigación conserva el ciclo:
+
+**Concepto -> Viabilidad -> Investigación -> Prototipo -> Fórmula/Plano estable**
+
+La Viabilidad puede ser:
+
+- **Posible**;
+- **Posible con condiciones**;
+- **Actualmente imposible**.
+
+Una tirada alta no atraviesa una imposibilidad establecida.
+
+Un prototipo no se convierte automáticamente en Plano estable por funcionar una vez. CRAFT-10 desarrollará las reglas de investigación, innovación y estabilización sin modificar este principio.
+
+### Límites de CRAFT-01
+
+CRAFT-01 fija el motor de resolución, pero deliberadamente **no fija todavía**:
+
+- porcentajes monetarios y cantidades de materiales;
+- recuperación y reciclaje;
+- beneficios de venta o producción comercial;
+- recetas concretas de armas, armaduras y herramientas;
+- propiedades de Calidad;
+- catálogo de materiales especiales;
+- construcción detallada de trampas;
+- runas, piedras engarzadas y encantamientos;
+- límites de sintonización;
+- investigación avanzada.
+
+Esos elementos deben utilizar este motor y se cierran en CRAFT-02 y posteriores.
 
 
 ## 19. Economía, disponibilidad y equipo
