@@ -19,10 +19,11 @@ test("la guía práctica cubre exactamente las 26 Habilidades canónicas",async(
   const definitions=Object.values(TM_CONFIG.skills);
   assert.equal(definitions.length,26);
 
+  const attributeAbbr={fue:"FUE",agi:"AGI",vig:"VIG",int:"INT",per:"PER",vol:"VOL",pre:"PRE"};
   for(const definition of definitions){
     assert.equal(guide.includes("#### "+definition.label),true,definition.label);
-    const attribute=TM_CONFIG.attributes[definition.suggestedAttribute];
-    assert.equal(guide.includes("**Atributo sugerido:** "+attribute),true,definition.label+" / "+attribute);
+    const attribute=attributeAbbr[definition.suggestedAttribute];
+    assert.match(guide,new RegExp("\\*\\*Atributo sugerido:\\*\\* "+attribute+"(?:\\.|,|\\n)"),definition.label+" / "+attribute);
   }
 });
 
