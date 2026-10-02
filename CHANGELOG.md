@@ -1,3 +1,11 @@
+## Publicación v1.1.2 — 2026-10-02
+
+- **v1.1.2 fue publicada** desde el commit `f9c8aa21beccd81c76bc03ee68cfbb1b4054a1ce` mediante `Publicar sistema #29`.
+- GitHub reconoce v1.1.2 como la release **Latest**, no prerelease.
+- Assets publicados: `system.json` y `tierra-magica.zip`.
+- El workflow reconstruyó los cuatro Compendios, ejecutó la validación completa, verificó el paquete y publicó correctamente.
+- El canal estable `releases/latest/download/system.json` queda actualizado a v1.1.2.
+
 ## 1.1.2 — Hotfix de reconstrucción y compatibilidad Foundry v14 — 2026-10-01
 
 - Corrige la adquisición durante `rebuilding`: la reconstrucción autorizada usa explícitamente el contexto de costes de creación, por lo que Ascendencia, Origen, Trasfondo y demás opciones vuelven a poder añadirse desde la ficha.
