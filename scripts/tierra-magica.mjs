@@ -46,7 +46,7 @@ function forcedDeletion() {
 }
 
 Hooks.once("init", async () => {
-  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.1.1");
+  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.1.2");
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
   CONFIG.Item.documentClass = TierraMagicaItem;
