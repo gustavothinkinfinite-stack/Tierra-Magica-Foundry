@@ -2140,7 +2140,7 @@ Como ya no existe oposición activa, la escena puede salir de iniciativa. Si que
 
 **Nueva ronda:** después de que todos hayan actuado, continúa el mismo orden salvo reglas como Retrasar.
 
-## 9. Armas, armaduras y escudos
+## 9. Armas, armaduras, equipo y suministros
 
 Este capítulo explica **qué hace el equipo durante el juego**. Los precios, Disponibilidad y reglas comerciales completas se encuentran en **Economía, disponibilidad y equipo**.
 
