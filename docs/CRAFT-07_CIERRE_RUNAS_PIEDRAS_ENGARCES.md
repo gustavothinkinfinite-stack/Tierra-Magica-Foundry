@@ -267,3 +267,11 @@ vs.
 queda mecánicamente significativa.
 
 **CRAFT-07 queda cerrado.**
+
+## Adenda de auditoría CRAFT-12
+
+CRAFT-12 añadió dos límites:
+
+- una Impronta Vinculada a un ataque con arma sólo modifica una resolución que use el **perfil del arma anfitriona**; no se monta automáticamente sobre un Hechizo Vinculado o descarga distinta emitida desde el mismo objeto;
+- **Estabilidad Rúnica II** no puede reducir el estado Dañado/Deshabilitado cuando ese deterioro sea el coste explícito de Sobrecarga Controlada, Carga forzada u otra activación voluntaria equivalente.
+
