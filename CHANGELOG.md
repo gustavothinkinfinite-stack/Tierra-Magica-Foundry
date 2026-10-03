@@ -1,3 +1,13 @@
+## En desarrollo — paquetes raciales jugables v0.3
+
+- Integra en `docs/Tierra_Magica_Manual_Maestro.md` los 12 paquetes raciales jugables: Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios/Anihombres, Feéricos, Ankar, Cristálidos, Verdantes, Micelios y Coralios.
+- Los paquetes se equilibran aparte de 25 PD y 3 PR; cultura, Origen, profesión, religión, personalidad y moral permanecen separados.
+- Consolida reglas transversales de Protección Natural, Escala efectiva, fisiología, miembros adicionales, sentidos raciales, afinidad mágica, progresión y compatibilidad de equipo.
+- Cierra paquetes y variantes base para Goblin/Hobgoblin/Bugbear, Terios, Hada/Sátiro/Dríade/Silfo y Cristálido de Matriz Mixta.
+- Corrige la contradicción de Kobolds: su origen sigue abierto hasta la cosmología dracónica y no integra el paquete goblinoide jugable base.
+- Archiva la antigua resolución A5 que descartaba paquetes raciales y elimina su condición de autoridad paralela.
+- No se crea un documento racial separado: el Manual Maestro es la única definición racial vigente.
+
 ## En desarrollo — viajes y movimiento terrestre
 
 - Añade viaje de larga distancia a pie, caballo y carreta.
