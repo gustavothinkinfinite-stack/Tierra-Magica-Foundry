@@ -4855,7 +4855,7 @@ Una pieza Excepcional puede utilizar dos Modificaciones de 1 punto o una de 2 pu
 Para un objeto Superior o Excepcional:
 
 - el **VRQ**, no el VR Común, se utiliza para calcular Valor Aplicable y venta;
-- los porcentajes de **materiales de reparación** de CRAFT-02 se calculan sobre VRQ mientras no exista un Material Especial; CRAFT-05 utiliza VRT cuando corresponde;
+- los porcentajes de **materiales de reparación** usan la **BRA de CRAFT-02**: preservar la Calidad incorpora VRQ y las capas posteriores sólo entran cuando la consecuencia afecta realmente esa parte;
 - el tiempo de reparación se calcula sobre el **tiempo de fabricación de esa Calidad**;
 - preservar la Calidad y sus Modificaciones exige cumplir los requisitos profesionales de esa Calidad.
 
