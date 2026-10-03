@@ -1,6 +1,6 @@
 # Fuentes del proyecto — política de fuente única
 
-Fecha de consolidación: 2026-10-01.
+Fecha de consolidación: 2026-10-03.
 
 ## Fuente activa única
 
