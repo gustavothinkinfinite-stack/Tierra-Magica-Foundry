@@ -533,23 +533,27 @@ Los **Puntos de Rasgo (PR)** son una economía separada. En creación se dispone
 
 Referencia de costes: Menor 1 PR, Significativo 2 PR, Mayor 3 PR, Excepcional 4+ PR. Los Rasgos negativos no generan PR adicionales.
 
-Catálogo de referencia vigente:
+Para creación estándar de nivel 1, un Rasgo sólo puede elegirse si su entrada del capítulo **5. Rasgos y Puntos de Rasgo** está marcada como **Disponible en creación**. Toda elección obligatoria del Rasgo debe quedar escrita en la ficha al adquirirlo.
 
-- Sentido Agudo — 1 PR.
-- Visión en la Oscuridad — 2 PR.
-- Anfibio — 1 PR.
-- Trepador Natural — 1 PR.
-- Cola Prensil — 1 PR.
-- Miembros Extra — 2 PR; no concede acciones adicionales.
-- Vuelo Natural — 4 PR; excepcional.
-- Corpulento — 2 PR; +4 Vida.
-- Masivo — 3 PR; +8 Vida; no acumulable con Corpulento.
-- Vínculo Divino — 2 PR; concede acceso, no poder automático.
-- Familiar Mágico — 3 PR.
-- Pacto Externo — 2–3 PR.
-- Prótesis Mayor — 2+ PR.
-- Afinidad Sobrenatural — 1 PR.
-- Resistencia Ambiental — 1–2 PR.
+Resumen del catálogo cerrado en CREA-14:
+
+| Rasgo | Coste | Estado |
+|---|---:|---|
+| Sentido Agudo | 1 PR | Disponible en creación |
+| Visión en la Oscuridad | 2 PR | Disponible en creación |
+| Anfibio | 1 PR | Disponible en creación |
+| Trepador Natural | 1 PR | Disponible en creación |
+| Cola Prensil | 1 PR | Disponible en creación |
+| Miembros Extra | 2 PR | Disponible en creación |
+| Corpulento | 2 PR | Disponible en creación |
+| Masivo | 3 PR | Disponible en creación |
+| Vínculo Divino | 2 PR | Disponible en creación |
+| Prótesis Mayor | 2 PR | Disponible en creación |
+| Afinidad Sobrenatural | 1 PR | Disponible en creación |
+| Resistencia Ambiental | 1 o 2 PR | Disponible en creación |
+| Vuelo Natural | 4 PR | Excepcional; no comprable con los 3 PR estándar |
+| Familiar Mágico | 3 PR | **Bloqueado temporalmente para creación estándar hasta cerrar su perfil inicial en CREA-14** |
+| Pacto Externo | 2 PR | Disponible sólo en su forma base definida en el capítulo 5; cualquier Don adicional exige un perfil expresamente costeado |
 
 Los 3 PR generales existen **además** del paquete racial. Si el paquete racial ya concede una propiedad equivalente a un Rasgo general, no se compra de nuevo para acumularla. Un Rasgo puede ampliar una capacidad racial sólo cuando su propia regla describa expresamente esa mejora. Una misma propiedad no se cobra dos veces.
 
@@ -1800,9 +1804,141 @@ Del mismo modo, Gran Maestro sólo puede alcanzarse desde nivel 15 y cuesta 8 PD
 
 ## 5. Rasgos y Puntos de Rasgo
 
-Los Rasgos representan propiedades persistentes del personaje que no encajan como entrenamiento ordinario. En creación se dispone de **3 PR**, separados de los PD y **adicionales al paquete racial jugable**. Los PR y los PD no se convierten entre sí. Un Rasgo puede ser Innato, Adquirido, de Vínculo o Condicional. Como referencia, un Rasgo Menor cuesta 1 PR, Significativo 2, Mayor 3 y Excepcional 4+. Los rasgos negativos no generan PR adicionales. Si un paquete racial ya concede una propiedad equivalente, no se vuelve a comprar para acumularla.
+Los Rasgos representan propiedades persistentes del personaje que no encajan como entrenamiento ordinario. En creación se dispone de **3 PR**, separados de los PD y **adicionales al paquete racial jugable**. Los PR y los PD no se convierten entre sí. Un Rasgo puede ser Innato, Adquirido, Vincular o Condicional. Los Rasgos negativos no generan PR adicionales.
 
-Catálogo de referencia: Sentido Agudo 1 PR; Visión en la Oscuridad 2; Anfibio 1; Trepador Natural 1; Cola Prensil 1; Miembros Extra 2, sin conceder acciones adicionales; Vuelo Natural 4 y de carácter excepcional; Corpulento 2, +4 Vida; Masivo 3, +8 Vida y no acumulable con Corpulento; Vínculo Divino 2, que concede acceso y no poder automático; Familiar Mágico 3; Pacto Externo 2–3; Prótesis Mayor 2+; Afinidad Sobrenatural 1; Resistencia Ambiental 1–2.
+### Regla de autosuficiencia
+
+Una opción de Rasgo presentada como **Disponible en creación** debe indicar coste, elección obligatoria, efecto, límites y apilamiento suficientes para escribirla en la ficha sin inventar una regla adicional.
+
+Cuando un Rasgo exige elegir un sentido, peligro, afinidad, deidad, juramento, entidad o forma corporal, esa elección se registra al adquirirlo y no puede cambiarse entre escenas.
+
+Un mismo Rasgo no puede adquirirse dos veces salvo que su entrada diga que posee grados. Un paquete racial y un Rasgo que describan exactamente la misma propiedad no se acumulan.
+
+### Catálogo operativo de Rasgos
+
+#### Sentido Agudo — 1 PR
+**Tipo:** Innato. **Disponible en creación.**
+
+Al adquirirlo elige un sentido ordinario que el personaje posea físicamente: vista, oído, olfato u otro sentido concreto aprobado por su anatomía.
+
+**Efecto:** +1 a pruebas de **PER** únicamente cuando distinguir detalles sutiles mediante ese sentido sea determinante para la resolución.
+
+**Límites:** no mejora Iniciativa, ataques, Investigación general ni otros sentidos; no atraviesa barreras ni convierte el sentido en sobrenatural. Varias fuentes equivalentes sobre el mismo sentido no se acumulan: se usa el mejor beneficio.
+
+#### Visión en la Oscuridad — 2 PR
+**Tipo:** Innato. **Disponible en creación.**
+
+El personaje puede distinguir formas, movimiento, obstáculos y criaturas mediante visión en **oscuridad mundana completa hasta 6 espacios** como si existiera iluminación tenue suficiente para actuar.
+
+**Límites:** no permite distinguir color ni detalle fino sin luz, no atraviesa humo, niebla, paredes u ocultación física y no vence oscuridad sobrenatural salvo que esa oscuridad lo permita expresamente. No concede un bono a PER: elimina únicamente la imposibilidad o penalización causada por falta de luz dentro de su alcance.
+
+#### Anfibio — 1 PR
+**Tipo:** Innato. **Disponible en creación.**
+
+El personaje puede respirar aire y agua ordinarios de forma funcional.
+
+**Límites:** no concede Movimiento de nado, no elimina pruebas de Natación, no protege de presión, temperatura, corrientes, contaminación, toxinas ni deshidratación y no permite respirar en un medio que no contenga una forma compatible de aire o agua.
+
+#### Trepador Natural — 1 PR
+**Tipo:** Innato. **Disponible en creación.**
+
+La anatomía del personaje está adaptada a trepar. En una superficie físicamente trepable con apoyos razonables, cada espacio de ascenso o desplazamiento de escalada cuesta **1 punto de Movimiento** en lugar de tratarse por defecto como desplazamiento dificultado.
+
+**Límites:** una pared lisa, techo, hielo, superficie móvil o ascenso peligroso puede seguir exigiendo **Atletismo** y equipo. El Rasgo no concede Movimiento adicional ni permite adherirse a superficies que no ofrecen apoyo físico.
+
+#### Cola Prensil — 1 PR
+**Tipo:** Innato. **Disponible en creación.**
+
+El personaje posee una cola u órgano posterior capaz de sujetar y manipular objetos ligeros y físicamente compatibles. Puede transportar un objeto adicional y realizar con ese órgano una manipulación que normalmente sería posible con una mano, usando la **misma Acción** que corresponda.
+
+**Límites:** no concede Acción, Reacción, ataque, recarga ni uso de objeto adicionales. No permite obtener simultáneamente el beneficio mecánico de un escudo mientras se emplea un arma de dos manos, ni satisface por sí sola una exigencia de precisión extraordinaria.
+
+#### Miembros Extra — 2 PR
+**Tipo:** Innato. **Disponible en creación.**
+
+El personaje posee **un par adicional de miembros manipuladores funcionales**. Pueden sostener, transportar y manipular objetos apropiados y permiten mantener hasta dos objetos adicionales preparados físicamente.
+
+**Límites:** no conceden Acciones, Reacciones, ataques, Bloqueos, recargas o Sostenimientos adicionales; no aumentan Carga; no permiten sumar varios escudos ni combinar el beneficio de un arma de dos manos con un escudo salvo regla expresa. Una tarea que requiera una Acción sigue consumiendo una sola Acción aunque intervengan varios miembros.
+
+#### Corpulento — 2 PR
+**Tipo:** Innato. **Disponible en creación.**
+
+**Efecto:** Vida máxima **+4**.
+
+**Límites:** no aumenta VIG, FUE, Escala, Defensa Corporal, umbral de Daño Grave ni Carga. No se acumula con **Masivo**; si una fuente posterior concede ambos, se usa sólo el mayor aumento de Vida.
+
+#### Masivo — 3 PR
+**Tipo:** Innato. **Disponible en creación.**
+
+**Efecto:** Vida máxima **+8**.
+
+**Límites:** no aumenta VIG, FUE, Escala, Defensa Corporal, umbral de Daño Grave ni Carga. No se acumula con **Corpulento**.
+
+#### Vínculo Divino — 2 PR
+**Tipo:** Vincular. **Disponible en creación.**
+
+Al adquirirlo registra **una deidad o poder divino reconocido** y **un juramento concreto** coherente con uno de sus dominios o principios descritos en el Panteón del Manual.
+
+**Efecto:** el personaje obtiene acceso a la **Fuente Divina** asociada a ese vínculo y puede satisfacer requisitos que exijan una Fuente Divina apropiada. Esto permite utilizar como Divinos los Hechizos o Rituales que el personaje haya adquirido legalmente y cuya ficción sea compatible con el vínculo.
+
+**Límites:** no concede Habilidades, Disciplina, Hechizos, Maná, milagros, inmunidades ni autoridad religiosa. El juramento debe estar escrito. Una violación deliberada y grave del propio juramento puede **Suspender** el Vínculo: mientras esté Suspendido no puede emplearse como Fuente Divina. Restaurarlo exige una reparación narrativa coherente; no existe una penalización numérica adicional automática.
+
+#### Familiar Mágico — 3 PR
+**Tipo:** Vincular. **Estado transitorio CREA-14: no disponible todavía en creación estándar.**
+
+El coste de 3 PR y la naturaleza vinculada permanecen ratificados. Sin embargo, hasta que el Manual incorpore la plantilla numérica inicial y sus arquetipos de Familiar, esta opción no cumple todavía la prueba de autosuficiencia de nivel 1 y no debe presentarse a un jugador nuevo como elección cerrada.
+
+Su desbloqueo es el siguiente bloque de CREA-14.
+
+#### Pacto Externo — 2 PR
+**Tipo:** Vincular. **Disponible en creación en forma base.**
+
+Al adquirirlo registra una **entidad externa concreta o categoría inequívoca**, una **Condición** que mantiene el pacto y un **Precio** que el personaje acepta pagar cuando corresponda.
+
+**Efecto base:** concede acceso a la **Fuente Externa** asociada al pacto y permite satisfacer requisitos que exijan una Fuente Externa apropiada.
+
+**Límites:** el Rasgo base no concede Habilidades, Disciplina, Hechizos, Maná, daño, Defensa ni un Don adicional gratuito. Si una campaña quiere que el pacto conceda además un poder específico, ese Don debe existir como Rasgo, Técnica, Hechizo o perfil de Pacto con coste explícito. Incumplir la Condición puede suspender el acceso a la Fuente y activar la Consecuencia definida por el propio pacto; la Consecuencia no puede inventarse después de adquirirlo.
+
+#### Prótesis Mayor — 2 PR
+**Tipo:** Adquirido. **Disponible en creación cuando la ficción lo justifica.**
+
+El personaje posee una prótesis integrada que sustituye una extremidad u órgano funcional importante perdido, ausente o incompatible.
+
+**Efecto:** la prótesis permite realizar las funciones ordinarias que esa parte corporal realizaría en un personaje sin lesión, dentro de límites anatómicos razonables.
+
+**Límites:** no concede Atributos, Acción, ataque, Protección, herramientas integradas ni capacidades extraordinarias. Una prótesis con arma, blindaje, motor, almacenamiento, dispositivo arcano u otra función adicional debe pagar y cumplir las reglas de equipo, Proyecto o capacidad correspondiente.
+
+#### Afinidad Sobrenatural — 1 PR
+**Tipo:** Innato. **Disponible en creación.**
+
+Al adquirirlo elige una **afinidad sobrenatural estrecha y concreta**, por ejemplo espíritus, fuego mágico, corrientes de Trama, sombras sobrenaturales o una categoría equivalente.
+
+**Efecto:** +1 a pruebas de **PER** destinadas únicamente a advertir manifestaciones directamente perceptibles de esa afinidad.
+
+**Límites:** percibir no equivale a identificar. No concede Arcana, Religión, Fuente, Disciplina, Hechizos, Maná ni información sobre causa, intención o funcionamiento. La afinidad elegida es fija salvo transformación significativa.
+
+#### Resistencia Ambiental — 1 o 2 PR
+**Tipo:** Innato. **Disponible en creación. Rasgo con grados.**
+
+Al adquirirlo elige **una exposición ambiental concreta**: frío, calor, gran altitud, humedad extrema, deshidratación u otra amenaza comparable y estrecha.
+
+- **Menor — 1 PR:** +1 a pruebas de **VIG** para resistir esa exposición.
+- **Significativo — 2 PR:** en lugar del +1, obtiene **Ventaja** en las pruebas de VIG para resistir esa exposición.
+
+**Límites:** los grados no se acumulan entre sí. No concede inmunidad, no protege de daño mágico o ataques que sólo compartan una descripción temática y no elimina necesidades de alimento, agua, descanso, aire o equipo salvo que otra regla lo diga.
+
+#### Vuelo Natural — 4 PR
+**Tipo:** Innato, Excepcional.
+
+El personaje posee anatomía capaz de vuelo sostenido y puede volar hasta su Movimiento normal, usando las reglas ordinarias de Movimiento.
+
+**Límites:** no concede Movimiento adicional, Acción o Reacción extra, maniobrabilidad perfecta ni inmunidad a caídas. Carga Pesada o Excesiva impide utilizarlo. Debe existir anatomía capaz de sostener el vuelo.
+
+**Disponibilidad:** un personaje estándar sólo posee 3 PR en creación, por lo que **no puede comprar Vuelo Natural con su presupuesto ordinario de nivel 1**. Puede existir si un paquete racial, concesión expresa de campaña o futura regla de progresión lo habilita.
+
+### Compatibilidad con Don sin Forma
+
+Don sin Forma puede elegir gratuitamente únicamente Rasgos Generales compatibles con su propia regla. En el catálogo anterior son compatibles por defecto **Sentido Agudo, Visión en la Oscuridad, Trepador Natural, Afinidad Sobrenatural y Resistencia Ambiental**, siempre que el concepto explique la propiedad. No puede utilizarse para Vínculos, Pactos, Familiar Mágico, Prótesis derivada de un acontecimiento todavía inexistente, Corpulento, Masivo, Vuelo Natural ni para duplicar una capacidad racial.
 
 ## 6. Turno, movimiento y posición
 
