@@ -3821,7 +3821,9 @@ La aceleración universal:
 
 **Hazaña:** completa la aceleración con éxito, pero no crea Calidad, modificaciones, materiales ni propiedades gratuitas.
 
-Las reducciones universales por Ayuda de trabajo y Aceleración nunca reducen una etapa por debajo del **25% de su tiempo base original**. Una receta específica puede establecer otra relación cuando maquinaria, moldes, producción en serie u otra infraestructura lo justifiquen.
+Antes de aplicar reducciones se determina el **Tiempo Base Ajustado (TBA)** de la etapa: tiempo de receta después de aumentos obligatorios por Calidad, Material, escala o requisitos equivalentes, pero antes de Ayuda, Aceleración, herramientas motorizadas, Mantenible u otros beneficios porcentuales.
+
+Salvo que una regla diga expresamente que **rompe el piso temporal**, ninguna combinación de reducciones porcentuales —Ayuda de trabajo, Aceleración, Mantenible, maquinaria u otra fuente— reduce una etapa por debajo del **25% de su TBA**. Un procedimiento alternativo con un tiempo fijo propio —por ejemplo intercambiar un módulo mediante Modular— no es una reducción porcentual y usa su tiempo escrito.
 
 ### Improvisación y adaptación
 
@@ -3968,7 +3970,7 @@ Los materiales obtenidos como botín, extracción, recompensa, compra o recupera
 
 Un Lote compatible reduce el CM pendiente **uno por uno según su VI**. El VI representa cuánto coste de materiales puede sustituir en un proyecto compatible; no es dinero y no puede gastarse en otra cosa.
 
-Un material incompatible no se convierte en compatible por poseer suficiente valor monetario. CRAFT-05 definirá materiales especiales, afinidades y propiedades sin cambiar esta regla económica.
+Un material incompatible no se convierte en compatible por poseer suficiente valor monetario. **CRAFT-05** define materiales especiales, afinidades y propiedades sin cambiar esta regla económica.
 
 Si un Lote de Materiales se vende como mercancía, se trata como un bien físico y utiliza las reglas normales de venta sobre su propio valor comercial. Su VI no se convierte automáticamente en efectivo.
 
@@ -4086,7 +4088,17 @@ Salvo que una receta indique otra cosa:
 | Deshabilitado -> Operativo | 25% del VR | 50% |
 | Arruinado recuperable -> Operativo | 50% del VR | 75% |
 
-Los materiales de reparación se redondean hacia arriba al cobre. El tiempo nunca baja de **10 minutos** cuando la reparación requiere trabajo efectivo. Para objetos Superior/Excepcional, CRAFT-04 calcula estos porcentajes sobre VRQ y sobre el tiempo de fabricación de esa Calidad.
+Los materiales de reparación se redondean hacia arriba al cobre. El tiempo nunca baja de **10 minutos** cuando la reparación requiere trabajo efectivo.
+
+Para objetos con capas de valor se utiliza la **Base de Reparación Afectada (BRA)**: sólo entran las capas que la consecuencia obliga a restaurar.
+
+- preservar la Calidad usa VRQ;
+- si el daño afecta la parte que sostiene un Material Especial, se incorpora su valor conforme a VRT;
+- si afecta una Matriz/Runa integrada, se incorpora su valor rúnico;
+- si afecta una matriz de Encantamiento, se incorpora su valor encantado;
+- un componente separable sustituido y pagado por separado se excluye de la BRA para no cobrarlo dos veces.
+
+El tiempo de reparación utiliza de igual modo el tiempo correspondiente a la capa más exigente que realmente deba restaurarse.
 
 La reparación usa la competencia, herramientas e instalación coherentes con el objeto. La Complejidad puede ser la del proyecto original o una específica de reparación cuando la receta lo indique.
 
@@ -5019,7 +5031,7 @@ Esto impide convertir una espada de hierro en «espada de material legendario» 
 
 #### Reparación de materiales especiales
 
-El VRT reemplaza a VRQ como base de Valor Aplicable y de los porcentajes genéricos de materiales de reparación.
+El VRT reemplaza a VRQ como base de Valor Aplicable. Para reparación, se incorpora el valor del Material Especial a la **BRA de CRAFT-02 sólo cuando la consecuencia afecta la parte que sostiene esa propiedad**.
 
 Si la parte dañada que sostiene la propiedad material debe ser reemplazada, la reparación requiere material especial compatible. Sustituirla por material ordinario puede restaurar el estado Operativo, pero elimina la propiedad material correspondiente y obliga a recalcular VRT.
 
@@ -5278,7 +5290,8 @@ Un sistema enlazado puede ser Complejo o superior, pero:
 
 - varios elementos idénticos liberados por el mismo evento contra el mismo objetivo se resuelven como **un solo efecto** salvo perfil expreso;
 - un arreglo puede cubrir zonas distintas cuando la geometría real lo justifique;
-- múltiples trampas físicamente independientes pueden activarse en momentos distintos si realmente existen disparadores distintos;
+- **un mismo evento físico indivisible** —una misma pisada, apertura, retirada de peso o cruce puntual— no alimenta varias trampas ordinarias contra el mismo objetivo para multiplicar resoluciones;
+- múltiples trampas físicamente independientes pueden encadenarse sólo si existen **disparadores distintos que se producen secuencialmente**; se resuelve cada activación y sus consecuencias antes de continuar el movimiento o evento siguiente;
 - subdividir narrativamente un único mecanismo no crea múltiples ataques.
 
 Un diseño que pretenda varios impactos separados sobre el mismo objetivo es un perfil específico y debe auditar su economía de acciones y daño.
@@ -5866,6 +5879,8 @@ Para activar una Impronta el usuario debe estar utilizando realmente su soporte:
 - herramienta/Kit: utilizado en la operación;
 - instrumental: conectado o manipulado conforme a su función.
 
+A efectos de Improntas **Vinculadas a un ataque con arma**, «ataque realizado con el arma» significa una resolución que utiliza el **perfil de ataque del arma anfitriona**. Un Hechizo Vinculado, descarga de dispositivo u otro ataque emitido desde el mismo objeto no cuenta automáticamente como ataque con esa arma. Integrarlos en una única resolución requiere un Perfil híbrido expreso.
+
 Una Impronta no concede beneficios desde una mochila, almacén o colección de objetos no utilizados.
 
 CRAFT-07 no incorpora activación automática, reconocimiento de aliados, sensores mágicos ni disparadores remotos.
@@ -6227,7 +6242,7 @@ Reglas:
 - Encantamiento II ocupa 2 puntos.
 - Encantamiento III ocupa 3 puntos.
 - no puede superarse el total de 3;
-- una criatura no puede mantener Sintonizados simultáneamente dos objetos con el **mismo Patrón de Encantamiento** o el mismo Hechizo Vinculado; debe elegir uno;
+- una criatura no puede mantener Sintonizados simultáneamente dos objetos con el **mismo Patrón de Encantamiento**, el mismo Hechizo Vinculado o perfiles funcionalmente equivalentes cuya única finalidad sea multiplicar la reserva del mismo efecto; cambiar nombre, estética o soporte no evita esta restricción;
 - varios Encantamientos del mismo objeto no reducen su coste, aunque el núcleo ordinario sólo permite uno;
 - la Sintonización no depende del tipo físico de objeto: espada, anillo, capa y amuleto consumen capacidad según su Encantamiento, no según una ranura anatómica.
 
@@ -6257,9 +6272,11 @@ Al completar una nueva Sintonización, la RE del objeto comienza en **0**.
 
 Un **Descanso Completo efectivo** rellena toda la RE de un objeto si:
 
-- permaneció Sintonizado con la misma criatura durante todo ese Descanso Completo;
+- el objeto **ya estaba Sintonizado con esa criatura cuando comenzó el Descanso Completo** y permanece así hasta terminarlo;
 - el objeto permaneció Operativo;
 - no existe una condición que bloquee su recarga.
+
+Establecer una Sintonización durante el propio Descanso no carga RE en ese mismo Descanso; comienza en 0 y deberá mantenerse hasta un Descanso Completo posterior.
 
 Desintonizar el objeto reduce su RE a **0**.
 
@@ -6932,6 +6949,7 @@ Reglas universales:
 - sin Modular, instalar o reemplazar un Módulo requiere normalmente 25% del tiempo base del Host, mínimo 1 h;
 - un Módulo no concede una Acción adicional;
 - si modifica una Acción o ataque existente, su activación es **Vinculada** a esa resolución;
+- un Módulo de arma modifica por defecto sólo una resolución que utilice el **perfil del arma Host**; no mejora automáticamente un Hechizo Vinculado, una descarga de Encantamiento u otro ataque emitido desde el mismo objeto;
 - la Energía se compromete antes de la tirada modificada.
 
 Efectos equivalentes de Módulo, Calidad, Material, Runa, Encantamiento o hechizo usan el mejor beneficio salvo autorización expresa.
@@ -7434,6 +7452,15 @@ Las Preguntas mínimas deben ser **diferentes**. No pueden escribirse cuatro var
 Un proyecto puede necesitar más Preguntas si realmente contiene más incógnitas.
 
 La Clase de novedad no autoriza por sí sola a superar límites de Daño, Pen, Protección, Sintonización, Caudal, acciones u otras reglas. Si el Concepto pretende romper un límite estándar, la Viabilidad debe autorizar expresamente esa excepción como parte del nuevo Perfil.
+
+La Clase tampoco puede rebajarse por redacción:
+
+- **Adaptación** conserva las propiedades mecánicas ya estabilizadas y cambia ajuste, geometría, soporte o configuración dentro de una compatibilidad conocida;
+- integrar dos subsistemas estables que todavía no poseen una receta conjunta es como mínimo **Combinación**;
+- crear una propiedad mecánica nueva es como mínimo **Innovación**;
+- intentar una excepción a un límite canónico, principio desconocido o tecnología no comprendida es **Frontera** cuando sea viable.
+
+Renombrar un beneficio existente o describirlo como «ajuste» no convierte una Innovación en Adaptación.
 
 #### DF de Investigación
 
