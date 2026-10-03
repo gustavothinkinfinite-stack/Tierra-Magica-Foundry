@@ -6633,6 +6633,8 @@ No puede detectar:
 
 Al activarse, el Sello consume su carga autónoma y queda **Descargado**.
 
+Un mismo evento indivisible —una apertura, contacto o cruce concreto— no puede descargar varios Sellos ordinarios contra el mismo objetivo para multiplicar resoluciones. Varios Sellos pueden proteger puntos o condiciones distintas y activarse secuencialmente; un entramado que pretenda una descarga combinada es un Perfil específico y se audita como un único efecto.
+
 Una descarga que requiera tirada utiliza PE del Grado.
 
 Un Sello Descargado conserva su matriz, pero no puede volver a producir el efecto hasta rearmarse. A efectos comerciales, su valor aplicable se reduce respecto del Sello cargado en **dos veces el coste material de rearme**. De ese modo, utilizar la carga y vender después el Sello no conserva artificialmente el valor de una activación ya consumida.
