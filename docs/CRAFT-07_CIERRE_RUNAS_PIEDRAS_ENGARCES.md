@@ -166,7 +166,7 @@ Sólo una Impronta Vinculada puede afectar una misma resolución.
 1. Barrera Rúnica II — Reacción, 3 Maná, +2 Defensa; equivalente a Barrera Cinética/Escudo de campo para apilamiento.
 2. Filo Penetrante II — Vinculada, 3 Maná, +1 Daño y Pen +1, máximo 3.
 3. Resguardo Térmico II — Reacción, 3 Maná, reduce 4 daño Térmico final.
-4. Estabilidad Rúnica II — Reacción, 2 Maná, reduce un paso el deterioro del objeto.
+4. Estabilidad Rúnica II — Reacción, 2 Maná, reduce un paso un deterioro compatible; no mitiga el estado que sea coste explícito de Sobrecarga Controlada, Carga forzada u otra activación voluntaria equivalente.
 5. Impulso Cinético II — Vinculada, 3 Maná, desplaza 1 espacio a objetivo de Escala igual/menor si impacta.
 
 ## Auditoría de combate
