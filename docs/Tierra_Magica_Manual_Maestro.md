@@ -8929,7 +8929,468 @@ No se debe inferir:
 
 CRAFT-11 convierte CRAFT-01 a CRAFT-10 en un conjunto directamente utilizable en mesa y elimina la necesidad de reconstruir manualmente los cálculos más frecuentes.
 
-El siguiente cierre es **CRAFT-12 — Auditoría integral del sistema de fabricación**.
+CRAFT-12 se desarrolla a continuación.
+
+### CRAFT-12 — Auditoría integral del sistema de fabricación
+
+> **VIGENTE · CERRADO.** CRAFT-12 audita CRAFT-01 a CRAFT-11 contra economía, progresión, combate, economía de acciones, magia, Energía, reparación, recuperación, trampas, consumibles e Investigación. No añade un motor nuevo: corrige únicamente contradicciones, bypasses o secuencias explotables encontradas durante la auditoría.
+
+#### Objetivo
+
+La auditoría intenta demostrar que el sistema de fabricación no permite, por reglas universales:
+
+- imprimir dinero mediante fabricar -> vender;
+- recuperar más materiales que el valor sacrificado;
+- convertir PEI en materia prima a mitad de precio;
+- comprimir indefinidamente tiempos;
+- sustituir competencia/instalación mediante una sola Ventaja;
+- multiplicar ataques mediante disparadores simultáneos;
+- obtener Acciones/Reacciones adicionales mediante equipo;
+- apilar el mismo beneficio desde varias capas;
+- convertir Maná, RE y Energía entre sí;
+- multiplicar Caudal o Estabilidad conectando fuentes;
+- evitar el coste de estado de una Sobrecarga;
+- convertir Familiares/autómatas en depósitos gratuitos de Sintonización;
+- usar Diseño/Adaptación para saltar CRAFT-10;
+- forzar éxito mediante dosis o Neutralizantes repetidos;
+- usar una herramienta barata como Kit profesional completo;
+- fabricar un Prototipo y tratarlo como Plano estable.
+
+#### Matriz de auditoría
+
+Se revisaron las siguientes fronteras:
+
+1. **CRAFT-01 <-> CRAFT-02:** tiempo, Ayuda, Aceleración, materiales, venta y Encargos.
+2. **CRAFT-02 <-> CRAFT-04/05:** Calidad, Material Especial, reparación, desmantelamiento y reventa.
+3. **CRAFT-04/05 <-> CRAFT-07/08:** CapM, CRu, Runas, Encantamientos y valor agregado.
+4. **CRAFT-06 <-> combate:** disparadores, ataques, Desprevenido, áreas y rearme.
+5. **CRAFT-06 <-> CRAFT-08:** Sellos autónomos y trampas mágicas.
+6. **CRAFT-07 <-> CRAFT-09:** Improntas, Módulos, Sobrecarga y estado.
+7. **CRAFT-08 <-> descanso/progresión:** Sintonización, RE, duplicados y cambio de portador.
+8. **CRAFT-09 <-> infraestructura:** acumuladores, Bancos, Acopladores, recarga y múltiples fuentes/receptores.
+9. **Alquimia <-> economía de acciones:** dosis, Saturación, toxinas, recuperación y Neutralizantes.
+10. **CRAFT-10 <-> CRAFT-01:** Diseño, Adaptación, ingeniería inversa, Prototipo y Plano estable.
+11. **CRAFT-11 <-> todos los anteriores:** totales, requisitos, tiempos, precios y referencias.
+
+#### Auditoría económica automatizada
+
+Se comprobaron valores enteros entre **1 c y 1000 o = 100.000 c**.
+
+Para cada VR se cruzaron:
+
+- Calidad Común, Superior y Excepcional;
+- Material Especial Especializado, Raro y Excepcional;
+- coberturas Componente, Mayor y Dominante;
+- venta directa de referencia;
+- venta rápida;
+- recuperación por estado;
+- capas rúnicas integradas;
+- Encantamientos I/II/III.
+
+Resultado:
+
+- no existe caso en el rango auditado donde la venta directa ordinaria del objeto recién fabricado supere el coste material total de sus capas;
+- no existe caso donde la venta rápida supere lo necesario para producir esas capas;
+- la recuperación genérica + material + rúnica + encantada no supera la venta rápida equivalente del mismo objeto en el estado correspondiente;
+- los redondeos hacia arriba de costes y hacia abajo de ventas/recuperaciones no crean arbitraje.
+
+#### Rutas de Calidad
+
+Se auditaron:
+
+- Común -> Superior;
+- Superior -> Excepcional;
+- Común -> Excepcional directa.
+
+En ningún VR entre 1 c y 1000 o una ruta de mejora consume menos materiales que fabricar directamente la Calidad objetivo.
+
+El único desvío posible por redondeo es que una ruta por etapas cueste hasta **1 c más**, nunca menos.
+
+Por tanto no existe una secuencia rentable basada en ascender Calidad por escalones.
+
+#### Restauración de botín
+
+Comprar o recibir un objeto Dañado/Deshabilitado y repararlo puede aumentar legítimamente su valor.
+
+Esto **no se considera exploit** porque exige:
+
+- existencia real del objeto dañado;
+- materiales;
+- competencia;
+- tiempo;
+- instalación cuando corresponda;
+- comprador real para la venta posterior.
+
+CRAFT-02 no garantiza una oferta infinita de objetos dañados ni compradores.
+
+La restauración es una actividad productiva válida; el sistema sólo evita que se convierta en un bucle sin mercado ni trabajo.
+
+#### Corrección — PEI y fabricación previa
+
+PEI utiliza el **precio de catálogo del equipo terminado**.
+
+No puede convertirse en:
+
+- CM;
+- VI;
+- materias primas;
+- Encargos;
+- alquiler de taller;
+- fabricación previa implícita.
+
+Esto evita gastar 20 o de PEI como materiales y comenzar con aproximadamente 40 o de equipo terminado.
+
+Una campaña puede conceder recursos de fabricación previa, pero debe registrarlos como concesión explícita separada del PEI.
+
+#### Corrección — Tiempo Base Ajustado
+
+Se formaliza el **Tiempo Base Ajustado (TBA)**:
+
+> tiempo de receta después de aumentos obligatorios por Calidad, Material, escala u otros requisitos, pero antes de reducciones porcentuales.
+
+Salvo excepción expresa:
+
+**ninguna combinación de reducciones porcentuales baja de 25% del TBA.**
+
+Esto incluye:
+
+- Ayuda de trabajo;
+- Aceleración;
+- Mantenible;
+- herramienta motorizada;
+- otras reducciones porcentuales futuras.
+
+Un método con tiempo fijo propio —por ejemplo intercambio Modular— no es una reducción porcentual y usa su tiempo escrito.
+
+Una Aceleración fallida exige retrabajo hasta alcanzar **125% del TBA**, no 125% de un tiempo base anterior a Calidad/Material.
+
+#### Corrección — deficiencias y Ayuda
+
+Ventaja/Desventaja siguen cancelándose conforme al motor general.
+
+Sin embargo, cancelar la Desventaja en dados **no elimina las deficiencias materiales**.
+
+Una instalación o herramienta inferior puede seguir:
+
+- aumentando tiempo;
+- restringiendo métodos;
+- empeorando consecuencias;
+- haciendo imposible un procedimiento si el requisito es esencial.
+
+Una Ayuda técnica no transforma una instalación Improvisada en Profesional.
+
+#### Corrección — Base de Reparación Afectada
+
+Se formaliza la **Base de Reparación Afectada (BRA)**.
+
+Sólo entran en el porcentaje de reparación las capas que realmente deben restaurarse:
+
+- Calidad -> VRQ;
+- Material Especial -> su valor cuando la parte que sostiene la propiedad fue afectada;
+- Matriz/Runa -> valor rúnico integrado cuando esa matriz fue dañada;
+- Encantamiento -> valor encantado cuando su matriz fue afectada;
+- componente separable sustituido -> se paga como componente y se excluye de BRA para no duplicarlo.
+
+El tiempo de reparación utiliza igualmente la capa profesional más exigente que deba restaurarse.
+
+#### Corrección — disparadores múltiples
+
+Un mismo evento físico indivisible no produce varias resoluciones ordinarias contra el mismo objetivo.
+
+Ejemplos de un solo evento:
+
+- una pisada;
+- una apertura;
+- retirar un peso;
+- cruzar un punto concreto.
+
+Varias trampas sólo encadenan resoluciones si existen disparadores **distintos y secuenciales**.
+
+La misma salvaguarda se aplica a **Sellos de Custodia**.
+
+Un entramado deliberadamente combinado requiere un Perfil propio y se audita como un único efecto.
+
+#### Corrección — ataques emitidos desde un mismo objeto
+
+Una Runa/Módulo vinculados a un ataque con arma modifican por defecto una resolución que utiliza el **perfil del arma anfitriona/Host**.
+
+No se aplican automáticamente sobre:
+
+- Hechizo Vinculado;
+- descarga de Encantamiento;
+- ataque de dispositivo distinto;
+- otro ataque emitido narrativamente desde el mismo objeto.
+
+Una integración híbrida necesita Perfil expreso.
+
+Esto impide construir un único soporte y aplicar simultáneamente todos sus modificadores a una descarga que no usa el arma.
+
+#### Corrección — Sintonización
+
+La Capacidad automática de Sintonización 3 pertenece a **personajes completos**.
+
+Familiares, invocaciones, Autómatas auxiliares, monturas y vehículos no añaden otros 3 puntos salvo Perfil expreso.
+
+Además:
+
+- sólo la criatura Sintonizada puede activar Encantamientos que gasten RE;
+- sólo esa criatura recibe Pasivos Sintonizados;
+- robar, vestir o sostener el objeto no transfiere el vínculo;
+- no pueden mantenerse Sintonizados simultáneamente duplicados funcionales destinados a multiplicar la reserva del mismo efecto;
+- cambiar nombre, estética o tipo de soporte no evita la regla de duplicados.
+
+#### Corrección — recarga de RE
+
+Para rellenar RE durante un Descanso Completo:
+
+- el objeto debe estar **ya Sintonizado al comenzar el Descanso**;
+- debe permanecer Sintonizado con la misma criatura hasta terminarlo;
+- debe permanecer Operativo.
+
+Sintonizar un objeto durante ese mismo Descanso lo deja en RE 0.
+
+Esto impide cambiar la selección al final del descanso y comenzar inmediatamente con una nueva reserva completa.
+
+#### Corrección — Estabilidad y Caudal de Carga
+
+Estabilidad se aplica a la **Energía total recibida por el acumulador durante el intervalo**, sumando todas las fuentes.
+
+El Caudal de Carga de una fuente se aplica a su **entrega total a todos los receptores combinados**.
+
+Por tanto:
+
+- dos estaciones no permiten recibir dos veces Estabilidad;
+- una estación C4 no entrega 4 E a cada uno de diez acumuladores;
+- repartir la carga no multiplica Energía.
+
+Los canales independientes sólo existen si el Perfil de la infraestructura los declara.
+
+#### Corrección — coste de Sobrecarga
+
+El empeoramiento a Dañado/Deshabilitado causado por:
+
+- Sobrecarga Controlada;
+- Carga forzada;
+- otra activación que declare ese deterioro como coste;
+
+es un **coste intrínseco del procedimiento**.
+
+No puede mitigarse con:
+
+- Estabilidad Rúnica;
+- Tenacidad de material;
+- Mantenible;
+- protección genérica de estado;
+
+salvo regla que mencione expresamente esa interacción.
+
+Esto impide repetir Sobrecarga pagando sólo Maná o una protección del objeto.
+
+#### Corrección — herramientas y Kits
+
+**Herramienta especializada** satisface una herramienta ordinaria dedicada para una operación estrecha.
+
+No sustituye un **Kit profesional completo** cuando una regla exija ese Kit.
+
+Un Kit Superior sí puede registrar Herramienta especializada dentro de su propia familia.
+
+#### Corrección — dosis alquímicas
+
+Una misma exposición física resuelve normalmente **una dosis**.
+
+Apilar varias dosis en:
+
+- una hoja;
+- un proyectil;
+- un recipiente;
+- una superficie;
+- otro mismo vehículo;
+
+no produce varias tiradas o varios efectos simultáneos salvo Perfil de dosificación específico.
+
+Mezclar Fórmulas tampoco crea automáticamente un producto combinado estable.
+
+#### Corrección — Neutralizante Común
+
+Neutralizante Común adquiere Saturación **Antitóxica**.
+
+Después de beneficiarse de una dosis contra una toxina compatible, otra dosis de esa familia no concede una nueva resistencia beneficiosa hasta un Respiro efectivo.
+
+Esto bloquea la secuencia:
+
+> consumir Neutralizantes repetidamente hasta obtener una resistencia exitosa.
+
+#### Corrección — Diseño, Adaptación e Investigación
+
+Una fase genérica de **Diseño** sólo puede documentar un procedimiento que el personaje ya conoce de forma estable.
+
+No:
+
+- descubre tecnología desconocida;
+- reconstruye un objeto ajeno;
+- estabiliza un Prototipo;
+- obtiene un Patrón protegido.
+
+Esas funciones utilizan CRAFT-10.
+
+Asimismo, una **Adaptación** deja de ser adaptación rutinaria cuando intenta crear una propiedad mecánica nueva.
+
+Clasificación mínima:
+
+- conservar propiedades conocidas cambiando ajuste/configuración -> Adaptación;
+- integrar subsistemas estables sin receta conjunta -> Combinación;
+- crear propiedad nueva -> Innovación;
+- intentar excepción a límite canónico/principio desconocido -> Frontera, cuando sea viable.
+
+Renombrar una propiedad no reduce su Clase de novedad.
+
+#### Corrección — catálogo CRAFT-11
+
+REF-EQ-08 se corrige a:
+
+**Kit de Alquimia Superior preparado para campo.**
+
+La propiedad se registra para Bálsamo Restaurador, cuya preparación estable exige normalmente instalación Adecuada.
+
+La versión anterior con Kit de Infiltración y cerraduras no tenía una instalación Adecuada universal que degradar y podía resultar mecánicamente vacía.
+
+También se sincronizan en los capítulos de equipo los precios alquímicos ratificados en CRAFT-11.
+
+#### Auditoría de acciones y Reacciones
+
+Se verificó:
+
+- fabricar/reparar no se convierte en Acción salvo Perfil concreto;
+- disparador manual consume Acción;
+- uso reactivo manual usa Preparar + Reacción;
+- trampa automática paga preparación previa y dispara una vez;
+- Runa Vinculada modifica una resolución existente;
+- sólo una Impronta Vinculada afecta una resolución;
+- Módulo Vinculado modifica una resolución existente;
+- Escudo de campo consume Reacción;
+- Encantamiento conserva Acción/Reacción del hechizo;
+- un objeto Sintonizado no concede Reacciones adicionales;
+- Autómata auxiliar no posee turno independiente;
+- Familiar no genera un segundo inventario de acciones ni Sintonización;
+- un mismo disparador no multiplica ataques ordinarios.
+
+Resultado: **no se encontró una fuente universal de Acción o Reacción adicional mediante crafting**.
+
+#### Auditoría de apilamiento ofensivo
+
+Se verificó:
+
+- Calidad no aumenta Daño universalmente;
+- Golpe optimizado no se acumula con mejoras equivalentes del objeto;
+- Filo Arcano y Propulsor de Impacto respetan sus grupos;
+- Aguja Rúnica/Filo Penetrante no se suman con Cámara de penetración equivalente;
+- Cámara estándar no supera Pen 5;
+- una Runa/Módulo de arma no se monta sobre un Hechizo Vinculado sin Perfil híbrido;
+- una activación no convierte una carga de trampa en una versión superior de su perfil.
+
+Resultado: **no se encontró una cadena universal de fabricación que eleve Daño/Pen sin pagar la fuente correspondiente o ignorando el grupo de apilamiento.**
+
+#### Auditoría defensiva
+
+Se verificó:
+
+- Protección procede de armadura/perfil concreto, no de Calidad universal;
+- Barrera Cinética, Barrera Rúnica, Broche de Barrera y Escudo de campo utilizan el mejor efecto equivalente;
+- cada Reacción consume la Reacción normal;
+- Guardia y cobertura conservan sus costes/condiciones propios;
+- Sintonización no concede defensas por sí sola.
+
+Resultado: **no existe una pila universal de Barreras procedentes de múltiples CRAFT.**
+
+#### Auditoría de recursos
+
+Los tres recursos permanecen separados:
+
+**Maná personal / Reserva Encantada / Energía industrial.**
+
+No existe por regla universal:
+
+- Energía -> Maná;
+- Energía -> RE;
+- RE -> Maná;
+- Maná -> Energía;
+- reparación -> Energía;
+- desmantelamiento -> Energía.
+
+Runas pagan Maná.
+
+Encantamientos pagan RE.
+
+Dispositivos pagan Energía.
+
+Un híbrido necesita Perfil específico.
+
+#### Auditoría de recuperación
+
+Se verificó por estados:
+
+- Operativo;
+- Dañado;
+- Deshabilitado;
+- Arruinado.
+
+Para objetos con Calidad + Material Especial + componentes rúnicos + Encantamiento, la suma máxima de recuperación permitida no supera la venta rápida equivalente en el rango numérico auditado.
+
+Los componentes separables se recuperan como objetos y se excluyen de la base genérica correspondiente para evitar doble conteo.
+
+#### Auditoría del catálogo
+
+CRAFT-11 contiene exactamente **41 códigos REF únicos**:
+
+- 8 EQ;
+- 8 ALQ;
+- 2 RUN;
+- 3 MAG;
+- 4 TRP;
+- 2 CON;
+- 7 ING;
+- 5 SRV;
+- 2 INV.
+
+No existen códigos duplicados.
+
+Los totales compuestos principales se contrastaron contra sus fórmulas de origen.
+
+#### Estado posterior a correcciones
+
+Después de aplicar las correcciones de CRAFT-12:
+
+- no queda un exploit económico universal reproducible;
+- no queda un bypass universal de rango/Plano/Instalación;
+- no queda una conversión universal entre Maná, RE y Energía;
+- no queda una multiplicación universal de acciones mediante objetos/trampas/autómatas;
+- no queda un mecanismo universal para superar CapM, CRu o Sintonización;
+- no queda un bucle de recarga energética por fuentes/receptores múltiples;
+- no queda un método rutinario para tratar Prototipos como Planos;
+- no quedan referencias activas que indiquen que las ocho Fórmulas alquímicas carecen de precio.
+
+Esto no significa que **todo futuro Perfil** esté balanceado. Cada nuevo material, hechizo, Módulo, Encantamiento, criatura o artefacto sigue requiriendo auditoría contra estas fronteras.
+
+#### Resultado de cierre
+
+CRAFT-01 a CRAFT-11 quedan considerados **coherentes entre sí después de las correcciones de CRAFT-12**.
+
+CRAFT-12 queda como auditoría de regresión: cualquier regla futura que afecte crafting debe comprobar al menos:
+
+- coste material;
+- valor/reventa;
+- recuperación;
+- tiempo;
+- competencia;
+- acciones;
+- apilamiento;
+- recursos;
+- Sintonización;
+- compatibilidad con Investigación.
+
+**CRAFT-12 queda cerrado.**
+
+El siguiente bloque es **CRAFT-13 — Implementación Foundry VTT del sistema de fabricación**.
 
 
 ## 19. Economía, disponibilidad y equipo
