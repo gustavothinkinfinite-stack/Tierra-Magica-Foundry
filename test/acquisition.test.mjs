@@ -119,3 +119,23 @@ test("CREA-13 cierre: el hook de creación reutiliza el preflight físico común
   assert.equal(source.includes("preflightPhysicalPurchase({"),true);
   assert.equal(source.includes('["weapon","armor","shield","equipment","formula","device"]'),false);
 });
+
+
+test("CREA-14: una opción marcada creation-locked no puede adquirirse en creación estándar",()=>{
+  const actor={system:{creation:{revision:0,status:"building"},skills:{}},items:[]};
+  const candidate={type:"trait",name:"Familiar Mágico",system:{
+    slug:"familiar-magico",
+    tags:["creation-locked"],
+    costs:[
+      {context:"creation",resource:"pr",amount:3},
+      {context:"progression",resource:"pd",amount:6}
+    ],
+    rules:[]
+  }};
+  const creation=preflightAcquisition({actor,candidate,stage:"creation",expectedRevision:0});
+  assert.equal(creation.valid,false);
+  assert.ok(creation.issues.some((issue)=>issue.code==="creation-locked"));
+
+  const progression=preflightAcquisition({actor,candidate,stage:"progression",expectedRevision:0});
+  assert.equal(progression.issues.some((issue)=>issue.code==="creation-locked"),false);
+});
