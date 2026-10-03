@@ -6805,6 +6805,8 @@ Durante cada intervalo de 10 minutos:
 
 Si varias fuentes intentan cargar el mismo acumulador durante el mismo intervalo, sus aportes se suman **antes** de aplicar Estabilidad. Varias fuentes no permiten recibir varias veces la Estabilidad.
 
+Del mismo modo, el **Caudal de Carga de una fuente es su entrega total por intervalo a todos los receptores combinados**, salvo que su Perfil declare canales independientes. Dividir una Estación de Caudal 4 entre dos acumuladores no permite entregar 4 E a cada uno: reparte un máximo total de 4 E.
+
 La transferencia no crea Energía.
 
 Si otro acumulador actúa como fuente:
