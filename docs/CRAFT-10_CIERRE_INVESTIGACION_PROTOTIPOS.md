@@ -256,3 +256,15 @@ El sistema permite investigación real de campaña:
 sin separar la invención del resto de economía, progresión y crafting.
 
 **CRAFT-10 queda cerrado.**
+
+## Adenda de auditoría CRAFT-12
+
+CRAFT-12 impide rebajar artificialmente la Clase de novedad:
+
+- Adaptación conserva propiedades mecánicas ya estabilizadas;
+- integrar subsistemas estables sin receta conjunta es como mínimo **Combinación**;
+- crear una propiedad nueva es como mínimo **Innovación**;
+- una excepción a un límite canónico o principio no comprendido es **Frontera** cuando sea viable.
+
+Además, una fase genérica de Diseño de CRAFT-01 sólo puede documentar conocimiento ya estable: no sustituye ingeniería inversa, Investigación, Prototipo, Validación ni Réplica.
+
