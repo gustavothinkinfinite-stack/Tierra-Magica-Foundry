@@ -4618,10 +4618,12 @@ Quitar una modificación sin reemplazarla libera su CapM cuando sea físicamente
 | **Silenciosa** | armadura o equipo corporal compatible | el objeto no causa por sí solo Desventaja a Sigilo por el ruido ordinario de movimiento; correr, golpear superficies u otras fuentes de ruido siguen siendo relevantes |
 | **Articulada** | armadura con FUE mínima 1+ | si el usuario está exactamente 1 punto por debajo de la FUE mínima, elimina sólo la Desventaja física causada por esa insuficiencia; Movimiento -1 y Carga Pesada permanecen |
 | **Bloqueo afinado** | escudo con Bloqueo | la Reacción Bloqueo concede +3 Defensa en vez de +2 |
-| **Herramienta especializada** | herramienta o Kit | elige una operación profesional estrecha y registrada; el objeto satisface el requisito de herramienta ordinaria dedicada para esa operación, pero no sustituye Habilidad, materiales ni instalación |
+| **Herramienta especializada** | herramienta o Kit | elige una operación profesional estrecha y registrada; el objeto satisface el requisito de **una herramienta ordinaria dedicada** para esa operación, pero no sustituye Habilidad, materiales, instalación ni un **Kit completo** cuando la regla exija expresamente ese Kit |
 | **Preparada para campo** | herramienta o Kit | elige una operación registrada cuyo mínimo normal sea instalación Adecuada; si físicamente puede ejecutarse en una instalación Improvisada, ignora la Desventaja causada **sólo** por ese déficit de un grado; otros déficits permanecen |
 
 Los modificadores numéricos de esta tabla pertenecen a la fuente **manufactura del objeto**. No se suman con otra propiedad de manufactura que modifique exactamente la misma magnitud en la misma resolución.
+
+**Herramienta especializada y Kits.** Si una operación exige expresamente un Kit profesional —Médico, Alquimia, Ingeniería u otro— una herramienta individual con Herramienta especializada no reemplaza el conjunto. Un Kit Superior sí puede registrar Herramienta especializada para una operación estrecha dentro de su propia familia.
 
 #### Catálogo inicial — Modificaciones de 2 puntos
 
