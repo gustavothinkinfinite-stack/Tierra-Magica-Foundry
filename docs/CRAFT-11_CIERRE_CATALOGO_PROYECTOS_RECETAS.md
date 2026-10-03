@@ -226,5 +226,6 @@ El catálogo queda preparado para crecer copiando la receta más cercana y modif
 CRAFT-12 corrigió dos entradas del catálogo:
 
 - REF-EQ-08 pasa a ser **Kit de Alquimia Superior preparado para campo**, aplicado a Bálsamo Restaurador, porque esa Fórmula sí posee instalación Adecuada como requisito normal;
-- **Neutralizante Común** adquiere Saturación **Antitóxica**, impidiendo encadenar dosis para repetir resistencias con Ventaja hasta forzar éxito.
+- **Neutralizante Común** adquiere Saturación **Antitóxica**, impidiendo encadenar dosis para repetir resistencias con Ventaja hasta forzar éxito;
+- una misma exposición física consume/resuelve una sola dosis salvo Perfil específico de dosificación; apilar varias dosis en el mismo vehículo no multiplica tiradas ni efectos.
 
