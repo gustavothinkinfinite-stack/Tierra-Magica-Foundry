@@ -1,6 +1,8 @@
 # Foundry T.M. — Manual Básico 1.0 Playtest
 
 > **Documento histórico de cierre mecánico 1.0.** Su contenido vigente fue integrado en `docs/Tierra_Magica_Manual_Maestro.md`, que desde 2026-09-27 es la única fuente activa. Este archivo se conserva para trazabilidad y no debe editarse como fuente paralela.
+>
+> **Nota 2026-10-03:** cualquier texto histórico de este archivo que trate pueblos/orígenes como puramente narrativos o sin paquetes raciales quedó superado. Los únicos paquetes raciales vigentes están en el Manual Maestro, sección 3 > Paso 1.
 
 ## Núcleo
 Prueba: **2d10 + Atributo + Habilidad + modificadores ≥ DF**. Ventaja 3d10 mejores 2; Desventaja 3d10 peores 2; no acumulan. DF 8/10/12/14/16/18/20/22/24+ = muy favorable bajo presión/sencilla/moderada/demandante/difícil/muy difícil/extraordinaria/heroica/sobrenatural. Grados de una prueba con DF: Fallo si el margen es negativo; éxito Ajustado con margen 0–4, Claro con margen 5–9 y Dominante con margen 10+. No se repite una prueba idéntica sin un cambio significativo de situación. Hazaña = **10+10 natural en los dos dados conservados**. Pifia = **1+1 natural en los dos dados conservados**. Ventaja/Desventaja solo consideran los dos dados conservados. Primero se determina éxito o fallo y después el resultado extraordinario: una Hazaña no convierte un fallo en éxito y una Pifia no convierte un éxito en fallo. Por tanto existen éxito, fallo, éxito+Hazaña, fallo+Hazaña, éxito+Pifia y fallo+Pifia cuando la combinación sea matemáticamente posible.
