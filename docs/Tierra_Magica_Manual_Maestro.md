@@ -3767,7 +3767,9 @@ Cuando una entrada indique **Plano requerido**, debe cumplirse una de estas cond
 
 - el personaje dispone de un Plano estable y comprensible;
 - conoce de forma estable ese diseño por aprendizaje previo expresamente reconocido;
-- completa primero una fase válida de Diseño que produzca el Plano necesario.
+- documenta mediante una fase válida de Diseño un procedimiento que **ya conoce de forma estable** y que sólo necesitaba formalizar.
+
+Una fase genérica de Diseño **no descubre tecnología desconocida, no reconstruye un objeto ajeno y no estabiliza una innovación**. Si el procedimiento no es ya conocimiento estable del personaje —por ser nuevo, incompleto, protegido, experimental o derivado de ingeniería inversa— debe utilizar **CRAFT-10** hasta producir el Plano/Fórmula/Patrón estable correspondiente.
 
 Poseer un Plano no concede el rango de Habilidad, Especialización, materiales, herramientas ni instalaciones exigidos.
 
