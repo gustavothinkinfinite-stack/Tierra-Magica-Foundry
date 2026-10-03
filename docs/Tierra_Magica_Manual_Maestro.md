@@ -3942,7 +3942,8 @@ Cuando una deficiencia admite un método alternativo plausible:
 - una instalación **un grado** por debajo de la requerida puede permitir el intento con **Desventaja**, si el procedimiento puede ejecutarse materialmente;
 - una instalación **dos o más grados** por debajo vuelve el procedimiento imposible salvo regla o método específico;
 - una herramienta inferior o sustituta puede producir Desventaja cuando siga permitiendo el trabajo;
-- varias deficiencias no acumulan múltiples Desventajas, conforme a la regla general;
+- varias deficiencias no acumulan múltiples Desventajas, conforme a la regla general, **pero siguen existiendo como condiciones separadas**: pueden aumentar tiempo, restringir métodos, agravar consecuencias o volver el procedimiento materialmente imposible;
+- recibir Ventaja de Ayuda técnica puede cancelar la Desventaja en los dados, pero **no convierte herramientas/instalación deficientes en adecuadas ni elimina sus demás consecuencias**;
 - la misma causa no aplica simultáneamente Desventaja y un aumento automático de DF.
 
 La sustitución de materiales sólo es válida si el material alternativo puede cumplir físicamente la función. Cuando cambie las propiedades del resultado o exija rediseño, se trata como adaptación y se aplican las reglas específicas de materiales y modificaciones.
@@ -4007,7 +4008,7 @@ La aceleración universal:
 
 **Éxito:** la etapa se completa en el tiempo reducido.
 
-**Fallo:** la etapa no se pierde, pero la prisa genera retrabajo; terminarla requiere tiempo adicional hasta que el tiempo total invertido alcance **125% del tiempo base original** de esa etapa, salvo que una consecuencia física concreta exija otra cosa.
+**Fallo:** la etapa no se pierde, pero la prisa genera retrabajo; terminarla requiere tiempo adicional hasta que el tiempo total invertido alcance **125% del TBA** de esa etapa, salvo que una consecuencia física concreta exija otra cosa.
 
 **Pifia:** además del retrabajo, se aplica una complicación material, técnica o de seguridad que ya fuera plausible para el procedimiento. No destruye automáticamente el proyecto completo.
 
