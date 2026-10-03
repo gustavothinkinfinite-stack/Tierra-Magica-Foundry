@@ -73,7 +73,7 @@ Los defectos nunca financian beneficios.
 7. Silenciosa.
 8. Articulada.
 9. Bloqueo afinado.
-10. Herramienta especializada.
+10. Herramienta especializada — cubre una herramienta dedicada estrecha; no sustituye un Kit completo exigido expresamente.
 11. Preparada para campo.
 
 ## Modificaciones de 2 CapM
@@ -110,7 +110,7 @@ Propiedades equivalentes provenientes de otras fuentes no se acumulan por defect
 Para Superior/Excepcional:
 
 - venta y estado usan VRQ;
-- reparación material usa VRQ;
+- reparación material usa la **Base de Reparación Afectada (BRA)**; para una pieza cuya Calidad deba preservarse, esa capa parte de VRQ;
 - reparación temporal usa el tiempo de fabricación de esa Calidad;
 - preservar Calidad requiere competencia suficiente para esa Calidad;
 - desmantelamiento genérico sigue usando VR Común, no VRQ.
