@@ -6801,7 +6801,9 @@ Una fuente de carga debe definir **Caudal de Carga**.
 
 Durante cada intervalo de 10 minutos:
 
-**Energía transferida <= min(Caudal de Carga de la fuente, Estabilidad del acumulador objetivo, espacio libre de Energía).**
+**Energía total recibida por el acumulador <= min(Caudal de Carga total disponible, Estabilidad del acumulador objetivo, espacio libre de Energía).**
+
+Si varias fuentes intentan cargar el mismo acumulador durante el mismo intervalo, sus aportes se suman **antes** de aplicar Estabilidad. Varias fuentes no permiten recibir varias veces la Estabilidad.
 
 La transferencia no crea Energía.
 
