@@ -206,6 +206,8 @@ Los siguientes doce paquetes son la lista jugable base actual. Variantes cultura
 
 ##### Humanos
 
+**Trasfondo.** Las tradiciones de Aster recuerdan a los Humanos como los **Hijos del Camino**, nacidos de la Primera Elección. Aster creó una sola Humanidad y se negó a imponerle una función primordial estrecha; por eso no existen subrazas humanas divinas originales. Las diferencias humanas actuales proceden de migraciones, climas, culturas, mezclas poblacionales, magia, religión, guerras, aislamiento, alimentación, historia y adaptación. El **Don sin Forma** expresa amplitud de posibilidades, no superioridad: un Humano puede seguir casi cualquier profesión, culto o disciplina, pero no recibe por ello fuerza, longevidad, sentidos o resistencia sobrenaturales.
+
 - **Escala:** Mediana.
 - **Movimiento:** 6.
 - Anatomía y sentidos humanoides ordinarios.
@@ -213,6 +215,8 @@ Los siguientes doce paquetes son la lista jugable base actual. Variantes cultura
 - Los Humanos no poseen subrazas divinas originales. Su diversidad procede de migraciones, climas, culturas, mezclas, magia, religión, guerras, aislamiento, alimentación, historia y adaptación.
 
 ##### Enanos
+
+**Trasfondo.** Los Enanos son los **Hijos de la Piedra**, la creación más deliberada atribuida a Khorun durante la Primera Forja. Los mitos dicen que el Primer Forjador formó sus huesos con piedra, fortaleció su sangre con metal, les dio voluntad con el fuego profundo y después les entregó herramientas. Por eso la creación material ocupa un lugar central en muchas sociedades enanas, aunque no determina la profesión individual. Las tradiciones distinguen Enanos de Montaña, Profundos, de Forja y Errantes; son historias y culturas distintas, no castas mecánicas obligatorias.
 
 - **Escala:** Pequeña.
 - **Movimiento:** 5.
@@ -222,6 +226,8 @@ Los siguientes doce paquetes son la lista jugable base actual. Variantes cultura
 
 ##### Élficos
 
+**Trasfondo.** Los Élficos son los **Hijos de la Savia** de Eïra. El canon describe un único Pueblo Élfico Primordial del que, tras milenios de migraciones, guerras, filosofías, culturas y exposición a distintas formas de magia, surgieron Altos Elfos, Elfos Silvanos, Elfos Oscuros y numerosas poblaciones comunes o mixtas. Los Altos Elfos desarrollaron tradiciones de estudio y transformación deliberada; los Silvanos integraron sus asentamientos con ecosistemas vivos sin rechazar necesariamente la tecnología; los Oscuros descienden de poblaciones adaptadas a las profundidades y su oscuridad no determina moralidad. La identidad élfica no impone profesión, religión ni conducta.
+
 - **Escala:** Mediana.
 - **Movimiento:** 6.
 - **Sentidos Élficos:** +1 PER únicamente para distinguir detalles naturales sutiles por vista u oído cuando esas señales sean determinantes. No es +1 PER general, no mejora iniciativa ni ataques.
@@ -229,6 +235,8 @@ Los siguientes doce paquetes son la lista jugable base actual. Variantes cultura
 - Alto, Silvano, Oscuro o Común describen tradiciones, poblaciones e historias; no conceden INT, AGI, Naturaleza, Sigilo, magia ni moral automática.
 
 ##### Orcos
+
+**Trasfondo.** Los Orcos son los **Hijos del Colmillo**, una de las cuatro respuestas de Varkor al conflicto. Representan fuerza dirigida por voluntad: poder físico, disciplina, determinación y capacidad de continuar cuando otros abandonan. Sus sociedades pueden ser imperios militares, confederaciones tribales, pueblos nómadas, guardianes fronterizos, compañías mercenarias, órdenes profesionales o comunidades que consideran la violencia un último recurso porque conocen su coste. Ningún Orco nace moralmente malvado y la herencia de Varkor no obliga a vivir como guerrero.
 
 - **Escala:** Mediana.
 - **Movimiento:** 6.
@@ -238,21 +246,23 @@ Los siguientes doce paquetes son la lista jugable base actual. Variantes cultura
 
 ##### Goblinoides
 
+**Trasfondo.** Los Goblinoides son los **Hijos del Ojo** de Varkor. Su mito de origen nace de una idea simple: el más fuerte no siempre vence. Terreno, números, información, emboscada, logística, tecnología, engaño y planificación pueden derrotar a un enemigo físicamente superior. Por eso la familia goblinoide expresa la astucia aplicada al conflicto, sin imponer una moral o profesión concreta.
+
 Todos los Goblinoides jugables comparten:
 
 - **Ojo para la Oportunidad:** 1 vez por Escena, antes de una prueba, obtiene +1 si explota una oportunidad concreta surgida de información recién obtenida, un cambio real de situación o una debilidad concreta ya descubierta. No crea información, no revela debilidades ocultas y no puede reutilizar la misma circunstancia como oportunidades distintas.
 
-**Goblin**
+**Goblin.** Pequeños, rápidos, sociales y muy adaptables. Históricamente aparecen como exploradores, comerciantes, inventores, saboteadores, mineros, tiradores, mecánicos, alquimistas o espías; esas ocupaciones son posibilidades culturales, no competencias gratuitas.
 - **Escala:** Pequeña.
 - **Movimiento:** 6.
 - **Escurridizo:** puede atravesar el espacio ocupado por una criatura Mediana o mayor cuando exista espacio físico suficiente. Ese tránsito cuenta como terreno difícil y no puede terminar el movimiento dentro del espacio ajeno. No atraviesa barreras ni anula Reacciones que otra regla habilite.
 
-**Hobgoblin**
+**Hobgoblin.** Su identidad histórica más reconocida es la organización: ejércitos, administraciones, fortificaciones, sistemas logísticos y cadenas de mando. Esa disciplina es principalmente cultural; también pueden formar repúblicas, ligas defensivas, gremios u órdenes profesionales.
 - **Escala:** Mediana.
 - **Movimiento:** 6.
 - Su disciplina organizada es principalmente cultural. No recibe Liderazgo, armas, Ingeniería, logística ni otras competencias gratuitas. Mecánicamente utiliza Ojo para la Oportunidad sin un segundo bono profesional obligatorio.
 
-**Bugbear**
+**Bugbear.** Grandes goblinoides asociados históricamente a la caza, el sigilo, la emboscada y el combate de aproximación. Su combinación de tamaño y discreción contradice la idea de que toda criatura poderosa deba combatir frontalmente, pero esas asociaciones no conceden entrenamiento automático.
 - **Escala:** Mediana, en el extremo superior de esa categoría para el paquete básico.
 - **Movimiento:** 6.
 - **Complexión Bugbear:** se trata como Grande únicamente para Carga y fuerza bruta contra objetos inertes. No obtiene alcance, daño, maniobras, Defensa ni armas de criatura Grande.
@@ -261,6 +271,8 @@ Todos los Goblinoides jugables comparten:
 Los Kobolds no forman parte del paquete jugable base actual. Su origen permanece deliberadamente abierto hasta cerrar la cosmología dracónica.
 
 ##### Terios / Anihombres
+
+**Trasfondo.** Los Terios son los **Hijos de la Sangre** de Eïra: pueblos humanoides de ascendencia animal que nacen como tales y no como humanos transformados. Un Terio lupino, por ejemplo, no es un hombre lobo; licantropía, maldición, transformación o pacto son fenómenos distintos. Su diversidad se organiza como **Terio → Linaje → Variedad**, y la anatomía debe ser funcional: trompas, caparazones, garras, alas, branquias o sentidos existen como partes reales del cuerpo cuando el linaje los posee. La ascendencia animal no determina personalidad, moral, inteligencia, profesión ni cultura.
 
 Los Terios son pueblos nacidos con anatomías animales funcionales; no son humanos transformados y una ascendencia animal no determina personalidad ni profesión.
 
@@ -286,31 +298,35 @@ Los Terios son pueblos nacidos con anatomías animales funcionales; no son human
 
 ##### Feéricos
 
+**Trasfondo.** Los Feéricos son los **Hijos de la Hoja** de Eïra y constituyen una gran familia, no una sola especie. En ellos la separación entre cuerpo, magia y naturaleza nunca llegó a ser completa. El canon incluye Hadas, Sátiros, Dríades, Trents, Náyades, Nereidas, Silfos, duendes del bosque, linajes centáuricos, espíritus florales y ramas estacionales. No todo espíritu natural es Feérico y no todo Feérico es un espíritu; pertenecer a esta familia tampoco obliga a venerar a Eïra ni concede magia entrenada.
+
 **Naturaleza Feérica** es un descriptor sobrenatural compartido: determinados hechizos, rituales, barreras o fenómenos pueden reconocer a una criatura como Feérica. No concede por sí mismo Maná, Fuente, Disciplina, resistencia mágica ni Vínculo con Eïra.
 
-**Hada**
+**Hada.** Feéricos pequeños, frecuentemente alados y asociados históricamente a una relación intensa con la magia natural. El paquete básico representa su movilidad corporal sin convertir esa afinidad en hechizos gratuitos.
 - **Escala:** Pequeña.
 - **Movimiento terrestre:** 5.
 - **Movimiento aéreo inicial:** 6. Debe comenzar y terminar cada turno apoyada en una superficie capaz de sostenerla o permitirle posarse. Puede cruzar huecos y desniveles, pero no permanecer suspendida al terminar el turno. Carga Pesada o Excesiva impide usar este Movimiento aéreo.
 
-**Sátiro**
+**Sátiro.** Feéricos de rasgos caprinos presentes en múltiples tradiciones ligadas a bosques, música, emociones, fertilidad o celebración. Esas asociaciones son culturales y míticas: no determinan personalidad ni competencia social.
 - **Escala:** Mediana.
 - **Movimiento:** 6.
 - **Paso de Cabra:** raíces, roca irregular, pendientes naturales pronunciadas y desniveles menores no aumentan el coste de Movimiento cuando sean físicamente transitables. No concede trepa vertical, salto imposible ni equilibrio automático.
 - **Cuernos:** arma natural, Daño 3, Penetración 0.
 
-**Dríade**
+**Dríade.** Feéricos vinculados originalmente a árboles concretos y, en algunos linajes, a arboledas o bosques enteros. Su relación arbórea es distinta de la biología autónoma de los Verdantes.
 - **Escala:** Mediana.
 - **Movimiento:** 6.
 - **Vínculo Arbóreo:** mediante contacto con vegetación significativa perteneciente a su vínculo puede conocer su estado general: saludable, dañada, enferma, ardiendo, muriendo o afectada por magia evidente. No concede sentidos remotos, diálogo, ubicación, historia ni identificación del efecto.
 - **Enraizar:** Acción sobre suelo apropiado; mientras permanece enraizada se considera +1 categoría de Escala efectiva sólo para resistir Empujar, Derribar y desplazamiento físico impuesto. Liberarse cuesta 1 punto de Movimiento.
 
-**Silfo**
+**Silfo.** Feéricos vinculados a vientos, alturas y tormentas. Esa relación natural no equivale por sí sola a dominar Evocación, volar indefinidamente ni poseer una Fuente mágica.
 - **Escala:** Mediana.
 - **Movimiento:** 6.
 - **Cuerpo del Viento:** ignora penalizaciones de desplazamiento causadas únicamente por viento mundano ordinario y se considera +1 categoría de Escala efectiva sólo para resistir Empujar causado por viento. No concede vuelo sostenido ni inmunidad a tormentas o magia.
 
 ##### Ankar
+
+**Trasfondo.** Vaelun creó a los Ankar como **Guardianes del Umbral** cuando descubrió que las almas podían perderse, ser retenidas, devoradas o esclavizadas durante el tránsito. Su misión primordial se resume en: «Que ningún alma sea tomada contra su voluntad». Son humanoides altos y esbeltos de rasgos cánidos estilizados y no deben confundirse con un Terio Chacal. Muchas tradiciones Ankar se articulan alrededor de **Recordar, Custodiar y Dejar Partir**, pero conocer la muerte o los espíritus no obliga a ser sacerdote funerario, nigromante ni cazador de No Muertos.
 
 - **Escala:** Mediana.
 - **Movimiento:** 6.
@@ -319,6 +335,8 @@ Los Terios son pueblos nacidos con anatomías animales funcionales; no son human
 - Ser Ankar no concede Religión, Medicina, Ritualismo, Arcana ni magia divina.
 
 ##### Cristálidos
+
+**Trasfondo.** Los Cristálidos figuran entre los pueblos posteriores ligados a la **Primera Forja**. Nacieron en regiones con enormes concentraciones de minerales arcanos y pueden ser parcial o completamente cristalinos. Sus cuerpos interactúan de forma natural con determinadas corrientes mágicas, razón por la que aparecen con frecuencia en estudios sobre acumuladores, conducción y materiales arcanos; esa afinidad no los convierte automáticamente en magos, ingenieros o baterías vivientes.
 
 Para el Manual Básico jugable se utiliza la variante **Cristálido de Matriz Mixta**. Los Cristálidos completamente cristalinos siguen existiendo en el mundo, pero su fisiología jugable avanzada queda fuera de este paquete.
 
@@ -329,6 +347,8 @@ Para el Manual Básico jugable se utiliza la variante **Cristálido de Matriz Mi
 - **Conductor Vivo:** puede actuar voluntariamente como puente conductor cuando un dispositivo, ritual, proyecto o fenómeno compatible esté diseñado para admitirlo. Esto no genera Maná, no crea Reserva o Caudal, no sustituye materiales, Fuente, Método, Arcana, Ingeniería o Canalización y no concede inmunidad a sobrecarga.
 
 ##### Verdantes
+
+**Trasfondo.** Los Verdantes son pueblos naturales posteriores a los Tres Primeros Pueblos de Eïra. Son formas de vida vegetales móviles y conscientes, distintas tanto de las Dríades feéricas como de los Trents. Sus linajes se han adaptado a selvas, desiertos, pantanos, tundras y otros ecosistemas, por lo que no existe una única apariencia ni una cultura verdante universal. Su biología no los obliga a ser guardianes de la naturaleza, sacerdotes de Eïra ni habitantes de regiones salvajes.
 
 Los Verdantes son organismos vegetales móviles y conscientes, distintos de Dríades y Trents.
 
@@ -341,6 +361,8 @@ Los Verdantes son organismos vegetales móviles y conscientes, distintos de Drí
 
 ##### Micelios
 
+**Trasfondo.** Los Micelios surgieron de grandes redes de hongos y micelio extendidas por distintos ecosistemas. No son plantas ni animales. Algunas comunidades desarrollaron formas de compartir información química, sensorial o incluso mágica mediante redes subterráneas extensas, pero eso no convierte a todos los Micelios en una mente colectiva: individuo, comunidad y red siguen siendo conceptos distintos.
+
 Los Micelios son organismos fúngicos conscientes; no son plantas ni animales.
 
 - **Escala:** Mediana.
@@ -351,6 +373,8 @@ Los Micelios son organismos fúngicos conscientes; no son plantas ni animales.
 - Redes comunitarias extensas capaces de transmitir información compleja o mágica son infraestructura, no una capacidad gratuita de todo Micelio.
 
 ##### Coralios
+
+**Trasfondo.** Los Coralios nacieron de antiguos arrecifes transformados por la **Primera Semilla**. Sus pueblos pueden formar comunidades y ciudades vivientes bajo el mar, vinculadas a ecosistemas coralinos y a la circulación de magia oceánica. Esa procedencia común no implica una sola cultura, religión o modo de vida, y los Coralios que viven en puertos, costas o asentamientos de superficie siguen perteneciendo plenamente a su pueblo.
 
 Los Coralios son pueblos biológicos coralinos y anfibios vinculados históricamente a arrecifes transformados por la Primera Semilla.
 
@@ -9489,23 +9513,33 @@ CRAFT-03 aclara que fabricar desde cero para un usuario conocido incluye el ajus
 
 **crowns** es un campo legado obsoleto, no una cuarta moneda canónica. No tiene equivalencia automática. Foundry preserva el valor original y marca el Actor como pendiente hasta que una persona indique explícitamente cuántos cobres vale 1 crown o confirme que debe archivarse sin convertirlo. Nunca se suma crowns silenciosamente a un saldo canónico existente.
 
-## 20. Pueblos, herencias, culturas y orígenes
+## 20. Pueblos jugables, herencias, culturas y orígenes
 
 ### Regla mecánica vigente
 
-Tierra Mágica **no utiliza paquetes mecánicos obligatorios ni gratuitos por pueblo, especie, cultura u Origen**. Todos los personajes se construyen sobre la misma economía de **25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o**.
+Los **12 paquetes raciales jugables v0.3** están definidos de forma completa en **3. Creación de personaje > Paso 1 — Concepto, pueblo/herencia y origen**. Esa es la sección operativa para crear un PJ y contiene, para cada pueblo, un resumen de trasfondo seguido de sus reglas.
 
-Los pueblos y Orígenes describen identidad, procedencia, idioma, costumbres, anatomía, contactos, posición social, creencias y ficción. No conceden automáticamente Atributos, Habilidades, PD, PR, Defensa, Vida, Maná, acciones, Técnicas, Disciplinas, hechizos ni competencias.
+Los paquetes raciales se equilibran aparte de los **25 PD** y los **3 PR generales**. Representan anatomía, fisiología, sentidos, movimiento, adaptaciones y relaciones sobrenaturales innatas. No conceden rangos gratuitos de Habilidad ni aumentos generales de Atributo salvo que una regla futura lo diga expresamente.
 
-Las diferencias que realmente tengan efecto mecánico se representan mediante las reglas universales existentes:
+La lista jugable base actual es: **Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios/Anihombres, Feéricos, Ankar, Cristálidos, Verdantes, Micelios y Coralios**.
 
-- **Rasgos** para propiedades persistentes como visión especial, respiración acuática, trepa, corpulencia, miembros extraordinarios, afinidad sobrenatural o resistencia ambiental.
-- **Escala** cuando el tamaño corporal sea realmente distinto.
-- **Habilidades, Especializaciones y Técnicas** para entrenamiento.
-- **Equipo** para recursos materiales.
-- **Magia** para capacidades sobrenaturales aprendidas o vinculadas.
+### Raza, cultura y origen son capas distintas
 
-Un mismo beneficio no se obtiene gratis por identidad narrativa y se compra otra vez como Rasgo. Tampoco una desventaja racial u originaria genera PR adicionales.
+Pueblo o raza no equivale a cultura, nación, profesión, religión, personalidad ni moral. Un Enano no tiene que ser herrero; un Orco no tiene que ser soldado; un Elfo no tiene que ser mago; un Ankar no tiene que ser sacerdote funerario; un Verdante no tiene que vivir en un bosque.
+
+La cultura explica educación, costumbres, instituciones, idioma, valores, tradiciones y conocimientos adquiridos. El Origen explica de dónde viene el personaje y qué experiencias formaron su historia. Profesión, Habilidades, Especializaciones, Técnicas, magia y equipo representan lo que aprendió a hacer.
+
+### Diversidad interna
+
+Ninguno de los doce pueblos jugables constituye una cultura única. Las grandes ciudades de Tierra Mágica son diversas, las fronteras cambiaron muchas veces y familias enteras han migrado siguiendo guerras, rutas, minas, oportunidades, persecuciones o alianzas.
+
+Las variantes internas —como Altos Elfos, Silvanos y Oscuros; Enanos de Montaña, Profundos, de Forja y Errantes; Goblins, Hobgoblins y Bugbears; linajes Terios; o las distintas ramas Feéricas— describen historias, anatomías o culturas concretas. Sólo modifican reglas cuando el paquete racial lo indica expresamente.
+
+### Trasfondo ampliado
+
+Los resúmenes incluidos en creación permiten elegir una raza sin tener que abandonar el procedimiento de creación. El trasfondo cosmológico e histórico más amplio se desarrolla en las secciones de la **Primera Semilla, Primera Forja, Primera Guerra, Primera Elección y Primer Tránsito**, además del canon integrado de las Partes II y III.
+
+Ese material narrativo amplía contexto, mitos, linajes y relaciones entre pueblos, pero no crea bonificadores ocultos ni sustituye las reglas del paquete racial de creación.
 
 ### Cultura y origen
 
@@ -9515,13 +9549,11 @@ Puede justificar que el personaje compre determinadas Habilidades, Especializaci
 
 ### Profesiones
 
-La profesión u oficio describe la trayectoria del personaje. No constituye una clase. Un «soldado», «ingeniera», «sanador», «exploradora», «alquimista» o «canalizador» se define por cómo gasta sus PD, PR y Coronas, no por un paquete obligatorio.
+La profesión u oficio describe la trayectoria del personaje. No constituye una clase. Un soldado, ingeniera, sanador, exploradora, alquimista o canalizador se define principalmente por cómo gasta sus PD, PR y recursos, no por una profesión obligatoria asociada a su raza.
 
-### Pueblos y diversidad
+### Herencias mixtas
 
-El canon reconoce numerosos pueblos y linajes. Su historia, culturas y relaciones se desarrollan en la Parte II y en la mitología recuperada de la Parte III. Que una tradición atribuya un origen divino a un pueblo no obliga a sus miembros a seguir una religión, moral, profesión o cultura concreta.
-
-Una herencia mixta debe ser coherente en anatomía y ficción. No sirve para sumar gratuitamente todas las ventajas potenciales de dos linajes. Si una propiedad extraordinaria tiene efecto mecánico, se representa mediante la economía universal correspondiente.
+Una herencia mixta debe ser coherente con la anatomía, biología, magia y ficción establecidas. No sirve para sumar gratuitamente todos los beneficios de dos paquetes. La compatibilidad reproductiva o mágica entre determinados pueblos continúa abierta allí donde el canon no la haya definido; no se asumen automáticamente semielfos, semiorcos u otros linajes hasta que esa compatibilidad sea consolidada.
 
 ## 21. Guía narrativa de Origen y pertenencia
 
@@ -10377,8 +10409,9 @@ Fin del Canon del Mundo v1.2
 
 ## 20. Lore e Historia: La Primera Semilla
 ESTADO CANÓNICO v0.1: Eïra, la Primera Semilla y el origen de los primeros pueblos naturales
-quedan incorporados al canon de Tierra Mágica. Los detalles de culto, avatares, milagros y
-paquetes raciales se desarrollarán en módulos posteriores.
+quedan incorporados al canon de Tierra Mágica. Los detalles de culto, avatares y milagros
+permanecen abiertos donde no fueron consolidados; los paquetes raciales jugables vigentes están
+integrados en 3. Creación de personaje > Paso 1.
 Eïra, la Madre de la Primera Semilla
 Eïra es la primera deidad desarrollada formalmente para el panteón de Tierra Mágica. Es la creadora de los
 primeros pueblos vinculados a la naturaleza y la divinidad asociada a la Semilla Primordial de Naturaleza. Su
@@ -10492,9 +10525,8 @@ Insectoides escarabajos, mantis, abejas, mariposas y otros insectos
 Principio anatómico. Los rasgos de cada linaje deben ser funcionales. Un Terio elefante necesita una
 estructura capaz de sostener su masa y una trompa realmente utilizable; un Terio tigre conserva sentidos,
 garras, dentición, cola y musculatura coherentes; un Terio tortuga integra su caparazón en la anatomía; y un
-Terio aviano solo puede volar si su estructura corporal puede sostener ese vuelo. Las reglas raciales futuras
-deberán representar estas diferencias mediante anatomía, sentidos, movimiento y adaptaciones, no
-únicamente con bonificadores numéricos.
+Terio aviano solo puede volar si su estructura corporal puede sostener ese vuelo. Las reglas raciales vigentes representan estas diferencias mediante anatomía, sentidos, movimiento y
+adaptaciones, no únicamente con bonificadores numéricos.
 Otros hijos de la Primera Semilla
 Feéricos, Élficos y Terios son recordados como los Tres Primeros Pueblos. La Primera Semilla continuó, sin
 embargo, extendiendo vida y conciencia por distintos ecosistemas. De ese proceso surgieron otros pueblos
@@ -10518,7 +10550,7 @@ Eïra y la magia divina
 Dentro del sistema de Foundry T.M., Eïra puede actuar como Fuente Divina para personajes que posean un
 Vínculo Divino apropiado. Sus dominios naturales pueden condicionar juramentos, ritos, milagros y
 restricciones, pero esas capacidades se definirán cuando se desarrolle el módulo completo de dioses y magia
-divina. No se asignan todavía bonos raciales, hechizos exclusivos ni costes mecánicos nuevos en este capítulo.
+divina. Este capítulo no redefine los paquetes raciales ni concede hechizos exclusivos: las reglas raciales vigentes están en 3. Creación de personaje > Paso 1.
 Religión jugable de Eïra
 Dogma central
 La vida debe poder nacer, crecer, competir, adaptarse, morir y renovarse. Ninguna de esas etapas debe aislarse
@@ -11128,8 +11160,8 @@ descubrimiento, conocimiento, creación, fundación o legado. Los milagros y res
 definirán cuando se diseñe su módulo de culto.
 Pendiente de desarrollo de Aster: apariencia y manifestaciones; personalidad divina; dogma;
 templos y variantes de culto; sacerdocio; festividades; mandamientos y prohibiciones; avatares;
-milagros; Vínculo Divino; relación con el progreso arcano-industrial; compatibilidad entre
-pueblos; y paquete racial mecánico de los Humanos.
+milagros; Vínculo Divino; relación con el progreso arcano-industrial y compatibilidad entre
+pueblos. El paquete racial mecánico de los Humanos ya está integrado en 3. Creación de personaje > Paso 1.
 ## 24. Lore e Historia: La Primera Luz
 ESTADO CANÓNICO v0.1: Ilyr, la Primera Luz, el Primer Juramento y el origen de los Celestiales
 quedan incorporados al canon de Tierra Mágica. Los detalles mecánicos de cultos, jerarquías
@@ -11558,8 +11590,8 @@ expresarse mediante protección espiritual, ritos funerarios, detección de No M
 memoria y defensa frente a profanaciones. Sus milagros no deben convertir la muerte en un recurso trivial ni
 sustituir automáticamente Medicina, Restauración o las reglas de Trauma.
 Pendiente de desarrollo de Vaelun: apariencia y avatares; dogma completo; órdenes Ankar; ritos
-funerarios; estructura del más allá; destino de las almas; milagros; Vínculos Divinos; estadísticas y
-paquetes raciales de los Ankar.
+funerarios; estructura del más allá; destino de las almas; milagros y Vínculos Divinos. El paquete racial
+jugable de los Ankar ya está integrado en 3. Creación de personaje > Paso 1.
 ## 27. Canon unificado del Panteón y religión jugable
 ESTADO CANÓNICO v0.2: el Panteón Central de Tierra Mágica queda organizado en siete Dioses
 Primordiales y cinco Dioses Menores conocidos como las Cinco Luminarias. Las Luminarias son
