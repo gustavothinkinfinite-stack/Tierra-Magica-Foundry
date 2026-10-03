@@ -213,3 +213,12 @@ La Calidad ahora tiene una función jugable clara:
 La manufactura avanzada crea decisiones y especialización sin producir inflación numérica general.
 
 **CRAFT-04 queda cerrado.**
+
+## Adenda de auditoría CRAFT-12
+
+CRAFT-12 precisó tres interacciones sin cambiar el núcleo de CRAFT-04:
+
+- **Herramienta especializada** sustituye una herramienta dedicada estrecha, no un Kit profesional completo exigido expresamente.
+- Las reducciones porcentuales de tiempo, incluida **Mantenible**, quedan sujetas al piso global del 25% del Tiempo Base Ajustado salvo excepción expresa.
+- Las reparaciones de objetos por capas usan la **Base de Reparación Afectada (BRA)** de CRAFT-02: sólo se incorpora el valor de las capas realmente dañadas.
+
