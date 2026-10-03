@@ -373,6 +373,8 @@ Elige **exactamente una** modalidad:
 - un **Paquete de Preparación** cerrado; o
 - **Compra libre** dentro del catálogo permitido y hasta el máximo de PEI.
 
+**PEI utiliza el precio de catálogo del equipo inicial.** No puede gastarse como CM, VI, materias primas, alquiler de taller, Encargo o «fabricación previa a la campaña» para obtener a mitad de precio un objeto cuyo precio terminado exceda el presupuesto. Si una campaña concede explícitamente tiempo y recursos de fabricación antes de la primera sesión, éstos se registran fuera del PEI como una concesión de campaña.
+
 Paquete y Compra libre son alternativas excluyentes. Si un Paquete vale menos de 20 o, el sobrante no puede gastarse mediante Compra libre y se pierde al cerrar la preparación. El Equipo Personal Básico y, cuando corresponda, el Vínculo de Equipo del Trasfondo se gestionan conforme a CREA-08 y no se convierten en dinero.
 
 Después de cerrar el inventario inicial se descarta cualquier PEI restante y el personaje recibe una sola vez una **Reserva líquida de 2 o = 200 c**. Esa Reserva ya es dinero y puede gastarse normalmente después de comenzar el juego.
