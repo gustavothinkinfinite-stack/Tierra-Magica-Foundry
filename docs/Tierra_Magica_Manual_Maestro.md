@@ -10609,8 +10609,8 @@ ilimitada de vida, resurrección rutinaria ni anulan los límites generales de R
 ESTADO CANÓNICO v0.2: el dogma, cultos, sacerdocio, templos, festividades, mandamientos,
 prohibiciones, avatares, marco de Vínculo Divino y familias de milagros de Eïra quedan
 consolidados. Permanecen pendientes únicamente la calibración mecánica final de
-milagros/Vínculos, estadísticas específicas y su integración definitiva con paquetes raciales y
-módulos de campaña.
+milagros/Vínculos, estadísticas específicas y su integración con módulos de campaña. Los paquetes
+raciales jugables vinculados a la Primera Semilla ya están consolidados en 3. Creación de personaje > Paso 1.
 ## 21. Lore e Historia: La Primera Forja
 ESTADO CANÓNICO v0.1: Khorun, la Primera Forja y el origen de los primeros pueblos vinculados
 a la materia y las fuerzas elementales quedan incorporados al canon de Tierra Mágica. Los detalles
