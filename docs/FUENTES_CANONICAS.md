@@ -16,6 +16,16 @@ Los Manuales v0.1/v0.2, el Manual Básico mecánico 1.0 separado, los Canon del 
 
 Git/GitHub conserva el historial de cada modificación. No se debe eliminar una fuente histórica externa por considerarla obsoleta hasta confirmar que el contenido útil fue integrado o archivado dentro del Manual Maestro.
 
+## Estado de pueblos y paquetes raciales
+
+Desde el **2026-10-03**, los **12 paquetes raciales jugables v0.3** están integrados directamente en `docs/Tierra_Magica_Manual_Maestro.md`, dentro de **3. Creación de personaje > Paso 1**.
+
+La lista jugable base vigente es: Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios/Anihombres, Feéricos, Ankar, Cristálidos, Verdantes, Micelios y Coralios. Sus reglas mecánicas, variantes jugables y salvaguardas transversales existen únicamente en el Manual Maestro. No debe crearse un documento racial paralelo como nueva fuente de autoridad.
+
+La antigua resolución A5 que descartaba paquetes raciales queda archivada y sustituida. `docs/audits/A5_PUEBLOS_ORIGENES.md` es ahora sólo un marcador histórico que remite al Manual Maestro.
+
+Los paquetes raciales se equilibran aparte de los **25 PD** y los **3 PR** generales; cultura, Origen, profesión, religión, personalidad y moral siguen siendo capas separadas y no otorgan competencias gratuitas por sí mismas.
+
 ## Estado de CREA-09
 
 CREA-09 — Moneda está consolidada en el Manual Maestro y su implementación Foundry 1.0.15: c/p/o, PEI 20 o, Reserva 2 o, precios en cobres enteros, Unidad Comercial y migración segura del campo legado `crowns`.
