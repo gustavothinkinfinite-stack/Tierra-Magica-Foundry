@@ -3794,6 +3794,18 @@ Costes de conocimiento actualmente usados: Común 1 PD, Refinada 1 PD, Compleja 
 
 La Saturación es binaria y contextual. Una preparación Saturante registra su familia y bloquea otra aplicación beneficiosa de esa misma familia hasta un Respiro efectivo. No existe una reserva universal de puntos de Toxicidad. Un Respiro limpia las Saturaciones compatibles, pero no recupera Vida o Maná por sí mismo.
 
+### Dosis y aplicaciones
+
+Una **dosis** es la unidad mecánica preparada por la Fórmula.
+
+- una aplicación válida consume normalmente una dosis;
+- colocar varias dosis de la misma preparación en un único vehículo, arma, recipiente o superficie **no crea varias resoluciones simultáneas**;
+- una misma exposición física se resuelve como una sola aplicación salvo que una Fórmula o dispositivo de dosificación defina expresamente otra cosa;
+- dosis adicionales deben permanecer separadas o aplicarse mediante exposiciones válidas posteriores;
+- mezclar Fórmulas distintas no crea automáticamente una combinación de efectos estable: si la compatibilidad no está catalogada, corresponde CRAFT-10 o una consecuencia contextual.
+
+Esto impide multiplicar resistencias, daño o recuperación apilando físicamente consumibles sobre una única activación.
+
 | Fórmula | Grado | Precio | Familia / vía | Efecto |
 |---|---|---:|---|---|
 | Bálsamo Restaurador | Común | 5 p | Restaurativa | +4 Vida; no Trauma ni Herida Grave. |
