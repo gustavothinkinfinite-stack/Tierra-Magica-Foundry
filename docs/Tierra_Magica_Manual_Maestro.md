@@ -6020,7 +6020,7 @@ Reglas universales:
 - **Activación:** Reacción cuando una consecuencia va a empeorar el estado físico del propio objeto.
 - **Coste:** 2 Maná.
 - **Efecto:** reduce en **un paso** ese empeoramiento, si la naturaleza de la consecuencia permite una estabilización mágica del soporte.
-- **Límites:** no evita pérdida, desintegración, destrucción causalmente absoluta ni daño al usuario.
+- **Límites:** no evita pérdida, desintegración, destrucción causalmente absoluta ni daño al usuario. **Tampoco reduce un empeoramiento de estado que sea el coste explícito de una Sobrecarga Controlada, Carga forzada u otra activación voluntaria que lo declare como precio.**
 - **Apilamiento:** no se acumula con Tenacidad de Kharum u otra reducción equivalente; se usa el mejor efecto.
 
 ##### Impulso Cinético II
@@ -6887,6 +6887,8 @@ Se conserva la regla del capítulo 17:
 **Pifia:** puede añadir consecuencia energética contextual.
 
 No crea Energía, no eleva Consumo permitido en más de 1 y no puede repetirse sobre un dispositivo Dañado.
+
+El paso a **Dañado/Deshabilitado** producido por Sobrecarga Controlada o Carga forzada es un **coste/consecuencia intrínseca del procedimiento**. No puede prevenirse, reducirse ni sustituirse mediante Estabilidad Rúnica, Tenacidad de material, Mantenible u otra protección de estado salvo que una regla mencione expresamente esa interacción.
 
 #### Una fuente activa por defecto
 
