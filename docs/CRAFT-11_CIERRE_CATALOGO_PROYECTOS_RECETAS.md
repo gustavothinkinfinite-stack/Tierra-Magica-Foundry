@@ -36,7 +36,7 @@ Quedaron calculados de extremo a extremo:
 5. Placas Excepcionales con Doble Engarce.
 6. Arco Largo de Madera Tratada de Erelia.
 7. Catalejo de Vidrio del Desierto.
-8. Kit de Infiltración Superior preparado para campo.
+8. Kit de Alquimia Superior preparado para campo.
 
 Cada receta especifica materiales, valor final, tiempo, rango, instalación y efecto exacto.
 
