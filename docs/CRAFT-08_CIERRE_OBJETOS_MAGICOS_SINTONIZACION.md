@@ -306,3 +306,13 @@ CRAFT-08 crea tres niveles claros:
 Cada capa tiene un coste, una economía de acciones y un límite diferente.
 
 **CRAFT-08 queda cerrado.**
+
+## Adenda de auditoría CRAFT-12
+
+CRAFT-12 precisó Sintonización y Sellos:
+
+- los 3 puntos automáticos pertenecen a **personajes completos**; Familiares, invocaciones, Autómatas auxiliares, monturas y vehículos no obtienen otros 3 salvo Perfil expreso;
+- no pueden mantenerse Sintonizados simultáneamente duplicados funcionales cuya finalidad sea multiplicar la reserva del mismo efecto, aunque cambien nombre o soporte;
+- un objeto debe estar ya Sintonizado al comenzar un Descanso Completo y permanecer así hasta terminarlo para rellenar RE;
+- varios Sellos ordinarios no pueden descargarse contra el mismo objetivo por un único evento indivisible.
+
