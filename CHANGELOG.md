@@ -1,3 +1,12 @@
+## En desarrollo — CREA-14 autosuficiencia de creación · Bloque 1: Rasgos
+
+- Convierte el catálogo de Rasgos de nivel 1 en entradas operativas con coste, efecto, límites y apilamiento definidos.
+- Cierra Sentido Agudo, Visión en la Oscuridad, Anfibio, Trepador Natural, Cola Prensil, Miembros Extra, Corpulento, Masivo, Vínculo Divino, Pacto Externo base, Prótesis Mayor, Afinidad Sobrenatural y Resistencia Ambiental.
+- Define Vuelo Natural como Rasgo Excepcional de 4 PR, fuera del presupuesto estándar de 3 PR de nivel 1.
+- Mantiene Familiar Mágico en 3 PR pero lo bloquea temporalmente para creación estándar hasta cerrar su plantilla numérica inicial en el siguiente bloque de CREA-14.
+- Sincroniza el catálogo de Foundry con los Rasgos cerrados y automatiza +4/+8 Vida de Corpulento/Masivo.
+- Añade una salvaguarda genérica `creation-locked` para impedir que Foundry permita seleccionar durante creación una opción que el Manual todavía no puede resolver de forma autosuficiente.
+
 ## En desarrollo — trasfondo de pueblos jugables
 
 - Cada uno de los 12 paquetes raciales jugables incluye ahora un bloque breve de **Trasfondo** antes de sus reglas.
