@@ -244,3 +244,8 @@ El sistema queda preparado para que nuevos materiales se incorporen mediante una
 **Nombre · Familia · Grado · Cobertura · Disponibilidad · Propiedad · Compatibilidades · Preparación · Límites.**
 
 **CRAFT-05 queda cerrado.**
+
+## Adenda de auditoría CRAFT-12
+
+CRAFT-12 precisó que el valor de un Material Especial entra en la **Base de Reparación Afectada (BRA)** sólo cuando la consecuencia daña la parte que sostiene esa propiedad. Un componente separable sustituido y pagado aparte no vuelve a cobrarse dentro del porcentaje genérico.
+
