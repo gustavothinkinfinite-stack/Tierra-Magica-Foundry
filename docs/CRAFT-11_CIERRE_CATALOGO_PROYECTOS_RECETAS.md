@@ -220,3 +220,11 @@ Con CRAFT-11, un DJ o jugador puede tomar una entrada, pagar sus recursos y tiem
 El catálogo queda preparado para crecer copiando la receta más cercana y modificando únicamente variables justificadas por un Perfil estable.
 
 **CRAFT-11 queda cerrado.**
+
+## Adenda de auditoría CRAFT-12
+
+CRAFT-12 corrigió dos entradas del catálogo:
+
+- REF-EQ-08 pasa a ser **Kit de Alquimia Superior preparado para campo**, aplicado a Bálsamo Restaurador, porque esa Fórmula sí posee instalación Adecuada como requisito normal;
+- **Neutralizante Común** adquiere Saturación **Antitóxica**, impidiendo encadenar dosis para repetir resistencias con Ventaja hasta forzar éxito.
+
