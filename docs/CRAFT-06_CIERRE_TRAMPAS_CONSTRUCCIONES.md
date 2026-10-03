@@ -283,3 +283,8 @@ CRAFT-06 convierte trampas y obras de campaña en una extensión del sistema exi
 en lugar de un subsistema de daño separado.
 
 **CRAFT-06 queda cerrado.**
+
+## Adenda de auditoría CRAFT-12
+
+Un mismo evento físico indivisible —la misma pisada, apertura, retirada de peso o cruce puntual— no puede alimentar varias trampas ordinarias contra el mismo objetivo para multiplicar resoluciones. Varias trampas requieren disparadores distintos y secuenciales; cada activación se resuelve antes de continuar el evento siguiente.
+
