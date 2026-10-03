@@ -8167,19 +8167,19 @@ Las Piedras se adquieren/fabrican por separado.
 - **Instalación:** Especializada.
 - **Resultado:** catalejo normal más Refracción liminal: Ventaja a PER + Arcana para analizar distorsiones o manifestaciones mágicas visualmente observables a través del instrumento.
 
-### REF-EQ-08 — Kit de Infiltración Superior preparado para campo
+### REF-EQ-08 — Kit de Alquimia Superior preparado para campo
 
-- VR Común: 1 o.
-- **Materiales:** **7 p 5 c**.
-- **VRQ:** **1 o 5 p**.
-- **Tiempo:** **1,5 Jornadas**.
-- **Principal:** Artesanía Experta · Forja y metal.
-- **Auxiliar:** Latrocinio Aprendiz.
+- VR Común: 2 o.
+- **Materiales:** **1 o 5 p**.
+- **VRQ:** **3 o**.
+- **Tiempo:** **3 Jornadas**.
+- **Principal:** Artesanía Experta · Vidrio y cristal.
+- **Auxiliar:** Alquimia Aprendiz.
 - **Instalación:** Profesional.
-- **CapM 1:** **Preparada para campo**, registrada para manipulación de cerraduras mecánicas ordinarias.
-- **Resultado:** cuando esa operación sea físicamente posible en instalación Improvisada, ignora sólo la Desventaja causada por ese déficit de un grado.
+- **CapM 1:** **Preparada para campo**, registrada para la preparación estable de **Bálsamo Restaurador**.
+- **Resultado:** cuando esa Fórmula pueda prepararse físicamente en una instalación Improvisada, el Kit ignora sólo la Desventaja causada por estar un grado por debajo de su instalación Adecuada normal.
 
-No sustituye Latrocinio ni una herramienta especial que una cerradura concreta exija.
+No sustituye Alquimia Entrenada · Medicinales, el conocimiento de la Fórmula, sus ingredientes ni cualquier requisito esencial.
 
 ---
 
