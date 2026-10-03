@@ -53,7 +53,7 @@ Combinaciones posibles:
 
 No existe límite por “slot corporal”.
 
-Una criatura no puede Sintonizar simultáneamente dos objetos con el mismo Patrón o Hechizo Vinculado.
+Una criatura no puede Sintonizar simultáneamente dos objetos con el mismo Patrón, el mismo Hechizo Vinculado o perfiles funcionalmente equivalentes destinados a multiplicar la reserva del mismo efecto.
 
 Establecer Sintonización requiere 1 hora.
 
@@ -65,7 +65,7 @@ Al establecer una nueva Sintonización:
 
 **RE = 0.**
 
-Un Descanso Completo rellena RE sólo si el objeto permaneció Sintonizado con la misma criatura durante todo el descanso.
+Un Descanso Completo rellena RE sólo si el objeto ya estaba Sintonizado con la misma criatura al comenzar el descanso y permanece así hasta terminarlo. Sintonizar durante ese descanso no carga RE.
 
 Desintonizar vuelve RE a 0.
 
@@ -314,5 +314,6 @@ CRAFT-12 precisó Sintonización y Sellos:
 - los 3 puntos automáticos pertenecen a **personajes completos**; Familiares, invocaciones, Autómatas auxiliares, monturas y vehículos no obtienen otros 3 salvo Perfil expreso;
 - no pueden mantenerse Sintonizados simultáneamente duplicados funcionales cuya finalidad sea multiplicar la reserva del mismo efecto, aunque cambien nombre o soporte;
 - un objeto debe estar ya Sintonizado al comenzar un Descanso Completo y permanecer así hasta terminarlo para rellenar RE;
-- varios Sellos ordinarios no pueden descargarse contra el mismo objetivo por un único evento indivisible.
+- varios Sellos ordinarios no pueden descargarse contra el mismo objetivo por un único evento indivisible;
+- sólo la criatura Sintonizada puede activar Encantamientos que gasten RE o beneficiarse de Pasivos Sintonizados; sostener o robar el objeto no transfiere el vínculo.
 
