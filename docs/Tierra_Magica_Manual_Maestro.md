@@ -6458,6 +6458,8 @@ Romper voluntariamente una Sintonización es inmediato. Volver a establecerla re
 
 Un objeto no puede estar Sintonizado con varias criaturas a la vez salvo regla expresa.
 
+**Sólo la criatura con la que el objeto está Sintonizado** puede activar sus Encantamientos que gasten RE o beneficiarse de sus propiedades Pasivas Sintonizadas. Que otra criatura lo sostenga, vista o robe no le transfiere el vínculo ni le permite gastar esa RE. Las propiedades físicas y subsistemas independientes —por ejemplo una Runa de CRAFT-07— siguen sus propias reglas.
+
 Mientras no está Sintonizado:
 
 - sus Encantamientos que exijan Sintonización permanecen inactivos;
