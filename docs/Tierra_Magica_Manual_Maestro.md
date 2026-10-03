@@ -6240,7 +6240,9 @@ Los Grados de Encantamiento no son Grados de hechizo. La correspondencia para He
 
 #### Sintonización
 
-Todo personaje posee una **Capacidad de Sintonización de 3**, independiente de VOL, nivel, Canalización, especie u origen.
+Todo **personaje completo** posee una **Capacidad de Sintonización de 3**, independiente de VOL, nivel, Canalización, especie u origen.
+
+Familiares, invocaciones, Autómatas auxiliares, monturas, vehículos y otras entidades dependientes **no reciben automáticamente otros 3 puntos de Sintonización**. Sólo pueden Sintonizar si su Perfil lo autoriza expresamente; en ese caso el objeto beneficia a esa entidad y no amplía la capacidad del personaje vinculado/controlador.
 
 Sintonizar significa establecer un vínculo temporal y deliberado con un objeto mágico.
 
