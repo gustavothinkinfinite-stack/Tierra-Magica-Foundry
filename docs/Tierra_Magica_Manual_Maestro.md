@@ -3843,6 +3843,8 @@ Cuando una improvisación o adaptación tenga incertidumbre:
 - se realiza una única prueba para esa incertidumbre o una etapa separada si tiene consecuencias propias;
 - el éxito produce exactamente el resultado declarado, no mejoras no solicitadas.
 
+Si la adaptación pretende **crear una propiedad mecánica que no existe ya en un Perfil/receta estable compatible**, deja de ser una adaptación rutinaria y entra en **CRAFT-10** como Combinación, Innovación o Frontera según corresponda.
+
 Una tirada alta no permite añadir una segunda propiedad, aumentar daño, Protección, Caudal, capacidad rúnica u otro parámetro que el proyecto no haya pagado o habilitado por sus reglas específicas.
 
 ### Resolución de una prueba de Proyecto
