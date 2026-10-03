@@ -328,3 +328,13 @@ y mantiene separadas las tres economías sobrenaturales:
 **Maná personal / Reserva Encantada / Energía industrial.**
 
 **CRAFT-09 queda cerrado.**
+
+## Adenda de auditoría CRAFT-12
+
+CRAFT-12 cerró las siguientes interacciones:
+
+- **Estabilidad** limita la Energía total recibida por acumulador e intervalo, sumando todas las fuentes;
+- **Caudal de Carga** limita la entrega total de una fuente por intervalo, repartida entre todos sus receptores;
+- el deterioro que paga Sobrecarga Controlada o Carga forzada no puede mitigarse mediante protecciones de estado ordinarias;
+- un Módulo de arma modifica por defecto el ataque del **perfil del arma Host**, no un Hechizo Vinculado o descarga distinta emitida desde el mismo soporte.
+
