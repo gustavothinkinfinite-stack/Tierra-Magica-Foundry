@@ -56,7 +56,9 @@ El hardware se valora vacío.
 
 Cada 10 minutos:
 
-**transferencia <= min(Caudal de Carga, Estabilidad objetivo, espacio libre).**
+**transferencia total al receptor <= min(Caudal de Carga total disponible, Estabilidad objetivo, espacio libre).**
+
+Varias fuentes no multiplican Estabilidad y una fuente reparte su Caudal de Carga total entre todos sus receptores salvo Perfil con canales independientes.
 
 Transferir entre acumuladores conserva Energía uno por uno.
 
