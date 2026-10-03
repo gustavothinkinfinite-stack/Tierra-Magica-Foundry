@@ -80,6 +80,10 @@ export function preflightAcquisition({
     issues.push({ code: "cardinality", message: "El Actor ya posee un Item singular de tipo " + candidate.type + "." });
   }
 
+  if (actualStage === "creation" && Array.isArray(candidate?.system?.tags) && candidate.system.tags.includes("creation-locked")) {
+    issues.push({ code: "creation-locked", message: (candidate?.name ?? "Esta opción") + " está temporalmente bloqueada para creación estándar." });
+  }
+
   if (candidate?.type === "discipline" && actualStage === "creation") {
     const initialDisciplines = actorItems.filter((item) =>
       item.type === "discipline" && (
