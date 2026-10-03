@@ -117,14 +117,87 @@ export function constructionCatalog() {
       }));
     }
   }
+  const traits = [
+    {
+      name:"Sentido Agudo", category:"innate", cost:1,
+      description:"Elige un sentido ordinario. +1 a pruebas de PER sólo cuando distinguir detalles sutiles mediante ese sentido sea determinante; no mejora iniciativa, ataques ni otros sentidos."
+    },
+    {
+      name:"Visión en la Oscuridad", category:"innate", cost:2,
+      description:"Distingue formas, movimiento, obstáculos y criaturas en oscuridad mundana completa hasta 6 espacios como con luz tenue. No distingue color o detalle fino, no atraviesa ocultación y no vence oscuridad sobrenatural."
+    },
+    {
+      name:"Anfibio", category:"innate", cost:1,
+      description:"Puede respirar aire y agua ordinarios. No concede Movimiento de nado ni inmunidad a presión, temperatura, corrientes, contaminación, toxinas o deshidratación."
+    },
+    {
+      name:"Trepador Natural", category:"innate", cost:1,
+      description:"En superficies físicamente trepables con apoyos razonables, cada espacio de escalada cuesta 1 Movimiento. Superficies peligrosas o sin apoyos pueden seguir exigiendo Atletismo y equipo."
+    },
+    {
+      name:"Cola Prensil", category:"innate", cost:1,
+      description:"Órgano posterior capaz de sujetar y manipular objetos ligeros usando la Acción normal correspondiente. No concede Acción, ataque, recarga ni beneficio adicional de escudo."
+    },
+    {
+      name:"Miembros Extra", category:"innate", cost:2,
+      description:"Un par adicional de miembros manipuladores funcionales. Puede sostener y manipular hasta dos objetos adicionales; no concede Acciones, Reacciones, ataques, Bloqueos, recargas, Carga ni beneficios de varios escudos."
+    },
+    {
+      name:"Corpulento", category:"innate", cost:2,
+      description:"+4 Vida máxima. No aumenta VIG, FUE, Escala, Defensa Corporal, umbral de Daño Grave ni Carga; no se acumula con Masivo.",
+      rules:[{ key:"FlatModifier", selector:"healthMax", value:4, label:"Corpulento" }]
+    },
+    {
+      name:"Masivo", category:"innate", cost:3,
+      description:"+8 Vida máxima. No aumenta VIG, FUE, Escala, Defensa Corporal, umbral de Daño Grave ni Carga; no se acumula con Corpulento.",
+      rules:[{ key:"FlatModifier", selector:"healthMax", value:8, label:"Masivo" }]
+    },
+    {
+      name:"Vínculo Divino", category:"bond", cost:2,
+      description:"Registra una deidad o poder divino reconocido y un juramento concreto. Concede acceso a la Fuente Divina apropiada; no concede Habilidades, Disciplina, Hechizos, Maná ni milagros gratuitos."
+    },
+    {
+      name:"Pacto Externo", category:"bond", cost:2,
+      description:"Registra entidad o categoría externa, Condición y Precio. Concede acceso a la Fuente Externa asociada; no concede Don, Hechizos, Maná, daño o Defensa adicionales sin un perfil expresamente costeado."
+    },
+    {
+      name:"Prótesis Mayor", category:"acquired", cost:2,
+      description:"Prótesis integrada que sustituye una extremidad u órgano funcional importante y permite sus funciones ordinarias. Funciones extraordinarias se pagan como equipo, Proyecto o capacidad separada."
+    },
+    {
+      name:"Afinidad Sobrenatural", category:"innate", cost:1,
+      description:"Elige una afinidad sobrenatural estrecha. +1 a PER sólo para advertir manifestaciones directamente perceptibles de esa afinidad; no concede identificación, Arcana, Fuente, Disciplina, Hechizos o Maná."
+    },
+    {
+      name:"Resistencia Ambiental", category:"innate", cost:1,
+      description:"Grado Menor: elige una exposición ambiental concreta y obtiene +1 a VIG para resistirla. La versión Significativa de 2 PR se adquiere como entrada separada y reemplaza este beneficio."
+    },
+    {
+      name:"Resistencia Ambiental Significativa", category:"innate", cost:2,
+      description:"Elige una exposición ambiental concreta y obtiene Ventaja en pruebas de VIG para resistirla. Reemplaza, no acumula, el grado Menor."
+    },
+    {
+      name:"Vuelo Natural", category:"innate", cost:4,
+      description:"Vuelo sostenido hasta el Movimiento normal con anatomía capaz de sostenerlo. No concede Movimiento, Acción o Reacción extra; Carga Pesada o Excesiva lo impide. Excepcional: no comprable con los 3 PR estándar."
+    }
+  ];
+  for (const trait of traits) {
+    entries.push(baseEntry("trait",trait.name,{
+      category:trait.category,
+      tags:["crea-14","canonical","standard-creation"],
+      costs:[{ context:"creation", resource:"pr", amount:trait.cost }],
+      description:trait.description,
+      rules:trait.rules ?? []
+    }));
+  }
   entries.push(baseEntry("trait","Familiar Mágico",{
     category:"bond",
-    tags:["crea-04","crea-05","canonical"],
+    tags:["crea-04","crea-05","crea-14","canonical","creation-locked"],
     costs:[
       { context:"creation", resource:"pr", amount:3 },
       { context:"progression", resource:"pd", amount:6 }
     ],
-    description:"Rasgo Mayor Vincular que habilita un Familiar activo conforme a CREA-05."
+    description:"Rasgo Mayor Vincular de 3 PR. CREA-14 mantiene temporalmente bloqueada su adquisición inicial hasta publicar la plantilla numérica universal del Familiar."
   }));
   return entries;
 }
@@ -146,5 +219,6 @@ export const CATALOG_COUNTS = Object.freeze({
   origins: ORIGINS.length,
   backgrounds: BACKGROUNDS.length,
   disciplines: DISCIPLINES.length,
-  specializations: Object.values(SPECIALIZATIONS).reduce((sum, list) => sum + list.length, 0)
+  specializations: Object.values(SPECIALIZATIONS).reduce((sum, list) => sum + list.length, 0),
+  traits: 16
 });
