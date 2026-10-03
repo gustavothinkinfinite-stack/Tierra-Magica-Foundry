@@ -3613,7 +3613,7 @@ La Saturación es binaria y contextual. Una preparación Saturante registra su f
 | Poción de Recuperación Arcana | Refinada | 1 o 5 p | Arcana / oral | Acción: +3 Maná hasta máximo; no elimina Fatiga ni Sobrecarga. |
 | Tónico de Vigor | Refinada | 8 p | Potenciador | Ventaja en una prueba de VIG por esfuerzo prolongado. |
 | Supresor del Dolor | Refinada | 8 p | Analgésica | Ignora una Desventaja causada por dolor compatible; no repara lesión. |
-| Neutralizante Común | Refinada | 1 o | — | Nueva resistencia con Ventaja contra una toxina compatible. |
+| Neutralizante Común | Refinada | 1 o | Antitóxica | Nueva resistencia con Ventaja contra una toxina compatible. |
 | Toxina Debilitante | Compleja | 1 o 5 p | Sangre | VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular. |
 | Bomba Incendiaria | Compleja | 3 o | — | Área pequeña, Daño 6, Pen 1; requiere colocación válida. |
 
@@ -8263,9 +8263,9 @@ Bálsamo y Poción comparten Saturación Restaurativa.
 - **Activación:** Acción cuando la vía preparada puede administrarse en combate.
 - **Duración:** hasta la siguiente resistencia compatible durante la Escena.
 - **Efecto:** concede una nueva resistencia con Ventaja contra esa toxina.
-- **Saturación:** —.
+- **Saturación:** **Antitóxica**.
 
-No es un antídoto universal.
+No es un antídoto universal. Tras beneficiarse de una dosis, otra aplicación de Neutralizante de la misma familia no concede una nueva resistencia hasta un Respiro efectivo.
 
 ### REF-ALQ-07 — Toxina Debilitante
 
