@@ -67,6 +67,14 @@ CREA-12 y CREA-13 fueron integradas posteriormente sin reabrir la declaración d
 
 No existe una fase **CREA-14** definida en el repositorio tras este cierre. Un trabajo mecánico posterior requiere una decisión explícita y, cuando afecte reglas, debe consolidarse primero en el Manual Maestro.
 
+## Sincronización racial posterior — 2026-10-03
+
+Por decisión explícita de proyecto, la resolución histórica **A5 — Pueblos y Orígenes** fue sustituida por **12 paquetes raciales jugables v0.3** integrados directamente en `docs/Tierra_Magica_Manual_Maestro.md`.
+
+Este cambio no convierte las auditorías históricas en fuente paralela: la autoridad racial vigente está sólo en el Manual Maestro. `docs/audits/A5_PUEBLOS_ORIGENES.md` quedó reducido a marcador histórico y remisión.
+
+La nueva arquitectura mantiene separadas raza, cultura, Origen, profesión, religión, personalidad y moral; los paquetes raciales se equilibran aparte de 25 PD y 3 PR generales y no conceden por defecto rangos de Habilidad ni aumentos generales de Atributo.
+
 ## Estado final
 
 **Núcleo 1.0 completo y jugable.** A1–A9, CREA-09 a CREA-13 y sus revisiones de cierre quedan integrados o cerrados según su documentación específica. El trabajo posterior corresponde a mantenimiento, documentación, contenido o futuras versiones explícitamente definidas, no a completar el núcleo 1.0.
