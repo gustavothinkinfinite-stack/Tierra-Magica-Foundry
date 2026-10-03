@@ -1,3 +1,13 @@
+## En desarrollo — trasfondo de pueblos jugables
+
+- Cada uno de los 12 paquetes raciales jugables incluye ahora un bloque breve de **Trasfondo** antes de sus reglas.
+- Los resúmenes proceden del canon ya integrado: Primera Semilla, Primera Forja, Primera Guerra, Primera Elección y Primer Tránsito.
+- Goblins, Hobgoblins, Bugbears, Hadas, Sátiros, Dríades y Silfos reciben además contexto breve dentro de sus variantes.
+- El capítulo **Pueblos jugables, herencias, culturas y orígenes** deja de contener la antigua regla contradictoria que trataba todos los pueblos como puramente narrativos.
+- Se refuerza la separación entre raza, cultura, Origen, profesión, religión, personalidad y moral.
+- Se limpian referencias históricas del propio Manual Maestro que todavía trataban los paquetes de Humanos, Ankar o pueblos de Eïra como trabajo futuro.
+- El trasfondo ampliado permanece dentro del mismo Manual Maestro; no se crea una enciclopedia racial paralela.
+
 ## En desarrollo — paquetes raciales jugables v0.3
 
 - Integra en `docs/Tierra_Magica_Manual_Maestro.md` los 12 paquetes raciales jugables: Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios/Anihombres, Feéricos, Ankar, Cristálidos, Verdantes, Micelios y Coralios.
