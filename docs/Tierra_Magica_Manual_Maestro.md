@@ -2851,6 +2851,7 @@ Reglas generales:
 - usar una dosis consume esa dosis;
 - si su Activación es Acción, consume la Acción;
 - una dosis no puede utilizarse dos veces;
+- una misma exposición física resuelve una sola dosis salvo Perfil específico de dosificación; acumular varias dosis en el mismo vehículo no multiplica resoluciones;
 - Saturación se aplica cuando la Fórmula indique familia Saturante;
 - un precio **Sin precio establecido** no significa gratis.
 
@@ -2867,7 +2868,7 @@ Fórmulas de referencia:
 | Toxina Debilitante | VIG DF14; con fallo, Desventaja en acciones físicas dependientes de fuerza muscular |
 | Bomba Incendiaria | área pequeña; Daño 6, Pen 1; requiere colocación válida |
 
-Sus precios monetarios permanecen **sin establecer** hasta ratificación específica; no se convierten precios históricos por inferencia.
+Sus precios monetarios están **ratificados en CRAFT-11 — Catálogo de proyectos y recetas de referencia**. Un precio histórico no se convierte por inferencia cuando una entrada distinta siga sin valoración vigente.
 
 ### Dispositivos arcano-industriales
 
