@@ -187,7 +187,7 @@ Cambiar Material Dominante exige reconstrucción o una receta específica; no es
 
 Con Material Especial:
 
-- VRT sustituye VRQ para valor y materiales de reparación;
+- VRT sustituye VRQ para Valor Aplicable; en reparación, el valor material entra en la BRA sólo si la parte que sostiene la propiedad fue afectada;
 - preservar la propiedad exige material compatible cuando se reemplaza la parte que la sostiene;
 - reparar con material ordinario puede devolver estado Operativo, pero elimina la propiedad material si la parte especial fue sustituida.
 
