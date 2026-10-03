@@ -62,7 +62,7 @@ Este Manual distingue tres clases de contenido:
 16. Ingeniería arcano-industrial
 17. Proyectos, fabricación e investigación
 18. Equipo, economía y disponibilidad
-19. Pueblos, herencias, culturas y orígenes
+19. Pueblos jugables, herencias, culturas y orígenes
 20. Vehículos, monturas y autómatas
 21. PNJ, criaturas y dirección de juego
 22. Mundo, historia, geografía, instituciones y conflictos
@@ -155,11 +155,11 @@ Un personaje de nivel 1 se construye con **cuatro economías separadas**:
 - **3 PR**: Rasgos de creación;
 - **PEI 20 o = 2.000 c**: equipo inicial; al cerrar la preparación se recibe además una **Reserva líquida de 2 o = 200 c**.
 
-No se convierten unas en otras.
+No se convierten unas en otras. El **paquete racial jugable** se equilibra aparte y no consume los 25 PD ni los 3 PR generales del personaje.
 
 Procedimiento:
 
-1. definir concepto, pueblo/herencia, cultura y origen narrativo;
+1. definir concepto, elegir pueblo/herencia y aplicar su paquete racial jugable; después definir cultura y origen narrativo;
 2. repartir los siete Atributos;
 3. planificar los 25 PD y comprobar requisitos antes de comprar;
 4. comprar Habilidades;
@@ -176,9 +176,197 @@ Procedimiento:
 
 Primero define quién es el personaje: qué hace, de dónde viene, qué desea, qué relaciones importantes posee y qué lugar ocupa en Tierra Mágica.
 
-**Pueblo, herencia, cultura y Origen son identidad narrativa y no entregan paquetes mecánicos gratuitos.** No conceden por sí mismos Atributos, Habilidades, PD, PR, Defensa, Vida, Maná, acciones, Técnicas ni competencias. Si una propiedad física o sobrenatural debe tener efecto mecánico —por ejemplo visión especial, respiración acuática, vuelo natural, corpulencia o resistencia ambiental— se representa con las reglas universales apropiadas, principalmente **Rasgos, Escala, equipo, Habilidades o Técnicas**. No se paga dos veces por una misma propiedad.
+**Pueblo/herencia, cultura, origen, profesión, religión, personalidad y moral son capas distintas.** El pueblo jugable puede conceder un paquete racial innato porque representa anatomía, fisiología, sentidos, movimiento, adaptaciones o relaciones sobrenaturales propias de esa familia. Cultura y Origen no conceden por sí mismos Atributos, Habilidades, PD, PR, Defensa, Vida, Maná, Acciones, Técnicas ni competencias gratuitas.
+
+Los paquetes raciales siguientes forman parte de la creación vigente de playtest. **Se equilibran aparte de los 3 PR generales y de los 25 PD profesionales.** Elegir un paquete racial no reduce esos presupuestos.
 
 Un origen militar, académico, religioso, gremial, criminal, rural o privilegiado puede justificar conocimientos, contactos, licencias o elecciones de equipo, pero esas ventajas deben respetar los presupuestos normales de creación. Un origen religioso no concede automáticamente Vínculo Divino; uno arcano-industrial no concede dispositivos excepcionales gratis.
+
+#### Reglas transversales de los paquetes raciales
+
+- **Raza/pueblo no determina cultura, profesión, religión, personalidad ni moral.**
+- Ningún paquete racial concede rangos gratuitos de Habilidad ni aumentos generales de Atributo.
+- Una capacidad racial que modifica **Escala efectiva** sólo funciona en las interacciones que enumera; no aumenta alcance, daño, Defensa, espacio ocupado, armas utilizables ni otras magnitudes por inferencia.
+- Varias mejoras equivalentes de Escala efectiva **no se acumulan** salvo que una regla lo permita expresamente.
+- **Protección Natural y armadura no se suman** por defecto; se usa el valor mayor. Una barrera independiente sólo añade otra capa si su propia regla lo establece.
+- Fisiología distinta **no equivale a inmunidad automática**. Todo pueblo jugable puede sufrir Fatiga y necesita alguna forma de sustento, descanso y ambiente viable salvo regla expresa.
+- Miembros, alas, colas, trompas u otros apéndices adicionales **no conceden Acciones ni Reacciones adicionales**.
+- Un arma natural es un arma disponible del personaje; no se suma a otra arma ni concede ataques adicionales. Puede desarrollarse con Habilidades, Especializaciones y Técnicas físicamente compatibles.
+- Los sentidos raciales revelan normalmente **presencia o categoría**, no causa, identidad, intención, funcionamiento ni método de neutralización. No sustituyen Investigación, Naturaleza, Religión, Arcana, Ritualismo ni Visión Arcana.
+- Percepción o comunicación remota no crea línea de efecto. Las extensiones de percepción, alcance o punto de origen no se encadenan salvo permiso expreso.
+- Una afinidad racial con magia no concede Fuente, Disciplina, Canalización, Hechizos, Reserva, Caudal ni Vínculo Divino salvo regla expresa.
+- Las capacidades raciales **no escalan automáticamente con nivel**.
+- Una capacidad racial no puede adquirirse de nuevo para acumular el mismo beneficio salvo que posea grados expresos.
+- Equipo vestido o empuñado debe ser compatible con la Escala y anatomía del usuario. El equipo inicial y el de mercados razonablemente diversos puede asumirse adaptado; una pieza única, saqueada o histórica puede requerir modificación.
+- Volar no elimina costes de Acción, Reacción, Carga, activación de objetos ni otras reglas. Una criatura bajo Carga Pesada o Excesiva no puede usar vuelo racial sostenido salvo regla expresa.
+
+#### Paquetes raciales jugables v0.3
+
+Los siguientes doce paquetes son la lista jugable base actual. Variantes culturales, regionales o de linaje no alteran estas reglas salvo que una entrada lo diga expresamente.
+
+##### Humanos
+
+- **Escala:** Mediana.
+- **Movimiento:** 6.
+- Anatomía y sentidos humanoides ordinarios.
+- **Don sin Forma:** durante creación obtiene gratuitamente **1 Rasgo General Significativo** o **2 Rasgos Generales Menores** compatibles, además de sus 3 PR normales. No puede utilizarse para aumentar Atributos, Ataque, Defensa, daño, Protección, Vida o Maná; tampoco para Rasgos raciales, Familiar Mágico, Vínculo Divino, Pactos, Fuentes mágicas especiales, ni Rasgos cuyo acontecimiento de ficción todavía no haya ocurrido. En el catálogo general actual son compatibles por defecto Sentido Agudo, Visión en la Oscuridad, Trepador Natural, Afinidad Sobrenatural y Resistencia Ambiental cuando la ficción concreta lo sostenga. La elección gratuita no paga mejoras posteriores del Rasgo.
+- Los Humanos no poseen subrazas divinas originales. Su diversidad procede de migraciones, climas, culturas, mezclas, magia, religión, guerras, aislamiento, alimentación, historia y adaptación.
+
+##### Enanos
+
+- **Escala:** Pequeña.
+- **Movimiento:** 5.
+- **Cuerpo de Piedra:** para Carga y para resistir Empujar, Derribar o desplazamiento físico impuesto, el Enano se trata como de Escala Mediana. Esta mejora no se aplica a ataque, daño, alcance, Defensa, espacio ocupado ni equipo sobredimensionado.
+- **Sangre de Metal:** +1 a pruebas de VIG para resistir toxinas, enfermedades y agotamiento ambiental apropiado. Si uno de esos efectos ataca expresamente Defensa Corporal, obtiene +1 Defensa Corporal contra ese efecto. No protege de heridas, hambre, sueño insuficiente ni daño general.
+- Forja, minería, Ingeniería y Artesanía son conocimientos adquiridos, no competencias raciales gratuitas.
+
+##### Élficos
+
+- **Escala:** Mediana.
+- **Movimiento:** 6.
+- **Sentidos Élficos:** +1 PER únicamente para distinguir detalles naturales sutiles por vista u oído cuando esas señales sean determinantes. No es +1 PER general, no mejora iniciativa ni ataques.
+- **Resonancia de la Savia:** advierte una alteración mágica significativa que esté afectando directamente seres vivos, procesos vitales o un ecosistema, siempre que pueda percibir razonablemente el área afectada. Detecta que existe una alteración; no revela automáticamente hechizo, Fuente, responsable, posición exacta ni solución.
+- Alto, Silvano, Oscuro o Común describen tradiciones, poblaciones e historias; no conceden INT, AGI, Naturaleza, Sigilo, magia ni moral automática.
+
+##### Orcos
+
+- **Escala:** Mediana.
+- **Movimiento:** 6.
+- **Complexión Orca:** +1 FUE efectiva sólo para Carga, levantar, arrastrar o aplicar fuerza bruta contra objetos inertes. No modifica ataque, daño, Agarrar, Empujar, Derribar, Defensa ni Vida.
+- **Voluntad del Colmillo:** 1 vez por Escena, antes de una prueba que tenga Desventaja exclusivamente por dolor, miedo o agotamiento físico, puede ignorar esa fuente de Desventaja para esa prueba. No concede Ventaja, no elimina la condición que originó el problema y no retira penalizaciones de Movimiento por Fatiga.
+- Un Orco no obtiene Intimidación, competencia marcial ni conducta violenta por nacimiento.
+
+##### Goblinoides
+
+Todos los Goblinoides jugables comparten:
+
+- **Ojo para la Oportunidad:** 1 vez por Escena, antes de una prueba, obtiene +1 si explota una oportunidad concreta surgida de información recién obtenida, un cambio real de situación o una debilidad concreta ya descubierta. No crea información, no revela debilidades ocultas y no puede reutilizar la misma circunstancia como oportunidades distintas.
+
+**Goblin**
+- **Escala:** Pequeña.
+- **Movimiento:** 6.
+- **Escurridizo:** puede atravesar el espacio ocupado por una criatura Mediana o mayor cuando exista espacio físico suficiente. Ese tránsito cuenta como terreno difícil y no puede terminar el movimiento dentro del espacio ajeno. No atraviesa barreras ni anula Reacciones que otra regla habilite.
+
+**Hobgoblin**
+- **Escala:** Mediana.
+- **Movimiento:** 6.
+- Su disciplina organizada es principalmente cultural. No recibe Liderazgo, armas, Ingeniería, logística ni otras competencias gratuitas. Mecánicamente utiliza Ojo para la Oportunidad sin un segundo bono profesional obligatorio.
+
+**Bugbear**
+- **Escala:** Mediana, en el extremo superior de esa categoría para el paquete básico.
+- **Movimiento:** 6.
+- **Complexión Bugbear:** se trata como Grande únicamente para Carga y fuerza bruta contra objetos inertes. No obtiene alcance, daño, maniobras, Defensa ni armas de criatura Grande.
+- Su asociación histórica con sigilo y emboscada no concede Sigilo gratuito.
+
+Los Kobolds no forman parte del paquete jugable base actual. Su origen permanece deliberadamente abierto hasta cerrar la cosmología dracónica.
+
+##### Terios / Anihombres
+
+Los Terios son pueblos nacidos con anatomías animales funcionales; no son humanos transformados y una ascendencia animal no determina personalidad ni profesión.
+
+- **Escala:** normalmente Pequeña o Mediana según linaje.
+- **Movimiento:** 6 salvo locomoción específica.
+- Cada Terio elige **1 Adaptación Principal + 1 Adaptación Secundaria**, o **1 Adaptación Dominante**. Una Variedad puede reemplazar una adaptación, nunca añadir una tercera.
+
+**Adaptaciones Secundarias**
+- **Sentido especializado:** +1 PER sólo cuando un sentido anatómico concreto y estrecho sea determinante.
+- **Arma natural:** Daño 3, Penetración 0; no concede ataque adicional.
+- **Protección Natural:** Protección 1; no se suma con armadura.
+- **Adaptación ambiental:** +1 VIG contra una exposición ambiental específica o eliminación de una dificultad física igualmente específica cuando la anatomía la justifique.
+- **Movilidad Adaptada:** ignora una causa muy concreta de terreno difícil asociada a la anatomía.
+
+**Adaptaciones Principales**
+- **Complexión poderosa:** +1 FUE efectiva sólo para Carga y fuerza contra objetos inertes.
+- **Órgano prensil:** puede sujetar y manipular objetos apropiados; no concede Acción, ataque, escudo ni recarga adicionales.
+- **Locomoción Especializada:** Movimiento 6 en un único medio anatómicamente justificado, como nadar o trepar.
+- **Excavador:** puede remover con rapidez tierra, arena o sustrato blando y crear paso con tiempo; no obtiene Movimiento subterráneo normal.
+
+**Adaptación Dominante**
+- **Vuelo sostenido:** anatomía capaz de volar de forma funcional. Consume todo el presupuesto racial de adaptaciones. No funciona bajo Carga Pesada o Excesiva y no concede acciones adicionales.
+
+##### Feéricos
+
+**Naturaleza Feérica** es un descriptor sobrenatural compartido: determinados hechizos, rituales, barreras o fenómenos pueden reconocer a una criatura como Feérica. No concede por sí mismo Maná, Fuente, Disciplina, resistencia mágica ni Vínculo con Eïra.
+
+**Hada**
+- **Escala:** Pequeña.
+- **Movimiento terrestre:** 5.
+- **Movimiento aéreo inicial:** 6. Debe comenzar y terminar cada turno apoyada en una superficie capaz de sostenerla o permitirle posarse. Puede cruzar huecos y desniveles, pero no permanecer suspendida al terminar el turno. Carga Pesada o Excesiva impide usar este Movimiento aéreo.
+
+**Sátiro**
+- **Escala:** Mediana.
+- **Movimiento:** 6.
+- **Paso de Cabra:** raíces, roca irregular, pendientes naturales pronunciadas y desniveles menores no aumentan el coste de Movimiento cuando sean físicamente transitables. No concede trepa vertical, salto imposible ni equilibrio automático.
+- **Cuernos:** arma natural, Daño 3, Penetración 0.
+
+**Dríade**
+- **Escala:** Mediana.
+- **Movimiento:** 6.
+- **Vínculo Arbóreo:** mediante contacto con vegetación significativa perteneciente a su vínculo puede conocer su estado general: saludable, dañada, enferma, ardiendo, muriendo o afectada por magia evidente. No concede sentidos remotos, diálogo, ubicación, historia ni identificación del efecto.
+- **Enraizar:** Acción sobre suelo apropiado; mientras permanece enraizada se considera +1 categoría de Escala efectiva sólo para resistir Empujar, Derribar y desplazamiento físico impuesto. Liberarse cuesta 1 punto de Movimiento.
+
+**Silfo**
+- **Escala:** Mediana.
+- **Movimiento:** 6.
+- **Cuerpo del Viento:** ignora penalizaciones de desplazamiento causadas únicamente por viento mundano ordinario y se considera +1 categoría de Escala efectiva sólo para resistir Empujar causado por viento. No concede vuelo sostenido ni inmunidad a tormentas o magia.
+
+##### Ankar
+
+- **Escala:** Mediana.
+- **Movimiento:** 6.
+- **Sentido del Umbral:** dentro de 6 espacios puede advertir la presencia general de un alma desencarnada manifiesta, un espíritu en tránsito incompleto, un No Muerto sostenido espiritualmente o un efecto activo que retenga, desplace o esclavice un alma. No determina automáticamente ubicación exacta, identidad, intención, poderes, causa ni método de neutralización; un fenómeno sellado u oculto específicamente contra percepción espiritual puede exigir investigación o magia.
+- **Custodia del Alma:** +1 Defensa Mental únicamente contra posesión, control directo del alma, expulsión o desplazamiento cuerpo/alma y retención o esclavización espiritual. No protege de miedo, sugestión, ilusión, persuasión ni ataques mentales generales.
+- Ser Ankar no concede Religión, Medicina, Ritualismo, Arcana ni magia divina.
+
+##### Cristálidos
+
+Para el Manual Básico jugable se utiliza la variante **Cristálido de Matriz Mixta**. Los Cristálidos completamente cristalinos siguen existiendo en el mundo, pero su fisiología jugable avanzada queda fuera de este paquete.
+
+- **Escala:** Mediana.
+- **Movimiento:** 6.
+- **Matriz Mixta:** posee estructuras cristalinas integradas pero suficientes procesos vitales para utilizar normalmente Fatiga, descanso, sustento, Medicina y peligros fisiológicos generales.
+- **Resonancia Arcana:** mediante contacto directo puede reconocer si un objeto, cristal, mineral, estructura o dispositivo contiene, recibe, conduce, descarga energía mágica o está inerte. No determina cantidad, Fuente, hechizo, constructor, propósito ni método para desactivarlo.
+- **Conductor Vivo:** puede actuar voluntariamente como puente conductor cuando un dispositivo, ritual, proyecto o fenómeno compatible esté diseñado para admitirlo. Esto no genera Maná, no crea Reserva o Caudal, no sustituye materiales, Fuente, Método, Arcana, Ingeniería o Canalización y no concede inmunidad a sobrecarga.
+
+##### Verdantes
+
+Los Verdantes son organismos vegetales móviles y conscientes, distintos de Dríades y Trents.
+
+- **Escala:** Mediana.
+- **Movimiento:** 6.
+- **Sustento Vegetal:** necesita agua, luz suficiente y nutrientes compatibles; esas necesidades ocupan la misma función de supervivencia que alimento e hidratación para otros pueblos. Puede obtener parte de ellos de un entorno apropiado o transportarlos como provisiones. Sigue necesitando Descanso Completo y puede sufrir Fatiga.
+- **Enraizar:** Acción sobre suelo apropiado; mientras permanece inmóvil se considera +1 categoría de Escala efectiva sólo para resistir Empujar, Derribar y desplazamiento físico impuesto. Liberarse cuesta 1 punto de Movimiento. Enraizar no recupera Vida ni Maná.
+- **Adaptación de Bioma:** elige un bioma en creación. La adaptación concede una ventaja anatómica estrecha: o +1 VIG contra una exposición ambiental definitoria, o elimina una causa concreta de terreno difícil. Ejemplos: jungla, vegetación ordinaria; pantano, barro o agua somera; tundra, +1 VIG contra frío ambiental; desierto, +1 VIG contra calor o deshidratación ambiental. No concede inmunidad al bioma completo.
+- Sangrado puede representar pérdida de savia o fluidos vasculares. Medicina sigue siendo la Habilidad pertinente cuando exista un método aplicable.
+
+##### Micelios
+
+Los Micelios son organismos fúngicos conscientes; no son plantas ni animales.
+
+- **Escala:** Mediana.
+- **Movimiento:** 6.
+- **Sustento Fúngico:** necesita humedad y nutrientes orgánicos compatibles, obtenidos del entorno o de provisiones apropiadas. Sigue usando las reglas normales de Fatiga y Descanso Completo.
+- **Quimiosensibilidad:** +1 PER únicamente para detectar señales químicas cercanas relacionadas con crecimiento fúngico, esporas, descomposición orgánica, contaminación biológica o alteración importante de una colonia. No es +1 PER general ni sustituye Naturaleza, Medicina o Investigación.
+- **Enlace Micelial:** Acción para conectarse mediante contacto directo con una red micelial viva, compatible y continua. Mientras mantenga contacto puede comunicarse silenciosamente con otro Micelio voluntario conectado a la misma red dentro de 12 espacios mediante mensajes simples, conceptos o impresiones sensoriales básicas. Termina al romper contacto, interrumpirse la red o por decisión del usuario. No es telepatía, radar, archivo de recuerdos, mapa de la red, línea de efecto ni canal gratuito para Maná o hechizos.
+- Redes comunitarias extensas capaces de transmitir información compleja o mágica son infraestructura, no una capacidad gratuita de todo Micelio.
+
+##### Coralios
+
+Los Coralios son pueblos biológicos coralinos y anfibios vinculados históricamente a arrecifes transformados por la Primera Semilla.
+
+- **Escala:** Mediana.
+- **Movimiento terrestre:** 5.
+- **Movimiento acuático:** 6.
+- **Respiración Anfibia:** puede respirar agua y aire mientras se mantenga razonablemente hidratado. No concede inmunidad a presión, temperatura, corrientes, contaminación ni desecación.
+- **Esqueleto Coralino:** Protección Natural 1; no se suma con armadura.
+- **Sentido de Corriente:** +1 PER cuando corrientes, vibraciones o cambios de presión del agua sean el medio determinante para percibir algo. No es Percepción general.
+- La capacidad histórica de ciertos Coralios para relacionarse con magia oceánica no forma parte del paquete base; una futura Resonancia Oceánica debe aparecer como Rasgo, linaje o capacidad específica.
+
+#### Notas de balance y progresión racial
+
+Los paquetes anteriores son una **base estática**. Subir de nivel no aumenta automáticamente sus bonos, alcances, usos, daño, Protección, Movimiento ni capacidades. Una evolución posterior requiere un Rasgo, Técnica, Hechizo, Proyecto, transformación o acontecimiento de ficción con coste y requisitos propios.
+
+Los paquetes raciales no conceden rangos de Habilidad ni rompen el máximo inicial de Atributo. Cuando una capacidad racial y un Rasgo general describan exactamente la misma propiedad, no se acumulan ni se cobra dos veces por la misma característica.
 
 ### Paso 2 — Atributos
 
@@ -339,7 +527,7 @@ Catálogo de referencia vigente:
 - Afinidad Sobrenatural — 1 PR.
 - Resistencia Ambiental — 1–2 PR.
 
-Si el concepto del personaje exige una propiedad fisiológica extraordinaria para existir coherentemente en la ficción, esa propiedad debe quedar representada de forma explícita; el Director puede exigir el Rasgo apropiado. Una misma propiedad no se cobra dos veces.
+Los 3 PR generales existen **además** del paquete racial. Si el paquete racial ya concede una propiedad equivalente a un Rasgo general, no se compra de nuevo para acumularla. Un Rasgo puede ampliar una capacidad racial sólo cuando su propia regla describa expresamente esa mejora. Una misma propiedad no se cobra dos veces.
 
 ### Paso 5 — Familiar, si corresponde
 
@@ -426,7 +614,7 @@ Antes de dar por terminado el personaje:
 - Técnicas, Disciplinas y Hechizos cumplen sus costes y requisitos.
 - Se gastaron como máximo 3 PR.
 - Los Rasgos negativos no financiaron PR adicionales.
-- Pueblo/Origen no añadió recursos mecánicos gratuitos.
+- El paquete racial jugable está registrado y no se duplicó con Rasgos generales; cultura y Origen no añadieron recursos mecánicos gratuitos.
 - El equipo respeta el PEI de 20 o, la alternativa Paquete/Compra libre, la disponibilidad y el acceso; la Reserva líquida de 2 o se mantiene separada.
 - Vida, Maná y Defensas fueron recalculados después de equipo y Rasgos.
 - Familiar, magia y equipo no generan Acciones, Reacciones, Maná o bonos no escritos.
@@ -438,7 +626,7 @@ El ejemplo construye a **Iria**, una exploradora arcana. No es un arquetipo obli
 
 #### 1. Concepto
 
-Iria es una exploradora de ruinas capaz de defenderse con armas ligeras y utilizar Evocación básica. Su pueblo, cultura y origen explican quién es, pero no le conceden rangos o bonos gratuitos.
+Iria es una **Elfa** exploradora de ruinas capaz de defenderse con armas ligeras y utilizar Evocación básica. Aplica el paquete Élfico —Escala Mediana, Movimiento 6, Sentidos Élficos y Resonancia de la Savia— sin gastar PD ni sus 3 PR generales. Su cultura y origen explican quién es, pero no le conceden rangos o bonos adicionales.
 
 #### 2. Atributos
 
@@ -551,7 +739,7 @@ Iria es legal porque:
 - sólo adquirió una Disciplina;
 - gastó exactamente 3 PR;
 - su equipo respeta PEI;
-- ninguna parte de su identidad narrativa añadió un bono mecánico gratuito.
+- su paquete Élfico está aplicado por separado de PD y PR, y ninguna parte de su cultura u origen añadió un bono mecánico oculto.
 
 ## 4. Desarrollo y subida de nivel
 
@@ -1588,7 +1776,7 @@ Del mismo modo, Gran Maestro sólo puede alcanzarse desde nivel 15 y cuesta 8 PD
 
 ## 5. Rasgos y Puntos de Rasgo
 
-Los Rasgos representan propiedades persistentes del personaje que no encajan como entrenamiento ordinario. En creación se dispone de **3 PR**, separados de los PD. Los PR y los PD no se convierten entre sí. Un Rasgo puede ser Innato, Adquirido, de Vínculo o Condicional. Como referencia, un Rasgo Menor cuesta 1 PR, Significativo 2, Mayor 3 y Excepcional 4+. Los rasgos negativos no generan PR adicionales.
+Los Rasgos representan propiedades persistentes del personaje que no encajan como entrenamiento ordinario. En creación se dispone de **3 PR**, separados de los PD y **adicionales al paquete racial jugable**. Los PR y los PD no se convierten entre sí. Un Rasgo puede ser Innato, Adquirido, de Vínculo o Condicional. Como referencia, un Rasgo Menor cuesta 1 PR, Significativo 2, Mayor 3 y Excepcional 4+. Los rasgos negativos no generan PR adicionales. Si un paquete racial ya concede una propiedad equivalente, no se vuelve a comprar para acumularla.
 
 Catálogo de referencia: Sentido Agudo 1 PR; Visión en la Oscuridad 2; Anfibio 1; Trepador Natural 1; Cola Prensil 1; Miembros Extra 2, sin conceder acciones adicionales; Vuelo Natural 4 y de carácter excepcional; Corpulento 2, +4 Vida; Masivo 3, +8 Vida y no acumulable con Corpulento; Vínculo Divino 2, que concede acceso y no poder automático; Familiar Mágico 3; Pacto Externo 2–3; Prótesis Mayor 2+; Afinidad Sobrenatural 1; Resistencia Ambiental 1–2.
 
@@ -8991,7 +9179,7 @@ Los dominios divinos no son propiedades exclusivas. Eïra y Aurea pueden compart
 
 **La Sangre** dio origen a los Terios, llamados Anihombres en muchas culturas. Son pueblos nacidos como tales, no humanos transformados. Un Terio lupino, por ejemplo, no es un hombre lobo: la licantropía, si existe, es otro fenómeno —maldición, enfermedad, transformación, pacto o magia—.
 
-El canon también reconoce otros hijos de la Primera Semilla, entre ellos Micelios, Verdantes y Coralios. Su existencia no implica todavía paquetes mecánicos jugables completos.
+El canon también reconoce otros hijos de la Primera Semilla, entre ellos Micelios, Verdantes y Coralios. **Micelios, Verdantes y Coralios forman parte de los paquetes raciales jugables vigentes definidos en 3. Creación de personaje > Paso 1.**
 
 Eïra puede ser Fuente Divina mediante un Vínculo apropiado. Apariencia, manifestaciones, dogma, templos, sacerdocio, festividades, mandamientos, avatares, milagros y detalles de Vínculos Divinos permanecen deliberadamente abiertos allí donde el canon vigente no los ha fijado.
 
@@ -9023,7 +9211,7 @@ Su creación se expresa mediante las **Cuatro Virtudes de Varkor**: **Colmillo, 
 
 **El Puño** originó a los Ogros y simboliza poder físico y dominación directa. Se registran Ogros Comunes, de Guerra, de las Estepas, de Montaña y Ogros Magos.
 
-**El Ojo** originó a los Goblinoides y simboliza astucia, número, adaptación y guerra mediante inteligencia. Incluye Goblins, Hobgoblins, Bugbears, variantes goblinoides y Kobolds.
+**El Ojo** originó a los Goblinoides y simboliza astucia, número, adaptación y guerra mediante inteligencia. El paquete jugable base incluye Goblins, Hobgoblins y Bugbears, además de variantes goblinoides compatibles. **Los Kobolds permanecen deliberadamente sin origen asignado hasta cerrar la cosmología dracónica y no forman parte del paquete jugable base actual.**
 
 Ningún pueblo creado por Varkor nace moralmente malvado. La herencia divina puede explicar rasgos físicos o símbolos culturales; la moral depende de individuos, sociedades, circunstancias e historia. Para Varkor, fuerza tampoco equivale necesariamente a tamaño: significa capacidad de imponer o preservar la voluntad frente a aquello que intenta quebrarla.
 
@@ -9502,8 +9690,7 @@ Comercio estratégico
 ## 9. Pueblos, culturas y pertenencia
 Tierra Mágica no vincula automáticamente cultura, nación y especie. Las grandes ciudades son
 diversas, las fronteras han cambiado muchas veces y familias enteras han migrado siguiendo guerras,
-minas, rutas y oportunidades. Los paquetes raciales del sistema describirán anatomía, sentidos,
-adaptaciones y relaciones mágicas; la cultura se define aparte.
+minas, rutas y oportunidades. Los paquetes raciales del sistema **describen** anatomía, sentidos, adaptaciones y relaciones mágicas; sus reglas completas están unificadas en **3. Creación de personaje > Paso 1**. La cultura se define aparte y no altera automáticamente el paquete.
 Identidades culturales frecuentes
 Identidad Rasgos culturales
 Valdoriana tradición de fueros, servicio cívico, caballería, burocracia
