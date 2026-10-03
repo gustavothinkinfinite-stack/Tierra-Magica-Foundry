@@ -34,9 +34,11 @@ Ratificada como Técnica Básica de 2 PD. Reacción para interponerse ante un at
 
 Se auditó el catálogo extendido y se decidió mantener como núcleo los 18 hechizos implementados. Las variantes heredadas que duplicaban funciones, introducían apilamiento de bonos, curación escalonada, control mental acumulativo, rastreo gratuito, movimiento gratuito o reetiquetado para eludir resistencias no se incorporan automáticamente. Sólo podrán reaparecer si una necesidad de juego concreta demuestra que no puede resolverse limpiamente con el núcleo existente.
 
-### A5 — Pueblos y Orígenes — ALTA — RESUELTO
+### A5 — Pueblos y Orígenes — ALTA — RESOLUCIÓN HISTÓRICA SUPERADA
 
-Los pueblos, especies, culturas y orígenes no conceden paquetes mecánicos gratuitos. Las diferencias fisiológicas o sobrenaturales se construyen con la economía universal de 3 PR y Rasgos; competencias, Técnicas y Habilidades continúan pagando sus costes normales. Miembros Extra no crea acciones adicionales; Escala no concede bonos genéricos; una cultura marcial no regala competencias; una afinidad mágica no concede Disciplina, hechizos ni Maná; las desventajas raciales no generan PR; una misma propiedad no puede cobrarse dos veces.
+La resolución original de A5 descartó paquetes raciales gratuitos para el cierre 1.0 de 2026-09-22. **Esa decisión fue sustituida el 2026-10-03 por una decisión explícita de proyecto** que integra paquetes raciales jugables v0.3 directamente en el Manual Maestro.
+
+La autoridad vigente está exclusivamente en `docs/Tierra_Magica_Manual_Maestro.md`, sección **3. Creación de personaje > Paso 1**. Los paquetes raciales actuales se equilibran aparte de 25 PD y 3 PR; cultura, Origen, profesión, religión, personalidad y moral siguen separados. Esta auditoría conserva A5 únicamente como trazabilidad y no debe utilizarse para revertir la regla vigente.
 
 ### A6 — Sostenimiento — MEDIA — RESUELTO
 
