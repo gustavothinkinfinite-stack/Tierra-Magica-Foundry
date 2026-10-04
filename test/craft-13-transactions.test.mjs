@@ -134,7 +134,8 @@ function project(actor, {
   workMaterialGrade = "ordinary",
   specialMaterials = [],
   modifications = [],
-  enhancement = {mode:"modification",replaceMaterialId:"",fineMachiningMaterialId:""},
+  enhancement = {mode:"modification",replaceMaterialId:"",replaceModificationKey:"",fineMachiningMaterialId:""},
+  repair = {affectedMaterialIds:[],ordinaryReplacementMaterialIds:[],specialReplacements:[]},
   components = [],
   timeMode = operation === "modify" ? "fixed" : "derived",
   baseMinutes = Math.max(requiredMinutes, 10),
@@ -181,6 +182,7 @@ function project(actor, {
       specialMaterials,
       modifications,
       enhancement,
+      repair,
       components,
       time:{
         mode:timeMode,
@@ -778,6 +780,7 @@ test("CRAFT-13D: Mecanizado fino sólo descuenta una modificación declarada sob
     profileKey:"kharumPrecisionAlloy",
     grade:"rare",
     coverage:"major",
+    part:"mecanismo metálico",
     supplementCopper:25,
     sourceItemUuid:""
   };
@@ -832,6 +835,7 @@ test("CRAFT-13D: incorporar Material Especial exige Lote preparado del mismo Per
     profileKey:"kharumPrecisionAlloy",
     grade:"rare",
     coverage:"major",
+    part:"mecanismo metálico",
     supplementCopper:25,
     sourceItemUuid:specialLot.uuid
   };
@@ -887,7 +891,7 @@ test("CRAFT-13D: Lote bruto no puede integrarse como Material Especial preparado
     quality:"common",
     workMaterialGrade:"rare",
     specialMaterials:[{
-      id:"raw-part",name:"Aleación",profileKey:"kharumPrecisionAlloy",grade:"rare",coverage:"major",
+      id:"raw-part",name:"Aleación",profileKey:"kharumPrecisionAlloy",grade:"rare",coverage:"major",part:"mecanismo metálico",
       supplementCopper:25,sourceItemUuid:raw.uuid
     }],
     enhancement:{mode:"material",replaceMaterialId:"",fineMachiningMaterialId:""},
@@ -1167,6 +1171,258 @@ test("CRAFT-13D: sustituir una Modificación libera su CapM antes de validar la 
   assert.equal(target.system.manufacture.capMUsed,2);
   assert.equal(target.system.manufacture.modifications.some((row)=>row.key==="maintainable"),false);
   assert.equal(target.system.manufacture.effects.repairTimeMultiplier,1);
+});
+
+test("CRAFT-13D: retirar una Modificación sin reemplazo libera CapM, cuesta 0 VI y 10% del tiempo base",async()=>{
+  const actor=new StubActor("remove-modification");
+  const target=manufacturedItem(actor,{
+    id:"remove-mod-target",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"superior",
+    modifications:[{key:"maintainable"}]
+  });
+  const craft=project(actor,{
+    id:"remove-mod-project",
+    operation:"modify",
+    material:null,
+    materialCopper:0,
+    estimatedMaterialsCopper:0,
+    referenceValueCopper:100,
+    quality:"superior",
+    modifications:[],
+    enhancement:{
+      mode:"modification",
+      replaceMaterialId:"",
+      replaceModificationKey:"maintainable",
+      fineMachiningMaterialId:""
+    },
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:30,
+    requiredMinutes:30,
+    requiredRank:3,
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.manufacture.capMUsed,0);
+  assert.equal(target.system.manufacture.modifications.length,0);
+  assert.equal(target.system.manufacture.effects.repairTimeMultiplier,1);
+});
+
+test("CRAFT-13D: BRA especial incluye sólo la capa material realmente afectada",async()=>{
+  const actor=new StubActor("repair-special-layer");
+  const target=manufacturedItem(actor,{
+    id:"repair-special-target",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"common",
+    specialMaterials:[{
+      id:"steel",
+      name:"Acero de Kharum",
+      profileKey:"kharumSteel",
+      grade:"specialized",
+      coverage:"dominant",
+      supplementCopper:25,
+      sourceItemUuid:""
+    }]
+  });
+  target.system.condition="damaged";
+  const material=lot(actor,{id:"ordinary-repair",vi:50});
+  const craft=project(actor,{
+    id:"repair-special-project",
+    operation:"repair",
+    material,
+    materialCopper:15,
+    estimatedMaterialsCopper:15,
+    referenceValueCopper:100,
+    quality:"common",
+    workMaterialGrade:"specialized",
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:30,
+    requiredMinutes:30,
+    requiredRank:2,
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate",
+    repair:{
+      affectedMaterialIds:["steel"],
+      ordinaryReplacementMaterialIds:[],
+      specialReplacements:[]
+    }
+  });
+  craft.system.economy.affectedValueCopper=150;
+  const resolver=resolverFor(actor);
+  const reserved=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(reserved.ok,true);
+  await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.condition,"operative");
+  assert.equal(target.system.priceCopper,150);
+  assert.equal(target.system.manufacture.specialMaterials.length,1);
+  assert.deepEqual(target.system.manufacture.effects.materialProperties,["kharum-tenacity"]);
+});
+
+test("CRAFT-13D: reemplazar con material ordinario repara pero elimina la propiedad especial y recalcula VRT",async()=>{
+  const actor=new StubActor("repair-ordinary-replacement");
+  const target=manufacturedItem(actor,{
+    id:"repair-ordinary-target",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"common",
+    specialMaterials:[{
+      id:"steel",
+      name:"Acero de Kharum",
+      profileKey:"kharumSteel",
+      grade:"specialized",
+      coverage:"dominant",
+      supplementCopper:25,
+      sourceItemUuid:""
+    }]
+  });
+  target.system.condition="damaged";
+  const material=lot(actor,{id:"ordinary-replacement-lot",vi:50});
+  const craft=project(actor,{
+    id:"repair-ordinary-project",
+    operation:"repair",
+    material,
+    materialCopper:15,
+    estimatedMaterialsCopper:15,
+    referenceValueCopper:100,
+    quality:"common",
+    workMaterialGrade:"ordinary",
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:30,
+    requiredMinutes:30,
+    requiredRank:2,
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate",
+    repair:{
+      affectedMaterialIds:["steel"],
+      ordinaryReplacementMaterialIds:["steel"],
+      specialReplacements:[]
+    }
+  });
+  craft.system.economy.affectedValueCopper=150;
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.condition,"operative");
+  assert.equal(target.system.priceCopper,100);
+  assert.equal(target.system.manufacture.specialMaterials.length,0);
+  assert.deepEqual(target.system.manufacture.effects.materialProperties,[]);
+});
+
+test("CRAFT-13D: preservar una parte especial reemplazada exige Lote preparado del mismo Perfil",async()=>{
+  const actor=new StubActor("repair-special-replacement");
+  const target=manufacturedItem(actor,{
+    id:"repair-replacement-target",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"common",
+    specialMaterials:[{
+      id:"steel",
+      name:"Acero de Kharum",
+      profileKey:"kharumSteel",
+      grade:"specialized",
+      coverage:"dominant",
+      supplementCopper:25,
+      sourceItemUuid:""
+    }]
+  });
+  target.system.condition="damaged";
+  const specialLot=lot(actor,{
+    id:"repair-steel-lot",
+    vi:30,
+    compatibility:["material:kharumSteel"],
+    materialProfileKey:"kharumSteel",
+    preparation:"prepared"
+  });
+  const craft=project(actor,{
+    id:"repair-special-replacement-project",
+    operation:"repair",
+    material:specialLot,
+    materialCopper:15,
+    estimatedMaterialsCopper:15,
+    allocationCompatibility:"material:kharumSteel",
+    referenceValueCopper:100,
+    quality:"common",
+    workMaterialGrade:"specialized",
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:30,
+    requiredMinutes:30,
+    requiredRank:2,
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate",
+    repair:{
+      affectedMaterialIds:["steel"],
+      ordinaryReplacementMaterialIds:[],
+      specialReplacements:[{id:"replacement",materialId:"steel",sourceItemUuid:specialLot.uuid}]
+    }
+  });
+  craft.system.economy.affectedValueCopper=150;
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.manufacture.specialMaterials[0].profileKey,"kharumSteel");
+  assert.equal(target.system.manufacture.specialMaterials[0].sourceItemUuid,specialLot.uuid);
+  assert.equal(specialLot.system.craftingLot.inputValueCopper,15);
+});
+
+test("CRAFT-13D: no puede inflarse BRA con una capa especial que no fue afectada",async()=>{
+  const actor=new StubActor("repair-bra-exploit");
+  const target=manufacturedItem(actor,{
+    id:"repair-bra-target",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"common",
+    specialMaterials:[{
+      id:"steel",
+      name:"Acero de Kharum",
+      profileKey:"kharumSteel",
+      grade:"specialized",
+      coverage:"dominant",
+      supplementCopper:25,
+      sourceItemUuid:""
+    }]
+  });
+  target.system.condition="damaged";
+  const material=lot(actor,{id:"repair-bra-lot",vi:50});
+  const craft=project(actor,{
+    id:"repair-bra-project",
+    operation:"repair",
+    material,
+    materialCopper:15,
+    estimatedMaterialsCopper:15,
+    referenceValueCopper:100,
+    quality:"common",
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:30,
+    requiredMinutes:30,
+    requiredRank:2,
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate",
+    repair:{affectedMaterialIds:[],ordinaryReplacementMaterialIds:[],specialReplacements:[]}
+  });
+  craft.system.economy.affectedValueCopper=150;
+  const rejected=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.ok(rejected.issues?.some((issue)=>issue.code==="repair-bra"));
+  assert.equal(material.system.craftingLot.inputValueCopper,50);
 });
 
 test("CRAFT-13D: Defectuosa no puede usarse como fabricación barata",async()=>{
