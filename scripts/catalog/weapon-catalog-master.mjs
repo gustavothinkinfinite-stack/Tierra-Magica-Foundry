@@ -1,5 +1,13 @@
 import { STARTER_CONTENT } from "../content.mjs";
 import { APPROVED_WEAPON_PROFILE_VARIANTS } from "./weapon-variants-approved.mjs";
+import { APPROVED_SPECIAL_LIGHT_VARIANTS } from "./weapon-variants-special-light-approved.mjs";
+import { APPROVED_MARTIAL_VARIANTS } from "./weapon-variants-martial-approved.mjs";
+
+const APPROVED_VARIANTS = Object.freeze({
+  ...APPROVED_WEAPON_PROFILE_VARIANTS,
+  ...APPROVED_SPECIAL_LIGHT_VARIANTS,
+  ...APPROVED_MARTIAL_VARIANTS
+});
 
 export const WEAPON_CATALOG_VERSION = "1.0-draft";
 
@@ -257,7 +265,7 @@ function canonicalEntries() {
 
 function proposedEntries() {
   return proposalGroups.flatMap((group)=>group.names.map((name)=>{
-    const approvedProfile=APPROVED_WEAPON_PROFILE_VARIANTS[name] ?? "";
+    const approvedProfile=APPROVED_VARIANTS[name] ?? "";
     return {
       name,
       status:"proposal",
