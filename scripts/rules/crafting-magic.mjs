@@ -194,7 +194,7 @@ export function imprintActivationProfile(key=""){
   return IMPRINTS[String(key)]??null;
 }
 
-export function validateImprintActivation({actor,item,imprint,resolutionId="",resolutionHostItemUuid="",usesHostWeaponProfile=false,voluntaryStateCost=false}={}){
+export function validateImprintActivation({actor,item,imprint,resolutionId="",resolutionHostItemUuid="",usesHostWeaponProfile=false,voluntaryStateCost=false,activeStackingGroups=[]}={}){
   const issues=[];
   const profile=IMPRINTS[String(imprint?.key??"")];
   if(!profile) return {valid:false,issues:[{code:"imprint-profile",message:"Impronta desconocida."}]};
@@ -212,7 +212,7 @@ export function validateImprintActivation({actor,item,imprint,resolutionId="",re
       }
     }
   }
-  const activeGroups=new Set(Array.isArray(arguments[0]?.activeStackingGroups)?arguments[0].activeStackingGroups.map(String):[]);
+  const activeGroups=new Set(Array.isArray(activeStackingGroups)?activeStackingGroups.map(String):[]);
   if(profile.group==="barrier-defense" && actor?.system?.combat?.kineticBarrierActive) activeGroups.add("barrier-defense");
   if(activeGroups.has(profile.group)) {
     issues.push({code:"imprint-stacking",message:"La Impronta es equivalente a un efecto ya activo y no se acumula."});
