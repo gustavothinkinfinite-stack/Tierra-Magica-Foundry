@@ -455,6 +455,46 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
   if (model.operation === "modify") return analyzeModifyProject(project,model,resolver);
   return { ok:true, materialCopper:model.ledger.estimatedMaterialsCopper };
 }
+async function validateSpecialMaterialSources(project, model, allocations, resolver) {
+  if(!model.specialMaterials.length) return {ok:true};
+  const materialValidation=validateSpecialMaterials(model.specialMaterials);
+  if(!materialValidation.valid) return {ok:false,error:"Los Materiales Especiales declarados no tienen un Perfil válido.",issues:materialValidation.issues};
+
+  const requiredBySource=new Map();
+  for(const row of model.specialMaterials) {
+    if(!row.sourceItemUuid) return {ok:false,error:"Todo Material Especial debe señalar el Lote físico que aporta su SM.",materialId:row.id};
+    const previous=requiredBySource.get(row.sourceItemUuid) ?? { amountCopper:0, profileKeys:new Set(), rows:[] };
+    previous.amountCopper+=row.supplementCopper;
+    previous.profileKeys.add(row.profileKey);
+    previous.rows.push(row.id);
+    requiredBySource.set(row.sourceItemUuid,previous);
+  }
+
+  for(const [sourceUuid,requirement] of requiredBySource) {
+    if(requirement.profileKeys.size!==1) {
+      return {ok:false,error:"Un mismo Lote no puede representar varios Perfiles de Material en una sola reserva.",sourceUuid};
+    }
+    const item=await resolveOwnedItem(project.parent,sourceUuid,resolver);
+    if(!item) return {ok:false,error:"El Lote de Material Especial ya no existe.",sourceUuid};
+    const lot=lotData(item);
+    const profileKey=[...requirement.profileKeys][0];
+    if(!lot.enabled) return {ok:false,error:item.name+" no está marcado como Lote de fabricación.",sourceUuid};
+    if(lot.preparation!=="prepared") return {ok:false,error:item.name+" debe estar Preparado antes de integrarse en equipo.",sourceUuid};
+    if(lot.materialProfileKey!==profileKey) {
+      return {ok:false,error:item.name+" no corresponde al Perfil de Material "+profileKey+".",sourceUuid};
+    }
+    const allocation=allocations.find((row)=>row.sourceUuid===sourceUuid);
+    if(!allocation || allocation.amountCopper<requirement.amountCopper) {
+      return {ok:false,error:"La reserva de VI del Material Especial no cubre su SM.",sourceUuid,expectedCopper:requirement.amountCopper};
+    }
+    const compatibility="material:"+profileKey;
+    if(!lot.compatibility.includes(compatibility) || !allocation.compatibilities.includes(compatibility)) {
+      return {ok:false,error:"El Lote especial no declara la compatibilidad de su Perfil para este Proyecto.",sourceUuid,compatibility};
+    }
+  }
+  return {ok:true};
+}
+
 export async function reserveCraftingProjectMaterials(project, {
   expectedRevision = null,
   resolver = globalThis.fromUuid
@@ -500,6 +540,8 @@ export async function reserveCraftingProjectMaterials(project, {
   }
 
   const allocations = craftingProjectMaterialAllocations(project);
+  const specialMaterialSources=await validateSpecialMaterialSources(project,model,allocations,resolver);
+  if(!specialMaterialSources.ok) return specialMaterialSources;
   const requested = allocations.reduce((sum, entry) => sum + entry.amountCopper, 0);
   if (requested !== model.ledger.estimatedMaterialsCopper) {
     return { ok:false, error:"Las asignaciones de Lotes deben coincidir exactamente con el material estimado del Proyecto." };
