@@ -30,7 +30,7 @@ test("el manifiesto describe Foundry T.M. 1.1.2", async () => {
 test("el esquema contiene actores y tipos de objeto del sistema", async () => {
   const templates = await readJson("template.json");
   assert.deepEqual(templates.Actor.types, ["character", "npc", "familiar"]);
-  assert.deepEqual(templates.Item.types, ["weapon", "armor", "shield", "equipment", "spell", "technique", "trait", "specialization", "formula", "ritual", "device", "ancestry", "origin", "background", "discipline", "effect"]);
+  assert.deepEqual(templates.Item.types, ["weapon", "armor", "shield", "equipment", "spell", "technique", "trait", "specialization", "formula", "ritual", "device", "ancestry", "origin", "background", "discipline", "effect", "project"]);
   assert.equal(Object.keys(templates.Actor.templates.base.attributes).length, 7);
   assert.equal(Object.keys(templates.Actor.templates.base.skills).length, 26);
   assert.deepEqual(templates.Item.templates.base.rules, []);
