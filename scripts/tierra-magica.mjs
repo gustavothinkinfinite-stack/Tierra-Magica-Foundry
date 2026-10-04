@@ -90,7 +90,18 @@ Hooks.on("preCreateItem", (item, data, options = {}) => {
     "system.schemaVersion": TM_SCHEMA_VERSION
   });
 
-  if (options.tmValidated || ["effect","project"].includes(item.type)) return;
+  if (item.type === "project" && !options.tmValidated) {
+    item.updateSource({
+      "system.state":"draft",
+      "system.execution.revision":0,
+      "system.execution.committed":false,
+      "system.execution.completionToken":"",
+      "system.ledger.committedMaterialsCopper":0,
+      "system.ledger.recoveredMaterialsCopper":0
+    });
+    return;
+  }
+  if (options.tmValidated || item.type === "effect") return;
   const actor = item.parent;
   if (!actor || actor.type !== "character") return;
 
@@ -161,6 +172,15 @@ Hooks.on("createItem", async (item, options = {}) => {
 Hooks.on("preDeleteItem", (item, options = {}) => {
   const actor = item.parent;
   if (!actor || actor.type !== "character" || options.tmValidated) return;
+  if (item.type === "project" && item.system?.execution?.committed) {
+    ui.notifications.warn("Cancela o libera el Proyecto antes de eliminarlo; posee materiales reservados.");
+    return false;
+  }
+  const reservations = item.system?.craftingLot?.reservations;
+  if (reservations && typeof reservations === "object" && Object.keys(reservations).length) {
+    ui.notifications.warn("No puede eliminarse un Lote con VI reservado por un Proyecto activo.");
+    return false;
+  }
   if (item.type === "effect") return;
   const developmental = new Set(["ancestry","origin","background","discipline","specialization","technique","trait","spell"]);
   if (!developmental.has(item.type)) return;
@@ -172,6 +192,34 @@ Hooks.on("preDeleteItem", (item, options = {}) => {
 
 Hooks.on("preUpdateItem", (item, changes, options = {}) => {
   if (item.parent?.type === "character" && !options.tmValidated) {
+    const touches = (path) => foundry.utils.hasProperty(changes, path) ||
+      Object.keys(changes).some((key) => key === path || key.startsWith(path + "."));
+
+    if (!game.user?.isGM && (
+      touches("system.craftingLot.inputValueCopper") ||
+      touches("system.craftingLot.reservations")
+    )) {
+      ui.notifications.warn("El VI y sus reservas sólo cambian mediante operaciones autorizadas de crafting.");
+      return false;
+    }
+
+    if (item.type === "project" && !game.user?.isGM) {
+      const transactionPaths = [
+        "system.state",
+        "system.time.completedMinutes",
+        "system.execution",
+        "system.ledger.committedMaterialsCopper",
+        "system.ledger.recoveredMaterialsCopper"
+      ];
+      if (transactionPaths.some(touches)) {
+        ui.notifications.warn("Estado, avance y ledger transaccional del Proyecto requieren autoridad del sistema.");
+        return false;
+      }
+      if (String(item.system?.state ?? "draft") !== "draft" && touches("system")) {
+        ui.notifications.warn("Un Proyecto aprobado ya no puede reescribirse; libéralo o cancélalo mediante el flujo de crafting.");
+        return false;
+      }
+    }
     const protectedPaths = ["system.acquisition", "system.costs", "system.rules", "system.requirements", "system.schemaVersion"];
     const touchesProtected = protectedPaths.some((path) => foundry.utils.hasProperty(changes, path));
     if (touchesProtected && !game.user?.isGM) {
