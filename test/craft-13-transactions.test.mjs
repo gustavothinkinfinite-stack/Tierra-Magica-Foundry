@@ -1703,3 +1703,275 @@ test("CRAFT-13E: Fabricar rechaza CRu o Encantamiento preinstalados sin Proyecto
   assert.equal(rejected.ok,false);
   assert.match(rejected.error,/Encantamientos preinstalados/);
 });
+
+
+test("CRAFT-13E: reparación física no cobra Encantamiento si su matriz no fue afectada",async()=>{
+  const actor=new StubActor("repair-enchant-physical");
+  const target=manufacturedItem(actor,{
+    id:"enchanted-repair-target",
+    type:"equipment",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"common",
+    system:{category:"General"}
+  });
+  target.system.enchantment={
+    grade:1,
+    patternKey:"barrier",
+    functionalKey:"barrier-defense",
+    materialCostCopper:500,
+    timeMinutes:1440,
+    addedValueCopper:1000,
+    reserve:{value:0,max:6},
+    attunedActorUuid:"",
+    seal:false,
+    boundSpell:{slug:"barrera-cinetica",method:"direct",grade:"basic",manaCost:3}
+  };
+  target.system.priceCopper=1100;
+  target.system.condition="damaged";
+  const material=lot(actor,{id:"physical-repair-lot",vi:50,compatibility:["forja"]});
+  const craft=project(actor,{
+    id:"physical-repair-project",
+    operation:"repair",
+    material,
+    materialCopper:10,
+    estimatedMaterialsCopper:10,
+    allocationCompatibility:"forja",
+    referenceValueCopper:100,
+    quality:"common",
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:30,
+    requiredMinutes:30,
+    requiredRank:2,
+    professionalSkill:"crafting",
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate",
+    repair:{
+      affectedMaterialIds:[],
+      ordinaryReplacementMaterialIds:[],
+      specialReplacements:[],
+      runicMatrixAffected:false,
+      enchantmentMatrixAffected:false
+    }
+  });
+  craft.system.economy.affectedValueCopper=100;
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.enchantment.grade,1);
+  assert.equal(target.system.priceCopper,1100);
+});
+
+test("CRAFT-13E: reparar matriz de Encantamiento usa VRF afectado y requisitos del Grado",async()=>{
+  const actor=new StubActor("repair-enchant-matrix");
+  actor.system.skills.ritualism={rank:4};
+  actor.system.skills.arcana={rank:3};
+  const target=manufacturedItem(actor,{
+    id:"enchant-matrix-target",
+    type:"equipment",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"superior",
+    system:{category:"General"}
+  });
+  target.system.enchantment={
+    grade:1,
+    patternKey:"barrier",
+    functionalKey:"barrier-defense",
+    materialCostCopper:500,
+    timeMinutes:1440,
+    addedValueCopper:1000,
+    reserve:{value:0,max:6},
+    attunedActorUuid:"",
+    seal:false,
+    boundSpell:{slug:"barrera-cinetica",method:"direct",grade:"basic",manaCost:3}
+  };
+  target.system.priceCopper=1150;
+  target.system.condition="damaged";
+  const material=lot(actor,{id:"enchant-repair-lot",vi:200,compatibility:["enchantment:1"]});
+  const craft=project(actor,{
+    id:"enchant-repair-project",
+    operation:"repair",
+    material,
+    materialCopper:115,
+    estimatedMaterialsCopper:115,
+    allocationCompatibility:"enchantment:1",
+    referenceValueCopper:100,
+    quality:"superior",
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:45,
+    requiredMinutes:45,
+    requiredRank:4,
+    professionalSkill:"ritualism",
+    requiredInstallation:"specialized",
+    availableInstallation:"specialized",
+    repair:{
+      affectedMaterialIds:[],
+      ordinaryReplacementMaterialIds:[],
+      specialReplacements:[],
+      runicMatrixAffected:false,
+      enchantmentMatrixAffected:true
+    }
+  });
+  craft.system.economy.affectedValueCopper=1150;
+  const resolver=resolverFor(actor);
+  const reserved=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(reserved.ok,true);
+  await advanceCraftingProjectWork(craft,45,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.condition,"operative");
+});
+
+test("CRAFT-13E: no puede inflarse BRA con valor encantado si la matriz no fue afectada",async()=>{
+  const actor=new StubActor("repair-enchant-bra-exploit");
+  const target=manufacturedItem(actor,{
+    id:"enchant-bra-target",
+    type:"equipment",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"common",
+    system:{category:"General"}
+  });
+  target.system.enchantment={
+    grade:1,
+    patternKey:"barrier",
+    functionalKey:"barrier-defense",
+    materialCostCopper:500,
+    timeMinutes:1440,
+    addedValueCopper:1000,
+    reserve:{value:0,max:6},
+    attunedActorUuid:"",
+    seal:false
+  };
+  target.system.condition="damaged";
+  const material=lot(actor,{id:"enchant-bra-lot",vi:200,compatibility:["forja"]});
+  const craft=project(actor,{
+    id:"enchant-bra-project",
+    operation:"repair",
+    material,
+    materialCopper:110,
+    estimatedMaterialsCopper:110,
+    referenceValueCopper:100,
+    quality:"common",
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:30,
+    requiredMinutes:30,
+    requiredRank:2,
+    professionalSkill:"crafting",
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate",
+    repair:{
+      affectedMaterialIds:[],
+      ordinaryReplacementMaterialIds:[],
+      specialReplacements:[],
+      runicMatrixAffected:false,
+      enchantmentMatrixAffected:false
+    }
+  });
+  craft.system.economy.affectedValueCopper=1100;
+  const rejected=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.ok(rejected.issues?.some((issue)=>issue.code==="repair-bra"));
+});
+
+test("CRAFT-13E: desmantelar recupera VI integrado rúnico/encantado a tasa canónica sin devolver precisión ritual",async()=>{
+  const actor=new StubActor("magic-salvage");
+  const target=manufacturedItem(actor,{
+    id:"magic-salvage-target",
+    type:"equipment",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"common",
+    system:{category:"General"}
+  });
+  target.system.runic={
+    capacityPrepared:1,
+    matrixMaterialCopper:50,
+    addedValueCopper:300,
+    channels:[{id:"c1",type:"inscription"}],
+    imprints:[{id:"r1",key:"arcaneEdgeI",mode:"inscribed",channelIds:["c1"],stoneUuid:""}]
+  };
+  target.system.enchantment={
+    grade:1,
+    patternKey:"barrier",
+    functionalKey:"barrier-defense",
+    materialCostCopper:500,
+    timeMinutes:1440,
+    addedValueCopper:1000,
+    reserve:{value:0,max:6},
+    attunedActorUuid:"",
+    seal:false
+  };
+  target.system.priceCopper=1400;
+  const craft=project(actor,{
+    id:"magic-salvage-project",
+    operation:"dismantle",
+    material:null,
+    materialCopper:0,
+    estimatedMaterialsCopper:0,
+    referenceValueCopper:100,
+    quality:"common",
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:30,
+    requiredMinutes:30,
+    requiredRank:2,
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
+  const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
+  assert.equal(completed.ok,true);
+  assert.equal(completed.recoveredMaterialsCopper,187);
+  const lots=[...actor.items.values()].filter((entry)=>entry.system?.craftingLot?.enabled);
+  assert.equal(lots.find((entry)=>entry.system.craftingLot.category==="runico-recuperado").system.craftingLot.inputValueCopper,37);
+  assert.equal(lots.find((entry)=>entry.system.craftingLot.category==="encantamiento-recuperado").system.craftingLot.inputValueCopper,125);
+  assert.deepEqual(lots.find((entry)=>entry.system.craftingLot.category==="encantamiento-recuperado").system.craftingLot.compatibility,[]);
+});
+
+test("CRAFT-13E: una Piedra insertada debe extraerse antes de desmantelar el Host",async()=>{
+  const actor=new StubActor("socket-salvage");
+  const target=manufacturedItem(actor,{
+    id:"socket-host",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"superior"
+  });
+  target.system.runic={
+    capacityPrepared:1,
+    matrixMaterialCopper:50,
+    addedValueCopper:100,
+    channels:[{id:"socket-1",type:"socket"}],
+    imprints:[{id:"stone-one",key:"runicGuardI",mode:"stone",channelIds:["socket-1"],stoneUuid:"Actor.socket-salvage.Item.stone"}]
+  };
+  const craft=project(actor,{
+    id:"socket-salvage-project",
+    operation:"dismantle",
+    material:null,
+    materialCopper:0,
+    estimatedMaterialsCopper:0,
+    referenceValueCopper:100,
+    quality:"superior",
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:30,
+    requiredMinutes:30,
+    requiredRank:3,
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const rejected=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/Piedras de Impronta deben extraerse/);
+});
