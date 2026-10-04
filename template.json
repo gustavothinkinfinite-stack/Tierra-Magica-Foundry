@@ -414,7 +414,8 @@
           "compatibility": [],
           "inputValueCopper": 0,
           "reservations": {}
-        }
+        },
+        "craftingReservations": {}
       }
     },
     "weapon": {
