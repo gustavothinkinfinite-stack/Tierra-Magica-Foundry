@@ -251,7 +251,7 @@ const PROJECT_TIME_MODES = Object.freeze(["derived","fixed"]);
 const PROJECT_PRICE_STATUSES = Object.freeze(["exact","variable","unset"]);
 const PROJECT_QUALITIES = Object.freeze(["common","superior","exceptional"]);
 const PROJECT_MATERIAL_GRADES = Object.freeze(Object.keys(MATERIAL_GRADE));
-const PROJECT_ENHANCEMENT_MODES = Object.freeze(["quality","modification","material","runicMatrix","rune","enchantment","trapRearm","sealRearm"]);
+const PROJECT_ENHANCEMENT_MODES = Object.freeze(["quality","modification","material","runicMatrix","rune","runeErase","enchantment","trapRearm","sealRearm"]);
 
 export const CRAFTING_PROJECT_OPERATIONS = PROJECT_OPERATIONS;
 export const CRAFTING_PROJECT_STATES = PROJECT_STATES;
