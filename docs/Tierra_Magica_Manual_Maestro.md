@@ -11112,8 +11112,9 @@ templos; sacerdocio; festividades; mandamientos y prohibiciones; avatares; milag
 Divino específico; relación detallada con cultos enanos, gigantes y elementales.
 ## 22. Lore e Historia: La Primera Guerra
 ESTADO CANÓNICO v0.1: Varkor, la Primera Guerra y el origen de los pueblos nacidos del conflicto
-quedan incorporados al canon de Tierra Mágica. Los detalles de culto, avatares, milagros y
-mecánicas raciales permanecen pendientes de desarrollo específico.
+quedan incorporados al canon de Tierra Mágica. Los detalles de culto, avatares y milagros permanecen
+pendientes donde no fueron consolidados. Los paquetes jugables de Orcos y Goblinoides están definidos
+en 3. Creación de personaje; Trolls y Ogros no forman parte de la lista jugable base actual.
 Varkor, el Señor de la Primera Guerra
 Varkor es la tercera deidad desarrollada formalmente para el panteón de Tierra Mágica. Allí donde Eïra
 despertó la Vida y Khorun despertó la Materia y la Forma, Varkor convirtió el conflicto en voluntad consciente:
@@ -11301,12 +11302,12 @@ canalización y consecuencias del vínculo. Los efectos concretos se definirán 
 culto.
 Pendiente de desarrollo de Varkor: apariencia y manifestaciones; personalidad divina; dogma;
 templos; sacerdocio; festividades; mandamientos y prohibiciones; avatares; milagros; Vínculo
-Divino; relación formal con la magia de guerra; y mecánicas raciales de Orcos, Trolls, Ogros y
-Goblinoides.
+Divino y relación formal con la magia de guerra.
 ## 23. Lore e Historia: La Primera Elección
 ESTADO CANÓNICO v0.1: Aster, la Primera Elección y el origen de la Humanidad quedan
-incorporados al canon de Tierra Mágica. Los detalles de culto, avatares, milagros, compatibilidad
-entre pueblos y mecánicas raciales permanecen pendientes de desarrollo específico.
+incorporados al canon de Tierra Mágica. Los detalles de culto, avatares, milagros y compatibilidad
+entre pueblos permanecen pendientes donde no fueron consolidados. El paquete jugable Humano está
+definido en 3. Creación de personaje.
 Aster, el Señor de las Mil Sendas
 Aster es la cuarta deidad desarrollada formalmente para el panteón de Tierra Mágica. Allí donde Eïra despertó
 la Vida, Khorun la Materia y la Forma, y Varkor convirtió el Conflicto en voluntad consciente, Aster introdujo
