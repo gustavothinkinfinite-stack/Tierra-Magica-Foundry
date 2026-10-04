@@ -132,6 +132,7 @@ function project(actor, {
     amountCopper:materialCopper,
     quantity:0,
     sourceUuid:material.uuid,
+    compatibility:"forja",
     note:""
   }] : [];
   return actor.add(new StubItem({
@@ -221,6 +222,20 @@ test("CRAFT-13C: reservar VI compromete Lote y activa Proyecto sin consumir toda
   assert.equal(material.system.craftingLot.inputValueCopper,100);
   assert.equal(material.system.craftingLot.reservations[craft.uuid].amountCopper,60);
   assert.equal(craftingLotAvailableCopper(material),40);
+});
+
+
+
+test("CRAFT-13C: VI incompatible no puede pagar el CM",async()=>{
+  const actor=new StubActor("compatibility");
+  const material=lot(actor,{vi:100});
+  material.system.craftingLot.compatibility=["madera"];
+  const craft=project(actor,{material,materialCopper:50});
+  const result=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(result.ok,false);
+  assert.match(result.error,/compatible/);
+  assert.equal(craft.system.state,"ready");
+  assert.deepEqual(material.system.craftingLot.reservations,{});
 });
 
 test("CRAFT-13C: reserva obsoleta no muta inventario",async()=>{
