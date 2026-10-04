@@ -128,3 +128,62 @@ test("CRAFT-13B: crear Proyecto queda fuera de adquisición y de revisión de cr
   assert.match(source,/\["effect","project"\]\.includes\(item\.type\)/);
   assert.match(source,/options\.tmValidated \|\| item\.type === "project"/);
 });
+
+test("CRAFT-13C: TBA y requisitos no pueden declararse por debajo del mínimo derivado",()=>{
+  const project=validProject();
+  project.economy.quality="superior";
+  project.professional.baseRank=2;
+  project.professional.requiredRank=2;
+  project.professional.baseInstallation="adequate";
+  project.professional.requiredInstallation="adequate";
+  project.time.baseMinutes=480;
+  project.time.adjustedBaseMinutes=480;
+  project.time.requiredMinutes=480;
+  const result=validateCraftingProject(project);
+  assert.equal(result.valid,false);
+  assert.ok(result.issues.some((issue)=>issue.code==="rank-understated"));
+  assert.ok(result.issues.some((issue)=>issue.code==="installation-understated"));
+  assert.ok(result.issues.some((issue)=>issue.code==="tba-understated"));
+});
+
+test("CRAFT-13C: Aceleración declarada no reduce tiempo hasta estar resuelta",()=>{
+  const project=validProject();
+  project.execution.accelerated=true;
+  project.execution.accelerationOutcome="pending";
+  project.time.requiredMinutes=240;
+  const result=validateCraftingProject(project);
+  assert.equal(result.valid,false);
+  assert.ok(result.issues.some((issue)=>issue.code==="acceleration-pending"));
+});
+
+test("CRAFT-13C: Suplemento Material se recalcula y no admite subcotización",()=>{
+  const project=validProject();
+  project.economy.referenceValueCopper=400;
+  project.economy.workMaterialGrade="rare";
+  project.specialMaterials=[{
+    id:"rare-metal",
+    name:"Metal raro",
+    grade:"rare",
+    coverage:"major",
+    supplementCopper:99,
+    sourceItemUuid:"Item.material"
+  }];
+  project.professional.requiredRank=3;
+  project.professional.requiredInstallation="professional";
+  project.time.adjustedBaseMinutes=600;
+  project.time.requiredMinutes=600;
+  const result=validateCraftingProject(project);
+  assert.equal(result.valid,false);
+  const issue=result.issues.find((entry)=>entry.code==="material-supplement");
+  assert.ok(issue);
+  assert.equal(issue.expectedCopper,100);
+});
+
+test("CRAFT-13C: creación de Proyecto empieza siempre en Borrador y reservas no se editan directamente",async()=>{
+  const source=await readFile(new URL("../scripts/tierra-magica.mjs",import.meta.url),"utf8");
+  assert.match(source,/item\.type === "project"[\s\S]*"system\.state":"draft"/);
+  assert.match(source,/system\.craftingLot\.reservations/);
+  assert.match(source,/Cancela o libera el Proyecto antes de eliminarlo/);
+  assert.match(source,/Un Proyecto aprobado ya no puede reescribirse/);
+});
+
