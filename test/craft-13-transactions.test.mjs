@@ -176,6 +176,7 @@ function project(actor, {
         requiredRank:2,
         baseInstallation:"adequate",
         requiredInstallation:"adequate",
+        availableInstallation:"adequate",
         stableProcedure:true,
         materialsReady:true,
         essentialToolReady:true
