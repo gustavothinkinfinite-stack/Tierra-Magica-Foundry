@@ -39,6 +39,14 @@
         <button type="button" data-action="content-browser" data-type="background">Elegir Trasfondo</button>
       {{/if}}
     </div>
+    <label>
+      <span>Faceta de Origen</span>
+      <input type="text" name="system.details.originFacet" value="{{system.details.originFacet}}" placeholder="Una faceta del Origen elegido" />
+    </label>
+    <label>
+      <span>Facetas de Trasfondo</span>
+      <input type="text" name="system.details.backgroundFacets" value="{{system.details.backgroundFacets}}" placeholder="Faceta 1; Faceta 2" />
+    </label>
   </section>
 
   <nav class="tm-tabs tm-v03-page-tabs tabs" data-group="primary" aria-label="Páginas de la ficha">
