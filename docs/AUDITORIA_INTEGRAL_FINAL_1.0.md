@@ -83,6 +83,14 @@ La fase no modifica la arquitectura central de resolución 2d10, economía de Ac
 
 La validación automática de `main` quedó verde después de estas integraciones.
 
+## Sincronización post-CREA-15 — 2026-10-04
+
+CREA-15 cierra la autosuficiencia de progresión ordinaria de personajes entre niveles 2 y 20 sin modificar las reglas ya fijadas por el Manual Maestro.
+
+Foundry deja de tratar nivel y Atributos post-creación como campos de desarrollo editables libremente: el nivel avanza de uno en uno hasta 20, los Atributos usan sus costes canónicos por paso y el gasto de Habilidades se valida contra el presupuesto global de PD después de contar Atributos e Items adquiridos. La reconstrucción autorizada preserva progresión pagada y el PEI descartado no reaparece después de creación.
+
+El cierre queda documentado en `docs/CREA-15_CIERRE_AUTOSUFICIENCIA_PROGRESION.md` y protegido por regresiones específicas.
+
 ## Estado final
 
-**Núcleo 1.0 completo y jugable.** A1–A9 y CREA-09 a CREA-14 quedan integrados o cerrados según su documentación específica. El trabajo posterior corresponde a mantenimiento, documentación, contenido o futuras versiones explícitamente definidas, no a completar el núcleo 1.0.
+**Núcleo 1.0 completo y jugable.** A1–A9 y CREA-09 a CREA-15 quedan integrados o cerrados según su documentación específica. El trabajo posterior corresponde a mantenimiento, documentación, contenido o futuras versiones explícitamente definidas, no a completar el núcleo 1.0.
