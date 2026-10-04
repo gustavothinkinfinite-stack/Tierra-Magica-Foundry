@@ -21,11 +21,14 @@
   <div class="tm-form-grid">
     <label><span>Escala</span><input name="system.familiar.scale" value="{{system.familiar.scale}}" /></label>
     <label><span>Movimiento base</span><input type="number" name="system.movement.base" value="{{system.movement.base}}" min="1" /></label>
-    <label><span>Protección</span><input type="number" name="system.familiar.protection" value="{{system.familiar.protection}}" /></label>
+    <label><span>Vida máxima</span><input type="number" name="system.familiar.lifeMax" value="{{system.familiar.lifeMax}}" min="1" /></label>
+    <label><span>Defensa</span><input type="number" name="system.familiar.defense" value="{{system.familiar.defense}}" min="1" /></label>
+    <label><span>Protección</span><input type="number" name="system.familiar.protection" value="{{system.familiar.protection}}" min="0" /></label>
     <label><span>Ataque</span><input type="number" name="system.familiar.attackBonus" value="{{system.familiar.attackBonus}}" /></label>
-    <label><span>Daño</span><input type="number" name="system.familiar.damage" value="{{system.familiar.damage}}" /></label>
-    <label><span>Percepción</span><input type="number" name="system.familiar.perception" value="{{system.familiar.perception}}" /></label>
-    <label><span>Voluntad</span><input type="number" name="system.familiar.will" value="{{system.familiar.will}}" /></label>
+    <label><span>Daño</span><input type="number" name="system.familiar.damage" value="{{system.familiar.damage}}" min="0" /></label>
+    <label><span>Percepción (PER)</span><input type="number" name="system.familiar.perception" value="{{system.familiar.perception}}" /></label>
+    <label><span>Resistencia (RES)</span><input type="number" name="system.familiar.resistance" value="{{system.familiar.resistance}}" /></label>
+    <label><span>Voluntad (VOL)</span><input type="number" name="system.familiar.will" value="{{system.familiar.will}}" /></label>
   </div>
   <label><span>Rasgos</span><textarea name="system.familiar.traits">{{system.familiar.traits}}</textarea></label>
   <label><span>Habilidades de Familiar</span><textarea name="system.familiar.abilities">{{system.familiar.abilities}}</textarea></label>
