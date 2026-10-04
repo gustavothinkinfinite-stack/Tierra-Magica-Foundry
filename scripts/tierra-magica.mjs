@@ -22,7 +22,16 @@ import { preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType
 import { deriveDevelopmentBudget } from "./rules/creation.mjs";
 import { migrateWorldData, TM_SCHEMA_VERSION } from "./rules/data-model-migration.mjs";
 import { installResourceReconciliationHooks, reconcileActorResources } from "./rules/resource-reconciliation.mjs";
-import { approvePendingDamageAuthoritatively, approvePendingHealingAuthoritatively, installStateAuthorityBridge } from "./rules/state-authority.mjs";
+import {
+  advanceCraftingProjectAuthoritatively,
+  approvePendingDamageAuthoritatively,
+  approvePendingHealingAuthoritatively,
+  cancelCraftingProjectAuthoritatively,
+  completeCraftingProjectAuthoritatively,
+  installStateAuthorityBridge,
+  releaseCraftingProjectAuthoritatively,
+  reserveCraftingProjectAuthoritatively
+} from "./rules/state-authority.mjs";
 import { validateCatalog } from "./rules/catalog.mjs";
 import { coreCatalog } from "./catalog/core-catalog.mjs";
 
@@ -249,7 +258,14 @@ Hooks.once("ready", async () => {
     ...(game.tierraMagica ?? {}),
     catalog,
     catalogValidation,
-    schemaVersion: TM_SCHEMA_VERSION
+    schemaVersion: TM_SCHEMA_VERSION,
+    crafting: {
+      reserve: reserveCraftingProjectAuthoritatively,
+      release: releaseCraftingProjectAuthoritatively,
+      cancel: cancelCraftingProjectAuthoritatively,
+      work: advanceCraftingProjectAuthoritatively,
+      complete: completeCraftingProjectAuthoritatively
+    }
   };
   if (repaired) ui.notifications.info("Tierra Mágica: se repararon " + repaired + " ficha(s) afectadas por el guardado de v0.3.1.");
   if (retired) ui.notifications.info("Tierra Mágica: se retiraron campos mecánicos históricos de " + retired + " actor(es).");
