@@ -284,19 +284,162 @@ Modificar e Investigar ya existen como tipos de operación del modelo Proyecto, 
 
 ### CRAFT-13D — Calidad, modificaciones y Materiales Especiales
 
-**Estado: PENDIENTE**
+**Estado: IMPLEMENTADA EN RAMA · VALIDACIÓN INTEGRAL**
 
-Automatizará:
+Se añade `scripts/rules/crafting-enhancements.mjs` como autoridad pura de CRAFT-04/05 y se integra con las transacciones de Proyecto.
 
-- CapM;
-- ascensos de Calidad;
-- modificaciones posteriores;
+#### Capa persistente de manufactura
+
+Cada objeto físico manufacturado puede conservar:
+
+- VR Común original;
+- tiempo base de receta;
+- rango e instalación base;
+- perfil estadístico base;
+- Calidad;
+- Modificaciones instaladas;
+- Materiales Especiales instalados;
 - Material Dominante;
-- requisitos acumulados;
-- propiedades incompatibles/equivalentes;
-- valores compuestos.
+- CapM usada;
+- VRT;
+- efectos mecánicos/contextuales derivados.
 
-No automatizará propiedades narrativas sin Perfil mecánico.
+Las estadísticas se recalculan desde el perfil base. Volver a ejecutar una mejora nunca suma otra vez un `+1` sobre un valor ya modificado.
+
+#### Calidad y CapM
+
+Foundry aplica la tabla canónica:
+
+- Común: CapM 0;
+- Superior: CapM 1;
+- Excepcional: CapM 2.
+
+Defectuosa permanece fuera del menú universal de fabricación: puede existir como estado/resultado, pero no como fabricación barata.
+
+Los ascensos admitidos son únicamente:
+
+- Defectuosa -> Común;
+- Común -> Superior;
+- Superior -> Excepcional;
+- Común -> Excepcional.
+
+Cada ascenso recalcula materiales, tiempo y requisitos. La CapM que nace por el ascenso puede ocuparse dentro del mismo Proyecto sin volver a pagar una instalación posterior.
+
+#### Modificaciones
+
+El catálogo estructurado cubre las Modificaciones canónicas de 1 y 2 CapM.
+
+Se controla:
+
+- compatibilidad por tipo de objeto;
+- CapM disponible;
+- duplicados;
+- propiedades equivalentes;
+- Penetración máxima 3;
+- Recarga mínima 1;
+- reducción máxima universal de FUE mínima;
+- requisitos particulares de Bloqueo, arma a distancia, herramienta, armadura y escudo.
+
+Una Modificación posterior cuesta 10% del VR Común y 25% del tiempo base por punto de CapM, mínimo 1 hora.
+
+También se admite sustitución estructurada de una Modificación existente: la CapM anterior se libera antes de validar la combinación final, pero la nueva instalación paga su coste normal.
+
+#### Efectos integrados
+
+Se aplican directamente donde el sistema ya posee una autoridad mecánica compatible:
+
+- Golpe optimizado -> Daño +1;
+- Perfil penetrante -> Penetración +1, máximo 3;
+- Mecanismo de recarga refinado -> Recarga -1, mínimo 1;
+- Aligerada -> FUE mínima -1, mínimo 0;
+- Bastidor móvil -> elimina Movimiento -1 propio del escudo;
+- Bloqueo afinado -> valor de Bloqueo manufacturado +3 cuando existe ese perfil;
+- Mantenible -> reduce a la mitad el tiempo de reparación, manteniendo materiales y mínimo canónico;
+- Equilibrada para Parada -> Parada +3 cuando se declara con esa arma; sin arma fuente conserva +2.
+
+Los efectos dependientes de contexto no estructurado se persisten sin inventar tiradas o bonos automáticos. Esto incluye Modular, Retención segura, Estabilizada, Silenciosa, Articulada, Herramienta especializada, Preparada para campo y propiedades materiales que necesitan una situación concreta que el flujo actual todavía no declara.
+
+#### Materiales Especiales
+
+Los Materiales Especiales usan Perfil identificable, grado, cobertura y Lote físico.
+
+Foundry controla:
+
+- un único Material Dominante;
+- cobertura mínima del Perfil;
+- SM recalculado desde VR Común;
+- acumulación de requisitos de Calidad + Material;
+- incompatibilidades/equivalencias;
+- Lote preparado;
+- coincidencia entre Perfil del Lote y Perfil instalado;
+- VI suficiente para cubrir SM;
+- prohibición de inferir poderes desde un nombre narrativo.
+
+Perfiles mecánicos estructurados incluidos:
+
+- Acero de Kharum;
+- Madera tratada de Erelia;
+- Cristal arcano refinado;
+- Aleación de precisión de Kharum;
+- Vidrio del Desierto;
+- Madera de las Mil Voces;
+- Material de los Fundadores recuperado sin propiedad universal automática.
+
+Un Perfil desconocido pero identificable puede conservarse como dato; no genera ninguna propiedad mecánica hasta que exista una regla explícita.
+
+#### Mecanizado fino
+
+La Aleación de precisión de Kharum, instalada como parte Mayor o Dominante, puede reducir una Modificación posterior compatible sobre esa parte metálica a:
+
+- 5% VR Común por CapM;
+- 15% del tiempo base por CapM.
+
+No concede CapM y no reduce requisitos profesionales.
+
+#### Incorporación posterior de Material
+
+Una parte material posterior usa:
+
+- Componente: SM + 25% tiempo base;
+- Mayor: SM + 50% tiempo base;
+- mínimo 1 hora.
+
+Cambiar el Material Dominante continúa bloqueado como modificación menor: requiere reconstrucción o receta específica.
+
+#### Valor compuesto y recuperación
+
+El objeto persiste:
+
+**VRT = VRQ + 2 × suma de SM**
+
+Desmantelar:
+
+- calcula recuperación ordinaria sólo sobre VR Común;
+- nunca recicla el sobreprecio de Calidad como materia;
+- recupera Material Especial por separado desde su SM y según estado;
+- conserva el Perfil del material recuperado;
+- no transforma VI en moneda.
+
+#### Reparación
+
+Para objetos con historial de manufactura, Reparar deja de confiar en cifras escritas manualmente:
+
+- usa VR Común y Calidad reales;
+- BRA parte como mínimo del VRQ;
+- no supera el VRT;
+- usa el tiempo base persistido;
+- aplica Material/Calidad reales;
+- aplica Mantenible cuando corresponde.
+
+El coste y el tiempo se revalidan al cierre. Si el estado del objeto cambia después de reservar —por ejemplo Dañado -> Deshabilitado— no se completa con el precio antiguo.
+
+#### Integridad transaccional
+
+Un jugador no puede editar directamente VI, reservas ni estadísticas derivadas de un objeto manufacturado. Tampoco puede eliminar un objeto que sea objetivo de un Proyecto activo.
+
+CRAFT-13D reutiliza la serialización, revisión optimista, reservas, recibos idempotentes, rollback y token de cierre de CRAFT-13C.
+
+Las regresiones cubren CapM, ascensos, sustitución de Modificaciones, Mecanizado fino, Material Dominante, Lotes preparados, perfiles desconocidos sin poder automático, VRT, desmantelamiento separado, Mantenible, Parada +3, fabricación Defectuosa y cambio de estado durante reparación.
 
 ### CRAFT-13E — Trampas, Runas, Piedras y Encantamientos
 
