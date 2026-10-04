@@ -123,3 +123,34 @@ test("Daño Grave expone fórmula auditable en breakdowns", () => {
   assert.equal(derived.breakdowns.severeThreshold.base,8);
   assert.equal(derived.breakdowns.severeThreshold.total,8);
 });
+
+
+test("CREA-14: Familiar usa el Perfil Inicial simplificado y no las fórmulas de PJ", () => {
+  const system={
+    attributes:{
+      agi:{value:9},vig:{value:9},vol:{value:9},per:{value:9}
+    },
+    movement:{base:5},
+    familiar:{
+      lifeMax:12,
+      defense:12,
+      protection:1,
+      perception:2,
+      resistance:3,
+      will:2,
+      attackBonus:3,
+      damage:3
+    }
+  };
+  const derived=deriveActorState({actorType:"familiar",system});
+  assert.equal(derived.healthMax,12);
+  assert.equal(derived.manaMax,0);
+  assert.equal(derived.defense,12);
+  assert.equal(derived.maneuverDefense,12);
+  assert.equal(derived.protection,1);
+  assert.equal(derived.bodyDefense,14);
+  assert.equal(derived.mentalDefense,13);
+  assert.equal(derived.movement,5);
+  assert.equal(derived.initiativeModifier,2);
+  assert.equal(derived.breakdowns.healthMax.formula,"Perfil de Familiar");
+});
