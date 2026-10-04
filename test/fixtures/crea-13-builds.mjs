@@ -45,7 +45,7 @@ function baseActor(profile) {
     system: {
       schemaVersion: TM_SCHEMA_VERSION,
       creation: { status:"building", revision:0, initialReserveGranted:false },
-      details: { level:1 },
+      details: { level:1, originFacet:"Fueros y administración", backgroundFacets:"Herramientas y mantenimiento; Materiales y proveedores" },
       attributes: attributes(profile.attributes),
       skills: skills(profile.skills),
       resources: {
@@ -61,7 +61,8 @@ function baseActor(profile) {
       magic:{sustainedSpellIds:[]},
       modifiers:{manual:{}},
       status:{trauma:0,fatigue:0,bleeding:0,conditions:"",incapacitated:false},
-      currency:{totalCopper:0}
+      currency:{totalCopper:0},
+      traits:{languages:"Común de Concordia; Valdoriano"}
     },
     items: []
   };
