@@ -173,7 +173,7 @@
         <label><span>Tiempo base (min)</span><input type="number" min="0" step="1" name="system.time.baseMinutes" value="{{project.time.baseMinutes}}" /></label>
         <label><span>TBA (min)</span><input type="number" min="0" step="1" name="system.time.adjustedBaseMinutes" value="{{project.time.adjustedBaseMinutes}}" /></label>
         <label><span>Tiempo requerido (min)</span><input type="number" min="0" step="1" name="system.time.requiredMinutes" value="{{project.time.requiredMinutes}}" /></label>
-        <label><span>Trabajo completado (min)</span><input type="number" min="0" step="1" name="system.time.completedMinutes" value="{{project.time.completedMinutes}}" /></label>
+        <label><span>Trabajo completado (min)</span><input type="number" min="0" step="1" value="{{project.time.completedMinutes}}" disabled /></label>
         <label><span>Trabajo restante (min)</span><input type="number" value="{{projectRemainingMinutes}}" disabled /></label>
 
         <label><span>Habilidad principal</span><select name="system.professional.skill">{{selectOptions config.skillLabels selected=project.professional.skill}}</select></label>
@@ -182,6 +182,7 @@
         <label><span>Rango requerido</span><select name="system.professional.requiredRank">{{selectOptions config.rankOptionLabels selected=project.professional.requiredRank}}</select></label>
         <label><span>Instalación base</span><select name="system.professional.baseInstallation">{{selectOptions config.craftingInstallations selected=project.professional.baseInstallation}}</select></label>
         <label><span>Instalación requerida</span><select name="system.professional.requiredInstallation">{{selectOptions config.craftingInstallations selected=project.professional.requiredInstallation}}</select></label>
+        <label><span>Instalación disponible</span><select name="system.professional.availableInstallation">{{selectOptions config.craftingInstallations selected=project.professional.availableInstallation}}</select></label>
         <label class="tm-check"><span>Procedimiento estable</span><input type="checkbox" name="system.professional.stableProcedure" {{checked project.professional.stableProcedure}} /></label>
         <label class="tm-check"><span>Materiales listos</span><input type="checkbox" name="system.professional.materialsReady" {{checked project.professional.materialsReady}} /></label>
         <label class="tm-check"><span>Herramienta/Kit esencial listo</span><input type="checkbox" name="system.professional.essentialToolReady" {{checked project.professional.essentialToolReady}} /></label>
@@ -189,6 +190,7 @@
         <label><span>Ayudantes de trabajo</span><input type="number" min="0" step="1" name="system.assistants.work" value="{{project.assistants.work}}" /></label>
         <label><span>Ayudantes técnicos</span><input type="number" min="0" step="1" name="system.assistants.technical" value="{{project.assistants.technical}}" /></label>
         <label class="tm-check"><span>Aceleración declarada</span><input type="checkbox" name="system.execution.accelerated" {{checked project.execution.accelerated}} /></label>
+        <label><span>Resultado de Aceleración</span><select name="system.execution.accelerationOutcome">{{selectOptions config.craftingAccelerationOutcomes selected=project.execution.accelerationOutcome}}</select></label>
         <label><span>Etapa actual</span><input type="text" name="system.execution.stage" value="{{project.execution.stage}}" /></label>
         <label><span>Revisión transaccional</span><input type="number" value="{{project.execution.revision}}" disabled /></label>
         <label class="tm-check"><span>Recursos comprometidos</span><input type="checkbox" {{checked project.execution.committed}} disabled /></label>
