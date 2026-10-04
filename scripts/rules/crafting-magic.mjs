@@ -69,6 +69,10 @@ export function validateTrapConfiguration(trap={}){
   if(trap?.enabled!==true) return {valid:true,issues:[]};
   const frame=trapFrameProfile(trap.frame);
   if(!frame) issues.push({code:"trap-frame",message:"Armazón de trampa desconocido."});
+  if(frame) {
+    if(Math.floor(number(trap.precision))!==frame.precision) issues.push({code:"trap-precision",message:"La Precisión pertenece al Armazón y no puede editarse como potencia de carga.",expected:frame.precision});
+    if(Math.floor(number(trap.mechanismDf))!==frame.mechanismDf) issues.push({code:"trap-mechanism-df",message:"La DF de Mecanismo debe coincidir con el Armazón.",expected:frame.mechanismDf});
+  }
   if(!TRAP_TRIGGERS.includes(String(trap.triggerType??""))) {
     issues.push({code:"trap-trigger",message:"Disparador de trampa no permitido por CRAFT-06."});
   }
