@@ -124,7 +124,8 @@ function project(actor, {
   targetItemUuid = "",
   resultData = null,
   referenceValueCopper = 100,
-  specialMaterials = []
+  specialMaterials = [],
+  components = []
 } = {}) {
   const entries = material && materialCopper > 0 ? [{
     id:"alloc-" + id,
@@ -161,7 +162,7 @@ function project(actor, {
         affectedValueCopper:referenceValueCopper
       },
       specialMaterials,
-      components:[],
+      components,
       time:{
         mode:"derived",
         baseMinutes:Math.max(requiredMinutes, 10),
@@ -461,6 +462,151 @@ test("CRAFT-13C: factores temporales libres no entran en una transacción",async
   const result=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
   assert.equal(result.ok,false);
   assert.match(result.error,/fuente mecánica estructurada/);
+  assert.deepEqual(material.system.craftingLot.reservations,{});
+});
+
+test("CRAFT-13C: componente separado se reserva por cantidad y no aumenta el VI ordinario",async()=>{
+  const actor=new StubActor("component-reserve");
+  const material=lot(actor,{vi:100});
+  const component=actor.add(new StubItem({
+    id:"gem",
+    name:"Gema preparada",
+    type:"equipment",
+    system:{quantity:2,craftingReservations:{}}
+  }));
+  const craft=project(actor,{
+    material,
+    materialCopper:50,
+    referenceValueCopper:100,
+    components:[{
+      id:"gem-component",
+      name:"Gema preparada",
+      itemUuid:component.uuid,
+      valueCopper:100,
+      quantity:1,
+      separable:true,
+      recoveredSeparately:false,
+      countedInGenericRecovery:false
+    }]
+  });
+  const resolver=resolverFor(actor);
+  const result=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(result.ok,true);
+  assert.equal(craft.system.ledger.committedMaterialsCopper,50);
+  assert.equal(material.system.craftingLot.reservations[craft.uuid].amountCopper,50);
+  assert.equal(component.system.quantity,2);
+  assert.equal(component.system.craftingReservations[craft.uuid].quantity,1);
+
+  const released=await releaseCraftingProjectMaterials(craft,{expectedRevision:1,resolver});
+  assert.equal(released.ok,true);
+  assert.equal(component.system.quantity,2);
+  assert.deepEqual(component.system.craftingReservations,{});
+});
+
+test("CRAFT-13C: completar consume el componente físico exactamente una vez",async()=>{
+  const actor=new StubActor("component-consume");
+  const material=lot(actor,{vi:100});
+  const component=actor.add(new StubItem({
+    id:"core",
+    name:"Núcleo preparado",
+    type:"equipment",
+    system:{quantity:2,craftingReservations:{}}
+  }));
+  const craft=project(actor,{
+    material,
+    materialCopper:50,
+    referenceValueCopper:100,
+    requiredMinutes:10,
+    components:[{
+      id:"core-component",
+      name:"Núcleo preparado",
+      itemUuid:component.uuid,
+      valueCopper:500,
+      quantity:1,
+      separable:true,
+      recoveredSeparately:false,
+      countedInGenericRecovery:false
+    }],
+    resultData:{
+      name:"Dispositivo terminado",
+      type:"device",
+      system:{
+        priceStatus:"exact",
+        priceCopper:100,
+        quality:"common",
+        condition:"operative",
+        quantity:1,
+        craftingLot:{enabled:false,category:"",compatibility:[],inputValueCopper:0,reservations:{}},
+        craftingReservations:{}
+      }
+    }
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,10,{expectedRevision:1});
+  const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
+  assert.equal(completed.ok,true);
+  assert.equal(component.system.quantity,1);
+  assert.deepEqual(component.system.craftingReservations,{});
+
+  const again=await completeCraftingProject(craft,{expectedRevision:3,resolver:resolverFor(actor)});
+  assert.equal(again.alreadyCompleted,true);
+  assert.equal(component.system.quantity,1);
+});
+
+test("CRAFT-13C: dos Proyectos no pueden reservar la misma unidad de componente",async()=>{
+  const actor=new StubActor("component-race");
+  const materialA=lot(actor,{id:"lot-a",vi:50});
+  const materialB=lot(actor,{id:"lot-b",vi:50});
+  const component=actor.add(new StubItem({
+    id:"unique-core",
+    name:"Núcleo único",
+    type:"equipment",
+    system:{quantity:1,craftingReservations:{}}
+  }));
+  const componentRow={
+    id:"unique-component",
+    name:"Núcleo único",
+    itemUuid:component.uuid,
+    valueCopper:1000,
+    quantity:1,
+    separable:true,
+    recoveredSeparately:false,
+    countedInGenericRecovery:false
+  };
+  const one=project(actor,{id:"component-one",material:materialA,materialCopper:50,referenceValueCopper:100,components:[componentRow]});
+  const two=project(actor,{id:"component-two",material:materialB,materialCopper:50,referenceValueCopper:100,components:[{...componentRow,id:"unique-component-2"}]});
+  const resolver=resolverFor(actor);
+
+  const first=await reserveCraftingProjectMaterials(one,{resolver});
+  const second=await reserveCraftingProjectMaterials(two,{resolver});
+  assert.equal(first.ok,true);
+  assert.equal(second.ok,false);
+  assert.equal(component.system.craftingReservations[one.uuid].quantity,1);
+  assert.equal(component.system.craftingReservations[two.uuid],undefined);
+});
+
+test("CRAFT-13C: componente separado sin Item físico bloquea el compromiso",async()=>{
+  const actor=new StubActor("component-missing");
+  const material=lot(actor,{vi:50});
+  const craft=project(actor,{
+    material,
+    materialCopper:50,
+    referenceValueCopper:100,
+    components:[{
+      id:"missing",
+      name:"Componente inexistente",
+      itemUuid:"",
+      valueCopper:100,
+      quantity:1,
+      separable:true,
+      recoveredSeparately:false,
+      countedInGenericRecovery:false
+    }]
+  });
+  const result=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(result.ok,false);
+  assert.match(result.error,/Item físico/);
   assert.deepEqual(material.system.craftingLot.reservations,{});
 });
 
