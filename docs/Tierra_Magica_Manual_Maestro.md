@@ -711,15 +711,23 @@ Las Técnicas de Vínculo posteriores no cambian retroactivamente el coste de 3 
 
 La preparación material utiliza **PEI 20 o = 2.000 c**. El PEI es presupuesto de creación, no dinero del personaje: no puede convertirse en PD, PR, Reserva ni efectivo posterior.
 
-Elige **exactamente una** modalidad:
-- un **Paquete de Preparación** cerrado; o
-- **Compra libre** dentro del catálogo permitido y hasta el máximo de PEI.
+La creación estándar utiliza una única ruta cerrada: **Compra libre** en el catálogo de equipo con precio exacto, hasta un máximo total de **2.000 c**.
 
-**PEI utiliza el precio de catálogo del equipo inicial.** No puede gastarse como CM, VI, materias primas, alquiler de taller, Encargo o «fabricación previa a la campaña» para obtener a mitad de precio un objeto cuyo precio terminado exceda el presupuesto. Si una campaña concede explícitamente tiempo y recursos de fabricación antes de la primera sesión, éstos se registran fuera del PEI como una concesión de campaña.
+Procedimiento:
 
-Paquete y Compra libre son alternativas excluyentes. Si un Paquete vale menos de 20 o, el sobrante no puede gastarse mediante Compra libre y se pierde al cerrar la preparación. El Equipo Personal Básico y, cuando corresponda, el Vínculo de Equipo del Trasfondo se gestionan conforme a CREA-08 y no se convierten en dinero.
+1. elige objetos físicos del catálogo que el personaje pueda adquirir razonablemente al comenzar la campaña;
+2. suma su precio exacto en cobres;
+3. comprueba que el total no exceda 2.000 c;
+4. comprueba FUE mínima, Escala, anatomía, requisitos y acceso cuando correspondan;
+5. anota cantidad, munición y consumibles reales;
+6. marca qué armadura, escudo o equipo está preparado/equipado;
+7. descarta cualquier PEI no utilizado.
 
-Después de cerrar el inventario inicial se descarta cualquier PEI restante y el personaje recibe una sola vez una **Reserva líquida de 2 o = 200 c**. Esa Reserva ya es dinero y puede gastarse normalmente después de comenzar el juego.
+**PEI utiliza el precio terminado de catálogo.** No puede gastarse como CM, VI, materias primas, alquiler de taller, Encargo o «fabricación previa a la campaña» para obtener a mitad de precio un objeto cuyo precio terminado exceda el presupuesto. Si una campaña concede explícitamente tiempo y recursos de fabricación antes de la primera sesión, se registra como concesión de campaña fuera del PEI.
+
+Los antiguos **Paquetes de Preparación** dejan de ser una modalidad mecánica separada durante CREA-14. Un grupo puede publicar listas recomendadas de equipo, pero cada objeto de esas listas se compra y contabiliza con las mismas reglas de Compra libre. Así no existe una segunda economía, descuento oculto ni contenido necesario fuera del Manual.
+
+Después de cerrar el inventario inicial, el personaje recibe una sola vez una **Reserva líquida de 2 o = 200 c**. Esa Reserva ya es dinero de juego y no forma parte del PEI.
 
 La moneda mecánica usa **10 c = 1 p; 10 p = 1 o; 100 c = 1 o**. c/p/o normaliza valor de juego; no elimina las monedas regionales del canon. Precio, Disponibilidad y acceso social/legal siguen siendo comprobaciones independientes.
 
@@ -738,6 +746,18 @@ Calcula:
 | **Iniciativa** | 2d10 + PER + modificadores |
 | **Movimiento** | 6 como referencia para humanoide Mediano, salvo regla corporal concreta |
 | **Escala** | Mediana como referencia humana; otra Escala sólo cuando la ficción y reglas del personaje lo establezcan |
+
+El **Bono Defensivo** se deriva del rango base más alto entre **Armas Ligeras, Armas Marciales, Armas Pesadas y Armas a Distancia**. No se compra por separado.
+
+| Rango marcial defensivo | Bono Defensivo |
+|---|---:|
+| Sin Entrenar / Aprendiz | +0 |
+| Entrenado | +1 |
+| Experto | +2 |
+| Maestro | +3 |
+| Gran Maestro | +4 |
+
+Foundry calcula automáticamente ese rango a partir de las cuatro Habilidades de armas. Estar **Desprevenido** puede hacer perder el Bono Defensivo según las reglas de combate; no cambia permanentemente el rango.
 
 El **umbral informativo de Daño Grave** es 5 + VIG, equivalente a la mitad de la Vida máxima ordinaria. Alcanzarlo no crea automáticamente una Herida Grave: obliga a evaluar si el impacto y la ficción justifican una lesión concreta.
 
@@ -775,12 +795,12 @@ Antes de dar por terminado el personaje:
 - Los Rasgos negativos no financiaron PR adicionales.
 - Existe exactamente una Ascendencia, un Origen y un Trasfondo; sus Facetas e idiomas están anotados.
 - El paquete racial jugable está registrado y no se duplicó con Rasgos generales; cultura, Origen y Trasfondo no añadieron rangos o bonos ocultos.
-- El equipo respeta el PEI de 20 o, la alternativa Paquete/Compra libre, la disponibilidad y el acceso; la Reserva líquida de 2 o se mantiene separada.
+- El equipo adquirido por Compra libre no supera PEI 20 o, respeta disponibilidad y acceso, y la Reserva líquida de 2 o permanece separada.
 - Vida, Maná y Defensas fueron recalculados después de equipo y Rasgos.
 - Familiar, magia y equipo no generan Acciones, Reacciones, Maná o bonos no escritos.
 - Todo lo que produzca un efecto mecánico aparece expresamente en la ficha.
 
-### Ejemplo guiado de creación de nivel 1 — cierre CREA-14 en curso
+### Ejemplo completo de creación de nivel 1
 
 El ejemplo construye a **Iria**, una exploradora arcana. No es un arquetipo obligatorio: sólo demuestra el procedimiento.
 
@@ -867,7 +887,7 @@ Los 25 PD están completamente utilizados y todas las compras mágicas pertenece
 Iria dispone de 3 PR. Como ejemplo elige:
 
 - Visión en la Oscuridad — 2 PR;
-- Sentido Agudo — 1 PR.
+- Sentido Agudo (vista) — 1 PR.
 
 Total: **3 PR**.
 
@@ -875,26 +895,58 @@ Los PR no reducen ni aumentan sus 25 PD.
 
 #### 7. Equipo inicial
 
-Iria elige Paquete de Preparación o Compra libre, nunca ambos. Si utiliza Compra libre, el valor total no puede superar **2.000 c**.
+Iria utiliza Compra libre y registra cada objeto:
 
-Al cerrar la preparación:
+| Equipo | Precio |
+|---|---:|
+| Espada corta | 1 o |
+| Daga | 6 p |
+| Armadura ligera | 1 o 5 p |
+| Kit Cartográfico | 1 o |
+| Kit de Escalada | 1 o |
+| Kit de Campaña | 1 o |
+| Instrumental Arcano de campo | 2 o |
+| Catalejo | 1 o |
+| Gancho de escalada | 3 p |
+| Provisiones para 7 días | 2 p |
+| Combustible de iluminación para 5 noches | 2 p |
+| Estuche impermeable de mapas/documentos | 5 p |
+| Materiales de escritura | 2 p |
+| **Total** | **10 o 5 p = 1.050 c** |
 
-- cualquier PEI sobrante se descarta;
-- recibe una sola vez **200 c de Reserva líquida**;
-- esa Reserva sí es dinero de juego.
+No supera los **2.000 c** de PEI. Los **950 c** de PEI restantes se descartan al cerrar la creación. Después recibe **2 o = 200 c de Reserva líquida**, que sí se anotan como dinero disponible.
 
-#### 8. Valores derivados
+La armadura ligera queda equipada. La espada corta es su arma cuerpo a cuerpo principal y la daga queda como arma de respaldo.
 
-Antes de aplicar equipo o modificadores adicionales:
+#### 8. Valores derivados y ataques
 
-- Vida máxima = 10 + 2×VIG = **14**;
-- Maná máximo = 6 + 3×VOL = **12**;
-- Defensa Corporal = 11 + VIG = **13**;
-- Defensa Mental = 11 + VOL = **13**;
-- Iniciativa = **2d10 + 2** antes de otros modificadores;
-- Movimiento de referencia = **6**;
-- Defensa y Defensa de Maniobra se calculan con AGI, Bono Defensivo aplicable y el equipo correspondiente;
-- umbral informativo de Daño Grave = 5 + VIG = **7**.
+Armas Ligeras está Entrenada, por lo que el rango marcial defensivo de Iria es Entrenado y su **Bono Defensivo es +1**.
+
+Su ficha final registra:
+
+- Vida máxima **14**;
+- Maná máximo **12**;
+- Defensa **15** = 11 + AGI 3 + Bono Defensivo 1;
+- Defensa de Maniobra **15**;
+- Defensa Corporal **13**;
+- Defensa Mental **13**;
+- Protección **1** por armadura ligera;
+- Iniciativa **2d10 + 2**;
+- Movimiento **6**;
+- umbral informativo de Daño Grave **7**;
+- Reserva líquida **2 o**.
+
+Ataques y respuestas preparados:
+
+- **Espada corta:** ataque **2d10 + 5** = AGI 3 + Armas Ligeras 2; Daño **5** = base 4 + FUE 1; Pen 0.
+- **Daga:** ataque **2d10 + 5**; Daño **3**; Pen 0.
+- **Proyectil Ígneo:** ataque **2d10 + 4** = INT 2 + Canalización 2 contra Defensa; Daño 5, Pen 1, pagando su Maná.
+- **Parada:** Reacción contra un ataque cuerpo a cuerpo parable; Defensa **17** contra ese ataque.
+- **Barrera Cinética:** Reacción; +2 Defensa contra el ataque declarado según su entrada.
+- **Sentido Agudo (vista):** +1 PER sólo cuando distinguir detalles visuales sutiles sea determinante.
+- **Visión en la Oscuridad:** funciona hasta 6 espacios conforme al Rasgo.
+
+Con esto no queda ningún valor de combate básico del ejemplo pendiente de “calcular después”.
 
 #### 9. Revisión final
 
@@ -908,8 +960,11 @@ Iria es legal porque:
 - posee Canalización Entrenada antes de adquirir Evocación;
 - sólo adquirió una Disciplina;
 - gastó exactamente 3 PR;
-- su equipo respeta PEI;
-- su paquete Élfico está aplicado por separado de PD y PR, y ninguna parte de su cultura u origen añadió un bono mecánico oculto.
+- su equipo cuesta 1.050 c y respeta PEI 2.000 c;
+- registró Ascendencia, Origen, Trasfondo, Facetas e idiomas;
+- sus Rasgos tienen elecciones completas;
+- todos sus valores derivados y ataques preparados están escritos;
+- su paquete Élfico está aplicado por separado de PD y PR, y ninguna parte de su cultura, Origen o Trasfondo añadió un bono mecánico oculto.
 
 ## 4. Desarrollo y subida de nivel
 
@@ -9715,7 +9770,7 @@ Las monedas regionales continúan existiendo dentro de Edria. c/p/o es una norma
 
 ### PEI y Reserva inicial
 
-La creación estándar usa **PEI 20 o = 2.000 c** como presupuesto material. No es dinero y no puede convertirse en saldo. Se elige un Paquete de Preparación o Compra libre; no se combinan. El remanente de un Paquete se pierde.
+La creación estándar usa **PEI 20 o = 2.000 c** como presupuesto material. No es dinero y no puede convertirse en saldo. Durante CREA-14 existe una única modalidad mecánica: **Compra libre** con objetos de precio exacto. Las listas recomendadas de equipo son sólo atajos editoriales y cada objeto conserva su precio normal. Todo PEI no utilizado se pierde al cerrar la preparación.
 
 Tras cerrar la preparación material, un personaje jugador creado mediante el procedimiento estándar recibe una sola vez una **Reserva líquida de 2 o = 200 c**. NPC, Familiares, plantillas, personajes importados o Actors antiguos no reciben esa Reserva automáticamente.
 
