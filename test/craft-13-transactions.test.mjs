@@ -673,3 +673,375 @@ test("CRAFT-13C: componente separado sin Item físico bloquea el compromiso",asy
   assert.deepEqual(material.system.craftingLot.reservations,{});
 });
 
+test("CRAFT-13D: ascenso Común -> Superior consume sólo +25% VR y puede ocupar la CapM generada",async()=>{
+  const actor=new StubActor("quality-upgrade");
+  const target=manufacturedItem(actor,{id:"sword-quality",name:"Espada",referenceValueCopper:100,baseTimeMinutes:120});
+  const material=lot(actor,{id:"ordinary-upgrade",vi:100});
+  const craft=project(actor,{
+    id:"quality-project",
+    operation:"modify",
+    material,
+    materialCopper:25,
+    estimatedMaterialsCopper:25,
+    referenceValueCopper:100,
+    quality:"superior",
+    modifications:[{id:"maintain",key:"maintainable",choice:"",scope:"",part:""}],
+    enhancement:{mode:"quality",replaceMaterialId:"",fineMachiningMaterialId:""},
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:60,
+    requiredMinutes:60,
+    requiredRank:3,
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,60,{expectedRevision:1});
+  const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
+  assert.equal(completed.ok,true);
+  assert.equal(target.system.quality,"superior");
+  assert.equal(target.system.priceCopper,150);
+  assert.equal(target.system.manufacture.capMUsed,1);
+  assert.equal(target.system.manufacture.effects.repairTimeMultiplier,0.5);
+  assert.equal(material.system.craftingLot.inputValueCopper,75);
+});
+
+test("CRAFT-13D: modificación posterior usa CapM libre, cobra por punto y no reaplica estadísticas",async()=>{
+  const actor=new StubActor("post-mod");
+  const target=manufacturedItem(actor,{
+    id:"exceptional-sword",
+    name:"Espada excepcional",
+    quality:"exceptional",
+    referenceValueCopper:100,
+    baseTimeMinutes:120
+  });
+  const material=lot(actor,{id:"mod-material",vi:100});
+  const craft=project(actor,{
+    id:"mod-project",
+    operation:"modify",
+    material,
+    materialCopper:20,
+    estimatedMaterialsCopper:20,
+    referenceValueCopper:100,
+    quality:"exceptional",
+    modifications:[{id:"strike",key:"optimizedStrike",choice:"",scope:"",part:"metal"}],
+    enhancement:{mode:"modification",replaceMaterialId:"",fineMachiningMaterialId:""},
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:60,
+    requiredMinutes:60,
+    requiredRank:4,
+    requiredInstallation:"specialized",
+    availableInstallation:"specialized"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,60,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.damage,6);
+  assert.equal(target.system.manufacture.capMUsed,2);
+  assert.equal(target.system.priceCopper,250);
+
+  const duplicate=project(actor,{
+    id:"duplicate-mod-project",
+    operation:"modify",
+    material:lot(actor,{id:"dup-material",vi:100}),
+    materialCopper:20,
+    estimatedMaterialsCopper:20,
+    referenceValueCopper:100,
+    quality:"exceptional",
+    modifications:[{id:"strike-again",key:"optimizedStrike",choice:"",scope:"",part:"metal"}],
+    enhancement:{mode:"modification",replaceMaterialId:"",fineMachiningMaterialId:""},
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:60,
+    requiredMinutes:60,
+    requiredRank:4,
+    requiredInstallation:"specialized",
+    availableInstallation:"specialized"
+  });
+  const rejected=await reserveCraftingProjectMaterials(duplicate,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/dos veces/);
+  assert.equal(target.system.damage,6);
+});
+
+test("CRAFT-13D: Mecanizado fino sólo descuenta una modificación declarada sobre la parte metálica",async()=>{
+  const actor=new StubActor("fine-machining");
+  const precision={
+    id:"precision",
+    name:"Aleación de precisión",
+    profileKey:"kharumPrecisionAlloy",
+    grade:"rare",
+    coverage:"major",
+    supplementCopper:25,
+    sourceItemUuid:""
+  };
+  const target=manufacturedItem(actor,{
+    id:"precision-weapon",
+    name:"Arma de precisión",
+    quality:"exceptional",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    specialMaterials:[precision]
+  });
+  const material=lot(actor,{id:"fine-mod-material",vi:100});
+  const craft=project(actor,{
+    id:"fine-project",
+    operation:"modify",
+    material,
+    materialCopper:10,
+    estimatedMaterialsCopper:10,
+    referenceValueCopper:100,
+    quality:"exceptional",
+    workMaterialGrade:"rare",
+    modifications:[{id:"fine-strike",key:"optimizedStrike",choice:"",scope:"",part:"metal"}],
+    enhancement:{mode:"modification",replaceMaterialId:"",fineMachiningMaterialId:"precision"},
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:60,
+    requiredMinutes:60,
+    requiredRank:5,
+    requiredInstallation:"exceptional",
+    availableInstallation:"exceptional"
+  });
+  const resolver=resolverFor(actor);
+  const reserved=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(reserved.ok,true);
+  assert.equal(reserved.materialCopper,10);
+});
+
+test("CRAFT-13D: incorporar Material Especial exige Lote preparado del mismo Perfil y paga sólo su SM",async()=>{
+  const actor=new StubActor("material-install");
+  const target=manufacturedItem(actor,{id:"material-target",name:"Mecanismo",type:"equipment",referenceValueCopper:100,baseTimeMinutes:120,system:{category:"Herramienta de precisión"}});
+  const specialLot=lot(actor,{
+    id:"precision-lot",
+    vi:50,
+    compatibility:["material:kharumPrecisionAlloy"],
+    materialProfileKey:"kharumPrecisionAlloy",
+    preparation:"prepared"
+  });
+  const row={
+    id:"precision-installed",
+    name:"Aleación de precisión de Kharum",
+    profileKey:"kharumPrecisionAlloy",
+    grade:"rare",
+    coverage:"major",
+    supplementCopper:25,
+    sourceItemUuid:specialLot.uuid
+  };
+  const craft=project(actor,{
+    id:"material-project",
+    operation:"modify",
+    material:specialLot,
+    materialCopper:25,
+    estimatedMaterialsCopper:25,
+    allocationCompatibility:"material:kharumPrecisionAlloy",
+    referenceValueCopper:100,
+    quality:"common",
+    workMaterialGrade:"rare",
+    specialMaterials:[row],
+    enhancement:{mode:"material",replaceMaterialId:"",fineMachiningMaterialId:""},
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:60,
+    requiredMinutes:60,
+    requiredRank:3,
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,60,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(specialLot.system.craftingLot.inputValueCopper,25);
+  assert.equal(target.system.manufacture.specialMaterials.length,1);
+  assert.equal(target.system.manufacture.specialMaterials[0].profileKey,"kharumPrecisionAlloy");
+  assert.equal(target.system.priceCopper,150);
+});
+
+test("CRAFT-13D: Lote bruto no puede integrarse como Material Especial preparado",async()=>{
+  const actor=new StubActor("raw-material");
+  const target=manufacturedItem(actor,{id:"raw-target",type:"equipment",referenceValueCopper:100,baseTimeMinutes:120,system:{category:"Herramienta"}});
+  const raw=lot(actor,{
+    id:"raw-lot",
+    vi:50,
+    compatibility:["material:kharumPrecisionAlloy"],
+    materialProfileKey:"kharumPrecisionAlloy",
+    preparation:"raw"
+  });
+  const craft=project(actor,{
+    id:"raw-project",
+    operation:"modify",
+    material:raw,
+    materialCopper:25,
+    estimatedMaterialsCopper:25,
+    allocationCompatibility:"material:kharumPrecisionAlloy",
+    referenceValueCopper:100,
+    quality:"common",
+    workMaterialGrade:"rare",
+    specialMaterials:[{
+      id:"raw-part",name:"Aleación",profileKey:"kharumPrecisionAlloy",grade:"rare",coverage:"major",
+      supplementCopper:25,sourceItemUuid:raw.uuid
+    }],
+    enhancement:{mode:"material",replaceMaterialId:"",fineMachiningMaterialId:""},
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:60,
+    requiredMinutes:60,
+    requiredRank:3,
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const rejected=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/Preparado/);
+  assert.equal(raw.system.craftingLot.inputValueCopper,50);
+});
+
+test("CRAFT-13D: cambiar Material Dominante sigue bloqueado como modificación menor",async()=>{
+  const actor=new StubActor("dominant-change");
+  const target=manufacturedItem(actor,{
+    id:"dominant-target",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    specialMaterials:[{
+      id:"steel",name:"Acero de Kharum",profileKey:"kharumSteel",grade:"specialized",coverage:"dominant",supplementCopper:25,sourceItemUuid:""
+    }]
+  });
+  const replacement=lot(actor,{
+    id:"replacement-dominant",
+    vi:100,
+    compatibility:["material:custom-dominant"],
+    materialProfileKey:"custom-dominant"
+  });
+  const craft=project(actor,{
+    id:"dominant-project",
+    operation:"modify",
+    material:replacement,
+    materialCopper:25,
+    estimatedMaterialsCopper:25,
+    allocationCompatibility:"material:custom-dominant",
+    referenceValueCopper:100,
+    quality:"common",
+    workMaterialGrade:"specialized",
+    specialMaterials:[{
+      id:"new-dominant",name:"Otro material",profileKey:"custom-dominant",grade:"specialized",coverage:"dominant",supplementCopper:25,sourceItemUuid:replacement.uuid
+    }],
+    enhancement:{mode:"material",replaceMaterialId:"steel",fineMachiningMaterialId:""},
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:60,
+    requiredMinutes:60,
+    requiredRank:2,
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate"
+  });
+  const rejected=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/Dominante/);
+});
+
+test("CRAFT-13D: fabricación inicial aplica Calidad + Material + CapM una sola vez",async()=>{
+  const actor=new StubActor("compound-fabrication");
+  const specialLot=lot(actor,{
+    id:"steel-lot",
+    vi:200,
+    compatibility:["forja","material:kharumSteel"],
+    materialProfileKey:"kharumSteel",
+    preparation:"prepared"
+  });
+  const craft=project(actor,{
+    id:"compound-project",
+    operation:"fabricate",
+    material:specialLot,
+    materialCopper:150,
+    estimatedMaterialsCopper:150,
+    allocationCompatibility:"material:kharumSteel",
+    referenceValueCopper:100,
+    quality:"exceptional",
+    workMaterialGrade:"specialized",
+    specialMaterials:[{
+      id:"steel",name:"Acero de Kharum",profileKey:"kharumSteel",grade:"specialized",coverage:"dominant",
+      supplementCopper:25,sourceItemUuid:specialLot.uuid
+    }],
+    modifications:[{id:"strike",key:"optimizedStrike",choice:"",scope:"",part:"metal"}],
+    resultData:{
+      name:"Espada compuesta",
+      type:"weapon",
+      system:{damage:5,penetration:0,strengthMin:1,reload:0,skill:"martialWeapons",properties:"Versátil",quantity:1}
+    },
+    baseMinutes:120,
+    adjustedBaseMinutes:240,
+    requiredMinutes:240,
+    requiredRank:4,
+    requiredInstallation:"specialized",
+    availableInstallation:"specialized"
+  });
+  // La misma asignación debe declarar todas las compatibilidades usadas por el Lote.
+  craft.system.ledger.entries[0].compatibility="material:kharumSteel";
+  specialLot.system.craftingLot.compatibility=["material:kharumSteel"];
+  const resolver=resolverFor(actor);
+  const reserved=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(reserved.ok,true);
+  await advanceCraftingProjectWork(craft,240,{expectedRevision:1});
+  const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
+  assert.equal(completed.ok,true);
+  const output=[...actor.items.values()].find((item)=>item.name==="Espada compuesta");
+  assert.ok(output);
+  assert.equal(output.system.damage,6);
+  assert.equal(output.system.quality,"exceptional");
+  assert.equal(output.system.priceCopper,300);
+  assert.equal(output.system.manufacture.capMUsed,2);
+  assert.deepEqual(output.system.manufacture.effects.materialProperties,["kharum-tenacity"]);
+});
+
+test("CRAFT-13D: desmantelar separa VI ordinario de VI especial y no recicla VRQ",async()=>{
+  const actor=new StubActor("special-salvage");
+  const target=manufacturedItem(actor,{
+    id:"special-sword",
+    name:"Espada especial",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"exceptional",
+    specialMaterials:[{
+      id:"steel",name:"Acero de Kharum",profileKey:"kharumSteel",grade:"specialized",coverage:"dominant",supplementCopper:25,sourceItemUuid:""
+    }]
+  });
+  const craft=project(actor,{
+    id:"special-salvage-project",
+    operation:"dismantle",
+    material:null,
+    materialCopper:0,
+    estimatedMaterialsCopper:0,
+    referenceValueCopper:100,
+    targetItemUuid:target.uuid,
+    requiredMinutes:30,
+    baseMinutes:120,
+    adjustedBaseMinutes:120,
+    requiredRank:2,
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
+  const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
+  assert.equal(completed.ok,true);
+  assert.equal(completed.recoveredMaterialsCopper,37);
+  const lots=[...actor.items.values()].filter((item)=>item.system?.craftingLot?.enabled);
+  const ordinary=lots.find((item)=>!item.system.craftingLot.materialProfileKey);
+  const special=lots.find((item)=>item.system.craftingLot.materialProfileKey==="kharumSteel");
+  assert.equal(ordinary.system.craftingLot.inputValueCopper,25);
+  assert.equal(special.system.craftingLot.inputValueCopper,12);
+  assert.equal(special.system.craftingLot.compatibility[0],"material:kharumSteel");
+});
+
