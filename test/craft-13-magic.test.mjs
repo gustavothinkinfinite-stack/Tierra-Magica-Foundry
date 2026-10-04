@@ -211,7 +211,7 @@ test("CRAFT-13E: Utilitarios y Pasivos usan catálogos cerrados, no claves libre
   assert.equal(passive.group,"mental-fear-defense");
   assert.equal(passive.effect.mentalDefenseBonus,2);
 
-  const host=item({quality:"superior"});
+  const host=item({quality:"superior",magicSupport:{grade:0,role:"body"}});
   assert.equal(validateEnchantmentSupport(host,{
     grade:1,
     passiveKey:"firmnessAmulet",
@@ -224,6 +224,34 @@ test("CRAFT-13E: Utilitarios y Pasivos usan catálogos cerrados, no claves libre
     functionalKey:"damage-manufacture",
     seal:false
   }).issues.some((issue)=>issue.code==="enchantment-passive-profile"));
+});
+
+test("CRAFT-13E: Pasivo exige soporte físico compatible y no comparte Encantamiento con Hechizo Vinculado",()=>{
+  const optics=item({quality:"exceptional",magicSupport:{grade:0,role:"optics"}});
+  assert.equal(validateEnchantmentSupport(optics,{
+    grade:2,
+    passiveKey:"revelationLenses",
+    functionalKey:"revelation-sensory",
+    seal:false
+  }).valid,true);
+
+  const body=item({quality:"exceptional",magicSupport:{grade:0,role:"body"}});
+  const wrong=validateEnchantmentSupport(body,{
+    grade:2,
+    passiveKey:"revelationLenses",
+    functionalKey:"revelation-sensory",
+    seal:false
+  });
+  assert.ok(wrong.issues.some((issue)=>issue.code==="enchantment-passive-support"));
+
+  const mixed=validateEnchantmentSupport(body,{
+    grade:1,
+    passiveKey:"firmnessAmulet",
+    functionalKey:"mental-fear-defense",
+    boundSpell:{slug:"barrera-cinetica",method:"direct",grade:"basic"},
+    seal:false
+  });
+  assert.ok(mixed.issues.some((issue)=>issue.code==="enchantment-payload"));
 });
 
 test("CRAFT-13E: soporte Común no puede Encantarse I salvo Soporte Dedicado",()=>{
