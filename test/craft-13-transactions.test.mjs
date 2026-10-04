@@ -1188,7 +1188,8 @@ test("CRAFT-13D: Defectuosa no puede usarse como fabricación barata",async()=>{
   });
   const rejected=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
   assert.equal(rejected.ok,false);
-  assert.match(rejected.error,/Defectuosa/);
+  assert.equal(rejected.error,"El Proyecto contiene incidencias estructurales.");
+  assert.ok(rejected.issues.some((issue)=>issue.code==="quality"));
   assert.equal(material.system.craftingLot.inputValueCopper,100);
 });
 
