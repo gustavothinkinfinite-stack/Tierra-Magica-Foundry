@@ -1,8 +1,10 @@
 import {
+  adjustedBaseTimeMinutes,
   applyUniversalTimeReductions,
   craftingProjectRemainingMinutes,
   failedAccelerationTotalMinutes,
   normalizeCraftingProject,
+  qualityValueCopper,
   repairQuote,
   salvageQuote,
   totalCraftMaterialCostCopper,
@@ -218,7 +220,7 @@ function currentManufacture(target, model) {
   };
 }
 
-function expectedStageRequiredMinutes(stageBaseMinutes, model) {
+function expectedStageRequiredMinutes(stageBaseMinutes, model, { reductionFactors = [] } = {}) {
   const base=Math.max(0,number(stageBaseMinutes));
   if(model.execution.accelerated && ["failure","pifia"].includes(model.execution.accelerationOutcome)) {
     return failedAccelerationTotalMinutes(base);
@@ -226,7 +228,7 @@ function expectedStageRequiredMinutes(stageBaseMinutes, model) {
   return applyUniversalTimeReductions(base,{
     workAssistants:model.assistants.work,
     accelerated:model.execution.accelerated && model.execution.accelerationOutcome==="success",
-    reductionFactors:model.execution.reductionFactors
+    reductionFactors:[...model.execution.reductionFactors,...reductionFactors]
   });
 }
 
@@ -448,18 +450,86 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
     const target = await resolveOwnedItem(project.parent, model.target.itemUuid, resolver);
     if (!target || !PHYSICAL_TYPES.has(target.type)) return { ok:false, error:"El objeto a reparar ya no está disponible." };
     const manufacture=target.system?.manufacture ?? {};
-    const maintainable=number(manufacture?.effects?.repairTimeMultiplier,1);
-    const affectedTime=Math.max(0,number(model.time.adjustedBaseMinutes))*Math.max(0.25,maintainable);
+    const storedVr=Math.max(0,Math.floor(number(manufacture.referenceValueCopper)));
+    if(storedVr>0) {
+      const targetQuality=String(target.system?.quality ?? "common");
+      if(model.economy.referenceValueCopper!==storedVr) {
+        return {ok:false,error:"El VR Común de reparación no coincide con el objeto.",expectedCopper:storedVr};
+      }
+      if(model.economy.quality!==targetQuality) {
+        return {ok:false,error:"Reparar debe preservar la Calidad real del objeto.",expectedQuality:targetQuality};
+      }
+      const vrq=qualityValueCopper(storedVr,targetQuality);
+      const vrt=Math.max(vrq,Math.floor(number(manufacture.totalReferenceValueCopper,vrq)));
+      if(model.economy.affectedValueCopper<vrq || model.economy.affectedValueCopper>vrt) {
+        return {ok:false,error:"BRA debe partir del VRQ y no puede superar el VRT del objeto.",minimumCopper:vrq,maximumCopper:vrt};
+      }
+      const installed=Array.isArray(manufacture.specialMaterials)?manufacture.specialMaterials:[];
+      const grades=["ordinary","specialized","rare","exceptional"];
+      const materialGrade=installed.reduce((highest,row)=>
+        grades.indexOf(String(row?.grade??"ordinary"))>grades.indexOf(highest)?String(row.grade):highest,"ordinary");
+      const fullTba=adjustedBaseTimeMinutes(
+        Math.max(0,number(manufacture.baseTimeMinutes,model.time.baseMinutes)),
+        {quality:targetQuality,materialGrade}
+      );
+      const quote=repairQuote({
+        condition:String(target.system?.condition ?? "operative"),
+        affectedValueCopper:model.economy.affectedValueCopper,
+        affectedTimeMinutes:fullTba
+      });
+      if(!quote.repairableByUniversalRule) return {ok:false,error:"El estado objetivo no admite reparación universal."};
+      const maintainable=number(manufacture?.effects?.repairTimeMultiplier,1);
+      let required=expectedStageRequiredMinutes(quote.timeMinutes,model,{
+        reductionFactors:maintainable<1?[Math.max(0.25,maintainable)]:[]
+      });
+      if(maintainable<1) required=Math.max(10,required);
+      if(model.time.mode!=="fixed") return {ok:false,error:"La reparación de un objeto manufacturado usa el tiempo fijo derivado de su estado."};
+      if(Math.abs(model.time.adjustedBaseMinutes-quote.timeMinutes)>Number.EPSILON) {
+        return {ok:false,error:"El tiempo base de reparación no coincide con BRA/estado.",expectedMinutes:quote.timeMinutes};
+      }
+      if(model.time.requiredMinutes+Number.EPSILON<required) {
+        return {ok:false,error:"El tiempo de reparación está por debajo del mínimo canónico.",expectedMinutes:required};
+      }
+      return {ok:true,materialCopper:quote.materialCopper,repairTimeMinutes:required,target};
+    }
+
     const quote = repairQuote({
       condition:String(target.system?.condition ?? "operative"),
       affectedValueCopper:model.economy.affectedValueCopper,
-      affectedTimeMinutes:affectedTime
+      affectedTimeMinutes:Math.max(0,number(model.time.adjustedBaseMinutes))
     });
     if (!quote.repairableByUniversalRule) return { ok:false, error:"El estado objetivo no admite reparación universal." };
     return { ok:true, materialCopper:quote.materialCopper, repairTimeMinutes:quote.timeMinutes };
   }
 
-  if (model.operation === "dismantle") return { ok:true, materialCopper:0 };
+  if (model.operation === "dismantle") {
+    const target=await resolveOwnedItem(project.parent,model.target.itemUuid,resolver);
+    if(!target || !PHYSICAL_TYPES.has(target.type)) return {ok:false,error:"El objeto a desmantelar ya no está disponible."};
+    const manufacture=target.system?.manufacture ?? {};
+    const storedVr=Math.max(0,Math.floor(number(manufacture.referenceValueCopper)));
+    const storedBase=Math.max(0,number(manufacture.baseTimeMinutes));
+    if(storedVr>0 && storedBase>0) {
+      if(model.economy.referenceValueCopper!==storedVr) {
+        return {ok:false,error:"El VR Común de desmantelamiento no coincide con el objeto.",expectedCopper:storedVr};
+      }
+      const quote=salvageQuote({
+        condition:String(target.system?.condition ?? "operative"),
+        referenceValueCopper:storedVr,
+        specialMaterialSupplementsCopper:[],
+        recoveredSeparatedComponentsCopper:0,
+        fabricationTimeMinutes:storedBase
+      });
+      const required=expectedStageRequiredMinutes(quote.timeMinutes,model);
+      if(model.time.mode!=="fixed") return {ok:false,error:"Desmantelar un objeto manufacturado usa el tiempo fijo del 25% de su fabricación base."};
+      if(Math.abs(model.time.adjustedBaseMinutes-quote.timeMinutes)>Number.EPSILON) {
+        return {ok:false,error:"El tiempo base de desmantelamiento no coincide con el 25% canónico.",expectedMinutes:quote.timeMinutes};
+      }
+      if(model.time.requiredMinutes+Number.EPSILON<required) {
+        return {ok:false,error:"El tiempo de desmantelamiento está por debajo del mínimo canónico.",expectedMinutes:required};
+      }
+    }
+    return { ok:true, materialCopper:0 };
+  }
   if (model.operation === "modify") return analyzeModifyProject(project,model,resolver);
   return { ok:true, materialCopper:model.ledger.estimatedMaterialsCopper };
 }
