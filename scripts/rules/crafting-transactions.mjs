@@ -72,15 +72,19 @@ export function craftingLotAvailableCopper(item, { project = null } = {}) {
 
 export function craftingProjectMaterialAllocations(project) {
   const normalized = normalizeCraftingProject(project?.system ?? project);
-  const grouped = new Map();
+  const bySource = new Map();
   for (const entry of normalized.ledger.entries) {
     if (entry.kind !== "material-allocation" || entry.resource !== "materials") continue;
     const sourceUuid = String(entry.sourceUuid ?? "").trim();
     const amountCopper = Math.max(0, Math.floor(number(entry.amountCopper)));
+    const compatibility = String(entry.compatibility ?? "").trim();
     if (!sourceUuid || !amountCopper) continue;
-    grouped.set(sourceUuid, (grouped.get(sourceUuid) ?? 0) + amountCopper);
+    const key = sourceUuid + "\u0000" + compatibility;
+    const previous = bySource.get(key) ?? { sourceUuid, compatibility, amountCopper:0 };
+    previous.amountCopper += amountCopper;
+    bySource.set(key, previous);
   }
-  return [...grouped.entries()].map(([sourceUuid, amountCopper]) => ({ sourceUuid, amountCopper }));
+  return [...bySource.values()];
 }
 
 async function resolveOwnedItem(actor, uuid, resolver = globalThis.fromUuid) {
@@ -133,8 +137,8 @@ export async function reserveCraftingProjectMaterials(project, {
 
   const allocations = craftingProjectMaterialAllocations(project);
   const requested = allocations.reduce((sum, entry) => sum + entry.amountCopper, 0);
-  if (requested < model.ledger.estimatedMaterialsCopper) {
-    return { ok:false, error:"Las asignaciones de Lotes no cubren el material estimado del Proyecto." };
+  if (requested !== model.ledger.estimatedMaterialsCopper) {
+    return { ok:false, error:"Las asignaciones de Lotes deben coincidir exactamente con el material estimado del Proyecto." };
   }
 
   const actor = project.parent;
@@ -146,6 +150,12 @@ export async function reserveCraftingProjectMaterials(project, {
     }
     const lot = lotData(item);
     if (!lot.enabled) return { ok:false, error:item.name + " no está marcado como Lote de fabricación." };
+    if (!allocation.compatibility) {
+      return { ok:false, error:"Cada asignación de VI debe declarar la compatibilidad exigida por el Proyecto.", sourceUuid:allocation.sourceUuid };
+    }
+    if (!lot.compatibility.includes(allocation.compatibility)) {
+      return { ok:false, error:item.name + " no es compatible con " + allocation.compatibility + ".", sourceUuid:allocation.sourceUuid };
+    }
     const available = craftingLotAvailableCopper(item, { project });
     if (allocation.amountCopper > available) {
       return { ok:false, error:item.name + " no posee VI libre suficiente.", sourceUuid:allocation.sourceUuid, available };
