@@ -175,10 +175,10 @@ export function runeInscriptionQuote({referenceValueCopper=0,baseTimeMinutes=0,g
 }
 
 export function imprintStoneCraftProfile(grade=1){
-  const g=Math.max(1,Math.min(2,Math.floor(number(grade,1))));
-  return g===1
-    ? {grade:1,referenceValueCopper:400,materialCopper:200,timeMinutes:480}
-    : {grade:2,referenceValueCopper:1000,materialCopper:500,timeMinutes:1440};
+  const g=Math.floor(number(grade,0));
+  if(g===1) return {grade:1,referenceValueCopper:400,materialCopper:200,timeMinutes:480};
+  if(g===2) return {grade:2,referenceValueCopper:1000,materialCopper:500,timeMinutes:1440};
+  return null;
 }
 
 export function validateRunicConfiguration(itemSource={},runic=itemSource?.system?.runic??{}){
