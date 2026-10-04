@@ -20,22 +20,23 @@ export const TRAP_TRIGGERS=Object.freeze([
 ]);
 
 export const RUNE_CHANNEL_TYPES=Object.freeze(["inscription","socket"]);
+export const SEAL_TRIGGER_TYPES=Object.freeze(["contact","opening","threshold","magic-key"]);
 
 export const IMPRINTS=Object.freeze({
-  lumenI:Object.freeze({key:"lumenI",label:"Lumen I",grade:1,cru:1,activation:"action",manaCost:1,group:"light-utilitarian"}),
-  emberI:Object.freeze({key:"emberI",label:"Brasa I",grade:1,cru:1,activation:"action",manaCost:1,group:"heat-utilitarian"}),
-  arcaneEdgeI:Object.freeze({key:"arcaneEdgeI",label:"Filo Arcano I",grade:1,cru:1,activation:"linked",manaCost:2,group:"damage-manufacture",weaponHost:true}),
-  runicNeedleI:Object.freeze({key:"runicNeedleI",label:"Aguja Rúnica I",grade:1,cru:1,activation:"linked",manaCost:2,group:"penetration-manufacture",weaponHost:true}),
-  runicGuardI:Object.freeze({key:"runicGuardI",label:"Guardia Rúnica I",grade:1,cru:1,activation:"reaction",manaCost:2,group:"barrier-defense"}),
-  runicAnchorI:Object.freeze({key:"runicAnchorI",label:"Ancla Rúnica I",grade:1,cru:1,activation:"reaction",manaCost:1,group:"maneuver-defense"}),
-  thermalWardI:Object.freeze({key:"thermalWardI",label:"Resguardo Térmico I",grade:1,cru:1,activation:"reaction",manaCost:2,group:"thermal-reduction"}),
-  matterSilenceI:Object.freeze({key:"matterSilenceI",label:"Silencio de Materia I",grade:1,cru:1,activation:"action",manaCost:1,group:"silent"}),
-  craftClarityI:Object.freeze({key:"craftClarityI",label:"Claridad de Oficio I",grade:1,cru:1,activation:"linked",manaCost:2,group:"professional-advantage"}),
-  runicBarrierII:Object.freeze({key:"runicBarrierII",label:"Barrera Rúnica II",grade:2,cru:2,activation:"reaction",manaCost:3,group:"barrier-defense"}),
-  penetratingEdgeII:Object.freeze({key:"penetratingEdgeII",label:"Filo Penetrante II",grade:2,cru:2,activation:"linked",manaCost:3,group:"damage-penetration-manufacture",weaponHost:true}),
-  thermalWardII:Object.freeze({key:"thermalWardII",label:"Resguardo Térmico II",grade:2,cru:2,activation:"reaction",manaCost:3,group:"thermal-reduction"}),
-  runicStabilityII:Object.freeze({key:"runicStabilityII",label:"Estabilidad Rúnica II",grade:2,cru:2,activation:"reaction",manaCost:2,group:"state-deterioration"}),
-  kineticImpulseII:Object.freeze({key:"kineticImpulseII",label:"Impulso Cinético II",grade:2,cru:2,activation:"linked",manaCost:3,group:"kinetic-displacement",weaponHost:true})
+  lumenI:Object.freeze({key:"lumenI",label:"Lumen I",grade:1,cru:1,activation:"action",manaCost:1,group:"light-utilitarian",effect:Object.freeze({light:true,duration:"scene"})}),
+  emberI:Object.freeze({key:"emberI",label:"Brasa I",grade:1,cru:1,activation:"action",manaCost:1,group:"heat-utilitarian",effect:Object.freeze({heatIgnition:true})}),
+  arcaneEdgeI:Object.freeze({key:"arcaneEdgeI",label:"Filo Arcano I",grade:1,cru:1,activation:"linked",manaCost:2,group:"damage-manufacture",weaponHost:true,effect:Object.freeze({damageBonus:1})}),
+  runicNeedleI:Object.freeze({key:"runicNeedleI",label:"Aguja Rúnica I",grade:1,cru:1,activation:"linked",manaCost:2,group:"penetration-manufacture",weaponHost:true,effect:Object.freeze({penetrationBonus:1,penetrationMax:3})}),
+  runicGuardI:Object.freeze({key:"runicGuardI",label:"Guardia Rúnica I",grade:1,cru:1,activation:"reaction",manaCost:2,group:"barrier-defense",effect:Object.freeze({defenseBonus:1})}),
+  runicAnchorI:Object.freeze({key:"runicAnchorI",label:"Ancla Rúnica I",grade:1,cru:1,activation:"reaction",manaCost:1,group:"maneuver-defense",effect:Object.freeze({maneuverDefenseBonus:2})}),
+  thermalWardI:Object.freeze({key:"thermalWardI",label:"Resguardo Térmico I",grade:1,cru:1,activation:"reaction",manaCost:2,group:"thermal-reduction",effect:Object.freeze({thermalDamageReduction:2})}),
+  matterSilenceI:Object.freeze({key:"matterSilenceI",label:"Silencio de Materia I",grade:1,cru:1,activation:"action",manaCost:1,group:"silent",effect:Object.freeze({silenceOwnObject:true,duration:"scene"})}),
+  craftClarityI:Object.freeze({key:"craftClarityI",label:"Claridad de Oficio I",grade:1,cru:1,activation:"linked",manaCost:2,group:"professional-advantage",effect:Object.freeze({professionalAdvantage:true})}),
+  runicBarrierII:Object.freeze({key:"runicBarrierII",label:"Barrera Rúnica II",grade:2,cru:2,activation:"reaction",manaCost:3,group:"barrier-defense",effect:Object.freeze({defenseBonus:2})}),
+  penetratingEdgeII:Object.freeze({key:"penetratingEdgeII",label:"Filo Penetrante II",grade:2,cru:2,activation:"linked",manaCost:3,group:"damage-penetration-manufacture",weaponHost:true,effect:Object.freeze({damageBonus:1,penetrationBonus:1,penetrationMax:3})}),
+  thermalWardII:Object.freeze({key:"thermalWardII",label:"Resguardo Térmico II",grade:2,cru:2,activation:"reaction",manaCost:3,group:"thermal-reduction",effect:Object.freeze({thermalDamageReduction:4})}),
+  runicStabilityII:Object.freeze({key:"runicStabilityII",label:"Estabilidad Rúnica II",grade:2,cru:2,activation:"reaction",manaCost:2,group:"state-deterioration",effect:Object.freeze({deteriorationStepsReduced:1})}),
+  kineticImpulseII:Object.freeze({key:"kineticImpulseII",label:"Impulso Cinético II",grade:2,cru:2,activation:"linked",manaCost:3,group:"kinetic-displacement",weaponHost:true,effect:Object.freeze({displacement:1,maxTargetScaleDelta:0})})
 });
 
 export const ENCHANTMENT_GRADES=Object.freeze({
@@ -275,6 +276,12 @@ export function validateEnchantmentSupport(itemSource={},enchantment={}){
     if((gradeOrder[String(spell.grade??"basic")]??99)>maxByEnchant[grade]) issues.push({code:"enchantment-spell-grade",message:"El Hechizo Vinculado excede el Grado del Encantamiento."});
   }
   if(enchantment.seal===true && grade>2) issues.push({code:"seal-grade",message:"Un Sello de Custodia estándar sólo admite Encantamiento I o II."});
+  if(enchantment.seal===true && !SEAL_TRIGGER_TYPES.includes(String(enchantment.sealTriggerType??""))) {
+    issues.push({code:"seal-trigger",message:"El Sello debe usar un disparador físico/mágico estándar explícito."});
+  }
+  if(enchantment.seal===true && String(enchantment.sealTriggerType)==="magic-key" && !text(enchantment.sealBypassKey)) {
+    issues.push({code:"seal-key",message:"Un Sello basado en llave/marca mágica debe identificar esa llave concreta."});
+  }
   return {valid:issues.length===0,issues};
 }
 
