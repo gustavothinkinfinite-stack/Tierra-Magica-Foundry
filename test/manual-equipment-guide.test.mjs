@@ -105,7 +105,7 @@ test("consumibles conservan dosis, Saturación y precios no establecidos",async(
   }
   assert.match(equipment,/usar una dosis consume esa dosis/);
   assert.match(equipment,/una dosis no puede utilizarse dos veces/);
-  assert.match(equipment,/precios monetarios permanecen \*\*sin establecer\*\*/);
+  assert.match(equipment,/permanecen \\*\\*sin precio monetario establecido\\*\\*/);
 });
 
 test("el Manual no crea una fórmula universal de inventario o carga",async()=>{
