@@ -13,6 +13,7 @@ import {
   runicMatrixQuote,
   runeInscriptionQuote,
   sealRearmQuote,
+  trapConcealmentQuote,
   trapFrameProfile,
   trapRearmQuote,
   utilityEnchantmentProfile,
@@ -326,6 +327,30 @@ test("CRAFT-13E: trampa deriva Precisión/DF del Armazón y limita la carga",()=
   assert.ok(invalid.issues.some((issue)=>issue.code==="trap-damage"));
   assert.ok(invalid.issues.some((issue)=>issue.code==="trap-penetration"));
   assert.deepEqual(trapRearmQuote(120),{timeMinutes:30});
+});
+
+test("CRAFT-13E: Ocultación mantiene DF, tiempo y materiales separados de Precisión",()=>{
+  assert.deepEqual(
+    trapConcealmentQuote({frameReferenceValueCopper:100,frameBaseTimeMinutes:120,grade:"hidden"}),
+    {valid:true,grade:"hidden",detectionDf:12,requiredRank:2,materialCopper:10,additionalTimeMinutes:30}
+  );
+  assert.deepEqual(
+    trapConcealmentQuote({frameReferenceValueCopper:100,frameBaseTimeMinutes:120,grade:"disguised"}),
+    {valid:true,grade:"disguised",detectionDf:10,requiredRank:1,materialCopper:0,additionalTimeMinutes:10}
+  );
+  const invalid=validateTrapConfiguration({
+    enabled:true,
+    frame:"standard",
+    precision:4,
+    mechanismDf:12,
+    triggerType:"contact",
+    physicalTriggerKey:"plate-a",
+    automatic:true,
+    concealment:{grade:"hidden",detectionDf:14,environmentAllows:true},
+    load:{kind:"alarm",damage:0,penetration:0}
+  });
+  assert.ok(invalid.issues.some((issue)=>issue.code==="trap-detection-df"));
+  assert.equal(invalid.issues.some((issue)=>issue.code==="trap-precision"),false);
 });
 
 test("CRAFT-13E: carga de trampa fuera del catálogo cerrado se rechaza",()=>{
