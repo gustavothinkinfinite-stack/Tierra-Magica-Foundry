@@ -125,7 +125,9 @@ test("CRAFT-13B: template y configuración registran Project como Item no físic
 
 test("CRAFT-13B: crear Proyecto queda fuera de adquisición y de revisión de creación",async()=>{
   const source=await readFile(new URL("../scripts/tierra-magica.mjs",import.meta.url),"utf8");
-  assert.match(source,/\["effect","project"\]\.includes\(item\.type\)/);
+  assert.match(source,/item\.type === "project" && !options\.tmValidated/);
+  assert.match(source,/"system\.state":"draft"/);
+  assert.match(source,/options\.tmValidated \|\| item\.type === "effect"/);
   assert.match(source,/options\.tmValidated \|\| item\.type === "project"/);
 });
 
