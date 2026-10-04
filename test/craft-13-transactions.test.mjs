@@ -424,3 +424,42 @@ test("CRAFT-13C: autoridad GM serializa dos Proyectos contra el mismo Lote",asyn
   assert.equal(Object.values(material.system.craftingLot.reservations)[0].amountCopper,60);
 });
 
+test("CRAFT-13C: CM subcotizado no puede comprometer menos VI que la fórmula canónica",async()=>{
+  const actor=new StubActor("underquote");
+  const material=lot(actor,{vi:100});
+  const craft=project(actor,{
+    material,
+    materialCopper:40,
+    estimatedMaterialsCopper:40,
+    referenceValueCopper:100
+  });
+  const result=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(result.ok,false);
+  assert.equal(result.expectedCopper,50);
+  assert.equal(material.system.craftingLot.inputValueCopper,100);
+  assert.deepEqual(material.system.craftingLot.reservations,{});
+});
+
+test("CRAFT-13C: el rango real del Actor no se sustituye por el rango declarado en Proyecto",async()=>{
+  const actor=new StubActor("rank");
+  actor.system.skills.crafting.rank=1;
+  const material=lot(actor,{vi:100});
+  const craft=project(actor,{material,materialCopper:50,referenceValueCopper:100});
+  const result=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(result.ok,false);
+  assert.ok(result.issues.some((issue)=>issue.code==="rank"));
+  assert.deepEqual(material.system.craftingLot.reservations,{});
+});
+
+test("CRAFT-13C: factores temporales libres no entran en una transacción",async()=>{
+  const actor=new StubActor("free-reduction");
+  const material=lot(actor,{vi:100});
+  const craft=project(actor,{material,materialCopper:50,referenceValueCopper:100});
+  craft.system.execution.reductionFactors=[0.5];
+  craft.system.time.requiredMinutes=30;
+  const result=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(result.ok,false);
+  assert.match(result.error,/fuente mecánica estructurada/);
+  assert.deepEqual(material.system.craftingLot.reservations,{});
+});
+
