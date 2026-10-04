@@ -441,6 +441,21 @@ CRAFT-13D reutiliza la serialización, revisión optimista, reservas, recibos id
 
 Las regresiones cubren CapM, ascensos, sustitución de Modificaciones, Mecanizado fino, Material Dominante, Lotes preparados, perfiles desconocidos sin poder automático, VRT, desmantelamiento separado, Mantenible, Parada +3, fabricación Defectuosa y cambio de estado durante reparación.
 
+#### Auditoría destructiva posterior de 13D
+
+La revisión contra el texto canónico de CRAFT-04/05 encontró tres huecos de implementación aunque CI estuviera verde:
+
+1. **Ascenso de Calidad:** se había añadido por error un mínimo general de 1 hora. CRAFT-04 no establece ese mínimo para ascensos; se eliminó. El mínimo de 1 hora permanece únicamente donde el canon sí lo fija, como Modificación posterior e incorporación posterior de Material.
+2. **Retirada pura de Modificación:** ahora puede retirarse una Modificación sin reemplazo cuando el Proyecto lo declara. Libera CapM, exige 10% del tiempo base con mínimo 30 minutos y no genera VI ni recuperación automática.
+3. **Reparación de Material Especial:** la BRA ya no acepta un valor material arbitrario entre VRQ y VRT. Se deriva como **VRQ + valor de las capas especiales realmente afectadas**. Si una parte especial se sustituye:
+   - un Lote preparado del mismo Perfil preserva la propiedad;
+   - un reemplazo ordinario restaura el estado pero elimina esa propiedad y recalcula VRT;
+   - una parte no afectada no puede inflar BRA ni exigir material especial.
+
+Además, todo Material Especial no Dominante debe identificar la **parte funcional** que ocupa; una incrustación decorativa no puede activar una propiedad.
+
+Estas correcciones son de implementación: no modifican CRAFT-04/05. Tras incorporarlas, la validación completa de la rama volvió a quedar verde.
+
 ### CRAFT-13E — Trampas, Runas, Piedras y Encantamientos
 
 **Estado: PENDIENTE**
