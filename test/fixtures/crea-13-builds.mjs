@@ -96,6 +96,19 @@ function paidPhysicalPreflight(actor, candidate) {
 }
 
 function acquire(actor, candidate, audit) {
+  // CREA-13 conserva un fixture histórico con Familiar Mágico. CREA-14 bloquea
+  // su adquisición interactiva hasta cerrar la plantilla inicial, pero el fixture
+  // histórico sigue cargándolo para comprobar regresiones del presupuesto PR.
+  if (candidate?.name === "Familiar Mágico" && candidate.system?.tags?.includes("creation-locked")) {
+    const cost = (candidate.system?.costs ?? []).find((entry) => entry.context === "creation");
+    candidate.id ??= actor.id + "-" + candidate.type + "-" + normalizeSlug(candidate.system?.slug || candidate.name);
+    candidate.system.acquisition = acquisitionFromCost(cost,{mode:"purchased",stage:"creation"});
+    actor.items.push(candidate);
+    actor.system.creation.revision += 1;
+    audit.push({type:candidate.type,name:candidate.name,valid:true,cost,issues:[],historicalBypass:"CREA-13"});
+    return true;
+  }
+
   const physical = ["weapon","armor","shield","equipment","device"].includes(candidate.type) &&
     !(candidate.system?.costs?.length);
   const preflight = physical
