@@ -1,6 +1,12 @@
 import { primaryActiveGm, validatePendingDamageRequest } from "./damage-delivery.mjs";
 import { validatePendingHealingRequest } from "./healing-delivery.mjs";
 import { resourceMaximum } from "./resource-reconciliation.mjs";
+import {
+  advanceCraftingProjectWork,
+  completeCraftingProject,
+  releaseCraftingProjectMaterials,
+  reserveCraftingProjectMaterials
+} from "./crafting-transactions.mjs";
 
 const CHANNEL = "system.tierra-magica";
 const SCOPE = "state-authority";
@@ -81,6 +87,9 @@ async function authorityReceiptDocument(action, payload = {}) {
   }
   if (["claim-kinetic", "claim-parry", "resolve-parry", "claim-counterattack", "apply-health-damage", "apply-health-healing"].includes(action)) {
     return actorFromUuid(String(payload.targetUuid ?? ""));
+  }
+  if (["craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete"].includes(action)) {
+    return actorFromUuid(String(payload.projectUuid ?? ""));
   }
   return null;
 }
@@ -425,6 +434,25 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
     return mutateHealth(target, { healing:payload.amount });
   }
 
+  if (["craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete"].includes(action)) {
+    const project = await actorFromUuid(String(payload.projectUuid ?? ""));
+    if (!project || project.type !== "project" || !project.parent) {
+      return { ok:false, error:"El Proyecto de fabricación ya no está disponible." };
+    }
+    if (!requesterMayModify(project, requesterId)) {
+      return { ok:false, error:"El solicitante no posee permisos para modificar este Proyecto." };
+    }
+
+    return serial("crafting:" + actorAuthorityKey(project.parent), async () => {
+      const options = { expectedRevision:payload.expectedRevision };
+      if (action === "craft-reserve") return reserveCraftingProjectMaterials(project, options);
+      if (action === "craft-release") return releaseCraftingProjectMaterials(project, { ...options, cancel:false });
+      if (action === "craft-cancel") return releaseCraftingProjectMaterials(project, { ...options, cancel:true });
+      if (action === "craft-work") return advanceCraftingProjectWork(project, payload.minutes, options);
+      return completeCraftingProject(project, options);
+    });
+  }
+
   if (action === "consume-device-energy") {
     const actor = await actorFromUuid(String(payload.actorUuid ?? ""));
     const source = actor?.items?.get?.(String(payload.sourceItemId ?? "")) ?? null;
@@ -761,6 +789,49 @@ export async function approvePendingHealingAuthoritatively(message) {
     await message.setFlag?.("tierra-magica", "pendingHealing", { ...request, resolved:true });
     return { ...result, resolved:true, alreadyResolved:false };
   });
+}
+
+async function craftingAuthority(project, action, payload = {}) {
+  if (!project || project.type !== "project" || !project.parent) return { ok:false, error:"Proyecto inválido." };
+  const expectedRevision = Math.max(0, Math.floor(number(project.system?.execution?.revision)));
+
+  if (runtimeSocketAvailable()) {
+    const gm = primaryActiveGm(activeUsers());
+    if (!gm) return { ok:false, error:"Se requiere un DJ activo para arbitrar la transacción de fabricación." };
+    if (!project.uuid) return { ok:false, error:"El Proyecto no posee UUID persistente." };
+    return requestPrimaryGm(action, { projectUuid:project.uuid, expectedRevision, ...payload });
+  }
+
+  if (!canModify(project)) return { ok:false, error:"No hay permisos para modificar el Proyecto." };
+  return serial("crafting-local:" + actorAuthorityKey(project.parent), async () => {
+    const options = { expectedRevision };
+    if (action === "craft-reserve") return reserveCraftingProjectMaterials(project, options);
+    if (action === "craft-release") return releaseCraftingProjectMaterials(project, { ...options, cancel:false });
+    if (action === "craft-cancel") return releaseCraftingProjectMaterials(project, { ...options, cancel:true });
+    if (action === "craft-work") return advanceCraftingProjectWork(project, payload.minutes, options);
+    if (action === "craft-complete") return completeCraftingProject(project, options);
+    return { ok:false, error:"Operación de fabricación desconocida." };
+  });
+}
+
+export async function reserveCraftingProjectAuthoritatively(project) {
+  return craftingAuthority(project, "craft-reserve");
+}
+
+export async function releaseCraftingProjectAuthoritatively(project) {
+  return craftingAuthority(project, "craft-release");
+}
+
+export async function cancelCraftingProjectAuthoritatively(project) {
+  return craftingAuthority(project, "craft-cancel");
+}
+
+export async function advanceCraftingProjectAuthoritatively(project, minutes) {
+  return craftingAuthority(project, "craft-work", { minutes:Math.max(0, number(minutes)) });
+}
+
+export async function completeCraftingProjectAuthoritatively(project) {
+  return craftingAuthority(project, "craft-complete");
 }
 
 export async function consumeDeviceEnergyAuthoritatively(actor, source, consumption, { flowBonus = 0 } = {}) {
