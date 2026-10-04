@@ -102,7 +102,8 @@ function normalizedMaterial(row={}) {
     grade:text(row.grade||"ordinary"),
     coverage:text(row.coverage||"component"),
     supplementCopper:copperCeil(row.supplementCopper),
-    sourceItemUuid:text(row.sourceItemUuid)
+    sourceItemUuid:text(row.sourceItemUuid),
+    part:text(row.part)
   };
 }
 function modificationCompatibility(itemSource,mod) {
@@ -166,7 +167,7 @@ export function qualityUpgradeQuote({
   return {
     valid:true,
     materialCopper:copperCeil(number(referenceValueCopper)*transition.material),
-    timeMinutes:Math.max(60,minutes(baseTimeMinutes)*transition.time),
+    timeMinutes:minutes(baseTimeMinutes)*transition.time,
     capMGained:Math.max(0,qualityCapacity(toQuality)-qualityCapacity(fromQuality))
   };
 }
@@ -185,6 +186,15 @@ export function modificationInstallationQuote({
     timeMinutes:Math.max(p?60:0,minutes(baseTimeMinutes)*timeRate*p),
     points:p,
     fineMachining:fineMachining===true
+  };
+}
+
+export function modificationRemovalQuote({
+  baseTimeMinutes=0
+}={}) {
+  return {
+    materialCopper:0,
+    timeMinutes:Math.max(30,minutes(baseTimeMinutes)*0.10)
   };
 }
 
@@ -219,6 +229,9 @@ export function validateSpecialMaterials(rows=[],{allowUnknownProfiles=true}={})
       continue;
     }
     if(row.coverage==="dominant") dominant+=1;
+    if(row.coverage!=="dominant" && !row.part) {
+      issues.push({code:"material-functional-part",materialId:row.id,message:"Un Material Especial no dominante debe identificar la parte funcional que ocupa."});
+    }
     const profile=MATERIAL_PROFILES[row.profileKey];
     if(!profile) {
       if(!allowUnknownProfiles && row.profileKey) issues.push({code:"material-profile",materialId:row.id,message:"Perfil de Material no reconocido."});
