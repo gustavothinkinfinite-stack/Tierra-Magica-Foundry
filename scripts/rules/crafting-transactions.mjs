@@ -1451,6 +1451,18 @@ async function fabricationOutcome(project) {
   source.name = String(source.name ?? project.system.target?.resultName ?? "Resultado fabricado");
   source.system = derived.system;
   source.system.condition = "operative";
+  if(source.system.trap?.enabled===true) {
+    const frame=trapFrameProfile(source.system.trap.frame);
+    source.system.trap.state="armed";
+    if(frame) {
+      source.system.trap.precision=frame.precision;
+      source.system.trap.mechanismDf=frame.mechanismDf;
+      source.system.trap.baseTimeMinutes=frame.baseTimeMinutes;
+    }
+  }
+  if(source.system.imprintStone?.enabled===true) {
+    source.system.imprintStone.socketedHostUuid="";
+  }
   source.system.acquisition = null;
   source.system.provenance = {
     ...(source.system.provenance ?? {}),
