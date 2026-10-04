@@ -736,6 +736,7 @@
         "runicCapacityTarget": 0,
         "runicChannelTypes": [],
         "imprintKey": "",
+        "imprintId": "",
         "imprintMode": "inscribed",
         "imprintChannelIds": [],
         "enchantmentGrade": 0,
