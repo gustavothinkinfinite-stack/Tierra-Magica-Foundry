@@ -66,9 +66,11 @@ Esas siete siguen bloqueadas porque el Manual las sitúa conceptualmente dentro 
 
 Catálogo maestro: **244** entradas.
 
-- **26 perfiles canónicos**;
+- **26 perfiles canónicos al cierre de CAT-09**;
 - **171 variantes de perfil aprobadas**;
-- **197 armas runtime**;
-- **47 propuestas pendientes**.
+- **197 armas runtime al cierre de CAT-09**;
+- **47 propuestas pendientes al cierre de CAT-09**.
+
+CAT-10 amplía posteriormente el estado global a 29 perfiles canónicos, 200 armas runtime y 44 pendientes.
 
 CAT-09 no modifica crafting, Energía, dispositivos, calidad, materiales especiales ni la lógica de combate compartida.
