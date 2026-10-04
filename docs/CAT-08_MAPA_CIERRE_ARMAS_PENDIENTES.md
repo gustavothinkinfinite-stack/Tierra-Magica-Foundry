@@ -1,12 +1,12 @@
 # CAT-08 — Mapa de cierre de armas pendientes
 
-**Estado:** CLASIFICADO · 6 RESUELTAS POSTERIORMENTE POR CAT-09  
+**Estado:** CLASIFICADO · 9 RESUELTAS POSTERIORMENTE POR CAT-09/10  
 **Fecha:** 2026-10-04  
 **Dependencia:** CAT-01…07
 
 ## Objetivo
 
-Después de CAT-07 quedaban **53 propuestas**. CAT-09 resolvió las 6 de perfil de proyectil, por lo que la cola vigente queda en **47**.
+Después de CAT-07 quedaban **53 propuestas**. CAT-09 resolvió 6 perfiles de proyectil y CAT-10 resolvió 3 armas flexibles, por lo que la cola vigente queda en **44**.
 
 CAT-08 asigna a cada una un bloqueador explícito para evitar que una futura expansión introduzca reglas implícitas o colisione con CRAFT-13.
 
@@ -15,11 +15,10 @@ CAT-08 asigna a cada una un bloqueador explícito para evitar que una futura exp
 | Bloqueador | Cantidad | Autoridad principal |
 |---|---:|---|
 | Enrutamiento de arrojadizas | 7 | Combate |
-| Control con armas flexibles | 3 | Combate |
 | Varios cañones / dispersión | 10 | Combate |
 | Material especial | 2 | Crafting |
 | Frontera Weapon/Device | 25 | Crafting |
-| **Total vigente** | **47** | |
+| **Total vigente** | **44** | |
 
 ## 1. Arrojadizas — 7
 
@@ -37,15 +36,9 @@ Por ello, una arrojadiza con \`lightWeapons\` podría ser tratada como cuerpo a 
 
 Cerrar esto exige una noción explícita de **modo de ataque** separada de la Habilidad. El archivo que hoy resuelve esa frontera es también modificado por CRAFT-13, por lo que CAT-08 no lo toca.
 
-## 2. Armas flexibles — 3
+## 2. Armas flexibles — RESUELTO POR CAT-10
 
-- Cadena corta de combate
-- Látigo
-- Látigo reforzado
-
-No existe una propiedad canónica universal de Enganche. Tampoco debe asumirse Alcance, Desarmar mejorado o control gratuito sólo por la forma.
-
-Estas entradas requieren una decisión de diseño explícita.
+Cadena corta de combate, Látigo y Látigo reforzado ya poseen perfiles canónicos. CAT-10 define **Flexible** como propiedad descriptiva que no concede Alcance, Enganche, Desarmar mejorado ni control gratuito.
 
 ## 3. Proyectiles con perfil propio — 6
 
@@ -108,9 +101,9 @@ La decisión futura debe establecer si cada entrada es:
 
 Catálogo maestro: **244**.
 
-- 26 perfiles canónicos;
+- 29 perfiles canónicos;
 - 171 variantes aprobadas;
-- **197 armas runtime**;
-- 47 propuestas bloqueadas y clasificadas.
+- **200 armas runtime**;
+- 44 propuestas bloqueadas y clasificadas.
 
 CAT-08 convierte el remanente en una cola de trabajo explícita en vez de una lista ambigua.
