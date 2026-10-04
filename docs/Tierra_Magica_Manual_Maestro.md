@@ -905,7 +905,7 @@ Iria utiliza Compra libre y registra cada objeto:
 | Kit Cartográfico | 1 o |
 | Kit de Escalada | 1 o |
 | Kit de Campaña | 1 o |
-| Instrumental Arcano de campo | 2 o |
+| Kit Instrumental Arcano de campo | 2 o |
 | Catalejo | 1 o |
 | Gancho de escalada | 3 p |
 | Provisiones para 7 días | 2 p |
@@ -3265,21 +3265,21 @@ Los Kits reúnen herramientas ordinarias para un campo de trabajo.
 
 | Kit | Precio |
 |---|---:|
-| Artesano | 1 o |
-| Ingeniería de campo | 2 o |
-| Minería | 1 o |
-| Médico | 2 o |
-| Alquimia de campo | 2 o |
-| Infiltración | 1 o |
-| Cartográfico | 1 o |
-| Navegación | 2 o |
-| Campaña | 1 o |
-| Escalada | 1 o |
-| Escribanía | 5 p |
-| Mercantil | 1 o |
-| Académico | 2 o |
+| Kit Artesano | 1 o |
+| Kit Ingeniería de campo | 2 o |
+| Kit Minería | 1 o |
+| Kit Médico | 2 o |
+| Kit Alquimia de campo | 2 o |
+| Kit Infiltración | 1 o |
+| Kit Cartográfico | 1 o |
+| Kit Navegación | 2 o |
+| Kit Campaña | 1 o |
+| Kit Escalada | 1 o |
+| Kit Escribanía | 5 p |
+| Kit Mercantil | 1 o |
+| Kit Académico | 2 o |
 | Instrumental Arcano de campo | 2 o |
-| Mantenimiento de armas de fuego | 1 o |
+| Kit Mantenimiento de armas de fuego | 1 o |
 
 Un Kit representa **herramientas reutilizables**, no una reserva infinita de consumibles. Si una tarea consume vendas, reactivos, combustible, munición u otro material, ese recurso debe existir por separado.
 
