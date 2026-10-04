@@ -75,26 +75,51 @@ Regresiones automatizadas:
 
 ### CRAFT-13B — Modelo estructurado de Proyecto
 
-**Estado: PENDIENTE**
+**Estado: IMPLEMENTADA EN RAMA**
 
-Definirá la representación persistente de:
+Se incorpora `project` como tipo de Item persistente de Foundry.
 
-- receta/Perfil fuente;
-- tipo de operación;
-- resultado objetivo;
-- VR y precio fijado cuando sea Variable;
-- Calidad;
-- Materiales Especiales;
-- componentes separados;
-- tiempo base y TBA;
-- requisitos profesionales;
-- instalación;
-- ayudantes;
-- estado y progreso;
+El Proyecto registra:
+
+- receta/Item fuente, REF/Perfil y revisión;
+- operación: fabricar, reparar, desmantelar, modificar o investigar;
+- objeto objetivo o tipo/nombre del resultado;
+- VR Común, estado de precio, precio fijado cuando proceda y Calidad;
+- grado de Material que gobierna el trabajo;
+- BRA/valor afectado cuando corresponda;
+- Materiales Especiales y componentes separados como registros identificables;
+- tiempo base, TBA, tiempo requerido y minutos de trabajo realmente completados;
+- modo temporal derivado o tiempo fijo de procedimiento;
+- Habilidad principal, Especialización, rango e instalación base/requeridos;
+- disponibilidad declarada de procedimiento, materiales y herramienta/Kit esencial;
+- Ayuda de trabajo y Ayuda técnica como datos separados;
+- Aceleración y factores temporales;
 - consecuencias declaradas;
-- trazabilidad de costes.
+- ledger de materiales estimados, comprometidos y recuperados;
+- revisión transaccional, compromiso y token de cierre reservados para CRAFT-13C.
 
-No se implementará progreso abstracto universal distinto del trabajo/etapas ya definido en canon.
+Salvaguardas estructurales:
+
+- no existen «puntos de progreso» universales: el progreso se registra en minutos de trabajo;
+- Defectuosa no puede seleccionarse como Calidad normal de Proyecto;
+- PEI no puede entrar en el ledger;
+- un componente recuperado por separado no puede contarse también en recuperación genérica;
+- un Proyecto con tiempo derivado no puede registrar menos de 25% de su TBA;
+- un Proyecto completado exige token de cierre;
+- Completado y Cancelado son estados terminales;
+- crear/eliminar un Proyecto no pasa por adquisición ni altera el presupuesto de creación del PJ;
+- los editores genéricos de costes/requisitos/Rule Elements quedan ocultos para Proyecto para evitar una segunda autoridad mecánica.
+
+Archivos principales:
+
+- `scripts/rules/crafting.mjs`;
+- `template.json`;
+- `scripts/config.mjs`;
+- `scripts/sheets/item-sheet.mjs`;
+- `templates/item/item-sheet.hbs`;
+- `test/craft-13-project.test.mjs`.
+
+CRAFT-13B todavía no reserva, consume ni devuelve recursos. Esa frontera queda deliberadamente para CRAFT-13C.
 
 ### CRAFT-13C — Transacciones de fabricación, reparación y desmantelamiento
 
