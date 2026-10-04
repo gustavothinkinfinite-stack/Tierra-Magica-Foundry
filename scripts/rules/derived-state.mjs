@@ -140,6 +140,97 @@ export function deriveActorState({
   rulePreparation = {},
   defensiveRankBonuses = [0, 0, 1, 2, 3, 4]
 } = {}) {
+  if (actorType === "familiar") {
+    const familiar = system.familiar ?? {};
+    const profileHealth = Math.max(1, Math.floor(number(familiar.lifeMax, 10)));
+    const profileDefense = Math.max(1, Math.floor(number(familiar.defense, 12)));
+    const profileResistance = Math.max(0, Math.floor(number(familiar.resistance, 2)));
+    const profileWill = Math.max(0, Math.floor(number(familiar.will, 2)));
+    const profilePerception = Math.max(0, Math.floor(number(familiar.perception, 2)));
+    const profileProtection = Math.max(0, Math.floor(number(familiar.protection, 0)));
+    const profileMovement = Math.max(1, Math.floor(number(system.movement?.base, 6)));
+
+    const health = breakdown({
+      base: profileHealth,
+      formula: "Perfil de Familiar",
+      contributions: selectorContributions(rulePreparation, "healthMax")
+    });
+    const defense = breakdown({
+      base: profileDefense,
+      formula: "Defensa del Perfil de Familiar",
+      contributions: selectorContributions(rulePreparation, "defense")
+    });
+    const maneuver = breakdown({
+      base: profileDefense,
+      formula: "Defensa del Perfil de Familiar",
+      contributions: selectorContributions(rulePreparation, "maneuverDefense")
+    });
+    const mental = breakdown({
+      base: 11 + profileWill,
+      formula: "11 + VOL simplificada",
+      contributions: selectorContributions(rulePreparation, "mentalDefense")
+    });
+    const body = breakdown({
+      base: 11 + profileResistance,
+      formula: "11 + RES simplificada",
+      contributions: selectorContributions(rulePreparation, "bodyDefense")
+    });
+    const protection = breakdown({
+      base: profileProtection,
+      formula: "Protección del Perfil de Familiar",
+      contributions: selectorContributions(rulePreparation, "protection")
+    });
+    const movement = breakdown({
+      base: profileMovement,
+      formula: "Movimiento del Perfil de Familiar",
+      contributions: selectorContributions(rulePreparation, "movement")
+    });
+    movement.total = Math.max(1, movement.total);
+    const initiative = breakdown({
+      base: profilePerception,
+      formula: "PER simplificada",
+      contributions: selectorContributions(rulePreparation, "initiativeModifier")
+    });
+    const severe = breakdown({
+      base: Math.max(1, Math.ceil(profileHealth / 2)),
+      formula: "Referencia de perfil simplificado"
+    });
+    const defensive = breakdown({ base:0, formula:"Sin Bono Defensivo separado" });
+    const mana = breakdown({ base:0, formula:"Sin reserva de Maná propia" });
+
+    return {
+      healthMax: Math.max(1, health.total),
+      manaMax: 0,
+      severeThreshold: severe.total,
+      defensiveBonus: 0,
+      defense: defense.total,
+      maneuverDefense: maneuver.total,
+      mentalDefense: mental.total,
+      bodyDefense: body.total,
+      protection: Math.max(0, protection.total),
+      movement: movement.total,
+      initiativeModifier: initiative.total,
+      initiative: initiative.total,
+      martialDefense: 0,
+      equippedShield: 0,
+      breakdowns: {
+        healthMax: health,
+        manaMax: mana,
+        severeThreshold: severe,
+        defensiveBonus: defensive,
+        defense,
+        maneuverDefense: maneuver,
+        mentalDefense: mental,
+        bodyDefense: body,
+        protection,
+        movement,
+        initiativeModifier: initiative
+      },
+      contextual: { defense:[], protection:[] },
+      equipmentIssues: []
+    };
+  }
+
   const attributes = system.attributes ?? {};
   const vig = number(attributes.vig?.value, 1);
   const agi = number(attributes.agi?.value, 1);
