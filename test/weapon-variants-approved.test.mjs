@@ -19,7 +19,7 @@ test("CAT-02 integra 22 variantes ligeras como Items reales de Compendio",()=>{
   assert.equal(Object.keys(APPROVED_WEAPON_PROFILE_VARIANTS).length,22);
 
   const weapons=coreCatalog().filter((entry)=>entry.type==="weapon");
-  assert.equal(weapons.length,42);
+  assert.ok(weapons.length>=42,"CAT-02: una expansión posterior no debe eliminar armas ya integradas");
 
   for(const variant of variants){
     const compiled=weapons.find((entry)=>entry.name===variant.name);
