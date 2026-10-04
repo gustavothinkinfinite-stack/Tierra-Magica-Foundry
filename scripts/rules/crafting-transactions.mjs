@@ -1003,6 +1003,7 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
 
     if(source.system.imprintStone?.enabled===true) {
       const stoneProfile=imprintStoneCraftProfile(source.system.imprintStone.grade);
+      if(!stoneProfile) return {ok:false,error:"La Piedra de Impronta debe ser de Grado I o II."};
       fabricationCompatibility="imprint-stone:"+stoneProfile.grade;
       if(model.economy.quality!=="common" || model.modifications.length || model.specialMaterials.length) {
         return {ok:false,error:"Una Piedra de Impronta usa su receta fija y no obtiene Calidad/CapM/Material Especial por esta fabricación."};
