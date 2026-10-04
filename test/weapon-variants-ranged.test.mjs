@@ -35,11 +35,9 @@ test("CAT-06 conserva sus 44 variantes dentro del catálogo runtime",()=>{
   }
 });
 
-test("CAT-06 no promueve variantes cuya identidad exige una mecánica aún inexistente",()=>{
+test("CAT-06 mantiene bloqueadas sólo las variantes a distancia cuya mecánica sigue inexistente",()=>{
   const weapons=new Set(coreCatalog().filter((entry)=>entry.type==="weapon").map((entry)=>entry.name));
   for(const name of [
-    "Honda","Honda de guerra","Fustíbalo",
-    "Jabalina","Jabalina pesada","Azagaya",
     "Ballesta repetidora","Ballesta doble",
     "Pistola de dos cañones","Pistola de cuatro cañones",
     "Rifle de dos cañones","Trabuco","Trabuco de abordaje","Escopeta temprana","Escopeta de dos cañones"
