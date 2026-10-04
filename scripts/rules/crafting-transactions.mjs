@@ -31,6 +31,7 @@ import {
   imprintStoneCraftProfile,
   integratedMagicRecoveryCopper,
   maxRunicCapacityForQuality,
+  passiveEnchantmentProfile,
   runicMatrixQuote,
   runeInscriptionQuote,
   sealRearmQuote,
@@ -39,6 +40,7 @@ import {
   utilityEnchantmentQuote,
   validateEnchantmentSupport,
   validateRunicConfiguration,
+  validateUtilityEnchantment,
   validateTrapConfiguration
 } from "./crafting-magic.mjs";
 
@@ -476,6 +478,39 @@ function currentRunic(target) {
   };
 }
 
+async function resolveBoundSpellSnapshot(boundSpell,resolver) {
+  if(!boundSpell) return {ok:true,spell:null};
+  const sourceUuid=String(boundSpell.sourceUuid??"").trim();
+  if(!sourceUuid) return {ok:false,error:"Un Hechizo Vinculado debe señalar el Item Spell canónico que se vincula."};
+  if(typeof resolver!=="function") return {ok:false,error:"No hay resolvedor disponible para verificar el Hechizo Vinculado."};
+  const source=await resolver(sourceUuid);
+  if(!source || source.type!=="spell") return {ok:false,error:"La fuente del Hechizo Vinculado no es un Item Spell válido.",sourceUuid};
+  const system=source.system??{};
+  return {
+    ok:true,
+    spell:{
+      sourceUuid,
+      name:String(source.name??""),
+      slug:String(system.slug??source.name??""),
+      method:String(system.method??"direct"),
+      grade:String(system.grade??"basic"),
+      manaCost:Math.max(0,Math.floor(number(system.manaCost))),
+      activation:String(system.activation??"Acción"),
+      duration:String(system.duration??"Instantánea"),
+      sustained:system.sustained===true,
+      defense:String(system.defense??"df"),
+      difficulty:number(system.difficulty,12),
+      damage:Math.max(0,number(system.damage)),
+      penetration:Math.max(0,number(system.penetration)),
+      range:String(system.range??""),
+      area:String(system.area??""),
+      targetMode:String(system.targetMode??"single"),
+      maxTargets:Math.max(1,Math.floor(number(system.maxTargets,1))),
+      requiresTarget:system.requiresTarget===true
+    }
+  };
+}
+
 function currentEnchantment(target) {
   const data=target?.system?.enchantment??{};
   return {
@@ -601,6 +636,8 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
     let next={...existing};
     if(grade===0) {
       if(existing.utilityKey) return {ok:false,error:"El objeto ya posee un Encantamiento Utilitario."};
+      const utilityValidation=validateUtilityEnchantment(utilityKey);
+      if(!utilityValidation.valid) return {ok:false,error:"El Encantamiento Utilitario no es válido.",issues:utilityValidation.issues};
       const quote=utilityEnchantmentQuote();
       materialCopper=quote.materialCopper;
       stageBaseMinutes=quote.timeMinutes;
@@ -619,11 +656,15 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
         ? {primarySkill:"ritualism",primaryRank:4,arcanaRank:3,craftingRank:3,installation:"specialized"}
         : {primarySkill:"ritualism",primaryRank:5,arcanaRank:4,craftingRank:4,installation:"exceptional"};
       issues=magicProfessionalIssues(model,actor,req);
+      const boundResolution=await resolveBoundSpellSnapshot(model.enhancement.boundSpell,resolver);
+      if(!boundResolution.ok) return boundResolution;
+      const passive=passiveEnchantmentProfile(model.enhancement.enchantmentPassiveKey);
+      const declaredFunctional=String(model.enhancement.enchantmentFunctionalKey??"");
       next={
         ...existing,
         grade,
         patternKey:String(model.enhancement.enchantmentPatternKey??""),
-        functionalKey:String(model.enhancement.enchantmentFunctionalKey??""),
+        functionalKey:passive?.group ?? declaredFunctional,
         passiveKey:String(model.enhancement.enchantmentPassiveKey??""),
         supportAppropriate:model.enhancement.enchantmentSupportAppropriate===true,
         hasRareComponent:model.enhancement.enchantmentHasRareComponent===true,
@@ -637,7 +678,7 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
         sealTriggerType:String(model.enhancement.sealTriggerType??""),
         sealBypassKey:String(model.enhancement.sealBypassKey??""),
         rechargeBlocked:false,
-        boundSpell:model.enhancement.boundSpell?clone(model.enhancement.boundSpell):null
+        boundSpell:boundResolution.spell
       };
       const support=validateEnchantmentSupport({...baseSource,system:{...baseSource.system,quality:current.quality}},next);
       if(!support.valid) issues.push(...support.issues);
