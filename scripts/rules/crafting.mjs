@@ -251,7 +251,7 @@ const PROJECT_TIME_MODES = Object.freeze(["derived","fixed"]);
 const PROJECT_PRICE_STATUSES = Object.freeze(["exact","variable","unset"]);
 const PROJECT_QUALITIES = Object.freeze(["common","superior","exceptional"]);
 const PROJECT_MATERIAL_GRADES = Object.freeze(Object.keys(MATERIAL_GRADE));
-const PROJECT_ENHANCEMENT_MODES = Object.freeze(["quality","modification","material"]);
+const PROJECT_ENHANCEMENT_MODES = Object.freeze(["quality","modification","material","runicMatrix","rune","enchantment","trapRearm","sealRearm"]);
 
 export const CRAFTING_PROJECT_OPERATIONS = PROJECT_OPERATIONS;
 export const CRAFTING_PROJECT_STATES = PROJECT_STATES;
@@ -376,7 +376,23 @@ export function normalizeCraftingProject(source = {}) {
       mode: enumValue(enhancement.mode, PROJECT_ENHANCEMENT_MODES, "modification"),
       replaceMaterialId: stringValue(enhancement.replaceMaterialId),
       replaceModificationKey: stringValue(enhancement.replaceModificationKey),
-      fineMachiningMaterialId: stringValue(enhancement.fineMachiningMaterialId)
+      fineMachiningMaterialId: stringValue(enhancement.fineMachiningMaterialId),
+      runicCapacityTarget: Math.max(0, Math.min(2, Math.floor(number(enhancement.runicCapacityTarget)))),
+      runicChannelTypes: (Array.isArray(enhancement.runicChannelTypes) ? enhancement.runicChannelTypes : []).map(stringValue),
+      imprintKey: stringValue(enhancement.imprintKey),
+      imprintMode: enumValue(enhancement.imprintMode, ["inscribed","stone"], "inscribed"),
+      imprintChannelIds: (Array.isArray(enhancement.imprintChannelIds) ? enhancement.imprintChannelIds : []).map(stringValue).filter(Boolean),
+      enchantmentGrade: Math.max(0, Math.min(3, Math.floor(number(enhancement.enchantmentGrade)))),
+      enchantmentPatternKey: stringValue(enhancement.enchantmentPatternKey),
+      enchantmentFunctionalKey: stringValue(enhancement.enchantmentFunctionalKey),
+      enchantmentPassiveKey: stringValue(enhancement.enchantmentPassiveKey),
+      enchantmentUtilityKey: stringValue(enhancement.enchantmentUtilityKey),
+      enchantmentSupportAppropriate: booleanValue(enhancement.enchantmentSupportAppropriate),
+      enchantmentHasRareComponent: booleanValue(enhancement.enchantmentHasRareComponent),
+      enchantmentSeal: booleanValue(enhancement.enchantmentSeal),
+      boundSpell: enhancement.boundSpell && typeof enhancement.boundSpell === "object" && !Array.isArray(enhancement.boundSpell)
+        ? structuredClone(enhancement.boundSpell)
+        : null
     },
     repair: {
       affectedMaterialIds: [...new Set((Array.isArray(repair.affectedMaterialIds) ? repair.affectedMaterialIds : []).map(stringValue).filter(Boolean))],
