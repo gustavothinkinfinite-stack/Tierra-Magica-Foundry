@@ -96,65 +96,69 @@ export function validateCreationState(actor, { skillKeys = null } = {}) {
     if (count !== 1) issues.push({ code: "identity-" + type, message: "Se requiere exactamente un " + type + "." });
   }
 
-  const origin = items.find((item) => item.type === "origin");
-  const background = items.find((item) => item.type === "background");
-  const languagesText = String(actor?.system?.traits?.languages ?? "");
-  const languagesKey = identityKeyText(languagesText);
+  const creationBuilding = (actor?.system?.creation?.status ?? "complete") === "building";
+  if (creationBuilding) {
+    const origin = items.find((item) => item.type === "origin");
+    const background = items.find((item) => item.type === "background");
+    const languagesText = String(actor?.system?.traits?.languages ?? "");
+    const languagesKey = identityKeyText(languagesText);
 
-  if (!languagesKey.includes(identityKeyText("Común de Concordia"))) {
-    issues.push({ code: "identity-common-language", message: "Debe anotarse Común de Concordia entre los idiomas iniciales." });
-  }
-
-  if (origin) {
-    const chosenOriginFacet = String(actor?.system?.details?.originFacet ?? "").trim();
-    const allowedOriginFacets = identityList(origin.system?.facetOptions);
-    if (!chosenOriginFacet) {
-      issues.push({ code: "identity-origin-facet", message: "Debe elegirse una Faceta de Origen." });
-    } else if (allowedOriginFacets.length && !allowedOriginFacets.some((entry) => identityKeyText(entry) === identityKeyText(chosenOriginFacet))) {
-      issues.push({ code: "identity-origin-facet", message: "La Faceta de Origen no pertenece al Origen elegido." });
+    if (!languagesKey.includes(identityKeyText("Común de Concordia"))) {
+      issues.push({ code: "identity-common-language", message: "Debe anotarse Común de Concordia entre los idiomas iniciales." });
     }
 
-    const requiredLanguages = String(origin.system?.languageProfile ?? "")
-      .split("+")
-      .map((entry) => entry.trim())
-      .filter(Boolean);
-    for (const language of requiredLanguages) {
-      if (!languagesKey.includes(identityKeyText(language))) {
-        issues.push({ code: "identity-origin-language", message: "Falta el idioma inicial requerido por el Origen: " + language + "." });
+    if (origin) {
+      const chosenOriginFacet = String(actor?.system?.details?.originFacet ?? "").trim();
+      const allowedOriginFacets = identityList(origin.system?.facetOptions);
+      if (!chosenOriginFacet) {
+        issues.push({ code: "identity-origin-facet", message: "Debe elegirse una Faceta de Origen." });
+      } else if (allowedOriginFacets.length && !allowedOriginFacets.some((entry) => identityKeyText(entry) === identityKeyText(chosenOriginFacet))) {
+        issues.push({ code: "identity-origin-facet", message: "La Faceta de Origen no pertenece al Origen elegido." });
+      }
+
+      const requiredLanguages = String(origin.system?.languageProfile ?? "")
+        .split("+")
+        .map((entry) => entry.trim())
+        .filter(Boolean);
+      for (const language of requiredLanguages) {
+        if (!languagesKey.includes(identityKeyText(language))) {
+          issues.push({ code: "identity-origin-language", message: "Falta el idioma inicial requerido por el Origen: " + language + "." });
+        }
       }
     }
-  }
 
-  if (background) {
-    const selected = identityList(actor?.system?.details?.backgroundFacets);
-    const allowed = identityList(background.system?.facetOptions);
-    if (selected.length !== 2) {
-      issues.push({ code: "identity-background-facets", message: "El Trasfondo requiere exactamente dos Facetas separadas por punto y coma." });
-    } else {
-      const seenFacets = new Set();
-      for (const facet of selected) {
-        const normalized = identityKeyText(facet);
-        if (seenFacets.has(normalized)) {
-          issues.push({ code: "identity-background-facets", message: "Las dos Facetas de Trasfondo deben ser distintas." });
-          continue;
-        }
-        seenFacets.add(normalized);
-        const workLanguagePrefix = identityKeyText("Lengua de trabajo:");
-        if (normalized.startsWith(workLanguagePrefix)) {
-          const language = facet.slice(facet.indexOf(":") + 1).trim();
-          if (!language) {
-            issues.push({ code: "identity-work-language", message: "Lengua de trabajo debe indicar qué idioma adicional concede." });
-          } else if (!languagesKey.includes(identityKeyText(language))) {
-            issues.push({ code: "identity-work-language", message: "La Lengua de trabajo elegida debe aparecer también en Idiomas." });
+    if (background) {
+      const selected = identityList(actor?.system?.details?.backgroundFacets);
+      const allowed = identityList(background.system?.facetOptions);
+      if (selected.length !== 2) {
+        issues.push({ code: "identity-background-facets", message: "El Trasfondo requiere exactamente dos Facetas separadas por punto y coma." });
+      } else {
+        const seenFacets = new Set();
+        for (const facet of selected) {
+          const normalized = identityKeyText(facet);
+          if (seenFacets.has(normalized)) {
+            issues.push({ code: "identity-background-facets", message: "Las dos Facetas de Trasfondo deben ser distintas." });
+            continue;
           }
-        } else if (allowed.length && !allowed.some((entry) => identityKeyText(entry) === normalized)) {
-          issues.push({ code: "identity-background-facets", message: "Una Faceta de Trasfondo no pertenece al Trasfondo elegido: " + facet + "." });
+          seenFacets.add(normalized);
+          const workLanguagePrefix = identityKeyText("Lengua de trabajo:");
+          if (normalized.startsWith(workLanguagePrefix)) {
+            const language = facet.slice(facet.indexOf(":") + 1).trim();
+            if (!language) {
+              issues.push({ code: "identity-work-language", message: "Lengua de trabajo debe indicar qué idioma adicional concede." });
+            } else if (!languagesKey.includes(identityKeyText(language))) {
+              issues.push({ code: "identity-work-language", message: "La Lengua de trabajo elegida debe aparecer también en Idiomas." });
+            }
+          } else if (allowed.length && !allowed.some((entry) => identityKeyText(entry) === normalized)) {
+            issues.push({ code: "identity-background-facets", message: "Una Faceta de Trasfondo no pertenece al Trasfondo elegido: " + facet + "." });
+          }
         }
       }
     }
+
   }
 
-  if ((actor?.system?.creation?.status ?? "complete") === "building") {
+  if (creationBuilding) {
     issues.push(...validateInitialAttributes(actor?.system?.attributes ?? {}).issues);
   }
 
