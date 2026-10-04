@@ -660,6 +660,11 @@
         "replaceModificationKey": "",
         "fineMachiningMaterialId": ""
       },
+      "repair": {
+        "affectedMaterialIds": [],
+        "ordinaryReplacementMaterialIds": [],
+        "specialReplacements": []
+      },
       "components": [],
       "time": {
         "mode": "derived",
