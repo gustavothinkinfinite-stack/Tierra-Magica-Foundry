@@ -7,6 +7,7 @@ import {
   deriveManufacturedSystem,
   materialInstallationQuote,
   modificationInstallationQuote,
+  modificationRemovalQuote,
   modificationPoints,
   qualityCapacity,
   qualityUpgradeQuote,
@@ -50,6 +51,10 @@ test("CRAFT-13D: ascensos de Calidad usan sólo las cuatro transiciones canónic
   );
   assert.equal(qualityUpgradeQuote({fromQuality:"superior",toQuality:"common",referenceValueCopper:200,baseTimeMinutes:480}).valid,false);
   assert.equal(qualityUpgradeQuote({fromQuality:"defective",toQuality:"superior",referenceValueCopper:200,baseTimeMinutes:480}).valid,false);
+  assert.deepEqual(
+    qualityUpgradeQuote({fromQuality:"common",toQuality:"superior",referenceValueCopper:100,baseTimeMinutes:60}),
+    {valid:true,materialCopper:25,timeMinutes:30,capMGained:1}
+  );
 });
 
 test("CRAFT-13D: modificación posterior cobra por CapM y mecanizado fino aplica sólo su tarifa",()=>{
@@ -61,6 +66,11 @@ test("CRAFT-13D: modificación posterior cobra por CapM y mecanizado fino aplica
     modificationInstallationQuote({points:2,referenceValueCopper:200,baseTimeMinutes:480,fineMachining:true}),
     {materialCopper:20,timeMinutes:144,points:2,fineMachining:true}
   );
+});
+
+test("CRAFT-13D: retirar una Modificación libera CapM sin generar VI",()=>{
+  assert.deepEqual(modificationRemovalQuote({baseTimeMinutes:120}),{materialCopper:0,timeMinutes:30});
+  assert.deepEqual(modificationRemovalQuote({baseTimeMinutes:480}),{materialCopper:0,timeMinutes:48});
 });
 
 test("CRAFT-13D: incorporar una parte Mayor usa SM y 50% del tiempo; Dominante se bloquea",()=>{
@@ -108,6 +118,7 @@ test("CRAFT-13D: propiedades equivalentes de Material y Modificación no se apil
       profileKey:"thousandVoicesWood",
       grade:"rare",
       coverage:"major",
+      part:"revestimiento corporal",
       supplementCopper:50
     }]
   });
@@ -124,9 +135,22 @@ test("CRAFT-13D: un objeto sólo admite un Material Dominante y cada Perfil resp
   assert.ok(twoDominant.issues.some((issue)=>issue.code==="dominant-material"));
 
   const underCoverage=validateSpecialMaterials([
-    {id:"steel",profileKey:"kharumSteel",grade:"specialized",coverage:"major"}
+    {id:"steel",profileKey:"kharumSteel",grade:"specialized",coverage:"major",part:"estructura"}
   ]);
   assert.ok(underCoverage.issues.some((issue)=>issue.code==="material-coverage-minimum"));
+});
+
+test("CRAFT-13D: Material Especial no dominante exige una parte funcional real",()=>{
+  const result=validateSpecialMaterials([{
+    id:"lens",
+    name:"Cristal",
+    profileKey:"refinedArcaneCrystal",
+    grade:"specialized",
+    coverage:"component",
+    supplementCopper:7
+  }]);
+  assert.equal(result.valid,false);
+  assert.ok(result.issues.some((issue)=>issue.code==="material-functional-part"));
 });
 
 test("CRAFT-13D: material sin Perfil conocido no inventa propiedad mecánica",()=>{
@@ -142,6 +166,7 @@ test("CRAFT-13D: material sin Perfil conocido no inventa propiedad mecánica",()
       profileKey:"creature-scale-profile",
       grade:"rare",
       coverage:"component",
+      part:"placa funcional",
       supplementCopper:25
     }]
   });
