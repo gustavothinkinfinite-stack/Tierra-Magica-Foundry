@@ -380,6 +380,7 @@ export function normalizeCraftingProject(source = {}) {
       runicCapacityTarget: Math.max(0, Math.min(2, Math.floor(number(enhancement.runicCapacityTarget)))),
       runicChannelTypes: (Array.isArray(enhancement.runicChannelTypes) ? enhancement.runicChannelTypes : []).map(stringValue),
       imprintKey: stringValue(enhancement.imprintKey),
+      imprintId: stringValue(enhancement.imprintId),
       imprintMode: enumValue(enhancement.imprintMode, ["inscribed","stone"], "inscribed"),
       imprintChannelIds: (Array.isArray(enhancement.imprintChannelIds) ? enhancement.imprintChannelIds : []).map(stringValue).filter(Boolean),
       enchantmentGrade: Math.max(0, Math.min(3, Math.floor(number(enhancement.enchantmentGrade)))),
