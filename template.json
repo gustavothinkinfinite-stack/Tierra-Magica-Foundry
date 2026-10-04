@@ -412,6 +412,8 @@
           "enabled": false,
           "category": "",
           "compatibility": [],
+          "materialProfileKey": "",
+          "preparation": "prepared",
           "inputValueCopper": 0,
           "reservations": {}
         },
