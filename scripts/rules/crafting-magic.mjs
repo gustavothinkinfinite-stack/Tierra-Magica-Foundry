@@ -3,7 +3,10 @@ const number=(value,fallback=0)=>{
   return Number.isFinite(parsed)?parsed:fallback;
 };
 const nonNegative=(value)=>Math.max(0,number(value));
-const copperCeil=(value)=>Math.ceil(nonNegative(value)-Number.EPSILON);
+const copperCeil=(value)=>{
+  const amount=nonNegative(value);
+  return amount<=0?0:Math.ceil(amount-Number.EPSILON);
+};
 const minutes=(value)=>Math.max(0,number(value));
 const text=(value)=>String(value??"").trim();
 
