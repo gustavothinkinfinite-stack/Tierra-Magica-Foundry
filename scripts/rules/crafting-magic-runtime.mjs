@@ -1,5 +1,6 @@
 import { withActorResourceLock } from "./resource-mutation.mjs";
 import {
+  attunedPassiveEnchantments,
   enchantmentProfile,
   imprintActivationProfile,
   sealRearmQuote,
@@ -112,13 +113,41 @@ export function installCraftingMagicGuards(ActorClass) {
     });
   };
 
+  ActorClass.prototype.attunedPassiveEnchantments=function(){
+    return attunedPassiveEnchantments(this).map(({item,...row})=>({
+      ...row,
+      itemId:String(item?.id??""),
+      itemName:String(item?.name??"")
+    }));
+  };
+
+  ActorClass.prototype.prepareManualTrapReaction=async function(trap,{triggerKey=""}={}){
+    if(!sameActorItem(this,trap)) return warn("La trampa manual debe pertenecer/controlarse desde este Actor.");
+    const validation=validateTrapConfiguration(trap.system?.trap??{});
+    if(!validation.valid) return warn(validation.issues.map((issue)=>issue.message).join(" "));
+    if(trap.system?.trap?.triggerType!=="manual") return warn("Sólo un disparador Manual utiliza Preparar + Reacción.");
+    if(trap.system?.trap?.state!=="armed") return warn("La trampa debe estar Armada.");
+    const key=text(triggerKey);
+    if(!key) return warn("Preparar exige declarar un disparador observable.");
+    return withActorResourceLock(this,async()=>{
+      if(this.system.turn?.action===false) return warn("La Acción ya fue gastada.");
+      await this.update({
+        "system.turn.action":false,
+        "system.magic.preparedTrap":{trapUuid:String(trap.uuid),triggerKey:key}
+      },{tmValidated:true,tmCraftingMagic:true});
+      return {ok:true,prepared:true,trapUuid:String(trap.uuid),triggerKey:key};
+    });
+  };
+
   ActorClass.prototype.socketImprintStone=async function(host,stone,{
     channelIds=[],
     elapsedMinutes=10,
-    underPressure=false
+    underPressure=false,
+    toolsReady=false
   }={}){
     if(!sameActorItem(this,host)||!sameActorItem(this,stone)) return warn("Host y Piedra deben pertenecer al mismo Actor.");
     if(underPressure===true || number(elapsedMinutes)<10) return warn("Insertar una Piedra requiere 10 minutos sin presión.");
+    if(toolsReady!==true) return warn("Insertar una Piedra requiere herramientas apropiadas.");
     if(stone.system?.imprintStone?.enabled!==true) return warn("El Item no es una Piedra de Impronta.");
     if(text(stone.system?.imprintStone?.socketedHostUuid)) return warn("La Piedra ya está insertada en otro Engarce.");
     const key=String(stone.system.imprintStone.imprintKey??"");
@@ -159,9 +188,10 @@ export function installCraftingMagicGuards(ActorClass) {
     });
   };
 
-  ActorClass.prototype.extractImprintStone=async function(host,stone,{elapsedMinutes=10,underPressure=false}={}){
+  ActorClass.prototype.extractImprintStone=async function(host,stone,{elapsedMinutes=10,underPressure=false,toolsReady=false}={}){
     if(!sameActorItem(this,host)||!sameActorItem(this,stone)) return warn("Host y Piedra deben pertenecer al mismo Actor.");
     if(underPressure===true || number(elapsedMinutes)<10) return warn("Extraer una Piedra requiere 10 minutos sin presión.");
+    if(toolsReady!==true) return warn("Extraer una Piedra requiere herramientas apropiadas.");
     return withActorResourceLock(this,async()=>{
       const runic=clone(host.system?.runic??{capacityPrepared:0,channels:[],imprints:[]});
       const found=(runic.imprints??[]).find((row)=>row.mode==="stone" && String(row.stoneUuid)===String(stone.uuid));
@@ -202,6 +232,7 @@ export function installCraftingMagicGuards(ActorClass) {
         resolutionHostItemUuid:context.resolutionHostItemUuid,
         usesHostWeaponProfile:context.usesHostWeaponProfile,
         voluntaryStateCost:context.voluntaryStateCost,
+        reactionTriggerValid:context.reactionTriggerValid,
         activeStackingGroups:context.activeStackingGroups
       });
       if(!validation.valid) return warn(validation.issues.map((issue)=>issue.message).join(" "));
@@ -273,7 +304,7 @@ export function installCraftingMagicGuards(ActorClass) {
     return {ok:true,changed:true};
   };
 
-  ActorClass.prototype.triggerCraftedTrap=async function(trap,{targetActor=null,eventId="",eventType="",physicalTriggerKey="",reactive=false,prepared=false}={}){
+  ActorClass.prototype.triggerCraftedTrap=async function(trap,{targetActor=null,eventId="",eventType="",physicalTriggerKey="",reactive=false,preparedTriggerKey=""}={}){
     if(!sameActorItem(this,trap)) return warn("La trampa debe pertenecer/controlarse desde este Actor.");
     const validation=validateTrapConfiguration(trap.system?.trap??{});
     if(!validation.valid) return warn(validation.issues.map((issue)=>issue.message).join(" "));
@@ -291,9 +322,16 @@ export function installCraftingMagicGuards(ActorClass) {
     if(manual) {
       return withActorResourceLock(this,async()=>{
         if(reactive) {
-          if(!prepared) return warn("Un disparo manual reactivo requiere Preparar antes de gastar la Reacción.");
+          const prepared=this.system.magic?.preparedTrap??{};
+          if(String(prepared.trapUuid??"")!==String(trap.uuid)) return warn("Un disparo manual reactivo requiere Preparar esa trampa con la Acción.");
+          if(!text(preparedTriggerKey) || String(prepared.triggerKey??"")!==String(preparedTriggerKey)) {
+            return warn("El disparador observado no coincide con el declarado al Preparar.");
+          }
           if(this.system.turn?.reaction===false) return warn("La Reacción ya fue gastada.");
-          await this.update({"system.turn.reaction":false},{tmValidated:true,tmCraftingMagic:true});
+          await this.update({
+            "system.turn.reaction":false,
+            "system.magic.preparedTrap":{trapUuid:"",triggerKey:""}
+          },{tmValidated:true,tmCraftingMagic:true});
         } else {
           if(this.system.turn?.action===false) return warn("La Acción ya fue gastada.");
           await this.update({"system.turn.action":false},{tmValidated:true,tmCraftingMagic:true});
