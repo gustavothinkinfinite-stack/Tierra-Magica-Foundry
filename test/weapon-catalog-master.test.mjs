@@ -64,3 +64,12 @@ test("armas regionales declaran procedencia y las arcano-industriales quedan en 
   assert.equal(arcano.every((entry)=>entry.implementation==="review-device-boundary"),true);
   assert.equal(arcano.every((entry)=>entry.reviewFlags.includes("energy-model") || ["Pistola arcano-industrial","Pistola de cristal","Pistola de descarga","Rifle arcano-industrial","Fusil de cristal"].includes(entry.name)),true);
 });
+
+
+test("CAT-02 marca exactamente 22 propuestas como variantes de perfil aprobadas",()=>{
+  const catalog=weaponCatalogMaster();
+  const approved=catalog.filter((entry)=>entry.promotion==="approved-profile-variant");
+  assert.equal(approved.length,22);
+  assert.equal(approved.every((entry)=>entry.implementation==="runtime-profile-variant"),true);
+  assert.equal(approved.every((entry)=>entry.reviewFlags.length===0),true);
+});
