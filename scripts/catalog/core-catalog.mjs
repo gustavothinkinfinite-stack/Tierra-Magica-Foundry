@@ -283,12 +283,12 @@ export function constructionCatalog() {
   }
   entries.push(baseEntry("trait","Familiar Mágico",{
     category:"bond",
-    tags:["crea-04","crea-05","crea-14","canonical","creation-locked"],
+    tags:["crea-04","crea-05","crea-14","canonical","standard-creation"],
     costs:[
       { context:"creation", resource:"pr", amount:3 },
       { context:"progression", resource:"pd", amount:6 }
     ],
-    description:"Rasgo Mayor Vincular de 3 PR. CREA-14 mantiene temporalmente bloqueada su adquisición inicial hasta publicar la plantilla numérica universal del Familiar."
+    description:"Rasgo Mayor Vincular de 3 PR. Disponible en creación con Vínculo I y uno de cuatro perfiles iniciales: Compañero, Explorador, Guardián o Místico. No concede Maná ni economía de turno adicional al propietario."
   }));
   return entries;
 }
