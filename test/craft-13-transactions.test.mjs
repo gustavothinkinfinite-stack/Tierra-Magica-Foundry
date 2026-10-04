@@ -122,7 +122,7 @@ function project(actor, {
   completedMinutes = 0,
   targetItemUuid = "",
   resultData = null,
-  referenceValueCopper = 200,
+  referenceValueCopper = 100,
   specialMaterials = []
 } = {}) {
   const entries = material && materialCopper > 0 ? [{
@@ -182,6 +182,7 @@ function project(actor, {
       assistants:{ work:0, technical:0 },
       execution:{
         accelerated:false,
+        accelerationOutcome:"none",
         reductionFactors:[],
         stage:"Trabajo",
         revision:0,
@@ -213,7 +214,7 @@ globalThis.foundry = { utils:{
 test("CRAFT-13C: reservar VI compromete Lote y activa Proyecto sin consumir todavía",async()=>{
   const actor=new StubActor("reserve");
   const material=lot(actor,{vi:100});
-  const craft=project(actor,{material,materialCopper:60});
+  const craft=project(actor,{material,materialCopper:60,referenceValueCopper:120});
   const result=await reserveCraftingProjectMaterials(craft,{expectedRevision:0,resolver:resolverFor(actor)});
   assert.equal(result.ok,true);
   assert.equal(craft.system.state,"active");
@@ -241,7 +242,7 @@ test("CRAFT-13C: VI incompatible no puede pagar el CM",async()=>{
 test("CRAFT-13C: reserva obsoleta no muta inventario",async()=>{
   const actor=new StubActor("stale");
   const material=lot(actor,{vi:100});
-  const craft=project(actor,{material,materialCopper:60});
+  const craft=project(actor,{material,materialCopper:60,referenceValueCopper:120});
   const result=await reserveCraftingProjectMaterials(craft,{expectedRevision:99,resolver:resolverFor(actor)});
   assert.equal(result.ok,false);
   assert.equal(result.stale,true);
@@ -252,7 +253,7 @@ test("CRAFT-13C: reserva obsoleta no muta inventario",async()=>{
 test("CRAFT-13C: liberar o cancelar devuelve la reserva sin crear VI",async()=>{
   const actor=new StubActor("release");
   const material=lot(actor,{vi:100});
-  const craft=project(actor,{material,materialCopper:60});
+  const craft=project(actor,{material,materialCopper:60,referenceValueCopper:120});
   await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
   const released=await releaseCraftingProjectMaterials(craft,{expectedRevision:1,resolver:resolverFor(actor)});
   assert.equal(released.ok,true);
@@ -390,8 +391,8 @@ test("CRAFT-13C: no completa antes de terminar el trabajo",async()=>{
 test("CRAFT-13C: autoridad GM serializa dos Proyectos contra el mismo Lote",async()=>{
   const actor=new StubActor("authority");
   const material=lot(actor,{vi:100});
-  const one=project(actor,{id:"one",material,materialCopper:60});
-  const two=project(actor,{id:"two",material,materialCopper:60});
+  const one=project(actor,{id:"one",material,materialCopper:60,referenceValueCopper:120});
+  const two=project(actor,{id:"two",material,materialCopper:60,referenceValueCopper:120});
 
   const gm={id:"gm",active:true,isGM:true};
   globalThis.game={user:gm,users:[gm]};
