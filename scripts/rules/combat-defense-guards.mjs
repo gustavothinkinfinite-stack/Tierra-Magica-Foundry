@@ -292,8 +292,8 @@ export function installCombatDefenseGuards(ActorClass) {
       const parry = parryClaim.claimed === true;
       const kineticBonus = kinetic ? 2 : 0;
       const base = attackDefense(target, item, { frontal, parryable: false, kineticBarrier: false }).total + kineticBonus;
-      const defense = base + (parry ? 2 : 0);
-      return { target, kinetic, parry, base, defense };
+      const defense = base + (parry ? Number(parryClaim.bonus ?? 2) : 0);
+      return { target, kinetic, parry, parryBonus:Number(parryClaim.bonus ?? 2), base, defense };
     });
     if (resolutions.some((entry) => !Number.isFinite(entry.defense))) {
       return ui.notifications.warn("Barrido encontró una Defensa no válida.");
