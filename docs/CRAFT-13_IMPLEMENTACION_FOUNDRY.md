@@ -284,7 +284,7 @@ Modificar e Investigar ya existen como tipos de operación del modelo Proyecto, 
 
 ### CRAFT-13D — Calidad, modificaciones y Materiales Especiales
 
-**Estado: IMPLEMENTADA EN RAMA · VALIDACIÓN INTEGRAL**
+**Estado: IMPLEMENTADA EN RAMA · CI VERDE**
 
 Se añade `scripts/rules/crafting-enhancements.mjs` como autoridad pura de CRAFT-04/05 y se integra con las transacciones de Proyecto.
 
