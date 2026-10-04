@@ -432,6 +432,7 @@ export function validateCraftingProject(project = {}) {
   const rawQuality = stringValue(project?.economy?.quality);
   const rawMaterialGrade = stringValue(project?.economy?.workMaterialGrade);
   const rawTimeMode = stringValue(project?.time?.mode);
+  const rawEnhancementMode = stringValue(project?.enhancement?.mode);
 
   if (!PROJECT_OPERATIONS.includes(rawOperation)) {
     issues.push({ code:"operation", message:"Tipo de operación de Proyecto desconocido." });
@@ -448,9 +449,15 @@ export function validateCraftingProject(project = {}) {
   if (!PROJECT_TIME_MODES.includes(rawTimeMode)) {
     issues.push({ code:"time-mode", message:"Modo temporal de Proyecto desconocido." });
   }
+  if (rawOperation === "modify" && !PROJECT_ENHANCEMENT_MODES.includes(rawEnhancementMode)) {
+    issues.push({ code:"enhancement-mode", message:"Modo de mejora desconocido." });
+  }
+  if (rawOperation === "modify" && rawTimeMode !== "fixed") {
+    issues.push({ code:"modify-time-mode", message:"Modificar usa el tiempo específico de Calidad/Modificación/Material, no el TBA de fabricación completa." });
+  }
 
   const normalized = normalizeCraftingProject(project);
-  if (normalized.time.mode === "derived" && normalized.time.adjustedBaseMinutes > 0) {
+  if (normalized.operation !== "modify" && normalized.time.mode === "derived" && normalized.time.adjustedBaseMinutes > 0) {
     const floor = normalized.time.adjustedBaseMinutes * 0.25;
     if (normalized.time.requiredMinutes + Number.EPSILON < floor) {
       issues.push({ code:"time-floor", message:"El tiempo requerido no puede quedar por debajo de 25% del TBA." });
@@ -492,7 +499,7 @@ export function validateCraftingProject(project = {}) {
     issues.push({ code:"installation-understated", message:"La instalación requerida está por debajo del mínimo derivado por Calidad/Material." });
   }
 
-  if (normalized.time.mode === "derived") {
+  if (normalized.operation !== "modify" && normalized.time.mode === "derived") {
     const minimumTba = adjustedBaseTimeMinutes(normalized.time.baseMinutes, {
       quality:normalized.economy.quality,
       materialGrade:normalized.economy.workMaterialGrade
