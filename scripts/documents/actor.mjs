@@ -238,9 +238,13 @@ export class TierraMagicaActor extends Actor {
     if (increases > INITIAL_ATTRIBUTE_INCREASES) {
       return ui.notifications.warn("La creación dispone de exactamente 6 aumentos gratuitos de Atributo.");
     }
+    const currentCreation = Math.floor(toNumber(attributes?.[key]?.creationValue ?? attributes?.[key]?.baseValue, INITIAL_ATTRIBUTE_BASE));
+    const currentBase = Math.floor(toNumber(attributes?.[key]?.baseValue ?? currentCreation, currentCreation));
+    const progressed = currentBase > currentCreation;
+    const nextBase = creationStatus === "building" || !progressed ? next : Math.max(currentBase, next);
     return this.update({
       ["system.attributes." + key + ".creationValue"]: next,
-      ["system.attributes." + key + ".baseValue"]: next,
+      ["system.attributes." + key + ".baseValue"]: nextBase,
       "system.creation.revision": toNumber(this.system.creation?.revision) + 1
     });
   }
