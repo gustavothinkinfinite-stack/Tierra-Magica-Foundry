@@ -1,5 +1,3 @@
-import { CRAFTING_QUALITY } from "./crafting.mjs";
-
 const number=(value,fallback=0)=>{
   const parsed=Number(value);
   return Number.isFinite(parsed)?parsed:fallback;
@@ -47,6 +45,7 @@ export const ENCHANTMENT_GRADES=Object.freeze({
 });
 
 const QUALITY_ORDER=Object.freeze(["defective","common","superior","exceptional"]);
+const RUNIC_CAPACITY_BY_QUALITY=Object.freeze({defective:0,common:0,superior:1,exceptional:2});
 const MANUFACTURE_GROUPS=Object.freeze({
   optimizedStrike:"damage-manufacture",
   penetratingProfile:"penetration-manufacture",
@@ -97,7 +96,7 @@ export function validateTrapConfiguration(trap={}){
 }
 
 export function maxRunicCapacityForQuality(quality="common"){
-  return Math.max(0,Math.floor(number(CRAFTING_QUALITY[String(quality)]?.capM)));
+  return RUNIC_CAPACITY_BY_QUALITY[String(quality)]??0;
 }
 
 export function runicMatrixQuote({referenceValueCopper=0,baseTimeMinutes=0,points=1}={}){
