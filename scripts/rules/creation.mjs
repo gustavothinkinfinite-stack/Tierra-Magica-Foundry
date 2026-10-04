@@ -96,8 +96,9 @@ export function validateCreationState(actor, { skillKeys = null } = {}) {
     if (count !== 1) issues.push({ code: "identity-" + type, message: "Se requiere exactamente un " + type + "." });
   }
 
-  const creationBuilding = (actor?.system?.creation?.status ?? "complete") === "building";
-  if (creationBuilding) {
+  const creationStatus = actor?.system?.creation?.status ?? "complete";
+  const creationOpen = creationStatus === "building" || creationStatus === "rebuilding";
+  if (creationOpen) {
     const origin = items.find((item) => item.type === "origin");
     const background = items.find((item) => item.type === "background");
     const languagesText = String(actor?.system?.traits?.languages ?? "");
@@ -158,14 +159,14 @@ export function validateCreationState(actor, { skillKeys = null } = {}) {
 
   }
 
-  if (creationBuilding) {
+  if (creationOpen) {
     issues.push(...validateInitialAttributes(actor?.system?.attributes ?? {}).issues);
   }
 
   const initialDisciplines = items.filter((item) =>
     item.type === "discipline" && (
       item.system?.acquisition?.stage === "creation" ||
-      (!item.system?.acquisition && (actor?.system?.creation?.status ?? "") === "building")
+      (!item.system?.acquisition && creationOpen)
     )
   ).length;
   if (initialDisciplines > 3) {
