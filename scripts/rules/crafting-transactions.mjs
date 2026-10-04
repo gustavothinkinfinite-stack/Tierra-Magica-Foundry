@@ -24,6 +24,21 @@ import {
   validateModificationSelection,
   validateSpecialMaterials
 } from "./crafting-enhancements.mjs";
+import {
+  enchantmentCostQuote,
+  enchantmentProfile,
+  imprintActivationProfile,
+  maxRunicCapacityForQuality,
+  runicMatrixQuote,
+  runeInscriptionQuote,
+  sealRearmQuote,
+  trapFrameProfile,
+  trapRearmQuote,
+  utilityEnchantmentQuote,
+  validateEnchantmentSupport,
+  validateRunicConfiguration,
+  validateTrapConfiguration
+} from "./crafting-magic.mjs";
 
 const PHYSICAL_TYPES = new Set(["weapon","armor","shield","equipment","formula","device"]);
 
@@ -378,6 +393,260 @@ function enhancementRequirementsMatch(model, requirements) {
   return issues;
 }
 
+
+function actorSkillRank(actor,key) {
+  return Math.max(0,Math.floor(number(actor?.system?.skills?.[key]?.rank)));
+}
+
+function installationIndexLocal(value) {
+  return ["improvised","adequate","professional","specialized","exceptional"].indexOf(String(value));
+}
+
+function magicProfessionalIssues(model, actor, {
+  primarySkill,
+  primaryRank,
+  arcanaRank=0,
+  craftingRank=0,
+  installation="improvised"
+}={}) {
+  const issues=[];
+  if(String(model.professional.skill)!==String(primarySkill)) {
+    issues.push({code:"magic-primary-skill",message:"La Habilidad principal declarada no corresponde al procedimiento mágico.",expectedSkill:primarySkill});
+  }
+  if(model.professional.requiredRank<primaryRank) {
+    issues.push({code:"magic-primary-rank",message:"El rango principal declarado está por debajo del requisito canónico.",expectedRank:primaryRank});
+  }
+  if(actorSkillRank(actor,primarySkill)<primaryRank) {
+    issues.push({code:"magic-primary-actor-rank",message:"El Actor no alcanza el rango principal requerido.",skill:primarySkill,expectedRank:primaryRank});
+  }
+  if(actorSkillRank(actor,"arcana")<arcanaRank) {
+    issues.push({code:"magic-arcana-rank",message:"Arcana no alcanza el requisito auxiliar del procedimiento.",expectedRank:arcanaRank});
+  }
+  if(actorSkillRank(actor,"crafting")<craftingRank) {
+    issues.push({code:"magic-crafting-rank",message:"Artesanía no alcanza el requisito auxiliar del procedimiento.",expectedRank:craftingRank});
+  }
+  if(installationIndexLocal(model.professional.requiredInstallation)<installationIndexLocal(installation)) {
+    issues.push({code:"magic-installation-declared",message:"La instalación declarada está por debajo del requisito mágico.",expectedInstallation:installation});
+  }
+  if(installationIndexLocal(model.professional.availableInstallation)<installationIndexLocal(installation)) {
+    issues.push({code:"magic-installation-available",message:"La instalación disponible no alcanza el requisito mágico.",expectedInstallation:installation});
+  }
+  return issues;
+}
+
+function currentRunic(target) {
+  const data=target?.system?.runic??{};
+  return {
+    capacityPrepared:Math.max(0,Math.floor(number(data.capacityPrepared))),
+    matrixMaterialCopper:Math.max(0,Math.floor(number(data.matrixMaterialCopper))),
+    addedValueCopper:Math.max(0,Math.floor(number(data.addedValueCopper))),
+    channels:Array.isArray(data.channels)?clone(data.channels):[],
+    imprints:Array.isArray(data.imprints)?clone(data.imprints):[]
+  };
+}
+
+function currentEnchantment(target) {
+  const data=target?.system?.enchantment??{};
+  return {
+    grade:Math.max(0,Math.floor(number(data.grade))),
+    patternKey:String(data.patternKey??""),
+    functionalKey:String(data.functionalKey??""),
+    passiveKey:String(data.passiveKey??""),
+    utilityKey:String(data.utilityKey??""),
+    supportAppropriate:data.supportAppropriate===true,
+    hasRareComponent:data.hasRareComponent===true,
+    materialCostCopper:Math.max(0,Math.floor(number(data.materialCostCopper))),
+    timeMinutes:Math.max(0,number(data.timeMinutes)),
+    addedValueCopper:Math.max(0,Math.floor(number(data.addedValueCopper))),
+    reserve:{
+      value:Math.max(0,Math.floor(number(data.reserve?.value))),
+      max:Math.max(0,Math.floor(number(data.reserve?.max)))
+    },
+    attunedActorUuid:String(data.attunedActorUuid??""),
+    seal:data.seal===true,
+    sealState:String(data.sealState??"charged"),
+    chargedReferenceValueCopper:Math.max(0,Math.floor(number(data.chargedReferenceValueCopper))),
+    boundSpell:data.boundSpell && typeof data.boundSpell==="object" ? clone(data.boundSpell) : null
+  };
+}
+
+async function analyzeMagicModifyProject(project,model,resolver,target,current,baseSource) {
+  const mode=String(model.enhancement.mode);
+  const actor=project.parent;
+  let materialCopper=0;
+  let stageBaseMinutes=0;
+  let magicUpdates={};
+  let issues=[];
+
+  if(mode==="runicMatrix") {
+    if(model.specialMaterials.length||model.modifications.length) return {ok:false,error:"Preparar CRu no instala simultáneamente Materiales ni Modificaciones."};
+    const runic=currentRunic(target);
+    const targetCapacity=Math.max(0,Math.floor(number(model.enhancement.runicCapacityTarget)));
+    const maximum=maxRunicCapacityForQuality(current.quality);
+    if(targetCapacity<=runic.capacityPrepared || targetCapacity>maximum) {
+      return {ok:false,error:"La CRu objetivo debe aumentar la capacidad preparada sin superar la Calidad.",current:runic.capacityPrepared,maximum};
+    }
+    const added=targetCapacity-runic.capacityPrepared;
+    if(model.enhancement.runicChannelTypes.length!==added || model.enhancement.runicChannelTypes.some((type)=>!["inscription","socket"].includes(type))) {
+      return {ok:false,error:"Cada CRu nueva debe configurarse exactamente como Canal de Inscripción o Engarce."};
+    }
+    const quote=runicMatrixQuote({referenceValueCopper:current.referenceValueCopper,baseTimeMinutes:current.baseTimeMinutes,points:added});
+    materialCopper=quote.materialCopper;
+    stageBaseMinutes=quote.timeMinutes;
+    const requirements=targetCapacity===1
+      ? {primarySkill:"crafting",primaryRank:3,arcanaRank:2,craftingRank:3,installation:"professional"}
+      : {primarySkill:"crafting",primaryRank:4,arcanaRank:3,craftingRank:4,installation:"specialized"};
+    issues=magicProfessionalIssues(model,actor,requirements);
+    const channels=[...runic.channels,...model.enhancement.runicChannelTypes.map((type,index)=>({
+      id:"cru-"+(runic.channels.length+index+1),
+      type
+    }))];
+    const nextRunic={
+      ...runic,
+      capacityPrepared:targetCapacity,
+      matrixMaterialCopper:runic.matrixMaterialCopper+materialCopper,
+      addedValueCopper:runic.addedValueCopper+2*materialCopper,
+      channels
+    };
+    const validation=validateRunicConfiguration({...baseSource,system:{...baseSource.system,quality:current.quality,runic:nextRunic}},nextRunic);
+    if(!validation.valid) issues.push(...validation.issues);
+    magicUpdates={
+      "system.runic":nextRunic,
+      "system.priceCopper":Math.max(0,Math.floor(number(target.system?.priceCopper)))+2*materialCopper,
+      "system.priceStatus":"exact"
+    };
+  } else if(mode==="rune") {
+    if(model.specialMaterials.length||model.modifications.length) return {ok:false,error:"Inscribir una Runa no instala simultáneamente otras mejoras."};
+    const runic=currentRunic(target);
+    const profile=imprintActivationProfile(model.enhancement.imprintKey);
+    if(!profile) return {ok:false,error:"La Impronta declarada no existe en el catálogo CRAFT-07."};
+    if(model.enhancement.imprintMode!=="inscribed") return {ok:false,error:"El Proyecto de Runa sólo crea una inscripción permanente; las Piedras se insertan aparte."};
+    const channelIds=[...new Set(model.enhancement.imprintChannelIds.map(String))];
+    if(channelIds.length!==profile.cru) return {ok:false,error:"La Impronta no ocupa la cantidad correcta de CRu."};
+    const occupied=new Set(runic.imprints.flatMap((row)=>Array.isArray(row.channelIds)?row.channelIds.map(String):[]));
+    for(const id of channelIds) {
+      const channel=runic.channels.find((row)=>String(row.id)===id);
+      if(!channel || channel.type!=="inscription") return {ok:false,error:"La Runa requiere Canales de Inscripción existentes."};
+      if(occupied.has(id)) return {ok:false,error:"Uno de los Canales de Inscripción ya está ocupado."};
+    }
+    const quote=runeInscriptionQuote({referenceValueCopper:current.referenceValueCopper,baseTimeMinutes:current.baseTimeMinutes,grade:profile.grade});
+    materialCopper=quote.materialCopper;
+    stageBaseMinutes=quote.timeMinutes;
+    const requirements=profile.grade===1
+      ? {primarySkill:"ritualism",primaryRank:3,arcanaRank:2,craftingRank:2,installation:"professional"}
+      : {primarySkill:"ritualism",primaryRank:4,arcanaRank:3,craftingRank:3,installation:"specialized"};
+    issues=magicProfessionalIssues(model,actor,requirements);
+    const nextRunic={
+      ...runic,
+      addedValueCopper:runic.addedValueCopper+2*materialCopper,
+      imprints:[...runic.imprints,{
+        id:"rune-"+String(project.id??project.uuid??runic.imprints.length+1),
+        key:profile.key,
+        mode:"inscribed",
+        channelIds,
+        stoneUuid:""
+      }]
+    };
+    const validation=validateRunicConfiguration({...baseSource,system:{...baseSource.system,quality:current.quality,runic:nextRunic}},nextRunic);
+    if(!validation.valid) issues.push(...validation.issues);
+    magicUpdates={
+      "system.runic":nextRunic,
+      "system.priceCopper":Math.max(0,Math.floor(number(target.system?.priceCopper)))+2*materialCopper,
+      "system.priceStatus":"exact"
+    };
+  } else if(mode==="enchantment") {
+    if(model.specialMaterials.length||model.modifications.length) return {ok:false,error:"Encantar no instala simultáneamente Modificaciones o Materiales Especiales por esta operación."};
+    const existing=currentEnchantment(target);
+    const grade=Math.max(0,Math.floor(number(model.enhancement.enchantmentGrade)));
+    const utilityKey=String(model.enhancement.enchantmentUtilityKey??"").trim();
+    if(grade===0 && !utilityKey) return {ok:false,error:"Debe declararse un Grado de Encantamiento o un Encantamiento Utilitario."};
+    let next={...existing};
+    if(grade===0) {
+      if(existing.utilityKey) return {ok:false,error:"El objeto ya posee un Encantamiento Utilitario."};
+      const quote=utilityEnchantmentQuote();
+      materialCopper=quote.materialCopper;
+      stageBaseMinutes=quote.timeMinutes;
+      issues=magicProfessionalIssues(model,actor,{primarySkill:"ritualism",primaryRank:3,arcanaRank:2,craftingRank:0,installation:"professional"});
+      next={...existing,utilityKey,addedValueCopper:existing.addedValueCopper+quote.addedValueCopper};
+    } else {
+      if(existing.grade>0) return {ok:false,error:"Un objeto ordinario sólo admite un Encantamiento autónomo estándar."};
+      const quote=enchantmentCostQuote({referenceValueCopper:current.referenceValueCopper,baseTimeMinutes:current.baseTimeMinutes,grade});
+      if(!quote.valid) return {ok:false,error:quote.error};
+      materialCopper=quote.materialCopper;
+      stageBaseMinutes=quote.timeMinutes;
+      const req=grade===1
+        ? {primarySkill:"ritualism",primaryRank:4,arcanaRank:3,craftingRank:3,installation:"specialized"}
+        : {primarySkill:"ritualism",primaryRank:5,arcanaRank:4,craftingRank:4,installation:"exceptional"};
+      issues=magicProfessionalIssues(model,actor,req);
+      next={
+        ...existing,
+        grade,
+        patternKey:String(model.enhancement.enchantmentPatternKey??""),
+        functionalKey:String(model.enhancement.enchantmentFunctionalKey??""),
+        passiveKey:String(model.enhancement.enchantmentPassiveKey??""),
+        supportAppropriate:model.enhancement.enchantmentSupportAppropriate===true,
+        hasRareComponent:model.enhancement.enchantmentHasRareComponent===true,
+        materialCostCopper:quote.materialCopper,
+        timeMinutes:quote.timeMinutes,
+        addedValueCopper:existing.addedValueCopper+quote.addedValueCopper,
+        reserve:{value:0,max:quote.reserveMax},
+        attunedActorUuid:"",
+        seal:model.enhancement.enchantmentSeal===true,
+        sealState:model.enhancement.enchantmentSeal===true?"charged":"charged",
+        boundSpell:model.enhancement.boundSpell?clone(model.enhancement.boundSpell):null
+      };
+      const support=validateEnchantmentSupport({...baseSource,system:{...baseSource.system,quality:current.quality}},next);
+      if(!support.valid) issues.push(...support.issues);
+    }
+    const added=next.addedValueCopper-existing.addedValueCopper;
+    const fullPrice=Math.max(0,Math.floor(number(target.system?.priceCopper)))+added;
+    next.chargedReferenceValueCopper=next.seal?fullPrice:0;
+    magicUpdates={"system.enchantment":next,"system.priceCopper":fullPrice,"system.priceStatus":"exact"};
+  } else if(mode==="trapRearm") {
+    const trap=clone(target.system?.trap??{});
+    if(trap.enabled!==true || trap.state!=="discharged") return {ok:false,error:"Sólo una trampa descargada puede rearmarse."};
+    const quote=trapRearmQuote(trap.baseTimeMinutes||trapFrameProfile(trap.frame)?.baseTimeMinutes||current.baseTimeMinutes);
+    materialCopper=0;
+    stageBaseMinutes=quote.timeMinutes;
+    const req=requirementsForManufacture({
+      baseRank:current.baseRank,
+      baseInstallation:current.baseInstallation,
+      quality:current.quality,
+      specialMaterials:current.specialMaterials
+    });
+    issues=enhancementRequirementsMatch(model,req);
+    magicUpdates={"system.trap.state":"armed"};
+  } else if(mode==="sealRearm") {
+    const enchant=currentEnchantment(target);
+    if(!enchant.seal || enchant.sealState!=="discharged") return {ok:false,error:"Sólo un Sello de Custodia descargado puede rearmarse."};
+    const profile=enchantmentProfile(enchant.grade);
+    if(!profile || enchant.grade>2) return {ok:false,error:"El Sello no posee un Grado rearmable estándar."};
+    const quote=sealRearmQuote({enchantmentMaterialCopper:enchant.materialCostCopper,enchantmentTimeMinutes:enchant.timeMinutes});
+    materialCopper=quote.materialCopper;
+    stageBaseMinutes=quote.timeMinutes;
+    const req=enchant.grade===1
+      ? {primarySkill:"ritualism",primaryRank:4,arcanaRank:3,craftingRank:3,installation:"specialized"}
+      : {primarySkill:"ritualism",primaryRank:5,arcanaRank:4,craftingRank:4,installation:"exceptional"};
+    issues=magicProfessionalIssues(model,actor,req);
+    magicUpdates={
+      "system.enchantment.sealState":"charged",
+      "system.priceCopper":enchant.chargedReferenceValueCopper||Math.max(0,Math.floor(number(target.system?.priceCopper)))
+    };
+  } else {
+    return null;
+  }
+
+  if(issues.length) return {ok:false,error:"No se cumplen los requisitos o límites de la mejora mágica.",issues};
+  const requiredMinutes=expectedStageRequiredMinutes(stageBaseMinutes,model);
+  if(Math.abs(model.time.adjustedBaseMinutes-stageBaseMinutes)>Number.EPSILON) {
+    return {ok:false,error:"El tiempo base de la mejora mágica no coincide con su fórmula canónica.",expectedMinutes:stageBaseMinutes};
+  }
+  if(model.time.requiredMinutes+Number.EPSILON<requiredMinutes) {
+    return {ok:false,error:"El tiempo requerido de la mejora mágica está por debajo del mínimo canónico.",expectedMinutes:requiredMinutes};
+  }
+  return {ok:true,target,current,materialCopper,stageBaseMinutes,requiredMinutes,magicUpdates,magicMode:mode};
+}
+
 async function analyzeModifyProject(project, model, resolver) {
   const target=await resolveOwnedItem(project.parent,model.target.itemUuid,resolver);
   if(!target || !PHYSICAL_TYPES.has(target.type)) return {ok:false,error:"El objeto a modificar ya no está disponible."};
@@ -393,6 +662,9 @@ async function analyzeModifyProject(project, model, resolver) {
 
   const baseSource=baseItemSource(target,current);
   const mode=String(model.enhancement.mode);
+  if(["runicMatrix","rune","enchantment","trapRearm","sealRearm"].includes(mode)) {
+    return analyzeMagicModifyProject(project,model,resolver,target,current,baseSource);
+  }
   let nextQuality=current.quality;
   let nextModifications=clone(current.modifications);
   let nextMaterials=clone(current.specialMaterials);
