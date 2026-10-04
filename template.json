@@ -238,6 +238,7 @@
         },
         "magic": {
           "sustainedSpellIds": [],
+          "sustainedObjectIds": [],
           "attunementCapacity": 0,
           "linkedImprintClaims": {},
           "automaticEventClaims": {}
