@@ -32,7 +32,7 @@ export function attributeProgressionCost(attributes = {}) {
   return total;
 }
 
-export function validateInitialAttributes(attributes = {}) {
+export function validateInitialAttributes(attributes = {}, { allowProgression = false } = {}) {
   const issues = [];
   const entries = Object.entries(attributes ?? {});
   let increases = 0;
@@ -47,8 +47,11 @@ export function validateInitialAttributes(attributes = {}) {
       issues.push({ code: "attribute-creation-range", attribute: key, message: key + " debe quedar entre 1 y 3 durante creación." });
     }
     increases += Math.max(0, creationValue - INITIAL_ATTRIBUTE_BASE);
-    if (baseValue !== creationValue) {
+    if (!allowProgression && baseValue !== creationValue) {
       issues.push({ code: "attribute-creation-base-mismatch", attribute: key, message: key + " no puede comprar progresión de Atributo antes de cerrar creación." });
+    }
+    if (allowProgression && baseValue < creationValue) {
+      issues.push({ code: "attribute-rebuild-base-below-creation", attribute: key, message: key + " no puede tener un valor base inferior al valor reconstruido de creación." });
     }
   }
   if (increases !== INITIAL_ATTRIBUTE_INCREASES) {
@@ -71,6 +74,8 @@ export function deriveDevelopmentBudget(actor, { skillKeys = null } = {}) {
   const itemSpend = budgetSpentByResource(actorItems(actor));
   const pdSpent = skills + attributes + itemSpend.pd;
   const pdTotal = pdTotalForLevel(level);
+  const creationStatus = actor?.system?.creation?.status ?? "complete";
+  const peiOpen = creationStatus === "building" || creationStatus === "rebuilding";
   return {
     pdTotal,
     pdSpent,
@@ -80,7 +85,7 @@ export function deriveDevelopmentBudget(actor, { skillKeys = null } = {}) {
     prAvailable: 3 - itemSpend.pr,
     peiTotal: 2000,
     peiSpent: itemSpend.pei,
-    peiAvailable: 2000 - itemSpend.pei,
+    peiAvailable: peiOpen ? 2000 - itemSpend.pei : 0,
     skillsPdCost: skills,
     attributePdCost: attributes
   };
@@ -173,7 +178,9 @@ export function validateCreationState(actor, { skillKeys = null } = {}) {
   }
 
   if (creationOpen) {
-    issues.push(...validateInitialAttributes(actor?.system?.attributes ?? {}).issues);
+    issues.push(...validateInitialAttributes(actor?.system?.attributes ?? {}, {
+      allowProgression: creationStatus === "rebuilding"
+    }).issues);
   }
 
   const initialDisciplines = items.filter((item) =>
