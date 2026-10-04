@@ -10,6 +10,7 @@ import { approvedRegionalVariantSources } from "./weapon-variants-regional-appro
 import { approvedProjectileProfileSources } from "./weapon-profiles-projectile-approved.mjs";
 import { approvedFlexibleProfileSources } from "./weapon-profiles-flexible-approved.mjs";
 import { approvedArmorVariantSources } from "./armor-variants-approved.mjs";
+import { approvedShieldVariantSources } from "./shield-variants-approved.mjs";
 
 const ANCESTRIES = [
   ["Humano","Familia humana; Don sin Forma se registra mediante sus Rasgos elegidos."],
@@ -307,7 +308,7 @@ export function legacyStarterCatalog() {
   for (const [type, list] of Object.entries(STARTER_CONTENT)) {
     for (const raw of list ?? []) entries.push(migrateItemSource({ name:raw.name, type, system:raw.system ?? {} }, { embedded:false }));
   }
-  for (const raw of [...approvedProjectileProfileSources(), ...approvedFlexibleProfileSources(), ...approvedWeaponVariantSources(), ...approvedSpecialLightVariantSources(), ...approvedMartialVariantSources(), ...approvedHeavyVariantSources(), ...approvedRangedVariantSources(), ...approvedRegionalVariantSources(), ...approvedArmorVariantSources()]) {
+  for (const raw of [...approvedProjectileProfileSources(), ...approvedFlexibleProfileSources(), ...approvedWeaponVariantSources(), ...approvedSpecialLightVariantSources(), ...approvedMartialVariantSources(), ...approvedHeavyVariantSources(), ...approvedRangedVariantSources(), ...approvedRegionalVariantSources(), ...approvedArmorVariantSources(), ...approvedShieldVariantSources()]) {
     entries.push(migrateItemSource(raw,{embedded:false}));
   }
   return entries;
