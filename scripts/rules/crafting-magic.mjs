@@ -240,14 +240,17 @@ export function imprintActivationProfile(key=""){
   return IMPRINTS[String(key)]??null;
 }
 
-export function validateImprintActivation({actor,item,imprint,resolutionId="",resolutionHostItemUuid="",usesHostWeaponProfile=false,voluntaryStateCost=false,activeStackingGroups=[]}={}){
+export function validateImprintActivation({actor,item,imprint,resolutionId="",resolutionHostItemUuid="",usesHostWeaponProfile=false,voluntaryStateCost=false,reactionTriggerValid=false,activeStackingGroups=[]}={}){
   const issues=[];
   const profile=IMPRINTS[String(imprint?.key??"")];
   if(!profile) return {valid:false,issues:[{code:"imprint-profile",message:"Impronta desconocida."}]};
   const mana=Math.max(0,number(actor?.system?.resources?.mana?.value));
   if(mana<profile.manaCost) issues.push({code:"imprint-mana",message:"Maná personal insuficiente; las Improntas no usan Sobrecarga."});
   if(profile.activation==="action" && actor?.system?.turn?.action===false) issues.push({code:"imprint-action",message:"La Acción ya fue gastada."});
-  if(profile.activation==="reaction" && actor?.system?.turn?.reaction===false) issues.push({code:"imprint-reaction",message:"La Reacción ya fue gastada."});
+  if(profile.activation==="reaction") {
+    if(actor?.system?.turn?.reaction===false) issues.push({code:"imprint-reaction",message:"La Reacción ya fue gastada."});
+    if(reactionTriggerValid!==true) issues.push({code:"imprint-reaction-trigger",message:"Una Impronta de Reacción necesita un disparador reactivo válido."});
+  }
   if(profile.activation==="linked"){
     if(!text(resolutionId)) issues.push({code:"imprint-resolution",message:"Una Impronta Vinculada requiere identificar la resolución que modifica."});
     const claims=actor?.system?.magic?.linkedImprintClaims??{};
