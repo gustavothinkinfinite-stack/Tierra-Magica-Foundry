@@ -290,6 +290,14 @@ async function analyzeModifyProject(project, model, resolver) {
     if(model.specialMaterials.length) return {ok:false,error:"Una instalación de Modificación no incorpora simultáneamente Material Especial."};
     if(!model.modifications.length) return {ok:false,error:"No se declaró ninguna Modificación para instalar."};
     const existingKeys=new Set(current.modifications.map((row)=>String(row.key)));
+    const replaceKey=String(model.enhancement.replaceModificationKey ?? "");
+    if(replaceKey) {
+      if(!existingKeys.has(replaceKey)) {
+        return {ok:false,error:"La Modificación que se pretende sustituir ya no existe en el objeto."};
+      }
+      nextModifications=nextModifications.filter((row)=>String(row.key)!==replaceKey);
+      existingKeys.delete(replaceKey);
+    }
     if(model.modifications.some((row)=>existingKeys.has(String(row.key)))) {
       return {ok:false,error:"La misma Modificación no puede instalarse dos veces."};
     }
