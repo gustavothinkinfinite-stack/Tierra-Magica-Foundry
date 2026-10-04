@@ -315,12 +315,12 @@ test("CRAFT-13E: trampa deriva Precisión/DF del Armazón y limita la carga",()=
   assert.equal(standard.precision,4);
   const valid=validateTrapConfiguration({
     enabled:true,frame:"standard",precision:4,mechanismDf:12,triggerType:"contact",physicalTriggerKey:"placa-a",automatic:true,
-    load:{kind:"mechanical-strike",profileRef:"Lanza",damage:5,penetration:1}
+    load:{kind:"mechanical-strike",profileRef:"Lanza",componentUuid:"Actor.a.Item.lanza",damage:5,penetration:1}
   });
   assert.equal(valid.valid,true);
   const invalid=validateTrapConfiguration({
     enabled:true,frame:"standard",precision:8,mechanismDf:18,triggerType:"contact",physicalTriggerKey:"placa-a",automatic:true,
-    load:{kind:"mechanical-strike",profileRef:"Lanza",damage:8,penetration:3}
+    load:{kind:"mechanical-strike",profileRef:"Lanza",componentUuid:"Actor.a.Item.lanza",damage:8,penetration:3}
   });
   assert.ok(invalid.issues.some((issue)=>issue.code==="trap-precision"));
   assert.ok(invalid.issues.some((issue)=>issue.code==="trap-damage"));
