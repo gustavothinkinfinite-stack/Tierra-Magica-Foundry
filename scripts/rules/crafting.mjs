@@ -251,10 +251,12 @@ const PROJECT_TIME_MODES = Object.freeze(["derived","fixed"]);
 const PROJECT_PRICE_STATUSES = Object.freeze(["exact","variable","unset"]);
 const PROJECT_QUALITIES = Object.freeze(["common","superior","exceptional"]);
 const PROJECT_MATERIAL_GRADES = Object.freeze(Object.keys(MATERIAL_GRADE));
+const PROJECT_ENHANCEMENT_MODES = Object.freeze(["quality","modification","material"]);
 
 export const CRAFTING_PROJECT_OPERATIONS = PROJECT_OPERATIONS;
 export const CRAFTING_PROJECT_STATES = PROJECT_STATES;
 export const CRAFTING_PROJECT_TIME_MODES = PROJECT_TIME_MODES;
+export const CRAFTING_PROJECT_ENHANCEMENT_MODES = PROJECT_ENHANCEMENT_MODES;
 
 function stringValue(value) {
   return value === null || value === undefined ? "" : String(value);
@@ -278,10 +280,21 @@ function normalizeSpecialMaterials(rows = []) {
   return (Array.isArray(rows) ? rows : []).map((row, index) => ({
     id: normalizedId(row?.id, "material", index),
     name: stringValue(row?.name),
+    profileKey: stringValue(row?.profileKey),
     grade: enumValue(row?.grade, PROJECT_MATERIAL_GRADES, "ordinary"),
     coverage: enumValue(row?.coverage, Object.keys(MATERIAL_COVERAGE), "component"),
     supplementCopper: integerCopper(row?.supplementCopper, "ceil"),
     sourceItemUuid: stringValue(row?.sourceItemUuid)
+  }));
+}
+
+function normalizeModifications(rows = []) {
+  return (Array.isArray(rows) ? rows : []).map((row, index) => ({
+    id: normalizedId(row?.id, "modification", index),
+    key: stringValue(row?.key),
+    choice: stringValue(row?.choice),
+    scope: stringValue(row?.scope),
+    part: stringValue(row?.part)
   }));
 }
 
@@ -327,6 +340,7 @@ export function normalizeCraftingProject(source = {}) {
   const professional = source?.professional ?? {};
   const assistants = source?.assistants ?? {};
   const execution = source?.execution ?? {};
+  const enhancement = source?.enhancement ?? {};
   const ledger = source?.ledger ?? {};
 
   return {
@@ -355,6 +369,12 @@ export function normalizeCraftingProject(source = {}) {
       affectedValueCopper: integerCopper(economy.affectedValueCopper, "ceil")
     },
     specialMaterials: normalizeSpecialMaterials(source?.specialMaterials),
+    modifications: normalizeModifications(source?.modifications),
+    enhancement: {
+      mode: enumValue(enhancement.mode, PROJECT_ENHANCEMENT_MODES, "modification"),
+      replaceMaterialId: stringValue(enhancement.replaceMaterialId),
+      fineMachiningMaterialId: stringValue(enhancement.fineMachiningMaterialId)
+    },
     components: normalizeComponents(source?.components),
     time: {
       mode: enumValue(time.mode, PROJECT_TIME_MODES, "derived"),
@@ -525,6 +545,7 @@ export function validateCraftingProject(project = {}) {
 
   const ids = [
     ...normalized.specialMaterials.map((row) => row.id),
+    ...normalized.modifications.map((row) => row.id),
     ...normalized.components.map((row) => row.id),
     ...normalized.consequences.map((row) => row.id),
     ...normalized.ledger.entries.map((row) => row.id)
