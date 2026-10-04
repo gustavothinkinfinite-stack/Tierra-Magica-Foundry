@@ -172,7 +172,7 @@ Procedimiento:
 11. completar identidad y datos narrativos;
 12. ejecutar la lista final de legalidad antes de comenzar a jugar.
 
-### Paso 1 — Concepto, pueblo/herencia y origen
+### Paso 1 — Concepto, Ascendencia, Origen y Trasfondo
 
 Primero define quién es el personaje: qué hace, de dónde viene, qué desea, qué relaciones importantes posee y qué lugar ocupa en Tierra Mágica.
 
@@ -9772,7 +9772,7 @@ CRAFT-03 aclara que fabricar desde cero para un usuario conocido incluye el ajus
 
 ### Regla mecánica vigente
 
-Los **12 paquetes raciales jugables v0.3** están definidos de forma completa en **3. Creación de personaje > Paso 1 — Concepto, pueblo/herencia y origen**. Esa es la sección operativa para crear un PJ y contiene, para cada pueblo, un resumen de trasfondo seguido de sus reglas.
+Los **12 paquetes raciales jugables v0.3** están definidos de forma completa en **3. Creación de personaje > Paso 1 — Concepto, Ascendencia, Origen y Trasfondo**. Esa es la sección operativa para crear un PJ y contiene, para cada pueblo, un resumen de trasfondo seguido de sus reglas.
 
 Los paquetes raciales se equilibran aparte de los **25 PD** y los **3 PR generales**. Representan anatomía, fisiología, sentidos, movimiento, adaptaciones y relaciones sobrenaturales innatas. No conceden rangos gratuitos de Habilidad ni aumentos generales de Atributo salvo que una regla futura lo diga expresamente.
 
