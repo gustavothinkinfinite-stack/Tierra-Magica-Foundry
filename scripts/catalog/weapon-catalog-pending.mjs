@@ -13,14 +13,6 @@ export const PENDING_WEAPON_BLOCKERS = Object.freeze({
     "Látigo",
     "Látigo reforzado"
   ]),
-  "projectile-profile": Object.freeze([
-    "Honda",
-    "Honda de guerra",
-    "Fustíbalo",
-    "Jabalina",
-    "Jabalina pesada",
-    "Azagaya"
-  ]),
   "multi-shot-or-spread": Object.freeze([
     "Ballesta repetidora",
     "Ballesta doble",
@@ -75,11 +67,6 @@ export const PENDING_WEAPON_DEPENDENCIES = Object.freeze({
   "flexible-control":{
     owner:"combat",
     dependency:"Definir si las armas flexibles poseen Alcance, Enganche, Desarmar u otra propiedad expresa sin crear control gratuito.",
-    conflictsWithCraft13:false
-  },
-  "projectile-profile":{
-    owner:"catalog",
-    dependency:"Crear perfiles canónicos de proyectil que no hereden Potencia de arco ni una Habilidad contradictoria.",
     conflictsWithCraft13:false
   },
   "multi-shot-or-spread":{
