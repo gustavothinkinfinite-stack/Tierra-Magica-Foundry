@@ -56,7 +56,19 @@ CREA-13 — Validación global de siete personajes/arquetipos está **CERRADA E 
 
 La validación cubre Soldado, Ingeniera, Sanador, Exploradora, Alquimista, Canalizador y Vinculado. El cierre incluye schema v3 para dispositivos, fuente energética explícita, compra física centralizada, identidad alquímica estable por `slug` y autoridad compartida para consumo de Energía y defensa cinética. La limitación 13C-L01 queda resuelta.
 
-No existe una fase CREA-14 definida por las fuentes activas del repositorio. Una fase posterior sólo debe declararse mediante una decisión explícita de proyecto y, si introduce reglas, incorporarse primero al Manual Maestro.
+## Estado de CREA-14
+
+CREA-14 — Autosuficiencia de creación de nivel 1 está **CERRADA**. Consolidó identidad estructurada, Facetas e idiomas, Rasgos iniciales, Perfiles Iniciales de Familiar, Compra libre con PEI, Bono Defensivo derivado y el ejemplo completo de Iria. Su cierre formal está en `docs/CREA-14_CIERRE_AUTOSUFICIENCIA_CREACION.md`.
+
+CREA-14 no sustituyó las reglas de progresión del Manual; cerró exclusivamente la entrada al juego y su representación en Foundry.
+
+## Estado de CREA-15
+
+CREA-15 — Autosuficiencia de progresión está **CERRADA** sobre las reglas ya presentes en el Manual Maestro. Foundry controla el avance de nivel 2–20, el presupuesto global de PD, las mejoras post-creación de Atributos, la preservación de progresión durante reconstrucción y el cierre definitivo del PEI.
+
+Su cierre formal está en `docs/CREA-15_CIERRE_AUTOSUFICIENCIA_PROGRESION.md`. CREA-15 no crea costes ni puertas nuevas: implementa y protege los ya definidos por la fuente canónica.
+
+Una fase posterior sólo debe declararse mediante una decisión explícita de proyecto y, si introduce reglas, incorporarse primero al Manual Maestro.
 
 ## Estado del Grimorio 60
 
