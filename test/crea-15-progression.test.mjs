@@ -4,7 +4,9 @@ import { readFile } from "node:fs/promises";
 import {
   pdTotalForLevel,
   nextAttributeUpgradeCost,
-  canAffordDevelopmentPd
+  canAffordDevelopmentPd,
+  deriveDevelopmentBudget,
+  validateInitialAttributes
 } from "../scripts/rules/creation.mjs";
 
 const templateUrl=new URL("../templates/actor/character-sheet.hbs",import.meta.url);
@@ -71,4 +73,37 @@ test("CREA-15: el Actor contiene las puertas autoritativas de progresión",async
   assert.match(source,/canAffordDevelopmentPd\(this, pdDelta/);
   assert.match(source,/\["building", "rebuilding"\]\.includes\(creationStatus\)/);
   assert.match(source,/Nivel 20 es el máximo ordinario/);
+});
+
+
+test("CREA-15: PEI sobrante desaparece al cerrar creación",()=>{
+  const actor={
+    type:"character",
+    system:{
+      details:{level:1},
+      creation:{status:"complete"},
+      skills:{},
+      attributes:{}
+    },
+    items:[
+      {system:{acquisition:{mode:"purchased",stage:"creation",paid:{resource:"pei",amount:1050,known:true}}}}
+    ]
+  };
+  const budget=deriveDevelopmentBudget(actor,{skillKeys:[]});
+  assert.equal(budget.peiSpent,1050);
+  assert.equal(budget.peiAvailable,0);
+});
+
+test("CREA-15: reconstrucción admite progresión pagada sin confundirla con aumentos gratuitos",()=>{
+  const attributes={
+    fue:{creationValue:3,baseValue:4},
+    agi:{creationValue:2,baseValue:2},
+    vig:{creationValue:2,baseValue:2},
+    int:{creationValue:2,baseValue:2},
+    per:{creationValue:2,baseValue:2},
+    vol:{creationValue:1,baseValue:1},
+    pre:{creationValue:1,baseValue:1}
+  };
+  assert.equal(validateInitialAttributes(attributes).valid,false);
+  assert.equal(validateInitialAttributes(attributes,{allowProgression:true}).valid,true);
 });
