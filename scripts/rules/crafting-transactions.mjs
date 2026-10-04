@@ -1,8 +1,11 @@
 import {
   craftingProjectRemainingMinutes,
   normalizeCraftingProject,
+  repairQuote,
   salvageQuote,
-  validateCraftingProject
+  totalCraftMaterialCostCopper,
+  validateCraftingProject,
+  validateProjectPrerequisites
 } from "./crafting.mjs";
 
 const PHYSICAL_TYPES = new Set(["weapon","armor","shield","equipment","formula","device"]);
@@ -118,6 +121,40 @@ function reservationRecord(project, amountCopper) {
   };
 }
 
+function componentCostCopper(model) {
+  return model.components.reduce((sum, row) =>
+    sum + Math.max(0, Math.floor(number(row.valueCopper))) * Math.max(1, Math.floor(number(row.quantity, 1))), 0);
+}
+
+async function expectedProjectMaterialCopper(project, model, resolver) {
+  if (model.operation === "fabricate") {
+    return {
+      ok:true,
+      materialCopper:totalCraftMaterialCostCopper({
+        referenceValueCopper:model.economy.referenceValueCopper,
+        quality:model.economy.quality,
+        specialMaterialSupplementsCopper:model.specialMaterials.map((row)=>row.supplementCopper),
+        separatedComponentsCopper:model.components.map((row)=>row.valueCopper * row.quantity)
+      })
+    };
+  }
+
+  if (model.operation === "repair") {
+    const target = await resolveOwnedItem(project.parent, model.target.itemUuid, resolver);
+    if (!target || !PHYSICAL_TYPES.has(target.type)) return { ok:false, error:"El objeto a reparar ya no está disponible." };
+    const quote = repairQuote({
+      condition:String(target.system?.condition ?? "operative"),
+      affectedValueCopper:model.economy.affectedValueCopper,
+      affectedTimeMinutes:model.time.adjustedBaseMinutes
+    });
+    if (!quote.repairableByUniversalRule) return { ok:false, error:"El estado objetivo no admite reparación universal." };
+    return { ok:true, materialCopper:quote.materialCopper + componentCostCopper(model) };
+  }
+
+  if (model.operation === "dismantle") return { ok:true, materialCopper:0 };
+  return { ok:true, materialCopper:model.ledger.estimatedMaterialsCopper };
+}
+
 export async function reserveCraftingProjectMaterials(project, {
   expectedRevision = null,
   resolver = globalThis.fromUuid
@@ -134,6 +171,33 @@ export async function reserveCraftingProjectMaterials(project, {
   const model = validation.project;
   if (model.state !== "ready") return { ok:false, error:"Sólo un Proyecto Preparado puede comprometer materiales." };
   if (model.execution.committed) return { ok:true, committed:true, alreadyCommitted:true, revision:model.execution.revision };
+  if (model.execution.reductionFactors.length) {
+    return { ok:false, error:"Las reducciones especiales de tiempo requieren una fuente mecánica estructurada; CRAFT-13C no acepta factores libres." };
+  }
+
+  const actor = project.parent;
+  const prerequisite = validateProjectPrerequisites({
+    actorRank:Number(actor.system?.skills?.[model.professional.skill]?.rank ?? 0),
+    availableInstallation:model.professional.availableInstallation,
+    requiredRank:model.professional.requiredRank,
+    requiredInstallation:model.professional.requiredInstallation,
+    hasStableProcedure:model.professional.stableProcedure,
+    materialsReady:model.professional.materialsReady,
+    essentialToolReady:model.professional.essentialToolReady
+  });
+  if (!prerequisite.valid) {
+    return { ok:false, error:"No se cumplen los requisitos reales del Proyecto.", issues:prerequisite.issues };
+  }
+
+  const expectedMaterials = await expectedProjectMaterialCopper(project, model, resolver);
+  if (!expectedMaterials.ok) return expectedMaterials;
+  if (model.ledger.estimatedMaterialsCopper !== expectedMaterials.materialCopper) {
+    return {
+      ok:false,
+      error:"El material estimado no coincide con el coste canónico del Proyecto.",
+      expectedCopper:expectedMaterials.materialCopper
+    };
+  }
 
   const allocations = craftingProjectMaterialAllocations(project);
   const requested = allocations.reduce((sum, entry) => sum + entry.amountCopper, 0);
@@ -141,7 +205,6 @@ export async function reserveCraftingProjectMaterials(project, {
     return { ok:false, error:"Las asignaciones de Lotes deben coincidir exactamente con el material estimado del Proyecto." };
   }
 
-  const actor = project.parent;
   const resolved = [];
   for (const allocation of allocations) {
     const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
