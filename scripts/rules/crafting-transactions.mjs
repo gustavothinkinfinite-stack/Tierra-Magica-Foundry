@@ -29,6 +29,7 @@ import {
   enchantmentProfile,
   imprintActivationProfile,
   imprintStoneCraftProfile,
+  integratedMagicRecoveryCopper,
   maxRunicCapacityForQuality,
   runicMatrixQuote,
   runeInscriptionQuote,
@@ -1022,6 +1023,12 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
   if (model.operation === "dismantle") {
     const target=await resolveOwnedItem(project.parent,model.target.itemUuid,resolver);
     if(!target || !PHYSICAL_TYPES.has(target.type)) return {ok:false,error:"El objeto a desmantelar ya no está disponible."};
+    const socketedImprints=Array.isArray(target.system?.runic?.imprints)
+      ? target.system.runic.imprints.filter((row)=>row?.mode==="stone")
+      : [];
+    if(socketedImprints.length) {
+      return {ok:false,error:"Las Piedras de Impronta deben extraerse como Items antes de desmantelar el Host; no se convierten en VI rúnico."};
+    }
     const manufacture=target.system?.manufacture ?? {};
     const storedVr=Math.max(0,Math.floor(number(manufacture.referenceValueCopper)));
     const storedBase=Math.max(0,number(manufacture.baseTimeMinutes));
@@ -1612,6 +1619,17 @@ async function dismantleOutcome(project, resolver) {
     if(quote.specialCopper>0) specialRecoveries.push({material,amountCopper:quote.specialCopper});
   }
 
+  const runicIntegratedMaterialCopper=Math.floor(Math.max(0,number(target.system?.runic?.addedValueCopper))/2);
+  const enchantedIntegratedMaterialCopper=Math.floor(Math.max(0,number(target.system?.enchantment?.addedValueCopper))/2);
+  const runicRecoveryCopper=integratedMagicRecoveryCopper({
+    condition,
+    materialCopper:runicIntegratedMaterialCopper
+  });
+  const enchantmentRecoveryCopper=integratedMagicRecoveryCopper({
+    condition,
+    materialCopper:enchantedIntegratedMaterialCopper
+  });
+
   const createdIds=[];
   const createdItems=[];
   const createRecovery=async(source)=>{
@@ -1695,6 +1713,78 @@ async function dismantleOutcome(project, resolver) {
       });
     }
 
+    if(runicRecoveryCopper>0) {
+      await createRecovery({
+        name:"Componentes rúnicos recuperados de "+target.name,
+        type:"equipment",
+        system:{
+          category:"Componentes rúnicos recuperados",
+          quantity:1,
+          weight:0,
+          equipped:false,
+          availability:"common",
+          quality:"common",
+          properties:"VI rúnico integrado recuperado. No obtiene compatibilidad universal hasta ser clasificado/preparado.",
+          priceCopper:0,
+          priceQuantity:1,
+          priceStatus:"unset",
+          condition:"operative",
+          craftingLot:{
+            enabled:true,
+            category:"runico-recuperado",
+            resourceGrade:"ordinary",
+            compatibility:[],
+            materialProfileKey:"",
+            preparation:"prepared",
+            inputValueCopper:runicRecoveryCopper,
+            reservations:{}
+          },
+          craftingReservations:{},
+          provenance:{
+            sourceUuid:target.uuid,
+            sourceSchemaVersion:Number(target.system?.schemaVersion ?? 0)||0,
+            sourceRevision:"dismantled-runic"
+          }
+        }
+      });
+    }
+
+    if(enchantmentRecoveryCopper>0) {
+      await createRecovery({
+        name:"Componentes de Encantamiento recuperados de "+target.name,
+        type:"equipment",
+        system:{
+          category:"Componentes encantados recuperados",
+          quantity:1,
+          weight:0,
+          equipped:false,
+          availability:"common",
+          quality:"common",
+          properties:"VI de Encantamiento integrado recuperado. No hereda Patrón, hechizo ni compatibilidad universal.",
+          priceCopper:0,
+          priceQuantity:1,
+          priceStatus:"unset",
+          condition:"operative",
+          craftingLot:{
+            enabled:true,
+            category:"encantamiento-recuperado",
+            resourceGrade:"ordinary",
+            compatibility:[],
+            materialProfileKey:"",
+            preparation:"prepared",
+            inputValueCopper:enchantmentRecoveryCopper,
+            reservations:{}
+          },
+          craftingReservations:{},
+          provenance:{
+            sourceUuid:target.uuid,
+            sourceSchemaVersion:Number(target.system?.schemaVersion ?? 0)||0,
+            sourceRevision:"dismantled-enchantment"
+          }
+        }
+      });
+    }
+
     await actor.deleteEmbeddedDocuments("Item", [target.id], { tmValidated:true, tmCrafting:true });
   } catch (error) {
     if(createdIds.length) {
@@ -1704,7 +1794,9 @@ async function dismantleOutcome(project, resolver) {
   }
 
   const recoveredMaterialsCopper=ordinaryQuote.ordinaryCopper+
-    specialRecoveries.reduce((sum,row)=>sum+row.amountCopper,0);
+    specialRecoveries.reduce((sum,row)=>sum+row.amountCopper,0)+
+    runicRecoveryCopper+
+    enchantmentRecoveryCopper;
   return {
     ok:true,
     output:createdItems[0]??null,
