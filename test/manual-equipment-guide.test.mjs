@@ -119,7 +119,7 @@ test("el Manual no crea una fórmula universal de inventario o carga",async()=>{
 
 test("Economía remite al capítulo práctico y conserva unidades de suministros",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const economy=section(manual,"## 19. Economía, disponibilidad y equipo","## 20. Pueblos, herencias, culturas y orígenes");
+  const economy=section(manual,"## 19. Economía, disponibilidad y equipo","## 20. Pueblos jugables, herencias, culturas y orígenes");
 
   assert.match(economy,/reglas de \*\*uso práctico\*\*/i);
   assert.match(economy,/Provisiones personales 7 días \(7 raciones\) 2 p/);
