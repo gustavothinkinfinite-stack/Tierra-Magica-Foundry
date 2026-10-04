@@ -1,12 +1,12 @@
-# CAT-08 — Mapa de cierre de las 53 armas pendientes
+# CAT-08 — Mapa de cierre de armas pendientes
 
-**Estado:** CLASIFICADO · SIN PROMOCIÓN MECÁNICA  
+**Estado:** CLASIFICADO · 6 RESUELTAS POSTERIORMENTE POR CAT-09  
 **Fecha:** 2026-10-04  
 **Dependencia:** CAT-01…07
 
 ## Objetivo
 
-Después de CAT-07 quedan **53 propuestas** del catálogo maestro que no deben convertirse automáticamente en Items runtime.
+Después de CAT-07 quedaban **53 propuestas**. CAT-09 resolvió las 6 de perfil de proyectil, por lo que la cola vigente queda en **47**.
 
 CAT-08 asigna a cada una un bloqueador explícito para evitar que una futura expansión introduzca reglas implícitas o colisione con CRAFT-13.
 
@@ -16,11 +16,10 @@ CAT-08 asigna a cada una un bloqueador explícito para evitar que una futura exp
 |---|---:|---|
 | Enrutamiento de arrojadizas | 7 | Combate |
 | Control con armas flexibles | 3 | Combate |
-| Perfil nuevo de proyectil | 6 | Catálogo |
 | Varios cañones / dispersión | 10 | Combate |
 | Material especial | 2 | Crafting |
 | Frontera Weapon/Device | 25 | Crafting |
-| **Total** | **53** | |
+| **Total vigente** | **47** | |
 
 ## 1. Arrojadizas — 7
 
@@ -109,9 +108,9 @@ La decisión futura debe establecer si cada entrada es:
 
 Catálogo maestro: **244**.
 
-- 20 armas canónicas;
+- 26 perfiles canónicos;
 - 171 variantes aprobadas;
-- **191 armas runtime**;
-- 53 propuestas bloqueadas y clasificadas.
+- **197 armas runtime**;
+- 47 propuestas bloqueadas y clasificadas.
 
 CAT-08 convierte el remanente en una cola de trabajo explícita en vez de una lista ambigua.
