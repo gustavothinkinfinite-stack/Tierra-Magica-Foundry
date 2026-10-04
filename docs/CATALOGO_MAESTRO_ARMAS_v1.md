@@ -11,8 +11,8 @@ Construir una biblioteca amplia de armas para Tierra Mágica que pueda convertir
 
 La biblioteca separa deliberadamente:
 
-- **26 perfiles canónicos vigentes**: los 20 originales más 6 perfiles CAT-09;
-- **218 entradas propuestas**, de las cuales 171 ya están aprobadas como variantes de perfil y 47 siguen pendientes;
+- **29 perfiles canónicos vigentes**: los 20 originales, 6 perfiles CAT-09 y 3 perfiles CAT-10;
+- **215 entradas propuestas**, de las cuales 171 ya están aprobadas como variantes de perfil y 44 siguen pendientes;
 - **244 entradas totales** en el catálogo maestro.
 
 Una propuesta no se convierte en regla por existir en este archivo.
@@ -48,8 +48,8 @@ Antes de entrar al Compendio oficial debe decidirse una de tres salidas:
 | Rifles y armas largas | 20 |
 | Armas regionales de Tierra Mágica | 30 |
 | Armas arcano-industriales adicionales | 20 |
-| **Total propuestas** | **218** |
-| Perfiles canónicos vigentes | **26** |
+| **Total propuestas** | **215** |
+| Perfiles canónicos vigentes | **29** |
 | **Catálogo total** | **244** |
 
 ## Metadatos estructurados
@@ -100,8 +100,9 @@ La expansión se integra mediante `coreCatalog()` sin inflar `STARTER_CONTENT` c
 
 - los 20 perfiles originales permanecen intactos;
 - CAT-09 añade 6 perfiles canónicos nuevos;
+- CAT-10 añade 3 perfiles canónicos de armas flexibles;
 - 171 variantes auditadas entran al Compendio;
-- las 47 pendientes no se materializan como Items;
+- las 44 pendientes no se materializan como Items;
 - no modifica \`system.json\`, \`package.json\`, \`template.json\` ni archivos de CRAFT-13;
 - puede evolucionar en paralelo al agente de crafting.
 
@@ -125,4 +126,4 @@ Una entrada puede pasar de \`proposal\` a Item de Compendio cuando estén cerrad
 14. descripción final;
 15. control de duplicados funcionales.
 
-CAT-02…09 ya promovieron 171 variantes y 6 perfiles nuevos. Las fases siguientes deben resolver únicamente los bloqueadores explícitos de la cola pendiente, sin reabrir perfiles cerrados salvo evidencia de desequilibrio.
+CAT-02…10 ya promovieron 171 variantes y 9 perfiles nuevos. Las fases siguientes deben resolver únicamente los bloqueadores explícitos de la cola pendiente, sin reabrir perfiles cerrados salvo evidencia de desequilibrio.
