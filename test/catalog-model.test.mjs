@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { validateCatalog } from "../scripts/rules/catalog.mjs";
+import { constructionCatalog, CATALOG_COUNTS } from "../scripts/catalog/core-catalog.mjs";
 
 test("catalog rejects duplicate slugs, broken grant targets and missing spell disciplines",()=>{
   const catalog=[
@@ -14,4 +15,27 @@ test("catalog rejects duplicate slugs, broken grant targets and missing spell di
   assert.ok(result.issues.some((i)=>i.code==="catalog-duplicate"));
   assert.ok(result.issues.some((i)=>i.code==="catalog-discipline"));
   assert.ok(result.issues.some((i)=>i.code==="catalog-grant-target"));
+});
+
+
+test("CREA-14: catálogo de identidad coincide con los pueblos y perfiles vigentes",()=>{
+  const catalog=constructionCatalog();
+  const ancestries=catalog.filter((entry)=>entry.type==="ancestry").map((entry)=>entry.name);
+  assert.equal(CATALOG_COUNTS.ancestries,17);
+  assert.equal(CATALOG_COUNTS.origins,10);
+  assert.equal(CATALOG_COUNTS.backgrounds,14);
+  for(const required of [
+    "Humano","Enano","Elfo","Orco","Goblin","Hobgoblin","Bugbear","Terio/Anihombre",
+    "Hada","Sátiro","Dríade","Silfo","Ankar","Cristálido de Matriz Mixta","Verdante","Micelio","Coralio"
+  ]) assert.ok(ancestries.includes(required),required);
+  assert.equal(ancestries.includes("Troll"),false);
+  assert.equal(ancestries.includes("Ogro"),false);
+
+  for(const origin of catalog.filter((entry)=>entry.type==="origin")){
+    assert.ok(String(origin.system.languageProfile).includes("Común de Concordia"));
+    assert.equal(String(origin.system.facetOptions).split(";").filter(Boolean).length,3);
+  }
+  for(const background of catalog.filter((entry)=>entry.type==="background")){
+    assert.equal(String(background.system.facetOptions).split(";").filter(Boolean).length,3);
+  }
 });
