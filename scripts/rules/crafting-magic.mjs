@@ -87,6 +87,7 @@ export function validateTrapConfiguration(trap={}){
   if(load.kind==="mechanical-strike" && frame) {
     const damage=Math.max(0,Math.floor(number(load.damage)));
     const pen=Math.max(0,Math.floor(number(load.penetration)));
+    if(!text(load.profileRef)) issues.push({code:"trap-mechanical-profile",message:"Un Golpe mecánico debe señalar el arma/carga física cuyo perfil reutiliza."});
     if(frame.key==="simple" && damage>0) issues.push({code:"trap-simple-damage",message:"Un Armazón Simple no admite carga dañina automática."});
     if(Number.isFinite(frame.maxDamage) && damage>frame.maxDamage) issues.push({code:"trap-damage",message:"El daño de la carga excede el límite del Armazón."});
     if(Number.isFinite(frame.maxPenetration) && pen>frame.maxPenetration) issues.push({code:"trap-penetration",message:"La Penetración de la carga excede el límite del Armazón."});
@@ -211,6 +212,11 @@ export function validateImprintActivation({actor,item,imprint,resolutionId="",re
       }
     }
   }
+  const activeGroups=new Set(Array.isArray(arguments[0]?.activeStackingGroups)?arguments[0].activeStackingGroups.map(String):[]);
+  if(profile.group==="barrier-defense" && actor?.system?.combat?.kineticBarrierActive) activeGroups.add("barrier-defense");
+  if(activeGroups.has(profile.group)) {
+    issues.push({code:"imprint-stacking",message:"La Impronta es equivalente a un efecto ya activo y no se acumula."});
+  }
   if(profile.key==="runicStabilityII" && voluntaryStateCost===true) {
     issues.push({code:"imprint-voluntary-state-cost",message:"Estabilidad Rúnica II no mitiga un deterioro pagado como coste voluntario de Sobrecarga/Carga forzada."});
   }
@@ -257,8 +263,7 @@ export function validateEnchantmentSupport(itemSource={},enchantment={}){
   if(!profile) return {valid:false,issues:[{code:"enchantment-grade",message:"Grado de Encantamiento desconocido."}]};
   const quality=String(itemSource?.system?.quality??"common");
   const dedicated=Math.max(0,Math.floor(number(itemSource?.system?.magicSupport?.grade)));
-  const existing=Boolean(itemSource?.system?.manufacture?.referenceValueCopper);
-  if(existing && dedicated===0 && qualityIndex(quality)<qualityIndex(profile.minQuality)) {
+  if(dedicated===0 && qualityIndex(quality)<qualityIndex(profile.minQuality)) {
     issues.push({code:"enchantment-support-quality",message:"La Calidad del soporte es insuficiente para este Grado de Encantamiento."});
   }
   if(dedicated>0 && dedicated<grade) issues.push({code:"enchantment-dedicated-grade",message:"El Soporte Mágico Dedicado no admite este Grado."});
@@ -266,6 +271,9 @@ export function validateEnchantmentSupport(itemSource={},enchantment={}){
   if(grade===3 && enchantment.hasRareComponent!==true) issues.push({code:"enchantment-grade3-component",message:"Encantamiento III exige un componente arcano Raro/Excepcional compatible."});
   if(!text(enchantment.patternKey) && !text(enchantment.boundSpell?.slug) && !text(enchantment.passiveKey)) {
     issues.push({code:"enchantment-pattern",message:"Un Encantamiento mecánico debe declarar Patrón, Hechizo Vinculado o Perfil pasivo identificable."});
+  }
+  if(text(enchantment.patternKey) && !text(enchantment.boundSpell?.slug) && !text(enchantment.passiveKey) && !text(enchantment.functionalKey)) {
+    issues.push({code:"enchantment-functional-key",message:"Un Patrón mecánico no catalogado debe declarar su equivalencia funcional para impedir duplicados por cambio de nombre."});
   }
   if(enchantment.boundSpell){
     const spell=enchantment.boundSpell;
