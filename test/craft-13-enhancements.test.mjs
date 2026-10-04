@@ -250,3 +250,16 @@ test("CRAFT-13D: puntos de modificación se derivan del catálogo, no del precio
   assert.equal(modificationPoints([{key:"optimizedStrike"}]),2);
   assert.equal(modificationPoints([{key:"madeUp"}]),0);
 });
+
+test("CRAFT-13D: Equilibrada para Parada persiste +3 sin alterar el daño",()=>{
+  const result=deriveManufacturedSystem(weapon(),{
+    referenceValueCopper:200,
+    baseTimeMinutes:480,
+    quality:"superior",
+    modifications:[{key:"balancedParry"}]
+  });
+  assert.equal(result.valid,true);
+  assert.equal(result.manufacture.effects.parryDefenseBonus,3);
+  assert.equal(result.system.damage,5);
+});
+
