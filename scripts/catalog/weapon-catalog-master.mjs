@@ -6,6 +6,9 @@ import { APPROVED_HEAVY_VARIANTS } from "./weapon-variants-heavy-approved.mjs";
 import { APPROVED_RANGED_VARIANTS } from "./weapon-variants-ranged-approved.mjs";
 import { APPROVED_REGIONAL_VARIANTS } from "./weapon-variants-regional-approved.mjs";
 import { pendingWeaponBlocker } from "./weapon-catalog-pending.mjs";
+import { APPROVED_PROJECTILE_PROFILES, approvedProjectileProfileSources } from "./weapon-profiles-projectile-approved.mjs";
+
+const NEW_CANONICAL_PROFILE_NAMES = new Set(Object.keys(APPROVED_PROJECTILE_PROFILES));
 
 const APPROVED_VARIANTS = Object.freeze({
   ...APPROVED_WEAPON_PROFILE_VARIANTS,
@@ -241,37 +244,55 @@ const proposalGroups = [
   }
 ];
 
+function mechanicsFromSystem(system = {}) {
+  return {
+    attackAttribute:system.attackAttribute ?? "",
+    damageAttribute:system.damageAttribute ?? "",
+    damage:system.damage,
+    penetration:system.penetration,
+    strengthMin:system.strengthMin ?? null,
+    rangeOptimal:system.rangeOptimal ?? 0,
+    reload:system.reload ?? 0,
+    power:system.power ?? 0,
+    priceCopper:system.priceCopper,
+    properties:system.properties ?? ""
+  };
+}
+
 function canonicalEntries() {
-  return STARTER_CONTENT.weapon.map((entry)=>({
+  const originals=STARTER_CONTENT.weapon.map((entry)=>({
+    name:entry.name,
+    system:entry.system,
+    family:"Catálogo canónico",
+    specializationSuggestion:CANONICAL_SPECIALIZATION[entry.name] ?? ""
+  }));
+  const projectiles=approvedProjectileProfileSources().map((entry)=>({
+    name:entry.name,
+    system:entry.system,
+    family:APPROVED_PROJECTILE_PROFILES[entry.name]?.family ?? "Proyectiles",
+    specializationSuggestion:APPROVED_PROJECTILE_PROFILES[entry.name]?.specializationSuggestion ?? ""
+  }));
+  return [...originals,...projectiles].map((entry)=>({
     name:entry.name,
     status:"canonical",
     type:"weapon",
-    family:"Catálogo canónico",
+    family:entry.family,
     skillSuggestion:entry.system.skill,
-    specializationSuggestion:CANONICAL_SPECIALIZATION[entry.name] ?? "",
+    specializationSuggestion:entry.specializationSuggestion,
     referenceProfile:entry.name,
     technology:entry.name.includes("Pistola") || entry.name.includes("Rifle") ? "firearm" : "mundane",
     region:"general",
     availability:entry.system.availability ?? "common",
     implementation:"runtime",
     reviewFlags:[],
-    mechanics:{
-      attackAttribute:entry.system.attackAttribute ?? "",
-      damageAttribute:entry.system.damageAttribute ?? "",
-      damage:entry.system.damage,
-      penetration:entry.system.penetration,
-      strengthMin:entry.system.strengthMin ?? null,
-      rangeOptimal:entry.system.rangeOptimal ?? 0,
-      reload:entry.system.reload ?? 0,
-      power:entry.system.power ?? 0,
-      priceCopper:entry.system.priceCopper,
-      properties:entry.system.properties ?? ""
-    }
+    blocker:"",
+    mechanics:mechanicsFromSystem(entry.system)
   }));
 }
 
 function proposedEntries() {
-  return proposalGroups.flatMap((group)=>group.names.map((name)=>{
+  return proposalGroups.flatMap((group)=>group.names.flatMap((name)=>{
+    if (NEW_CANONICAL_PROFILE_NAMES.has(name)) return [];
     const approvedProfile=APPROVED_VARIANTS[name] ?? "";
     return {
       name,
@@ -297,10 +318,12 @@ export function weaponCatalogMaster() {
   return [...canonicalEntries(), ...proposedEntries()];
 }
 
+const proposalCount = proposalGroups.reduce((sum,group)=>sum+group.names.length,0) - NEW_CANONICAL_PROFILE_NAMES.size;
+
 export const WEAPON_CATALOG_COUNTS = Object.freeze({
-  canonical: STARTER_CONTENT.weapon.length,
-  proposed: proposalGroups.reduce((sum,group)=>sum+group.names.length,0),
-  total: STARTER_CONTENT.weapon.length + proposalGroups.reduce((sum,group)=>sum+group.names.length,0)
+  canonical: STARTER_CONTENT.weapon.length + NEW_CANONICAL_PROFILE_NAMES.size,
+  proposed: proposalCount,
+  total: STARTER_CONTENT.weapon.length + NEW_CANONICAL_PROFILE_NAMES.size + proposalCount
 });
 
 export const WEAPON_PROPOSAL_GROUPS = Object.freeze(
