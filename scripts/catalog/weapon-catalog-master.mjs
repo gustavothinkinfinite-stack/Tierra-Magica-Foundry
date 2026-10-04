@@ -4,13 +4,15 @@ import { APPROVED_SPECIAL_LIGHT_VARIANTS } from "./weapon-variants-special-light
 import { APPROVED_MARTIAL_VARIANTS } from "./weapon-variants-martial-approved.mjs";
 import { APPROVED_HEAVY_VARIANTS } from "./weapon-variants-heavy-approved.mjs";
 import { APPROVED_RANGED_VARIANTS } from "./weapon-variants-ranged-approved.mjs";
+import { APPROVED_REGIONAL_VARIANTS } from "./weapon-variants-regional-approved.mjs";
 
 const APPROVED_VARIANTS = Object.freeze({
   ...APPROVED_WEAPON_PROFILE_VARIANTS,
   ...APPROVED_SPECIAL_LIGHT_VARIANTS,
   ...APPROVED_MARTIAL_VARIANTS,
   ...APPROVED_HEAVY_VARIANTS,
-  ...APPROVED_RANGED_VARIANTS
+  ...APPROVED_RANGED_VARIANTS,
+  ...Object.fromEntries(Object.entries(APPROVED_REGIONAL_VARIANTS).map(([name,value])=>[name,value.profile]))
 });
 
 export const WEAPON_CATALOG_VERSION = "1.0-draft";
