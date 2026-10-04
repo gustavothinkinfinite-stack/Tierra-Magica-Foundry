@@ -24,9 +24,9 @@ test("CAT-06 aprueba exactamente 44 variantes a distancia",()=>{
   }
 });
 
-test("CAT-06 integra las variantes y eleva las armas runtime a 164",()=>{
+test("CAT-06 conserva sus 44 variantes dentro del catálogo runtime",()=>{
   const weapons=coreCatalog().filter((entry)=>entry.type==="weapon");
-  assert.equal(weapons.length,164);
+  assert.ok(weapons.length>=164,"CAT-06: una expansión posterior no debe eliminar armas ya integradas");
 
   for(const name of Object.keys(APPROVED_RANGED_VARIANTS)){
     const item=weapons.find((entry)=>entry.name===name);
