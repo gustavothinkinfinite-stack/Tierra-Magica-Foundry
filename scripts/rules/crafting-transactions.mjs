@@ -362,6 +362,10 @@ async function analyzeModifyProject(project, model, resolver) {
   });
   const requirementIssues=enhancementRequirementsMatch(model,req);
   if(requirementIssues.length) return {ok:false,error:"Los requisitos de la mejora están subdeclarados.",issues:requirementIssues};
+  const grades=["ordinary","specialized","rare","exceptional"];
+  if(grades.indexOf(model.economy.workMaterialGrade)<grades.indexOf(req.materialGrade)) {
+    return {ok:false,error:"El grado de Material de trabajo está por debajo del objeto que se está modificando.",expectedGrade:req.materialGrade};
+  }
 
   const requiredMinutes=expectedStageRequiredMinutes(stageBaseMinutes,model);
   if(Math.abs(model.time.adjustedBaseMinutes-stageBaseMinutes)>Number.EPSILON) {
@@ -403,13 +407,32 @@ async function analyzeModifyProject(project, model, resolver) {
 
 async function expectedProjectMaterialCopper(project, model, resolver) {
   if (model.operation === "fabricate") {
+    const source=model.target.resultData && typeof model.target.resultData==="object"
+      ? clone(model.target.resultData)
+      : null;
+    if(!source || !PHYSICAL_TYPES.has(String(source.type ?? model.target.resultType))) {
+      return {ok:false,error:"Fabricar requiere un snapshot estructurado de Item físico."};
+    }
+    source.type=String(source.type ?? model.target.resultType);
+    source.system ??= {};
+    const derived=deriveManufacturedSystem(source,{
+      referenceValueCopper:model.economy.referenceValueCopper,
+      baseTimeMinutes:model.time.baseMinutes,
+      baseRank:model.professional.baseRank,
+      baseInstallation:model.professional.baseInstallation,
+      quality:model.economy.quality,
+      modifications:model.modifications,
+      specialMaterials:model.specialMaterials
+    });
+    if(!derived.valid) return {ok:false,error:"La combinación de Calidad, Materiales y Modificaciones de fabricación no es válida.",issues:derived.issues};
     return {
       ok:true,
       materialCopper:totalCraftMaterialCostCopper({
         referenceValueCopper:model.economy.referenceValueCopper,
         quality:model.economy.quality,
         specialMaterialSupplementsCopper:model.specialMaterials.map((row)=>row.supplementCopper)
-      })
+      }),
+      derived
     };
   }
 
