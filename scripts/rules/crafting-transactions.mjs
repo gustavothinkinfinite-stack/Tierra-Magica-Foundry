@@ -64,6 +64,8 @@ function lotData(item) {
     enabled: data.enabled === true,
     category: String(data.category ?? ""),
     compatibility: Array.isArray(data.compatibility) ? data.compatibility.map(String) : [],
+    materialProfileKey: String(data.materialProfileKey ?? ""),
+    preparation: String(data.preparation ?? "prepared"),
     inputValueCopper: Math.max(0, Math.floor(number(data.inputValueCopper))),
     reservations
   };
