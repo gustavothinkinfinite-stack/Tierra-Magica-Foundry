@@ -8,11 +8,11 @@ const minutes=(value)=>Math.max(0,number(value));
 const text=(value)=>String(value??"").trim();
 
 export const TRAP_FRAMES=Object.freeze({
-  simple:Object.freeze({key:"simple",label:"Simple",referenceValueCopper:20,baseTimeMinutes:30,precision:2,mechanismDf:10,maxDamage:0,maxPenetration:0}),
-  standard:Object.freeze({key:"standard",label:"Estándar",referenceValueCopper:100,baseTimeMinutes:120,precision:4,mechanismDf:12,maxDamage:5,maxPenetration:1}),
-  complex:Object.freeze({key:"complex",label:"Complejo",referenceValueCopper:400,baseTimeMinutes:480,precision:6,mechanismDf:14,maxDamage:8,maxPenetration:2}),
-  masterwork:Object.freeze({key:"masterwork",label:"Magistral",referenceValueCopper:1200,baseTimeMinutes:1440,precision:8,mechanismDf:16,maxDamage:null,maxPenetration:null}),
-  extraordinary:Object.freeze({key:"extraordinary",label:"Extraordinario",referenceValueCopper:3000,baseTimeMinutes:0,precision:10,mechanismDf:18,maxDamage:null,maxPenetration:null})
+  simple:Object.freeze({key:"simple",label:"Simple",referenceValueCopper:20,baseTimeMinutes:30,precision:2,mechanismDf:10,primaryRank:1,installation:"improvised",maxDamage:0,maxPenetration:0}),
+  standard:Object.freeze({key:"standard",label:"Estándar",referenceValueCopper:100,baseTimeMinutes:120,precision:4,mechanismDf:12,primaryRank:2,installation:"adequate",maxDamage:5,maxPenetration:1}),
+  complex:Object.freeze({key:"complex",label:"Complejo",referenceValueCopper:400,baseTimeMinutes:480,precision:6,mechanismDf:14,primaryRank:3,installation:"professional",maxDamage:8,maxPenetration:2}),
+  masterwork:Object.freeze({key:"masterwork",label:"Magistral",referenceValueCopper:1200,baseTimeMinutes:1440,precision:8,mechanismDf:16,primaryRank:4,installation:"specialized",maxDamage:null,maxPenetration:null}),
+  extraordinary:Object.freeze({key:"extraordinary",label:"Extraordinario",referenceValueCopper:3000,baseTimeMinutes:0,precision:10,mechanismDf:18,primaryRank:5,installation:"exceptional",maxDamage:null,maxPenetration:null})
 });
 
 export const TRAP_TRIGGERS=Object.freeze([
@@ -20,6 +20,14 @@ export const TRAP_TRIGGERS=Object.freeze([
 ]);
 export const TRAP_LOAD_KINDS=Object.freeze(["alarm","maneuver","mechanical-strike","alchemy","environment"]);
 export const TRAP_MANEUVER_EFFECTS=Object.freeze(["trip","grab"]);
+export const TRAP_CONCEALMENT=Object.freeze({
+  visible:Object.freeze({key:"visible",label:"Visible",detectionDf:0,rank:0,materialRate:0,timeRate:0,flatMinutes:0}),
+  disguised:Object.freeze({key:"disguised",label:"Disimulada",detectionDf:10,rank:1,materialRate:0,timeRate:0,flatMinutes:10}),
+  hidden:Object.freeze({key:"hidden",label:"Oculta",detectionDf:12,rank:2,materialRate:0.10,timeRate:0.25,flatMinutes:0}),
+  expert:Object.freeze({key:"expert",label:"Experta",detectionDf:14,rank:3,materialRate:0.25,timeRate:0.50,flatMinutes:0}),
+  master:Object.freeze({key:"master",label:"Maestra",detectionDf:16,rank:4,materialRate:0.50,timeRate:1.00,flatMinutes:0}),
+  exceptional:Object.freeze({key:"exceptional",label:"Excepcional",detectionDf:18,rank:5,materialRate:1.00,timeRate:1.50,flatMinutes:0})
+});
 
 export const RUNE_CHANNEL_TYPES=Object.freeze(["inscription","socket"]);
 export const SEAL_TRIGGER_TYPES=Object.freeze(["contact","opening","threshold"]);
@@ -100,6 +108,32 @@ export function trapRearmQuote(baseTimeMinutes=0){
   return {timeMinutes:Math.max(10,minutes(baseTimeMinutes)*0.25)};
 }
 
+export function trapConcealmentProfile(grade="visible"){
+  return TRAP_CONCEALMENT[String(grade)]??null;
+}
+
+export function trapConcealmentQuote({
+  frameReferenceValueCopper=0,
+  frameBaseTimeMinutes=0,
+  grade="visible"
+}={}){
+  const profile=trapConcealmentProfile(grade);
+  if(!profile) return {valid:false,error:"Grado de Ocultación desconocido."};
+  const baseTime=minutes(frameBaseTimeMinutes);
+  if(profile.timeRate>0 && baseTime<=0) {
+    return {valid:false,error:"La Ocultación porcentual necesita un tiempo base de Armazón definido."};
+  }
+  return {
+    valid:true,
+    grade:profile.key,
+    detectionDf:profile.detectionDf,
+    requiredRank:profile.rank,
+    materialCopper:copperCeil(nonNegative(frameReferenceValueCopper)*profile.materialRate),
+    additionalTimeMinutes:profile.flatMinutes+(baseTime*profile.timeRate)
+  };
+}
+
+
 export function validateTrapConfiguration(trap={}){
   const issues=[];
   if(trap?.enabled!==true) return {valid:true,issues:[]};
@@ -117,6 +151,16 @@ export function validateTrapConfiguration(trap={}){
   }
   if(trap.automatic===true && !text(trap.physicalTriggerKey)) {
     issues.push({code:"trap-physical-trigger",message:"Una trampa automática debe declarar la condición física observable que la activa."});
+  }
+  const concealment=trap.concealment??{grade:"visible",detectionDf:0};
+  const concealProfile=trapConcealmentProfile(concealment.grade??"visible");
+  if(!concealProfile) {
+    issues.push({code:"trap-concealment",message:"Grado de Ocultación desconocido."});
+  } else if(Math.floor(number(concealment.detectionDf))!==concealProfile.detectionDf) {
+    issues.push({code:"trap-detection-df",message:"La DF de Detección pertenece a la Ocultación y no puede editarse como potencia.",expected:concealProfile.detectionDf});
+  }
+  if(concealProfile?.key!=="visible" && concealment.environmentAllows===false) {
+    issues.push({code:"trap-concealment-environment",message:"El entorno declarado no permite ese grado de Ocultación."});
   }
   const load=trap.load??{};
   if(!TRAP_LOAD_KINDS.includes(String(load.kind??""))) {
