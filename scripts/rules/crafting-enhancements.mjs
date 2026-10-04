@@ -379,8 +379,11 @@ export function deriveManufacturedSystem(itemSource,{
     specialMaterialSupplementsCopper:supplements
   });
 
+  const magicalAddedValue =
+    copperCeil(system.runic?.addedValueCopper) +
+    copperCeil(system.enchantment?.addedValueCopper);
   system.quality=quality;
-  system.priceCopper=copperCeil(totalValue);
+  system.priceCopper=copperCeil(totalValue+magicalAddedValue);
   system.priceStatus="exact";
   system.manufacture={
     referenceValueCopper:copperCeil(referenceValueCopper),
