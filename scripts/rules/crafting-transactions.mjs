@@ -36,6 +36,7 @@ import {
   runicMatrixQuote,
   runeInscriptionQuote,
   sealRearmQuote,
+  trapConcealmentQuote,
   trapFrameProfile,
   trapRearmQuote,
   utilityEnchantmentQuote,
@@ -1030,6 +1031,7 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
       }
     }
 
+    let trapConcealmentMaterialCopper=0;
     if(source.system.trap?.enabled===true) {
       const trapValidation=validateTrapConfiguration(source.system.trap);
       if(!trapValidation.valid) return {ok:false,error:"La configuración de trampa no es válida.",issues:trapValidation.issues};
@@ -1038,10 +1040,46 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
       if(model.economy.referenceValueCopper<frame.referenceValueCopper) {
         return {ok:false,error:"El VR del Proyecto está por debajo del Armazón declarado.",expectedCopper:frame.referenceValueCopper};
       }
-      if(frame.baseTimeMinutes>0 && model.time.baseMinutes+Number.EPSILON<frame.baseTimeMinutes) {
-        return {ok:false,error:"El tiempo del Proyecto está por debajo del Armazón declarado.",expectedMinutes:frame.baseTimeMinutes};
+
+      const frameBaseTime=frame.baseTimeMinutes>0
+        ? frame.baseTimeMinutes
+        : Math.max(0,number(source.system.trap.baseTimeMinutes));
+      if(frameBaseTime<=0) {
+        return {ok:false,error:"Un Armazón Extraordinario debe declarar el tiempo base de sus etapas antes de calcular el Proyecto."};
       }
+      const concealmentQuote=trapConcealmentQuote({
+        frameReferenceValueCopper:model.economy.referenceValueCopper,
+        frameBaseTimeMinutes:frameBaseTime,
+        grade:String(source.system.trap.concealment?.grade??"visible")
+      });
+      if(!concealmentQuote.valid) return {ok:false,error:concealmentQuote.error};
+      trapConcealmentMaterialCopper=concealmentQuote.materialCopper;
+      const expectedTrapBaseTime=frameBaseTime+concealmentQuote.additionalTimeMinutes;
+      if(model.time.baseMinutes+Number.EPSILON<expectedTrapBaseTime) {
+        return {ok:false,error:"El tiempo del Proyecto está por debajo de Armazón + Ocultación.",expectedMinutes:expectedTrapBaseTime};
+      }
+
       const loadKind=String(source.system.trap.load?.kind??"");
+      const survivalException=String(model.professional.skill)==="survival" &&
+        frame.key==="simple" &&
+        ["alarm","maneuver"].includes(loadKind) &&
+        ["visible","disguised"].includes(concealmentQuote.grade);
+      if(!survivalException && String(model.professional.skill)!=="thievery") {
+        return {ok:false,error:"El Armazón usa Latrocinio como Habilidad principal salvo la excepción Simple de Supervivencia."};
+      }
+      const primarySkill=survivalException ? "survival" : "thievery";
+      const primaryRank=Math.max(frame.primaryRank, survivalException ? 1 : concealmentQuote.requiredRank);
+      if(model.professional.requiredRank<primaryRank || actorSkillRank(project.parent,primarySkill)<primaryRank) {
+        return {ok:false,error:"La Habilidad principal no alcanza el Armazón/Ocultación de la trampa.",skill:primarySkill,expectedRank:primaryRank};
+      }
+      if(installationIndexLocal(model.professional.requiredInstallation)<installationIndexLocal(frame.installation) ||
+         installationIndexLocal(model.professional.availableInstallation)<installationIndexLocal(frame.installation)) {
+        return {ok:false,error:"La instalación no alcanza el requisito del Armazón.",expectedInstallation:frame.installation};
+      }
+      if(survivalException && concealmentQuote.grade==="disguised" && source.system.trap.concealment?.environmentMethod!==true) {
+        return {ok:false,error:"Supervivencia sólo puede Disimular una trampa Simple cuando existe un método ambiental válido."};
+      }
+
       if(["mechanical-strike","alchemy"].includes(loadKind)) {
         if(!model.components.length) {
           return {ok:false,error:"Una carga mecánica o alquímica debe existir como componente físico separado del Armazón."};
@@ -1096,7 +1134,7 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
         referenceValueCopper:model.economy.referenceValueCopper,
         quality:model.economy.quality,
         specialMaterialSupplementsCopper:model.specialMaterials.map((row)=>row.supplementCopper)
-      }),
+      }) + trapConcealmentMaterialCopper,
       derived,
       requiredCompatibility:fabricationCompatibility
     };
