@@ -1378,11 +1378,21 @@ async function modificationOutcome(project,resolver) {
   const target=analysis.target;
   const previous={};
   const updates={};
-  const keys=["quality","priceCopper","priceStatus","properties","damage","penetration","strengthMin","reload","block","movementPenalty","manufacture"];
-  for(const key of keys) {
-    if(Object.prototype.hasOwnProperty.call(analysis.derived.system,key) || key==="manufacture") {
-      previous["system."+key]=clone(target.system?.[key]);
-      updates["system."+key]=clone(analysis.derived.system[key]);
+  if(analysis.magicUpdates) {
+    for(const [path,value] of Object.entries(analysis.magicUpdates)) {
+      const relative=String(path).replace(/^system\./,"").split(".");
+      let currentValue=target.system;
+      for(const part of relative) currentValue=currentValue?.[part];
+      previous[path]=clone(currentValue);
+      updates[path]=clone(value);
+    }
+  } else {
+    const keys=["quality","priceCopper","priceStatus","properties","damage","penetration","strengthMin","reload","block","movementPenalty","manufacture"];
+    for(const key of keys) {
+      if(Object.prototype.hasOwnProperty.call(analysis.derived.system,key) || key==="manufacture") {
+        previous["system."+key]=clone(target.system?.[key]);
+        updates["system."+key]=clone(analysis.derived.system[key]);
+      }
     }
   }
   try {
