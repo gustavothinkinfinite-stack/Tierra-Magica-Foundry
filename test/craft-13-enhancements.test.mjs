@@ -139,7 +139,7 @@ test("CRAFT-13D: material sin Perfil conocido no inventa propiedad mecánica",()
     specialMaterials:[{
       id:"creature",
       name:"Escama desconocida",
-      profileKey:"",
+      profileKey:"creature-scale-profile",
       grade:"rare",
       coverage:"component",
       supplementCopper:25
