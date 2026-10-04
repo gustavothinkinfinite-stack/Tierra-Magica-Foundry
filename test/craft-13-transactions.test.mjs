@@ -1987,3 +1987,107 @@ test("CRAFT-13E: una Piedra insertada debe extraerse antes de desmantelar el Hos
   assert.equal(rejected.ok,false);
   assert.match(rejected.error,/Piedras de Impronta deben extraerse/);
 });
+
+
+test("CRAFT-13E: Soporte Dedicado III no puede fabricarse con VR/tiempo triviales",async()=>{
+  const actor=new StubActor("cheap-dedicated-support");
+  const material=lot(actor,{id:"support-material",vi:1000});
+  const craft=project(actor,{
+    id:"cheap-support-project",
+    operation:"fabricate",
+    material,
+    materialCopper:50,
+    estimatedMaterialsCopper:50,
+    referenceValueCopper:100,
+    quality:"common",
+    resultData:{
+      name:"Talismán III barato",
+      type:"equipment",
+      system:{
+        category:"Soporte mágico",
+        magicSupport:{grade:3}
+      }
+    },
+    baseMinutes:120,
+    adjustedBaseMinutes:120,
+    requiredMinutes:120,
+    requiredRank:5,
+    professionalSkill:"crafting",
+    requiredInstallation:"exceptional",
+    availableInstallation:"exceptional"
+  });
+  const rejected=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/VR base canónico/);
+});
+
+test("CRAFT-13E: Soporte Dedicado I usa VR 2 o, CM 1 o y una Jornada",async()=>{
+  const actor=new StubActor("dedicated-support-one");
+  const material=lot(actor,{id:"support-one-material",vi:150,compatibility:["soporte-magico"]});
+  const craft=project(actor,{
+    id:"support-one-project",
+    operation:"fabricate",
+    material,
+    materialCopper:100,
+    estimatedMaterialsCopper:100,
+    allocationCompatibility:"soporte-magico",
+    referenceValueCopper:200,
+    quality:"common",
+    resultData:{
+      name:"Broche Dedicado I",
+      type:"equipment",
+      system:{
+        category:"Soporte mágico",
+        magicSupport:{grade:1}
+      }
+    },
+    baseMinutes:480,
+    adjustedBaseMinutes:480,
+    requiredMinutes:480,
+    requiredRank:3,
+    professionalSkill:"crafting",
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,480,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  const output=[...actor.items.values()].find((entry)=>entry.name==="Broche Dedicado I");
+  assert.ok(output);
+  assert.equal(output.system.magicSupport.grade,1);
+  assert.equal(output.system.priceCopper,200);
+  assert.equal(output.system.manufacture.capMUsed,0);
+  assert.equal(output.system.runic?.capacityPrepared??0,0);
+});
+
+test("CRAFT-13E: Piedra de Impronta no puede comprarse Calidad para obtener CapM/CRu",async()=>{
+  const actor=new StubActor("stone-quality-exploit");
+  const material=lot(actor,{id:"stone-quality-material",vi:500});
+  const craft=project(actor,{
+    id:"stone-quality-project",
+    operation:"fabricate",
+    material,
+    materialCopper:300,
+    estimatedMaterialsCopper:300,
+    referenceValueCopper:400,
+    quality:"superior",
+    resultData:{
+      name:"Piedra Lumen Superior",
+      type:"equipment",
+      system:{
+        category:"Piedra de Impronta",
+        imprintStone:{enabled:true,grade:1,imprintKey:"lumenI",socketedHostUuid:""}
+      }
+    },
+    baseMinutes:480,
+    adjustedBaseMinutes:720,
+    requiredMinutes:720,
+    requiredRank:3,
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const rejected=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/receta fija/);
+});
