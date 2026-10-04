@@ -1757,7 +1757,7 @@ test("CRAFT-13E: reparación física no cobra Encantamiento si su matriz no fue 
     adjustedBaseMinutes:30,
     requiredMinutes:30,
     requiredRank:2,
-    professionalSkill:"thievery",
+    professionalSkill:"crafting",
     requiredInstallation:"adequate",
     availableInstallation:"adequate",
     repair:{
@@ -2360,6 +2360,7 @@ test("CRAFT-13E: Encantamiento principal puede añadirse a un objeto que ya pose
 
 test("CRAFT-13E: Golpe mecánico de trampa debe copiar Daño/Pen de la carga física reservada",async()=>{
   const actor=new StubActor("trap-physical-load");
+  actor.system.skills.thievery={rank:2};
   const material=lot(actor,{id:"trap-frame-material",vi:50,compatibility:["forja"]});
   const spear=actor.add(new StubItem({
     id:"spear-load",
@@ -2424,7 +2425,7 @@ test("CRAFT-13E: Golpe mecánico de trampa debe copiar Daño/Pen de la carga fí
     adjustedBaseMinutes:120,
     requiredMinutes:120,
     requiredRank:2,
-    professionalSkill:"crafting",
+    professionalSkill:"thievery",
     requiredInstallation:"adequate",
     availableInstallation:"adequate"
   });
