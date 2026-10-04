@@ -1169,3 +1169,26 @@ test("CRAFT-13D: sustituir una Modificación libera su CapM antes de validar la 
   assert.equal(target.system.manufacture.effects.repairTimeMultiplier,1);
 });
 
+test("CRAFT-13D: Defectuosa no puede usarse como fabricación barata",async()=>{
+  const actor=new StubActor("defective-fabrication");
+  const material=lot(actor,{id:"defective-lot",vi:100});
+  const craft=project(actor,{
+    id:"defective-project",
+    operation:"fabricate",
+    material,
+    materialCopper:25,
+    estimatedMaterialsCopper:25,
+    referenceValueCopper:100,
+    quality:"defective",
+    resultData:{
+      name:"Objeto defectuoso forzado",
+      type:"equipment",
+      system:{category:"Herramienta",quantity:1,properties:""}
+    }
+  });
+  const rejected=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/Defectuosa/);
+  assert.equal(material.system.craftingLot.inputValueCopper,100);
+});
+
