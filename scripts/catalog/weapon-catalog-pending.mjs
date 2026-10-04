@@ -8,11 +8,6 @@ export const PENDING_WEAPON_BLOCKERS = Object.freeze({
     "Chakram",
     "Dardo de guerra"
   ]),
-  "flexible-control": Object.freeze([
-    "Cadena corta de combate",
-    "Látigo",
-    "Látigo reforzado"
-  ]),
   "multi-shot-or-spread": Object.freeze([
     "Ballesta repetidora",
     "Ballesta doble",
@@ -63,11 +58,6 @@ export const PENDING_WEAPON_DEPENDENCIES = Object.freeze({
     owner:"combat",
     dependency:"Cerrar un modo de ataque a distancia independiente de system.skill para que Armas Ligeras arrojadizas no activen Parada como si fueran cuerpo a cuerpo.",
     conflictsWithCraft13:true
-  },
-  "flexible-control":{
-    owner:"combat",
-    dependency:"Definir si las armas flexibles poseen Alcance, Enganche, Desarmar u otra propiedad expresa sin crear control gratuito.",
-    conflictsWithCraft13:false
   },
   "multi-shot-or-spread":{
     owner:"combat",
