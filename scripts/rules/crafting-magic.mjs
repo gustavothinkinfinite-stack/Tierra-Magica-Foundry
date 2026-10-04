@@ -172,8 +172,13 @@ export function validateTrapConfiguration(trap={}){
   if(load.kind==="alarm" && (Math.max(0,number(load.damage))>0 || Math.max(0,number(load.penetration))>0)) {
     issues.push({code:"trap-alarm-damage",message:"Una Alarma no posee Daño ni Penetración propios."});
   }
-  if(load.kind==="maneuver" && !TRAP_MANEUVER_EFFECTS.includes(String(load.maneuverEffect??""))) {
-    issues.push({code:"trap-maneuver-effect",message:"Una carga de Maniobra debe declarar Derribar o Agarrar."});
+  if(load.kind==="maneuver") {
+    if(!TRAP_MANEUVER_EFFECTS.includes(String(load.maneuverEffect??""))) {
+      issues.push({code:"trap-maneuver-effect",message:"Una carga de Maniobra debe declarar Derribar o Agarrar."});
+    }
+    if(Math.max(0,number(load.damage))>0 || Math.max(0,number(load.penetration))>0) {
+      issues.push({code:"trap-maneuver-damage",message:"Una Maniobra mecánica usa Derribar/Agarrar y no declara Daño o Penetración gratuitos."});
+    }
   }
   if(load.kind==="mechanical-strike" && frame) {
     const damage=Math.max(0,Math.floor(number(load.damage)));
@@ -187,6 +192,15 @@ export function validateTrapConfiguration(trap={}){
   if(load.kind==="alchemy") {
     if(!text(load.profileRef)) issues.push({code:"trap-alchemy-profile",message:"Una carga alquímica debe reutilizar un Perfil/Fórmula existente."});
     if(!text(load.componentUuid)) issues.push({code:"trap-alchemy-component",message:"La preparación alquímica consumida debe existir como componente físico."});
+    if(Math.max(0,number(load.damage))>0 || Math.max(0,number(load.penetration))>0) {
+      issues.push({code:"trap-alchemy-inline-power",message:"Daño/Pen de una carga alquímica pertenecen a su Fórmula, no al Armazón."});
+    }
+  }
+  if(load.kind==="environment") {
+    if(!text(load.geometryRef)) issues.push({code:"trap-environment-geometry",message:"Una carga ambiental debe señalar la geometría/efecto físico que realmente resuelve el peligro."});
+    if(Math.max(0,number(load.damage))>0 || Math.max(0,number(load.penetration))>0) {
+      issues.push({code:"trap-environment-inline-power",message:"Una caída o peligro ambiental usa su resolución física y no Daño/Pen impresos por el Armazón."});
+    }
   }
   if(load.kind==="environment" && !text(load.geometryRef)) {
     issues.push({code:"trap-environment-geometry",message:"Una carga ambiental debe declarar la geometría física que produce el efecto."});
