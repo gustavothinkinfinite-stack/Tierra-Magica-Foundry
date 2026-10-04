@@ -732,6 +732,23 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
     });
     issues=enhancementRequirementsMatch(model,req);
     magicUpdates={"system.trap.state":"armed"};
+
+    if(String(trap.load?.kind??"")==="alchemy") {
+      const replacementComponent=model.components.find((row)=>String(row.itemUuid??"").trim());
+      if(!replacementComponent) {
+        return {ok:false,error:"Rearmar una trampa alquímica exige una nueva dosis/Fórmula física como componente separado."};
+      }
+      const loadItem=await resolveOwnedItem(actor,replacementComponent.itemUuid,resolver);
+      if(!loadItem || String(loadItem.type)!=="formula") {
+        return {ok:false,error:"La carga de rearme alquímico debe ser un Item Fórmula/dosis física.",sourceUuid:replacementComponent.itemUuid};
+      }
+      const expectedProfile=String(trap.load?.profileRef??"").trim().toLowerCase();
+      const actualProfile=String(loadItem.system?.slug??loadItem.name??"").trim().toLowerCase();
+      if(expectedProfile && actualProfile && expectedProfile!==actualProfile) {
+        return {ok:false,error:"La nueva dosis no coincide con la Fórmula original de la trampa.",sourceUuid:replacementComponent.itemUuid};
+      }
+      magicUpdates["system.trap.load.componentUuid"]=String(loadItem.uuid);
+    }
   } else if(mode==="sealRearm") {
     const enchant=currentEnchantment(target);
     if(!enchant.seal || enchant.sealState!=="discharged") return {ok:false,error:"Sólo un Sello de Custodia descargado puede rearmarse."};
