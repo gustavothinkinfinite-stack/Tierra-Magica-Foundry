@@ -593,6 +593,9 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
   if (model.operation === "repair") {
     const target = await resolveOwnedItem(project.parent, model.target.itemUuid, resolver);
     if (!target || !PHYSICAL_TYPES.has(target.type)) return { ok:false, error:"El objeto a reparar ya no está disponible." };
+    if(model.specialMaterials.length) {
+      return {ok:false,error:"La reparación de Material Especial usa repair.specialReplacements; no instala Materiales nuevos mediante specialMaterials."};
+    }
     const manufacture=target.system?.manufacture ?? {};
     const storedVr=Math.max(0,Math.floor(number(manufacture.referenceValueCopper)));
     if(storedVr>0) {
@@ -603,22 +606,37 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
       if(model.economy.quality!==targetQuality) {
         return {ok:false,error:"Reparar debe preservar la Calidad real del objeto.",expectedQuality:targetQuality};
       }
-      const vrq=qualityValueCopper(storedVr,targetQuality);
-      const vrt=Math.max(vrq,Math.floor(number(manufacture.totalReferenceValueCopper,vrq)));
-      if(model.economy.affectedValueCopper<vrq || model.economy.affectedValueCopper>vrt) {
-        return {ok:false,error:"BRA debe partir del VRQ y no puede superar el VRT del objeto.",minimumCopper:vrq,maximumCopper:vrt};
+
+      const current={
+        referenceValueCopper:storedVr,
+        baseTimeMinutes:Math.max(0,number(manufacture.baseTimeMinutes,model.time.baseMinutes)),
+        baseRank:Math.max(0,Math.floor(number(manufacture.baseRank,model.professional.baseRank))),
+        baseInstallation:String(manufacture.baseInstallation ?? model.professional.baseInstallation ?? "improvised"),
+        baseStats:manufacture.baseStats && typeof manufacture.baseStats==="object" ? clone(manufacture.baseStats) : {},
+        modifications:Array.isArray(manufacture.modifications)?clone(manufacture.modifications):[],
+        specialMaterials:Array.isArray(manufacture.specialMaterials)?clone(manufacture.specialMaterials):[],
+        dominantMaterialId:String(manufacture.dominantMaterialId ?? ""),
+        quality:targetQuality
+      };
+      const condition=String(target.system?.condition ?? "operative");
+      const layerPlan=analyzeRepairMaterialLayers(model,current,condition);
+      if(!layerPlan.valid) {
+        return {ok:false,error:"La BRA o las capas especiales de reparación no coinciden con el objeto.",issues:layerPlan.issues};
       }
-      const installed=Array.isArray(manufacture.specialMaterials)?manufacture.specialMaterials:[];
+
       const grades=["ordinary","specialized","rare","exceptional"];
-      const materialGrade=installed.reduce((highest,row)=>
+      const affectedPreserved=layerPlan.installed.filter((row)=>
+        layerPlan.affected.has(String(row.id)) && !layerPlan.ordinary.has(String(row.id)));
+      const materialGrade=affectedPreserved.reduce((highest,row)=>
         grades.indexOf(String(row?.grade??"ordinary"))>grades.indexOf(highest)?String(row.grade):highest,"ordinary");
+
       const fullTba=adjustedBaseTimeMinutes(
-        Math.max(0,number(manufacture.baseTimeMinutes,model.time.baseMinutes)),
+        current.baseTimeMinutes,
         {quality:targetQuality,materialGrade}
       );
       const quote=repairQuote({
-        condition:String(target.system?.condition ?? "operative"),
-        affectedValueCopper:model.economy.affectedValueCopper,
+        condition,
+        affectedValueCopper:layerPlan.expectedBraCopper,
         affectedTimeMinutes:fullTba
       });
       if(!quote.repairableByUniversalRule) return {ok:false,error:"El estado objetivo no admite reparación universal."};
@@ -634,9 +652,21 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
       if(model.time.requiredMinutes+Number.EPSILON<required) {
         return {ok:false,error:"El tiempo de reparación está por debajo del mínimo canónico.",expectedMinutes:required};
       }
-      return {ok:true,materialCopper:quote.materialCopper,repairTimeMinutes:required,target};
+      return {
+        ok:true,
+        materialCopper:quote.materialCopper,
+        repairTimeMinutes:required,
+        target,
+        repairPlan:layerPlan,
+        currentManufacture:current
+      };
     }
 
+    if((model.repair?.affectedMaterialIds?.length ?? 0) ||
+       (model.repair?.ordinaryReplacementMaterialIds?.length ?? 0) ||
+       (model.repair?.specialReplacements?.length ?? 0)) {
+      return {ok:false,error:"Un objeto sin historial de manufactura no puede declarar capas especiales de reparación."};
+    }
     const quote = repairQuote({
       condition:String(target.system?.condition ?? "operative"),
       affectedValueCopper:model.economy.affectedValueCopper,
