@@ -200,12 +200,19 @@ Hooks.on("preUpdateItem", (item, changes, options = {}) => {
       Object.keys(changes).some((key) => key === path || key.startsWith(path + "."));
 
     if (!game.user?.isGM && (
-      touches("system.craftingLot.inputValueCopper") ||
-      touches("system.craftingLot.reservations") ||
+      touches("system.craftingLot") ||
       touches("system.craftingReservations")
     )) {
-      ui.notifications.warn("El VI y las reservas de crafting sólo cambian mediante operaciones autorizadas.");
+      ui.notifications.warn("Los Lotes, VI, compatibilidades y reservas de crafting sólo cambian mediante operaciones autorizadas.");
       return false;
+    }
+
+    if (!game.user?.isGM && touches("system.quantity")) {
+      const reservations = item.system?.craftingReservations;
+      if (reservations && typeof reservations === "object" && Object.keys(reservations).length) {
+        ui.notifications.warn("No puede alterarse la cantidad de un componente reservado por un Proyecto.");
+        return false;
+      }
     }
 
     if (item.type === "project" && !game.user?.isGM) {
