@@ -794,6 +794,10 @@ export async function reserveCraftingProjectMaterials(project, {
   const allocations = craftingProjectMaterialAllocations(project);
   const specialMaterialSources=await validateSpecialMaterialSources(project,model,allocations,resolver);
   if(!specialMaterialSources.ok) return specialMaterialSources;
+  if(model.operation==="repair" && expectedMaterials.repairPlan) {
+    const repairSources=await validateRepairReplacementSources(project,expectedMaterials.repairPlan,allocations,resolver);
+    if(!repairSources.ok) return repairSources;
+  }
   const requested = allocations.reduce((sum, entry) => sum + entry.amountCopper, 0);
   if (requested !== model.ledger.estimatedMaterialsCopper) {
     return { ok:false, error:"Las asignaciones de Lotes deben coincidir exactamente con el material estimado del Proyecto." };
