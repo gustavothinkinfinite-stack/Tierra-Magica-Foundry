@@ -28,6 +28,7 @@ import {
   enchantmentCostQuote,
   enchantmentProfile,
   imprintActivationProfile,
+  imprintStoneCraftProfile,
   maxRunicCapacityForQuality,
   runicMatrixQuote,
   runeInscriptionQuote,
@@ -841,6 +842,50 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
     }
     source.type=String(source.type ?? model.target.resultType);
     source.system ??= {};
+
+    const runic=source.system.runic ?? {};
+    const enchant=source.system.enchantment ?? {};
+    if(Math.max(0,Math.floor(number(runic.capacityPrepared)))>0 || (Array.isArray(runic.imprints) && runic.imprints.length)) {
+      return {ok:false,error:"Fabricar no puede recibir CRu o Improntas preinstaladas; deben pagarse mediante Proyectos rúnicos."};
+    }
+    if(Math.max(0,Math.floor(number(enchant.grade)))>0 || String(enchant.utilityKey??"").trim()) {
+      return {ok:false,error:"Fabricar no puede recibir Encantamientos preinstalados; deben pagarse mediante Proyecto de Encantamiento."};
+    }
+
+    if(source.system.imprintStone?.enabled===true) {
+      const stoneProfile=imprintStoneCraftProfile(source.system.imprintStone.grade);
+      if(model.economy.referenceValueCopper!==stoneProfile.referenceValueCopper) {
+        return {ok:false,error:"La Piedra de Impronta debe usar su VR canónico.",expectedCopper:stoneProfile.referenceValueCopper};
+      }
+      if(model.time.baseMinutes+Number.EPSILON<stoneProfile.timeMinutes) {
+        return {ok:false,error:"La Piedra de Impronta no puede fabricarse por debajo de su tiempo canónico.",expectedMinutes:stoneProfile.timeMinutes};
+      }
+      if(!imprintActivationProfile(source.system.imprintStone.imprintKey)) {
+        return {ok:false,error:"La Piedra debe contener una Impronta catalogada."};
+      }
+      const imprint=imprintActivationProfile(source.system.imprintStone.imprintKey);
+      if(imprint.grade!==stoneProfile.grade) {
+        return {ok:false,error:"El Grado de la Piedra no coincide con la Impronta contenida."};
+      }
+    }
+
+    if(source.system.trap?.enabled===true) {
+      const trapValidation=validateTrapConfiguration(source.system.trap);
+      if(!trapValidation.valid) return {ok:false,error:"La configuración de trampa no es válida.",issues:trapValidation.issues};
+      const frame=trapFrameProfile(source.system.trap.frame);
+      if(!frame) return {ok:false,error:"Armazón de trampa desconocido."};
+      if(model.economy.referenceValueCopper<frame.referenceValueCopper) {
+        return {ok:false,error:"El VR del Proyecto está por debajo del Armazón declarado.",expectedCopper:frame.referenceValueCopper};
+      }
+      if(frame.baseTimeMinutes>0 && model.time.baseMinutes+Number.EPSILON<frame.baseTimeMinutes) {
+        return {ok:false,error:"El tiempo del Proyecto está por debajo del Armazón declarado.",expectedMinutes:frame.baseTimeMinutes};
+      }
+      const loadKind=String(source.system.trap.load?.kind??"");
+      if(["mechanical-strike","alchemy"].includes(loadKind) && !model.components.length) {
+        return {ok:false,error:"Una carga mecánica o alquímica debe existir como componente físico separado del Armazón."};
+      }
+    }
+
     const derived=deriveManufacturedSystem(source,{
       referenceValueCopper:model.economy.referenceValueCopper,
       baseTimeMinutes:model.time.baseMinutes,
