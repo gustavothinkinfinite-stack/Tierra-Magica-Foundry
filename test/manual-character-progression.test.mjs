@@ -13,7 +13,7 @@ function section(manual,startHeading,endHeading){
   return manual.slice(start,end);
 }
 
-test("el Manual conserva una creación de nivel 1 secuenciada durante el cierre CREA-14",async()=>{
+test("el Manual conserva una creación de nivel 1 completa y secuenciada",async()=>{
   const manual=await readFile(manualUrl,"utf8");
   const creation=section(manual,"## 3. Creación de personaje paso a paso","## 4. Desarrollo y subida de nivel");
 
@@ -31,7 +31,7 @@ test("el Manual conserva una creación de nivel 1 secuenciada durante el cierre 
     "### Paso 6 — Equipo inicial, PEI y Reserva",
     "### Paso 7 — Valores derivados",
     "### Paso 9 — Lista de comprobación final",
-    "### Ejemplo guiado de creación de nivel 1 — cierre CREA-14 en curso"
+    "### Ejemplo completo de creación de nivel 1"
   ]) assert.equal(creation.includes(text),true,text);
 
   assert.match(creation,/Grimorio canónico contiene \*\*60 hechizos\*\*/);
@@ -42,7 +42,7 @@ test("el Manual conserva una creación de nivel 1 secuenciada durante el cierre 
 
 test("el ejemplo de creación gasta exactamente 25 PD y 3 PR",async()=>{
   const manual=await readFile(manualUrl,"utf8");
-  const creation=section(manual,"### Ejemplo guiado de creación de nivel 1 — cierre CREA-14 en curso","## 4. Desarrollo y subida de nivel");
+  const creation=section(manual,"### Ejemplo completo de creación de nivel 1","## 4. Desarrollo y subida de nivel");
 
   assert.match(creation,/\*\*14 PD\*\*/);
   assert.match(creation,/PD acumulados hasta aquí: \*\*18\*\*/);
