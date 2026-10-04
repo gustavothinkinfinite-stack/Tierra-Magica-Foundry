@@ -58,7 +58,8 @@ const freshTurn = {
   "system.combat.parryBonus": 2,
   "system.combat.parrySourceItemId": "",
   "system.combat.kineticBarrierActive": false,
-  "system.combat.kineticDefenseSource": ""
+  "system.combat.kineticDefenseSource": "",
+  "system.magic.preparedTrap": { trapUuid:"", triggerKey:"" }
 };
 
 test("restores quantified turn economy and expires turn-scoped defenses once per new round", async () => {
