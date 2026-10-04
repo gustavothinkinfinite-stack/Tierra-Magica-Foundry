@@ -399,7 +399,7 @@
       <section class="tm-panel tm-v03-page-panel">
         <div class="tm-section-heading"><h2>Configuración defensiva</h2><span>Ajustes y entrenamiento marcial.</span></div>
         <div class="tm-form-grid">
-          <label><span>Rango marcial relevante</span><select name="system.combat.defensiveRank">{{selectOptions config.rankLabels selected=system.combat.defensiveRank}}</select></label>
+          <label><span>Rango marcial defensivo</span><select disabled>{{selectOptions config.rankLabels selected=system.combat.defensiveRank}}</select></label>
           <label><span>Movimiento base</span><input type="number" name="system.movement.base" value="{{system.movement.base}}" min="1" /></label>
           <label><span>Ajuste Defensa</span><input type="number" name="system.modifiers.manual.defensiveBonus.value" value="{{system.modifiers.manual.defensiveBonus.value}}" /></label>
           <label><span>Ajuste Protección</span><input type="number" name="system.modifiers.manual.protection.value" value="{{system.modifiers.manual.protection.value}}" /></label>
