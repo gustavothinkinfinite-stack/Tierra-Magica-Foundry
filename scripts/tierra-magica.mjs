@@ -178,6 +178,15 @@ Hooks.on("preDeleteItem", (item, options = {}) => {
   }
   const reservations = item.system?.craftingLot?.reservations;
   const componentReservations = item.system?.craftingReservations;
+  const activeTargetProject = actor.items?.find?.((entry) =>
+    entry.type === "project" &&
+    entry.system?.state === "active" &&
+    String(entry.system?.target?.itemUuid ?? "") === String(item.uuid ?? "")
+  );
+  if (activeTargetProject) {
+    ui.notifications.warn("No puede eliminarse un objeto mientras es objetivo de un Proyecto activo.");
+    return false;
+  }
   if (
     (reservations && typeof reservations === "object" && Object.keys(reservations).length) ||
     (componentReservations && typeof componentReservations === "object" && Object.keys(componentReservations).length)
@@ -205,6 +214,25 @@ Hooks.on("preUpdateItem", (item, changes, options = {}) => {
     )) {
       ui.notifications.warn("Los Lotes, VI, compatibilidades y reservas de crafting sólo cambian mediante operaciones autorizadas.");
       return false;
+    }
+
+    if (!game.user?.isGM && Number(item.system?.manufacture?.referenceValueCopper ?? 0) > 0) {
+      const manufacturedPaths = [
+        "system.manufacture",
+        "system.quality",
+        "system.priceCopper",
+        "system.priceStatus",
+        "system.damage",
+        "system.penetration",
+        "system.strengthMin",
+        "system.reload",
+        "system.block",
+        "system.movementPenalty"
+      ];
+      if (manufacturedPaths.some(touches)) {
+        ui.notifications.warn("Calidad, Materiales y estadísticas manufacturadas sólo cambian mediante un Proyecto autorizado.");
+        return false;
+      }
     }
 
     if (!game.user?.isGM && touches("system.quantity")) {
