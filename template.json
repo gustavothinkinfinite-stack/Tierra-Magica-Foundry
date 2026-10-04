@@ -420,6 +420,7 @@
         "craftingLot": {
           "enabled": false,
           "category": "",
+          "resourceGrade": "ordinary",
           "compatibility": [],
           "materialProfileKey": "",
           "preparation": "prepared",
