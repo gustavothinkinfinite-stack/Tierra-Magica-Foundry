@@ -184,7 +184,8 @@ test("CRAFT-13C: Suplemento Material se recalcula y no admite subcotización",()
 test("CRAFT-13C: creación de Proyecto empieza siempre en Borrador y reservas no se editan directamente",async()=>{
   const source=await readFile(new URL("../scripts/tierra-magica.mjs",import.meta.url),"utf8");
   assert.match(source,/item\.type === "project"[\s\S]*"system\.state":"draft"/);
-  assert.match(source,/system\.craftingLot\.reservations/);
+  assert.match(source,/touches\("system\.craftingLot"\)/);
+  assert.match(source,/craftingReservations/);
   assert.match(source,/Cancela o libera el Proyecto antes de eliminarlo/);
   assert.match(source,/Un Proyecto aprobado ya no puede reescribirse/);
 });
