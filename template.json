@@ -237,7 +237,10 @@
           "healthCap": 999
         },
         "magic": {
-          "sustainedSpellIds": []
+          "sustainedSpellIds": [],
+          "attunementCapacity": 0,
+          "linkedImprintClaims": {},
+          "automaticEventClaims": {}
         },
         "alchemy": {
           "saturatedFamilies": []
@@ -300,6 +303,9 @@
         "equipmentBudgetCopper": 2000,
         "initialReserveGranted": false,
         "legacyWarnings": []
+      },
+      "magic": {
+        "attunementCapacity": 3
       }
     },
     "npc": {
@@ -432,6 +438,61 @@
           "capMUsed": 0,
           "totalReferenceValueCopper": 0,
           "effects": {}
+        },
+        "trap": {
+          "enabled": false,
+          "frame": "",
+          "precision": 0,
+          "mechanismDf": 0,
+          "triggerType": "",
+          "physicalTriggerKey": "",
+          "automatic": false,
+          "state": "unarmed",
+          "baseTimeMinutes": 0,
+          "load": {
+            "kind": "",
+            "profileRef": "",
+            "damage": 0,
+            "penetration": 0,
+            "area": "",
+            "geometryRef": ""
+          }
+        },
+        "runic": {
+          "capacityPrepared": 0,
+          "matrixMaterialCopper": 0,
+          "addedValueCopper": 0,
+          "channels": [],
+          "imprints": []
+        },
+        "imprintStone": {
+          "enabled": false,
+          "grade": 0,
+          "imprintKey": "",
+          "socketedHostUuid": ""
+        },
+        "magicSupport": {
+          "grade": 0
+        },
+        "enchantment": {
+          "grade": 0,
+          "patternKey": "",
+          "functionalKey": "",
+          "passiveKey": "",
+          "utilityKey": "",
+          "supportAppropriate": false,
+          "hasRareComponent": false,
+          "materialCostCopper": 0,
+          "timeMinutes": 0,
+          "addedValueCopper": 0,
+          "reserve": {
+            "value": 0,
+            "max": 0
+          },
+          "attunedActorUuid": "",
+          "seal": false,
+          "sealState": "charged",
+          "boundSpell": null
         }
       }
     },
@@ -658,7 +719,21 @@
         "mode": "modification",
         "replaceMaterialId": "",
         "replaceModificationKey": "",
-        "fineMachiningMaterialId": ""
+        "fineMachiningMaterialId": "",
+        "runicCapacityTarget": 0,
+        "runicChannelTypes": [],
+        "imprintKey": "",
+        "imprintMode": "inscribed",
+        "imprintChannelIds": [],
+        "enchantmentGrade": 0,
+        "enchantmentPatternKey": "",
+        "enchantmentFunctionalKey": "",
+        "enchantmentPassiveKey": "",
+        "enchantmentUtilityKey": "",
+        "enchantmentSupportAppropriate": false,
+        "enchantmentHasRareComponent": false,
+        "enchantmentSeal": false,
+        "boundSpell": null
       },
       "repair": {
         "affectedMaterialIds": [],
