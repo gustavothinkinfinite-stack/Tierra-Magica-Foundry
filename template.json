@@ -455,6 +455,15 @@
           "automatic": false,
           "state": "unarmed",
           "baseTimeMinutes": 0,
+          "concealment": {
+            "grade": "visible",
+            "detectionDf": 0,
+            "environmentAllows": true,
+            "environmentMethod": false
+          },
+          "deactivationMethod": "",
+          "bypassKey": "",
+          "bypassDescription": "",
           "load": {
             "kind": "",
             "profileRef": "",
