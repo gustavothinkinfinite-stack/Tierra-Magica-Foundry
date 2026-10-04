@@ -746,7 +746,9 @@
       "repair": {
         "affectedMaterialIds": [],
         "ordinaryReplacementMaterialIds": [],
-        "specialReplacements": []
+        "specialReplacements": [],
+        "runicMatrixAffected": false,
+        "enchantmentMatrixAffected": false
       },
       "components": [],
       "time": {
