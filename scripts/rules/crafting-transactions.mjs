@@ -187,6 +187,220 @@ function reservationRecord(project, amountCopper) {
   };
 }
 
+function itemSource(item) {
+  return typeof item?.toObject === "function"
+    ? item.toObject()
+    : { name:item?.name ?? "", type:item?.type ?? "", system:clone(item?.system ?? {}) };
+}
+
+function baseItemSource(target, manufacture) {
+  const source=itemSource(target);
+  source.system ??= {};
+  for (const [key,value] of Object.entries(manufacture.baseStats ?? {})) source.system[key]=clone(value);
+  return source;
+}
+
+function currentManufacture(target, model) {
+  const stored=target?.system?.manufacture ?? {};
+  const quality=String(target?.system?.quality ?? "common");
+  const referenceValueCopper=Math.max(0,Math.floor(number(stored.referenceValueCopper,
+    quality==="common" ? number(target?.system?.priceCopper) : number(model?.economy?.referenceValueCopper))));
+  return {
+    referenceValueCopper,
+    baseTimeMinutes:Math.max(0,number(stored.baseTimeMinutes,model?.time?.baseMinutes)),
+    baseRank:Math.max(0,Math.floor(number(stored.baseRank,model?.professional?.baseRank))),
+    baseInstallation:String(stored.baseInstallation ?? model?.professional?.baseInstallation ?? "improvised"),
+    baseStats:stored.baseStats && typeof stored.baseStats==="object" ? clone(stored.baseStats) : {},
+    modifications:Array.isArray(stored.modifications) ? clone(stored.modifications) : [],
+    specialMaterials:Array.isArray(stored.specialMaterials) ? clone(stored.specialMaterials) : [],
+    dominantMaterialId:String(stored.dominantMaterialId ?? ""),
+    quality
+  };
+}
+
+function expectedStageRequiredMinutes(stageBaseMinutes, model) {
+  const base=Math.max(0,number(stageBaseMinutes));
+  if(model.execution.accelerated && ["failure","pifia"].includes(model.execution.accelerationOutcome)) {
+    return failedAccelerationTotalMinutes(base);
+  }
+  return applyUniversalTimeReductions(base,{
+    workAssistants:model.assistants.work,
+    accelerated:model.execution.accelerated && model.execution.accelerationOutcome==="success",
+    reductionFactors:model.execution.reductionFactors
+  });
+}
+
+function enhancementRequirementsMatch(model, requirements) {
+  const issues=[];
+  if(model.professional.requiredRank < requirements.rank) {
+    issues.push({code:"rank-understated",message:"El rango declarado no alcanza el requisito real de la mejora.",expectedRank:requirements.rank});
+  }
+  const installations=["improvised","adequate","professional","specialized","exceptional"];
+  if(installations.indexOf(model.professional.requiredInstallation) < installations.indexOf(requirements.installation)) {
+    issues.push({code:"installation-understated",message:"La instalación declarada no alcanza el requisito real de la mejora.",expectedInstallation:requirements.installation});
+  }
+  return issues;
+}
+
+async function analyzeModifyProject(project, model, resolver) {
+  const target=await resolveOwnedItem(project.parent,model.target.itemUuid,resolver);
+  if(!target || !PHYSICAL_TYPES.has(target.type)) return {ok:false,error:"El objeto a modificar ya no está disponible."};
+  const current=currentManufacture(target,model);
+  if(current.referenceValueCopper<=0) return {ok:false,error:"Modificar requiere un VR Común identificable."};
+  if(model.economy.referenceValueCopper!==current.referenceValueCopper) {
+    return {ok:false,error:"El VR Común del Proyecto no coincide con el objeto objetivo.",expectedCopper:current.referenceValueCopper};
+  }
+  if(current.baseTimeMinutes<=0) return {ok:false,error:"Modificar requiere el tiempo base de la receta original."};
+  if(Math.abs(model.time.baseMinutes-current.baseTimeMinutes)>Number.EPSILON) {
+    return {ok:false,error:"El tiempo base del Proyecto no coincide con la receta persistida.",expectedMinutes:current.baseTimeMinutes};
+  }
+
+  const baseSource=baseItemSource(target,current);
+  const mode=String(model.enhancement.mode);
+  let nextQuality=current.quality;
+  let nextModifications=clone(current.modifications);
+  let nextMaterials=clone(current.specialMaterials);
+  let materialCopper=0;
+  let stageBaseMinutes=0;
+  let fineMachining=false;
+
+  if(mode==="quality") {
+    if(model.specialMaterials.length) return {ok:false,error:"Un ascenso de Calidad no incorpora simultáneamente un Material Especial nuevo."};
+    const quote=qualityUpgradeQuote({
+      fromQuality:current.quality,
+      toQuality:model.economy.quality,
+      referenceValueCopper:current.referenceValueCopper,
+      baseTimeMinutes:current.baseTimeMinutes
+    });
+    if(!quote.valid) return {ok:false,error:quote.error};
+    const existingKeys=new Set(current.modifications.map((row)=>String(row.key)));
+    if(model.modifications.some((row)=>existingKeys.has(String(row.key)))) {
+      return {ok:false,error:"El ascenso no puede reinstalar una Modificación que el objeto ya posee."};
+    }
+    const addedPoints=modificationPoints(model.modifications);
+    if(addedPoints>quote.capMGained) {
+      return {ok:false,error:"El ascenso sólo incluye la CapM generada por la nueva Calidad.",capMGained:quote.capMGained};
+    }
+    nextQuality=model.economy.quality;
+    nextModifications=[...nextModifications,...clone(model.modifications)];
+    materialCopper=quote.materialCopper;
+    stageBaseMinutes=quote.timeMinutes;
+  } else if(mode==="modification") {
+    if(model.economy.quality!==current.quality) return {ok:false,error:"Instalar una Modificación posterior no cambia la Calidad."};
+    if(model.specialMaterials.length) return {ok:false,error:"Una instalación de Modificación no incorpora simultáneamente Material Especial."};
+    if(!model.modifications.length) return {ok:false,error:"No se declaró ninguna Modificación para instalar."};
+    const existingKeys=new Set(current.modifications.map((row)=>String(row.key)));
+    if(model.modifications.some((row)=>existingKeys.has(String(row.key)))) {
+      return {ok:false,error:"La misma Modificación no puede instalarse dos veces."};
+    }
+
+    if(model.enhancement.fineMachiningMaterialId) {
+      const sourceMaterial=current.specialMaterials.find((row)=>String(row.id)===model.enhancement.fineMachiningMaterialId);
+      const profile=materialProfile(sourceMaterial?.profileKey);
+      const coverage=String(sourceMaterial?.coverage ?? "");
+      if(profile?.key!=="kharumPrecisionAlloy" || !["major","dominant"].includes(coverage)) {
+        return {ok:false,error:"Mecanizado fino requiere la Aleación de precisión de Kharum instalada en una parte Mayor o Dominante."};
+      }
+      if(model.modifications.some((row)=>String(row.part)!=="metal")) {
+        return {ok:false,error:"Mecanizado fino sólo reduce una Modificación declarada sobre la parte metálica que usa la aleación."};
+      }
+      fineMachining=true;
+    }
+
+    nextModifications=[...nextModifications,...clone(model.modifications)];
+    const points=modificationPoints(model.modifications);
+    const quote=modificationInstallationQuote({
+      points,
+      referenceValueCopper:current.referenceValueCopper,
+      baseTimeMinutes:current.baseTimeMinutes,
+      fineMachining
+    });
+    materialCopper=quote.materialCopper;
+    stageBaseMinutes=quote.timeMinutes;
+  } else if(mode==="material") {
+    if(model.economy.quality!==current.quality) return {ok:false,error:"Incorporar Material Especial no cambia simultáneamente la Calidad."};
+    if(model.modifications.length) return {ok:false,error:"Una sustitución material no instala simultáneamente Modificaciones de CapM."};
+    if(model.specialMaterials.length!==1) return {ok:false,error:"Cada Proyecto de incorporación material instala una parte especial identificable."};
+    const incoming=clone(model.specialMaterials[0]);
+    const quote=materialInstallationQuote({
+      referenceValueCopper:current.referenceValueCopper,
+      grade:incoming.grade,
+      coverage:incoming.coverage,
+      baseTimeMinutes:current.baseTimeMinutes
+    });
+    if(!quote.valid) return {ok:false,error:quote.error};
+    if(model.enhancement.replaceMaterialId) {
+      const replaced=nextMaterials.find((row)=>String(row.id)===model.enhancement.replaceMaterialId);
+      if(!replaced) return {ok:false,error:"El Material que se pretende sustituir ya no existe en el objeto."};
+      if(String(replaced.coverage)==="dominant") return {ok:false,error:"Cambiar el Material Dominante exige reconstrucción o receta específica."};
+      if(String(replaced.coverage)!==String(incoming.coverage)) {
+        return {ok:false,error:"La sustitución material debe conservar la cobertura física de la parte reemplazada."};
+      }
+      nextMaterials=nextMaterials.filter((row)=>String(row.id)!==model.enhancement.replaceMaterialId);
+    }
+    nextMaterials.push(incoming);
+    materialCopper=quote.materialCopper;
+    stageBaseMinutes=quote.timeMinutes;
+  } else {
+    return {ok:false,error:"Modo de mejora desconocido."};
+  }
+
+  const materialValidation=validateSpecialMaterials(nextMaterials);
+  if(!materialValidation.valid) return {ok:false,error:"La combinación de Materiales Especiales no es válida.",issues:materialValidation.issues};
+  const selection=validateModificationSelection(baseSource,{
+    quality:nextQuality,
+    modifications:nextModifications,
+    specialMaterials:nextMaterials
+  });
+  if(!selection.valid) return {ok:false,error:"La combinación final de Calidad, Material y Modificaciones no es válida.",issues:selection.issues};
+
+  const req=requirementsForManufacture({
+    baseRank:current.baseRank,
+    baseInstallation:current.baseInstallation,
+    quality:nextQuality,
+    specialMaterials:nextMaterials
+  });
+  const requirementIssues=enhancementRequirementsMatch(model,req);
+  if(requirementIssues.length) return {ok:false,error:"Los requisitos de la mejora están subdeclarados.",issues:requirementIssues};
+
+  const requiredMinutes=expectedStageRequiredMinutes(stageBaseMinutes,model);
+  if(Math.abs(model.time.adjustedBaseMinutes-stageBaseMinutes)>Number.EPSILON) {
+    return {ok:false,error:"El TBA de la mejora no coincide con su fórmula canónica.",expectedMinutes:stageBaseMinutes};
+  }
+  if(model.time.requiredMinutes+Number.EPSILON<requiredMinutes) {
+    return {ok:false,error:"El tiempo requerido de la mejora está por debajo del mínimo canónico.",expectedMinutes:requiredMinutes};
+  }
+
+  const derived=deriveManufacturedSystem(baseSource,{
+    referenceValueCopper:current.referenceValueCopper,
+    baseTimeMinutes:current.baseTimeMinutes,
+    baseRank:current.baseRank,
+    baseInstallation:current.baseInstallation,
+    quality:nextQuality,
+    modifications:nextModifications,
+    specialMaterials:nextMaterials,
+    existingManufacture:{
+      ...current,
+      baseStats:Object.keys(current.baseStats).length ? current.baseStats : undefined
+    }
+  });
+  if(!derived.valid) return {ok:false,error:"No puede derivarse el estado final de manufactura.",issues:derived.issues};
+
+  return {
+    ok:true,
+    target,
+    current,
+    materialCopper,
+    stageBaseMinutes,
+    requiredMinutes,
+    fineMachining,
+    nextQuality,
+    nextModifications,
+    nextMaterials,
+    derived
+  };
+}
+
 async function expectedProjectMaterialCopper(project, model, resolver) {
   if (model.operation === "fabricate") {
     return {
@@ -202,19 +416,22 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
   if (model.operation === "repair") {
     const target = await resolveOwnedItem(project.parent, model.target.itemUuid, resolver);
     if (!target || !PHYSICAL_TYPES.has(target.type)) return { ok:false, error:"El objeto a reparar ya no está disponible." };
+    const manufacture=target.system?.manufacture ?? {};
+    const maintainable=number(manufacture?.effects?.repairTimeMultiplier,1);
+    const affectedTime=Math.max(0,number(model.time.adjustedBaseMinutes))*Math.max(0.25,maintainable);
     const quote = repairQuote({
       condition:String(target.system?.condition ?? "operative"),
       affectedValueCopper:model.economy.affectedValueCopper,
-      affectedTimeMinutes:model.time.adjustedBaseMinutes
+      affectedTimeMinutes:affectedTime
     });
     if (!quote.repairableByUniversalRule) return { ok:false, error:"El estado objetivo no admite reparación universal." };
-    return { ok:true, materialCopper:quote.materialCopper };
+    return { ok:true, materialCopper:quote.materialCopper, repairTimeMinutes:quote.timeMinutes };
   }
 
   if (model.operation === "dismantle") return { ok:true, materialCopper:0 };
+  if (model.operation === "modify") return analyzeModifyProject(project,model,resolver);
   return { ok:true, materialCopper:model.ledger.estimatedMaterialsCopper };
 }
-
 export async function reserveCraftingProjectMaterials(project, {
   expectedRevision = null,
   resolver = globalThis.fromUuid
