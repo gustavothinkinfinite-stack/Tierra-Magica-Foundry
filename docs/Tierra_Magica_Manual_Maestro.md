@@ -159,7 +159,7 @@ No se convierten unas en otras. El **paquete racial jugable** se equilibra apart
 
 Procedimiento:
 
-1. definir concepto, elegir pueblo/herencia y aplicar su paquete racial jugable; después definir cultura y origen narrativo;
+1. definir concepto y registrar exactamente una Ascendencia, un Origen y un Trasfondo; aplicar el paquete racial, elegir sus Facetas y anotar los idiomas iniciales;
 2. repartir los siete Atributos;
 3. planificar los 25 PD y comprobar requisitos antes de comprar;
 4. comprar Habilidades;
