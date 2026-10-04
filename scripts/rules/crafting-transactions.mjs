@@ -628,6 +628,35 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
       "system.priceCopper":Math.max(0,Math.floor(number(target.system?.priceCopper)))+2*materialCopper,
       "system.priceStatus":"exact"
     };
+  } else if(mode==="runeErase") {
+    if(model.specialMaterials.length||model.modifications.length) return {ok:false,error:"Borrar una Runa no instala simultáneamente otras mejoras."};
+    const runic=currentRunic(target);
+    const imprintId=String(model.enhancement.imprintId??"").trim();
+    const found=runic.imprints.find((row)=>String(row.id)===imprintId);
+    if(!found) return {ok:false,error:"La Runa que se intenta borrar no existe en el soporte."};
+    if(found.mode!=="inscribed") return {ok:false,error:"Una Piedra de Impronta se extrae intacta; no se borra como Runa."};
+    const profile=imprintActivationProfile(found.key);
+    if(!profile) return {ok:false,error:"La Runa instalada no posee un Perfil conocido y no puede borrarse automáticamente."};
+    const inscription=runeInscriptionQuote({
+      referenceValueCopper:current.referenceValueCopper,
+      baseTimeMinutes:current.baseTimeMinutes,
+      grade:profile.grade
+    });
+    materialCopper=0;
+    stageBaseMinutes=Math.max(60,inscription.timeMinutes*0.25);
+    const removedAddedValue=2*inscription.materialCopper;
+    const nextRunic={
+      ...runic,
+      addedValueCopper:Math.max(0,runic.addedValueCopper-removedAddedValue),
+      imprints:runic.imprints.filter((row)=>String(row.id)!==imprintId)
+    };
+    const validation=validateRunicConfiguration({...baseSource,system:{...baseSource.system,quality:current.quality,runic:nextRunic}},nextRunic);
+    if(!validation.valid) issues.push(...validation.issues);
+    magicUpdates={
+      "system.runic":nextRunic,
+      "system.priceCopper":Math.max(0,Math.floor(number(target.system?.priceCopper))-removedAddedValue),
+      "system.priceStatus":"exact"
+    };
   } else if(mode==="enchantment") {
     if(model.specialMaterials.length||model.modifications.length) return {ok:false,error:"Encantar no instala simultáneamente Modificaciones o Materiales Especiales por esta operación."};
     const existing=currentEnchantment(target);
@@ -636,7 +665,7 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
     if(grade===0 && !utilityKey) return {ok:false,error:"Debe declararse un Grado de Encantamiento o un Encantamiento Utilitario."};
     let next={...existing};
     if(grade===0) {
-      if(existing.utilityKey || existing.grade>0) return {ok:false,error:"El objeto ya posee un Encantamiento autónomo; no puede añadir un Utilitario adicional."};
+      if(existing.utilityKey) return {ok:false,error:"El objeto ya posee el único Encantamiento Utilitario permitido."};
       const utilityValidation=validateUtilityEnchantment(utilityKey);
       if(!utilityValidation.valid) return {ok:false,error:"El Encantamiento Utilitario no es válido.",issues:utilityValidation.issues};
       const quote=utilityEnchantmentQuote();
@@ -646,7 +675,7 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
       issues=magicProfessionalIssues(model,actor,{primarySkill:"ritualism",primaryRank:3,arcanaRank:2,craftingRank:0,installation:"professional"});
       next={...existing,utilityKey,addedValueCopper:existing.addedValueCopper+quote.addedValueCopper};
     } else {
-      if(existing.grade>0 || existing.utilityKey) return {ok:false,error:"Un objeto ordinario sólo admite un Encantamiento autónomo estándar."};
+      if(existing.grade>0) return {ok:false,error:"Un objeto sólo admite un Encantamiento autónomo principal estándar."};
       const quote=enchantmentCostQuote({referenceValueCopper:current.referenceValueCopper,baseTimeMinutes:current.baseTimeMinutes,grade});
       if(!quote.valid) return {ok:false,error:quote.error};
       materialCopper=quote.materialCopper;
@@ -760,7 +789,7 @@ async function analyzeModifyProject(project, model, resolver) {
 
   const baseSource=baseItemSource(target,current);
   const mode=String(model.enhancement.mode);
-  if(["runicMatrix","rune","enchantment","trapRearm","sealRearm"].includes(mode)) {
+  if(["runicMatrix","rune","runeErase","enchantment","trapRearm","sealRearm"].includes(mode)) {
     return analyzeMagicModifyProject(project,model,resolver,target,current,baseSource);
   }
   let nextQuality=current.quality;
@@ -989,6 +1018,13 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
       if(imprint.grade!==stoneProfile.grade) {
         return {ok:false,error:"El Grado de la Piedra no coincide con la Impronta contenida."};
       }
+      const stoneRequirements=stoneProfile.grade===1
+        ? {primarySkill:"ritualism",primaryRank:3,arcanaRank:2,craftingRank:3,installation:"professional"}
+        : {primarySkill:"ritualism",primaryRank:4,arcanaRank:3,craftingRank:4,installation:"specialized"};
+      const stoneIssues=magicProfessionalIssues(model,project.parent,stoneRequirements);
+      if(stoneIssues.length) {
+        return {ok:false,error:"No se cumplen los requisitos profesionales de la Piedra de Impronta.",issues:stoneIssues};
+      }
     }
 
     if(source.system.trap?.enabled===true) {
@@ -1003,8 +1039,41 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
         return {ok:false,error:"El tiempo del Proyecto está por debajo del Armazón declarado.",expectedMinutes:frame.baseTimeMinutes};
       }
       const loadKind=String(source.system.trap.load?.kind??"");
-      if(["mechanical-strike","alchemy"].includes(loadKind) && !model.components.length) {
-        return {ok:false,error:"Una carga mecánica o alquímica debe existir como componente físico separado del Armazón."};
+      if(["mechanical-strike","alchemy"].includes(loadKind)) {
+        if(!model.components.length) {
+          return {ok:false,error:"Una carga mecánica o alquímica debe existir como componente físico separado del Armazón."};
+        }
+        const componentUuid=String(source.system.trap.load?.componentUuid??"").trim();
+        if(!componentUuid || !model.components.some((row)=>String(row.itemUuid)===componentUuid)) {
+          return {ok:false,error:"La carga declarada debe señalar exactamente uno de los componentes físicos reservados por el Proyecto."};
+        }
+        const loadItem=await resolveOwnedItem(project.parent,componentUuid,resolver);
+        if(!loadItem) return {ok:false,error:"La carga física declarada ya no está disponible.",sourceUuid:componentUuid};
+        if(loadKind==="mechanical-strike") {
+          if(!["weapon","equipment","device"].includes(String(loadItem.type))) {
+            return {ok:false,error:"Un Golpe mecánico requiere una carga física con perfil de daño real.",sourceUuid:componentUuid};
+          }
+          const actualDamage=Math.max(0,number(loadItem.system?.damage));
+          const actualPenetration=Math.max(0,number(loadItem.system?.penetration));
+          if(Math.max(0,number(source.system.trap.load?.damage))!==actualDamage ||
+             Math.max(0,number(source.system.trap.load?.penetration))!==actualPenetration) {
+            return {
+              ok:false,
+              error:"Daño/Pen de la trampa deben coincidir exactamente con la carga física integrada.",
+              expectedDamage:actualDamage,
+              expectedPenetration:actualPenetration
+            };
+          }
+        } else {
+          if(String(loadItem.type)!=="formula") {
+            return {ok:false,error:"Una carga alquímica debe señalar una dosis/Fórmula física existente.",sourceUuid:componentUuid};
+          }
+          const loadProfile=String(source.system.trap.load?.profileRef??"").trim().toLowerCase();
+          const itemProfile=String(loadItem.system?.slug??loadItem.name??"").trim().toLowerCase();
+          if(loadProfile && itemProfile && loadProfile!==itemProfile) {
+            return {ok:false,error:"La carga alquímica no coincide con el Perfil/Fórmula física reservada.",sourceUuid:componentUuid};
+          }
+        }
       }
     }
 
