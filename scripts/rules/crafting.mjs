@@ -284,7 +284,8 @@ function normalizeSpecialMaterials(rows = []) {
     grade: enumValue(row?.grade, PROJECT_MATERIAL_GRADES, "ordinary"),
     coverage: enumValue(row?.coverage, Object.keys(MATERIAL_COVERAGE), "component"),
     supplementCopper: integerCopper(row?.supplementCopper, "ceil"),
-    sourceItemUuid: stringValue(row?.sourceItemUuid)
+    sourceItemUuid: stringValue(row?.sourceItemUuid),
+    part: stringValue(row?.part)
   }));
 }
 
@@ -341,6 +342,7 @@ export function normalizeCraftingProject(source = {}) {
   const assistants = source?.assistants ?? {};
   const execution = source?.execution ?? {};
   const enhancement = source?.enhancement ?? {};
+  const repair = source?.repair ?? {};
   const ledger = source?.ledger ?? {};
 
   return {
@@ -375,6 +377,15 @@ export function normalizeCraftingProject(source = {}) {
       replaceMaterialId: stringValue(enhancement.replaceMaterialId),
       replaceModificationKey: stringValue(enhancement.replaceModificationKey),
       fineMachiningMaterialId: stringValue(enhancement.fineMachiningMaterialId)
+    },
+    repair: {
+      affectedMaterialIds: [...new Set((Array.isArray(repair.affectedMaterialIds) ? repair.affectedMaterialIds : []).map(stringValue).filter(Boolean))],
+      ordinaryReplacementMaterialIds: [...new Set((Array.isArray(repair.ordinaryReplacementMaterialIds) ? repair.ordinaryReplacementMaterialIds : []).map(stringValue).filter(Boolean))],
+      specialReplacements: (Array.isArray(repair.specialReplacements) ? repair.specialReplacements : []).map((row, index) => ({
+        id: normalizedId(row?.id, "repair-material", index),
+        materialId: stringValue(row?.materialId),
+        sourceItemUuid: stringValue(row?.sourceItemUuid)
+      }))
     },
     components: normalizeComponents(source?.components),
     time: {
