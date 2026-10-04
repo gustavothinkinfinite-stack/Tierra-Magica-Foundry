@@ -682,6 +682,20 @@ export class TierraMagicaActor extends Actor {
       return ui.notifications.warn("No se cumplen los requisitos de " + item.name + ": " + labels);
     }
 
+    if (item.system.sustained) {
+      const currentObjects = Array.isArray(this.system.magic?.sustainedObjectIds)
+        ? this.system.magic.sustainedObjectIds.filter((id) => this.items.get(id)?.system?.enchantment?.attunedActorUuid === this.uuid)
+        : [];
+      const currentSpells = Array.isArray(this.system.magic?.sustainedSpellIds)
+        ? this.system.magic.sustainedSpellIds.filter((id) => this.items.get(id)?.type === "spell")
+        : [];
+      const hasDouble = this.items.some((i) => i.type === "technique" && normalizeSlug(i.system?.slug || i.name) === "doble-sostenimiento");
+      const limit = hasDouble ? 2 : 1;
+      if (!currentSpells.includes(item.id) && currentObjects.length >= limit) {
+        return ui.notifications.warn("El límite de Sostenimiento ya está ocupado por un Hechizo Vinculado de objeto.");
+      }
+    }
+
     const cost = Math.max(0, toNumber(item.system.manaCost));
     const payment = await withActorResourceLock(this, async () => {
       const mana = toNumber(this.system.resources?.mana?.value);
@@ -743,10 +757,15 @@ export class TierraMagicaActor extends Actor {
     const current = Array.isArray(this.system.magic?.sustainedSpellIds)
       ? this.system.magic.sustainedSpellIds.filter((id) => this.items.get(id)?.type === "spell")
       : [];
+    const objectIds = Array.isArray(this.system.magic?.sustainedObjectIds)
+      ? this.system.magic.sustainedObjectIds.filter((id) => this.items.get(id)?.system?.enchantment?.attunedActorUuid === this.uuid)
+      : [];
     const hasDouble = this.items.some((i) => i.type === "technique" && normalizeSlug(i.system?.slug || i.name) === "doble-sostenimiento");
     const limit = hasDouble ? 2 : 1;
+    const spellSlots = Math.max(0, limit - objectIds.length);
     if (current.includes(item.id)) return;
-    const retained = current.slice(Math.max(0, current.length - (limit - 1)));
+    if (spellSlots <= 0) return;
+    const retained = current.slice(Math.max(0, current.length - (spellSlots - 1)));
     await this.update({ "system.magic.sustainedSpellIds": [...retained, item.id] });
   }
 
@@ -938,7 +957,26 @@ export class TierraMagicaActor extends Actor {
         updates["system.recovery.manaUsed"] = false;
         updates["system.status.fatigue"] = 0;
       }
+      const enchantedAtStart = kind === "full"
+        ? [...this.items].filter((item) => {
+            const enchant=item.system?.enchantment;
+            return enchant &&
+              Number(enchant.grade ?? 0) > 0 &&
+              enchant.seal !== true &&
+              String(enchant.attunedActorUuid ?? "") === String(this.uuid) &&
+              String(item.system?.condition ?? "operative") === "operative" &&
+              enchant.rechargeBlocked !== true;
+          })
+        : [];
       await this.update(updates);
+      if (kind === "full") {
+        for (const item of enchantedAtStart) {
+          if (String(item.system?.enchantment?.attunedActorUuid ?? "") !== String(this.uuid)) continue;
+          if (String(item.system?.condition ?? "operative") !== "operative") continue;
+          const maximum=Math.max(0,toNumber(item.system?.enchantment?.reserve?.max));
+          await item.update({ "system.enchantment.reserve.value": maximum }, { tmValidated:true, tmCraftingMagic:true });
+        }
+      }
     });
   }
 
