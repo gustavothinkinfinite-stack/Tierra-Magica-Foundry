@@ -1026,7 +1026,8 @@ test("CRAFT-13D: desmantelar separa VI ordinario de VI especial y no recicla VRQ
     targetItemUuid:target.uuid,
     requiredMinutes:30,
     baseMinutes:120,
-    adjustedBaseMinutes:120,
+    adjustedBaseMinutes:30,
+    timeMode:"fixed",
     requiredRank:2,
     requiredInstallation:"adequate",
     availableInstallation:"adequate"
