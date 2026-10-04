@@ -5,6 +5,7 @@ export const ATTRIBUTE_UPGRADE_COSTS = Object.freeze({ 0: 4, 1: 6, 2: 9, 3: 13, 
 export const INITIAL_ATTRIBUTE_BASE = 1;
 export const INITIAL_ATTRIBUTE_INCREASES = 6;
 export const INITIAL_ATTRIBUTE_MAX = 3;
+export const ORDINARY_ATTRIBUTE_MAX = 5;
 
 function number(value, fallback = 0) {
   const n = Number(value);
@@ -13,6 +14,12 @@ function number(value, fallback = 0) {
 
 export function pdTotalForLevel(level) {
   return 25 + Math.max(0, Math.floor(number(level, 1)) - 1) * 4;
+}
+
+export function nextAttributeUpgradeCost(value) {
+  const current = Math.max(0, Math.floor(number(value, INITIAL_ATTRIBUTE_BASE)));
+  if (current >= ORDINARY_ATTRIBUTE_MAX) return null;
+  return ATTRIBUTE_UPGRADE_COSTS[current] ?? null;
 }
 
 export function attributeProgressionCost(attributes = {}) {
@@ -77,6 +84,12 @@ export function deriveDevelopmentBudget(actor, { skillKeys = null } = {}) {
     skillsPdCost: skills,
     attributePdCost: attributes
   };
+}
+
+export function canAffordDevelopmentPd(actor, amount, { skillKeys = null } = {}) {
+  const cost = Math.max(0, number(amount));
+  const budget = deriveDevelopmentBudget(actor, { skillKeys });
+  return { valid: cost <= budget.pdAvailable, cost, budget };
 }
 
 function identityList(value = "") {
