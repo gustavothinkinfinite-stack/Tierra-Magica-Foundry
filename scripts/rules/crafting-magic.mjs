@@ -66,6 +66,12 @@ export const IMPRINTS=Object.freeze({
   kineticImpulseII:Object.freeze({key:"kineticImpulseII",label:"Impulso Cinético II",grade:2,cru:2,activation:"linked",manaCost:3,group:"kinetic-displacement",weaponHost:true,effect:Object.freeze({displacement:1,maxTargetScaleDelta:0})})
 });
 
+export const MAGIC_SUPPORTS=Object.freeze({
+  1:Object.freeze({grade:1,referenceValueCopper:200,materialCopper:100,timeMinutes:480,craftingRank:3,installation:"professional"}),
+  2:Object.freeze({grade:2,referenceValueCopper:500,materialCopper:250,timeMinutes:1440,craftingRank:4,installation:"specialized"}),
+  3:Object.freeze({grade:3,referenceValueCopper:1000,materialCopper:500,timeMinutes:2400,craftingRank:5,installation:"exceptional"})
+});
+
 export const ENCHANTMENT_GRADES=Object.freeze({
   1:Object.freeze({grade:1,attunement:1,reserveMax:6,power:4,materialRate:0.25,materialMinimumCopper:500,timeRate:0.5,timeMinimumMinutes:1440,minQuality:"superior"}),
   2:Object.freeze({grade:2,attunement:2,reserveMax:10,power:6,materialRate:0.5,materialMinimumCopper:1500,timeRate:1,timeMinimumMinutes:3840,minQuality:"exceptional"}),
@@ -248,6 +254,10 @@ export function validateImprintActivation({actor,item,imprint,resolutionId="",re
     issues.push({code:"imprint-voluntary-state-cost",message:"Estabilidad Rúnica II no mitiga un deterioro pagado como coste voluntario de Sobrecarga/Carga forzada."});
   }
   return {valid:issues.length===0,issues,profile};
+}
+
+export function magicSupportProfile(grade=0){
+  return MAGIC_SUPPORTS[Math.floor(number(grade))]??null;
 }
 
 export function utilityEnchantmentProfile(key=""){
