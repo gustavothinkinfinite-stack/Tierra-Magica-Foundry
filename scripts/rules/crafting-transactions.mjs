@@ -82,6 +82,7 @@ function lotData(item) {
   return {
     enabled: data.enabled === true,
     category: String(data.category ?? ""),
+    resourceGrade: String(data.resourceGrade ?? "ordinary"),
     compatibility: Array.isArray(data.compatibility) ? data.compatibility.map(String) : [],
     materialProfileKey: String(data.materialProfileKey ?? ""),
     preparation: String(data.preparation ?? "prepared"),
@@ -148,7 +149,7 @@ export function craftingComponentAvailableQuantity(item, { project = null } = {}
 
 export function craftingProjectComponentAllocations(project) {
   const normalized = normalizeCraftingProject(project?.system ?? project);
-  if (!["fabricate","repair"].includes(normalized.operation)) return [];
+  if (!["fabricate","repair","modify"].includes(normalized.operation)) return [];
   const grouped = new Map();
   for (const component of normalized.components) {
     const sourceUuid = String(component.itemUuid ?? "").trim();
