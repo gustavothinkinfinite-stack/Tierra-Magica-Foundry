@@ -406,7 +406,15 @@
         "priceCopper": 0,
         "priceQuantity": 1,
         "priceStatus": "unset",
-        "legacyPrice": null
+        "legacyPrice": null,
+        "condition": "operative",
+        "craftingLot": {
+          "enabled": false,
+          "category": "",
+          "compatibility": [],
+          "inputValueCopper": 0,
+          "reservations": {}
+        }
       }
     },
     "weapon": {
@@ -615,7 +623,8 @@
       "target": {
         "itemUuid": "",
         "resultType": "equipment",
-        "resultName": ""
+        "resultName": "",
+        "resultData": {}
       },
       "economy": {
         "referenceValueCopper": 0,
