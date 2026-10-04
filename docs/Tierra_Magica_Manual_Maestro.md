@@ -3054,6 +3054,8 @@ Algunas propiedades poseen una función mecánica expresa; otras describen const
 | **Potencia N** | Clasifica la potencia física de un arco. No se suma como un +N adicional. El perfil del arma determina si FUE participa en su daño. |
 | **Recarga N** | Después de disparar, requiere N Acciones de Recarga antes del siguiente disparo. Recarga Experta puede reducir ese coste en 1 respetando los mínimos físicos. |
 | **Repetición** | Describe un mecanismo de repetición. El núcleo actual no concede ataques adicionales, cargador infinito ni una capacidad universal de ráfaga por esta etiqueta. |
+| **Proyectil** | Arma a distancia que impulsa munición física simple según su propio perfil. No concede Recarga, recuperación automática de munición ni un bono adicional por sí sola. |
+| **Arrojadiza** | El perfil representa el uso lanzado del arma y se resuelve como ataque a distancia con la Habilidad y Alcance óptimo indicados. No habilita por sí solo un segundo perfil cuerpo a cuerpo ni evita el gasto físico de haber arrojado el objeto. |
 
 Cuando una propiedad descriptiva deba producir un modificador numérico concreto, esa regla debe aparecer en el arma, Técnica o subsistema pertinente.
 
@@ -3073,6 +3075,12 @@ Cuando una propiedad descriptiva deba producir un modificador numérico concreto
 | Mandoble | 7 | 0 | 2 | 4 o | Pesada, 2 manos |
 | Gran hacha | 8 | 0 | 3 | 5 o | Pesada, 2 manos |
 | Gran martillo | 7 | 2 | 3 | 5 o | Pesada, 2 manos |
+| Honda | 3 | 0 | — | 2 p | Proyectil |
+| Honda de guerra | 4 | 0 | — | 5 p | Proyectil, Impactante |
+| Fustíbalo | 5 | 0 | — | 8 p | Proyectil, Impactante, 2 manos |
+| Azagaya | 3 | 0 | 0 | 2 p | Arrojadiza |
+| Jabalina | 4 | 0 | 0 | 3 p | Arrojadiza |
+| Jabalina pesada | 5 | 0 | 1 | 5 p | Arrojadiza |
 | Arco corto | 4 | 0 | — | 1 o | Potencia 2 |
 | Arco largo | 5 | 0 | — | 2 o | Potencia 3, 2 manos |
 | Ballesta | 6 | 1 | — | 3 o | Recarga 1 |
@@ -3083,6 +3091,23 @@ Cuando una propiedad descriptiva deba producir un modificador numérico concreto
 | Rifle repetidor | 7 | 2 | — | 45 o | Repetición, 2 manos |
 
 Los arcos pueden añadir FUE al daño cuando el perfil del arma lo establece; **Potencia N no es un bono adicional**. Ballestas y armas de fuego no añaden FUE al daño salvo regla expresa.
+
+### Proyectiles convencionales
+
+Los siguientes perfiles utilizan **Armas a Distancia** y **AGI** para la tirada de ataque. En los seis casos se añade **FUE al daño** porque el perfil ya lo establece; esto no crea un bono adicional separado.
+
+| Arma | Alcance óptimo | Uso |
+|---|---:|---|
+| Honda | 12 espacios | proyectil simple de una mano |
+| Honda de guerra | 18 espacios | proyectil de mayor potencia; Impactante sigue siendo descriptiva |
+| Fustíbalo | 25 espacios | proyectil de dos manos y gran palanca |
+| Azagaya | 12 espacios | arma arrojada ligera |
+| Jabalina | 10 espacios | arma arrojada estándar |
+| Jabalina pesada | 8 espacios | arma arrojada de mayor masa; FUE mínima 1 |
+
+**Proyectil** no significa munición infinita. Una Honda o Fustíbalo necesita un proyectil físico compatible cuando la munición sea relevante. **Arrojadiza** representa específicamente el uso lanzado: después de arrojar una Azagaya o Jabalina, ese objeto ya no está en la mano hasta que se recupere o se disponga de otro. El núcleo no concede una recuperación automática después del ataque.
+
+Estos perfiles no poseen **Recarga** ni **Repetición** y no producen ataques adicionales. Tampoco convierten una Azagaya o Jabalina en una Lanza cuerpo a cuerpo gratuita: si un objeto se utiliza de otra forma, debe existir un perfil apropiado o resolverse como uso improvisado conforme a la ficción.
 
 ### Munición y Recarga
 
