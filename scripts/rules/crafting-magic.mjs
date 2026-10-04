@@ -20,7 +20,34 @@ export const TRAP_TRIGGERS=Object.freeze([
 ]);
 
 export const RUNE_CHANNEL_TYPES=Object.freeze(["inscription","socket"]);
-export const SEAL_TRIGGER_TYPES=Object.freeze(["contact","opening","threshold","magic-key"]);
+export const SEAL_TRIGGER_TYPES=Object.freeze(["contact","opening","threshold"]);
+
+export const UTILITY_ENCHANTMENTS=Object.freeze({
+  dry:Object.freeze({key:"dry",label:"Seco"}),
+  clean:Object.freeze({key:"clean",label:"Pulcro"}),
+  tempered:Object.freeze({key:"tempered",label:"Templado"}),
+  courtesyLight:Object.freeze({key:"courtesyLight",label:"Luz de Cortesía"}),
+  chroma:Object.freeze({key:"chroma",label:"Croma"})
+});
+
+export const PASSIVE_ENCHANTMENTS=Object.freeze({
+  firmnessAmulet:Object.freeze({
+    key:"firmnessAmulet",label:"Amuleto de Firmeza",grade:1,group:"mental-fear-defense",
+    effect:Object.freeze({mentalDefenseBonus:2,context:"miedo sobrenatural o Intimidación compatible"})
+  }),
+  fallBrooch:Object.freeze({
+    key:"fallBrooch",label:"Broche de Caída",grade:1,group:"fall-reduction",
+    effect:Object.freeze({fallSpacesReduction:1,minimum:0})
+  }),
+  revelationLenses:Object.freeze({
+    key:"revelationLenses",label:"Lentes de Revelación",grade:2,group:"revelation-sensory",
+    effect:Object.freeze({advantage:true,context:"ilusiones, ocultación mágica, invisibilidad y manipulación sensorial compatibles"})
+  }),
+  stabilityTalisman:Object.freeze({
+    key:"stabilityTalisman",label:"Talismán de Estabilidad",grade:2,group:"magical-displacement-stability",
+    effect:Object.freeze({displacementReduction:1,minimum:0,usesPerScene:1,context:"desplazamiento mágico involuntario"})
+  })
+});
 
 export const IMPRINTS=Object.freeze({
   lumenI:Object.freeze({key:"lumenI",label:"Lumen I",grade:1,cru:1,activation:"action",manaCost:1,group:"light-utilitarian",effect:Object.freeze({light:true,duration:"scene"})}),
@@ -223,6 +250,21 @@ export function validateImprintActivation({actor,item,imprint,resolutionId="",re
   return {valid:issues.length===0,issues,profile};
 }
 
+export function utilityEnchantmentProfile(key=""){
+  return UTILITY_ENCHANTMENTS[String(key)]??null;
+}
+
+export function passiveEnchantmentProfile(key=""){
+  return PASSIVE_ENCHANTMENTS[String(key)]??null;
+}
+
+export function validateUtilityEnchantment(key=""){
+  const profile=utilityEnchantmentProfile(key);
+  return profile
+    ? {valid:true,issues:[],profile}
+    : {valid:false,issues:[{code:"utility-enchantment-profile",message:"El Encantamiento Utilitario no pertenece al catálogo cerrado de CRAFT-08."}]};
+}
+
 export function enchantmentProfile(grade=0){
   return ENCHANTMENT_GRADES[Math.floor(number(grade))]??null;
 }
@@ -272,7 +314,17 @@ export function validateEnchantmentSupport(itemSource={},enchantment={}){
   if(!text(enchantment.patternKey) && !text(enchantment.boundSpell?.slug) && !text(enchantment.passiveKey)) {
     issues.push({code:"enchantment-pattern",message:"Un Encantamiento mecánico debe declarar Patrón, Hechizo Vinculado o Perfil pasivo identificable."});
   }
-  if(text(enchantment.patternKey) && !text(enchantment.boundSpell?.slug) && !text(enchantment.passiveKey) && !text(enchantment.functionalKey)) {
+  const passive=passiveEnchantmentProfile(enchantment.passiveKey);
+  if(text(enchantment.passiveKey) && !passive) {
+    issues.push({code:"enchantment-passive-profile",message:"El Encantamiento Pasivo no pertenece al catálogo cerrado de CRAFT-08."});
+  }
+  if(passive && passive.grade!==grade) {
+    issues.push({code:"enchantment-passive-grade",message:"El Perfil pasivo no corresponde al Grado de Encantamiento declarado.",expectedGrade:passive.grade});
+  }
+  if(passive && text(enchantment.functionalKey) && text(enchantment.functionalKey)!==passive.group) {
+    issues.push({code:"enchantment-passive-functional",message:"La equivalencia funcional del Pasivo no coincide con su Perfil catalogado.",expectedFunctionalKey:passive.group});
+  }
+  if(text(enchantment.patternKey) && !text(enchantment.boundSpell?.slug) && !passive && !text(enchantment.functionalKey)) {
     issues.push({code:"enchantment-functional-key",message:"Un Patrón mecánico no catalogado debe declarar su equivalencia funcional para impedir duplicados por cambio de nombre."});
   }
   if(enchantment.boundSpell){
@@ -284,11 +336,14 @@ export function validateEnchantmentSupport(itemSource={},enchantment={}){
     if((gradeOrder[String(spell.grade??"basic")]??99)>maxByEnchant[grade]) issues.push({code:"enchantment-spell-grade",message:"El Hechizo Vinculado excede el Grado del Encantamiento."});
   }
   if(enchantment.seal===true && grade>2) issues.push({code:"seal-grade",message:"Un Sello de Custodia estándar sólo admite Encantamiento I o II."});
+  if(enchantment.seal===true && enchantment.boundSpell?.sustained===true) {
+    issues.push({code:"seal-sustained",message:"Un Sello de Custodia estándar no puede liberar un efecto Sostenido demandante."});
+  }
   if(enchantment.seal===true && !SEAL_TRIGGER_TYPES.includes(String(enchantment.sealTriggerType??""))) {
     issues.push({code:"seal-trigger",message:"El Sello debe usar un disparador físico/mágico estándar explícito."});
   }
-  if(enchantment.seal===true && String(enchantment.sealTriggerType)==="magic-key" && !text(enchantment.sealBypassKey)) {
-    issues.push({code:"seal-key",message:"Un Sello basado en llave/marca mágica debe identificar esa llave concreta."});
+  if(text(enchantment.sealBypassKey) && enchantment.seal!==true) {
+    issues.push({code:"seal-key-orphan",message:"Una llave/marca de Bypass sólo pertenece a un Sello de Custodia."});
   }
   return {valid:issues.length===0,issues};
 }
