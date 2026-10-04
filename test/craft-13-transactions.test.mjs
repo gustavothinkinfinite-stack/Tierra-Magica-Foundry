@@ -2606,3 +2606,86 @@ test("CRAFT-13E: Supervivencia no fabrica Armazones Estándar aunque tenga rango
   assert.match(denied.error,/Latrocinio/);
 });
 
+test("CRAFT-13E: rearmar trampa alquímica exige y consume una nueva dosis física",async()=>{
+  const actor=new StubActor("alchemy-trap-rearm");
+  const target=manufacturedItem(actor,{
+    id:"alchemy-trap-target",
+    type:"equipment",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"common"
+  });
+  target.system.trap={
+    enabled:true,
+    frame:"standard",
+    precision:4,
+    mechanismDf:12,
+    triggerType:"contact",
+    physicalTriggerKey:"plate-alchemy",
+    automatic:true,
+    state:"discharged",
+    baseTimeMinutes:120,
+    concealment:{grade:"visible",detectionDf:0,environmentAllows:true,environmentMethod:false},
+    deactivationMethod:"AGI + Latrocinio",
+    bypassKey:"",
+    bypassDescription:"",
+    load:{
+      kind:"alchemy",
+      profileRef:"bomba-incendiaria",
+      componentUuid:"Actor.old.Item.spent-dose",
+      maneuverEffect:"",
+      damage:6,
+      penetration:1,
+      area:"small",
+      geometryRef:""
+    }
+  };
+
+  const craft=project(actor,{
+    id:"alchemy-trap-rearm-project",
+    operation:"modify",
+    material:null,
+    materialCopper:0,
+    estimatedMaterialsCopper:0,
+    referenceValueCopper:100,
+    quality:"common",
+    enhancement:{mode:"trapRearm"},
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:30,
+    requiredMinutes:30,
+    requiredRank:2,
+    professionalSkill:"crafting",
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate"
+  });
+  const resolver=resolverFor(actor);
+  const denied=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(denied.ok,false);
+  assert.match(denied.error,/nueva dosis/);
+
+  const dose=actor.add(new StubItem({
+    id:"incendiary-dose",
+    name:"Bomba Incendiaria",
+    type:"formula",
+    system:{slug:"bomba-incendiaria",quantity:1,craftingReservations:{}}
+  }));
+  craft.system.components=[{
+    id:"dose-component",
+    name:"Bomba Incendiaria",
+    itemUuid:dose.uuid,
+    valueCopper:0,
+    quantity:1,
+    separable:false,
+    recoveredSeparately:false,
+    countedInGenericRecovery:false
+  }];
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)})).ok,true);
+  await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver:resolverFor(actor)})).ok,true);
+  assert.equal(dose.system.quantity,0);
+  assert.equal(target.system.trap.state,"armed");
+  assert.equal(target.system.trap.load.componentUuid,dose.uuid);
+});
+
