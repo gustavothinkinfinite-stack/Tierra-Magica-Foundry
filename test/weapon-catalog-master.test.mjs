@@ -66,10 +66,10 @@ test("armas regionales declaran procedencia y las arcano-industriales quedan en 
 });
 
 
-test("CAT-02/03/04/05/06 marca exactamente 144 propuestas como variantes de perfil aprobadas",()=>{
+test("CAT-02/03/04/05/06/07 marca exactamente 171 propuestas como variantes de perfil aprobadas",()=>{
   const catalog=weaponCatalogMaster();
   const approved=catalog.filter((entry)=>entry.promotion==="approved-profile-variant");
-  assert.equal(approved.length,144);
+  assert.equal(approved.length,171);
   assert.equal(approved.every((entry)=>entry.implementation==="runtime-profile-variant"),true);
   assert.equal(approved.every((entry)=>entry.reviewFlags.length===0),true);
 });
