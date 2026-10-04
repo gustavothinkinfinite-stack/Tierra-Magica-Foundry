@@ -1757,7 +1757,7 @@ test("CRAFT-13E: reparación física no cobra Encantamiento si su matriz no fue 
     adjustedBaseMinutes:30,
     requiredMinutes:30,
     requiredRank:2,
-    professionalSkill:"crafting",
+    professionalSkill:"thievery",
     requiredInstallation:"adequate",
     availableInstallation:"adequate",
     repair:{
@@ -2392,6 +2392,10 @@ test("CRAFT-13E: Golpe mecánico de trampa debe copiar Daño/Pen de la carga fí
         automatic:true,
         state:"unarmed",
         baseTimeMinutes:120,
+        concealment:{grade:"visible",detectionDf:0,environmentAllows:true,environmentMethod:false},
+        deactivationMethod:"AGI + Latrocinio",
+        bypassKey:"",
+        bypassDescription:"",
         load:{
           kind:"mechanical-strike",
           profileRef:"Lanza de carga",
@@ -2440,5 +2444,164 @@ test("CRAFT-13E: Golpe mecánico de trampa debe copiar Daño/Pen de la carga fí
   assert.ok(trap);
   assert.equal(trap.system.trap.state,"armed");
   assert.equal(trap.system.trap.load.damage,5);
+});
+
+test("CRAFT-13E: Ocultación de trampa cobra materiales/tiempo y exige Latrocinio suficiente",async()=>{
+  const actor=new StubActor("trap-concealment");
+  actor.system.skills.thievery={rank:1};
+  const material=lot(actor,{id:"trap-hidden-material",vi:60,compatibility:["forja"]});
+  const resultData={
+    name:"Alarma Oculta",
+    type:"equipment",
+    system:{
+      category:"Trampa",
+      trap:{
+        enabled:true,
+        frame:"standard",
+        precision:4,
+        mechanismDf:12,
+        triggerType:"contact",
+        physicalTriggerKey:"cord-a",
+        automatic:true,
+        state:"unarmed",
+        baseTimeMinutes:120,
+        concealment:{grade:"hidden",detectionDf:12,environmentAllows:true,environmentMethod:false},
+        deactivationMethod:"AGI + Latrocinio",
+        bypassKey:"lift-cord",
+        bypassDescription:"Levantar primero el cordel de seguridad.",
+        load:{kind:"alarm",profileRef:"",componentUuid:"",maneuverEffect:"",damage:0,penetration:0,area:"",geometryRef:""}
+      }
+    }
+  };
+  const craft=project(actor,{
+    id:"trap-hidden-project",
+    operation:"fabricate",
+    material,
+    materialCopper:60,
+    estimatedMaterialsCopper:60,
+    allocationCompatibility:"forja",
+    referenceValueCopper:100,
+    quality:"common",
+    resultData,
+    baseMinutes:150,
+    adjustedBaseMinutes:150,
+    requiredMinutes:150,
+    requiredRank:2,
+    professionalSkill:"thievery",
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate"
+  });
+  const resolver=resolverFor(actor);
+  let denied=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(denied.ok,false);
+  assert.equal(denied.skill,"thievery");
+  assert.equal(denied.expectedRank,2);
+
+  actor.system.skills.thievery.rank=2;
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,150,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  const trap=[...actor.items.values()].find((entry)=>entry.name==="Alarma Oculta");
+  assert.ok(trap);
+  assert.equal(trap.system.trap.precision,4);
+  assert.equal(trap.system.trap.mechanismDf,12);
+  assert.equal(trap.system.trap.concealment.detectionDf,12);
+  assert.equal(trap.system.trap.concealment.materialCopper,10);
+  assert.equal(trap.system.trap.concealment.additionalTimeMinutes,30);
+  assert.equal(material.system.craftingLot.inputValueCopper,0);
+});
+
+test("CRAFT-13E: Supervivencia sólo sustituye Latrocinio en trampa Simple de campaña compatible",async()=>{
+  const actor=new StubActor("survival-trap");
+  actor.system.skills.survival={rank:1};
+  const material=lot(actor,{id:"survival-trap-material",vi:10,compatibility:["forja"]});
+  const resultData={
+    name:"Alarma de campaña",
+    type:"equipment",
+    system:{
+      category:"Trampa",
+      trap:{
+        enabled:true,
+        frame:"simple",
+        precision:2,
+        mechanismDf:10,
+        triggerType:"tripwire",
+        physicalTriggerKey:"cord-natural",
+        automatic:true,
+        state:"unarmed",
+        baseTimeMinutes:30,
+        concealment:{grade:"disguised",detectionDf:10,environmentAllows:true,environmentMethod:true},
+        deactivationMethod:"AGI + Latrocinio",
+        bypassKey:"",
+        bypassDescription:"",
+        load:{kind:"alarm",profileRef:"",componentUuid:"",maneuverEffect:"",damage:0,penetration:0,area:"",geometryRef:""}
+      }
+    }
+  };
+  const craft=project(actor,{
+    id:"survival-trap-project",
+    operation:"fabricate",
+    material,
+    materialCopper:10,
+    estimatedMaterialsCopper:10,
+    allocationCompatibility:"forja",
+    referenceValueCopper:20,
+    quality:"common",
+    resultData,
+    baseMinutes:40,
+    adjustedBaseMinutes:40,
+    requiredMinutes:40,
+    requiredRank:1,
+    professionalSkill:"survival",
+    requiredInstallation:"improvised",
+    availableInstallation:"improvised"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+});
+
+test("CRAFT-13E: Supervivencia no fabrica Armazones Estándar aunque tenga rango alto",async()=>{
+  const actor=new StubActor("survival-standard-trap");
+  actor.system.skills.survival={rank:5};
+  const material=lot(actor,{id:"survival-standard-material",vi:50,compatibility:["forja"]});
+  const resultData={
+    name:"Alarma Estándar indebida",
+    type:"equipment",
+    system:{
+      category:"Trampa",
+      trap:{
+        enabled:true,
+        frame:"standard",
+        precision:4,
+        mechanismDf:12,
+        triggerType:"contact",
+        physicalTriggerKey:"plate",
+        automatic:true,
+        state:"unarmed",
+        baseTimeMinutes:120,
+        concealment:{grade:"visible",detectionDf:0,environmentAllows:true,environmentMethod:false},
+        load:{kind:"alarm",damage:0,penetration:0}
+      }
+    }
+  };
+  const craft=project(actor,{
+    id:"survival-standard-project",
+    operation:"fabricate",
+    material,
+    materialCopper:50,
+    estimatedMaterialsCopper:50,
+    referenceValueCopper:100,
+    resultData,
+    baseMinutes:120,
+    adjustedBaseMinutes:120,
+    requiredMinutes:120,
+    requiredRank:5,
+    professionalSkill:"survival",
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate"
+  });
+  const denied=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(denied.ok,false);
+  assert.match(denied.error,/Latrocinio/);
 });
 
