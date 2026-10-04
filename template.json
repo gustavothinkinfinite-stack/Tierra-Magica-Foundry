@@ -650,6 +650,7 @@
         "requiredRank": 0,
         "baseInstallation": "improvised",
         "requiredInstallation": "improvised",
+        "availableInstallation": "improvised",
         "stableProcedure": false,
         "materialsReady": false,
         "essentialToolReady": false
@@ -660,6 +661,7 @@
       },
       "execution": {
         "accelerated": false,
+        "accelerationOutcome": "none",
         "reductionFactors": [],
         "stage": "",
         "revision": 0,
