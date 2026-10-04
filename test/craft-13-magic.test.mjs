@@ -9,17 +9,20 @@ import {
   enchantmentIdentityKeys,
   imprintStoneCraftProfile,
   maxRunicCapacityForQuality,
+  passiveEnchantmentProfile,
   runicMatrixQuote,
   runeInscriptionQuote,
   sealRearmQuote,
   trapFrameProfile,
   trapRearmQuote,
+  utilityEnchantmentProfile,
   utilityEnchantmentQuote,
   validateAttunement,
   validateEnchantmentSupport,
   validateImprintActivation,
   validateRunicConfiguration,
-  validateTrapConfiguration
+  validateTrapConfiguration,
+  validateUtilityEnchantment
 } from "../scripts/rules/crafting-magic.mjs";
 
 const item=(overrides={})=>({
@@ -198,6 +201,31 @@ test("CRAFT-13E: Encantamientos I/II/III calculan CE, RE, PE y tiempo sin mezcla
   assert.deepEqual(utilityEnchantmentQuote(),{materialCopper:100,timeMinutes:480,addedValueCopper:200});
 });
 
+test("CRAFT-13E: Utilitarios y Pasivos usan catálogos cerrados, no claves libres",()=>{
+  assert.equal(utilityEnchantmentProfile("dry").label,"Seco");
+  assert.equal(validateUtilityEnchantment("courtesyLight").valid,true);
+  assert.equal(validateUtilityEnchantment("free-combat-bonus").valid,false);
+
+  const passive=passiveEnchantmentProfile("firmnessAmulet");
+  assert.equal(passive.grade,1);
+  assert.equal(passive.group,"mental-fear-defense");
+  assert.equal(passive.effect.mentalDefenseBonus,2);
+
+  const host=item({quality:"superior"});
+  assert.equal(validateEnchantmentSupport(host,{
+    grade:1,
+    passiveKey:"firmnessAmulet",
+    functionalKey:"mental-fear-defense",
+    seal:false
+  }).valid,true);
+  assert.ok(validateEnchantmentSupport(host,{
+    grade:1,
+    passiveKey:"invented-passive",
+    functionalKey:"damage-manufacture",
+    seal:false
+  }).issues.some((issue)=>issue.code==="enchantment-passive-profile"));
+});
+
 test("CRAFT-13E: soporte Común no puede Encantarse I salvo Soporte Dedicado",()=>{
   const ordinary=item({quality:"common",manufacture:{referenceValueCopper:100}});
   const enchant={grade:1,patternKey:"barrier",functionalKey:"barrier-defense",supportAppropriate:false,hasRareComponent:false,seal:false};
@@ -228,6 +256,19 @@ test("CRAFT-13E: Rituales, Legendarios y Sello III quedan fuera del procedimient
   assert.ok(validateEnchantmentSupport(host,{
     grade:3,patternKey:"seal",functionalKey:"seal",supportAppropriate:true,hasRareComponent:true,seal:true,sealTriggerType:"contact"
   }).issues.some((issue)=>issue.code==="seal-grade"));
+});
+
+test("CRAFT-13E: una marca/llave mágica es Bypass, no un disparador-sensor",()=>{
+  const host=item();
+  const result=validateEnchantmentSupport(host,{
+    grade:1,
+    patternKey:"seal",
+    functionalKey:"ward",
+    seal:true,
+    sealTriggerType:"magic-key",
+    sealBypassKey:"marca-azul"
+  });
+  assert.ok(result.issues.some((issue)=>issue.code==="seal-trigger"));
 });
 
 test("CRAFT-13E: Sello sólo admite disparadores cerrados y rearme 25% CE/tiempo",()=>{
