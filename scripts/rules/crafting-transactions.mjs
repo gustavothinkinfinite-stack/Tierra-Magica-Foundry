@@ -240,7 +240,7 @@ function currentManufacture(target, model) {
 }
 
 
-function analyzeRepairMaterialLayers(model, manufacture, condition) {
+function analyzeRepairMaterialLayers(model, manufacture, condition, target, actor) {
   const installed=Array.isArray(manufacture.specialMaterials)?clone(manufacture.specialMaterials):[];
   const byId=new Map(installed.map((row)=>[String(row.id),row]));
   const affected=new Set(model.repair?.affectedMaterialIds ?? []);
@@ -283,13 +283,41 @@ function analyzeRepairMaterialLayers(model, manufacture, condition) {
     const row=byId.get(id);
     if(row) affectedSpecialValueCopper+=2*Math.max(0,Math.floor(number(row.supplementCopper)));
   }
-  const expectedBraCopper=vrq+affectedSpecialValueCopper;
+  const runicAddedValueCopper=model.repair?.runicMatrixAffected
+    ? Math.max(0,Math.floor(number(target?.system?.runic?.addedValueCopper)))
+    : 0;
+  const enchantmentAddedValueCopper=model.repair?.enchantmentMatrixAffected
+    ? Math.max(0,Math.floor(number(target?.system?.enchantment?.addedValueCopper)))
+    : 0;
+
+  if(model.repair?.runicMatrixAffected && runicAddedValueCopper<=0) {
+    issues.push({code:"repair-runic-layer",message:"La reparación declara afectada una Matriz Rúnica que el objeto no posee."});
+  }
+  if(model.repair?.enchantmentMatrixAffected && enchantmentAddedValueCopper<=0) {
+    issues.push({code:"repair-enchantment-layer",message:"La reparación declara afectada una matriz de Encantamiento que el objeto no posee."});
+  }
+
+  const expectedBraCopper=vrq+affectedSpecialValueCopper+runicAddedValueCopper+enchantmentAddedValueCopper;
   if(model.economy.affectedValueCopper!==expectedBraCopper) {
     issues.push({
       code:"repair-bra",
-      message:"La BRA no coincide con VRQ más las capas de Material Especial realmente afectadas.",
+      message:"La BRA no coincide con VRQ más las capas de Material Especial, Matriz Rúnica y Encantamiento realmente afectadas.",
       expectedCopper:expectedBraCopper
     });
+  }
+
+  if(model.repair?.enchantmentMatrixAffected && enchantmentAddedValueCopper>0) {
+    const enchant=target?.system?.enchantment??{};
+    const grade=Math.max(0,Math.floor(number(enchant.grade)));
+    const utilityOnly=grade===0 && String(enchant.utilityKey??"").trim();
+    const magicReq=utilityOnly
+      ? {primarySkill:"ritualism",primaryRank:3,arcanaRank:2,craftingRank:0,installation:"professional"}
+      : grade===1
+        ? {primarySkill:"ritualism",primaryRank:4,arcanaRank:3,craftingRank:3,installation:"specialized"}
+        : grade>=2
+          ? {primarySkill:"ritualism",primaryRank:5,arcanaRank:4,craftingRank:4,installation:"exceptional"}
+          : null;
+    if(magicReq) issues.push(...magicProfessionalIssues(model,actor,magicReq));
   }
 
   const preservedAffected=installed.filter((row)=>affected.has(String(row.id)) && !ordinary.has(String(row.id)));
@@ -963,7 +991,7 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
         quality:targetQuality
       };
       const condition=String(target.system?.condition ?? "operative");
-      const layerPlan=analyzeRepairMaterialLayers(model,current,condition);
+      const layerPlan=analyzeRepairMaterialLayers(model,current,condition,target,project.parent);
       if(!layerPlan.valid) {
         return {ok:false,error:"La BRA o las capas especiales de reparación no coinciden con el objeto.",issues:layerPlan.issues};
       }
@@ -1008,7 +1036,9 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
 
     if((model.repair?.affectedMaterialIds?.length ?? 0) ||
        (model.repair?.ordinaryReplacementMaterialIds?.length ?? 0) ||
-       (model.repair?.specialReplacements?.length ?? 0)) {
+       (model.repair?.specialReplacements?.length ?? 0) ||
+       model.repair?.runicMatrixAffected ||
+       model.repair?.enchantmentMatrixAffected) {
       return {ok:false,error:"Un objeto sin historial de manufactura no puede declarar capas especiales de reparación."};
     }
     const quote = repairQuote({
