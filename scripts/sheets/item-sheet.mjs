@@ -1,5 +1,6 @@
 import { TM_CONFIG } from "../config.mjs";
 import { formatCurrency } from "../rules/currency.mjs";
+import { craftingProjectRemainingMinutes, normalizeCraftingProject, validateCraftingProject } from "../rules/crafting.mjs";
 
 const ItemSheetV1 = foundry.appv1.sheets.ItemSheet;
 const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
@@ -41,6 +42,18 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
         : this.item.system.priceStatus === "variable" ? "Precio variable" : "Sin precio establecido"
       : "";
 
+    if (this.item.type === "project") {
+      context.project = normalizeCraftingProject(this.item.system);
+      context.projectValidation = validateCraftingProject(this.item.system);
+      context.projectRemainingMinutes = craftingProjectRemainingMinutes(this.item.system);
+      context.projectCounts = {
+        specialMaterials: context.project.specialMaterials.length,
+        components: context.project.components.length,
+        consequences: context.project.consequences.length,
+        ledgerEntries: context.project.ledger.entries.length
+      };
+    }
+
     context.deviceEnergySources = { "": "Reserva propia" };
     if (this.item.type === "device" && this.item.parent?.items) {
       for (const candidate of this.item.parent.items) {
@@ -78,13 +91,15 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
       amount: Number(cost?.amount ?? 0) || 0
     }));
     context.costContexts = { any:"Siempre", creation:"Creación", progression:"Progresión" };
-    context.acquisitionDisplay = this.item.parent
-      ? this.item.system.acquisition
-        ? (TM_CONFIG.acquisitionModes[this.item.system.acquisition.mode] ?? this.item.system.acquisition.mode) +
-          " · " + (TM_CONFIG.paidResources[this.item.system.acquisition.paid?.resource] ?? this.item.system.acquisition.paid?.resource ?? "—") +
-          " " + (this.item.system.acquisition.paid?.amount ?? 0)
-        : "Sin adquisición estructurada"
-      : "Catálogo / mundo: todavía no adquirido";
+    context.acquisitionDisplay = this.item.type === "project"
+      ? "Proyecto de trabajo · " + (TM_CONFIG.craftingProjectStates[this.item.system.state] ?? this.item.system.state ?? "Borrador")
+      : this.item.parent
+        ? this.item.system.acquisition
+          ? (TM_CONFIG.acquisitionModes[this.item.system.acquisition.mode] ?? this.item.system.acquisition.mode) +
+            " · " + (TM_CONFIG.paidResources[this.item.system.acquisition.paid?.resource] ?? this.item.system.acquisition.paid?.resource ?? "—") +
+            " " + (this.item.system.acquisition.paid?.amount ?? 0)
+          : "Sin adquisición estructurada"
+        : "Catálogo / mundo: todavía no adquirido";
 
     context.enrichedDescription = await TextEditorImpl.enrichHTML(this.item.system.description ?? "", {
       async: true, secrets: this.item.isOwner, relativeTo: this.item
