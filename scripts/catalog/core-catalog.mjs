@@ -138,7 +138,7 @@ function baseEntry(type, name, extra = {}) {
       requirements: null,
       rules: [],
       choices: {},
-      provenance: { sourceUuid:"", sourceSchemaVersion:TM_SCHEMA_VERSION, sourceRevision:"crea-11" },
+      provenance: { sourceUuid:"", sourceSchemaVersion:TM_SCHEMA_VERSION, sourceRevision:"crea-14" },
       acquisition: null,
       stacking: "unique",
       legacy: {},
