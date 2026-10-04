@@ -65,7 +65,7 @@ CREA-12 y CREA-13 fueron integradas posteriormente sin reabrir la declaración d
 - La PR #25 terminó con validación verde sobre su head revisado antes del squash e integración en `main`.
 - Las limitaciones deliberadas siguen siendo limitaciones de parametrización/canon, no tareas implícitas que deban automatizarse por inferencia.
 
-No existe una fase **CREA-14** definida en el repositorio tras este cierre. Un trabajo mecánico posterior requiere una decisión explícita y, cuando afecte reglas, debe consolidarse primero en el Manual Maestro.
+En el momento de ese cierre no existía una fase **CREA-14** definida. Posteriormente, por decisión explícita de proyecto, CREA-14 se abrió para cerrar la **autosuficiencia de creación de nivel 1** sin reabrir el núcleo de resolución. Su resultado queda documentado en `docs/CREA-14_CIERRE_AUTOSUFICIENCIA_CREACION.md`.
 
 ## Sincronización racial posterior — 2026-10-03
 
@@ -75,6 +75,14 @@ Este cambio no convierte las auditorías históricas en fuente paralela: la auto
 
 La nueva arquitectura mantiene separadas raza, cultura, Origen, profesión, religión, personalidad y moral; los paquetes raciales se equilibran aparte de 25 PD y 3 PR generales y no conceden por defecto rangos de Habilidad ni aumentos generales de Atributo.
 
+## Sincronización post-CREA-14 — 2026-10-04
+
+CREA-14 cierra la autosuficiencia de creación de nivel 1: identidad estructurada, idiomas y Facetas, Rasgos de creación, Perfiles Iniciales de Familiar, PEI mediante Compra libre, derivación automática del Bono Defensivo y ejemplo completo de PJ.
+
+La fase no modifica la arquitectura central de resolución 2d10, economía de Acción/Reacción, Vida/Trauma, magia, Sostenimiento, alquimia o dispositivos. Añade contenido y validaciones de creación donde antes existían huecos editoriales o datos que requerían inferencia externa.
+
+La validación automática de `main` quedó verde después de estas integraciones.
+
 ## Estado final
 
-**Núcleo 1.0 completo y jugable.** A1–A9, CREA-09 a CREA-13 y sus revisiones de cierre quedan integrados o cerrados según su documentación específica. El trabajo posterior corresponde a mantenimiento, documentación, contenido o futuras versiones explícitamente definidas, no a completar el núcleo 1.0.
+**Núcleo 1.0 completo y jugable.** A1–A9 y CREA-09 a CREA-14 quedan integrados o cerrados según su documentación específica. El trabajo posterior corresponde a mantenimiento, documentación, contenido o futuras versiones explícitamente definidas, no a completar el núcleo 1.0.
