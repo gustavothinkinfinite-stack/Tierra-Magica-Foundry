@@ -59,6 +59,7 @@ class StubActor {
     this.id = id;
     this.uuid = "Actor." + id;
     this.type = "character";
+    this.system = { skills:{ crafting:{ rank:5 } } };
     this.items = new Map();
     this.isOwner = true;
   }
