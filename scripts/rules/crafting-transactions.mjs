@@ -30,6 +30,7 @@ import {
   imprintActivationProfile,
   imprintStoneCraftProfile,
   integratedMagicRecoveryCopper,
+  magicSupportProfile,
   maxRunicCapacityForQuality,
   passiveEnchantmentProfile,
   runicMatrixQuote,
@@ -948,8 +949,33 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
       return {ok:false,error:"Fabricar no puede recibir Encantamientos preinstalados; deben pagarse mediante Proyecto de Encantamiento."};
     }
 
+    const dedicatedGrade=Math.max(0,Math.floor(number(source.system.magicSupport?.grade)));
+    if(dedicatedGrade>0) {
+      const support=magicSupportProfile(dedicatedGrade);
+      if(!support) return {ok:false,error:"Grado de Soporte Mágico Dedicado desconocido."};
+      if(model.economy.referenceValueCopper!==support.referenceValueCopper) {
+        return {ok:false,error:"El Soporte Mágico Dedicado debe usar su VR base canónico.",expectedCopper:support.referenceValueCopper};
+      }
+      if(model.time.baseMinutes+Number.EPSILON<support.timeMinutes) {
+        return {ok:false,error:"El tiempo base del Soporte Mágico Dedicado está por debajo del canon.",expectedMinutes:support.timeMinutes};
+      }
+      if(String(model.professional.skill)!=="crafting") {
+        return {ok:false,error:"Fabricar un Soporte Mágico Dedicado usa Artesanía como Habilidad principal."};
+      }
+      if(model.professional.requiredRank<support.craftingRank || actorSkillRank(project.parent,"crafting")<support.craftingRank) {
+        return {ok:false,error:"Artesanía no alcanza el rango del Soporte Mágico Dedicado.",expectedRank:support.craftingRank};
+      }
+      if(installationIndexLocal(model.professional.requiredInstallation)<installationIndexLocal(support.installation) ||
+         installationIndexLocal(model.professional.availableInstallation)<installationIndexLocal(support.installation)) {
+        return {ok:false,error:"La instalación no alcanza el requisito del Soporte Mágico Dedicado.",expectedInstallation:support.installation};
+      }
+    }
+
     if(source.system.imprintStone?.enabled===true) {
       const stoneProfile=imprintStoneCraftProfile(source.system.imprintStone.grade);
+      if(model.economy.quality!=="common" || model.modifications.length || model.specialMaterials.length) {
+        return {ok:false,error:"Una Piedra de Impronta usa su receta fija y no obtiene Calidad/CapM/Material Especial por esta fabricación."};
+      }
       if(model.economy.referenceValueCopper!==stoneProfile.referenceValueCopper) {
         return {ok:false,error:"La Piedra de Impronta debe usar su VR canónico.",expectedCopper:stoneProfile.referenceValueCopper};
       }
