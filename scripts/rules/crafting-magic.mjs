@@ -18,6 +18,8 @@ export const TRAP_FRAMES=Object.freeze({
 export const TRAP_TRIGGERS=Object.freeze([
   "manual","contact","tripwire","opening","weight-release","delay","physical-remote","multi-physical"
 ]);
+export const TRAP_LOAD_KINDS=Object.freeze(["alarm","maneuver","mechanical-strike","alchemy","environment"]);
+export const TRAP_MANEUVER_EFFECTS=Object.freeze(["trip","grab"]);
 
 export const RUNE_CHANNEL_TYPES=Object.freeze(["inscription","socket"]);
 export const SEAL_TRIGGER_TYPES=Object.freeze(["contact","opening","threshold"]);
@@ -117,16 +119,27 @@ export function validateTrapConfiguration(trap={}){
     issues.push({code:"trap-physical-trigger",message:"Una trampa automática debe declarar la condición física observable que la activa."});
   }
   const load=trap.load??{};
+  if(!TRAP_LOAD_KINDS.includes(String(load.kind??""))) {
+    issues.push({code:"trap-load-kind",message:"La carga de trampa no pertenece al catálogo cerrado de CRAFT-06."});
+  }
+  if(load.kind==="alarm" && (Math.max(0,number(load.damage))>0 || Math.max(0,number(load.penetration))>0)) {
+    issues.push({code:"trap-alarm-damage",message:"Una Alarma no posee Daño ni Penetración propios."});
+  }
+  if(load.kind==="maneuver" && !TRAP_MANEUVER_EFFECTS.includes(String(load.maneuverEffect??""))) {
+    issues.push({code:"trap-maneuver-effect",message:"Una carga de Maniobra debe declarar Derribar o Agarrar."});
+  }
   if(load.kind==="mechanical-strike" && frame) {
     const damage=Math.max(0,Math.floor(number(load.damage)));
     const pen=Math.max(0,Math.floor(number(load.penetration)));
     if(!text(load.profileRef)) issues.push({code:"trap-mechanical-profile",message:"Un Golpe mecánico debe señalar el arma/carga física cuyo perfil reutiliza."});
+    if(!text(load.componentUuid)) issues.push({code:"trap-mechanical-component",message:"Un Golpe mecánico debe señalar la carga física real integrada en el Armazón."});
     if(frame.key==="simple" && damage>0) issues.push({code:"trap-simple-damage",message:"Un Armazón Simple no admite carga dañina automática."});
     if(Number.isFinite(frame.maxDamage) && damage>frame.maxDamage) issues.push({code:"trap-damage",message:"El daño de la carga excede el límite del Armazón."});
     if(Number.isFinite(frame.maxPenetration) && pen>frame.maxPenetration) issues.push({code:"trap-penetration",message:"La Penetración de la carga excede el límite del Armazón."});
   }
-  if(load.kind==="alchemy" && !text(load.profileRef)) {
-    issues.push({code:"trap-alchemy-profile",message:"Una carga alquímica debe reutilizar un Perfil/Fórmula existente."});
+  if(load.kind==="alchemy") {
+    if(!text(load.profileRef)) issues.push({code:"trap-alchemy-profile",message:"Una carga alquímica debe reutilizar un Perfil/Fórmula existente."});
+    if(!text(load.componentUuid)) issues.push({code:"trap-alchemy-component",message:"La preparación alquímica consumida debe existir como componente físico."});
   }
   if(load.kind==="environment" && !text(load.geometryRef)) {
     issues.push({code:"trap-environment-geometry",message:"Una carga ambiental debe declarar la geometría física que produce el efecto."});
@@ -411,6 +424,27 @@ export function validateAttunement(actor,item,{elapsedMinutes=60,functionKnown=t
     }
   }
   return {valid:issues.length===0,issues,capacity,used,cost:profile?.attunement??0};
+}
+
+export function attunedPassiveEnchantments(actor){
+  const actorUuid=text(actor?.uuid);
+  const results=[];
+  for(const item of [...(actor?.items??[])]) {
+    const enchant=item?.system?.enchantment??{};
+    if(text(enchant.attunedActorUuid)!==actorUuid) continue;
+    if(String(item?.system?.condition??"operative")!=="operative") continue;
+    const passive=passiveEnchantmentProfile(enchant.passiveKey);
+    if(!passive) continue;
+    results.push({
+      item,
+      itemUuid:text(item?.uuid),
+      key:passive.key,
+      group:passive.group,
+      grade:passive.grade,
+      effect:structuredClone(passive.effect)
+    });
+  }
+  return results;
 }
 
 export function validateEnchantedActivation(actor,item){
