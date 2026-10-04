@@ -340,7 +340,10 @@ export function normalizeCraftingProject(source = {}) {
     target: {
       itemUuid: stringValue(source?.target?.itemUuid),
       resultType: stringValue(source?.target?.resultType || "equipment"),
-      resultName: stringValue(source?.target?.resultName)
+      resultName: stringValue(source?.target?.resultName),
+      resultData: source?.target?.resultData && typeof source.target.resultData === "object" && !Array.isArray(source.target.resultData)
+        ? structuredClone(source.target.resultData)
+        : {}
     },
     economy: {
       referenceValueCopper: integerCopper(economy.referenceValueCopper, "ceil"),
