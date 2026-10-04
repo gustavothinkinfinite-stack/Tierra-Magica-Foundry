@@ -66,6 +66,9 @@ export const TM_CONFIG = {
     draft: "Borrador", ready: "Preparado", active: "En curso", blocked: "Bloqueado", completed: "Completado", cancelled: "Cancelado"
   },
   craftingProjectTimeModes: { derived: "Derivado del TBA", fixed: "Tiempo fijo del procedimiento" },
+  craftingAccelerationOutcomes: {
+    none: "Sin Aceleración", pending: "Pendiente", success: "Éxito", failure: "Fallo", pifia: "Pifia"
+  },
   craftingInstallations: {
     improvised: "Improvisada", adequate: "Adecuada", professional: "Profesional", specialized: "Especializada", exceptional: "Excepcional"
   },
