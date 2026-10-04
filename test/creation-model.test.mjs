@@ -79,3 +79,90 @@ test("cierre de creación bloquea reparto incompleto y más de 3 Disciplinas ini
   result=validateCreationState(actor,{skillKeys:["a","b"]});
   assert.ok(result.issues.some((i)=>i.code==="discipline-creation-limit"));
 });
+
+
+test("CREA-14: identidad estructurada exige facetas e idiomas del Origen durante creación",()=>{
+  const attributes={
+    fue:{creationValue:3,baseValue:3},
+    agi:{creationValue:2,baseValue:2},
+    vig:{creationValue:2,baseValue:2},
+    int:{creationValue:2,baseValue:2},
+    per:{creationValue:2,baseValue:2},
+    vol:{creationValue:1,baseValue:1},
+    pre:{creationValue:1,baseValue:1}
+  };
+  const actor={
+    type:"character",
+    system:{
+      creation:{status:"building"},
+      details:{
+        level:1,
+        originFacet:"Fueros y administración",
+        backgroundFacets:"Herramientas y mantenimiento; Materiales y proveedores"
+      },
+      traits:{languages:"Común de Concordia; Valdoriano"},
+      skills:emptySkills,
+      attributes
+    },
+    items:[
+      {type:"ancestry",name:"Humano",system:{}},
+      {type:"origin",name:"Valdoriano",system:{
+        languageProfile:"Común de Concordia + Valdoriano",
+        facetOptions:"Fueros y administración; Servicio cívico y milicias; Caballería y vida regional"
+      }},
+      {type:"background",name:"Vida de Taller",system:{
+        facetOptions:"Herramientas y mantenimiento; Materiales y proveedores; Gremios y encargos"
+      }}
+    ]
+  };
+  const valid=validateCreationState(actor,{skillKeys:["a","b"]});
+  assert.equal(valid.valid,true,JSON.stringify(valid.issues));
+
+  actor.system.traits.languages="Común de Concordia";
+  const missingLanguage=validateCreationState(actor,{skillKeys:["a","b"]});
+  assert.ok(missingLanguage.issues.some((issue)=>issue.code==="identity-origin-language"));
+
+  actor.system.traits.languages="Común de Concordia; Valdoriano";
+  actor.system.details.originFacet="Faceta inventada";
+  const invalidFacet=validateCreationState(actor,{skillKeys:["a","b"]});
+  assert.ok(invalidFacet.issues.some((issue)=>issue.code==="identity-origin-facet"));
+});
+
+test("CREA-14: Lengua de trabajo ocupa una Faceta y debe anotarse en Idiomas",()=>{
+  const attributes={
+    fue:{creationValue:3,baseValue:3},
+    agi:{creationValue:2,baseValue:2},
+    vig:{creationValue:2,baseValue:2},
+    int:{creationValue:2,baseValue:2},
+    per:{creationValue:2,baseValue:2},
+    vol:{creationValue:1,baseValue:1},
+    pre:{creationValue:1,baseValue:1}
+  };
+  const actor={
+    type:"character",
+    system:{
+      creation:{status:"building"},
+      details:{
+        level:1,
+        originFacet:"Ríos y bosques",
+        backgroundFacets:"Mapas y notas de campo; Lengua de trabajo: Lysendrino"
+      },
+      traits:{languages:"Común de Concordia; Ereliano; Lysendrino"},
+      skills:emptySkills,
+      attributes
+    },
+    items:[
+      {type:"ancestry",name:"Elfo",system:{}},
+      {type:"origin",name:"Ereliano",system:{
+        languageProfile:"Común de Concordia + Ereliano",
+        facetOptions:"Autonomía local; Ríos y bosques; Exploración y gestión del territorio"
+      }},
+      {type:"background",name:"Expedición y Cartografía",system:{
+        facetOptions:"Mapas y notas de campo; Campamentos y suministros; Permisos y expediciones"
+      }}
+    ]
+  };
+  assert.equal(validateCreationState(actor,{skillKeys:["a","b"]}).valid,true);
+  actor.system.traits.languages="Común de Concordia; Ereliano";
+  assert.ok(validateCreationState(actor,{skillKeys:["a","b"]}).issues.some((issue)=>issue.code==="identity-work-language"));
+});
