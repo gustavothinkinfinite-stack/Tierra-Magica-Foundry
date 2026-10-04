@@ -514,17 +514,21 @@ export function validateCraftingProject(project = {}) {
     }
   }
 
-  const minimumRequirements = projectRequirements({
-    baseRank:normalized.professional.baseRank,
-    baseInstallation:normalized.professional.baseInstallation,
-    quality:normalized.economy.quality,
-    materialGrade:normalized.economy.workMaterialGrade
-  });
-  if (normalized.professional.requiredRank < minimumRequirements.rank) {
-    issues.push({ code:"rank-understated", message:"El rango requerido está por debajo del mínimo derivado por Calidad/Material." });
-  }
-  if (installationIndex(normalized.professional.requiredInstallation) < installationIndex(minimumRequirements.installation)) {
-    issues.push({ code:"installation-understated", message:"La instalación requerida está por debajo del mínimo derivado por Calidad/Material." });
+  const usesPhysicalManufactureRequirements = normalized.operation !== "modify" ||
+    ["quality","modification","material"].includes(normalized.enhancement.mode);
+  if (usesPhysicalManufactureRequirements) {
+    const minimumRequirements = projectRequirements({
+      baseRank:normalized.professional.baseRank,
+      baseInstallation:normalized.professional.baseInstallation,
+      quality:normalized.economy.quality,
+      materialGrade:normalized.economy.workMaterialGrade
+    });
+    if (normalized.professional.requiredRank < minimumRequirements.rank) {
+      issues.push({ code:"rank-understated", message:"El rango requerido está por debajo del mínimo derivado por Calidad/Material." });
+    }
+    if (installationIndex(normalized.professional.requiredInstallation) < installationIndex(minimumRequirements.installation)) {
+      issues.push({ code:"installation-understated", message:"La instalación requerida está por debajo del mínimo derivado por Calidad/Material." });
+    }
   }
 
   if (normalized.operation !== "modify" && normalized.time.mode === "derived") {
