@@ -5,6 +5,7 @@ export const ATTRIBUTE_UPGRADE_COSTS = Object.freeze({ 0: 4, 1: 6, 2: 9, 3: 13, 
 export const INITIAL_ATTRIBUTE_BASE = 1;
 export const INITIAL_ATTRIBUTE_INCREASES = 6;
 export const INITIAL_ATTRIBUTE_MAX = 3;
+export const ORDINARY_ATTRIBUTE_MAX = 5;
 
 function number(value, fallback = 0) {
   const n = Number(value);
@@ -13,6 +14,12 @@ function number(value, fallback = 0) {
 
 export function pdTotalForLevel(level) {
   return 25 + Math.max(0, Math.floor(number(level, 1)) - 1) * 4;
+}
+
+export function nextAttributeUpgradeCost(value) {
+  const current = Math.max(0, Math.floor(number(value, INITIAL_ATTRIBUTE_BASE)));
+  if (current >= ORDINARY_ATTRIBUTE_MAX) return null;
+  return ATTRIBUTE_UPGRADE_COSTS[current] ?? null;
 }
 
 export function attributeProgressionCost(attributes = {}) {
@@ -25,7 +32,7 @@ export function attributeProgressionCost(attributes = {}) {
   return total;
 }
 
-export function validateInitialAttributes(attributes = {}) {
+export function validateInitialAttributes(attributes = {}, { allowProgression = false } = {}) {
   const issues = [];
   const entries = Object.entries(attributes ?? {});
   let increases = 0;
@@ -40,8 +47,11 @@ export function validateInitialAttributes(attributes = {}) {
       issues.push({ code: "attribute-creation-range", attribute: key, message: key + " debe quedar entre 1 y 3 durante creación." });
     }
     increases += Math.max(0, creationValue - INITIAL_ATTRIBUTE_BASE);
-    if (baseValue !== creationValue) {
+    if (!allowProgression && baseValue !== creationValue) {
       issues.push({ code: "attribute-creation-base-mismatch", attribute: key, message: key + " no puede comprar progresión de Atributo antes de cerrar creación." });
+    }
+    if (allowProgression && baseValue < creationValue) {
+      issues.push({ code: "attribute-rebuild-base-below-creation", attribute: key, message: key + " no puede tener un valor base inferior al valor reconstruido de creación." });
     }
   }
   if (increases !== INITIAL_ATTRIBUTE_INCREASES) {
@@ -64,6 +74,8 @@ export function deriveDevelopmentBudget(actor, { skillKeys = null } = {}) {
   const itemSpend = budgetSpentByResource(actorItems(actor));
   const pdSpent = skills + attributes + itemSpend.pd;
   const pdTotal = pdTotalForLevel(level);
+  const creationStatus = actor?.system?.creation?.status ?? "complete";
+  const peiOpen = creationStatus === "building" || creationStatus === "rebuilding";
   return {
     pdTotal,
     pdSpent,
@@ -73,10 +85,16 @@ export function deriveDevelopmentBudget(actor, { skillKeys = null } = {}) {
     prAvailable: 3 - itemSpend.pr,
     peiTotal: 2000,
     peiSpent: itemSpend.pei,
-    peiAvailable: 2000 - itemSpend.pei,
+    peiAvailable: peiOpen ? 2000 - itemSpend.pei : 0,
     skillsPdCost: skills,
     attributePdCost: attributes
   };
+}
+
+export function canAffordDevelopmentPd(actor, amount, { skillKeys = null } = {}) {
+  const cost = Math.max(0, number(amount));
+  const budget = deriveDevelopmentBudget(actor, { skillKeys });
+  return { valid: cost <= budget.pdAvailable, cost, budget };
 }
 
 function identityList(value = "") {
@@ -160,7 +178,9 @@ export function validateCreationState(actor, { skillKeys = null } = {}) {
   }
 
   if (creationOpen) {
-    issues.push(...validateInitialAttributes(actor?.system?.attributes ?? {}).issues);
+    issues.push(...validateInitialAttributes(actor?.system?.attributes ?? {}, {
+      allowProgression: creationStatus === "rebuilding"
+    }).issues);
   }
 
   const initialDisciplines = items.filter((item) =>

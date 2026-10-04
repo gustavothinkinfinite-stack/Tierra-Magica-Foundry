@@ -458,10 +458,11 @@
       </section>
 
       <section class="tm-v03-development-summary">
-        <label>
+        <div>
           <span>Nivel</span>
-          <input type="number" value="{{system.details.level}}" min="1" max="20" data-action="set-numeric-field" data-field="system.details.level" />
-        </label>
+          <b>{{system.details.level}}</b>
+          {{#if development.canAdvanceLevel}}<button type="button" data-action="advance-level">Subir de nivel (+4 PD)</button>{{/if}}
+        </div>
         <div><span>Estado</span><b>{{creation.statusLabel}}</b></div>
         <div><span>PD totales</span><b>{{development.pdTotal}}</b></div>
         <div><span>PD gastados</span><b>{{development.pdSpent}}</b></div>
@@ -484,18 +485,28 @@
           {{#if creation.isRebuilding}}<button type="button" data-action="complete-creation">Cerrar reconstrucción</button>{{/if}}
           {{#if creation.isComplete}}<button type="button" data-action="begin-rebuild">Abrir reconstrucción (DJ)</button>{{/if}}
         </div>
-      </section>>
+      </section>
 
       <section class="tm-panel tm-v03-page-panel">
-        <div class="tm-section-heading"><h2>Atributos</h2><span>{{#if creation.isBuilding}}6 aumentos gratuitos; máximo inicial 3.{{else}}Edición de valores base.{{/if}}</span></div>
+        <div class="tm-section-heading"><h2>Atributos</h2><span>{{#if creation.isOpen}}6 aumentos gratuitos; máximo inicial 3.{{else}}Mejoras por PD; máximo ordinario 5.{{/if}}</span></div>
         <div class="tm-v03-attribute-editor">
-          {{#each system.attributes as |attribute key|}}
-            {{#if @root.creation.isBuilding}}
+          {{#if creation.isOpen}}
+            {{#each system.attributes as |attribute key|}}
               <label><span>{{lookup ../config.attributes key}}</span><input type="number" data-action="set-creation-attribute" data-key="{{key}}" value="{{attribute.creationValue}}" min="1" max="3" /></label>
-            {{else}}
-              <label><span>{{lookup ../config.attributes key}}</span><input type="number" name="system.attributes.{{key}}.baseValue" value="{{attribute.baseValue}}" min="0" max="8" /></label>
-            {{/if}}
-          {{/each}}
+            {{/each}}
+          {{else}}
+            {{#each development.attributeUpgrades as |upgrade|}}
+              <div>
+                <span>{{upgrade.label}}</span>
+                <b>{{upgrade.current}}</b>
+                {{#if upgrade.canUpgrade}}
+                  <button type="button" data-action="upgrade-attribute" data-key="{{upgrade.key}}">Mejorar a {{upgrade.next}} · {{upgrade.cost}} PD</button>
+                {{else}}
+                  <small>Máximo ordinario</small>
+                {{/if}}
+              </div>
+            {{/each}}
+          {{/if}}
         </div>
       </section>
 

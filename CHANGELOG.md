@@ -1,3 +1,13 @@
+## CREA-15 — autosuficiencia de progresión · CERRADO — 2026-10-04
+
+- La progresión ordinaria queda cerrada para niveles **2–20** sin editar libremente el nivel: Foundry avanza de un nivel por vez y deriva **25 + 4 × (nivel - 1) PD**.
+- Las mejoras de Habilidad comprueban ahora el **presupuesto global de PD**, incluyendo PD ya invertidos en Atributos e Items, evitando doble gasto entre subsistemas.
+- Los Atributos post-creación dejan de editarse como valores base libres: se mejoran un paso por vez con costes **4/6/9/13/18 PD** y máximo ordinario **5**.
+- La reconstrucción autorizada distingue los aumentos gratuitos de creación de la progresión ya pagada y no borra silenciosamente Atributos progresados.
+- El **PEI sobrante queda en 0 después de cerrar creación** y no reaparece como presupuesto reutilizable durante progresión.
+- Se añaden regresiones específicas para nivel, presupuesto PD, Atributos, reconstrucción y cierre de PEI.
+- Documento formal: `docs/CREA-15_CIERRE_AUTOSUFICIENCIA_PROGRESION.md`.
+
 ## CREA-14 — autosuficiencia de creación · CERRADO — 2026-10-04
 
 - La creación de nivel 1 queda resoluble leyendo únicamente el Manual Maestro: **Ascendencia + Origen + Trasfondo**, Atributos, 25 PD, 3 PR, Familiar opcional, PEI, derivados e identidad final.

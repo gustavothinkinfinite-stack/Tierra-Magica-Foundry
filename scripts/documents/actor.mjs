@@ -17,7 +17,7 @@ import { withActorResourceLock } from "../rules/resource-mutation.mjs";
 import { boundedHealthRecoveryUpdates, healingCap } from "../rules/healing-delivery.mjs";
 import { resolveDeviceEnergySource, withDeviceEnergyLock } from "../rules/device-energy.mjs";
 import { applyHealthDamageAuthoritatively, consumeDeviceEnergyAuthoritatively } from "../rules/state-authority.mjs";
-import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX } from "../rules/creation.mjs";
+import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INITIAL_ATTRIBUTE_BASE, INITIAL_ATTRIBUTE_INCREASES, INITIAL_ATTRIBUTE_MAX, ORDINARY_ATTRIBUTE_MAX, nextAttributeUpgradeCost, canAffordDevelopmentPd } from "../rules/creation.mjs";
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
 import { preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType } from "../rules/acquisition.mjs";
@@ -218,8 +218,9 @@ export class TierraMagicaActor extends Actor {
 
   async setCreationAttribute(key, value) {
     if (this.type !== "character") return null;
-    if ((this.system.creation?.status ?? "complete") !== "building") {
-      return ui.notifications.warn("Los aumentos gratuitos de Atributo sólo se editan durante la creación inicial.");
+    const creationStatus = this.system.creation?.status ?? "complete";
+    if (!["building", "rebuilding"].includes(creationStatus)) {
+      return ui.notifications.warn("Los aumentos gratuitos de Atributo sólo se editan durante creación o reconstrucción autorizada.");
     }
     const attributes = this.system.attributes ?? {};
     if (!Object.prototype.hasOwnProperty.call(attributes, key)) return null;
@@ -237,9 +238,13 @@ export class TierraMagicaActor extends Actor {
     if (increases > INITIAL_ATTRIBUTE_INCREASES) {
       return ui.notifications.warn("La creación dispone de exactamente 6 aumentos gratuitos de Atributo.");
     }
+    const currentCreation = Math.floor(toNumber(attributes?.[key]?.creationValue ?? attributes?.[key]?.baseValue, INITIAL_ATTRIBUTE_BASE));
+    const currentBase = Math.floor(toNumber(attributes?.[key]?.baseValue ?? currentCreation, currentCreation));
+    const progressed = currentBase > currentCreation;
+    const nextBase = creationStatus === "building" || !progressed ? next : Math.max(currentBase, next);
     return this.update({
       ["system.attributes." + key + ".creationValue"]: next,
-      ["system.attributes." + key + ".baseValue"]: next,
+      ["system.attributes." + key + ".baseValue"]: nextBase,
       "system.creation.revision": toNumber(this.system.creation?.revision) + 1
     });
   }
@@ -291,11 +296,66 @@ export class TierraMagicaActor extends Actor {
       return ui.notifications.warn(messages[blocking.code] ?? "El rango solicitado no es válido.");
     }
 
+    const skillKeys = Object.keys(TM_CONFIG.skills);
+    const currentSkillCost = skillsPdCost(this.system.skills ?? {}, skillKeys);
+    const candidateSkillCost = skillsPdCost(candidate, skillKeys);
+    const pdDelta = Math.max(0, candidateSkillCost - currentSkillCost);
+    if (pdDelta > 0) {
+      const affordability = canAffordDevelopmentPd(this, pdDelta, { skillKeys });
+      if (!affordability.valid) {
+        return ui.notifications.warn(
+          "La mejora cuesta " + pdDelta + " PD, pero sólo hay " +
+          Math.max(0, affordability.budget.pdAvailable) + " PD disponibles."
+        );
+      }
+    }
+
     return this.update({ ["system.skills." + key + ".rank"]: rank });
   }
 
   async closeSkillBuild() {
     return ui.notifications.info("CREA-11 utiliza un cierre global de creación. Usa Completar creación cuando todas las elecciones estén listas.");
+  }
+
+  async advanceLevel() {
+    if (this.type !== "character") return null;
+    if ((this.system.creation?.status ?? "complete") !== "complete") {
+      return ui.notifications.warn("La progresión de nivel sólo está disponible con la creación cerrada.");
+    }
+    const current = Math.max(1, Math.floor(toNumber(this.system.details?.level, 1)));
+    if (current >= 20) return ui.notifications.warn("Nivel 20 es el máximo ordinario.");
+    return this.update({ "system.details.level": current + 1 });
+  }
+
+  async upgradeAttribute(key) {
+    if (this.type !== "character") return null;
+    if ((this.system.creation?.status ?? "complete") !== "complete") {
+      return ui.notifications.warn("Las mejoras de Atributo por PD sólo están disponibles después de cerrar creación.");
+    }
+    const attribute = this.system.attributes?.[key];
+    if (!attribute) return ui.notifications.warn("Atributo no canónico: " + key + ".");
+
+    const creationValue = Math.max(INITIAL_ATTRIBUTE_BASE, Math.floor(toNumber(attribute.creationValue, INITIAL_ATTRIBUTE_BASE)));
+    const current = Math.floor(toNumber(attribute.baseValue ?? attribute.value, creationValue));
+    if (current < creationValue) {
+      return ui.notifications.warn("El valor base no puede quedar por debajo del valor fijado en creación.");
+    }
+
+    const cost = nextAttributeUpgradeCost(current);
+    if (cost === null || current >= ORDINARY_ATTRIBUTE_MAX) {
+      return ui.notifications.warn("La progresión ordinaria de Atributos termina en 5; valores 6+ requieren una fuente sobrenatural explícita.");
+    }
+
+    const skillKeys = Object.keys(TM_CONFIG.skills);
+    const affordability = canAffordDevelopmentPd(this, cost, { skillKeys });
+    if (!affordability.valid) {
+      return ui.notifications.warn(
+        "Mejorar " + (TM_CONFIG.attributes[key] ?? key) + " de " + current + " a " + (current + 1) +
+        " cuesta " + cost + " PD, pero sólo hay " + Math.max(0, affordability.budget.pdAvailable) + " PD disponibles."
+      );
+    }
+
+    return this.update({ ["system.attributes." + key + ".baseValue"]: current + 1 });
   }
 
   async acquireItem(itemData, { stage = null, priceContext = null, mode = "purchased", sources = [], transaction = null, grantPath = [] } = {}) {
