@@ -48,9 +48,12 @@ test("el ejemplo de creación gasta exactamente 25 PD y 3 PR",async()=>{
   assert.match(creation,/PD acumulados hasta aquí: \*\*18\*\*/);
   assert.match(creation,/Total final: \*\*18 \+ 7 = 25 PD\*\*/);
   assert.match(creation,/Total: \*\*3 PR\*\*/);
-  assert.match(creation,/Vida máxima = 10 \+ 2×VIG = \*\*14\*\*/);
-  assert.match(creation,/Maná máximo = 6 \+ 3×VOL = \*\*12\*\*/);
-  assert.match(creation,/umbral informativo de Daño Grave = 5 \+ VIG = \*\*7\*\*/);
+  assert.match(creation,/Vida máxima \*\*14\*\*/);
+  assert.match(creation,/Maná máximo \*\*12\*\*/);
+  assert.match(creation,/Defensa \*\*15\*\*/);
+  assert.match(creation,/Protección \*\*1\*\*/);
+  assert.match(creation,/umbral informativo de Daño Grave \*\*7\*\*/);
+  assert.match(creation,/\*\*Total\*\* \| \*\*10 o 5 p = 1\.050 c\*\*/);
 });
 
 test("el Manual explica los PD acumulativos y coincide con la fórmula implementada",async()=>{
