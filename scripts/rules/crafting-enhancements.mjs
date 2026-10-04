@@ -211,6 +211,9 @@ export function validateSpecialMaterials(rows=[],{allowUnknownProfiles=true}={})
   let dominant=0;
   const groups=new Map();
   for(const row of materials) {
+    if(!row.profileKey) {
+      issues.push({code:"material-profile-missing",materialId:row.id,message:"Todo Material Especial debe declarar un Perfil de Material identificable."});
+    }
     if(!(row.coverage in COVERAGE_ORDER)) {
       issues.push({code:"material-coverage",materialId:row.id,message:"Cobertura material desconocida."});
       continue;
