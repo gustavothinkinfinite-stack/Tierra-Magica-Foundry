@@ -342,14 +342,15 @@ test("CRAFT-13C: desmantelar crea VI, no moneda, y elimina el objeto original",a
     material:null,
     materialCopper:0,
     estimatedMaterialsCopper:0,
-    requiredMinutes:0,
+    requiredMinutes:10,
     completedMinutes:0,
     targetItemUuid:target.uuid,
     referenceValueCopper:200
   });
   const resolver=resolverFor(actor);
   await reserveCraftingProjectMaterials(craft,{resolver});
-  const result=await completeCraftingProject(craft,{expectedRevision:1,resolver});
+  await advanceCraftingProjectWork(craft,10,{expectedRevision:1});
+  const result=await completeCraftingProject(craft,{expectedRevision:2,resolver});
   assert.equal(result.ok,true);
   assert.equal(actor.items.has("sword"),false);
   const recovered=[...actor.items.values()].find((item)=>item.system?.craftingLot?.enabled);
