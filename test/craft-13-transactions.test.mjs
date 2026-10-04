@@ -93,7 +93,10 @@ class StubActor {
 function lot(actor, {
   id = "lot",
   vi = 100,
-  reservations = {}
+  reservations = {},
+  compatibility = ["forja"],
+  materialProfileKey = "",
+  preparation = "prepared"
 } = {}) {
   return actor.add(new StubItem({
     id,
@@ -104,7 +107,9 @@ function lot(actor, {
       craftingLot:{
         enabled:true,
         category:"metal",
-        compatibility:["forja"],
+        compatibility,
+        materialProfileKey,
+        preparation,
         inputValueCopper:vi,
         reservations
       }
@@ -124,8 +129,19 @@ function project(actor, {
   targetItemUuid = "",
   resultData = null,
   referenceValueCopper = 100,
+  quality = "common",
+  workMaterialGrade = "ordinary",
   specialMaterials = [],
-  components = []
+  modifications = [],
+  enhancement = {mode:"modification",replaceMaterialId:"",fineMachiningMaterialId:""},
+  components = [],
+  timeMode = operation === "modify" ? "fixed" : "derived",
+  baseMinutes = Math.max(requiredMinutes, 10),
+  adjustedBaseMinutes = Math.max(requiredMinutes, 10),
+  requiredRank = 2,
+  requiredInstallation = "adequate",
+  availableInstallation = "adequate",
+  allocationCompatibility = "forja"
 } = {}) {
   const entries = material && materialCopper > 0 ? [{
     id:"alloc-" + id,
@@ -134,7 +150,7 @@ function project(actor, {
     amountCopper:materialCopper,
     quantity:0,
     sourceUuid:material.uuid,
-    compatibility:"forja",
+    compatibility:allocationCompatibility,
     note:""
   }] : [];
   return actor.add(new StubItem({
@@ -157,16 +173,18 @@ function project(actor, {
         referenceValueCopper,
         priceStatus:"exact",
         fixedPriceCopper:referenceValueCopper,
-        quality:"common",
-        workMaterialGrade:"ordinary",
+        quality,
+        workMaterialGrade,
         affectedValueCopper:referenceValueCopper
       },
       specialMaterials,
+      modifications,
+      enhancement,
       components,
       time:{
-        mode:"derived",
-        baseMinutes:Math.max(requiredMinutes, 10),
-        adjustedBaseMinutes:Math.max(requiredMinutes, 10),
+        mode:timeMode,
+        baseMinutes,
+        adjustedBaseMinutes,
         requiredMinutes,
         completedMinutes
       },
@@ -174,10 +192,10 @@ function project(actor, {
         skill:"crafting",
         specialization:"",
         baseRank:2,
-        requiredRank:2,
+        requiredRank,
         baseInstallation:"adequate",
-        requiredInstallation:"adequate",
-        availableInstallation:"adequate",
+        requiredInstallation,
+        availableInstallation,
         stableProcedure:true,
         materialsReady:true,
         essentialToolReady:true
