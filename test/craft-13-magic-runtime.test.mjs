@@ -334,7 +334,7 @@ test("CRAFT-13E runtime: un mismo evento indivisible sólo alimenta una trampa o
         automatic:true,
         state:"armed",
         baseTimeMinutes:120,
-        load:{kind:"mechanical-strike",profileRef:"Lanza",damage:5,penetration:1}
+        load:{kind:"mechanical-strike",profileRef:"Lanza",componentUuid:"Actor.owner.Item.lanza",damage:5,penetration:1}
       }
     }
   }));
@@ -425,7 +425,7 @@ test("CRAFT-13E runtime: una trampa automática no puede dispararse desde un eve
         automatic:true,
         state:"armed",
         baseTimeMinutes:120,
-        load:{kind:"mechanical-strike",profileRef:"Lanza",damage:5,penetration:1}
+        load:{kind:"mechanical-strike",profileRef:"Lanza",componentUuid:"Actor.wrong-trigger-owner.Item.lanza",damage:5,penetration:1}
       }
     }
   }));
