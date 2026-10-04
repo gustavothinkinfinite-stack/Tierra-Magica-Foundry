@@ -96,7 +96,7 @@ test("Kits habilitan trabajo pero no conceden bonus universal",async()=>{
   assert.match(equipment,/Repuesto médico, 5 usos \| 5 p/);
 });
 
-test("consumibles conservan dosis, Saturación y precios no establecidos",async()=>{
+test("consumibles conservan dosis, Saturación y precios ratificados por CRAFT-11",async()=>{
   const manual=await readFile(manualUrl,"utf8");
   const equipment=section(manual,"## 9. Armas, armaduras, equipo y suministros","## 10. Vida, heridas, Trauma y recuperación");
 
@@ -105,7 +105,7 @@ test("consumibles conservan dosis, Saturación y precios no establecidos",async(
   }
   assert.match(equipment,/usar una dosis consume esa dosis/);
   assert.match(equipment,/una dosis no puede utilizarse dos veces/);
-  assert.match(equipment,/permanecen \\*\\*sin precio monetario establecido\\*\\*/);
+  assert.equal(equipment.includes("Sus precios monetarios están **ratificados en CRAFT-11"),true);
 });
 
 test("el Manual no crea una fórmula universal de inventario o carga",async()=>{
