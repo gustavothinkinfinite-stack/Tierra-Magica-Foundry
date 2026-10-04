@@ -340,7 +340,9 @@ export function installCraftingMagicGuards(ActorClass) {
           await this.update({"system.turn.action":false},{tmValidated:true,tmCraftingMagic:true});
         }
         await trap.update({"system.trap.state":"discharged"},{tmValidated:true,tmCraftingMagic:true});
-        return {ok:true,load:clone(trap.system.trap.load),precision:number(trap.system.trap.precision),mechanismDf:number(trap.system.trap.mechanismDf)};
+        const load=clone(trap.system.trap.load);
+        const usesMechanismPrecision=["mechanical-strike","maneuver"].includes(String(load?.kind??""));
+        return {ok:true,load,precision:usesMechanismPrecision?number(trap.system.trap.precision):0,mechanismDf:number(trap.system.trap.mechanismDf)};
       });
     }
 
@@ -352,7 +354,9 @@ export function installCraftingMagicGuards(ActorClass) {
       await rollbackAutomaticEvent(targetActor,claim.previous);
       return {ok:false,error:"No fue posible descargar la trampa; se revirtió la reclamación del evento.",cause:String(error?.message??error)};
     }
-    return {ok:true,load:clone(trap.system.trap.load),precision:number(trap.system.trap.precision),mechanismDf:number(trap.system.trap.mechanismDf)};
+    const load=clone(trap.system.trap.load);
+    const usesMechanismPrecision=["mechanical-strike","maneuver"].includes(String(load?.kind??""));
+    return {ok:true,load,precision:usesMechanismPrecision?number(trap.system.trap.precision):0,mechanismDf:number(trap.system.trap.mechanismDf)};
   };
 
   ActorClass.prototype.triggerCustodySeal=async function(seal,{targetActor=null,eventId="",eventType="",providedBypassKey=""}={}){
