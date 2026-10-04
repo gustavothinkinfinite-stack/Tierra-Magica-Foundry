@@ -492,6 +492,10 @@
           "attunedActorUuid": "",
           "seal": false,
           "sealState": "charged",
+          "sealTriggerType": "",
+          "sealBypassKey": "",
+          "rechargeBlocked": false,
+          "chargedReferenceValueCopper": 0,
           "boundSpell": null
         }
       }
@@ -733,6 +737,8 @@
         "enchantmentSupportAppropriate": false,
         "enchantmentHasRareComponent": false,
         "enchantmentSeal": false,
+        "sealTriggerType": "",
+        "sealBypassKey": "",
         "boundSpell": null
       },
       "repair": {
