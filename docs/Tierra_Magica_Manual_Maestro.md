@@ -392,6 +392,109 @@ Los paquetes anteriores son una **base estática**. Subir de nivel no aumenta au
 
 Los paquetes raciales no conceden rangos de Habilidad ni rompen el máximo inicial de Atributo. Cuando una capacidad racial y un Rasgo general describan exactamente la misma propiedad, no se acumulan ni se cobra dos veces por la misma característica.
 
+#### Identidad estructurada de creación: Ascendencia, Origen y Trasfondo
+
+Para que la creación del Manual y la ficha de Foundry utilicen el mismo lenguaje, todo PJ de nivel 1 registra **exactamente una Ascendencia, un Origen y un Trasfondo**.
+
+- **Ascendencia** = el paquete racial o variante mecánica elegida. No describe automáticamente cultura ni profesión.
+- **Origen** = la sociedad o región donde el personaje se formó principalmente. Entrega Familiaridad Cultural, Perfil Lingüístico y una Faceta de Origen, pero ningún rango de Habilidad.
+- **Trasfondo** = la trayectoria práctica anterior a la aventura. Entrega Familiaridad Práctica y dos Facetas de Trasfondo, pero ningún rango de Habilidad.
+- **Concepto** = la síntesis libre de quién es el personaje; no sustituye las tres entradas anteriores.
+
+Estas entradas **no consumen PD ni PR**. Tampoco conceden Atributos, Ataque, Defensa, Vida, Maná, Técnicas, Hechizos, dinero ni equipo gratis salvo que una regla lo indique expresamente.
+
+##### Ascendencias registrables
+
+La ficha debe registrar la variante mecánica exacta cuando la familia posea más de una.
+
+**Humano; Enano; Elfo; Orco; Goblin; Hobgoblin; Bugbear; Terio/Anihombre; Hada; Sátiro; Dríade; Silfo; Ankar; Cristálido de Matriz Mixta; Verdante; Micelio; Coralio.**
+
+Para un Terio se anotan además Linaje, Variedad y Adaptaciones elegidas. Para un Verdante se anota su Adaptación de Bioma. Un Humano anota las elecciones concedidas por Don sin Forma en la sección de Rasgos. Estas anotaciones no crean una segunda Ascendencia.
+
+##### Qué significa Familiaridad Cultural
+
+La Familiaridad Cultural de un Origen significa que el personaje conoce la vida cotidiana de esa sociedad: costumbres comunes, instituciones visibles, geografía ordinaria, normas sociales y procedimientos públicos básicos.
+
+Una información que cualquier adulto local razonablemente conocería puede darse por sabida sin tirada. Información oscura, histórica, secreta, profesional o controvertida sigue requiriendo la Habilidad apropiada cuando exista incertidumbre relevante.
+
+Familiaridad Cultural **no concede un bono numérico** y no sustituye Historia, Religión, Persuasión, Investigación u otra Habilidad.
+
+##### Perfiles de Origen
+
+Todo Origen concede **Común de Concordia + la lengua regional indicada**. Además el jugador elige **una** Faceta de la fila y la anota en la ficha. La Faceta amplía la Familiaridad Cultural a ese ámbito, pero no concede un modificador.
+
+| Origen | Lengua regional | Elige una Faceta de Origen |
+|---|---|---|
+| **Valdoriano** | Valdoriano | Fueros y administración; servicio cívico y milicias; caballería y vida regional |
+| **Broncino** | Broncino | Mercados y contratos; industria y talleres; trabajo organizado y gremios |
+| **Lysendrino** | Lysendrino | Academias y rivalidades; archivos y bibliotecas; laboratorios y debate técnico |
+| **Ereliano** | Ereliano | Autonomía local; ríos y bosques; exploración y gestión del territorio |
+| **Solenario** | Solenario | Hospitalidad y peregrinación; caravanas y rutas; contratos y santuarios |
+| **Kharumita** | Kharumita | Talleres y genealogías; obras públicas; ingeniería y tradición comunitaria |
+| **Libre de Nacariel** | Nacarielense | Navegación y seguros; contratos portuarios; comercio exterior |
+| **Vigilia Alta** | Lysendrino | Dirigibles y rutas aéreas; astronomía; islas flotantes y observación |
+| **Risco de Ceniza** | Valdoriano | Minería arcana; compañías y concesiones; vida de frontera peligrosa |
+| **Puerto Umbral** | Solenario | Expediciones oceánicas; mercenarios y guardias; contrabando y rutas de frontera |
+
+Las lenguas regionales anteriores son suficientes para la creación estándar. Ningún pueblo posee automáticamente una “lengua racial”: un Enano criado en Valdoria puede hablar Valdoriano y un Humano criado en Kharum puede hablar Kharumita.
+
+##### Idiomas iniciales
+
+Todo PJ de nivel 1 conoce:
+
+1. **Común de Concordia**;
+2. la **lengua regional de su Origen**.
+
+Si ambas fueran la misma por una circunstancia excepcional de campaña, se elige otra lengua regional coherente con la comunidad de crianza.
+
+Una de las dos Facetas de Trasfondo puede reemplazarse por **Lengua de trabajo**. Esa Faceta concede **una lengua regional adicional** del cuadro anterior, que debe anotarse al adquirirla. Una lengua adicional no concede bonos sociales ni conocimiento cultural automático.
+
+La alfabetización en los idiomas conocidos es habitual para personajes aventureros salvo que el jugador decida expresamente que su personaje no sabe leer o escribir. Una escritura especializada, cifrado, lengua extinta o sistema ritual puede seguir requiriendo Habilidad o conocimiento específico.
+
+##### Qué significa Familiaridad Práctica
+
+El Trasfondo establece qué clase de trabajo o vida cotidiana realizó el personaje antes de comenzar la campaña.
+
+Familiaridad Práctica permite reconocer herramientas, jerga, rutinas y procedimientos ordinarios de ese entorno y realizar tareas **rutinarias y sin presión** que una persona con experiencia básica podría completar.
+
+No concede rangos de Habilidad. Una cirugía, un disparo, una reparación compleja, una investigación técnica, una negociación peligrosa o cualquier tarea incierta sigue usando la Habilidad correspondiente y sus requisitos normales.
+
+##### Trasfondos de creación
+
+Elige exactamente un Trasfondo y después **dos Facetas** de su fila. Una de esas dos puede sustituirse por **Lengua de trabajo**.
+
+| Trasfondo | Familiaridad Práctica | Facetas disponibles |
+|---|---|---|
+| **Vida de Taller** | trabajo cotidiano en un taller | herramientas y mantenimiento; materiales y proveedores; gremios y encargos |
+| **Trabajo Industrial** | planta, fábrica o instalación productiva | vapor y maquinaria; seguridad y turnos; logística de planta |
+| **Minería y Prospección** | minas, canteras y campamentos de prospección | vetas y terreno; seguridad de mina; concesiones y campamentos |
+| **Comercio y Mercado** | compra, venta y abastecimiento | mercados mayoristas; contratos y crédito; proveedores y rutas |
+| **Vida de Mar** | trabajo cotidiano a bordo o en muelles | cubierta y guardias; puertos y mareas; carga y mantenimiento |
+| **Servicio Militar o Guardia** | disciplina, patrulla y cadena de mando | guardias y rondas; logística militar; reglamentos y fortificaciones |
+| **Expedición y Cartografía** | campamentos, rutas y registro de terreno | mapas y notas de campo; campamentos y suministros; permisos y expediciones |
+| **Vida Académica** | instituciones de estudio e investigación | archivos y bibliotecas; laboratorios y seminarios; redes académicas |
+| **Servicio Sanitario** | hospitales, clínicas o puestos de socorro | triage y admisión; instrumental y suministros; organización de sala |
+| **Administración y Escribanía** | oficinas, registros y documentación | formularios y archivos; permisos y licencias; correspondencia y protocolo |
+| **Contratista de Rutas Libres** | contratos de exploración, escolta o recuperación | negociación de contratos; permisos y reclamaciones; logística de misión |
+| **Vida Caravanera** | viajes prolongados con convoyes | campamentos y animales; rutas y puestos; mercancías y seguridad |
+| **Peregrinación y Hospedería** | santuarios, caminos de peregrinos y alojamiento | hospitalidad; calendarios y rutas sagradas; administración de viajeros |
+| **Vida de Frontera** | asentamientos con recursos escasos y amenazas cercanas | reparaciones improvisadas; puestos y alarmas; intercambio entre comunidades |
+
+**Lengua de trabajo:** si reemplaza una Faceta, elige una lengua regional adicional distinta de las ya conocidas. No puede elegirse dos veces.
+
+##### Cómo anotarlo en la ficha
+
+Al terminar este bloque, la ficha debe poder responder sin ambigüedad:
+
+- ¿Cuál es mi Ascendencia exacta?
+- ¿Cuál es mi Origen?
+- ¿Qué Faceta de Origen elegí?
+- ¿Cuál es mi Trasfondo?
+- ¿Qué dos Facetas de Trasfondo elegí?
+- ¿Qué idiomas conozco?
+
+Si alguna de esas respuestas está vacía, la identidad estructurada de creación todavía no está terminada.
+
 ### Paso 2 — Atributos
 
 Los siete Atributos son:
@@ -617,13 +720,18 @@ El **umbral informativo de Daño Grave** es 5 + VIG, equivalente a la mitad de l
 
 ### Paso 8 — Identidad y datos narrativos
 
-Anota al menos:
+Verifica primero que ya estén registrados los tres elementos estructurados del Paso 1:
+
+- **Ascendencia** exacta y cualquier elección interna requerida;
+- **Origen** y su Faceta de Origen;
+- **Trasfondo** y sus dos Facetas;
+- **Idiomas:** Común de Concordia + lengua regional del Origen + cualquier Lengua de trabajo válida.
+
+Después anota al menos:
 
 - nombre;
-- pueblo/herencia y descripción física;
-- lugar/cultura de origen;
-- idioma(s) que la ficción establezca;
-- profesión, oficio o trayectoria;
+- descripción física;
+- profesión, oficio o trayectoria actual;
 - motivación;
 - vínculos, contactos y obligaciones relevantes;
 - Fuente mágica, juramento, pacto o relación religiosa si corresponde;
@@ -642,19 +750,30 @@ Antes de dar por terminado el personaje:
 - Técnicas, Disciplinas y Hechizos cumplen sus costes y requisitos.
 - Se gastaron como máximo 3 PR.
 - Los Rasgos negativos no financiaron PR adicionales.
-- El paquete racial jugable está registrado y no se duplicó con Rasgos generales; cultura y Origen no añadieron recursos mecánicos gratuitos.
+- Existe exactamente una Ascendencia, un Origen y un Trasfondo; sus Facetas e idiomas están anotados.
+- El paquete racial jugable está registrado y no se duplicó con Rasgos generales; cultura, Origen y Trasfondo no añadieron rangos o bonos ocultos.
 - El equipo respeta el PEI de 20 o, la alternativa Paquete/Compra libre, la disponibilidad y el acceso; la Reserva líquida de 2 o se mantiene separada.
 - Vida, Maná y Defensas fueron recalculados después de equipo y Rasgos.
 - Familiar, magia y equipo no generan Acciones, Reacciones, Maná o bonos no escritos.
 - Todo lo que produzca un efecto mecánico aparece expresamente en la ficha.
 
-### Ejemplo completo de creación de nivel 1
+### Ejemplo guiado de creación de nivel 1 — cierre CREA-14 en curso
 
 El ejemplo construye a **Iria**, una exploradora arcana. No es un arquetipo obligatorio: sólo demuestra el procedimiento.
 
 #### 1. Concepto
 
-Iria es una **Elfa** exploradora de ruinas capaz de defenderse con armas ligeras y utilizar Evocación básica. Aplica el paquete Élfico —Escala Mediana, Movimiento 6, Sentidos Élficos y Resonancia de la Savia— sin gastar PD ni sus 3 PR generales. Su cultura y origen explican quién es, pero no le conceden rangos o bonos adicionales.
+Iria es una **Elfa** exploradora de ruinas capaz de defenderse con armas ligeras y utilizar Evocación básica. Aplica el paquete Élfico —Escala Mediana, Movimiento 6, Sentidos Élficos y Resonancia de la Savia— sin gastar PD ni sus 3 PR generales.
+
+Para cerrar su identidad estructurada elige:
+- **Ascendencia:** Elfo;
+- **Origen:** Ereliano;
+- **Faceta de Origen:** Ríos y bosques;
+- **Trasfondo:** Expedición y Cartografía;
+- **Facetas de Trasfondo:** Mapas y notas de campo; Campamentos y suministros;
+- **Idiomas:** Común de Concordia y Ereliano.
+
+Estas elecciones explican qué conoce por experiencia cotidiana, pero no le conceden rangos de Supervivencia, Naturaleza, Investigación ni otra Habilidad.
 
 #### 2. Atributos
 
@@ -9679,9 +9798,13 @@ Ese material narrativo amplía contexto, mitos, linajes y relaciones entre puebl
 
 ### Cultura y origen
 
-Un Origen puede ser urbano, rural, fronterizo, académico, gremial, militar, nómada, religioso, arcano-industrial u otra procedencia coherente. Es una descripción de historia y acceso narrativo, no un paquete de bonificaciones.
+La creación estándar utiliza los **10 Orígenes** definidos en el Paso 1: Valdoriano, Broncino, Lysendrino, Ereliano, Solenario, Kharumita, Libre de Nacariel, Vigilia Alta, Risco de Ceniza y Puerto Umbral.
 
-Puede justificar que el personaje compre determinadas Habilidades, Especializaciones, contactos, licencias o equipo dentro de sus presupuestos normales. No crea recursos extra.
+Cada Origen concede Familiaridad Cultural, un Perfil Lingüístico cerrado y una Faceta elegida. Esas familiaridades permiten saber lo cotidiano y reconocer procedimientos comunes, pero **no son rangos de Habilidad ni bonificadores numéricos**.
+
+La cultura concreta del personaje puede ser más estrecha que el Origen —un barrio, clan, comunidad religiosa, familia migrante o minoría regional— y se describe libremente mientras no altere el paquete mecánico.
+
+Los detalles operativos y la tabla de idiomas están unificados en **3. Creación de personaje > Paso 1** y no se duplican aquí.
 
 ### Profesiones
 
