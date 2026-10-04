@@ -16,6 +16,7 @@ import {
   materialInstallationQuote,
   materialProfile,
   modificationInstallationQuote,
+  modificationRemovalQuote,
   modificationPoints,
   qualityCapacity,
   qualityUpgradeQuote,
@@ -288,11 +289,11 @@ async function analyzeModifyProject(project, model, resolver) {
     materialCopper=quote.materialCopper;
     stageBaseMinutes=quote.timeMinutes;
   } else if(mode==="modification") {
-    if(model.economy.quality!==current.quality) return {ok:false,error:"Instalar una Modificación posterior no cambia la Calidad."};
-    if(model.specialMaterials.length) return {ok:false,error:"Una instalación de Modificación no incorpora simultáneamente Material Especial."};
-    if(!model.modifications.length) return {ok:false,error:"No se declaró ninguna Modificación para instalar."};
+    if(model.economy.quality!==current.quality) return {ok:false,error:"Instalar o retirar una Modificación posterior no cambia la Calidad."};
+    if(model.specialMaterials.length) return {ok:false,error:"Una operación de Modificación no incorpora simultáneamente Material Especial."};
     const existingKeys=new Set(current.modifications.map((row)=>String(row.key)));
     const replaceKey=String(model.enhancement.replaceModificationKey ?? "");
+    if(!model.modifications.length && !replaceKey) return {ok:false,error:"No se declaró una Modificación para instalar ni una Modificación existente para retirar."};
     if(replaceKey) {
       if(!existingKeys.has(replaceKey)) {
         return {ok:false,error:"La Modificación que se pretende sustituir ya no existe en el objeto."};
@@ -319,14 +320,21 @@ async function analyzeModifyProject(project, model, resolver) {
 
     nextModifications=[...nextModifications,...clone(model.modifications)];
     const points=modificationPoints(model.modifications);
-    const quote=modificationInstallationQuote({
-      points,
-      referenceValueCopper:current.referenceValueCopper,
-      baseTimeMinutes:current.baseTimeMinutes,
-      fineMachining
-    });
-    materialCopper=quote.materialCopper;
-    stageBaseMinutes=quote.timeMinutes;
+    if(points===0 && replaceKey) {
+      const quote=modificationRemovalQuote({baseTimeMinutes:current.baseTimeMinutes});
+      materialCopper=quote.materialCopper;
+      stageBaseMinutes=quote.timeMinutes;
+      fineMachining=false;
+    } else {
+      const quote=modificationInstallationQuote({
+        points,
+        referenceValueCopper:current.referenceValueCopper,
+        baseTimeMinutes:current.baseTimeMinutes,
+        fineMachining
+      });
+      materialCopper=quote.materialCopper;
+      stageBaseMinutes=quote.timeMinutes;
+    }
   } else if(mode==="material") {
     if(model.economy.quality!==current.quality) return {ok:false,error:"Incorporar Material Especial no cambia simultáneamente la Calidad."};
     if(model.modifications.length) return {ok:false,error:"Una sustitución material no instala simultáneamente Modificaciones de CapM."};
