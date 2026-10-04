@@ -166,3 +166,40 @@ test("CREA-14: Lengua de trabajo ocupa una Faceta y debe anotarse en Idiomas",()
   actor.system.traits.languages="Común de Concordia; Ereliano";
   assert.ok(validateCreationState(actor,{skillKeys:["a","b"]}).issues.some((issue)=>issue.code==="identity-work-language"));
 });
+
+
+test("CREA-14: reconstrucción autorizada conserva las mismas puertas de identidad que creación abierta",()=>{
+  const attributes={
+    fue:{creationValue:3,baseValue:3},
+    agi:{creationValue:2,baseValue:2},
+    vig:{creationValue:2,baseValue:2},
+    int:{creationValue:2,baseValue:2},
+    per:{creationValue:2,baseValue:2},
+    vol:{creationValue:1,baseValue:1},
+    pre:{creationValue:1,baseValue:1}
+  };
+  const actor={
+    type:"character",
+    system:{
+      creation:{status:"rebuilding"},
+      details:{level:1,originFacet:"",backgroundFacets:""},
+      traits:{languages:"Común de Concordia"},
+      skills:emptySkills,
+      attributes
+    },
+    items:[
+      {type:"ancestry",name:"Humano",system:{}},
+      {type:"origin",name:"Valdoriano",system:{
+        languageProfile:"Común de Concordia + Valdoriano",
+        facetOptions:"Fueros y administración; Servicio cívico y milicias; Caballería y vida regional"
+      }},
+      {type:"background",name:"Vida de Taller",system:{
+        facetOptions:"Herramientas y mantenimiento; Materiales y proveedores; Gremios y encargos"
+      }}
+    ]
+  };
+  const result=validateCreationState(actor,{skillKeys:["a","b"]});
+  assert.ok(result.issues.some((issue)=>issue.code==="identity-origin-facet"));
+  assert.ok(result.issues.some((issue)=>issue.code==="identity-origin-language"));
+  assert.ok(result.issues.some((issue)=>issue.code==="identity-background-facets"));
+});
