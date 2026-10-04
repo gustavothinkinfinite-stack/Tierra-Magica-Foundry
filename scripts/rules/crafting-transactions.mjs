@@ -466,6 +466,9 @@ function currentEnchantment(target) {
     attunedActorUuid:String(data.attunedActorUuid??""),
     seal:data.seal===true,
     sealState:String(data.sealState??"charged"),
+    sealTriggerType:String(data.sealTriggerType??""),
+    sealBypassKey:String(data.sealBypassKey??""),
+    rechargeBlocked:data.rechargeBlocked===true,
     chargedReferenceValueCopper:Math.max(0,Math.floor(number(data.chargedReferenceValueCopper))),
     boundSpell:data.boundSpell && typeof data.boundSpell==="object" ? clone(data.boundSpell) : null
   };
@@ -593,7 +596,10 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
         reserve:{value:0,max:quote.reserveMax},
         attunedActorUuid:"",
         seal:model.enhancement.enchantmentSeal===true,
-        sealState:model.enhancement.enchantmentSeal===true?"charged":"charged",
+        sealState:"charged",
+        sealTriggerType:String(model.enhancement.sealTriggerType??""),
+        sealBypassKey:String(model.enhancement.sealBypassKey??""),
+        rechargeBlocked:false,
         boundSpell:model.enhancement.boundSpell?clone(model.enhancement.boundSpell):null
       };
       const support=validateEnchantmentSupport({...baseSource,system:{...baseSource.system,quality:current.quality}},next);
