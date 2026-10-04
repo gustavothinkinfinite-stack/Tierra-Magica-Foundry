@@ -24,9 +24,9 @@ test("CAT-05 aprueba exactamente 30 variantes pesadas",()=>{
   }
 });
 
-test("CAT-05 integra las variantes pesadas y eleva las armas runtime a 120",()=>{
+test("CAT-05 integra las variantes pesadas y conserva su lote dentro del catálogo runtime",()=>{
   const weapons=coreCatalog().filter((entry)=>entry.type==="weapon");
-  assert.equal(weapons.length,120);
+  assert.ok(weapons.length>=120,"CAT-05: una expansión posterior no debe eliminar armas ya integradas");
 
   for(const name of Object.keys(APPROVED_HEAVY_VARIANTS)){
     const item=weapons.find((entry)=>entry.name===name);
