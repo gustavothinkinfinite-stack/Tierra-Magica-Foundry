@@ -1168,6 +1168,32 @@ export async function reserveCraftingProjectMaterials(project, {
     resolved.push({ allocation, item, lot });
   }
 
+  if(expectedMaterials.requiredCompatibility && expectedMaterials.materialCopper>0) {
+    const matching=resolved.filter((row)=>
+      row.allocation.compatibilities.includes(expectedMaterials.requiredCompatibility) &&
+      row.lot.compatibility.includes(expectedMaterials.requiredCompatibility)
+    );
+    const covered=matching.reduce((sum,row)=>sum+row.allocation.amountCopper,0);
+    if(covered<expectedMaterials.materialCopper) {
+      return {
+        ok:false,
+        error:"Los Lotes comprometidos no cubren el coste mágico con la compatibilidad requerida.",
+        compatibility:expectedMaterials.requiredCompatibility,
+        expectedCopper:expectedMaterials.materialCopper,
+        coveredCopper:covered
+      };
+    }
+    if(expectedMaterials.requireRareOrExceptionalLot) {
+      const validGrade=matching.some((row)=>["rare","exceptional"].includes(String(row.lot.resourceGrade)));
+      if(!validGrade) {
+        return {
+          ok:false,
+          error:"Encantamiento III exige que al menos un Lote compatible dentro del CE sea Raro o Excepcional."
+        };
+      }
+    }
+  }
+
   const componentAllocations = craftingProjectComponentAllocations(project);
   const resolvedComponents = [];
   for (const allocation of componentAllocations) {
