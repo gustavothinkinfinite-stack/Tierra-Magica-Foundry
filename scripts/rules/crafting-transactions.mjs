@@ -1,5 +1,7 @@
 import {
+  applyUniversalTimeReductions,
   craftingProjectRemainingMinutes,
+  failedAccelerationTotalMinutes,
   normalizeCraftingProject,
   repairQuote,
   salvageQuote,
@@ -7,6 +9,18 @@ import {
   validateCraftingProject,
   validateProjectPrerequisites
 } from "./crafting.mjs";
+import {
+  deriveManufacturedSystem,
+  materialInstallationQuote,
+  materialProfile,
+  modificationInstallationQuote,
+  modificationPoints,
+  qualityCapacity,
+  qualityUpgradeQuote,
+  requirementsForManufacture,
+  validateModificationSelection,
+  validateSpecialMaterials
+} from "./crafting-enhancements.mjs";
 
 const PHYSICAL_TYPES = new Set(["weapon","armor","shield","equipment","formula","device"]);
 
