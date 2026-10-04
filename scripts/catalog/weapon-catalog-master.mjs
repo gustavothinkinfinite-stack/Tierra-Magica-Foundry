@@ -1,4 +1,5 @@
 import { STARTER_CONTENT } from "../content.mjs";
+import { APPROVED_WEAPON_PROFILE_VARIANTS } from "./weapon-variants-approved.mjs";
 
 export const WEAPON_CATALOG_VERSION = "1.0-draft";
 
@@ -255,21 +256,25 @@ function canonicalEntries() {
 }
 
 function proposedEntries() {
-  return proposalGroups.flatMap((group)=>group.names.map((name)=>({
-    name,
-    status:"proposal",
-    type:"weapon",
-    family:group.family,
-    skillSuggestion:group.skillSuggestion,
-    specializationSuggestion:group.specializationSuggestion,
-    referenceProfile:group.referenceProfile,
-    technology:group.technology,
-    region:group.region,
-    availability:group.availability ?? "review",
-    implementation:group.implementation ?? "profile-variant",
-    reviewFlags:[...(group.reviewFlags ?? [])],
-    mechanics:null
-  })));
+  return proposalGroups.flatMap((group)=>group.names.map((name)=>{
+    const approvedProfile=APPROVED_WEAPON_PROFILE_VARIANTS[name] ?? "";
+    return {
+      name,
+      status:"proposal",
+      promotion:approvedProfile ? "approved-profile-variant" : "pending-audit",
+      type:"weapon",
+      family:group.family,
+      skillSuggestion:group.skillSuggestion,
+      specializationSuggestion:group.specializationSuggestion,
+      referenceProfile:approvedProfile || group.referenceProfile,
+      technology:group.technology,
+      region:group.region,
+      availability:group.availability ?? "review",
+      implementation:approvedProfile ? "runtime-profile-variant" : (group.implementation ?? "profile-variant"),
+      reviewFlags:approvedProfile ? [] : [...(group.reviewFlags ?? [])],
+      mechanics:null
+    };
+  }));
 }
 
 export function weaponCatalogMaster() {
