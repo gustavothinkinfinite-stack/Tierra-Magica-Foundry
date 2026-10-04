@@ -379,13 +379,17 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
     if (!target?.system || typeof target.update !== "function") return { ok:false, error:"El objetivo de Parada ya no está disponible." };
     if (!canModify(target)) return { ok:false, error:"El DJ activo no puede modificar el estado de Parada." };
     return serial("parry:" + (target.uuid ?? target.id ?? target.name), async () => {
-      if (!target.system.combat?.parryActive) return { ok:true, claimed:false };
+      if (!target.system.combat?.parryActive) return { ok:true, claimed:false, bonus:2, sourceItemId:"" };
+      const bonus = Math.max(2, Math.min(3, number(target.system.combat?.parryBonus, 2)));
+      const sourceItemId = String(target.system.combat?.parrySourceItemId ?? "");
       await target.update({
         "system.combat.parryActive": false,
         "system.combat.parrySucceeded": false,
-        "system.combat.counterattackUsed": false
+        "system.combat.counterattackUsed": false,
+        "system.combat.parryBonus": 2,
+        "system.combat.parrySourceItemId": ""
       });
-      return { ok:true, claimed:true };
+      return { ok:true, claimed:true, bonus, sourceItemId };
     });
   }
 
@@ -397,7 +401,9 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
       await target.update({
         "system.combat.parryActive": false,
         "system.combat.parrySucceeded": payload.succeeded === true,
-        "system.combat.counterattackUsed": false
+        "system.combat.counterattackUsed": false,
+        "system.combat.parryBonus": 2,
+        "system.combat.parrySourceItemId": ""
       });
       return { ok:true, succeeded:payload.succeeded === true };
     });
@@ -682,13 +688,17 @@ export async function claimParryAuthoritatively(target) {
   }
   if (!canModify(target)) return { ok:false, claimed:false, error:"No hay permisos para consumir Parada." };
   return serial("parry-local:" + (target.uuid ?? target.id ?? target.name), async () => {
-    if (!target.system?.combat?.parryActive) return { ok:true, claimed:false };
+    if (!target.system?.combat?.parryActive) return { ok:true, claimed:false, bonus:2, sourceItemId:"" };
+    const bonus = Math.max(2, Math.min(3, number(target.system.combat?.parryBonus, 2)));
+    const sourceItemId = String(target.system.combat?.parrySourceItemId ?? "");
     await target.update({
       "system.combat.parryActive": false,
       "system.combat.parrySucceeded": false,
-      "system.combat.counterattackUsed": false
+      "system.combat.counterattackUsed": false,
+      "system.combat.parryBonus": 2,
+      "system.combat.parrySourceItemId": ""
     });
-    return { ok:true, claimed:true };
+    return { ok:true, claimed:true, bonus, sourceItemId };
   });
 }
 
@@ -704,7 +714,9 @@ export async function resolveParryAuthoritatively(target, succeeded) {
     await target.update({
       "system.combat.parryActive": false,
       "system.combat.parrySucceeded": succeeded === true,
-      "system.combat.counterattackUsed": false
+      "system.combat.counterattackUsed": false,
+      "system.combat.parryBonus": 2,
+      "system.combat.parrySourceItemId": ""
     });
     return { ok:true, succeeded:succeeded === true };
   });
