@@ -811,8 +811,20 @@ async function fabricationOutcome(project) {
   if (!source || !PHYSICAL_TYPES.has(String(source.type ?? ""))) {
     return { ok:false, error:"Fabricar requiere un snapshot estructurado de Item físico en target.resultData." };
   }
+  const model=normalizeCraftingProject(project.system);
+  const derived=deriveManufacturedSystem(source,{
+    referenceValueCopper:model.economy.referenceValueCopper,
+    baseTimeMinutes:model.time.baseMinutes,
+    baseRank:model.professional.baseRank,
+    baseInstallation:model.professional.baseInstallation,
+    quality:model.economy.quality,
+    modifications:model.modifications,
+    specialMaterials:model.specialMaterials
+  });
+  if(!derived.valid) return {ok:false,error:"La manufactura final no supera la validación de Calidad/CapM/Materiales.",issues:derived.issues};
+
   source.name = String(source.name ?? project.system.target?.resultName ?? "Resultado fabricado");
-  source.system ??= {};
+  source.system = derived.system;
   source.system.condition = "operative";
   source.system.acquisition = null;
   source.system.provenance = {
@@ -828,6 +840,32 @@ async function fabricationOutcome(project) {
     ok:true,
     output:item,
     rollback:async()=>{ try { await actor.deleteEmbeddedDocuments("Item", [item.id], { tmValidated:true, tmCraftingRollback:true }); } catch {} }
+  };
+}
+
+async function modificationOutcome(project,resolver) {
+  const model=normalizeCraftingProject(project.system);
+  const analysis=await analyzeModifyProject(project,model,resolver);
+  if(!analysis.ok) return analysis;
+  const target=analysis.target;
+  const previous={};
+  const updates={};
+  const keys=["quality","priceCopper","priceStatus","properties","damage","penetration","strengthMin","reload","block","movementPenalty","manufacture"];
+  for(const key of keys) {
+    if(Object.prototype.hasOwnProperty.call(analysis.derived.system,key) || key==="manufacture") {
+      previous["system."+key]=clone(target.system?.[key]);
+      updates["system."+key]=clone(analysis.derived.system[key]);
+    }
+  }
+  try {
+    await target.update(updates,{tmValidated:true,tmCrafting:true});
+  } catch(error) {
+    return {ok:false,error:"No fue posible aplicar la mejora al objeto.",cause:String(error?.message??error)};
+  }
+  return {
+    ok:true,
+    output:target,
+    rollback:async()=>{ try { await target.update(previous,{tmValidated:true,tmCraftingRollback:true}); } catch {} }
   };
 }
 
@@ -854,65 +892,132 @@ async function dismantleOutcome(project, resolver) {
   const targetSource = typeof target.toObject === "function" ? target.toObject() : clone(target);
   const condition = String(target.system?.condition ?? "operative");
   const projectModel = normalizeCraftingProject(project.system);
-  const quote = salvageQuote({
+  const manufacture=target.system?.manufacture ?? {};
+  const referenceValueCopper=Math.max(0,Math.floor(number(manufacture.referenceValueCopper,projectModel.economy.referenceValueCopper)));
+  const fabricationTimeMinutes=Math.max(0,number(manufacture.baseTimeMinutes,projectModel.time.baseMinutes));
+  const installedMaterials=Array.isArray(manufacture.specialMaterials) ? manufacture.specialMaterials : [];
+
+  const ordinaryQuote=salvageQuote({
     condition,
-    referenceValueCopper:projectModel.economy.referenceValueCopper,
-    specialMaterialSupplementsCopper:projectModel.specialMaterials.map((row)=>row.supplementCopper),
+    referenceValueCopper,
+    specialMaterialSupplementsCopper:[],
     recoveredSeparatedComponentsCopper:0,
-    fabricationTimeMinutes:projectModel.time.baseMinutes
+    fabricationTimeMinutes
   });
 
-  let recoveryItem = null;
-  if (quote.valueInMaterialsCopper > 0) {
-    const created = await actor.createEmbeddedDocuments("Item", [{
-      name:"Material recuperado de " + target.name,
-      type:"equipment",
-      system:{
-        category:"Material recuperado",
-        quantity:1,
-        weight:0,
-        equipped:false,
-        availability:"common",
-        quality:"common",
-        properties:"VI recuperado por desmantelamiento.",
-        priceCopper:0,
-        priceQuantity:1,
-        priceStatus:"unset",
-        condition:"operative",
-        craftingLot:{
-          enabled:true,
-          category:"recuperado",
-          compatibility:[],
-          inputValueCopper:quote.valueInMaterialsCopper,
-          reservations:{}
-        },
-        provenance:{
-          sourceUuid:target.uuid,
-          sourceSchemaVersion:Number(target.system?.schemaVersion ?? 0) || 0,
-          sourceRevision:"dismantled"
-        }
-      }
-    }], { tmValidated:true, tmCrafting:true });
-    recoveryItem = created?.[0] ?? null;
-    if (!recoveryItem) return { ok:false, error:"No fue posible crear el Lote de material recuperado." };
+  const specialRecoveries=[];
+  for(const material of installedMaterials) {
+    const quote=salvageQuote({
+      condition,
+      referenceValueCopper:0,
+      specialMaterialSupplementsCopper:[Math.max(0,number(material.supplementCopper))],
+      recoveredSeparatedComponentsCopper:0,
+      fabricationTimeMinutes:0
+    });
+    if(quote.specialCopper>0) specialRecoveries.push({material,amountCopper:quote.specialCopper});
   }
+
+  const createdIds=[];
+  const createdItems=[];
+  const createRecovery=async(source)=>{
+    const created=await actor.createEmbeddedDocuments("Item",[source],{tmValidated:true,tmCrafting:true});
+    const item=created?.[0]??null;
+    if(!item) throw new Error("Foundry no creó el Lote recuperado.");
+    createdIds.push(item.id);
+    createdItems.push(item);
+    return item;
+  };
 
   try {
+    if(ordinaryQuote.ordinaryCopper>0) {
+      await createRecovery({
+        name:"Material ordinario recuperado de "+target.name,
+        type:"equipment",
+        system:{
+          category:"Material recuperado",
+          quantity:1,
+          weight:0,
+          equipped:false,
+          availability:"common",
+          quality:"common",
+          properties:"VI ordinario recuperado por desmantelamiento.",
+          priceCopper:0,
+          priceQuantity:1,
+          priceStatus:"unset",
+          condition:"operative",
+          craftingLot:{
+            enabled:true,
+            category:"recuperado",
+            compatibility:[],
+            materialProfileKey:"",
+            preparation:"prepared",
+            inputValueCopper:ordinaryQuote.ordinaryCopper,
+            reservations:{}
+          },
+          craftingReservations:{},
+          provenance:{
+            sourceUuid:target.uuid,
+            sourceSchemaVersion:Number(target.system?.schemaVersion ?? 0)||0,
+            sourceRevision:"dismantled"
+          }
+        }
+      });
+    }
+
+    for(const recovery of specialRecoveries) {
+      const profileKey=String(recovery.material.profileKey??"");
+      await createRecovery({
+        name:(recovery.material.name||profileKey||"Material especial")+" recuperado",
+        type:"equipment",
+        system:{
+          category:"Material especial recuperado",
+          quantity:1,
+          weight:0,
+          equipped:false,
+          availability:"common",
+          quality:"common",
+          properties:"VI especial recuperado; conserva sólo el Perfil de Material identificado.",
+          priceCopper:0,
+          priceQuantity:1,
+          priceStatus:"unset",
+          condition:"operative",
+          craftingLot:{
+            enabled:true,
+            category:"material-especial",
+            compatibility:profileKey?["material:"+profileKey]:[],
+            materialProfileKey:profileKey,
+            preparation:"prepared",
+            inputValueCopper:recovery.amountCopper,
+            reservations:{}
+          },
+          craftingReservations:{},
+          provenance:{
+            sourceUuid:target.uuid,
+            sourceSchemaVersion:Number(target.system?.schemaVersion ?? 0)||0,
+            sourceRevision:"dismantled-special"
+          }
+        }
+      });
+    }
+
     await actor.deleteEmbeddedDocuments("Item", [target.id], { tmValidated:true, tmCrafting:true });
   } catch (error) {
-    if (recoveryItem) {
-      try { await actor.deleteEmbeddedDocuments("Item", [recoveryItem.id], { tmValidated:true, tmCraftingRollback:true }); } catch {}
+    if(createdIds.length) {
+      try { await actor.deleteEmbeddedDocuments("Item",createdIds,{tmValidated:true,tmCraftingRollback:true}); } catch {}
     }
-    return { ok:false, error:"No fue posible retirar el objeto desmantelado.", cause:String(error?.message ?? error) };
+    return { ok:false, error:"No fue posible cerrar el desmantelamiento.", cause:String(error?.message ?? error) };
   }
 
+  const recoveredMaterialsCopper=ordinaryQuote.ordinaryCopper+
+    specialRecoveries.reduce((sum,row)=>sum+row.amountCopper,0);
   return {
     ok:true,
-    output:recoveryItem,
-    recoveredMaterialsCopper:quote.valueInMaterialsCopper,
+    output:createdItems[0]??null,
+    recoveredMaterialsCopper,
+    recoveredItemUuids:createdItems.map((item)=>item.uuid),
     rollback:async()=>{
       try {
-        if (recoveryItem) await actor.deleteEmbeddedDocuments("Item", [recoveryItem.id], { tmValidated:true, tmCraftingRollback:true });
+        if(createdIds.length) await actor.deleteEmbeddedDocuments("Item",createdIds,{tmValidated:true,tmCraftingRollback:true});
         await actor.createEmbeddedDocuments("Item", [targetSource], { keepId:true, tmValidated:true, tmCraftingRollback:true });
       } catch {}
     }
@@ -939,8 +1044,8 @@ export async function completeCraftingProject(project, {
   if (craftingProjectRemainingMinutes(model) > 0) {
     return { ok:false, error:"El Proyecto todavía tiene trabajo pendiente.", remainingMinutes:craftingProjectRemainingMinutes(model) };
   }
-  if (!["fabricate","repair","dismantle"].includes(model.operation)) {
-    return { ok:false, error:"CRAFT-13C sólo completa Fabricar, Reparar y Desmantelar." };
+  if (!["fabricate","repair","dismantle","modify"].includes(model.operation)) {
+    return { ok:false, error:"Esta fase sólo completa Fabricar, Reparar, Desmantelar y Modificar." };
   }
 
   const consumed = await consumeReservations(project, resolver);
@@ -950,6 +1055,7 @@ export async function completeCraftingProject(project, {
   try {
     if (model.operation === "fabricate") outcome = await fabricationOutcome(project);
     else if (model.operation === "repair") outcome = await repairOutcome(project, resolver);
+    else if (model.operation === "modify") outcome = await modificationOutcome(project,resolver);
     else outcome = await dismantleOutcome(project, resolver);
   } catch (error) {
     outcome = { ok:false, error:"Falló la resolución material del Proyecto.", cause:String(error?.message ?? error) };
