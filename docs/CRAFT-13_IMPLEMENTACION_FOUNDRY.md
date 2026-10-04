@@ -458,20 +458,164 @@ Estas correcciones son de implementación: no modifican CRAFT-04/05. Tras incorp
 
 ### CRAFT-13E — Trampas, Runas, Piedras y Encantamientos
 
-**Estado: PENDIENTE**
+**Estado: IMPLEMENTADA EN RAMA · AUDITORÍA DESTRUCTIVA VERDE**
 
-Debe respetar:
+Archivos principales:
 
-- disparadores únicos y secuenciales;
-- rearme;
-- CRu;
-- Engarces;
-- Runas inscritas;
-- una Impronta Vinculada por resolución;
-- Sintonización 3 sólo donde el Perfil lo autorice;
-- duplicados funcionales;
-- RE 0 al Sintonizar;
-- recarga sólo si estaba Sintonizado al comienzo del Descanso Completo.
+- `scripts/rules/crafting-magic.mjs`;
+- `scripts/rules/crafting-magic-runtime.mjs`;
+- integración con `scripts/rules/crafting-transactions.mjs`;
+- integración con descanso/turno en `scripts/documents/actor.mjs` y `scripts/rules/turn-economy.mjs`;
+- regresiones en `test/craft-13-magic.test.mjs`, `test/craft-13-magic-runtime.test.mjs` y `test/craft-13-transactions.test.mjs`.
+
+#### Trampas
+
+El Armazón conserva por separado:
+
+- Complejidad;
+- requisito principal de Latrocinio e instalación;
+- Precisión;
+- DF de Mecanismo;
+- disparador;
+- carga;
+- Ocultación y DF de Detección;
+- método de Desactivación;
+- Bypass;
+- estado Armado/Descargado.
+
+La Ocultación usa su tabla canónica independiente:
+
+- Visible;
+- Disimulada;
+- Oculta;
+- Experta;
+- Maestra;
+- Excepcional.
+
+Foundry deriva su DF, material adicional y trabajo adicional sin modificar Precisión, DF de Mecanismo ni potencia de la carga.
+
+La excepción de Supervivencia sólo funciona en Armazón Simple compatible de campaña. Un Armazón Estándar+ vuelve a exigir Latrocinio.
+
+Las cargas pertenecen a un catálogo cerrado:
+
+- Alarma;
+- Maniobra: Derribar/Agarrar;
+- Golpe mecánico;
+- Alquimia;
+- entorno/caída.
+
+Un Golpe mecánico debe señalar una carga física real reservada y copia exactamente su Daño/Pen. Alquimia debe señalar una dosis/Fórmula física y no recibe Daño/Pen inline del Armazón. Entorno/caída señala geometría real y tampoco recibe potencia impresa gratuita.
+
+Los disparadores automáticos registran evento físico + objetivo para impedir que el mismo evento indivisible alimente varias trampas/Sellos ordinarios contra el mismo objetivo.
+
+El disparo manual reactivo implementa la economía completa de **Preparar + Reacción**:
+
+1. Preparar consume Acción;
+2. registra trampa y disparador observable;
+3. expira al comienzo del siguiente turno;
+4. la activación posterior exige coincidencia del disparador;
+5. consume Reacción;
+6. no crea una segunda respuesta ofensiva.
+
+Un Bypass físico registrado puede evitar la activación automática sin convertir el mecanismo en sensor de aliados o intención.
+
+Rearmar el Armazón usa 25% de su tiempo base, mínimo 10 min. Una carga alquímica consumida exige además otra dosis física; el rearme no crea munición/Fórmulas.
+
+#### CRu, Runas y Piedras de Impronta
+
+La CRu permanece separada de CapM y limitada por Calidad:
+
+- Defectuosa/Común: 0;
+- Superior: 1;
+- Excepcional: 2.
+
+Se estructuran Canales de Inscripción y Engarces por separado.
+
+Las Runas:
+
+- pagan inscripción completa;
+- ocupan Canal compatible;
+- usan sólo Improntas catalogadas;
+- pueden borrarse mediante Proyecto rutinario al 25% del tiempo de inscripción, mínimo 1 h;
+- borrar devuelve 0 VI, libera CRu y no convierte la Runa en Piedra.
+
+Las Piedras:
+
+- sólo existen como Grado I o II;
+- usan receta fija, no Calidad/CapM;
+- exigen Ritualismo, Arcana, Artesanía e instalación canónicos;
+- sólo aceptan VI compatible con su matriz;
+- se insertan y extraen intactas en 10 min, sin presión y con herramientas apropiadas;
+- una Piedra fuera de Engarce es inerte;
+- una Piedra insertada debe extraerse antes de desmantelar el Host.
+
+Las Improntas respetan:
+
+- Maná personal, nunca Energía/Sobrecarga;
+- Acción/Reacción/Vinculada escrita;
+- disparador válido para Reacción;
+- una sola Impronta Vinculada por resolución;
+- la resolución debe usar realmente el arma Host cuando corresponda;
+- equivalencias y límites de apilamiento;
+- ausencia de Pen >3, Protección permanente o Recarga gratuita no autorizada.
+
+#### Encantamientos y Sintonización
+
+Se implementan Encantamiento I/II/III con:
+
+- CE;
+- tiempo;
+- PE;
+- RE;
+- capacidad de Sintonización;
+- soporte físico mínimo;
+- requisitos de Ritualismo/Arcana/Artesanía;
+- componente Raro/Excepcional compatible para Grado III.
+
+Los Soportes Mágicos Dedicados I/II/III usan sus VR, CM, tiempos, Artesanía e instalación propios y no generan CapM/CRu gratis.
+
+Un Encantamiento Utilitario:
+
+- usa catálogo cerrado;
+- no requiere Sintonización;
+- sólo admite una utilidad por esta regla;
+- puede coexistir con el Encantamiento autónomo principal porque no ocupa ese hueco cuando sigue siendo estrictamente utilitario.
+
+Los Pasivos Sintonizados se exponen como efectos estructurados únicamente cuando el objeto está Operativo y realmente Sintonizado por ese Actor. La aplicación contextual específica permanece en el consumidor apropiado de la regla; no se convierten en bonos universales.
+
+Sintonización:
+
+- capacidad 3 sólo para personaje completo o Perfil que lo autorice expresamente;
+- Familiares, invocaciones, autómatas auxiliares, monturas y vehículos no reciben 3 por defecto;
+- duplicados por Patrón, hechizo vinculado o equivalencia funcional se bloquean;
+- Sintonizar requiere 1 h y objeto Operativo;
+- el objeto entra con RE 0;
+- Desintonizar vacía RE.
+
+Descanso Completo toma la instantánea de objetos Sintonizados **al comienzo** y sólo recarga aquellos que continúan Sintonizados por la misma criatura y Operativos al terminar. Sintonizar durante el propio descanso no obtiene recarga retroactiva.
+
+Hechizo Vinculado:
+
+- paga RE, no Maná;
+- conserva Acción/Reacción, objetivo, alcance, área, duración y Sostenimiento;
+- usa PE del Encantamiento;
+- los Sostenidos de objeto compiten con el límite normal del Actor.
+
+Sellos de Custodia:
+
+- son fijos y no Sintonizados;
+- tienen una sola carga;
+- usan contacto/apertura/umbral;
+- la llave o marca mágica es Bypass, no sensor moral/identitario;
+- un evento indivisible no multiplica Sellos ordinarios contra el mismo objetivo;
+- no recargan en Descanso Completo;
+- rearme paga 25% CE y 25% tiempo, mínimo 4 h.
+
+#### Frontera hacia CRAFT-13H
+
+El canon permite fabricar un Soporte Mágico Dedicado y Encantarlo dentro del mismo Proyecto multietapa. El motor ya valida ambos procedimientos y sus costes completos, pero la representación de **una sola ficha de Proyecto con varias etapas encadenadas** queda para CRAFT-13H. Hasta entonces se ejecutan como dos transacciones consecutivas sin descuento ni alteración del resultado final.
+
+Esta frontera es de orquestación/interfaz; no habilita materiales, tiempo, CE o propiedades gratuitas.
 
 ### CRAFT-13F — Ingeniería y Energía
 
