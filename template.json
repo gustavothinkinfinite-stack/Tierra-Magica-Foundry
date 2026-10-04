@@ -474,7 +474,8 @@
           "socketedHostUuid": ""
         },
         "magicSupport": {
-          "grade": 0
+          "grade": 0,
+          "role": ""
         },
         "enchantment": {
           "grade": 0,
