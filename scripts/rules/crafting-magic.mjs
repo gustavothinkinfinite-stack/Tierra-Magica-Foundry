@@ -358,6 +358,21 @@ export function validateEnchantedActivation(actor,item){
   return {valid:issues.length===0,issues,profile};
 }
 
+export function integratedMagicRecoveryCopper({
+  condition="operative",
+  materialCopper=0
+}={}) {
+  const rates=Object.freeze({
+    operative:0.25,
+    damaged:0.15,
+    disabled:0.10,
+    ruined:0.05,
+    destroyed:0
+  });
+  const rate=rates[String(condition)]??0;
+  return Math.floor(nonNegative(materialCopper)*rate+Number.EPSILON);
+}
+
 export function isAutomaticPhysicalEventClaimed(actor,eventId){
   const key=text(eventId);
   if(!key) return false;
