@@ -1129,14 +1129,62 @@ async function repairOutcome(project, resolver) {
   const actor = project.parent;
   const target = await resolveOwnedItem(actor, String(project.system.target?.itemUuid ?? ""), resolver);
   if (!target || !PHYSICAL_TYPES.has(target.type)) return { ok:false, error:"El objeto a reparar ya no está disponible." };
-  const previous = String(target.system?.condition ?? "operative");
-  if (previous === "operative") return { ok:false, error:"El objeto ya está Operativo." };
-  if (previous === "destroyed") return { ok:false, error:"Destruido no admite reparación universal." };
-  await target.update({ "system.condition":"operative" }, { tmValidated:true, tmCrafting:true });
+  const previousCondition = String(target.system?.condition ?? "operative");
+  if (previousCondition === "operative") return { ok:false, error:"El objeto ya está Operativo." };
+  if (previousCondition === "destroyed") return { ok:false, error:"Destruido no admite reparación universal." };
+
+  const model=normalizeCraftingProject(project.system);
+  const analysis=await expectedProjectMaterialCopper(project,model,resolver);
+  if(!analysis.ok) return analysis;
+
+  const previous={ "system.condition":previousCondition };
+  const updates={ "system.condition":"operative" };
+
+  if(analysis.repairPlan && analysis.currentManufacture) {
+    const plan=analysis.repairPlan;
+    const current=analysis.currentManufacture;
+    const replacementSources=new Map(
+      plan.specialReplacements.map((row)=>[String(row.materialId),String(row.sourceItemUuid)])
+    );
+    const nextMaterials=plan.remainingMaterials.map((row)=>{
+      const sourceItemUuid=replacementSources.get(String(row.id));
+      return sourceItemUuid ? { ...clone(row), sourceItemUuid } : clone(row);
+    });
+
+    const baseSource=baseItemSource(target,current);
+    const derived=deriveManufacturedSystem(baseSource,{
+      referenceValueCopper:current.referenceValueCopper,
+      baseTimeMinutes:current.baseTimeMinutes,
+      baseRank:current.baseRank,
+      baseInstallation:current.baseInstallation,
+      quality:current.quality,
+      modifications:current.modifications,
+      specialMaterials:nextMaterials,
+      existingManufacture:current
+    });
+    if(!derived.valid) {
+      return {ok:false,error:"La reparación no puede derivar un estado manufacturado coherente tras sustituir sus capas.",issues:derived.issues};
+    }
+
+    const keys=["quality","priceCopper","priceStatus","properties","damage","penetration","strengthMin","reload","block","movementPenalty","manufacture"];
+    for(const key of keys) {
+      if(Object.prototype.hasOwnProperty.call(derived.system,key) || key==="manufacture") {
+        previous["system."+key]=clone(target.system?.[key]);
+        updates["system."+key]=clone(derived.system[key]);
+      }
+    }
+  }
+
+  try {
+    await target.update(updates, { tmValidated:true, tmCrafting:true });
+  } catch(error) {
+    return {ok:false,error:"No fue posible aplicar la reparación al objeto.",cause:String(error?.message??error)};
+  }
+
   return {
     ok:true,
     output:target,
-    rollback:async()=>{ try { await target.update({ "system.condition":previous }, { tmValidated:true, tmCraftingRollback:true }); } catch {} }
+    rollback:async()=>{ try { await target.update(previous, { tmValidated:true, tmCraftingRollback:true }); } catch {} }
   };
 }
 
