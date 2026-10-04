@@ -2145,6 +2145,26 @@ Un humanoide Mediano tiene como referencia Movimiento 6, aproximadamente 9 metro
 
 Las bandas narrativas de distancia son Contacto, Cerca, Media, Lejos y Extrema. Cuando se usa cuadrícula, la geometría concreta prevalece. La cobertura parcial concede normalmente +2 Defensa; una cobertura total impide ser objetivo directo si no existe una línea válida. Tierra Mágica no concede un bono universal por rodear a un enemigo.
 
+### Persecución
+
+**Persecución** es una Reacción universal destinada a impedir que una diferencia pequeña de Movimiento convierta la retirada ofensiva en una separación automática e indefinida.
+
+**Disparador:** una criatura que estaba dentro de tu alcance cuerpo a cuerpo se desplaza voluntariamente fuera de él mediante su Movimiento.
+
+**Efecto:** puedes gastar tu Reacción para desplazarte inmediatamente hasta **la mitad de tu Movimiento, redondeando hacia arriba**, hacia la criatura que activó la Reacción, por una trayectoria válida.
+
+Límites:
+
+- Persecución no concede un ataque ni Acción adicional;
+- sólo permite seguir a la criatura que activó la Reacción;
+- el desplazamiento debe acercarte a ella y no puede utilizarse para rodearla, sobrepasarla o ganar una posición no relacionada con la persecución;
+- no se activa por desplazamiento forzado, caída, teletransporte ni otros efectos que no sean Movimiento voluntario ordinario;
+- no permite atravesar terreno, criaturas u obstáculos que el perseguidor no podría atravesar normalmente;
+- si varias criaturas pudieran perseguir, cada una debe gastar su propia Reacción;
+- una criatura que gasta su Reacción en Persecución no dispone de esa misma Reacción para Parada, Bloqueo, Recibir Carga, Contraataque u otra respuesta hasta recuperarla al inicio de su próximo turno.
+
+Persecución no impide una retirada real. Una criatura puede dedicar su Acción a **Correr** para abrir una distancia mayor; la Reacción sólo evita que atacar y retroceder con una diferencia mínima de Movimiento garantice por sí solo un kiteo indefinido.
+
 ### Viajes y desplazamiento de larga distancia
 
 El Movimiento de combate no se multiplica directamente para calcular kilómetros por día. Un viaje incluye pausas, orientación, comida, agua, terreno, cuidado de monturas y preparación de campamento.
@@ -2744,6 +2764,7 @@ Una Reacción se gasta sólo cuando existe un disparador válido. Las respuestas
 | **Tirador Preparado** | Después de Preparar un disparo con la Acción, lo resuelve con la Reacción cuando ocurre el disparador. |
 | **Contramagia** | Después de declarar un lanzamiento y antes de resolverlo; requiere compatibilidad narrativa/mágica. No es una cancelación automática universal. |
 | **Barrera Cinética** | Hechizo reactivo: +2 Defensa normal contra el ataque declarado y se consume al resolverlo. |
+| **Persecución** | Una criatura que estaba dentro de tu alcance cuerpo a cuerpo se aleja voluntariamente mediante su Movimiento. Te desplazas hacia ella hasta la mitad de tu Movimiento, redondeando hacia arriba; no concede ataque. |
 | **Escudo de campo** | Dispositivo reactivo compatible: +2 Defensa cuando corresponda; no se acumula con Barrera Cinética equivalente. |
 | **Acción Vinculada / Coordinación Reactiva** | Un Familiar puede intervenir cuando el vínculo y la capacidad concreta lo permiten. No crea una Reacción adicional. |
 
