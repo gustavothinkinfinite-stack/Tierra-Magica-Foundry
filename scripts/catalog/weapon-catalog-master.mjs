@@ -7,8 +7,13 @@ import { APPROVED_RANGED_VARIANTS } from "./weapon-variants-ranged-approved.mjs"
 import { APPROVED_REGIONAL_VARIANTS } from "./weapon-variants-regional-approved.mjs";
 import { pendingWeaponBlocker } from "./weapon-catalog-pending.mjs";
 import { APPROVED_PROJECTILE_PROFILES, approvedProjectileProfileSources } from "./weapon-profiles-projectile-approved.mjs";
+import { APPROVED_FLEXIBLE_PROFILES, approvedFlexibleProfileSources } from "./weapon-profiles-flexible-approved.mjs";
 
-const NEW_CANONICAL_PROFILE_NAMES = new Set(Object.keys(APPROVED_PROJECTILE_PROFILES));
+const NEW_CANONICAL_PROFILES = Object.freeze({
+  ...APPROVED_PROJECTILE_PROFILES,
+  ...APPROVED_FLEXIBLE_PROFILES
+});
+const NEW_CANONICAL_PROFILE_NAMES = new Set(Object.keys(NEW_CANONICAL_PROFILES));
 
 const APPROVED_VARIANTS = Object.freeze({
   ...APPROVED_WEAPON_PROFILE_VARIANTS,
@@ -266,13 +271,16 @@ function canonicalEntries() {
     family:"Catálogo canónico",
     specializationSuggestion:CANONICAL_SPECIALIZATION[entry.name] ?? ""
   }));
-  const projectiles=approvedProjectileProfileSources().map((entry)=>({
+  const expanded=[
+    ...approvedProjectileProfileSources(),
+    ...approvedFlexibleProfileSources()
+  ].map((entry)=>({
     name:entry.name,
     system:entry.system,
-    family:APPROVED_PROJECTILE_PROFILES[entry.name]?.family ?? "Proyectiles",
-    specializationSuggestion:APPROVED_PROJECTILE_PROFILES[entry.name]?.specializationSuggestion ?? ""
+    family:NEW_CANONICAL_PROFILES[entry.name]?.family ?? "Catálogo expandido",
+    specializationSuggestion:NEW_CANONICAL_PROFILES[entry.name]?.specializationSuggestion ?? ""
   }));
-  return [...originals,...projectiles].map((entry)=>({
+  return [...originals,...expanded].map((entry)=>({
     name:entry.name,
     status:"canonical",
     type:"weapon",
