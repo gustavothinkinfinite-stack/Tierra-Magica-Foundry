@@ -5,6 +5,7 @@ import { approvedWeaponVariantSources } from "./weapon-variants-approved.mjs";
 import { approvedSpecialLightVariantSources } from "./weapon-variants-special-light-approved.mjs";
 import { approvedMartialVariantSources } from "./weapon-variants-martial-approved.mjs";
 import { approvedHeavyVariantSources } from "./weapon-variants-heavy-approved.mjs";
+import { approvedRangedVariantSources } from "./weapon-variants-ranged-approved.mjs";
 
 const ANCESTRIES = [
   ["Humano","Familia humana; Don sin Forma se registra mediante sus Rasgos elegidos."],
@@ -302,7 +303,7 @@ export function legacyStarterCatalog() {
   for (const [type, list] of Object.entries(STARTER_CONTENT)) {
     for (const raw of list ?? []) entries.push(migrateItemSource({ name:raw.name, type, system:raw.system ?? {} }, { embedded:false }));
   }
-  for (const raw of [...approvedWeaponVariantSources(), ...approvedSpecialLightVariantSources(), ...approvedMartialVariantSources(), ...approvedHeavyVariantSources()]) {
+  for (const raw of [...approvedWeaponVariantSources(), ...approvedSpecialLightVariantSources(), ...approvedMartialVariantSources(), ...approvedHeavyVariantSources(), ...approvedRangedVariantSources()]) {
     entries.push(migrateItemSource(raw,{embedded:false}));
   }
   return entries;
