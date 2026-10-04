@@ -390,6 +390,8 @@ export function normalizeCraftingProject(source = {}) {
       enchantmentSupportAppropriate: booleanValue(enhancement.enchantmentSupportAppropriate),
       enchantmentHasRareComponent: booleanValue(enhancement.enchantmentHasRareComponent),
       enchantmentSeal: booleanValue(enhancement.enchantmentSeal),
+      sealTriggerType: stringValue(enhancement.sealTriggerType),
+      sealBypassKey: stringValue(enhancement.sealBypassKey),
       boundSpell: enhancement.boundSpell && typeof enhancement.boundSpell === "object" && !Array.isArray(enhancement.boundSpell)
         ? structuredClone(enhancement.boundSpell)
         : null
