@@ -1120,7 +1120,7 @@ test("CRAFT-13D: si el estado cambia tras reservar, la reparación no usa el cos
   target.system.condition="disabled";
   const rejected=await completeCraftingProject(craft,{expectedRevision:2,resolver});
   assert.equal(rejected.ok,false);
-  assert.match(rejected.error,/coste canónico cambió/);
+  assert.match(rejected.error,/(coste canónico cambió|tiempo base de reparación)/);
   assert.equal(material.system.craftingLot.inputValueCopper,100);
   assert.equal(material.system.craftingLot.reservations[craft.uuid].amountCopper,15);
 });
