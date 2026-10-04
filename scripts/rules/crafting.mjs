@@ -316,6 +316,7 @@ function normalizeLedgerEntries(rows = []) {
     amountCopper: integerCopper(row?.amountCopper, "round"),
     quantity: nonNegative(row?.quantity),
     sourceUuid: stringValue(row?.sourceUuid),
+    compatibility: stringValue(row?.compatibility),
     note: stringValue(row?.note)
   }));
 }
