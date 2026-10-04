@@ -1,6 +1,6 @@
 # Catálogo Maestro de Armas — v1 borrador
 
-**Estado:** PROPUESTA ESTRUCTURADA · NO CANÓNICA  
+**Estado:** CATÁLOGO ESTRUCTURADO · EXPANSIÓN PARCIALMENTE CANÓNICA  
 **Fecha:** 2026-10-04  
 **Fuente canónica de mecánicas:** \`docs/Tierra_Magica_Manual_Maestro.md\` y \`scripts/content.mjs\`  
 **Fuente de catálogo:** \`scripts/catalog/weapon-catalog-master.mjs\`
@@ -11,8 +11,8 @@ Construir una biblioteca amplia de armas para Tierra Mágica que pueda convertir
 
 La biblioteca separa deliberadamente:
 
-- **20 armas canónicas vigentes**, ya utilizadas por el sistema;
-- **224 armas propuestas**, todavía sin Daño, Penetración, FUE mínima, precio ni propiedades mecánicas propios;
+- **26 perfiles canónicos vigentes**: los 20 originales más 6 perfiles CAT-09;
+- **218 entradas propuestas**, de las cuales 171 ya están aprobadas como variantes de perfil y 47 siguen pendientes;
 - **244 entradas totales** en el catálogo maestro.
 
 Una propuesta no se convierte en regla por existir en este archivo.
@@ -21,7 +21,7 @@ Una propuesta no se convierte en regla por existir en este archivo.
 
 Las armas propuestas no reciben números nuevos automáticamente.
 
-Cada propuesta referencia una de las 20 armas canónicas como **perfil de referencia**. Ese perfil sirve para ordenar la futura auditoría, no para afirmar que la variante ya comparte todos sus valores.
+Las variantes aprobadas referencian uno de los perfiles canónicos como **perfil de referencia**. Ese perfil sirve para ordenar la futura auditoría, no para afirmar que la variante ya comparte todos sus valores.
 
 Ejemplo:
 
@@ -42,14 +42,14 @@ Antes de entrar al Compendio oficial debe decidirse una de tres salidas:
 | Armas ligeras | 40 |
 | Armas marciales | 40 |
 | Armas pesadas | 30 |
-| Arcos y proyectiles | 14 |
+| Arcos y proyectiles todavía propuestos | 8 |
 | Ballestas | 13 |
 | Pistolas | 17 |
 | Rifles y armas largas | 20 |
 | Armas regionales de Tierra Mágica | 30 |
 | Armas arcano-industriales adicionales | 20 |
-| **Total propuestas** | **224** |
-| Armas canónicas vigentes | **20** |
+| **Total propuestas** | **218** |
+| Perfiles canónicos vigentes | **26** |
 | **Catálogo total** | **244** |
 
 ## Metadatos estructurados
@@ -96,10 +96,12 @@ No se les asigna todavía consumo de Energía, Caudal, Estabilidad ni otros valo
 
 El Compendio oficial de Equipo se genera desde el catálogo runtime mediante \`tools/build-packs.mjs\`.
 
-Este borrador **todavía no se añade a STARTER_CONTENT**, por lo que:
+La expansión se integra mediante `coreCatalog()` sin inflar `STARTER_CONTENT` con variantes cosméticas. En el estado actual:
 
-- no cambia las 20 armas que ya aparecen en Foundry;
-- no llena el Compendio con entradas sin auditar;
+- los 20 perfiles originales permanecen intactos;
+- CAT-09 añade 6 perfiles canónicos nuevos;
+- 171 variantes auditadas entran al Compendio;
+- las 47 pendientes no se materializan como Items;
 - no modifica \`system.json\`, \`package.json\`, \`template.json\` ni archivos de CRAFT-13;
 - puede evolucionar en paralelo al agente de crafting.
 
@@ -123,4 +125,4 @@ Una entrada puede pasar de \`proposal\` a Item de Compendio cuando estén cerrad
 14. descripción final;
 15. control de duplicados funcionales.
 
-La siguiente fase del catálogo debe ser la **auditoría mecánica por familias**, empezando por Armas Ligeras y usando Daga, Espada corta y Sable como anclas canónicas.
+CAT-02…09 ya promovieron 171 variantes y 6 perfiles nuevos. Las fases siguientes deben resolver únicamente los bloqueadores explícitos de la cola pendiente, sin reabrir perfiles cerrados salvo evidencia de desequilibrio.
