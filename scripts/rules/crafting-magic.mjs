@@ -32,19 +32,19 @@ export const UTILITY_ENCHANTMENTS=Object.freeze({
 
 export const PASSIVE_ENCHANTMENTS=Object.freeze({
   firmnessAmulet:Object.freeze({
-    key:"firmnessAmulet",label:"Amuleto de Firmeza",grade:1,group:"mental-fear-defense",
+    key:"firmnessAmulet",label:"Amuleto de Firmeza",grade:1,group:"mental-fear-defense",roles:Object.freeze(["body"]),
     effect:Object.freeze({mentalDefenseBonus:2,context:"miedo sobrenatural o Intimidación compatible"})
   }),
   fallBrooch:Object.freeze({
-    key:"fallBrooch",label:"Broche de Caída",grade:1,group:"fall-reduction",
+    key:"fallBrooch",label:"Broche de Caída",grade:1,group:"fall-reduction",roles:Object.freeze(["body"]),
     effect:Object.freeze({fallSpacesReduction:1,minimum:0})
   }),
   revelationLenses:Object.freeze({
-    key:"revelationLenses",label:"Lentes de Revelación",grade:2,group:"revelation-sensory",
+    key:"revelationLenses",label:"Lentes de Revelación",grade:2,group:"revelation-sensory",roles:Object.freeze(["optics"]),
     effect:Object.freeze({advantage:true,context:"ilusiones, ocultación mágica, invisibilidad y manipulación sensorial compatibles"})
   }),
   stabilityTalisman:Object.freeze({
-    key:"stabilityTalisman",label:"Talismán de Estabilidad",grade:2,group:"magical-displacement-stability",
+    key:"stabilityTalisman",label:"Talismán de Estabilidad",grade:2,group:"magical-displacement-stability",roles:Object.freeze(["body"]),
     effect:Object.freeze({displacementReduction:1,minimum:0,usesPerScene:1,context:"desplazamiento mágico involuntario"})
   })
 });
@@ -330,6 +330,18 @@ export function validateEnchantmentSupport(itemSource={},enchantment={}){
   }
   if(passive && passive.grade!==grade) {
     issues.push({code:"enchantment-passive-grade",message:"El Perfil pasivo no corresponde al Grado de Encantamiento declarado.",expectedGrade:passive.grade});
+  }
+  if(passive && dedicated<passive.grade) {
+    const role=String(itemSource?.system?.magicSupport?.role??"");
+    if(!passive.roles.includes(role)) {
+      issues.push({code:"enchantment-passive-support",message:"El soporte físico no corresponde al Perfil pasivo catalogado.",expectedRoles:[...passive.roles]});
+    }
+  }
+  if(passive && enchantment.boundSpell) {
+    issues.push({code:"enchantment-payload",message:"Un mismo Encantamiento autónomo no combina Pasivo Sintonizado y Hechizo Vinculado."});
+  }
+  if(passive && enchantment.seal===true) {
+    issues.push({code:"seal-passive",message:"Un Sello de una carga no puede usar un Pasivo Sintonizado como carga persistente."});
   }
   if(passive && text(enchantment.functionalKey) && text(enchantment.functionalKey)!==passive.group) {
     issues.push({code:"enchantment-passive-functional",message:"La equivalencia funcional del Pasivo no coincide con su Perfil catalogado.",expectedFunctionalKey:passive.group});
