@@ -313,6 +313,10 @@
       "templates": [
         "base"
       ],
+      "resources": {
+        "health": {"value": 10, "max": 10},
+        "mana": {"value": 0, "max": 0}
+      },
       "details": {
         "ownerName": "",
         "ownerUuid": "",
