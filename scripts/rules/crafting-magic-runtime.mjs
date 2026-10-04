@@ -201,7 +201,8 @@ export function installCraftingMagicGuards(ActorClass) {
         resolutionId:context.resolutionId,
         resolutionHostItemUuid:context.resolutionHostItemUuid,
         usesHostWeaponProfile:context.usesHostWeaponProfile,
-        voluntaryStateCost:context.voluntaryStateCost
+        voluntaryStateCost:context.voluntaryStateCost,
+        activeStackingGroups:context.activeStackingGroups
       });
       if(!validation.valid) return warn(validation.issues.map((issue)=>issue.message).join(" "));
       const profile=validation.profile;
