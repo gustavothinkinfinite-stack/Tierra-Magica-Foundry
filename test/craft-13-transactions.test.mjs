@@ -1046,3 +1046,126 @@ test("CRAFT-13D: desmantelar separa VI ordinario de VI especial y no recicla VRQ
   assert.equal(special.system.craftingLot.compatibility[0],"material:kharumSteel");
 });
 
+test("CRAFT-13D: Mantenible reduce a la mitad el tiempo de reparación sin abaratar BRA",async()=>{
+  const actor=new StubActor("maintainable-repair");
+  const target=manufacturedItem(actor,{
+    id:"maintainable-target",
+    name:"Arma mantenible",
+    referenceValueCopper:100,
+    baseTimeMinutes:480,
+    quality:"superior",
+    modifications:[{key:"maintainable"}]
+  });
+  target.system.condition="damaged";
+  const material=lot(actor,{id:"repair-material",vi:100});
+  const craft=project(actor,{
+    id:"repair-maintainable-project",
+    operation:"repair",
+    material,
+    materialCopper:15,
+    estimatedMaterialsCopper:15,
+    referenceValueCopper:100,
+    quality:"superior",
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:480,
+    adjustedBaseMinutes:180,
+    requiredMinutes:90,
+    requiredRank:3,
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  craft.system.economy.affectedValueCopper=150;
+  const resolver=resolverFor(actor);
+  const reserved=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(reserved.ok,true);
+  await advanceCraftingProjectWork(craft,90,{expectedRevision:1});
+  const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
+  assert.equal(completed.ok,true);
+  assert.equal(target.system.condition,"operative");
+  assert.equal(material.system.craftingLot.inputValueCopper,85);
+});
+
+test("CRAFT-13D: si el estado cambia tras reservar, la reparación no usa el coste antiguo",async()=>{
+  const actor=new StubActor("repair-revalidate");
+  const target=manufacturedItem(actor,{
+    id:"repair-revalidate-target",
+    referenceValueCopper:100,
+    baseTimeMinutes:480,
+    quality:"superior"
+  });
+  target.system.condition="damaged";
+  const material=lot(actor,{id:"repair-revalidate-material",vi:100});
+  const craft=project(actor,{
+    id:"repair-revalidate-project",
+    operation:"repair",
+    material,
+    materialCopper:15,
+    estimatedMaterialsCopper:15,
+    referenceValueCopper:100,
+    quality:"superior",
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:480,
+    adjustedBaseMinutes:180,
+    requiredMinutes:180,
+    requiredRank:3,
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  craft.system.economy.affectedValueCopper=150;
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,180,{expectedRevision:1});
+  target.system.condition="disabled";
+  const rejected=await completeCraftingProject(craft,{expectedRevision:2,resolver});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/coste canónico cambió/);
+  assert.equal(material.system.craftingLot.inputValueCopper,100);
+  assert.equal(material.system.craftingLot.reservations[craft.uuid].amountCopper,15);
+});
+
+test("CRAFT-13D: sustituir una Modificación libera su CapM antes de validar la nueva",async()=>{
+  const actor=new StubActor("replace-modification");
+  const target=manufacturedItem(actor,{
+    id:"replace-mod-target",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"exceptional",
+    modifications:[{key:"maintainable"}]
+  });
+  const material=lot(actor,{id:"replace-mod-material",vi:100});
+  const craft=project(actor,{
+    id:"replace-mod-project",
+    operation:"modify",
+    material,
+    materialCopper:20,
+    estimatedMaterialsCopper:20,
+    referenceValueCopper:100,
+    quality:"exceptional",
+    modifications:[{id:"strike",key:"optimizedStrike",choice:"",scope:"",part:"metal"}],
+    enhancement:{
+      mode:"modification",
+      replaceMaterialId:"",
+      replaceModificationKey:"maintainable",
+      fineMachiningMaterialId:""
+    },
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:60,
+    requiredMinutes:60,
+    requiredRank:4,
+    requiredInstallation:"specialized",
+    availableInstallation:"specialized"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,60,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.damage,6);
+  assert.equal(target.system.manufacture.capMUsed,2);
+  assert.equal(target.system.manufacture.modifications.some((row)=>row.key==="maintainable"),false);
+  assert.equal(target.system.manufacture.effects.repairTimeMultiplier,1);
+});
+
