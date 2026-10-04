@@ -1,23 +1,17 @@
-## En desarrollo — CREA-14 autosuficiencia de creación · Bloque 2: identidad
+## CREA-14 — autosuficiencia de creación · CERRADO — 2026-10-04
 
-- Alinea Manual y Foundry sobre **Ascendencia + Origen + Trasfondo**: todo PJ de nivel 1 registra exactamente uno de cada.
-- Reemplaza el catálogo de Ascendencias legado por las 17 entradas mecánicas que cubren las 12 familias jugables y sus variantes básicas; Troll y Ogro dejan de aparecer como Ascendencias estándar.
-- Define 10 Orígenes canónicos con **Familiaridad Cultural, Perfil Lingüístico y una Faceta de Origen**.
-- Define 14 Trasfondos con **Familiaridad Práctica y dos Facetas**, sin regalar rangos de Habilidad.
-- Fija idiomas iniciales: **Común de Concordia + lengua regional del Origen**. Una Faceta puede reemplazarse por **Lengua de trabajo** para aprender una lengua regional adicional.
-- Añade campos visibles en la ficha para Faceta de Origen y Facetas de Trasfondo.
-- La validación de creación abierta comprueba idioma común, idioma de Origen, una Faceta de Origen válida y exactamente dos Facetas de Trasfondo.
-- Los actores ya completados antes de CREA-14 no quedan invalidados retroactivamente por los nuevos campos.
-- El ejemplo de Iria ya registra Ascendencia, Origen, Trasfondo, Facetas e idiomas; permanece marcado como ejemplo guiado hasta cerrar equipo, Familiar y el resto de CREA-14.
-
-## En desarrollo — CREA-14 autosuficiencia de creación · Bloque 1: Rasgos
-
-- Convierte el catálogo de Rasgos de nivel 1 en entradas operativas con coste, efecto, límites y apilamiento definidos.
-- Cierra Sentido Agudo, Visión en la Oscuridad, Anfibio, Trepador Natural, Cola Prensil, Miembros Extra, Corpulento, Masivo, Vínculo Divino, Pacto Externo base, Prótesis Mayor, Afinidad Sobrenatural y Resistencia Ambiental.
-- Define Vuelo Natural como Rasgo Excepcional de 4 PR, fuera del presupuesto estándar de 3 PR de nivel 1.
-- Mantiene Familiar Mágico en 3 PR pero lo bloquea temporalmente para creación estándar hasta cerrar su plantilla numérica inicial en el siguiente bloque de CREA-14.
-- Sincroniza el catálogo de Foundry con los Rasgos cerrados y automatiza +4/+8 Vida de Corpulento/Masivo.
-- Añade una salvaguarda genérica `creation-locked` para impedir que Foundry permita seleccionar durante creación una opción que el Manual todavía no puede resolver de forma autosuficiente.
+- La creación de nivel 1 queda resoluble leyendo únicamente el Manual Maestro: **Ascendencia + Origen + Trasfondo**, Atributos, 25 PD, 3 PR, Familiar opcional, PEI, derivados e identidad final.
+- El catálogo de identidad contiene **17 Ascendencias mecánicas**, **10 Orígenes** y **14 Trasfondos**. Origen aporta Familiaridad Cultural, perfil lingüístico y una Faceta; Trasfondo aporta Familiaridad Práctica y dos Facetas sin regalar rangos de Habilidad.
+- Los idiomas iniciales quedan cerrados como **Común de Concordia + lengua regional del Origen**; una Faceta de Trasfondo puede sustituirse por **Lengua de trabajo** para añadir una lengua regional.
+- La ficha expone Faceta de Origen y Facetas de Trasfondo; el cierre de creación valida idioma común, idioma regional, Faceta de Origen válida y exactamente dos Facetas de Trasfondo.
+- El catálogo de Rasgos de creación queda operativo. **Familiar Mágico** vuelve a estar disponible por 3 PR con cuatro Perfiles Iniciales cerrados: Compañero, Explorador, Guardián y Místico.
+- Los Familiares usan perfil simplificado propio y no las fórmulas de PJ; no reciben Maná ni economía de turno independiente por defecto.
+- La creación material usa una única ruta: **Compra libre** con PEI 20 o = 2.000 c. Las antiguas listas de Paquete dejan de ser una economía distinta.
+- El **Bono Defensivo** se deriva automáticamente del mejor rango base entre las cuatro Habilidades de armas; deja de depender de un campo editable separado.
+- El ejemplo de Iria queda completo: identidad, PD, PR, equipo, PEI, Reserva, valores derivados, ataques y respuestas preparadas.
+- Los actores ya completados antes de CREA-14 no quedan invalidados retroactivamente por los nuevos campos de identidad.
+- Se añadieron regresiones específicas de identidad, idiomas, catálogo y perfil simplificado de Familiar.
+- GitHub Actions **Validate** queda verde al cierre de CREA-14.
 
 ## En desarrollo — trasfondo de pueblos jugables
 
