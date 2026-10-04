@@ -2091,3 +2091,354 @@ test("CRAFT-13E: Piedra de Impronta no puede comprarse Calidad para obtener CapM
   assert.equal(rejected.ok,false);
   assert.match(rejected.error,/receta fija/);
 });
+
+test("CRAFT-13E: Piedra I exige Ritualismo, Arcana, Artesanía, instalación y VI compatible",async()=>{
+  const actor=new StubActor("stone-professional");
+  actor.system.skills.ritualism={rank:3};
+  actor.system.skills.arcana={rank:1};
+  actor.system.skills.crafting={rank:3};
+  const material=lot(actor,{id:"stone-matrix",vi:200,compatibility:["imprint-stone:1"]});
+  const craft=project(actor,{
+    id:"stone-professional-project",
+    operation:"fabricate",
+    material,
+    materialCopper:200,
+    estimatedMaterialsCopper:200,
+    allocationCompatibility:"imprint-stone:1",
+    referenceValueCopper:400,
+    quality:"common",
+    resultData:{
+      name:"Piedra Lumen I",
+      type:"equipment",
+      system:{
+        category:"Piedra de Impronta",
+        imprintStone:{enabled:true,grade:1,imprintKey:"lumenI",socketedHostUuid:""}
+      }
+    },
+    baseMinutes:480,
+    adjustedBaseMinutes:480,
+    requiredMinutes:480,
+    requiredRank:3,
+    professionalSkill:"ritualism",
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const resolver=resolverFor(actor);
+  const denied=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(denied.ok,false);
+  assert.ok(denied.issues?.some((issue)=>issue.code==="magic-arcana-rank"));
+  assert.equal(material.system.craftingLot.inputValueCopper,200);
+
+  actor.system.skills.arcana.rank=2;
+  const reserved=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(reserved.ok,true);
+  await advanceCraftingProjectWork(craft,480,{expectedRevision:1});
+  const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
+  assert.equal(completed.ok,true);
+  const stone=[...actor.items.values()].find((entry)=>entry.name==="Piedra Lumen I");
+  assert.ok(stone);
+  assert.equal(stone.system.imprintStone.grade,1);
+  assert.equal(material.system.craftingLot.inputValueCopper,0);
+});
+
+test("CRAFT-13E: Piedra no acepta VI genérico sin compatibilidad de matriz",async()=>{
+  const actor=new StubActor("stone-compatibility");
+  actor.system.skills.ritualism={rank:3};
+  actor.system.skills.arcana={rank:2};
+  actor.system.skills.crafting={rank:3};
+  const material=lot(actor,{id:"ordinary-metal",vi:200,compatibility:["forja"]});
+  const craft=project(actor,{
+    id:"stone-compatibility-project",
+    operation:"fabricate",
+    material,
+    materialCopper:200,
+    estimatedMaterialsCopper:200,
+    allocationCompatibility:"forja",
+    referenceValueCopper:400,
+    quality:"common",
+    resultData:{
+      name:"Piedra Brasa I",
+      type:"equipment",
+      system:{category:"Piedra de Impronta",imprintStone:{enabled:true,grade:1,imprintKey:"emberI",socketedHostUuid:""}}
+    },
+    baseMinutes:480,
+    adjustedBaseMinutes:480,
+    requiredMinutes:480,
+    requiredRank:3,
+    professionalSkill:"ritualism",
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const denied=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(denied.ok,false);
+  assert.match(denied.error,/compatibilidad requerida/);
+  assert.equal(material.system.craftingLot.inputValueCopper,200);
+});
+
+test("CRAFT-13E: borrar una Runa libera CRu, no devuelve VI y reduce sólo su valor añadido",async()=>{
+  const actor=new StubActor("rune-erase");
+  const target=manufacturedItem(actor,{
+    id:"rune-erase-target",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"superior"
+  });
+  target.system.runic={
+    capacityPrepared:1,
+    matrixMaterialCopper:50,
+    addedValueCopper:300,
+    channels:[{id:"cru-1",type:"inscription"}],
+    imprints:[{id:"rune-one",key:"arcaneEdgeI",mode:"inscribed",channelIds:["cru-1"],stoneUuid:""}]
+  };
+  target.system.priceCopper=450;
+  const craft=project(actor,{
+    id:"rune-erase-project",
+    operation:"modify",
+    material:null,
+    materialCopper:0,
+    estimatedMaterialsCopper:0,
+    referenceValueCopper:100,
+    quality:"superior",
+    enhancement:{mode:"runeErase",imprintId:"rune-one"},
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:60,
+    requiredMinutes:60,
+    requiredRank:2,
+    professionalSkill:"crafting",
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,60,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.runic.capacityPrepared,1);
+  assert.equal(target.system.runic.imprints.length,0);
+  assert.equal(target.system.runic.addedValueCopper,100);
+  assert.equal(target.system.priceCopper,250);
+  assert.equal(craft.system.ledger.recoveredMaterialsCopper,0);
+});
+
+test("CRAFT-13E: Utilitario puede coexistir con Encantamiento principal sin crear un segundo principal",async()=>{
+  const actor=new StubActor("utility-coexist");
+  actor.system.skills.ritualism={rank:3};
+  actor.system.skills.arcana={rank:2};
+  const target=manufacturedItem(actor,{
+    id:"utility-coexist-target",
+    type:"equipment",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"superior"
+  });
+  target.system.enchantment={
+    grade:1,
+    patternKey:"barrier",
+    functionalKey:"barrier-defense",
+    passiveKey:"",
+    utilityKey:"",
+    supportAppropriate:false,
+    hasRareComponent:false,
+    materialCostCopper:500,
+    timeMinutes:1440,
+    addedValueCopper:1000,
+    reserve:{value:0,max:6},
+    attunedActorUuid:"",
+    seal:false,
+    sealState:"charged",
+    sealTriggerType:"",
+    sealBypassKey:"",
+    rechargeBlocked:false,
+    chargedReferenceValueCopper:0,
+    boundSpell:null
+  };
+  target.system.priceCopper=1150;
+  const material=lot(actor,{id:"utility-material",vi:100,compatibility:["enchantment:utility"]});
+  const craft=project(actor,{
+    id:"utility-coexist-project",
+    operation:"modify",
+    material,
+    materialCopper:100,
+    estimatedMaterialsCopper:100,
+    allocationCompatibility:"enchantment:utility",
+    referenceValueCopper:100,
+    quality:"superior",
+    enhancement:{mode:"enchantment",enchantmentGrade:0,enchantmentUtilityKey:"dry"},
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:480,
+    requiredMinutes:480,
+    requiredRank:3,
+    professionalSkill:"ritualism",
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,480,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.enchantment.grade,1);
+  assert.equal(target.system.enchantment.functionalKey,"barrier-defense");
+  assert.equal(target.system.enchantment.utilityKey,"dry");
+  assert.equal(target.system.enchantment.addedValueCopper,1200);
+  assert.equal(target.system.priceCopper,1350);
+});
+
+test("CRAFT-13E: Encantamiento principal puede añadirse a un objeto que ya posee Utilitario",async()=>{
+  const actor=new StubActor("principal-after-utility");
+  actor.system.skills.ritualism={rank:4};
+  actor.system.skills.arcana={rank:3};
+  actor.system.skills.crafting={rank:3};
+  const target=manufacturedItem(actor,{
+    id:"principal-after-utility-target",
+    type:"equipment",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"superior"
+  });
+  target.system.enchantment={
+    grade:0,
+    patternKey:"",
+    functionalKey:"",
+    passiveKey:"",
+    utilityKey:"clean",
+    supportAppropriate:false,
+    hasRareComponent:false,
+    materialCostCopper:0,
+    timeMinutes:0,
+    addedValueCopper:200,
+    reserve:{value:0,max:0},
+    attunedActorUuid:"",
+    seal:false,
+    sealState:"charged",
+    sealTriggerType:"",
+    sealBypassKey:"",
+    rechargeBlocked:false,
+    chargedReferenceValueCopper:0,
+    boundSpell:null
+  };
+  target.system.priceCopper=350;
+  const material=lot(actor,{id:"principal-material",vi:500,compatibility:["enchantment:1"]});
+  const craft=project(actor,{
+    id:"principal-after-utility-project",
+    operation:"modify",
+    material,
+    materialCopper:500,
+    estimatedMaterialsCopper:500,
+    allocationCompatibility:"enchantment:1",
+    referenceValueCopper:100,
+    quality:"superior",
+    enhancement:{
+      mode:"enchantment",
+      enchantmentGrade:1,
+      enchantmentPatternKey:"ward-pattern",
+      enchantmentFunctionalKey:"ward-functional",
+      enchantmentUtilityKey:""
+    },
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:1440,
+    requiredMinutes:1440,
+    requiredRank:4,
+    professionalSkill:"ritualism",
+    requiredInstallation:"specialized",
+    availableInstallation:"specialized"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,1440,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.enchantment.utilityKey,"clean");
+  assert.equal(target.system.enchantment.grade,1);
+  assert.equal(target.system.enchantment.functionalKey,"ward-functional");
+  assert.equal(target.system.enchantment.addedValueCopper,1200);
+  assert.equal(target.system.priceCopper,1350);
+});
+
+test("CRAFT-13E: Golpe mecánico de trampa debe copiar Daño/Pen de la carga física reservada",async()=>{
+  const actor=new StubActor("trap-physical-load");
+  const material=lot(actor,{id:"trap-frame-material",vi:50,compatibility:["forja"]});
+  const spear=actor.add(new StubItem({
+    id:"spear-load",
+    name:"Lanza de carga",
+    type:"weapon",
+    system:{quantity:1,damage:5,penetration:0,condition:"operative",craftingReservations:{}}
+  }));
+  const component={
+    id:"spear-component",
+    name:"Lanza de carga",
+    itemUuid:spear.uuid,
+    valueCopper:200,
+    quantity:1,
+    separable:true,
+    recoveredSeparately:false,
+    countedInGenericRecovery:false
+  };
+  const resultData={
+    name:"Golpe oculto Estándar",
+    type:"equipment",
+    system:{
+      category:"Trampa",
+      trap:{
+        enabled:true,
+        frame:"standard",
+        precision:4,
+        mechanismDf:12,
+        triggerType:"contact",
+        physicalTriggerKey:"plate-a",
+        automatic:true,
+        state:"unarmed",
+        baseTimeMinutes:120,
+        load:{
+          kind:"mechanical-strike",
+          profileRef:"Lanza de carga",
+          componentUuid:spear.uuid,
+          maneuverEffect:"",
+          damage:4,
+          penetration:0,
+          area:"",
+          geometryRef:""
+        }
+      }
+    }
+  };
+  const craft=project(actor,{
+    id:"trap-physical-project",
+    operation:"fabricate",
+    material,
+    materialCopper:50,
+    estimatedMaterialsCopper:50,
+    allocationCompatibility:"forja",
+    referenceValueCopper:100,
+    quality:"common",
+    components:[component],
+    resultData,
+    baseMinutes:120,
+    adjustedBaseMinutes:120,
+    requiredMinutes:120,
+    requiredRank:2,
+    professionalSkill:"crafting",
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate"
+  });
+  const resolver=resolverFor(actor);
+  const denied=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(denied.ok,false);
+  assert.match(denied.error,/coincidir exactamente/);
+  assert.equal(spear.system.quantity,1);
+
+  craft.system.target.resultData.system.trap.load.damage=5;
+  const reserved=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(reserved.ok,true);
+  await advanceCraftingProjectWork(craft,120,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(spear.system.quantity,0);
+  const trap=[...actor.items.values()].find((entry)=>entry.name==="Golpe oculto Estándar");
+  assert.ok(trap);
+  assert.equal(trap.system.trap.state,"armed");
+  assert.equal(trap.system.trap.load.damage,5);
+});
+
