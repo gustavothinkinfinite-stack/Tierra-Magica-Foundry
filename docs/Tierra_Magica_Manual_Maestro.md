@@ -655,7 +655,7 @@ Resumen del catálogo cerrado en CREA-14:
 | Afinidad Sobrenatural | 1 PR | Disponible en creación |
 | Resistencia Ambiental | 1 o 2 PR | Disponible en creación |
 | Vuelo Natural | 4 PR | Excepcional; no comprable con los 3 PR estándar |
-| Familiar Mágico | 3 PR | **Bloqueado temporalmente para creación estándar hasta cerrar su perfil inicial en CREA-14** |
+| Familiar Mágico | 3 PR | Disponible en creación; usa uno de los cuatro perfiles iniciales del Paso 5 |
 | Pacto Externo | 2 PR | Disponible sólo en su forma base definida en el capítulo 5; cualquier Don adicional exige un perfil expresamente costeado |
 
 Los 3 PR generales existen **además** del paquete racial. Si el paquete racial ya concede una propiedad equivalente a un Rasgo general, no se compra de nuevo para acumularla. Un Rasgo puede ampliar una capacidad racial sólo cuando su propia regla describa expresamente esa mejora. Una misma propiedad no se cobra dos veces.
@@ -664,25 +664,48 @@ Los 3 PR generales existen **además** del paquete racial. Si el paquete racial 
 
 **Familiar Mágico cuesta 3 PR durante creación.** Si se adquiere posteriormente mediante progresión, su coste canónico es **6 PD**. El Familiar es una criatura independiente con voluntad, personalidad y naturaleza propias, no un segundo PJ gratuito.
 
-Durante creación debe registrarse al menos:
+En nivel 1 el vínculo comienza en **Vínculo I — Compañero** y el jugador elige uno de cuatro **Perfiles Iniciales**. El perfil fija los números necesarios para que la ficha quede terminada; la apariencia, especie o naturaleza no cambia esos valores salvo que el perfil lo diga.
 
-- nombre y naturaleza;
-- apariencia;
-- Escala;
-- Movimiento;
-- Vida;
-- Defensa;
-- Protección;
-- Ataque;
-- Percepción;
-- Voluntad;
-- Rasgos corporales relevantes;
-- capacidades de vínculo adquiridas, si las hubiera;
-- modo de control aplicable.
+| Perfil | Escala | Movimiento | Vida | Defensa | Prot | Ataque | Daño | PER | RES | VOL | Rasgo del perfil |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| **Compañero** | Pequeña | 6 | 10 | 12 | 0 | +2 | 2 | +2 | +2 | +2 | equilibrado; sin capacidad corporal adicional |
+| **Explorador** | Pequeña | ver Locomoción | 8 | 13 | 0 | +1 | 2 | +4 | +1 | +2 | elige una Locomoción de Explorador |
+| **Guardián** | Pequeña | 5 | 12 | 12 | 1 | +3 | 3 | +2 | +3 | +2 | cuerpo protector; su Prot 1 no se suma con armadura equivalente |
+| **Místico** | Pequeña | 6 | 8 | 12 | 0 | +1 | 2 | +3 | +1 | +4 | Resonancia Sobrenatural estrecha |
 
-El perfil es simplificado y debe corresponder a la naturaleza concreta del Familiar. El Familiar no recibe por defecto una segunda reserva completa de Maná, Acción o Reacción para el propietario. Las capacidades avanzadas del vínculo se adquieren con PD y están descritas en el capítulo de Familiares.
+**PER** es el bono de Percepción simplificado; **RES** es Resistencia física; **VOL** es Voluntad.
 
-**Nota de desarrollo:** este Manual conserva la estructura de perfil ratificada, pero no fija todavía una plantilla numérica universal para todos los tipos posibles de Familiar. Cuando se diseñe una criatura concreta, sus valores deben quedar escritos en el propio perfil y auditados contra la economía de acciones; no se asumen valores gratuitos por especie o arquetipo.
+**Locomoción de Explorador:** elige exactamente una:
+- **Corredor:** Movimiento terrestre 7.
+- **Trepador:** Movimiento terrestre 5 y trepa 6 por superficies físicamente trepables.
+- **Nadador:** Movimiento terrestre 4 y nado 6; la naturaleza elegida debe poder sobrevivir razonablemente en ese medio.
+- **Volador:** Movimiento terrestre 4 y vuelo 6. Carga que el Director considere incompatible con un cuerpo volador impide ese vuelo; el Familiar no obtiene inmunidad a viento, clima o caída.
+
+**Resonancia Sobrenatural del Místico:** al crear el Familiar elige una categoría estrecha coherente con su naturaleza —por ejemplo espíritus, magia feérica, fuego sobrenatural o corrientes arcanas—. Obtiene +1 a su Percepción sólo para advertir manifestaciones directamente perceptibles de esa categoría. No las identifica ni concede Arcana, Religión, Maná o hechizos.
+
+Para resolver un Familiar:
+- una prueba de percepción usa **2d10 + PER**;
+- una resistencia física usa **2d10 + RES** cuando corresponda;
+- una resistencia de voluntad usa **2d10 + VOL**;
+- **Defensa Mental = 11 + VOL**;
+- **Defensa Corporal = 11 + RES**;
+- un ataque válido usa **2d10 + Ataque contra Defensa** y causa el Daño indicado antes de Protección;
+- llegar a 0 Vida lo deja Incapacitado; no utiliza la progresión de Trauma de un PJ orgánico salvo regla específica.
+
+El Familiar **no posee Maná propio por defecto** y no recibe Acción o Reacción independientes para el propietario. Una intervención táctica significativa se resuelve mediante Acción Vinculada y consume normalmente la Reacción del personaje; una orden táctica compleja nueva consume la Acción del personaje conforme al capítulo de Familiares.
+
+Durante creación registra:
+- nombre, naturaleza y apariencia;
+- Perfil Inicial;
+- si es Explorador, su Locomoción;
+- si es Místico, su categoría de Resonancia;
+- los valores numéricos completos del perfil;
+- temperamento y un deseo o prioridad;
+- Vínculo I;
+- comunicación ordinaria por emociones y conceptos simples;
+- modo inicial **Autónomo**.
+
+Las Técnicas de Vínculo posteriores no cambian retroactivamente el coste de 3 PR y no crean un segundo turno gratuito.
 
 ### Paso 6 — Equipo inicial, PEI y Reserva
 
@@ -2003,11 +2026,11 @@ Al adquirirlo registra **una deidad o poder divino reconocido** y **un juramento
 **Límites:** no concede Habilidades, Disciplina, Hechizos, Maná, milagros, inmunidades ni autoridad religiosa. El juramento debe estar escrito. Una violación deliberada y grave del propio juramento puede **Suspender** el Vínculo: mientras esté Suspendido no puede emplearse como Fuente Divina. Restaurarlo exige una reparación narrativa coherente; no existe una penalización numérica adicional automática.
 
 #### Familiar Mágico — 3 PR
-**Tipo:** Vincular. **Estado transitorio CREA-14: no disponible todavía en creación estándar.**
+**Tipo:** Vincular. **Disponible en creación.**
 
-El coste de 3 PR y la naturaleza vinculada permanecen ratificados. Sin embargo, hasta que el Manual incorpore la plantilla numérica inicial y sus arquetipos de Familiar, esta opción no cumple todavía la prueba de autosuficiencia de nivel 1 y no debe presentarse a un jugador nuevo como elección cerrada.
+Crea un Familiar con **Vínculo I** utilizando uno de los cuatro Perfiles Iniciales cerrados del Paso 5: Compañero, Explorador, Guardián o Místico. El perfil determina sus números y el capítulo **14. Familiares, vínculos e invocaciones** regula autonomía, Acción Vinculada, comunicación y desarrollo.
 
-Su desbloqueo es el siguiente bloque de CREA-14.
+El Rasgo no concede al personaje Maná, Acción, Reacción, ataque o reserva adicional. El Familiar es una entidad real con voluntad propia. Adquirirlo después de creación cuesta **6 PD** mediante progresión y requiere una justificación narrativa de vínculo.
 
 #### Pacto Externo — 2 PR
 **Tipo:** Vincular. **Disponible en creación en forma base.**
@@ -3979,7 +4002,9 @@ Las Técnicas representan entrenamiento, maniobras o capacidades aprendidas. Sus
 
 **Familiar Mágico** es un Rasgo de Vínculo de 3 PR. El Familiar es una criatura independiente vinculada al personaje, no una extensión perfecta del jugador ni un segundo personaje completo gratuito. Tiene personalidad, deseos, conocimiento, criterio y una naturaleza propia. El vínculo no implica obediencia absoluta.
 
-Un Familiar usa un perfil simplificado: Escala, Movimiento, Vida, Defensa, Protección, Ataque, Percepción, Voluntad, Rasgos y capacidades relevantes. No obtiene por defecto un segundo depósito completo de Maná. Si una criatura concreta posee Maná por su propia naturaleza, esa excepción debe estar expresamente definida.
+Un Familiar usa un perfil simplificado: Escala, Movimiento, Vida, Defensa, Protección, Ataque, Daño, Percepción, Resistencia, Voluntad, Rasgos y capacidades relevantes. No obtiene por defecto un segundo depósito completo de Maná. Si una criatura concreta posee Maná por su propia naturaleza, esa excepción debe estar expresamente definida.
+
+En Vínculo I se utilizan los cuatro **Perfiles Iniciales del Paso 5**. Para pruebas simplificadas usa PER, RES o VOL directamente como bono; Defensa Mental es 11 + VOL y Defensa Corporal es 11 + RES. Un ataque del Familiar usa 2d10 + Ataque contra Defensa y su Daño listado.
 
 ### Origen del vínculo y Saturación Mágica juvenil
 
@@ -4008,7 +4033,7 @@ Los grados son referencias narrativas y prerrequisitos, no paquetes gratuitos:
 | III | Profundo | Habilita capacidades tácticas/mágicas avanzadas. |
 | IV | Excepcional | Vínculo extraordinario; no concede bonos por sí mismo. |
 
-Los arquetipos **Compañero, Explorador, Guardián y Místico** sirven para describir función y orientar elecciones. No son clases ni conceden beneficios gratuitos.
+Los perfiles **Compañero, Explorador, Guardián y Místico** son las plantillas numéricas iniciales de creación definidas en el Paso 5. No son clases y no progresan automáticamente: fijan el perfil de Vínculo I con el que el Familiar entra en juego. Cambiar de perfil después de comenzar la campaña requiere reconstrucción autorizada o una transformación real, no una elección entre escenas.
 
 ### Comunicación y llamada
 
