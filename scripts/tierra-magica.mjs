@@ -189,6 +189,18 @@ Hooks.on("preDeleteItem", (item, options = {}) => {
     ui.notifications.warn("No puede eliminarse un objeto mientras es objetivo de un Proyecto activo.");
     return false;
   }
+  if (String(item.system?.enchantment?.attunedActorUuid ?? "")) {
+    ui.notifications.warn("Desintoniza el objeto antes de eliminarlo; eliminarlo no puede borrar silenciosamente un vínculo activo.");
+    return false;
+  }
+  if (String(item.system?.imprintStone?.socketedHostUuid ?? "")) {
+    ui.notifications.warn("Extrae la Piedra de Impronta de su Engarce antes de eliminarla.");
+    return false;
+  }
+  if (Array.isArray(item.system?.runic?.imprints) && item.system.runic.imprints.some((row) => row?.mode === "stone")) {
+    ui.notifications.warn("Extrae las Piedras de Impronta antes de eliminar el Host.");
+    return false;
+  }
   if (
     (reservations && typeof reservations === "object" && Object.keys(reservations).length) ||
     (componentReservations && typeof componentReservations === "object" && Object.keys(componentReservations).length)
@@ -215,6 +227,17 @@ Hooks.on("preUpdateItem", (item, changes, options = {}) => {
       touches("system.craftingReservations")
     )) {
       ui.notifications.warn("Los Lotes, VI, compatibilidades y reservas de crafting sólo cambian mediante operaciones autorizadas.");
+      return false;
+    }
+
+    if (!game.user?.isGM && (
+      touches("system.trap") ||
+      touches("system.runic") ||
+      touches("system.imprintStone") ||
+      touches("system.magicSupport") ||
+      touches("system.enchantment")
+    )) {
+      ui.notifications.warn("Trampas, CRu, Improntas, Engarces, Encantamientos, Sintonización y RE sólo cambian mediante operaciones autorizadas.");
       return false;
     }
 
@@ -295,6 +318,21 @@ Hooks.on("preUpdateItem", (item, changes, options = {}) => {
   }
   if (Number(foundry.utils.getProperty(changes, "system.pdCost") ?? item.system.pdCost) !== 1) {
     foundry.utils.setProperty(changes, "system.pdCost", 1);
+  }
+});
+
+Hooks.on("preUpdateActor", (actor, changes, options = {}) => {
+  if (options.tmValidated || game.user?.isGM) return;
+  const touches = (path) => foundry.utils.hasProperty(changes, path) ||
+    Object.keys(changes).some((key) => key === path || key.startsWith(path + "."));
+  if (
+    touches("system.magic.attunementCapacity") ||
+    touches("system.magic.linkedImprintClaims") ||
+    touches("system.magic.automaticEventClaims") ||
+    touches("system.magic.sustainedObjectIds")
+  ) {
+    ui.notifications.warn("Sintonización, reclamaciones de Impronta/evento y Sostenimiento de objetos son estado mecánico protegido.");
+    return false;
   }
 });
 
