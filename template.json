@@ -415,7 +415,20 @@
           "inputValueCopper": 0,
           "reservations": {}
         },
-        "craftingReservations": {}
+        "craftingReservations": {},
+        "manufacture": {
+          "referenceValueCopper": 0,
+          "baseTimeMinutes": 0,
+          "baseRank": 0,
+          "baseInstallation": "improvised",
+          "baseStats": {},
+          "modifications": [],
+          "specialMaterials": [],
+          "dominantMaterialId": "",
+          "capMUsed": 0,
+          "totalReferenceValueCopper": 0,
+          "effects": {}
+        }
       }
     },
     "weapon": {
@@ -636,6 +649,12 @@
         "affectedValueCopper": 0
       },
       "specialMaterials": [],
+      "modifications": [],
+      "enhancement": {
+        "mode": "modification",
+        "replaceMaterialId": "",
+        "fineMachiningMaterialId": ""
+      },
       "components": [],
       "time": {
         "mode": "derived",
