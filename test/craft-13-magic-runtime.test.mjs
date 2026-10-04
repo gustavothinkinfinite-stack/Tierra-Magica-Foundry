@@ -317,6 +317,42 @@ test("CRAFT-13E runtime: Sostenido de objeto compite con un Sostenido personal a
   assert.equal(actor.system.turn.action,true);
 });
 
+test("CRAFT-13E runtime: Bypass físico registrado evita la descarga automática sin identificar aliados",async()=>{
+  const owner=new StubActor("trap-bypass-owner");
+  const target=new StubActor("trap-bypass-target");
+  const trap=owner.add(new StubItem({
+    id:"bypass-trap",
+    system:{
+      condition:"operative",
+      trap:{
+        enabled:true,
+        frame:"standard",
+        precision:4,
+        mechanismDf:12,
+        triggerType:"contact",
+        physicalTriggerKey:"plate-a",
+        automatic:true,
+        state:"armed",
+        baseTimeMinutes:120,
+        concealment:{grade:"visible",detectionDf:0,environmentAllows:true},
+        bypassKey:"release-pin",
+        load:{kind:"alarm",profileRef:"",componentUuid:"",maneuverEffect:"",damage:0,penetration:0}
+      }
+    }
+  }));
+  const bypassed=await owner.triggerCraftedTrap(trap,{
+    targetActor:target,
+    eventId:"event-bypass",
+    eventType:"contact",
+    physicalTriggerKey:"plate-a",
+    providedBypassKey:"release-pin"
+  });
+  assert.equal(bypassed.ok,true);
+  assert.equal(bypassed.bypassed,true);
+  assert.equal(trap.system.trap.state,"armed");
+  assert.deepEqual(target.system.magic.automaticEventClaims,{});
+});
+
 test("CRAFT-13E runtime: un mismo evento indivisible sólo alimenta una trampa o Sello ordinario",async()=>{
   const owner=new StubActor("owner");
   const target=new StubActor("target");
