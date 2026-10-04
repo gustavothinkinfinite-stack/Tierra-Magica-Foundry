@@ -23,9 +23,9 @@ test("CAT-04 aprueba exactamente 40 variantes marciales",()=>{
   }
 });
 
-test("CAT-04 integra 40 Items marciales y eleva el catálogo runtime de armas a 90",()=>{
+test("CAT-04 integra 40 Items marciales y conserva su lote dentro del catálogo runtime",()=>{
   const weapons=coreCatalog().filter((entry)=>entry.type==="weapon");
-  assert.equal(weapons.length,90);
+  assert.ok(weapons.length>=90,"CAT-04: una expansión posterior no debe eliminar armas ya integradas");
   for(const name of Object.keys(APPROVED_MARTIAL_VARIANTS)){
     const item=weapons.find((entry)=>entry.name===name);
     assert.ok(item,name);
