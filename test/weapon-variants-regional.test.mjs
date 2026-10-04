@@ -27,9 +27,9 @@ test("CAT-07 aprueba exactamente 27 armas regionales",()=>{
   }
 });
 
-test("CAT-07 eleva las armas runtime a 191 sin promover las tres regionales bloqueadas",()=>{
+test("CAT-07 conserva sus regionales y no promueve las tres bloqueadas",()=>{
   const weapons=coreCatalog().filter((entry)=>entry.type==="weapon");
-  assert.equal(weapons.length,191);
+  assert.ok(weapons.length>=191,"CAT-07: una expansión posterior no debe eliminar armas regionales ya integradas");
 
   for(const name of Object.keys(APPROVED_REGIONAL_VARIANTS)){
     const item=weapons.find((entry)=>entry.name===name);
