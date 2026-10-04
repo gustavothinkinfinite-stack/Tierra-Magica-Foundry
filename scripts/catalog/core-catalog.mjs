@@ -3,19 +3,93 @@ import { migrateItemSource, TM_SCHEMA_VERSION } from "../rules/data-model-migrat
 import { normalizeSlug } from "../rules/identity.mjs";
 
 const ANCESTRIES = [
-  "Humano","Elfo","Enano","Orco","Troll","Ogro","Goblin","Terio Cánido","Terio Félido","Terio Quelonio"
+  ["Humano","Familia humana; Don sin Forma se registra mediante sus Rasgos elegidos."],
+  ["Enano","Paquete Enano: Escala Pequeña, Movimiento 5, Cuerpo de Piedra y Sangre de Metal."],
+  ["Elfo","Paquete Élfico: Escala Mediana, Movimiento 6, Sentidos Élficos y Resonancia de la Savia."],
+  ["Orco","Paquete Orco: Escala Mediana, Movimiento 6, Complexión Orca y Voluntad del Colmillo."],
+  ["Goblin","Variante goblinoide Pequeña con Ojo para la Oportunidad y Escurridizo."],
+  ["Hobgoblin","Variante goblinoide Mediana con Ojo para la Oportunidad; la disciplina organizada es cultural."],
+  ["Bugbear","Variante goblinoide Mediana con Ojo para la Oportunidad y Complexión Bugbear."],
+  ["Terio/Anihombre","Familia Teria. Debe anotarse Linaje, Variedad y Adaptaciones del paquete racial."],
+  ["Hada","Variante Feérica Pequeña con Movimiento terrestre 5 y Movimiento aéreo inicial 6 limitado."],
+  ["Sátiro","Variante Feérica Mediana con Paso de Cabra y cuernos naturales."],
+  ["Dríade","Variante Feérica Mediana con Vínculo Arbóreo y Enraizar."],
+  ["Silfo","Variante Feérica Mediana con Cuerpo del Viento."],
+  ["Ankar","Paquete Ankar: Sentido del Umbral y Custodia del Alma."],
+  ["Cristálido de Matriz Mixta","Paquete Cristálido básico: Matriz Mixta, Resonancia Arcana y Conductor Vivo."],
+  ["Verdante","Paquete Verdante. Debe anotarse la Adaptación de Bioma elegida."],
+  ["Micelio","Paquete Micelio: Sustento Fúngico, Quimiosensibilidad y Enlace Micelial."],
+  ["Coralio","Paquete Coralio: anfibio, Movimiento terrestre 5/acuático 6, Esqueleto Coralino y Sentido de Corriente."]
 ];
 
 const ORIGINS = [
-  "Valdoriano","Broncino","Lysendrino","Ereliano","Solenario","Kharumita",
-  "Libre de Nacariel","Vigilia Alta","Risco de Ceniza","Puerto Umbral"
+  {
+    name:"Valdoriano", language:"Valdoriano",
+    familiarity:"Vida cotidiana, instituciones y geografía ordinaria de Valdoria.",
+    facets:["Fueros y administración","Servicio cívico y milicias","Caballería y vida regional"]
+  },
+  {
+    name:"Broncino", language:"Broncino",
+    familiarity:"Vida cotidiana, instituciones y geografía ordinaria de la Liga de Bronce.",
+    facets:["Mercados y contratos","Industria y talleres","Trabajo organizado y gremios"]
+  },
+  {
+    name:"Lysendrino", language:"Lysendrino",
+    familiarity:"Vida cotidiana, instituciones y geografía ordinaria de Lysendra.",
+    facets:["Academias y rivalidades","Archivos y bibliotecas","Laboratorios y debate técnico"]
+  },
+  {
+    name:"Ereliano", language:"Ereliano",
+    familiarity:"Vida cotidiana, instituciones y geografía ordinaria de Erelia.",
+    facets:["Autonomía local","Ríos y bosques","Exploración y gestión del territorio"]
+  },
+  {
+    name:"Solenario", language:"Solenario",
+    familiarity:"Vida cotidiana, instituciones y geografía ordinaria de Solenar.",
+    facets:["Hospitalidad y peregrinación","Caravanas y rutas","Contratos y santuarios"]
+  },
+  {
+    name:"Kharumita", language:"Kharumita",
+    familiarity:"Vida cotidiana, instituciones y geografía ordinaria de Kharum.",
+    facets:["Talleres y genealogías","Obras públicas","Ingeniería y tradición comunitaria"]
+  },
+  {
+    name:"Libre de Nacariel", language:"Nacarielense",
+    familiarity:"Vida cotidiana, instituciones portuarias y geografía ordinaria de Nacariel.",
+    facets:["Navegación y seguros","Contratos portuarios","Comercio exterior"]
+  },
+  {
+    name:"Vigilia Alta", language:"Lysendrino",
+    familiarity:"Vida cotidiana, instituciones y rutas de Vigilia Alta.",
+    facets:["Dirigibles y rutas aéreas","Astronomía","Islas flotantes y observación"]
+  },
+  {
+    name:"Risco de Ceniza", language:"Valdoriano",
+    familiarity:"Vida cotidiana de la frontera minera de Risco de Ceniza.",
+    facets:["Minería arcana","Compañías y concesiones","Vida de frontera peligrosa"]
+  },
+  {
+    name:"Puerto Umbral", language:"Solenario",
+    familiarity:"Vida cotidiana del puerto fronterizo de Puerto Umbral.",
+    facets:["Expediciones oceánicas","Mercenarios y guardias","Contrabando y rutas de frontera"]
+  }
 ];
 
 const BACKGROUNDS = [
-  "Vida de Taller","Trabajo Industrial","Minería y Prospección","Comercio y Mercado","Vida de Mar",
-  "Servicio Militar o Guardia","Expedición y Cartografía","Vida Académica","Servicio Sanitario",
-  "Administración y Escribanía","Contratista de Rutas Libres","Vida Caravanera",
-  "Peregrinación y Hospedería","Vida de Frontera"
+  {name:"Vida de Taller", familiarity:"Trabajo cotidiano en un taller.", facets:["Herramientas y mantenimiento","Materiales y proveedores","Gremios y encargos"]},
+  {name:"Trabajo Industrial", familiarity:"Planta, fábrica o instalación productiva.", facets:["Vapor y maquinaria","Seguridad y turnos","Logística de planta"]},
+  {name:"Minería y Prospección", familiarity:"Minas, canteras y campamentos de prospección.", facets:["Vetas y terreno","Seguridad de mina","Concesiones y campamentos"]},
+  {name:"Comercio y Mercado", familiarity:"Compra, venta y abastecimiento.", facets:["Mercados mayoristas","Contratos y crédito","Proveedores y rutas"]},
+  {name:"Vida de Mar", familiarity:"Trabajo cotidiano a bordo o en muelles.", facets:["Cubierta y guardias","Puertos y mareas","Carga y mantenimiento"]},
+  {name:"Servicio Militar o Guardia", familiarity:"Disciplina, patrulla y cadena de mando.", facets:["Guardias y rondas","Logística militar","Reglamentos y fortificaciones"]},
+  {name:"Expedición y Cartografía", familiarity:"Campamentos, rutas y registro de terreno.", facets:["Mapas y notas de campo","Campamentos y suministros","Permisos y expediciones"]},
+  {name:"Vida Académica", familiarity:"Instituciones de estudio e investigación.", facets:["Archivos y bibliotecas","Laboratorios y seminarios","Redes académicas"]},
+  {name:"Servicio Sanitario", familiarity:"Hospitales, clínicas o puestos de socorro.", facets:["Triage y admisión","Instrumental y suministros","Organización de sala"]},
+  {name:"Administración y Escribanía", familiarity:"Oficinas, registros y documentación.", facets:["Formularios y archivos","Permisos y licencias","Correspondencia y protocolo"]},
+  {name:"Contratista de Rutas Libres", familiarity:"Contratos de exploración, escolta o recuperación.", facets:["Negociación de contratos","Permisos y reclamaciones","Logística de misión"]},
+  {name:"Vida Caravanera", familiarity:"Viajes prolongados con convoyes.", facets:["Campamentos y animales","Rutas y puestos","Mercancías y seguridad"]},
+  {name:"Peregrinación y Hospedería", familiarity:"Santuarios, caminos de peregrinos y alojamiento.", facets:["Hospitalidad","Calendarios y rutas sagradas","Administración de viajeros"]},
+  {name:"Vida de Frontera", familiarity:"Asentamientos con recursos escasos y amenazas cercanas.", facets:["Reparaciones improvisadas","Puestos y alarmas","Intercambio entre comunidades"]}
 ];
 
 const DISCIPLINES = [
@@ -75,22 +149,39 @@ function baseEntry(type, name, extra = {}) {
 
 export function constructionCatalog() {
   const entries = [];
-  for (const name of ANCESTRIES) {
+  for (const [name, description] of ANCESTRIES) {
     entries.push(baseEntry("ancestry", name, {
-      tags:["crea-06","canonical"],
-      description:"Paquete de Ascendencia canónico. El texto literal completo de sus efectos se conserva fuera de este catálogo cuando no está materialmente disponible; CREA-11 no lo reconstruye por inferencia."
+      tags:["crea-14","canonical","standard-creation"],
+      description,
+      requirementsText:"Aplicar el paquete racial correspondiente del Manual Maestro. Registrar cualquier elección interna necesaria."
     }));
   }
-  for (const name of ORIGINS) {
-    entries.push(baseEntry("origin", name, {
-      tags:["crea-07","canonical"],
-      description:"Origen canónico: Familiaridad Cultural + Perfil Lingüístico + una Faceta. Las elecciones variables se almacenan en system.choices."
+  for (const origin of ORIGINS) {
+    entries.push(baseEntry("origin", origin.name, {
+      tags:["crea-14","canonical","standard-creation"],
+      familiarity:origin.familiarity,
+      languageProfile:"Común de Concordia + " + origin.language,
+      facetOptions:origin.facets.join("; "),
+      selectedFacet:"",
+      description:
+        "Origen canónico. Familiaridad Cultural: " + origin.familiarity +
+        " Perfil Lingüístico: Común de Concordia + " + origin.language +
+        ". Elige una Faceta de Origen: " + origin.facets.join("; ") +
+        ". No concede rangos de Habilidad ni bonos numéricos.",
+      rules:[{key:"RollOption",option:"origin:"+normalizeSlug(origin.name)}]
     }));
   }
-  for (const name of BACKGROUNDS) {
-    entries.push(baseEntry("background", name, {
-      tags:["crea-07","canonical"],
-      description:"Trasfondo canónico: Familiaridad Práctica principal + dos Facetas. No concede rangos de Habilidad por sí mismo."
+  for (const background of BACKGROUNDS) {
+    entries.push(baseEntry("background", background.name, {
+      tags:["crea-14","canonical","standard-creation"],
+      familiarity:background.familiarity,
+      facetOptions:background.facets.join("; "),
+      selectedFacets:"",
+      description:
+        "Trasfondo canónico. Familiaridad Práctica: " + background.familiarity +
+        " Elige dos Facetas: " + background.facets.join("; ") +
+        ". Una de las dos puede sustituirse por Lengua de trabajo para aprender una lengua regional adicional. No concede rangos de Habilidad ni bonos numéricos.",
+      rules:[{key:"RollOption",option:"background:"+normalizeSlug(background.name)}]
     }));
   }
   for (const [name, slug] of DISCIPLINES) {
