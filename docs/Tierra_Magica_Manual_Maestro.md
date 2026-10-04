@@ -3048,6 +3048,7 @@ Algunas propiedades poseen una función mecánica expresa; otras describen const
 | **Ágil** | Describe un arma maniobrable. No concede actualmente un bono universal a ataque, Defensa o Iniciativa. |
 | **Versátil** | Describe un arma utilizable de formas distintas según ficción y Técnica. No posee actualmente un modo alternativo universal de daño. |
 | **Impactante** | Describe la naturaleza del golpe y puede importar para objetos, lesiones o ficción. No añade daño o Derribo automáticamente. |
+| **Flexible** | Describe una construcción articulada o flexible. Puede justificar narrativamente métodos de maniobra cuando la ficción lo permita, pero no concede Alcance, Enganche, Desarmar mejorado, Defensa ni ataques adicionales por sí sola. |
 | **Alcance** | Cumple requisitos que mencionan arma de Alcance, como Recibir Carga. No añade por sí sola un número universal de espacios de alcance. |
 | **Pesada** | Identifica armamento de gran masa/tamaño y normalmente usa Armas Pesadas. Sus requisitos de FUE, manos y otras propiedades siguen aplicándose. |
 | **2 manos** | Requiere ambas manos disponibles para utilizar el arma normalmente. Un objeto sostenido con dos manos recibe además la protección contra Desarmar definida en Escala y maniobras. |
@@ -3066,6 +3067,9 @@ Cuando una propiedad descriptiva deba producir un modificador numérico concreto
 | Daga | 3 | 0 | 0 | 6 p | Ligera, Ocultable |
 | Espada corta | 4 | 0 | 0 | 1 o | Ligera |
 | Sable | 4 | 0 | 0 | 1 o 5 p | Ágil |
+| Cadena corta de combate | 4 | 0 | 0 | 1 o | Flexible, Impactante |
+| Látigo | 2 | 0 | 0 | 5 p | Flexible |
+| Látigo reforzado | 3 | 0 | 0 | 1 o | Flexible, Impactante |
 | Espada larga | 5 | 0 | 1 | 2 o | Versátil |
 | Hacha | 6 | 0 | 2 | 2 o 5 p | Impactante |
 | Maza | 5 | 1 | 1 | 1 o | Impactante |
@@ -3108,6 +3112,22 @@ Los siguientes perfiles utilizan **Armas a Distancia** y **AGI** para la tirada 
 **Proyectil** no significa munición infinita. Una Honda o Fustíbalo necesita un proyectil físico compatible cuando la munición sea relevante. **Arrojadiza** representa específicamente el uso lanzado: después de arrojar una Azagaya o Jabalina, ese objeto ya no está en la mano hasta que se recupere o se disponga de otro. El núcleo no concede una recuperación automática después del ataque.
 
 Estos perfiles no poseen **Recarga** ni **Repetición** y no producen ataques adicionales. Tampoco convierten una Azagaya o Jabalina en una Lanza cuerpo a cuerpo gratuita: si un objeto se utiliza de otra forma, debe existir un perfil apropiado o resolverse como uso improvisado conforme a la ficción.
+
+
+### Armas flexibles ligeras
+
+Cadena corta de combate, Látigo y Látigo reforzado usan **Armas Ligeras** y **AGI** para atacar. Los tres perfiles añaden **FUE al daño** porque así lo establece cada entrada.
+
+| Arma | Daño | Pen | FUE mín. | Precio | Propiedades |
+|---|---:|---:|---:|---:|---|
+| Cadena corta de combate | 4 + FUE | 0 | 0 | 1 o | Flexible, Impactante |
+| Látigo | 2 + FUE | 0 | 0 | 5 p | Flexible |
+| Látigo reforzado | 3 + FUE | 0 | 0 | 1 o | Flexible, Impactante |
+
+**Flexible no equivale a Alcance.** Estas armas no satisfacen requisitos de arma de Alcance como Recibir Carga y no atacan automáticamente a más espacios que un arma cuerpo a cuerpo ordinaria.
+
+Una cadena o látigo puede ser un método ficcional válido para intentar Desarmar, Derribar, sujetar un objeto u otra maniobra cuando la posición y el objetivo lo permitan. Esa justificación no concede Ventaja, modificadores, alcance extra ni cambia la Defensa de Maniobra. La maniobra sigue usando las reglas universales y el Atributo/Habilidad apropiados.
+
 
 ### Munición y Recarga
 
