@@ -2557,6 +2557,7 @@ test("CRAFT-13E: Supervivencia sólo sustituye Latrocinio en trampa Simple de ca
     requiredInstallation:"improvised",
     availableInstallation:"improvised"
   });
+  craft.system.professional.baseRank=1;
   const resolver=resolverFor(actor);
   assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
 });
