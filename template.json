@@ -373,7 +373,8 @@
       "origin",
       "background",
       "discipline",
-      "effect"
+      "effect",
+      "project"
     ],
     "templates": {
       "base": {
@@ -598,6 +599,71 @@
       "duration": "",
       "expiry": "manual",
       "active": true
+    },
+    "project": {
+      "templates": [
+        "base"
+      ],
+      "modelVersion": 1,
+      "operation": "fabricate",
+      "state": "draft",
+      "source": {
+        "recipeUuid": "",
+        "profileRef": "",
+        "sourceRevision": ""
+      },
+      "target": {
+        "itemUuid": "",
+        "resultType": "equipment",
+        "resultName": ""
+      },
+      "economy": {
+        "referenceValueCopper": 0,
+        "priceStatus": "unset",
+        "fixedPriceCopper": 0,
+        "quality": "common",
+        "workMaterialGrade": "ordinary",
+        "affectedValueCopper": 0
+      },
+      "specialMaterials": [],
+      "components": [],
+      "time": {
+        "mode": "derived",
+        "baseMinutes": 0,
+        "adjustedBaseMinutes": 0,
+        "requiredMinutes": 0,
+        "completedMinutes": 0
+      },
+      "professional": {
+        "skill": "crafting",
+        "specialization": "",
+        "baseRank": 0,
+        "requiredRank": 0,
+        "baseInstallation": "improvised",
+        "requiredInstallation": "improvised",
+        "stableProcedure": false,
+        "materialsReady": false,
+        "essentialToolReady": false
+      },
+      "assistants": {
+        "work": 0,
+        "technical": 0
+      },
+      "execution": {
+        "accelerated": false,
+        "reductionFactors": [],
+        "stage": "",
+        "revision": 0,
+        "committed": false,
+        "completionToken": ""
+      },
+      "consequences": [],
+      "ledger": {
+        "estimatedMaterialsCopper": 0,
+        "committedMaterialsCopper": 0,
+        "recoveredMaterialsCopper": 0,
+        "entries": []
+      }
     }
   }
 }
