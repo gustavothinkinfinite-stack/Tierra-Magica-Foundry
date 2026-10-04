@@ -90,6 +90,56 @@ export function craftingProjectMaterialAllocations(project) {
   return [...bySource.values()];
 }
 
+function componentReservationData(item) {
+  const data = item?.system?.craftingReservations;
+  return data && typeof data === "object" && !Array.isArray(data) ? { ...data } : {};
+}
+
+function componentReservationQuantity(entry) {
+  return Math.max(0, Math.floor(number(entry?.quantity)));
+}
+
+export function craftingComponentReservedQuantity(item, { excludingProject = "" } = {}) {
+  return Object.entries(componentReservationData(item)).reduce((sum, [key, reservation]) => {
+    if (excludingProject && key === excludingProject) return sum;
+    return sum + componentReservationQuantity(reservation);
+  }, 0);
+}
+
+export function craftingComponentAvailableQuantity(item, { project = null } = {}) {
+  const quantity = Math.max(0, Math.floor(number(item?.system?.quantity, 1)));
+  return Math.max(0, quantity - craftingComponentReservedQuantity(item, { excludingProject:projectKey(project) }));
+}
+
+export function craftingProjectComponentAllocations(project) {
+  const normalized = normalizeCraftingProject(project?.system ?? project);
+  if (!["fabricate","repair"].includes(normalized.operation)) return [];
+  const grouped = new Map();
+  for (const component of normalized.components) {
+    const sourceUuid = String(component.itemUuid ?? "").trim();
+    const quantity = Math.max(1, Math.floor(number(component.quantity, 1)));
+    if (!sourceUuid) {
+      grouped.set("__missing__:" + component.id, {
+        sourceUuid:"",
+        quantity,
+        componentIds:[component.id],
+        name:component.name
+      });
+      continue;
+    }
+    const previous = grouped.get(sourceUuid) ?? {
+      sourceUuid,
+      quantity:0,
+      componentIds:[],
+      name:component.name
+    };
+    previous.quantity += quantity;
+    previous.componentIds.push(component.id);
+    grouped.set(sourceUuid, previous);
+  }
+  return [...grouped.values()];
+}
+
 async function resolveOwnedItem(actor, uuid, resolver = globalThis.fromUuid) {
   if (!uuid || typeof resolver !== "function") return null;
   const item = await resolver(uuid);
@@ -121,11 +171,6 @@ function reservationRecord(project, amountCopper) {
   };
 }
 
-function componentCostCopper(model) {
-  return model.components.reduce((sum, row) =>
-    sum + Math.max(0, Math.floor(number(row.valueCopper))) * Math.max(1, Math.floor(number(row.quantity, 1))), 0);
-}
-
 async function expectedProjectMaterialCopper(project, model, resolver) {
   if (model.operation === "fabricate") {
     return {
@@ -133,8 +178,7 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
       materialCopper:totalCraftMaterialCostCopper({
         referenceValueCopper:model.economy.referenceValueCopper,
         quality:model.economy.quality,
-        specialMaterialSupplementsCopper:model.specialMaterials.map((row)=>row.supplementCopper),
-        separatedComponentsCopper:model.components.map((row)=>row.valueCopper * row.quantity)
+        specialMaterialSupplementsCopper:model.specialMaterials.map((row)=>row.supplementCopper)
       })
     };
   }
@@ -148,7 +192,7 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
       affectedTimeMinutes:model.time.adjustedBaseMinutes
     });
     if (!quote.repairableByUniversalRule) return { ok:false, error:"El estado objetivo no admite reparación universal." };
-    return { ok:true, materialCopper:quote.materialCopper + componentCostCopper(model) };
+    return { ok:true, materialCopper:quote.materialCopper };
   }
 
   if (model.operation === "dismantle") return { ok:true, materialCopper:0 };
@@ -226,6 +270,28 @@ export async function reserveCraftingProjectMaterials(project, {
     resolved.push({ allocation, item, lot });
   }
 
+  const componentAllocations = craftingProjectComponentAllocations(project);
+  const resolvedComponents = [];
+  for (const allocation of componentAllocations) {
+    if (!allocation.sourceUuid) {
+      return { ok:false, error:"Todo componente separado debe señalar un Item físico del inventario.", componentIds:allocation.componentIds };
+    }
+    const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
+    if (!item || !PHYSICAL_TYPES.has(item.type)) {
+      return { ok:false, error:"Un componente separado ya no existe en el inventario del Actor.", sourceUuid:allocation.sourceUuid };
+    }
+    const available = craftingComponentAvailableQuantity(item, { project });
+    if (allocation.quantity > available) {
+      return {
+        ok:false,
+        error:item.name + " no posee cantidad libre suficiente para el Proyecto.",
+        sourceUuid:allocation.sourceUuid,
+        available
+      };
+    }
+    resolvedComponents.push({ allocation, item });
+  }
+
   const snapshots = [];
   try {
     for (const row of resolved) {
@@ -237,6 +303,22 @@ export async function reserveCraftingProjectMaterials(project, {
         updates:{ "system.craftingLot.reservations":before }
       });
       await row.item.update({ "system.craftingLot.reservations":next }, { tmValidated:true, tmCrafting:true });
+    }
+
+    for (const row of resolvedComponents) {
+      const before = componentReservationData(row.item);
+      const next = clone(before);
+      next[projectKey(project)] = {
+        projectUuid:projectKey(project),
+        actorUuid:actorKey(project.parent),
+        quantity:row.allocation.quantity,
+        createdAt:Date.now()
+      };
+      snapshots.push({
+        document:row.item,
+        updates:{ "system.craftingReservations":before }
+      });
+      await row.item.update({ "system.craftingReservations":next }, { tmValidated:true, tmCrafting:true });
     }
 
     await project.update({
@@ -281,6 +363,17 @@ export async function releaseCraftingProjectMaterials(project, {
     const next = clone(lot.reservations);
     delete next[projectKey(project)];
     await item.update({ "system.craftingLot.reservations":next }, { tmValidated:true, tmCrafting:true });
+  }
+
+  const componentAllocations = craftingProjectComponentAllocations(project);
+  for (const allocation of componentAllocations) {
+    const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
+    if (!item) continue;
+    const reservations = componentReservationData(item);
+    if (!reservations[projectKey(project)]) continue;
+    const next = clone(reservations);
+    delete next[projectKey(project)];
+    await item.update({ "system.craftingReservations":next }, { tmValidated:true, tmCrafting:true });
   }
 
   const nextState = cancel ? "cancelled" : "ready";
@@ -346,6 +439,20 @@ async function consumeReservations(project, resolver) {
     }
   }
 
+  const componentAllocations = craftingProjectComponentAllocations(project);
+  for (const allocation of componentAllocations) {
+    const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
+    if (!item) return { ok:false, error:"Un componente comprometido ya no existe.", snapshots };
+    const reservations = componentReservationData(item);
+    const reservation = reservations[projectKey(project)];
+    if (!reservation || componentReservationQuantity(reservation) !== allocation.quantity) {
+      return { ok:false, error:"La reserva física de un componente ya no coincide con el Proyecto.", snapshots };
+    }
+    if (allocation.quantity > Math.max(0, Math.floor(number(item.system?.quantity, 1)))) {
+      return { ok:false, error:"Un componente comprometido ya no posee cantidad suficiente.", snapshots };
+    }
+  }
+
   try {
     for (const allocation of allocations) {
       const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
@@ -363,6 +470,25 @@ async function consumeReservations(project, resolver) {
       await item.update({
         "system.craftingLot.inputValueCopper":lot.inputValueCopper - allocation.amountCopper,
         "system.craftingLot.reservations":nextReservations
+      }, { tmValidated:true, tmCrafting:true });
+    }
+
+    for (const allocation of componentAllocations) {
+      const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
+      const previousReservations = componentReservationData(item);
+      const nextReservations = clone(previousReservations);
+      delete nextReservations[projectKey(project)];
+      const previousQuantity = Math.max(0, Math.floor(number(item.system?.quantity, 1)));
+      snapshots.push({
+        document:item,
+        updates:{
+          "system.quantity":previousQuantity,
+          "system.craftingReservations":previousReservations
+        }
+      });
+      await item.update({
+        "system.quantity":previousQuantity - allocation.quantity,
+        "system.craftingReservations":nextReservations
       }, { tmValidated:true, tmCrafting:true });
     }
     return { ok:true, snapshots };
