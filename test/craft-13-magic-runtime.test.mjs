@@ -269,11 +269,16 @@ test("CRAFT-13E runtime: un mismo evento indivisible sólo alimenta una trampa o
     }
   }));
 
-  const first=await owner.triggerCraftedTrap(trap,{targetActor:target,eventId:"door-open-1"});
+  const first=await owner.triggerCraftedTrap(trap,{
+    targetActor:target,
+    eventId:"door-open-1",
+    eventType:"contact",
+    physicalTriggerKey:"plate-a"
+  });
   assert.equal(first.ok,true);
   assert.equal(trap.system.trap.state,"discharged");
 
-  const second=await owner.triggerCustodySeal(seal,{targetActor:target,eventId:"door-open-1"});
+  const second=await owner.triggerCustodySeal(seal,{targetActor:target,eventId:"door-open-1",eventType:"contact"});
   assert.equal(second.ok,false);
   assert.match(second.error,/mismo evento físico indivisible/);
   assert.equal(seal.system.enchantment.sealState,"charged");
@@ -304,8 +309,41 @@ test("CRAFT-13E runtime: descargar Sello reduce su valor por el coste de rearme 
       }
     }
   }));
-  const result=await owner.triggerCustodySeal(seal,{targetActor:target,eventId:"threshold-2"});
+  const result=await owner.triggerCustodySeal(seal,{targetActor:target,eventId:"threshold-2",eventType:"contact"});
   assert.equal(result.ok,true);
   assert.equal(seal.system.enchantment.sealState,"discharged");
   assert.equal(seal.system.priceCopper,950);
+});
+
+
+test("CRAFT-13E runtime: una trampa automática no puede dispararse desde un evento físico distinto",async()=>{
+  const owner=new StubActor("wrong-trigger-owner");
+  const target=new StubActor("wrong-trigger-target");
+  const trap=owner.add(new StubItem({
+    id:"tripwire",
+    system:{
+      condition:"operative",
+      trap:{
+        enabled:true,
+        frame:"standard",
+        precision:4,
+        mechanismDf:12,
+        triggerType:"tripwire",
+        physicalTriggerKey:"wire-west",
+        automatic:true,
+        state:"armed",
+        baseTimeMinutes:120,
+        load:{kind:"mechanical-strike",profileRef:"Lanza",damage:5,penetration:1}
+      }
+    }
+  }));
+  const wrong=await owner.triggerCraftedTrap(trap,{
+    targetActor:target,
+    eventId:"door-open-9",
+    eventType:"opening",
+    physicalTriggerKey:"door-west"
+  });
+  assert.equal(wrong.ok,false);
+  assert.equal(trap.system.trap.state,"armed");
+  assert.deepEqual(target.system.magic.automaticEventClaims,{});
 });
