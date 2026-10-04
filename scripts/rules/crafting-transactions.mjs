@@ -1,0 +1,482 @@
+import {
+  craftingProjectRemainingMinutes,
+  normalizeCraftingProject,
+  salvageQuote,
+  validateCraftingProject
+} from "./crafting.mjs";
+
+const PHYSICAL_TYPES = new Set(["weapon","armor","shield","equipment","formula","device"]);
+
+const number = (value, fallback = 0) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+};
+
+const nonNegative = (value) => Math.max(0, number(value));
+
+function clone(value) {
+  if (globalThis.foundry?.utils?.deepClone) return foundry.utils.deepClone(value);
+  return structuredClone(value);
+}
+
+function projectKey(project) {
+  return String(project?.uuid ?? project?.id ?? "");
+}
+
+function actorKey(actor) {
+  return String(actor?.uuid ?? actor?.id ?? "");
+}
+
+function randomToken() {
+  return globalThis.foundry?.utils?.randomID?.() ??
+    ("craft-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2));
+}
+
+function sameParent(document, actor) {
+  if (!document || !actor) return false;
+  if (document.parent === actor) return true;
+  return Boolean(document.parent?.id && actor.id && document.parent.id === actor.id);
+}
+
+function lotData(item) {
+  const data = item?.system?.craftingLot ?? {};
+  const reservations = data.reservations && typeof data.reservations === "object" && !Array.isArray(data.reservations)
+    ? { ...data.reservations }
+    : {};
+  return {
+    enabled: data.enabled === true,
+    category: String(data.category ?? ""),
+    compatibility: Array.isArray(data.compatibility) ? data.compatibility.map(String) : [],
+    inputValueCopper: Math.max(0, Math.floor(number(data.inputValueCopper))),
+    reservations
+  };
+}
+
+function reservationAmount(entry) {
+  return Math.max(0, Math.floor(number(entry?.amountCopper)));
+}
+
+export function craftingLotReservedCopper(item, { excludingProject = "" } = {}) {
+  const lot = lotData(item);
+  return Object.entries(lot.reservations).reduce((sum, [key, reservation]) => {
+    if (excludingProject && key === excludingProject) return sum;
+    return sum + reservationAmount(reservation);
+  }, 0);
+}
+
+export function craftingLotAvailableCopper(item, { project = null } = {}) {
+  const key = projectKey(project);
+  const lot = lotData(item);
+  return Math.max(0, lot.inputValueCopper - craftingLotReservedCopper(item, { excludingProject:key }));
+}
+
+export function craftingProjectMaterialAllocations(project) {
+  const normalized = normalizeCraftingProject(project?.system ?? project);
+  const grouped = new Map();
+  for (const entry of normalized.ledger.entries) {
+    if (entry.kind !== "material-allocation" || entry.resource !== "materials") continue;
+    const sourceUuid = String(entry.sourceUuid ?? "").trim();
+    const amountCopper = Math.max(0, Math.floor(number(entry.amountCopper)));
+    if (!sourceUuid || !amountCopper) continue;
+    grouped.set(sourceUuid, (grouped.get(sourceUuid) ?? 0) + amountCopper);
+  }
+  return [...grouped.entries()].map(([sourceUuid, amountCopper]) => ({ sourceUuid, amountCopper }));
+}
+
+async function resolveOwnedItem(actor, uuid, resolver = globalThis.fromUuid) {
+  if (!uuid || typeof resolver !== "function") return null;
+  const item = await resolver(uuid);
+  if (!item || !sameParent(item, actor)) return null;
+  return item;
+}
+
+function expectedRevisionMatches(project, expectedRevision) {
+  if (expectedRevision === null || expectedRevision === undefined) return true;
+  return Math.floor(number(project?.system?.execution?.revision)) === Math.floor(number(expectedRevision));
+}
+
+async function rollbackUpdates(snapshots = []) {
+  for (const snapshot of [...snapshots].reverse()) {
+    try {
+      await snapshot.document.update(snapshot.updates, { tmValidated:true, tmCraftingRollback:true });
+    } catch (error) {
+      console.error("Foundry T.M. | CRAFT-13C rollback incompleto", error);
+    }
+  }
+}
+
+function reservationRecord(project, amountCopper) {
+  return {
+    projectUuid: projectKey(project),
+    actorUuid: actorKey(project?.parent),
+    amountCopper,
+    createdAt: Date.now()
+  };
+}
+
+export async function reserveCraftingProjectMaterials(project, {
+  expectedRevision = null,
+  resolver = globalThis.fromUuid
+} = {}) {
+  if (!project || project.type !== "project" || !project.parent) {
+    return { ok:false, error:"El Proyecto no está embebido en un Actor válido." };
+  }
+  if (!expectedRevisionMatches(project, expectedRevision)) {
+    return { ok:false, error:"El Proyecto cambió desde la última lectura.", stale:true };
+  }
+
+  const validation = validateCraftingProject(project.system);
+  if (!validation.valid) return { ok:false, error:"El Proyecto contiene incidencias estructurales.", issues:validation.issues };
+  const model = validation.project;
+  if (model.state !== "ready") return { ok:false, error:"Sólo un Proyecto Preparado puede comprometer materiales." };
+  if (model.execution.committed) return { ok:true, committed:true, alreadyCommitted:true, revision:model.execution.revision };
+
+  const allocations = craftingProjectMaterialAllocations(project);
+  const requested = allocations.reduce((sum, entry) => sum + entry.amountCopper, 0);
+  if (requested < model.ledger.estimatedMaterialsCopper) {
+    return { ok:false, error:"Las asignaciones de Lotes no cubren el material estimado del Proyecto." };
+  }
+
+  const actor = project.parent;
+  const resolved = [];
+  for (const allocation of allocations) {
+    const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
+    if (!item || !PHYSICAL_TYPES.has(item.type)) {
+      return { ok:false, error:"Un Lote asignado ya no existe en el inventario del Actor." };
+    }
+    const lot = lotData(item);
+    if (!lot.enabled) return { ok:false, error:item.name + " no está marcado como Lote de fabricación." };
+    const available = craftingLotAvailableCopper(item, { project });
+    if (allocation.amountCopper > available) {
+      return { ok:false, error:item.name + " no posee VI libre suficiente.", sourceUuid:allocation.sourceUuid, available };
+    }
+    resolved.push({ allocation, item, lot });
+  }
+
+  const snapshots = [];
+  try {
+    for (const row of resolved) {
+      const before = clone(row.lot.reservations);
+      const next = clone(row.lot.reservations);
+      next[projectKey(project)] = reservationRecord(project, row.allocation.amountCopper);
+      snapshots.push({
+        document:row.item,
+        updates:{ "system.craftingLot.reservations":before }
+      });
+      await row.item.update({ "system.craftingLot.reservations":next }, { tmValidated:true, tmCrafting:true });
+    }
+
+    await project.update({
+      "system.state":"active",
+      "system.execution.committed":true,
+      "system.execution.revision":model.execution.revision + 1,
+      "system.ledger.committedMaterialsCopper":requested
+    }, { tmValidated:true, tmCrafting:true });
+
+    return {
+      ok:true,
+      committed:true,
+      materialCopper:requested,
+      revision:model.execution.revision + 1
+    };
+  } catch (error) {
+    await rollbackUpdates(snapshots);
+    return { ok:false, error:"No fue posible comprometer todos los materiales de forma atómica.", cause:String(error?.message ?? error) };
+  }
+}
+
+export async function releaseCraftingProjectMaterials(project, {
+  expectedRevision = null,
+  cancel = false,
+  resolver = globalThis.fromUuid
+} = {}) {
+  if (!project || project.type !== "project" || !project.parent) return { ok:false, error:"Proyecto inválido." };
+  if (!expectedRevisionMatches(project, expectedRevision)) return { ok:false, error:"El Proyecto cambió desde la última lectura.", stale:true };
+
+  const model = normalizeCraftingProject(project.system);
+  if (["completed","cancelled"].includes(model.state)) {
+    return { ok:true, released:false, terminal:true, revision:model.execution.revision };
+  }
+
+  const actor = project.parent;
+  const allocations = craftingProjectMaterialAllocations(project);
+  for (const allocation of allocations) {
+    const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
+    if (!item) continue;
+    const lot = lotData(item);
+    if (!lot.reservations[projectKey(project)]) continue;
+    const next = clone(lot.reservations);
+    delete next[projectKey(project)];
+    await item.update({ "system.craftingLot.reservations":next }, { tmValidated:true, tmCrafting:true });
+  }
+
+  const nextState = cancel ? "cancelled" : "ready";
+  await project.update({
+    "system.state":nextState,
+    "system.execution.committed":false,
+    "system.execution.revision":model.execution.revision + 1,
+    "system.ledger.committedMaterialsCopper":0
+  }, { tmValidated:true, tmCrafting:true });
+  return { ok:true, released:true, state:nextState, revision:model.execution.revision + 1 };
+}
+
+export async function advanceCraftingProjectWork(project, minutes, {
+  expectedRevision = null
+} = {}) {
+  if (!project || project.type !== "project") return { ok:false, error:"Proyecto inválido." };
+  if (!expectedRevisionMatches(project, expectedRevision)) return { ok:false, error:"El Proyecto cambió desde la última lectura.", stale:true };
+  const model = normalizeCraftingProject(project.system);
+  if (model.state !== "active" || !model.execution.committed) {
+    return { ok:false, error:"El Proyecto debe estar En curso y con sus materiales comprometidos." };
+  }
+  const amount = nonNegative(minutes);
+  if (!amount) return { ok:false, error:"El avance debe representar tiempo de trabajo real mayor que cero." };
+  const before = model.time.completedMinutes;
+  const after = Math.min(model.time.requiredMinutes, before + amount);
+  await project.update({
+    "system.time.completedMinutes":after,
+    "system.execution.revision":model.execution.revision + 1
+  }, { tmValidated:true, tmCrafting:true });
+  return {
+    ok:true,
+    minutesApplied:after - before,
+    completedMinutes:after,
+    remainingMinutes:Math.max(0, model.time.requiredMinutes - after),
+    revision:model.execution.revision + 1
+  };
+}
+
+function resultSource(project) {
+  const raw = project?.system?.target?.resultData;
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const source = clone(raw);
+  delete source._id;
+  delete source.id;
+  return source;
+}
+
+async function consumeReservations(project, resolver) {
+  const actor = project.parent;
+  const allocations = craftingProjectMaterialAllocations(project);
+  const snapshots = [];
+
+  for (const allocation of allocations) {
+    const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
+    if (!item) return { ok:false, error:"Un Lote comprometido ya no existe.", snapshots };
+    const lot = lotData(item);
+    const reservation = lot.reservations[projectKey(project)];
+    if (!reservation || reservationAmount(reservation) !== allocation.amountCopper) {
+      return { ok:false, error:"La reserva de un Lote ya no coincide con el Proyecto.", snapshots };
+    }
+    if (allocation.amountCopper > lot.inputValueCopper) {
+      return { ok:false, error:"Un Lote comprometido ya no posee VI suficiente.", snapshots };
+    }
+  }
+
+  try {
+    for (const allocation of allocations) {
+      const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
+      const lot = lotData(item);
+      const previousReservations = clone(lot.reservations);
+      const nextReservations = clone(lot.reservations);
+      delete nextReservations[projectKey(project)];
+      snapshots.push({
+        document:item,
+        updates:{
+          "system.craftingLot.inputValueCopper":lot.inputValueCopper,
+          "system.craftingLot.reservations":previousReservations
+        }
+      });
+      await item.update({
+        "system.craftingLot.inputValueCopper":lot.inputValueCopper - allocation.amountCopper,
+        "system.craftingLot.reservations":nextReservations
+      }, { tmValidated:true, tmCrafting:true });
+    }
+    return { ok:true, snapshots };
+  } catch (error) {
+    await rollbackUpdates(snapshots);
+    return { ok:false, error:"Falló el consumo de Lotes comprometidos.", cause:String(error?.message ?? error), snapshots:[] };
+  }
+}
+
+async function fabricationOutcome(project) {
+  const actor = project.parent;
+  const source = resultSource(project);
+  if (!source || !PHYSICAL_TYPES.has(String(source.type ?? ""))) {
+    return { ok:false, error:"Fabricar requiere un snapshot estructurado de Item físico en target.resultData." };
+  }
+  source.name = String(source.name ?? project.system.target?.resultName ?? "Resultado fabricado");
+  source.system ??= {};
+  source.system.condition = "operative";
+  source.system.acquisition = null;
+  source.system.provenance = {
+    ...(source.system.provenance ?? {}),
+    sourceUuid:project.uuid,
+    sourceSchemaVersion:Number(project.system?.schemaVersion ?? 0) || 0,
+    sourceRevision:String(project.system?.execution?.revision ?? 0)
+  };
+  const created = await actor.createEmbeddedDocuments("Item", [source], { tmValidated:true, tmCrafting:true });
+  const item = created?.[0] ?? null;
+  if (!item) return { ok:false, error:"Foundry no creó el resultado de fabricación." };
+  return {
+    ok:true,
+    output:item,
+    rollback:async()=>{ try { await actor.deleteEmbeddedDocuments("Item", [item.id], { tmValidated:true, tmCraftingRollback:true }); } catch {} }
+  };
+}
+
+async function repairOutcome(project, resolver) {
+  const actor = project.parent;
+  const target = await resolveOwnedItem(actor, String(project.system.target?.itemUuid ?? ""), resolver);
+  if (!target || !PHYSICAL_TYPES.has(target.type)) return { ok:false, error:"El objeto a reparar ya no está disponible." };
+  const previous = String(target.system?.condition ?? "operative");
+  if (previous === "operative") return { ok:false, error:"El objeto ya está Operativo." };
+  if (previous === "destroyed") return { ok:false, error:"Destruido no admite reparación universal." };
+  await target.update({ "system.condition":"operative" }, { tmValidated:true, tmCrafting:true });
+  return {
+    ok:true,
+    output:target,
+    rollback:async()=>{ try { await target.update({ "system.condition":previous }, { tmValidated:true, tmCraftingRollback:true }); } catch {} }
+  };
+}
+
+async function dismantleOutcome(project, resolver) {
+  const actor = project.parent;
+  const target = await resolveOwnedItem(actor, String(project.system.target?.itemUuid ?? ""), resolver);
+  if (!target || !PHYSICAL_TYPES.has(target.type)) return { ok:false, error:"El objeto a desmantelar ya no está disponible." };
+
+  const targetSource = typeof target.toObject === "function" ? target.toObject() : clone(target);
+  const condition = String(target.system?.condition ?? "operative");
+  const projectModel = normalizeCraftingProject(project.system);
+  const quote = salvageQuote({
+    condition,
+    referenceValueCopper:projectModel.economy.referenceValueCopper,
+    specialMaterialSupplementsCopper:projectModel.specialMaterials.map((row)=>row.supplementCopper),
+    recoveredSeparatedComponentsCopper:0,
+    fabricationTimeMinutes:projectModel.time.baseMinutes
+  });
+
+  let recoveryItem = null;
+  if (quote.valueInMaterialsCopper > 0) {
+    const created = await actor.createEmbeddedDocuments("Item", [{
+      name:"Material recuperado de " + target.name,
+      type:"equipment",
+      system:{
+        category:"Material recuperado",
+        quantity:1,
+        weight:0,
+        equipped:false,
+        availability:"common",
+        quality:"common",
+        properties:"VI recuperado por desmantelamiento.",
+        priceCopper:0,
+        priceQuantity:1,
+        priceStatus:"unset",
+        condition:"operative",
+        craftingLot:{
+          enabled:true,
+          category:"recuperado",
+          compatibility:[],
+          inputValueCopper:quote.valueInMaterialsCopper,
+          reservations:{}
+        },
+        provenance:{
+          sourceUuid:target.uuid,
+          sourceSchemaVersion:Number(target.system?.schemaVersion ?? 0) || 0,
+          sourceRevision:"dismantled"
+        }
+      }
+    }], { tmValidated:true, tmCrafting:true });
+    recoveryItem = created?.[0] ?? null;
+    if (!recoveryItem) return { ok:false, error:"No fue posible crear el Lote de material recuperado." };
+  }
+
+  try {
+    await actor.deleteEmbeddedDocuments("Item", [target.id], { tmValidated:true, tmCrafting:true });
+  } catch (error) {
+    if (recoveryItem) {
+      try { await actor.deleteEmbeddedDocuments("Item", [recoveryItem.id], { tmValidated:true, tmCraftingRollback:true }); } catch {}
+    }
+    return { ok:false, error:"No fue posible retirar el objeto desmantelado.", cause:String(error?.message ?? error) };
+  }
+
+  return {
+    ok:true,
+    output:recoveryItem,
+    recoveredMaterialsCopper:quote.valueInMaterialsCopper,
+    rollback:async()=>{
+      try {
+        if (recoveryItem) await actor.deleteEmbeddedDocuments("Item", [recoveryItem.id], { tmValidated:true, tmCraftingRollback:true });
+        await actor.createEmbeddedDocuments("Item", [targetSource], { keepId:true, tmValidated:true, tmCraftingRollback:true });
+      } catch {}
+    }
+  };
+}
+
+export async function completeCraftingProject(project, {
+  expectedRevision = null,
+  resolver = globalThis.fromUuid
+} = {}) {
+  if (!project || project.type !== "project" || !project.parent) return { ok:false, error:"Proyecto inválido." };
+  if (!expectedRevisionMatches(project, expectedRevision)) return { ok:false, error:"El Proyecto cambió desde la última lectura.", stale:true };
+
+  const validation = validateCraftingProject(project.system);
+  if (!validation.valid) return { ok:false, error:"El Proyecto contiene incidencias estructurales.", issues:validation.issues };
+  const model = validation.project;
+
+  if (model.state === "completed" && model.execution.completionToken) {
+    return { ok:true, completed:true, alreadyCompleted:true, completionToken:model.execution.completionToken };
+  }
+  if (model.state !== "active" || !model.execution.committed) {
+    return { ok:false, error:"El Proyecto debe estar En curso con materiales comprometidos." };
+  }
+  if (craftingProjectRemainingMinutes(model) > 0) {
+    return { ok:false, error:"El Proyecto todavía tiene trabajo pendiente.", remainingMinutes:craftingProjectRemainingMinutes(model) };
+  }
+  if (!["fabricate","repair","dismantle"].includes(model.operation)) {
+    return { ok:false, error:"CRAFT-13C sólo completa Fabricar, Reparar y Desmantelar." };
+  }
+
+  const consumed = await consumeReservations(project, resolver);
+  if (!consumed.ok) return consumed;
+
+  let outcome;
+  try {
+    if (model.operation === "fabricate") outcome = await fabricationOutcome(project);
+    else if (model.operation === "repair") outcome = await repairOutcome(project, resolver);
+    else outcome = await dismantleOutcome(project, resolver);
+  } catch (error) {
+    outcome = { ok:false, error:"Falló la resolución material del Proyecto.", cause:String(error?.message ?? error) };
+  }
+
+  if (!outcome.ok) {
+    await rollbackUpdates(consumed.snapshots);
+    return outcome;
+  }
+
+  const completionToken = randomToken();
+  try {
+    await project.update({
+      "system.state":"completed",
+      "system.execution.committed":false,
+      "system.execution.revision":model.execution.revision + 1,
+      "system.execution.completionToken":completionToken,
+      "system.ledger.recoveredMaterialsCopper":Math.max(
+        model.ledger.recoveredMaterialsCopper,
+        Math.floor(number(outcome.recoveredMaterialsCopper))
+      )
+    }, { tmValidated:true, tmCrafting:true });
+  } catch (error) {
+    await outcome.rollback?.();
+    await rollbackUpdates(consumed.snapshots);
+    return { ok:false, error:"No fue posible cerrar el Proyecto; se intentó revertir la operación.", cause:String(error?.message ?? error) };
+  }
+
+  return {
+    ok:true,
+    completed:true,
+    completionToken,
+    outputUuid:outcome.output?.uuid ?? "",
+    recoveredMaterialsCopper:Math.floor(number(outcome.recoveredMaterialsCopper))
+  };
+}
