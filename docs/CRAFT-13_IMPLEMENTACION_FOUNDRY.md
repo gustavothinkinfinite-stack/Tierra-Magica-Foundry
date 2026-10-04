@@ -123,17 +123,164 @@ CRAFT-13B todavía no reserva, consume ni devuelve recursos. Esa frontera queda 
 
 ### CRAFT-13C — Transacciones de fabricación, reparación y desmantelamiento
 
-**Estado: PENDIENTE**
+**Estado: IMPLEMENTADA EN RAMA · CI VERDE**
 
-Debe cubrir:
+Se añade una capa transaccional separada de la ficha:
 
-- reservar/consumir materiales;
-- producir el resultado;
-- reparar sólo capas afectadas;
-- devolver VI/material recuperado;
-- impedir doble recuperación de componentes;
-- impedir reejecución de una misma operación confirmada;
-- conservar etapas completadas cuando corresponda.
+- `scripts/rules/crafting-transactions.mjs`;
+- integración con `scripts/rules/state-authority.mjs`;
+- API expuesta en `game.tierraMagica.crafting`;
+- regresiones en `test/craft-13-transactions.test.mjs`.
+
+#### Lotes y Valor de Insumo
+
+Los Items físicos pueden registrar `craftingLot` con:
+
+- categoría;
+- compatibilidades;
+- VI disponible;
+- reservas por Proyecto.
+
+El VI:
+
+- sigue siendo material y nunca moneda;
+- sólo reduce CM uno por uno cuando el Lote declara la compatibilidad exigida;
+- no puede editarse ni reservarse directamente por un jugador;
+- se reserva al comprometer el Proyecto;
+- se consume únicamente al completar con éxito;
+- se libera intacto al liberar/cancelar el Proyecto.
+
+Dos Proyectos del mismo Actor se serializan mediante la autoridad compartida y no pueden reservar el mismo VI más de una vez.
+
+#### Componentes separados
+
+Los componentes especiales/separados no se convierten en VI numérico.
+
+Cada componente de Fabricar/Reparar:
+
+- debe señalar un Item físico del mismo Actor;
+- se reserva por cantidad mediante `craftingReservations`;
+- no se suma al CM ordinario/VI requerido;
+- no puede reservarse simultáneamente por encima de su cantidad disponible;
+- se consume por cantidad sólo al cierre;
+- se libera sin pérdida al cancelar;
+- no puede eliminarse ni reducirse manualmente mientras permanezca reservado.
+
+Esto evita pagar un componente como VI y volver a consumirlo como componente, o utilizar la misma unidad en dos Proyectos.
+
+#### Coste y requisitos recalculados
+
+Antes de reservar recursos, Foundry vuelve a comprobar:
+
+- CM canónico de fabricación;
+- SM;
+- BRA de reparación;
+- Calidad;
+- Material de trabajo;
+- TBA;
+- mínimo temporal;
+- rango real de la Habilidad principal;
+- instalación disponible;
+- procedimiento estable;
+- materiales;
+- herramienta/Kit esencial.
+
+Un Proyecto no puede aprobar un CM inferior al calculado ni sustituir el rango real del Actor por un número escrito en el propio Proyecto.
+
+Los factores porcentuales libres de reducción temporal se rechazan en 13C hasta disponer de una fuente mecánica estructurada.
+
+#### Aceleración
+
+El Proyecto registra por separado:
+
+- si existe Aceleración;
+- su resultado: pendiente, éxito, fallo o Pifia.
+
+Una Aceleración pendiente no permite comprometer el Proyecto.
+
+- éxito: aplica la reducción y conserva el piso universal de 25% TBA;
+- fallo/Pifia: el trabajo total mínimo pasa a 125% TBA;
+- una Pifia conserva además su consecuencia declarada/contextual.
+
+#### Flujo transaccional
+
+El ciclo implementado es:
+
+**Borrador -> Preparado -> En curso -> Completado**
+
+También existen Liberar y Cancelar.
+
+- un Proyecto creado por flujo ordinario comienza siempre en Borrador;
+- pasar a Preparado requiere autoridad de DJ;
+- Preparado puede reservar recursos;
+- En curso registra minutos reales de trabajo;
+- los minutos nunca superan el total requerido;
+- Completado y Cancelado son terminales;
+- un Proyecto con reservas no puede eliminarse directamente.
+
+Cada cambio usa una revisión optimista. Una operación basada en una revisión obsoleta se rechaza sin consumir recursos.
+
+#### Fabricación
+
+Al completar Fabricar:
+
+1. se validan nuevamente reservas y trabajo;
+2. se consume el VI reservado;
+3. se consumen los componentes físicos reservados;
+4. se crea exactamente un Item físico desde el snapshot estructurado del resultado;
+5. se registra procedencia hacia el Proyecto;
+6. se fija un token de cierre.
+
+Repetir la finalización de un Proyecto ya cerrado no crea otro objeto ni vuelve a consumir recursos.
+
+#### Reparación
+
+Reparar:
+
+- utiliza BRA;
+- cobra sólo el porcentaje correspondiente al estado real;
+- consume componentes sustituidos como componentes separados;
+- devuelve el mismo Item a Operativo;
+- no reconstruye un objeto Destruido mediante la regla universal.
+
+#### Desmantelamiento
+
+Desmantelar:
+
+- exige su tiempo de trabajo;
+- elimina el objeto original sólo al cierre exitoso;
+- crea un Lote de material recuperado con VI;
+- no crea moneda;
+- calcula recuperación ordinaria sobre VR Común;
+- calcula Material Especial por su propia tasa;
+- no vuelve a contar componentes recuperados separadamente.
+
+El Lote recuperado no recibe compatibilidad universal por inferencia: debe clasificarse antes de poder pagar otro CM.
+
+#### Autoridad, concurrencia e idempotencia
+
+Las mutaciones compartidas utilizan el mismo arbitraje de DJ activo ya empleado por Vida, economía de turno y Energía.
+
+Se combinan:
+
+- serialización por Actor;
+- revisión del Proyecto;
+- recibos idempotentes de autoridad;
+- reservas persistentes;
+- token de cierre;
+- rollback técnico ante fallos parciales.
+
+Las regresiones cubren doble clic/reintento, dos Proyectos compitiendo por el mismo VI, componentes únicos, revisión obsoleta, liberación/cancelación, fabricación, reparación y desmantelamiento.
+
+#### Frontera de 13C
+
+CRAFT-13C ejecuta materialmente:
+
+- Fabricar;
+- Reparar;
+- Desmantelar.
+
+Modificar e Investigar ya existen como tipos de operación del modelo Proyecto, pero su ejecución se mantiene bloqueada hasta CRAFT-13D y CRAFT-13G respectivamente.
 
 ### CRAFT-13D — Calidad, modificaciones y Materiales Especiales
 
