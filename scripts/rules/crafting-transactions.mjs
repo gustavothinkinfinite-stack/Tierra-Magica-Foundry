@@ -221,6 +221,139 @@ function currentManufacture(target, model) {
   };
 }
 
+
+function analyzeRepairMaterialLayers(model, manufacture, condition) {
+  const installed=Array.isArray(manufacture.specialMaterials)?clone(manufacture.specialMaterials):[];
+  const byId=new Map(installed.map((row)=>[String(row.id),row]));
+  const affected=new Set(model.repair?.affectedMaterialIds ?? []);
+  const ordinary=new Set(model.repair?.ordinaryReplacementMaterialIds ?? []);
+  const specialReplacements=Array.isArray(model.repair?.specialReplacements)?model.repair.specialReplacements:[];
+  const issues=[];
+
+  for(const id of affected) {
+    if(!byId.has(id)) issues.push({code:"repair-material-unknown",materialId:id,message:"La reparación declara afectado un Material Especial que el objeto ya no posee."});
+  }
+  for(const id of ordinary) {
+    if(!affected.has(id)) issues.push({code:"repair-ordinary-not-affected",materialId:id,message:"Un reemplazo ordinario sólo puede aplicarse a una parte especial declarada como afectada."});
+  }
+
+  const specialByMaterial=new Map();
+  for(const row of specialReplacements) {
+    const materialId=String(row.materialId ?? "");
+    if(!materialId || !affected.has(materialId)) {
+      issues.push({code:"repair-special-not-affected",materialId,message:"Un reemplazo especial sólo puede aplicarse a una parte declarada como afectada."});
+      continue;
+    }
+    if(specialByMaterial.has(materialId)) {
+      issues.push({code:"repair-special-duplicate",materialId,message:"La misma parte especial no puede recibir dos reemplazos."});
+      continue;
+    }
+    if(ordinary.has(materialId)) {
+      issues.push({code:"repair-replacement-conflict",materialId,message:"Una parte no puede reemplazarse a la vez con material ordinario y especial."});
+      continue;
+    }
+    if(!String(row.sourceItemUuid ?? "").trim()) {
+      issues.push({code:"repair-special-source",materialId,message:"El reemplazo especial debe señalar un Lote físico compatible."});
+      continue;
+    }
+    specialByMaterial.set(materialId,row);
+  }
+
+  const vrq=qualityValueCopper(manufacture.referenceValueCopper,manufacture.quality);
+  let affectedSpecialValueCopper=0;
+  for(const id of affected) {
+    const row=byId.get(id);
+    if(row) affectedSpecialValueCopper+=2*Math.max(0,Math.floor(number(row.supplementCopper)));
+  }
+  const expectedBraCopper=vrq+affectedSpecialValueCopper;
+  if(model.economy.affectedValueCopper!==expectedBraCopper) {
+    issues.push({
+      code:"repair-bra",
+      message:"La BRA no coincide con VRQ más las capas de Material Especial realmente afectadas.",
+      expectedCopper:expectedBraCopper
+    });
+  }
+
+  const preservedAffected=installed.filter((row)=>affected.has(String(row.id)) && !ordinary.has(String(row.id)));
+  const req=requirementsForManufacture({
+    baseRank:manufacture.baseRank,
+    baseInstallation:manufacture.baseInstallation,
+    quality:manufacture.quality,
+    specialMaterials:preservedAffected
+  });
+  issues.push(...enhancementRequirementsMatch(model,req));
+  const grades=["ordinary","specialized","rare","exceptional"];
+  if(grades.indexOf(model.economy.workMaterialGrade)<grades.indexOf(req.materialGrade)) {
+    issues.push({code:"repair-material-grade",message:"El grado de trabajo está por debajo de la parte especial que se pretende preservar.",expectedGrade:req.materialGrade});
+  }
+
+  const replacementRequirements=[];
+  for(const [materialId,row] of specialByMaterial) {
+    const installedMaterial=byId.get(materialId);
+    if(!installedMaterial) continue;
+    const requiredCopper=repairQuote({
+      condition,
+      affectedValueCopper:2*Math.max(0,Math.floor(number(installedMaterial.supplementCopper))),
+      affectedTimeMinutes:0
+    }).materialCopper;
+    replacementRequirements.push({
+      materialId,
+      sourceItemUuid:String(row.sourceItemUuid),
+      profileKey:String(installedMaterial.profileKey ?? ""),
+      requiredCopper
+    });
+  }
+
+  return {
+    valid:issues.length===0,
+    issues,
+    installed,
+    affected,
+    ordinary,
+    specialReplacements,
+    replacementRequirements,
+    expectedBraCopper,
+    remainingMaterials:installed.filter((row)=>!ordinary.has(String(row.id))),
+    requirements:req
+  };
+}
+
+async function validateRepairReplacementSources(project, plan, allocations, resolver) {
+  if(!plan?.replacementRequirements?.length) return {ok:true};
+  const grouped=new Map();
+  for(const row of plan.replacementRequirements) {
+    const prior=grouped.get(row.sourceItemUuid) ?? {amountCopper:0,profileKeys:new Set(),materialIds:[]};
+    prior.amountCopper+=row.requiredCopper;
+    prior.profileKeys.add(row.profileKey);
+    prior.materialIds.push(row.materialId);
+    grouped.set(row.sourceItemUuid,prior);
+  }
+
+  for(const [sourceUuid,requirement] of grouped) {
+    if(requirement.profileKeys.size!==1) {
+      return {ok:false,error:"Un mismo Lote de reparación no puede representar varios Perfiles de Material.",sourceUuid};
+    }
+    const item=await resolveOwnedItem(project.parent,sourceUuid,resolver);
+    if(!item) return {ok:false,error:"El Lote especial de reparación ya no existe.",sourceUuid};
+    const lot=lotData(item);
+    const profileKey=[...requirement.profileKeys][0];
+    if(!lot.enabled) return {ok:false,error:item.name+" no está marcado como Lote de fabricación.",sourceUuid};
+    if(lot.preparation!=="prepared") return {ok:false,error:item.name+" debe estar Preparado para reemplazar una parte especial.",sourceUuid};
+    if(lot.materialProfileKey!==profileKey) {
+      return {ok:false,error:item.name+" no preserva el Perfil de Material requerido ("+profileKey+").",sourceUuid};
+    }
+    const allocation=allocations.find((row)=>row.sourceUuid===sourceUuid);
+    const compatibility="material:"+profileKey;
+    if(!allocation || allocation.amountCopper<requirement.amountCopper) {
+      return {ok:false,error:"La reserva del Lote especial no cubre la fracción material de la reparación.",sourceUuid,expectedCopper:requirement.amountCopper};
+    }
+    if(!lot.compatibility.includes(compatibility) || !allocation.compatibilities.includes(compatibility)) {
+      return {ok:false,error:"El Lote especial de reparación no declara la compatibilidad requerida.",sourceUuid,compatibility};
+    }
+  }
+  return {ok:true};
+}
+
 function expectedStageRequiredMinutes(stageBaseMinutes, model, { reductionFactors = [] } = {}) {
   const base=Math.max(0,number(stageBaseMinutes));
   if(model.execution.accelerated && ["failure","pifia"].includes(model.execution.accelerationOutcome)) {
