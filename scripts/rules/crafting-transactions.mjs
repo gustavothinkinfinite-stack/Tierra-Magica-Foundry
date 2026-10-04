@@ -82,10 +82,10 @@ export function craftingProjectMaterialAllocations(project) {
     const amountCopper = Math.max(0, Math.floor(number(entry.amountCopper)));
     const compatibility = String(entry.compatibility ?? "").trim();
     if (!sourceUuid || !amountCopper) continue;
-    const key = sourceUuid + "\u0000" + compatibility;
-    const previous = bySource.get(key) ?? { sourceUuid, compatibility, amountCopper:0 };
+    const previous = bySource.get(sourceUuid) ?? { sourceUuid, compatibilities:[], amountCopper:0 };
     previous.amountCopper += amountCopper;
-    bySource.set(key, previous);
+    if (compatibility && !previous.compatibilities.includes(compatibility)) previous.compatibilities.push(compatibility);
+    bySource.set(sourceUuid, previous);
   }
   return [...bySource.values()];
 }
@@ -257,11 +257,12 @@ export async function reserveCraftingProjectMaterials(project, {
     }
     const lot = lotData(item);
     if (!lot.enabled) return { ok:false, error:item.name + " no está marcado como Lote de fabricación." };
-    if (!allocation.compatibility) {
+    if (!allocation.compatibilities.length) {
       return { ok:false, error:"Cada asignación de VI debe declarar la compatibilidad exigida por el Proyecto.", sourceUuid:allocation.sourceUuid };
     }
-    if (!lot.compatibility.includes(allocation.compatibility)) {
-      return { ok:false, error:item.name + " no es compatible con " + allocation.compatibility + ".", sourceUuid:allocation.sourceUuid };
+    const incompatible = allocation.compatibilities.find((key) => !lot.compatibility.includes(key));
+    if (incompatible) {
+      return { ok:false, error:item.name + " no es compatible con " + incompatible + ".", sourceUuid:allocation.sourceUuid };
     }
     const available = craftingLotAvailableCopper(item, { project });
     if (allocation.amountCopper > available) {
@@ -355,6 +356,8 @@ export async function releaseCraftingProjectMaterials(project, {
 
   const actor = project.parent;
   const allocations = craftingProjectMaterialAllocations(project);
+  const snapshots = [];
+  try {
   for (const allocation of allocations) {
     const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
     if (!item) continue;
@@ -362,6 +365,7 @@ export async function releaseCraftingProjectMaterials(project, {
     if (!lot.reservations[projectKey(project)]) continue;
     const next = clone(lot.reservations);
     delete next[projectKey(project)];
+    snapshots.push({ document:item, updates:{ "system.craftingLot.reservations":clone(lot.reservations) } });
     await item.update({ "system.craftingLot.reservations":next }, { tmValidated:true, tmCrafting:true });
   }
 
@@ -373,6 +377,7 @@ export async function releaseCraftingProjectMaterials(project, {
     if (!reservations[projectKey(project)]) continue;
     const next = clone(reservations);
     delete next[projectKey(project)];
+    snapshots.push({ document:item, updates:{ "system.craftingReservations":clone(reservations) } });
     await item.update({ "system.craftingReservations":next }, { tmValidated:true, tmCrafting:true });
   }
 
@@ -384,6 +389,10 @@ export async function releaseCraftingProjectMaterials(project, {
     "system.ledger.committedMaterialsCopper":0
   }, { tmValidated:true, tmCrafting:true });
   return { ok:true, released:true, state:nextState, revision:model.execution.revision + 1 };
+  } catch (error) {
+    await rollbackUpdates(snapshots);
+    return { ok:false, error:"No fue posible liberar todas las reservas de forma atómica.", cause:String(error?.message ?? error) };
+  }
 }
 
 export async function advanceCraftingProjectWork(project, minutes, {
