@@ -273,13 +273,21 @@ export function installCraftingMagicGuards(ActorClass) {
     return {ok:true,changed:true};
   };
 
-  ActorClass.prototype.triggerCraftedTrap=async function(trap,{targetActor=null,eventId="",reactive=false,prepared=false}={}){
+  ActorClass.prototype.triggerCraftedTrap=async function(trap,{targetActor=null,eventId="",eventType="",physicalTriggerKey="",reactive=false,prepared=false}={}){
     if(!sameActorItem(this,trap)) return warn("La trampa debe pertenecer/controlarse desde este Actor.");
     const validation=validateTrapConfiguration(trap.system?.trap??{});
     if(!validation.valid) return warn(validation.issues.map((issue)=>issue.message).join(" "));
     if(trap.system.trap.state!=="armed") return warn("La trampa no está Armada.");
 
     const manual=trap.system.trap.triggerType==="manual";
+    if(!manual) {
+      if(String(eventType)!==String(trap.system.trap.triggerType)) {
+        return warn("El evento observado no corresponde al tipo de disparador físico de la trampa.");
+      }
+      if(String(physicalTriggerKey)!==String(trap.system.trap.physicalTriggerKey)) {
+        return warn("El evento no procede del mecanismo físico registrado para esta trampa.");
+      }
+    }
     if(manual) {
       return withActorResourceLock(this,async()=>{
         if(reactive) {
@@ -306,10 +314,13 @@ export function installCraftingMagicGuards(ActorClass) {
     return {ok:true,load:clone(trap.system.trap.load),precision:number(trap.system.trap.precision),mechanismDf:number(trap.system.trap.mechanismDf)};
   };
 
-  ActorClass.prototype.triggerCustodySeal=async function(seal,{targetActor=null,eventId="",providedBypassKey=""}={}){
+  ActorClass.prototype.triggerCustodySeal=async function(seal,{targetActor=null,eventId="",eventType="",providedBypassKey=""}={}){
     if(!sameActorItem(this,seal)) return warn("El Sello debe estar bajo control de este Actor/instalación.");
     const enchant=seal.system?.enchantment??{};
     if(enchant.seal!==true || enchant.sealState!=="charged") return warn("El Sello no está Cargado.");
+    if(String(eventType)!==String(enchant.sealTriggerType??"")) {
+      return warn("El evento observado no corresponde al disparador físico registrado del Sello.");
+    }
     if(enchant.sealBypassKey && String(providedBypassKey)===String(enchant.sealBypassKey)) {
       return {ok:true,bypassed:true,discharged:false};
     }
