@@ -1126,6 +1126,17 @@ export async function completeCraftingProject(project, {
     return { ok:false, error:"Esta fase sólo completa Fabricar, Reparar, Desmantelar y Modificar." };
   }
 
+  const closingCheck = await expectedProjectMaterialCopper(project, model, resolver);
+  if (!closingCheck.ok) return closingCheck;
+  if (closingCheck.materialCopper !== model.ledger.committedMaterialsCopper) {
+    return {
+      ok:false,
+      error:"El coste canónico cambió desde la reserva; libera o replantea el Proyecto antes de completar.",
+      expectedCopper:closingCheck.materialCopper,
+      committedCopper:model.ledger.committedMaterialsCopper
+    };
+  }
+
   const consumed = await consumeReservations(project, resolver);
   if (!consumed.ok) return consumed;
 
