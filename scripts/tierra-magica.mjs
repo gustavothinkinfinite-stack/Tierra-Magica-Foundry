@@ -329,9 +329,10 @@ Hooks.on("preUpdateActor", (actor, changes, options = {}) => {
     touches("system.magic.attunementCapacity") ||
     touches("system.magic.linkedImprintClaims") ||
     touches("system.magic.automaticEventClaims") ||
-    touches("system.magic.sustainedObjectIds")
+    touches("system.magic.sustainedObjectIds") ||
+    touches("system.magic.preparedTrap")
   ) {
-    ui.notifications.warn("Sintonización, reclamaciones de Impronta/evento y Sostenimiento de objetos son estado mecánico protegido.");
+    ui.notifications.warn("Sintonización, Preparar, reclamaciones de Impronta/evento y Sostenimiento de objetos son estado mecánico protegido.");
     return false;
   }
 });
