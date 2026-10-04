@@ -241,7 +241,11 @@
           "sustainedObjectIds": [],
           "attunementCapacity": 0,
           "linkedImprintClaims": {},
-          "automaticEventClaims": {}
+          "automaticEventClaims": {},
+          "preparedTrap": {
+            "trapUuid": "",
+            "triggerKey": ""
+          }
         },
         "alchemy": {
           "saturatedFamilies": []
@@ -454,6 +458,8 @@
           "load": {
             "kind": "",
             "profileRef": "",
+            "componentUuid": "",
+            "maneuverEffect": "",
             "damage": 0,
             "penetration": 0,
             "area": "",
