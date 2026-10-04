@@ -1564,6 +1564,12 @@ test("CRAFT-13E: Encantamiento I nace con RE 0 y paga CE compatible",async()=>{
     quality:"superior",
     system:{category:"Accesorio"}
   });
+  const spell=actor.add(new StubItem({
+    id:"barrier-spell",
+    name:"Barrera Cinética",
+    type:"spell",
+    system:{slug:"barrera-cinetica",method:"direct",grade:"basic",manaCost:3,activation:"Reacción",sustained:false,difficulty:12}
+  }));
   const material=lot(actor,{id:"enchant-lot",vi:600,compatibility:["enchantment:1"]});
   const craft=project(actor,{
     id:"enchant-project",
@@ -1579,7 +1585,7 @@ test("CRAFT-13E: Encantamiento I nace con RE 0 y paga CE compatible",async()=>{
       enchantmentGrade:1,
       enchantmentPatternKey:"barrier-pattern",
       enchantmentFunctionalKey:"barrier-defense",
-      boundSpell:{slug:"barrera-cinetica",method:"direct",grade:"basic",manaCost:3,activation:"Reacción"}
+      boundSpell:{sourceUuid:spell.uuid}
     },
     targetItemUuid:target.uuid,
     timeMode:"fixed",
@@ -1615,6 +1621,12 @@ test("CRAFT-13E: Encantamiento III no acepta CE compuesto sólo por Lotes ordina
     quality:"exceptional",
     system:{category:"Soporte apropiado"}
   });
+  const spell=actor.add(new StubItem({
+    id:"rupture-spell",
+    name:"Rayo de Ruptura",
+    type:"spell",
+    system:{slug:"rayo-de-ruptura",method:"direct",grade:"master",manaCost:10,activation:"Acción",sustained:false,damage:8,penetration:4}
+  }));
   const material=lot(actor,{
     id:"ordinary-enchant-lot",
     vi:5000,
@@ -1637,7 +1649,7 @@ test("CRAFT-13E: Encantamiento III no acepta CE compuesto sólo por Lotes ordina
       enchantmentFunctionalKey:"rupture-ray",
       enchantmentSupportAppropriate:true,
       enchantmentHasRareComponent:true,
-      boundSpell:{slug:"rayo-de-ruptura",method:"direct",grade:"master",manaCost:10,activation:"Acción"}
+      boundSpell:{sourceUuid:spell.uuid}
     },
     targetItemUuid:target.uuid,
     timeMode:"fixed",
