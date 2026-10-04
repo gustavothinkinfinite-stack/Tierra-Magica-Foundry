@@ -417,6 +417,9 @@ async function analyzeModifyProject(project, model, resolver) {
 
 async function expectedProjectMaterialCopper(project, model, resolver) {
   if (model.operation === "fabricate") {
+    if(model.economy.quality==="defective") {
+      return {ok:false,error:"Defectuosa no es una opción universal de fabricación con descuento."};
+    }
     const source=model.target.resultData && typeof model.target.resultData==="object"
       ? clone(model.target.resultData)
       : null;
