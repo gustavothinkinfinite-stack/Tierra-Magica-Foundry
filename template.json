@@ -215,7 +215,7 @@
         },
         "traits": {
           "size": "medium",
-          "languages": "Común",
+          "languages": "Común de Concordia",
           "senses": "",
           "notes": ""
         },
@@ -551,19 +551,27 @@
       "templates": [
         "base"
       ],
-      "category": "ancestry"
+      "category": "ancestry",
+      "selectionNotes": ""
     },
     "origin": {
       "templates": [
         "base"
       ],
-      "category": "origin"
+      "category": "origin",
+      "familiarity": "",
+      "languageProfile": "",
+      "facetOptions": "",
+      "selectedFacet": ""
     },
     "background": {
       "templates": [
         "base"
       ],
-      "category": "background"
+      "category": "background",
+      "familiarity": "",
+      "facetOptions": "",
+      "selectedFacets": ""
     },
     "discipline": {
       "templates": [
