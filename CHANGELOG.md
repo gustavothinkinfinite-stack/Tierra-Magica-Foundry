@@ -1,3 +1,15 @@
+## En desarrollo — CREA-14 autosuficiencia de creación · Bloque 2: identidad
+
+- Alinea Manual y Foundry sobre **Ascendencia + Origen + Trasfondo**: todo PJ de nivel 1 registra exactamente uno de cada.
+- Reemplaza el catálogo de Ascendencias legado por las 17 entradas mecánicas que cubren las 12 familias jugables y sus variantes básicas; Troll y Ogro dejan de aparecer como Ascendencias estándar.
+- Define 10 Orígenes canónicos con **Familiaridad Cultural, Perfil Lingüístico y una Faceta de Origen**.
+- Define 14 Trasfondos con **Familiaridad Práctica y dos Facetas**, sin regalar rangos de Habilidad.
+- Fija idiomas iniciales: **Común de Concordia + lengua regional del Origen**. Una Faceta puede reemplazarse por **Lengua de trabajo** para aprender una lengua regional adicional.
+- Añade campos visibles en la ficha para Faceta de Origen y Facetas de Trasfondo.
+- La validación de creación abierta comprueba idioma común, idioma de Origen, una Faceta de Origen válida y exactamente dos Facetas de Trasfondo.
+- Los actores ya completados antes de CREA-14 no quedan invalidados retroactivamente por los nuevos campos.
+- El ejemplo de Iria ya registra Ascendencia, Origen, Trasfondo, Facetas e idiomas; permanece marcado como ejemplo guiado hasta cerrar equipo, Familiar y el resto de CREA-14.
+
 ## En desarrollo — CREA-14 autosuficiencia de creación · Bloque 1: Rasgos
 
 - Convierte el catálogo de Rasgos de nivel 1 en entradas operativas con coste, efecto, límites y apilamiento definidos.
