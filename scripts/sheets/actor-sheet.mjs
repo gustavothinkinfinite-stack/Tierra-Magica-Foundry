@@ -3,6 +3,7 @@ import { toNumber } from "../rules.mjs";
 import { normalizeSlug } from "../rules/identity.mjs";
 import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } from "../rules/currency.mjs";
 import { movementAllowance, movementRemaining, spendActorMovement } from "../rules/turn-economy.mjs";
+import { nextAttributeUpgradeCost } from "../rules/creation.mjs";
 
 const ActorSheetV1 = foundry.appv1.sheets.ActorSheet;
 const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
@@ -61,6 +62,7 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       isBuilding: creationStatus === "building",
       isComplete: creationStatus === "complete",
       isRebuilding: creationStatus === "rebuilding",
+      isOpen: ["building", "rebuilding"].includes(creationStatus),
       reserveGranted: Boolean(this.actor.system.creation?.initialReserveGranted),
       warnings: Array.isArray(this.actor.system.creation?.legacyWarnings) ? this.actor.system.creation.legacyWarnings : []
     };
@@ -80,6 +82,20 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     const skillIssues = Array.isArray(this.actor.system.derived?.skillIssues)
       ? this.actor.system.derived.skillIssues.map((issue) => skillIssueLabels[issue.code] ?? issue.code)
       : [];
+    const developmentLevel = Math.max(1, Math.floor(toNumber(this.actor.system.details?.level, 1)));
+    const attributeUpgrades = Object.entries(this.actor.system.attributes ?? {}).map(([key, attribute]) => {
+      const current = Math.floor(toNumber(attribute?.baseValue ?? attribute?.value, 1));
+      const cost = nextAttributeUpgradeCost(current);
+      return {
+        key,
+        label: TM_CONFIG.attributes[key] ?? key,
+        current,
+        next: cost === null ? null : current + 1,
+        cost,
+        canUpgrade: creationStatus === "complete" && cost !== null
+      };
+    });
+
     context.development = {
       pdTotal: toNumber(this.actor.system.derived?.pdTotal, 25),
       pdSpent: toNumber(this.actor.system.derived?.pdSpent),
@@ -93,6 +109,8 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       skillsPdCost: toNumber(this.actor.system.derived?.skillsPdCost),
       skillIssues,
       skillBuildActive: creationStatus !== "complete",
+      canAdvanceLevel: creationStatus === "complete" && developmentLevel < 20,
+      attributeUpgrades,
       ruleIssues: Array.isArray(this.actor.system.derived?.ruleIssues) ? this.actor.system.derived.ruleIssues : []
     };
     context.identityItems = {
@@ -156,6 +174,9 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       await this.actor.setCreationAttribute(key, value);
       event.currentTarget.value = String(toNumber(this.actor.system.attributes?.[key]?.creationValue, 1));
     });
+    html.find("[data-action='advance-level']").click(() => this.actor.advanceLevel());
+    html.find("[data-action='upgrade-attribute']").click((event) => this.actor.upgradeAttribute(event.currentTarget.dataset.key));
+
     html.find("[data-action='set-skill-rank']").change(async (event) => {
       const key = event.currentTarget.dataset.key;
       const rank = Math.min(5, Math.max(0, Math.floor(toNumber(event.currentTarget.value))));
