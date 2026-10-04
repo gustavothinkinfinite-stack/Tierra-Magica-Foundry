@@ -244,3 +244,235 @@ export function validateProjectPrerequisites({
   if (!essentialToolReady) issues.push({ code: "tool", message: "Falta una herramienta o Kit esencial." });
   return { valid: issues.length === 0, issues };
 }
+
+const PROJECT_OPERATIONS = Object.freeze(["fabricate","repair","dismantle","modify","research"]);
+const PROJECT_STATES = Object.freeze(["draft","ready","active","blocked","completed","cancelled"]);
+const PROJECT_TIME_MODES = Object.freeze(["derived","fixed"]);
+const PROJECT_PRICE_STATUSES = Object.freeze(["exact","variable","unset"]);
+const PROJECT_QUALITIES = Object.freeze(["common","superior","exceptional"]);
+const PROJECT_MATERIAL_GRADES = Object.freeze(Object.keys(MATERIAL_GRADE));
+
+export const CRAFTING_PROJECT_OPERATIONS = PROJECT_OPERATIONS;
+export const CRAFTING_PROJECT_STATES = PROJECT_STATES;
+export const CRAFTING_PROJECT_TIME_MODES = PROJECT_TIME_MODES;
+
+function stringValue(value) {
+  return value === null || value === undefined ? "" : String(value);
+}
+
+function enumValue(value, allowed, fallback) {
+  const candidate = stringValue(value);
+  return allowed.includes(candidate) ? candidate : fallback;
+}
+
+function booleanValue(value) {
+  return value === true;
+}
+
+function normalizedId(value, prefix, index) {
+  const text = stringValue(value).trim();
+  return text || prefix + "-" + (index + 1);
+}
+
+function normalizeSpecialMaterials(rows = []) {
+  return (Array.isArray(rows) ? rows : []).map((row, index) => ({
+    id: normalizedId(row?.id, "material", index),
+    name: stringValue(row?.name),
+    grade: enumValue(row?.grade, PROJECT_MATERIAL_GRADES, "ordinary"),
+    coverage: enumValue(row?.coverage, Object.keys(MATERIAL_COVERAGE), "component"),
+    supplementCopper: integerCopper(row?.supplementCopper, "ceil"),
+    sourceItemUuid: stringValue(row?.sourceItemUuid)
+  }));
+}
+
+function normalizeComponents(rows = []) {
+  return (Array.isArray(rows) ? rows : []).map((row, index) => ({
+    id: normalizedId(row?.id, "component", index),
+    name: stringValue(row?.name),
+    itemUuid: stringValue(row?.itemUuid),
+    valueCopper: integerCopper(row?.valueCopper, "ceil"),
+    quantity: Math.max(1, Math.floor(number(row?.quantity, 1))),
+    separable: booleanValue(row?.separable),
+    recoveredSeparately: booleanValue(row?.recoveredSeparately),
+    countedInGenericRecovery: booleanValue(row?.countedInGenericRecovery)
+  }));
+}
+
+function normalizeConsequences(rows = []) {
+  return (Array.isArray(rows) ? rows : []).map((row, index) => ({
+    id: normalizedId(row?.id, "consequence", index),
+    label: stringValue(row?.label),
+    trigger: stringValue(row?.trigger),
+    effect: stringValue(row?.effect),
+    declared: row?.declared !== false
+  }));
+}
+
+function normalizeLedgerEntries(rows = []) {
+  return (Array.isArray(rows) ? rows : []).map((row, index) => ({
+    id: normalizedId(row?.id, "ledger", index),
+    kind: stringValue(row?.kind || "note"),
+    resource: stringValue(row?.resource || "materials"),
+    amountCopper: integerCopper(row?.amountCopper, "round"),
+    quantity: nonNegative(row?.quantity),
+    sourceUuid: stringValue(row?.sourceUuid),
+    note: stringValue(row?.note)
+  }));
+}
+
+export function normalizeCraftingProject(source = {}) {
+  const economy = source?.economy ?? {};
+  const time = source?.time ?? {};
+  const professional = source?.professional ?? {};
+  const assistants = source?.assistants ?? {};
+  const execution = source?.execution ?? {};
+  const ledger = source?.ledger ?? {};
+
+  return {
+    modelVersion: Math.max(1, Math.floor(number(source?.modelVersion, 1))),
+    operation: enumValue(source?.operation, PROJECT_OPERATIONS, "fabricate"),
+    state: enumValue(source?.state, PROJECT_STATES, "draft"),
+    source: {
+      recipeUuid: stringValue(source?.source?.recipeUuid),
+      profileRef: stringValue(source?.source?.profileRef),
+      sourceRevision: stringValue(source?.source?.sourceRevision)
+    },
+    target: {
+      itemUuid: stringValue(source?.target?.itemUuid),
+      resultType: stringValue(source?.target?.resultType || "equipment"),
+      resultName: stringValue(source?.target?.resultName)
+    },
+    economy: {
+      referenceValueCopper: integerCopper(economy.referenceValueCopper, "ceil"),
+      priceStatus: enumValue(economy.priceStatus, PROJECT_PRICE_STATUSES, "unset"),
+      fixedPriceCopper: integerCopper(economy.fixedPriceCopper, "ceil"),
+      quality: enumValue(economy.quality, PROJECT_QUALITIES, "common"),
+      workMaterialGrade: enumValue(economy.workMaterialGrade, PROJECT_MATERIAL_GRADES, "ordinary"),
+      affectedValueCopper: integerCopper(economy.affectedValueCopper, "ceil")
+    },
+    specialMaterials: normalizeSpecialMaterials(source?.specialMaterials),
+    components: normalizeComponents(source?.components),
+    time: {
+      mode: enumValue(time.mode, PROJECT_TIME_MODES, "derived"),
+      baseMinutes: nonNegative(time.baseMinutes),
+      adjustedBaseMinutes: nonNegative(time.adjustedBaseMinutes),
+      requiredMinutes: nonNegative(time.requiredMinutes),
+      completedMinutes: nonNegative(time.completedMinutes)
+    },
+    professional: {
+      skill: stringValue(professional.skill || "crafting"),
+      specialization: stringValue(professional.specialization),
+      baseRank: Math.max(0, Math.min(5, Math.floor(number(professional.baseRank)))),
+      requiredRank: Math.max(0, Math.min(5, Math.floor(number(professional.requiredRank)))),
+      baseInstallation: enumValue(professional.baseInstallation, INSTALLATIONS, "improvised"),
+      requiredInstallation: enumValue(professional.requiredInstallation, INSTALLATIONS, "improvised"),
+      stableProcedure: booleanValue(professional.stableProcedure),
+      materialsReady: booleanValue(professional.materialsReady),
+      essentialToolReady: booleanValue(professional.essentialToolReady)
+    },
+    assistants: {
+      work: Math.max(0, Math.floor(number(assistants.work))),
+      technical: Math.max(0, Math.floor(number(assistants.technical)))
+    },
+    execution: {
+      accelerated: booleanValue(execution.accelerated),
+      reductionFactors: (Array.isArray(execution.reductionFactors) ? execution.reductionFactors : [])
+        .map((value) => number(value, 1))
+        .filter((value) => value > 0 && value <= 1),
+      stage: stringValue(execution.stage),
+      revision: Math.max(0, Math.floor(number(execution.revision))),
+      committed: booleanValue(execution.committed),
+      completionToken: stringValue(execution.completionToken)
+    },
+    consequences: normalizeConsequences(source?.consequences),
+    ledger: {
+      estimatedMaterialsCopper: integerCopper(ledger.estimatedMaterialsCopper, "ceil"),
+      committedMaterialsCopper: integerCopper(ledger.committedMaterialsCopper, "ceil"),
+      recoveredMaterialsCopper: integerCopper(ledger.recoveredMaterialsCopper, "floor"),
+      entries: normalizeLedgerEntries(ledger.entries)
+    }
+  };
+}
+
+export function craftingProjectRemainingMinutes(project = {}) {
+  const normalized = normalizeCraftingProject(project);
+  return Math.max(0, normalized.time.requiredMinutes - normalized.time.completedMinutes);
+}
+
+export function validateCraftingProject(project = {}) {
+  const issues = [];
+  const rawOperation = stringValue(project?.operation);
+  const rawState = stringValue(project?.state);
+  const rawQuality = stringValue(project?.economy?.quality);
+  const rawMaterialGrade = stringValue(project?.economy?.workMaterialGrade);
+  const rawTimeMode = stringValue(project?.time?.mode);
+
+  if (!PROJECT_OPERATIONS.includes(rawOperation)) {
+    issues.push({ code:"operation", message:"Tipo de operación de Proyecto desconocido." });
+  }
+  if (!PROJECT_STATES.includes(rawState)) {
+    issues.push({ code:"state", message:"Estado de Proyecto desconocido." });
+  }
+  if (!PROJECT_QUALITIES.includes(rawQuality)) {
+    issues.push({ code:"quality", message:"La Calidad de Proyecto debe ser Común, Superior o Excepcional." });
+  }
+  if (!PROJECT_MATERIAL_GRADES.includes(rawMaterialGrade)) {
+    issues.push({ code:"material-grade", message:"Grado de Material de trabajo desconocido." });
+  }
+  if (!PROJECT_TIME_MODES.includes(rawTimeMode)) {
+    issues.push({ code:"time-mode", message:"Modo temporal de Proyecto desconocido." });
+  }
+
+  const normalized = normalizeCraftingProject(project);
+  if (normalized.time.mode === "derived" && normalized.time.adjustedBaseMinutes > 0) {
+    const floor = normalized.time.adjustedBaseMinutes * 0.25;
+    if (normalized.time.requiredMinutes + Number.EPSILON < floor) {
+      issues.push({ code:"time-floor", message:"El tiempo requerido no puede quedar por debajo de 25% del TBA." });
+    }
+  }
+
+  for (const component of normalized.components) {
+    if (component.recoveredSeparately && component.countedInGenericRecovery) {
+      issues.push({
+        code:"double-recovery",
+        message:"Un componente recuperado por separado no puede contarse también en recuperación genérica.",
+        componentId:component.id
+      });
+    }
+  }
+
+  for (const entry of normalized.ledger.entries) {
+    if (entry.resource.toLowerCase() === "pei") {
+      issues.push({ code:"pei", message:"PEI no puede entrar en el ledger de un Proyecto de fabricación.", entryId:entry.id });
+    }
+  }
+
+  if (normalized.state === "completed" && !normalized.execution.completionToken.trim()) {
+    issues.push({ code:"completion-token", message:"Un Proyecto completado necesita identificador de cierre para evitar doble ejecución." });
+  }
+
+  const ids = [
+    ...normalized.specialMaterials.map((row) => row.id),
+    ...normalized.components.map((row) => row.id),
+    ...normalized.consequences.map((row) => row.id),
+    ...normalized.ledger.entries.map((row) => row.id)
+  ];
+  if (new Set(ids).size !== ids.length) {
+    issues.push({ code:"duplicate-id", message:"Los registros internos del Proyecto deben tener identificadores únicos." });
+  }
+
+  return { valid: issues.length === 0, issues, project: normalized };
+}
+
+export function projectStateTransitionAllowed(from, to) {
+  const transitions = {
+    draft: new Set(["ready","cancelled"]),
+    ready: new Set(["draft","active","cancelled"]),
+    active: new Set(["blocked","completed","cancelled"]),
+    blocked: new Set(["active","cancelled"]),
+    completed: new Set(),
+    cancelled: new Set()
+  };
+  return transitions[enumValue(from, PROJECT_STATES, "draft")]?.has(String(to)) ?? false;
+}
+
