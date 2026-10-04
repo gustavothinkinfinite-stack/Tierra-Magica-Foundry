@@ -370,3 +370,39 @@ test("CRAFT-13C: no completa antes de terminar el trabajo",async()=>{
   assert.equal(result.remainingMinutes,60);
   assert.equal(material.system.craftingLot.inputValueCopper,100);
 });
+
+test("CRAFT-13C: autoridad GM serializa dos Proyectos contra el mismo Lote",async()=>{
+  const actor=new StubActor("authority");
+  const material=lot(actor,{vi:100});
+  const one=project(actor,{id:"one",material,materialCopper:60});
+  const two=project(actor,{id:"two",material,materialCopper:60});
+
+  const gm={id:"gm",active:true,isGM:true};
+  globalThis.game={user:gm,users:[gm]};
+  globalThis.fromUuid=async(uuid)=>{
+    if(uuid===actor.uuid) return actor;
+    return [...actor.items.values()].find((item)=>item.uuid===uuid) ?? null;
+  };
+
+  const { executeAuthorityRequestForAudit }=await import("../scripts/rules/state-authority.mjs");
+  const [a,b]=await Promise.all([
+    executeAuthorityRequestForAudit({
+      requestId:"craft-a",
+      requesterId:"gm",
+      action:"craft-reserve",
+      payload:{projectUuid:one.uuid,expectedRevision:0}
+    }),
+    executeAuthorityRequestForAudit({
+      requestId:"craft-b",
+      requesterId:"gm",
+      action:"craft-reserve",
+      payload:{projectUuid:two.uuid,expectedRevision:0}
+    })
+  ]);
+
+  assert.equal([a,b].filter((entry)=>entry.ok).length,1);
+  assert.equal(material.system.craftingLot.inputValueCopper,100);
+  assert.equal(Object.keys(material.system.craftingLot.reservations).length,1);
+  assert.equal(Object.values(material.system.craftingLot.reservations)[0].amountCopper,60);
+});
+
