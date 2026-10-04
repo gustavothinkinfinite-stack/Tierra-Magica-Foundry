@@ -46,7 +46,8 @@ class StubActor {
         sustainedSpellIds:[],
         sustainedObjectIds:[],
         linkedImprintClaims:{},
-        automaticEventClaims:{}
+        automaticEventClaims:{},
+        preparedTrap:{trapUuid:"",triggerKey:""}
       }
     };
     this.items=[];
@@ -185,15 +186,106 @@ test("CRAFT-13E runtime: insertar y extraer Piedra exige Engarce y conserva el I
     }
   }));
 
-  const inserted=await actor.socketImprintStone(host,stone,{channelIds:["socket-1"],elapsedMinutes:10,underPressure:false});
+  const inserted=await actor.socketImprintStone(host,stone,{channelIds:["socket-1"],elapsedMinutes:10,underPressure:false,toolsReady:true});
   assert.equal(inserted.ok,true);
   assert.equal(stone.system.imprintStone.socketedHostUuid,host.uuid);
   assert.equal(host.system.runic.imprints[0].stoneUuid,stone.uuid);
 
-  const extracted=await actor.extractImprintStone(host,stone,{elapsedMinutes:10,underPressure:false});
+  const extracted=await actor.extractImprintStone(host,stone,{elapsedMinutes:10,underPressure:false,toolsReady:true});
   assert.equal(extracted.ok,true);
   assert.equal(stone.system.imprintStone.socketedHostUuid,"");
   assert.equal(host.system.runic.imprints.length,0);
+});
+
+test("CRAFT-13E runtime: Piedra sin herramientas apropiadas no puede insertarse ni extraerse",async()=>{
+  const actor=new StubActor("stone-tools");
+  const host=actor.add(new StubItem({
+    id:"host-tools",
+    type:"weapon",
+    system:{
+      quality:"superior",
+      condition:"operative",
+      manufacture:{modifications:[]},
+      runic:{capacityPrepared:1,channels:[{id:"socket-1",type:"socket"}],imprints:[]}
+    }
+  }));
+  const stone=actor.add(new StubItem({
+    id:"stone-tools-item",
+    system:{condition:"operative",imprintStone:{enabled:true,grade:1,imprintKey:"runicGuardI",socketedHostUuid:""}}
+  }));
+  const denied=await actor.socketImprintStone(host,stone,{channelIds:["socket-1"],elapsedMinutes:10,underPressure:false,toolsReady:false});
+  assert.equal(denied.ok,false);
+  assert.match(denied.error,/herramientas apropiadas/);
+  assert.equal(host.system.runic.imprints.length,0);
+});
+
+test("CRAFT-13E runtime: Preparar trampa manual consume Acción y el disparo posterior consume Reacción",async()=>{
+  const actor=new StubActor("prepared-trap");
+  const trap=actor.add(new StubItem({
+    id:"manual-trap",
+    system:{
+      condition:"operative",
+      trap:{
+        enabled:true,
+        frame:"standard",
+        precision:4,
+        mechanismDf:12,
+        triggerType:"manual",
+        physicalTriggerKey:"",
+        automatic:false,
+        state:"armed",
+        baseTimeMinutes:120,
+        load:{kind:"alarm",profileRef:"",componentUuid:"",maneuverEffect:"",damage:0,penetration:0}
+      }
+    }
+  }));
+
+  const fake=await actor.triggerCraftedTrap(trap,{reactive:true,preparedTriggerKey:"door-opens"});
+  assert.equal(fake.ok,false);
+  assert.equal(actor.system.turn.action,true);
+  assert.equal(actor.system.turn.reaction,true);
+  assert.equal(trap.system.trap.state,"armed");
+
+  const prepared=await actor.prepareManualTrapReaction(trap,{triggerKey:"door-opens"});
+  assert.equal(prepared.ok,true);
+  assert.equal(actor.system.turn.action,false);
+  assert.equal(actor.system.magic.preparedTrap.trapUuid,trap.uuid);
+
+  const wrong=await actor.triggerCraftedTrap(trap,{reactive:true,preparedTriggerKey:"window-opens"});
+  assert.equal(wrong.ok,false);
+  assert.equal(actor.system.turn.reaction,true);
+  assert.equal(trap.system.trap.state,"armed");
+
+  const fired=await actor.triggerCraftedTrap(trap,{reactive:true,preparedTriggerKey:"door-opens"});
+  assert.equal(fired.ok,true);
+  assert.equal(actor.system.turn.reaction,false);
+  assert.deepEqual(actor.system.magic.preparedTrap,{trapUuid:"",triggerKey:""});
+  assert.equal(trap.system.trap.state,"discharged");
+});
+
+test("CRAFT-13E runtime: Pasivos sólo se exponen al Actor realmente Sintonizado y con objeto Operativo",()=>{
+  const actor=new StubActor("passive-owner");
+  const item=actor.add(new StubItem({
+    id:"firmness",
+    system:{
+      condition:"operative",
+      enchantment:{
+        grade:1,
+        patternKey:"",
+        functionalKey:"mental-fear-defense",
+        passiveKey:"firmnessAmulet",
+        reserve:{value:0,max:6},
+        attunedActorUuid:actor.uuid,
+        seal:false
+      }
+    }
+  }));
+  let passives=actor.attunedPassiveEnchantments();
+  assert.equal(passives.length,1);
+  assert.equal(passives[0].effect.mentalDefenseBonus,2);
+  item.system.condition="damaged";
+  passives=actor.attunedPassiveEnchantments();
+  assert.equal(passives.length,0);
 });
 
 test("CRAFT-13E runtime: Hechizo Vinculado gasta RE y economía normal, no Maná",async()=>{
