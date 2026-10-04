@@ -18,7 +18,7 @@
     "audit:grimorio:final": "node --test test/grimorio-60-balance-audit.test.mjs test/spell-impact.test.mjs test/content.test.mjs",
     "build:packs": "node tools/build-packs.mjs",
     "stage:release": "node tools/stage-release.mjs",
-    "audit:crafting": "node --test test/craft-13-core.test.mjs test/craft-13-project.test.mjs test/craft-13-transactions.test.mjs test/craft-13-enhancements.test.mjs test/craft-13-magic.test.mjs"
+    "audit:crafting": "node --test test/craft-13-core.test.mjs test/craft-13-project.test.mjs test/craft-13-transactions.test.mjs test/craft-13-enhancements.test.mjs test/craft-13-magic.test.mjs test/craft-13-magic-runtime.test.mjs"
   },
   "engines": {
     "node": ">=20"
