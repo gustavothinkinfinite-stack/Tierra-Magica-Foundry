@@ -83,6 +83,8 @@ test("CRAFT-13E: inscripción I/II usa costes y mínimos canónicos",()=>{
 test("CRAFT-13E: Piedras I/II conservan receta fija y no son Cristales de Resonancia",()=>{
   assert.deepEqual(imprintStoneCraftProfile(1),{grade:1,referenceValueCopper:400,materialCopper:200,timeMinutes:480});
   assert.deepEqual(imprintStoneCraftProfile(2),{grade:2,referenceValueCopper:1000,materialCopper:500,timeMinutes:1440});
+  assert.equal(imprintStoneCraftProfile(0),null);
+  assert.equal(imprintStoneCraftProfile(3),null);
 });
 
 test("CRAFT-13E: CRu preparada exige un Canal por punto y respeta su tipo",()=>{
