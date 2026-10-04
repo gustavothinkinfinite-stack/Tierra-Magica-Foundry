@@ -373,6 +373,7 @@ export function normalizeCraftingProject(source = {}) {
     enhancement: {
       mode: enumValue(enhancement.mode, PROJECT_ENHANCEMENT_MODES, "modification"),
       replaceMaterialId: stringValue(enhancement.replaceMaterialId),
+      replaceModificationKey: stringValue(enhancement.replaceModificationKey),
       fineMachiningMaterialId: stringValue(enhancement.fineMachiningMaterialId)
     },
     components: normalizeComponents(source?.components),
