@@ -22,7 +22,7 @@ test("el Manual conserva una creación de nivel 1 secuenciada durante el cierre 
     "**25 PD**",
     "**3 PR**",
     "**PEI 20 o = 2.000 c**",
-    "### Paso 1 — Concepto, pueblo/herencia y origen",
+    "### Paso 1 — Concepto, Ascendencia, Origen y Trasfondo",
     "### Paso 2 — Atributos",
     "### Paso 3 — Presupuesto profesional: 25 PD",
     "#### Cómo gastar los 25 PD",
