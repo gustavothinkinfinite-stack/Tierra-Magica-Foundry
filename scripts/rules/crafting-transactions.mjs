@@ -636,7 +636,7 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
     if(grade===0 && !utilityKey) return {ok:false,error:"Debe declararse un Grado de Encantamiento o un Encantamiento Utilitario."};
     let next={...existing};
     if(grade===0) {
-      if(existing.utilityKey) return {ok:false,error:"El objeto ya posee un Encantamiento Utilitario."};
+      if(existing.utilityKey || existing.grade>0) return {ok:false,error:"El objeto ya posee un Encantamiento autónomo; no puede añadir un Utilitario adicional."};
       const utilityValidation=validateUtilityEnchantment(utilityKey);
       if(!utilityValidation.valid) return {ok:false,error:"El Encantamiento Utilitario no es válido.",issues:utilityValidation.issues};
       const quote=utilityEnchantmentQuote();
@@ -646,7 +646,7 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
       issues=magicProfessionalIssues(model,actor,{primarySkill:"ritualism",primaryRank:3,arcanaRank:2,craftingRank:0,installation:"professional"});
       next={...existing,utilityKey,addedValueCopper:existing.addedValueCopper+quote.addedValueCopper};
     } else {
-      if(existing.grade>0) return {ok:false,error:"Un objeto ordinario sólo admite un Encantamiento autónomo estándar."};
+      if(existing.grade>0 || existing.utilityKey) return {ok:false,error:"Un objeto ordinario sólo admite un Encantamiento autónomo estándar."};
       const quote=enchantmentCostQuote({referenceValueCopper:current.referenceValueCopper,baseTimeMinutes:current.baseTimeMinutes,grade});
       if(!quote.valid) return {ok:false,error:quote.error};
       materialCopper=quote.materialCopper;
