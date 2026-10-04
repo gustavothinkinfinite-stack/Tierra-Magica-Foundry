@@ -403,7 +403,9 @@ export function normalizeCraftingProject(source = {}) {
         id: normalizedId(row?.id, "repair-material", index),
         materialId: stringValue(row?.materialId),
         sourceItemUuid: stringValue(row?.sourceItemUuid)
-      }))
+      })),
+      runicMatrixAffected: booleanValue(repair.runicMatrixAffected),
+      enchantmentMatrixAffected: booleanValue(repair.enchantmentMatrixAffected)
     },
     components: normalizeComponents(source?.components),
     time: {
