@@ -326,6 +326,52 @@ test("CRAFT-13E: trampa deriva Precisión/DF del Armazón y limita la carga",()=
   assert.deepEqual(trapRearmQuote(120),{timeMinutes:30});
 });
 
+test("CRAFT-13E: carga de trampa fuera del catálogo cerrado se rechaza",()=>{
+  const invalid=validateTrapConfiguration({
+    enabled:true,
+    frame:"standard",
+    precision:4,
+    mechanismDf:12,
+    triggerType:"contact",
+    physicalTriggerKey:"plate-a",
+    automatic:true,
+    load:{kind:"free-power",damage:99,penetration:9}
+  });
+  assert.equal(invalid.valid,false);
+  assert.ok(invalid.issues.some((issue)=>issue.code==="trap-load-kind"));
+});
+
+test("CRAFT-13E: carga de Maniobra sólo admite Derribar o Agarrar",()=>{
+  const invalid=validateTrapConfiguration({
+    enabled:true,
+    frame:"standard",
+    precision:4,
+    mechanismDf:12,
+    triggerType:"contact",
+    physicalTriggerKey:"plate-a",
+    automatic:true,
+    load:{kind:"maneuver",maneuverEffect:"teleport"}
+  });
+  assert.ok(invalid.issues.some((issue)=>issue.code==="trap-maneuver-effect"));
+});
+
+test("CRAFT-13E: Impronta de Reacción exige disparador reactivo válido",()=>{
+  const denied=validateImprintActivation({
+    actor:actor(),
+    item:item(),
+    imprint:{key:"runicGuardI"},
+    reactionTriggerValid:false
+  });
+  assert.ok(denied.issues.some((issue)=>issue.code==="imprint-reaction-trigger"));
+  const valid=validateImprintActivation({
+    actor:actor(),
+    item:item(),
+    imprint:{key:"runicGuardI"},
+    reactionTriggerValid:true
+  });
+  assert.equal(valid.valid,true);
+});
+
 test("CRAFT-13E: Capacidad de Sintonización es 3 sólo para personaje completo salvo Perfil expreso",()=>{
   assert.equal(attunementCapacityForActor(actor()),3);
   assert.equal(attunementCapacityForActor({type:"familiar",system:{magic:{attunementCapacity:0}}}),0);
