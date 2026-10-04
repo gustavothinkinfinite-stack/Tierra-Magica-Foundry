@@ -368,6 +368,34 @@ test("CRAFT-13E: carga de trampa fuera del catálogo cerrado se rechaza",()=>{
   assert.ok(invalid.issues.some((issue)=>issue.code==="trap-load-kind"));
 });
 
+test("CRAFT-13E: Alquimia y entorno no reciben Daño/Pen gratuitos del Armazón",()=>{
+  const alchemy=validateTrapConfiguration({
+    enabled:true,
+    frame:"complex",
+    precision:6,
+    mechanismDf:14,
+    triggerType:"contact",
+    physicalTriggerKey:"plate",
+    automatic:true,
+    concealment:{grade:"visible",detectionDf:0,environmentAllows:true},
+    load:{kind:"alchemy",profileRef:"bomba-incendiaria",componentUuid:"Actor.a.Item.dose",damage:6,penetration:2}
+  });
+  assert.ok(alchemy.issues.some((issue)=>issue.code==="trap-alchemy-inline-power"));
+
+  const environment=validateTrapConfiguration({
+    enabled:true,
+    frame:"standard",
+    precision:4,
+    mechanismDf:12,
+    triggerType:"weight-release",
+    physicalTriggerKey:"support",
+    automatic:true,
+    concealment:{grade:"visible",detectionDf:0,environmentAllows:true},
+    load:{kind:"environment",geometryRef:"fall-3-spaces",damage:10,penetration:5}
+  });
+  assert.ok(environment.issues.some((issue)=>issue.code==="trap-environment-inline-power"));
+});
+
 test("CRAFT-13E: carga de Maniobra sólo admite Derribar o Agarrar",()=>{
   const invalid=validateTrapConfiguration({
     enabled:true,
