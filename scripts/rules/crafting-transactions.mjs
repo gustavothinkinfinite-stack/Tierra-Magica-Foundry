@@ -1670,9 +1670,24 @@ async function fabricationOutcome(project) {
     const frame=trapFrameProfile(source.system.trap.frame);
     source.system.trap.state="armed";
     if(frame) {
+      const frameBaseTime=frame.baseTimeMinutes>0
+        ? frame.baseTimeMinutes
+        : Math.max(0,number(source.system.trap.baseTimeMinutes));
+      const concealment=trapConcealmentQuote({
+        frameReferenceValueCopper:model.economy.referenceValueCopper,
+        frameBaseTimeMinutes:frameBaseTime,
+        grade:String(source.system.trap.concealment?.grade??"visible")
+      });
       source.system.trap.precision=frame.precision;
       source.system.trap.mechanismDf=frame.mechanismDf;
-      source.system.trap.baseTimeMinutes=frame.baseTimeMinutes;
+      source.system.trap.baseTimeMinutes=frameBaseTime;
+      source.system.trap.concealment={
+        ...(source.system.trap.concealment??{}),
+        grade:concealment.valid?concealment.grade:"visible",
+        detectionDf:concealment.valid?concealment.detectionDf:0,
+        materialCopper:concealment.valid?concealment.materialCopper:0,
+        additionalTimeMinutes:concealment.valid?concealment.additionalTimeMinutes:0
+      };
     }
   }
   if(source.system.imprintStone?.enabled===true) {
