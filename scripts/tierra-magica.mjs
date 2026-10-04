@@ -177,8 +177,12 @@ Hooks.on("preDeleteItem", (item, options = {}) => {
     return false;
   }
   const reservations = item.system?.craftingLot?.reservations;
-  if (reservations && typeof reservations === "object" && Object.keys(reservations).length) {
-    ui.notifications.warn("No puede eliminarse un Lote con VI reservado por un Proyecto activo.");
+  const componentReservations = item.system?.craftingReservations;
+  if (
+    (reservations && typeof reservations === "object" && Object.keys(reservations).length) ||
+    (componentReservations && typeof componentReservations === "object" && Object.keys(componentReservations).length)
+  ) {
+    ui.notifications.warn("No puede eliminarse un Item reservado por un Proyecto activo.");
     return false;
   }
   if (item.type === "effect") return;
@@ -197,9 +201,10 @@ Hooks.on("preUpdateItem", (item, changes, options = {}) => {
 
     if (!game.user?.isGM && (
       touches("system.craftingLot.inputValueCopper") ||
-      touches("system.craftingLot.reservations")
+      touches("system.craftingLot.reservations") ||
+      touches("system.craftingReservations")
     )) {
-      ui.notifications.warn("El VI y sus reservas sólo cambian mediante operaciones autorizadas de crafting.");
+      ui.notifications.warn("El VI y las reservas de crafting sólo cambian mediante operaciones autorizadas.");
       return false;
     }
 
