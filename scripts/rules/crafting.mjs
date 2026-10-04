@@ -370,6 +370,7 @@ export function normalizeCraftingProject(source = {}) {
       requiredRank: Math.max(0, Math.min(5, Math.floor(number(professional.requiredRank)))),
       baseInstallation: enumValue(professional.baseInstallation, INSTALLATIONS, "improvised"),
       requiredInstallation: enumValue(professional.requiredInstallation, INSTALLATIONS, "improvised"),
+      availableInstallation: enumValue(professional.availableInstallation, INSTALLATIONS, "improvised"),
       stableProcedure: booleanValue(professional.stableProcedure),
       materialsReady: booleanValue(professional.materialsReady),
       essentialToolReady: booleanValue(professional.essentialToolReady)
@@ -380,6 +381,7 @@ export function normalizeCraftingProject(source = {}) {
     },
     execution: {
       accelerated: booleanValue(execution.accelerated),
+      accelerationOutcome: enumValue(execution.accelerationOutcome, ["none","pending","success","failure","pifia"], "none"),
       reductionFactors: (Array.isArray(execution.reductionFactors) ? execution.reductionFactors : [])
         .map((value) => number(value, 1))
         .filter((value) => value > 0 && value <= 1),
@@ -432,6 +434,72 @@ export function validateCraftingProject(project = {}) {
     const floor = normalized.time.adjustedBaseMinutes * 0.25;
     if (normalized.time.requiredMinutes + Number.EPSILON < floor) {
       issues.push({ code:"time-floor", message:"El tiempo requerido no puede quedar por debajo de 25% del TBA." });
+    }
+  }
+
+  const gradeOrder = ["ordinary","specialized","rare","exceptional"];
+  const highestMaterialGrade = normalized.specialMaterials.reduce((highest, row) =>
+    Math.max(highest, gradeOrder.indexOf(row.grade)), 0);
+  if (gradeOrder.indexOf(normalized.economy.workMaterialGrade) < highestMaterialGrade) {
+    issues.push({ code:"material-grade-understated", message:"El grado que gobierna el trabajo no puede ser inferior al Material Especial más exigente." });
+  }
+
+  for (const row of normalized.specialMaterials) {
+    const expectedSupplement = specialMaterialSupplementCopper(normalized.economy.referenceValueCopper, {
+      grade:row.grade,
+      coverage:row.coverage
+    });
+    if (row.supplementCopper !== expectedSupplement) {
+      issues.push({
+        code:"material-supplement",
+        message:"El Suplemento Material no coincide con grado, cobertura y VR.",
+        materialId:row.id,
+        expectedCopper:expectedSupplement
+      });
+    }
+  }
+
+  const minimumRequirements = projectRequirements({
+    baseRank:normalized.professional.baseRank,
+    baseInstallation:normalized.professional.baseInstallation,
+    quality:normalized.economy.quality,
+    materialGrade:normalized.economy.workMaterialGrade
+  });
+  if (normalized.professional.requiredRank < minimumRequirements.rank) {
+    issues.push({ code:"rank-understated", message:"El rango requerido está por debajo del mínimo derivado por Calidad/Material." });
+  }
+  if (installationIndex(normalized.professional.requiredInstallation) < installationIndex(minimumRequirements.installation)) {
+    issues.push({ code:"installation-understated", message:"La instalación requerida está por debajo del mínimo derivado por Calidad/Material." });
+  }
+
+  if (normalized.time.mode === "derived") {
+    const minimumTba = adjustedBaseTimeMinutes(normalized.time.baseMinutes, {
+      quality:normalized.economy.quality,
+      materialGrade:normalized.economy.workMaterialGrade
+    });
+    if (normalized.time.adjustedBaseMinutes + Number.EPSILON < minimumTba) {
+      issues.push({ code:"tba-understated", message:"El TBA no puede ser inferior al derivado por tiempo base, Calidad y Material." });
+    }
+
+    if (normalized.execution.accelerated && !["success","failure","pifia"].includes(normalized.execution.accelerationOutcome)) {
+      issues.push({ code:"acceleration-pending", message:"La Aceleración debe resolverse antes de aprobar el Proyecto." });
+    }
+    if (!normalized.execution.accelerated && normalized.execution.accelerationOutcome !== "none") {
+      issues.push({ code:"acceleration-orphan", message:"Existe un resultado de Aceleración sin Aceleración declarada." });
+    }
+
+    let minimumRequired = normalized.time.adjustedBaseMinutes;
+    if (normalized.execution.accelerated && ["failure","pifia"].includes(normalized.execution.accelerationOutcome)) {
+      minimumRequired = failedAccelerationTotalMinutes(normalized.time.adjustedBaseMinutes);
+    } else {
+      minimumRequired = applyUniversalTimeReductions(normalized.time.adjustedBaseMinutes, {
+        workAssistants:normalized.assistants.work,
+        accelerated:normalized.execution.accelerated && normalized.execution.accelerationOutcome === "success",
+        reductionFactors:normalized.execution.reductionFactors
+      });
+    }
+    if (normalized.time.requiredMinutes + Number.EPSILON < minimumRequired) {
+      issues.push({ code:"time-understated", message:"El tiempo requerido está por debajo de las reducciones realmente declaradas.", minimumMinutes:minimumRequired });
     }
   }
 
