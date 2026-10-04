@@ -304,7 +304,7 @@ export function installCraftingMagicGuards(ActorClass) {
     return {ok:true,changed:true};
   };
 
-  ActorClass.prototype.triggerCraftedTrap=async function(trap,{targetActor=null,eventId="",eventType="",physicalTriggerKey="",reactive=false,preparedTriggerKey=""}={}){
+  ActorClass.prototype.triggerCraftedTrap=async function(trap,{targetActor=null,eventId="",eventType="",physicalTriggerKey="",providedBypassKey="",reactive=false,preparedTriggerKey=""}={}){
     if(!sameActorItem(this,trap)) return warn("La trampa debe pertenecer/controlarse desde este Actor.");
     const validation=validateTrapConfiguration(trap.system?.trap??{});
     if(!validation.valid) return warn(validation.issues.map((issue)=>issue.message).join(" "));
@@ -312,6 +312,9 @@ export function installCraftingMagicGuards(ActorClass) {
 
     const manual=trap.system.trap.triggerType==="manual";
     if(!manual) {
+      if(text(trap.system?.trap?.bypassKey) && String(providedBypassKey)===String(trap.system.trap.bypassKey)) {
+        return {ok:true,bypassed:true,discharged:false};
+      }
       if(String(eventType)!==String(trap.system.trap.triggerType)) {
         return warn("El evento observado no corresponde al tipo de disparador físico de la trampa.");
       }
