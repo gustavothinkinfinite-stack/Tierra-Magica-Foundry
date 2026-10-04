@@ -8,6 +8,7 @@ import {
   releaseCraftingProjectMaterials,
   reserveCraftingProjectMaterials
 } from "../scripts/rules/crafting-transactions.mjs";
+import { deriveManufacturedSystem } from "../scripts/rules/crafting-enhancements.mjs";
 
 function applyChanges(document, changes) {
   for (const [path, value] of Object.entries(changes)) {
@@ -219,6 +220,50 @@ function project(actor, {
       }
     }
   }));
+}
+
+function manufacturedItem(actor,{
+  id="manufactured",
+  name="Objeto manufacturado",
+  type="weapon",
+  referenceValueCopper=100,
+  baseTimeMinutes=120,
+  baseRank=2,
+  baseInstallation="adequate",
+  quality="common",
+  modifications=[],
+  specialMaterials=[],
+  system={}
+}={}) {
+  const source={
+    name,
+    type,
+    system:{
+      damage:type==="weapon"?5:undefined,
+      penetration:type==="weapon"?0:undefined,
+      strengthMin:["weapon","armor","shield"].includes(type)?1:undefined,
+      reload:type==="weapon"?0:undefined,
+      block:type==="shield"?2:undefined,
+      movementPenalty:type==="shield"?-1:undefined,
+      skill:type==="weapon"?"martialWeapons":undefined,
+      properties:"",
+      condition:"operative",
+      quantity:1,
+      ...system
+    }
+  };
+  for(const key of Object.keys(source.system)) if(source.system[key]===undefined) delete source.system[key];
+  const derived=deriveManufacturedSystem(source,{
+    referenceValueCopper,
+    baseTimeMinutes,
+    baseRank,
+    baseInstallation,
+    quality,
+    modifications,
+    specialMaterials
+  });
+  assert.equal(derived.valid,true);
+  return actor.add(new StubItem({id,name,type,system:derived.system}));
 }
 
 function resolverFor(actor) {
