@@ -482,6 +482,8 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
   let stageBaseMinutes=0;
   let magicUpdates={};
   let issues=[];
+  let requiredCompatibility="";
+  let requireRareOrExceptionalLot=false;
 
   if(mode==="runicMatrix") {
     if(model.specialMaterials.length||model.modifications.length) return {ok:false,error:"Preparar CRu no instala simultáneamente Materiales ni Modificaciones."};
@@ -498,6 +500,7 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
     const quote=runicMatrixQuote({referenceValueCopper:current.referenceValueCopper,baseTimeMinutes:current.baseTimeMinutes,points:added});
     materialCopper=quote.materialCopper;
     stageBaseMinutes=quote.timeMinutes;
+    requiredCompatibility="runic-matrix";
     const requirements=targetCapacity===1
       ? {primarySkill:"crafting",primaryRank:3,arcanaRank:2,craftingRank:3,installation:"professional"}
       : {primarySkill:"crafting",primaryRank:4,arcanaRank:3,craftingRank:4,installation:"specialized"};
@@ -537,6 +540,7 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
     const quote=runeInscriptionQuote({referenceValueCopper:current.referenceValueCopper,baseTimeMinutes:current.baseTimeMinutes,grade:profile.grade});
     materialCopper=quote.materialCopper;
     stageBaseMinutes=quote.timeMinutes;
+    requiredCompatibility="imprint:"+profile.key;
     const requirements=profile.grade===1
       ? {primarySkill:"ritualism",primaryRank:3,arcanaRank:2,craftingRank:2,installation:"professional"}
       : {primarySkill:"ritualism",primaryRank:4,arcanaRank:3,craftingRank:3,installation:"specialized"};
@@ -571,6 +575,7 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
       const quote=utilityEnchantmentQuote();
       materialCopper=quote.materialCopper;
       stageBaseMinutes=quote.timeMinutes;
+      requiredCompatibility="enchantment:utility";
       issues=magicProfessionalIssues(model,actor,{primarySkill:"ritualism",primaryRank:3,arcanaRank:2,craftingRank:0,installation:"professional"});
       next={...existing,utilityKey,addedValueCopper:existing.addedValueCopper+quote.addedValueCopper};
     } else {
@@ -579,6 +584,8 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
       if(!quote.valid) return {ok:false,error:quote.error};
       materialCopper=quote.materialCopper;
       stageBaseMinutes=quote.timeMinutes;
+      requiredCompatibility="enchantment:"+grade;
+      requireRareOrExceptionalLot=grade===3;
       const req=grade===1
         ? {primarySkill:"ritualism",primaryRank:4,arcanaRank:3,craftingRank:3,installation:"specialized"}
         : {primarySkill:"ritualism",primaryRank:5,arcanaRank:4,craftingRank:4,installation:"exceptional"};
@@ -632,6 +639,7 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
     const quote=sealRearmQuote({enchantmentMaterialCopper:enchant.materialCostCopper,enchantmentTimeMinutes:enchant.timeMinutes});
     materialCopper=quote.materialCopper;
     stageBaseMinutes=quote.timeMinutes;
+    requiredCompatibility="enchantment:"+enchant.grade;
     const req=enchant.grade===1
       ? {primarySkill:"ritualism",primaryRank:4,arcanaRank:3,craftingRank:3,installation:"specialized"}
       : {primarySkill:"ritualism",primaryRank:5,arcanaRank:4,craftingRank:4,installation:"exceptional"};
@@ -652,7 +660,18 @@ async function analyzeMagicModifyProject(project,model,resolver,target,current,b
   if(model.time.requiredMinutes+Number.EPSILON<requiredMinutes) {
     return {ok:false,error:"El tiempo requerido de la mejora mágica está por debajo del mínimo canónico.",expectedMinutes:requiredMinutes};
   }
-  return {ok:true,target,current,materialCopper,stageBaseMinutes,requiredMinutes,magicUpdates,magicMode:mode};
+  return {
+    ok:true,
+    target,
+    current,
+    materialCopper,
+    stageBaseMinutes,
+    requiredMinutes,
+    magicUpdates,
+    magicMode:mode,
+    requiredCompatibility,
+    requireRareOrExceptionalLot
+  };
 }
 
 async function analyzeModifyProject(project, model, resolver) {
