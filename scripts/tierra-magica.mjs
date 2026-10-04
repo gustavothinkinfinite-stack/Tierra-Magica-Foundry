@@ -81,7 +81,7 @@ Hooks.on("preCreateItem", (item, data, options = {}) => {
     "system.schemaVersion": TM_SCHEMA_VERSION
   });
 
-  if (options.tmValidated || item.type === "effect") return;
+  if (options.tmValidated || ["effect","project"].includes(item.type)) return;
   const actor = item.parent;
   if (!actor || actor.type !== "character") return;
 
@@ -145,7 +145,7 @@ Hooks.on("preCreateItem", (item, data, options = {}) => {
 
 Hooks.on("createItem", async (item, options = {}) => {
   const actor = item.parent;
-  if (!actor || actor.type !== "character" || options.tmValidated) return;
+  if (!actor || actor.type !== "character" || options.tmValidated || item.type === "project") return;
   await actor.update({ "system.creation.revision": Number(actor.system.creation?.revision ?? 0) + 1 });
 });
 
