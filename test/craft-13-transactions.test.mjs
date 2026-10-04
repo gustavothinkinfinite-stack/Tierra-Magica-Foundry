@@ -97,6 +97,7 @@ function lot(actor, {
   reservations = {},
   compatibility = ["forja"],
   materialProfileKey = "",
+  resourceGrade = "ordinary",
   preparation = "prepared"
 } = {}) {
   return actor.add(new StubItem({
@@ -108,6 +109,7 @@ function lot(actor, {
       craftingLot:{
         enabled:true,
         category:"metal",
+        resourceGrade,
         compatibility,
         materialProfileKey,
         preparation,
@@ -141,6 +143,7 @@ function project(actor, {
   baseMinutes = Math.max(requiredMinutes, 10),
   adjustedBaseMinutes = Math.max(requiredMinutes, 10),
   requiredRank = 2,
+  professionalSkill = "crafting",
   requiredInstallation = "adequate",
   availableInstallation = "adequate",
   allocationCompatibility = "forja"
@@ -192,7 +195,7 @@ function project(actor, {
         completedMinutes
       },
       professional:{
-        skill:"crafting",
+        skill:professionalSkill,
         specialization:"",
         baseRank:2,
         requiredRank,
@@ -1449,3 +1452,254 @@ test("CRAFT-13D: Defectuosa no puede usarse como fabricación barata",async()=>{
   assert.equal(material.system.craftingLot.inputValueCopper,100);
 });
 
+
+
+test("CRAFT-13E: Matriz Rúnica reserva VI compatible y persiste CRu sin tocar CapM",async()=>{
+  const actor=new StubActor("runic-matrix");
+  actor.system.skills.arcana={rank:3};
+  const target=manufacturedItem(actor,{
+    id:"runic-host",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"superior"
+  });
+  const material=lot(actor,{id:"matrix-lot",vi:100,compatibility:["runic-matrix"]});
+  const craft=project(actor,{
+    id:"matrix-project",
+    operation:"modify",
+    material,
+    materialCopper:50,
+    estimatedMaterialsCopper:50,
+    allocationCompatibility:"runic-matrix",
+    referenceValueCopper:100,
+    quality:"superior",
+    enhancement:{
+      mode:"runicMatrix",
+      runicCapacityTarget:1,
+      runicChannelTypes:["socket"]
+    },
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:120,
+    requiredMinutes:120,
+    requiredRank:3,
+    professionalSkill:"crafting",
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,120,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.runic.capacityPrepared,1);
+  assert.equal(target.system.runic.channels[0].type,"socket");
+  assert.equal(target.system.manufacture.capMUsed,0);
+  assert.equal(target.system.priceCopper,250);
+});
+
+test("CRAFT-13E: Runa inscrita exige VI compatible y ocupa Canal de Inscripción",async()=>{
+  const actor=new StubActor("rune-inscription");
+  actor.system.skills.ritualism={rank:3};
+  actor.system.skills.arcana={rank:2};
+  const target=manufacturedItem(actor,{
+    id:"rune-host",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"superior"
+  });
+  target.system.runic={
+    capacityPrepared:1,
+    matrixMaterialCopper:50,
+    addedValueCopper:100,
+    channels:[{id:"cru-1",type:"inscription"}],
+    imprints:[]
+  };
+  target.system.priceCopper+=100;
+  const material=lot(actor,{id:"rune-lot",vi:150,compatibility:["imprint:arcaneEdgeI"]});
+  const craft=project(actor,{
+    id:"rune-project",
+    operation:"modify",
+    material,
+    materialCopper:100,
+    estimatedMaterialsCopper:100,
+    allocationCompatibility:"imprint:arcaneEdgeI",
+    referenceValueCopper:100,
+    quality:"superior",
+    enhancement:{
+      mode:"rune",
+      imprintKey:"arcaneEdgeI",
+      imprintMode:"inscribed",
+      imprintChannelIds:["cru-1"]
+    },
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:240,
+    requiredMinutes:240,
+    requiredRank:3,
+    professionalSkill:"ritualism",
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,240,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.runic.imprints.length,1);
+  assert.equal(target.system.runic.imprints[0].key,"arcaneEdgeI");
+  assert.equal(target.system.runic.addedValueCopper,300);
+  assert.equal(target.system.priceCopper,450);
+});
+
+test("CRAFT-13E: Encantamiento I nace con RE 0 y paga CE compatible",async()=>{
+  const actor=new StubActor("enchantment-one");
+  actor.system.skills.ritualism={rank:4};
+  actor.system.skills.arcana={rank:3};
+  const target=manufacturedItem(actor,{
+    id:"enchanted-host",
+    type:"equipment",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"superior",
+    system:{category:"Accesorio"}
+  });
+  const material=lot(actor,{id:"enchant-lot",vi:600,compatibility:["enchantment:1"]});
+  const craft=project(actor,{
+    id:"enchant-project",
+    operation:"modify",
+    material,
+    materialCopper:500,
+    estimatedMaterialsCopper:500,
+    allocationCompatibility:"enchantment:1",
+    referenceValueCopper:100,
+    quality:"superior",
+    enhancement:{
+      mode:"enchantment",
+      enchantmentGrade:1,
+      enchantmentPatternKey:"barrier-pattern",
+      enchantmentFunctionalKey:"barrier-defense",
+      boundSpell:{slug:"barrera-cinetica",method:"direct",grade:"basic",manaCost:3,activation:"Reacción"}
+    },
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:1440,
+    requiredMinutes:1440,
+    requiredRank:4,
+    professionalSkill:"ritualism",
+    requiredInstallation:"specialized",
+    availableInstallation:"specialized"
+  });
+  const resolver=resolverFor(actor);
+  const reserved=await reserveCraftingProjectMaterials(craft,{resolver});
+  assert.equal(reserved.ok,true);
+  await advanceCraftingProjectWork(craft,1440,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+  assert.equal(target.system.enchantment.grade,1);
+  assert.equal(target.system.enchantment.reserve.value,0);
+  assert.equal(target.system.enchantment.reserve.max,6);
+  assert.equal(target.system.enchantment.attunedActorUuid,"");
+  assert.equal(target.system.priceCopper,1150);
+});
+
+test("CRAFT-13E: Encantamiento III no acepta CE compuesto sólo por Lotes ordinarios",async()=>{
+  const actor=new StubActor("enchantment-three-grade");
+  actor.system.skills.ritualism={rank:5};
+  actor.system.skills.arcana={rank:4};
+  const target=manufacturedItem(actor,{
+    id:"enchant-three-host",
+    type:"equipment",
+    referenceValueCopper:100,
+    baseTimeMinutes:120,
+    quality:"exceptional",
+    system:{category:"Soporte apropiado"}
+  });
+  const material=lot(actor,{
+    id:"ordinary-enchant-lot",
+    vi:5000,
+    compatibility:["enchantment:3"],
+    resourceGrade:"ordinary"
+  });
+  const craft=project(actor,{
+    id:"enchant-three-project",
+    operation:"modify",
+    material,
+    materialCopper:4000,
+    estimatedMaterialsCopper:4000,
+    allocationCompatibility:"enchantment:3",
+    referenceValueCopper:100,
+    quality:"exceptional",
+    enhancement:{
+      mode:"enchantment",
+      enchantmentGrade:3,
+      enchantmentPatternKey:"rupture-pattern",
+      enchantmentFunctionalKey:"rupture-ray",
+      enchantmentSupportAppropriate:true,
+      enchantmentHasRareComponent:true,
+      boundSpell:{slug:"rayo-de-ruptura",method:"direct",grade:"master",manaCost:10,activation:"Acción"}
+    },
+    targetItemUuid:target.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:9600,
+    requiredMinutes:9600,
+    requiredRank:5,
+    professionalSkill:"ritualism",
+    requiredInstallation:"exceptional",
+    availableInstallation:"exceptional"
+  });
+  const rejected=await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/Raro o Excepcional/);
+});
+
+test("CRAFT-13E: Fabricar rechaza CRu o Encantamiento preinstalados sin Proyecto propio",async()=>{
+  const actor=new StubActor("magic-free-bypass");
+  const material=lot(actor,{id:"free-magic-lot",vi:100});
+  const runic=project(actor,{
+    id:"free-runic-project",
+    operation:"fabricate",
+    material,
+    materialCopper:50,
+    estimatedMaterialsCopper:50,
+    referenceValueCopper:100,
+    resultData:{
+      name:"Arma con CRu gratis",
+      type:"weapon",
+      system:{
+        damage:5,penetration:0,strengthMin:1,reload:0,skill:"martialWeapons",properties:"",
+        runic:{capacityPrepared:1,channels:[{id:"x",type:"socket"}],imprints:[]}
+      }
+    },
+    baseMinutes:120,
+    adjustedBaseMinutes:120,
+    requiredMinutes:120
+  });
+  let rejected=await reserveCraftingProjectMaterials(runic,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/CRu o Improntas preinstaladas/);
+
+  const enchant=project(actor,{
+    id:"free-enchant-project",
+    operation:"fabricate",
+    material,
+    materialCopper:50,
+    estimatedMaterialsCopper:50,
+    referenceValueCopper:100,
+    resultData:{
+      name:"Objeto encantado gratis",
+      type:"equipment",
+      system:{
+        category:"General",
+        enchantment:{grade:1,patternKey:"x",functionalKey:"x",reserve:{value:6,max:6}}
+      }
+    },
+    baseMinutes:120,
+    adjustedBaseMinutes:120,
+    requiredMinutes:120
+  });
+  rejected=await reserveCraftingProjectMaterials(enchant,{resolver:resolverFor(actor)});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/Encantamientos preinstalados/);
+});
