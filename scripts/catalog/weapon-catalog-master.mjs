@@ -5,6 +5,7 @@ import { APPROVED_MARTIAL_VARIANTS } from "./weapon-variants-martial-approved.mj
 import { APPROVED_HEAVY_VARIANTS } from "./weapon-variants-heavy-approved.mjs";
 import { APPROVED_RANGED_VARIANTS } from "./weapon-variants-ranged-approved.mjs";
 import { APPROVED_REGIONAL_VARIANTS } from "./weapon-variants-regional-approved.mjs";
+import { pendingWeaponBlocker } from "./weapon-catalog-pending.mjs";
 
 const APPROVED_VARIANTS = Object.freeze({
   ...APPROVED_WEAPON_PROFILE_VARIANTS,
@@ -286,6 +287,7 @@ function proposedEntries() {
       availability:group.availability ?? "review",
       implementation:approvedProfile ? "runtime-profile-variant" : (group.implementation ?? "profile-variant"),
       reviewFlags:approvedProfile ? [] : [...(group.reviewFlags ?? [])],
+      blocker:approvedProfile ? "" : pendingWeaponBlocker(name),
       mechanics:null
     };
   }));
