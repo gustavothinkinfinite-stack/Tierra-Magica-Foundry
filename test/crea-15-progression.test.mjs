@@ -11,6 +11,7 @@ import {
 
 const templateUrl=new URL("../templates/actor/character-sheet.hbs",import.meta.url);
 const actorUrl=new URL("../scripts/documents/actor.mjs",import.meta.url);
+const systemUrl=new URL("../scripts/tierra-magica.mjs",import.meta.url);
 
 test("CREA-15: progresión de nivel mantiene la economía canónica 1–20",()=>{
   assert.equal(pdTotalForLevel(1),25);
@@ -106,4 +107,12 @@ test("CREA-15: reconstrucción admite progresión pagada sin confundirla con aum
   };
   assert.equal(validateInitialAttributes(attributes).valid,false);
   assert.equal(validateInitialAttributes(attributes,{allowProgression:true}).valid,true);
+});
+
+
+test("CREA-15: compras de desarrollo no se reembolsan borrando Items con creación cerrada",async()=>{
+  const source=await readFile(systemUrl,"utf8");
+  assert.match(source,/Hooks\.on\("preDeleteItem"/);
+  assert.match(source,/actor\.system\.creation\?\.status === "complete"/);
+  assert.match(source,/requiere una reconstrucción autorizada/);
 });
