@@ -57,6 +57,16 @@ export class TierraMagicaActor extends Actor {
       skill.bonus = skill.breakdown.total;
     }
 
+    if (this.type === "character") {
+      const martialKeys = ["lightWeapons","martialWeapons","heavyWeapons","rangedWeapons"];
+      const highestMartialRank = martialKeys.reduce(
+        (highest, key) => Math.max(highest, toNumber(s.skills?.[key]?.effectiveRank ?? s.skills?.[key]?.rank, 0)),
+        0
+      );
+      s.combat ??= {};
+      s.combat.defensiveRank = Math.max(0, Math.min(5, Math.floor(highestMartialRank)));
+    }
+
     const level = Math.max(1, Math.floor(toNumber(s.details?.level, 1)));
     const pdTotal = 25 + Math.max(0, level - 1) * 4;
     const specializations = this.items
