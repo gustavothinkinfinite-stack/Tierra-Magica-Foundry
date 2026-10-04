@@ -968,6 +968,7 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
     }
     source.type=String(source.type ?? model.target.resultType);
     source.system ??= {};
+    let fabricationCompatibility="";
 
     const runic=source.system.runic ?? {};
     const enchant=source.system.enchantment ?? {};
@@ -1002,6 +1003,7 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
 
     if(source.system.imprintStone?.enabled===true) {
       const stoneProfile=imprintStoneCraftProfile(source.system.imprintStone.grade);
+      fabricationCompatibility="imprint-stone:"+stoneProfile.grade;
       if(model.economy.quality!=="common" || model.modifications.length || model.specialMaterials.length) {
         return {ok:false,error:"Una Piedra de Impronta usa su receta fija y no obtiene Calidad/CapM/Material Especial por esta fabricación."};
       }
@@ -1094,7 +1096,8 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
         quality:model.economy.quality,
         specialMaterialSupplementsCopper:model.specialMaterials.map((row)=>row.supplementCopper)
       }),
-      derived
+      derived,
+      requiredCompatibility:fabricationCompatibility
     };
   }
 
