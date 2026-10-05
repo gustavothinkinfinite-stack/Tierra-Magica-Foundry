@@ -4374,6 +4374,152 @@ El mismo motor se utiliza, cuando corresponda, para fabricar, montar, modificar 
 
 Una Habilidad no sustituye materiales, herramientas, instalaciones, tiempo, planos o competencias auxiliares que sean realmente necesarios. Una tirada alta tampoco vuelve posible un diseño físicamente, técnica o mágicamente imposible.
 
+### Fabricar un objeto: paso a paso
+
+Si es la primera vez que utilizas el sistema de fabricación, no necesitas memorizar todo el capítulo antes de empezar. Para fabricar un objeto, sigue este orden.
+
+> **La idea más importante:** si conoces cómo se fabrica el objeto, tienes la competencia necesaria, los materiales, las herramientas, la instalación y el tiempo, **normalmente no haces ninguna tirada**. Fabricar bien algo que sabes fabricar es una tarea rutinaria.
+
+#### Paso 1 — Decide qué quieres fabricar
+
+Elige el objeto exacto que quieres obtener.
+
+Puede ser un arma, una armadura, una herramienta, una fórmula alquímica, un dispositivo, una modificación u otro Proyecto permitido.
+
+Después busca su **receta**. La receta te dice qué necesitas y cuánto tiempo lleva. Las recetas ordinarias de armas, armaduras, escudos, munición, herramientas y Kits están en **CRAFT-03**; otros proyectos preparados para usar aparecen en **CRAFT-11** y en los CRAFT correspondientes.
+
+No empieces calculando tiradas. Empieza por la receta.
+
+#### Paso 2 — Elige la versión que quieres fabricar
+
+Antes de reunir materiales, define qué versión del objeto quieres obtener.
+
+Por ejemplo:
+
+- Común, Superior o Excepcional;
+- material ordinario o especial;
+- con o sin Modificaciones;
+- con runas, encantamientos o componentes especiales cuando la receta lo permita.
+
+La versión elegida puede cambiar el coste, el tiempo, la competencia o la instalación necesaria.
+
+Si sólo quieres el objeto normal del catálogo, utiliza su versión **Común**.
+
+#### Paso 3 — Comprueba si sabes hacerlo
+
+Mira la **Disciplina Principal** de la receta y comprueba:
+
+- la Habilidad necesaria;
+- el rango mínimo;
+- la Especialización requerida, si existe;
+- cualquier Disciplina Auxiliar indispensable.
+
+Si cumples esos requisitos, puedes seguir.
+
+Si no los cumples, una tirada alta no compensa la falta de formación. Necesitas aprender, conseguir ayuda competente o utilizar otro procedimiento permitido.
+
+#### Paso 4 — Comprueba si necesitas Plano, Fórmula o Diseño
+
+Muchas cosas ordinarias forman parte del conocimiento normal de un oficio.
+
+Otras recetas indican que necesitas un **Plano**, **Fórmula**, **Patrón** o procedimiento estable.
+
+Si la receta lo exige, debes poseerlo o conocer de forma estable ese diseño. Tener el Plano no reemplaza la Habilidad necesaria: te enseña qué construir, pero todavía debes saber construirlo.
+
+#### Paso 5 — Reúne los materiales
+
+Calcula el **Coste de Materiales (CM)** de la receta y reúne los materiales o componentes necesarios.
+
+Cuando una receta no tenga un coste propio, la regla general de CRAFT-02 utiliza normalmente:
+
+**CM = 50% del Valor de Referencia (VR), redondeado hacia arriba al cobre.**
+
+El CM representa los materiales ordinarios consumidos durante la fabricación. Componentes especiales, cristales, runas, acumuladores u otras piezas con precio propio se consiguen aparte cuando la receta lo indique.
+
+Pagar el CM no hace aparecer materiales de la nada: debe existir acceso real a ellos.
+
+#### Paso 6 — Consigue herramientas e instalación
+
+Comprueba qué **herramientas** y qué **instalación mínima** exige la receta.
+
+Puedes utilizar recursos propios, prestados o alquilados.
+
+Una forja, laboratorio, taller o instalación necesaria no se reemplaza automáticamente con una tirada. Si falta algo esencial, primero debes conseguirlo.
+
+#### Paso 7 — Calcula cuánto tiempo necesitas
+
+La receta indica el **tiempo base de trabajo efectivo**.
+
+Una **Jornada de Trabajo** equivale aproximadamente a 8 horas de trabajo productivo.
+
+Aplica después cualquier cambio obligatorio por Calidad, material especial, escala u otra regla de la receta.
+
+No necesitas realizar una tirada por cada hora o por cada jornada. El tiempo simplemente se invierte en hacer el trabajo.
+
+#### Paso 8 — Decide si hace falta tirar
+
+Hazte una sola pregunta:
+
+**¿Estoy fabricando normalmente, con todo lo necesario y sin una complicación especial?**
+
+Si la respuesta es **sí**, no tiras. Inviertes los materiales y el tiempo y completas el objeto.
+
+Sólo aparece una prueba cuando existe una incertidumbre real, por ejemplo:
+
+- estás acelerando el trabajo;
+- trabajas bajo presión o peligro;
+- improvisas;
+- utilizas medios peores de los requeridos pero todavía viables;
+- adaptas un diseño;
+- trabajas con un material inestable;
+- reparas un daño extraño;
+- construyes un prototipo;
+- realizas una etapa experimental.
+
+Cuando exista una prueba, se resuelve con el motor normal:
+
+**2d10 + Atributo + Habilidad + modificadores >= DF**
+
+No se repite la misma tirada una y otra vez hasta obtener un buen resultado.
+
+#### Paso 9 — Termina y registra el objeto
+
+Cuando completas el tiempo requerido y resuelves cualquier incertidumbre pendiente, obtienes exactamente el objeto definido por la receta y por las opciones que pagaste.
+
+Anota sus datos importantes:
+
+- objeto;
+- Calidad;
+- material especial, si posee uno;
+- Modificaciones;
+- runas, encantamientos o componentes especiales;
+- cualquier propiedad propia de su receta.
+
+Fabricarlo personalmente **no mejora sus estadísticas por sí solo**. Una espada Común fabricada por un personaje sigue siendo una espada Común. Las mejoras deben proceder de Calidad, materiales, Modificaciones, runas, dispositivos u otras reglas expresas.
+
+#### Ejemplo sencillo — Fabricar una espada larga Común
+
+Un personaje quiere fabricar una **Espada larga Común**.
+
+La receta indica:
+
+- **VR:** 2 o;
+- **CM:** 1 o;
+- **Complejidad:** Complejo;
+- **Principal:** Artesanía Experta · Forja y metal;
+- **Instalación:** Profesional;
+- **Tiempo:** 2 Jornadas.
+
+El personaje posee Artesanía Experta con Forja y metal, conoce el diseño, consigue materiales por valor de 1 o, dispone de una instalación Profesional y puede dedicar 2 Jornadas al trabajo.
+
+No hay peligro, improvisación, aceleración ni otra incertidumbre.
+
+**Resultado:** no realiza ninguna tirada. Consume los materiales, trabaja durante 2 Jornadas y obtiene una **Espada larga Común**.
+
+Eso es el funcionamiento normal del sistema de fabricación.
+
+> **Resumen rápido:** elige la receta → comprueba competencia y diseño → reúne materiales → consigue herramientas e instalación → invierte el tiempo → tira sólo si existe una complicación real → registra el objeto terminado.
+
 ### Registro mínimo de un Proyecto
 
 Cuando un trabajo necesita seguimiento mecánico, su entrada debe indicar como mínimo:
