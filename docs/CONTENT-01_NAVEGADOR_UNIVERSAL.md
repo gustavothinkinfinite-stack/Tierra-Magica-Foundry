@@ -1,6 +1,6 @@
 # CONTENT-01 — Navegador Universal de Contenido
 
-**Estado:** CONTENT-01A–B IMPLEMENTADAS Y VALIDADAS · PR #60 ABIERTA  
+**Estado:** CONTENT-01 CERRADO EN A–B · IMPLEMENTADO Y VALIDADO · PR #60 ABIERTA  
 **Fecha:** 2026-10-05
 
 ## Objetivo
@@ -35,13 +35,21 @@ Implementada en la rama:
 - una duplicación intencional requiere la acción separada **Crear otra copia**;
 - crear un Item de mundo no lo añade a un Actor ni consume PEI/PD/PR/moneda.
 
-### CONTENT-01C — Añadir a Actor
+## Límite funcional cerrado
 
-Usará las autoridades existentes de adquisición. No podrá saltar PEI, PD, PR, moneda, requisitos, límites de creación/progresión ni revisiones.
+CONTENT-01 **no añade contenido a Actors**.
 
-### CONTENT-01D — UX avanzada
+Quedan fuera de alcance:
 
-Filtros específicos por disciplina, Habilidad, categoría, disponibilidad, región/tecnología cuando esos metadatos formen parte del source runtime; ordenación y acciones rápidas.
+- añadir Items directamente a la ficha;
+- comprar/adquirir desde el navegador;
+- consumir PEI, PD, PR o moneda;
+- modificar inventario de personaje;
+- automatizar requisitos de creación/progresión desde esta ventana.
+
+El navegador se limita a explorar contenido canónico y crear/abrir Items de mundo en la pestaña **Objetos**.
+
+Los filtros avanzados por disciplina, Habilidad, categoría, disponibilidad o metadatos adicionales podrán evaluarse más adelante como mejora de UX separada, sin cambiar este límite.
 
 ## Regla de seguridad
 
