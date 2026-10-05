@@ -1,0 +1,53 @@
+<div class="tm-content-browser">
+  <header class="tm-content-browser-toolbar">
+    <div>
+      <strong>Catálogo Tierra Mágica</strong>
+      <small>Fuente: catálogo canónico del sistema</small>
+    </div>
+    <input type="search" value="{{query}}" placeholder="Buscar por nombre, tipo, disciplina, habilidad…" data-tm-content-query>
+    <select data-tm-content-type>
+      <option value="">Todos los tipos</option>
+      {{#each typeOptions}}
+      <option value="{{type}}" {{#if selected}}selected{{/if}}>{{label}} ({{count}})</option>
+      {{/each}}
+    </select>
+    <span><b data-tm-content-visible-count>{{visibleCount}}</b> / {{totalCount}}</span>
+  </header>
+
+  <div class="tm-content-browser-layout">
+    <section class="tm-content-browser-list" aria-label="Contenido canónico">
+      {{#each entries}}
+      <button type="button"
+        class="tm-content-browser-entry {{#if selected}}active{{/if}}"
+        data-tm-content-entry="{{id}}">
+        <span>{{name}}</span>
+        <small>{{typeLabel}}</small>
+      </button>
+      {{/each}}
+      <p class="tm-content-browser-empty" data-tm-content-empty {{#if visibleCount}}hidden{{/if}}>
+        No hay entradas que coincidan con los filtros.
+      </p>
+    </section>
+
+    <aside class="tm-content-browser-preview">
+      {{#if preview}}
+      <span class="tm-kicker">{{preview.typeLabel}}</span>
+      <h2>{{preview.name}}</h2>
+      {{#if preview.description}}<p>{{preview.description}}</p>{{/if}}
+      {{#if preview.details.length}}
+      <dl>
+        {{#each preview.details}}
+        <div><dt>{{label}}</dt><dd>{{value}}</dd></div>
+        {{/each}}
+      </dl>
+      {{/if}}
+      <footer>
+        <i class="fas fa-eye"></i>
+        CONTENT-01A es sólo lectura. La creación de Items de mundo se habilitará en CONTENT-01B.
+      </footer>
+      {{else}}
+      <p class="tm-empty">Selecciona una entrada del catálogo.</p>
+      {{/if}}
+    </aside>
+  </div>
+</div>

@@ -36,7 +36,7 @@ import {
   resolveResearchProjectStageAuthoritatively
 } from "./rules/state-authority.mjs";
 import { validateCatalog } from "./rules/catalog.mjs";
-import { coreCatalog } from "./catalog/core-catalog.mjs";
+import { coreCatalog } from "./catalog/core-catalog.mjs";\nimport { installContentBrowserHooks, openContentBrowser } from "./ui/content-browser-app.mjs";
 
 installFamiliarGuards(TierraMagicaActor);
 installMagicGuards(TierraMagicaActor);
@@ -50,7 +50,7 @@ installCraftingMagicGuards(TierraMagicaActor);
 installActionEconomyGuards(TierraMagicaActor);
 installReactionEconomyGuards(TierraMagicaActor);
 installCurrencyRules(TierraMagicaActor);
-installResourceReconciliationHooks(Hooks);
+installResourceReconciliationHooks(Hooks);\ninstallContentBrowserHooks(Hooks);
 
 function forcedDeletion() {
   const ForcedDeletion = globalThis.foundry?.data?.operators?.ForcedDeletion;
@@ -405,6 +405,9 @@ Hooks.once("ready", async () => {
     catalog,
     catalogValidation,
     schemaVersion: TM_SCHEMA_VERSION,
+    contentBrowser: {
+      open: openContentBrowser
+    },
     crafting: {
       prepare: prepareCraftingProjectAuthoritatively,
       reserve: reserveCraftingProjectAuthoritatively,
