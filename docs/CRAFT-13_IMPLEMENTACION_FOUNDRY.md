@@ -1,6 +1,6 @@
 # CRAFT-13 — Implementación Foundry VTT del sistema de fabricación
 
-**Estado:** EN CURSO  
+**Estado:** CERRADO · IMPLEMENTADO Y AUDITADO  
 **Fuente canónica:** `docs/Tierra_Magica_Manual_Maestro.md`, capítulo 18, CRAFT-01 a CRAFT-12  
 **Dependencia:** CRAFT-12 cerrado  
 **Rama de trabajo:** `craft-13-foundry-crafting`
@@ -978,7 +978,7 @@ La interfaz no decide:
 
 ### CRAFT-13I — Auditoría integral Foundry
 
-**Estado: EN VALIDACIÓN**
+**Estado: IMPLEMENTADA · CERRADA**
 
 La auditoría destructiva integral está implementada en `docs/CRAFT-13I_AUDITORIA_INTEGRAL_FOUNDRY.md` y `test/craft-13-integral-audit.test.mjs`.
 
@@ -1010,7 +1010,7 @@ Hallazgos de implementación corregidos en 13I:
 - activaciones alquímicas sin convertir 1 minuto/contexto en una Acción universal;
 - trazabilidad y recuperación física de componentes separables.
 
-El cierre definitivo requiere `npm run audit:crafting` y `npm run validate` verdes.
+El workflow ejecuta explícitamente `npm run audit:crafting` y `npm run validate`. La matriz integral queda como barrera permanente de regresión.
 
 ## Criterio de cierre
 

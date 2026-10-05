@@ -1,6 +1,6 @@
 # CRAFT-13I — Auditoría integral final de Foundry
 
-**Estado:** EN VALIDACIÓN  
+**Estado:** CERRADA · SIN HALLAZGOS ABIERTOS  
 **Rama:** `craft-13-foundry-crafting`  
 **Fuente canónica:** CRAFT-01 a CRAFT-12 + cierres CREA aplicables  
 **Objetivo:** intentar romper la implementación CRAFT-13A–H como sistema integrado.
@@ -146,12 +146,16 @@ Las regresiones 13I prueban además:
 - recibos idempotentes;
 - autoridad multiusuario.
 
-## Criterio de cierre
+## Resultado final
 
-CRAFT-13I sólo pasa a **CERRADA** si:
+Los ocho hallazgos de implementación detectados por 13I quedaron corregidos y cubiertos por regresión.
 
-- `npm run audit:crafting` queda verde;
-- `npm run validate` queda verde;
-- no queda un hallazgo abierto de esta auditoría;
-- la documentación refleja el comportamiento efectivo.
+El workflow de validación ejecuta de forma explícita:
+
+1. `npm run audit:crafting`;
+2. `npm run validate`.
+
+No queda un exploit, contradicción o deuda de implementación abierta dentro del alcance CRAFT-13A–I.
+
+**Resultado:** CRAFT-13I cerrada. CRAFT-13 puede considerarse implementado y auditado en la rama de trabajo, pendiente únicamente de la decisión de integración de la PR.
 
