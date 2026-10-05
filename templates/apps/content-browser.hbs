@@ -1,0 +1,69 @@
+<div class="tm-content-browser">
+  <header class="tm-content-browser-toolbar">
+    <div>
+      <strong>Catálogo Tierra Mágica</strong>
+      <small>Fuente: catálogo canónico del sistema</small>
+    </div>
+    <input type="search" value="{{query}}" placeholder="Buscar por nombre, tipo, disciplina, habilidad…" data-tm-content-query>
+    <select data-tm-content-type>
+      <option value="">Todos los tipos</option>
+      {{#each typeOptions}}
+      <option value="{{type}}" {{#if selected}}selected{{/if}}>{{label}} ({{count}})</option>
+      {{/each}}
+    </select>
+    <span><b data-tm-content-visible-count>{{visibleCount}}</b> / {{totalCount}}</span>
+  </header>
+
+  <div class="tm-content-browser-layout">
+    <section class="tm-content-browser-list" aria-label="Contenido canónico">
+      {{#each entries}}
+      <button type="button"
+        class="tm-content-browser-entry {{#if selected}}active{{/if}}"
+        data-tm-content-entry="{{id}}">
+        <span>{{name}}</span>
+        <small>{{typeLabel}}</small>
+      </button>
+      {{/each}}
+      <p class="tm-content-browser-empty" data-tm-content-empty {{#if visibleCount}}hidden{{/if}}>
+        No hay entradas que coincidan con los filtros.
+      </p>
+    </section>
+
+    <aside class="tm-content-browser-preview">
+      {{#if preview}}
+      <span class="tm-kicker">{{preview.typeLabel}}</span>
+      <h2>{{preview.name}}</h2>
+      {{#if preview.description}}<p>{{preview.description}}</p>{{/if}}
+      {{#if preview.details.length}}
+      <dl>
+        {{#each preview.details}}
+        <div><dt>{{label}}</dt><dd>{{value}}</dd></div>
+        {{/each}}
+      </dl>
+      {{/if}}
+      <div class="tm-content-browser-actions">
+        {{#if previewWorld.hasDuplicate}}
+        <button type="button" data-tm-open-world-item>
+          <i class="fas fa-folder-open"></i> Abrir existente
+        </button>
+        <button type="button" data-tm-create-world-copy>
+          <i class="fas fa-copy"></i> Crear otra copia
+        </button>
+        <small>Ya existe {{previewWorld.duplicateCount}} Item(s) con la misma identidad canónica.</small>
+        {{else}}
+        <button type="button" data-tm-create-world-item>
+          <i class="fas fa-plus"></i> Crear en el mundo
+        </button>
+        <small>Crea una copia canónica en la pestaña Objetos. No la añade a ningún personaje.</small>
+        {{/if}}
+      </div>
+      <footer>
+        <i class="fas fa-shield-alt"></i>
+        CONTENT-01B crea Items de mundo. Añadir a Actor seguirá siendo una operación separada y controlada.
+      </footer>
+      {{else}}
+      <p class="tm-empty">Selecciona una entrada del catálogo.</p>
+      {{/if}}
+    </aside>
+  </div>
+</div>

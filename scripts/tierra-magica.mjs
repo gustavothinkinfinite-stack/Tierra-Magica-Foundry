@@ -37,6 +37,7 @@ import {
 } from "./rules/state-authority.mjs";
 import { validateCatalog } from "./rules/catalog.mjs";
 import { coreCatalog } from "./catalog/core-catalog.mjs";
+import { installContentBrowserHooks, openContentBrowser } from "./ui/content-browser-app.mjs";
 
 installFamiliarGuards(TierraMagicaActor);
 installMagicGuards(TierraMagicaActor);
@@ -51,6 +52,7 @@ installActionEconomyGuards(TierraMagicaActor);
 installReactionEconomyGuards(TierraMagicaActor);
 installCurrencyRules(TierraMagicaActor);
 installResourceReconciliationHooks(Hooks);
+installContentBrowserHooks(Hooks);
 
 function forcedDeletion() {
   const ForcedDeletion = globalThis.foundry?.data?.operators?.ForcedDeletion;
@@ -59,7 +61,7 @@ function forcedDeletion() {
 }
 
 Hooks.once("init", async () => {
-  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.1.2");
+  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.3.0");
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
   CONFIG.Item.documentClass = TierraMagicaItem;
@@ -405,6 +407,9 @@ Hooks.once("ready", async () => {
     catalog,
     catalogValidation,
     schemaVersion: TM_SCHEMA_VERSION,
+    contentBrowser: {
+      open: openContentBrowser
+    },
     crafting: {
       prepare: prepareCraftingProjectAuthoritatively,
       reserve: reserveCraftingProjectAuthoritatively,
