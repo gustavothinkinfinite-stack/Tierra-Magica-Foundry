@@ -619,19 +619,101 @@ Esta frontera es de orquestación/interfaz; no habilita materiales, tiempo, CE o
 
 ### CRAFT-13F — Ingeniería y Energía
 
-**Estado: PENDIENTE**
+**Estado: IMPLEMENTADA EN RAMA**
 
-Integrará el crafting con la implementación existente de dispositivos:
+CRAFT-13F amplía, sin duplicar, `scripts/rules/device-energy.mjs`.
 
-- Energía;
-- Caudal;
-- Estabilidad;
-- Caudal de Carga;
-- Bancos/Acopladores;
-- Sobrecarga;
-- deterioro intrínseco no mitigable por protecciones ordinarias.
+Queda estructurado:
 
-No duplicará `scripts/rules/device-energy.mjs`; CRAFT-13 debe reutilizarlo.
+- **Energía** como reserva consumible;
+- **Caudal** como máximo de salida por activación;
+- **Estabilidad** numérica como recepción segura por intervalo de 10 minutos;
+- **Caudal de Carga** separado del Caudal de activación;
+- fuente individual, **Banco simple** y **Acoplador de Caudal**;
+- recarga estable y **Carga forzada**;
+- Sobrecarga Controlada;
+- deterioro intrínseco de Sobrecarga/Carga forzada.
+
+#### Fuente activa, Banco y Acoplador
+
+Una activación ordinaria utiliza una fuente activa explícita.
+
+Un Banco simple:
+
+- exige exactamente dos acumuladores individuales;
+- suma la Energía actual;
+- usa sólo el mayor Caudal individual.
+
+Un Acoplador:
+
+- exige exactamente dos acumuladores individuales;
+- suma la Energía actual;
+- usa `max(Caudal)+1`, con techo 5;
+- cuando una activación utiliza realmente ese +1, paga además **+1 E**;
+- no puede usar como fuente otro Banco/Acoplador.
+
+El consumo agregado se descuenta de los acumuladores siguiendo el orden de cableado registrado y nunca crea Energía.
+
+#### Recarga estable
+
+`chargeDeviceEnergyInterval` representa un intervalo de 10 minutos.
+
+En una sola resolución:
+
+- varias fuentes suman su entrega antes de aplicar Estabilidad;
+- un receptor no recibe más de su Estabilidad;
+- una fuente reparte su Caudal de Carga entre todos los receptores;
+- otro acumulador usa su Caudal como Caudal de Carga;
+- una estación con Caudal de Carga necesita una fuente energética real vinculada;
+- la Energía transferida sale 1:1 de la fuente;
+- no se supera la Energía máxima.
+
+Los acumuladores canónicos quedan expresados como:
+
+- Celda menor: **4 E / C2 / Est1**;
+- Acumulador estándar: **8 / 3 / 2**;
+- Núcleo pesado: **16 / 5 / 4**.
+
+#### Carga forzada
+
+Sólo un acumulador **Operativo** puede recibir Carga forzada.
+
+- máximo recibido: **2 × Estabilidad** durante el intervalo;
+- INT + Ingeniería DF16;
+- éxito: transfiere y el receptor queda **Dañado**;
+- fallo: no transfiere y queda **Deshabilitado**;
+- un acumulador Dañado no puede repetirla.
+
+El deterioro usa una mutación marcada como coste intrínseco del procedimiento y no pasa por mitigación ordinaria de estado.
+
+#### Sobrecarga Controlada
+
+La implementación existente queda endurecida:
+
+- el dispositivo debe estar **Operativo**;
+- la activación debe ser válida salvo por necesitar **exactamente +1 Caudal**;
+- éxito: consume Energía y deja el dispositivo Dañado;
+- fallo: no consume Energía y lo deja Deshabilitado;
+- no puede repetirse Dañado.
+
+#### Autoridad y concurrencia
+
+Consumo y transferencia de Energía se serializan por Actor mediante la autoridad compartida.
+
+La autoridad vuelve a calcular fuente, Caudal, reserva, Estabilidad y transferencia sobre el estado actual antes de mutar documentos. Las operaciones multiacumulador realizan rollback técnico si una actualización intermedia falla.
+
+#### Salvaguardas
+
+- Energía no paga Maná ni RE;
+- Calidad/Material no aumentan E/C/Est por sí solos;
+- varias fuentes no multiplican Estabilidad;
+- una fuente no multiplica Caudal de Carga al dividir receptores;
+- Banco no suma Caudal;
+- Acoplador no se encadena;
+- ninguna recarga crea Energía;
+- Deshabilitado no descarga ni recibe carga.
+
+La interfaz de selección/cableado y los perfiles completos de catálogo siguen perteneciendo a CRAFT-13H; 13F cierra el motor y la transacción energética.
 
 ### CRAFT-13G — Alquimia e Investigación
 

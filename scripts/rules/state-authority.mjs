@@ -2,6 +2,11 @@ import { primaryActiveGm, validatePendingDamageRequest } from "./damage-delivery
 import { validatePendingHealingRequest } from "./healing-delivery.mjs";
 import { resourceMaximum } from "./resource-reconciliation.mjs";
 import {
+  planDeviceChargeInterval,
+  planDeviceEnergyConsumption,
+  resolveDeviceEnergySupply
+} from "./device-energy.mjs";
+import {
   advanceCraftingProjectWork,
   completeCraftingProject,
   releaseCraftingProjectMaterials,
@@ -23,6 +28,67 @@ const number = (value, fallback = 0) => {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : fallback;
 };
+
+async function applyEnergyConsumptionPlan(plan) {
+  const snapshots=[];
+  try {
+    for(const draw of plan.draws){
+      const before=Math.max(0,number(draw.item.system?.energy?.value));
+      if(draw.amount>before) throw new Error(draw.item.name+" ya no tiene Energía suficiente.");
+      snapshots.push({item:draw.item,value:before});
+      await draw.item.update({"system.energy.value":before-draw.amount},{tmValidated:true,tmEnergy:true});
+    }
+    return {ok:true};
+  } catch(error) {
+    for(const snapshot of snapshots.reverse()){
+      try { await snapshot.item.update({"system.energy.value":snapshot.value},{tmValidated:true,tmEnergyRollback:true}); } catch {}
+    }
+    return {ok:false,error:String(error?.message??error)};
+  }
+}
+
+async function applyChargePlan(plan,{forced=false,forcedSuccess=false}={}) {
+  const target=plan.receiverAdds?.[0]?.item ?? null;
+  if(forced && !forcedSuccess){
+    if(!target) return {ok:false,error:"La Carga forzada no posee receptor válido."};
+    await target.update({"system.condition":"disabled"},{tmValidated:true,tmEnergyIntrinsic:true});
+    return {ok:true,transferred:0,forced:true,success:false,receiverCondition:"disabled"};
+  }
+
+  const snapshots=[];
+  try {
+    for(const draw of plan.sourceDraws){
+      const before=Math.max(0,number(draw.item.system?.energy?.value));
+      if(draw.amount>before) throw new Error(draw.item.name+" ya no tiene Energía suficiente.");
+      snapshots.push({item:draw.item,updates:{"system.energy.value":before}});
+      await draw.item.update({"system.energy.value":before-draw.amount},{tmValidated:true,tmEnergy:true});
+    }
+    for(const add of plan.receiverAdds){
+      if(add.amount<=0) continue;
+      const before=Math.max(0,number(add.item.system?.energy?.value));
+      const maximum=Math.max(0,number(add.item.system?.energy?.max));
+      if(before+add.amount>maximum) throw new Error(add.item.name+" excedería su Energía máxima.");
+      snapshots.push({item:add.item,updates:{"system.energy.value":before}});
+      await add.item.update({"system.energy.value":before+add.amount},{tmValidated:true,tmEnergy:true});
+    }
+    if(forced && target){
+      snapshots.push({item:target,updates:{"system.condition":String(target.system?.condition??"operative")}});
+      await target.update({"system.condition":"damaged"},{tmValidated:true,tmEnergyIntrinsic:true});
+    }
+    return {
+      ok:true,
+      transferred:Math.max(0,number(plan.transferred)),
+      forced:forced===true,
+      success:forced?true:undefined,
+      receiverCondition:forced?"damaged":undefined
+    };
+  } catch(error) {
+    for(const snapshot of snapshots.reverse()){
+      try { await snapshot.item.update(snapshot.updates,{tmValidated:true,tmEnergyRollback:true}); } catch {}
+    }
+    return {ok:false,error:String(error?.message??error)};
+  }
+}
 
 const activeUsers = () => Array.from(globalThis.game?.users ?? []);
 const currentUser = () => globalThis.game?.user ?? null;
@@ -461,28 +527,53 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
 
   if (action === "consume-device-energy") {
     const actor = await actorFromUuid(String(payload.actorUuid ?? ""));
-    const source = actor?.items?.get?.(String(payload.sourceItemId ?? "")) ?? null;
-    if (!actor || !source || source.type !== "device" || typeof source.update !== "function") {
-      return { ok:false, error:"La fuente de Energía ya no está disponible en el Actor." };
+    const device = actor?.items?.get?.(String(payload.deviceItemId ?? "")) ??
+      Array.from(actor?.items ?? []).find((item)=>String(item?.id??item?._id??"")===String(payload.deviceItemId??"")) ?? null;
+    if (!actor || !device || device.type !== "device") {
+      return { ok:false, error:"El dispositivo o su fuente de Energía ya no están disponibles." };
     }
-    if (!canModify(source)) return { ok:false, error:"El DJ activo no puede modificar la fuente de Energía." };
+    if (!requesterMayModify(actor, requesterId)) return { ok:false, error:"El solicitante no posee permisos para consumir Energía." };
 
-    const consumption = Math.max(0, number(payload.consumption));
-    const flowBonus = Math.max(0, number(payload.flowBonus));
-    return serial("energy:" + source.uuid, async () => {
-      if (String(source.system?.condition ?? "operative") === "disabled") {
-        return { ok:false, error:source.name + " está Deshabilitado y no puede aportar Energía." };
+    return serial("energy:" + actorAuthorityKey(actor), async () => {
+      const supply=resolveDeviceEnergySupply(actor,device);
+      if(!supply.valid) return {ok:false,error:supply.issue};
+      const plan=planDeviceEnergyConsumption(supply,payload.consumption,{flowBonus:payload.flowBonus});
+      if(!plan.valid) return {ok:false,error:plan.issue};
+      const applied=await applyEnergyConsumptionPlan(plan);
+      if(!applied.ok) return applied;
+      return {
+        ok:true,
+        energyCost:plan.energyCost,
+        couplerSurcharge:plan.couplerSurcharge,
+        flow:supply.flow,
+        baseFlow:supply.baseFlow,
+        mode:supply.mode
+      };
+    });
+  }
+
+  if (action === "charge-device-energy") {
+    const actor = await actorFromUuid(String(payload.actorUuid ?? ""));
+    if(!actor) return {ok:false,error:"El Actor de Ingeniería ya no está disponible."};
+    if (!requesterMayModify(actor, requesterId)) return { ok:false, error:"El solicitante no posee permisos para transferir Energía." };
+    const sourceIds=Array.isArray(payload.sourceItemIds)?payload.sourceItemIds.map(String):[];
+    const receiverIds=Array.isArray(payload.receiverItemIds)?payload.receiverItemIds.map(String):[];
+    const allItems=Array.from(actor.items??[]);
+    const getItem=(id)=>actor?.items?.get?.(id) ?? allItems.find((item)=>String(item?.id??item?._id??"")===id) ?? null;
+    const sources=sourceIds.map(getItem).filter(Boolean);
+    const receivers=receiverIds.map(getItem).filter(Boolean);
+    if(sources.length!==sourceIds.length || receivers.length!==receiverIds.length) {
+      return {ok:false,error:"Una fuente o receptor de Energía ya no está disponible."};
+    }
+
+    return serial("energy:" + actorAuthorityKey(actor), async () => {
+      const forced=payload.forced===true;
+      const plan=planDeviceChargeInterval(actor,sources,receivers,{forced});
+      if(!plan.valid) return {ok:false,error:plan.issue};
+      if(plan.transferred<=0 && !(forced && payload.forcedSuccess===false)) {
+        return {ok:false,error:"No existe Energía transferible en este intervalo."};
       }
-      const energy = Math.max(0, number(source.system?.energy?.value));
-      const flow = Math.max(0, number(source.system?.flow));
-      if (consumption > flow + flowBonus) {
-        return { ok:false, error:"Caudal insuficiente en " + source.name + "." };
-      }
-      if (consumption > energy) {
-        return { ok:false, error:source.name + " no tiene Energía suficiente para esta activación." };
-      }
-      if (consumption) await source.update({ "system.energy.value": energy - consumption });
-      return { ok:true, energyBefore:energy, energyAfter:energy - consumption, flow };
+      return applyChargePlan(plan,{forced,forcedSuccess:payload.forcedSuccess===true});
     });
   }
 
@@ -846,40 +937,74 @@ export async function completeCraftingProjectAuthoritatively(project) {
   return craftingAuthority(project, "craft-complete");
 }
 
-export async function consumeDeviceEnergyAuthoritatively(actor, source, consumption, { flowBonus = 0 } = {}) {
+export async function consumeDeviceEnergyAuthoritatively(actor, device, consumption, { flowBonus = 0 } = {}) {
   const amount = Math.max(0, number(consumption));
-  if (!amount) {
-    return {
-      ok:true,
-      energyBefore:Math.max(0, number(source?.system?.energy?.value)),
-      energyAfter:Math.max(0, number(source?.system?.energy?.value)),
-      flow:Math.max(0, number(source?.system?.flow))
-    };
-  }
+  const bonus = Math.max(0, number(flowBonus));
+  const supply=resolveDeviceEnergySupply(actor,device);
+  if(!supply.valid) return {ok:false,error:supply.issue};
+  const plan=planDeviceEnergyConsumption(supply,amount,{flowBonus:bonus});
+  if(!plan.valid) return {ok:false,error:plan.issue};
+  if(!amount && !plan.energyCost) return {ok:true,energyCost:0,couplerSurcharge:0,flow:supply.flow,baseFlow:supply.baseFlow,mode:supply.mode};
 
   if (runtimeSocketAvailable()) {
     const gm = primaryActiveGm(activeUsers());
     if (!gm) return { ok:false, error:"Se requiere un DJ activo para serializar el consumo de Energía." };
-    if (!actor?.uuid || !source?.id) return { ok:false, error:"La fuente de Energía no posee identidad persistente." };
+    if (!actor?.uuid || !device?.id) return { ok:false, error:"El dispositivo no posee identidad persistente." };
     return requestPrimaryGm("consume-device-energy", {
       actorUuid:actor.uuid,
-      sourceItemId:source.id,
+      deviceItemId:device.id,
       consumption:amount,
-      flowBonus:Math.max(0, number(flowBonus))
+      flowBonus:bonus
     });
   }
 
-  if (!canModify(source)) return { ok:false, error:"No hay permisos para consumir la fuente de Energía." };
-  return serial("energy-local:" + (source.uuid ?? source.id ?? source.name), async () => {
-    if (String(source.system?.condition ?? "operative") === "disabled") {
-      return { ok:false, error:source.name + " está Deshabilitado y no puede aportar Energía." };
+  if (!canModify(actor)) return { ok:false, error:"No hay permisos para consumir Energía del Actor." };
+  return serial("energy-local:" + actorAuthorityKey(actor), async () => {
+    const currentSupply=resolveDeviceEnergySupply(actor,device);
+    if(!currentSupply.valid) return {ok:false,error:currentSupply.issue};
+    const currentPlan=planDeviceEnergyConsumption(currentSupply,amount,{flowBonus:bonus});
+    if(!currentPlan.valid) return {ok:false,error:currentPlan.issue};
+    const applied=await applyEnergyConsumptionPlan(currentPlan);
+    return applied.ok ? {
+      ok:true,
+      energyCost:currentPlan.energyCost,
+      couplerSurcharge:currentPlan.couplerSurcharge,
+      flow:currentSupply.flow,
+      baseFlow:currentSupply.baseFlow,
+      mode:currentSupply.mode
+    } : applied;
+  });
+}
+
+export async function chargeDeviceEnergyAuthoritatively(actor, sourceItems, receiverItems, {
+  forced=false,
+  forcedSuccess=false
+}={}) {
+  const sources=Array.from(sourceItems??[]);
+  const receivers=Array.from(receiverItems??[]);
+  const sourceIds=sources.map((item)=>String(item?.id??item?._id??"")).filter(Boolean);
+  const receiverIds=receivers.map((item)=>String(item?.id??item?._id??"")).filter(Boolean);
+
+  if(runtimeSocketAvailable()){
+    const gm=primaryActiveGm(activeUsers());
+    if(!gm) return {ok:false,error:"Se requiere un DJ activo para serializar la transferencia de Energía."};
+    if(!actor?.uuid || sourceIds.length!==sources.length || receiverIds.length!==receivers.length) {
+      return {ok:false,error:"Fuentes/receptores de Energía sin identidad persistente."};
     }
-    const energy = Math.max(0, number(source.system?.energy?.value));
-    const flow = Math.max(0, number(source.system?.flow));
-    const bonus = Math.max(0, number(flowBonus));
-    if (amount > flow + bonus) return { ok:false, error:"Caudal insuficiente en " + source.name + "." };
-    if (amount > energy) return { ok:false, error:source.name + " no tiene Energía suficiente para esta activación." };
-    await source.update({ "system.energy.value": energy - amount });
-    return { ok:true, energyBefore:energy, energyAfter:energy - amount, flow };
+    return requestPrimaryGm("charge-device-energy",{
+      actorUuid:actor.uuid,
+      sourceItemIds:sourceIds,
+      receiverItemIds:receiverIds,
+      forced:forced===true,
+      forcedSuccess:forcedSuccess===true
+    });
+  }
+
+  if(!canModify(actor)) return {ok:false,error:"No hay permisos para transferir Energía del Actor."};
+  return serial("energy-local:"+actorAuthorityKey(actor),async()=>{
+    const plan=planDeviceChargeInterval(actor,sources,receivers,{forced});
+    if(!plan.valid) return {ok:false,error:plan.issue};
+    if(plan.transferred<=0 && !(forced && forcedSuccess===false)) return {ok:false,error:"No existe Energía transferible en este intervalo."};
+    return applyChargePlan(plan,{forced,forcedSuccess});
   });
 }

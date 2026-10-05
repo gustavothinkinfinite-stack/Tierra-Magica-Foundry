@@ -657,8 +657,11 @@
         "max": 0
       },
       "energySourceItemId": "",
+      "energySourceItemIds": [],
+      "energyLinkMode": "single",
       "flow": 0,
-      "stability": "stable",
+      "chargingFlow": 0,
+      "stability": 0,
       "consumption": 0,
       "activation": "Acción",
       "kineticDefense": false,
