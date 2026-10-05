@@ -1,3 +1,13 @@
+## Publicación v1.3.0 — 2026-10-05
+
+- **v1.3.0 fue publicada** desde el commit `4dcf08f5924f68f9373bda7bdfb8034415cefe2b` mediante `Publicar sistema #37344445970`.
+- GitHub reconoce v1.3.0 como la release **Latest**, no prerelease.
+- Assets publicados: `system.json` y `tierra-magica.zip`.
+- El workflow ejecutó la validación completa, reconstruyó los cuatro Compendios, verificó el staging runtime y publicó correctamente.
+- SHA-256 `system.json`: `021084d6230b262ed5af40cfe961a6a024e7a54cd920dfa6973cb154ed7e2880`.
+- SHA-256 `tierra-magica.zip`: `982e1c69044a3b53d9bcc96c35e77670a02d57263daf7ffd79be545eed8d4d5e`.
+- El canal estable `releases/latest/download/system.json` queda actualizado a v1.3.0.
+
 ## 1.3.0 — Catálogos maestros de equipo — 2026-10-05
 
 - Integra **CAT-01…11, ARM-01, ESC-01 y EQP-01** sobre la base ya cerrada de CRAFT-13.
