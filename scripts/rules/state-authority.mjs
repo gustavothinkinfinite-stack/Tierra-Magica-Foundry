@@ -527,8 +527,9 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
 
   if (action === "consume-device-energy") {
     const actor = await actorFromUuid(String(payload.actorUuid ?? ""));
-    const device = actor?.items?.get?.(String(payload.deviceItemId ?? "")) ??
-      Array.from(actor?.items ?? []).find((item)=>String(item?.id??item?._id??"")===String(payload.deviceItemId??"")) ?? null;
+    const deviceId=String(payload.deviceItemId ?? payload.sourceItemId ?? "");
+    const device = actor?.items?.get?.(deviceId) ??
+      Array.from(actor?.items ?? []).find((item)=>String(item?.id??item?._id??"")===deviceId) ?? null;
     if (!actor || !device || device.type !== "device") {
       return { ok:false, error:"El dispositivo o su fuente de Energía ya no están disponibles." };
     }
@@ -958,7 +959,7 @@ export async function consumeDeviceEnergyAuthoritatively(actor, device, consumpt
     });
   }
 
-  if (!canModify(actor)) return { ok:false, error:"No hay permisos para consumir Energía del Actor." };
+  if (!canModify(device)) return { ok:false, error:"No hay permisos para consumir esta fuente de Energía." };
   return serial("energy-local:" + actorAuthorityKey(actor), async () => {
     const currentSupply=resolveDeviceEnergySupply(actor,device);
     if(!currentSupply.valid) return {ok:false,error:currentSupply.issue};
