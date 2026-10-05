@@ -1,3 +1,18 @@
+## 1.3.0 — Catálogos maestros de equipo — 2026-10-05
+
+- Integra **CAT-01…11, ARM-01, ESC-01 y EQP-01** sobre la base ya cerrada de CRAFT-13.
+- El catálogo de armas pasa a **29 perfiles canónicos + 171 variantes aprobadas = 200 armas runtime**.
+- Armaduras: **5 perfiles canónicos + 89 variantes aprobadas = 94 armaduras runtime**.
+- Escudos: **3 perfiles canónicos + 51 variantes aprobadas = 54 escudos runtime**.
+- Equipo: **25 objetos canónicos** añadidos al catálogo runtime.
+- El Manual Maestro queda sincronizado con nombres, perfiles, límites y estados de esos catálogos.
+- Se preserva el canon posterior a v1.2.0: Potencia N, Arco largo Pen 1, Armadura pesada FUE mínima 3, Proyectil Ígneo Daño 6/Pen 2 y Aguja Gélida Pen 2.
+- Las propuestas no cerradas **no se promocionan por inferencia**: 44 armas pendientes, 6 armaduras especiales, 6 escudos especiales, 65 equipos mundanos sin auditoría de precio/uso y 10 equipos especiales continúan fuera del runtime hasta tener Perfil explícito.
+- Los bloqueadores históricos de CRAFT-13 se actualizan: la infraestructura de Materiales Especiales, Device, Energía y crafting ya existe; lo pendiente es declarar perfiles concretos por propuesta.
+- Se añaden regresiones específicas de catálogos y sincronización del Manual Maestro.
+- La rama de catálogo fue reconciliada contra v1.2.0, quedó 0 commits detrás de `main` y superó validación integral antes de fusionarse.
+- Release objetivo: Foundry VTT mínimo 13, verificado 14; sin migración destructiva deliberada de campañas existentes.
+
 ## Publicación v1.2.0 — 2026-10-05
 
 - **v1.2.0 fue publicada** desde el commit `9bcd67977851b9520127d990658e322a2862b518` mediante `Publicar sistema #37332788328`.
@@ -51,7 +66,7 @@
 - Se añadieron regresiones específicas de identidad, idiomas, catálogo y perfil simplificado de Familiar.
 - GitHub Actions **Validate** queda verde al cierre de CREA-14.
 
-## En desarrollo — trasfondo de pueblos jugables
+## Incluido antes de v1.2.0 — trasfondo de pueblos jugables
 
 - Cada uno de los 12 paquetes raciales jugables incluye ahora un bloque breve de **Trasfondo** antes de sus reglas.
 - Los resúmenes proceden del canon ya integrado: Primera Semilla, Primera Forja, Primera Guerra, Primera Elección y Primer Tránsito.
@@ -61,7 +76,7 @@
 - Se limpian referencias históricas del propio Manual Maestro que todavía trataban los paquetes de Humanos, Ankar o pueblos de Eïra como trabajo futuro.
 - El trasfondo ampliado permanece dentro del mismo Manual Maestro; no se crea una enciclopedia racial paralela.
 
-## En desarrollo — paquetes raciales jugables v0.3
+## Incluido antes de v1.2.0 — paquetes raciales jugables v0.3
 
 - Integra en `docs/Tierra_Magica_Manual_Maestro.md` los 12 paquetes raciales jugables: Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios/Anihombres, Feéricos, Ankar, Cristálidos, Verdantes, Micelios y Coralios.
 - Los paquetes se equilibran aparte de 25 PD y 3 PR; cultura, Origen, profesión, religión, personalidad y moral permanecen separados.
@@ -71,7 +86,7 @@
 - Archiva la antigua resolución A5 que descartaba paquetes raciales y elimina su condición de autoridad paralela.
 - No se crea un documento racial separado: el Manual Maestro es la única definición racial vigente.
 
-## En desarrollo — viajes y movimiento terrestre
+## Incluido antes de v1.2.0 — viajes y movimiento terrestre
 
 - Añade viaje de larga distancia a pie, caballo y carreta.
 - Jornada estándar de 8 horas: 24 km a pie, 40 km a caballo y 24 km en carreta por camino mantenido.
@@ -83,7 +98,7 @@
 - Forraje: 2 horas, DF 10/13/16/19 y 1/2/4 raciones por grado.
 - Ferrocarriles, dirigibles y embarcaciones permanecen dependientes de perfiles/rutas específicas.
 
-## En desarrollo — equipo y suministros
+## Incluido antes de v1.2.0 — equipo y suministros
 
 - El capítulo 9 pasa a **Armas, armaduras, equipo y suministros**.
 - Explica cómo leer armas y qué propiedades poseen efecto mecánico real.
@@ -93,7 +108,7 @@
 - Se mantiene explícitamente fuera del núcleo un sistema universal de hambre, sed, peso o slots de inventario.
 - Economía y capítulo práctico quedan enlazados y las unidades comerciales se mantienen sincronizadas.
 
-## En desarrollo — guía práctica de Habilidades
+## Incluido antes de v1.2.0 — guía práctica de Habilidades
 
 - El Manual Maestro explica operativamente las **26 Habilidades** canónicas.
 - Cada Habilidad define Atributo sugerido, usos frecuentes, límites, oposición y fronteras con competencias vecinas.
@@ -103,7 +118,7 @@
 - Se fijan fronteras Investigación/Supervivencia/Naturaleza, Empatía/Engaño, Ingeniería/Artesanía, Alquimia/Medicina, Arcana/Canalización/Ritualismo y Manejo/Pilotaje.
 - Se añade regresión que compara el Manual contra las 26 definiciones de `TM_CONFIG.skills`.
 
-## En desarrollo — situaciones y maniobras de combate
+## Incluido antes de v1.2.0 — situaciones y maniobras de combate
 
 - Cierra Derribar, Empujar, Agarrar y Desarmar como maniobras universales contra Defensa de Maniobra.
 - Añade Intimidar/Amenazar en combate sin convertirlo en hard control.
