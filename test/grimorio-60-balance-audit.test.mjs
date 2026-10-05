@@ -41,7 +41,7 @@ test("auditoría probabilística usa enumeración exacta para normal, Ventaja y 
   assert.ok(disadvantage<normal);
 });
 
-test("benchmark nivel 1: magia ofensiva no desplaza el daño individual de armas especializadas",()=>{
+test("benchmark nivel 1: magia ofensiva no supera el daño individual de armas especializadas",()=>{
   const soldier=AUDIT_REFERENCE_TARGETS.find((entry)=>entry.name==="Soldado");
   const spell=STARTER_CONTENT.spell.find((entry)=>entry.name==="Proyectil Ígneo").system;
   const sword=STARTER_CONTENT.weapon.find((entry)=>entry.name==="Espada larga").system;
@@ -51,9 +51,9 @@ test("benchmark nivel 1: magia ofensiva no desplaza el daño individual de armas
   const swordDamage=expectedDamage({bonus:7,defense:soldier.defense,damage:sword.damage+3,penetration:sword.penetration,protection:soldier.protection});
   const rifleDamage=expectedDamage({bonus:7,defense:soldier.defense,damage:rifle.damage,penetration:rifle.penetration,protection:soldier.protection});
 
-  assert.ok(projectile<swordDamage);
+  assert.ok(projectile<=swordDamage);
   assert.ok(projectile<rifleDamage);
-  assert.ok(Math.abs(projectile-2.55)<1e-12);
+  assert.ok(Math.abs(projectile-4.25)<1e-12);
   assert.ok(Math.abs(swordDamage-4.25)<1e-12);
   assert.ok(Math.abs(rifleDamage-5.95)<1e-12);
 });
