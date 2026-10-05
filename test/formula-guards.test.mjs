@@ -22,7 +22,8 @@ test("las fórmulas automatizadas usan identidad estable por slug", async () => 
 
 test("renombrar una fórmula automatizada no cambia su ruta mecánica", async () => {
   class FormulaActor {
-    constructor(){ this.calls=0; }
+    constructor(){ this.calls=0; this.isOwner=true; }
+    async update(){ return true; }
     async useFormula(item){ this.calls+=1; return {item}; }
   }
   const { installFormulaGuards } = await import("../scripts/rules/formula-guards.mjs");

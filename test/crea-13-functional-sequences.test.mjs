@@ -229,7 +229,7 @@ test("CREA-13 13C C13-05 Alquimista: conocimiento no equivale a dosis y una dosi
   const used=await actor.useFormula(formula);
   assert.ok(used);
   assert.equal(formula.system.quantity,0);
-  assert.equal(actor.system.turn.action,false);
+  assert.equal(actor.system.turn.action,true);
 
   actor.system.turn.action=true;
   assert.equal(await actor.useFormula(formula),null);

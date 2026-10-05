@@ -156,26 +156,6 @@ async function authorityReceiptDocument(action, payload = {}) {
   if (["claim-kinetic", "claim-parry", "resolve-parry", "claim-counterattack", "apply-health-damage", "apply-health-healing"].includes(action)) {
     return actorFromUuid(String(payload.targetUuid ?? ""));
   }
-  if (action === "formula-use") {
-    const actor=await actorFromUuid(String(payload.actorUuid??""));
-    if(!actor) return {ok:false,error:"El Actor de Alquimia ya no está disponible."};
-    if(!requesterMayModify(actor,requesterId)) return {ok:false,error:"El solicitante no posee permisos para usar una Fórmula de este Actor."};
-    const item=actorOwnedItem(actor,String(payload.itemUuid??""));
-    if(!item || item.type!=="formula") return {ok:false,error:"La dosis alquímica ya no está disponible."};
-    return serial("formula:"+actorAuthorityKey(actor),()=>actor.useFormula(item,{tmAuthority:true}));
-  }
-
-  if (action === "craft-magic-runtime") {
-    const actor=await actorFromUuid(String(payload.actorUuid??""));
-    if(!actor) return {ok:false,error:"El Actor de magia de crafting ya no está disponible."};
-    if(!requesterMayModify(actor,requesterId)) return {ok:false,error:"El solicitante no posee permisos para usar esta magia de crafting."};
-    const operation=String(payload.operation??"");
-    const targetKey=["trigger-trap","trigger-seal"].includes(operation) && payload.targetActorUuid
-      ? "craft-magic-event:"+String(payload.targetActorUuid)
-      : "craft-magic:"+actorAuthorityKey(actor);
-    return serial(targetKey,()=>executeCraftingMagicRuntime(actor,operation,payload));
-  }
-
   if (["craft-prepare", "craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete", "craft-research-resolve"].includes(action)) {
     return actorFromUuid(String(payload.projectUuid ?? ""));
   }
@@ -446,6 +426,13 @@ function actorOwnedItem(actor, reference="") {
   )??null;
 }
 
+async function executeFormulaUseRuntime(actor,item) {
+  const result=await actor.useFormula(item,{tmAuthority:true});
+  if(result?.ok===false) return result;
+  if(!result) return {ok:false,error:"La Fórmula no pudo consumirse o su aplicación fue rechazada."};
+  return {ok:true,result};
+}
+
 async function executeCraftingMagicRuntime(actor,operation,payload={}) {
   const item=(key)=>actorOwnedItem(actor,payload[key]);
   const target=payload.targetActor ?? await actorFromUuid(String(payload.targetActorUuid??""));
@@ -609,6 +596,26 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
     if (!requesterMayUpdate) return { ok:false, error:"El solicitante no posee permisos para modificar directamente la Vida del objetivo." };
     if (action === "apply-health-damage") return mutateHealth(target, { damage:payload.amount });
     return mutateHealth(target, { healing:payload.amount });
+  }
+
+  if (action === "formula-use") {
+    const actor=await actorFromUuid(String(payload.actorUuid??""));
+    if(!actor) return {ok:false,error:"El Actor de Alquimia ya no está disponible."};
+    if(!requesterMayModify(actor,requesterId)) return {ok:false,error:"El solicitante no posee permisos para usar una Fórmula de este Actor."};
+    const item=actorOwnedItem(actor,String(payload.itemUuid??""));
+    if(!item || item.type!=="formula") return {ok:false,error:"La dosis alquímica ya no está disponible."};
+    return serial("formula:"+actorAuthorityKey(actor),()=>executeFormulaUseRuntime(actor,item));
+  }
+
+  if (action === "craft-magic-runtime") {
+    const actor=await actorFromUuid(String(payload.actorUuid??""));
+    if(!actor) return {ok:false,error:"El Actor de magia de crafting ya no está disponible."};
+    if(!requesterMayModify(actor,requesterId)) return {ok:false,error:"El solicitante no posee permisos para usar esta magia de crafting."};
+    const operation=String(payload.operation??"");
+    const targetKey=["trigger-trap","trigger-seal"].includes(operation) && payload.targetActorUuid
+      ? "craft-magic-event:"+String(payload.targetActorUuid)
+      : "craft-magic:"+actorAuthorityKey(actor);
+    return serial(targetKey,()=>executeCraftingMagicRuntime(actor,operation,payload));
   }
 
   if (["craft-prepare", "craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete", "craft-research-resolve"].includes(action)) {
@@ -1023,7 +1030,7 @@ export async function useFormulaAuthoritatively(actor,item) {
     return requestPrimaryGm("formula-use",{actorUuid:actor.uuid,itemUuid:item.uuid});
   }
   if(!canModify(actor)) return {ok:false,error:"No hay permisos para usar esta Fórmula."};
-  return serial("formula-local:"+actorAuthorityKey(actor),()=>actor.useFormula(item,{tmAuthority:true}));
+  return serial("formula-local:"+actorAuthorityKey(actor),()=>executeFormulaUseRuntime(actor,item));
 }
 
 export async function craftingMagicMutationAuthoritatively(actor,operation,payload={}) {
