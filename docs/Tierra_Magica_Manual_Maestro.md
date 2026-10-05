@@ -940,7 +940,7 @@ Ataques y respuestas preparados:
 
 - **Espada corta:** ataque **2d10 + 5** = AGI 3 + Armas Ligeras 2; Daño **5** = base 4 + FUE 1; Pen 0.
 - **Daga:** ataque **2d10 + 5**; Daño **3**; Pen 0.
-- **Proyectil Ígneo:** ataque **2d10 + 4** = INT 2 + Canalización 2 contra Defensa; Daño 5, Pen 1, pagando su Maná.
+- **Proyectil Ígneo:** ataque **2d10 + 4** = INT 2 + Canalización 2 contra Defensa; Daño 6, Pen 2, pagando su Maná.
 - **Parada:** Reacción contra un ataque cuerpo a cuerpo parable; Defensa **17** contra ese ataque.
 - **Barrera Cinética:** Reacción; +2 Defensa contra el ataque declarado según su entrada.
 - **Sentido Agudo (vista):** +1 PER sólo cuando distinguir detalles visuales sutiles sea determinante.
@@ -2145,6 +2145,33 @@ Un humanoide Mediano tiene como referencia Movimiento 6, aproximadamente 9 metro
 
 Las bandas narrativas de distancia son Contacto, Cerca, Media, Lejos y Extrema. Cuando se usa cuadrícula, la geometría concreta prevalece. La cobertura parcial concede normalmente +2 Defensa; una cobertura total impide ser objetivo directo si no existe una línea válida. Tierra Mágica no concede un bono universal por rodear a un enemigo.
 
+### Retirada en combate
+
+Alejarse de un enemigo que te amenaza activamente no permite utilizar toda tu velocidad con libertad. Mientras retrocede, el personaje debe mantener la guardia, controlar la distancia, evitar exponer zonas vulnerables y estar preparado para responder a los movimientos del adversario.
+
+**Regla:** si una criatura comienza un desplazamiento dentro del alcance cuerpo a cuerpo de un enemigo consciente y capaz de combatir, y se aleja voluntariamente de él, dispone para esa retirada de **la mitad de su Movimiento normal, redondeando hacia abajo**.
+
+Ejemplos:
+
+- Movimiento 5 -> retirada máxima 2;
+- Movimiento 6 -> retirada máxima 3;
+- Movimiento 7 -> retirada máxima 3;
+- Movimiento 10 -> retirada máxima 5.
+
+Esta reducción representa el cuidado necesario para abandonar un enfrentamiento sin simplemente darle la espalda al adversario.
+
+**Correr para escapar.** Una criatura puede gastar su Acción en Correr después de iniciar una retirada. El tramo adicional concedido por Correr utiliza su Movimiento normal completo y no vuelve a reducirse a la mitad. De este modo, abandonar realmente un combate sigue siendo posible, pero exige sacrificar la Acción que podría haberse utilizado para atacar.
+
+La reducción no se aplica a:
+
+- desplazamiento forzado;
+- teletransporte;
+- una criatura Incapacitada o Inconsciente;
+- un enemigo que ya no pueda amenazar físicamente al personaje;
+- situaciones en las que el personaje no esté realmente abandonando el alcance cuerpo a cuerpo de una amenaza activa.
+
+Salir del alcance cuerpo a cuerpo no provoca por sí mismo un Ataque de Oportunidad universal.
+
 ### Viajes y desplazamiento de larga distancia
 
 El Movimiento de combate no se multiplica directamente para calcular kilómetros por día. Un viaje incluye pausas, orientación, comida, agua, terreno, cuidado de monturas y preparación de campamento.
@@ -2657,6 +2684,7 @@ El Movimiento puede gastarse en varios tramos. Reglas frecuentes:
 | Situación | Coste / efecto |
 |---|---|
 | Desplazamiento ordinario | 1 punto por espacio |
+| Retirada en combate | al alejarse voluntariamente desde el alcance cuerpo a cuerpo de una amenaza activa, usa como máximo la mitad del Movimiento normal, redondeando hacia abajo; Correr añade después un tramo completo |
 | Terreno difícil | 2 puntos por espacio |
 | Levantarse desde Derribado | normalmente 2 puntos |
 | Recoger un objeto accesible del suelo | normalmente 2 puntos |
@@ -3051,7 +3079,7 @@ Algunas propiedades poseen una función mecánica expresa; otras describen const
 | **Alcance** | Cumple requisitos que mencionan arma de Alcance, como Recibir Carga. No añade por sí sola un número universal de espacios de alcance. |
 | **Pesada** | Identifica armamento de gran masa/tamaño y normalmente usa Armas Pesadas. Sus requisitos de FUE, manos y otras propiedades siguen aplicándose. |
 | **2 manos** | Requiere ambas manos disponibles para utilizar el arma normalmente. Un objeto sostenido con dos manos recibe además la protección contra Desarmar definida en Escala y maniobras. |
-| **Potencia N** | Clasifica la potencia física de un arco. No se suma como un +N adicional. El perfil del arma determina si FUE participa en su daño. |
+| **Potencia N** | En un arco, añade FUE al daño hasta un máximo de N puntos de FUE. Potencia N no es un bono separado: limita cuánto de la FUE del usuario puede añadirse al daño del arco. |
 | **Recarga N** | Después de disparar, requiere N Acciones de Recarga antes del siguiente disparo. Recarga Experta puede reducir ese coste en 1 respetando los mínimos físicos. |
 | **Repetición** | Describe un mecanismo de repetición. El núcleo actual no concede ataques adicionales, cargador infinito ni una capacidad universal de ráfaga por esta etiqueta. |
 
@@ -3074,7 +3102,7 @@ Cuando una propiedad descriptiva deba producir un modificador numérico concreto
 | Gran hacha | 8 | 0 | 3 | 5 o | Pesada, 2 manos |
 | Gran martillo | 7 | 2 | 3 | 5 o | Pesada, 2 manos |
 | Arco corto | 4 | 0 | — | 1 o | Potencia 2 |
-| Arco largo | 5 | 0 | — | 2 o | Potencia 3, 2 manos |
+| Arco largo | 5 | 1 | — | 2 o | Potencia 3, 2 manos |
 | Ballesta | 6 | 1 | — | 3 o | Recarga 1 |
 | Ballesta pesada | 8 | 2 | — | 5 o | Recarga 2, 2 manos |
 | Pistola temprana | 6 | 2 | — | 10 o | Recarga 2 |
@@ -3082,7 +3110,7 @@ Cuando una propiedad descriptiva deba producir un modificador numérico concreto
 | Pistola repetidora | 6 | 1 | — | 35 o | Repetición |
 | Rifle repetidor | 7 | 2 | — | 45 o | Repetición, 2 manos |
 
-Los arcos pueden añadir FUE al daño cuando el perfil del arma lo establece; **Potencia N no es un bono adicional**. Ballestas y armas de fuego no añaden FUE al daño salvo regla expresa.
+Los arcos con **Potencia N** añaden FUE al daño hasta un máximo de N puntos de FUE. Por ejemplo, un arco largo Potencia 3 utilizado por un personaje con FUE 2 añade +2 al daño; con FUE 4 añade como máximo +3. Potencia N no es un bono adicional separado. Ballestas y armas de fuego no añaden FUE al daño salvo regla expresa.
 
 ### Munición y Recarga
 
@@ -3093,6 +3121,13 @@ Unidades comerciales canónicas:
 - 20 flechas = **2 p**;
 - 20 virotes = **3 p**;
 - 12 disparos ordinarios de arma de fuego = **5 p**.
+
+**Munición perforante.** Flechas y virotes pueden adquirirse en versión perforante. Cada unidad consumida concede **Pen +1** al disparo realizado con ella, hasta **Pen 3** por esta vía. Este aumento se suma a la Penetración base del arma, pero no se acumula con otra munición especial equivalente aplicada al mismo disparo.
+
+- 20 flechas perforantes = **4 p**;
+- 20 virotes perforantes = **6 p**.
+
+La munición perforante no aumenta Daño, no modifica la tirada de ataque y se consume normalmente aunque el disparo falle.
 
 La compra cubre esa cantidad física real. Dividir el lote divide también su valor proporcional.
 
@@ -3107,7 +3142,7 @@ No existe un porcentaje universal de recuperación de flechas o virotes después
 | Armadura ligera | 1 | 0 | 1 o 5 p |
 | Armadura reforzada | 2 | 0 | 4 o |
 | Malla | 3 | 1 | 10 o |
-| Armadura pesada | 4 | 2 | 16 o |
+| Armadura pesada | 4 | 3 | 16 o |
 | Placas | 5 | 3 | 40 o |
 
 Sólo se aplica la **Protección relevante más alta** entre capas equivalentes salvo regla expresa. Vestir varias armaduras no suma toda su Protección.
@@ -3910,10 +3945,10 @@ Los costes de PD por Grado son los definidos en Magia: Menor 1 PD, Básico 2 PD,
 | Hechizo | Grado | Maná | Resolución canónica |
 |---|---:|---:|---|
 | Luz Arcana | Menor | 2 | Crea luz arcana real en un punto u objeto a hasta 3 espacios; ilumina aproximadamente 4 espacios durante una Escena. No revela invisibilidad, no ciega y no detecta magia. |
-| Proyectil Ígneo | Básico | 3 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 1. |
+| Proyectil Ígneo | Básico | 3 | INT + Canalización contra Defensa; alcance Medio; Daño 6, Pen 2. |
 | Onda de Choque | Básico | 4 | Área frontal corta; Daño 4, Pen 0; una tirada se compara con la Defensa de cada objetivo. Empuja 1 espacio cuando corresponda; aliados incluidos salvo discriminación expresa. |
 | Barrera Cinética | Básico | 3 | Reacción; +2 Defensa normal sólo contra el ataque declarado; se consume al resolverlo. |
-| Aguja Gélida | Avanzado | 5 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 1. Si impacta, Movimiento -2 hasta el final del siguiente turno del objetivo, mínimo 1. No se acumula; repetir refresca. |
+| Aguja Gélida | Avanzado | 5 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 2. Si impacta, Movimiento -2 hasta el final del siguiente turno del objetivo, mínimo 1. No se acumula; repetir refresca. |
 | Arco Fulminante | Avanzado | 6 | INT + Canalización contra Defensa; Daño 4, Pen 1. Cadena selectiva de hasta 3 objetivos; cada objetivo posterior debe estar a 3 espacios o menos del anterior. Un Actor sólo recibe un impacto. |
 | Martillo Cinético | Avanzado | 5 | INT + Canalización contra Defensa Corporal; alcance Medio; Daño 3. Desplaza 2 espacios a Escala igual/menor, 1 a una categoría mayor y 0 a dos o más categorías mayor o anclada. |
 | Pantalla Cinética | Maestro | 8 | Sostenida, máximo una Escena. Pantalla de hasta 3 espacios que cuenta como cobertura cinética +2 Defensa contra ataques que la atraviesan. No se acumula con cobertura equivalente y no es pared física. |
@@ -7118,7 +7153,7 @@ Si la activación es válida y el gasto de RE ya fue comprometido, una interfere
 - RE 10.
 - ataque: 2d10 +6 contra Defensa.
 - coste 5 RE.
-- conserva Daño 5, Pen 1 y Movimiento -2 conforme al hechizo.
+- conserva Daño 5, Pen 2 y Movimiento -2 conforme al hechizo.
 - permite hasta 2 usos con reserva completa.
 
 ##### Capa de Invisibilidad
@@ -8923,7 +8958,7 @@ Soporte Dedicado II + Encantamiento II.
 - **VR final:** **35 o**.
 - **Sintonización:** 2.
 - **RE/PE:** 10 / +6.
-- **Uso:** 5 RE; ataque 2d10 +6; Daño 5, Pen 1, Movimiento -2 conforme al hechizo.
+- **Uso:** 5 RE; ataque 2d10 +6; Daño 5, Pen 2, Movimiento -2 conforme al hechizo.
 - **Requisitos:** Ritualismo Gran Maestro; Arcana Maestra · Artefactos mágicos; Artesanía Maestra; instalación Excepcional.
 
 ### REF-MAG-03 — Capa de Invisibilidad
