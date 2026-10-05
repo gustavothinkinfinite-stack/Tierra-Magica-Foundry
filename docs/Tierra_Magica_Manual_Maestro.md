@@ -3079,7 +3079,7 @@ Algunas propiedades poseen una función mecánica expresa; otras describen const
 | **Alcance** | Cumple requisitos que mencionan arma de Alcance, como Recibir Carga. No añade por sí sola un número universal de espacios de alcance. |
 | **Pesada** | Identifica armamento de gran masa/tamaño y normalmente usa Armas Pesadas. Sus requisitos de FUE, manos y otras propiedades siguen aplicándose. |
 | **2 manos** | Requiere ambas manos disponibles para utilizar el arma normalmente. Un objeto sostenido con dos manos recibe además la protección contra Desarmar definida en Escala y maniobras. |
-| **Potencia N** | Clasifica la potencia física de un arco. No se suma como un +N adicional. El perfil del arma determina si FUE participa en su daño. |
+| **Potencia N** | En un arco, añade FUE al daño hasta un máximo de N puntos de FUE. Potencia N no es un bono separado: limita cuánto de la FUE del usuario puede añadirse al daño del arco. |
 | **Recarga N** | Después de disparar, requiere N Acciones de Recarga antes del siguiente disparo. Recarga Experta puede reducir ese coste en 1 respetando los mínimos físicos. |
 | **Repetición** | Describe un mecanismo de repetición. El núcleo actual no concede ataques adicionales, cargador infinito ni una capacidad universal de ráfaga por esta etiqueta. |
 
@@ -3110,7 +3110,7 @@ Cuando una propiedad descriptiva deba producir un modificador numérico concreto
 | Pistola repetidora | 6 | 1 | — | 35 o | Repetición |
 | Rifle repetidor | 7 | 2 | — | 45 o | Repetición, 2 manos |
 
-Los arcos pueden añadir FUE al daño cuando el perfil del arma lo establece; **Potencia N no es un bono adicional**. Ballestas y armas de fuego no añaden FUE al daño salvo regla expresa.
+Los arcos con **Potencia N** añaden FUE al daño hasta un máximo de N puntos de FUE. Por ejemplo, un arco largo Potencia 3 utilizado por un personaje con FUE 2 añade +2 al daño; con FUE 4 añade como máximo +3. Potencia N no es un bono adicional separado. Ballestas y armas de fuego no añaden FUE al daño salvo regla expresa.
 
 ### Munición y Recarga
 
@@ -3945,7 +3945,7 @@ Los costes de PD por Grado son los definidos en Magia: Menor 1 PD, Básico 2 PD,
 | Hechizo | Grado | Maná | Resolución canónica |
 |---|---:|---:|---|
 | Luz Arcana | Menor | 2 | Crea luz arcana real en un punto u objeto a hasta 3 espacios; ilumina aproximadamente 4 espacios durante una Escena. No revela invisibilidad, no ciega y no detecta magia. |
-| Proyectil Ígneo | Básico | 3 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 2. |
+| Proyectil Ígneo | Básico | 3 | INT + Canalización contra Defensa; alcance Medio; Daño 6, Pen 2. |
 | Onda de Choque | Básico | 4 | Área frontal corta; Daño 4, Pen 0; una tirada se compara con la Defensa de cada objetivo. Empuja 1 espacio cuando corresponda; aliados incluidos salvo discriminación expresa. |
 | Barrera Cinética | Básico | 3 | Reacción; +2 Defensa normal sólo contra el ataque declarado; se consume al resolverlo. |
 | Aguja Gélida | Avanzado | 5 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 2. Si impacta, Movimiento -2 hasta el final del siguiente turno del objetivo, mínimo 1. No se acumula; repetir refresca. |
