@@ -940,7 +940,7 @@ Ataques y respuestas preparados:
 
 - **Espada corta:** ataque **2d10 + 5** = AGI 3 + Armas Ligeras 2; Daño **5** = base 4 + FUE 1; Pen 0.
 - **Daga:** ataque **2d10 + 5**; Daño **3**; Pen 0.
-- **Proyectil Ígneo:** ataque **2d10 + 4** = INT 2 + Canalización 2 contra Defensa; Daño 5, Pen 1, pagando su Maná.
+- **Proyectil Ígneo:** ataque **2d10 + 4** = INT 2 + Canalización 2 contra Defensa; Daño 5, Pen 2, pagando su Maná.
 - **Parada:** Reacción contra un ataque cuerpo a cuerpo parable; Defensa **17** contra ese ataque.
 - **Barrera Cinética:** Reacción; +2 Defensa contra el ataque declarado según su entrada.
 - **Sentido Agudo (vista):** +1 PER sólo cuando distinguir detalles visuales sutiles sea determinante.
@@ -7153,7 +7153,7 @@ Si la activación es válida y el gasto de RE ya fue comprometido, una interfere
 - RE 10.
 - ataque: 2d10 +6 contra Defensa.
 - coste 5 RE.
-- conserva Daño 5, Pen 1 y Movimiento -2 conforme al hechizo.
+- conserva Daño 5, Pen 2 y Movimiento -2 conforme al hechizo.
 - permite hasta 2 usos con reserva completa.
 
 ##### Capa de Invisibilidad
@@ -8958,7 +8958,7 @@ Soporte Dedicado II + Encantamiento II.
 - **VR final:** **35 o**.
 - **Sintonización:** 2.
 - **RE/PE:** 10 / +6.
-- **Uso:** 5 RE; ataque 2d10 +6; Daño 5, Pen 1, Movimiento -2 conforme al hechizo.
+- **Uso:** 5 RE; ataque 2d10 +6; Daño 5, Pen 2, Movimiento -2 conforme al hechizo.
 - **Requisitos:** Ritualismo Gran Maestro; Arcana Maestra · Artefactos mágicos; Artesanía Maestra; instalación Excepcional.
 
 ### REF-MAG-03 — Capa de Invisibilidad
