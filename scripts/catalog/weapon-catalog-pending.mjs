@@ -57,22 +57,22 @@ export const PENDING_WEAPON_DEPENDENCIES = Object.freeze({
   "thrown-routing":{
     owner:"combat",
     dependency:"Cerrar un modo de ataque a distancia independiente de system.skill para que Armas Ligeras arrojadizas no activen Parada como si fueran cuerpo a cuerpo.",
-    conflictsWithCraft13:true
+    requiresCraftingCoordination:false
   },
   "multi-shot-or-spread":{
     owner:"combat",
     dependency:"Definir varios cañones, repetición física, dispersión/perdigones y sus costes sin conceder ataques adicionales implícitos.",
-    conflictsWithCraft13:false
+    requiresCraftingCoordination:false
   },
   "special-material":{
     owner:"crafting",
-    dependency:"Cerrar el efecto del vidrio/cristal especial sobre precio, fabricación, reparación y propiedades antes de convertirlo en estadística de arma.",
-    conflictsWithCraft13:true
+    dependency:"El motor de Materiales Especiales está cerrado, pero cada arma debe declarar un Perfil de Material, cobertura y propiedad explícitos; vidrio/cristal por nombre no concede estadísticas.",
+    requiresCraftingCoordination:true
   },
   "craft-device-boundary":{
     owner:"crafting",
-    dependency:"Resolver la frontera Weapon/Device, Energía, Caudal, Estabilidad, mantenimiento y fabricación arcano-industrial con CRAFT-13.",
-    conflictsWithCraft13:true
+    dependency:"CRAFT-13 ya cerró Weapon/Device, Energía, Caudal, Estabilidad y fabricación. Falta asignar a cada propuesta un Perfil explícito de Host/Módulo/Device/arma vinculada sin inferirlo por el nombre.",
+    requiresCraftingCoordination:true
   }
 });
 

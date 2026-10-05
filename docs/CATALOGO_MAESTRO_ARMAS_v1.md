@@ -90,7 +90,7 @@ Las armas con tecnología \`arcano-industrial\` quedan marcadas como:
 
 \`review-device-boundary\`
 
-No se les asigna todavía consumo de Energía, Caudal, Estabilidad ni otros valores. Esa decisión debe coordinarse con la implementación de dispositivos y con CRAFT-13 para evitar dos autoridades mecánicas distintas.
+CRAFT-13 ya cerró la autoridad de dispositivos, Energía y crafting. Aun así, estas armas no reciben consumo, Caudal, Estabilidad ni otros valores hasta que cada propuesta declare un Perfil explícito compatible con esa autoridad; el nombre arcano-industrial no selecciona un Device automáticamente.
 
 ## Integración con Foundry
 
@@ -104,7 +104,7 @@ La expansión se integra mediante `coreCatalog()` sin inflar `STARTER_CONTENT` c
 - 171 variantes auditadas entran al Compendio;
 - las 44 pendientes no se materializan como Items;
 - no modifica \`system.json\`, \`package.json\`, \`template.json\` ni archivos de CRAFT-13;
-- puede evolucionar en paralelo al agente de crafting.
+- se valida contra el CRAFT-13 ya integrado y no crea una segunda autoridad de fabricación, Materiales o Energía.
 
 ## Criterio para promoción a Item real
 

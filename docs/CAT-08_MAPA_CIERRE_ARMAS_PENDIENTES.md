@@ -8,7 +8,7 @@
 
 Después de CAT-07 quedaban **53 propuestas**. CAT-09 resolvió 6 perfiles de proyectil y CAT-10 resolvió 3 armas flexibles, por lo que la cola vigente queda en **44**.
 
-CAT-08 asigna a cada una un bloqueador explícito para evitar que una futura expansión introduzca reglas implícitas o colisione con CRAFT-13.
+CAT-08 asigna a cada una un bloqueador explícito para evitar reglas implícitas. Tras el cierre de CRAFT-13, los bloqueadores de Crafting ya no significan “esperar a CRAFT-13”: significan que cada propuesta necesita un Perfil explícito compatible con la autoridad ya cerrada.
 
 ## Resumen
 
@@ -34,7 +34,7 @@ El Manual ubica el armamento ligero arrojadizo dentro de **Armas Ligeras**. La i
 
 Por ello, una arrojadiza con \`lightWeapons\` podría ser tratada como cuerpo a cuerpo por la lógica de Parada.
 
-Cerrar esto exige una noción explícita de **modo de ataque** separada de la Habilidad. El archivo que hoy resuelve esa frontera es también modificado por CRAFT-13, por lo que CAT-08 no lo toca.
+Cerrar esto exige una noción explícita de **modo de ataque** separada de la Habilidad. CRAFT-13 ya está cerrado y no resuelve ese enrutamiento de combate; por tanto estas siete entradas siguen bloqueadas por Combate, no por Crafting.
 
 ## 2. Armas flexibles — RESUELTO POR CAT-10
 
@@ -82,13 +82,13 @@ CAT-08 no deduce ninguna de esas mecánicas desde el nombre del Item.
 - Cuchillo de Vidrio
 - Lanza de cristal
 
-Requieren coordinación con crafting para decidir qué significa mecánicamente el material: coste, fabricación, reparación, fragilidad, dureza, Penetración u otra propiedad.
+El motor de Materiales Especiales ya existe, pero “Vidrio” o “cristal” no seleccionan automáticamente un Perfil de Material ni conceden fragilidad, dureza, Penetración u otra propiedad. Cada arma necesita material exacto, cobertura y receta explícita antes de promocionarse.
 
 ## 6. Weapon/Device arcano-industrial — 25
 
 Incluye las armas arcano-industriales del catálogo: pistolas y rifles especiales, hojas resonantes, armas de acumulador, armas conductoras, proyectores, ballestas asistidas y el cañón portátil experimental.
 
-No se promueven mientras CRAFT-13 esté desarrollando Energía, Caudal, Estabilidad, mantenimiento y transacciones de crafting.
+CRAFT-13 ya cerró Energía, Caudal, Estabilidad, mantenimiento y transacciones. Estas 25 propuestas siguen bloqueadas porque aún no poseen un Perfil explícito que determine si son Host, Módulo, arma vinculada a Device, Device atacante o modificación de un arma base.
 
 La decisión futura debe establecer si cada entrada es:
 

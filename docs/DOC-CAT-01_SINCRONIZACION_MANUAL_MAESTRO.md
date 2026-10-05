@@ -37,12 +37,14 @@ Los 15 Kits profesionales usan en el Manual los mismos nombres completos que sus
 5. las propuestas EQP-01 estén presentes pero marcadas como no canónicas;
 6. permanezcan expresos los límites contra bonos inferidos.
 
-## Concurrencia
+## Sincronización posterior a CRAFT-13
 
-CRAFT-13 no modifica el Manual Maestro en su PR actual. DOC-CAT-01 mantiene **0 archivos compartidos** con PR #52.
+CRAFT-13 fue integrado en `main` antes de fusionar esta expansión. La rama de PR #53 se sincronizó posteriormente con `main` mediante merge de dos padres y una reconciliación dirigida del Manual Maestro.
+
+De los 49 archivos de PR #53, sólo `docs/Tierra_Magica_Manual_Maestro.md` había cambiado también en `main`. La reconciliación conserva el canon posterior de Potencia N, Arco largo Pen 1, Armadura pesada FUE mínima 3, magia y CRAFT-13, y añade sobre esa base los catálogos aprobados.
 
 ## Validación
 
 GitHub Actions **Validate #732: verde**.
 
-La sincronización está completa en la rama `catalogo-armas-maestro-v1`. El archivo de `main` recibirá estos cambios únicamente cuando PR #53 sea fusionada.
+La sincronización post-CRAFT-13 está preparada en la rama `catalogo-armas-maestro-v1`. `main` recibirá estos cambios únicamente si PR #53 supera nuevamente la validación integral y luego es fusionada.

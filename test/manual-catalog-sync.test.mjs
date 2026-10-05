@@ -77,3 +77,12 @@ test("DOC-CAT-01 conserva explícitos los límites contra bonos inferidos",()=>{
   assert.match(manual,/La forma, nombre o procedencia no concede Defensa pasiva adicional/);
   assert.match(manual,/Las propuestas mundanas anteriores no tienen precio oficial todavía/);
 });
+
+
+test("CAT-SYNC-01 conserva el canon posterior a CRAFT-13 y los nombres runtime",()=>{
+  assert.match(manual,/\| Arco largo \| 5 \| 1 \| — \| 2 o \| Potencia 3, 2 manos \|/);
+  assert.match(manual,/\| Armadura pesada \| 4 \| 3 \| 16 o \|/);
+  assert.match(manual,/\| Kit Instrumental Arcano de campo \| 2 o \|/);
+  assert.equal(manual.includes("| Instrumental Arcano de campo | 2 o |"),false);
+  assert.match(manual,/CRAFT-13 ya cerró/);
+});

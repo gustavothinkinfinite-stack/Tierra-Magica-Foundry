@@ -22,7 +22,7 @@ Ninguna variante aprobada cambia Protección, FUE mínima, precio ni economía d
 | Armadura ligera | 1 | 0 | 1 o 5 p |
 | Armadura reforzada | 2 | 0 | 4 o |
 | Malla | 3 | 1 | 10 o |
-| Armadura pesada | 4 | 2 | 16 o |
+| Armadura pesada | 4 | 3 | 16 o |
 | Placas | 5 | 3 | 40 o |
 
 ## Cobertura de variantes
@@ -49,7 +49,7 @@ Todos usan exactamente **Protección 3 / FUE 1 / 10 o**.
 
 Incluye Brigantina pesada, Lamelar pesada, Coraza de escamas, Malla con placas, Coraza segmentada, Arnés parcial y variantes pesadas de guerra.
 
-Todos usan exactamente **Protección 4 / FUE 2 / 16 o**.
+Todos usan exactamente **Protección 4 / FUE 3 / 16 o**.
 
 ### Placas — 11 variantes
 
@@ -104,14 +104,14 @@ Cada una registra procedencia, pero la región no concede un bono universal.
 - Placas de cristal
 - Coraza de madera viva
 
-No se asignan estadísticas especiales hasta decidir cómo el material afecta fabricación, reparación, coste, calidad y propiedades dentro de crafting.
+CRAFT-05/13 ya poseen un motor de Materiales Especiales, pero esos nombres no identifican por sí solos un Perfil de Material existente. Siguen fuera del runtime hasta declarar material exacto, cobertura, propiedad y receta sin inferir beneficios por el nombre.
 
 ### Arcano-industrial
 - Armadura resonante
 - Arnés de acumulador
 - Placas cinéticas
 
-No se convierten en Items runtime hasta cerrar la frontera entre armadura física, Device, Energía, Caudal, Estabilidad y mantenimiento.
+CRAFT-13 ya cerró la infraestructura de Device, Energía, Caudal, Estabilidad y mantenimiento. Estas tres propuestas siguen fuera del runtime hasta recibir un Perfil explícito de Host/Módulo/fuente y su integración exacta con la armadura; el nombre no autoriza estadísticas energéticas.
 
 ## Regla de diseño
 

@@ -6,7 +6,7 @@
 
 ## Objetivo
 
-Llevar al Compendio el equipo ordinario que ya estaba definido en el Manual y construir una biblioteca amplia para futuras expansiones sin inventar bonos ni precios mientras CRAFT-13 continúa abierto.
+Llevar al Compendio el equipo ordinario que ya estaba definido en el Manual y construir una biblioteca amplia para futuras expansiones sin inventar bonos ni precios. CRAFT-13 ya está cerrado; las propuestas especiales sólo avanzan cuando reciben un Perfil explícito compatible con esa autoridad.
 
 ## Estado del catálogo
 
@@ -86,7 +86,7 @@ Todas quedan con **precio sin fijar** hasta una auditoría económica específic
 
 ## 10 propuestas especiales bloqueadas
 
-### Frontera Device / CRAFT-13 — 7
+### Perfiles Device no asignados — 7
 
 - Lámpara arcana portátil
 - Visor espectral
@@ -102,7 +102,7 @@ Todas quedan con **precio sin fijar** hasta una auditoría económica específic
 - Lámpara de cristal resonante
 - Kit de reparación de cristal vivo
 
-Estas diez entradas no se convierten en Items runtime ni reciben precio, Energía, Caudal, Estabilidad o propiedades mágicas desde EQP-01.
+Estas diez entradas no se convierten en Items runtime ni reciben precio, Energía, Caudal, Estabilidad o propiedades mágicas desde EQP-01. CRAFT-13 aporta la infraestructura, pero no autoriza mapear un nombre de propuesta a un Device, Material o efecto mágico sin Perfil explícito.
 
 ## Implementación
 

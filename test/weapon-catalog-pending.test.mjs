@@ -36,11 +36,11 @@ test("CAT-08 no clasifica como pendiente ninguna de las 171 variantes aprobadas"
   assert.equal(approved.some((entry)=>pendingNames.has(entry.name)),false);
 });
 
-test("CAT-08 registra dependencias de crafting sólo donde corresponde",()=>{
+test("CAT-08 registra coordinación con la autoridad de crafting sólo donde corresponde",()=>{
   const pending=pendingWeaponCatalog();
-  const craft=pending.filter((entry)=>entry.conflictsWithCraft13);
-  assert.equal(craft.length,34);
-  assert.equal(craft.every((entry)=>["thrown-routing","special-material","craft-device-boundary"].includes(entry.blocker)),true);
+  const craft=pending.filter((entry)=>entry.requiresCraftingCoordination);
+  assert.equal(craft.length,27);
+  assert.equal(craft.every((entry)=>["special-material","craft-device-boundary"].includes(entry.blocker)),true);
 
   assert.equal(pendingWeaponBlocker("Pistola de acumulador"),"craft-device-boundary");
   assert.equal(pendingWeaponBlocker("Cuchillo de Vidrio"),"special-material");

@@ -106,7 +106,7 @@ La procedencia no concede modificadores universales.
 - Escudo de acumulador
 - Escudo cinético
 
-No reciben estadísticas especiales hasta cerrar materiales, fabricación y la frontera Shield/Device/Energía con CRAFT-13.
+CRAFT-13 ya cerró materiales, fabricación y la infraestructura Device/Energía. Estas propuestas continúan bloqueadas hasta declarar un Perfil de Material o un Perfil Host/Módulo/energético específico; el nombre no concede por inferencia Defensa, cobertura, Energía ni propiedades especiales.
 
 ## Reglas de seguridad
 

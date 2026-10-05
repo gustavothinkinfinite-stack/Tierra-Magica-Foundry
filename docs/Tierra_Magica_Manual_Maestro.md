@@ -3186,7 +3186,7 @@ El nombre histórico, cultural, regional o funcional **no crea un modificador ad
 
 Las variantes regionales mantienen su procedencia como dato de catálogo, pero la región no concede por sí sola bonos de ataque, daño, Defensa, Penetración, disponibilidad automática o descuento de precio.
 
-**Estado de expansión no canónica.** Permanecen fuera del Compendio **44 propuestas**: 7 Armas Ligeras arrojadizas que requieren separar modo de ataque y Habilidad; 10 armas de varios cañones o dispersión; 2 armas de material especial; y 25 armas en la frontera Weapon/Device arcano-industrial. Estas entradas no son opciones de equipo oficiales hasta que su bloqueador se cierre y el Manual se actualice.
+**Estado de expansión no canónica.** Permanecen fuera del Compendio **44 propuestas**: 7 Armas Ligeras arrojadizas que requieren separar modo de ataque y Habilidad; 10 armas de varios cañones o dispersión; 2 armas que necesitan un Perfil de Material explícito; y 25 armas arcano-industriales que necesitan un Perfil explícito de Host/Módulo/Device/arma vinculada. CRAFT-13 ya cerró la infraestructura de Materiales, fabricación y Energía, pero no autoriza inferir esos perfiles por el nombre.
 
 ### Munición y Recarga
 
@@ -3239,7 +3239,7 @@ Los cinco perfiles anteriores son las únicas anclas mecánicas de armadura del 
 
 Dentro de esas variantes hay **24 armaduras regionales**, cuatro por cada región principal: Valdoria, Kharum, Liga de Bronce, Erelia, Lysendra y Solenar. La procedencia regional no modifica Protección, FUE mínima, precio, Sigilo, resistencia elemental ni Capacidad Rúnica.
 
-**No canónicas todavía:** Armadura de cristal, Placas de cristal y Coraza de madera viva permanecen bloqueadas por material especial; Armadura resonante, Arnés de acumulador y Placas cinéticas permanecen bloqueadas por la frontera entre armadura, Device, Energía y crafting.
+**No canónicas todavía:** Armadura de cristal, Placas de cristal y Coraza de madera viva necesitan un Perfil de Material explícito; Armadura resonante, Arnés de acumulador y Placas cinéticas necesitan un Perfil Host/Módulo/energético explícito. CRAFT-13 ya cerró esas autoridades, pero los nombres no conceden propiedades por inferencia.
 
 ### Escudos
 
@@ -3273,7 +3273,7 @@ Hay **18 variantes regionales**, tres por cada región principal. La forma, nomb
 
 En particular, **Pavés**, **Escudo torre** y nombres equivalentes usan el perfil de Escudo pesado: no generan cobertura total por el nombre del Item. La cobertura sólo aparece cuando la posición, terreno u otra regla la producen.
 
-**No canónicos todavía:** Escudo de cristal, Escudo de madera viva y Pavés de piedra viva están bloqueados por material especial; Escudo resonante, Escudo de acumulador y Escudo cinético están bloqueados por la frontera Shield/Device/Energía.
+**No canónicos todavía:** Escudo de cristal, Escudo de madera viva y Pavés de piedra viva necesitan un Perfil de Material explícito; Escudo resonante, Escudo de acumulador y Escudo cinético necesitan un Perfil Host/Módulo/energético explícito. CRAFT-13 ya cerró esas autoridades, pero los nombres no conceden Defensa, cobertura ni Energía por inferencia.
 
 ### Equipo de aventura y herramientas
 
@@ -3313,7 +3313,7 @@ Los Kits reúnen herramientas ordinarias para un campo de trabajo.
 | Kit Escribanía | 5 p |
 | Kit Mercantil | 1 o |
 | Kit Académico | 2 o |
-| Instrumental Arcano de campo | 2 o |
+| Kit Instrumental Arcano de campo | 2 o |
 | Kit Mantenimiento de armas de fuego | 1 o |
 
 Un Kit representa **herramientas reutilizables**, no una reserva infinita de consumibles. Si una tarea consume vendas, reactivos, combustible, munición u otro material, ese recurso debe existir por separado.
@@ -3356,7 +3356,7 @@ Las **65 propuestas mundanas** pendientes de precio y uso fino son:
 
 Las **10 propuestas especiales bloqueadas** son: Lámpara arcana portátil, Visor espectral, Brújula de Trama, Herramienta motorizada de campo, Polea cinética, Mochila de acumulador, Baliza arcana de navegación, Caja de conservación rúnica, Lámpara de cristal resonante, Kit de reparación de cristal vivo.
 
-Las propuestas mundanas anteriores no tienen precio oficial todavía. Las especiales tampoco reciben Energía, Caudal, Estabilidad, capacidad rúnica, propiedades mágicas o efectos de material por inferencia.
+Las propuestas mundanas anteriores no tienen precio oficial todavía. Las especiales tampoco reciben Energía, Caudal, Estabilidad, capacidad rúnica, propiedades mágicas o efectos de material por inferencia. CRAFT-13 ya aporta la infraestructura necesaria; cada propuesta especial sigue requiriendo un Perfil explícito antes de entrar al runtime.
 
 ### Consumibles, pociones y fórmulas
 
