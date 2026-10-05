@@ -1,7 +1,7 @@
 # Release Readiness — Foundry T.M. 1.3.0
 
 **Fecha:** 2026-10-05  
-**Estado:** LISTA PARA PUBLICACIÓN · rama `release/v1.3.0`.
+**Estado:** PUBLICADA · v1.3.0 publicada correctamente el 2026-10-05.
 
 ## Base revisada
 
@@ -67,11 +67,13 @@ El workflow `Publicar sistema` debe:
 
 Además, `Validate` mantiene la barrera `npm run audit:crafting` + `npm run validate`.
 
-## Resultado esperado
+## Publicación
 
-Si `release/v1.3.0` termina verde:
-
-- tag `v1.3.0`;
-- GitHub Release `v1.3.0`, no prerelease;
-- assets `system.json` y `tierra-magica.zip`;
-- `releases/latest/download/system.json` pasa a servir v1.3.0.
+- Tag: `v1.3.0`.
+- Commit publicado: `4dcf08f5924f68f9373bda7bdfb8034415cefe2b`.
+- Release ID: `403937046`.
+- Estado: publicada, no prerelease, reconocida como **Latest**.
+- Workflow `Publicar sistema` #37344445970: **success**.
+- Asset `system.json`: SHA-256 `021084d6230b262ed5af40cfe961a6a024e7a54cd920dfa6973cb154ed7e2880`.
+- Asset `tierra-magica.zip`: SHA-256 `982e1c69044a3b53d9bcc96c35e77670a02d57263daf7ffd79be545eed8d4d5e`.
+- El canal estable `releases/latest/download/system.json` sirve v1.3.0.
