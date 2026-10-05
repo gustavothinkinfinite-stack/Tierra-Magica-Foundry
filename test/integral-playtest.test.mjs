@@ -64,16 +64,18 @@ test("partida integral: dispositivo valida fuente, Caudal y Energía antes del c
   const energy = await read("scripts/rules/device-energy.mjs");
   const authority = await read("scripts/rules/state-authority.mjs");
   assert.match(actor, /resolveDeviceEnergySupply\(this, item\)/);
-  assert.match(actor, /if \(consumption > power\.flow\)/);
-  assert.match(actor, /if \(consumption > power\.energy\)/);
-  assert.match(actor, /consumeDeviceEnergyAuthoritatively\(this, power\.source, consumption/);
-  assert.match(actor, /success && consumption/);
+  assert.match(actor, /planDeviceEnergyConsumption\(supply, consumption\)/);
+  assert.match(actor, /consumeDeviceEnergyAuthoritatively\(this, item, consumption/);
+  assert.match(actor, /if \(success\)/);
   assert.match(energy, /energySourceItemId/);
+  assert.match(energy, /energyLinkMode/);
+  assert.match(energy, /couplerSurcharge/);
   assert.match(actor, /consumeDeviceEnergyAuthoritatively/);
   assert.match(authority, /consume-device-energy/);
   assert.match(authority, /primaryActiveGm/);
   assert.match(authority, /serial\("energy:/);
-  assert.match(authority, /"system\.energy\.value": energy - amount/);
+  assert.match(authority, /applyEnergyConsumptionPlan/);
+  assert.match(authority, /before-draw\.amount/);
 });
 
 test("partida integral: daño físico y mágico desembocan en autoridad compartida de Vida", async () => {
