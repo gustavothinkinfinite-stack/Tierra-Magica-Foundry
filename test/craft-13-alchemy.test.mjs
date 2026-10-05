@@ -50,6 +50,8 @@ globalThis.Actor=class{
 };
 
 const {TierraMagicaActor}=await import("../scripts/documents/actor.mjs");
+const {installFormulaGuards}=await import("../scripts/rules/formula-guards.mjs");
+installFormulaGuards(TierraMagicaActor);
 
 function formula(name,{quantity=1,known=false,system={}}={}){
   return {
@@ -102,7 +104,7 @@ test("CRAFT-13G: conocimiento personal y dosis físicas son estados separados",(
 });
 
 test("CRAFT-13G: Neutralizante consume una dosis y aplica Saturación Antitóxica",async()=>{
-  const neutralizer=formula("Neutralizante Común",{quantity:2});
+  const neutralizer=formula("Neutralizante Común",{quantity:2,system:{saturating:true,family:"antitoxica"}});
   const a=actor([neutralizer]);
 
   const first=await a.useFormula(neutralizer);
@@ -116,7 +118,7 @@ test("CRAFT-13G: Neutralizante consume una dosis y aplica Saturación Antitóxic
 });
 
 test("CRAFT-13G: Fórmulas contextuales también consumen dosis y respetan Saturación",async()=>{
-  const tonic=formula("Tónico de Vigor",{quantity:1});
+  const tonic=formula("Tónico de Vigor",{quantity:1,system:{saturating:true,family:"potenciador"}});
   const toxin=formula("Toxina Debilitante",{quantity:1});
   const a=actor([tonic,toxin]);
 
