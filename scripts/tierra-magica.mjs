@@ -31,7 +31,8 @@ import {
   completeCraftingProjectAuthoritatively,
   installStateAuthorityBridge,
   releaseCraftingProjectAuthoritatively,
-  reserveCraftingProjectAuthoritatively
+  reserveCraftingProjectAuthoritatively,
+  resolveResearchProjectStageAuthoritatively
 } from "./rules/state-authority.mjs";
 import { validateCatalog } from "./rules/catalog.mjs";
 import { coreCatalog } from "./catalog/core-catalog.mjs";
@@ -209,6 +210,10 @@ Hooks.on("preDeleteItem", (item, options = {}) => {
     return false;
   }
   if (item.type === "effect") return;
+  if (item.type==="formula" && item.system?.known===true && actor.system.creation?.status==="complete") {
+    ui.notifications.warn("Olvidar una Fórmula conocida requiere reconstrucción autorizada; borrar el documento no devuelve PD.");
+    return false;
+  }
   const developmental = new Set(["ancestry","origin","background","discipline","specialization","technique","trait","spell"]);
   if (!developmental.has(item.type)) return;
   if (actor.system.creation?.status === "complete") {
@@ -260,6 +265,11 @@ Hooks.on("preUpdateItem", (item, changes, options = {}) => {
       }
     }
 
+    if (!game.user?.isGM && item.type==="formula" && touches("system.known")) {
+      ui.notifications.warn("El conocimiento personal de una Fórmula sólo cambia mediante adquisición/desarrollo autorizado.");
+      return false;
+    }
+
     if (!game.user?.isGM && touches("system.quantity")) {
       const reservations = item.system?.craftingReservations;
       if (reservations && typeof reservations === "object" && Object.keys(reservations).length) {
@@ -274,7 +284,13 @@ Hooks.on("preUpdateItem", (item, changes, options = {}) => {
         "system.time.completedMinutes",
         "system.execution",
         "system.ledger.committedMaterialsCopper",
-        "system.ledger.recoveredMaterialsCopper"
+        "system.ledger.recoveredMaterialsCopper",
+        "system.research.history",
+        "system.research.prototypeStatus",
+        "system.research.provisionalPlan",
+        "system.research.replicaStatus",
+        "system.research.resumeStage",
+        "system.research.resumeValidationId"
       ];
       if (transactionPaths.some(touches)) {
         ui.notifications.warn("Estado, avance y ledger transaccional del Proyecto requieren autoridad del sistema.");
@@ -393,7 +409,8 @@ Hooks.once("ready", async () => {
       release: releaseCraftingProjectAuthoritatively,
       cancel: cancelCraftingProjectAuthoritatively,
       work: advanceCraftingProjectAuthoritatively,
-      complete: completeCraftingProjectAuthoritatively
+      complete: completeCraftingProjectAuthoritatively,
+      resolveResearch: resolveResearchProjectStageAuthoritatively
     }
   };
   if (repaired) ui.notifications.info("Tierra Mágica: se repararon " + repaired + " ficha(s) afectadas por el guardado de v0.3.1.");

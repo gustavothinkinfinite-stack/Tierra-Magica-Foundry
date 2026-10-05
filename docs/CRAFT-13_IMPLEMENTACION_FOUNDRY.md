@@ -717,19 +717,124 @@ La interfaz de selección/cableado y los perfiles completos de catálogo siguen 
 
 ### CRAFT-13G — Alquimia e Investigación
 
-**Estado: PENDIENTE**
+**Estado: IMPLEMENTADA EN RAMA**
 
-Automatizará:
+Archivos principales:
 
-- Fórmulas conocidas;
-- dosis;
-- Saturación;
-- Neutralizante Antitóxico;
-- Concepto -> Viabilidad -> Preguntas -> Prototipo -> Validación -> Réplica;
-- bloqueo de repetición sin cambio real;
-- clasificación Adaptación / Reconstrucción / Combinación / Innovación / Frontera.
+- `scripts/rules/alchemy.mjs`;
+- `scripts/rules/crafting-research.mjs`;
+- integración con `crafting.mjs`, `crafting-transactions.mjs`, autoridad compartida y Actor;
+- regresiones `craft-13-alchemy.test.mjs` y `craft-13-research.test.mjs`.
 
-Foundry no decidirá Viabilidad narrativa por sí solo.
+#### Alquimia
+
+Las ocho Fórmulas estables de CRAFT-11 quedan cuantificadas con:
+
+- precio;
+- CM;
+- tiempo de preparación;
+- rango de Alquimia;
+- Especialización;
+- instalación;
+- activación/vía/duración;
+- Saturación.
+
+Se separan dos estados:
+
+- **`known: true`** = conocimiento personal de la Fórmula, adquirido mediante su coste normal de PD;
+- **`quantity`** = dosis físicas preparadas.
+
+Comprar, encontrar o fabricar una dosis no concede conocimiento. Aprender una Fórmula por adquisición de desarrollo marca `known: true` y no crea dosis.
+
+Preparar rutinariamente una Fórmula catalogada exige:
+
+- conocimiento personal;
+- rango suficiente;
+- Especialización correcta;
+- instalación suficiente;
+- receta estable.
+
+Usar una dosis no exige conocer la Fórmula.
+
+Toda aplicación válida consume exactamente una dosis. Las Fórmulas contextuales también consumen su dosis aunque Foundry no automatice el efecto restante.
+
+**Neutralizante Común** utiliza Saturación **Antitóxica**; una segunda dosis beneficiosa de esa familia queda bloqueada hasta un Respiro.
+
+Un Respiro limpia Saturación y no recupera Vida/Maná por sí mismo.
+
+Las Fórmulas conocidas quedan protegidas contra eliminación directa después de creación para que borrar el Item no libere PD. Las dosis físicas no conocidas siguen siendo consumibles normales.
+
+#### Investigación CRAFT-10
+
+El Item `project` conserva `operation: research` y añade estado estructurado de Investigación:
+
+- Concepto;
+- Perfil pretendido;
+- análogo;
+- Viabilidad y condiciones;
+- Clase de novedad;
+- Complejidad;
+- Disciplina Principal/Auxiliares;
+- CMP;
+- TBP;
+- Preguntas;
+- Validaciones;
+- riesgos;
+- historial autorizado;
+- estado de Prototipo, Plano provisional y Réplica.
+
+No existen puntos universales de investigación.
+
+Etapas automatizadas:
+
+**Preguntas -> Prototipo -> Validación -> Plano provisional -> Réplica -> Estable**
+
+Cada etapa usa el mismo ledger, VI, reserva, minutos y autoridad transaccional de CRAFT-13C.
+
+CRAFT-10 queda cuantificado en motor:
+
+- Pregunta: DF base + ajuste de novedad; tiempo por Complejidad; experimento físico 10% CMP, mínimo 1 p;
+- Prototipo: 125% CMP, 150% TBP, DF base +2; Frontera +4;
+- Validación: 25% TBP, mínimo 1 h; ensayo consumptivo 5% CMP, mínimo 1 p; DF base;
+- Plano provisional: 25% TBP, mínimo 2 h;
+- Réplica: 100% CMP, 100% TBP, DF base.
+
+#### Bloqueos y anti-spam
+
+Un fallo de Pregunta registra Bloqueo con la identidad del intento.
+
+La misma Pregunta no puede repetirse con la misma evidencia/muestra/método/instalación/instrumento/colaborador/material/Concepto. El nuevo intento debe declarar una condición material distinta.
+
+Fallo de Prototipo, Validación o Réplica exige declarar una **Pregunta Correctiva específica** antes de repetir esa etapa.
+
+Hazaña cuenta como éxito de la etapa presente, pero:
+
+- no resuelve Preguntas adicionales;
+- no salta Validaciones;
+- no convierte Prototipo en Plano;
+- no añade Calidad;
+- no estabiliza sin Réplica.
+
+Los estados `resolved`, Experimental, Validación superada, Plano provisional y Estable deben estar respaldados por el historial autorizado; editar campos no puede fabricar progreso.
+
+#### Clasificación mínima
+
+La implementación impide rebajar la Clase mediante redacción:
+
+- reconstruir diseño existente -> mínimo Reconstrucción;
+- integrar subsistemas estables sin receta -> mínimo Combinación;
+- crear propiedad nueva -> mínimo Innovación;
+- intentar excepción a límite/principio desconocido -> Frontera cuando sea viable.
+
+#### Fronteras deliberadas
+
+Foundry **no decide Viabilidad narrativa**. El DJ fija Posible / Posible con condiciones / Actualmente imposible.
+
+Una Viabilidad Actualmente imposible no se supera mediante tiradas.
+
+La Investigación Exploratoria sigue siendo adjudicada por el DJ cuando aún no existen CMP/TBP/Perfil suficientes: CRAFT-10 no establece una fórmula universal de tiempo o coste para esa fase, por lo que 13G no inventa una.
+
+Estabilizar una Fórmula, hechizo, Técnica o conocimiento sujeto a desarrollo personal **no concede PD/PR ni aprendizaje gratuito**.
 
 ### CRAFT-13H — Interfaz y catálogo
 

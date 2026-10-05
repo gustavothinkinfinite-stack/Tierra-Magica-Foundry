@@ -30,6 +30,7 @@ import { deriveDevelopmentBudget, validateCreationState, completionUpdates, INIT
 import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
 import { preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType } from "../rules/acquisition.mjs";
+import { formulaUsePlan } from "../rules/alchemy.mjs";
 
 export class TierraMagicaActor extends Actor {
   prepareDerivedData() {
@@ -449,6 +450,10 @@ export class TierraMagicaActor extends Actor {
     if (amount > available) return failAcquisition("Presupuesto insuficiente para adquirir " + candidate.name + ".");
 
     candidate.system.acquisition = preflight.acquisition;
+    if(candidate.type==="formula" && preflight.cost?.resource==="pd"){
+      candidate.system.known=true;
+      candidate.system.quantity=0;
+    }
     candidate.system.provenance ??= { sourceUuid:"", sourceSchemaVersion:0, sourceRevision:"" };
     const created = await this.createEmbeddedDocuments("Item", [candidate], { tmValidated: true });
     if (!created?.length) return failAcquisition("No se pudo crear " + candidate.name + ".");
@@ -780,34 +785,40 @@ export class TierraMagicaActor extends Actor {
 
   async useFormula(item) {
     if (!item || item.type !== "formula") return null;
-    if (toNumber(item.system.quantity, 0) <= 0) return ui.notifications.warn("No hay una dosis preparada de " + item.name + ".");
 
     return withActorResourceLock(this, async () => {
-      const family = String(item.system.family ?? "").trim().toLowerCase();
-      const saturated = Array.isArray(this.system.alchemy?.saturatedFamilies) ? [...this.system.alchemy.saturatedFamilies] : [];
-      if (item.system.saturating && family && saturated.includes(family)) {
-        return ui.notifications.warn(this.name + " ya está Saturado por la familia " + family + ".");
-      }
+      const plan = formulaUsePlan(this, item);
+      if (!plan.valid) return ui.notifications.warn(plan.issue);
 
       const updates = {};
-      const formulaSlug = normalizeSlug(item.system?.slug || item.name);
-      if (formulaSlug === "pocion-restauradora" || formulaSlug === "balsamo-restaurador") {
-        Object.assign(updates, boundedHealthRecoveryUpdates(this, 4).updates);
-      } else if (formulaSlug === "pocion-de-recuperacion-arcana") {
+      if (plan.effectKind === "health") {
+        Object.assign(updates, boundedHealthRecoveryUpdates(this, plan.effectAmount).updates);
+      } else if (plan.effectKind === "mana") {
         const mp = this.system.resources.mana;
-        updates["system.resources.mana.value"] = Math.min(resourceMaximum(this, "mana"), toNumber(mp.value) + 3);
-      } else {
-        return ui.notifications.info(item.name + ": efecto contextual. Aplica la fórmula según su descripción.");
+        updates["system.resources.mana.value"] = Math.min(
+          resourceMaximum(this, "mana"),
+          toNumber(mp.value) + plan.effectAmount
+        );
       }
 
-      if (item.system.saturating && family) {
-        updates["system.alchemy.saturatedFamilies"] = [...new Set([...saturated, family])];
+      if (plan.saturating) {
+        const saturated = Array.isArray(this.system.alchemy?.saturatedFamilies)
+          ? [...this.system.alchemy.saturatedFamilies]
+          : [];
+        updates["system.alchemy.saturatedFamilies"] = [...new Set([...saturated, plan.family])];
       }
-      await this.update(updates);
-      await item.update({ "system.quantity": Math.max(0, toNumber(item.system.quantity, 0) - 1) });
+
+      if (Object.keys(updates).length) await this.update(updates);
+      await item.update({ "system.quantity": plan.quantityAfter });
+
+      const contextual = plan.effectKind === "contextual"
+        ? "<p>Se consume 1 dosis. El efecto contextual restante se resuelve según la descripción de la Fórmula.</p>"
+        : "";
       return ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
-        content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(this.name) + " usa " + foundry.utils.escapeHTML(item.name) + "</strong><p>" + foundry.utils.escapeHTML(item.system.effect ?? "") + "</p></div>"
+        content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(this.name) +
+          " usa " + foundry.utils.escapeHTML(item.name) + "</strong><p>" +
+          foundry.utils.escapeHTML(item.system.effect ?? "") + "</p>" + contextual + "</div>"
       });
     });
   }

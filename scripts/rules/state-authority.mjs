@@ -10,7 +10,8 @@ import {
   advanceCraftingProjectWork,
   completeCraftingProject,
   releaseCraftingProjectMaterials,
-  reserveCraftingProjectMaterials
+  reserveCraftingProjectMaterials,
+  resolveResearchProjectStage
 } from "./crafting-transactions.mjs";
 
 const CHANNEL = "system.tierra-magica";
@@ -154,7 +155,7 @@ async function authorityReceiptDocument(action, payload = {}) {
   if (["claim-kinetic", "claim-parry", "resolve-parry", "claim-counterattack", "apply-health-damage", "apply-health-healing"].includes(action)) {
     return actorFromUuid(String(payload.targetUuid ?? ""));
   }
-  if (["craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete"].includes(action)) {
+  if (["craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete", "craft-research-resolve"].includes(action)) {
     return actorFromUuid(String(payload.projectUuid ?? ""));
   }
   return null;
@@ -506,7 +507,7 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
     return mutateHealth(target, { healing:payload.amount });
   }
 
-  if (["craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete"].includes(action)) {
+  if (["craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete", "craft-research-resolve"].includes(action)) {
     const project = await actorFromUuid(String(payload.projectUuid ?? ""));
     if (!project || project.type !== "project" || !project.parent) {
       return { ok:false, error:"El Proyecto de fabricación ya no está disponible." };
@@ -521,6 +522,14 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
       if (action === "craft-release") return releaseCraftingProjectMaterials(project, { ...options, cancel:false });
       if (action === "craft-cancel") return releaseCraftingProjectMaterials(project, { ...options, cancel:true });
       if (action === "craft-work") return advanceCraftingProjectWork(project, payload.minutes, options);
+      if (action === "craft-research-resolve") {
+        return resolveResearchProjectStage(project, {
+          ...options,
+          result:String(payload.result ?? "success"),
+          attemptKey:String(payload.attemptKey ?? ""),
+          correctiveQuestionText:String(payload.correctiveQuestionText ?? "")
+        });
+      }
       return completeCraftingProject(project, options);
     });
   }
@@ -913,6 +922,14 @@ async function craftingAuthority(project, action, payload = {}) {
     if (action === "craft-release") return releaseCraftingProjectMaterials(project, { ...options, cancel:false });
     if (action === "craft-cancel") return releaseCraftingProjectMaterials(project, { ...options, cancel:true });
     if (action === "craft-work") return advanceCraftingProjectWork(project, payload.minutes, options);
+    if (action === "craft-research-resolve") {
+      return resolveResearchProjectStage(project, {
+        ...options,
+        result:String(payload.result ?? "success"),
+        attemptKey:String(payload.attemptKey ?? ""),
+        correctiveQuestionText:String(payload.correctiveQuestionText ?? "")
+      });
+    }
     if (action === "craft-complete") return completeCraftingProject(project, options);
     return { ok:false, error:"Operación de fabricación desconocida." };
   });
@@ -936,6 +953,18 @@ export async function advanceCraftingProjectAuthoritatively(project, minutes) {
 
 export async function completeCraftingProjectAuthoritatively(project) {
   return craftingAuthority(project, "craft-complete");
+}
+
+export async function resolveResearchProjectStageAuthoritatively(project,{
+  result="success",
+  attemptKey="",
+  correctiveQuestionText=""
+}={}) {
+  return craftingAuthority(project, "craft-research-resolve", {
+    result,
+    attemptKey,
+    correctiveQuestionText
+  });
 }
 
 export async function consumeDeviceEnergyAuthoritatively(actor, device, consumption, { flowBonus = 0 } = {}) {

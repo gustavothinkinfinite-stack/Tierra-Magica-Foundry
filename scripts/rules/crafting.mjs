@@ -1,3 +1,5 @@
+import { normalizeResearchProject, researchExecutionIssues } from "./crafting-research.mjs";
+
 const QUALITY = Object.freeze({
   defective: Object.freeze({ valueMultiplier: 0.5, materialMultiplier: null, timeMultiplier: 1, rankShift: 0, minRank: 0, installationShift: 0, capM: 0 }),
   common: Object.freeze({ valueMultiplier: 1, materialMultiplier: 0.5, timeMultiplier: 1, rankShift: 0, minRank: 0, installationShift: 0, capM: 0 }),
@@ -397,6 +399,7 @@ export function normalizeCraftingProject(source = {}) {
         ? structuredClone(enhancement.boundSpell)
         : null
     },
+    research: normalizeResearchProject(source?.research),
     repair: {
       affectedMaterialIds: [...new Set((Array.isArray(repair.affectedMaterialIds) ? repair.affectedMaterialIds : []).map(stringValue).filter(Boolean))],
       ordinaryReplacementMaterialIds: [...new Set((Array.isArray(repair.ordinaryReplacementMaterialIds) ? repair.ordinaryReplacementMaterialIds : []).map(stringValue).filter(Boolean))],
@@ -488,9 +491,12 @@ export function validateCraftingProject(project = {}) {
   if (rawOperation === "modify" && rawTimeMode !== "fixed") {
     issues.push({ code:"modify-time-mode", message:"Modificar usa el tiempo específico de Calidad/Modificación/Material, no el TBA de fabricación completa." });
   }
+  if (rawOperation === "research" && rawTimeMode !== "fixed") {
+    issues.push({ code:"research-time-mode", message:"Investigación usa el tiempo fijo de la etapa CRAFT-10, no el TBA de fabricación." });
+  }
 
   const normalized = normalizeCraftingProject(project);
-  if (normalized.operation !== "modify" && normalized.time.mode === "derived" && normalized.time.adjustedBaseMinutes > 0) {
+  if (!["modify","research"].includes(normalized.operation) && normalized.time.mode === "derived" && normalized.time.adjustedBaseMinutes > 0) {
     const floor = normalized.time.adjustedBaseMinutes * 0.25;
     if (normalized.time.requiredMinutes + Number.EPSILON < floor) {
       issues.push({ code:"time-floor", message:"El tiempo requerido no puede quedar por debajo de 25% del TBA." });
@@ -519,8 +525,9 @@ export function validateCraftingProject(project = {}) {
     }
   }
 
-  const usesPhysicalManufactureRequirements = normalized.operation !== "modify" ||
-    ["quality","modification","material"].includes(normalized.enhancement.mode);
+  const usesPhysicalManufactureRequirements = normalized.operation !== "research" && (
+    normalized.operation !== "modify" || ["quality","modification","material"].includes(normalized.enhancement.mode)
+  );
   if (usesPhysicalManufactureRequirements) {
     const minimumRequirements = projectRequirements({
       baseRank:normalized.professional.baseRank,
@@ -536,7 +543,7 @@ export function validateCraftingProject(project = {}) {
     }
   }
 
-  if (normalized.operation !== "modify" && normalized.time.mode === "derived") {
+  if (!["modify","research"].includes(normalized.operation) && normalized.time.mode === "derived") {
     const minimumTba = adjustedBaseTimeMinutes(normalized.time.baseMinutes, {
       quality:normalized.economy.quality,
       materialGrade:normalized.economy.workMaterialGrade
@@ -565,6 +572,10 @@ export function validateCraftingProject(project = {}) {
     if (normalized.time.requiredMinutes + Number.EPSILON < minimumRequired) {
       issues.push({ code:"time-understated", message:"El tiempo requerido está por debajo de las reducciones realmente declaradas.", minimumMinutes:minimumRequired });
     }
+  }
+
+  if (normalized.operation === "research") {
+    issues.push(...researchExecutionIssues(normalized.research, normalized));
   }
 
   for (const component of normalized.components) {

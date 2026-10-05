@@ -45,6 +45,14 @@ import {
   validateUtilityEnchantment,
   validateTrapConfiguration
 } from "./crafting-magic.mjs";
+import {
+  alchemyFormulaProfile,
+  formulaPreparationIssues
+} from "./alchemy.mjs";
+import {
+  applyResearchStageResult,
+  researchStageQuote
+} from "./crafting-research.mjs";
 
 const PHYSICAL_TYPES = new Set(["weapon","armor","shield","equipment","formula","device"]);
 
@@ -1135,6 +1143,37 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
       }
     }
 
+    if(source.type==="formula"){
+      const formula=alchemyFormulaProfile(source);
+      if(formula){
+        if(source.system?.known===true){
+          return {ok:false,error:"Preparar una dosis no puede conceder conocimiento personal de la Fórmula."};
+        }
+        if(model.economy.quality!=="common" || model.modifications.length || model.specialMaterials.length){
+          return {ok:false,error:"Las ocho Fórmulas estables usan su receta propia; Calidad/CapM/Material Especial requieren un Perfil específico."};
+        }
+        if(model.economy.referenceValueCopper!==formula.priceCopper){
+          return {ok:false,error:"La Fórmula debe usar su Precio/VR canónico.",expectedCopper:formula.priceCopper};
+        }
+        if(Math.abs(model.time.baseMinutes-formula.timeMinutes)>Number.EPSILON){
+          return {ok:false,error:"El tiempo base de preparación no coincide con CRAFT-11.",expectedMinutes:formula.timeMinutes};
+        }
+        if(String(model.professional.skill)!=="alchemy"){
+          return {ok:false,error:"Preparar una Fórmula estable usa Alquimia como Habilidad principal."};
+        }
+        if(model.professional.requiredRank<formula.rank){
+          return {ok:false,error:"El rango declarado está por debajo de la receta alquímica.",expectedRank:formula.rank};
+        }
+        const formulaIssues=formulaPreparationIssues(project.parent,source,{
+          specialization:model.professional.specialization,
+          availableInstallation:model.professional.availableInstallation
+        });
+        if(formulaIssues.length){
+          return {ok:false,error:"No se cumplen los requisitos de conocimiento/preparación de la Fórmula.",issues:formulaIssues};
+        }
+      }
+    }
+
     const derived=deriveManufacturedSystem(source,{
       referenceValueCopper:model.economy.referenceValueCopper,
       baseTimeMinutes:model.time.baseMinutes,
@@ -1155,6 +1194,12 @@ async function expectedProjectMaterialCopper(project, model, resolver) {
       derived,
       requiredCompatibility:fabricationCompatibility
     };
+  }
+
+  if (model.operation === "research") {
+    const quote=researchStageQuote(model.research);
+    if(!quote.valid) return {ok:false,error:quote.issue};
+    return {ok:true,materialCopper:quote.materialCopper,researchQuote:quote};
   }
 
   if (model.operation === "repair") {
@@ -1348,8 +1393,8 @@ export async function reserveCraftingProjectMaterials(project, {
     availableInstallation:model.professional.availableInstallation,
     requiredRank:model.professional.requiredRank,
     requiredInstallation:model.professional.requiredInstallation,
-    hasStableProcedure:model.professional.stableProcedure,
-    materialsReady:model.professional.materialsReady,
+    hasStableProcedure:model.operation==="research" ? true : model.professional.stableProcedure,
+    materialsReady:model.operation==="research" && model.ledger.estimatedMaterialsCopper===0 ? true : model.professional.materialsReady,
     essentialToolReady:model.professional.essentialToolReady
   });
   if (!prerequisite.valid) {
@@ -2130,3 +2175,91 @@ export async function completeCraftingProject(project, {
     recoveredMaterialsCopper:Math.floor(number(outcome.recoveredMaterialsCopper))
   };
 }
+
+function nextResearchProjectState(research){
+  const quote=researchStageQuote(research);
+  if(research.stage==="stable"){
+    return {
+      terminal:true,
+      quote:{valid:true,materialCopper:0,timeMinutes:0,skill:research.principalSkill}
+    };
+  }
+  return {terminal:false,quote};
+}
+
+export async function resolveResearchProjectStage(project,{
+  expectedRevision=null,
+  result="success",
+  attemptKey="",
+  correctiveQuestionText="",
+  resolver=globalThis.fromUuid
+}={}){
+  if(!project || project.type!=="project" || !project.parent) return {ok:false,error:"Proyecto inválido."};
+  if(!expectedRevisionMatches(project,expectedRevision)) return {ok:false,error:"El Proyecto cambió desde la última lectura.",stale:true};
+
+  const validation=validateCraftingProject(project.system);
+  if(!validation.valid) return {ok:false,error:"El Proyecto contiene incidencias estructurales.",issues:validation.issues};
+  const model=validation.project;
+  if(model.operation!=="research") return {ok:false,error:"Sólo un Proyecto de Investigación puede resolver una etapa CRAFT-10."};
+  if(model.state!=="active" || !model.execution.committed) return {ok:false,error:"La etapa debe estar En curso con sus recursos comprometidos."};
+  if(craftingProjectRemainingMinutes(model)>0){
+    return {ok:false,error:"La etapa todavía tiene trabajo pendiente.",remainingMinutes:craftingProjectRemainingMinutes(model)};
+  }
+
+  const closing=await expectedProjectMaterialCopper(project,model,resolver);
+  if(!closing.ok) return closing;
+  if(closing.materialCopper!==model.ledger.committedMaterialsCopper){
+    return {ok:false,error:"El coste de la etapa cambió desde la reserva.",expectedCopper:closing.materialCopper,committedCopper:model.ledger.committedMaterialsCopper};
+  }
+
+  const transition=applyResearchStageResult(model.research,{result,attemptKey,correctiveQuestionText});
+  if(!transition.valid){
+    return {ok:false,error:transition.issue||"La resolución no produce un estado de Investigación válido.",issues:transition.issues};
+  }
+
+  const consumed=await consumeReservations(project,resolver);
+  if(!consumed.ok) return consumed;
+
+  const next=nextResearchProjectState(transition.research);
+  if(!next.quote?.valid){
+    await rollbackUpdates(consumed.snapshots);
+    return {ok:false,error:next.quote?.issue||"La siguiente etapa de Investigación no puede configurarse."};
+  }
+
+  const terminal=next.terminal;
+  const completionToken=terminal?randomToken():"";
+  const nextQuote=next.quote;
+  try{
+    await project.update({
+      "system.research":clone(transition.research),
+      "system.state":terminal?"completed":"draft",
+      "system.professional.skill":String(nextQuote.skill||transition.research.principalSkill||model.professional.skill),
+      "system.time.mode":"fixed",
+      "system.time.baseMinutes":nextQuote.timeMinutes,
+      "system.time.adjustedBaseMinutes":nextQuote.timeMinutes,
+      "system.time.requiredMinutes":nextQuote.timeMinutes,
+      "system.time.completedMinutes":0,
+      "system.execution.committed":false,
+      "system.execution.revision":model.execution.revision+1,
+      "system.execution.completionToken":completionToken,
+      "system.ledger.estimatedMaterialsCopper":nextQuote.materialCopper,
+      "system.ledger.committedMaterialsCopper":0,
+      "system.ledger.entries":[]
+    },{tmValidated:true,tmCrafting:true});
+  }catch(error){
+    await rollbackUpdates(consumed.snapshots);
+    return {ok:false,error:"No fue posible persistir la resolución de Investigación.",cause:String(error?.message??error)};
+  }
+
+  return {
+    ok:true,
+    resolved:true,
+    result:transition.outcome,
+    research:transition.research,
+    nextQuote,
+    terminal,
+    completionToken,
+    revision:model.execution.revision+1
+  };
+}
+
