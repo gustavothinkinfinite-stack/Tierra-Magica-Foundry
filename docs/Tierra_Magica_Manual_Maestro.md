@@ -940,7 +940,7 @@ Ataques y respuestas preparados:
 
 - **Espada corta:** ataque **2d10 + 5** = AGI 3 + Armas Ligeras 2; Daño **5** = base 4 + FUE 1; Pen 0.
 - **Daga:** ataque **2d10 + 5**; Daño **3**; Pen 0.
-- **Proyectil Ígneo:** ataque **2d10 + 4** = INT 2 + Canalización 2 contra Defensa; Daño 5, Pen 2, pagando su Maná.
+- **Proyectil Ígneo:** ataque **2d10 + 4** = INT 2 + Canalización 2 contra Defensa; Daño 6, Pen 2, pagando su Maná.
 - **Parada:** Reacción contra un ataque cuerpo a cuerpo parable; Defensa **17** contra ese ataque.
 - **Barrera Cinética:** Reacción; +2 Defensa contra el ataque declarado según su entrada.
 - **Sentido Agudo (vista):** +1 PER sólo cuando distinguir detalles visuales sutiles sea determinante.
