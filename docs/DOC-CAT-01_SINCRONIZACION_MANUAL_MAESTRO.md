@@ -45,6 +45,6 @@ De los 49 archivos de PR #53, sólo `docs/Tierra_Magica_Manual_Maestro.md` habí
 
 ## Validación
 
-GitHub Actions **Validate #732: verde**.
+GitHub Actions histórica **Validate #732: verde**. Tras sincronizar con `main` v1.2.0, **Validate #37342416540: success**.
 
-La sincronización post-CRAFT-13 está preparada en la rama `catalogo-armas-maestro-v1`. `main` recibirá estos cambios únicamente si PR #53 supera nuevamente la validación integral y luego es fusionada.
+La sincronización post-CRAFT-13 está preparada en la rama `catalogo-armas-maestro-v1`. PR #53 superó nuevamente la validación integral (`Validate` #37342416540: **success**). `main` recibirá estos cambios únicamente si la PR es revisada y posteriormente fusionada.

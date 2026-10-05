@@ -1,6 +1,6 @@
 # CAT-SYNC-01 — Auditoría post-CRAFT-13 de PR #53
 
-**Estado:** SINCRONIZADA CON MAIN · PENDIENTE DE VALIDACIÓN INTEGRAL  
+**Estado:** SINCRONIZADA CON MAIN · VALIDACIÓN INTEGRAL VERDE  
 **Fecha:** 2026-10-05
 
 ## Base
@@ -71,4 +71,4 @@ Sigue sin promoción automática:
 - 65 equipos mundanos sin auditoría de precio/uso;
 - 10 equipos especiales sin Perfil exacto.
 
-La próxima barrera es `npm run validate` contra la rama sincronizada.
+La rama sincronizada superó `Validate` #37342416540 con resultado **success**.
