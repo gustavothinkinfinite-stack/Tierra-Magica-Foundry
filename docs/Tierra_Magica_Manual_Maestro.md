@@ -2684,6 +2684,7 @@ El Movimiento puede gastarse en varios tramos. Reglas frecuentes:
 | Situación | Coste / efecto |
 |---|---|
 | Desplazamiento ordinario | 1 punto por espacio |
+| Retirada en combate | al alejarse voluntariamente desde el alcance cuerpo a cuerpo de una amenaza activa, usa como máximo la mitad del Movimiento normal, redondeando hacia abajo; Correr añade después un tramo completo |
 | Terreno difícil | 2 puntos por espacio |
 | Levantarse desde Derribado | normalmente 2 puntos |
 | Recoger un objeto accesible del suelo | normalmente 2 puntos |
