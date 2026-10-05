@@ -3102,7 +3102,7 @@ Cuando una propiedad descriptiva deba producir un modificador numérico concreto
 | Gran hacha | 8 | 0 | 3 | 5 o | Pesada, 2 manos |
 | Gran martillo | 7 | 2 | 3 | 5 o | Pesada, 2 manos |
 | Arco corto | 4 | 0 | — | 1 o | Potencia 2 |
-| Arco largo | 5 | 0 | — | 2 o | Potencia 3, 2 manos |
+| Arco largo | 5 | 1 | — | 2 o | Potencia 3, 2 manos |
 | Ballesta | 6 | 1 | — | 3 o | Recarga 1 |
 | Ballesta pesada | 8 | 2 | — | 5 o | Recarga 2, 2 manos |
 | Pistola temprana | 6 | 2 | — | 10 o | Recarga 2 |
@@ -3122,6 +3122,13 @@ Unidades comerciales canónicas:
 - 20 virotes = **3 p**;
 - 12 disparos ordinarios de arma de fuego = **5 p**.
 
+**Munición perforante.** Flechas y virotes pueden adquirirse en versión perforante. Cada unidad consumida concede **Pen +1** al disparo realizado con ella, hasta **Pen 3** por esta vía. Este aumento se suma a la Penetración base del arma, pero no se acumula con otra munición especial equivalente aplicada al mismo disparo.
+
+- 20 flechas perforantes = **4 p**;
+- 20 virotes perforantes = **6 p**.
+
+La munición perforante no aumenta Daño, no modifica la tirada de ataque y se consume normalmente aunque el disparo falle.
+
 La compra cubre esa cantidad física real. Dividir el lote divide también su valor proporcional.
 
 No existe un porcentaje universal de recuperación de flechas o virotes después de un combate. Pueden recuperarse unidades intactas cuando la ficción, el lugar y el tiempo de búsqueda lo permitan; un proyectil roto, perdido o inaccesible se pierde.
@@ -3135,7 +3142,7 @@ No existe un porcentaje universal de recuperación de flechas o virotes después
 | Armadura ligera | 1 | 0 | 1 o 5 p |
 | Armadura reforzada | 2 | 0 | 4 o |
 | Malla | 3 | 1 | 10 o |
-| Armadura pesada | 4 | 2 | 16 o |
+| Armadura pesada | 4 | 3 | 16 o |
 | Placas | 5 | 3 | 40 o |
 
 Sólo se aplica la **Protección relevante más alta** entre capas equivalentes salvo regla expresa. Vestir varias armaduras no suma toda su Protección.
@@ -3938,10 +3945,10 @@ Los costes de PD por Grado son los definidos en Magia: Menor 1 PD, Básico 2 PD,
 | Hechizo | Grado | Maná | Resolución canónica |
 |---|---:|---:|---|
 | Luz Arcana | Menor | 2 | Crea luz arcana real en un punto u objeto a hasta 3 espacios; ilumina aproximadamente 4 espacios durante una Escena. No revela invisibilidad, no ciega y no detecta magia. |
-| Proyectil Ígneo | Básico | 3 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 1. |
+| Proyectil Ígneo | Básico | 3 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 2. |
 | Onda de Choque | Básico | 4 | Área frontal corta; Daño 4, Pen 0; una tirada se compara con la Defensa de cada objetivo. Empuja 1 espacio cuando corresponda; aliados incluidos salvo discriminación expresa. |
 | Barrera Cinética | Básico | 3 | Reacción; +2 Defensa normal sólo contra el ataque declarado; se consume al resolverlo. |
-| Aguja Gélida | Avanzado | 5 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 1. Si impacta, Movimiento -2 hasta el final del siguiente turno del objetivo, mínimo 1. No se acumula; repetir refresca. |
+| Aguja Gélida | Avanzado | 5 | INT + Canalización contra Defensa; alcance Medio; Daño 5, Pen 2. Si impacta, Movimiento -2 hasta el final del siguiente turno del objetivo, mínimo 1. No se acumula; repetir refresca. |
 | Arco Fulminante | Avanzado | 6 | INT + Canalización contra Defensa; Daño 4, Pen 1. Cadena selectiva de hasta 3 objetivos; cada objetivo posterior debe estar a 3 espacios o menos del anterior. Un Actor sólo recibe un impacto. |
 | Martillo Cinético | Avanzado | 5 | INT + Canalización contra Defensa Corporal; alcance Medio; Daño 3. Desplaza 2 espacios a Escala igual/menor, 1 a una categoría mayor y 0 a dos o más categorías mayor o anclada. |
 | Pantalla Cinética | Maestro | 8 | Sostenida, máximo una Escena. Pantalla de hasta 3 espacios que cuenta como cobertura cinética +2 Defensa contra ataques que la atraviesan. No se acumula con cobertura equivalente y no es pared física. |
