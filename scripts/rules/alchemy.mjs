@@ -42,13 +42,35 @@ export const ALCHEMY_FORMULAS=Object.freeze({
   "toxina-debilitante":profile({
     ref:"REF-ALQ-07",name:"Toxina Debilitante",grade:"complex",knowledgePd:2,
     priceCopper:150,materialCopper:75,timeMinutes:480,rank:3,specialization:"Toxinas",installation:"professional",
-    route:"Sangre",activation:"Primera aplicación válida",duration:"Escena",saturating:false,family:"",
+    route:"Sangre",activation:"Primera aplicación válida",latency:"Inmediata",duration:"Escena",saturating:false,family:"",
+    poison:true,weaponCompatible:true,resistanceAttribute:"vig",resistanceDf:14,poisonEffectKey:"debilitating",
     effectKind:"contextual"
   }),
   "bomba-incendiaria":profile({
     ref:"REF-ALQ-08",name:"Bomba Incendiaria",grade:"complex",knowledgePd:2,
     priceCopper:300,materialCopper:150,timeMinutes:480,rank:3,specialization:"Explosivos",installation:"professional",
     route:"Colocación/lanzamiento",activation:"Colocación o lanzamiento",duration:"Instantánea",saturating:false,family:"",
+    effectKind:"contextual"
+  }),
+  "somnifero-de-bruma":profile({
+    ref:"REF-ALQ-09",name:"Somnífero de Bruma",grade:"complex",knowledgePd:2,
+    priceCopper:120,materialCopper:60,timeMinutes:480,rank:3,specialization:"Toxinas",installation:"professional",
+    route:"Sangre",activation:"Primera aplicación válida",latency:"Fin del turno afectado",duration:"Escena",saturating:false,family:"",
+    poison:true,weaponCompatible:true,resistanceAttribute:"vig",resistanceDf:14,poisonEffectKey:"soporific",
+    effectKind:"contextual"
+  }),
+  "paralizante-de-aguja":profile({
+    ref:"REF-ALQ-10",name:"Paralizante de Aguja",grade:"complex",knowledgePd:2,
+    priceCopper:220,materialCopper:110,timeMinutes:480,rank:3,specialization:"Toxinas",installation:"professional",
+    route:"Sangre",activation:"Primera aplicación válida",latency:"Inmediata",duration:"Escena",saturating:false,family:"",
+    poison:true,weaponCompatible:true,resistanceAttribute:"vig",resistanceDf:16,poisonEffectKey:"paralyzing",
+    effectKind:"contextual"
+  }),
+  "veneno-del-ultimo-pulso":profile({
+    ref:"REF-ALQ-11",name:"Veneno del Último Pulso",grade:"complex",knowledgePd:3,
+    priceCopper:400,materialCopper:200,timeMinutes:960,rank:4,specialization:"Toxinas",installation:"specialized",
+    route:"Sangre",activation:"Primera aplicación válida",latency:"Fin del siguiente turno",duration:"Instantánea",saturating:false,family:"",
+    poison:true,weaponCompatible:true,resistanceAttribute:"vig",resistanceDf:18,poisonEffectKey:"lethal",poisonDamage:8,
     effectKind:"contextual"
   })
 });

@@ -34,7 +34,7 @@ test("CRAFT-13H: catálogo expone exactamente las 41 referencias CRAFT-11 sin du
     craftingReferenceGroups().map((group)=>[group.category,group.entries.length]),
     [
       ["Equipo compuesto",8],
-      ["Alquimia",8],
+      ["Alquimia",11],
       ["Runas y magia",5],
       ["Trampas y construcciones",6],
       ["Ingeniería",7],

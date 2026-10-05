@@ -4334,13 +4334,22 @@ Esto impide multiplicar resistencias, daño o recuperación apilando físicament
 | Supresor del Dolor | Refinada | 8 p | Analgésica | Ignora una Desventaja causada por dolor compatible; no repara lesión. |
 | Neutralizante Común | Refinada | 1 o | Antitóxica | Nueva resistencia con Ventaja contra una toxina compatible. |
 | Toxina Debilitante | Compleja | 1 o 5 p | Sangre | VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular. |
+| Somnífero de Bruma | Compleja | 1 o 2 p | Sangre | VIG DF14; Somnoliento; una exposición posterior fallida puede dormir. |
+| Paralizante de Aguja | Compleja | 2 o 2 p | Sangre | VIG DF16; parálisis breve y luego Movimiento reducido. |
+| Veneno del Último Pulso | Compleja | 4 o | Sangre | VIG DF18; fallo: 8 Vida internos tras Latencia. |
 | Bomba Incendiaria | Compleja | 3 o | — | Área pequeña, Daño 6, Pen 1; requiere colocación válida. |
 
-Un veneno define Vía, Latencia, DF, Efecto y Duración. Normalmente concede una resistencia y no exige pruebas repetidas sin cambio. Aplicar veneno a un arma requiere preparación/Acción apropiada y la primera aplicación válida consume la dosis.
+Un veneno define Vía, Latencia, DF, Efecto y Duración. Normalmente concede una resistencia y no exige pruebas repetidas sin cambio.
+
+**Recubrimiento de armas con veneno de Vía Sangre.** Aplicar una dosis a un arma compatible requiere una Acción apropiada y consume esa dosis en el momento de preparar el arma. El recubrimiento conserva el efecto completo del veneno mientras siga activo: no reduce DF, daño ni intensidad entre impactos.
+
+La primera aplicación válida usa el veneno automáticamente. Después de cada aplicación válida se tira **1d100** para comprobar si queda suficiente recubrimiento para otra exposición. La Persistencia comienza en **50%** y, si se conserva, pasa sucesivamente a **25%, 12%, 6% y 3%**. Un resultado igual o inferior al umbral conserva el recubrimiento; un resultado superior lo agota. Si sobrevive el último umbral de 3%, puede producir una última aplicación válida y después queda agotado automáticamente.
+
+Para una Vía Sangre, una aplicación válida exige que el ataque compatible cause al menos **1 Vida de daño después de Protección**. Un fallo, un impacto completamente absorbido o un contacto que no introduzca la toxina por su Vía no consume una aplicación de Persistencia. Aplicar una dosis nueva sustituye el recubrimiento anterior; varias dosis no se apilan para producir varias resoluciones simultáneas.
 
 Los explosivos usan una prueba de colocación cuando existe incertidumbre, normalmente AGI + Armas a Distancia u otra combinación apropiada; cobertura y posición importan. No añaden una segunda tirada defensiva genérica si la resolución ya establece cómo afecta el área.
 
-**CRAFT-11 — Catálogo de proyectos y recetas de referencia** fija precio, CM, tiempo, competencia y activación completa de estas ocho Fórmulas.
+**CRAFT-11 — Catálogo de proyectos y recetas de referencia** fija precio, CM, tiempo, competencia y activación completa de estas once Fórmulas.
 
 ## 17. Ingeniería arcano-industrial
 
@@ -8943,6 +8952,9 @@ Salvo indicación contraria:
 | REF-ALQ-06 | Neutralizante Común | 1 o | 5 p | Complejo · Alquimia Experta · Toxinas · Profesional | 4 h |
 | REF-ALQ-07 | Toxina Debilitante | 1 o 5 p | 7 p 5 c | Complejo · Alquimia Experta · Toxinas · Profesional | 1 Jornada |
 | REF-ALQ-08 | Bomba Incendiaria | 3 o | 1 o 5 p | Complejo · Alquimia Experta · Explosivos · Profesional | 1 Jornada |
+| REF-ALQ-09 | Somnífero de Bruma | 1 o 2 p | 6 p | Complejo · Alquimia Experta · Toxinas · Profesional | 1 Jornada |
+| REF-ALQ-10 | Paralizante de Aguja | 2 o 2 p | 1 o 1 p | Complejo · Alquimia Experta · Toxinas · Profesional | 1 Jornada |
+| REF-ALQ-11 | Veneno del Último Pulso | 4 o | 2 o | Complejo · Alquimia Maestra · Toxinas · Especializada | 2 Jornadas |
 
 ### REF-ALQ-01 — Bálsamo Restaurador
 
@@ -9023,6 +9035,42 @@ No es un antídoto universal. Tras beneficiarse de una dosis, otra aplicación d
 - una activación consume la Bomba.
 
 No existe una receta real de explosivos detrás de esta entrada; sus componentes son categorías de ficción del sistema.
+
+### REF-ALQ-09 — Somnífero de Bruma
+
+- **Grado:** Compleja; 2 PD.
+- **Componentes:** categorías ficticias de reactivos soporíferos.
+- **Vía:** Sangre.
+- **Latencia:** hasta el final del turno de la criatura afectada.
+- **Resistencia:** VIG DF 14.
+- **Fallo:** queda **Somnoliento** durante la Escena y sufre Desventaja en pruebas de PER y AGI. Si ya está Somnoliento por esta toxina y falla una exposición posterior, queda **Dormido** hasta sufrir daño o hasta que otra criatura emplee una Acción para despertarlo.
+- **Éxito:** sin efecto.
+- **Saturación:** —.
+
+### REF-ALQ-10 — Paralizante de Aguja
+
+- **Grado:** Compleja; 2 PD.
+- **Componentes:** categorías ficticias de reactivos paralizantes.
+- **Vía:** Sangre.
+- **Latencia:** inmediata.
+- **Resistencia:** VIG DF 16.
+- **Fallo:** Movimiento 0 y no puede usar Reacción hasta el final de su siguiente turno. Después, Movimiento -2, mínimo 1, hasta terminar la Escena.
+- **Éxito:** sin efecto.
+- **Saturación:** —.
+
+### REF-ALQ-11 — Veneno del Último Pulso
+
+- **Grado:** Compleja; 3 PD.
+- **Componentes:** categorías ficticias de reactivos letales de fantasía.
+- **Vía:** Sangre.
+- **Latencia:** hasta el final del siguiente turno de la criatura afectada.
+- **Resistencia:** VIG DF 18.
+- **Fallo:** sufre **8 Vida de daño interno**. La Protección no reduce este daño; 0 Vida, Incapacitado y Trauma se resuelven con las reglas normales.
+- **Éxito:** sin efecto.
+- **Saturación:** —.
+- **Preparación:** requiere Alquimia Maestra · Toxinas e instalación Especializada.
+
+Estas entradas son perfiles de juego ficticios. No describen sustancias, cantidades, concentraciones ni procedimientos reales de fabricación.
 
 ---
 
