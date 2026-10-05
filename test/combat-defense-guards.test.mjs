@@ -23,7 +23,9 @@ test("Parada se reclama antes del ataque parable y mide si cambió impacto por f
   const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
   assert.equal(source.includes('if (!ownsTechnique(this, "Parada"))'), true);
   assert.equal(source.includes("claimParryAuthoritatively(target)"), true);
-  assert.equal(source.includes("const parryBonus = parryPending ? 2 : 0"), true);
+  assert.equal(source.includes("const parryBonus = parryPending ? Number(parryClaim.bonus ?? 2) : 0"), true);
+  assert.equal(source.includes("parryBonusForWeapon"), true);
+  assert.equal(source.includes('"system.combat.parrySourceItemId": weapon?.id ?? ""'), true);
   assert.equal(source.includes("total >= baseDefense"), true);
   assert.equal(source.includes("total < parryDefense"), true);
   assert.equal(source.includes("resolveParryAuthoritatively(target, succeeded)"), true);

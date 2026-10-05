@@ -11,6 +11,7 @@ import { installCombatDefenseGuards } from "./rules/combat-defense-guards.mjs";
 import { installReactiveTechniqueGuards } from "./rules/reactive-technique-guards.mjs";
 import { installFormulaGuards } from "./rules/formula-guards.mjs";
 import { installRitualGuards } from "./rules/ritual-guards.mjs";
+import { installCraftingMagicGuards } from "./rules/crafting-magic-runtime.mjs";
 import { installActionEconomyGuards } from "./rules/action-economy-guards.mjs";
 import { installReactionEconomyGuards } from "./rules/reaction-economy-guards.mjs";
 import { primaryActiveGm, validatePendingDamageRequest } from "./rules/damage-delivery.mjs";
@@ -22,7 +23,18 @@ import { preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType
 import { deriveDevelopmentBudget } from "./rules/creation.mjs";
 import { migrateWorldData, TM_SCHEMA_VERSION } from "./rules/data-model-migration.mjs";
 import { installResourceReconciliationHooks, reconcileActorResources } from "./rules/resource-reconciliation.mjs";
-import { approvePendingDamageAuthoritatively, approvePendingHealingAuthoritatively, installStateAuthorityBridge } from "./rules/state-authority.mjs";
+import {
+  advanceCraftingProjectAuthoritatively,
+  approvePendingDamageAuthoritatively,
+  approvePendingHealingAuthoritatively,
+  cancelCraftingProjectAuthoritatively,
+  completeCraftingProjectAuthoritatively,
+  prepareCraftingProjectAuthoritatively,
+  installStateAuthorityBridge,
+  releaseCraftingProjectAuthoritatively,
+  reserveCraftingProjectAuthoritatively,
+  resolveResearchProjectStageAuthoritatively
+} from "./rules/state-authority.mjs";
 import { validateCatalog } from "./rules/catalog.mjs";
 import { coreCatalog } from "./catalog/core-catalog.mjs";
 
@@ -34,6 +46,7 @@ installCombatDefenseGuards(TierraMagicaActor);
 installReactiveTechniqueGuards(TierraMagicaActor);
 installFormulaGuards(TierraMagicaActor);
 installRitualGuards(TierraMagicaActor);
+installCraftingMagicGuards(TierraMagicaActor);
 installActionEconomyGuards(TierraMagicaActor);
 installReactionEconomyGuards(TierraMagicaActor);
 installCurrencyRules(TierraMagicaActor);
@@ -81,6 +94,17 @@ Hooks.on("preCreateItem", (item, data, options = {}) => {
     "system.schemaVersion": TM_SCHEMA_VERSION
   });
 
+  if (item.type === "project" && !options.tmValidated) {
+    item.updateSource({
+      "system.state":"draft",
+      "system.execution.revision":0,
+      "system.execution.committed":false,
+      "system.execution.completionToken":"",
+      "system.ledger.committedMaterialsCopper":0,
+      "system.ledger.recoveredMaterialsCopper":0
+    });
+    return;
+  }
   if (options.tmValidated || item.type === "effect") return;
   const actor = item.parent;
   if (!actor || actor.type !== "character") return;
@@ -145,14 +169,52 @@ Hooks.on("preCreateItem", (item, data, options = {}) => {
 
 Hooks.on("createItem", async (item, options = {}) => {
   const actor = item.parent;
-  if (!actor || actor.type !== "character" || options.tmValidated) return;
+  if (!actor || actor.type !== "character" || options.tmValidated || item.type === "project") return;
   await actor.update({ "system.creation.revision": Number(actor.system.creation?.revision ?? 0) + 1 });
 });
 
 Hooks.on("preDeleteItem", (item, options = {}) => {
   const actor = item.parent;
   if (!actor || actor.type !== "character" || options.tmValidated) return;
+  if (item.type === "project" && item.system?.execution?.committed) {
+    ui.notifications.warn("Cancela o libera el Proyecto antes de eliminarlo; posee materiales reservados.");
+    return false;
+  }
+  const reservations = item.system?.craftingLot?.reservations;
+  const componentReservations = item.system?.craftingReservations;
+  const activeTargetProject = actor.items?.find?.((entry) =>
+    entry.type === "project" &&
+    entry.system?.state === "active" &&
+    String(entry.system?.target?.itemUuid ?? "") === String(item.uuid ?? "")
+  );
+  if (activeTargetProject) {
+    ui.notifications.warn("No puede eliminarse un objeto mientras es objetivo de un Proyecto activo.");
+    return false;
+  }
+  if (String(item.system?.enchantment?.attunedActorUuid ?? "")) {
+    ui.notifications.warn("Desintoniza el objeto antes de eliminarlo; eliminarlo no puede borrar silenciosamente un vínculo activo.");
+    return false;
+  }
+  if (String(item.system?.imprintStone?.socketedHostUuid ?? "")) {
+    ui.notifications.warn("Extrae la Piedra de Impronta de su Engarce antes de eliminarla.");
+    return false;
+  }
+  if (Array.isArray(item.system?.runic?.imprints) && item.system.runic.imprints.some((row) => row?.mode === "stone")) {
+    ui.notifications.warn("Extrae las Piedras de Impronta antes de eliminar el Host.");
+    return false;
+  }
+  if (
+    (reservations && typeof reservations === "object" && Object.keys(reservations).length) ||
+    (componentReservations && typeof componentReservations === "object" && Object.keys(componentReservations).length)
+  ) {
+    ui.notifications.warn("No puede eliminarse un Item reservado por un Proyecto activo.");
+    return false;
+  }
   if (item.type === "effect") return;
+  if (item.type==="formula" && item.system?.known===true && actor.system.creation?.status==="complete") {
+    ui.notifications.warn("Olvidar una Fórmula conocida requiere reconstrucción autorizada; borrar el documento no devuelve PD.");
+    return false;
+  }
   const developmental = new Set(["ancestry","origin","background","discipline","specialization","technique","trait","spell"]);
   if (!developmental.has(item.type)) return;
   if (actor.system.creation?.status === "complete") {
@@ -163,6 +225,83 @@ Hooks.on("preDeleteItem", (item, options = {}) => {
 
 Hooks.on("preUpdateItem", (item, changes, options = {}) => {
   if (item.parent?.type === "character" && !options.tmValidated) {
+    const touches = (path) => foundry.utils.hasProperty(changes, path) ||
+      Object.keys(changes).some((key) => key === path || key.startsWith(path + "."));
+
+    if (!game.user?.isGM && (
+      touches("system.craftingLot") ||
+      touches("system.craftingReservations")
+    )) {
+      ui.notifications.warn("Los Lotes, VI, compatibilidades y reservas de crafting sólo cambian mediante operaciones autorizadas.");
+      return false;
+    }
+
+    if (!game.user?.isGM && (
+      touches("system.trap") ||
+      touches("system.runic") ||
+      touches("system.imprintStone") ||
+      touches("system.magicSupport") ||
+      touches("system.enchantment")
+    )) {
+      ui.notifications.warn("Trampas, CRu, Improntas, Engarces, Encantamientos, Sintonización y RE sólo cambian mediante operaciones autorizadas.");
+      return false;
+    }
+
+    if (!game.user?.isGM && Number(item.system?.manufacture?.referenceValueCopper ?? 0) > 0) {
+      const manufacturedPaths = [
+        "system.manufacture",
+        "system.quality",
+        "system.priceCopper",
+        "system.priceStatus",
+        "system.damage",
+        "system.penetration",
+        "system.strengthMin",
+        "system.reload",
+        "system.block",
+        "system.movementPenalty"
+      ];
+      if (manufacturedPaths.some(touches)) {
+        ui.notifications.warn("Calidad, Materiales y estadísticas manufacturadas sólo cambian mediante un Proyecto autorizado.");
+        return false;
+      }
+    }
+
+    if (!game.user?.isGM && item.type==="formula" && touches("system.known")) {
+      ui.notifications.warn("El conocimiento personal de una Fórmula sólo cambia mediante adquisición/desarrollo autorizado.");
+      return false;
+    }
+
+    if (!game.user?.isGM && touches("system.quantity")) {
+      const reservations = item.system?.craftingReservations;
+      if (reservations && typeof reservations === "object" && Object.keys(reservations).length) {
+        ui.notifications.warn("No puede alterarse la cantidad de un componente reservado por un Proyecto.");
+        return false;
+      }
+    }
+
+    if (item.type === "project" && !game.user?.isGM) {
+      const transactionPaths = [
+        "system.state",
+        "system.time.completedMinutes",
+        "system.execution",
+        "system.ledger.committedMaterialsCopper",
+        "system.ledger.recoveredMaterialsCopper",
+        "system.research.history",
+        "system.research.prototypeStatus",
+        "system.research.provisionalPlan",
+        "system.research.replicaStatus",
+        "system.research.resumeStage",
+        "system.research.resumeValidationId"
+      ];
+      if (transactionPaths.some(touches)) {
+        ui.notifications.warn("Estado, avance y ledger transaccional del Proyecto requieren autoridad del sistema.");
+        return false;
+      }
+      if (String(item.system?.state ?? "draft") !== "draft" && touches("system")) {
+        ui.notifications.warn("Un Proyecto aprobado ya no puede reescribirse; libéralo o cancélalo mediante el flujo de crafting.");
+        return false;
+      }
+    }
     const protectedPaths = ["system.acquisition", "system.costs", "system.rules", "system.requirements", "system.schemaVersion"];
     const touchesProtected = protectedPaths.some((path) => foundry.utils.hasProperty(changes, path));
     if (touchesProtected && !game.user?.isGM) {
@@ -196,6 +335,22 @@ Hooks.on("preUpdateItem", (item, changes, options = {}) => {
   }
   if (Number(foundry.utils.getProperty(changes, "system.pdCost") ?? item.system.pdCost) !== 1) {
     foundry.utils.setProperty(changes, "system.pdCost", 1);
+  }
+});
+
+Hooks.on("preUpdateActor", (actor, changes, options = {}) => {
+  if (options.tmValidated || game.user?.isGM) return;
+  const touches = (path) => foundry.utils.hasProperty(changes, path) ||
+    Object.keys(changes).some((key) => key === path || key.startsWith(path + "."));
+  if (
+    touches("system.magic.attunementCapacity") ||
+    touches("system.magic.linkedImprintClaims") ||
+    touches("system.magic.automaticEventClaims") ||
+    touches("system.magic.sustainedObjectIds") ||
+    touches("system.magic.preparedTrap")
+  ) {
+    ui.notifications.warn("Sintonización, Preparar, reclamaciones de Impronta/evento y Sostenimiento de objetos son estado mecánico protegido.");
+    return false;
   }
 });
 
@@ -249,7 +404,16 @@ Hooks.once("ready", async () => {
     ...(game.tierraMagica ?? {}),
     catalog,
     catalogValidation,
-    schemaVersion: TM_SCHEMA_VERSION
+    schemaVersion: TM_SCHEMA_VERSION,
+    crafting: {
+      prepare: prepareCraftingProjectAuthoritatively,
+      reserve: reserveCraftingProjectAuthoritatively,
+      release: releaseCraftingProjectAuthoritatively,
+      cancel: cancelCraftingProjectAuthoritatively,
+      work: advanceCraftingProjectAuthoritatively,
+      complete: completeCraftingProjectAuthoritatively,
+      resolveResearch: resolveResearchProjectStageAuthoritatively
+    }
   };
   if (repaired) ui.notifications.info("Tierra Mágica: se repararon " + repaired + " ficha(s) afectadas por el guardado de v0.3.1.");
   if (retired) ui.notifications.info("Tierra Mágica: se retiraron campos mecánicos históricos de " + retired + " actor(es).");

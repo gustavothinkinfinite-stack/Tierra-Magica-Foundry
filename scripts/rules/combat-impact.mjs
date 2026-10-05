@@ -11,7 +11,9 @@ export function resolveWeaponImpact(weapon, attacker, target, { damageBonus = 0,
   if (!attacker?.system || !target?.system) throw new TypeError("Atacante y objetivo deben ser Actores válidos.");
 
   const attributeKey = String(weapon.system?.damageAttribute ?? "").trim();
-  const attribute = attributeKey ? Math.max(0, number(attacker.system.attributes?.[attributeKey]?.value)) : 0;
+  const rawAttribute = attributeKey ? Math.max(0, number(attacker.system.attributes?.[attributeKey]?.value)) : 0;
+  const power = Math.max(0, number(weapon.system?.power));
+  const attribute = attributeKey === "fue" && power > 0 ? Math.min(rawAttribute, power) : rawAttribute;
   const base = Math.max(0, number(weapon.system?.damage));
   const rawProtection = Math.max(0, number(resolveActorProtection(target, protectionContext).total));
   const penetration = Math.max(0, number(weapon.system?.penetration) + number(penetrationBonus));

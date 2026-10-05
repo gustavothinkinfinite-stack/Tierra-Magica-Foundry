@@ -4,6 +4,10 @@ import { normalizeSlug } from "../rules/identity.mjs";
 import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } from "../rules/currency.mjs";
 import { movementAllowance, movementRemaining, spendActorMovement } from "../rules/turn-economy.mjs";
 import { nextAttributeUpgradeCost } from "../rules/creation.mjs";
+import {
+  craftingProjectSourceFromReference,
+  craftingReferenceGroups
+} from "../rules/crafting-catalog.mjs";
 
 const ActorSheetV1 = foundry.appv1.sheets.ActorSheet;
 const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
@@ -283,7 +287,10 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     html.find("[data-action='familiar-senses']").click(() => { const familiar=this.#linkedFamiliar(); if (familiar) return this.actor.useFamiliarSense(familiar); });
 
     html.find("[data-action='item-create']").click((event) => this.#createItem(event.currentTarget.dataset.type));
-    html.find("[data-action='content-browser']").click((event) => this.#openContentBrowser(event.currentTarget.dataset.type));
+    html.find("[data-action='content-browser']").click((event) => {
+      const type=event.currentTarget.dataset.type;
+      return type==="project" ? this.#openCraftingReferenceBrowser() : this.#openContentBrowser(type);
+    });
     html.find("[data-action='item-edit']").click((event) => this.#getItem(event)?.sheet.render(true));
     html.find("[data-action='item-delete']").click((event) => this.#deleteItem(event));
     html.find("[data-action='item-toggle']").click((event) => this.#toggleItem(event));
@@ -497,6 +504,15 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
 
   async #createItem(type) {
     if (!type) return;
+    if(type==="project"){
+      const created=await this.actor.createEmbeddedDocuments("Item",[{
+        name:"Nuevo Proyecto",
+        type:"project",
+        system:{operation:"fabricate",state:"draft"}
+      }]);
+      created?.[0]?.sheet?.render(true);
+      return;
+    }
     const data = {
       name: "Nuevo " + (TM_CONFIG.itemTypes[type] ?? "objeto"),
       type,
@@ -522,6 +538,31 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
   async #toggleItem(event) {
     const item = this.#getItem(event);
     if (item) await item.update({ "system.equipped": !item.system.equipped });
+  }
+
+  async #openCraftingReferenceBrowser() {
+    const groups=craftingReferenceGroups();
+    if(!groups.length) return ui.notifications.warn("No hay referencias CRAFT-11 disponibles.");
+    const options=groups.map((group)=>
+      "<optgroup label='"+foundry.utils.escapeHTML(group.category)+"'>"+
+      group.entries.map((entry)=>
+        "<option value='"+entry.ref+"'>"+foundry.utils.escapeHTML(entry.ref+" · "+entry.name)+"</option>"
+      ).join("")+
+      "</optgroup>"
+    ).join("");
+    const selected=await Dialog.prompt({
+      title:"Nuevo Proyecto desde CRAFT-11",
+      content:"<div class='form-group'><label>Referencia canónica</label><select name='reference'>"+options+"</select></div>"+
+        "<p>Las referencias compuestas crean un borrador guiado: Foundry no inventa objetivos, componentes ni propiedades no vinculadas.</p>",
+      label:"Crear Proyecto",
+      callback:(html)=>String(html.find("[name='reference']").val()??""),
+      rejectClose:false
+    });
+    if(!selected) return;
+    const source=craftingProjectSourceFromReference(selected,{catalog:game.tierraMagica?.catalog??[]});
+    if(!source) return ui.notifications.warn("Referencia CRAFT-11 desconocida.");
+    const created=await this.actor.createEmbeddedDocuments("Item",[source]);
+    created?.[0]?.sheet?.render(true);
   }
 
   async #openContentBrowser(type) {

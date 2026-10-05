@@ -11,6 +11,22 @@ test("impacto aplica atributo, protección y penetración una sola vez", () => {
   assert.equal(result.rawDamage, 7); assert.equal(result.effectiveProtection, 3); assert.equal(result.damage, 4); assert.equal(result.severe, false);
 });
 
+test("Potencia N limita cuánta FUE añade un arco al daño", () => {
+  const capped = resolveWeaponImpact(
+    weapon({ damage: 5, damageAttribute: "fue", power: 3, penetration: 1 }),
+    actor({ fue: { value: 5 } }),
+    actor({}, { protection: 0, severeThreshold: 20 })
+  );
+  assert.equal(capped.rawDamage, 8);
+
+  const belowCap = resolveWeaponImpact(
+    weapon({ damage: 5, damageAttribute: "fue", power: 3, penetration: 1 }),
+    actor({ fue: { value: 2 } }),
+    actor({}, { protection: 0, severeThreshold: 20 })
+  );
+  assert.equal(belowCap.rawDamage, 7);
+});
+
 test("penetración excesiva nunca aumenta el daño por encima de Protección 0", () => {
   const result = resolveWeaponImpact(weapon({ damage: 5, damageAttribute: "fue", penetration: 99 }), actor({ fue: { value: 2 } }), actor({}, { protection: 3, severeThreshold: 7 }));
   assert.equal(result.effectiveProtection, 0); assert.equal(result.damage, 7); assert.equal(result.severe, true);

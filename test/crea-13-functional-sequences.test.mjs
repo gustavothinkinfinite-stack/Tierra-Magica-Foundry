@@ -229,7 +229,7 @@ test("CREA-13 13C C13-05 Alquimista: conocimiento no equivale a dosis y una dosi
   const used=await actor.useFormula(formula);
   assert.ok(used);
   assert.equal(formula.system.quantity,0);
-  assert.equal(actor.system.turn.action,false);
+  assert.equal(actor.system.turn.action,true);
 
   actor.system.turn.action=true;
   assert.equal(await actor.useFormula(formula),null);
@@ -254,7 +254,7 @@ test("CREA-13 13C C13-06 Canalizador: ataque mágico, Sostenimiento y Protecció
   assert.equal(outcomes.length,1);
   assert.equal(outcomes[0].success,true);
   const [impact]=resolveSpellImpacts(projectile,[target]);
-  assert.equal(impact.damage,5);
+  assert.equal(impact.damage,6);
   assert.equal(impact.severe,false);
 
   const skin=actor.items.find((item)=>item.name==="Piel Alterada");

@@ -88,7 +88,7 @@ test("CREA-13 13B: FUE mínima y Escudo pesado modifican Movimiento desde equipo
   let derived=prepare(base);
   assert.equal(derived.protection,4);
   assert.equal(derived.movement,5);
-  assert.ok(derived.equipmentIssues.some((issue)=>issue.code==="armor-strength-deficit"));
+  assert.ok(derived.equipmentIssues.some((issue)=>issue.code==="armor-strength-incompetent"));
   assert.ok(derived.breakdowns.movement.contributions.some((entry)=>entry.sourceItemName==="Armadura pesada"&&entry.value===-1));
 
   heavyArmor.system.equipped=false;

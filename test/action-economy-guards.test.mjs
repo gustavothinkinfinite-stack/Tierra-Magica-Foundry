@@ -112,3 +112,23 @@ test("la Acción usa reserva distribuida además del bloqueo local", async () =>
   assert.equal(source.includes('commitTurnResourceReservation(actor, "action"'), true);
   assert.equal(source.includes('releaseTurnResourceReservation(actor, "action"'), true);
 });
+
+
+test("CRAFT-13I: una Fórmula de 1 minuto no se convierte en una sola Acción de combate", async () => {
+  const actor = new ActorStub();
+  globalThis.game={combat:{started:true}};
+  const result=await actor.useFormula({name:"Bálsamo Restaurador",system:{activation:"1 minuto"}});
+  assert.equal(result,null);
+  assert.equal(actor.calls,0);
+  assert.equal(actor.system.turn.action,true);
+  globalThis.game={};
+});
+
+test("CRAFT-13I: una aplicación contextual no inventa coste de Acción universal", async () => {
+  const actor = new ActorStub();
+  globalThis.game={};
+  const result=await actor.useFormula({name:"Toxina Debilitante",system:{activation:"Primera aplicación válida"}});
+  assert.ok(result);
+  assert.equal(actor.calls,1);
+  assert.equal(actor.system.turn.action,true);
+});

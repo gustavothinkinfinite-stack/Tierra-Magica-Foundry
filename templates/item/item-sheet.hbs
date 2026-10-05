@@ -151,6 +151,160 @@
         <label><span>Clave de acumulación</span><input type="text" value="{{system.stackingKey}}" disabled /></label>
       {{/if}}
 
+      {{#if isProject}}
+        <div class="tm-wide tm-project-reference-browser">
+          <div class="tm-section-heading"><h2>CRAFT-11 · referencia</h2><span>41 fichas canónicas</span></div>
+          <div class="tm-section-buttons">
+            <select data-project-reference>
+              <option value="">Elegir referencia...</option>
+              {{selectOptions projectReferenceOptions selected=project.source.profileRef}}
+            </select>
+            {{#if projectActions.canLoadReference}}<button type="button" data-action="project-reference-load">Cargar referencia</button>{{/if}}
+          </div>
+          {{#if projectReference}}
+            <p><strong>{{projectReference.ref}} · {{projectReference.name}}</strong></p>
+            <p>{{projectReference.category}} · Materiales {{projectReference.materialDisplay}} · Tiempo {{projectReference.timeDisplay}} · Valor {{projectReference.valueDisplay}}</p>
+            <p>{{projectReference.skillLabel}} {{projectReference.rankLabel}}{{#if projectReference.specialization}} · {{projectReference.specialization}}{{/if}} · {{projectReference.installationLabel}}</p>
+            <p>{{projectReference.summary}}</p>
+            {{#each projectReference.notes as |note|}}<small>{{note}}</small>{{/each}}
+          {{/if}}
+        </div>
+
+        <div class="tm-wide">
+          <div class="tm-section-heading"><h2>Previsualización</h2><span>{{#if projectPreview.valid}}Lista para Preparar{{else}}Requiere atención{{/if}}</span></div>
+          <p>Material previsto: <strong>{{projectMaterialDisplay}}</strong> · Asignado: <strong>{{projectAllocatedDisplay}}</strong> · Falta: <strong>{{projectMissingDisplay}}</strong></p>
+          {{#if projectPreviewIssues.length}}
+            <ul class="tm-warning">{{#each projectPreviewIssues as |issue|}}<li>{{issue.message}}</li>{{/each}}</ul>
+          {{else}}
+            <p>Sin incidencias estructurales o transaccionales.</p>
+          {{/if}}
+        </div>
+
+        <label><span>Operación</span><select name="system.operation">{{selectOptions config.craftingProjectOperations selected=project.operation}}</select></label>
+        <label><span>Estado</span><select name="system.state">{{selectOptions config.craftingProjectStates selected=project.state}}</select></label>
+        <label><span>Receta / Item fuente UUID</span><input type="text" name="system.source.recipeUuid" value="{{project.source.recipeUuid}}" /></label>
+        <label><span>Perfil / REF</span><input type="text" name="system.source.profileRef" value="{{project.source.profileRef}}" /></label>
+        <label><span>Revisión fuente</span><input type="text" name="system.source.sourceRevision" value="{{project.source.sourceRevision}}" /></label>
+
+        <label><span>Objetivo Item UUID</span><input type="text" name="system.target.itemUuid" value="{{project.target.itemUuid}}" /></label>
+        <label><span>Tipo de resultado</span><input type="text" name="system.target.resultType" value="{{project.target.resultType}}" /></label>
+        <label><span>Nombre de resultado</span><input type="text" name="system.target.resultName" value="{{project.target.resultName}}" /></label>
+
+        <label><span>VR Común (c)</span><input type="number" min="0" step="1" name="system.economy.referenceValueCopper" value="{{project.economy.referenceValueCopper}}" /></label>
+        <label><span>Estado de precio</span><select name="system.economy.priceStatus">{{selectOptions config.priceStatuses selected=project.economy.priceStatus}}</select></label>
+        <label><span>Precio fijado (c)</span><input type="number" min="0" step="1" name="system.economy.fixedPriceCopper" value="{{project.economy.fixedPriceCopper}}" /></label>
+        <label><span>Calidad</span><select name="system.economy.quality">{{selectOptions config.craftingQualities selected=project.economy.quality}}</select></label>
+        <label><span>Grado material de trabajo</span><select name="system.economy.workMaterialGrade">{{selectOptions config.craftingMaterialGrades selected=project.economy.workMaterialGrade}}</select></label>
+        <label><span>BRA / valor afectado (c)</span><input type="number" min="0" step="1" name="system.economy.affectedValueCopper" value="{{project.economy.affectedValueCopper}}" /></label>
+
+        <label><span>Modo temporal</span><select name="system.time.mode">{{selectOptions config.craftingProjectTimeModes selected=project.time.mode}}</select></label>
+        <label><span>Tiempo base (min)</span><input type="number" min="0" step="1" name="system.time.baseMinutes" value="{{project.time.baseMinutes}}" /></label>
+        <label><span>TBA (min)</span><input type="number" min="0" step="1" name="system.time.adjustedBaseMinutes" value="{{project.time.adjustedBaseMinutes}}" /></label>
+        <label><span>Tiempo requerido (min)</span><input type="number" min="0" step="1" name="system.time.requiredMinutes" value="{{project.time.requiredMinutes}}" /></label>
+        <label><span>Trabajo completado (min)</span><input type="number" min="0" step="1" value="{{project.time.completedMinutes}}" disabled /></label>
+        <label><span>Trabajo restante (min)</span><input type="number" value="{{projectRemainingMinutes}}" disabled /></label>
+
+        <label><span>Habilidad principal</span><select name="system.professional.skill">{{selectOptions config.skillLabels selected=project.professional.skill}}</select></label>
+        <label><span>Especialización</span><input type="text" name="system.professional.specialization" value="{{project.professional.specialization}}" /></label>
+        <label><span>Rango base receta</span><select name="system.professional.baseRank">{{selectOptions config.rankOptionLabels selected=project.professional.baseRank}}</select></label>
+        <label><span>Rango requerido</span><select name="system.professional.requiredRank">{{selectOptions config.rankOptionLabels selected=project.professional.requiredRank}}</select></label>
+        <label><span>Instalación base</span><select name="system.professional.baseInstallation">{{selectOptions config.craftingInstallations selected=project.professional.baseInstallation}}</select></label>
+        <label><span>Instalación requerida</span><select name="system.professional.requiredInstallation">{{selectOptions config.craftingInstallations selected=project.professional.requiredInstallation}}</select></label>
+        <label><span>Instalación disponible</span><select name="system.professional.availableInstallation">{{selectOptions config.craftingInstallations selected=project.professional.availableInstallation}}</select></label>
+        <label class="tm-check"><span>Procedimiento estable</span><input type="checkbox" name="system.professional.stableProcedure" {{checked project.professional.stableProcedure}} /></label>
+        <label class="tm-check"><span>Materiales listos</span><input type="checkbox" name="system.professional.materialsReady" {{checked project.professional.materialsReady}} /></label>
+        <label class="tm-check"><span>Herramienta/Kit esencial listo</span><input type="checkbox" name="system.professional.essentialToolReady" {{checked project.professional.essentialToolReady}} /></label>
+
+        <label><span>Ayudantes de trabajo</span><input type="number" min="0" step="1" name="system.assistants.work" value="{{project.assistants.work}}" /></label>
+        <label><span>Ayudantes técnicos</span><input type="number" min="0" step="1" name="system.assistants.technical" value="{{project.assistants.technical}}" /></label>
+        <label class="tm-check"><span>Aceleración declarada</span><input type="checkbox" name="system.execution.accelerated" {{checked project.execution.accelerated}} /></label>
+        <label><span>Resultado de Aceleración</span><select name="system.execution.accelerationOutcome">{{selectOptions config.craftingAccelerationOutcomes selected=project.execution.accelerationOutcome}}</select></label>
+        <label><span>Etapa actual</span><input type="text" name="system.execution.stage" value="{{project.execution.stage}}" /></label>
+        <label><span>Revisión transaccional</span><input type="number" value="{{project.execution.revision}}" disabled /></label>
+        <label class="tm-check"><span>Recursos comprometidos</span><input type="checkbox" {{checked project.execution.committed}} disabled /></label>
+        <label><span>Token de cierre</span><input type="text" value="{{project.execution.completionToken}}" disabled /></label>
+
+        <label><span>Material estimado (c)</span><input type="number" value="{{project.ledger.estimatedMaterialsCopper}}" disabled /></label>
+        <label><span>Material comprometido (c)</span><input type="number" value="{{project.ledger.committedMaterialsCopper}}" disabled /></label>
+        <label><span>Material recuperado (c)</span><input type="number" value="{{project.ledger.recoveredMaterialsCopper}}" disabled /></label>
+        <label><span>Registros internos</span><input type="text" value="ME {{projectCounts.specialMaterials}} · Componentes {{projectCounts.components}} · Consecuencias {{projectCounts.consequences}} · Ledger {{projectCounts.ledgerEntries}}" disabled /></label>
+
+        <div class="tm-wide">
+          <div class="tm-section-heading"><h2>Asignaciones de VI</h2><span>Se validan contra Lotes reales al comprometer</span></div>
+          {{#each projectMaterialAllocations as |allocation|}}
+            <div class="tm-skill-modifier-row">
+              <span>{{allocation.sourceUuid}}</span>
+              <span>{{allocation.amountDisplay}}</span>
+              <span>{{allocation.compatibility}}</span>
+              {{#if @root.projectActions.canLoadReference}}<button type="button" data-action="project-material-delete" data-index="{{allocation.index}}"><i class="fa-solid fa-trash"></i></button>{{/if}}
+            </div>
+          {{else}}
+            <p class="tm-empty">Sin VI asignado.</p>
+          {{/each}}
+          {{#if projectActions.canLoadReference}}
+            <div class="tm-skill-modifier-row">
+              <select data-project-material-source>
+                <option value="">Lote...</option>
+                {{#each projectCraftingLots as |lot|}}<option value="{{lot.uuid}}">{{lot.name}} · libre {{lot.availableDisplay}} · {{lot.compatibility}}</option>{{/each}}
+              </select>
+              <input type="number" min="1" step="1" data-project-material-amount placeholder="VI en cobres" />
+              <input type="text" data-project-material-compatibility placeholder="compatibilidad requerida" />
+              <button type="button" data-action="project-material-add"><i class="fa-solid fa-plus"></i> Asignar</button>
+            </div>
+          {{/if}}
+        </div>
+
+        {{#if (eq project.operation "repair")}}
+          <div class="tm-wide">
+            <div class="tm-section-heading"><h2>Capas afectadas</h2><span>{{projectTargetName}}</span></div>
+            {{#each projectRepairLayers as |layer|}}
+              <div class="tm-skill-modifier-row">
+                <span>{{layer.name}} · {{layer.part}}</span>
+                <label class="tm-check"><span>Afectada</span><input type="checkbox" data-action="project-repair-layer" data-field="affected" data-material-id="{{layer.id}}" {{checked layer.affected}} /></label>
+                <label class="tm-check"><span>Reemplazo ordinario</span><input type="checkbox" data-action="project-repair-layer" data-field="ordinary" data-material-id="{{layer.id}}" {{checked layer.ordinaryReplacement}} /></label>
+              </div>
+            {{/each}}
+            {{#if projectRepairRunicAvailable}}<label class="tm-check"><span>Matriz rúnica afectada</span><input type="checkbox" data-action="project-repair-runic" {{checked project.repair.runicMatrixAffected}} /></label>{{/if}}
+            {{#if projectRepairEnchantAvailable}}<label class="tm-check"><span>Matriz de Encantamiento afectada</span><input type="checkbox" data-action="project-repair-enchantment" {{checked project.repair.enchantmentMatrixAffected}} /></label>{{/if}}
+          </div>
+        {{/if}}
+
+        {{#if projectRecovery}}
+          <div class="tm-wide">
+            <div class="tm-section-heading"><h2>Recuperación prevista</h2><span>Antes de desmantelar</span></div>
+            <p>Ordinario: {{projectRecovery.ordinaryDisplay}} · Rúnico: {{projectRecovery.runicDisplay}} · Encantamiento: {{projectRecovery.enchantmentDisplay}}</p>
+            {{#each projectRecovery.special as |row|}}<p>{{row.name}}: {{row.amountDisplay}}</p>{{/each}}
+            {{#each projectRecovery.separable as |row|}}<p>Componente físico: {{row.name}} ×{{row.quantity}} · se recupera como objeto, no como VI.</p>{{/each}}
+            <p><strong>Total VI previsto: {{projectRecovery.totalDisplay}}</strong> · trabajo {{projectRecovery.timeDisplay}}</p>
+          </div>
+        {{/if}}
+
+        <div class="tm-wide">
+          <div class="tm-section-heading"><h2>Flujo de Proyecto</h2><span>Las mutaciones pasan por autoridad compartida</span></div>
+          <div class="tm-section-buttons">
+            {{#if projectActions.canPrepare}}<button type="button" data-action="project-prepare">DJ · Preparar</button>{{/if}}
+            {{#if projectActions.canReserve}}<button type="button" data-action="project-reserve">Comprometer recursos</button>{{/if}}
+            {{#if projectActions.canRelease}}<button type="button" data-action="project-release">Liberar recursos</button>{{/if}}
+            {{#if projectActions.canCancel}}<button type="button" data-action="project-cancel">Cancelar</button>{{/if}}
+          </div>
+          {{#if projectActions.canWork}}
+            <div class="tm-section-buttons">
+              <input type="number" min="1" step="1" data-project-work-minutes placeholder="Minutos de trabajo" />
+              <button type="button" data-action="project-work">Registrar trabajo</button>
+            </div>
+          {{/if}}
+          {{#if projectActions.canComplete}}<button type="button" data-action="project-complete">Completar Proyecto</button>{{/if}}
+          {{#if projectActions.canResolveResearch}}
+            <div class="tm-form-grid">
+              <label><span>Resultado de etapa</span><select data-project-research-result><option value="success">Éxito</option><option value="failure">Fallo</option><option value="pifia">Pifia</option><option value="hazana">Hazaña</option></select></label>
+              <label><span>Evidencia / método del intento</span><input type="text" data-project-attempt-key /></label>
+              <label><span>Pregunta Correctiva si falla</span><input type="text" data-project-corrective /></label>
+            </div>
+            <button type="button" data-action="project-research-resolve">Resolver etapa CRAFT-10</button>
+          {{/if}}
+        </div>
+      {{/if}}
+
       {{#if isPhysical}}
       <label><span>Cantidad</span><input type="number" name="system.quantity" value="{{system.quantity}}" min="0" /></label>
 
@@ -167,6 +321,7 @@
     </div>
   </section>
 
+  {{#unless isProject}}
   <section class="tm-panel tm-skill-requirements-editor">
     <div class="tm-section-heading">
       <h2>Costes de catálogo</h2>
@@ -253,6 +408,21 @@
       <i class="fa-solid fa-plus"></i> Agregar modificador
     </button>
   </section>
+
+  {{/unless}}
+
+  {{#if isProject}}
+  <section class="tm-panel">
+    <div class="tm-section-heading"><h2>Integridad del Proyecto</h2><span>CRAFT-13B</span></div>
+    {{#if projectValidation.valid}}
+      <p class="tm-empty">Estructura válida. La disponibilidad real de recursos se resolverá transaccionalmente en CRAFT-13C.</p>
+    {{else}}
+      {{#each projectValidation.issues as |issue|}}
+        <p><strong>{{issue.code}}</strong> · {{issue.message}}</p>
+      {{/each}}
+    {{/if}}
+  </section>
+  {{/if}}
 
   <section class="tm-panel tm-editor-panel">
     <h2>Descripción</h2>

@@ -1,3 +1,31 @@
+## Publicación v1.2.0 — 2026-10-05
+
+- **v1.2.0 fue publicada** desde el commit `9bcd67977851b9520127d990658e322a2862b518` mediante `Publicar sistema #37332788328`.
+- GitHub reconoce v1.2.0 como la release **Latest**, no prerelease.
+- Assets publicados: `system.json` y `tierra-magica.zip`.
+- El workflow reconstruyó los cuatro Compendios, ejecutó la validación completa, verificó el paquete y publicó correctamente.
+- SHA-256 `system.json`: `fdf5d4b9b77a983a9ed617865e6354b2bdc13655e7974cbd7e6d57dd601fc7fa`.
+- SHA-256 `tierra-magica.zip`: `06a04a1f8060b0366c750817d3c27d4077eb37434eb254e7bdce7cdfb651be99`.
+- El canal estable `releases/latest/download/system.json` queda actualizado a v1.2.0.
+
+## 1.2.0 — Fabricación integral, creación/progresión y auditoría Foundry — 2026-10-05
+
+- **CRAFT-01 a CRAFT-12 quedan cerrados** como diseño/canon de fabricación: motor universal, economía y tiempos, armas/armaduras/herramientas, Calidad y Modificaciones, Materiales Especiales, trampas/construcciones, Runas/Piedras/Engarces, objetos mágicos/Sintonización, Ingeniería/Energía, Investigación/Prototipos, catálogo de 41 referencias y auditoría destructiva integral.
+- **CRAFT-13A–I queda implementado en Foundry y auditado**: motor puro, Item Proyecto, transacciones, mejoras, magia de objetos, Energía/Caudal, Alquimia, Investigación, interfaz/catálogo y auditoría multiusuario final.
+- Fabricar, Reparar, Desmantelar, Modificar e Investigar usan una autoridad transaccional común con revisión optimista, reservas de VI/componentes, rollback, concurrencia e idempotencia.
+- Calidad, CapM, ascensos, Modificaciones, Materiales Especiales, Material Dominante, VRT/BRA y recuperación separada quedan estructurados sin crear una segunda autoridad de reglas.
+- Runas, Piedras de Impronta, Engarces, Encantamientos, Sellos, Pasivos Sintonizados y trampas integran materiales reales, disparadores, Preparar + Reacción, recuperación y reparación de matrices.
+- Ingeniería incorpora Energía, Caudal, Estabilidad, Caudal de Carga, Banco simple, Acoplador, recarga estable, Carga forzada y Sobrecarga Controlada con autoridad multiusuario.
+- Alquimia separa conocimiento personal de Fórmula y dosis físicas, aplica Saturación correctamente y mantiene las ocho Fórmulas estables cuantificadas.
+- Investigación implementa Preguntas, Bloqueos, Prototipo, Validación, Plano provisional y Réplica sin puntos abstractos ni saltos por Hazaña.
+- La ficha expone las **41 referencias CRAFT-11**, previsualización, VI, capas de reparación, recuperación prevista y flujo completo de Proyecto.
+- La auditoría CRAFT-13I cierra exploits de PEI→VI, autoridad de DJ, doble clic, reintentos, Sintonización/RE, trampas, dosis/Saturación y componentes separables.
+- **CREA-14 y CREA-15 quedan cerradas e integradas**: creación nivel 1 autosuficiente, identidad/Facetas/idiomas/Familiares/PEI y progresión 2–20 con presupuesto global de PD y mejoras de Atributo.
+- El Manual Maestro integra los **12 paquetes raciales jugables**, guía práctica de 26 Habilidades, viajes terrestres, equipo/suministros, situaciones y maniobras de combate.
+- Se sincronizan reglas recientes de Retirada, Potencia N, Penetración de arcos/magia, FUE mínima de armadura pesada y ejemplos asociados.
+- La barrera permanente de release ejecuta **`npm run audit:crafting` + `npm run validate`** antes de construir y publicar el paquete.
+- Release objetivo: Foundry VTT mínimo 13, verificado 14; sin migración destructiva deliberada de campañas existentes.
+
 ## CREA-15 — autosuficiencia de progresión · CERRADO — 2026-10-04
 
 - La progresión ordinaria queda cerrada para niveles **2–20** sin editar libremente el nivel: Foundry avanza de un nivel por vez y deriva **25 + 4 × (nivel - 1) PD**.
