@@ -76,6 +76,10 @@ La ampliación del grimorio está **CERRADA Y CANONIZADA**. El Manual Maestro de
 
 Foundry adopta schema v5 para contratos de objetivos mágicos y migración del cierre espacial.
 
+## Estado de publicación 1.3.0
+
+Foundry T.M. **v1.3.0 está publicada** desde el commit `4dcf08f5924f68f9373bda7bdfb8034415cefe2b`. Es la release pública **Latest** e integra los catálogos maestros CAT-01…11, ARM-01, ESC-01 y EQP-01 sobre la base de CRAFT-13. El manifiesto estable de instalación apunta a esta release.
+
 ## Estado de catálogos maestros para 1.3.0
 
 CAT-01…11, ARM-01, ESC-01 y EQP-01 están integrados en `main` mediante PR #53. El runtime incorpora 200 armas, 94 armaduras, 54 escudos y 25 equipos canónicos. Las propuestas pendientes continúan explícitamente fuera del runtime hasta recibir Perfil mecánico completo; los nombres no crean Materiales Especiales, Device, Energía ni propiedades por inferencia.
