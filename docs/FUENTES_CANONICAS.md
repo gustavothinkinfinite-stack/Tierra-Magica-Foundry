@@ -76,6 +76,10 @@ La ampliación del grimorio está **CERRADA Y CANONIZADA**. El Manual Maestro de
 
 Foundry adopta schema v5 para contratos de objetivos mágicos y migración del cierre espacial.
 
+## Estado de publicación 1.2.0
+
+Foundry T.M. **v1.2.0 está publicada** desde el commit `9bcd67977851b9520127d990658e322a2862b518`. Es la release pública **Latest** y consolida CREA-14/15, CRAFT-01 a CRAFT-13, el catálogo de 41 referencias, la autoridad multiusuario y la auditoría integral final de fabricación. El manifiesto estable de instalación apunta a esta release.
+
 ## Estado de publicación 1.1.0
 
 Foundry T.M. **v1.1.0 está publicada** desde el commit `0fc8ffab5c0376533ebb20433d7ff1948d919b08`. Es la release pública Latest y contiene el Grimorio 60 y schema v5. El manifiesto estable de instalación apunta a la última release publicada.
