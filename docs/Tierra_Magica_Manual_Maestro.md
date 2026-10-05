@@ -905,7 +905,7 @@ Iria utiliza Compra libre y registra cada objeto:
 | Kit Cartográfico | 1 o |
 | Kit de Escalada | 1 o |
 | Kit de Campaña | 1 o |
-| Instrumental Arcano de campo | 2 o |
+| Kit Instrumental Arcano de campo | 2 o |
 | Catalejo | 1 o |
 | Gancho de escalada | 3 p |
 | Provisiones para 7 días | 2 p |
@@ -3076,6 +3076,9 @@ Algunas propiedades poseen una función mecánica expresa; otras describen const
 | **Ágil** | Describe un arma maniobrable. No concede actualmente un bono universal a ataque, Defensa o Iniciativa. |
 | **Versátil** | Describe un arma utilizable de formas distintas según ficción y Técnica. No posee actualmente un modo alternativo universal de daño. |
 | **Impactante** | Describe la naturaleza del golpe y puede importar para objetos, lesiones o ficción. No añade daño o Derribo automáticamente. |
+| **Flexible** | Describe una construcción articulada o flexible. Puede justificar narrativamente métodos de maniobra cuando la ficción lo permita, pero no concede Alcance, Enganche, Desarmar mejorado, Defensa ni ataques adicionales por sí sola. |
+| **Proyectil** | Arma a distancia que impulsa munición física simple según su propio perfil. No concede Recarga, recuperación automática de munición ni un bono adicional por sí sola. |
+| **Arrojadiza** | El perfil representa el uso lanzado del arma y se resuelve como ataque a distancia con la Habilidad y Alcance óptimo indicados. No habilita por sí solo un segundo perfil cuerpo a cuerpo ni evita el gasto físico de haber arrojado el objeto. |
 | **Alcance** | Cumple requisitos que mencionan arma de Alcance, como Recibir Carga. No añade por sí sola un número universal de espacios de alcance. |
 | **Pesada** | Identifica armamento de gran masa/tamaño y normalmente usa Armas Pesadas. Sus requisitos de FUE, manos y otras propiedades siguen aplicándose. |
 | **2 manos** | Requiere ambas manos disponibles para utilizar el arma normalmente. Un objeto sostenido con dos manos recibe además la protección contra Desarmar definida en Escala y maniobras. |
@@ -3092,6 +3095,9 @@ Cuando una propiedad descriptiva deba producir un modificador numérico concreto
 | Daga | 3 | 0 | 0 | 6 p | Ligera, Ocultable |
 | Espada corta | 4 | 0 | 0 | 1 o | Ligera |
 | Sable | 4 | 0 | 0 | 1 o 5 p | Ágil |
+| Cadena corta de combate | 4 | 0 | 0 | 1 o | Flexible, Impactante |
+| Látigo | 2 | 0 | 0 | 5 p | Flexible |
+| Látigo reforzado | 3 | 0 | 0 | 1 o | Flexible, Impactante |
 | Espada larga | 5 | 0 | 1 | 2 o | Versátil |
 | Hacha | 6 | 0 | 2 | 2 o 5 p | Impactante |
 | Maza | 5 | 1 | 1 | 1 o | Impactante |
@@ -3101,6 +3107,12 @@ Cuando una propiedad descriptiva deba producir un modificador numérico concreto
 | Mandoble | 7 | 0 | 2 | 4 o | Pesada, 2 manos |
 | Gran hacha | 8 | 0 | 3 | 5 o | Pesada, 2 manos |
 | Gran martillo | 7 | 2 | 3 | 5 o | Pesada, 2 manos |
+| Honda | 3 | 0 | — | 2 p | Proyectil |
+| Honda de guerra | 4 | 0 | — | 5 p | Proyectil, Impactante |
+| Fustíbalo | 5 | 0 | — | 8 p | Proyectil, Impactante, 2 manos |
+| Azagaya | 3 | 0 | 0 | 2 p | Arrojadiza |
+| Jabalina | 4 | 0 | 0 | 3 p | Arrojadiza |
+| Jabalina pesada | 5 | 0 | 1 | 5 p | Arrojadiza |
 | Arco corto | 4 | 0 | — | 1 o | Potencia 2 |
 | Arco largo | 5 | 1 | — | 2 o | Potencia 3, 2 manos |
 | Ballesta | 6 | 1 | — | 3 o | Recarga 1 |
@@ -3111,6 +3123,70 @@ Cuando una propiedad descriptiva deba producir un modificador numérico concreto
 | Rifle repetidor | 7 | 2 | — | 45 o | Repetición, 2 manos |
 
 Los arcos con **Potencia N** añaden FUE al daño hasta un máximo de N puntos de FUE. Por ejemplo, un arco largo Potencia 3 utilizado por un personaje con FUE 2 añade +2 al daño; con FUE 4 añade como máximo +3. Potencia N no es un bono adicional separado. Ballestas y armas de fuego no añaden FUE al daño salvo regla expresa.
+
+### Proyectiles convencionales
+
+Los siguientes perfiles utilizan **Armas a Distancia** y **AGI** para la tirada de ataque. En los seis casos se añade **FUE al daño** porque el perfil ya lo establece; esto no crea un bono adicional separado.
+
+| Arma | Alcance óptimo | Uso |
+|---|---:|---|
+| Honda | 12 espacios | proyectil simple de una mano |
+| Honda de guerra | 18 espacios | proyectil de mayor potencia; Impactante sigue siendo descriptiva |
+| Fustíbalo | 25 espacios | proyectil de dos manos y gran palanca |
+| Azagaya | 12 espacios | arma arrojada ligera |
+| Jabalina | 10 espacios | arma arrojada estándar |
+| Jabalina pesada | 8 espacios | arma arrojada de mayor masa; FUE mínima 1 |
+
+**Proyectil** no significa munición infinita. Una Honda o Fustíbalo necesita un proyectil físico compatible cuando la munición sea relevante. **Arrojadiza** representa específicamente el uso lanzado: después de arrojar una Azagaya o Jabalina, ese objeto ya no está en la mano hasta que se recupere o se disponga de otro. El núcleo no concede una recuperación automática después del ataque.
+
+Estos perfiles no poseen **Recarga** ni **Repetición** y no producen ataques adicionales. Tampoco convierten una Azagaya o Jabalina en una Lanza cuerpo a cuerpo gratuita: si un objeto se utiliza de otra forma, debe existir un perfil apropiado o resolverse como uso improvisado conforme a la ficción.
+
+
+### Armas flexibles ligeras
+
+Cadena corta de combate, Látigo y Látigo reforzado usan **Armas Ligeras** y **AGI** para atacar. Los tres perfiles añaden **FUE al daño** porque así lo establece cada entrada.
+
+| Arma | Daño | Pen | FUE mín. | Precio | Propiedades |
+|---|---:|---:|---:|---:|---|
+| Cadena corta de combate | 4 + FUE | 0 | 0 | 1 o | Flexible, Impactante |
+| Látigo | 2 + FUE | 0 | 0 | 5 p | Flexible |
+| Látigo reforzado | 3 + FUE | 0 | 0 | 1 o | Flexible, Impactante |
+
+**Flexible no equivale a Alcance.** Estas armas no satisfacen requisitos de arma de Alcance como Recibir Carga y no atacan automáticamente a más espacios que un arma cuerpo a cuerpo ordinaria.
+
+Una cadena o látigo puede ser un método ficcional válido para intentar Desarmar, Derribar, sujetar un objeto u otra maniobra cuando la posición y el objetivo lo permitan. Esa justificación no concede Ventaja, modificadores, alcance extra ni cambia la Defensa de Maniobra. La maniobra sigue usando las reglas universales y el Atributo/Habilidad apropiados.
+
+
+### Catálogo ampliado aprobado de armas
+
+Además de los **29 perfiles canónicos** de la tabla anterior, el catálogo oficial de Foundry contiene **171 variantes de perfil aprobadas**. Cada variante usa **exactamente** las estadísticas, Habilidad, Atributos, Daño, Penetración, FUE mínima, Alcance, Recarga, Potencia, propiedades y precio de su perfil de referencia, salvo que una regla posterior la convierta explícitamente en un perfil distinto.
+
+El nombre histórico, cultural, regional o funcional **no crea un modificador adicional**. Esta lista forma parte del catálogo oficial del Manual:
+
+- **Daga:** Cuchillo de combate, Cuchillo de monte, Cuchillo de marinero, Puñal ancho, Daga curva, Daga de abordaje, Estilete, Daga de parada, Daga de misericordia, Garra de combate, Katar, Pico de combate corto.
+- **Espada corta:** Espada de caza, Gladio, Falcata corta, Kukri, Machete, Seax, Garrote corto, Cachiporra, Porra reforzada, Martillo ligero, Tonfa reforzada, Bastón corto, Hachuela, Hoz de guerra, Hoja de bosque de Erelia.
+- **Sable:** Estoque corto, Rapier, Espadín, Espada de duelo, Sable del Camino Real, Sable de Cobravia, Estoque de Lys, Sable solar de Heliara.
+- **Espada larga:** Espada bastarda, Espada ancha, Espada de caballería, Espada de infantería, Espada de oficial, Espada de abordaje, Alfanje, Cimitarra, Shamshir, Kilij, Kopis, Falchion, Estoque, Rapiera militar, Montante corto, Hoja de Auraval, Espada de Vigilia, Espada académica de Lys, Alfanje de las Mesetas.
+- **Hacha:** Hacha de batalla, Hacha barbada, Hacha de abordaje, Hacha de jinete, Hacha de infantería, Francisca, Hacha del Espinazo, Hacha de abordaje de Bronce, Hacha de guardabosques.
+- **Maza:** Maza de armas, Maza con aletas, Mangual, Mangual militar, Bastón de guerra, Bastón ferrado, Bastón de custodio de Lys.
+- **Martillo de guerra:** Lucerna corta, Martillo de caballería, Pico de guerra, Bec de corbin corto, Martillo-pico, Martillo de Kar-Dur, Pico de Forjador Kharum.
+- **Lanza:** Lanza corta, Lanza de guerra, Lanza de caballería, Partisana, Ranseur, Tridente, Horca militar, Guja corta, Lanza de Guardia Valdoriana, Lanza del Bosque Profundo, Lanza del Sol.
+- **Mandoble:** Zweihänder, Espadón, Montante, Claymore, Flamberge, Gran falchion, Gran machete de guerra.
+- **Gran hacha:** Hacha danesa, Hacha de verdugo, Hacha doble, Hacha larga de guerra.
+- **Gran martillo:** Martillo de asedio, Gran maza, Maza de dos manos, Pico pesado, Mayal de dos manos, Cadena de guerra pesada, Gran martillo de Forja.
+- **Alabarda:** Lucerna, Bec de corbin, Alabarda de guerra, Guja, Guja pesada, Bardiche, Voulge, Pollaxe, Martillo de asta, Lanza pesada, Pica, Pica larga, Tridente pesado, Alabarda del Espinazo.
+- **Arco corto:** Arco de caza, Arco compuesto, Arco recurvo, Arco corto montado, Arco naval, Arco del Desierto de Vidrio.
+- **Arco largo:** Arco de guerra, Arco largo de guerra, Arco de precisión, Arco de Verdelinde, Arco de los Altos Valles.
+- **Ballesta:** Ballesta de mano, Ballesta ligera, Ballesta de caza, Ballesta militar, Ballesta de estribo, Ballesta de palanca, Ballesta de abordaje, Ballesta de precisión, Ballesta de Kar-Dur.
+- **Ballesta pesada:** Ballesta de torno, Arbalesta, Ballesta de asedio portátil.
+- **Pistola temprana:** Pistola de chispa, Pistola de rueda, Pistola de duelo, Pistola militar, Pistola de caballería, Pistola de abordaje, Pistola de bolsillo, Pistola de Cobravia.
+- **Pistola repetidora:** Pistola pepperbox, Revólver temprano, Revólver pesado, Revólver de oficial, Pistola de precisión.
+- **Rifle temprano:** Mosquete, Arcabuz, Carabina, Carabina de caballería, Fusil de infantería, Rifle de caza, Rifle largo, Rifle de precisión, Rifle pesado, Carabina de Bronce, Rifle de Taller.
+- **Rifle repetidor:** Rifle de palanca, Rifle de cerrojo temprano, Carabina repetidora, Rifle repetidor pesado.
+
+Las variantes regionales mantienen su procedencia como dato de catálogo, pero la región no concede por sí sola bonos de ataque, daño, Defensa, Penetración, disponibilidad automática o descuento de precio.
+
+**Estado de expansión no canónica.** Permanecen fuera del Compendio **44 propuestas**: 7 Armas Ligeras arrojadizas que requieren separar modo de ataque y Habilidad; 10 armas de varios cañones o dispersión; 2 armas que necesitan un Perfil de Material explícito; y 25 armas arcano-industriales que necesitan un Perfil explícito de Host/Módulo/Device/arma vinculada. CRAFT-13 ya cerró la infraestructura de Materiales, fabricación y Energía, pero no autoriza inferir esos perfiles por el nombre.
 
 ### Munición y Recarga
 
@@ -3151,6 +3227,20 @@ Con FUE un punto por debajo del mínimo, Movimiento -1, Carga Pesada y Desventaj
 
 **Armadura y magia.** Llevar armadura no provoca fallo mágico, penalización a Canalización o penalización a Ritualismo por sí solo. Tierra Mágica no usa una restricción universal de “mago sin armadura”. Las penalizaciones por no cumplir FUE mínima se aplican a las acciones físicas para las que sean relevantes, no automáticamente a una tirada mágica. Un escudo, arma o armadura sólo dificulta un hechizo si la entrada concreta exige manipular un foco, componente, objeto o movimiento que ese equipo haga imposible.
 
+### Catálogo ampliado aprobado de armaduras
+
+Los cinco perfiles anteriores son las únicas anclas mecánicas de armadura del catálogo actual. El Compendio añade **89 variantes aprobadas**, todas copias mecánicas exactas de uno de esos cinco perfiles:
+
+- **Armadura ligera:** Gambesón, Aketón, Jubón acolchado, Chaqueta acolchada, Cota de cuero, Chaleco de cuero, Cuero de cazador, Cuero de explorador, Casaca de guardia ligera, Peto de cuero ligero, Armadura de viajero, Armadura de montañés, Cuero de jinete, Vestidura de campaña acolchada, Chaqueta de escaramuzador, Gambesón de galería Kharum, Casaca portuaria de Cobravia, Cuero de Verdelinde, Jubón de campo de Lys, Casaca de caravana solenaria.
+- **Armadura reforzada:** Gambesón reforzado, Cuero hervido, Cota de cuero reforzada, Brigantina ligera, Jack de placas, Casaca claveteada, Coselete de láminas, Coraza de escamas ligera, Lamelar ligera, Chaqueta de anillas, Armadura de guardia, Coraza de frontera, Peto segmentado ligero, Casaca de combate reforzada, Armadura de mercenario, Coselete de Auraval, Brigantina de Kar-Dur, Brigantina cobravia, Coraza forestal reforzada, Coselete académico de Lys, Coraza de peregrino de Heliara.
+- **Malla:** Cota de malla, Camisa de malla, Haubergeon, Hauberk, Loriga de malla, Malla de caballería, Malla de infantería, Malla de guardia, Malla de campaña, Malla corta, Malla con faldón, Malla de viaje, Malla de Guardia Valdoriana, Malla del Espinazo, Malla de muelle de Bronce, Malla de guardabosques de Erelia, Malla de custodio de Lys, Malla del Sol.
+- **Armadura pesada:** Brigantina pesada, Lamelar pesada, Coraza de escamas, Malla con placas, Coraza segmentada, Armadura de placas parciales, Armadura de caballería pesada, Armadura de guardia pesada, Coraza de guerra, Arnés parcial, Armadura de infantería pesada, Armadura de frontera pesada, Armadura de Vigilia, Arnés de Taller de la Liga, Arnés de frontera Ereliana.
+- **Placas:** Arnés completo, Armadura de placas completa, Placas de campaña, Placas de caballería, Placas de infantería, Placas de guardia, Arnés de guerra, Arnés de campo, Armadura articulada de placas, Coraza de placas completa, Placas de comandante, Placas del Camino Real, Placas del Bastión Kharum, Placas de Custodia Lysendrina, Placas de Guardia de Heliara.
+
+Dentro de esas variantes hay **24 armaduras regionales**, cuatro por cada región principal: Valdoria, Kharum, Liga de Bronce, Erelia, Lysendra y Solenar. La procedencia regional no modifica Protección, FUE mínima, precio, Sigilo, resistencia elemental ni Capacidad Rúnica.
+
+**No canónicas todavía:** Armadura de cristal, Placas de cristal y Coraza de madera viva necesitan un Perfil de Material explícito; Armadura resonante, Arnés de acumulador y Placas cinéticas necesitan un Perfil Host/Módulo/energético explícito. CRAFT-13 ya cerró esas autoridades, pero los nombres no conceden propiedades por inferencia.
+
 ### Escudos
 
 | Escudo | Defensa pasiva | Bloqueo | FUE mín. | Precio | Propiedades |
@@ -3170,6 +3260,20 @@ La calidad Defectuosa/Común/Superior/Excepcional describe fabricación y propie
 **CRAFT-08 — Objetos mágicos, encantamientos y sintonización** define Encantamientos autónomos, Reserva Encantada, Hechizos Vinculados, accesorios mágicos y el límite universal de Sintonización.
 
 Las recetas de fabricación de armas, armaduras, escudos, munición y herramientas del catálogo vigente se encuentran en **CRAFT-03 — Armas, armaduras y herramientas**, dentro del capítulo 18.
+
+### Catálogo ampliado aprobado de escudos
+
+Los tres perfiles anteriores siguen siendo las únicas anclas mecánicas de escudo. El Compendio añade **51 variantes aprobadas**, todas copias exactas de Broquel, Escudo estándar o Escudo pesado:
+
+- **Broquel:** Rodela pequeña, Broquel de duelo, Broquel de infantería, Broquel redondo, Broquel de jinete, Broquel de abordaje, Escudo de antebrazo, Broquel con umbo, Broquel de guardia, Broquel de Auraval, Broquel de Kar-Dur, Broquel de Cobravia, Broquel de Verdelinde, Broquel académico de Lys, Broquel solar de Heliara.
+- **Escudo estándar:** Escudo redondo, Escudo cometa, Escudo calefactor, Escudo oval, Escudo de caballería, Escudo de infantería, Escudo de abordaje, Escudo de guardia, Escudo de campaña, Escudo de madera forrada, Escudo de cuero tensado, Rodela de guerra, Escudo del Camino Real, Escudo del Espinazo, Escudo portuario de Bronce, Escudo forestal de Erelia, Escudo de custodio de Lys, Escudo del Sol.
+- **Escudo pesado:** Escudo torre, Pavés, Escudo torre de asedio, Escudo de muro, Escudo de legionario pesado, Escudo de guardia pesada, Escudo de brecha, Escudo de fortaleza, Escudo de formación, Escudo rectangular pesado, Escudo de campaña pesado, Pavés de ballestero, Escudo torre valdoriano, Pavés de Kar-Dur, Escudo de muelle pesado de Cobravia, Escudo de frontera Ereliana, Escudo de Guardia Lysendrina, Pavés solar de Heliara.
+
+Hay **18 variantes regionales**, tres por cada región principal. La forma, nombre o procedencia no concede Defensa pasiva adicional, un Bloqueo extra, una Reacción adicional ni cobertura automática.
+
+En particular, **Pavés**, **Escudo torre** y nombres equivalentes usan el perfil de Escudo pesado: no generan cobertura total por el nombre del Item. La cobertura sólo aparece cuando la posición, terreno u otra regla la producen.
+
+**No canónicos todavía:** Escudo de cristal, Escudo de madera viva y Pavés de piedra viva necesitan un Perfil de Material explícito; Escudo resonante, Escudo de acumulador y Escudo cinético necesitan un Perfil Host/Módulo/energético explícito. CRAFT-13 ya cerró esas autoridades, pero los nombres no conceden Defensa, cobertura ni Energía por inferencia.
 
 ### Equipo de aventura y herramientas
 
@@ -3196,21 +3300,21 @@ Los Kits reúnen herramientas ordinarias para un campo de trabajo.
 
 | Kit | Precio |
 |---|---:|
-| Artesano | 1 o |
-| Ingeniería de campo | 2 o |
-| Minería | 1 o |
-| Médico | 2 o |
-| Alquimia de campo | 2 o |
-| Infiltración | 1 o |
-| Cartográfico | 1 o |
-| Navegación | 2 o |
-| Campaña | 1 o |
-| Escalada | 1 o |
-| Escribanía | 5 p |
-| Mercantil | 1 o |
-| Académico | 2 o |
-| Instrumental Arcano de campo | 2 o |
-| Mantenimiento de armas de fuego | 1 o |
+| Kit Artesano | 1 o |
+| Kit Ingeniería de campo | 2 o |
+| Kit Minería | 1 o |
+| Kit Médico | 2 o |
+| Kit Alquimia de campo | 2 o |
+| Kit Infiltración | 1 o |
+| Kit Cartográfico | 1 o |
+| Kit Navegación | 2 o |
+| Kit Campaña | 1 o |
+| Kit Escalada | 1 o |
+| Kit Escribanía | 5 p |
+| Kit Mercantil | 1 o |
+| Kit Académico | 2 o |
+| Kit Instrumental Arcano de campo | 2 o |
+| Kit Mantenimiento de armas de fuego | 1 o |
 
 Un Kit representa **herramientas reutilizables**, no una reserva infinita de consumibles. Si una tarea consume vendas, reactivos, combustible, munición u otro material, ese recurso debe existir por separado.
 
@@ -3233,6 +3337,26 @@ El núcleo no utiliza una tabla universal de hambre o sed. Quedarse sin alimento
 **Combustible de iluminación 5 noches — 2 p** representa combustible suficiente para cinco noches de uso personal ordinario de una fuente compatible. No equivale a cinco días continuos de funcionamiento industrial.
 
 Una fuente de luz sólo ilumina si existe un objeto compatible —lámpara, farol u otro dispositivo—; comprar combustible no crea ese objeto.
+
+### Estado del catálogo EQP-01
+
+Los **25 objetos** ya enumerados en las tablas de Equipo, Kits y Suministros de este capítulo son Items canónicos del Compendio y conservan exactamente sus precios y usos publicados.
+
+Además existe una expansión estructurada de **75 propuestas que todavía no son equipo canónico**. Su presencia en el catálogo de diseño no autoriza compra, precio, bono o efecto hasta que la auditoría correspondiente las promueva.
+
+Las **65 propuestas mundanas** pendientes de precio y uso fino son:
+
+- **Campamento:** Mochila de viaje, Saco de dormir, Manta de lana, Tienda individual, Tienda para cuatro, Lona impermeable, Utensilios de cocina, Olla de campaña, Cantimplora, Odre, Pedernal y acero, Mosquitero.
+- **Escalada y carga:** Cuerda de cáñamo 10 m, Cuerda de cáñamo 20 m, Arnés de escalada, Pitones, 10, Martillo de pitones, Polea simple, Polea doble, Escalera de cuerda, Red de carga, Correa de aseguramiento.
+- **Iluminación y señalización:** Antorcha, Farol cerrado, Farol de mano, Lámpara de aceite, Velas, 10, Mecha de repuesto, Espejo de señales, Brasero portátil.
+- **Navegación y cartografía:** Brújula magnética, Astrolabio, Sextante, Regla y compás cartográfico, Cuaderno de campo, Plomada de sondaje, Reloj de arena, Banderines de señal, Silbato de señales, Baliza reflectante.
+- **Medicina e higiene:** Vendas limpias, 5 usos, Férulas de campaña, Tijeras médicas, Aguja e hilo quirúrgico, Jabón, Toalla, Mascarilla de tela, Guantes de trabajo.
+- **Contenedores y acceso:** Bolsa de cinturón, Saco de lona, Cofre pequeño, Cofre mediano, Tubo portaplanos, Carcaj, Bandolera de herramientas, Estuche de arma corta, Funda impermeable grande.
+- **Herramientas:** Martillo, Serrucho, Hacha de leñador, Cincel, Tenazas, Barrena, Lima, Azada.
+
+Las **10 propuestas especiales bloqueadas** son: Lámpara arcana portátil, Visor espectral, Brújula de Trama, Herramienta motorizada de campo, Polea cinética, Mochila de acumulador, Baliza arcana de navegación, Caja de conservación rúnica, Lámpara de cristal resonante, Kit de reparación de cristal vivo.
+
+Las propuestas mundanas anteriores no tienen precio oficial todavía. Las especiales tampoco reciben Energía, Caudal, Estabilidad, capacidad rúnica, propiedades mágicas o efectos de material por inferencia. CRAFT-13 ya aporta la infraestructura necesaria; cada propuesta especial sigue requiriendo un Perfil explícito antes de entrar al runtime.
 
 ### Consumibles, pociones y fórmulas
 

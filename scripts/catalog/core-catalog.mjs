@@ -1,6 +1,17 @@
 import { STARTER_CONTENT } from "../content.mjs";
 import { migrateItemSource, TM_SCHEMA_VERSION } from "../rules/data-model-migration.mjs";
 import { normalizeSlug } from "../rules/identity.mjs";
+import { approvedWeaponVariantSources } from "./weapon-variants-approved.mjs";
+import { approvedSpecialLightVariantSources } from "./weapon-variants-special-light-approved.mjs";
+import { approvedMartialVariantSources } from "./weapon-variants-martial-approved.mjs";
+import { approvedHeavyVariantSources } from "./weapon-variants-heavy-approved.mjs";
+import { approvedRangedVariantSources } from "./weapon-variants-ranged-approved.mjs";
+import { approvedRegionalVariantSources } from "./weapon-variants-regional-approved.mjs";
+import { approvedProjectileProfileSources } from "./weapon-profiles-projectile-approved.mjs";
+import { approvedFlexibleProfileSources } from "./weapon-profiles-flexible-approved.mjs";
+import { approvedArmorVariantSources } from "./armor-variants-approved.mjs";
+import { approvedShieldVariantSources } from "./shield-variants-approved.mjs";
+import { canonicalEquipmentSources } from "./equipment-canonical.mjs";
 
 const ANCESTRIES = [
   ["Humano","Familia humana; Don sin Forma se registra mediante sus Rasgos elegidos."],
@@ -297,6 +308,9 @@ export function legacyStarterCatalog() {
   const entries=[];
   for (const [type, list] of Object.entries(STARTER_CONTENT)) {
     for (const raw of list ?? []) entries.push(migrateItemSource({ name:raw.name, type, system:raw.system ?? {} }, { embedded:false }));
+  }
+  for (const raw of [...approvedProjectileProfileSources(), ...approvedFlexibleProfileSources(), ...approvedWeaponVariantSources(), ...approvedSpecialLightVariantSources(), ...approvedMartialVariantSources(), ...approvedHeavyVariantSources(), ...approvedRangedVariantSources(), ...approvedRegionalVariantSources(), ...approvedArmorVariantSources(), ...approvedShieldVariantSources(), ...canonicalEquipmentSources()]) {
+    entries.push(migrateItemSource(raw,{embedded:false}));
   }
   return entries;
 }
