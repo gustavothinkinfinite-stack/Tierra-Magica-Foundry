@@ -12,7 +12,11 @@ export function installFormulaGuards(ActorClass) {
   const original = ActorClass.prototype.useFormula;
   ActorClass.prototype.useFormula = async function (item, { tmAuthority = false } = {}) {
     if (!item || item.type !== "formula") return null;
-    if (!tmAuthority) return useFormulaAuthoritatively(this, item);
+    if (!tmAuthority) {
+      const authorityResult=await useFormulaAuthoritatively(this,item);
+      if(!authorityResult?.ok) return null;
+      return authorityResult.result ?? authorityResult;
+    }
     const slug = normalizeSlug(item.system?.slug || item.name);
     if (AUTOMATED.has(slug)) return original.call(this, item, { tmAuthority:true });
     const quantity = Math.max(0, number(item.system?.quantity, 0));
