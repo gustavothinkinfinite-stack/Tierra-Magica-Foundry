@@ -9022,7 +9022,7 @@ No es un antídoto universal. Tras beneficiarse de una dosis, otra aplicación d
 - **Fallo:** Desventaja en acciones físicas dependientes de fuerza muscular.
 - **Duración:** Escena.
 - **Saturación:** —.
-- la primera aplicación válida consume la dosis.
+- **Consumo de dosis:** si se administra directamente, la primera exposición válida consume la dosis; si se usa para recubrir un arma, la dosis se consume al preparar el recubrimiento y luego rige la Persistencia 50/25/12/6/3.
 
 ### REF-ALQ-08 — Bomba Incendiaria
 
