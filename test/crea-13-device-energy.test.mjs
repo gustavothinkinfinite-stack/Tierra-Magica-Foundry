@@ -142,9 +142,9 @@ test("13F: Sobrecarga exitosa de dispositivo externo gasta la fuente y daña el 
   const source=device({id:"source",name:"Celda",energy:4,flow:1});
   const consumer=device({id:"consumer",name:"Motor",consumption:2,source:"source"});
   const a=actor([source,consumer]);
-  a.rollCheck=async()=>({total:16});
+  a.rollCheck=async()=>({rolls:[{total:16}]});
   const result=await a.overloadDevice(consumer);
-  assert.equal(result.total,16);
+  assert.equal(result.rolls[0].total,16);
   assert.equal(source.system.energy.value,2);
   assert.equal(consumer.system.condition,"damaged");
   assert.equal(source.system.condition,"operative");
@@ -275,7 +275,7 @@ test("13F: Carga forzada exitosa usa hasta 2x Estabilidad y deteriora intrínsec
   const source=device({id:"source",name:"Núcleo",energy:8,max:8,flow:5,stability:4});
   const target=device({id:"target",name:"Estándar",energy:0,max:8,flow:3,stability:2});
   const a=actor([source,target]);
-  a.rollCheck=async()=>({total:16});
+  a.rollCheck=async()=>({rolls:[{total:16}]});
   const result=await a.chargeDeviceEnergyInterval([source],[target],{forced:true});
   assert.equal(result.ok,true);
   assert.equal(result.transferred,4);

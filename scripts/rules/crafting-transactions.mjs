@@ -76,6 +76,13 @@ function actorKey(actor) {
   return String(actor?.uuid ?? actor?.id ?? "");
 }
 
+function craftingCreationWindowIssue(actor) {
+  if (actor?.type !== "character") return "";
+  const status=String(actor.system?.creation?.status ?? "complete");
+  if (!["building","rebuilding"].includes(status)) return "";
+  return "El crafting no se ejecuta durante Creación/Reconstrucción: PEI sólo compra equipo terminado y no puede convertirse en CM, VI o fabricación previa.";
+}
+
 function randomToken() {
   return globalThis.foundry?.utils?.randomID?.() ??
     ("craft-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2));
@@ -1381,10 +1388,15 @@ export async function previewDismantleRecovery(project,{
   const referenceValueCopper=Math.max(0,Math.floor(number(manufacture.referenceValueCopper,model.economy.referenceValueCopper)));
   const fabricationTimeMinutes=Math.max(0,number(manufacture.baseTimeMinutes,model.time.baseMinutes));
   const installedMaterials=Array.isArray(manufacture.specialMaterials)?manufacture.specialMaterials:[];
+  const separableComponents=Array.isArray(manufacture.separableComponents)?manufacture.separableComponents:[];
+  const excludedSeparatedCopper=separableComponents.reduce((sum,row)=>
+    row?.countedInGenericRecovery===true ? sum : sum+Math.max(0,Math.floor(number(row?.valueCopper))),0
+  );
+  const ordinaryReferenceCopper=Math.max(0,referenceValueCopper-excludedSeparatedCopper);
 
   const ordinary=salvageQuote({
     condition,
-    referenceValueCopper,
+    referenceValueCopper:ordinaryReferenceCopper,
     specialMaterialSupplementsCopper:[],
     recoveredSeparatedComponentsCopper:0,
     fabricationTimeMinutes
@@ -1422,6 +1434,11 @@ export async function previewDismantleRecovery(project,{
     specialRecoveries,
     runicCopper,
     enchantmentCopper,
+    separableComponents:condition==="destroyed" ? [] : separableComponents.map((row)=>({
+      id:String(row?.id??""),
+      name:String(row?.name??row?.source?.name??"Componente separable"),
+      quantity:Math.max(1,Math.floor(number(row?.quantity,1)))
+    })),
     totalCopper,
     timeMinutes:ordinary.timeMinutes
   };
@@ -1436,6 +1453,8 @@ export async function previewCraftingProject(project,{
   const validation=validateCraftingProject(project.system);
   const model=validation.project;
   const issues=[...validation.issues];
+  const creationIssue=craftingCreationWindowIssue(project.parent);
+  if(creationIssue) issues.push({code:"crafting-creation-window",message:creationIssue});
 
   let expected=null;
   if(validation.valid){
@@ -1504,6 +1523,8 @@ export async function prepareCraftingProject(project,{
   resolver=globalThis.fromUuid
 }={}){
   if(!project || project.type!=="project" || !project.parent) return {ok:false,error:"Proyecto inválido."};
+  const creationIssue=craftingCreationWindowIssue(project.parent);
+  if(creationIssue) return {ok:false,error:creationIssue};
   if(!expectedRevisionMatches(project,expectedRevision)) return {ok:false,error:"El Proyecto cambió desde la última lectura.",stale:true};
   const model=normalizeCraftingProject(project.system);
   if(model.state==="ready") return {ok:true,ready:true,alreadyReady:true,revision:model.execution.revision};
@@ -1526,6 +1547,8 @@ export async function reserveCraftingProjectMaterials(project, {
   if (!project || project.type !== "project" || !project.parent) {
     return { ok:false, error:"El Proyecto no está embebido en un Actor válido." };
   }
+  const creationIssue=craftingCreationWindowIssue(project.parent);
+  if(creationIssue) return {ok:false,error:creationIssue};
   if (!expectedRevisionMatches(project, expectedRevision)) {
     return { ok:false, error:"El Proyecto cambió desde la última lectura.", stale:true };
   }
@@ -1750,7 +1773,9 @@ export async function releaseCraftingProjectMaterials(project, {
 export async function advanceCraftingProjectWork(project, minutes, {
   expectedRevision = null
 } = {}) {
-  if (!project || project.type !== "project") return { ok:false, error:"Proyecto inválido." };
+  if (!project || project.type !== "project" || !project.parent) return { ok:false, error:"Proyecto inválido." };
+  const creationIssue=craftingCreationWindowIssue(project.parent);
+  if(creationIssue) return {ok:false,error:creationIssue};
   if (!expectedRevisionMatches(project, expectedRevision)) return { ok:false, error:"El Proyecto cambió desde la última lectura.", stale:true };
   const model = normalizeCraftingProject(project.system);
   if (model.state !== "active" || !model.execution.committed) {
@@ -1784,8 +1809,10 @@ function resultSource(project) {
 
 async function consumeReservations(project, resolver) {
   const actor = project.parent;
+  const model = normalizeCraftingProject(project.system);
   const allocations = craftingProjectMaterialAllocations(project);
   const snapshots = [];
+  const consumedComponents = [];
 
   for (const allocation of allocations) {
     const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
@@ -1836,6 +1863,29 @@ async function consumeReservations(project, resolver) {
 
     for (const allocation of componentAllocations) {
       const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
+      const recoverableRows=model.components.filter((row)=>
+        String(row.itemUuid)===String(allocation.sourceUuid) &&
+        row.separable===true &&
+        row.recoveredSeparately===true
+      );
+      for(const row of recoverableRows){
+        const source=typeof item.toObject==="function" ? item.toObject() : clone(item);
+        delete source._id;
+        delete source.id;
+        source.system=clone(source.system??{});
+        source.system.quantity=Math.max(1,Math.floor(number(row.quantity,1)));
+        source.system.craftingReservations={};
+        if(source.system.craftingLot?.reservations) source.system.craftingLot.reservations={};
+        source.system.acquisition=null;
+        consumedComponents.push({
+          id:String(row.id),
+          name:String(row.name||item.name||"Componente separable"),
+          valueCopper:Math.max(0,Math.ceil(number(row.valueCopper))),
+          quantity:Math.max(1,Math.floor(number(row.quantity,1))),
+          countedInGenericRecovery:row.countedInGenericRecovery===true,
+          source
+        });
+      }
       const previousReservations = componentReservationData(item);
       const nextReservations = clone(previousReservations);
       delete nextReservations[projectKey(project)];
@@ -1852,14 +1902,14 @@ async function consumeReservations(project, resolver) {
         "system.craftingReservations":nextReservations
       }, { tmValidated:true, tmCrafting:true });
     }
-    return { ok:true, snapshots };
+    return { ok:true, snapshots, consumedComponents };
   } catch (error) {
     await rollbackUpdates(snapshots);
     return { ok:false, error:"Falló el consumo de Lotes comprometidos.", cause:String(error?.message ?? error), snapshots:[] };
   }
 }
 
-async function fabricationOutcome(project) {
+async function fabricationOutcome(project, consumedComponents=[]) {
   const actor = project.parent;
   const source = resultSource(project);
   if (!source || !PHYSICAL_TYPES.has(String(source.type ?? ""))) {
@@ -1879,6 +1929,8 @@ async function fabricationOutcome(project) {
 
   source.name = String(source.name ?? project.system.target?.resultName ?? "Resultado fabricado");
   source.system = derived.system;
+  source.system.manufacture ??= {};
+  source.system.manufacture.separableComponents=clone(consumedComponents);
   source.system.condition = "operative";
   if(source.system.trap?.enabled===true) {
     const frame=trapFrameProfile(source.system.trap.frame);
@@ -2035,10 +2087,15 @@ async function dismantleOutcome(project, resolver) {
   const referenceValueCopper=Math.max(0,Math.floor(number(manufacture.referenceValueCopper,projectModel.economy.referenceValueCopper)));
   const fabricationTimeMinutes=Math.max(0,number(manufacture.baseTimeMinutes,projectModel.time.baseMinutes));
   const installedMaterials=Array.isArray(manufacture.specialMaterials) ? manufacture.specialMaterials : [];
+  const separableComponents=Array.isArray(manufacture.separableComponents) ? manufacture.separableComponents : [];
+  const excludedSeparatedCopper=separableComponents.reduce((sum,row)=>
+    row?.countedInGenericRecovery===true ? sum : sum+Math.max(0,Math.floor(number(row?.valueCopper))),0
+  );
+  const ordinaryReferenceCopper=Math.max(0,referenceValueCopper-excludedSeparatedCopper);
 
   const ordinaryQuote=salvageQuote({
     condition,
-    referenceValueCopper,
+    referenceValueCopper:ordinaryReferenceCopper,
     specialMaterialSupplementsCopper:[],
     recoveredSeparatedComponentsCopper:0,
     fabricationTimeMinutes
@@ -2222,6 +2279,26 @@ async function dismantleOutcome(project, resolver) {
       });
     }
 
+    if(condition!=="destroyed") {
+      for(const component of separableComponents){
+        const source=clone(component?.source);
+        if(!source?.type || !source?.system) continue;
+        delete source._id;
+        delete source.id;
+        source.system.quantity=Math.max(1,Math.floor(number(component.quantity,source.system.quantity||1)));
+        source.system.craftingReservations={};
+        if(source.system.craftingLot?.reservations) source.system.craftingLot.reservations={};
+        source.system.acquisition=null;
+        source.system.provenance={
+          ...(source.system.provenance??{}),
+          sourceUuid:target.uuid,
+          sourceSchemaVersion:Number(target.system?.schemaVersion??0)||0,
+          sourceRevision:"dismantled-component"
+        };
+        await createRecovery(source);
+      }
+    }
+
     await actor.deleteEmbeddedDocuments("Item", [target.id], { tmValidated:true, tmCrafting:true });
   } catch (error) {
     if(createdIds.length) {
@@ -2253,6 +2330,8 @@ export async function completeCraftingProject(project, {
   resolver = globalThis.fromUuid
 } = {}) {
   if (!project || project.type !== "project" || !project.parent) return { ok:false, error:"Proyecto inválido." };
+  const creationIssue=craftingCreationWindowIssue(project.parent);
+  if(creationIssue) return {ok:false,error:creationIssue};
   if (!expectedRevisionMatches(project, expectedRevision)) return { ok:false, error:"El Proyecto cambió desde la última lectura.", stale:true };
 
   const validation = validateCraftingProject(project.system);
@@ -2288,7 +2367,7 @@ export async function completeCraftingProject(project, {
 
   let outcome;
   try {
-    if (model.operation === "fabricate") outcome = await fabricationOutcome(project);
+    if (model.operation === "fabricate") outcome = await fabricationOutcome(project,consumed.consumedComponents??[]);
     else if (model.operation === "repair") outcome = await repairOutcome(project, resolver);
     else if (model.operation === "modify") outcome = await modificationOutcome(project,resolver);
     else outcome = await dismantleOutcome(project, resolver);
@@ -2347,6 +2426,8 @@ export async function resolveResearchProjectStage(project,{
   resolver=globalThis.fromUuid
 }={}){
   if(!project || project.type!=="project" || !project.parent) return {ok:false,error:"Proyecto inválido."};
+  const creationIssue=craftingCreationWindowIssue(project.parent);
+  if(creationIssue) return {ok:false,error:creationIssue};
   if(!expectedRevisionMatches(project,expectedRevision)) return {ok:false,error:"El Proyecto cambió desde la última lectura.",stale:true};
 
   const validation=validateCraftingProject(project.system);

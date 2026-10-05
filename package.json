@@ -18,7 +18,7 @@
     "audit:grimorio:final": "node --test test/grimorio-60-balance-audit.test.mjs test/spell-impact.test.mjs test/content.test.mjs",
     "build:packs": "node tools/build-packs.mjs",
     "stage:release": "node tools/stage-release.mjs",
-    "audit:crafting": "node --test test/craft-13-core.test.mjs test/craft-13-project.test.mjs test/craft-13-transactions.test.mjs test/craft-13-enhancements.test.mjs test/craft-13-magic.test.mjs test/craft-13-magic-runtime.test.mjs test/craft-13-alchemy.test.mjs test/craft-13-research.test.mjs test/craft-13-ui-catalog.test.mjs"
+    "audit:crafting": "node --test test/craft-13-core.test.mjs test/craft-13-project.test.mjs test/craft-13-transactions.test.mjs test/craft-13-enhancements.test.mjs test/craft-13-magic.test.mjs test/craft-13-magic-runtime.test.mjs test/craft-13-alchemy.test.mjs test/craft-13-research.test.mjs test/craft-13-ui-catalog.test.mjs test/craft-13-integral-audit.test.mjs test/crea-13-device-energy.test.mjs test/action-economy-guards.test.mjs test/reaction-economy-guards.test.mjs test/state-authority.test.mjs test/grimorio-60-idempotency.test.mjs test/grimorio-60-multiuser-authority.test.mjs test/grimorio-60-real-concurrency.test.mjs test/crea-13-persistence-reversibility.test.mjs"
   },
   "engines": {
     "node": ">=20"

@@ -31,6 +31,10 @@ import { evaluateRequirements } from "../rules/requirements.mjs";
 import { contentIdentityKey, duplicateIdentity, normalizeSlug } from "../rules/identity.mjs";
 import { preflightAcquisition, preflightPhysicalPurchase, isPhysicalPurchaseType } from "../rules/acquisition.mjs";
 
+function resolvedRollTotal(message) {
+  return toNumber(message?.rolls?.[0]?.total ?? message?.roll?.total ?? message?.total, Number.NaN);
+}
+
 export class TierraMagicaActor extends Actor {
   prepareDerivedData() {
     super.prepareDerivedData();
@@ -724,7 +728,7 @@ export class TierraMagicaActor extends Actor {
           skillKey: "channeling",
           df: 17
         });
-        const success = toNumber(roll?.total) >= 17;
+        const success = resolvedRollTotal(roll) >= 17;
         const previousFatigue = toNumber(this.system.status?.fatigue);
         await this.update({ "system.status.fatigue": previousFatigue >= 2 ? 3 : 2 });
         return { ok:true, overload:true, success, roll };
@@ -903,7 +907,7 @@ export class TierraMagicaActor extends Actor {
         skillKey: "engineering",
         df: 16
       });
-      const success = toNumber(roll?.total) >= 16;
+      const success = resolvedRollTotal(roll) >= 16;
       if (success) {
         const energyResult = await consumeDeviceEnergyAuthoritatively(this, item, consumption, { flowBonus:1 });
         if (!energyResult.ok) {
@@ -950,7 +954,7 @@ export class TierraMagicaActor extends Actor {
         skillKey: "engineering",
         df: 16
       });
-      forcedSuccess = toNumber(roll?.total) >= 16;
+      forcedSuccess = resolvedRollTotal(roll) >= 16;
     }
 
     const result = await chargeDeviceEnergyAuthoritatively(this, sources, receivers, {

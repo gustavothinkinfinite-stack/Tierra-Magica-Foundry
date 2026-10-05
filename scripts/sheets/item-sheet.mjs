@@ -153,6 +153,7 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
       context.projectRecovery=recovery?.ok ? {
         ordinaryDisplay:formatCurrency(recovery.ordinaryCopper),
         special:recovery.specialRecoveries.map((row)=>({...row,amountDisplay:formatCurrency(row.amountCopper)})),
+        separable:Array.isArray(recovery.separableComponents)?recovery.separableComponents:[],
         runicDisplay:formatCurrency(recovery.runicCopper),
         enchantmentDisplay:formatCurrency(recovery.enchantmentCopper),
         totalDisplay:formatCurrency(recovery.totalCopper),
@@ -168,7 +169,7 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
         canCancel:["draft","ready","active","blocked"].includes(state),
         canWork:state==="active"&&context.projectRemainingMinutes>0,
         canComplete:state==="active"&&context.project.operation!=="research"&&context.projectRemainingMinutes===0,
-        canResolveResearch:state==="active"&&context.project.operation==="research"&&context.projectRemainingMinutes===0
+        canResolveResearch:Boolean(game.user?.isGM)&&state==="active"&&context.project.operation==="research"&&context.projectRemainingMinutes===0
       };
     }
 

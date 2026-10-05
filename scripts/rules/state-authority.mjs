@@ -148,14 +148,34 @@ function authorityReceiptKey(message) {
 }
 
 async function authorityReceiptDocument(action, payload = {}) {
-  if (["reserve-turn-resource", "commit-turn-resource", "release-turn-resource", "spend-movement", "consume-device-energy"].includes(action)) {
+  if (["reserve-turn-resource", "commit-turn-resource", "release-turn-resource", "spend-movement", "consume-device-energy", "craft-magic-runtime", "formula-use"].includes(action)) {
     const actor = await actorFromUuid(String(payload.actorUuid ?? ""));
-    if (action !== "consume-device-energy") return actor;
+    if (!["consume-device-energy"].includes(action)) return actor;
     return actor?.items?.get?.(String(payload.sourceItemId ?? "")) ?? actor;
   }
   if (["claim-kinetic", "claim-parry", "resolve-parry", "claim-counterattack", "apply-health-damage", "apply-health-healing"].includes(action)) {
     return actorFromUuid(String(payload.targetUuid ?? ""));
   }
+  if (action === "formula-use") {
+    const actor=await actorFromUuid(String(payload.actorUuid??""));
+    if(!actor) return {ok:false,error:"El Actor de Alquimia ya no está disponible."};
+    if(!requesterMayModify(actor,requesterId)) return {ok:false,error:"El solicitante no posee permisos para usar una Fórmula de este Actor."};
+    const item=actorOwnedItem(actor,String(payload.itemUuid??""));
+    if(!item || item.type!=="formula") return {ok:false,error:"La dosis alquímica ya no está disponible."};
+    return serial("formula:"+actorAuthorityKey(actor),()=>actor.useFormula(item,{tmAuthority:true}));
+  }
+
+  if (action === "craft-magic-runtime") {
+    const actor=await actorFromUuid(String(payload.actorUuid??""));
+    if(!actor) return {ok:false,error:"El Actor de magia de crafting ya no está disponible."};
+    if(!requesterMayModify(actor,requesterId)) return {ok:false,error:"El solicitante no posee permisos para usar esta magia de crafting."};
+    const operation=String(payload.operation??"");
+    const targetKey=["trigger-trap","trigger-seal"].includes(operation) && payload.targetActorUuid
+      ? "craft-magic-event:"+String(payload.targetActorUuid)
+      : "craft-magic:"+actorAuthorityKey(actor);
+    return serial(targetKey,()=>executeCraftingMagicRuntime(actor,operation,payload));
+  }
+
   if (["craft-prepare", "craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete", "craft-research-resolve"].includes(action)) {
     return actorFromUuid(String(payload.projectUuid ?? ""));
   }
@@ -250,8 +270,16 @@ function actorAuthorityKey(actor) {
   return String(actor?.uuid ?? actor?.id ?? actor?.name ?? "");
 }
 
+function requesterUser(requesterId = "") {
+  return activeUsers().find((user) => String(user?.id ?? "") === String(requesterId ?? "")) ?? currentUser();
+}
+
+function requesterIsGm(requesterId = "") {
+  return Boolean(requesterUser(requesterId)?.isGM);
+}
+
 function requesterMayModify(actor, requesterId = "") {
-  const requester = activeUsers().find((user) => String(user?.id ?? "") === String(requesterId ?? "")) ?? currentUser();
+  const requester = requesterUser(requesterId);
   return Boolean(requester?.isGM) ||
     (typeof actor?.canUserModify === "function" ? Boolean(actor.canUserModify(requester, "update")) : Boolean(actor?.isOwner ?? typeof actor?.update === "function"));
 }
@@ -408,6 +436,81 @@ async function mutateHealth(target, { damage = 0, healing = 0 } = {}) {
   });
 }
 
+function actorOwnedItem(actor, reference="") {
+  const ref=String(reference??"");
+  if(!ref) return null;
+  const direct=actor?.items?.get?.(ref);
+  if(direct) return direct;
+  return Array.from(actor?.items??[]).find((item)=>
+    String(item?.uuid??"")===ref || String(item?.id??item?._id??"")===ref
+  )??null;
+}
+
+async function executeCraftingMagicRuntime(actor,operation,payload={}) {
+  const item=(key)=>actorOwnedItem(actor,payload[key]);
+  const target=payload.targetActor ?? await actorFromUuid(String(payload.targetActorUuid??""));
+  switch(String(operation??"")) {
+    case "attune":
+      return actor.attuneMagicItem(item("itemUuid"),{
+        elapsedMinutes:payload.elapsedMinutes,
+        functionKnown:payload.functionKnown===true,
+        tmAuthority:true
+      });
+    case "unattune":
+      return actor.unattuneMagicItem(item("itemUuid"),{tmAuthority:true});
+    case "prepare-trap":
+      return actor.prepareManualTrapReaction(item("trapUuid"),{
+        triggerKey:String(payload.triggerKey??""),
+        tmAuthority:true
+      });
+    case "socket-stone":
+      return actor.socketImprintStone(item("hostUuid"),item("stoneUuid"),{
+        channelIds:Array.isArray(payload.channelIds)?payload.channelIds:[],
+        elapsedMinutes:payload.elapsedMinutes,
+        underPressure:payload.underPressure===true,
+        toolsReady:payload.toolsReady===true,
+        tmAuthority:true
+      });
+    case "extract-stone":
+      return actor.extractImprintStone(item("hostUuid"),item("stoneUuid"),{
+        elapsedMinutes:payload.elapsedMinutes,
+        underPressure:payload.underPressure===true,
+        toolsReady:payload.toolsReady===true,
+        tmAuthority:true
+      });
+    case "use-imprint":
+      return actor.useRunicImprint(item("hostUuid"),String(payload.imprintId??""),{
+        ...(payload.context&&typeof payload.context==="object"?payload.context:{}),
+        tmAuthority:true
+      });
+    case "activate-enchantment":
+      return actor.activateEnchantedItem(item("itemUuid"),{tmAuthority:true});
+    case "stop-enchantment":
+      return actor.stopSustainedEnchantment(String(payload.itemId??""),{tmAuthority:true});
+    case "trigger-trap":
+      return actor.triggerCraftedTrap(item("trapUuid"),{
+        targetActor:target,
+        eventId:String(payload.eventId??""),
+        eventType:String(payload.eventType??""),
+        physicalTriggerKey:String(payload.physicalTriggerKey??""),
+        providedBypassKey:String(payload.providedBypassKey??""),
+        reactive:payload.reactive===true,
+        preparedTriggerKey:String(payload.preparedTriggerKey??""),
+        tmAuthority:true
+      });
+    case "trigger-seal":
+      return actor.triggerCustodySeal(item("sealUuid"),{
+        targetActor:target,
+        eventId:String(payload.eventId??""),
+        eventType:String(payload.eventType??""),
+        providedBypassKey:String(payload.providedBypassKey??""),
+        tmAuthority:true
+      });
+    default:
+      return {ok:false,error:"Operación mágica de crafting desconocida."};
+  }
+}
+
 async function executeAuthorityAction(action, payload = {}, requesterId = "") {
   if (action === "reserve-turn-resource" || action === "commit-turn-resource" || action === "release-turn-resource" || action === "spend-movement") {
     const actor = await actorFromUuid(String(payload.actorUuid ?? ""));
@@ -516,12 +619,16 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
     if (!requesterMayModify(project, requesterId)) {
       return { ok:false, error:"El solicitante no posee permisos para modificar este Proyecto." };
     }
+    if (["craft-prepare","craft-research-resolve"].includes(action) && !requesterIsGm(requesterId)) {
+      return { ok:false, error:action === "craft-prepare"
+        ? "Sólo un DJ puede aprobar un Proyecto y pasarlo a Preparado."
+        : "Sólo un DJ puede adjudicar el resultado de una etapa de Investigación." };
+    }
 
     return serial("crafting:" + actorAuthorityKey(project.parent), async () => {
       const options = { expectedRevision:payload.expectedRevision };
       if (action === "craft-prepare") return prepareCraftingProject(project, options);
-      if (action === "craft-prepare") return prepareCraftingProject(project, options);
-    if (action === "craft-reserve") return reserveCraftingProjectMaterials(project, options);
+      if (action === "craft-reserve") return reserveCraftingProjectMaterials(project, options);
       if (action === "craft-release") return releaseCraftingProjectMaterials(project, { ...options, cancel:false });
       if (action === "craft-cancel") return releaseCraftingProjectMaterials(project, { ...options, cancel:true });
       if (action === "craft-work") return advanceCraftingProjectWork(project, payload.minutes, options);
@@ -907,6 +1014,39 @@ export async function approvePendingHealingAuthoritatively(message) {
   });
 }
 
+export async function useFormulaAuthoritatively(actor,item) {
+  if(!actor || !item) return {ok:false,error:"Actor o Fórmula inválidos."};
+  if(runtimeSocketAvailable()){
+    const gm=primaryActiveGm(activeUsers());
+    if(!gm) return {ok:false,error:"Se requiere un DJ activo para arbitrar el consumo alquímico."};
+    if(!actor.uuid || !item.uuid) return {ok:false,error:"Actor/Fórmula sin UUID persistente."};
+    return requestPrimaryGm("formula-use",{actorUuid:actor.uuid,itemUuid:item.uuid});
+  }
+  if(!canModify(actor)) return {ok:false,error:"No hay permisos para usar esta Fórmula."};
+  return serial("formula-local:"+actorAuthorityKey(actor),()=>actor.useFormula(item,{tmAuthority:true}));
+}
+
+export async function craftingMagicMutationAuthoritatively(actor,operation,payload={}) {
+  if(!actor) return {ok:false,error:"Actor inválido para magia de crafting."};
+  const serializable={...payload};
+  delete serializable.targetActor;
+  if(runtimeSocketAvailable()){
+    const gm=primaryActiveGm(activeUsers());
+    if(!gm) return {ok:false,error:"Se requiere un DJ activo para arbitrar la magia de crafting."};
+    if(!actor.uuid) return {ok:false,error:"El Actor no posee UUID persistente."};
+    return requestPrimaryGm("craft-magic-runtime",{
+      actorUuid:actor.uuid,
+      operation:String(operation??""),
+      ...serializable
+    });
+  }
+  if(!canModify(actor)) return {ok:false,error:"No hay permisos para modificar el Actor."};
+  const targetKey=["trigger-trap","trigger-seal"].includes(String(operation)) && payload.targetActor
+    ? "craft-magic-event:"+actorAuthorityKey(payload.targetActor)
+    : "craft-magic-local:"+actorAuthorityKey(actor);
+  return serial(targetKey,()=>executeCraftingMagicRuntime(actor,operation,payload));
+}
+
 async function craftingAuthority(project, action, payload = {}) {
   if (!project || project.type !== "project" || !project.parent) return { ok:false, error:"Proyecto inválido." };
   const expectedRevision = Math.max(0, Math.floor(number(project.system?.execution?.revision)));
@@ -919,8 +1059,14 @@ async function craftingAuthority(project, action, payload = {}) {
   }
 
   if (!canModify(project)) return { ok:false, error:"No hay permisos para modificar el Proyecto." };
+  if (["craft-prepare","craft-research-resolve"].includes(action) && !currentUser()?.isGM) {
+    return { ok:false, error:action === "craft-prepare"
+      ? "Sólo un DJ puede aprobar un Proyecto y pasarlo a Preparado."
+      : "Sólo un DJ puede adjudicar el resultado de una etapa de Investigación." };
+  }
   return serial("crafting-local:" + actorAuthorityKey(project.parent), async () => {
     const options = { expectedRevision };
+    if (action === "craft-prepare") return prepareCraftingProject(project, options);
     if (action === "craft-reserve") return reserveCraftingProjectMaterials(project, options);
     if (action === "craft-release") return releaseCraftingProjectMaterials(project, { ...options, cancel:false });
     if (action === "craft-cancel") return releaseCraftingProjectMaterials(project, { ...options, cancel:true });

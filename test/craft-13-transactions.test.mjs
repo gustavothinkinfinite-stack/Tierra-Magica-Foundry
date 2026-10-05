@@ -5,6 +5,8 @@ import {
   advanceCraftingProjectWork,
   completeCraftingProject,
   craftingLotAvailableCopper,
+  prepareCraftingProject,
+  previewCraftingProject,
   releaseCraftingProjectMaterials,
   reserveCraftingProjectMaterials
 } from "../scripts/rules/crafting-transactions.mjs";
@@ -2690,3 +2692,208 @@ test("CRAFT-13E: rearmar trampa alquímica exige y consume una nueva dosis físi
   assert.equal(target.system.trap.load.componentUuid,dose.uuid);
 });
 
+
+
+test("CRAFT-13I: PEI no abre una ventana de crafting durante Creación o Reconstrucción",async()=>{
+  for(const status of ["building","rebuilding"]){
+    const actor=new StubActor("pei-"+status);
+    actor.system.creation={status};
+    const material=lot(actor,{id:"pei-lot-"+status,vi:100});
+    const craft=project(actor,{id:"pei-project-"+status,material,materialCopper:50,referenceValueCopper:100});
+    craft.system.state="draft";
+    const resolver=resolverFor(actor);
+
+    const preview=await previewCraftingProject(craft,{resolver});
+    assert.equal(preview.valid,false);
+    assert.ok(preview.issues.some((issue)=>issue.code==="crafting-creation-window"));
+
+    const prepared=await prepareCraftingProject(craft,{expectedRevision:0,resolver});
+    assert.equal(prepared.ok,false);
+    assert.match(prepared.error,/PEI|Creación|Reconstrucción/);
+
+    craft.system.state="ready";
+    const reserved=await reserveCraftingProjectMaterials(craft,{expectedRevision:0,resolver});
+    assert.equal(reserved.ok,false);
+    assert.equal(material.system.craftingLot.inputValueCopper,100);
+    assert.deepEqual(material.system.craftingLot.reservations,{});
+  }
+});
+
+test("CRAFT-13I: un componente separable viaja con el objeto y vuelve como objeto, no como VI duplicado",async()=>{
+  const actor=new StubActor("separable-cycle");
+  const material=lot(actor,{id:"ordinary",vi:100});
+  const component=actor.add(new StubItem({
+    id:"optic",
+    name:"Óptica calibrada",
+    type:"equipment",
+    system:{
+      quantity:1,
+      condition:"operative",
+      priceStatus:"exact",
+      priceCopper:40,
+      craftingReservations:{}
+    }
+  }));
+  const craft=project(actor,{
+    id:"build-with-component",
+    material,
+    materialCopper:50,
+    estimatedMaterialsCopper:50,
+    referenceValueCopper:100,
+    requiredMinutes:120,
+    baseMinutes:120,
+    adjustedBaseMinutes:120,
+    components:[{
+      id:"optic-component",
+      name:"Óptica calibrada",
+      itemUuid:component.uuid,
+      valueCopper:40,
+      quantity:1,
+      separable:true,
+      recoveredSeparately:true,
+      countedInGenericRecovery:false
+    }],
+    resultData:{
+      name:"Instrumento compuesto",
+      type:"equipment",
+      system:{
+        quantity:1,
+        quality:"common",
+        condition:"operative",
+        priceStatus:"exact",
+        priceCopper:100,
+        category:"Instrumento",
+        craftingReservations:{}
+      }
+    }
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,120,{expectedRevision:1});
+  assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
+
+  const output=[...actor.items.values()].find((item)=>item.name==="Instrumento compuesto");
+  assert.ok(output);
+  assert.equal(output.system.manufacture.separableComponents.length,1);
+  assert.equal(output.system.manufacture.separableComponents[0].name,"Óptica calibrada");
+  assert.equal(component.system.quantity,0);
+
+  const dismantle=project(actor,{
+    id:"dismantle-composite",
+    operation:"dismantle",
+    material:null,
+    materialCopper:0,
+    estimatedMaterialsCopper:0,
+    referenceValueCopper:100,
+    targetItemUuid:output.uuid,
+    timeMode:"fixed",
+    baseMinutes:120,
+    adjustedBaseMinutes:30,
+    requiredMinutes:30,
+    requiredRank:2,
+    requiredInstallation:"adequate",
+    availableInstallation:"adequate"
+  });
+  assert.equal((await reserveCraftingProjectMaterials(dismantle,{resolver})).ok,true);
+  await advanceCraftingProjectWork(dismantle,30,{expectedRevision:1});
+  const result=await completeCraftingProject(dismantle,{expectedRevision:2,resolver});
+  assert.equal(result.ok,true);
+
+  const recoveredComponent=[...actor.items.values()].find((item)=>
+    item.name==="Óptica calibrada" && Number(item.system?.quantity)===1
+  );
+  assert.ok(recoveredComponent);
+  const ordinary=[...actor.items.values()].find((item)=>item.system?.craftingLot?.category==="recuperado");
+  assert.ok(ordinary);
+  assert.equal(ordinary.system.craftingLot.inputValueCopper,15);
+  assert.equal(result.recoveredMaterialsCopper,15);
+});
+
+
+test("CRAFT-13I: un Proyecto reservado puede guardarse, reabrirse y completarse sin perder su reserva",async()=>{
+  const actor=new StubActor("reopen");
+  const material=lot(actor,{id:"reopen-lot",vi:100});
+  const craft=project(actor,{
+    id:"reopen-project",
+    material,
+    materialCopper:50,
+    estimatedMaterialsCopper:50,
+    referenceValueCopper:100,
+    requiredMinutes:60,
+    baseMinutes:60,
+    adjustedBaseMinutes:60,
+    resultData:{
+      name:"Objeto persistido",
+      type:"equipment",
+      system:{quantity:1,quality:"common",condition:"operative",priceStatus:"exact",priceCopper:100,craftingReservations:{}}
+    }
+  });
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  assert.equal(craft.system.execution.revision,1);
+  assert.equal(craft.system.execution.committed,true);
+
+  const reopened=new StubActor("reopen");
+  const reopenedMaterial=reopened.add(new StubItem({
+    id:material.id,name:material.name,type:material.type,system:structuredClone(material.system)
+  }));
+  const reopenedProject=reopened.add(new StubItem({
+    id:craft.id,name:craft.name,type:"project",system:structuredClone(craft.system)
+  }));
+  const reopenedResolver=resolverFor(reopened);
+
+  assert.equal(reopenedProject.uuid,craft.uuid);
+  assert.equal(reopenedMaterial.system.craftingLot.reservations[reopenedProject.uuid].amountCopper,50);
+  assert.equal(reopenedProject.system.ledger.committedMaterialsCopper,50);
+
+  const worked=await advanceCraftingProjectWork(reopenedProject,60,{expectedRevision:1});
+  assert.equal(worked.ok,true);
+  const completed=await completeCraftingProject(reopenedProject,{expectedRevision:2,resolver:reopenedResolver});
+  assert.equal(completed.ok,true);
+  assert.equal(reopenedMaterial.system.craftingLot.inputValueCopper,50);
+  assert.equal(reopenedProject.system.state,"completed");
+  assert.equal([...reopened.items.values()].filter((item)=>item.name==="Objeto persistido").length,1);
+});
+
+
+test("CRAFT-13I: reparar un acumulador no rellena Energía",async()=>{
+  const actor=new StubActor("repair-energy");
+  actor.system.skills.engineering={rank:5};
+  const target=actor.add(new StubItem({
+    id:"battery",
+    name:"Acumulador dañado",
+    type:"device",
+    system:{
+      condition:"damaged",
+      energy:{value:1,max:8},
+      flow:3,stability:2,
+      priceStatus:"exact",priceCopper:500,quality:"common"
+    }
+  }));
+  const material=lot(actor,{id:"repair-energy-lot",vi:100,compatibility:["forja"]});
+  const craft=project(actor,{
+    id:"repair-energy-project",
+    operation:"repair",
+    material,
+    materialCopper:50,
+    estimatedMaterialsCopper:50,
+    referenceValueCopper:500,
+    targetItemUuid:target.uuid,
+    requiredMinutes:240,
+    baseMinutes:960,
+    adjustedBaseMinutes:240,
+    timeMode:"fixed",
+    professionalSkill:"engineering",
+    requiredRank:3,
+    requiredInstallation:"professional",
+    availableInstallation:"professional"
+  });
+  craft.system.economy.affectedValueCopper=500;
+  const resolver=resolverFor(actor);
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  await advanceCraftingProjectWork(craft,240,{expectedRevision:1});
+  const result=await completeCraftingProject(craft,{expectedRevision:2,resolver});
+  assert.equal(result.ok,true);
+  assert.equal(target.system.condition,"operative");
+  assert.equal(target.system.energy.value,1);
+});

@@ -92,8 +92,21 @@ export function installActionEconomyGuards(ActorClass) {
     }
     return runAction(this, () => originalUseSpell.call(this, item, ...args));
   };
-  ActorClass.prototype.useFormula = async function (...args) {
-    return runAction(this, () => originalUseFormula.apply(this, args));
+  ActorClass.prototype.useFormula = async function (item, options = {}) {
+    if (options?.tmAuthority === true) return originalUseFormula.call(this, item, options);
+    const activation=String(item?.system?.activation ?? "").trim().toLowerCase();
+    if (!activation) return runAction(this, () => originalUseFormula.call(this, item, options));
+    if (activation.includes("reacción") || activation.includes("reaction")) {
+      return runReactionOperation(this, () => originalUseFormula.call(this, item, options));
+    }
+    if (activation.includes("acción") || activation.includes("action")) {
+      return runAction(this, () => originalUseFormula.call(this, item, options));
+    }
+    if (activation.includes("minuto") && globalThis.game?.combat?.started) {
+      ui.notifications.warn(item.name + " requiere " + (item.system.activation || "tiempo prolongado") + "; no se resuelve como una sola Acción de combate.");
+      return null;
+    }
+    return originalUseFormula.call(this, item, options);
   };
   ActorClass.prototype.useDevice = async function (item, ...args) {
     if (String(item?.system?.activation ?? "").trim().toLowerCase() === "reacción") {

@@ -396,6 +396,7 @@ export function deriveManufacturedSystem(itemSource,{
       ...row,
       supplementCopper:specialMaterialSupplementCopper(referenceValueCopper,{grade:row.grade,coverage:row.coverage})
     })),
+    separableComponents:clone(existingManufacture?.separableComponents ?? []),
     dominantMaterialId:dominant,
     capMUsed:validation.capMUsed,
     totalReferenceValueCopper:copperCeil(totalValue),

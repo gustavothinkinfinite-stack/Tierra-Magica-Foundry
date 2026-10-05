@@ -440,6 +440,7 @@
           "baseStats": {},
           "modifications": [],
           "specialMaterials": [],
+          "separableComponents": [],
           "dominantMaterialId": "",
           "capMUsed": 0,
           "totalReferenceValueCopper": 0,

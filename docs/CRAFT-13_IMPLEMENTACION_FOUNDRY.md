@@ -978,25 +978,39 @@ La interfaz no decide:
 
 ### CRAFT-13I — Auditoría integral Foundry
 
-**Estado: PENDIENTE**
+**Estado: EN VALIDACIÓN**
 
-Regresión final obligatoria contra CRAFT-12:
+La auditoría destructiva integral está implementada en `docs/CRAFT-13I_AUDITORIA_INTEGRAL_FOUNDRY.md` y `test/craft-13-integral-audit.test.mjs`.
 
-- economía;
-- redondeos;
+La matriz cubre:
+
+- economía y redondeos;
 - PEI;
 - tiempo;
-- acciones;
+- Acción/Movimiento/Reacción;
 - apilamiento;
 - Sintonización/RE;
 - Energía/Caudal;
 - trampas;
-- alquimia;
+- Alquimia;
 - Investigación;
 - concurrencia;
 - doble clic/reintentos;
 - guardado/reapertura;
 - multiusuario/autoridad GM.
+
+Hallazgos de implementación corregidos en 13I:
+
+- equivalencia de `craft-prepare` entre socket y fallback;
+- bloqueo real de crafting durante Creación/Reconstrucción para no convertir PEI;
+- Preparado e Investigación adjudicados sólo por DJ;
+- lectura correcta del total de tiradas devuelto por Foundry;
+- autoridad multiusuario para RE/Sintonización/Improntas/trampas/Sellos;
+- autoridad multiusuario para dosis/Saturación;
+- activaciones alquímicas sin convertir 1 minuto/contexto en una Acción universal;
+- trazabilidad y recuperación física de componentes separables.
+
+El cierre definitivo requiere `npm run audit:crafting` y `npm run validate` verdes.
 
 ## Criterio de cierre
 

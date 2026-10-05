@@ -1,3 +1,4 @@
+import { craftingMagicMutationAuthoritatively } from "./state-authority.mjs";
 import { withActorResourceLock } from "./resource-mutation.mjs";
 import {
   attunedPassiveEnchantments,
@@ -19,8 +20,8 @@ const text=(value)=>String(value??"").trim();
 const clone=(value)=>globalThis.foundry?.utils?.deepClone?foundry.utils.deepClone(value):structuredClone(value);
 
 function warn(message) {
-  if(globalThis.ui?.notifications?.warn) return ui.notifications.warn(message);
-  return {ok:false,error:message};
+  if(globalThis.ui?.notifications?.warn) ui.notifications.warn(message);
+  return {ok:false,error:String(message)};
 }
 
 function sameActorItem(actor,item) {
@@ -85,7 +86,10 @@ async function rollbackAutomaticEvent(targetActor,previous) {
 }
 
 export function installCraftingMagicGuards(ActorClass) {
-  ActorClass.prototype.attuneMagicItem=async function(item,{elapsedMinutes=60,functionKnown=true}={}){
+  ActorClass.prototype.attuneMagicItem=async function(item,{elapsedMinutes=60,functionKnown=true,tmAuthority=false}={}){
+    if(!tmAuthority) return craftingMagicMutationAuthoritatively(this,"attune",{
+      itemUuid:String(item?.uuid??item?.id??""),elapsedMinutes,functionKnown
+    });
     if(!sameActorItem(this,item)) return warn("El objeto debe estar bajo control del Actor para Sintonizarlo.");
     return withActorResourceLock(this,async()=>{
       const validation=validateAttunement(this,item,{elapsedMinutes,functionKnown});
@@ -99,7 +103,10 @@ export function installCraftingMagicGuards(ActorClass) {
     });
   };
 
-  ActorClass.prototype.unattuneMagicItem=async function(item){
+  ActorClass.prototype.unattuneMagicItem=async function(item,{tmAuthority=false}={}){
+    if(!tmAuthority) return craftingMagicMutationAuthoritatively(this,"unattune",{
+      itemUuid:String(item?.uuid??item?.id??"")
+    });
     if(!sameActorItem(this,item)) return warn("El objeto no pertenece al Actor.");
     return withActorResourceLock(this,async()=>{
       if(String(item.system?.enchantment?.attunedActorUuid??"")!==String(this.uuid)) {
@@ -121,7 +128,10 @@ export function installCraftingMagicGuards(ActorClass) {
     }));
   };
 
-  ActorClass.prototype.prepareManualTrapReaction=async function(trap,{triggerKey=""}={}){
+  ActorClass.prototype.prepareManualTrapReaction=async function(trap,{triggerKey="",tmAuthority=false}={}){
+    if(!tmAuthority) return craftingMagicMutationAuthoritatively(this,"prepare-trap",{
+      trapUuid:String(trap?.uuid??trap?.id??""),triggerKey
+    });
     if(!sameActorItem(this,trap)) return warn("La trampa manual debe pertenecer/controlarse desde este Actor.");
     const validation=validateTrapConfiguration(trap.system?.trap??{});
     if(!validation.valid) return warn(validation.issues.map((issue)=>issue.message).join(" "));
@@ -143,8 +153,14 @@ export function installCraftingMagicGuards(ActorClass) {
     channelIds=[],
     elapsedMinutes=10,
     underPressure=false,
-    toolsReady=false
+    toolsReady=false,
+    tmAuthority=false
   }={}){
+    if(!tmAuthority) return craftingMagicMutationAuthoritatively(this,"socket-stone",{
+      hostUuid:String(host?.uuid??host?.id??""),
+      stoneUuid:String(stone?.uuid??stone?.id??""),
+      channelIds,elapsedMinutes,underPressure,toolsReady
+    });
     if(!sameActorItem(this,host)||!sameActorItem(this,stone)) return warn("Host y Piedra deben pertenecer al mismo Actor.");
     if(underPressure===true || number(elapsedMinutes)<10) return warn("Insertar una Piedra requiere 10 minutos sin presión.");
     if(toolsReady!==true) return warn("Insertar una Piedra requiere herramientas apropiadas.");
@@ -188,7 +204,12 @@ export function installCraftingMagicGuards(ActorClass) {
     });
   };
 
-  ActorClass.prototype.extractImprintStone=async function(host,stone,{elapsedMinutes=10,underPressure=false,toolsReady=false}={}){
+  ActorClass.prototype.extractImprintStone=async function(host,stone,{elapsedMinutes=10,underPressure=false,toolsReady=false,tmAuthority=false}={}){
+    if(!tmAuthority) return craftingMagicMutationAuthoritatively(this,"extract-stone",{
+      hostUuid:String(host?.uuid??host?.id??""),
+      stoneUuid:String(stone?.uuid??stone?.id??""),
+      elapsedMinutes,underPressure,toolsReady
+    });
     if(!sameActorItem(this,host)||!sameActorItem(this,stone)) return warn("Host y Piedra deben pertenecer al mismo Actor.");
     if(underPressure===true || number(elapsedMinutes)<10) return warn("Extraer una Piedra requiere 10 minutos sin presión.");
     if(toolsReady!==true) return warn("Extraer una Piedra requiere herramientas apropiadas.");
@@ -210,6 +231,13 @@ export function installCraftingMagicGuards(ActorClass) {
   };
 
   ActorClass.prototype.useRunicImprint=async function(host,imprintId,context={}){
+    if(context?.tmAuthority!==true) {
+      const safeContext={...context};
+      delete safeContext.tmAuthority;
+      return craftingMagicMutationAuthoritatively(this,"use-imprint",{
+        hostUuid:String(host?.uuid??host?.id??""),imprintId:String(imprintId??""),context:safeContext
+      });
+    }
     if(!sameActorItem(this,host)) return warn("La Impronta debe encontrarse en un objeto del Actor.");
     return withActorResourceLock(this,async()=>{
       const configuration=validateRunicConfiguration({type:host.type,system:host.system},host.system?.runic??{});
@@ -253,7 +281,10 @@ export function installCraftingMagicGuards(ActorClass) {
     });
   };
 
-  ActorClass.prototype.activateEnchantedItem=async function(item){
+  ActorClass.prototype.activateEnchantedItem=async function(item,{tmAuthority=false}={}){
+    if(!tmAuthority) return craftingMagicMutationAuthoritatively(this,"activate-enchantment",{
+      itemUuid:String(item?.uuid??item?.id??"")
+    });
     if(!sameActorItem(this,item)) return warn("El objeto encantado debe estar bajo control del Actor.");
     return withActorResourceLock(this,async()=>{
       if(item.system?.enchantment?.seal===true) return warn("Un Sello de Custodia se descarga por su disparador; no se activa como objeto Sintonizado.");
@@ -297,14 +328,20 @@ export function installCraftingMagicGuards(ActorClass) {
     });
   };
 
-  ActorClass.prototype.stopSustainedEnchantment=async function(itemId){
+  ActorClass.prototype.stopSustainedEnchantment=async function(itemId,{tmAuthority=false}={}){
+    if(!tmAuthority) return craftingMagicMutationAuthoritatively(this,"stop-enchantment",{itemId:String(itemId??"")});
     const current=Array.isArray(this.system.magic?.sustainedObjectIds)?[...this.system.magic.sustainedObjectIds]:[];
     if(!current.includes(itemId)) return {ok:true,changed:false};
     await this.update({"system.magic.sustainedObjectIds":current.filter((id)=>id!==itemId)},{tmValidated:true,tmCraftingMagic:true});
     return {ok:true,changed:true};
   };
 
-  ActorClass.prototype.triggerCraftedTrap=async function(trap,{targetActor=null,eventId="",eventType="",physicalTriggerKey="",providedBypassKey="",reactive=false,preparedTriggerKey=""}={}){
+  ActorClass.prototype.triggerCraftedTrap=async function(trap,{targetActor=null,eventId="",eventType="",physicalTriggerKey="",providedBypassKey="",reactive=false,preparedTriggerKey="",tmAuthority=false}={}){
+    if(!tmAuthority) return craftingMagicMutationAuthoritatively(this,"trigger-trap",{
+      trapUuid:String(trap?.uuid??trap?.id??""),
+      targetActorUuid:String(targetActor?.uuid??targetActor?.id??""),
+      targetActor,eventId,eventType,physicalTriggerKey,providedBypassKey,reactive,preparedTriggerKey
+    });
     if(!sameActorItem(this,trap)) return warn("La trampa debe pertenecer/controlarse desde este Actor.");
     const validation=validateTrapConfiguration(trap.system?.trap??{});
     if(!validation.valid) return warn(validation.issues.map((issue)=>issue.message).join(" "));
@@ -359,7 +396,12 @@ export function installCraftingMagicGuards(ActorClass) {
     return {ok:true,load,precision:usesMechanismPrecision?number(trap.system.trap.precision):0,mechanismDf:number(trap.system.trap.mechanismDf)};
   };
 
-  ActorClass.prototype.triggerCustodySeal=async function(seal,{targetActor=null,eventId="",eventType="",providedBypassKey=""}={}){
+  ActorClass.prototype.triggerCustodySeal=async function(seal,{targetActor=null,eventId="",eventType="",providedBypassKey="",tmAuthority=false}={}){
+    if(!tmAuthority) return craftingMagicMutationAuthoritatively(this,"trigger-seal",{
+      sealUuid:String(seal?.uuid??seal?.id??""),
+      targetActorUuid:String(targetActor?.uuid??targetActor?.id??""),
+      targetActor,eventId,eventType,providedBypassKey
+    });
     if(!sameActorItem(this,seal)) return warn("El Sello debe estar bajo control de este Actor/instalación.");
     const enchant=seal.system?.enchantment??{};
     if(enchant.seal!==true || enchant.sealState!=="charged") return warn("El Sello no está Cargado.");
