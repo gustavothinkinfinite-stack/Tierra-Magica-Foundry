@@ -1,13 +1,13 @@
 # CONTENT-01 — Navegador Universal de Contenido
 
-**Estado:** CONTENT-01A VALIDADA · CONTENT-01B IMPLEMENTADA EN RAMA · PR #60 ABIERTA  
+**Estado:** CONTENT-01A–B IMPLEMENTADAS Y VALIDADAS · PR #60 ABIERTA  
 **Fecha:** 2026-10-05
 
 ## Objetivo
 
 Dar acceso desde la barra lateral **Objetos / Items** a un navegador único de contenido canónico, sin obligar a recorrer manualmente los cuatro Compendios y sin crear una segunda fuente de datos.
 
-La autoridad del navegador es `coreCatalog()`, la misma que alimenta los Compendios publicados. CONTENT-01A superó `Validate` #37347043795 con resultado **success**.
+La autoridad del navegador es `coreCatalog()`, la misma que alimenta los Compendios publicados. CONTENT-01A superó `Validate` #37347043795 y CONTENT-01B superó `Validate` #37348114596, ambos con resultado **success**.
 
 ## Fases
 
