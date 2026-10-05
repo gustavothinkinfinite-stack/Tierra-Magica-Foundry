@@ -23,6 +23,11 @@ const ownsTechnique = (actor, name) => {
 const canUpdate = (actor) => actor.canUserModify?.(game.user, "update") ?? actor.isOwner ?? false;
 const rollTotal = (result) => number(result?.rolls?.[0]?.total ?? result?.roll?.total ?? result?.total);
 const isRangedWeapon = (weapon) => String(weapon?.system?.skill ?? "") === "rangedWeapons";
+const parryBonusForWeapon = (weapon) => {
+  if (!weapon || weapon.type !== "weapon" || isRangedWeapon(weapon)) return 2;
+  const configured = Number(weapon.system?.manufacture?.effects?.parryDefenseBonus ?? 2);
+  return Math.max(2, Math.min(3, Number.isFinite(configured) ? configured : 2));
+};
 
 async function spendAction(actor) {
   if (!(actor.system.turn?.action ?? true)) {
@@ -76,20 +81,28 @@ export function installCombatDefenseGuards(ActorClass) {
     });
   };
 
-  ActorClass.prototype.parry = async function () {
+  ActorClass.prototype.parry = async function (weapon = null) {
     if (!ownsTechnique(this, "Parada")) return ui.notifications.warn(this.name + " no posee la Técnica Parada.");
     if (!(this.system.turn?.reaction ?? true)) return ui.notifications.warn(this.name + " ya gastó su Reacción.");
+    if (weapon && (weapon.type !== "weapon" || weapon.parent !== this || isRangedWeapon(weapon))) {
+      return ui.notifications.warn("Parada debe declararse con un arma cuerpo a cuerpo válida del Actor.");
+    }
+    const bonus = parryBonusForWeapon(weapon);
     await this.update({
       "system.turn.reaction": false,
       "system.combat.parryActive": true,
       "system.combat.parrySucceeded": false,
-      "system.combat.counterattackUsed": false
+      "system.combat.counterattackUsed": false,
+      "system.combat.parryBonus": bonus,
+      "system.combat.parrySourceItemId": weapon?.id ?? ""
     });
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>Parada</strong><p>" +
         foundry.utils.escapeHTML(this.name) +
-        " consume su Reacción y obtiene +2 Defensa contra el siguiente ataque cuerpo a cuerpo parable que la desencadene. No se aplica por defecto a distancia, áreas ni hechizos.</p></div>"
+        " consume su Reacción y obtiene +" + bonus + " Defensa contra el siguiente ataque cuerpo a cuerpo parable que la desencadene." +
+        (weapon ? " Fuente: " + foundry.utils.escapeHTML(weapon.name) + "." : "") +
+        " No se aplica por defecto a distancia, áreas ni hechizos.</p></div>"
     });
   };
 
@@ -140,7 +153,7 @@ export function installCombatDefenseGuards(ActorClass) {
     });
     const explicitDf = number(options.df);
     const kineticBonus = kineticPending ? 2 : 0;
-    const parryBonus = parryPending ? 2 : 0;
+    const parryBonus = parryPending ? Number(parryClaim.bonus ?? 2) : 0;
     const baseDefense = (Number.isFinite(explicitDf) ? explicitDf : baseResolved.total) + kineticBonus;
     const defense = baseDefense + parryBonus;
 
@@ -194,7 +207,7 @@ export function installCombatDefenseGuards(ActorClass) {
         parryable: false,
         kineticBarrier: false
       }).total + kineticBonus;
-      const defense = baseDefense + (parryThisAttack ? 2 : 0);
+      const defense = baseDefense + (parryThisAttack ? Number(parryClaim.bonus ?? 2) : 0);
 
       const roll = await this.rollCheck({
         label: "Combate Dual " + (index + 1) + ": " + weapon.name,
@@ -268,18 +281,19 @@ export function installCombatDefenseGuards(ActorClass) {
 
       const parryClaim = parryable ? await claimParryAuthoritatively(target) : { ok:true, claimed:false };
       if (!parryClaim.ok) return ui.notifications.warn(parryClaim.error);
-      parryClaims.set(target.uuid ?? target.id, parryClaim.claimed === true);
+      parryClaims.set(target.uuid ?? target.id, parryClaim);
     }
 
     const frontal = options.tmFrontal === true;
     const resolutions = targets.map((target) => {
       const key = target.uuid ?? target.id;
       const kinetic = claims.get(key) === true;
-      const parry = parryClaims.get(key) === true;
+      const parryClaim = parryClaims.get(key) ?? { claimed:false, bonus:2 };
+      const parry = parryClaim.claimed === true;
       const kineticBonus = kinetic ? 2 : 0;
       const base = attackDefense(target, item, { frontal, parryable: false, kineticBarrier: false }).total + kineticBonus;
-      const defense = base + (parry ? 2 : 0);
-      return { target, kinetic, parry, base, defense };
+      const defense = base + (parry ? Number(parryClaim.bonus ?? 2) : 0);
+      return { target, kinetic, parry, parryBonus:Number(parryClaim.bonus ?? 2), base, defense };
     });
     if (resolutions.some((entry) => !Number.isFinite(entry.defense))) {
       return ui.notifications.warn("Barrido encontró una Defensa no válida.");

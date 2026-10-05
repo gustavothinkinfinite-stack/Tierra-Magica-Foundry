@@ -332,7 +332,7 @@ export function deriveActorState({
   if (system.combat?.parryActive) {
     defenseContributions.push(contribution({
       selector: "defense",
-      value: 2,
+      value: Math.max(2, Math.min(3, number(system.combat?.parryBonus, 2))),
       label: "Parada",
       sourceType: "state",
       contextual: true,

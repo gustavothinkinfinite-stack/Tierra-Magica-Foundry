@@ -57,8 +57,25 @@ export const TM_CONFIG = {
   itemTypes: {
     weapon: "Arma", armor: "Armadura", shield: "Escudo", equipment: "Equipo", spell: "Hechizo",
     technique: "Técnica", trait: "Rasgo", specialization: "Especialización", formula: "Fórmula", ritual: "Ritual", device: "Dispositivo",
-    ancestry: "Ascendencia", origin: "Origen", background: "Trasfondo", discipline: "Disciplina", effect: "Efecto"
+    ancestry: "Ascendencia", origin: "Origen", background: "Trasfondo", discipline: "Disciplina", effect: "Efecto", project: "Proyecto"
   },
+  craftingProjectOperations: {
+    fabricate: "Fabricar", repair: "Reparar", dismantle: "Desmantelar", modify: "Modificar", research: "Investigar"
+  },
+  craftingProjectStates: {
+    draft: "Borrador", ready: "Preparado", active: "En curso", blocked: "Bloqueado", completed: "Completado", cancelled: "Cancelado"
+  },
+  craftingProjectTimeModes: { derived: "Derivado del TBA", fixed: "Tiempo fijo del procedimiento" },
+  craftingAccelerationOutcomes: {
+    none: "Sin Aceleración", pending: "Pendiente", success: "Éxito", failure: "Fallo", pifia: "Pifia"
+  },
+  craftingInstallations: {
+    improvised: "Improvisada", adequate: "Adecuada", professional: "Profesional", specialized: "Especializada", exceptional: "Excepcional"
+  },
+  craftingMaterialGrades: {
+    ordinary: "Ordinario", specialized: "Especializado", rare: "Raro", exceptional: "Excepcional"
+  },
+  craftingQualities: { common: "Común", superior: "Superior", exceptional: "Excepcional" },
   creationStatuses: { building: "En creación", complete: "Completa", rebuilding: "Reconstrucción" },
   acquisitionModes: { purchased: "Comprado", granted: "Concedido", package: "Paquete", legacy: "Legado" },
   paidResources: { pd: "PD", pr: "PR", pei: "PEI", currency: "Moneda", none: "Sin coste" },

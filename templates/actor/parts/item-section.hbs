@@ -2,7 +2,7 @@
   <div class="tm-section-heading">
     <h2>{{title}}</h2>
     <div class="tm-section-buttons">
-      {{#if (or (eq type "weapon") (eq type "armor") (eq type "shield") (eq type "spell") (eq type "technique") (eq type "formula") (eq type "ritual") (eq type "device") (eq type "ancestry") (eq type "origin") (eq type "background") (eq type "discipline") (eq type "specialization") (eq type "trait"))}}
+      {{#if (or (eq type "weapon") (eq type "armor") (eq type "shield") (eq type "spell") (eq type "technique") (eq type "formula") (eq type "ritual") (eq type "device") (eq type "ancestry") (eq type "origin") (eq type "background") (eq type "discipline") (eq type "specialization") (eq type "trait") (eq type "project"))}}
         <button type="button" class="tm-icon-button" data-action="content-browser" data-type="{{type}}"><i class="fa-solid fa-book"></i> Catálogo</button>
       {{/if}}
       {{#if @root.editable}}
@@ -32,6 +32,7 @@
           {{#if (eq item.type "formula")}}<small>Dosis {{item.system.quantity}}{{#if item.system.saturating}} · Saturante: {{item.system.family}}{{/if}}</small>{{/if}}
           {{#if (eq item.type "ritual")}}<small>DF {{item.system.difficulty}} · Director {{item.system.manaDirector}} Maná · {{item.system.time}}</small>{{/if}}
           {{#if (eq item.type "device")}}<small>Energía {{item.system.energy.value}}/{{item.system.energy.max}} · Caudal {{item.system.flow}} · {{item.system.condition}}</small>{{/if}}
+          {{#if (eq item.type "project")}}<small>{{item.system.source.profileRef}} · {{lookup @root.config.craftingProjectStates item.system.state}} · {{lookup @root.config.craftingProjectOperations item.system.operation}}</small>{{/if}}
           {{#if item.system.priceDisplay}}<small>Precio: {{item.system.priceDisplay}}{{#if (eq item.system.priceStatus "exact")}} · unidad {{item.system.priceQuantity}}{{/if}}</small>{{/if}}
         </div>
         <div class="tm-item-actions">

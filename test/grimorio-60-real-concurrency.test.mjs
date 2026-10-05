@@ -70,7 +70,7 @@ function resourceActor({health=10,healthMax=16,mana=7,manaMax=15}={}){
     },
     items:[]
   });
-  actor.rollCheck=async()=>({total:18,rolls:[{total:18}]});
+  actor.rollCheck=async()=>({rolls:[{total:18}]});
   return actor;
 }
 
