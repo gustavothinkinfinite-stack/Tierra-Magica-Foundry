@@ -1367,6 +1367,158 @@ async function validateSpecialMaterialSources(project, model, allocations, resol
   return {ok:true};
 }
 
+export async function previewDismantleRecovery(project,{
+  resolver=globalThis.fromUuid
+}={}){
+  if(!project || project.type!=="project" || !project.parent) return {ok:false,error:"Proyecto inválido."};
+  const model=normalizeCraftingProject(project.system);
+  if(model.operation!=="dismantle") return {ok:false,error:"La previsualización de recuperación sólo aplica a Desmantelar."};
+  const target=await resolveOwnedItem(project.parent,model.target.itemUuid,resolver);
+  if(!target || !PHYSICAL_TYPES.has(target.type)) return {ok:false,error:"El objeto a desmantelar no está disponible."};
+
+  const condition=String(target.system?.condition??"operative");
+  const manufacture=target.system?.manufacture??{};
+  const referenceValueCopper=Math.max(0,Math.floor(number(manufacture.referenceValueCopper,model.economy.referenceValueCopper)));
+  const fabricationTimeMinutes=Math.max(0,number(manufacture.baseTimeMinutes,model.time.baseMinutes));
+  const installedMaterials=Array.isArray(manufacture.specialMaterials)?manufacture.specialMaterials:[];
+
+  const ordinary=salvageQuote({
+    condition,
+    referenceValueCopper,
+    specialMaterialSupplementsCopper:[],
+    recoveredSeparatedComponentsCopper:0,
+    fabricationTimeMinutes
+  });
+
+  const specialRecoveries=installedMaterials.map((material)=>{
+    const quote=salvageQuote({
+      condition,
+      referenceValueCopper:0,
+      specialMaterialSupplementsCopper:[Math.max(0,number(material.supplementCopper))],
+      recoveredSeparatedComponentsCopper:0,
+      fabricationTimeMinutes:0
+    });
+    return {
+      id:String(material.id??""),
+      name:String(material.name??material.profileKey??"Material especial"),
+      profileKey:String(material.profileKey??""),
+      amountCopper:quote.specialCopper
+    };
+  }).filter((row)=>row.amountCopper>0);
+
+  const runicMaterialCopper=Math.floor(Math.max(0,number(target.system?.runic?.addedValueCopper))/2);
+  const enchantmentMaterialCopper=Math.floor(Math.max(0,number(target.system?.enchantment?.addedValueCopper))/2);
+  const runicCopper=integratedMagicRecoveryCopper({condition,materialCopper:runicMaterialCopper});
+  const enchantmentCopper=integratedMagicRecoveryCopper({condition,materialCopper:enchantmentMaterialCopper});
+  const totalCopper=ordinary.ordinaryCopper+
+    specialRecoveries.reduce((sum,row)=>sum+row.amountCopper,0)+
+    runicCopper+enchantmentCopper;
+
+  return {
+    ok:true,
+    target,
+    condition,
+    ordinaryCopper:ordinary.ordinaryCopper,
+    specialRecoveries,
+    runicCopper,
+    enchantmentCopper,
+    totalCopper,
+    timeMinutes:ordinary.timeMinutes
+  };
+}
+
+export async function previewCraftingProject(project,{
+  resolver=globalThis.fromUuid
+}={}){
+  if(!project || project.type!=="project" || !project.parent){
+    return {valid:false,issues:[{code:"project",message:"Proyecto inválido o sin Actor propietario."}]};
+  }
+  const validation=validateCraftingProject(project.system);
+  const model=validation.project;
+  const issues=[...validation.issues];
+
+  let expected=null;
+  if(validation.valid){
+    expected=await expectedProjectMaterialCopper(project,model,resolver);
+    if(!expected.ok){
+      issues.push({code:"transaction",message:expected.error??"No puede calcularse el coste transaccional.",detail:expected});
+    }else if(expected.materialCopper!==model.ledger.estimatedMaterialsCopper){
+      issues.push({
+        code:"material-estimate",
+        message:"El material estimado no coincide con el coste canónico del Proyecto.",
+        expectedCopper:expected.materialCopper
+      });
+    }
+  }
+
+  const prerequisite=validateProjectPrerequisites({
+    actorRank:Number(project.parent.system?.skills?.[model.professional.skill]?.rank??0),
+    availableInstallation:model.professional.availableInstallation,
+    requiredRank:model.professional.requiredRank,
+    requiredInstallation:model.professional.requiredInstallation,
+    hasStableProcedure:model.operation==="research"?true:model.professional.stableProcedure,
+    materialsReady:model.operation==="research"&&model.ledger.estimatedMaterialsCopper===0?true:model.professional.materialsReady,
+    essentialToolReady:model.professional.essentialToolReady
+  });
+  issues.push(...prerequisite.issues);
+
+  const allocations=craftingProjectMaterialAllocations(project);
+  const allocatedCopper=allocations.reduce((sum,row)=>sum+row.amountCopper,0);
+  const requiredCopper=model.ledger.estimatedMaterialsCopper;
+  if(requiredCopper>0 && allocatedCopper!==requiredCopper){
+    issues.push({
+      code:"material-allocation",
+      message:"Las asignaciones de VI deben cubrir exactamente el material estimado.",
+      expectedCopper:requiredCopper,
+      allocatedCopper
+    });
+  }
+
+  const componentAllocations=craftingProjectComponentAllocations(project);
+  for(const component of componentAllocations){
+    if(!component.sourceUuid){
+      issues.push({code:"component-binding",message:"Hay un componente separado sin Item físico vinculado.",componentIds:component.componentIds});
+    }
+  }
+
+  let recovery=null;
+  if(model.operation==="dismantle"){
+    recovery=await previewDismantleRecovery(project,{resolver});
+    if(!recovery.ok) issues.push({code:"recovery-preview",message:recovery.error});
+  }
+
+  return {
+    valid:issues.length===0,
+    issues,
+    project:model,
+    expectedMaterialCopper:expected?.ok?expected.materialCopper:null,
+    allocatedMaterialCopper:allocatedCopper,
+    missingMaterialCopper:Math.max(0,requiredCopper-allocatedCopper),
+    prerequisites:prerequisite,
+    recovery
+  };
+}
+
+export async function prepareCraftingProject(project,{
+  expectedRevision=null,
+  resolver=globalThis.fromUuid
+}={}){
+  if(!project || project.type!=="project" || !project.parent) return {ok:false,error:"Proyecto inválido."};
+  if(!expectedRevisionMatches(project,expectedRevision)) return {ok:false,error:"El Proyecto cambió desde la última lectura.",stale:true};
+  const model=normalizeCraftingProject(project.system);
+  if(model.state==="ready") return {ok:true,ready:true,alreadyReady:true,revision:model.execution.revision};
+  if(model.state!=="draft") return {ok:false,error:"Sólo un Proyecto en Borrador puede pasar a Preparado."};
+
+  const preview=await previewCraftingProject(project,{resolver});
+  if(!preview.valid) return {ok:false,error:"El Proyecto todavía tiene requisitos o vínculos pendientes.",issues:preview.issues};
+
+  await project.update({
+    "system.state":"ready",
+    "system.execution.revision":model.execution.revision+1
+  },{tmValidated:true,tmCrafting:true});
+  return {ok:true,ready:true,revision:model.execution.revision+1};
+}
+
 export async function reserveCraftingProjectMaterials(project, {
   expectedRevision = null,
   resolver = globalThis.fromUuid

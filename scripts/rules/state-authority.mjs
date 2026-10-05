@@ -9,6 +9,7 @@ import {
 import {
   advanceCraftingProjectWork,
   completeCraftingProject,
+  prepareCraftingProject,
   releaseCraftingProjectMaterials,
   reserveCraftingProjectMaterials,
   resolveResearchProjectStage
@@ -155,7 +156,7 @@ async function authorityReceiptDocument(action, payload = {}) {
   if (["claim-kinetic", "claim-parry", "resolve-parry", "claim-counterattack", "apply-health-damage", "apply-health-healing"].includes(action)) {
     return actorFromUuid(String(payload.targetUuid ?? ""));
   }
-  if (["craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete", "craft-research-resolve"].includes(action)) {
+  if (["craft-prepare", "craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete", "craft-research-resolve"].includes(action)) {
     return actorFromUuid(String(payload.projectUuid ?? ""));
   }
   return null;
@@ -507,7 +508,7 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
     return mutateHealth(target, { healing:payload.amount });
   }
 
-  if (["craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete", "craft-research-resolve"].includes(action)) {
+  if (["craft-prepare", "craft-reserve", "craft-release", "craft-cancel", "craft-work", "craft-complete", "craft-research-resolve"].includes(action)) {
     const project = await actorFromUuid(String(payload.projectUuid ?? ""));
     if (!project || project.type !== "project" || !project.parent) {
       return { ok:false, error:"El Proyecto de fabricación ya no está disponible." };
@@ -518,7 +519,9 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
 
     return serial("crafting:" + actorAuthorityKey(project.parent), async () => {
       const options = { expectedRevision:payload.expectedRevision };
-      if (action === "craft-reserve") return reserveCraftingProjectMaterials(project, options);
+      if (action === "craft-prepare") return prepareCraftingProject(project, options);
+      if (action === "craft-prepare") return prepareCraftingProject(project, options);
+    if (action === "craft-reserve") return reserveCraftingProjectMaterials(project, options);
       if (action === "craft-release") return releaseCraftingProjectMaterials(project, { ...options, cancel:false });
       if (action === "craft-cancel") return releaseCraftingProjectMaterials(project, { ...options, cancel:true });
       if (action === "craft-work") return advanceCraftingProjectWork(project, payload.minutes, options);
@@ -933,6 +936,10 @@ async function craftingAuthority(project, action, payload = {}) {
     if (action === "craft-complete") return completeCraftingProject(project, options);
     return { ok:false, error:"Operación de fabricación desconocida." };
   });
+}
+
+export async function prepareCraftingProjectAuthoritatively(project) {
+  return craftingAuthority(project, "craft-prepare");
 }
 
 export async function reserveCraftingProjectAuthoritatively(project) {

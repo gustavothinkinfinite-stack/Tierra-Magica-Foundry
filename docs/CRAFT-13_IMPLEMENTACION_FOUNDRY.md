@@ -838,16 +838,143 @@ Estabilizar una Fórmula, hechizo, Técnica o conocimiento sujeto a desarrollo p
 
 ### CRAFT-13H — Interfaz y catálogo
 
-**Estado: PENDIENTE**
+**Estado: IMPLEMENTADA EN RAMA**
 
-Objetivos:
+Archivos principales:
 
-- iniciar Proyecto desde receta;
-- ver requisitos antes de comprometer recursos;
-- mostrar coste, tiempo, instalación y faltantes;
-- seleccionar capas afectadas al reparar;
-- mostrar recuperación antes de desmantelar;
-- exponer las 41 referencias CRAFT-11 sin recalcularlas manualmente.
+- `scripts/rules/crafting-catalog.mjs`;
+- integración de preview/Preparado en `crafting-transactions.mjs`;
+- catálogo de Proyecto en `actor-sheet.mjs`;
+- interfaz operativa en `item-sheet.mjs` + `item-sheet.hbs`;
+- regresiones `craft-13-ui-catalog.test.mjs`.
+
+#### Catálogo CRAFT-11
+
+Foundry expone exactamente las **41 referencias**:
+
+- 8 Equipo compuesto;
+- 8 Alquimia;
+- 5 Runas/objetos mágicos;
+- 6 Trampas/construcciones;
+- 7 Ingeniería;
+- 5 Servicios;
+- 2 Investigación.
+
+Cada entrada conserva como datos de referencia:
+
+- código REF;
+- nombre/categoría;
+- materiales canónicos;
+- tiempo;
+- valor final cuando está fijado;
+- Habilidad/rango/Especialización/instalación;
+- resumen mecánico.
+
+La UI no recalcula esas cifras desde texto.
+
+#### Inicio de Proyecto
+
+Desde la ficha del Actor se puede abrir **Catálogo** en la sección Proyectos y crear un Borrador desde cualquiera de las 41 referencias.
+
+Las referencias se clasifican por modo de ejecución:
+
+- **Fórmula:** las 8 Fórmulas crean un snapshot físico de 1 dosis, sin conceder `known`;
+- **Investigación:** las 2 referencias crean el ciclo CRAFT-10 con Preguntas, CMP/TBP y primera etapa;
+- **Guiada:** proyectos compuestos, trampas, magia, Ingeniería y servicios cargan la referencia y cifras de guía, pero exigen vincular objetivo/componentes/capas reales;
+- **Sólo referencia:** Recarga comercial no se finge como modificación material; se ejecuta mediante el motor energético.
+
+En referencias guiadas el **valor final jamás se copia como VR Común**. El VR mecánico permanece sin declarar hasta configurar el objeto real.
+
+#### Previsualización
+
+La ficha de Proyecto muestra antes de comprometer:
+
+- CM/VI estimado;
+- VI asignado;
+- faltante;
+- rango real del Actor;
+- instalación disponible/requerida;
+- procedimiento estable;
+- materiales/herramienta esencial;
+- incidencias estructurales;
+- vínculos de componentes pendientes.
+
+La previsualización llama al mismo cálculo transaccional utilizado al reservar; no duplica fórmulas.
+
+#### Asignaciones de VI
+
+La ficha permite seleccionar un Lote real del Actor, introducir VI y compatibilidad.
+
+La UI escribe únicamente entradas `material-allocation` ya definidas por CRAFT-13C.
+
+Reservar continúa revalidando:
+
+- VI libre;
+- compatibilidad;
+- Perfil de Material;
+- preparación;
+- coste exacto;
+- concurrencia.
+
+#### Borrador -> Preparado
+
+Se añade una operación autorizada **Preparar**.
+
+Sólo un Borrador con preview completamente válido puede pasar a Preparado.
+
+El botón se expone al DJ y la mutación pasa por la autoridad compartida; no se edita `system.state` desde la ficha.
+
+#### Reparación
+
+Al vincular un objeto manufacturado, la ficha enumera las capas de Material Especial instaladas y permite marcar:
+
+- capa afectada;
+- reemplazo ordinario;
+- matriz rúnica afectada;
+- matriz de Encantamiento afectada.
+
+La selección alimenta directamente `repair.*`; BRA y sustituciones siguen calculándose en CRAFT-13D.
+
+#### Desmantelamiento
+
+Antes de completar Desmantelar se muestra:
+
+- VI ordinario previsto;
+- recuperación por Material Especial;
+- recuperación rúnica;
+- recuperación de Encantamiento;
+- total previsto;
+- tiempo de trabajo.
+
+La preview usa `salvageQuote` e `integratedMagicRecoveryCopper`; no crea moneda ni ejecuta el desmantelamiento.
+
+#### Flujo desde ficha
+
+La ficha expone según estado:
+
+- DJ · Preparar;
+- Comprometer recursos;
+- Liberar;
+- Cancelar;
+- registrar minutos;
+- Completar;
+- resolver etapa CRAFT-10.
+
+Todas las mutaciones transaccionales usan `game.tierraMagica.crafting`.
+
+#### Fronteras deliberadas
+
+13H no convierte una referencia compuesta en una receta monolítica falsa.
+
+Si CRAFT-11 exige varias capas/Hosts/Módulos/Piedras/Patrones, la referencia sirve de guía y Foundry exige configurar/vincular esos elementos reales antes de Preparar.
+
+La interfaz no decide:
+
+- compatibilidad narrativa no estructurada;
+- Viabilidad;
+- compradores/disponibilidad;
+- propiedades mecánicas nuevas;
+- contenido de un componente que no existe físicamente.
 
 ### CRAFT-13I — Auditoría integral Foundry
 

@@ -1,6 +1,15 @@
 import { TM_CONFIG } from "../config.mjs";
 import { formatCurrency } from "../rules/currency.mjs";
 import { craftingProjectRemainingMinutes, normalizeCraftingProject, validateCraftingProject } from "../rules/crafting.mjs";
+import {
+  craftingProjectSourceFromReference,
+  craftingReferenceGuidance,
+  craftingReferenceOptions
+} from "../rules/crafting-catalog.mjs";
+import {
+  craftingLotAvailableCopper,
+  previewCraftingProject
+} from "../rules/crafting-transactions.mjs";
 
 const ItemSheetV1 = foundry.appv1.sheets.ItemSheet;
 const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
@@ -10,6 +19,26 @@ function requirementLeaves(requirements) {
   if (!requirements) return [];
   if (Array.isArray(requirements.all)) return requirements.all;
   return [requirements];
+}
+
+function formatWorkTime(minutes) {
+  const value=Math.max(0,Number(minutes)||0);
+  if(!value) return "0 min";
+  if(value%480===0) return (value/480)+" Jornada"+(value===480?"":"s");
+  if(value>480) return (value/480).toFixed(2).replace(/\.00$/,"")+" Jornadas";
+  if(value%60===0) return (value/60)+" h";
+  return value+" min";
+}
+
+async function resolveProjectTarget(item,project) {
+  const uuid=String(project?.target?.itemUuid??"").trim();
+  if(!uuid) return null;
+  const local=Array.from(item.parent?.items??[]).find((candidate)=>
+    String(candidate?.uuid??"")===uuid || String(candidate?.id??"")===uuid
+  );
+  if(local) return local;
+  if(typeof globalThis.fromUuid==="function") return globalThis.fromUuid(uuid);
+  return null;
 }
 
 export class TierraMagicaItemSheet extends ItemSheetV1 {
@@ -51,6 +80,95 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
         components: context.project.components.length,
         consequences: context.project.consequences.length,
         ledgerEntries: context.project.ledger.entries.length
+      };
+
+      context.projectReferenceOptions=craftingReferenceOptions();
+      const guidance=craftingReferenceGuidance(context.project.source.profileRef);
+      context.projectReference=guidance ? {
+        ...guidance.entry,
+        notes:guidance.notes,
+        materialDisplay:guidance.entry.materialCopper===null ? "Variable / ver ficha" : formatCurrency(guidance.entry.materialCopper),
+        valueDisplay:guidance.entry.valueCopper===null ? "—" : formatCurrency(guidance.entry.valueCopper),
+        timeDisplay:formatWorkTime(guidance.entry.timeMinutes),
+        skillLabel:TM_CONFIG.skillLabels[guidance.entry.skill]??guidance.entry.skill,
+        rankLabel:TM_CONFIG.rankLabels[guidance.entry.rank]??guidance.entry.rank,
+        installationLabel:TM_CONFIG.craftingInstallations[guidance.entry.installation]??guidance.entry.installation
+      } : null;
+
+      context.projectPreview=this.item.parent
+        ? await previewCraftingProject(this.item)
+        : {valid:false,issues:[{message:"El Proyecto debe pertenecer a un Actor para previsualizar transacciones."}]};
+      context.projectPreviewIssues=context.projectPreview.issues??[];
+      context.projectMaterialDisplay=formatCurrency(context.project.ledger.estimatedMaterialsCopper);
+      context.projectAllocatedDisplay=formatCurrency(context.projectPreview.allocatedMaterialCopper??0);
+      context.projectMissingDisplay=formatCurrency(context.projectPreview.missingMaterialCopper??0);
+
+      context.projectMaterialAllocations=context.project.ledger.entries
+        .map((entry,index)=>({entry,index}))
+        .filter(({entry})=>entry.kind==="material-allocation"&&entry.resource==="materials")
+        .map(({entry,index})=>({
+          index,
+          sourceUuid:entry.sourceUuid,
+          amountCopper:entry.amountCopper,
+          amountDisplay:formatCurrency(entry.amountCopper),
+          compatibility:entry.compatibility,
+          note:entry.note
+        }));
+
+      context.projectCraftingLots=[];
+      for(const candidate of Array.from(this.item.parent?.items??[])){
+        if(candidate.id===this.item.id || candidate.system?.craftingLot?.enabled!==true) continue;
+        const available=craftingLotAvailableCopper(candidate,{project:this.item});
+        context.projectCraftingLots.push({
+          uuid:candidate.uuid,
+          name:candidate.name,
+          availableCopper:available,
+          availableDisplay:formatCurrency(available),
+          compatibility:Array.isArray(candidate.system?.craftingLot?.compatibility)
+            ? candidate.system.craftingLot.compatibility.join(", ")
+            : ""
+        });
+      }
+
+      const target=await resolveProjectTarget(this.item,context.project);
+      context.projectTargetName=target?.name??"";
+      context.projectRepairLayers=[];
+      if(context.project.operation==="repair"&&target){
+        const affected=new Set(context.project.repair.affectedMaterialIds);
+        const ordinary=new Set(context.project.repair.ordinaryReplacementMaterialIds);
+        for(const material of Array.isArray(target.system?.manufacture?.specialMaterials)?target.system.manufacture.specialMaterials:[]){
+          context.projectRepairLayers.push({
+            id:String(material.id??""),
+            name:String(material.name??material.profileKey??"Material especial"),
+            part:String(material.partKey??material.coverage??""),
+            affected:affected.has(String(material.id??"")),
+            ordinaryReplacement:ordinary.has(String(material.id??""))
+          });
+        }
+        context.projectRepairRunicAvailable=Math.max(0,Number(target.system?.runic?.addedValueCopper)||0)>0;
+        context.projectRepairEnchantAvailable=Math.max(0,Number(target.system?.enchantment?.addedValueCopper)||0)>0;
+      }
+
+      const recovery=context.projectPreview.recovery;
+      context.projectRecovery=recovery?.ok ? {
+        ordinaryDisplay:formatCurrency(recovery.ordinaryCopper),
+        special:recovery.specialRecoveries.map((row)=>({...row,amountDisplay:formatCurrency(row.amountCopper)})),
+        runicDisplay:formatCurrency(recovery.runicCopper),
+        enchantmentDisplay:formatCurrency(recovery.enchantmentCopper),
+        totalDisplay:formatCurrency(recovery.totalCopper),
+        timeDisplay:formatWorkTime(recovery.timeMinutes)
+      } : null;
+
+      const state=context.project.state;
+      context.projectActions={
+        canLoadReference:state==="draft",
+        canPrepare:Boolean(game.user?.isGM)&&state==="draft",
+        canReserve:state==="ready",
+        canRelease:state==="active",
+        canCancel:["draft","ready","active","blocked"].includes(state),
+        canWork:state==="active"&&context.projectRemainingMinutes>0,
+        canComplete:state==="active"&&context.project.operation!=="research"&&context.projectRemainingMinutes===0,
+        canResolveResearch:state==="active"&&context.project.operation==="research"&&context.projectRemainingMinutes===0
       };
     }
 
@@ -118,6 +236,19 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     html.find("[data-action='cost-add']").click(() => this.#addCost());
     html.find("[data-action='cost-delete']").click((event) => this.#deleteCost(event));
     html.find("[data-action='cost-field']").change((event) => this.#updateCost(event));
+    html.find("[data-action='project-reference-load']").click(() => this.#loadProjectReference(html));
+    html.find("[data-action='project-material-add']").click(() => this.#addProjectMaterialAllocation(html));
+    html.find("[data-action='project-material-delete']").click((event) => this.#deleteProjectMaterialAllocation(event));
+    html.find("[data-action='project-repair-layer']").change((event) => this.#toggleRepairLayer(event));
+    html.find("[data-action='project-repair-runic']").change((event) => this.#toggleRepairBoolean("runicMatrixAffected",event));
+    html.find("[data-action='project-repair-enchantment']").change((event) => this.#toggleRepairBoolean("enchantmentMatrixAffected",event));
+    html.find("[data-action='project-prepare']").click(() => this.#projectAction("prepare",html));
+    html.find("[data-action='project-reserve']").click(() => this.#projectAction("reserve",html));
+    html.find("[data-action='project-release']").click(() => this.#projectAction("release",html));
+    html.find("[data-action='project-cancel']").click(() => this.#projectAction("cancel",html));
+    html.find("[data-action='project-work']").click(() => this.#projectAction("work",html));
+    html.find("[data-action='project-complete']").click(() => this.#projectAction("complete",html));
+    html.find("[data-action='project-research-resolve']").click(() => this.#projectAction("resolveResearch",html));
   }
 
   #rules() {
@@ -204,5 +335,105 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     if (!costs[index]) return;
     costs[index][field] = field === "amount" ? Math.max(0, Number(event.currentTarget.value) || 0) : event.currentTarget.value;
     await this.item.update({ "system.costs":costs }, { tmValidated:true });
+  }
+
+  async #loadProjectReference(html) {
+    if(this.item.type!=="project" || String(this.item.system?.state??"draft")!=="draft") return;
+    const ref=String(html.find("[data-project-reference]").val()??"");
+    const source=craftingProjectSourceFromReference(ref,{catalog:game.tierraMagica?.catalog??[]});
+    if(!source) return ui.notifications.warn("Referencia CRAFT-11 desconocida.");
+    const updates={};
+    for(const key of ["operation","source","target","economy","specialMaterials","modifications","enhancement","repair","research","components","time","professional","assistants","consequences","ledger"]){
+      if(Object.prototype.hasOwnProperty.call(source.system,key)) updates["system."+key]=foundry.utils.deepClone(source.system[key]);
+    }
+    updates["system.execution.accelerated"]=false;
+    updates["system.execution.accelerationOutcome"]="none";
+    updates["system.execution.reductionFactors"]=[];
+    updates["system.execution.stage"]="";
+    await this.item.update(updates,{tmValidated:true,tmCrafting:true});
+    this.render(false);
+  }
+
+  async #addProjectMaterialAllocation(html) {
+    if(this.item.type!=="project" || String(this.item.system?.state??"draft")!=="draft") return;
+    const sourceUuid=String(html.find("[data-project-material-source]").val()??"").trim();
+    const amountCopper=Math.max(0,Math.floor(Number(html.find("[data-project-material-amount]").val())||0));
+    const compatibility=String(html.find("[data-project-material-compatibility]").val()??"").trim();
+    if(!sourceUuid || !amountCopper) return ui.notifications.warn("Selecciona un Lote y un VI mayor que cero.");
+    const entries=foundry.utils.deepClone(Array.isArray(this.item.system?.ledger?.entries)?this.item.system.ledger.entries:[]);
+    entries.push({
+      id:"material-ui-"+Date.now(),
+      kind:"material-allocation",
+      resource:"materials",
+      amountCopper,
+      quantity:0,
+      sourceUuid,
+      compatibility,
+      note:"Asignado desde ficha de Proyecto"
+    });
+    await this.item.update({"system.ledger.entries":entries});
+    this.render(false);
+  }
+
+  async #deleteProjectMaterialAllocation(event) {
+    if(this.item.type!=="project" || String(this.item.system?.state??"draft")!=="draft") return;
+    const index=Number(event.currentTarget.dataset.index);
+    if(!Number.isInteger(index)) return;
+    const entries=foundry.utils.deepClone(Array.isArray(this.item.system?.ledger?.entries)?this.item.system.ledger.entries:[]);
+    entries.splice(index,1);
+    await this.item.update({"system.ledger.entries":entries});
+    this.render(false);
+  }
+
+  async #toggleRepairLayer(event) {
+    if(this.item.type!=="project" || String(this.item.system?.state??"draft")!=="draft") return;
+    const id=String(event.currentTarget.dataset.materialId??"");
+    const field=String(event.currentTarget.dataset.field??"affected");
+    if(!id || !["affected","ordinary"].includes(field)) return;
+    const key=field==="affected"?"affectedMaterialIds":"ordinaryReplacementMaterialIds";
+    const values=new Set(Array.isArray(this.item.system?.repair?.[key])?this.item.system.repair[key]:[]);
+    if(event.currentTarget.checked) values.add(id); else values.delete(id);
+    if(field==="ordinary" && event.currentTarget.checked){
+      const affected=new Set(Array.isArray(this.item.system?.repair?.affectedMaterialIds)?this.item.system.repair.affectedMaterialIds:[]);
+      affected.add(id);
+      await this.item.update({
+        "system.repair.affectedMaterialIds":[...affected],
+        ["system.repair."+key]:[...values]
+      });
+    }else{
+      await this.item.update({["system.repair."+key]:[...values]});
+    }
+    this.render(false);
+  }
+
+  async #toggleRepairBoolean(field,event) {
+    if(this.item.type!=="project" || String(this.item.system?.state??"draft")!=="draft") return;
+    await this.item.update({["system.repair."+field]:event.currentTarget.checked});
+    this.render(false);
+  }
+
+  async #projectAction(action,html) {
+    const api=game.tierraMagica?.crafting;
+    const fn=api?.[action];
+    if(typeof fn!=="function") return ui.notifications.warn("La operación de crafting no está disponible.");
+    let result;
+    if(action==="work"){
+      const minutes=Math.max(0,Number(html.find("[data-project-work-minutes]").val())||0);
+      if(!minutes) return ui.notifications.warn("Indica minutos de trabajo mayores que cero.");
+      result=await fn(this.item,minutes);
+    }else if(action==="resolveResearch"){
+      result=await fn(this.item,{
+        result:String(html.find("[data-project-research-result]").val()??"success"),
+        attemptKey:String(html.find("[data-project-attempt-key]").val()??""),
+        correctiveQuestionText:String(html.find("[data-project-corrective]").val()??"")
+      });
+    }else{
+      result=await fn(this.item);
+    }
+    if(!result?.ok){
+      const detail=Array.isArray(result?.issues)?result.issues.map((issue)=>issue.message).filter(Boolean).join(" "):"";
+      return ui.notifications.warn(result?.error+(detail?" "+detail:""));
+    }
+    this.render(false);
   }
 }

@@ -29,6 +29,7 @@ import {
   approvePendingHealingAuthoritatively,
   cancelCraftingProjectAuthoritatively,
   completeCraftingProjectAuthoritatively,
+  prepareCraftingProjectAuthoritatively,
   installStateAuthorityBridge,
   releaseCraftingProjectAuthoritatively,
   reserveCraftingProjectAuthoritatively,
@@ -405,6 +406,7 @@ Hooks.once("ready", async () => {
     catalogValidation,
     schemaVersion: TM_SCHEMA_VERSION,
     crafting: {
+      prepare: prepareCraftingProjectAuthoritatively,
       reserve: reserveCraftingProjectAuthoritatively,
       release: releaseCraftingProjectAuthoritatively,
       cancel: cancelCraftingProjectAuthoritatively,

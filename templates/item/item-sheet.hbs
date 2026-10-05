@@ -152,6 +152,34 @@
       {{/if}}
 
       {{#if isProject}}
+        <div class="tm-wide tm-project-reference-browser">
+          <div class="tm-section-heading"><h2>CRAFT-11 · referencia</h2><span>41 fichas canónicas</span></div>
+          <div class="tm-section-buttons">
+            <select data-project-reference>
+              <option value="">Elegir referencia...</option>
+              {{selectOptions projectReferenceOptions selected=project.source.profileRef}}
+            </select>
+            {{#if projectActions.canLoadReference}}<button type="button" data-action="project-reference-load">Cargar referencia</button>{{/if}}
+          </div>
+          {{#if projectReference}}
+            <p><strong>{{projectReference.ref}} · {{projectReference.name}}</strong></p>
+            <p>{{projectReference.category}} · Materiales {{projectReference.materialDisplay}} · Tiempo {{projectReference.timeDisplay}} · Valor {{projectReference.valueDisplay}}</p>
+            <p>{{projectReference.skillLabel}} {{projectReference.rankLabel}}{{#if projectReference.specialization}} · {{projectReference.specialization}}{{/if}} · {{projectReference.installationLabel}}</p>
+            <p>{{projectReference.summary}}</p>
+            {{#each projectReference.notes as |note|}}<small>{{note}}</small>{{/each}}
+          {{/if}}
+        </div>
+
+        <div class="tm-wide">
+          <div class="tm-section-heading"><h2>Previsualización</h2><span>{{#if projectPreview.valid}}Lista para Preparar{{else}}Requiere atención{{/if}}</span></div>
+          <p>Material previsto: <strong>{{projectMaterialDisplay}}</strong> · Asignado: <strong>{{projectAllocatedDisplay}}</strong> · Falta: <strong>{{projectMissingDisplay}}</strong></p>
+          {{#if projectPreviewIssues.length}}
+            <ul class="tm-warning">{{#each projectPreviewIssues as |issue|}}<li>{{issue.message}}</li>{{/each}}</ul>
+          {{else}}
+            <p>Sin incidencias estructurales o transaccionales.</p>
+          {{/if}}
+        </div>
+
         <label><span>Operación</span><select name="system.operation">{{selectOptions config.craftingProjectOperations selected=project.operation}}</select></label>
         <label><span>Estado</span><select name="system.state">{{selectOptions config.craftingProjectStates selected=project.state}}</select></label>
         <label><span>Receta / Item fuente UUID</span><input type="text" name="system.source.recipeUuid" value="{{project.source.recipeUuid}}" /></label>
@@ -200,6 +228,80 @@
         <label><span>Material comprometido (c)</span><input type="number" value="{{project.ledger.committedMaterialsCopper}}" disabled /></label>
         <label><span>Material recuperado (c)</span><input type="number" value="{{project.ledger.recoveredMaterialsCopper}}" disabled /></label>
         <label><span>Registros internos</span><input type="text" value="ME {{projectCounts.specialMaterials}} · Componentes {{projectCounts.components}} · Consecuencias {{projectCounts.consequences}} · Ledger {{projectCounts.ledgerEntries}}" disabled /></label>
+
+        <div class="tm-wide">
+          <div class="tm-section-heading"><h2>Asignaciones de VI</h2><span>Se validan contra Lotes reales al comprometer</span></div>
+          {{#each projectMaterialAllocations as |allocation|}}
+            <div class="tm-skill-modifier-row">
+              <span>{{allocation.sourceUuid}}</span>
+              <span>{{allocation.amountDisplay}}</span>
+              <span>{{allocation.compatibility}}</span>
+              {{#if @root.projectActions.canLoadReference}}<button type="button" data-action="project-material-delete" data-index="{{allocation.index}}"><i class="fa-solid fa-trash"></i></button>{{/if}}
+            </div>
+          {{else}}
+            <p class="tm-empty">Sin VI asignado.</p>
+          {{/each}}
+          {{#if projectActions.canLoadReference}}
+            <div class="tm-skill-modifier-row">
+              <select data-project-material-source>
+                <option value="">Lote...</option>
+                {{#each projectCraftingLots as |lot|}}<option value="{{lot.uuid}}">{{lot.name}} · libre {{lot.availableDisplay}} · {{lot.compatibility}}</option>{{/each}}
+              </select>
+              <input type="number" min="1" step="1" data-project-material-amount placeholder="VI en cobres" />
+              <input type="text" data-project-material-compatibility placeholder="compatibilidad requerida" />
+              <button type="button" data-action="project-material-add"><i class="fa-solid fa-plus"></i> Asignar</button>
+            </div>
+          {{/if}}
+        </div>
+
+        {{#if (eq project.operation "repair")}}
+          <div class="tm-wide">
+            <div class="tm-section-heading"><h2>Capas afectadas</h2><span>{{projectTargetName}}</span></div>
+            {{#each projectRepairLayers as |layer|}}
+              <div class="tm-skill-modifier-row">
+                <span>{{layer.name}} · {{layer.part}}</span>
+                <label class="tm-check"><span>Afectada</span><input type="checkbox" data-action="project-repair-layer" data-field="affected" data-material-id="{{layer.id}}" {{checked layer.affected}} /></label>
+                <label class="tm-check"><span>Reemplazo ordinario</span><input type="checkbox" data-action="project-repair-layer" data-field="ordinary" data-material-id="{{layer.id}}" {{checked layer.ordinaryReplacement}} /></label>
+              </div>
+            {{/each}}
+            {{#if projectRepairRunicAvailable}}<label class="tm-check"><span>Matriz rúnica afectada</span><input type="checkbox" data-action="project-repair-runic" {{checked project.repair.runicMatrixAffected}} /></label>{{/if}}
+            {{#if projectRepairEnchantAvailable}}<label class="tm-check"><span>Matriz de Encantamiento afectada</span><input type="checkbox" data-action="project-repair-enchantment" {{checked project.repair.enchantmentMatrixAffected}} /></label>{{/if}}
+          </div>
+        {{/if}}
+
+        {{#if projectRecovery}}
+          <div class="tm-wide">
+            <div class="tm-section-heading"><h2>Recuperación prevista</h2><span>Antes de desmantelar</span></div>
+            <p>Ordinario: {{projectRecovery.ordinaryDisplay}} · Rúnico: {{projectRecovery.runicDisplay}} · Encantamiento: {{projectRecovery.enchantmentDisplay}}</p>
+            {{#each projectRecovery.special as |row|}}<p>{{row.name}}: {{row.amountDisplay}}</p>{{/each}}
+            <p><strong>Total VI previsto: {{projectRecovery.totalDisplay}}</strong> · trabajo {{projectRecovery.timeDisplay}}</p>
+          </div>
+        {{/if}}
+
+        <div class="tm-wide">
+          <div class="tm-section-heading"><h2>Flujo de Proyecto</h2><span>Las mutaciones pasan por autoridad compartida</span></div>
+          <div class="tm-section-buttons">
+            {{#if projectActions.canPrepare}}<button type="button" data-action="project-prepare">DJ · Preparar</button>{{/if}}
+            {{#if projectActions.canReserve}}<button type="button" data-action="project-reserve">Comprometer recursos</button>{{/if}}
+            {{#if projectActions.canRelease}}<button type="button" data-action="project-release">Liberar recursos</button>{{/if}}
+            {{#if projectActions.canCancel}}<button type="button" data-action="project-cancel">Cancelar</button>{{/if}}
+          </div>
+          {{#if projectActions.canWork}}
+            <div class="tm-section-buttons">
+              <input type="number" min="1" step="1" data-project-work-minutes placeholder="Minutos de trabajo" />
+              <button type="button" data-action="project-work">Registrar trabajo</button>
+            </div>
+          {{/if}}
+          {{#if projectActions.canComplete}}<button type="button" data-action="project-complete">Completar Proyecto</button>{{/if}}
+          {{#if projectActions.canResolveResearch}}
+            <div class="tm-form-grid">
+              <label><span>Resultado de etapa</span><select data-project-research-result><option value="success">Éxito</option><option value="failure">Fallo</option><option value="pifia">Pifia</option><option value="hazana">Hazaña</option></select></label>
+              <label><span>Evidencia / método del intento</span><input type="text" data-project-attempt-key /></label>
+              <label><span>Pregunta Correctiva si falla</span><input type="text" data-project-corrective /></label>
+            </div>
+            <button type="button" data-action="project-research-resolve">Resolver etapa CRAFT-10</button>
+          {{/if}}
+        </div>
       {{/if}}
 
       {{#if isPhysical}}
