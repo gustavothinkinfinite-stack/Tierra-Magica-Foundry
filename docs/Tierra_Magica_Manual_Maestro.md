@@ -2145,25 +2145,32 @@ Un humanoide Mediano tiene como referencia Movimiento 6, aproximadamente 9 metro
 
 Las bandas narrativas de distancia son Contacto, Cerca, Media, Lejos y Extrema. Cuando se usa cuadrícula, la geometría concreta prevalece. La cobertura parcial concede normalmente +2 Defensa; una cobertura total impide ser objetivo directo si no existe una línea válida. Tierra Mágica no concede un bono universal por rodear a un enemigo.
 
-### Persecución
+### Retirada en combate
 
-**Persecución** es una Reacción universal destinada a impedir que una diferencia pequeña de Movimiento convierta la retirada ofensiva en una separación automática e indefinida.
+Alejarse de un enemigo que te amenaza activamente no permite utilizar toda tu velocidad con libertad. Mientras retrocede, el personaje debe mantener la guardia, controlar la distancia, evitar exponer zonas vulnerables y estar preparado para responder a los movimientos del adversario.
 
-**Disparador:** una criatura que estaba dentro de tu alcance cuerpo a cuerpo se desplaza voluntariamente fuera de él mediante su Movimiento.
+**Regla:** si una criatura comienza un desplazamiento dentro del alcance cuerpo a cuerpo de un enemigo consciente y capaz de combatir, y se aleja voluntariamente de él, dispone para esa retirada de **la mitad de su Movimiento normal, redondeando hacia abajo**.
 
-**Efecto:** puedes gastar tu Reacción para desplazarte inmediatamente hasta **la mitad de tu Movimiento, redondeando hacia arriba**, hacia la criatura que activó la Reacción, por una trayectoria válida.
+Ejemplos:
 
-Límites:
+- Movimiento 5 -> retirada máxima 2;
+- Movimiento 6 -> retirada máxima 3;
+- Movimiento 7 -> retirada máxima 3;
+- Movimiento 10 -> retirada máxima 5.
 
-- Persecución no concede un ataque ni Acción adicional;
-- sólo permite seguir a la criatura que activó la Reacción;
-- el desplazamiento debe acercarte a ella y no puede utilizarse para rodearla, sobrepasarla o ganar una posición no relacionada con la persecución;
-- no se activa por desplazamiento forzado, caída, teletransporte ni otros efectos que no sean Movimiento voluntario ordinario;
-- no permite atravesar terreno, criaturas u obstáculos que el perseguidor no podría atravesar normalmente;
-- si varias criaturas pudieran perseguir, cada una debe gastar su propia Reacción;
-- una criatura que gasta su Reacción en Persecución no dispone de esa misma Reacción para Parada, Bloqueo, Recibir Carga, Contraataque u otra respuesta hasta recuperarla al inicio de su próximo turno.
+Esta reducción representa el cuidado necesario para abandonar un enfrentamiento sin simplemente darle la espalda al adversario.
 
-Persecución no impide una retirada real. Una criatura puede dedicar su Acción a **Correr** para abrir una distancia mayor; la Reacción sólo evita que atacar y retroceder con una diferencia mínima de Movimiento garantice por sí solo un kiteo indefinido.
+**Correr para escapar.** Una criatura puede gastar su Acción en Correr después de iniciar una retirada. El tramo adicional concedido por Correr utiliza su Movimiento normal completo y no vuelve a reducirse a la mitad. De este modo, abandonar realmente un combate sigue siendo posible, pero exige sacrificar la Acción que podría haberse utilizado para atacar.
+
+La reducción no se aplica a:
+
+- desplazamiento forzado;
+- teletransporte;
+- una criatura Incapacitada o Inconsciente;
+- un enemigo que ya no pueda amenazar físicamente al personaje;
+- situaciones en las que el personaje no esté realmente abandonando el alcance cuerpo a cuerpo de una amenaza activa.
+
+Salir del alcance cuerpo a cuerpo no provoca por sí mismo un Ataque de Oportunidad universal.
 
 ### Viajes y desplazamiento de larga distancia
 
@@ -2764,7 +2771,6 @@ Una Reacción se gasta sólo cuando existe un disparador válido. Las respuestas
 | **Tirador Preparado** | Después de Preparar un disparo con la Acción, lo resuelve con la Reacción cuando ocurre el disparador. |
 | **Contramagia** | Después de declarar un lanzamiento y antes de resolverlo; requiere compatibilidad narrativa/mágica. No es una cancelación automática universal. |
 | **Barrera Cinética** | Hechizo reactivo: +2 Defensa normal contra el ataque declarado y se consume al resolverlo. |
-| **Persecución** | Una criatura que estaba dentro de tu alcance cuerpo a cuerpo se aleja voluntariamente mediante su Movimiento. Te desplazas hacia ella hasta la mitad de tu Movimiento, redondeando hacia arriba; no concede ataque. |
 | **Escudo de campo** | Dispositivo reactivo compatible: +2 Defensa cuando corresponda; no se acumula con Barrera Cinética equivalente. |
 | **Acción Vinculada / Coordinación Reactiva** | Un Familiar puede intervenir cuando el vínculo y la capacidad concreta lo permiten. No crea una Reacción adicional. |
 
