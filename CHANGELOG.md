@@ -1,3 +1,13 @@
+## Publicación v1.2.0 — 2026-10-05
+
+- **v1.2.0 fue publicada** desde el commit `9bcd67977851b9520127d990658e322a2862b518` mediante `Publicar sistema #37332788328`.
+- GitHub reconoce v1.2.0 como la release **Latest**, no prerelease.
+- Assets publicados: `system.json` y `tierra-magica.zip`.
+- El workflow reconstruyó los cuatro Compendios, ejecutó la validación completa, verificó el paquete y publicó correctamente.
+- SHA-256 `system.json`: `fdf5d4b9b77a983a9ed617865e6354b2bdc13655e7974cbd7e6d57dd601fc7fa`.
+- SHA-256 `tierra-magica.zip`: `06a04a1f8060b0366c750817d3c27d4077eb37434eb254e7bdce7cdfb651be99`.
+- El canal estable `releases/latest/download/system.json` queda actualizado a v1.2.0.
+
 ## 1.2.0 — Fabricación integral, creación/progresión y auditoría Foundry — 2026-10-05
 
 - **CRAFT-01 a CRAFT-12 quedan cerrados** como diseño/canon de fabricación: motor universal, economía y tiempos, armas/armaduras/herramientas, Calidad y Modificaciones, Materiales Especiales, trampas/construcciones, Runas/Piedras/Engarces, objetos mágicos/Sintonización, Ingeniería/Energía, Investigación/Prototipos, catálogo de 41 referencias y auditoría destructiva integral.
