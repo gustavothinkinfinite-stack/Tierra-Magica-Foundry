@@ -58,7 +58,7 @@ test("propiedades descriptivas no generan bonos universales no implementados",as
   assert.match(equipment,/\*\*Ágil\*\*.*No concede actualmente un bono universal/s);
   assert.match(equipment,/\*\*Versátil\*\*.*No posee actualmente un modo alternativo universal de daño/s);
   assert.match(equipment,/\*\*Impactante\*\*.*No añade daño o Derribo automáticamente/s);
-  assert.match(equipment,/\*\*Potencia N\*\*.*No se suma como un \+N adicional/s);
+  assert.match(equipment,/\*\*Potencia N\*\*.*añade FUE al daño hasta un máximo de N.*no es un bono separado/s);
   assert.match(equipment,/\*\*Repetición\*\*.*no concede ataques adicionales/s);
 });
 
