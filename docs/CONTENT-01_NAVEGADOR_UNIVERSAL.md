@@ -1,6 +1,6 @@
 # CONTENT-01 — Navegador Universal de Contenido
 
-**Estado:** CONTENT-01A IMPLEMENTADA Y VALIDADA · PR #60 ABIERTA  
+**Estado:** CONTENT-01A VALIDADA · CONTENT-01B IMPLEMENTADA EN RAMA · PR #60 ABIERTA  
 **Fecha:** 2026-10-05
 
 ## Objetivo
@@ -24,7 +24,16 @@ La autoridad del navegador es `coreCatalog()`, la misma que alimenta los Compend
 
 ### CONTENT-01B — Crear en el mundo
 
-Permitirá copiar una entrada canónica como Item de mundo conservando identidad, schema y datos mecánicos. Debe impedir duplicados accidentales o hacer explícita la copia.
+Implementada en la rama:
+
+- botón **Crear en el mundo** desde la previsualización;
+- copia completa del source canónico sin mutar `coreCatalog()`;
+- conserva tipo, `slug`, schema y mecánicas;
+- la copia de mundo no adquiere estado de compra de Actor: `system.acquisition = null`;
+- deduplicación por **tipo + slug**;
+- si ya existe el Item, la creación ordinaria se bloquea y se ofrece **Abrir existente**;
+- una duplicación intencional requiere la acción separada **Crear otra copia**;
+- crear un Item de mundo no lo añade a un Actor ni consume PEI/PD/PR/moneda.
 
 ### CONTENT-01C — Añadir a Actor
 

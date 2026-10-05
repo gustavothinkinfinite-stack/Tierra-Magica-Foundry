@@ -4,6 +4,10 @@ import {
   contentBrowserTypeOptions,
   filterContentBrowserEntries
 } from "./content-browser-model.mjs";
+import {
+  createContentBrowserWorldItem,
+  findContentBrowserWorldDuplicates
+} from "./content-browser-world.mjs";
 
 const ApplicationV1=foundry.appv1.api.Application;
 let browserInstance=null;
@@ -48,6 +52,12 @@ export class TierraMagicaContentBrowser extends ApplicationV1 {
       selected:entry.id===this.selectedId
     }));
     context.preview=preview;
+    const duplicates=preview ? findContentBrowserWorldDuplicates(preview,game.items??[]) : [];
+    context.previewWorld={
+      duplicateCount:duplicates.length,
+      duplicateName:duplicates[0]?.name??"",
+      hasDuplicate:duplicates.length>0
+    };
     return context;
   }
 
@@ -81,6 +91,43 @@ export class TierraMagicaContentBrowser extends ApplicationV1 {
         this.render(true);
       });
     }
+
+    root.querySelector("[data-tm-open-world-item]")?.addEventListener("click",()=>{
+      const entry=contentBrowserEntryById(this.entries,this.selectedId);
+      const duplicate=findContentBrowserWorldDuplicates(entry,game.items??[])[0];
+      if(!duplicate){
+        ui.notifications.warn("Ese Item ya no existe en el mundo.");
+        this.render(true);
+        return;
+      }
+      duplicate.sheet?.render(true);
+    });
+
+    const createWorld=async(allowDuplicate)=>{
+      const entry=contentBrowserEntryById(this.entries,this.selectedId);
+      if(!entry) return;
+      try{
+        const result=await createContentBrowserWorldItem(entry,{
+          worldItems:game.items??[],
+          documentClass:CONFIG.Item.documentClass,
+          allowDuplicate
+        });
+        if(!result.ok&&result.reason==="duplicate"){
+          ui.notifications.warn(entry.name+" ya existe en Objetos. Abre el existente o usa Crear otra copia.");
+          this.render(true);
+          return;
+        }
+        ui.notifications.info("Tierra Mágica: "+result.created.name+" creado en Objetos.");
+        result.created.sheet?.render(true);
+        this.render(true);
+      }catch(error){
+        console.error("Foundry T.M. | CONTENT-01B no pudo crear Item de mundo",error);
+        ui.notifications.error("Tierra Mágica: no se pudo crear el Item. Comprueba tus permisos y revisa la consola.");
+      }
+    };
+
+    root.querySelector("[data-tm-create-world-item]")?.addEventListener("click",()=>createWorld(false));
+    root.querySelector("[data-tm-create-world-copy]")?.addEventListener("click",()=>createWorld(true));
   }
 }
 

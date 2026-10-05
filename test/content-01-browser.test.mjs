@@ -6,6 +6,11 @@ import {
   contentBrowserTypeOptions,
   filterContentBrowserEntries
 } from "../scripts/ui/content-browser-model.mjs";
+import {
+  contentBrowserWorldSource,
+  createContentBrowserWorldItem,
+  findContentBrowserWorldDuplicates
+} from "../scripts/ui/content-browser-world.mjs";
 
 const entries=contentBrowserEntries();
 
@@ -42,4 +47,65 @@ test("CONTENT-01A prepara una previsualización mecánica desde el mismo source 
   assert.ok(longbow);
   assert.equal(longbow.details.some((row)=>row.label==="Penetración"&&row.value==="1"),true);
   assert.equal(contentBrowserEntryById(entries,longbow.id)?.source.system.slug,longbow.source.system.slug);
+});
+
+
+test("CONTENT-01B prepara una copia de mundo sin mutar la entrada canónica",()=>{
+  const dagger=entries.find((entry)=>entry.type==="weapon"&&entry.name==="Daga");
+  const before=JSON.stringify(dagger.source);
+  const source=contentBrowserWorldSource(dagger);
+  assert.equal(source.name,"Daga");
+  assert.equal(source.type,"weapon");
+  assert.equal(source.system.slug,"daga");
+  assert.equal(source.system.acquisition,null);
+  assert.equal(JSON.stringify(dagger.source),before);
+});
+
+test("CONTENT-01B detecta duplicados por tipo + slug aunque cambie el nombre visible",()=>{
+  const dagger=entries.find((entry)=>entry.type==="weapon"&&entry.name==="Daga");
+  const world=[
+    {name:"Daga renombrada",type:"weapon",system:{slug:"daga"}},
+    {name:"Daga",type:"equipment",system:{slug:"daga"}}
+  ];
+  const duplicates=findContentBrowserWorldDuplicates(dagger,world);
+  assert.equal(duplicates.length,1);
+  assert.equal(duplicates[0].type,"weapon");
+});
+
+test("CONTENT-01B bloquea duplicado accidental antes de invocar Document.create",async()=>{
+  const dagger=entries.find((entry)=>entry.type==="weapon"&&entry.name==="Daga");
+  let creates=0;
+  class FakeItem {
+    static async create(){
+      creates+=1;
+      return {};
+    }
+  }
+  const result=await createContentBrowserWorldItem(dagger,{
+    worldItems:[{name:"Daga",type:"weapon",system:{slug:"daga"}}],
+    documentClass:FakeItem
+  });
+  assert.equal(result.ok,false);
+  assert.equal(result.reason,"duplicate");
+  assert.equal(creates,0);
+});
+
+test("CONTENT-01B permite una copia adicional sólo mediante la ruta explícita",async()=>{
+  const dagger=entries.find((entry)=>entry.type==="weapon"&&entry.name==="Daga");
+  let createdSource=null;
+  class FakeItem {
+    static async create(source){
+      createdSource=source;
+      return {name:source.name,type:source.type,system:source.system};
+    }
+  }
+  const result=await createContentBrowserWorldItem(dagger,{
+    worldItems:[{name:"Daga",type:"weapon",system:{slug:"daga"}}],
+    documentClass:FakeItem,
+    allowDuplicate:true
+  });
+  assert.equal(result.ok,true);
+  assert.equal(createdSource.name,"Daga (copia)");
+  assert.equal(createdSource.type,"weapon");
+  assert.equal(createdSource.system.slug,"daga");
 });

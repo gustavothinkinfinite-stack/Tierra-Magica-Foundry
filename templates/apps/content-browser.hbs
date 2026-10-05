@@ -41,9 +41,25 @@
         {{/each}}
       </dl>
       {{/if}}
+      <div class="tm-content-browser-actions">
+        {{#if previewWorld.hasDuplicate}}
+        <button type="button" data-tm-open-world-item>
+          <i class="fas fa-folder-open"></i> Abrir existente
+        </button>
+        <button type="button" data-tm-create-world-copy>
+          <i class="fas fa-copy"></i> Crear otra copia
+        </button>
+        <small>Ya existe {{previewWorld.duplicateCount}} Item(s) con la misma identidad canónica.</small>
+        {{else}}
+        <button type="button" data-tm-create-world-item>
+          <i class="fas fa-plus"></i> Crear en el mundo
+        </button>
+        <small>Crea una copia canónica en la pestaña Objetos. No la añade a ningún personaje.</small>
+        {{/if}}
+      </div>
       <footer>
-        <i class="fas fa-eye"></i>
-        CONTENT-01A es sólo lectura. La creación de Items de mundo se habilitará en CONTENT-01B.
+        <i class="fas fa-shield-alt"></i>
+        CONTENT-01B crea Items de mundo. Añadir a Actor seguirá siendo una operación separada y controlada.
       </footer>
       {{else}}
       <p class="tm-empty">Selecciona una entrada del catálogo.</p>
