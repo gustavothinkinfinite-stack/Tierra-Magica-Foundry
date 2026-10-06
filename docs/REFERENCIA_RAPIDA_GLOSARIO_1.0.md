@@ -64,8 +64,12 @@ Rangos de Habilidad 0–5: bonos **+0/+1/+2/+4/+6/+8**; costes acumulados **0/1/
 
 Cada turno dispone de **1 Acción + Movimiento + 1 Reacción**. La Reacción se recupera al inicio del turno propio. Guardia: Acción, +2 Defensa hasta el siguiente turno.
 
-Daño final = max(0, base + Atributo permitido + bonos − Protección efectiva).  
-Protección efectiva = max(0, Protección − Penetración).
+Daño tras Protección = max(0, base + Atributo permitido + bonos − Protección efectiva).  
+Protección efectiva = max(0, Protección − Penetración).  
+Luego: Inmunidad del tipo → 0; si no, Daño final = max(0, daño tras Protección + Vulnerabilidad − Resistencia).
+
+Tipos canónicos: **Cortante, Perforante, Contundente, Fuego, Frío/Hielo, Eléctrico, Cinético, Arcano, Divino, Tóxico, Corrosivo y Especial**.  
+**No letal** es un modo, no un tipo: puede Incapacitar a 0 Vida sin aumentar Trauma ni activar por sí solo Daño Grave.
 
 Parada: Reacción, Técnica requerida, +2 Defensa contra el ataque cuerpo a cuerpo parable que la activa. Contraataque sólo si ese +2 transforma impacto en fallo y no consume otra Reacción.
 
@@ -131,7 +135,11 @@ Acción Vinculada usa normalmente la **Reacción** del personaje. Cambiar una or
 
 **DF:** Dificultad final que debe igualarse o superarse.  
 **Protección:** mitigación de daño antes de aplicar Vida.  
-**Penetración:** reduce Protección efectiva, nunca por debajo de 0.  
+**Penetración:** reduce Protección efectiva, nunca por debajo de 0; no reduce Resistencias.  
+**Resistencia de daño:** reduce el daño de un Tipo después de Protección; fuentes equivalentes usan el valor mayor.  
+**Inmunidad de daño:** reduce a 0 el daño del Tipo correspondiente.  
+**Vulnerabilidad de daño:** aumenta el daño del Tipo después de Protección; fuentes equivalentes usan el valor mayor.  
+**Modo no letal:** reduce Vida normalmente, pero la caída a 0 no aumenta Trauma y el impacto no activa por sí solo Daño Grave.  
 **Trauma:** gravedad orgánica 0–3; no equivale a Vida ni impone penalizador universal.  
 **Herida Grave:** lesión concreta y narrativa con estados propios; no aparece automáticamente sólo por superar el umbral informativo.  
 **Saturación:** bloqueo temporal de otra aplicación beneficiosa de una misma familia alquímica.  
