@@ -14,7 +14,9 @@ Toda regla o decisión nueva debe incorporarse primero allí. Foundry VTT, refer
 
 Los Manuales v0.1/v0.2, el Manual Básico mecánico 1.0 separado, los Canon del Mundo v1.1/v1.2 separados y las auditorías se conservan únicamente para trazabilidad, recuperación y comprobación de procedencia. Su contenido útil vigente fue integrado en el Manual Maestro Único. Si un documento histórico contradice el Manual Maestro, prevalece el Manual Maestro.
 
-Git/GitHub conserva el historial de cada modificación. No se debe eliminar una fuente histórica externa por considerarla obsoleta hasta confirmar que el contenido útil fue integrado o archivado dentro del Manual Maestro.\n\nLos documentos de proceso, auditorías históricas, cierres de fase y reportes de release se conservan bajo `docs/archive/`. Esa carpeta existe para trazabilidad y no constituye una fuente paralela de reglas.
+Git/GitHub conserva el historial de cada modificación. No se debe eliminar una fuente histórica externa por considerarla obsoleta hasta confirmar que el contenido útil fue integrado o archivado dentro del Manual Maestro.
+
+Los documentos de proceso, auditorías históricas, cierres de fase y reportes de release se conservan bajo `docs/archive/`. Esa carpeta existe para trazabilidad y no constituye una fuente paralela de reglas.
 
 ## Estado de pueblos y paquetes raciales
 
@@ -76,7 +78,9 @@ La ampliación del grimorio está **CERRADA Y CANONIZADA**. El Manual Maestro de
 
 Foundry adopta schema v5 para contratos de objetivos mágicos y migración del cierre espacial.
 
-## Estado de publicación 1.3.1\n\nFoundry T.M. **v1.3.1 está publicada** desde el commit `552ee9879229015eaccd68641c953c4a0c5bc06d`. Es la release pública **Latest** y corrige Compendios, creación guiada y aplicación visible de paquetes raciales. El manifiesto estable de instalación apunta a esta release.
+## Estado de publicación 1.3.2
+
+Foundry T.M. **v1.3.2** es la release objetivo de la actualización de experiencia de creación: asistente secuencial obligatorio en Desarrollo, bloqueo de pestañas durante la creación inicial y cabecera compacta una vez completado el personaje. No modifica el canon ni los presupuestos de creación. El manifiesto estable de instalación se actualizará al publicarse.
 
 ## Estado de catálogos maestros para 1.3.0
 

@@ -1,3 +1,17 @@
+## 1.3.2 — Creación secuencial y ficha compacta — 2026-10-06
+
+- Los personajes nuevos abren directamente en **Desarrollo** y recorren un asistente obligatorio de 8 pasos.
+- El flujo es: **Ascendencia → Origen → Trasfondo → Atributos → PD/Habilidades → Rasgos → Equipo inicial → Revisión**.
+- No se puede avanzar de Ascendencia, Origen, Trasfondo o Atributos hasta resolver completamente el paso vigente.
+- PD, PR y PEI mantienen sus reglas actuales: pueden quedar puntos o presupuesto sin gastar, pero cada etapa debe confirmarse antes de continuar.
+- Mientras la creación inicial está abierta, Ficha, Habilidades, Combate, Magia, Equipo e Historia quedan visibles pero bloqueadas; toda la construcción ocurre en un solo lugar.
+- Facetas, idiomas y selección de identidad dejan de ocupar la cabecera permanente.
+- La cabecera ilustrada se compacta y, durante juego normal, sólo conserva Nombre, Concepto y un resumen breve de Ascendencia/Origen/Trasfondo.
+- Las compras de catálogo durante creación dejan de abrir automáticamente las fichas técnicas de Items.
+- La reconstrucción autorizada por DJ conserva el flujo libre existente y no queda sometida al asistente inicial.
+- Se añade `system.creation.wizardStep` y regresiones específicas de navegación, bloqueo y presentación.
+- No cambia el Manual Maestro, los presupuestos 25 PD / 3 PR / PEI 20 o ni las reglas de cierre de creación.
+
 ## Publicación v1.3.1 — 2026-10-06
 
 - **v1.3.1 fue publicada** desde el commit `552ee9879229015eaccd68641c953c4a0c5bc06d` mediante `Publicar sistema #37399556305`.
