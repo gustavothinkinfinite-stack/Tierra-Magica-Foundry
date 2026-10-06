@@ -79,8 +79,8 @@ function actor(items=[]){
   });
 }
 
-test("CRAFT-13G: las ocho Fórmulas canónicas conservan precio, CM y tiempo cerrados",()=>{
-  assert.equal(Object.keys(ALCHEMY_FORMULAS).length,8);
+test("POISON-01A: las once Fórmulas canónicas conservan perfiles cerrados",()=>{
+  assert.equal(Object.keys(ALCHEMY_FORMULAS).length,11);
   assert.deepEqual(
     [ALCHEMY_FORMULAS["balsamo-restaurador"].priceCopper,ALCHEMY_FORMULAS["balsamo-restaurador"].materialCopper,ALCHEMY_FORMULAS["balsamo-restaurador"].timeMinutes],
     [50,25,120]
@@ -163,4 +163,16 @@ test("CRAFT-13G: preparación rutinaria exige conocimiento, rango, Especializaci
 test("CRAFT-13G: perfil por nombre no inventa datos para una Fórmula no catalogada",()=>{
   assert.equal(alchemyFormulaProfile("Poción Restauradora").ref,"REF-ALQ-02");
   assert.equal(alchemyFormulaProfile("Fórmula inexistente"),null);
+});
+
+
+test("POISON-01A: catálogo amplía Toxinas sin formulaciones reales",()=>{
+  const soporific=ALCHEMY_FORMULAS["somnifero-de-bruma"];
+  const paralytic=ALCHEMY_FORMULAS["paralizante-de-aguja"];
+  const lethal=ALCHEMY_FORMULAS["veneno-del-ultimo-pulso"];
+  assert.deepEqual([soporific.route,soporific.resistanceDf,soporific.poisonEffectKey],["Sangre",14,"soporific"]);
+  assert.deepEqual([paralytic.route,paralytic.resistanceDf,paralytic.poisonEffectKey],["Sangre",16,"paralyzing"]);
+  assert.deepEqual([lethal.route,lethal.resistanceDf,lethal.poisonDamage],["Sangre",18,8]);
+  assert.equal(lethal.rank,4);
+  assert.equal(lethal.installation,"specialized");
 });

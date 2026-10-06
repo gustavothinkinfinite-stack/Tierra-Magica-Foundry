@@ -19,6 +19,9 @@ const rows=[
 ["REF-ALQ-06","Alquimia","Neutralizante Común","fabricate","formula",50,240,100,"alchemy",3,"Toxinas","professional","formula","Nueva resistencia con Ventaja contra toxina compatible; Saturación Antitóxica."],
 ["REF-ALQ-07","Alquimia","Toxina Debilitante","fabricate","formula",75,480,150,"alchemy",3,"Toxinas","professional","formula","VIG DF14; fallo: Desventaja física; una aplicación válida consume la dosis."],
 ["REF-ALQ-08","Alquimia","Bomba Incendiaria","fabricate","formula",150,480,300,"alchemy",3,"Explosivos","professional","formula","Área pequeña; Daño 6, Pen 1; una activación consume la bomba."],
+["REF-ALQ-09","Alquimia","Somnífero de Bruma","fabricate","formula",60,480,120,"alchemy",3,"Toxinas","professional","formula","VIG DF14; Somnolencia y posible sueño en exposición posterior; Vía Sangre."],
+["REF-ALQ-10","Alquimia","Paralizante de Aguja","fabricate","formula",110,480,220,"alchemy",3,"Toxinas","professional","formula","VIG DF16; parálisis breve seguida de Movimiento reducido; Vía Sangre."],
+["REF-ALQ-11","Alquimia","Veneno del Último Pulso","fabricate","formula",200,960,400,"alchemy",4,"Toxinas","specialized","formula","VIG DF18; fallo: 8 Vida internos tras Latencia; Vía Sangre."],
 
 ["REF-RUN-01","Runas y magia","Piedra de Lumen I","fabricate","guided",200,480,400,"ritualism",3,"","professional","equipment","Piedra I; CRu 1; Acción, 1 Maná; luz durante una Escena."],
 ["REF-RUN-02","Runas y magia","Daga Excepcional de Filo Penetrante II","fabricate","guided",375,1200,750,"crafting",4,"Forja y metal","specialized","weapon","Daga Excepcional + CRu 2 + Filo Penetrante II; Ritualismo Maestro y Arcana Experta."],

@@ -534,7 +534,15 @@
       "rangeOptimal": 0,
       "severe": "",
       "reload": 0,
-      "power": 0
+      "power": 0,
+      "toxinCoating": {
+        "active": false,
+        "formulaSlug": "",
+        "formulaName": "",
+        "sourceFormulaUuid": "",
+        "persistenceIndex": 0,
+        "applications": 0
+      }
     },
     "armor": {
       "templates": [
@@ -631,6 +639,12 @@
       "duration": "",
       "saturating": false,
       "family": "",
+      "poison": false,
+      "weaponCompatible": false,
+      "resistanceAttribute": "",
+      "resistanceDf": 0,
+      "poisonEffectKey": "",
+      "poisonDamage": 0,
       "effect": "",
       "preservation": ""
     },
