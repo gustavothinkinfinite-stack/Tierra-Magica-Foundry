@@ -390,7 +390,8 @@ export function deriveActorState({
         label: (ancestry?.name ?? "Ascendencia") + ": Protección Natural",
         sourceItemId: ancestry?.id ?? null,
         sourceItemName: ancestry?.name ?? "",
-        sourceType: "ancestry"
+        sourceType: "ancestry",
+        equipmentType: "natural"
       }));
     }
   }
@@ -547,10 +548,10 @@ export function resolveDerivedSelector(derived, selector, context = {}) {
   let resolved = base;
   for (const entry of applicable) {
     if (entry.stacking === "max-with-armor" && canonical === "protection") {
-      const armor = (derived?.breakdowns?.protection?.contributions ?? [])
-        .filter((source) => source?.equipmentType === "armor")
+      const existingProtection = (derived?.breakdowns?.protection?.contributions ?? [])
+        .filter((source) => ["armor", "natural"].includes(source?.equipmentType))
         .reduce((highest, source) => Math.max(highest, number(source.value)), 0);
-      resolved += Math.max(0, number(entry.value) - armor);
+      resolved += Math.max(0, number(entry.value) - existingProtection);
       continue;
     }
     resolved += number(entry.value);
