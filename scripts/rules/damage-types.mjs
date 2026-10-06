@@ -61,7 +61,7 @@ export function damageTypeRegistry(custom = "") {
 
 export function damageTypeLabel(type, registry = BUILTIN_DAMAGE_TYPES) {
   const id = normalizeDamageType(type);
-  return registry?.[id] ?? String(type ?? "").trim() || "Sin tipo";
+  return registry?.[id] ?? (String(type ?? "").trim() || "Sin tipo");
 }
 
 function normalizedMap(value = {}) {
