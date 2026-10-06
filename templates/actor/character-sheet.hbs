@@ -194,6 +194,23 @@
 
           {{> "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"}}
 
+          {{#if creationGuide.ancestryProfile}}
+            <section class="tm-v03-panel tm-v03-list-panel tm-v03-ancestry-panel">
+              <header class="tm-v03-panel-heading"><h2>Ascendencia · {{creationGuide.ancestryProfile.name}}</h2></header>
+              <div class="tm-v03-derived-list">
+                <div><span>Escala</span><b>{{creationGuide.ancestryScaleLabel}}</b></div>
+                <div><span>Movimiento</span><b>{{creationGuide.ancestryProfile.movementBase}}</b></div>
+                {{#if creationGuide.ancestryProfile.movementModes}}<div><span>Movimiento especial</span><b>{{creationGuide.ancestryProfile.movementModes}}</b></div>{{/if}}
+                {{#if creationGuide.ancestryProfile.naturalProtection}}<div><span>Protección Natural</span><b>{{creationGuide.ancestryProfile.naturalProtection}}</b></div>{{/if}}
+              </div>
+              <ol class="tm-v03-mini-list">
+                {{#each creationGuide.ancestryProfile.features as |feature|}}
+                  <li><span>{{feature}}</span></li>
+                {{/each}}
+              </ol>
+            </section>
+          {{/if}}
+
           <section class="tm-v03-panel tm-v03-state">
             <header class="tm-v03-panel-heading"><h2>Estado</h2></header>
             <div class="tm-v03-state-grid">
