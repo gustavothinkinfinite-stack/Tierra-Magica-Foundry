@@ -1,4 +1,5 @@
 import { resolveActorProtection } from "./defense-context.mjs";
+import { actorDamageTraits, resolveTypedDamage } from "./damage-types.mjs";
 // Foundry T.M. — resolución pura de impactos mágicos deterministas.
 const number = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -11,13 +12,23 @@ const targetKey = (target) => {
   return actor?.uuid ?? actor?.id ?? target?.uuid ?? target?.id ?? null;
 };
 
-export function spellImpact({ damage = 0, bonus = 0, penetration = 0, protection = 0, severeThreshold = 0 } = {}) {
+export function spellImpact({
+  damage = 0,
+  bonus = 0,
+  penetration = 0,
+  protection = 0,
+  severeThreshold = 0,
+  damageType = "arcane",
+  damageMode = "lethal",
+  damageTraits = {}
+} = {}) {
   const base = Math.max(0, number(damage));
   const safeBonus = Math.max(0, number(bonus));
   const safeProtection = Math.max(0, number(protection));
   const safePenetration = Math.max(0, number(penetration));
   const effectiveProtection = Math.max(0, safeProtection - safePenetration);
-  const finalDamage = Math.max(0, base + safeBonus - effectiveProtection);
+  const postProtectionDamage = Math.max(0, base + safeBonus - effectiveProtection);
+  const typed = resolveTypedDamage({ damage: postProtectionDamage, damageType, damageMode, traits: damageTraits });
   const threshold = Math.max(0, number(severeThreshold));
   return {
     base,
@@ -25,8 +36,10 @@ export function spellImpact({ damage = 0, bonus = 0, penetration = 0, protection
     penetration: safePenetration,
     protection: safeProtection,
     effectiveProtection,
-    damage: finalDamage,
-    severe: finalDamage > 0 && threshold > 0 && finalDamage >= threshold
+    postProtectionDamage,
+    ...typed,
+    damage: typed.damage,
+    severe: typed.damageMode === "lethal" && typed.damage > 0 && threshold > 0 && typed.damage >= threshold
   };
 }
 
@@ -39,7 +52,10 @@ export function resolveSpellImpact(spell, target, { protectionContext = {} } = {
     bonus: spell.system?.damageBonus,
     penetration: spell.system?.penetration,
     protection: resolveActorProtection(actor, protectionContext).total,
-    severeThreshold: actor.system.derived?.severeThreshold
+    severeThreshold: actor.system.derived?.severeThreshold,
+    damageType: spell.system?.damageType,
+    damageMode: spell.system?.damageMode,
+    damageTraits: actorDamageTraits(actor)
   });
 }
 
