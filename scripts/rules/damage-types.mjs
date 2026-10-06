@@ -76,10 +76,13 @@ function normalizedMap(value = {}) {
 }
 
 export function normalizeDamageTraits(value = {}) {
+  const rawImmunities = value?.immunities;
   const immunities = new Set(
-    Array.isArray(value?.immunities)
-      ? value.immunities.map(normalizeDamageType).filter(Boolean)
-      : []
+    Array.isArray(rawImmunities)
+      ? rawImmunities.map(normalizeDamageType).filter(Boolean)
+      : rawImmunities && typeof rawImmunities === "object"
+        ? Object.entries(rawImmunities).filter(([, enabled]) => Boolean(enabled)).map(([type]) => normalizeDamageType(type)).filter(Boolean)
+        : []
   );
   return {
     resistances: normalizedMap(value?.resistances),
