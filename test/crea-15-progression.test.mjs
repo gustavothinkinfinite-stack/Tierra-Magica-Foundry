@@ -64,7 +64,8 @@ test("CREA-15: la ficha no permite editar libremente nivel o Atributos post-crea
   assert.equal(template.includes('name="system.attributes.{{key}}.baseValue"'),false);
   assert.match(template,/data-action="advance-level"/);
   assert.match(template,/data-action="upgrade-attribute"/);
-  assert.match(template,/creation\.isOpen/);
+  assert.match(template,/creationWizard\.isStep4/);
+  assert.match(template,/creation\.isRebuilding/);
 });
 
 test("CREA-15: el Actor contiene las puertas autoritativas de progresión",async()=>{
