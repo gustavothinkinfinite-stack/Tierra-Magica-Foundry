@@ -1,4 +1,5 @@
 import { resolveActorProtection } from "./defense-context.mjs";
+import { actorDamageTraits, resolveTypedDamage } from "./damage-types.mjs";
 // Foundry T.M. — resolución pura de impacto físico.
 // Centraliza mitigación y evita que Penetración genere Protección negativa.
 const number = (value, fallback = 0) => {
@@ -19,7 +20,14 @@ export function resolveWeaponImpact(weapon, attacker, target, { damageBonus = 0,
   const penetration = Math.max(0, number(weapon.system?.penetration) + number(penetrationBonus));
   const effectiveProtection = Math.max(0, rawProtection - penetration);
   const rawDamage = Math.max(0, base + attribute + number(damageBonus));
-  const damage = Math.max(0, rawDamage - effectiveProtection);
+  const postProtectionDamage = Math.max(0, rawDamage - effectiveProtection);
+  const typed = resolveTypedDamage({
+    damage: postProtectionDamage,
+    damageType: weapon.system?.damageType,
+    damageMode: weapon.system?.damageMode,
+    traits: actorDamageTraits(target)
+  });
+  const damage = typed.damage;
   const severeThreshold = Math.max(0, number(target.system.derived?.severeThreshold));
 
   return {
@@ -30,8 +38,10 @@ export function resolveWeaponImpact(weapon, attacker, target, { damageBonus = 0,
     protection: rawProtection,
     penetration,
     effectiveProtection,
+    postProtectionDamage,
+    ...typed,
     damage,
-    severe: damage > 0 && severeThreshold > 0 && damage >= severeThreshold
+    severe: typed.damageMode === "lethal" && damage > 0 && severeThreshold > 0 && damage >= severeThreshold
   };
 }
 
