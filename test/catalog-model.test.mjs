@@ -39,3 +39,22 @@ test("CREA-14: catálogo de identidad coincide con los pueblos y perfiles vigent
     assert.equal(String(background.system.facetOptions).split(";").filter(Boolean).length,3);
   }
 });
+
+
+test("Ascendencias exponen paquete racial estructurado y no son sólo texto",()=>{
+  const ancestries=constructionCatalog().filter((entry)=>entry.type==="ancestry");
+  for(const ancestry of ancestries){
+    assert.ok(Array.isArray(ancestry.system.racialFeatures),ancestry.name);
+    assert.ok(ancestry.system.racialFeatures.length>=1,ancestry.name);
+    assert.ok(Number(ancestry.system.movementBase)>0,ancestry.name);
+    assert.ok((ancestry.system.rules??[]).some((rule)=>rule.key==="RollOption" || rule.key==="ChoiceSet"),ancestry.name);
+  }
+  const hada=ancestries.find((entry)=>entry.name==="Hada");
+  assert.equal(hada.system.scale,"small");
+  assert.equal(hada.system.movementBase,5);
+  assert.match(hada.system.movementModes,/Aéreo 6/);
+  const coralio=ancestries.find((entry)=>entry.name==="Coralio");
+  assert.equal(coralio.system.naturalProtection,1);
+  const terio=ancestries.find((entry)=>entry.name==="Terio/Anihombre");
+  assert.ok(terio.system.rules.some((rule)=>rule.key==="ChoiceSet" && rule.choiceKey==="scale"));
+});
