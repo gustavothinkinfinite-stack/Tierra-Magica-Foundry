@@ -679,7 +679,12 @@
         "base"
       ],
       "category": "ancestry",
-      "selectionNotes": ""
+      "selectionNotes": "",
+      "scale": "",
+      "movementBase": 6,
+      "movementModes": "",
+      "naturalProtection": 0,
+      "racialFeatures": []
     },
     "origin": {
       "templates": [
