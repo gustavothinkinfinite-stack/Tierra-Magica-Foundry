@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import { coreCatalog } from "../scripts/catalog/core-catalog.mjs";
 
 const manualUrl=new URL("../docs/Tierra_Magica_Manual_Maestro.md",import.meta.url);
-const closeoutUrl=new URL("../docs/CREA-14_CIERRE_AUTOSUFICIENCIA_CREACION.md",import.meta.url);
+const closeoutUrl=new URL("../docs/archive/creacion/CREA-14_CIERRE_AUTOSUFICIENCIA_CREACION.md",import.meta.url);
 
 test("CREA-14: el Manual contiene todas las piezas de creación autosuficiente",async()=>{
   const manual=await readFile(manualUrl,"utf8");
