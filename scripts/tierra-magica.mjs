@@ -59,7 +59,7 @@ function forcedDeletion() {
 }
 
 Hooks.once("init", async () => {
-  console.info("Foundry T.M. | Iniciando Tierra Mágica v1.1.2");
+  console.info("Foundry T.M. | Iniciando Tierra Mágica v" + String(game.system?.version ?? "?"));
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
   CONFIG.Item.documentClass = TierraMagicaItem;
@@ -429,10 +429,11 @@ Hooks.once("ready", async () => {
       " Actor(es), " + skillMigration.items + " Item(s) y preservó " + skillMigration.legacy + " clave(s) legada(s)."
     );
   }
-  if (dataMigration.actors || dataMigration.items || dataMigration.identities) {
+  if (dataMigration.actors || dataMigration.items || dataMigration.identities || dataMigration.ancestryProfiles) {
     ui.notifications.info(
-      "Tierra Mágica: CREA-11 migró " + dataMigration.actors + " Actor(es), " +
-      dataMigration.items + " Item(s) y vinculó " + dataMigration.identities + " identidad(es) inequívoca(s)."
+      "Tierra Mágica: migración de datos actualizó " + dataMigration.actors + " Actor(es), " +
+      dataMigration.items + " Item(s), vinculó " + dataMigration.identities + " identidad(es) y sincronizó " +
+      (dataMigration.ancestryProfiles ?? 0) + " paquete(s) racial(es)."
     );
   }
   if (resourceReconciliations) {

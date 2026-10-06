@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { migrateActorSource, migrateItemSource, TM_SCHEMA_VERSION } from "../scripts/rules/data-model-migration.mjs";
+import { migrateActorSource, migrateItemSource, TM_SCHEMA_VERSION, ancestryProfileUpdates } from "../scripts/rules/data-model-migration.mjs";
 
 test("actor migration preserves legacy identity, reserve and attribute values",()=>{
   const source={type:"character",system:{
@@ -158,4 +158,47 @@ test("schema v4 migra contratos de objetivo y definiciones espaciales a v5",()=>
   assert.equal(ordinary.system.maxTargets,1);
   assert.equal(ordinary.system.requiresTarget,false);
   assert.deepEqual(migrateItemSource(ordinary,{embedded:true}),ordinary);
+});
+
+
+test("paquetes raciales vigentes sincronizan Ascendencias históricas schema actual",()=>{
+  const catalog=[{
+    type:"ancestry",name:"Hada",
+    system:{
+      slug:"hada",scale:"small",movementBase:5,movementModes:"Aéreo 6",
+      naturalProtection:0,racialFeatures:["Naturaleza Feérica","Movimiento aéreo inicial 6"],
+      selectionNotes:"",requirementsText:"Paquete automático",
+      rules:[{key:"RollOption",option:"ancestry:hada"}]
+    }
+  }];
+  const legacy={
+    type:"ancestry",name:"Hada",
+    system:{
+      schemaVersion:5,slug:"hada",description:"Vieja",
+      choices:{},acquisition:{mode:"purchased",stage:"creation",sources:[],paid:{resource:"none",amount:0,known:true}},
+      rules:[]
+    }
+  };
+  const updates=ancestryProfileUpdates(legacy,catalog);
+  assert.equal(updates["system.scale"],"small");
+  assert.equal(updates["system.movementBase"],5);
+  assert.equal(updates["system.movementModes"],"Aéreo 6");
+  assert.deepEqual(updates["system.racialFeatures"],["Naturaleza Feérica","Movimiento aéreo inicial 6"]);
+  assert.deepEqual(updates["system.rules"],[{key:"RollOption",option:"ancestry:hada"}]);
+  assert.equal("system.acquisition" in updates,false);
+});
+
+test("Terio histórico conserva Escala ya elegida al incorporar ChoiceSet",()=>{
+  const catalog=[{
+    type:"ancestry",name:"Terio/Anihombre",
+    system:{
+      slug:"terio-anihombre",scale:"",movementBase:6,movementModes:"",
+      naturalProtection:0,racialFeatures:["Adaptaciones"],selectionNotes:"Elegir linaje",
+      requirementsText:"Elegir linaje",
+      rules:[{key:"ChoiceSet",choiceKey:"scale",label:"Escala",options:[{value:"small",label:"Pequeña"},{value:"medium",label:"Mediana"}]}]
+    }
+  }];
+  const source={type:"ancestry",name:"Terio/Anihombre",system:{slug:"terio-anihombre",choices:{},rules:[]}};
+  const updates=ancestryProfileUpdates(source,catalog,{actorSize:"small"});
+  assert.equal(updates["system.choices"].scale,"small");
 });

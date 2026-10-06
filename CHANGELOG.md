@@ -1,3 +1,16 @@
+## 1.3.1 — Hotfix de creación, Ascendencias y Compendios — 2026-10-05
+
+- Corrige los cuatro Compendios de la distribución: los sources ahora incluyen claves LevelDB válidas y el build vuelve a abrir cada pack para comprobar que contiene exactamente los Items esperados antes de permitir una release.
+- La verificación deja de aceptar carpetas de Compendio formalmente existentes pero vacías.
+- Las **17 Ascendencias** pasan a exponer un paquete racial estructurado con Escala, Movimiento, movimientos especiales, Protección Natural cuando corresponde, capacidades raciales y elecciones internas.
+- Elegir Ascendencia modifica la ficha: Escala y Movimiento se derivan del paquete; Coralio aplica Protección Natural 1 usando el mayor valor frente a armadura; Hada aplica Escala Pequeña y Movimiento terrestre 5 y expone su Movimiento aéreo 6.
+- Los paquetes raciales ya existentes en campañas se sincronizan desde el catálogo canónico al iniciar como DJ, sin borrar adquisición ni elecciones previas.
+- La portada muestra las capacidades raciales activas para que una Ascendencia no quede como una etiqueta sin efecto visible.
+- Creación de personaje sustituye Faceta de Origen y Facetas de Trasfondo de texto libre por selección guiada, deriva automáticamente los idiomas iniciales y muestra todos los bloqueos antes de habilitar **Completar creación**.
+- Elegir Ascendencia, Origen o Trasfondo deja de abrir automáticamente la ficha técnica interna del Item.
+- El diagnóstico de arranque muestra la versión real instalada en lugar del texto histórico fijo `v1.1.2`.
+- Se añaden regresiones para contenido real de Compendios, paquetes raciales, migración de Ascendencias existentes, derivados y flujo guiado de creación.
+
 ## Publicación v1.3.0 — 2026-10-05
 
 - **v1.3.0 fue publicada** desde el commit `4dcf08f5924f68f9373bda7bdfb8034415cefe2b` mediante `Publicar sistema #37344445970`.

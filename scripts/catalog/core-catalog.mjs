@@ -14,23 +14,153 @@ import { approvedShieldVariantSources } from "./shield-variants-approved.mjs";
 import { canonicalEquipmentSources } from "./equipment-canonical.mjs";
 
 const ANCESTRIES = [
-  ["Humano","Familia humana; Don sin Forma se registra mediante sus Rasgos elegidos."],
-  ["Enano","Paquete Enano: Escala Pequeña, Movimiento 5, Cuerpo de Piedra y Sangre de Metal."],
-  ["Elfo","Paquete Élfico: Escala Mediana, Movimiento 6, Sentidos Élficos y Resonancia de la Savia."],
-  ["Orco","Paquete Orco: Escala Mediana, Movimiento 6, Complexión Orca y Voluntad del Colmillo."],
-  ["Goblin","Variante goblinoide Pequeña con Ojo para la Oportunidad y Escurridizo."],
-  ["Hobgoblin","Variante goblinoide Mediana con Ojo para la Oportunidad; la disciplina organizada es cultural."],
-  ["Bugbear","Variante goblinoide Mediana con Ojo para la Oportunidad y Complexión Bugbear."],
-  ["Terio/Anihombre","Familia Teria. Debe anotarse Linaje, Variedad y Adaptaciones del paquete racial."],
-  ["Hada","Variante Feérica Pequeña con Movimiento terrestre 5 y Movimiento aéreo inicial 6 limitado."],
-  ["Sátiro","Variante Feérica Mediana con Paso de Cabra y cuernos naturales."],
-  ["Dríade","Variante Feérica Mediana con Vínculo Arbóreo y Enraizar."],
-  ["Silfo","Variante Feérica Mediana con Cuerpo del Viento."],
-  ["Ankar","Paquete Ankar: Sentido del Umbral y Custodia del Alma."],
-  ["Cristálido de Matriz Mixta","Paquete Cristálido básico: Matriz Mixta, Resonancia Arcana y Conductor Vivo."],
-  ["Verdante","Paquete Verdante. Debe anotarse la Adaptación de Bioma elegida."],
-  ["Micelio","Paquete Micelio: Sustento Fúngico, Quimiosensibilidad y Enlace Micelial."],
-  ["Coralio","Paquete Coralio: anfibio, Movimiento terrestre 5/acuático 6, Esqueleto Coralino y Sentido de Corriente."]
+  {
+    name:"Humano", scale:"medium", movementBase:6,
+    description:"Familia humana; Don sin Forma amplía las elecciones de Rasgos durante creación.",
+    racialFeatures:[
+      "Don sin Forma: durante creación obtiene gratuitamente 1 Rasgo General Significativo o 2 Rasgos Generales Menores compatibles, además de sus 3 PR normales."
+    ],
+    selectionNotes:"Registrar los Rasgos gratuitos elegidos por Don sin Forma; no pueden convertirse en Atributos, ataque, Defensa, daño, Protección, Vida o Maná."
+  },
+  {
+    name:"Enano", scale:"small", movementBase:5,
+    description:"Paquete Enano: Escala Pequeña, Movimiento 5, Cuerpo de Piedra y Sangre de Metal.",
+    racialFeatures:[
+      "Cuerpo de Piedra: para Carga y para resistir Empujar, Derribar o desplazamiento físico impuesto se trata como Escala Mediana.",
+      "Sangre de Metal: +1 VIG para resistir toxinas, enfermedades y agotamiento ambiental apropiado; +1 Defensa Corporal si uno de esos efectos la ataca expresamente."
+    ]
+  },
+  {
+    name:"Elfo", scale:"medium", movementBase:6,
+    description:"Paquete Élfico: Escala Mediana, Movimiento 6, Sentidos Élficos y Resonancia de la Savia.",
+    racialFeatures:[
+      "Sentidos Élficos: +1 PER sólo para distinguir detalles naturales sutiles por vista u oído cuando sean determinantes.",
+      "Resonancia de la Savia: advierte alteraciones mágicas significativas que afecten directamente seres vivos, procesos vitales o un ecosistema perceptible."
+    ]
+  },
+  {
+    name:"Orco", scale:"medium", movementBase:6,
+    description:"Paquete Orco: Escala Mediana, Movimiento 6, Complexión Orca y Voluntad del Colmillo.",
+    racialFeatures:[
+      "Complexión Orca: +1 FUE efectiva sólo para Carga, levantar, arrastrar o aplicar fuerza bruta contra objetos inertes.",
+      "Voluntad del Colmillo: 1 vez por Escena puede ignorar una fuente de Desventaja causada exclusivamente por dolor, miedo o agotamiento físico para una prueba."
+    ]
+  },
+  {
+    name:"Goblin", scale:"small", movementBase:6,
+    description:"Variante goblinoide Pequeña con Ojo para la Oportunidad y Escurridizo.",
+    racialFeatures:[
+      "Ojo para la Oportunidad: 1 vez por Escena obtiene +1 a una prueba si explota una oportunidad concreta recién descubierta o surgida de un cambio real de situación.",
+      "Escurridizo: puede atravesar el espacio de una criatura Mediana o mayor si existe espacio físico suficiente; cuenta como terreno difícil y no puede terminar dentro."
+    ]
+  },
+  {
+    name:"Hobgoblin", scale:"medium", movementBase:6,
+    description:"Variante goblinoide Mediana con Ojo para la Oportunidad; la disciplina organizada es cultural.",
+    racialFeatures:[
+      "Ojo para la Oportunidad: 1 vez por Escena obtiene +1 a una prueba si explota una oportunidad concreta recién descubierta o surgida de un cambio real de situación."
+    ]
+  },
+  {
+    name:"Bugbear", scale:"medium", movementBase:6,
+    description:"Variante goblinoide Mediana con Ojo para la Oportunidad y Complexión Bugbear.",
+    racialFeatures:[
+      "Ojo para la Oportunidad: 1 vez por Escena obtiene +1 a una prueba si explota una oportunidad concreta recién descubierta o surgida de un cambio real de situación.",
+      "Complexión Bugbear: se trata como Grande únicamente para Carga y fuerza bruta contra objetos inertes."
+    ]
+  },
+  {
+    name:"Terio/Anihombre", scale:"", movementBase:6,
+    description:"Familia Teria. El linaje fija Escala y Adaptaciones del paquete racial.",
+    racialFeatures:[
+      "Adaptaciones: elige 1 Adaptación Principal + 1 Secundaria, o 1 Adaptación Dominante, según el linaje.",
+      "La Escala del paquete básico es Pequeña o Mediana según linaje; Movimiento 6 salvo locomoción específica."
+    ],
+    selectionNotes:"Elegir Linaje, Variedad y Adaptaciones. La Escala se elige al añadir la Ascendencia.",
+    rules:[
+      {key:"ChoiceSet",choiceKey:"scale",label:"Escala del linaje",options:[{value:"small",label:"Pequeña"},{value:"medium",label:"Mediana"}]},
+      {key:"RollOption",option:"ancestry:terio-anihombre"}
+    ]
+  },
+  {
+    name:"Hada", scale:"small", movementBase:5, movementModes:"Aéreo 6 (debe terminar el turno apoyada; Carga Pesada/Excesiva lo impide)",
+    description:"Variante Feérica Pequeña con Movimiento terrestre 5 y Movimiento aéreo inicial 6 limitado.",
+    racialFeatures:[
+      "Naturaleza Feérica: descriptor sobrenatural reconocido por efectos que interactúan con criaturas Feéricas.",
+      "Movimiento aéreo inicial 6: puede cruzar huecos y desniveles, pero debe comenzar y terminar cada turno apoyada en una superficie capaz de sostenerla."
+    ]
+  },
+  {
+    name:"Sátiro", scale:"medium", movementBase:6,
+    description:"Variante Feérica Mediana con Paso de Cabra y cuernos naturales.",
+    racialFeatures:[
+      "Naturaleza Feérica: descriptor sobrenatural reconocido por efectos que interactúan con criaturas Feéricas.",
+      "Paso de Cabra: raíces, roca irregular, pendientes naturales pronunciadas y desniveles menores transitables no aumentan el coste de Movimiento.",
+      "Cuernos: arma natural, Daño 3, Penetración 0."
+    ]
+  },
+  {
+    name:"Dríade", scale:"medium", movementBase:6,
+    description:"Variante Feérica Mediana con Vínculo Arbóreo y Enraizar.",
+    racialFeatures:[
+      "Naturaleza Feérica: descriptor sobrenatural reconocido por efectos que interactúan con criaturas Feéricas.",
+      "Vínculo Arbóreo: por contacto con vegetación significativa del vínculo conoce su estado general.",
+      "Enraizar: Acción sobre suelo apropiado; mientras permanece enraizada se considera +1 categoría de Escala efectiva para resistir Empujar, Derribar y desplazamiento físico impuesto."
+    ]
+  },
+  {
+    name:"Silfo", scale:"medium", movementBase:6,
+    description:"Variante Feérica Mediana con Cuerpo del Viento.",
+    racialFeatures:[
+      "Naturaleza Feérica: descriptor sobrenatural reconocido por efectos que interactúan con criaturas Feéricas.",
+      "Cuerpo del Viento: ignora penalizaciones de desplazamiento causadas únicamente por viento mundano ordinario y obtiene +1 categoría de Escala efectiva para resistir Empujar causado por viento."
+    ]
+  },
+  {
+    name:"Ankar", scale:"medium", movementBase:6,
+    description:"Paquete Ankar: Sentido del Umbral y Custodia del Alma.",
+    racialFeatures:[
+      "Sentido del Umbral: dentro de 6 espacios advierte la presencia general de almas desencarnadas manifiestas, espíritus en tránsito incompleto, No Muertos espiritualmente sostenidos o efectos activos sobre almas.",
+      "Custodia del Alma: +1 Defensa Mental únicamente contra posesión, control directo del alma, desplazamiento cuerpo/alma y retención o esclavización espiritual."
+    ]
+  },
+  {
+    name:"Cristálido de Matriz Mixta", scale:"medium", movementBase:6,
+    description:"Paquete Cristálido básico: Matriz Mixta, Resonancia Arcana y Conductor Vivo.",
+    racialFeatures:[
+      "Matriz Mixta: utiliza normalmente Fatiga, descanso, sustento, Medicina y peligros fisiológicos generales.",
+      "Resonancia Arcana: por contacto reconoce si un objeto, cristal, mineral, estructura o dispositivo contiene, recibe, conduce o descarga energía mágica, o está inerte.",
+      "Conductor Vivo: puede actuar voluntariamente como puente conductor cuando un dispositivo, ritual, proyecto o fenómeno compatible esté diseñado para admitirlo."
+    ]
+  },
+  {
+    name:"Verdante", scale:"medium", movementBase:6,
+    description:"Paquete Verdante con Sustento Vegetal, Enraizar y Adaptación de Bioma.",
+    racialFeatures:[
+      "Sustento Vegetal: necesita agua, luz suficiente y nutrientes compatibles como necesidades de supervivencia.",
+      "Enraizar: Acción sobre suelo apropiado; mientras permanece inmóvil se considera +1 categoría de Escala efectiva para resistir Empujar, Derribar y desplazamiento físico impuesto.",
+      "Adaptación de Bioma: elige un bioma; concede +1 VIG contra una exposición definitoria o elimina una causa concreta de terreno difícil."
+    ],
+    selectionNotes:"Registrar el bioma y la ventaja anatómica estrecha elegida."
+  },
+  {
+    name:"Micelio", scale:"medium", movementBase:6,
+    description:"Paquete Micelio: Sustento Fúngico, Quimiosensibilidad y Enlace Micelial.",
+    racialFeatures:[
+      "Sustento Fúngico: necesita humedad y nutrientes orgánicos compatibles; usa las reglas normales de Fatiga y Descanso Completo.",
+      "Quimiosensibilidad: +1 PER sólo para señales químicas cercanas relacionadas con hongos, esporas, descomposición, contaminación biológica o alteración importante de una colonia.",
+      "Enlace Micelial: Acción y contacto con una red micelial viva, compatible y continua para comunicarse silenciosamente con otro Micelio voluntario conectado a la misma red dentro de 12 espacios."
+    ]
+  },
+  {
+    name:"Coralio", scale:"medium", movementBase:5, movementModes:"Acuático 6", naturalProtection:1,
+    description:"Paquete Coralio: anfibio, Movimiento terrestre 5/acuático 6, Esqueleto Coralino y Sentido de Corriente.",
+    racialFeatures:[
+      "Respiración Anfibia: puede respirar agua y aire mientras se mantenga razonablemente hidratado.",
+      "Esqueleto Coralino: Protección Natural 1; no se suma con armadura.",
+      "Sentido de Corriente: +1 PER cuando corrientes, vibraciones o cambios de presión del agua sean el medio determinante para percibir algo."
+    ]
+  }
 ];
 
 const ORIGINS = [
@@ -160,11 +290,18 @@ function baseEntry(type, name, extra = {}) {
 
 export function constructionCatalog() {
   const entries = [];
-  for (const [name, description] of ANCESTRIES) {
-    entries.push(baseEntry("ancestry", name, {
+  for (const ancestry of ANCESTRIES) {
+    entries.push(baseEntry("ancestry", ancestry.name, {
       tags:["crea-14","canonical","standard-creation"],
-      description,
-      requirementsText:"Aplicar el paquete racial correspondiente del Manual Maestro. Registrar cualquier elección interna necesaria."
+      description:ancestry.description,
+      scale:ancestry.scale ?? "",
+      movementBase:ancestry.movementBase ?? 6,
+      movementModes:ancestry.movementModes ?? "",
+      naturalProtection:ancestry.naturalProtection ?? 0,
+      racialFeatures:ancestry.racialFeatures ?? [],
+      selectionNotes:ancestry.selectionNotes ?? "",
+      requirementsText:ancestry.selectionNotes || "El paquete racial se aplica automáticamente desde esta Ascendencia.",
+      rules:ancestry.rules ?? [{key:"RollOption",option:"ancestry:"+normalizeSlug(ancestry.name)}]
     }));
   }
   for (const origin of ORIGINS) {

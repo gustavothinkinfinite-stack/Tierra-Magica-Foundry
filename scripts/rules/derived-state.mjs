@@ -231,6 +231,20 @@ export function deriveActorState({
     };
   }
 
+  const ancestry = items.find((item) => item?.type === "ancestry") ?? null;
+  const ancestryScale = String(ancestry?.system?.choices?.scale || ancestry?.system?.scale || system.traits?.size || "");
+  const ancestryMovement = Math.max(1, number(ancestry?.system?.movementBase, system.movement?.base ?? 6));
+  const ancestryNaturalProtection = Math.max(0, number(ancestry?.system?.naturalProtection));
+  const ancestryProfile = ancestry ? {
+    name: String(ancestry.name ?? "Ascendencia"),
+    scale: ancestryScale,
+    movementBase: ancestryMovement,
+    movementModes: String(ancestry.system?.movementModes ?? ""),
+    naturalProtection: ancestryNaturalProtection,
+    features: Array.isArray(ancestry.system?.racialFeatures) ? ancestry.system.racialFeatures.map(String) : [],
+    selectionNotes: String(ancestry.system?.selectionNotes ?? "")
+  } : null;
+
   const attributes = system.attributes ?? {};
   const vig = number(attributes.vig?.value, 1);
   const agi = number(attributes.agi?.value, 1);
@@ -366,6 +380,22 @@ export function deriveActorState({
     }));
   }
 
+  if (ancestryNaturalProtection > 0) {
+    const armorProtection = armor?.value ?? 0;
+    const ancestryContribution = Math.max(0, ancestryNaturalProtection - armorProtection);
+    if (ancestryContribution > 0) {
+      protectionContributions.push(contribution({
+        selector: "protection",
+        value: ancestryContribution,
+        label: (ancestry?.name ?? "Ascendencia") + ": Protección Natural",
+        sourceItemId: ancestry?.id ?? null,
+        sourceItemName: ancestry?.name ?? "",
+        sourceType: "ancestry",
+        equipmentType: "natural"
+      }));
+    }
+  }
+
   const alteredSkin = sustainedSpell(items, system, "piel-alterada");
   if (alteredSkin) {
     protectionContributions.push(contribution({
@@ -453,7 +483,7 @@ export function deriveActorState({
     contextual: protectionContextual
   });
 
-  const movementBase = Math.max(1, number(system.movement?.base, 6));
+  const movementBase = ancestry ? ancestryMovement : Math.max(1, number(system.movement?.base, 6));
   const movement = breakdown({
     base: movementBase,
     formula: "Movimiento base",
@@ -479,6 +509,7 @@ export function deriveActorState({
     protection: Math.max(0, protection.total),
     movement: movement.total,
     initiativeModifier: initiative.total,
+    ancestryProfile,
 
     // Compatibilidad temporal durante CREA-12.
     initiative: initiative.total,
@@ -517,10 +548,10 @@ export function resolveDerivedSelector(derived, selector, context = {}) {
   let resolved = base;
   for (const entry of applicable) {
     if (entry.stacking === "max-with-armor" && canonical === "protection") {
-      const armor = (derived?.breakdowns?.protection?.contributions ?? [])
-        .filter((source) => source?.equipmentType === "armor")
+      const existingProtection = (derived?.breakdowns?.protection?.contributions ?? [])
+        .filter((source) => ["armor", "natural"].includes(source?.equipmentType))
         .reduce((highest, source) => Math.max(highest, number(source.value)), 0);
-      resolved += Math.max(0, number(entry.value) - armor);
+      resolved += Math.max(0, number(entry.value) - existingProtection);
       continue;
     }
     resolved += number(entry.value);

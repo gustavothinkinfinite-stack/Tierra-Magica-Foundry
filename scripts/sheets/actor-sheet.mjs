@@ -3,7 +3,7 @@ import { toNumber } from "../rules.mjs";
 import { normalizeSlug } from "../rules/identity.mjs";
 import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } from "../rules/currency.mjs";
 import { movementAllowance, movementRemaining, spendActorMovement } from "../rules/turn-economy.mjs";
-import { nextAttributeUpgradeCost } from "../rules/creation.mjs";
+import { nextAttributeUpgradeCost, validateCreationState, validateInitialAttributes } from "../rules/creation.mjs";
 import {
   craftingProjectSourceFromReference,
   craftingReferenceGroups
@@ -123,6 +123,48 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       background: context.itemGroups.background?.[0] ?? null
     };
 
+    const splitIdentityList = (value = "") => String(value ?? "")
+      .split(/[;\n]+/).map((entry) => entry.trim()).filter(Boolean);
+    const originFacetList = splitIdentityList(context.identityItems.origin?.system?.facetOptions);
+    const selectedBackgroundFacets = splitIdentityList(this.actor.system.details?.backgroundFacets);
+    const workLanguagePrefix = "Lengua de trabajo:";
+    const normalizeBackgroundSelection = (value = "") =>
+      String(value).startsWith(workLanguagePrefix) ? "__work_language__" : String(value);
+    const workLanguageFacet = selectedBackgroundFacets.find((value) => String(value).startsWith(workLanguagePrefix)) ?? "";
+    const workLanguage = workLanguageFacet ? workLanguageFacet.slice(workLanguagePrefix.length).trim() : "";
+    const backgroundFacetList = splitIdentityList(context.identityItems.background?.system?.facetOptions);
+    const optionMap = (values, emptyLabel) => Object.fromEntries([
+      ["", emptyLabel],
+      ...values.map((value) => [value, value])
+    ]);
+    const creationValidation = validateCreationState(this.actor, { skillKeys: Object.keys(TM_CONFIG.skills) });
+    const creationRuleIssues = Array.isArray(this.actor.system.derived?.ruleIssues) ? this.actor.system.derived.ruleIssues : [];
+    const creationIssues = [...creationValidation.issues, ...creationRuleIssues];
+    const initialAttributes = validateInitialAttributes(this.actor.system.attributes ?? {}, {
+      allowProgression: creationStatus === "rebuilding"
+    });
+    const ancestryProfile = this.actor.system.derived?.ancestryProfile ?? null;
+    context.creationGuide = {
+      ready: creationIssues.length === 0,
+      issues: creationIssues,
+      attributeIncreases: initialAttributes.increases,
+      attributeTarget: 6,
+      ancestryProfile,
+      ancestryScaleLabel: ancestryProfile?.scale ? (TM_CONFIG.sizes[ancestryProfile.scale] ?? ancestryProfile.scale) : "Pendiente",
+      originFacet: String(this.actor.system.details?.originFacet ?? ""),
+      originFacetOptions: optionMap(originFacetList, "— Elegir Faceta de Origen —"),
+      backgroundFacet1: normalizeBackgroundSelection(selectedBackgroundFacets[0] ?? ""),
+      backgroundFacet2: normalizeBackgroundSelection(selectedBackgroundFacets[1] ?? ""),
+      backgroundFacetOptions: Object.fromEntries([
+        ["", "— Elegir Faceta de Trasfondo —"],
+        ...backgroundFacetList.map((value) => [value, value]),
+        ["__work_language__", "Lengua de trabajo (idioma adicional)"]
+      ]),
+      usesWorkLanguage: selectedBackgroundFacets.some((value) => String(value).startsWith(workLanguagePrefix)),
+      workLanguage,
+      languages: String(this.actor.system.traits?.languages ?? "")
+    };
+
     const movementMax = movementAllowance(this.actor);
     const movementLeft = movementRemaining(this.actor);
     context.turn = {
@@ -171,6 +213,13 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     html.find("[data-action='archive-legacy-crowns']").click(() => this.#archiveLegacyCrowns());
     html.find("[data-action='complete-creation']").click(() => this.actor.completeCreation());
     html.find("[data-action='begin-rebuild']").click(() => this.actor.beginRebuild());
+    html.find("[data-action='set-origin-facet']").change((event) => this.actor.update({
+      "system.details.originFacet": String(event.currentTarget.value ?? ""),
+      "system.creation.revision": toNumber(this.actor.system.creation?.revision) + 1
+    }));
+    html.find("[data-action='set-background-facet'], [data-action='set-background-work-language']").change(() =>
+      this.#syncCreationBackground(html)
+    );
 
     html.find("[data-action='set-creation-attribute']").change(async (event) => {
       const key = event.currentTarget.dataset.key;
@@ -601,12 +650,62 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
         await this.actor.createEmbeddedDocuments("Item", [backup], { tmValidated:true });
         return;
       }
-      replacement.sheet?.render(true);
+      await this.#afterIdentitySelection(type, replacement);
+      if (!singular) replacement.sheet?.render(true);
       return;
     }
 
     const item = this.actor.acquireItem ? await this.actor.acquireItem(source) : (await this.actor.createEmbeddedDocuments("Item", [source]))?.[0];
-    item?.sheet?.render(true);
+    if (!item) return;
+    await this.#afterIdentitySelection(type, item);
+    if (!singular) item.sheet?.render(true);
+  }
+
+  async #afterIdentitySelection(type, item) {
+    if (!["ancestry", "origin", "background"].includes(type) || !item) return;
+    const updates = {
+      "system.creation.revision": toNumber(this.actor.system.creation?.revision) + 1
+    };
+    if (type === "origin") {
+      updates["system.details.originFacet"] = "";
+      updates["system.traits.languages"] = this.#requiredCreationLanguages({ backgroundFacets: this.actor.system.details?.backgroundFacets });
+    }
+    if (type === "background") {
+      updates["system.details.backgroundFacets"] = "";
+      updates["system.traits.languages"] = this.#requiredCreationLanguages({ backgroundFacets: "" });
+    }
+    await this.actor.update(updates);
+    ui.notifications.info(item.name + " aplicado a la creación del personaje.");
+  }
+
+  #requiredCreationLanguages({ backgroundFacets = null } = {}) {
+    const origin = this.actor.items.find((item) => item.type === "origin");
+    const languages = String(origin?.system?.languageProfile ?? "Común de Concordia")
+      .split("+").map((entry) => entry.trim()).filter(Boolean);
+    const facets = String(backgroundFacets ?? this.actor.system.details?.backgroundFacets ?? "")
+      .split(/[;\n]+/).map((entry) => entry.trim()).filter(Boolean);
+    for (const facet of facets) {
+      if (!facet.startsWith("Lengua de trabajo:")) continue;
+      const language = facet.slice("Lengua de trabajo:".length).trim();
+      if (language) languages.push(language);
+    }
+    return [...new Set(languages)].join("; ");
+  }
+
+  async #syncCreationBackground(html) {
+    const selectors = html.find("[data-action='set-background-facet']");
+    const values = selectors.map((_, element) => String(element.value ?? "")).get();
+    const workLanguage = String(html.find("[data-action='set-background-work-language']").val() ?? "").trim();
+    const facets = values.map((value) => value === "__work_language__"
+      ? (workLanguage ? "Lengua de trabajo: " + workLanguage : "Lengua de trabajo:")
+      : value
+    ).filter(Boolean);
+    const backgroundFacets = facets.join("; ");
+    return this.actor.update({
+      "system.details.backgroundFacets": backgroundFacets,
+      "system.traits.languages": this.#requiredCreationLanguages({ backgroundFacets }),
+      "system.creation.revision": toNumber(this.actor.system.creation?.revision) + 1
+    });
   }
 
   async #resolveCatalogChoices(source) {
