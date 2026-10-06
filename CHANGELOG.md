@@ -1,3 +1,18 @@
+## 1.4.0 — Tipos de daño y resistencias — 2026-10-06
+
+- El modelo de datos sube a **schema v6** e incorpora Tipo de Daño y Modo de Daño en armas, hechizos y Fórmulas dañinas.
+- La taxonomía canónica inicial queda formada por **Cortante, Perforante, Contundente, Fuego, Frío/Hielo, Eléctrico, Cinético, Arcano, Divino, Tóxico, Corrosivo y Especial**.
+- **No letal** queda separado del tipo: puede reducir Vida e Incapacitar a 0 Vida, pero esa caída no eleva Trauma ni activa por sí sola Daño Grave.
+- Los Actores admiten **Resistencia, Inmunidad y Vulnerabilidad** por tipo. Protección/Penetración se resuelven primero; después se aplican los modificadores tipados.
+- Ascendencias, Rasgos, Efectos y equipo defensivo pueden conceder resistencias estructuradas y reversibles; fuentes equivalentes usan el valor mayor.
+- Se incorporan Rule Elements `DamageResistance`, `DamageImmunity` y `DamageVulnerability`.
+- Foundry permite registrar tipos personalizados de mundo mediante `id=Nombre`; aparecen automáticamente en las fichas, sin convertirlos en canon del Manual.
+- Se clasifican los perfiles nucleares de armas y los hechizos dañinos existentes: Ígneo→Fuego, Gélido→Frío, Fulminante→Eléctrico, Cinético→Cinético y energía arcana genérica→Arcano.
+- **Bomba Incendiaria** pasa a almacenar Daño 6 de Fuego, Pen 1 y modo Letal en datos estructurados.
+- **Resguardo Térmico I/II** queda explícitamente vinculado a Fuego y Frío/Hielo.
+- El Manual Maestro y la Referencia Rápida quedan sincronizados con el nuevo orden de mitigación y la separación entre Fuente mágica y Tipo de Daño.
+- La migración conserva campañas existentes y asigna tipos coherentes a armas/hechizos históricos sin convertir bonificaciones ambientales raciales en resistencias de daño arbitrarias.
+
 ## Publicación v1.3.2 — 2026-10-06
 
 - **v1.3.2 fue publicada** desde el commit `4d0c9e8c423e696f2b8f5835a262c50dee0b0bc4` mediante `Publicar sistema #37403783413`.
