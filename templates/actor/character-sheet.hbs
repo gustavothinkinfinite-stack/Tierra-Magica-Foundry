@@ -638,14 +638,14 @@
         {{/if}}
 
         <div class="tm-v10-wizard-navigation">
-          {{#if creationWizard.canBack}}<button type="button" data-action="creation-prev-step"><i class="fa-solid fa-arrow-left"></i> Anterior</button>{{else}}<span></span>{{/if}}
-          {{#if creationWizard.isStep1}}<button type="button" data-action="creation-next-step" {{#unless creationWizard.ancestryReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
-          {{#if creationWizard.isStep2}}<button type="button" data-action="creation-next-step" {{#unless creationWizard.originReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
-          {{#if creationWizard.isStep3}}<button type="button" data-action="creation-next-step" {{#unless creationWizard.backgroundReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
-          {{#if creationWizard.isStep4}}<button type="button" data-action="creation-next-step" {{#unless creationWizard.attributesReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
-          {{#if creationWizard.isStep5}}<button type="button" data-action="creation-next-step" {{#unless creationWizard.developmentReady}}disabled{{/unless}}>Confirmar PD y continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
-          {{#if creationWizard.isStep6}}<button type="button" data-action="creation-next-step" {{#unless creationWizard.traitsReady}}disabled{{/unless}}>Confirmar PR y continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
-          {{#if creationWizard.isStep7}}<button type="button" data-action="creation-next-step" {{#unless creationWizard.equipmentReady}}disabled{{/unless}}>Confirmar equipo y continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.canBack}}<button type="button" data-action="creation-prev-step" data-step="{{creationWizard.step}}"><i class="fa-solid fa-arrow-left"></i> Anterior</button>{{else}}<span></span>{{/if}}
+          {{#if creationWizard.isStep1}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.ancestryReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep2}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.originReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep3}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.backgroundReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep4}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.attributesReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep5}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.developmentReady}}disabled{{/unless}}>Confirmar PD y continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep6}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.traitsReady}}disabled{{/unless}}>Confirmar PR y continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep7}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.equipmentReady}}disabled{{/unless}}>Confirmar equipo y continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
           {{#if creationWizard.isStep8}}<button type="button" class="tm-v10-complete-character" data-action="complete-creation" {{#unless creationWizard.reviewReady}}disabled{{/unless}}><i class="fa-solid fa-circle-check"></i> Completar personaje</button>{{/if}}
         </div>
       {{else}}
