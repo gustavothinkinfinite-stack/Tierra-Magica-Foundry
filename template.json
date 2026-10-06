@@ -648,7 +648,11 @@
       "saturating": false,
       "family": "",
       "effect": "",
-      "preservation": ""
+      "preservation": "",
+      "damage": 0,
+      "damageType": "special",
+      "damageMode": "lethal",
+      "penetration": 0
     },
     "ritual": {
       "templates": [
