@@ -305,9 +305,51 @@ export function migrateActorSource(source) {
   return migrateActorSourceV2(actor);
 }
 
+export function ancestryProfileUpdates(source, catalog = [], { actorSize = "" } = {}) {
+  if (!source || source.type !== "ancestry" || !Array.isArray(catalog) || !catalog.length) return {};
+  const slug = normalizeSlug(source.system?.slug || source.name);
+  const canonical = catalog.find((entry) =>
+    entry?.type === "ancestry" &&
+    normalizeSlug(entry.system?.slug || entry.name) === slug
+  );
+  if (!canonical) return {};
+
+  const current = source.system ?? {};
+  const target = canonical.system ?? {};
+  const updates = {};
+  const copyField = (field, fallback) => {
+    const wanted = target[field] ?? fallback;
+    const have = current[field] ?? fallback;
+    if (JSON.stringify(have) !== JSON.stringify(wanted)) updates["system." + field] = clone(wanted);
+  };
+
+  copyField("scale", "");
+  copyField("movementBase", 6);
+  copyField("movementModes", "");
+  copyField("naturalProtection", 0);
+  copyField("racialFeatures", []);
+  copyField("selectionNotes", "");
+  copyField("requirementsText", "");
+  copyField("rules", []);
+
+  // Terios históricos anteriores al perfil estructurado no tenían ChoiceSet.
+  // Conserva la elección previa de la ficha cuando es una Escala racial válida.
+  const wantedChoices = clone(current.choices && typeof current.choices === "object" && !Array.isArray(current.choices)
+    ? current.choices
+    : {});
+  const canonicalScaleChoice = (target.rules ?? []).find((rule) => rule?.key === "ChoiceSet" && rule.choiceKey === "scale");
+  if (canonicalScaleChoice && !wantedChoices.scale && ["small","medium"].includes(String(actorSize))) {
+    wantedChoices.scale = String(actorSize);
+  }
+  if (JSON.stringify(current.choices ?? {}) !== JSON.stringify(wantedChoices)) {
+    updates["system.choices"] = wantedChoices;
+  }
+  return updates;
+}
+
 export async function migrateWorldData({ catalog = [] } = {}) {
-  if (!globalThis.game?.user?.isGM) return { actors: 0, items: 0, identities: 0 };
-  let actors = 0, items = 0, identities = 0;
+  if (!globalThis.game?.user?.isGM) return { actors: 0, items: 0, identities: 0, ancestryProfiles: 0 };
+  let actors = 0, items = 0, identities = 0, ancestryProfiles = 0;
 
   for (const actor of game.actors ?? []) {
     const source = actor.toObject();
@@ -330,15 +372,25 @@ export async function migrateWorldData({ catalog = [] } = {}) {
     }
 
     for (const item of actor.items ?? []) {
-      const itemSource = item.toObject();
-      if (number(itemSource.system?.schemaVersion) >= TM_SCHEMA_VERSION) continue;
-      const migrated = migrateItemSource(itemSource, { embedded: true });
-      await item.update({
-        system: migrated.system,
-        "system.skillRequirements": forcedDeletion(),
-        "system.skillModifiers": forcedDeletion()
+      let itemSource = item.toObject();
+      if (number(itemSource.system?.schemaVersion) < TM_SCHEMA_VERSION) {
+        const migrated = migrateItemSource(itemSource, { embedded: true });
+        await item.update({
+          system: migrated.system,
+          "system.skillRequirements": forcedDeletion(),
+          "system.skillModifiers": forcedDeletion()
+        }, { tmValidated: true });
+        items += 1;
+        itemSource = item.toObject();
+      }
+
+      const ancestryUpdates = ancestryProfileUpdates(itemSource, catalog, {
+        actorSize: actor.system?.traits?.size
       });
-      items += 1;
+      if (Object.keys(ancestryUpdates).length) {
+        await item.update(ancestryUpdates, { tmValidated: true });
+        ancestryProfiles += 1;
+      }
     }
 
     if (actor.type !== "character" || !catalog.length) continue;
@@ -357,16 +409,24 @@ export async function migrateWorldData({ catalog = [] } = {}) {
   }
 
   for (const item of game.items ?? []) {
-    const source = item.toObject();
-    if (number(source.system?.schemaVersion) >= TM_SCHEMA_VERSION) continue;
-    const migrated = migrateItemSource(source, { embedded: false });
-    await item.update({
-      system: migrated.system,
-      "system.skillRequirements": forcedDeletion(),
-      "system.skillModifiers": forcedDeletion()
-    });
-    items += 1;
+    let source = item.toObject();
+    if (number(source.system?.schemaVersion) < TM_SCHEMA_VERSION) {
+      const migrated = migrateItemSource(source, { embedded: false });
+      await item.update({
+        system: migrated.system,
+        "system.skillRequirements": forcedDeletion(),
+        "system.skillModifiers": forcedDeletion()
+      }, { tmValidated: true });
+      items += 1;
+      source = item.toObject();
+    }
+
+    const ancestryUpdates = ancestryProfileUpdates(source, catalog);
+    if (Object.keys(ancestryUpdates).length) {
+      await item.update(ancestryUpdates, { tmValidated: true });
+      ancestryProfiles += 1;
+    }
   }
 
-  return { actors, items, identities };
+  return { actors, items, identities, ancestryProfiles };
 }
