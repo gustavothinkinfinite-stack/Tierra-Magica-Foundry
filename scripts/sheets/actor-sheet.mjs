@@ -13,6 +13,13 @@ const ActorSheetV1 = foundry.appv1.sheets.ActorSheet;
 const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
 
 export class TierraMagicaActorSheet extends ActorSheetV1 {
+  constructor(...args) {
+    super(...args);
+    if (this.actor?.type === "character" && this.actor.system.creation?.status === "building" && this.options.tabs?.[0]) {
+      this.options.tabs[0].initial = "development";
+    }
+  }
+
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["tierra-magica", "sheet", "actor"],
