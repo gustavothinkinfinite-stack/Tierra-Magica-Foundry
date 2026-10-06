@@ -1,0 +1,316 @@
+{
+  "project": {
+    "name": "Tierra Mágica",
+    "system_name": "Foundry T.M.",
+    "document": "Guía de Estilo Visual",
+    "version": "1.0",
+    "purpose": "Mantener coherencia visual entre portada, manuales, ambientación, personajes, criaturas, objetos, localizaciones, mapas conceptuales e ilustraciones del sistema.",
+    "canonical_reference": "Portada Tierra Mágica generada el 2026-09-20",
+    "canonical_reference_asset": "Tierra_Magica_Portada_Referencia_v1.png",
+    "usage_rule": "Usar esta guía como fuente canónica de estilo y la portada de referencia como ancla visual en toda nueva generación de imágenes de Tierra Mágica, salvo indicación explícita en contrario."
+  },
+  "world_identity": {
+    "genre": [
+      "fantasía medieval",
+      "arcano-industrial",
+      "aventura heroica",
+      "exploración",
+      "magia integrada en la sociedad",
+      "tecnología de vapor e ingeniería arcana"
+    ],
+    "core_idea": "Un mundo amplio, habitable y antiguo en el que magia, ingeniería, religión, criaturas fantásticas y tecnología de vapor coexisten de forma orgánica. Debe sentirse como un lugar real por explorar, no como una colección de clichés visuales.",
+    "tone": [
+      "épico",
+      "aventurero",
+      "misterioso",
+      "luminoso pero peligroso",
+      "heroico sin ser superheroico",
+      "maravilla tecnológica y arcana"
+    ],
+    "world_feel": "La imagen debe sugerir que existe historia antes y después de la escena: rutas, ciudades, conflictos, comercio, ruinas, cultos, talleres, expediciones, magia cotidiana y peligros reales."
+  },
+  "canonical_visual_style": {
+    "primary_style": "ilustración cinematográfica de fantasía realista para manual de juego de rol premium",
+    "rendering": [
+      "pintura digital hiper detallada",
+      "realismo fantástico",
+      "acabado editorial de portada",
+      "materiales creíbles",
+      "arquitectura funcional",
+      "atmósfera profunda",
+      "escala monumental",
+      "detalle fino sin aspecto recargado artificial"
+    ],
+    "not": [
+      "cartoon",
+      "anime",
+      "chibi",
+      "pixel art",
+      "fantasía genérica de videojuego móvil",
+      "steampunk exagerado lleno de engranajes sin función",
+      "ciencia ficción futurista limpia",
+      "grimdark monocromático permanente",
+      "superhéroes",
+      "armaduras absurdamente sobredimensionadas"
+    ]
+  },
+  "visual_language": {
+    "architecture": {
+      "base": "medieval tardía y renacentista con ingeniería arcano-industrial integrada",
+      "features": [
+        "castillos y fortalezas verticales",
+        "ciudades escalonadas",
+        "puentes de piedra y metal",
+        "acueductos y canales",
+        "talleres y fábricas de vapor",
+        "torres arcanas",
+        "puertos y estaciones",
+        "ruinas antiguas incorporadas al paisaje"
+      ],
+      "rule": "La tecnología se integra en la arquitectura; no debe parecer pegada encima como decoración."
+    },
+    "technology": {
+      "level": "industrial temprano / victoriano fantástico, con excepciones arcanas",
+      "features": [
+        "vapor",
+        "latón",
+        "acero ennegrecido",
+        "tuberías funcionales",
+        "mecanismos visibles solo cuando tienen sentido",
+        "dirigibles",
+        "ferrocarril",
+        "armas de fuego tempranas y repetidoras",
+        "autómatas",
+        "acumuladores arcanos"
+      ],
+      "rule": "La ingeniería debe parecer fabricable dentro del mundo. Evitar tecnología moderna o futurista salvo artefactos excepcionales claramente mágicos."
+    },
+    "magic": {
+      "appearance": "energía luminosa concentrada, elegante y física, normalmente azul-cian, dorada, violeta o blanca según la fuente",
+      "features": [
+        "runas discretas",
+        "círculos arcanos geométricos",
+        "partículas suspendidas",
+        "luz volumétrica",
+        "campos de energía",
+        "cristales o acumuladores",
+        "manifestaciones elementales con iluminación realista"
+      ],
+      "rule": "La magia debe iluminar, afectar materiales y tener presencia espacial. Evitar efectos planos de videojuego o exceso de neón."
+    },
+    "nature": {
+      "features": [
+        "montañas enormes",
+        "valles profundos",
+        "bosques antiguos",
+        "ríos y cascadas",
+        "islas flotantes excepcionales",
+        "cielos amplios",
+        "fauna fantástica integrada"
+      ],
+      "rule": "La naturaleza debe competir visualmente con la civilización para reforzar la sensación de mundo vasto."
+    }
+  },
+  "characters": {
+    "design_principles": [
+      "personajes creíbles y usados por el mundo",
+      "ropa y equipo con desgaste moderado",
+      "siluetas claras",
+      "mezcla de materiales: cuero, tela, metal, madera, cristal arcano",
+      "diferencias culturales visibles sin caer en caricaturas",
+      "heroicos pero humanos y vulnerables"
+    ],
+    "party_archetypes": [
+      "aventurero o guerrero",
+      "canalizador o estudioso de magia",
+      "ingeniero, artesano o alquimista",
+      "explorador o tirador",
+      "personaje vinculado a familiar mágico"
+    ],
+    "posing": "natural, con intención narrativa; evitar poses de catálogo o todos mirando a cámara",
+    "scale": "los personajes suelen ser el ancla humana frente a un entorno mucho más grande"
+  },
+  "creatures": {
+    "rule": "Deben sentirse biológicas o mágicamente coherentes con su entorno, con anatomía funcional y peso visual.",
+    "allowed_direction": [
+      "dragones",
+      "gigantes",
+      "bestias mágicas",
+      "familiares",
+      "constructos arcanos",
+      "criaturas elementales",
+      "fauna alterada por magia"
+    ],
+    "avoid": [
+      "monstruos aleatorios sin ecología",
+      "diseños puramente grotescos salvo que la ficción lo requiera",
+      "criaturas con estética sci-fi moderna"
+    ]
+  },
+  "composition": {
+    "default": "cinematográfica, profunda y narrativa",
+    "layers": [
+      "primer plano con personaje, objeto o textura que enmarque",
+      "plano medio con acción o punto de interés",
+      "fondo monumental que revele el mundo"
+    ],
+    "camera": [
+      "gran angular moderado",
+      "perspectiva ligeramente baja para monumentalidad",
+      "vistas elevadas para exploración",
+      "retratos 3/4 para personajes"
+    ],
+    "rule": "Cada imagen debe contar algo del mundo además de mostrar un sujeto."
+  },
+  "lighting": {
+    "default": "cinematográfica y volumétrica",
+    "preferred": [
+      "hora dorada",
+      "amanecer",
+      "atardecer",
+      "luz fría de luna",
+      "interiores cálidos con iluminación arcana",
+      "contraste cálido-frío"
+    ],
+    "signature": "luz natural cálida combinada con acentos arcanos azul-cian",
+    "avoid": [
+      "iluminación plana",
+      "HDR artificial",
+      "neón dominante",
+      "oscuridad que destruya la lectura de formas"
+    ]
+  },
+  "color_palette": {
+    "base": [
+      "azul petróleo",
+      "azul noche",
+      "gris pizarra",
+      "marrón cuero",
+      "verde bosque profundo",
+      "piedra cálida",
+      "acero oscuro"
+    ],
+    "accents": [
+      "oro envejecido",
+      "latón",
+      "cobre",
+      "azul arcano",
+      "cian luminoso",
+      "ámbar de fuego",
+      "violeta mágico ocasional"
+    ],
+    "contrast_rule": "usar una base natural y material con uno o dos acentos mágicos fuertes, no una paleta completamente saturada"
+  },
+  "materials": {
+    "priority": [
+      "piedra",
+      "madera",
+      "cuero",
+      "hierro",
+      "acero",
+      "latón",
+      "cobre",
+      "vidrio",
+      "cristal arcano",
+      "tela gruesa"
+    ],
+    "treatment": "texturas realistas, desgaste funcional, pátina y marcas de uso; evitar superficies plásticas"
+  },
+  "editorial_direction": {
+    "manual_cover": {
+      "orientation": "vertical",
+      "priority": "el mundo primero, personajes como escala y puerta de entrada",
+      "title_area": "espacio amplio y legible en tercio superior",
+      "ornament": "marcos, líneas y emblemas finos en oro envejecido",
+      "recommended_text": [
+        "TIERRA MÁGICA",
+        "JUEGO DE ROL",
+        "MANUAL BÁSICO"
+      ]
+    },
+    "chapter_openers": "una gran ilustración narrativa o ambiental con espacio negativo para titular",
+    "interior_illustrations": "escenas más específicas, con menos monumentalidad que la portada pero mismo tratamiento de materiales, iluminación y color",
+    "rules_diagrams": "claros y funcionales; pueden simplificarse gráficamente sin abandonar iconografía y paleta del mundo"
+  },
+  "signature_motifs": [
+    "compases o astrolabios arcanos",
+    "círculos rúnicos discretos",
+    "emblemas de metal envejecido",
+    "dirigibles y transporte arcano-industrial",
+    "ciudades verticales",
+    "puentes monumentales",
+    "cascadas y desniveles naturales",
+    "lunas o cuerpos celestes",
+    "cristales y fuentes de energía arcana",
+    "contraste entre ruina antigua y tecnología nueva"
+  ],
+  "continuity_rules": [
+    "No convertir Tierra Mágica en steampunk puro: la fantasía medieval y la magia siguen siendo igual de importantes.",
+    "No convertir Tierra Mágica en alta fantasía sin tecnología: la ingeniería, el vapor y las armas de fuego forman parte visible del mundo.",
+    "La magia es universal como potencial, pero su uso competente debe sentirse especializado y entrenado.",
+    "La tecnología y la magia deben parecer parte de economías, gremios, ciudades, religión y vida cotidiana.",
+    "Los personajes no son invulnerables: incluso en imágenes heroicas deben conservar una sensación de peligro real.",
+    "Evitar anacronismos modernos salvo que sean reinterpretados coherentemente mediante magia o ingeniería arcana.",
+    "Las imágenes deben sugerir exploración, decisiones, historia y posibilidades, no solo combate."
+  ],
+  "negative_prompt_master": [
+    "cartoon",
+    "anime",
+    "chibi",
+    "pixel art",
+    "cell shading",
+    "mobile game art",
+    "plastic materials",
+    "modern city",
+    "cyberpunk",
+    "modern firearms",
+    "spaceships",
+    "clean futuristic technology",
+    "excessive neon",
+    "random decorative gears",
+    "oversized fantasy armor",
+    "superhero pose",
+    "flat lighting",
+    "empty generic fantasy background",
+    "text artifacts",
+    "watermark",
+    "logo of existing franchise"
+  ],
+  "prompt_template": {
+    "base": "[SUJETO/ESCENA] en el mundo de Tierra Mágica, fantasía medieval arcano-industrial, realismo fantástico cinematográfico, pintura digital premium para manual de RPG, arquitectura y tecnología funcionales, magia integrada físicamente en la escena, materiales creíbles y texturizados, paleta de azul petróleo, piedra cálida, cuero, acero oscuro, latón y cobre, acentos de energía arcana azul-cian y luz ámbar, iluminación volumétrica, profundidad atmosférica, composición narrativa con primer plano/plano medio/fondo monumental, sensación de mundo vivo, antiguo y explorable, detalle fino, escala épica pero personajes vulnerables y humanos.",
+    "append_negative": "Evitar cartoon, anime, estética de videojuego móvil, steampunk de engranajes decorativos, cyberpunk, tecnología futurista limpia, neón excesivo, materiales plásticos, poses de superhéroe y fondos de fantasía genérica."
+  },
+  "asset_specific_templates": {
+    "character": "Retrato o cuerpo completo de [PERSONAJE], equipo funcional y usado, vestuario coherente con cultura y profesión, mezcla equilibrada de fantasía medieval e ingeniería arcana, pose natural con intención narrativa, fondo ambiental reconocible de Tierra Mágica, realismo fantástico cinematográfico.",
+    "location": "Vista amplia de [LOCALIZACIÓN], geografía creíble, arquitectura medieval arcano-industrial integrada, rutas, actividad y señales de vida, magia y tecnología formando parte de la infraestructura, escala monumental, profundidad atmosférica y luz cinematográfica.",
+    "creature": "[CRIATURA] diseñada con anatomía funcional, peso y ecología coherentes, rasgos mágicos integrados en su biología o vínculo arcano, entorno que explique cómo vive, realismo fantástico cinematográfico, evitar monstruo genérico.",
+    "item": "Ilustración editorial de [OBJETO], diseño fabricable y funcional, materiales creíbles, detalles de manufactura, runas o mecanismos solo cuando tengan función, fondo discreto del mundo, acabado de manual de RPG premium.",
+    "action_scene": "Escena de [ACCIÓN] con lectura táctica clara, peligro real, escala física creíble, magia y armas afectando luz, humo, polvo, materiales y entorno, composición cinematográfica narrativa y no pose estática.",
+    "chapter_art": "Ilustración de apertura para capítulo sobre [TEMA], una escena narrativa que explique el concepto visualmente, composición vertical o panorámica según maquetación, espacio negativo para titular, mismo lenguaje visual canónico de Tierra Mágica."
+  },
+  "generation_defaults": {
+    "quality": "alta",
+    "detail": "alto",
+    "style_consistency": "prioridad máxima",
+    "default_aspect_ratio": {
+      "manual_cover": "2:3 vertical",
+      "chapter_opener": "16:9 o 3:2 horizontal",
+      "character": "4:5 vertical",
+      "creature": "4:5 o 3:2",
+      "item": "1:1 o 4:5",
+      "landscape": "16:9"
+    }
+  },
+  "reference_keywords": [
+    "Tierra Mágica",
+    "fantasía medieval arcano-industrial",
+    "realismo fantástico cinematográfico",
+    "manual de RPG premium",
+    "magia integrada",
+    "ingeniería funcional",
+    "mundo explorable",
+    "luz cálida y azul arcano",
+    "materiales creíbles",
+    "escala monumental"
+  ]
+}

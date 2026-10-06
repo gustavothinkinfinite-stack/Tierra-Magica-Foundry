@@ -1,0 +1,310 @@
+{
+  "project": {
+    "name": "Tierra Mágica",
+    "system_name": "Foundry T.M.",
+    "document": "Sistema Cartográfico",
+    "version": "1.0",
+    "status": "canon operativo; geografía concreta pendiente de inventario",
+    "purpose": "Definir reglas, procesos y controles para construir un mapa mundial por mosaicos que mantenga continuidad geográfica y visual entre imágenes.",
+    "depends_on": [
+      "Foundry_TM_Guia_Estilo_Visual_v1.json",
+      "pautas-como-reglas-de-trabajo-para-Foundry-T.M.txt"
+    ],
+    "authority_rule": "Este documento gobierna la cartografía y la continuidad espacial. No reemplaza la Guía de Estilo Visual; la complementa."
+  },
+  "status_model": {
+    "canonical": "Aprobado y vinculante para generaciones posteriores.",
+    "provisional": "Decisión operativa útil todavía revisable sin considerarse canon definitivo.",
+    "proposal": "Alternativa aún no aprobada.",
+    "unknown": "Dato no definido; no debe inventarse silenciosamente."
+  },
+  "core_principles": [
+    {
+      "id": "MAP-001",
+      "status": "canonical",
+      "rule": "El mapa mundial se diseña primero como una única geografía maestra. Los mapas regionales derivan de ella; no se diseñan como mundos independientes."
+    },
+    {
+      "id": "MAP-002",
+      "status": "canonical",
+      "rule": "La continuidad geográfica tiene prioridad sobre la espectacularidad aislada de una pieza."
+    },
+    {
+      "id": "MAP-003",
+      "status": "canonical",
+      "rule": "Geografía canónica, ilustración y cartografía editorial se mantienen como capas separadas."
+    },
+    {
+      "id": "MAP-004",
+      "status": "canonical",
+      "rule": "Las imágenes base se generan sin nombres, leyendas ni texto incrustado. La rotulación se añade después como capa cartográfica."
+    },
+    {
+      "id": "MAP-005",
+      "status": "canonical",
+      "rule": "Una pieza regional debe solaparse entre 10% y 15% con las piezas adyacentes cuando sea posible."
+    },
+    {
+      "id": "MAP-006",
+      "status": "canonical",
+      "rule": "Los bordes de mosaico no deben coincidir deliberadamente con fronteras políticas salvo necesidad excepcional; la geografía debe continuar a través de las piezas."
+    },
+    {
+      "id": "MAP-007",
+      "status": "canonical",
+      "rule": "Ninguna generación regional puede modificar accidentalmente masas continentales, costas, cordilleras, cuencas, ríos mayores, lagos mayores, islas, fronteras o ciudades ya declaradas canónicas."
+    }
+  ],
+  "map_layers": [
+    {
+      "level": 1,
+      "name": "Mapa Maestro Mundial",
+      "purpose": "Fijar masas continentales, océanos, macrorelieve, territorios y relaciones espaciales."
+    },
+    {
+      "level": 2,
+      "name": "Mosaicos Regionales",
+      "purpose": "Representar uno o más territorios con alto detalle manteniendo continuidad exacta con el Mapa Maestro y los mosaicos vecinos."
+    },
+    {
+      "level": 3,
+      "name": "Mapas Locales",
+      "purpose": "Desarrollar provincias, ciudades, valles, islas, rutas o zonas especiales sin alterar la geografía de niveles superiores."
+    }
+  ],
+  "canonical_generation_pipeline": [
+    {
+      "phase": 1,
+      "name": "Inventario de canon",
+      "output": "Lista de territorios, relaciones espaciales y accidentes geográficos ya establecidos.",
+      "gate": "No inventar datos marcados como unknown."
+    },
+    {
+      "phase": 2,
+      "name": "Esqueleto mundial",
+      "output": "Mapa conceptual de masas de tierra, mares, orientación y posición relativa de territorios."
+    },
+    {
+      "phase": 3,
+      "name": "Geografía física",
+      "output": "Relieve, cordilleras, cuencas, ríos, lagos, costas, biomas y transiciones."
+    },
+    {
+      "phase": 4,
+      "name": "Geografía humana",
+      "output": "Ciudades, puertos, caminos, ferrocarriles, rutas comerciales, fronteras, fortalezas y focos industriales/arcanos."
+    },
+    {
+      "phase": 5,
+      "name": "Mapa Maestro v1",
+      "output": "Referencia visual y espacial canónica para toda generación regional."
+    },
+    {
+      "phase": 6,
+      "name": "Cuadrícula de producción",
+      "output": "Matriz de mosaicos con identificadores, cobertura y vecinos."
+    },
+    {
+      "phase": 7,
+      "name": "Generación regional",
+      "output": "Mosaicos de alta resolución generados desde el maestro y referencias vecinas."
+    },
+    {
+      "phase": 8,
+      "name": "Ensamblado",
+      "output": "Mapa mundial compuesto a partir de todos los mosaicos."
+    },
+    {
+      "phase": 9,
+      "name": "Auditoría de continuidad",
+      "output": "Informe de costuras, deformaciones, inconsistencias y correcciones requeridas."
+    },
+    {
+      "phase": 10,
+      "name": "Capa cartográfica",
+      "output": "Nombres, iconos, fronteras, rutas, escala, rosa de los vientos y leyenda."
+    }
+  ],
+  "physical_geography_rules": [
+    {
+      "id": "GEO-001",
+      "status": "canonical",
+      "rule": "El relieve precede a la hidrografía: cordilleras y alturas definen cuencas antes de ubicar ríos."
+    },
+    {
+      "id": "GEO-002",
+      "status": "canonical",
+      "rule": "Los ríos principales siguen gradientes razonables hacia lagos, mares u otros ríos. Las bifurcaciones permanentes son excepcionales salvo deltas, humedales o causas mágicas explícitas."
+    },
+    {
+      "id": "GEO-003",
+      "status": "canonical",
+      "rule": "Los biomas deben presentar transiciones plausibles según relieve, humedad, latitud/clima definido y efectos mágicos documentados."
+    },
+    {
+      "id": "GEO-004",
+      "status": "canonical",
+      "rule": "Las costas, cadenas montañosas, bosques mayores y desiertos que atraviesan un borde de mosaico deben mantener forma, dirección, escala y densidad al continuar en la pieza vecina."
+    },
+    {
+      "id": "GEO-005",
+      "status": "canonical",
+      "rule": "Las excepciones sobrenaturales a la geografía normal deben ser intencionales y registradas como canon, no errores accidentales de generación."
+    }
+  ],
+  "human_geography_rules": [
+    {
+      "id": "HUM-001",
+      "status": "canonical",
+      "rule": "Asentamientos y rutas deben responder a agua, recursos, defensa, comercio, religión, magia, tecnología y relieve."
+    },
+    {
+      "id": "HUM-002",
+      "status": "canonical",
+      "rule": "Puertos requieren acceso navegable; pasos de montaña, puentes, canales, ferrocarriles y fortalezas deben tener función geográfica reconocible."
+    },
+    {
+      "id": "HUM-003",
+      "status": "canonical",
+      "rule": "La ingeniería arcano-industrial se integra en la infraestructura y economía; no se añade como decoración sin función."
+    },
+    {
+      "id": "HUM-004",
+      "status": "canonical",
+      "rule": "Las fronteras políticas pueden apoyarse en relieve, ríos, historia o acuerdos, pero no deben deformar la geografía física para facilitar la composición."
+    }
+  ],
+  "mosaic_system": {
+    "grid": {
+      "status": "unknown",
+      "rule": "La cantidad de filas y columnas se define después de conocer número, tamaño y forma de territorios. No fijar 3x3, 4x3 u otra matriz antes del inventario."
+    },
+    "tile_id_format": "FilaLetra-ColumnaNumero, por ejemplo A1, A2, B1.",
+    "recommended_tile_shape": {
+      "status": "provisional",
+      "value": "1:1 cuadrado",
+      "reason": "Facilita la composición modular y la continuidad en cuadrículas regulares."
+    },
+    "overlap": {
+      "status": "canonical",
+      "minimum": "10%",
+      "target": "12.5%",
+      "maximum": "15%"
+    },
+    "orientation": {
+      "status": "canonical",
+      "north": "arriba",
+      "rotation_between_tiles": "prohibida"
+    },
+    "camera": {
+      "status": "canonical",
+      "rule": "Vista cartográfica cenital o casi cenital consistente. Evitar perspectiva cinematográfica oblicua que impida ensamblar piezas."
+    },
+    "relief_rendering": {
+      "status": "provisional",
+      "rule": "Relieve ilustrado realista con sombreado consistente en todas las piezas; la dirección exacta de iluminación se fija con el Mapa Maestro."
+    }
+  },
+  "continuity_ledger": {
+    "purpose": "Registrar todo elemento que cruza una costura entre mosaicos.",
+    "required_fields": [
+      "feature_id",
+      "feature_type",
+      "canonical_name_or_working_name",
+      "source_tile",
+      "destination_tile",
+      "exit_edge",
+      "entry_edge",
+      "normalized_edge_position",
+      "direction",
+      "width_or_scale",
+      "visual_notes",
+      "status"
+    ],
+    "feature_types": [
+      "coast",
+      "river",
+      "mountain_chain",
+      "road",
+      "railway",
+      "forest",
+      "desert",
+      "political_border",
+      "wall",
+      "canal",
+      "other"
+    ]
+  },
+  "visual_rules": {
+    "inheritance": "Aplicar Foundry_TM_Guia_Estilo_Visual_v1 como fuente canónica de identidad.",
+    "map_specific_adaptation": [
+      "Conservar fantasía medieval arcano-industrial y realismo fantástico premium.",
+      "Priorizar legibilidad geográfica sobre composición cinematográfica.",
+      "Mantener naturaleza monumental y mundo habitable.",
+      "Representar tecnología y magia como infraestructura coherente cuando la escala permita verla.",
+      "Evitar texto generado dentro de la ilustración base.",
+      "Evitar exceso de neón, steampunk decorativo, estética de videojuego móvil y tecnología futurista limpia."
+    ]
+  },
+  "tile_generation_protocol": [
+    "Tomar el recorte correspondiente del Mapa Maestro como referencia obligatoria.",
+    "Tomar también los mosaicos vecinos ya aprobados cuando existan.",
+    "Incluir zonas de solapamiento.",
+    "Bloquear orientación y escala relativa.",
+    "Enumerar antes de generar los elementos canónicos que deben aparecer.",
+    "Enumerar los elementos que cruzan cada borde.",
+    "Generar la pieza sin rotulación.",
+    "Comparar costuras con las piezas vecinas.",
+    "Rechazar o corregir cualquier pieza que altere un elemento canónico.",
+    "Registrar la versión aprobada y actualizar el Continuity Ledger."
+  ],
+  "audit_checklist": [
+    "Costas coinciden en cada costura.",
+    "Cordilleras mantienen dirección, altura relativa y anchura.",
+    "Ríos entran y salen en la misma posición y con caudal visual compatible.",
+    "Bosques, desiertos y otros biomas continúan sin cortes artificiales.",
+    "Caminos y ferrocarriles conectan exactamente.",
+    "Fronteras políticas coinciden.",
+    "La escala aparente es constante.",
+    "La orientación es constante.",
+    "El lenguaje visual coincide con la guía canónica.",
+    "No aparecen nombres o textos accidentales.",
+    "No aparecen accidentes geográficos nuevos que contradigan el maestro.",
+    "No desaparecen elementos canónicos."
+  ],
+  "canon_registry": {
+    "world_shape": {
+      "status": "unknown",
+      "value": null
+    },
+    "continents": [],
+    "territories": [],
+    "oceans_and_seas": [],
+    "mountain_systems": [],
+    "major_rivers": [],
+    "major_lakes": [],
+    "major_forests": [],
+    "deserts_and_wastelands": [],
+    "islands_and_archipelagos": [],
+    "major_cities": [],
+    "major_routes": [],
+    "magical_geographic_anomalies": []
+  },
+  "next_required_input": {
+    "priority": 1,
+    "request": "Inventario de territorios ya existentes.",
+    "minimum_fields": [
+      "nombre",
+      "qué es o descripción breve",
+      "relaciones espaciales conocidas",
+      "si tiene costa o es interior",
+      "elementos geográficos ya canónicos asociados"
+    ],
+    "note": "No es necesario conocer todavía distancias exactas ni dibujar formas definitivas."
+  },
+  "change_control": {
+    "rule": "Toda corrección posterior debe indicar si modifica canon, una decisión provisional o solo la representación gráfica.",
+    "breaking_change": "Mover, eliminar o redefinir un elemento geográfico canónico obliga a revisar el Mapa Maestro, mosaicos afectados y Continuity Ledger.",
+    "versioning": "Incrementar versión mayor cuando cambie la estructura mundial; versión menor para ampliaciones que no contradigan el canon existente."
+  }
+}

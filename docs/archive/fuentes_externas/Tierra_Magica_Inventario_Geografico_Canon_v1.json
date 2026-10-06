@@ -1,0 +1,495 @@
+{
+  "project": {
+    "name": "Tierra Mágica",
+    "document": "Inventario Geográfico Canónico",
+    "version": "1.0",
+    "status": "extraído del Manual Maestro activo en GitHub",
+    "source_repository": "gustavothinkinfinite-stack/Tierra-Magica-Foundry",
+    "source_branch": "main",
+    "source_file": "docs/Tierra_Magica_Manual_Maestro.md",
+    "source_scope": "PARTE II — CANON DEL MUNDO v1.2 INTEGRADO",
+    "exclusion_rule": "No se incorpora como canon cartográfico el material de PARTE III — ARCHIVO NARRATIVO RECUPERADO salvo ratificación explícita posterior."
+  },
+  "world_scope": {
+    "planet_shape": {
+      "status": "open",
+      "value": null,
+      "note": "La forma completa del planeta permanece deliberadamente sin fijar."
+    },
+    "known_continents": [
+      {
+        "name": "Edria",
+        "status": "canonical",
+        "role": "continente principal de juego",
+        "description": "Masa continental rodeada por archipiélagos y rutas oceánicas todavía incompletamente cartografiadas.",
+        "mapping_notes": [
+          "Concentra seis grandes potencias y varias ciudades libres.",
+          "Posee corredores comerciales construidos sobre calzadas antiguas.",
+          "Sus costas y centros poblados están razonablemente bien cartografiados.",
+          "Montañas, bosques profundos, ruinas subterráneas y zonas de alta saturación siguen siendo imprecisos."
+        ]
+      }
+    ],
+    "other_continents": {
+      "status": "open",
+      "note": "El canon no fija todavía todos los continentes."
+    }
+  },
+  "major_powers": [
+    {
+      "name": "Reino de Valdoria",
+      "short_name": "Valdoria",
+      "status": "canonical",
+      "government": "monarquía feudal reformada",
+      "relative_location": "centro occidental de Edria",
+      "terrain": [
+        "tierras fértiles"
+      ],
+      "capital": "Auraval",
+      "geographic_assets": [
+        "red de caminos más extensa de Edria",
+        "rutas interiores"
+      ],
+      "known_dependencies_or_frontiers": [
+        "Risco de Ceniza está oficialmente bajo Valdoria"
+      ],
+      "map_confidence": "high"
+    },
+    {
+      "name": "Liga de Bronce",
+      "short_name": "Liga de Bronce",
+      "status": "canonical",
+      "government": "federación de ciudades industriales",
+      "relative_location": "litoral sur de Edria",
+      "terrain": [
+        "costa",
+        "puertos industriales"
+      ],
+      "capital": null,
+      "major_city": "Cobravia",
+      "geographic_assets": [
+        "puertos",
+        "astilleros",
+        "infraestructura industrial"
+      ],
+      "dependencies": [
+        "importa alimento, carbón y cristal"
+      ],
+      "map_confidence": "high"
+    },
+    {
+      "name": "Principado de Lysendra",
+      "short_name": "Lysendra",
+      "status": "canonical",
+      "government": "principado apoyado por academias arcanas",
+      "relative_location": "no fijada con precisión; estado de valles altos",
+      "terrain": [
+        "valles altos",
+        "lagos profundos"
+      ],
+      "capital_or_major_city": "Lys",
+      "map_confidence": "medium",
+      "open_question": "El canon no indica explícitamente si Lysendra está al oeste o al este del Espinazo."
+    },
+    {
+      "name": "Confederación de Erelia",
+      "short_name": "Erelia",
+      "status": "canonical",
+      "government": "confederación descentralizada",
+      "relative_location": "nordeste de Edria",
+      "terrain": [
+        "valles boscosos",
+        "ríos",
+        "ciudades antiguas"
+      ],
+      "capital": null,
+      "major_city": "Verdelinde",
+      "geographic_assets": [
+        "navegación fluvial",
+        "bosques",
+        "pasos"
+      ],
+      "map_confidence": "high"
+    },
+    {
+      "name": "Dominio de Solenar",
+      "short_name": "Solenar",
+      "status": "canonical",
+      "government": "monarquía sacra limitada",
+      "relative_location": "mesetas orientales de Edria",
+      "terrain": [
+        "mesetas",
+        "corredores hacia el desierto interior"
+      ],
+      "capital_or_major_city": "Heliara",
+      "geographic_assets": [
+        "rutas hacia santuarios y ruinas del este"
+      ],
+      "map_confidence": "high"
+    },
+    {
+      "name": "Holdas de Kharum",
+      "short_name": "Kharum",
+      "status": "canonical",
+      "government": "confederación de ciudades-fortaleza",
+      "relative_location": "Espinazo del Mundo",
+      "terrain": [
+        "cordillera",
+        "gargantas",
+        "minas",
+        "túneles",
+        "glaciares",
+        "pasos fortificados"
+      ],
+      "capital": null,
+      "major_city": "Kar-Dur",
+      "geographic_assets": [
+        "ferrocarriles de montaña",
+        "minas",
+        "red subterránea"
+      ],
+      "map_confidence": "high"
+    }
+  ],
+  "canonical_cities": [
+    {
+      "name": "Auraval",
+      "state": "Valdoria",
+      "status": "canonical",
+      "placement_constraints": [
+        "capital de Valdoria",
+        "construida en terrazas sobre dos ríos"
+      ],
+      "role": [
+        "sede de la Corona",
+        "Mesa de Concordia",
+        "archivos internacionales"
+      ]
+    },
+    {
+      "name": "Cobravia",
+      "state": "Liga de Bronce",
+      "status": "canonical",
+      "placement_constraints": [
+        "gran puerto del litoral sur"
+      ],
+      "role": [
+        "mayor puerto industrial del sur",
+        "astilleros",
+        "fábricas"
+      ]
+    },
+    {
+      "name": "Lys",
+      "state": "Lysendra",
+      "status": "canonical",
+      "placement_constraints": [
+        "alrededor de un lago profundo"
+      ],
+      "role": [
+        "ciudad universitaria",
+        "observatorio de los Fundadores"
+      ]
+    },
+    {
+      "name": "Verdelinde",
+      "state": "Erelia",
+      "status": "canonical",
+      "placement_constraints": [
+        "centro fluvial",
+        "entre árboles monumentales",
+        "canales y muelles escalonados"
+      ],
+      "role": [
+        "mercado de alquimia",
+        "expediciones al bosque antiguo"
+      ]
+    },
+    {
+      "name": "Heliara",
+      "state": "Solenar",
+      "status": "canonical",
+      "placement_constraints": [
+        "punto de salida hacia el este"
+      ],
+      "role": [
+        "sede del Sínodo de las Luminarias",
+        "caravasares",
+        "hospitales"
+      ]
+    },
+    {
+      "name": "Kar-Dur",
+      "state": "Kharum",
+      "status": "canonical",
+      "placement_constraints": [
+        "garganta del Espinazo",
+        "barrios dentro de la montaña"
+      ],
+      "role": [
+        "ciudad-fortaleza",
+        "fundiciones",
+        "ferrocarril subterráneo"
+      ]
+    },
+    {
+      "name": "Nacariel",
+      "state": "Ciudad Libre",
+      "status": "canonical",
+      "placement_constraints": [
+        "isla",
+        "bahía profunda"
+      ],
+      "role": [
+        "puerto neutral",
+        "cartografía",
+        "comercio oceánico"
+      ]
+    },
+    {
+      "name": "Vigilia Alta",
+      "state": "Ciudad Libre",
+      "status": "canonical",
+      "placement_constraints": [
+        "asentamiento elevado",
+        "Cinturón Flotante de Vigilia al norte"
+      ],
+      "role": [
+        "centro de rutas de dirigibles",
+        "observación de islas flotantes"
+      ]
+    },
+    {
+      "name": "Risco de Ceniza",
+      "state": "Frontera / oficialmente Valdoria",
+      "status": "canonical",
+      "placement_constraints": [
+        "zona fronteriza",
+        "región afectada por erupción arcana"
+      ],
+      "role": [
+        "ciudad minera"
+      ]
+    },
+    {
+      "name": "Puerto Umbral",
+      "state": "Frontera oriental",
+      "status": "canonical",
+      "placement_constraints": [
+        "extremo oriental seguro",
+        "puerto",
+        "antes de rutas hacia archipiélagos y ruinas emergentes"
+      ],
+      "role": [
+        "puerto de expediciones",
+        "frontera oriental"
+      ]
+    }
+  ],
+  "major_physical_features": [
+    {
+      "name": "Espinazo del Mundo",
+      "type": "cordillera",
+      "status": "canonical",
+      "relative_location": "zona central de Edria",
+      "orientation": "norte-sur",
+      "constraints": [
+        "divide Edria de norte a sur",
+        "contiene Kharum",
+        "incluye minas, glaciares, pasos fortificados y túneles"
+      ]
+    },
+    {
+      "name": "Bosque de las Mil Voces",
+      "type": "bosque",
+      "status": "canonical",
+      "relative_location": "nordeste de Erelia",
+      "constraints": [
+        "gran bosque",
+        "ruinas bajo raíces",
+        "cartografía inestable por fenómenos mágicos"
+      ]
+    },
+    {
+      "name": "Mar de Nacre",
+      "type": "mar / archipiélago",
+      "status": "canonical",
+      "relative_location": "oeste de Edria",
+      "constraints": [
+        "archipiélago occidental",
+        "nieblas y corrientes arcanas",
+        "islas emergentes y ruinas antiguas"
+      ]
+    },
+    {
+      "name": "Desierto de Vidrio",
+      "type": "desierto",
+      "status": "canonical",
+      "relative_location": "al este de Solenar",
+      "constraints": [
+        "antigua región de dunas parcialmente vitrificada",
+        "corredores seguros marcados por santuarios"
+      ]
+    },
+    {
+      "name": "Cinturón Flotante de Vigilia",
+      "type": "islas flotantes",
+      "status": "canonical",
+      "relative_location": "al norte de Vigilia Alta",
+      "constraints": [
+        "islas suspendidas a distintas alturas",
+        "algunas estables y habitadas",
+        "otras cambian lentamente de posición"
+      ]
+    },
+    {
+      "name": "Ciudades Hundidas",
+      "type": "ruinas sumergidas",
+      "status": "canonical",
+      "relative_location": "varios lagos y estuarios de Edria; posiciones concretas abiertas",
+      "constraints": [
+        "anteriores a la Fractura",
+        "no pertenecen necesariamente a una sola cultura"
+      ]
+    }
+  ],
+  "major_routes_and_structures": [
+    {
+      "name": "Línea del Espinazo",
+      "type": "ferrocarril",
+      "status": "canonical",
+      "date": "447 C.",
+      "description": "primer corredor ferroviario transcontinental de Edria",
+      "exact_route": "open"
+    },
+    {
+      "name": "red de caminos de Valdoria",
+      "type": "roads",
+      "status": "canonical",
+      "description": "la más extensa de Edria",
+      "exact_geometry": "open"
+    },
+    {
+      "name": "corredores ferroviarios interpotencias",
+      "type": "rail",
+      "status": "canonical",
+      "description": "conectan las principales potencias, sin cubrir todo el continente",
+      "exact_geometry": "open"
+    }
+  ],
+  "canonical_spatial_relationships": [
+    [
+      "Valdoria",
+      "centro-occidental de",
+      "Edria"
+    ],
+    [
+      "Liga de Bronce",
+      "litoral sur de",
+      "Edria"
+    ],
+    [
+      "Erelia",
+      "nordeste de",
+      "Edria"
+    ],
+    [
+      "Solenar",
+      "oriente de",
+      "Edria"
+    ],
+    [
+      "Kharum",
+      "dentro de",
+      "Espinazo del Mundo"
+    ],
+    [
+      "Espinazo del Mundo",
+      "cruza de norte a sur la zona central de",
+      "Edria"
+    ],
+    [
+      "Bosque de las Mil Voces",
+      "nordeste de",
+      "Erelia"
+    ],
+    [
+      "Desierto de Vidrio",
+      "este de",
+      "Solenar"
+    ],
+    [
+      "Mar de Nacre",
+      "oeste de",
+      "Edria"
+    ],
+    [
+      "Cinturón Flotante de Vigilia",
+      "norte de",
+      "Vigilia Alta"
+    ],
+    [
+      "Cobravia",
+      "puerto del litoral sur en",
+      "Liga de Bronce"
+    ],
+    [
+      "Lys",
+      "junto a un lago profundo en",
+      "Lysendra"
+    ],
+    [
+      "Kar-Dur",
+      "garganta del",
+      "Espinazo del Mundo"
+    ],
+    [
+      "Nacariel",
+      "isla de bahía profunda",
+      "posición continental exacta abierta"
+    ],
+    [
+      "Puerto Umbral",
+      "frontera oriental de",
+      "Edria / posición estatal exacta abierta"
+    ]
+  ],
+  "deliberately_open_cartographic_questions": [
+    "Forma completa del planeta.",
+    "Número y forma de otros continentes.",
+    "Contorno exacto de Edria.",
+    "Posición exacta de Lysendra respecto del Espinazo del Mundo.",
+    "Fronteras exactas entre las seis potencias.",
+    "Posiciones exactas de Nacariel, Vigilia Alta y Risco de Ceniza dentro del esquema continental.",
+    "Curso y nombres de los dos ríos de Auraval.",
+    "Nombre y forma del lago de Lys.",
+    "Red hidrográfica completa.",
+    "Ubicación exacta de las Ciudades Hundidas.",
+    "Trazado exacto de la Línea del Espinazo y del resto de ferrocarriles.",
+    "Forma y densidad exacta de archipiélagos externos.",
+    "Yacimientos concretos de Cristales de Resonancia."
+  ],
+  "map_design_implications": {
+    "safe_to_place_now": [
+      "Edria como continente principal.",
+      "Valdoria en centro-oeste.",
+      "Liga de Bronce sobre litoral sur.",
+      "Erelia en nordeste.",
+      "Solenar en el este.",
+      "Espinazo del Mundo como cordillera central norte-sur con Kharum.",
+      "Mar de Nacre al oeste.",
+      "Desierto de Vidrio al este de Solenar.",
+      "Bosque de las Mil Voces al nordeste de Erelia.",
+      "Cinturón Flotante al norte de Vigilia Alta."
+    ],
+    "must_be_designed_before_master_map": [
+      "ubicación de Lysendra",
+      "contorno general de Edria",
+      "fronteras políticas",
+      "hidrografía mayor",
+      "posición de ciudades libres y ciudades de frontera",
+      "trazado de la Línea del Espinazo",
+      "escala continental aproximada"
+    ]
+  }
+}
