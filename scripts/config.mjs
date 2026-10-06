@@ -1,3 +1,5 @@
+import { BUILTIN_DAMAGE_TYPES, DAMAGE_MODES } from "./rules/damage-types.mjs";
+
 export const TM_CONFIG = {
   attributes: {
     fue: "Fuerza", agi: "Agilidad", vig: "Vigor", int: "Intelecto",
@@ -49,6 +51,8 @@ export const TM_CONFIG = {
     perception: "Percepción", influence: "Influencia", conjuration: "Conjuración"
   },
   sources: { soul: "Alma", divine: "Divina", environmental: "Ambiental", external: "Externa" },
+  damageTypes: { ...BUILTIN_DAMAGE_TYPES },
+  damageModes: { ...DAMAGE_MODES },
   techniqueGrades: { basic: "Básica", advanced: "Avanzada", master: "Maestra", legendary: "Legendaria" },
   traitCategories: { innate: "Innato", acquired: "Adquirido", bond: "Vincular", conditional: "Condicional" },
   availability: { common: "Común", professional: "Profesional", restricted: "Restringida", rare: "Rara", exceptional: "Excepcional" },
