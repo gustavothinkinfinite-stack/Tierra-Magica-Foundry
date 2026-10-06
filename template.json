@@ -225,7 +225,7 @@
         },
         "damageTraits": {
           "resistances": {},
-          "immunities": [],
+          "immunities": {},
           "vulnerabilities": {}
         },
         "currency": {
