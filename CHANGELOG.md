@@ -1,3 +1,13 @@
+## Publicación v1.3.1 — 2026-10-06
+
+- **v1.3.1 fue publicada** desde el commit `552ee9879229015eaccd68641c953c4a0c5bc06d` mediante `Publicar sistema #37399556305`.
+- GitHub reconoce v1.3.1 como la release **Latest**, no prerelease.
+- Assets publicados: `system.json` y `tierra-magica.zip`.
+- El workflow ejecutó la validación completa, reconstruyó y reabrió los cuatro Compendios para verificar sus Items reales, verificó el staging runtime y publicó correctamente.
+- SHA-256 `system.json`: `6e1f51ea423a820331a2fb75ce5668b35958d06e1c092e633938885e2fea3405`.
+- SHA-256 `tierra-magica.zip`: `44e3aafddc59a26e8cd30e89ba7a6a218ad1e97f9c94b7e31a910e6734269db9`.
+- El canal estable `releases/latest/download/system.json` queda actualizado a v1.3.1.
+
 ## 1.3.1 — Hotfix de creación, Ascendencias y Compendios — 2026-10-05
 
 - Corrige los cuatro Compendios de la distribución: los sources ahora incluyen claves LevelDB válidas y el build vuelve a abrir cada pack para comprobar que contiene exactamente los Items esperados antes de permitir una release.
