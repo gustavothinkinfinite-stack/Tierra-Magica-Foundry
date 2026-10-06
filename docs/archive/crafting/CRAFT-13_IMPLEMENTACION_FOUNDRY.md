@@ -980,7 +980,7 @@ La interfaz no decide:
 
 **Estado: IMPLEMENTADA · CERRADA**
 
-La auditoría destructiva integral está implementada en `docs/CRAFT-13I_AUDITORIA_INTEGRAL_FOUNDRY.md` y `test/craft-13-integral-audit.test.mjs`.
+La auditoría destructiva integral está implementada en `docs/archive/crafting/CRAFT-13I_AUDITORIA_INTEGRAL_FOUNDRY.md` y `test/craft-13-integral-audit.test.mjs`.
 
 La matriz cubre:
 
