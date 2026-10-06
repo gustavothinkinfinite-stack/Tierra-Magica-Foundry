@@ -1,3 +1,13 @@
+## Publicación v1.3.2 — 2026-10-06
+
+- **v1.3.2 fue publicada** desde el commit `4d0c9e8c423e696f2b8f5835a262c50dee0b0bc4` mediante `Publicar sistema #37403783413`.
+- GitHub reconoce v1.3.2 como la release **Latest**, no prerelease.
+- Assets publicados: `system.json` y `tierra-magica.zip`.
+- El workflow ejecutó validación completa, construcción/verificación de Compendios, staging runtime y publicación correctamente.
+- SHA-256 `system.json`: `6f4fd17f2917a1ff34aae62a3c7c5fccf288fa5f2a48f01c881e99404343a4b6`.
+- SHA-256 `tierra-magica.zip`: `e10565c589bf9cd4284571945762d3df12b64eedfc6c0db2fa05df8ed4458e45`.
+- El canal estable `releases/latest/download/system.json` queda actualizado a v1.3.2.
+
 ## 1.3.2 — Creación secuencial y ficha compacta — 2026-10-06
 
 - Los personajes nuevos abren directamente en **Desarrollo** y recorren un asistente obligatorio de 8 pasos.

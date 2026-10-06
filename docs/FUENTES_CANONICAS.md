@@ -80,7 +80,7 @@ Foundry adopta schema v5 para contratos de objetivos mágicos y migración del c
 
 ## Estado de publicación 1.3.2
 
-Foundry T.M. **v1.3.2** es la release objetivo de la actualización de experiencia de creación: asistente secuencial obligatorio en Desarrollo, bloqueo de pestañas durante la creación inicial y cabecera compacta una vez completado el personaje. No modifica el canon ni los presupuestos de creación. El manifiesto estable de instalación se actualizará al publicarse.
+Foundry T.M. **v1.3.2 está publicada** desde el commit `4d0c9e8c423e696f2b8f5835a262c50dee0b0bc4`. Es la release pública **Latest** e integra el asistente secuencial obligatorio en Desarrollo, el bloqueo de pestañas durante la creación inicial y la cabecera compacta una vez completado el personaje. No modifica el canon ni los presupuestos de creación. El manifiesto estable de instalación apunta a esta release.
 
 ## Estado de catálogos maestros para 1.3.0
 
