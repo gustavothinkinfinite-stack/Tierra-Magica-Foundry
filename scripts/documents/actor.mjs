@@ -5,6 +5,7 @@ import {
 } from "../rules.mjs";
 import { attackHits, resolveWeaponImpact } from "../rules/combat-impact.mjs";
 import { pendingDamageRequest } from "../rules/damage-delivery.mjs";
+import { damageTypeLabel, mergeDamageTraits } from "../rules/damage-types.mjs";
 import {
   minimumSpellRank, skillRankCost, skillsPdCost,
   spellOperationalSkill, validateSkillProgression
@@ -120,6 +121,7 @@ export class TierraMagicaActor extends Actor {
       rulePreparation,
       defensiveRankBonuses: TM_CONFIG.defensiveRankBonuses
     });
+    const damageTraits = mergeDamageTraits(s.damageTraits, rulePreparation.damageTraits);
 
     s.derived = {
       ...derivedState,
@@ -135,6 +137,7 @@ export class TierraMagicaActor extends Actor {
       peiTotal: development.peiTotal,
       peiSpent: development.peiSpent,
       peiAvailable: development.peiAvailable,
+      damageTraits,
       rollOptions: rulePreparation.rollOptions,
       ruleModifiers: rulePreparation.modifiers,
       ruleIssues: rulePreparation.issues
