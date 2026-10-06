@@ -1,4 +1,4 @@
-import { normalizeDamageType } from "./damage-types.mjs";
+import { normalizeDamageTraits, normalizeDamageType } from "./damage-types.mjs";
 
 export const RULE_ELEMENT_KEYS = Object.freeze([
   "FlatModifier", "RollOption", "UpgradeSkillRank", "ChoiceSet", "GrantItem",
@@ -106,6 +106,20 @@ export function prepareRuleElements(items = [], {
 
   for (const item of items) {
     if (item?.type === "effect" && item?.system?.active === false) continue;
+
+    const directTypes = new Set(["ancestry", "trait", "effect", "armor", "shield", "equipment", "device"]);
+    const physicalDirect = new Set(["armor", "shield", "equipment", "device"]);
+    if (directTypes.has(item?.type) && (!physicalDirect.has(item?.type) || item?.system?.equipped === true)) {
+      const direct = normalizeDamageTraits(item?.system?.damageTraits);
+      for (const [type, value] of Object.entries(direct.resistances)) {
+        damageResistances[type] = Math.max(damageResistances[type] ?? 0, value);
+      }
+      for (const [type, value] of Object.entries(direct.vulnerabilities)) {
+        damageVulnerabilities[type] = Math.max(damageVulnerabilities[type] ?? 0, value);
+      }
+      for (const type of direct.immunities) damageImmunities.add(type);
+    }
+
     const rules = Array.isArray(item?.system?.rules) ? item.system.rules : [];
     for (const rule of rules) {
       const validation = validateRuleElement(rule, { skillDefinitions });
