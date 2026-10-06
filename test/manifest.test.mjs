@@ -10,7 +10,7 @@ const readJson = async (file) => JSON.parse(await readFile(resolve(root, file), 
 test("el manifiesto describe Foundry T.M. 1.3.0", async () => {
   const manifest = await readJson("system.json");
   assert.equal(manifest.id, "tierra-magica");
-  assert.equal(manifest.version, "1.3.0");
+  assert.equal(manifest.version, "1.3.1");
   assert.equal(manifest.compatibility.verified, "14");
   assert.equal(manifest.initiative, "2d10 + @derived.initiativeModifier");
   assert.equal(manifest.manifest, "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/system.json");
