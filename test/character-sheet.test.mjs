@@ -141,7 +141,7 @@ test("CREA-12 3E muestra el Bono Defensivo total y no sólo el tramo marcial",as
 test("creación guiada evita facetas de texto libre y muestra bloqueos antes de cerrar",async()=>{
   const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
   const logic=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");
-  for(const marker of ["Creación guiada","set-origin-facet","set-background-facet","Falta completar lo siguiente","Paquete racial"]) {
+  for(const marker of ["Creación guiada","set-origin-facet","set-background-facet","Todavía falta resolver","Paquete racial"]) {
     assert.equal(sheet.includes(marker),true,marker);
   }
   assert.equal(sheet.includes('name="system.details.originFacet"'),false);
@@ -152,7 +152,7 @@ test("creación guiada evita facetas de texto libre y muestra bloqueos antes de 
 
 test("seleccionar identidad no abre la ficha técnica y aplica valores guiados",async()=>{
   const logic=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");
-  assert.equal(logic.includes('if (!singular) item.sheet?.render(true)'),true);
+  assert.equal(logic.includes('!singular && this.actor.system.creation?.status !== "building"'),true);
   assert.equal(logic.includes('"system.details.originFacet"] = ""'),true);
   assert.equal(logic.includes('"system.traits.languages"] = this.#requiredCreationLanguages'),true);
 });
