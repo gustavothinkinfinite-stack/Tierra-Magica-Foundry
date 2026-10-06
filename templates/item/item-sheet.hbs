@@ -121,6 +121,10 @@
         <label class="tm-check"><span>Saturante</span><input type="checkbox" name="system.saturating" {{checked system.saturating}} /></label>
         <label><span>Efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
         <label><span>Conservación</span><input type="text" name="system.preservation" value="{{system.preservation}}" /></label>
+        <label><span>Daño</span><input type="number" min="0" name="system.damage" value="{{system.damage}}" /></label>
+        <label><span>Tipo de daño</span><select name="system.damageType">{{selectOptions config.damageTypes selected=system.damageType}}</select></label>
+        <label><span>Modo</span><select name="system.damageMode">{{selectOptions config.damageModes selected=system.damageMode}}</select></label>
+        <label><span>Penetración</span><input type="number" min="0" name="system.penetration" value="{{system.penetration}}" /></label>
       {{/if}}
 
       {{#if isRitual}}
