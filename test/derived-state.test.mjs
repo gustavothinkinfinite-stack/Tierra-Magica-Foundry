@@ -154,3 +154,37 @@ test("CREA-14: Familiar usa el Perfil Inicial simplificado y no las fórmulas de
   assert.equal(derived.initiativeModifier,2);
   assert.equal(derived.breakdowns.healthMax.formula,"Perfil de Familiar");
 });
+
+
+test("Ascendencia modifica Movimiento y expone su paquete racial",()=>{
+  const items=[{
+    id:"anc1",name:"Hada",type:"ancestry",
+    system:{scale:"small",movementBase:5,movementModes:"Aéreo 6",naturalProtection:0,racialFeatures:["Naturaleza Feérica","Movimiento aéreo inicial 6"]}
+  }];
+  const derived=deriveActorState({system:baseSystem(),items});
+  assert.equal(derived.movement,5);
+  assert.equal(derived.ancestryProfile.name,"Hada");
+  assert.equal(derived.ancestryProfile.scale,"small");
+  assert.equal(derived.ancestryProfile.features.length,2);
+});
+
+test("Protección Natural racial usa el mayor valor frente a armadura",()=>{
+  const coralio={id:"anc2",name:"Coralio",type:"ancestry",system:{scale:"medium",movementBase:5,naturalProtection:1,racialFeatures:["Esqueleto Coralino"]}};
+  let derived=deriveActorState({system:baseSystem(),items:[coralio]});
+  assert.equal(derived.protection,1);
+  const armor={id:"a1",name:"Malla",type:"armor",system:{equipped:true,protection:3}};
+  derived=deriveActorState({system:baseSystem(),items:[coralio,armor]});
+  assert.equal(derived.protection,3);
+});
+
+test("Piel Alterada no se suma a Protección Natural equivalente",()=>{
+  const system=baseSystem();
+  system.magic={sustainedSpellIds:["spell1"]};
+  const items=[
+    {id:"anc2",name:"Coralio",type:"ancestry",system:{scale:"medium",movementBase:5,naturalProtection:1,racialFeatures:["Esqueleto Coralino"]}},
+    {id:"spell1",name:"Piel Alterada",type:"spell",system:{slug:"piel-alterada"}}
+  ];
+  const derived=deriveActorState({system,items});
+  assert.equal(derived.protection,1);
+  assert.equal(resolveDerivedSelector(derived,"protection",{alteredSkinCompatible:true}).total,2);
+});
