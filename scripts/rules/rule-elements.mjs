@@ -1,5 +1,8 @@
+import { normalizeDamageType } from "./damage-types.mjs";
+
 export const RULE_ELEMENT_KEYS = Object.freeze([
-  "FlatModifier", "RollOption", "UpgradeSkillRank", "ChoiceSet", "GrantItem"
+  "FlatModifier", "RollOption", "UpgradeSkillRank", "ChoiceSet", "GrantItem",
+  "DamageResistance", "DamageImmunity", "DamageVulnerability"
 ]);
 
 export const CORE_SELECTORS = new Set([
@@ -63,6 +66,13 @@ export function validateRuleElement(rule, { skillDefinitions = {} } = {}) {
     if (!String(rule.itemType ?? "").trim() || !String(rule.slug ?? "").trim()) issues.push({ code: "rule-grant", message: "GrantItem necesita itemType y slug." });
     if (rule.lifecycle && !["linked", "once"].includes(rule.lifecycle)) issues.push({ code: "rule-grant-lifecycle", message: "lifecycle debe ser linked u once." });
   }
+  if (["DamageResistance", "DamageImmunity", "DamageVulnerability"].includes(key)) {
+    if (!normalizeDamageType(rule.damageType)) issues.push({ code: "rule-damage-type", message: key + " necesita damageType estable." });
+  }
+  if (["DamageResistance", "DamageVulnerability"].includes(key)) {
+    const value = Number(rule.value);
+    if (!Number.isFinite(value) || value < 0) issues.push({ code: "rule-damage-value", message: key + " necesita un valor numérico no negativo." });
+  }
   return { valid: !issues.length, issues };
 }
 
@@ -73,6 +83,9 @@ export function prepareRuleElements(items = [], {
   const rollOptions = new Set(baseRollOptions);
   const modifiers = [];
   const skillRankUpgrades = new Map();
+  const damageResistances = {};
+  const damageVulnerabilities = {};
+  const damageImmunities = new Set();
   const issues = [];
 
   for (const item of items) {
@@ -110,6 +123,14 @@ export function prepareRuleElements(items = [], {
       } else if (rule.key === "UpgradeSkillRank") {
         const current = skillRankUpgrades.get(rule.skill) ?? 0;
         skillRankUpgrades.set(rule.skill, Math.max(current, number(rule.rank)));
+      } else if (rule.key === "DamageResistance") {
+        const type = normalizeDamageType(rule.damageType);
+        damageResistances[type] = Math.max(damageResistances[type] ?? 0, Math.max(0, number(rule.value)));
+      } else if (rule.key === "DamageVulnerability") {
+        const type = normalizeDamageType(rule.damageType);
+        damageVulnerabilities[type] = Math.max(damageVulnerabilities[type] ?? 0, Math.max(0, number(rule.value)));
+      } else if (rule.key === "DamageImmunity") {
+        damageImmunities.add(normalizeDamageType(rule.damageType));
       }
     }
   }
@@ -118,6 +139,11 @@ export function prepareRuleElements(items = [], {
     rollOptions: [...rollOptions],
     modifiers,
     skillRankUpgrades: Object.fromEntries(skillRankUpgrades),
+    damageTraits: {
+      resistances: damageResistances,
+      immunities: [...damageImmunities].filter(Boolean),
+      vulnerabilities: damageVulnerabilities
+    },
     issues
   };
 }
