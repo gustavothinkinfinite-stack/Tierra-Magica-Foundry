@@ -4375,7 +4375,7 @@ Esto impide multiplicar resistencias, daño o recuperación apilando físicament
 | Supresor del Dolor | Refinada | 8 p | Analgésica | Ignora una Desventaja causada por dolor compatible; no repara lesión. |
 | Neutralizante Común | Refinada | 1 o | Antitóxica | Nueva resistencia con Ventaja contra una toxina compatible. |
 | Toxina Debilitante | Compleja | 1 o 5 p | Sangre | VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular. |
-| Bomba Incendiaria | Compleja | 3 o | — | Área pequeña, Daño 6, Pen 1; requiere colocación válida. |
+| Bomba Incendiaria | Compleja | 3 o | — | Área pequeña, Daño 6 de Fuego, Pen 1; requiere colocación válida. |
 
 Un veneno define Vía, Latencia, DF, Efecto y Duración. Normalmente concede una resistencia y no exige pruebas repetidas sin cambio. Aplicar veneno a un arma requiere preparación/Acción apropiada y la primera aplicación válida consume la dosis.
 
@@ -6172,7 +6172,7 @@ Una preparación alquímica o explosiva puede integrarse si existe físicamente 
 
 Al activarse utiliza **exactamente su efecto normal**.
 
-Ejemplo: una Bomba Incendiaria mantiene **área pequeña, Daño 6, Pen 1**. El Armazón no aumenta Daño, Pen ni área.
+Ejemplo: una Bomba Incendiaria mantiene **área pequeña, Daño 6 de Fuego, Pen 1**. El Armazón no aumenta Daño, Pen ni área.
 
 Si la carga ya define resistencia, ataque, colocación u otra resolución, se utiliza esa regla. No se añade una segunda prueba defensiva genérica sólo porque esté dentro de una trampa.
 
