@@ -296,8 +296,8 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     html.find("[data-action='archive-legacy-crowns']").click(() => this.#archiveLegacyCrowns());
     html.find("[data-action='complete-creation']").click(() => this.actor.completeCreation());
     html.find("[data-action='begin-rebuild']").click(() => this.actor.beginRebuild());
-    html.find("[data-action='creation-next-step']").click(() => this.#advanceCreationWizard());
-    html.find("[data-action='creation-prev-step']").click(() => this.#moveCreationWizard(-1));
+    html.find("[data-action='creation-next-step']").click((event) => this.#advanceCreationWizard(event.currentTarget.dataset.step));
+    html.find("[data-action='creation-prev-step']").click((event) => this.#moveCreationWizard(-1, event.currentTarget.dataset.step));
     html.find("[data-action='set-origin-facet']").change((event) => this.actor.update({
       "system.details.originFacet": String(event.currentTarget.value ?? ""),
       "system.creation.revision": toNumber(this.actor.system.creation?.revision) + 1
@@ -756,9 +756,9 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     return false;
   }
 
-  async #moveCreationWizard(delta) {
+  async #moveCreationWizard(delta, effectiveStep = null) {
     if (this.actor.type !== "character" || this.actor.system.creation?.status !== "building") return;
-    const current = Math.max(1, Math.min(8, Math.floor(toNumber(this.actor.system.creation?.wizardStep, 1))));
+    const current = Math.max(1, Math.min(8, Math.floor(toNumber(effectiveStep, toNumber(this.actor.system.creation?.wizardStep, 1)))));
     const next = Math.max(1, Math.min(8, current + Math.trunc(toNumber(delta))));
     if (next === current) return;
     return this.actor.update({
@@ -767,10 +767,10 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     });
   }
 
-  async #advanceCreationWizard() {
+  async #advanceCreationWizard(effectiveStep = null) {
     if (this.actor.type !== "character" || this.actor.system.creation?.status !== "building") return;
     const items = [...this.actor.items];
-    const current = Math.max(1, Math.min(8, Math.floor(toNumber(this.actor.system.creation?.wizardStep, 1))));
+    const current = Math.max(1, Math.min(8, Math.floor(toNumber(effectiveStep, toNumber(this.actor.system.creation?.wizardStep, 1)))));
     const validation = validateCreationState(this.actor, { skillKeys: Object.keys(TM_CONFIG.skills) });
     const codes = new Set(validation.issues.map((issue) => issue.code));
     let message = "";
