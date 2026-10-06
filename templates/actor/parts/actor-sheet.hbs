@@ -145,7 +145,7 @@
     <section class="tm-panel tm-wide">
       <div class="tm-section-heading"><h2>Resistencias de daño</h2><span>Manual + fuentes derivadas</span></div>
       <p>La Resistencia reduce daño después de Protección; Inmunidad lo reduce a 0. Vulnerabilidad añade daño del tipo después de Protección. Fuentes equivalentes usan el valor más alto.</p>
-      <div class="tm-damage-traits-grid">
+      <div class="tm-form-grid">
         {{#each damageTraitRows as |row|}}
           <label><span>{{row.label}} · Resistencia</span><input type="number" min="0" name="system.damageTraits.resistances.{{row.id}}" value="{{row.resistance}}" /></label>
           <label class="tm-check"><span>{{row.label}} · Inmunidad</span><input type="checkbox" name="system.damageTraits.immunities.{{row.id}}" {{checked row.immunity}} /></label>
