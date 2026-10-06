@@ -1,77 +1,50 @@
 <form class="{{cssClass}} tm-actor-sheet tm-character-sheet-v03" autocomplete="off">
 <div class="tm-v03-shell">
 
-  <header class="tm-v03-header tm-v09-header">
+  <header class="tm-v03-header tm-v09-header tm-v10-header">
     <h1 class="tm-v09-visually-hidden">TIERRA MÁGICA</h1>
     <img class="tm-v09-title-art tm-v091-title-art" src="systems/tierra-magica/assets/ui/tierra-magica-banner-final.jpg" alt="Tierra Mágica — Historias que dejan huella" />
   </header>
 
-  <section class="tm-v03-identity">
+  <section class="tm-v03-identity tm-v10-identity-strip">
     <label class="tm-v03-name">
       <span>Nombre</span>
       <input name="name" type="text" value="{{actor.name}}" placeholder="Nombre del personaje" />
     </label>
     <label class="tm-v03-concept">
       <span>Concepto</span>
-      <input type="text" name="system.details.concept" value="{{system.details.concept}}" />
+      <input type="text" name="system.details.concept" value="{{system.details.concept}}" placeholder="Una frase basta" />
     </label>
-    <div>
-      <span>Ascendencia</span>
-      {{#if identityItems.ancestry}}
-        <button type="button" class="item" data-item-id="{{identityItems.ancestry.id}}" data-action="item-edit">{{identityItems.ancestry.name}}</button>
+    <div class="tm-v10-identity-meta">
+      {{#if creation.isBuilding}}
+        <span>Creación guiada</span>
+        <strong>Paso {{creationWizard.step}} de {{creationWizard.total}}</strong>
       {{else}}
-        <button type="button" data-action="content-browser" data-type="ancestry">Elegir Ascendencia</button>
+        <span class="tm-v10-identity-chip"><b>{{#if identityItems.ancestry}}{{identityItems.ancestry.name}}{{else}}Sin Ascendencia{{/if}}</b></span>
+        <span class="tm-v10-identity-chip"><b>{{#if identityItems.origin}}{{identityItems.origin.name}}{{else}}Sin Origen{{/if}}</b></span>
+        <span class="tm-v10-identity-chip"><b>{{#if identityItems.background}}{{identityItems.background.name}}{{else}}Sin Trasfondo{{/if}}</b></span>
       {{/if}}
     </div>
-    <div>
-      <span>Origen</span>
-      {{#if identityItems.origin}}
-        <button type="button" class="item" data-item-id="{{identityItems.origin.id}}" data-action="item-edit">{{identityItems.origin.name}}</button>
-      {{else}}
-        <button type="button" data-action="content-browser" data-type="origin">Elegir Origen</button>
-      {{/if}}
-    </div>
-    <div class="tm-v03-background-field">
-      <span>Trasfondo</span>
-      {{#if identityItems.background}}
-        <button type="button" class="item" data-item-id="{{identityItems.background.id}}" data-action="item-edit">{{identityItems.background.name}}</button>
-      {{else}}
-        <button type="button" data-action="content-browser" data-type="background">Elegir Trasfondo</button>
-      {{/if}}
-    </div>
-    {{#if creation.isOpen}}
-      <label>
-        <span>Faceta de Origen</span>
-        <select data-action="set-origin-facet" {{#unless identityItems.origin}}disabled{{/unless}}>
-          {{selectOptions creationGuide.originFacetOptions selected=creationGuide.originFacet}}
-        </select>
-      </label>
-      <div class="tm-v03-background-field">
-        <span>Facetas de Trasfondo</span>
-        <select data-action="set-background-facet" data-index="0" {{#unless identityItems.background}}disabled{{/unless}}>
-          {{selectOptions creationGuide.backgroundFacetOptions selected=creationGuide.backgroundFacet1}}
-        </select>
-        <select data-action="set-background-facet" data-index="1" {{#unless identityItems.background}}disabled{{/unless}}>
-          {{selectOptions creationGuide.backgroundFacetOptions selected=creationGuide.backgroundFacet2}}
-        </select>
-        {{#if creationGuide.usesWorkLanguage}}
-          <input type="text" data-action="set-background-work-language" value="{{creationGuide.workLanguage}}" placeholder="Idioma de trabajo adicional" />
-        {{/if}}
-      </div>
-    {{else}}
-      <div><span>Faceta de Origen</span><strong>{{system.details.originFacet}}</strong></div>
-      <div class="tm-v03-background-field"><span>Facetas de Trasfondo</span><strong>{{system.details.backgroundFacets}}</strong></div>
-    {{/if}}
   </section>
 
   <nav class="tm-tabs tm-v03-page-tabs tabs" data-group="primary" aria-label="Páginas de la ficha">
-    <a class="item" data-tab="summary"><i class="fa-solid fa-user"></i><span>Ficha</span></a>
-    <a class="item" data-tab="skills"><i class="fa-solid fa-list-check"></i><span>Habilidades</span></a>
-    <a class="item" data-tab="combat"><i class="fa-solid fa-swords"></i><span>Combate</span></a>
-    <a class="item" data-tab="magic"><i class="fa-solid fa-wand-sparkles"></i><span>Magia</span></a>
-    <a class="item" data-tab="development"><i class="fa-solid fa-diagram-project"></i><span>Desarrollo</span></a>
-    <a class="item" data-tab="inventory"><i class="fa-solid fa-backpack"></i><span>Equipo</span></a>
-    <a class="item" data-tab="biography"><i class="fa-solid fa-feather"></i><span>Historia</span></a>
+    {{#if creation.isBuilding}}
+      <span class="tm-v10-tab-locked"><i class="fa-solid fa-user"></i><span>Ficha</span></span>
+      <span class="tm-v10-tab-locked"><i class="fa-solid fa-list-check"></i><span>Habilidades</span></span>
+      <span class="tm-v10-tab-locked"><i class="fa-solid fa-swords"></i><span>Combate</span></span>
+      <span class="tm-v10-tab-locked"><i class="fa-solid fa-wand-sparkles"></i><span>Magia</span></span>
+      <a class="item" data-tab="development"><i class="fa-solid fa-diagram-project"></i><span>Creación</span></a>
+      <span class="tm-v10-tab-locked"><i class="fa-solid fa-backpack"></i><span>Equipo</span></span>
+      <span class="tm-v10-tab-locked"><i class="fa-solid fa-feather"></i><span>Historia</span></span>
+    {{else}}
+      <a class="item" data-tab="summary"><i class="fa-solid fa-user"></i><span>Ficha</span></a>
+      <a class="item" data-tab="skills"><i class="fa-solid fa-list-check"></i><span>Habilidades</span></a>
+      <a class="item" data-tab="combat"><i class="fa-solid fa-swords"></i><span>Combate</span></a>
+      <a class="item" data-tab="magic"><i class="fa-solid fa-wand-sparkles"></i><span>Magia</span></a>
+      <a class="item" data-tab="development"><i class="fa-solid fa-diagram-project"></i><span>Desarrollo</span></a>
+      <a class="item" data-tab="inventory"><i class="fa-solid fa-backpack"></i><span>Equipo</span></a>
+      <a class="item" data-tab="biography"><i class="fa-solid fa-feather"></i><span>Historia</span></a>
+    {{/if}}
   </nav>
 
   <section class="tm-sheet-body tm-v03-body">
@@ -484,116 +457,249 @@
     </div>
 
     <div class="tab" data-group="primary" data-tab="development">
-      <section class="tm-v03-page-hero">
-        <i class="fa-solid fa-diagram-project"></i>
-        <div><small>Página de desarrollo</small><h2>Desarrollo</h2><p>Atributos, nivel, PD y crecimiento del personaje.</p></div>
-      </section>
-
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Proyectos de fabricación e investigación" type="project" items=itemGroups.project}}
-
-      <section class="tm-v03-development-summary">
-        <div>
-          <span>Nivel</span>
-          <b>{{system.details.level}}</b>
-          {{#if development.canAdvanceLevel}}<button type="button" data-action="advance-level">Subir de nivel (+4 PD)</button>{{/if}}
-        </div>
-        <div><span>Estado</span><b>{{creation.statusLabel}}</b></div>
-        <div><span>PD totales</span><b>{{development.pdTotal}}</b></div>
-        <div><span>PD gastados</span><b>{{development.pdSpent}}</b></div>
-        <div class="tm-v03-pd-available"><span>PD disponibles</span><b>{{development.pdAvailable}}</b></div>
-        <div><span>PR</span><b>{{development.prSpent}} / {{development.prTotal}}</b></div>
-        <div><span>PEI restante</span><b>{{creationPei.display}}</b></div>
-        <div><span>PD en Habilidades</span><b>{{development.skillsPdCost}}</b></div>
-      </section>
-
-      <section class="tm-panel tm-v03-page-panel">
-        <div class="tm-section-heading"><h2>Creación guiada</h2><span>Revisión {{creation.revision}} · Reserva {{#if creation.reserveGranted}}concedida{{else}}pendiente{{/if}}</span></div>
-        {{#if creation.isOpen}}
-          <div class="tm-v03-development-summary">
-            <div><span>1 · Ascendencia</span><b>{{#if identityItems.ancestry}}{{identityItems.ancestry.name}}{{else}}Pendiente{{/if}}</b></div>
-            <div><span>2 · Origen</span><b>{{#if identityItems.origin}}{{identityItems.origin.name}}{{else}}Pendiente{{/if}}</b></div>
-            <div><span>3 · Trasfondo</span><b>{{#if identityItems.background}}{{identityItems.background.name}}{{else}}Pendiente{{/if}}</b></div>
-            <div><span>4 · Atributos</span><b>{{creationGuide.attributeIncreases}} / {{creationGuide.attributeTarget}} aumentos</b></div>
-            <div><span>5 · PD disponibles</span><b>{{development.pdAvailable}}</b></div>
-            <div><span>6 · PR disponibles</span><b>{{development.prAvailable}}</b></div>
-            <div><span>7 · PEI restante</span><b>{{creationPei.display}}</b></div>
+      {{#if creation.isBuilding}}
+        <section class="tm-v03-page-hero tm-v10-creation-hero">
+          <i class="fa-solid fa-person-circle-plus"></i>
+          <div>
+            <small>Creación de personaje</small>
+            <h2>Paso {{creationWizard.step}} de {{creationWizard.total}}</h2>
+            <p>Completá un paso para desbloquear el siguiente. El resto de la ficha se habilita al finalizar.</p>
           </div>
-          {{#if creationGuide.issues.length}}
-            <div class="tm-warning">
-              <strong>Falta completar lo siguiente</strong>
-              <ul>{{#each creationGuide.issues as |issue|}}<li>{{issue.message}}</li>{{/each}}</ul>
-            </div>
-          {{else}}
-            <div class="tm-info"><strong>La creación está legalmente completa.</strong> Ya puedes cerrarla.</div>
-          {{/if}}
-        {{/if}}
-        {{#if creation.warnings.length}}
-          <div class="tm-warning"><strong>Advertencias de legado</strong><ul>{{#each creation.warnings as |warning|}}<li>{{warning}}</li>{{/each}}</ul></div>
-        {{/if}}
-        <div class="tm-section-buttons">
-          {{#if creation.isBuilding}}<button type="button" data-action="complete-creation" {{#unless creationGuide.ready}}disabled{{/unless}}>Completar creación</button>{{/if}}
-          {{#if creation.isRebuilding}}<button type="button" data-action="complete-creation" {{#unless creationGuide.ready}}disabled{{/unless}}>Cerrar reconstrucción</button>{{/if}}
-          {{#if creation.isComplete}}<button type="button" data-action="begin-rebuild">Abrir reconstrucción (DJ)</button>{{/if}}
-        </div>
-      </section>
-
-      {{#if creationGuide.ancestryProfile}}
-        <section class="tm-panel tm-v03-page-panel">
-          <div class="tm-section-heading">
-            <h2>Paquete racial · {{creationGuide.ancestryProfile.name}}</h2>
-            <span>Escala {{creationGuide.ancestryScaleLabel}} · Movimiento {{creationGuide.ancestryProfile.movementBase}}{{#if creationGuide.ancestryProfile.movementModes}} · {{creationGuide.ancestryProfile.movementModes}}{{/if}}</span>
-          </div>
-          {{#if creationGuide.ancestryProfile.features.length}}
-            <ul>{{#each creationGuide.ancestryProfile.features as |feature|}}<li>{{feature}}</li>{{/each}}</ul>
-          {{/if}}
-          {{#if creationGuide.ancestryProfile.naturalProtection}}
-            <p><strong>Protección Natural {{creationGuide.ancestryProfile.naturalProtection}}</strong> · se usa el valor mayor frente a armadura.</p>
-          {{/if}}
-          {{#if creationGuide.ancestryProfile.selectionNotes}}
-            <div class="tm-warning"><strong>Elección racial pendiente o contextual:</strong> {{creationGuide.ancestryProfile.selectionNotes}}</div>
-          {{/if}}
         </section>
-      {{/if}}
 
-      <section class="tm-panel tm-v03-page-panel">
-        <div class="tm-section-heading"><h2>Atributos</h2><span>{{#if creation.isOpen}}6 aumentos gratuitos; máximo inicial 3.{{else}}Mejoras por PD; máximo ordinario 5.{{/if}}</span></div>
-        <div class="tm-v03-attribute-editor">
-          {{#if creation.isOpen}}
-            {{#each system.attributes as |attribute key|}}
-              <label><span>{{lookup ../config.attributes key}}</span><input type="number" data-action="set-creation-attribute" data-key="{{key}}" value="{{attribute.creationValue}}" min="1" max="3" /></label>
-            {{/each}}
-          {{else}}
-            {{#each development.attributeUpgrades as |upgrade|}}
-              <div>
-                <span>{{upgrade.label}}</span>
-                <b>{{upgrade.current}}</b>
-                {{#if upgrade.canUpgrade}}
-                  <button type="button" data-action="upgrade-attribute" data-key="{{upgrade.key}}">Mejorar a {{upgrade.next}} · {{upgrade.cost}} PD</button>
-                {{else}}
-                  <small>Máximo ordinario</small>
-                {{/if}}
+        <section class="tm-v10-wizard-steps" aria-label="Progreso de creación">
+          {{#each creationWizard.steps as |step|}}
+            <div class="tm-v10-wizard-step {{#if step.active}}active{{/if}} {{#if step.done}}done{{/if}} {{#if step.locked}}locked{{/if}}">
+              <b>{{step.number}}</b><span>{{step.label}}</span>
+            </div>
+          {{/each}}
+        </section>
+
+        {{#if creationWizard.isStep1}}
+          <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
+            <div class="tm-section-heading"><h2>1 · Elegí tu Ascendencia</h2><span>Define el paquete racial del personaje.</span></div>
+            {{#if identityItems.ancestry}}
+              <div class="tm-v10-choice-selected">
+                <div><small>Ascendencia elegida</small><strong>{{identityItems.ancestry.name}}</strong><p>{{identityItems.ancestry.system.description}}</p></div>
+                <button type="button" data-action="content-browser" data-type="ancestry">Cambiar</button>
               </div>
-            {{/each}}
-          {{/if}}
-        </div>
-      </section>
+              {{#if creationGuide.ancestryProfile}}
+                <div class="tm-v10-racial-preview">
+                  <span>Escala <b>{{creationGuide.ancestryScaleLabel}}</b></span>
+                  <span>Movimiento <b>{{creationGuide.ancestryProfile.movementBase}}</b></span>
+                  {{#if creationGuide.ancestryProfile.movementModes}}<span>Especial <b>{{creationGuide.ancestryProfile.movementModes}}</b></span>{{/if}}
+                  {{#if creationGuide.ancestryProfile.naturalProtection}}<span>Protección Natural <b>{{creationGuide.ancestryProfile.naturalProtection}}</b></span>{{/if}}
+                </div>
+                {{#if creationGuide.ancestryProfile.features.length}}
+                  <ul class="tm-v10-feature-list">{{#each creationGuide.ancestryProfile.features as |feature|}}<li>{{feature}}</li>{{/each}}</ul>
+                {{/if}}
+              {{/if}}
+            {{else}}
+              <div class="tm-v10-empty-choice">
+                <i class="fa-solid fa-users"></i>
+                <p>Todavía no elegiste Ascendencia.</p>
+                <button type="button" data-action="content-browser" data-type="ancestry">Elegir Ascendencia</button>
+              </div>
+            {{/if}}
+          </section>
+        {{/if}}
 
-      <section class="tm-panel tm-v03-page-panel">
-        <div class="tm-section-heading"><h2>Identidad mecánica</h2><span>Información complementaria.</span></div>
-        <div class="tm-form-grid">
-          <label><span>Idiomas{{#if creation.isOpen}} · automáticos en creación{{/if}}</span><input type="text" name="system.traits.languages" value="{{system.traits.languages}}" {{#if creation.isOpen}}readonly{{/if}} /></label>
-          <label><span>Sentidos</span><input type="text" name="system.traits.senses" value="{{system.traits.senses}}" /></label>
-          <label><span>Escala{{#if identityItems.ancestry}} · por Ascendencia{{/if}}</span><select name="system.traits.size" {{#if identityItems.ancestry}}disabled{{/if}}>{{selectOptions config.sizes selected=system.traits.size}}</select></label>
-        </div>
-      </section>
+        {{#if creationWizard.isStep2}}
+          <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
+            <div class="tm-section-heading"><h2>2 · Elegí tu Origen</h2><span>El Origen fija familiaridad cultural, idiomas y una Faceta.</span></div>
+            {{#if identityItems.origin}}
+              <div class="tm-v10-choice-selected">
+                <div><small>Origen elegido</small><strong>{{identityItems.origin.name}}</strong><p>{{identityItems.origin.system.description}}</p></div>
+                <button type="button" data-action="content-browser" data-type="origin">Cambiar</button>
+              </div>
+              <div class="tm-v10-wizard-fields">
+                <label><span>Faceta de Origen</span><select data-action="set-origin-facet">{{selectOptions creationGuide.originFacetOptions selected=creationGuide.originFacet}}</select></label>
+                <label><span>Idiomas iniciales</span><input type="text" value="{{creationGuide.languages}}" readonly /></label>
+              </div>
+            {{else}}
+              <div class="tm-v10-empty-choice"><i class="fa-solid fa-map-location-dot"></i><p>Todavía no elegiste Origen.</p><button type="button" data-action="content-browser" data-type="origin">Elegir Origen</button></div>
+            {{/if}}
+          </section>
+        {{/if}}
 
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Ascendencia" type="ancestry" items=itemGroups.ancestry}}
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Origen" type="origin" items=itemGroups.origin}}
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Trasfondo" type="background" items=itemGroups.background}}
-            {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Especializaciones" type="specialization" items=itemGroups.specialization}}
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Técnicas" type="technique" items=itemGroups.technique}}
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Disciplinas" type="discipline" items=itemGroups.discipline}}
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Rasgos" type="trait" items=itemGroups.trait}}
+        {{#if creationWizard.isStep3}}
+          <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
+            <div class="tm-section-heading"><h2>3 · Elegí tu Trasfondo</h2><span>Seleccioná el Trasfondo y exactamente dos Facetas.</span></div>
+            {{#if identityItems.background}}
+              <div class="tm-v10-choice-selected">
+                <div><small>Trasfondo elegido</small><strong>{{identityItems.background.name}}</strong><p>{{identityItems.background.system.description}}</p></div>
+                <button type="button" data-action="content-browser" data-type="background">Cambiar</button>
+              </div>
+              <div class="tm-v10-wizard-fields tm-v10-background-facets">
+                <label><span>Faceta 1</span><select data-action="set-background-facet" data-index="0">{{selectOptions creationGuide.backgroundFacetOptions selected=creationGuide.backgroundFacet1}}</select></label>
+                <label><span>Faceta 2</span><select data-action="set-background-facet" data-index="1">{{selectOptions creationGuide.backgroundFacetOptions selected=creationGuide.backgroundFacet2}}</select></label>
+                {{#if creationGuide.usesWorkLanguage}}<label><span>Idioma de trabajo</span><input type="text" data-action="set-background-work-language" value="{{creationGuide.workLanguage}}" placeholder="Idioma regional adicional" /></label>{{/if}}
+              </div>
+            {{else}}
+              <div class="tm-v10-empty-choice"><i class="fa-solid fa-briefcase"></i><p>Todavía no elegiste Trasfondo.</p><button type="button" data-action="content-browser" data-type="background">Elegir Trasfondo</button></div>
+            {{/if}}
+          </section>
+        {{/if}}
+
+        {{#if creationWizard.isStep4}}
+          <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
+            <div class="tm-section-heading"><h2>4 · Repartí tus Atributos</h2><span>Exactamente 6 aumentos gratuitos; ningún Atributo puede superar 3.</span></div>
+            <div class="tm-v10-budget-callout"><strong>{{creationGuide.attributeIncreases}} / {{creationGuide.attributeTarget}}</strong><span>aumentos usados</span></div>
+            <div class="tm-v03-attribute-editor tm-v10-attribute-editor">
+              {{#each system.attributes as |attribute key|}}
+                <label><span>{{lookup ../config.attributes key}}</span><input type="number" data-action="set-creation-attribute" data-key="{{key}}" value="{{attribute.creationValue}}" min="1" max="3" /></label>
+              {{/each}}
+            </div>
+          </section>
+        {{/if}}
+
+        {{#if creationWizard.isStep5}}
+          <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
+            <div class="tm-section-heading"><h2>5 · Gastá tus PD</h2><span>Habilidades y opciones de desarrollo. Podés dejar PD sin gastar.</span></div>
+            <div class="tm-v10-budget-bar"><span>PD totales <b>{{development.pdTotal}}</b></span><span>Gastados <b>{{development.pdSpent}}</b></span><span>Disponibles <b>{{development.pdAvailable}}</b></span></div>
+            {{#if creationWizard.skillIssues.length}}<div class="tm-warning"><strong>Habilidades pendientes</strong><ul>{{#each creationWizard.skillIssues as |issue|}}<li>{{issue}}</li>{{/each}}</ul></div>{{/if}}
+            <div class="tm-v10-skill-builder">
+              {{#each skillGroups as |group|}}
+                <section><h3>{{group.label}}</h3>
+                  {{#each group.skills as |skill|}}
+                    <label><span>{{skill.label}}</span><select data-action="set-skill-rank" data-key="{{skill.key}}">{{selectOptions @root.config.rankOptionLabels selected=skill.rank}}</select></label>
+                  {{/each}}
+                </section>
+              {{/each}}
+            </div>
+            <div class="tm-v10-catalog-actions">
+              <button type="button" data-action="content-browser" data-type="specialization">+ Especialización</button>
+              <button type="button" data-action="content-browser" data-type="technique">+ Técnica</button>
+              <button type="button" data-action="content-browser" data-type="discipline">+ Disciplina</button>
+              <button type="button" data-action="content-browser" data-type="spell">+ Hechizo</button>
+              <button type="button" data-action="content-browser" data-type="formula">+ Fórmula</button>
+              <button type="button" data-action="content-browser" data-type="ritual">+ Ritual</button>
+            </div>
+            <ol class="tm-v10-selected-list">
+              {{#each creationWizard.selectedPdItems as |item|}}
+                <li class="item" data-item-id="{{item.id}}"><span><b>{{item.name}}</b><small>{{item.type}} · {{item.system.acquisition.paid.amount}} PD</small></span><button type="button" data-action="item-delete" title="Quitar"><i class="fa-solid fa-trash"></i></button></li>
+              {{else}}<li class="tm-empty">Sin compras de PD adicionales.</li>{{/each}}
+            </ol>
+          </section>
+        {{/if}}
+
+        {{#if creationWizard.isStep6}}
+          <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
+            <div class="tm-section-heading"><h2>6 · Elegí Rasgos</h2><span>Presupuesto separado de PR. Podés dejar PR sin gastar.</span></div>
+            <div class="tm-v10-budget-bar"><span>PR totales <b>{{development.prTotal}}</b></span><span>Gastados <b>{{development.prSpent}}</b></span><span>Disponibles <b>{{development.prAvailable}}</b></span></div>
+            <div class="tm-v10-catalog-actions"><button type="button" data-action="content-browser" data-type="trait">+ Elegir Rasgo</button></div>
+            <ol class="tm-v10-selected-list">
+              {{#each creationWizard.selectedTraitItems as |item|}}
+                <li class="item" data-item-id="{{item.id}}"><span><b>{{item.name}}</b><small>{{item.system.description}}</small></span><button type="button" data-action="item-delete" title="Quitar"><i class="fa-solid fa-trash"></i></button></li>
+              {{else}}<li class="tm-empty">No elegiste Rasgos todavía.</li>{{/each}}
+            </ol>
+          </section>
+        {{/if}}
+
+        {{#if creationWizard.isStep7}}
+          <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
+            <div class="tm-section-heading"><h2>7 · Comprá Equipo inicial</h2><span>PEI 20 o. El remanente se pierde al completar la creación.</span></div>
+            <div class="tm-v10-budget-bar"><span>PEI total <b>{{development.peiTotal}} c</b></span><span>Gastado <b>{{development.peiSpent}} c</b></span><span>Restante <b>{{creationPei.display}}</b></span></div>
+            <div class="tm-v10-catalog-actions">
+              <button type="button" data-action="content-browser" data-type="weapon">+ Arma</button>
+              <button type="button" data-action="content-browser" data-type="armor">+ Armadura</button>
+              <button type="button" data-action="content-browser" data-type="shield">+ Escudo</button>
+              <button type="button" data-action="content-browser" data-type="equipment">+ Equipo</button>
+              <button type="button" data-action="content-browser" data-type="device">+ Dispositivo</button>
+            </div>
+            <ol class="tm-v10-selected-list">
+              {{#each creationWizard.selectedEquipmentItems as |item|}}
+                <li class="item" data-item-id="{{item.id}}"><span><b>{{item.name}}</b><small>{{item.type}} · {{item.system.acquisition.paid.amount}} c</small></span><button type="button" data-action="item-delete" title="Quitar"><i class="fa-solid fa-trash"></i></button></li>
+              {{else}}<li class="tm-empty">Sin equipo comprado con PEI.</li>{{/each}}
+            </ol>
+          </section>
+        {{/if}}
+
+        {{#if creationWizard.isStep8}}
+          <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card tm-v10-review-card">
+            <div class="tm-section-heading"><h2>8 · Revisá y completá</h2><span>Al cerrar la creación se desbloquea toda la ficha.</span></div>
+            <div class="tm-v10-review-grid">
+              <div><span>Ascendencia</span><b>{{identityItems.ancestry.name}}</b></div>
+              <div><span>Origen</span><b>{{identityItems.origin.name}}</b><small>{{creationGuide.originFacet}}</small></div>
+              <div><span>Trasfondo</span><b>{{identityItems.background.name}}</b><small>{{system.details.backgroundFacets}}</small></div>
+              <div><span>Atributos</span><b>{{creationGuide.attributeIncreases}} / {{creationGuide.attributeTarget}}</b></div>
+              <div><span>PD disponibles</span><b>{{development.pdAvailable}}</b></div>
+              <div><span>PR disponibles</span><b>{{development.prAvailable}}</b></div>
+              <div><span>PEI restante</span><b>{{creationPei.display}}</b></div>
+              <div><span>Idiomas</span><b>{{creationGuide.languages}}</b></div>
+            </div>
+            {{#if creationGuide.issues.length}}
+              <div class="tm-warning"><strong>Todavía falta resolver</strong><ul>{{#each creationGuide.issues as |issue|}}<li>{{issue.message}}</li>{{/each}}</ul></div>
+            {{else}}
+              <div class="tm-info"><strong>Personaje listo.</strong> La ficha completa se habilitará al finalizar.</div>
+            {{/if}}
+            {{#if creation.warnings.length}}<div class="tm-warning"><strong>Advertencias de legado</strong><ul>{{#each creation.warnings as |warning|}}<li>{{warning}}</li>{{/each}}</ul></div>{{/if}}
+          </section>
+        {{/if}}
+
+        <div class="tm-v10-wizard-navigation">
+          {{#if creationWizard.canBack}}<button type="button" data-action="creation-prev-step" data-step="{{creationWizard.step}}"><i class="fa-solid fa-arrow-left"></i> Anterior</button>{{else}}<span></span>{{/if}}
+          {{#if creationWizard.isStep1}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.ancestryReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep2}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.originReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep3}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.backgroundReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep4}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.attributesReady}}disabled{{/unless}}>Continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep5}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.developmentReady}}disabled{{/unless}}>Confirmar PD y continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep6}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.traitsReady}}disabled{{/unless}}>Confirmar PR y continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep7}}<button type="button" data-action="creation-next-step" data-step="{{creationWizard.step}}" {{#unless creationWizard.equipmentReady}}disabled{{/unless}}>Confirmar equipo y continuar <i class="fa-solid fa-arrow-right"></i></button>{{/if}}
+          {{#if creationWizard.isStep8}}<button type="button" class="tm-v10-complete-character" data-action="complete-creation" {{#unless creationWizard.reviewReady}}disabled{{/unless}}><i class="fa-solid fa-circle-check"></i> Completar personaje</button>{{/if}}
+        </div>
+      {{else}}
+        <section class="tm-v03-page-hero">
+          <i class="fa-solid fa-diagram-project"></i>
+          <div><small>Página de desarrollo</small><h2>Desarrollo</h2><p>Nivel, PD, mejoras y reconstrucción autorizada.</p></div>
+        </section>
+
+        {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Proyectos de fabricación e investigación" type="project" items=itemGroups.project}}
+
+        <section class="tm-v03-development-summary">
+          <div><span>Nivel</span><b>{{system.details.level}}</b>{{#if development.canAdvanceLevel}}<button type="button" data-action="advance-level">Subir de nivel (+4 PD)</button>{{/if}}</div>
+          <div><span>Estado</span><b>{{creation.statusLabel}}</b></div>
+          <div><span>PD totales</span><b>{{development.pdTotal}}</b></div>
+          <div><span>PD gastados</span><b>{{development.pdSpent}}</b></div>
+          <div class="tm-v03-pd-available"><span>PD disponibles</span><b>{{development.pdAvailable}}</b></div>
+          <div><span>PR</span><b>{{development.prSpent}} / {{development.prTotal}}</b></div>
+          <div><span>PD en Habilidades</span><b>{{development.skillsPdCost}}</b></div>
+        </section>
+
+        <section class="tm-panel tm-v03-page-panel tm-v10-identity-summary">
+          <div class="tm-section-heading"><h2>Identidad</h2><span>Datos de creación, sin ocupar la cabecera de todas las páginas.</span></div>
+          <div class="tm-v10-review-grid">
+            <div><span>Ascendencia</span><b>{{identityItems.ancestry.name}}</b></div>
+            <div><span>Origen</span><b>{{identityItems.origin.name}}</b><small>{{system.details.originFacet}}</small></div>
+            <div><span>Trasfondo</span><b>{{identityItems.background.name}}</b><small>{{system.details.backgroundFacets}}</small></div>
+            <div><span>Idiomas</span><b>{{system.traits.languages}}</b></div>
+          </div>
+          <div class="tm-section-buttons">{{#if creation.isComplete}}<button type="button" data-action="begin-rebuild">Abrir reconstrucción (DJ)</button>{{else}}<button type="button" data-action="complete-creation" {{#unless creationGuide.ready}}disabled{{/unless}}>Cerrar reconstrucción</button>{{/if}}</div>
+        </section>
+
+        {{#if creationGuide.ancestryProfile}}
+          <section class="tm-panel tm-v03-page-panel">
+            <div class="tm-section-heading"><h2>Paquete racial · {{creationGuide.ancestryProfile.name}}</h2><span>Escala {{creationGuide.ancestryScaleLabel}} · Movimiento {{creationGuide.ancestryProfile.movementBase}}{{#if creationGuide.ancestryProfile.movementModes}} · {{creationGuide.ancestryProfile.movementModes}}{{/if}}</span></div>
+            {{#if creationGuide.ancestryProfile.features.length}}<ul>{{#each creationGuide.ancestryProfile.features as |feature|}}<li>{{feature}}</li>{{/each}}</ul>{{/if}}
+          </section>
+        {{/if}}
+
+        <section class="tm-panel tm-v03-page-panel">
+          <div class="tm-section-heading"><h2>Atributos</h2><span>{{#if creation.isRebuilding}}Reconstrucción: valores iniciales y progresión preservada.{{else}}Mejoras por PD; máximo ordinario 5.{{/if}}</span></div>
+          <div class="tm-v03-attribute-editor">
+            {{#if creation.isRebuilding}}
+              {{#each system.attributes as |attribute key|}}<label><span>{{lookup ../config.attributes key}}</span><input type="number" data-action="set-creation-attribute" data-key="{{key}}" value="{{attribute.creationValue}}" min="1" max="3" /></label>{{/each}}
+            {{else}}
+              {{#each development.attributeUpgrades as |upgrade|}}<div><span>{{upgrade.label}}</span><b>{{upgrade.current}}</b>{{#if upgrade.canUpgrade}}<button type="button" data-action="upgrade-attribute" data-key="{{upgrade.key}}">Mejorar a {{upgrade.next}} · {{upgrade.cost}} PD</button>{{else}}<small>Máximo ordinario</small>{{/if}}</div>{{/each}}
+            {{/if}}
+          </div>
+        </section>
+
+        {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Especializaciones" type="specialization" items=itemGroups.specialization}}
+        {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Técnicas" type="technique" items=itemGroups.technique}}
+        {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Disciplinas" type="discipline" items=itemGroups.discipline}}
+        {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Rasgos" type="trait" items=itemGroups.trait}}
+      {{/if}}
     </div>
 
     <div class="tab" data-group="primary" data-tab="inventory">

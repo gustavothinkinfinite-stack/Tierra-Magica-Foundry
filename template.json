@@ -305,6 +305,7 @@
       "creation": {
         "status": "building",
         "revision": 0,
+        "wizardStep": 1,
         "equipmentBudgetCopper": 2000,
         "initialReserveGranted": false,
         "legacyWarnings": []

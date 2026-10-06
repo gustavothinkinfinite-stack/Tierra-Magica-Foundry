@@ -141,7 +141,7 @@ test("CREA-12 3E muestra el Bono Defensivo total y no sólo el tramo marcial",as
 test("creación guiada evita facetas de texto libre y muestra bloqueos antes de cerrar",async()=>{
   const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
   const logic=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");
-  for(const marker of ["Creación guiada","set-origin-facet","set-background-facet","Falta completar lo siguiente","Paquete racial"]) {
+  for(const marker of ["Creación guiada","set-origin-facet","set-background-facet","Todavía falta resolver","Paquete racial"]) {
     assert.equal(sheet.includes(marker),true,marker);
   }
   assert.equal(sheet.includes('name="system.details.originFacet"'),false);
@@ -152,7 +152,7 @@ test("creación guiada evita facetas de texto libre y muestra bloqueos antes de 
 
 test("seleccionar identidad no abre la ficha técnica y aplica valores guiados",async()=>{
   const logic=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");
-  assert.equal(logic.includes('if (!singular) item.sheet?.render(true)'),true);
+  assert.equal(logic.includes('!singular && this.actor.system.creation?.status !== "building"'),true);
   assert.equal(logic.includes('"system.details.originFacet"] = ""'),true);
   assert.equal(logic.includes('"system.traits.languages"] = this.#requiredCreationLanguages'),true);
 });
@@ -164,4 +164,46 @@ test("la portada muestra las capacidades raciales activas y sus cambios derivado
   assert.equal(sheet.includes("Movimiento especial"),true);
   assert.equal(sheet.includes("Protección Natural"),true);
   assert.equal(sheet.includes("creationGuide.ancestryProfile.features"),true);
+});
+
+
+test("personajes nuevos usan un asistente secuencial obligatorio en Desarrollo",async()=>{
+  const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  const logic=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");
+  const model=JSON.parse(await readFile(resolve(root,"template.json"),"utf8"));
+  assert.equal(model.Actor.character.creation.wizardStep,1);
+  for(const marker of [
+    "Creación de personaje",
+    "Paso {{creationWizard.step}} de {{creationWizard.total}}",
+    "creation-next-step",
+    "creation-prev-step",
+    "tm-v10-tab-locked",
+    "Elegí tu Ascendencia",
+    "Elegí tu Origen",
+    "Elegí tu Trasfondo",
+    "Repartí tus Atributos",
+    "Gastá tus PD",
+    "Elegí Rasgos",
+    "Comprá Equipo inicial",
+    "Revisá y completá"
+  ]) assert.equal(sheet.includes(marker),true,marker);
+  assert.equal(logic.includes('this.options.tabs[0].initial = "development"'),true);
+  assert.equal(logic.includes("#advanceCreationWizard"),true);
+});
+
+test("la cabecera de juego queda compacta y no repite Facetas en todas las pestañas",async()=>{
+  const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  const css=await readFile(resolve(root,"styles/character-sheet-v03.css"),"utf8");
+  const headerEnd=sheet.indexOf('<nav class="tm-tabs');
+  const header=sheet.slice(0,headerEnd);
+  assert.equal(header.includes("tm-v10-identity-strip"),true);
+  assert.equal(header.includes("Faceta de Origen"),false);
+  assert.equal(header.includes("Facetas de Trasfondo"),false);
+  assert.equal(css.includes(".tm-character-sheet-v03 .tm-v10-header"),true);
+  assert.equal(css.includes("height: 118px !important"),true);
+});
+
+test("durante creación las compras de catálogo no abren fichas técnicas automáticamente",async()=>{
+  const logic=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");
+  assert.equal(logic.includes('!singular && this.actor.system.creation?.status !== "building"'),true);
 });

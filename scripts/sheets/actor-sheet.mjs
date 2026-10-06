@@ -13,6 +13,13 @@ const ActorSheetV1 = foundry.appv1.sheets.ActorSheet;
 const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
 
 export class TierraMagicaActorSheet extends ActorSheetV1 {
+  constructor(...args) {
+    super(...args);
+    if (this.actor?.type === "character" && this.actor.system.creation?.status === "building" && this.options.tabs?.[0]) {
+      this.options.tabs[0].initial = "development";
+    }
+  }
+
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["tierra-magica", "sheet", "actor"],
@@ -165,6 +172,82 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       languages: String(this.actor.system.traits?.languages ?? "")
     };
 
+    const issueCodes = new Set(creationIssues.map((issue) => issue.code));
+    const ancestryReady = Boolean(context.identityItems.ancestry) &&
+      !this.#itemHasUnresolvedChoice(context.identityItems.ancestry);
+    const originReady = Boolean(context.identityItems.origin) &&
+      !issueCodes.has("identity-origin") &&
+      !issueCodes.has("identity-origin-facet") &&
+      !issueCodes.has("identity-common-language") &&
+      !issueCodes.has("identity-origin-language") &&
+      !this.#itemHasUnresolvedChoice(context.identityItems.origin);
+    const backgroundReady = Boolean(context.identityItems.background) &&
+      !issueCodes.has("identity-background") &&
+      !issueCodes.has("identity-background-facets") &&
+      !issueCodes.has("identity-work-language") &&
+      !this.#itemHasUnresolvedChoice(context.identityItems.background);
+    const attributesReady = initialAttributes.valid;
+    const developmentReady = context.development.pdAvailable >= 0 && context.development.skillIssues.length === 0 &&
+      !issueCodes.has("discipline-creation-limit");
+    const traitsReady = context.development.prAvailable >= 0;
+    const equipmentReady = context.development.peiAvailable >= 0;
+    const mandatoryStep = !ancestryReady ? 1 : !originReady ? 2 : !backgroundReady ? 3 : !attributesReady ? 4 : 5;
+    const storedWizardStep = Math.max(1, Math.min(8, Math.floor(toNumber(this.actor.system.creation?.wizardStep, 0)) || mandatoryStep));
+    const wizardStep = mandatoryStep <= 4 ? mandatoryStep : Math.max(5, storedWizardStep);
+    const wizardSteps = [
+      ["Ascendencia", ancestryReady],
+      ["Origen", originReady],
+      ["Trasfondo", backgroundReady],
+      ["Atributos", attributesReady],
+      ["PD y Habilidades", developmentReady],
+      ["Rasgos", traitsReady],
+      ["Equipo inicial", equipmentReady],
+      ["Revisión", creationIssues.length === 0]
+    ].map(([label, done], index) => {
+      const number = index + 1;
+      return {
+        number,
+        label,
+        done: Boolean(done) && number < wizardStep,
+        active: number === wizardStep,
+        locked: number > wizardStep
+      };
+    });
+    context.creationWizard = {
+      enabled: creationStatus === "building",
+      step: wizardStep,
+      total: 8,
+      isStep1: wizardStep === 1,
+      isStep2: wizardStep === 2,
+      isStep3: wizardStep === 3,
+      isStep4: wizardStep === 4,
+      isStep5: wizardStep === 5,
+      isStep6: wizardStep === 6,
+      isStep7: wizardStep === 7,
+      isStep8: wizardStep === 8,
+      canBack: wizardStep > 1,
+      canNext: wizardStep < 8,
+      steps: wizardSteps,
+      ancestryReady,
+      originReady,
+      backgroundReady,
+      attributesReady,
+      developmentReady,
+      traitsReady,
+      equipmentReady,
+      reviewReady: creationIssues.length === 0,
+      skillIssues: context.development.skillIssues,
+      selectedPdItems: this.actor.items.filter((item) =>
+        ["specialization","technique","discipline","spell","formula","ritual"].includes(item.type) &&
+        item.system?.acquisition?.paid?.resource === "pd"
+      ),
+      selectedTraitItems: this.actor.items.filter((item) => item.type === "trait"),
+      selectedEquipmentItems: this.actor.items.filter((item) =>
+        ["weapon","armor","shield","equipment","device"].includes(item.type) &&
+        item.system?.acquisition?.stage === "creation"
+      )
+    };
+
     const movementMax = movementAllowance(this.actor);
     const movementLeft = movementRemaining(this.actor);
     context.turn = {
@@ -213,6 +296,8 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     html.find("[data-action='archive-legacy-crowns']").click(() => this.#archiveLegacyCrowns());
     html.find("[data-action='complete-creation']").click(() => this.actor.completeCreation());
     html.find("[data-action='begin-rebuild']").click(() => this.actor.beginRebuild());
+    html.find("[data-action='creation-next-step']").click((event) => this.#advanceCreationWizard(event.currentTarget.dataset.step));
+    html.find("[data-action='creation-prev-step']").click((event) => this.#moveCreationWizard(-1, event.currentTarget.dataset.step));
     html.find("[data-action='set-origin-facet']").change((event) => this.actor.update({
       "system.details.originFacet": String(event.currentTarget.value ?? ""),
       "system.creation.revision": toNumber(this.actor.system.creation?.revision) + 1
@@ -651,14 +736,75 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
         return;
       }
       await this.#afterIdentitySelection(type, replacement);
-      if (!singular) replacement.sheet?.render(true);
+      if (!singular && this.actor.system.creation?.status !== "building") replacement.sheet?.render(true);
       return;
     }
 
     const item = this.actor.acquireItem ? await this.actor.acquireItem(source) : (await this.actor.createEmbeddedDocuments("Item", [source]))?.[0];
     if (!item) return;
     await this.#afterIdentitySelection(type, item);
-    if (!singular) item.sheet?.render(true);
+    if (!singular && this.actor.system.creation?.status !== "building") item.sheet?.render(true);
+  }
+
+  #itemHasUnresolvedChoice(item) {
+    if (!item) return false;
+    for (const rule of Array.isArray(item.system?.rules) ? item.system.rules : []) {
+      if (rule?.key !== "ChoiceSet" || rule.optional) continue;
+      const key = String(rule.choiceKey ?? "");
+      if (!key || item.system?.choices?.[key] === undefined || item.system?.choices?.[key] === null || item.system?.choices?.[key] === "") return true;
+    }
+    return false;
+  }
+
+  async #moveCreationWizard(delta, effectiveStep = null) {
+    if (this.actor.type !== "character" || this.actor.system.creation?.status !== "building") return;
+    const current = Math.max(1, Math.min(8, Math.floor(toNumber(effectiveStep, toNumber(this.actor.system.creation?.wizardStep, 1)))));
+    const next = Math.max(1, Math.min(8, current + Math.trunc(toNumber(delta))));
+    if (next === current) return;
+    return this.actor.update({
+      "system.creation.wizardStep": next,
+      "system.creation.revision": toNumber(this.actor.system.creation?.revision) + 1
+    });
+  }
+
+  async #advanceCreationWizard(effectiveStep = null) {
+    if (this.actor.type !== "character" || this.actor.system.creation?.status !== "building") return;
+    const items = [...this.actor.items];
+    const current = Math.max(1, Math.min(8, Math.floor(toNumber(effectiveStep, toNumber(this.actor.system.creation?.wizardStep, 1)))));
+    const validation = validateCreationState(this.actor, { skillKeys: Object.keys(TM_CONFIG.skills) });
+    const codes = new Set(validation.issues.map((issue) => issue.code));
+    let message = "";
+
+    if (current === 1) {
+      const ancestry = items.find((item) => item.type === "ancestry");
+      if (!ancestry) message = "Elegí una Ascendencia para continuar.";
+      else if (this.#itemHasUnresolvedChoice(ancestry)) message = "Resolvé la elección obligatoria de la Ascendencia para continuar.";
+    } else if (current === 2) {
+      if (!items.some((item) => item.type === "origin")) message = "Elegí un Origen para continuar.";
+      else if (codes.has("identity-origin-facet")) message = "Elegí la Faceta de Origen para continuar.";
+      else if (codes.has("identity-common-language") || codes.has("identity-origin-language")) message = "El Origen todavía no tiene resueltos sus idiomas iniciales.";
+    } else if (current === 3) {
+      if (!items.some((item) => item.type === "background")) message = "Elegí un Trasfondo para continuar.";
+      else if (codes.has("identity-background-facets") || codes.has("identity-work-language")) message = "Completá las dos Facetas de Trasfondo para continuar.";
+    } else if (current === 4) {
+      const attributes = validateInitialAttributes(this.actor.system.attributes ?? {});
+      if (!attributes.valid) message = attributes.issues.map((issue) => issue.message).join(" ");
+    } else if (current === 5) {
+      if (toNumber(this.actor.system.derived?.pdAvailable) < 0) message = "Los PD gastados superan el presupuesto disponible.";
+      else if ((this.actor.system.derived?.skillIssues ?? []).length) message = "Hay Habilidades que todavía no cumplen las reglas de creación.";
+      else if (codes.has("discipline-creation-limit")) message = "Durante creación puede haber como máximo 3 Disciplinas.";
+    } else if (current === 6) {
+      if (toNumber(this.actor.system.derived?.prAvailable) < 0) message = "Los PR gastados superan el presupuesto disponible.";
+    } else if (current === 7) {
+      if (toNumber(this.actor.system.derived?.peiAvailable) < 0) message = "El PEI gastado supera el presupuesto inicial.";
+    }
+
+    if (message) return ui.notifications.warn(message);
+    if (current >= 8) return;
+    return this.actor.update({
+      "system.creation.wizardStep": current + 1,
+      "system.creation.revision": toNumber(this.actor.system.creation?.revision) + 1
+    });
   }
 
   async #afterIdentitySelection(type, item) {
@@ -666,6 +812,13 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     const updates = {
       "system.creation.revision": toNumber(this.actor.system.creation?.revision) + 1
     };
+    if (this.actor.system.creation?.status === "building") {
+      const resetStep = type === "ancestry" ? 1 : type === "origin" ? 2 : 3;
+      updates["system.creation.wizardStep"] = Math.min(
+        Math.max(1, Math.floor(toNumber(this.actor.system.creation?.wizardStep, resetStep))),
+        resetStep
+      );
+    }
     if (type === "origin") {
       updates["system.details.originFacet"] = "";
       updates["system.traits.languages"] = this.#requiredCreationLanguages({ backgroundFacets: this.actor.system.details?.backgroundFacets });
