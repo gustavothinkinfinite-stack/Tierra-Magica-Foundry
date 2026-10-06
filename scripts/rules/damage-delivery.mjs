@@ -1,3 +1,5 @@
+import { normalizeDamageMode, normalizeDamageType } from "./damage-types.mjs";
+
 // Foundry T.M. — entrega segura de daño cuando el atacante no posee el Actor objetivo.
 // La solicitud no concede permisos: sólo describe una aplicación pendiente que un DJ activo debe aprobar.
 
@@ -6,7 +8,7 @@ const number = (value, fallback = 0) => {
   return Number.isFinite(parsed) ? parsed : fallback;
 };
 
-export function pendingDamageRequest({ targetUuid = "", damage = 0, source = "", attacker = "" } = {}) {
+export function pendingDamageRequest({ targetUuid = "", damage = 0, source = "", attacker = "", damageType = "special", damageMode = "lethal" } = {}) {
   const uuid = String(targetUuid ?? "").trim();
   const amount = Math.max(0, number(damage));
   if (!uuid || amount <= 0) return null;
@@ -15,6 +17,8 @@ export function pendingDamageRequest({ targetUuid = "", damage = 0, source = "",
     damage: amount,
     source: String(source ?? "").trim().slice(0, 120),
     attacker: String(attacker ?? "").trim().slice(0, 120),
+    damageType: normalizeDamageType(damageType) || "special",
+    damageMode: normalizeDamageMode(damageMode),
     resolved: false
   };
 }
