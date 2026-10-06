@@ -156,3 +156,12 @@ test("seleccionar identidad no abre la ficha técnica y aplica valores guiados",
   assert.equal(logic.includes('"system.details.originFacet"] = ""'),true);
   assert.equal(logic.includes('"system.traits.languages"] = this.#requiredCreationLanguages'),true);
 });
+
+
+test("la portada muestra las capacidades raciales activas y sus cambios derivados",async()=>{
+  const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  assert.equal(sheet.includes("Ascendencia · {{creationGuide.ancestryProfile.name}}"),true);
+  assert.equal(sheet.includes("Movimiento especial"),true);
+  assert.equal(sheet.includes("Protección Natural"),true);
+  assert.equal(sheet.includes("creationGuide.ancestryProfile.features"),true);
+});
