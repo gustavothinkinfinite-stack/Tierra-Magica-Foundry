@@ -406,6 +406,11 @@
         "requirements": null,
         "rules": [],
         "choices": {},
+        "damageTraits": {
+          "resistances": {},
+          "immunities": {},
+          "vulnerabilities": {}
+        },
         "provenance": {
           "sourceUuid": "",
           "sourceSchemaVersion": 0,
