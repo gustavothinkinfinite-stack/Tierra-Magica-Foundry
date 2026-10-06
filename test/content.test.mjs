@@ -84,3 +84,20 @@ test("protecciones mentales diferidas no atacan al protegido durante el lanzamie
   assert.match(interdiccion.effect,/Defensa Mental del atacante/);
   assert.match(aura.effect,/Defensa Mental de esa criatura/);
 });
+
+
+test("taxonomía de daño inicial queda disponible y el contenido nuclear está clasificado",()=>{
+  for(const id of ["slashing","piercing","bludgeoning","fire","cold","lightning","kinetic","arcane","divine","toxic","corrosive","special"]) {
+    assert.equal(typeof TM_CONFIG.damageTypes[id],"string",id);
+  }
+  const weapon=(name)=>STARTER_CONTENT.weapon.find((item)=>item.name===name).system;
+  const spell=(name)=>STARTER_CONTENT.spell.find((item)=>item.name===name).system;
+  assert.equal(weapon("Espada larga").damageType,"slashing");
+  assert.equal(weapon("Maza").damageType,"bludgeoning");
+  assert.equal(weapon("Rifle temprano").damageType,"piercing");
+  assert.equal(spell("Proyectil Ígneo").damageType,"fire");
+  assert.equal(spell("Aguja Gélida").damageType,"cold");
+  assert.equal(spell("Arco Fulminante").damageType,"lightning");
+  assert.equal(spell("Martillo Cinético").damageType,"kinetic");
+  assert.equal(spell("Tormenta Arcana").damageType,"arcane");
+});
