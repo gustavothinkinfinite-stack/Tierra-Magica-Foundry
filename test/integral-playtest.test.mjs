@@ -82,8 +82,8 @@ test("partida integral: daño físico y mágico desembocan en autoridad comparti
   const actor = await read("scripts/documents/actor.mjs");
   const magic = await read("scripts/rules/magic-guards.mjs");
   const authority = await read("scripts/rules/state-authority.mjs");
-  assert.match(actor, /applyHealthDamageAuthoritatively\(target, impact\.damage\)/);
-  assert.match(magic, /applyHealthDamageAuthoritatively\(impact\.actor, impact\.damage\)/);
+  assert.match(actor, /applyHealthDamageAuthoritatively\\(target, impact\\.damage, \\{ damageMode:impact\\.damageMode \\}\\)/);
+  assert.match(magic, /applyHealthDamageAuthoritatively\\(impact\\.actor, impact\\.damage, \\{ damageMode:impact\\.damageMode \\}\\)/);
   assert.match(authority, /apply-health-damage/);
   assert.match(authority, /serial\("health:/);
 });
