@@ -13,6 +13,19 @@
     </div>
   </section>
 
+  {{#if hasDamageTraitsEditor}}
+  <section class="tm-panel tm-item-fields">
+    <div class="tm-section-heading"><h2>Resistencias que concede</h2><span>Fuente estructurada</span></div>
+    <div class="tm-form-grid">
+      {{#each damageTraitRows as |row|}}
+        <label><span>{{row.label}} · Resistencia</span><input type="number" min="0" name="system.damageTraits.resistances.{{row.id}}" value="{{row.resistance}}" /></label>
+        <label class="tm-check"><span>{{row.label}} · Inmunidad</span><input type="checkbox" name="system.damageTraits.immunities.{{row.id}}" {{checked row.immunity}} /></label>
+        <label><span>{{row.label}} · Vulnerabilidad</span><input type="number" min="0" name="system.damageTraits.vulnerabilities.{{row.id}}" value="{{row.vulnerability}}" /></label>
+      {{/each}}
+    </div>
+  </section>
+  {{/if}}
+
   <section class="tm-panel tm-item-fields">
     <div class="tm-form-grid">
       {{#if isWeapon}}
