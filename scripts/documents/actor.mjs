@@ -565,19 +565,25 @@ export class TierraMagicaActor extends Actor {
     const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
     let appliedDamage = impact.damage <= 0;
     if (impact.damage > 0 && canUpdate) {
-      const delivery = await applyHealthDamageAuthoritatively(target, impact.damage);
+      const delivery = await applyHealthDamageAuthoritatively(target, impact.damage, { damageMode:impact.damageMode });
       appliedDamage = delivery.ok;
       if (!delivery.ok) ui.notifications.warn(delivery.error);
     }
     const pendingDamage = impact.damage > 0 && !appliedDamage ? pendingDamageRequest({
-      targetUuid: target.uuid, damage: impact.damage, source: item.name, attacker: this.name
+      targetUuid: target.uuid, damage: impact.damage, source: item.name, attacker: this.name,
+      damageType: impact.damageType, damageMode: impact.damageMode
     }) : null;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       flags: pendingDamage ? { "tierra-magica": { pendingDamage } } : {},
       content: "<div class='tm-chat-card'><strong>Impacto — " + foundry.utils.escapeHTML(item.name) +
         "</strong><p><strong>" + foundry.utils.escapeHTML(target.name) + "</strong>: " + impact.damage +
-        " daño · Protección " + impact.protection + " → " + impact.effectiveProtection +
+        " daño " + foundry.utils.escapeHTML(damageTypeLabel(impact.damageType, TM_CONFIG.damageTypes)) +
+        (impact.damageMode === "nonlethal" ? " · No letal" : "") +
+        " · Protección " + impact.protection + " → " + impact.effectiveProtection +
+        (impact.resistance ? " · Resistencia -" + impact.resistance : "") +
+        (impact.vulnerability ? " · Vulnerabilidad +" + impact.vulnerability : "") +
+        (impact.immune ? " · Inmunidad" : "") +
         (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") +
         (pendingDamage ? " · <em>pendiente de aprobación del DJ</em>" : "") +
         "</p>" + (technique ? "<p>Técnica: " + foundry.utils.escapeHTML(technique) + ".</p>" : "") + "<p>El umbral de Daño Grave no crea automáticamente una Herida Grave.</p></div>"
@@ -618,17 +624,19 @@ export class TierraMagicaActor extends Actor {
         const impact = resolveWeaponImpact(weapon, this, target);
         const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
         if (impact.damage > 0 && canUpdate) {
-          const delivery = await applyHealthDamageAuthoritatively(target, impact.damage);
+          const delivery = await applyHealthDamageAuthoritatively(target, impact.damage, { damageMode:impact.damageMode });
           if (!delivery.ok) {
             ui.notifications.warn(delivery.error);
             pendingTotal += impact.damage;
           }
         } else if (impact.damage > 0) pendingTotal += impact.damage;
-        results.push({ roll, hit: true, damage: impact.damage });
+        results.push({ roll, hit: true, damage: impact.damage, damageType:impact.damageType, damageMode:impact.damageMode });
       } else results.push({ roll, hit: false, damage: 0 });
     }
+    const pendingModes = results.filter((entry) => entry.hit && entry.damage > 0).map((entry) => entry.damageMode);
     const pendingDamage = pendingDamageRequest({
-      targetUuid: target.uuid, damage: pendingTotal, source: "Combate Dual", attacker: this.name
+      targetUuid: target.uuid, damage: pendingTotal, source: "Combate Dual", attacker: this.name,
+      damageType: "special", damageMode: pendingModes.includes("lethal") ? "lethal" : "nonlethal"
     });
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
@@ -665,18 +673,21 @@ export class TierraMagicaActor extends Actor {
       const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
       let appliedDamage = impact.damage <= 0;
       if (impact.damage > 0 && canUpdate) {
-        const delivery = await applyHealthDamageAuthoritatively(target, impact.damage);
+        const delivery = await applyHealthDamageAuthoritatively(target, impact.damage, { damageMode:impact.damageMode });
         appliedDamage = delivery.ok;
         if (!delivery.ok) ui.notifications.warn(delivery.error);
       }
       const pendingDamage = impact.damage > 0 && !appliedDamage ? pendingDamageRequest({
-        targetUuid: target.uuid, damage: impact.damage, source: "Barrido — " + item.name, attacker: this.name
+        targetUuid: target.uuid, damage: impact.damage, source: "Barrido — " + item.name, attacker: this.name,
+        damageType: impact.damageType, damageMode: impact.damageMode
       }) : null;
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
         flags: pendingDamage ? { "tierra-magica": { pendingDamage } } : {},
         content: "<div class='tm-chat-card'><strong>Barrido — " + foundry.utils.escapeHTML(item.name) +
-          "</strong><p>" + foundry.utils.escapeHTML(target.name) + ": " + impact.damage + " daño" +
+          "</strong><p>" + foundry.utils.escapeHTML(target.name) + ": " + impact.damage + " daño " +
+          foundry.utils.escapeHTML(damageTypeLabel(impact.damageType, TM_CONFIG.damageTypes)) +
+          (impact.damageMode === "nonlethal" ? " · No letal" : "") +
           (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") +
           (pendingDamage ? " · <em>pendiente de aprobación del DJ</em>" : "") +
           ".</p></div>"
