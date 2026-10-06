@@ -30,7 +30,7 @@ test("Manual Maestro permanece como fuente activa única en los documentos de ci
 });
 
 test("CREA-13 sigue registrada como integrada aunque el sistema avance a 1.3.0",async()=>{
-  const closeout=await read("docs/CREA-13_VALIDACION_GLOBAL.md");
+  const closeout=await read("docs/archive/creacion/CREA-13_VALIDACION_GLOBAL.md");
   const changelog=await read("CHANGELOG.md");
   const system=JSON.parse(await read("system.json"));
   const pkg=JSON.parse(await read("package.json"));
