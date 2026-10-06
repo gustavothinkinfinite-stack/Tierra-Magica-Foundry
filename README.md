@@ -20,7 +20,7 @@ En Foundry VTT, usa esta URL en **Instalar sistema → Manifest URL**:
 
 Ese manifiesto apunta siempre al ZIP de su propia versión, evitando que cambios posteriores en `main` adelanten una actualización todavía no publicada.
 
-Documentación de cierre: `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md` · referencia de mesa: `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md` · jerarquía de fuentes: `docs/FUENTES_CANONICAS.md`.
+Índice de documentación: `docs/README.md` · documentación de cierre: `docs/AUDITORIA_INTEGRAL_FINAL_1.0.md` · referencia de mesa: `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md` · jerarquía de fuentes: `docs/FUENTES_CANONICAS.md`. Los cierres de fase, auditorías históricas y reportes de release están en `docs/archive/`.
 
 ## Limitaciones deliberadas de automatización
 
