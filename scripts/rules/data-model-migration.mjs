@@ -36,7 +36,11 @@ function migrateActorSourceV2(actor) {
     ? system.damageTraits
     : { resistances:{}, immunities:[], vulnerabilities:{} };
   system.damageTraits.resistances = system.damageTraits.resistances && typeof system.damageTraits.resistances === "object" && !Array.isArray(system.damageTraits.resistances) ? system.damageTraits.resistances : {};
-  system.damageTraits.immunities = Array.isArray(system.damageTraits.immunities) ? system.damageTraits.immunities : [];
+  if (Array.isArray(system.damageTraits.immunities)) {
+    system.damageTraits.immunities = Object.fromEntries(system.damageTraits.immunities.map((type) => [String(type), true]));
+  } else if (!system.damageTraits.immunities || typeof system.damageTraits.immunities !== "object") {
+    system.damageTraits.immunities = {};
+  }
   system.damageTraits.vulnerabilities = system.damageTraits.vulnerabilities && typeof system.damageTraits.vulnerabilities === "object" && !Array.isArray(system.damageTraits.vulnerabilities) ? system.damageTraits.vulnerabilities : {};
   const combat = system.combat ??= {};
   const legacyMovementBonus = number(combat.movementBonus);
