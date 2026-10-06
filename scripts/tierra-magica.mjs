@@ -1,4 +1,5 @@
 import { TM_CONFIG } from "./config.mjs";
+import { damageTypeRegistry } from "./rules/damage-types.mjs";
 import { TierraMagicaActor } from "./documents/actor.mjs";
 import { TierraMagicaItem } from "./documents/item.mjs";
 import { TierraMagicaActorSheet } from "./sheets/actor-sheet.mjs";
@@ -60,6 +61,16 @@ function forcedDeletion() {
 
 Hooks.once("init", async () => {
   console.info("Foundry T.M. | Iniciando Tierra Mágica v" + String(game.system?.version ?? "?"));
+  game.settings.register("tierra-magica", "customDamageTypes", {
+    name: "Tipos de daño personalizados",
+    hint: "Añade tipos de daño del mundo como id=Nombre, separados por comas o saltos de línea. Ejemplo: solar=Solar, vacio=Vacío. Requiere recargar.",
+    scope: "world",
+    config: true,
+    type: String,
+    default: "",
+    requiresReload: true
+  });
+  TM_CONFIG.damageTypes = damageTypeRegistry(game.settings.get("tierra-magica", "customDamageTypes"));
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
   CONFIG.Item.documentClass = TierraMagicaItem;
