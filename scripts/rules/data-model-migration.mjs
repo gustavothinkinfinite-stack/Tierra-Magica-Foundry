@@ -233,6 +233,10 @@ function migrateItemSourceV6(item) {
     if (!String(system.damageType ?? "").trim()) system.damageType = inferSpellDamageType(item);
     if (!["lethal","nonlethal"].includes(String(system.damageMode ?? "").toLowerCase())) system.damageMode = "lethal";
   }
+  if (item.type === "formula" && Math.max(0, number(system.damage)) > 0) {
+    if (!String(system.damageType ?? "").trim()) system.damageType = normalizeSlug(system.slug || item.name) === "bomba-incendiaria" ? "fire" : "special";
+    if (!["lethal","nonlethal"].includes(String(system.damageMode ?? "").toLowerCase())) system.damageMode = "lethal";
+  }
   if (system.trap?.load && typeof system.trap.load === "object") {
     if (!String(system.trap.load.damageType ?? "").trim()) system.trap.load.damageType = "special";
     if (!["lethal","nonlethal"].includes(String(system.trap.load.damageMode ?? "").toLowerCase())) system.trap.load.damageMode = "lethal";
