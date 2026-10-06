@@ -1,6 +1,6 @@
 # Fuentes del proyecto — política de fuente única
 
-Fecha de consolidación: 2026-10-03.
+Fecha de consolidación: 2026-10-06.
 
 ## Fuente activa única
 
@@ -12,11 +12,11 @@ Toda regla o decisión nueva debe incorporarse primero allí. Foundry VTT, refer
 
 ## Material histórico y de respaldo
 
-Los Manuales v0.1/v0.2, el Manual Básico mecánico 1.0 separado, los Canon del Mundo v1.1/v1.2 separados y las auditorías se conservan únicamente para trazabilidad, recuperación y comprobación de procedencia. Su contenido útil vigente fue integrado en el Manual Maestro Único. Si un documento histórico contradice el Manual Maestro, prevalece el Manual Maestro.
+Los Manuales v0.1/v0.2, el Manual Básico mecánico 1.0 separado, los Canon del Mundo v1.1/v1.2 separados, el antiguo Archivo Narrativo Recuperado y las auditorías se conservan únicamente para trazabilidad, recuperación y comprobación de procedencia. Su contenido útil vigente debe promoverse expresamente al Manual Maestro Único antes de considerarse canon. Si un documento histórico contradice el Manual Maestro, prevalece el Manual Maestro.
 
 Git/GitHub conserva el historial de cada modificación. No se debe eliminar una fuente histórica externa por considerarla obsoleta hasta confirmar que el contenido útil fue integrado o archivado dentro del Manual Maestro.
 
-Los documentos de proceso, auditorías históricas, cierres de fase y reportes de release se conservan bajo `docs/archive/`. Esa carpeta existe para trazabilidad y no constituye una fuente paralela de reglas.
+Los documentos de proceso, auditorías históricas, cierres de fase, reportes de release, snapshots externos y material narrativo sustituido se conservan bajo `docs/archive/`. Esa carpeta es almacenamiento frío de trazabilidad: **no debe consultarse de forma habitual, no crea canon y no constituye una fuente paralela de reglas o ambientación**.
 
 ## Estado de pueblos y paquetes raciales
 
@@ -101,3 +101,16 @@ Foundry T.M. **v1.1.0 fue publicada** desde el commit `0fc8ffab5c0376533ebb20433
 ## Fuentes visuales
 
 La guía visual, portada de referencia e ilustraciones siguen siendo activos visuales separados porque no son texto del manual. Orientan la futura maquetación y arte, pero no sustituyen la fuente textual única.
+
+
+## Depuración narrativa del 2026-10-06
+
+Los capítulos canónicos de **Eïra, Khorun, Varkor, Aster, Ilyr, Nereth y Vaelun** fueron depurados e integrados directamente en la Parte I del Manual Maestro.
+
+El antiguo bloque interno **«PARTE III — ARCHIVO NARRATIVO RECUPERADO DEL MANUAL LARGO v0.2»** fue retirado del circuito editorial activo y congelado íntegramente en:
+
+\`docs/archive/historico/ARCHIVO_NARRATIVO_RECUPERADO_MANUAL_v0.2_2026-10-06.md\`
+
+Sus antiguos rótulos «ESTADO CANÓNICO v0.1/v0.2» son históricos y no recuperan autoridad por estar archivados. Un detalle de ese archivo sólo vuelve al canon cuando se incorpora expresamente al Manual Maestro mediante una decisión posterior.
+
+Las fuentes externas de trabajo usadas para recuperar estilo, geografía, cartografía y principios de diseño quedan registradas en \`docs/archive/fuentes_externas/REGISTRO_FUENTES_EXTERNAS_2026-10-06.md\`. Son material de respaldo y no una segunda autoridad textual.

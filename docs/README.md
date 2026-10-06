@@ -21,6 +21,6 @@ Esta carpeta muestra únicamente la documentación que debe consultarse de forma
 
 ## Archivo
 
-`archive/` conserva cierres CREA/CRAFT, auditorías históricas, documentos de trabajo de catálogos, manuales sustituidos y reportes de releases anteriores.
+`archive/` es almacenamiento frío: conserva cierres CREA/CRAFT, auditorías históricas, documentos de trabajo de catálogos, manuales sustituidos, narrativa recuperada, fuentes externas congeladas y reportes de releases anteriores.
 
-El contenido de `archive/` sirve para trazabilidad. No crea canon ni prevalece sobre el Manual Maestro.
+**No debe consultarse de forma habitual.** El contenido de `archive/` sirve exclusivamente para trazabilidad o recuperación excepcional; no crea canon ni prevalece sobre el Manual Maestro.
