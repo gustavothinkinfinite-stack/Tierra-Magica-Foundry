@@ -43,6 +43,22 @@ export class TierraMagicaActor extends Actor {
     const rulePreparation = prepareRuleElements([...this.items], { skillDefinitions: TM_CONFIG.skills });
     this._tmRulePreparation = rulePreparation;
 
+    // La Ascendencia es la autoridad del paquete racial: aplica Escala y Movimiento
+    // derivados sin exigir que el jugador copie manualmente esos valores a la ficha.
+    if (this.type === "character") {
+      const ancestry = this.items.find((item) => item.type === "ancestry") ?? null;
+      const ancestryScale = String(ancestry?.system?.choices?.scale || ancestry?.system?.scale || "");
+      if (ancestryScale && TM_CONFIG.sizes[ancestryScale]) {
+        s.traits ??= {};
+        s.traits.size = ancestryScale;
+      }
+      const ancestryMovement = Number(ancestry?.system?.movementBase);
+      if (Number.isFinite(ancestryMovement) && ancestryMovement > 0) {
+        s.movement ??= {};
+        s.movement.base = ancestryMovement;
+      }
+    }
+
     for (const attribute of Object.values(a)) {
       const base = clamp(attribute.baseValue ?? attribute.value, 0, 99);
       attribute.baseValue = base;
