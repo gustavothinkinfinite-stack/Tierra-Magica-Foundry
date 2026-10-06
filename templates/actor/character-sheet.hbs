@@ -39,14 +39,29 @@
         <button type="button" data-action="content-browser" data-type="background">Elegir Trasfondo</button>
       {{/if}}
     </div>
-    <label>
-      <span>Faceta de Origen</span>
-      <input type="text" name="system.details.originFacet" value="{{system.details.originFacet}}" placeholder="Una faceta del Origen elegido" />
-    </label>
-    <label>
-      <span>Facetas de Trasfondo</span>
-      <input type="text" name="system.details.backgroundFacets" value="{{system.details.backgroundFacets}}" placeholder="Faceta 1; Faceta 2" />
-    </label>
+    {{#if creation.isOpen}}
+      <label>
+        <span>Faceta de Origen</span>
+        <select data-action="set-origin-facet" {{#unless identityItems.origin}}disabled{{/unless}}>
+          {{selectOptions creationGuide.originFacetOptions selected=creationGuide.originFacet}}
+        </select>
+      </label>
+      <div class="tm-v03-background-field">
+        <span>Facetas de Trasfondo</span>
+        <select data-action="set-background-facet" data-index="0" {{#unless identityItems.background}}disabled{{/unless}}>
+          {{selectOptions creationGuide.backgroundFacetOptions selected=creationGuide.backgroundFacet1}}
+        </select>
+        <select data-action="set-background-facet" data-index="1" {{#unless identityItems.background}}disabled{{/unless}}>
+          {{selectOptions creationGuide.backgroundFacetOptions selected=creationGuide.backgroundFacet2}}
+        </select>
+        {{#if creationGuide.usesWorkLanguage}}
+          <input type="text" data-action="set-background-work-language" value="{{creationGuide.workLanguage}}" placeholder="Idioma de trabajo adicional" />
+        {{/if}}
+      </div>
+    {{else}}
+      <div><span>Faceta de Origen</span><strong>{{system.details.originFacet}}</strong></div>
+      <div class="tm-v03-background-field"><span>Facetas de Trasfondo</span><strong>{{system.details.backgroundFacets}}</strong></div>
+    {{/if}}
   </section>
 
   <nav class="tm-tabs tm-v03-page-tabs tabs" data-group="primary" aria-label="Páginas de la ficha">
@@ -475,19 +490,53 @@
       </section>
 
       <section class="tm-panel tm-v03-page-panel">
-        <div class="tm-section-heading"><h2>Construcción estructurada</h2><span>Revisión {{creation.revision}} · Reserva {{#if creation.reserveGranted}}concedida{{else}}pendiente{{/if}}</span></div>
+        <div class="tm-section-heading"><h2>Creación guiada</h2><span>Revisión {{creation.revision}} · Reserva {{#if creation.reserveGranted}}concedida{{else}}pendiente{{/if}}</span></div>
+        {{#if creation.isOpen}}
+          <div class="tm-v03-development-summary">
+            <div><span>1 · Ascendencia</span><b>{{#if identityItems.ancestry}}{{identityItems.ancestry.name}}{{else}}Pendiente{{/if}}</b></div>
+            <div><span>2 · Origen</span><b>{{#if identityItems.origin}}{{identityItems.origin.name}}{{else}}Pendiente{{/if}}</b></div>
+            <div><span>3 · Trasfondo</span><b>{{#if identityItems.background}}{{identityItems.background.name}}{{else}}Pendiente{{/if}}</b></div>
+            <div><span>4 · Atributos</span><b>{{creationGuide.attributeIncreases}} / {{creationGuide.attributeTarget}} aumentos</b></div>
+            <div><span>5 · PD disponibles</span><b>{{development.pdAvailable}}</b></div>
+            <div><span>6 · PR disponibles</span><b>{{development.prAvailable}}</b></div>
+            <div><span>7 · PEI restante</span><b>{{creationPei.display}}</b></div>
+          </div>
+          {{#if creationGuide.issues.length}}
+            <div class="tm-warning">
+              <strong>Falta completar lo siguiente</strong>
+              <ul>{{#each creationGuide.issues as |issue|}}<li>{{issue.message}}</li>{{/each}}</ul>
+            </div>
+          {{else}}
+            <div class="tm-info"><strong>La creación está legalmente completa.</strong> Ya puedes cerrarla.</div>
+          {{/if}}
+        {{/if}}
         {{#if creation.warnings.length}}
           <div class="tm-warning"><strong>Advertencias de legado</strong><ul>{{#each creation.warnings as |warning|}}<li>{{warning}}</li>{{/each}}</ul></div>
         {{/if}}
-        {{#if development.ruleIssues.length}}
-          <div class="tm-warning"><strong>Incidencias de reglas</strong><ul>{{#each development.ruleIssues as |issue|}}<li>{{issue.message}}</li>{{/each}}</ul></div>
-        {{/if}}
         <div class="tm-section-buttons">
-          {{#if creation.isBuilding}}<button type="button" data-action="complete-creation">Completar creación</button>{{/if}}
-          {{#if creation.isRebuilding}}<button type="button" data-action="complete-creation">Cerrar reconstrucción</button>{{/if}}
+          {{#if creation.isBuilding}}<button type="button" data-action="complete-creation" {{#unless creationGuide.ready}}disabled{{/unless}}>Completar creación</button>{{/if}}
+          {{#if creation.isRebuilding}}<button type="button" data-action="complete-creation" {{#unless creationGuide.ready}}disabled{{/unless}}>Cerrar reconstrucción</button>{{/if}}
           {{#if creation.isComplete}}<button type="button" data-action="begin-rebuild">Abrir reconstrucción (DJ)</button>{{/if}}
         </div>
       </section>
+
+      {{#if creationGuide.ancestryProfile}}
+        <section class="tm-panel tm-v03-page-panel">
+          <div class="tm-section-heading">
+            <h2>Paquete racial · {{creationGuide.ancestryProfile.name}}</h2>
+            <span>Escala {{creationGuide.ancestryScaleLabel}} · Movimiento {{creationGuide.ancestryProfile.movementBase}}{{#if creationGuide.ancestryProfile.movementModes}} · {{creationGuide.ancestryProfile.movementModes}}{{/if}}</span>
+          </div>
+          {{#if creationGuide.ancestryProfile.features.length}}
+            <ul>{{#each creationGuide.ancestryProfile.features as |feature|}}<li>{{feature}}</li>{{/each}}</ul>
+          {{/if}}
+          {{#if creationGuide.ancestryProfile.naturalProtection}}
+            <p><strong>Protección Natural {{creationGuide.ancestryProfile.naturalProtection}}</strong> · se usa el valor mayor frente a armadura.</p>
+          {{/if}}
+          {{#if creationGuide.ancestryProfile.selectionNotes}}
+            <div class="tm-warning"><strong>Elección racial pendiente o contextual:</strong> {{creationGuide.ancestryProfile.selectionNotes}}</div>
+          {{/if}}
+        </section>
+      {{/if}}
 
       <section class="tm-panel tm-v03-page-panel">
         <div class="tm-section-heading"><h2>Atributos</h2><span>{{#if creation.isOpen}}6 aumentos gratuitos; máximo inicial 3.{{else}}Mejoras por PD; máximo ordinario 5.{{/if}}</span></div>
@@ -515,9 +564,9 @@
       <section class="tm-panel tm-v03-page-panel">
         <div class="tm-section-heading"><h2>Identidad mecánica</h2><span>Información complementaria.</span></div>
         <div class="tm-form-grid">
-          <label><span>Idiomas</span><input type="text" name="system.traits.languages" value="{{system.traits.languages}}" /></label>
+          <label><span>Idiomas{{#if creation.isOpen}} · automáticos en creación{{/if}}</span><input type="text" name="system.traits.languages" value="{{system.traits.languages}}" {{#if creation.isOpen}}readonly{{/if}} /></label>
           <label><span>Sentidos</span><input type="text" name="system.traits.senses" value="{{system.traits.senses}}" /></label>
-          <label><span>Escala</span><select name="system.traits.size">{{selectOptions config.sizes selected=system.traits.size}}</select></label>
+          <label><span>Escala{{#if identityItems.ancestry}} · por Ascendencia{{/if}}</span><select name="system.traits.size" {{#if identityItems.ancestry}}disabled{{/if}}>{{selectOptions config.sizes selected=system.traits.size}}</select></label>
         </div>
       </section>
 
