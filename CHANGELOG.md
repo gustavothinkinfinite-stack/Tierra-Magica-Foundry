@@ -82,7 +82,7 @@
 - La reconstrucción autorizada distingue los aumentos gratuitos de creación de la progresión ya pagada y no borra silenciosamente Atributos progresados.
 - El **PEI sobrante queda en 0 después de cerrar creación** y no reaparece como presupuesto reutilizable durante progresión.
 - Se añaden regresiones específicas para nivel, presupuesto PD, Atributos, reconstrucción y cierre de PEI.
-- Documento formal: `docs/CREA-15_CIERRE_AUTOSUFICIENCIA_PROGRESION.md`.
+- Documento formal: `docs/archive/creacion/CREA-15_CIERRE_AUTOSUFICIENCIA_PROGRESION.md`.
 
 ## CREA-14 — autosuficiencia de creación · CERRADO — 2026-10-04
 

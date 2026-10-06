@@ -20,6 +20,6 @@ test("REV-CREA-11-001 mantiene Manual y decisiones CREA-10/11 sincronizados",asy
 });
 
 test("REV-CREA-11-001 deja derivados pendientes fuera de alcance",async()=>{
-  const revision=await readFile(resolve(root,"docs/REV-CREA-11-001_SINCRONIZACION_POST_CIERRE.md"),"utf8");
+  const revision=await readFile(resolve(root,"docs/archive/creacion/REV-CREA-11-001_SINCRONIZACION_POST_CIERRE.md"),"utf8");
   for(const term of ["Piel Alterada","FUE mínima","Movimiento cuantificado","Sangrado"]) assert.equal(revision.includes(term),true);
 });

@@ -26,11 +26,11 @@ test("Manual Maestro permanece como fuente activa única en los documentos de ci
   const sources=await read("docs/FUENTES_CANONICAS.md");
   const audit=await read("docs/AUDITORIA_INTEGRAL_FINAL_1.0.md");
   for(const text of [readme,sources,audit]) assert.match(text,/docs\/Tierra_Magica_Manual_Maestro\.md/);
-  assert.equal(audit.includes("La fuente mecánica canónica continúa siendo `docs/Foundry_TM_Manual_1.0_Playtest.md`"),false);
+  assert.equal(audit.includes("La fuente mecánica canónica continúa siendo `docs/archive/historico/Foundry_TM_Manual_1.0_Playtest.md`"),false);
 });
 
 test("CREA-13 sigue registrada como integrada aunque el sistema avance a 1.3.0",async()=>{
-  const closeout=await read("docs/CREA-13_VALIDACION_GLOBAL.md");
+  const closeout=await read("docs/archive/creacion/CREA-13_VALIDACION_GLOBAL.md");
   const changelog=await read("CHANGELOG.md");
   const system=JSON.parse(await read("system.json"));
   const pkg=JSON.parse(await read("package.json"));

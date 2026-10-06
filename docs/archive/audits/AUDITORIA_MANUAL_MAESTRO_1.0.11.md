@@ -6,7 +6,7 @@ Fecha de auditoría inicial: 2026-09-22. Estado reconciliado: 2026-09-23.
 
 ## Alcance y jerarquía
 
-Se contrastaron `docs/Tierra_Magica_Manual_Maestro.md`, `docs/Foundry_TM_Manual_1.0_Playtest.md`, `CHANGELOG.md`, `scripts/content.mjs`, el motor de Actor y las salvaguardas de magia/familiares.
+Se contrastaron `docs/Tierra_Magica_Manual_Maestro.md`, `docs/archive/historico/Foundry_TM_Manual_1.0_Playtest.md`, `CHANGELOG.md`, `scripts/content.mjs`, el motor de Actor y las salvaguardas de magia/familiares.
 
 La jerarquía vigente sigue siendo la del propio repositorio: el Manual 1.0 es fuente mecánica maestra; Foundry implementa y valida, pero no crea canon. El lore extenso de v0.3 permanece canónico sólo porque el Manual 1.0 lo remite expresamente.
 

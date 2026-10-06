@@ -14,7 +14,7 @@ Toda regla o decisión nueva debe incorporarse primero allí. Foundry VTT, refer
 
 Los Manuales v0.1/v0.2, el Manual Básico mecánico 1.0 separado, los Canon del Mundo v1.1/v1.2 separados y las auditorías se conservan únicamente para trazabilidad, recuperación y comprobación de procedencia. Su contenido útil vigente fue integrado en el Manual Maestro Único. Si un documento histórico contradice el Manual Maestro, prevalece el Manual Maestro.
 
-Git/GitHub conserva el historial de cada modificación. No se debe eliminar una fuente histórica externa por considerarla obsoleta hasta confirmar que el contenido útil fue integrado o archivado dentro del Manual Maestro.
+Git/GitHub conserva el historial de cada modificación. No se debe eliminar una fuente histórica externa por considerarla obsoleta hasta confirmar que el contenido útil fue integrado o archivado dentro del Manual Maestro.\n\nLos documentos de proceso, auditorías históricas, cierres de fase y reportes de release se conservan bajo `docs/archive/`. Esa carpeta existe para trazabilidad y no constituye una fuente paralela de reglas.
 
 ## Estado de pueblos y paquetes raciales
 
@@ -22,7 +22,7 @@ Desde el **2026-10-03**, los **12 paquetes raciales jugables v0.3** están integ
 
 La lista jugable base vigente es: Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios/Anihombres, Feéricos, Ankar, Cristálidos, Verdantes, Micelios y Coralios. Sus reglas mecánicas, variantes jugables y salvaguardas transversales existen únicamente en el Manual Maestro. No debe crearse un documento racial paralelo como nueva fuente de autoridad.
 
-La antigua resolución A5 que descartaba paquetes raciales queda archivada y sustituida. `docs/audits/A5_PUEBLOS_ORIGENES.md` es ahora sólo un marcador histórico que remite al Manual Maestro.
+La antigua resolución A5 que descartaba paquetes raciales queda archivada y sustituida. `docs/archive/audits/A5_PUEBLOS_ORIGENES.md` es ahora sólo un marcador histórico que remite al Manual Maestro.
 
 Los paquetes raciales se equilibran aparte de los **25 PD** y los **3 PR** generales; cultura, Origen, profesión, religión, personalidad y moral siguen siendo capas separadas y no otorgan competencias gratuitas por sí mismas.
 
@@ -58,7 +58,7 @@ La validación cubre Soldado, Ingeniera, Sanador, Exploradora, Alquimista, Canal
 
 ## Estado de CREA-14
 
-CREA-14 — Autosuficiencia de creación de nivel 1 está **CERRADA**. Consolidó identidad estructurada, Facetas e idiomas, Rasgos iniciales, Perfiles Iniciales de Familiar, Compra libre con PEI, Bono Defensivo derivado y el ejemplo completo de Iria. Su cierre formal está en `docs/CREA-14_CIERRE_AUTOSUFICIENCIA_CREACION.md`.
+CREA-14 — Autosuficiencia de creación de nivel 1 está **CERRADA**. Consolidó identidad estructurada, Facetas e idiomas, Rasgos iniciales, Perfiles Iniciales de Familiar, Compra libre con PEI, Bono Defensivo derivado y el ejemplo completo de Iria. Su cierre formal está en `docs/archive/creacion/CREA-14_CIERRE_AUTOSUFICIENCIA_CREACION.md`.
 
 CREA-14 no sustituyó las reglas de progresión del Manual; cerró exclusivamente la entrada al juego y su representación en Foundry.
 
@@ -66,7 +66,7 @@ CREA-14 no sustituyó las reglas de progresión del Manual; cerró exclusivament
 
 CREA-15 — Autosuficiencia de progresión está **CERRADA** sobre las reglas ya presentes en el Manual Maestro. Foundry controla el avance de nivel 2–20, el presupuesto global de PD, las mejoras post-creación de Atributos, la preservación de progresión durante reconstrucción y el cierre definitivo del PEI.
 
-Su cierre formal está en `docs/CREA-15_CIERRE_AUTOSUFICIENCIA_PROGRESION.md`. CREA-15 no crea costes ni puertas nuevas: implementa y protege los ya definidos por la fuente canónica.
+Su cierre formal está en `docs/archive/creacion/CREA-15_CIERRE_AUTOSUFICIENCIA_PROGRESION.md`. CREA-15 no crea costes ni puertas nuevas: implementa y protege los ya definidos por la fuente canónica.
 
 Una fase posterior sólo debe declararse mediante una decisión explícita de proyecto y, si introduce reglas, incorporarse primero al Manual Maestro.
 
@@ -76,9 +76,7 @@ La ampliación del grimorio está **CERRADA Y CANONIZADA**. El Manual Maestro de
 
 Foundry adopta schema v5 para contratos de objetivos mágicos y migración del cierre espacial.
 
-## Estado de publicación 1.3.0
-
-Foundry T.M. **v1.3.0 está publicada** desde el commit `4dcf08f5924f68f9373bda7bdfb8034415cefe2b`. Es la release pública **Latest** e integra los catálogos maestros CAT-01…11, ARM-01, ESC-01 y EQP-01 sobre la base de CRAFT-13. El manifiesto estable de instalación apunta a esta release.
+## Estado de publicación 1.3.1\n\nFoundry T.M. **v1.3.1 está publicada** desde el commit `552ee9879229015eaccd68641c953c4a0c5bc06d`. Es la release pública **Latest** y corrige Compendios, creación guiada y aplicación visible de paquetes raciales. El manifiesto estable de instalación apunta a esta release.
 
 ## Estado de catálogos maestros para 1.3.0
 

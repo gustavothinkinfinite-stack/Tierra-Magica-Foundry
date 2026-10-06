@@ -65,13 +65,13 @@ CREA-12 y CREA-13 fueron integradas posteriormente sin reabrir la declaración d
 - La PR #25 terminó con validación verde sobre su head revisado antes del squash e integración en `main`.
 - Las limitaciones deliberadas siguen siendo limitaciones de parametrización/canon, no tareas implícitas que deban automatizarse por inferencia.
 
-En el momento de ese cierre no existía una fase **CREA-14** definida. Posteriormente, por decisión explícita de proyecto, CREA-14 se abrió para cerrar la **autosuficiencia de creación de nivel 1** sin reabrir el núcleo de resolución. Su resultado queda documentado en `docs/CREA-14_CIERRE_AUTOSUFICIENCIA_CREACION.md`.
+En el momento de ese cierre no existía una fase **CREA-14** definida. Posteriormente, por decisión explícita de proyecto, CREA-14 se abrió para cerrar la **autosuficiencia de creación de nivel 1** sin reabrir el núcleo de resolución. Su resultado queda documentado en `docs/archive/creacion/CREA-14_CIERRE_AUTOSUFICIENCIA_CREACION.md`.
 
 ## Sincronización racial posterior — 2026-10-03
 
 Por decisión explícita de proyecto, la resolución histórica **A5 — Pueblos y Orígenes** fue sustituida por **12 paquetes raciales jugables v0.3** integrados directamente en `docs/Tierra_Magica_Manual_Maestro.md`.
 
-Este cambio no convierte las auditorías históricas en fuente paralela: la autoridad racial vigente está sólo en el Manual Maestro. `docs/audits/A5_PUEBLOS_ORIGENES.md` quedó reducido a marcador histórico y remisión.
+Este cambio no convierte las auditorías históricas en fuente paralela: la autoridad racial vigente está sólo en el Manual Maestro. `docs/archive/audits/A5_PUEBLOS_ORIGENES.md` quedó reducido a marcador histórico y remisión.
 
 La nueva arquitectura mantiene separadas raza, cultura, Origen, profesión, religión, personalidad y moral; los paquetes raciales se equilibran aparte de 25 PD y 3 PR generales y no conceden por defecto rangos de Habilidad ni aumentos generales de Atributo.
 
@@ -89,7 +89,7 @@ CREA-15 cierra la autosuficiencia de progresión ordinaria de personajes entre n
 
 Foundry deja de tratar nivel y Atributos post-creación como campos de desarrollo editables libremente: el nivel avanza de uno en uno hasta 20, los Atributos usan sus costes canónicos por paso y el gasto de Habilidades se valida contra el presupuesto global de PD después de contar Atributos e Items adquiridos. La reconstrucción autorizada preserva progresión pagada y el PEI descartado no reaparece después de creación.
 
-El cierre queda documentado en `docs/CREA-15_CIERRE_AUTOSUFICIENCIA_PROGRESION.md` y protegido por regresiones específicas.
+El cierre queda documentado en `docs/archive/creacion/CREA-15_CIERRE_AUTOSUFICIENCIA_PROGRESION.md` y protegido por regresiones específicas.
 
 ## Estado final
 
