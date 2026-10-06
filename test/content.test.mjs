@@ -101,3 +101,12 @@ test("taxonomía de daño inicial queda disponible y el contenido nuclear está 
   assert.equal(spell("Martillo Cinético").damageType,"kinetic");
   assert.equal(spell("Tormenta Arcana").damageType,"arcane");
 });
+
+
+test("Bomba Incendiaria usa el mismo sistema tipado de daño",()=>{
+  const bomb=STARTER_CONTENT.formula.find((item)=>item.name==="Bomba Incendiaria").system;
+  assert.equal(bomb.damage,6);
+  assert.equal(bomb.damageType,"fire");
+  assert.equal(bomb.damageMode,"lethal");
+  assert.equal(bomb.penetration,1);
+});
