@@ -14,10 +14,13 @@ test("release exige una única versión entre manifest y package",async()=>{
   assert.match(manifest.version,/^\d+\.\d+\.\d+$/);
 });
 
-test("compendios se reconstruyen desde cero",async()=>{
+test("compendios se reconstruyen desde cero y verifican documentos reales",async()=>{
   const source=await read("tools/build-packs.mjs");
   assert.match(source,/rm\(sourceRoot,\{recursive:true,force:true\}\)/);
   assert.match(source,/rm\(outputRoot,\{recursive:true,force:true\}\)/);
+  assert.match(source,/_key:"!items!"/);
+  assert.match(source,/extractPack\(outputDir,verifyDir/);
+  assert.match(source,/unpacked\.length!==entries\.length/);
 });
 
 test("staging de release excluye desarrollo y fija URLs publicadas",async()=>{
