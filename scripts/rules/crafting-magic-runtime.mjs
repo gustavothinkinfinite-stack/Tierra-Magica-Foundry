@@ -140,9 +140,7 @@ export function installCraftingMagicGuards(ActorClass) {
     const key=text(triggerKey);
     if(!key) return warn("Preparar exige declarar un disparador observable.");
     return withActorResourceLock(this,async()=>{
-      if(this.system.turn?.action===false) return warn("La Acción ya fue gastada.");
       await this.update({
-        "system.turn.action":false,
         "system.magic.preparedTrap":{trapUuid:String(trap.uuid),triggerKey:key}
       },{tmValidated:true,tmCraftingMagic:true});
       return {ok:true,prepared:true,trapUuid:String(trap.uuid),triggerKey:key};
@@ -268,9 +266,7 @@ export function installCraftingMagicGuards(ActorClass) {
       const mana=Math.max(0,number(this.system.resources?.mana?.value));
       const updates={"system.resources.mana.value":mana-profile.manaCost};
 
-      if(profile.activation==="action") updates["system.turn.action"]=false;
-      else if(profile.activation==="reaction") updates["system.turn.reaction"]=false;
-      else if(profile.activation==="linked") {
+      if(profile.activation==="linked") {
         const current=this.system.magic?.linkedImprintClaims??{};
         const next=trimClaims({...current,[String(context.resolutionId)]:String(host.uuid)+":"+String(imprint.id)},63);
         next[String(context.resolutionId)]=String(host.uuid)+":"+String(imprint.id);
@@ -296,9 +292,6 @@ export function installCraftingMagicGuards(ActorClass) {
       const cost=Math.max(0,Math.floor(number(spell.manaCost)));
       const reserve=Math.max(0,Math.floor(number(enchant.reserve?.value)));
       const actorUpdates={};
-      const activation=String(spell.activation??"Acción").toLowerCase();
-      if(activation.includes("reacción")||activation.includes("reaction")) actorUpdates["system.turn.reaction"]=false;
-      else actorUpdates["system.turn.action"]=false;
 
       if(spell.sustained===true) {
         const active=Array.isArray(this.system.magic?.sustainedObjectIds)?[...this.system.magic.sustainedObjectIds]:[];
@@ -313,7 +306,7 @@ export function installCraftingMagicGuards(ActorClass) {
         await this.update(actorUpdates,{tmValidated:true,tmCraftingMagic:true});
       } catch(error) {
         try { await item.update({"system.enchantment.reserve.value":reserve},{tmValidated:true,tmCraftingRollback:true}); } catch {}
-        return {ok:false,error:"No fue posible comprometer Acción/Reacción tras gastar RE; se intentó revertir la reserva.",cause:String(error?.message??error)};
+        return {ok:false,error:"No fue posible actualizar el estado del Actor tras gastar RE; se intentó revertir la reserva.",cause:String(error?.message??error)};
       }
 
       const profile=enchantmentProfile(enchant.grade);
@@ -367,14 +360,10 @@ export function installCraftingMagicGuards(ActorClass) {
           if(!text(preparedTriggerKey) || String(prepared.triggerKey??"")!==String(preparedTriggerKey)) {
             return warn("El disparador observado no coincide con el declarado al Preparar.");
           }
-          if(this.system.turn?.reaction===false) return warn("La Reacción ya fue gastada.");
           await this.update({
-            "system.turn.reaction":false,
             "system.magic.preparedTrap":{trapUuid:"",triggerKey:""}
           },{tmValidated:true,tmCraftingMagic:true});
         } else {
-          if(this.system.turn?.action===false) return warn("La Acción ya fue gastada.");
-          await this.update({"system.turn.action":false},{tmValidated:true,tmCraftingMagic:true});
         }
         await trap.update({"system.trap.state":"discharged"},{tmValidated:true,tmCraftingMagic:true});
         const load=clone(trap.system.trap.load);
