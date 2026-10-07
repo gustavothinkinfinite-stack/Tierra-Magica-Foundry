@@ -14,16 +14,26 @@ test("docs raíz contiene sólo documentación activa más el archivo",async()=>
 
   assert.deepEqual(files,[
     "ARM-01_CATALOGO_MAESTRO_ARMADURAS.md",
+    "ARQUITECTURA_POLITICA_CIUDADES_REVISION_v1.md",
+    "AUDITORIA_FINAL_CIUDADES_MANUAL_v1.md",
     "AUDITORIA_INTEGRAL_FINAL_1.0.md",
+    "CANON_CIUDADES.md",
+    "CANON_CIUDADES_PRINCIPALES_v1.md",
     "CATALOGO_MAESTRO_ARMAS_v1.md",
+    "CIUDADES_PRINCIPALES_MANUAL_COMPACTO_v1.md",
+    "CIUDADES_PRINCIPALES_REVISION_v1.md",
+    "CRONOLOGIA_EDRIA_CANON_v1.md",
+    "CRONOLOGIA_URBANA_CANON_v1.md",
+    "CRONOLOGIA_URBANA_PROPUESTA_v1.md",
     "EQP-01_EQUIPO_AVENTURA_HERRAMIENTAS.md",
     "ESC-01_CATALOGO_MAESTRO_ESCUDOS.md",
     "FUENTES_CANONICAS.md",
     "README.md",
+    "RED_URBANA_EDRIA_REVISION_v1.md",
     "REFERENCIA_RAPIDA_GLOSARIO_1.0.md",
     "Tierra_Magica_Manual_Maestro.md"
   ].sort());
-  assert.deepEqual(dirs,["archive"]);
+  assert.deepEqual(dirs,["archive","visual"].sort());
 });
 
 test("archivo documental está separado por función",async()=>{

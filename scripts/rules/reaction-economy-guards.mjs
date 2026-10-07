@@ -13,6 +13,23 @@ const reactionLocks = new WeakSet();
 const REACTION_GUARD = Symbol("tierraMagicaReactionGuard");
 let turnHookInstalled = false;
 
+function isNotificationResult(result) {
+  if (!result) return false;
+  try {
+    return Boolean(globalThis.ui?.notifications?.has?.(result));
+  } catch {
+    return false;
+  }
+}
+
+function reactionWasResolved(result) {
+  if (!result) return false;
+  if (result?.tmReactionResolved === true) return true;
+  if (result?.tmReactionResolved === false) return false;
+  if (isNotificationResult(result)) return false;
+  return true;
+}
+
 export async function runReaction(actor, operation) {
   if (actor.system.status?.incapacitated || Number(actor.system.resources?.health?.value) <= 0) {
     ui.notifications.warn(actor.name + " está Incapacitado y no puede ejecutar una Reacción.");
@@ -23,7 +40,7 @@ export async function runReaction(actor, operation) {
     return null;
   }
   if (reactionLocks.has(actor)) {
-    ui.notifications.warn(actor.name + " ya está resolviendo su Reacción.");
+    ui.notifications.warn(actor.name + " tiene otra Reacción pendiente de resolución. Completala o cancelala antes de iniciar otra.");
     return null;
   }
 
@@ -36,14 +53,16 @@ export async function runReaction(actor, operation) {
       return null;
     }
     if (!reservation.claimed) {
-      ui.notifications.warn(actor.name + (reservation.reason === "reserved" ? " ya está resolviendo su Reacción." : " ya gastó su Reacción."));
+      ui.notifications.warn(actor.name + (reservation.reason === "reserved"
+        ? " tiene otra Reacción pendiente de resolución. Completala o cancelala antes de iniciar otra."
+        : " ya gastó su Reacción."));
       return null;
     }
 
     const result = await operation();
-    if (!result) {
+    if (!reactionWasResolved(result)) {
       await releaseTurnResourceReservation(actor, "reaction", reservation.reservationId);
-      return result;
+      return null;
     }
     const committed = await commitTurnResourceReservation(actor, "reaction", reservation.reservationId);
     if (!committed?.ok) ui.notifications.warn(committed?.error ?? "No se pudo confirmar el gasto de Reacción.");

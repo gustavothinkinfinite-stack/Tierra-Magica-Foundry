@@ -426,10 +426,21 @@ function actorOwnedItem(actor, reference="") {
   )??null;
 }
 
+function isUiNotificationResult(result) {
+  if (!result) return false;
+  try {
+    return Boolean(globalThis.ui?.notifications?.has?.(result));
+  } catch {
+    return false;
+  }
+}
+
 async function executeFormulaUseRuntime(actor,item) {
   const result=await actor.useFormula(item,{tmAuthority:true});
   if(result?.ok===false) return result;
-  if(!result) return {ok:false,error:"La Fórmula no pudo consumirse o su aplicación fue rechazada."};
+  if(!result || isUiNotificationResult(result)) {
+    return {ok:false,error:"La Fórmula no pudo consumirse o su aplicación fue rechazada."};
+  }
   return {ok:true,result};
 }
 
@@ -858,6 +869,13 @@ export async function spendActorMovementAuthoritatively(actor, amount, { consume
     });
   }
   return spendMovement(actor, amount, currentUser()?.id ?? "", { consumeReaction });
+}
+
+export async function clearTurnResourceReservation(actor, resource) {
+  const kind = String(resource ?? "").trim().toLowerCase();
+  if (!["action", "reaction"].includes(kind)) return false;
+  await deleteTurnReservation(actor, kind);
+  return true;
 }
 
 export async function clearTurnResourceReservations(actor) {

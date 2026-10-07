@@ -3,6 +3,7 @@ import { toNumber } from "../rules.mjs";
 import { normalizeSlug } from "../rules/identity.mjs";
 import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } from "../rules/currency.mjs";
 import { movementAllowance, movementRemaining, spendActorMovement } from "../rules/turn-economy.mjs";
+import { clearTurnResourceReservation, clearTurnResourceReservations } from "../rules/state-authority.mjs";
 import { nextAttributeUpgradeCost, validateCreationState, validateInitialAttributes } from "../rules/creation.mjs";
 import {
   craftingProjectSourceFromReference,
@@ -366,7 +367,7 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       const value = Math.min(maximum, Math.max(minimum, toNumber(event.currentTarget.value)));
       return this.actor.update({ [field]: value });
     });
-    html.find("[data-action='toggle-turn']").click((event) => {
+    html.find("[data-action='toggle-turn']").click(async (event) => {
       const key = event.currentTarget.dataset.key;
       if (!["action", "reaction"].includes(key)) return;
       const current = this.actor.system.turn?.[key] ?? true;
@@ -374,6 +375,9 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       const incapacitated = Boolean(this.actor.system.status?.incapacitated) ||
         toNumber(this.actor.system.resources?.health?.value, 1) <= 0;
       if (next && incapacitated) return ui.notifications.warn(this.actor.name + " está Incapacitado.");
+      // Reactivar manualmente un recurso es una anulación explícita del estado anterior:
+      // cualquier reserva persistida de ese recurso debe salir con el mismo gesto.
+      if (next) await clearTurnResourceReservation(this.actor, key);
       return this.actor.update({ ["system.turn." + key]: next });
     });
     html.find("[data-action='spend-movement']").click(async () => {
@@ -392,9 +396,12 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
         ui.notifications.warn("El gasto solicitado supera el Movimiento restante o no es válido.");
       }
     });
-    html.find("[data-action='reset-turn']").click(() => {
+    html.find("[data-action='reset-turn']").click(async () => {
       const incapacitated = Boolean(this.actor.system.status?.incapacitated) ||
         toNumber(this.actor.system.resources?.health?.value, 1) <= 0;
+      // El reinicio manual es también la vía de recuperación de una reserva huérfana
+      // dentro de la misma sesión; no debe requerir recargar el mundo.
+      await clearTurnResourceReservations(this.actor);
       return this.actor.update({
         "system.turn.movementSpent": 0,
         "system.turn.extraMovement": 0,

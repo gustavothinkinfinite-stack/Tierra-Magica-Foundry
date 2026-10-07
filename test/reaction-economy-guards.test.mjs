@@ -3,7 +3,17 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { installReactionEconomyGuards } from "../scripts/rules/reaction-economy-guards.mjs";
 
-globalThis.ui = { notifications: { warn: () => null } };
+const activeNotifications = new Set();
+globalThis.ui = {
+  notifications: {
+    warn: () => {
+      const notification = {};
+      activeNotifications.add(notification);
+      return notification;
+    },
+    has: (notification) => activeNotifications.has(notification)
+  }
+};
 
 class ActorStub {
   constructor() {
@@ -84,4 +94,31 @@ test("la Reacción usa reserva distribuida además del bloqueo local", async () 
   assert.equal(source.includes('reserveTurnResourceAuthoritatively(actor, "reaction")'), true);
   assert.equal(source.includes('commitTurnResourceReservation(actor, "reaction"'), true);
   assert.equal(source.includes('releaseTurnResourceReservation(actor, "reaction"'), true);
+});
+
+
+test("un Notification de validación no consume ni bloquea la Reacción", async () => {
+  class NotificationReactionActor {
+    constructor() {
+      this.name = "Prueba aviso reactivo";
+      this.system = { turn: { reaction: true } };
+      this.calls = 0;
+    }
+    async update(changes) {
+      if (Object.hasOwn(changes, "system.turn.reaction")) this.system.turn.reaction = changes["system.turn.reaction"];
+    }
+    async parry() {
+      this.calls += 1;
+      return ui.notifications.warn("La Reacción no es válida.");
+    }
+  }
+
+  installReactionEconomyGuards(NotificationReactionActor);
+  const actor = new NotificationReactionActor();
+  assert.equal(await actor.parry(), null);
+  assert.equal(actor.calls, 1);
+  assert.equal(actor.system.turn.reaction, true);
+  assert.equal(await actor.parry(), null);
+  assert.equal(actor.calls, 2);
+  assert.equal(actor.system.turn.reaction, true);
 });
