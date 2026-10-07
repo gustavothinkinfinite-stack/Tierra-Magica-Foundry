@@ -35,7 +35,7 @@ Contratos, sellos, licencias y reputación tienen enorme importancia. En Auraval
 La magia aparece principalmente donde la ciudad necesita seguridad, información o infraestructura: archivos protegidos, iluminación institucional, diagnóstico especializado, comunicaciones limitadas y ciertos sistemas de control. El vapor y la ingeniería mecánica ayudan a bombear agua y transportar carga entre terrazas. Auraval es tecnológicamente avanzada, pero no es una ciudad fabril: su ingeniería sirve al gobierno, al comercio y a la vida urbana.
 
 ## Historia y acontecimientos
-Auraval creció alrededor de un cruce fluvial y terrestre fácil de defender y difícil de reemplazar. En **12 C.** se firmó la **Concordia de Auraval**, tratado que creó la Mesa de Concordia y consolidó el papel diplomático de la capital. Para completar su historia urbana continúan como propuestas **la Reforma de la Carta de Valdoria**, que redefinió la relación entre Corona, ciudades y poderes locales, y **la Gran Crecida de las Terrazas Bajas**, desastre que impulsó nuevas defensas fluviales, bombeo y obras de contención. Estos dos acontecimientos y sus fechas siguen PROVISIONALES.
+Auraval creció alrededor de un cruce fluvial y terrestre fácil de defender y difícil de reemplazar. En **12 C.** se firmó la **Concordia de Auraval**, tratado que creó la Mesa de Concordia y consolidó el papel diplomático de la capital. En **63 C.**, la **Reforma de la Carta de Valdoria** redefinió formalmente la relación entre Corona, ciudades, fueros y poderes locales. Hacia **c. 472 C.**, la **Gran Crecida de las Terrazas Bajas** impulsó nuevas defensas fluviales, bombeo y obras de contención.
 
 ## Lugares importantes
 **Palacio de la Corona:** centro del poder de Valdoria y residencia institucional del soberano.  
@@ -78,7 +78,7 @@ La cultura local valora oficio, productividad, resistencia y pertenencia gremial
 La ingeniería arcano-industrial alcanza en Cobravia una de sus mayores concentraciones conocidas. La magia se utiliza en instrumentación, seguridad, control de maquinaria y procesos especializados, pero no reemplaza combustible, mano de obra ni mantenimiento. El vapor, las grúas, las fundiciones y los talleres deben sentirse fabricables y peligrosos: Cobravia es avanzada, pero no futurista.
 
 ## Historia y acontecimientos
-Cobravia creció desde un puerto comercial hasta convertirse en el gran complejo industrial del sur. Su cronología definitiva todavía está abierta. Se proponen tres acontecimientos centrales: **la Apertura de las Grandes Dársenas**, que inició su gran expansión industrial; **la Huelga de los Martillos**, conflicto laboral que obligó a revisar seguridad y representación gremial; y **el Incendio de Calderas**, catástrofe fabril que transformó las normas de prevención y respuesta ante emergencias. Nombres y fechas continúan PROVISIONALES.
+Cobravia creció desde un puerto comercial hasta convertirse en el gran complejo industrial del sur. La **Apertura de las Grandes Dársenas en 487 C.** marcó el salto hacia su escala industrial moderna. Hacia **c. 538 C.**, el **Incendio de Calderas** transformó las normas de prevención, inspección y respuesta ante emergencias. Hacia **c. 579 C.**, la **Huelga de los Martillos** modificó las relaciones entre industria, gremios y trabajadores.
 
 ## Lugares importantes
 **Gran Astillero:** principal complejo de construcción y reparación naval.  
@@ -121,7 +121,7 @@ La vida cotidiana está marcada por calendarios académicos, conferencias, merca
 Lys posee una de las mayores concentraciones de magia académica competente de Edria. Laboratorios, observatorios, instrumentos de medición y dispositivos especializados son frecuentes dentro de instituciones, pero no convierten la magia avanzada en algo cotidiano para toda la población. Su tecnología destaca por **precisión y conocimiento**, no por producción masiva: Cobravia fabrica a escala; Lys diseña, estudia y perfecciona.
 
 ## Historia y acontecimientos
-La ciudad creció alrededor del lago y de sus instituciones de estudio. Su cronología definitiva todavía está abierta. Se proponen tres hitos principales: **la fundación del Observatorio de los Fundadores**, que consolidó su prestigio intelectual; **el Concordato de las Academias**, que reconoció formalmente la influencia institucional de las grandes escuelas; y **el Cierre de las Galerías Bajas**, consecuencia de un accidente de investigación que endureció la regulación de ciertos trabajos arcanos. Fechas y detalles continúan PROVISIONALES.
+Lys creció alrededor del lago y de sus instituciones de estudio. El **Observatorio de los Fundadores** fue establecido aproximadamente hacia **c. -210 C.**, consolidando tempranamente el prestigio intelectual de la ciudad. En **76 C.**, el **Concordato de las Academias** reconoció formalmente el peso institucional de las grandes escuelas. Hacia **c. 548 C.**, el **Cierre de las Galerías Bajas**, provocado por un accidente de investigación, endureció la regulación de ciertos trabajos arcanos.
 
 ## Lugares importantes
 **Observatorio de los Fundadores:** gran referencia científica y arcana de Lys.  
@@ -163,7 +163,7 @@ La vida cotidiana sigue el ritmo del agua y de las temporadas de exploración. L
 La magia se manifiesta especialmente mediante alquimia, conservación, navegación y manejo de recursos naturales. La tecnología local es práctica, resistente a la humedad y adaptada a canales, embarcaciones y almacenamiento de sustancias delicadas. La industria pesada tiene poca presencia dentro del núcleo urbano. A diferencia de Lys, Verdelinde no se define por grandes instituciones académicas: su conocimiento nace principalmente del **territorio, el oficio y la experiencia**.
 
 ## Historia y acontecimientos
-Verdelinde creció como punto de unión entre navegación fluvial, comercio alquímico y exploración del bosque. Su cronología definitiva continúa abierta. Se proponen tres hitos centrales: **la Crecida de las Raíces**, que obligó a rediseñar canales y muelles; **el Pacto de Recolección**, acuerdo que limitó la extracción de ciertos recursos forestales; y **la Expedición Perdida de las Mil Voces**, desaparición que modificó las normas modernas de exploración y todavía alimenta rumores. Nombres y fechas continúan PROVISIONALES.
+Verdelinde creció como punto de unión entre navegación fluvial, comercio alquímico y exploración del bosque. Hacia **c. 18 C.**, la **Crecida de las Raíces** obligó a rediseñar canales y muelles. En **521 C.**, el **Pacto de Recolección** estableció límites y reglas para determinadas extracciones forestales y alquímicas. Hacia **c. 589 C.**, la **Expedición Perdida de las Mil Voces** desapareció y endureció las normas modernas de exploración.
 
 ## Lugares importantes
 **Mercado de Alquimia:** principal centro de reactivos, preparados y sustancias especializadas.  
@@ -205,7 +205,7 @@ La hospitalidad tiene valor económico y cultural. Posadas, hospitales, casas re
 La magia tiene una presencia importante en sanación, diagnóstico, protección y rituales institucionales, pero no reemplaza medicina, higiene ni infraestructura. Heliara depende de cisternas, saneamiento, almacenamiento, transporte y personal entrenado tanto como de sus especialistas mágicos. Su tecnología es menos industrial que la de Cobravia y más orientada a medicina, logística y supervivencia.
 
 ## Historia y acontecimientos
-Heliara creció como santuario, centro sanitario y terminal de rutas orientales. Su cronología definitiva todavía está abierta. Se proponen tres hitos principales: **la Fundación del Gran Hospital**, que consolidó su prestigio médico; **la Crisis de las Cisternas**, período de escasez que obligó a reformar el sistema de agua; y **el Acuerdo de las Dos Autoridades**, precedente que delimitó competencias entre la Corona y el Sínodo. Nombres y fechas continúan PROVISIONALES.
+Heliara creció como santuario, centro sanitario y terminal de rutas orientales. El **Gran Hospital** fue fundado aproximadamente hacia **c. -38 C.**, consolidando una tradición médica anterior a la Concordia. En **94 C.**, el **Acuerdo de las Dos Autoridades** delimitó competencias entre la Corona de Solenar y el Sínodo de las Luminarias. Hacia **c. 463 C.**, la **Crisis de las Cisternas** obligó a reformar el sistema de agua, almacenamiento y saneamiento.
 
 ## Lugares importantes
 **Sede del Sínodo de las Luminarias:** principal centro de autoridad religiosa de Solenar.  
@@ -248,7 +248,7 @@ La vida cotidiana está organizada alrededor de turnos de mina, hornos, convoyes
 Kar-Dur posee tecnología avanzada en minería, fundición, estructuras y ferrocarril. La magia se utiliza para detección, seguridad, estabilización, forja y determinadas obras, pero nunca elimina la necesidad de ingeniería, inspección o mano de obra. La ciudad debe transmitir la sensación de que cada gran mecanismo ha sido construido para funcionar bajo condiciones extremas.
 
 ## Historia y acontecimientos
-Kar-Dur nació de la necesidad de controlar y defender una garganta estratégica. Las minas y fundiciones transformaron la fortaleza original en una gran ciudad industrial, y el ferrocarril subterráneo reforzó su importancia continental. Se proponen tres hitos principales: **el Primer Cierre de la Garganta**, defensa que consolidó la reputación militar de Kar-Dur; **el Derrumbe de la Tercera Galería**, desastre minero que reformó los protocolos de seguridad; y **la Integración Ferroviaria Profunda**, etapa que conectó minas, fundiciones y tránsito a través de la montaña. Fechas y detalles continúan PROVISIONALES.
+Kar-Dur nació de la necesidad de controlar y defender una garganta estratégica. Hacia **c. -112 C.**, el **Primer Cierre de la Garganta** consolidó su reputación militar. Hacia **c. 381 C.**, el **Derrumbe de la Tercera Galería** reformó protocolos de seguridad minera. En **468 C.**, la **Integración Ferroviaria Profunda** conectó minas, fundiciones y niveles interiores mediante infraestructura ferroviaria moderna, sin fijar todavía el trazado exacto de la Línea del Espinazo.
 
 ## Lugares importantes
 **Gran Puerta de la Garganta:** principal acceso y símbolo defensivo de Kar-Dur.  
@@ -291,7 +291,7 @@ La reputación es una moneda real. Un capitán fiable, un mapa preciso o un come
 La magia se utiliza principalmente en navegación, meteorología, señalización, protección de cargamentos y seguridad marítima. La tecnología naval es avanzada, pero Nacariel no compite con Cobravia en producción industrial masiva. Su especialidad es **mover, orientar y asegurar** barcos y mercancías, no construir la mayor cantidad posible.
 
 ## Historia y acontecimientos
-Nacariel creció gracias a la combinación de una bahía segura, comercio de larga distancia y una política de neutralidad. Su cronología definitiva continúa abierta. Se proponen tres hitos principales: **la Carta de Neutralidad**, que estableció las bases de su independencia política; **la Tormenta de los Cien Mástiles**, desastre naval que llevó a reforzar faros, señales y protocolos del puerto; y **la Apertura de la Casa de las Cartas**, momento en que la cartografía se convirtió en una de las grandes industrias de conocimiento de la ciudad. Nombres y fechas continúan PROVISIONALES.
+Nacariel creció gracias a una bahía segura, el comercio de larga distancia y una política deliberada de neutralidad. En **29 C.**, la **Carta de Neutralidad** estableció la base jurídica de su condición moderna de Ciudad Libre. Hacia **c. 268 C.**, la **Apertura de la Casa de las Cartas** convirtió la cartografía en una institución y una industria central. Hacia **c. 544 C.**, la **Tormenta de los Cien Mástiles** llevó a reforzar faros, señales y protocolos portuarios.
 
 ## Lugares importantes
 **Puerto Neutral:** corazón económico y político de Nacariel.  
@@ -334,7 +334,7 @@ No compite con Cobravia o Nacariel en volumen de mercancías. Su valor está en 
 Vigilia Alta posee una de las concentraciones más especializadas de tecnología aeronáutica de Edria. La magia se utiliza para navegación, observación, comunicaciones limitadas y sistemas de seguridad, pero los dirigibles siguen dependiendo de ingeniería, tripulación, combustible y mantenimiento. La ciudad debe sentirse audaz y avanzada, no futurista.
 
 ## Historia y acontecimientos
-Vigilia Alta se consolidó por su relación con el Cinturón Flotante y el desarrollo de la navegación aérea. Su cronología definitiva continúa abierta. Se proponen tres hitos principales: **el Primer Gran Amarre**, que inauguró el Alto Puerto; **la Tormenta del Cinturón**, crisis que llevó a establecer protocolos modernos de vuelo; y **la Deriva de la Isla Errante**, episodio que confirmó que algunas islas flotantes cambian lentamente de posición y obligó a revisar cartas y rutas. Nombres y fechas continúan PROVISIONALES.
+Vigilia Alta se consolidó por su relación con el Cinturón Flotante y el desarrollo de la navegación aérea. En **31 C.**, el **Primer Gran Amarre** inauguró la infraestructura que la transformó en un nodo estable de dirigibles. Hacia **c. 486 C.**, la **Tormenta del Cinturón** impulsó protocolos modernos de vuelo y cierres meteorológicos. Hacia **c. 592 C.**, la **Deriva de la Isla Errante** obligó a revisar cartas y modelos de navegación aérea.
 
 ## Lugares importantes
 **Alto Puerto:** principal terminal de dirigibles y corazón económico de la ciudad.  
@@ -377,7 +377,7 @@ La riqueza se mueve rápido y también desaparece rápido. Nuevos hallazgos pued
 El entorno posee alta saturación y riesgo arcano, pero eso no significa que sus habitantes utilicen más magia que el resto de Edria. La especialización local está en **detectar, contener y sobrevivir** a fenómenos arcanos. Equipos de minería, protección, filtrado, medición y rescate son tan importantes como cualquier dispositivo mágico.
 
 ## Historia y acontecimientos
-La **erupción arcana** que alteró la región es el gran acontecimiento canónico asociado a Risco de Ceniza. Para completar su historia se proponen dos hitos posteriores: **la Reapertura de los Pozos**, cuando la explotación minera regresó bajo nuevas medidas de seguridad; y **la Revuelta de las Concesiones**, conflicto entre compañías, trabajadores y autoridad valdoriana que limitó ciertos privilegios mineros. Fechas y denominaciones continúan PROVISIONALES.
+La **erupción arcana** que alteró la región es el gran acontecimiento canónico asociado a Risco de Ceniza, pero su fecha continúa abierta y no se identifica automáticamente con la Fractura del Cielo. En **512 C.**, la **Reapertura de los Pozos** reanudó la explotación bajo nuevas medidas de contención, medición y seguridad. Hacia **c. 584 C.**, la **Revuelta de las Concesiones** limitó determinados privilegios de compañías mineras tras un conflicto entre trabajadores, intereses extractivos y autoridad valdoriana.
 
 ## Lugares importantes
 **Bastión del Risco:** principal fortificación y centro de defensa.  
@@ -420,7 +420,7 @@ El prestigio local depende mucho de la experiencia. Una capitana que haya regres
 La ciudad utiliza tecnología marítima, instrumentos de navegación y magia especializada para detección, protección, catalogación y supervivencia expedicionaria. Su gran problema no es acceder a tecnología, sino enfrentarse a cosas para las que esa tecnología quizá no fue diseñada. Los artefactos y materiales traídos desde ruinas o territorios poco conocidos son una fuente constante de riqueza y peligro.
 
 ## Historia y acontecimientos
-Puerto Umbral creció al consolidarse como el último puerto fiable antes de las rutas orientales de exploración. Su fundación y soberanía histórica todavía requieren definición. Se proponen tres hitos principales: **la creación del Registro de Expediciones**, que comenzó a documentar salidas y retornos; **la Primera Gran Cuarentena**, provocada por un hallazgo peligroso procedente del este; y **la Aparición de las Ruinas Emergentes**, fenómeno que multiplicó expediciones, inversión y disputas sobre descubrimientos. Nombres, causas y fechas continúan PROVISIONALES.
+Puerto Umbral creció al consolidarse como último puerto fiable antes de las rutas orientales de exploración. En **493 C.** se creó el **Registro de Expediciones**, formalizando el control de salidas, tripulaciones y retornos. Hacia **c. 557 C.**, la **Primera Gran Cuarentena** obligó a establecer procedimientos de aislamiento ante hallazgos peligrosos. Hacia **c. 587 C.**, la **Aparición de las Ruinas Emergentes** aceleró la inversión y la carrera expedicionaria oriental. Estas ruinas no se identifican automáticamente con Nacre.
 
 ## Lugares importantes
 **Dársena Segura:** principal puerto de salida y retorno de expediciones.  
