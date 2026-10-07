@@ -11,41 +11,45 @@ Cada ciudad se presenta mediante: identidad y ubicación; escala; gobierno; ciud
 ---
 
 # AURAVAL
-*Capital de Valdoria y centro político de Edria occidental.*
+*Capital de Valdoria y corazón político de Edria occidental.*
 
-**Ficha rápida:** Reino de Valdoria · ≈238.000 habitantes · ≈28.000 población flotante · capital nacional · magia institucional media-alta · tecnología arcano-industrial alta.
+**Ficha rápida:** Reino de Valdoria · ≈238.000 habitantes · ≈28.000 de población flotante · capital nacional · centro diplomático · magia institucional media-alta · tecnología arcano-industrial alta.
 
 ## Identidad y ubicación
-Auraval se alza en el centro-occidente de Edria, sobre las fértiles tierras de Valdoria. La ciudad está construida en terrazas sobre dos ríos, cuyos nombres y cursos exactos todavía permanecen abiertos. Es sede de la Corona de Valdoria, de la Mesa de Concordia y de los Archivos Internacionales. Su identidad es la de una capital vertical, administrativa y cosmopolita.
+Auraval se alza en el centro-occidente de Edria, entre las fértiles tierras de Valdoria. Construida en terrazas sobre dos ríos, domina un importante cruce de rutas terrestres y fluviales. Es sede de la Corona de Valdoria, de la Mesa de Concordia y de los Archivos Internacionales, lo que la convierte en el principal centro político y diplomático del reino y en uno de los grandes puntos de encuentro entre las potencias de Edria.
 
 ## Gobierno y poder
-Valdoria es una **monarquía feudal reformada**: la Corona conserva soberanía, ejército, política exterior y legislación nacional, mientras ciudades, nobles, gremios y autoridades locales poseen competencias reconocidas. En Auraval, el soberano y su Consejo representan el poder nacional; la administración cotidiana recae en un Administrador de la capital y un Consejo de las Terrazas, ambos todavía provisionales como instituciones concretas. La Mesa de Concordia tiene influencia internacional, pero no gobierna la ciudad.
+Valdoria es una **monarquía feudal reformada**. La Corona conserva soberanía, ejército, política exterior y legislación general, pero nobles, ciudades y gremios mantienen derechos y competencias reconocidas. Desde Auraval gobierna el soberano junto a su Consejo. La administración cotidiana de la capital recae, de forma provisional, en un Administrador de Auraval y un Consejo de las Terrazas. La Mesa de Concordia influye en la política internacional, pero no gobierna la ciudad.
 
-## Ciudad y arquitectura
-Las terrazas altas concentran palacios, oficinas y residencias de élite; las medias reúnen comercio, escribanías y viviendas densas; las bajas contienen muelles, almacenes y trabajo fluvial. Puentes monumentales, escalinatas, muros de contención y elevadores de carga son parte esencial de la ciudad. Predominan piedra cálida, madera, hierro, acero oscuro, latón y cobre.
+## Ciudad, pueblo y arquitectura
+Auraval crece hacia arriba. En las terrazas altas se encuentran palacios, oficinas de gobierno y residencias de élite; las terrazas medias concentran comercios, escribanías, talleres y vivienda densa; en las bajas se extienden muelles, almacenes y barrios ligados al trabajo fluvial. Puentes monumentales, grandes escalinatas, muros de contención y elevadores de carga forman parte del paisaje cotidiano.
 
-## Pueblo, economía y cultura
-Funcionarios, comerciantes, escribanos, artesanos, diplomáticos, soldados y trabajadores fluviales forman el núcleo social. Auraval vive de administración, servicios jurídicos y diplomáticos, impresión, manufactura fina y redistribución del comercio interior. Importa combustible, metales especializados, cristal y bienes marítimos. Su cultura valora sellos, contratos, credenciales, protocolo y reputación.
+Funcionarios, comerciantes, artesanos, diplomáticos, soldados, escribanos y trabajadores portuarios conviven en una ciudad formal y cosmopolita. Cerca de la Corona y de Concordia pesan el protocolo, la vestimenta y las credenciales; en mercados y muelles domina una cultura más directa, comercial y diversa.
+
+## Comercio y vida cotidiana
+Auraval vive de la administración, los servicios jurídicos y diplomáticos, la impresión, la manufactura fina y la redistribución del comercio interior. Importa combustible, metales especializados, cristal y mercancías marítimas. Sus mercados reciben productos agrícolas de Valdoria y bienes procedentes de otras regiones de Edria.
+
+Contratos, sellos, licencias y reputación tienen enorme importancia. En Auraval, un documento correcto puede abrir más puertas que una espada.
 
 ## Magia y tecnología
-La magia es visible sobre todo en instituciones, archivos, seguridad, iluminación y determinados servicios especializados. El vapor y la ingeniería mecánica ayudan a mover agua y carga entre terrazas. Auraval es avanzada, pero no debe parecer una ciudad fabril: su tecnología sirve al gobierno, al comercio y a la infraestructura.
+La magia aparece principalmente donde la ciudad necesita seguridad, información o infraestructura: archivos protegidos, iluminación institucional, diagnóstico especializado, comunicaciones limitadas y ciertos sistemas de control. El vapor y la ingeniería mecánica ayudan a bombear agua y transportar carga entre terrazas. Auraval es tecnológicamente avanzada, pero no es una ciudad fabril: su ingeniería sirve al gobierno, al comercio y a la vida urbana.
 
 ## Historia y acontecimientos
-La ciudad creció alrededor de un cruce fluvial y terrestre defensible. La cronología exacta continúa abierta, pero se proponen tres hitos para desarrollarla: **la Reforma de la Carta de Valdoria**, que consolidó límites y competencias entre Corona y ciudades; **la instalación de la Mesa de Concordia en Auraval**, que convirtió a la capital en centro diplomático; y **la Gran Crecida de las Terrazas Bajas**, desastre que impulsó nuevas defensas fluviales y obras de bombeo. Nombres y fechas siguen PROVISIONALES.
+Auraval creció alrededor de un cruce fluvial y terrestre fácil de defender y difícil de reemplazar. Su cronología definitiva aún está abierta. Para su desarrollo histórico se proponen tres grandes hitos: **la Reforma de la Carta de Valdoria**, que redefinió la relación entre Corona, ciudades y poderes locales; **el establecimiento de la Mesa de Concordia en Auraval**, que consolidó su papel diplomático; y **la Gran Crecida de las Terrazas Bajas**, desastre que impulsó nuevas defensas fluviales, bombeo y obras de contención. Los nombres y fechas permanecen provisionales.
 
 ## Lugares importantes
-**Palacio de la Corona:** núcleo del poder valdoriano.  
-**Sala de la Concordia:** sede de negociaciones internacionales.  
-**Archivos Internacionales:** depósito de tratados, mapas y documentos diplomáticos.  
-**Muelles Gemelos:** principal entrada de mercancías fluviales.  
-**Mercado Mayor:** corazón comercial de las terrazas medias.  
-**Gran Escalinata:** eje monumental que comunica distintos niveles de la ciudad.
+**Palacio de la Corona:** centro del poder de Valdoria y residencia institucional del soberano.  
+**Sala de la Concordia:** sede de negociaciones, mediaciones y encuentros entre potencias.  
+**Archivos Internacionales:** depósito de tratados, mapas, registros y documentos diplomáticos.  
+**Muelles Gemelos:** principal entrada de mercancías y pasajeros por los ríos.  
+**Mercado Mayor:** núcleo del comercio de las terrazas medias.  
+**Gran Escalinata:** eje monumental que comunica algunos de los principales niveles de la ciudad.
 
 ## Personalidades importantes
-**Propuestas provisionales:** **reina Maelia II de Valdoria**, soberana del reino; **Orren Valcázar**, Administrador de Auraval; **Ysara Velden**, coordinadora de la Mesa de Concordia; **Teren Halvay**, Custodio Mayor de los Archivos. Los nombres no pasan a canon hasta aprobación.
+**Maelia II de Valdoria**, reina del reino; **Orren Valcázar**, Administrador de Auraval; **Ysara Velden**, coordinadora de la Mesa de Concordia; **Teren Halvay**, Custodio Mayor de los Archivos. **Todos estos nombres continúan PROVISIONALES hasta aprobación.**
 
 ## Situación actual
-Auraval enfrenta congestión de puentes, presión sobre vivienda, espionaje, falsificación documental, tensiones entre gremios y mecanización, y contrabando de componentes arcanos. Es un escenario natural para intriga, investigación, diplomacia y crimen urbano.
+Auraval atraviesa problemas propios de una capital en expansión: congestión de puentes, aumento del precio de la vivienda, espionaje entre potencias, falsificación documental, tensiones entre gremios tradicionales y nuevos talleres mecanizados, y contrabando de bienes arcanos. Para los aventureros es un lugar de permisos, información, patronazgo, conspiraciones, investigaciones y conflictos donde una decisión local puede terminar teniendo consecuencias continentales.
 
 ---
 
