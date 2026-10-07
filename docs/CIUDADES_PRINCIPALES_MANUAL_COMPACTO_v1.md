@@ -398,38 +398,43 @@ Accidentes, contaminación, concesiones disputadas, explotación laboral, contra
 # PUERTO UMBRAL
 *La última orilla segura antes de las rutas orientales desconocidas.*
 
-**Ficha rápida:** frontera oriental · ≈84.000 habitantes · ≈22.000 flotantes · puerto de expediciones · soberanía territorial todavía por definir.
+**Ficha rápida:** frontera oriental de Edria · ≈84.000 habitantes · ≈22.000 de población flotante · puerto de expediciones · gran centro de abastecimiento, salvamento y cartografía de frontera · soberanía territorial todavía por definir.
 
 ## Identidad y ubicación
-Puerto Umbral se encuentra en el extremo oriental seguro de Edria, antes de rutas hacia archipiélagos y ruinas emergentes. Es un puerto de expediciones y frontera entre el mundo bien cartografiado y regiones de conocimiento incompleto.
+Puerto Umbral se encuentra en el extremo oriental seguro de Edria, antes de rutas hacia archipiélagos, costas poco conocidas y ruinas emergentes. Es el punto donde termina la navegación relativamente segura y comienza la exploración. A diferencia de Nacariel, cuyo poder nace del comercio oceánico establecido, Puerto Umbral vive de **preparar viajes hacia lugares que todavía no se conocen del todo y recibir a quienes consiguen regresar**.
 
 ## Gobierno y poder
-La autoridad soberana superior permanece **POR DEFINIR**. Para no condicionar esa decisión, el gobierno municipal se propone independiente de un modelo nacional concreto: un Consejo del Umbral controla presupuesto y regulación local, mientras un Magistrado Portuario dirige la administración. El Capitán del Puerto maneja navegación y dársenas; el Registro de Expediciones documenta viajes y hallazgos; una Junta de Cuarentena puede aislar personas, barcos u objetos peligrosos.
+La autoridad soberana superior permanece **POR DEFINIR**, por lo que su gobierno local se mantiene deliberadamente compatible con diferentes soluciones futuras. Se propone un **Consejo del Umbral** encargado de presupuesto y regulación urbana, junto a un **Magistrado Portuario** que dirige la administración. El **Capitán del Puerto** controla navegación y dársenas; el **Registro de Expediciones** documenta salidas, tripulaciones y hallazgos; y una **Junta de Cuarentena** puede aislar barcos, personas u objetos que representen riesgos sanitarios o arcanos.
 
-## Ciudad y arquitectura
-Muelles fortificados, almacenes, astilleros de reparación, hospitales, casas de expediciones y mercados de suministros dominan la ciudad. La arquitectura prioriza resistencia, logística y capacidad de reparación frente a ornamentación.
+## Ciudad, pueblo y arquitectura
+Muelles fortificados, almacenes, talleres de reparación, hospitales, depósitos de suministros, casas de expediciones y mercados de equipo dominan la ciudad. La arquitectura prioriza resistencia, logística y capacidad de reparación antes que ornamentación. Muchos edificios están pensados para recibir mercancías dañadas, tripulaciones heridas o materiales que todavía nadie comprende bien.
 
-## Pueblo, economía y cultura
-Marineros, exploradores, cartógrafos, arqueólogos, mercenarios, cargadores y comerciantes forman una sociedad donde muchos habitantes están de paso. La economía gira alrededor de equipamiento, reparación, hospedaje, salvamento, mapas y bienes recuperados. Partidas y regresos estructuran el calendario social.
+Marineros, exploradores, cartógrafos, estudiosos de ruinas, mercenarios, cargadores, comerciantes y trabajadores temporales forman una sociedad en constante movimiento. Las despedidas y los regresos son parte habitual de la vida urbana, y casi todas las familias conocen a alguien que partió hacia el este.
+
+## Comercio y vida cotidiana
+La economía gira alrededor de abastecimiento de expediciones, reparación naval, hospedaje, salvamento, mapas, contratación de tripulaciones y evaluación de bienes recuperados. Puerto Umbral importa alimentos, materiales, piezas y capital desde regiones más estables y exporta información, objetos, muestras y mercancías procedentes de expediciones.
+
+El prestigio local depende mucho de la experiencia. Una capitana que haya regresado varias veces de rutas peligrosas o un cartógrafo capaz de corregir una carta incompleta puede tener enorme influencia aunque carezca de rango político.
 
 ## Magia y tecnología
-La ciudad utiliza tecnología marítima, instrumentos de navegación y magia especializada para expediciones, detección, seguridad y catalogación. Los artefactos traídos de ruinas son una fuente constante de oportunidad y peligro.
+La ciudad utiliza tecnología marítima, instrumentos de navegación y magia especializada para detección, protección, catalogación y supervivencia expedicionaria. Su gran problema no es acceder a tecnología, sino enfrentarse a cosas para las que esa tecnología quizá no fue diseñada. Los artefactos y materiales traídos desde ruinas o territorios poco conocidos son una fuente constante de riqueza y peligro.
 
 ## Historia y acontecimientos
-Puerto Umbral creció al consolidarse como último puerto fiable antes de las rutas orientales de exploración. Se proponen tres hitos: **la creación del Registro de Expediciones**, que comenzó a documentar salidas y retornos; **la Primera Gran Cuarentena**, provocada por un hallazgo peligroso traído desde el este; y **la Aparición de las Ruinas Emergentes**, fenómeno que multiplicó expediciones y disputas por descubrimientos. Fechas y detalles siguen PROVISIONALES.
+Puerto Umbral creció al consolidarse como el último puerto fiable antes de las rutas orientales de exploración. Su fundación y soberanía histórica todavía requieren definición. Se proponen tres hitos principales: **la creación del Registro de Expediciones**, que comenzó a documentar salidas y retornos; **la Primera Gran Cuarentena**, provocada por un hallazgo peligroso procedente del este; y **la Aparición de las Ruinas Emergentes**, fenómeno que multiplicó expediciones, inversión y disputas sobre descubrimientos. Nombres, causas y fechas continúan PROVISIONALES.
 
 ## Lugares importantes
-**Dársena Segura:** corazón portuario.  
-**Casa de Expediciones:** contratación y preparación de viajes.  
-**Faro del Umbral:** navegación y defensa.  
-**Mercado de Retornos:** venta y evaluación de bienes recuperados.  
-**Junta de Cuarentena:** control de riesgos sanitarios y arcanos.
+**Dársena Segura:** principal puerto de salida y retorno de expediciones.  
+**Casa de Expediciones:** contratación de tripulaciones, guías y especialistas.  
+**Faro del Umbral:** navegación, señalización y defensa del acceso portuario.  
+**Mercado de Retornos:** evaluación, registro y venta de bienes recuperados.  
+**Junta de Cuarentena:** control de riesgos sanitarios y arcanos.  
+**Archivo de Rutas Orientales:** colección propuesta de cartas, diarios y registros de expediciones.
 
 ## Personalidades importantes
-**Propuestas provisionales:** **Miren Ordan**, Magistrada Portuaria; **Kael Varo**, Capitán del Puerto; **Nara Essel**, responsable del Registro de Expediciones; **Serrin Val**, cartógrafo especializado en las rutas orientales.
+**Miren Ordan**, Magistrada Portuaria; **Kael Varo**, Capitán del Puerto; **Nara Essel**, responsable del Registro de Expediciones; **Serrin Val**, cartógrafo especializado en rutas orientales. **Todos estos nombres continúan PROVISIONALES hasta aprobación.**
 
 ## Situación actual
-Expediciones desaparecidas, mapas incompletos, cuarentenas, artefactos peligrosos, piratería y disputas sobre propiedad de hallazgos convierten a Puerto Umbral en el punto natural de partida para campañas de exploración.
+Expediciones desaparecidas, mapas incompletos, cuarentenas, artefactos peligrosos, piratería y disputas por la propiedad de hallazgos mantienen a Puerto Umbral en tensión constante. Para los aventureros es el punto natural de partida hacia regiones poco conocidas: un lugar donde conseguir barco, tripulación y suministros, pero también donde cada regreso puede traer algo que Edria nunca había visto antes.
 
 ---
 
