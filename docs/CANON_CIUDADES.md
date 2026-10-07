@@ -45,9 +45,101 @@ Forma general; organización; distritos; centro histórico; zonas administrativa
 Estilo dominante; materiales; altura media; edificios característicos; diferencias entre distritos; integración de magia e ingeniería.
 
 ### 7. Gobierno y administración
-Gobierno municipal; autoridad máxima; forma de designación; instituciones; división administrativa; relación con el gobierno nacional; autonomía; corrupción o conflictos internos.
+- La ciudad alberga la **Corona de Valdoria** — CANÓNICO.
+- Valdoria es una **monarquía feudal reformada** — CANÓNICO.
+- La **Mesa de Concordia** opera en Auraval — CANÓNICO.
+- Los **archivos internacionales** se encuentran en Auraval — CANÓNICO.
 
-### 8. Población y sociedad
+### 7.1 Principio institucional propuesto
+
+La expresión "monarquía feudal reformada" se interpreta provisionalmente de esta manera: la Corona conserva soberanía, política exterior, mando militar superior y autoridad sobre asuntos de alcance nacional, mientras que ciudades, nobles territoriales, gremios y autoridades locales poseen competencias reconocidas por leyes, privilegios y cartas. La reforma no elimina la estructura feudal; la limita mediante administración escrita, tribunales regulares, obligaciones fiscales definidas y representación urbana.
+
+Esto permite que Valdoria conserve identidad monárquica sin funcionar como una monarquía absoluta ni como un estado moderno.
+
+### 7.2 La Corona en Auraval
+
+**Competencias propuestas de la Corona:**
+- relaciones exteriores de Valdoria;
+- declaración de guerra y tratados;
+- mando superior del ejército;
+- nombramiento de altos cargos nacionales;
+- promulgación de leyes de alcance nacional;
+- confirmación de determinadas autoridades territoriales;
+- supervisión de moneda, aduanas mayores y grandes obras estratégicas;
+- protección de la Mesa de Concordia y cumplimiento de los compromisos diplomáticos asumidos por Valdoria.
+
+La identidad, dinastía, título exacto y sistema sucesorio del soberano permanecen **POR DEFINIR**.
+
+### 7.3 Gobierno municipal de Auraval
+
+Se propone que Auraval posea una **Carta de la Capital** que delimite las competencias municipales frente a la Corona.
+
+**Autoridad ejecutiva propuesta:** **Administrador de Auraval**, cargo designado por la Corona por mandato prolongado pero revocable. El nombre institucional definitivo permanece PROVISIONAL.
+
+**Consejo municipal propuesto:** **Consejo de las Terrazas**, compuesto por 12 miembros:
+- 9 representantes, uno por cada distrito;
+- 3 consejeros designados por la Corona.
+
+Los nueve representantes distritales no implican sufragio universal moderno. Cada distrito puede seleccionar a su representante mediante mecanismos propios reconocidos por la Carta: concejos vecinales, propietarios, gremios habilitados y corporaciones locales. El método exacto puede variar por distrito y queda sujeto a desarrollo posterior.
+
+**Competencias municipales propuestas:**
+- mantenimiento de calles, puentes urbanos secundarios, escalinatas y elevadores;
+- abastecimiento de agua y saneamiento;
+- mercados, pesos y medidas;
+- licencias comerciales y de talleres;
+- guardia urbana;
+- prevención de incendios;
+- obras edilicias;
+- tasas municipales;
+- control sanitario;
+- mantenimiento de muelles civiles;
+- regulación del tránsito y transporte urbano.
+
+**Competencias excluidas:** política exterior, ejército nacional, tratados, moneda nacional y sucesión de la Corona.
+
+### 7.4 Mesa de Concordia
+
+La Mesa de Concordia se desarrolla provisionalmente como una **institución diplomática permanente de alcance internacional**, no como un gobierno supranacional.
+
+**Funciones propuestas:**
+- recibir delegaciones acreditadas;
+- servir como sede neutral para negociaciones;
+- registrar tratados, armisticios, acuerdos comerciales y arbitrajes;
+- ofrecer mediación entre potencias;
+- autenticar determinadas copias diplomáticas;
+- convocar sesiones extraordinarias ante crisis internacionales.
+
+La Mesa no puede imponer leyes dentro de Valdoria ni comandar fuerzas propias significativas. Su autoridad depende de tratados y del reconocimiento de las potencias participantes.
+
+Se propone que el recinto principal de la Mesa y determinadas dependencias diplomáticas posean **inviolabilidad funcional**, pero no soberanía territorial: siguen estando dentro de Auraval y bajo la protección última de Valdoria.
+
+### 7.5 Archivos internacionales
+
+Los archivos internacionales constituyen la memoria documental vinculada a la Mesa de Concordia.
+
+**Contenido propuesto:**
+- tratados ratificados;
+- mapas anexos a acuerdos;
+- registros de fronteras reconocidas;
+- genealogías o documentos sucesorios depositados voluntariamente;
+- actas diplomáticas;
+- arbitrajes;
+- copias certificadas de pactos comerciales;
+- documentos históricos entregados en custodia internacional.
+
+**Acceso propuesto:** dividido en fondos públicos, fondos restringidos y cámaras selladas. La consulta de material sensible requiere credenciales, autorización diplomática o mandato judicial adecuado.
+
+### 7.6 Equilibrio de poderes dentro de Auraval
+
+Auraval debe contener cuatro centros de autoridad que cooperan y compiten:
+1. **Corona:** poder nacional y militar.
+2. **Gobierno municipal:** administración cotidiana de la ciudad.
+3. **Mesa de Concordia:** influencia diplomática internacional sin soberanía local.
+4. **Gremios y corporaciones:** poder económico y capacidad de presión, sin autoridad estatal formal.
+
+Este equilibrio crea conflictos políticos utilizables en juego sin volver incoherente la cadena de mando.
+
+## 8. Población y sociedad
 Población; composición cultural; especies o pueblos cuando estén definidos; clases sociales; alfabetización; nivel de vida; migración; extranjeros; tensiones sociales; percepción de aventureros.
 
 ### 9. Economía
@@ -66,9 +158,49 @@ Nivel tecnológico; vapor; ferrocarril; manufactura; armas de fuego; autómatas;
 Religiones predominantes; templos; cultos; festividades; influencia política; conflictos; lugares sagrados.
 
 ### 14. Seguridad y justicia
-Guardia; efectivos; organización; seguridad; criminalidad; justicia; prisiones; castigos; corrupción; zonas peligrosas.
+- Guardia urbana propuesta: ≈780 efectivos permanentes.
+- Apoyo administrativo/investigativo adicional: ≈180 funcionarios, inspectores y escribanos judiciales.
+- Criminalidad: moderada; baja en terrazas políticas, mayor en muelles, mercados nocturnos y accesos exteriores.
+- Delitos característicos: contrabando, falsificación de documentos, espionaje, corrupción, robo de mercancías y fraude comercial.
 
-### 15. Defensa militar
+### 14.1 Organización propuesta de la Guardia de Auraval
+
+La guardia depende del gobierno municipal para funciones ordinarias, pero la Corona puede asumir control extraordinario en situaciones de guerra, insurrección, ataque contra instituciones nacionales o amenaza directa al soberano.
+
+**Distribución funcional aproximada de los 780 guardias:**
+- 420 patrulla territorial y puestos de distrito;
+- 110 puentes, puertas y control de tránsito;
+- 80 muelles, aduanas locales y mercados;
+- 70 investigación criminal;
+- 50 respuesta a disturbios y emergencias;
+- 50 reserva, escoltas institucionales y refuerzo.
+
+Estas cifras representan efectivos policiales, no personal administrativo ni guarnición militar.
+
+### 14.2 Jurisdicciones propuestas
+
+**Guardia de Auraval:** delitos ordinarios, orden público, mercados, tránsito y seguridad cotidiana.
+
+**Guardia de la Corona:** seguridad inmediata del soberano, palacio y determinadas dependencias nacionales; su tamaño se contabiliza dentro de la guarnición militar o servicio palaciego, no dentro de los 780 guardias urbanos.
+
+**Custodia de Concordia:** seguridad interior del recinto diplomático coordinada con delegaciones acreditadas. No constituye un ejército independiente.
+
+### 14.3 Sistema judicial provisional
+
+Se propone un sistema de tres niveles funcionales dentro de la capital:
+- **Tribunales de Distrito:** infracciones, deudas menores, disputas comerciales simples y delitos de menor gravedad.
+- **Tribunal de Auraval:** delitos graves, grandes fraudes, corrupción municipal, litigios de alto valor y apelaciones urbanas.
+- **Tribunal de la Corona:** materias de alta traición, grandes cuestiones nobiliarias, delitos contra la Corona y asuntos nacionales definidos por la ley de Valdoria.
+
+La denominación definitiva de estos tribunales y las reglas procesales quedan PROVISIONALES hasta desarrollar el derecho de Valdoria.
+
+### 14.4 Principios de procedimiento
+
+Para que el sistema sea compatible con una sociedad administrativa y documental, se propone que contratos, sellos, registros, testimonios jurados y peritajes tengan gran peso judicial. La magia puede utilizarse como herramienta de investigación solo bajo regulación; no se asume que exista un método mágico infalible para determinar culpabilidad o verdad.
+
+Las penas exactas, derechos procesales y condición jurídica de nobles, extranjeros y canalizadores quedan POR DEFINIR.
+
+## 15. Defensa militar
 Guarnición; fortificaciones; murallas; torres; artillería; defensas mágicas; accesos defensivos; resistencia a asedio; importancia estratégica.
 
 ### 16. Servicios e infraestructura
@@ -78,12 +210,63 @@ Agua; alcantarillado; residuos; iluminación; hospitales; incendios; correo; com
 Escuelas; universidades; academias; bibliotecas; archivos; gremios; investigación; especialidades intelectuales.
 
 ### 18. Facciones y organizaciones
-Gobierno; nobleza; gremios; comerciantes; academias; iglesias; crimen organizado; sociedades secretas; ejército; otras facciones; relaciones y conflictos.
+### 18.1 Instituciones canónicas
+- **Corona de Valdoria.**
+- **Mesa de Concordia.**
+- **Archivos internacionales.**
 
-### 19. Personajes importantes
-Gobernante; autoridades; líderes económicos y religiosos; académicos; criminales; aventureros o exploradores; otros habitantes relevantes.
+### 18.2 Instituciones provisionales de Auraval
+- **Consejo de las Terrazas:** órgano municipal de 12 miembros.
+- **Administración de Auraval:** aparato ejecutivo y burocrático municipal.
+- **Guardia de Auraval:** seguridad y orden público.
+- **Cuerpo de Obras y Aguas:** mantenimiento de bombas, cisternas, muros de contención, escalinatas, elevadores y conducciones.
+- **Junta de Muelles:** coordinación de atraques, almacenes, tasas portuarias fluviales y seguridad de carga.
+- **Registro de Oficios y Talleres:** licencias de producción, inspección y actividades con riesgo arcano o industrial.
 
-### 20. Lugares emblemáticos
+### 18.3 Bloques de influencia
+
+**Bloque de la Corona:** altos funcionarios, nobles con presencia en la capital, mandos militares y proveedores vinculados al gobierno.
+
+**Bloque municipal:** representantes distritales, funcionarios urbanos y responsables de servicios públicos.
+
+**Bloque mercantil:** casas comerciales, almacenistas, transportistas, prestamistas y operadores de los muelles.
+
+**Bloque gremial:** talleres, impresores, artesanos especializados, constructores y trabajadores organizados.
+
+**Bloque diplomático:** delegaciones extranjeras, mediadores, intérpretes, juristas y personal de Concordia.
+
+Ningún bloque controla por sí solo Auraval. La estabilidad de la ciudad depende de acuerdos temporales entre ellos.
+
+### 18.4 Conflictos institucionales recurrentes
+- Corona contra Consejo de las Terrazas por impuestos, obras y seguridad.
+- Comerciantes contra gremios por mecanización y salarios.
+- Guardia urbana contra delegaciones diplomáticas por límites de jurisdicción.
+- Archivos internacionales contra intereses políticos que desean restringir, ocultar o reinterpretar documentos.
+- Distritos altos contra distritos bajos por inversión pública, inundaciones y transporte.
+- Autoridades militares contra administración civil durante crisis.
+
+## 19. Personajes importantes
+Los nombres propios permanecen **POR DEFINIR**. La estructura de cargos queda propuesta para que los personajes futuros encajen en una jerarquía consistente.
+
+| Cargo/rol | Institución | Función |
+|---|---|---|
+| Soberano/a de Valdoria | Corona | máxima autoridad nacional |
+| Primer consejero/a de la Corona | Corona | coordinación del gobierno central y asesoría política |
+| Administrador/a de Auraval | Gobierno municipal | poder ejecutivo urbano |
+| Decano/a del Consejo de las Terrazas | Consejo municipal | dirige sesiones y negociaciones del consejo |
+| Coordinador/a de la Mesa de Concordia | Concordia | organiza sesiones y protocolos internacionales |
+| Custodio/a Mayor de los Archivos | Archivos internacionales | controla preservación, acceso y certificación documental |
+| Comandante de la guarnición | Corona / ejército | defensa militar de capital y perímetro |
+| Comandante de la Guardia | Municipio | seguridad urbana |
+| Maestro/a de Obras y Aguas | Municipio | infraestructura crítica |
+| Síndico/a de Muelles | Municipio/comercio | administración portuaria fluvial |
+| Principal figura mercantil | Sector privado | articulación de casas comerciales |
+| Principal dirigente gremial | Gremios | representación de talleres y trabajadores cualificados |
+| Figura central del contrabando | Crimen | coordinación informal de redes ilícitas |
+
+La identidad personal, especie/pueblo, edad, afiliaciones y objetivos de cada cargo se definirán cuando se desarrolle el elenco de PNJ de Auraval.
+
+## 20. Lugares emblemáticos
 Para cada lugar: nombre; tipo; distrito; función; descripción; importancia histórica; importancia para juego.
 
 ### 21. Cultura y vida cotidiana
@@ -126,7 +309,7 @@ Las cifras pueden expresarse mediante aproximaciones y rangos. Se prioriza la co
 
 ---
 
-# AURAVAL — FICHA DE DESARROLLO v0.2
+# AURAVAL — FICHA DE DESARROLLO v0.3
 
 **Estado general:** PROVISIONAL, salvo los elementos indicados expresamente como CANÓNICOS.
 
@@ -356,4 +539,4 @@ Tipos de aventura: documentos desaparecidos; asesinatos diplomáticos; sabotaje 
 
 ## 25. Control de aprobación de Auraval
 
-Esta ficha es **v0.2 PROVISIONAL**. Los elementos provenientes del canon previo permanecen vinculantes. Los nuevos nombres, cifras, distritos y detalles no se consideran canon hasta aprobación explícita.
+Esta ficha es **v0.3 PROVISIONAL**. Los elementos provenientes del canon previo permanecen vinculantes. Los nuevos nombres, cifras, distritos y detalles no se consideran canon hasta aprobación explícita.
