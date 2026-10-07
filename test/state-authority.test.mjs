@@ -19,6 +19,7 @@ globalThis.game = { user:{ id:"local" }, users:[] };
 
 const {
   claimKineticBarrier,
+  clearTurnResourceReservations,
   consumeDeviceEnergyAuthoritatively
 } = await import("../scripts/rules/state-authority.mjs");
 
@@ -70,4 +71,24 @@ test("CREA-13 cierre: la autoridad compartida declara arbitraje por DJ activo", 
   assert.match(source,/consume-device-energy/);
   assert.match(source,/claim-kinetic/);
   assert.match(source,/Se requiere un DJ activo/);
+});
+
+
+test("limpieza de recuperación elimina Acción y Reacción huérfanas persistidas", async () => {
+  const actor={
+    flags:{action:{id:"a"},reaction:{id:"r"}},
+    getFlag(){ return this.flags; },
+    async setFlag(_scope,_key,value){ this.flags=value; }
+  };
+  await clearTurnResourceReservations(actor);
+  assert.deepEqual(actor.flags,{});
+});
+
+test("ready del DJ limpia reservas huérfanas de sesiones anteriores", async () => {
+  const source = await import("node:fs/promises").then(({readFile}) =>
+    readFile(new URL("../scripts/tierra-magica.mjs", import.meta.url), "utf8")
+  );
+  assert.match(source,/clearTurnResourceReservations/);
+  assert.match(source,/turnReservations/);
+  assert.match(source,/reservas huérfanas de Acción\/Reacción/);
 });
