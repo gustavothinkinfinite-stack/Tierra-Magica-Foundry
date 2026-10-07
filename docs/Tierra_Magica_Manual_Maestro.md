@@ -11164,7 +11164,7 @@ Aurea representa aquello que seres conscientes deciden **mantener vivo, protegid
 
 Su fuego no debe confundirse con el principio elemental de Khorun. La Llama de Aurea es principalmente el **fuego sostenido**: hogar, lámpara, brasero, horno, faro, fogón o fuego de campamento cuya continuidad depende de alguien que lo cuide.
 
-> **Símbolo religioso — geometría, cromática y escala aprobadas:** **La Llama Custodiada** (`SYM-DIV-AUREA-001`). Su geometría vectorial, cromática formal y variante `REDUCED-01` son inmutables y están especificadas en `docs/visual/SIMBOLOS_CANONICOS.md`. La versión principal se usa desde 32 px; `REDUCED-01` entre 16 y 31 px; por debajo de 16 px no se reproduce el símbolo completo. La ficha sólo requiere ya pruebas contextuales/materiales y vista final de referencia antes de elevarse a CANON v1.0.
+> **Símbolo religioso canónico:** **La Llama Custodiada** (`SYM-DIV-AUREA-001`, CANON v1.0). Su geometría, cromática, versión reducida, escalas, área de protección, materiales y reglas de reproducción están fijadas en `docs/visual/SIMBOLOS_CANONICOS.md`. La versión principal se usa desde 32 px; `REDUCED-01` entre 16 y 31 px; por debajo de 16 px no se reproduce el símbolo completo.
 
 ### El Primer Reencendido
 
@@ -12223,7 +12223,7 @@ Las deidades pueden actuar como **Fuente Divina** para personajes con un Víncul
 
 ### Estado pendiente de símbolos
 
-Los símbolos religiosos de las Luminarias se desarrollan mediante el estándar común del registro técnico. **Aurea ya posee geometría, cromática y escala aprobadas para La Llama Custodiada**, mientras que Nemor, Oria, Vael y Selene continúan sin símbolo doctrinal fijado. La ficha completa de Aurea sólo requiere ya pruebas contextuales/materiales y vista final de referencia antes de alcanzar CANON v1.0.
+Los símbolos religiosos de las Luminarias se desarrollan mediante el estándar común del registro técnico. **Aurea ya posee símbolo completo CANON v1.0 para La Llama Custodiada**, mientras que Nemor, Oria, Vael y Selene continúan sin símbolo doctrinal fijado. La ficha de Aurea está cerrada. Nemor, Oria, Vael y Selene continúan pendientes de definición bajo el mismo estándar.
 
 La estructura obligatoria para diseñarlos y reproducirlos es el **Estándar Universal de Símbolos Canónicos** definido en `docs/visual/SIMBOLOS_CANONICOS.md`. Cada símbolo sólo pasará a CANON cuando su ficha complete geometría, reconocimiento, color, variantes, pruebas y activo maestro conforme a ese estándar.
 

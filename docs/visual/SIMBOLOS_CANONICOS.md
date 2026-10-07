@@ -651,13 +651,14 @@ El registro contiene fichas en distintos estados. Sólo las marcadas **CANON** h
 **Entidad:** Aurea, la Llama  
 **Nombre del símbolo:** La Llama Custodiada  
 **Tipo:** DIV — deidad / símbolo religioso  
-**Estado:** **PROVISIONAL — GEOMETRÍA, CROMÁTICA Y ESCALA APROBADAS E INMUTABLES**  
-**Versión:** v0.4  
+**Estado:** **CANON**  
+**Versión:** v1.0  
 **Fecha de aprobación geométrica:** 2026-10-07  
 **Fecha de aprobación cromática:** 2026-10-07  
 **Fecha de aprobación de escala:** 2026-10-07  
+**Fecha de canonización completa:** 2026-10-07  
 
-La ficha permanece PROVISIONAL únicamente porque todavía faltan las pruebas contextuales y de materiales exigidas por este estándar, además de la vista PNG definitiva de referencia. Esos pendientes no autorizan a modificar la geometría, cromática, versión reducida ni reglas de escala aprobadas.
+La ficha ha completado geometría, cromática, reducción, escala, área de protección y pruebas contextuales/materiales. Desde v1.0 constituye la definición canónica completa de La Llama Custodiada.
 
 ### Concepto
 
@@ -834,9 +835,44 @@ Si el símbolo debe aparecer con una altura final inferior a aproximadamente 32 
 
 ### Contexto
 
-**Materiales y acabados permitidos:** PENDIENTE DE CIERRE. La geometría no puede alterarse al probar materiales.
+#### Materiales y acabados autorizados
 
-**Usos culturales previsibles a validar:** Casas de la Llama, Guardianes de la Llama, altares, refugios, estandartes, sellos religiosos y arquitectura aureana. La presencia en estos soportes no crea una variante nueva.
+La Fase 4 validó el símbolo sin rediseño en documento/sello, bronce grabado, piedra tallada, bordado ceremonial, vitral o señal luminosa y arquitectura en perspectiva.
+
+**Metal:** oro, bronce, latón, hierro y otros metales pueden utilizarse como acabado contextual. No necesitan imitar el valor HEX del Oro Aureano. Si símbolo y soporte comparten material debe existir relieve, incisión, pátina o iluminación suficiente para preservar los rasgos obligatorios.
+
+**Piedra y madera:** se permiten relieve, bajorrelieve, incisión y desgaste natural. No se cierran aperturas ni se compensan partes erosionadas rediseñando la geometría.
+
+**Tela y bordado:** la textura del hilo y pequeñas irregularidades físicas son válidas; no pueden añadir contornos nuevos, cerrar la semilla interior ni unir brazos y llama. Se conserva el mínimo recomendado de 20 mm.
+
+**Vidrio y luz:** se permiten transparencia, translucidez y emisión luminosa. El Ámbar de Resplandor `#FFD98A` puede actuar como halo contextual pero no como relleno de los espacios negativos.
+
+#### Perspectiva y deformación física
+
+La perspectiva, curvatura de tela o geometría física del soporte pueden deformar visualmente el símbolo en una representación **FIEL**. Esa deformación no constituye una variante y nunca puede guardarse como nueva geometría plana.
+
+#### Deterioro
+
+Se permiten desgaste, grietas, oxidación, suciedad y pérdida parcial de pigmento. El deterioro no autoriza modificar intencionalmente número de componentes, orientación, relación llama/brazos, semilla interior ni aperturas obligatorias.
+
+Cuando el daño impida reconocer al menos tres de los cuatro rasgos obligatorios, la imagen deja de considerarse una representación fiable de `SYM-DIV-AUREA-001`.
+
+#### Usos culturales validados
+
+La Llama Custodiada puede utilizarse en:
+
+- Casas de la Llama;
+- altares;
+- estandartes;
+- vestiduras y bordados religiosos;
+- sellos y documentos;
+- placas;
+- arquitectura;
+- refugios;
+- señalización vinculada al culto;
+- medallones y objetos devocionales.
+
+La autorización de un soporte no obliga a que el símbolo aparezca en todos los objetos de esa categoría y no crea variantes nuevas.
 
 **Relación con otra iconografía:** una representación figurativa de Aurea, una llama real, un hogar, un brasero o cualquier escena de cuidado no constituye automáticamente este símbolo.
 
@@ -881,7 +917,8 @@ Si el símbolo debe aparecer con una altura final inferior a aproximadamente 32 
 **SVG reducido invertido:** `assets/symbols/divinities/SYM-DIV-AUREA-001_REDUCED_INVERTED.svg`  
 **SHA-256:** `b908b50070e03e30f7d5689b9929a666f2d82b15f11e88ab39397e7b3ce00421`
 
-**Archivo PNG de referencia:** PENDIENTE DE CIERRE v1.0.
+**Archivo PNG de referencia:** `assets/symbols/divinities/SYM-DIV-AUREA-001_PREVIEW.png`  
+**SHA-256:** `e61448087cbe5f74fb57494b15c0e9a9fadd8386b92e9941fe0e7b20b4d34179`
 
 ### Historial
 
@@ -889,3 +926,4 @@ Si el símbolo debe aparecer con una altura final inferior a aproximadamente 32 
 - **v0.2 — 2026-10-07:** geometría aprobada; trayectorias vectoriales maestras fijadas; color y variantes permanecen pendientes.
 - **v0.3 — 2026-10-07:** cromática aprobada; se fijan Oro Aureano, Azul Custodio, Marfil del Reencendido y Ámbar de Resplandor; se autorizan las variantes PRIMARY-01, LIGHT-01 e INVERTED-01.
 - **v0.4 — 2026-10-07:** se aprueba REDUCED-01, umbral principal de 32 px, mínimo absoluto de 16 px, mínimos físicos recomendados y área de protección 2X.
+- **v1.0 — 2026-10-07:** pruebas contextuales/materiales superadas; se validan soportes, perspectiva, deterioro y usos culturales; se incorpora PNG de referencia y la ficha pasa a CANON.
