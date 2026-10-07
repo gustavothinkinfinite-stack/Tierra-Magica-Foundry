@@ -6,27 +6,6 @@
     <img class="tm-v09-title-art tm-v091-title-art" src="systems/tierra-magica/assets/ui/tierra-magica-banner-final.jpg" alt="Tierra Mágica — Historias que dejan huella" />
   </header>
 
-  <section class="tm-v03-identity tm-v10-identity-strip">
-    <label class="tm-v03-name">
-      <span>Nombre</span>
-      <input name="name" type="text" value="{{actor.name}}" placeholder="Nombre del personaje" />
-    </label>
-    <label class="tm-v03-concept">
-      <span>Concepto</span>
-      <input type="text" name="system.details.concept" value="{{system.details.concept}}" placeholder="Una frase basta" />
-    </label>
-    <div class="tm-v10-identity-meta">
-      {{#if creation.isBuilding}}
-        <span>Creación guiada</span>
-        <strong>Paso {{creationWizard.step}} de {{creationWizard.total}}</strong>
-      {{else}}
-        <span class="tm-v10-identity-chip"><b>{{#if identityItems.ancestry}}{{identityItems.ancestry.name}}{{else}}Sin Ascendencia{{/if}}</b></span>
-        <span class="tm-v10-identity-chip"><b>{{#if identityItems.origin}}{{identityItems.origin.name}}{{else}}Sin Origen{{/if}}</b></span>
-        <span class="tm-v10-identity-chip"><b>{{#if identityItems.background}}{{identityItems.background.name}}{{else}}Sin Trasfondo{{/if}}</b></span>
-      {{/if}}
-    </div>
-  </section>
-
   <nav class="tm-tabs tm-v03-page-tabs tabs" data-group="primary" aria-label="Páginas de la ficha">
     {{#if creation.isBuilding}}
       <span class="tm-v10-tab-locked"><i class="fa-solid fa-user"></i><span>Ficha</span></span>
@@ -85,7 +64,18 @@
 
           <div class="tm-v03-portrait-frame">
             <img class="profile-img tm-v03-portrait" src="{{actor.img}}" data-edit="img" title="Cambiar retrato de {{actor.name}}" />
-            <span class="tm-v03-portrait-caption">{{actor.name}}</span>
+            <div class="tm-v03-portrait-caption tm-v11-portrait-identity">
+              <input class="tm-v11-character-name" name="name" type="text" value="{{actor.name}}" aria-label="Nombre del personaje" />
+              <small>
+                {{#if creation.isBuilding}}
+                  Creación guiada · Paso {{creationWizard.step}} de {{creationWizard.total}}
+                {{else}}
+                  {{#if identityItems.ancestry}}{{identityItems.ancestry.name}}{{else}}Sin Ascendencia{{/if}}
+                  · {{#if identityItems.origin}}{{identityItems.origin.name}}{{else}}Sin Origen{{/if}}
+                  · {{#if identityItems.background}}{{identityItems.background.name}}{{else}}Sin Trasfondo{{/if}}
+                {{/if}}
+              </small>
+            </div>
           </div>
 
           <section class="tm-v03-resources">
@@ -152,10 +142,10 @@
               <h2>Defensas</h2>
             </header>
             <div class="tm-v03-defense-grid">
-              <div class="tm-v09-defense tm-v09-defense-general"><i class="fa-solid fa-shield-halved"></i><span>Defensa</span><b>{{system.derived.defense}}</b></div>
-              <div class="tm-v09-defense tm-v09-defense-maneuver"><i class="fa-solid fa-swords"></i><span>Maniobra</span><b>{{system.derived.maneuverDefense}}</b></div>
-              <div class="tm-v09-defense tm-v09-defense-mental"><i class="fa-solid fa-brain"></i><span>Mental</span><b>{{system.derived.mentalDefense}}</b></div>
-              <div class="tm-v09-defense tm-v09-defense-body"><i class="fa-solid fa-person"></i><span>Corporal</span><b>{{system.derived.bodyDefense}}</b></div>
+              <div class="tm-v09-defense tm-v09-defense-general" title="Defensa: ataques físicos o energéticos ordinarios."><i class="fa-solid fa-shield-halved"></i><span>Defensa</span><small>Ataques</small><b>{{system.derived.defense}}</b></div>
+              <div class="tm-v09-defense tm-v09-defense-maneuver" title="Defensa de Maniobra: Derribar, Empujar y Agarrar."><i class="fa-solid fa-swords"></i><span>Maniobra</span><small>Derribar · Empujar</small><b>{{system.derived.maneuverDefense}}</b></div>
+              <div class="tm-v09-defense tm-v09-defense-mental" title="Defensa Mental: influencia y efectos mentales resistidos."><i class="fa-solid fa-brain"></i><span>Mental</span><small>Mente</small><b>{{system.derived.mentalDefense}}</b></div>
+              <div class="tm-v09-defense tm-v09-defense-body" title="Defensa Corporal: efectos que alteran directamente el cuerpo."><i class="fa-solid fa-person"></i><span>Corporal</span><small>Cuerpo</small><b>{{system.derived.bodyDefense}}</b></div>
             </div>
             <div class="tm-v03-derived-list">
               <button type="button" data-action="roll-initiative"><span>Iniciativa</span><b>+{{system.derived.initiativeModifier}}</b><i class="fa-solid fa-dice"></i></button>
@@ -164,8 +154,6 @@
               <div><span>Movimiento</span><b>{{system.derived.movement}}</b></div>
             </div>
           </section>
-
-          {{> "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"}}
 
           {{#if creationGuide.ancestryProfile}}
             <section class="tm-v03-panel tm-v03-list-panel tm-v03-ancestry-panel">
@@ -261,23 +249,18 @@
         </button>
       </section>
 
-      <section class="tm-panel tm-v03-page-panel tm-v04-skill-audit">
-        <div class="tm-section-heading">
-          <h2>Desarrollo de Habilidades</h2>
-          <span>26 Habilidades · PD invertidos: <strong>{{development.skillsPdCost}}</strong></span>
-        </div>
-        {{#if development.skillIssues.length}}
+      {{#if development.skillIssues.length}}
+        <section class="tm-panel tm-v03-page-panel tm-v11-skill-alert">
           <div class="tm-warning">
-            <strong>Inconsistencias de Habilidades</strong>
+            <strong>Hay Habilidades que requieren revisión</strong>
             <ul>{{#each development.skillIssues as |issue|}}<li>{{issue}}</li>{{/each}}</ul>
           </div>
-        {{/if}}
+        </section>
+      {{else}}
         {{#if development.skillBuildActive}}
-          <small>La construcción de Habilidades se cierra junto con la creación completa del personaje.</small>
-        {{else}}
-          <small>Creación cerrada: reducir rangos requiere una reconstrucción autorizada.</small>
+          <div class="tm-v11-skill-build-status"><i class="fa-solid fa-compass-drafting"></i><span>En creación · {{development.skillsPdCost}} PD invertidos en Habilidades</span></div>
         {{/if}}
-      </section>
+      {{/if}}
 
       <section class="tm-v03-skills-page">
         {{#each skillGroups as |group|}}
@@ -399,27 +382,48 @@
     <div class="tab" data-group="primary" data-tab="combat">
       <section class="tm-v03-page-hero">
         <i class="fa-solid fa-swords"></i>
-        <div><small>Página de combate</small><h2>Combate</h2><p>Armas preparadas, protección, escudos y técnicas de combate.</p></div>
+        <div><small>Página de combate</small><h2>Combate</h2><p>Lo que necesitás para atacar, defenderte y reaccionar durante un enfrentamiento.</p></div>
       </section>
-      <section class="tm-panel tm-v03-page-panel">
-        <div class="tm-section-heading"><h2>Configuración defensiva</h2><span>Ajustes y entrenamiento marcial.</span></div>
-        <div class="tm-form-grid">
-          <label><span>Rango marcial defensivo</span><select disabled>{{selectOptions config.rankLabels selected=system.combat.defensiveRank}}</select></label>
-          <label><span>Movimiento base</span><input type="number" name="system.movement.base" value="{{system.movement.base}}" min="1" /></label>
-          <label><span>Ajuste Defensa</span><input type="number" name="system.modifiers.manual.defensiveBonus.value" value="{{system.modifiers.manual.defensiveBonus.value}}" /></label>
-          <label><span>Ajuste Protección</span><input type="number" name="system.modifiers.manual.protection.value" value="{{system.modifiers.manual.protection.value}}" /></label>
-          <label><span>Ajuste Movimiento</span><input type="number" name="system.modifiers.manual.movement.value" value="{{system.modifiers.manual.movement.value}}" /></label>
-          <label><span>Ajuste Iniciativa</span><input type="number" name="system.modifiers.manual.initiativeModifier.value" value="{{system.modifiers.manual.initiativeModifier.value}}" /></label>
+
+      <section class="tm-v11-combat-overview" aria-label="Resumen de combate">
+        <article title="Ataques físicos o energéticos ordinarios"><span>Defensa</span><b>{{system.derived.defense}}</b><small>Ataques</small></article>
+        <article title="Derribar, Empujar y Agarrar"><span>Maniobra</span><b>{{system.derived.maneuverDefense}}</b><small>Control físico</small></article>
+        <article title="Efectos que alteran directamente el cuerpo"><span>Corporal</span><b>{{system.derived.bodyDefense}}</b><small>Cuerpo</small></article>
+        <article title="Influencia y efectos mentales resistidos"><span>Mental</span><b>{{system.derived.mentalDefense}}</b><small>Mente</small></article>
+        <article><span>Protección</span><b>{{system.derived.protection}}</b><small>Reduce daño</small></article>
+        <article><span>Movimiento</span><b>{{system.derived.movement}}</b><small>espacios</small></article>
+        <button type="button" data-action="roll-initiative"><span>Iniciativa</span><b>+{{system.derived.initiativeModifier}}</b><small><i class="fa-solid fa-dice"></i> Tirar</small></button>
+      </section>
+
+      <section class="tm-panel tm-v03-page-panel tm-v11-defense-actions">
+        <div class="tm-section-heading"><h2>Respuestas defensivas</h2><span>Elegí una respuesta cuando exista un disparador válido.</span></div>
+        <div class="tm-v11-defense-action-grid">
+          <button type="button" class="{{#unless turn.action}}spent{{/unless}}" data-action="combat-guard">
+            <i class="fa-solid fa-shield"></i><span><b>Guardia</b><small>Acción · +2 Defensa</small></span>
+          </button>
+          <button type="button" class="{{#unless turn.reaction}}spent{{/unless}}" data-action="combat-parry">
+            <i class="fa-solid fa-swords"></i><span><b>Parada</b><small>Reacción · ataque parable</small></span>
+          </button>
+          <button type="button" class="{{#unless turn.reaction}}spent{{/unless}}" data-action="combat-counterattack">
+            <i class="fa-solid fa-arrow-rotate-left"></i><span><b>Contraataque</b><small>Tras una Parada válida</small></span>
+          </button>
         </div>
       </section>
-      <section class="tm-panel tm-v03-page-panel">
-        <div class="tm-section-heading"><h2>Economía defensiva</h2><span>Guardia consume Acción; Parada consume Reacción.</span></div>
-        <div class="tm-section-buttons">
-          <button type="button" data-action="combat-guard">Guardia (+2 Defensa)</button>
-          <button type="button" data-action="combat-parry">Parada (+2 Defensa)</button>
-          <button type="button" data-action="combat-counterattack">Contraataque</button>
-        </div>
-      </section>
+
+      {{#if isGM}}
+        <details class="tm-panel tm-v03-page-panel tm-v11-advanced-panel">
+          <summary><span><i class="fa-solid fa-sliders"></i> Configuración avanzada de combate</span><small>DJ · ajustes manuales y valores base</small></summary>
+          <div class="tm-form-grid tm-v11-advanced-grid">
+            <label><span>Rango marcial defensivo</span><select disabled>{{selectOptions config.rankLabels selected=system.combat.defensiveRank}}</select></label>
+            <label><span>Movimiento base</span><input type="number" name="system.movement.base" value="{{system.movement.base}}" min="1" /></label>
+            <label><span>Ajuste Defensa</span><input type="number" name="system.modifiers.manual.defensiveBonus.value" value="{{system.modifiers.manual.defensiveBonus.value}}" /></label>
+            <label><span>Ajuste Protección</span><input type="number" name="system.modifiers.manual.protection.value" value="{{system.modifiers.manual.protection.value}}" /></label>
+            <label><span>Ajuste Movimiento</span><input type="number" name="system.modifiers.manual.movement.value" value="{{system.modifiers.manual.movement.value}}" /></label>
+            <label><span>Ajuste Iniciativa</span><input type="number" name="system.modifiers.manual.initiativeModifier.value" value="{{system.modifiers.manual.initiativeModifier.value}}" /></label>
+          </div>
+        </details>
+      {{/if}}
+
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Armas preparadas" type="weapon" items=itemGroups.weapon}}
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Armaduras" type="armor" items=itemGroups.armor}}
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Escudos" type="shield" items=itemGroups.shield}}
@@ -427,33 +431,95 @@
     </div>
 
     <div class="tab" data-group="primary" data-tab="magic">
-      <section class="tm-v03-page-hero tm-v03-magic-hero">
+      <section class="tm-v03-page-hero tm-v03-magic-hero tm-v11-magic-hero">
         <i class="fa-solid fa-wand-sparkles"></i>
-        <div><small>Página de magia</small><h2>Magia</h2><p>Fuente + Disciplina + Método + Conocimiento → Hechizo.</p></div>
+        <div><small>Página de magia</small><h2>Magia</h2><p>Tu reserva, entrenamiento mágico y hechizos disponibles en una sola vista.</p></div>
         <div class="tm-v03-hero-resource"><span>Maná</span><b>{{system.resources.mana.value}}</b><small>/ {{system.derived.manaMax}}</small></div>
       </section>
 
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Disciplinas conocidas" type="discipline" items=itemGroups.discipline}}
-      <section class="tm-panel tm-v03-page-panel">
-        <div class="tm-v03-magic-skill-strip">
-          <span>Canalización <b>+{{system.skills.channeling.bonus}}</b></span>
-          <span>Ritualismo <b>+{{system.skills.ritualism.bonus}}</b></span>
-          <span>Arcana <b>+{{system.skills.arcana.bonus}}</b></span>
+      <section class="tm-v11-magic-overview">
+        <div class="tm-v11-magic-skills" aria-label="Competencias mágicas">
+          <span><small>Canalización</small><b>+{{system.skills.channeling.bonus}}</b></span>
+          <span><small>Ritualismo</small><b>+{{system.skills.ritualism.bonus}}</b></span>
+          <span><small>Arcana</small><b>+{{system.skills.arcana.bonus}}</b></span>
+        </div>
+        <div class="tm-v11-discipline-summary">
+          <div class="tm-v11-section-title">
+            <span><i class="fa-solid fa-circle-nodes"></i><b>Disciplinas</b></span>
+            <div>
+              <button type="button" class="tm-icon-button" data-action="content-browser" data-type="discipline"><i class="fa-solid fa-book"></i> Catálogo</button>
+              {{#if editable}}<button type="button" class="tm-icon-button" data-action="item-create" data-type="discipline"><i class="fa-solid fa-plus"></i> Agregar</button>{{/if}}
+            </div>
+          </div>
+          <div class="tm-v11-discipline-list">
+            {{#each itemGroups.discipline as |item|}}
+              <article class="item tm-v11-discipline-card" data-item-id="{{item.id}}">
+                <i class="fa-solid fa-diagram-project"></i>
+                <span><b>{{item.name}}</b><small>Disciplina · {{item.system.pdCost}} PD</small></span>
+                <button type="button" class="tm-icon-button" data-action="item-edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>
+                {{#if @root.editable}}<button type="button" class="tm-icon-button tm-danger" data-action="item-delete" title="Eliminar"><i class="fa-solid fa-trash"></i></button>{{/if}}
+              </article>
+            {{else}}
+              <p class="tm-v11-empty-inline">No hay Disciplinas registradas.</p>
+            {{/each}}
+          </div>
         </div>
       </section>
 
-      <section class="tm-panel tm-v03-page-panel">
-        <div class="tm-section-heading"><h2>Sostenimiento</h2><span>Un efecto demandante; Doble Sostenimiento permite dos.</span></div>
-        <ol class="tm-item-list">
-          {{#each sustainedSpells as |spell|}}
-            <li class="tm-item-row"><div class="tm-item-name"><strong>{{spell.name}}</strong></div><button type="button" data-action="stop-sustained" data-item-id="{{spell.id}}">Abandonar</button></li>
-          {{else}}<li class="tm-empty">Sin efectos sostenidos demandantes.</li>{{/each}}
-        </ol>
+      {{#if sustainedSpells.length}}
+        <section class="tm-panel tm-v03-page-panel tm-v11-sustained-active">
+          <div class="tm-section-heading"><h2>Sostenimiento</h2><span>Un efecto demandante; Doble Sostenimiento permite dos.</span></div>
+          <ol class="tm-item-list">
+            {{#each sustainedSpells as |spell|}}
+              <li class="tm-item-row"><div class="tm-item-name"><strong>{{spell.name}}</strong><small>Efecto sostenido activo</small></div><button type="button" data-action="stop-sustained" data-item-id="{{spell.id}}">Abandonar</button></li>
+            {{/each}}
+          </ol>
+        </section>
+      {{else}}
+        <div class="tm-v11-sustained-empty"><i class="fa-solid fa-link-slash"></i><span>Sin efectos sostenidos demandantes.</span></div>
+      {{/if}}
+
+      <section class="tm-panel tm-v03-page-panel tm-v11-grimoire">
+        <div class="tm-section-heading">
+          <div><h2>Grimorio</h2><small>Hechizos que conocés y podés intentar lanzar.</small></div>
+          <div class="tm-section-buttons">
+            <button type="button" class="tm-icon-button" data-action="content-browser" data-type="spell"><i class="fa-solid fa-book"></i> Catálogo</button>
+            {{#if editable}}<button type="button" class="tm-icon-button" data-action="item-create" data-type="spell"><i class="fa-solid fa-plus"></i> Agregar</button>{{/if}}
+          </div>
+        </div>
+        <div class="tm-v11-spell-list">
+          {{#each itemGroups.spell as |item|}}
+            <article class="item tm-v11-spell-card" data-item-id="{{item.id}}">
+              <img src="{{item.img}}" alt="" />
+              <div class="tm-v11-spell-info">
+                <div class="tm-v11-spell-title"><strong>{{item.name}}</strong><span>{{item.system.manaCost}} Maná</span></div>
+                <div class="tm-v11-spell-tags">
+                  <span>{{lookup @root.config.disciplines item.system.discipline}}</span>
+                  <span>{{lookup @root.config.sources item.system.source}}</span>
+                  <span>{{lookup @root.config.spellMethods item.system.method}}</span>
+                  <span>{{item.system.activation}}</span>
+                  {{#if item.system.duration}}<span>{{item.system.duration}}</span>{{/if}}
+                  {{#if item.system.range}}<span>{{item.system.range}}</span>{{/if}}
+                </div>
+              </div>
+              <div class="tm-v11-spell-actions">
+                <button type="button" class="tm-v11-cast-button" data-action="item-spell"><i class="fa-solid fa-wand-sparkles"></i> Lanzar</button>
+                <button type="button" class="tm-icon-button" data-action="item-edit" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>
+                {{#if @root.editable}}<button type="button" class="tm-icon-button tm-danger" data-action="item-delete" title="Eliminar"><i class="fa-solid fa-trash"></i></button>{{/if}}
+              </div>
+            </article>
+          {{else}}
+            <div class="tm-empty">No hay Hechizos en el Grimorio.</div>
+          {{/each}}
+        </div>
       </section>
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Grimorio" type="spell" items=itemGroups.spell}}
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Preparaciones alquímicas" type="formula" items=itemGroups.formula}}
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Rituales" type="ritual" items=itemGroups.ritual}}
-      {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Dispositivos arcano-industriales" type="device" items=itemGroups.device}}
+
+      <section class="tm-v11-secondary-magic">
+        <div class="tm-v11-secondary-heading"><span>Otras artes y recursos</span><small>Alquimia, Rituales y tecnología arcano-industrial.</small></div>
+        {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Preparaciones alquímicas" type="formula" items=itemGroups.formula}}
+        {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Rituales" type="ritual" items=itemGroups.ritual}}
+        {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Dispositivos arcano-industriales" type="device" items=itemGroups.device}}
+      </section>
     </div>
 
     <div class="tab" data-group="primary" data-tab="development">
@@ -676,6 +742,13 @@
           </div>
           <div class="tm-section-buttons">{{#if creation.isComplete}}<button type="button" data-action="begin-rebuild">Abrir reconstrucción (DJ)</button>{{else}}<button type="button" data-action="complete-creation" {{#unless creationGuide.ready}}disabled{{/unless}}>Cerrar reconstrucción</button>{{/if}}</div>
         </section>
+
+        {{#if isGM}}
+          <details class="tm-v11-diagnostics-details">
+            <summary><i class="fa-solid fa-stethoscope"></i><span>Diagnóstico técnico de derivados</span><small>DJ · fórmulas, fuentes y condicionales</small></summary>
+            {{> "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"}}
+          </details>
+        {{/if}}
 
         {{#if creationGuide.ancestryProfile}}
           <section class="tm-panel tm-v03-page-panel">
