@@ -353,40 +353,45 @@ Tormentas, sabotaje, accidentes, competencia entre compañías y movimientos imp
 ---
 
 # RISCO DE CENIZA
-*Ciudad minera construida junto a una cicatriz arcana.*
+*La ciudad minera de frontera levantada junto a una cicatriz arcana.*
 
-**Ficha rápida:** oficialmente Valdoria · ≈61.000 habitantes · ≈14.000 flotantes · ciudad de frontera · minería y riesgo arcano.
+**Ficha rápida:** oficialmente bajo Valdoria · ≈61.000 habitantes · ≈14.000 de población flotante · minería de frontera · alta exposición a riesgo arcano · fuerte presencia militar y técnica.
 
 ## Identidad y ubicación
-Risco de Ceniza ocupa una región fronteriza oficialmente bajo Valdoria y afectada por una antigua erupción arcana. Su posición exacta dentro del continente aún debe fijarse. Es una ciudad minera donde el riesgo ambiental forma parte de la vida diaria.
+Risco de Ceniza ocupa una región fronteriza oficialmente bajo Valdoria y marcada por una antigua erupción arcana. Su posición exacta dentro del continente todavía debe fijarse. La ciudad existe porque el territorio que la rodea es peligroso, pero también valioso: sus minas y anomalías atraen trabajadores, compañías, técnicos, comerciantes y aventureros a pesar de los riesgos.
 
 ## Gobierno y poder
-Por pertenecer a Valdoria, la Corona conserva soberanía. Sin embargo, su condición fronteriza justifica un Prefecto Fronterizo con competencias superiores a las de un administrador urbano corriente. Un Consejo del Risco representa intereses locales; el Comandante del Bastión dirige defensa y una Oficina de Contención Arcana controla zonas peligrosas. Las compañías mineras tienen gran influencia pero no gobiernan formalmente.
+La Corona de Valdoria conserva la soberanía, pero Risco posee una administración más excepcional que una ciudad interior. Se propone un **Prefecto Fronterizo** como principal autoridad civil, acompañado por un **Consejo del Risco** que representa intereses locales. El **Comandante del Bastión** controla la defensa y una **Oficina de Contención Arcana** puede restringir acceso a zonas peligrosas. Las compañías mineras tienen gran influencia económica, pero no gobiernan formalmente la ciudad.
 
-## Ciudad y arquitectura
-La ciudad es compacta, reforzada y preparada para reparaciones frecuentes. Piedra oscura, madera protegida y metal predominan. Refugios, depósitos, puestos de control, filtros y accesos mineros forman parte del tejido urbano.
+## Ciudad, pueblo y arquitectura
+Risco es compacta, reforzada y construida para soportar polvo, accidentes y reparaciones frecuentes. Piedra oscura, madera protegida y metal predominan. Refugios, depósitos, filtros, puestos de control, talleres y accesos mineros forman parte del paisaje cotidiano.
 
-## Pueblo, economía y cultura
-Mineros, prospectores, soldados, comerciantes y técnicos conviven con una población temporal elevada. La economía depende de extracción, refinado inicial, transporte y suministros de frontera. La cultura local es práctica: contratos, reputación, señales de peligro y experiencia pesan más que ceremonia.
+Mineros, prospectores, soldados, comerciantes, transportistas y técnicos conviven con una población temporal elevada. La vida social es menos ceremoniosa que en Auraval: experiencia, reputación, capacidad para cumplir un contrato y conocimiento de los peligros locales pesan mucho.
+
+## Comercio y vida cotidiana
+La economía depende de extracción minera, refinado inicial, transporte, reparación y abastecimiento de trabajadores y expediciones. Risco importa alimentos, agua segura, herramientas, medicinas y manufacturas que no puede producir de manera fiable.
+
+La riqueza se mueve rápido y también desaparece rápido. Nuevos hallazgos pueden enriquecer a una compañía o arruinarla en una semana; un cierre por contaminación o una veta agotada puede dejar barrios enteros sin trabajo.
 
 ## Magia y tecnología
-El entorno posee alta saturación o riesgo arcano, pero eso no significa uso mágico cotidiano superior. La tecnología local se especializa en minería, seguridad, contención y supervivencia en terrenos alterados.
+El entorno posee alta saturación y riesgo arcano, pero eso no significa que sus habitantes utilicen más magia que el resto de Edria. La especialización local está en **detectar, contener y sobrevivir** a fenómenos arcanos. Equipos de minería, protección, filtrado, medición y rescate son tan importantes como cualquier dispositivo mágico.
 
 ## Historia y acontecimientos
-La **erupción arcana** que alteró la región es el gran acontecimiento canónico asociado a Risco de Ceniza. Para completar su historia se proponen dos hitos posteriores: **la Reapertura de los Pozos**, cuando la explotación minera regresó bajo nuevas medidas de seguridad; y **la Revuelta de las Concesiones**, conflicto entre compañías, trabajadores y autoridad valdoriana que limitó ciertos privilegios mineros. Fechas y denominaciones siguen PROVISIONALES.
+La **erupción arcana** que alteró la región es el gran acontecimiento canónico asociado a Risco de Ceniza. Para completar su historia se proponen dos hitos posteriores: **la Reapertura de los Pozos**, cuando la explotación minera regresó bajo nuevas medidas de seguridad; y **la Revuelta de las Concesiones**, conflicto entre compañías, trabajadores y autoridad valdoriana que limitó ciertos privilegios mineros. Fechas y denominaciones continúan PROVISIONALES.
 
 ## Lugares importantes
-**Bastión del Risco:** centro militar.  
-**Pozo Mayor:** explotación minera principal propuesta.  
-**Mercado de Ceniza:** suministros y contratación.  
-**Oficina de Contención:** control de riesgos arcanos.  
-**Campamento de Contratos:** alojamiento de trabajadores temporales.
+**Bastión del Risco:** principal fortificación y centro de defensa.  
+**Pozo Mayor:** explotación minera de referencia propuesta.  
+**Mercado de Ceniza:** suministros, contratación y compraventa de mineral.  
+**Oficina de Contención:** control y registro de zonas de riesgo arcano.  
+**Campamento de Contratos:** alojamiento de trabajadores temporales y prospectores.  
+**Observatorio de Saturación:** instalación propuesta para vigilar cambios en el entorno arcano.
 
 ## Personalidades importantes
-**Propuestas provisionales:** **Varena Tol**, Prefecta Fronteriza; **Bran Varren**, Comandante del Bastión; **Oren Kalt**, inspector principal de minas; **Yara Vesren**, responsable de la Oficina de Contención Arcana.
+**Varena Tol**, Prefecta Fronteriza; **Bran Varren**, Comandante del Bastión; **Oren Kalt**, inspector principal de minas; **Yara Vesren**, responsable de la Oficina de Contención Arcana. **Todos estos nombres continúan PROVISIONALES hasta aprobación.**
 
 ## Situación actual
-Accidentes, contaminación, explotación laboral, concesiones disputadas, contrabando mineral y fenómenos arcanos convierten a Risco en uno de los lugares más peligrosos y lucrativos de Valdoria.
+Accidentes, contaminación, concesiones disputadas, explotación laboral, contrabando de mineral y fenómenos arcanos mantienen a Risco de Ceniza en tensión permanente. Para los aventureros ofrece trabajos de escolta, rescates, exploración de zonas alteradas, investigaciones sobre la erupción y conflictos donde la frontera entre oportunidad económica y desastre puede ser muy pequeña.
 
 ---
 
