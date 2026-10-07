@@ -1,3 +1,11 @@
+## 1.4.1 — Hotfix de diálogo contextual de hechizos — 2026-10-06
+
+- La pregunta de incertidumbre de hechizos contextuales migra de `Dialog` V1 a **DialogV2** modal.
+- Cerrar o cancelar la pregunta aborta el lanzamiento y devuelve el control a la economía de Acción sin consumirla.
+- Evita que la Acción permanezca reservada mientras un diálogo V1 queda oculto o inaccesible detrás de la ficha.
+- No cambia la regla: **Sí** realiza la prueba contextual; **No** resuelve sin tirada cuando no existe incertidumbre significativa.
+- Se añade regresión específica para Piel Alterada y el cierre/cancelación del diálogo.
+
 ## 1.4.0 — Tipos de daño y resistencias — 2026-10-06
 
 - El modelo de datos sube a **schema v6** e incorpora Tipo de Daño y Modo de Daño en armas, hechizos y Fórmulas dañinas.

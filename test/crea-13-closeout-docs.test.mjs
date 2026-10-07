@@ -39,6 +39,6 @@ test("CREA-13 sigue registrada como integrada aunque el sistema siga avanzando d
   assert.match(closeout,/59883673c3b9d215b7b108f7078e9bbff1f5505f/);
   assert.match(changelog,/cierre documental post-CREA-13/);
   assert.match(changelog,/Sin cambios de motor ni incremento de versión/);
-  assert.equal(system.version,"1.4.0");
-  assert.equal(pkg.version,"1.4.0");
+  assert.equal(system.version,pkg.version);
+  assert.match(system.version,/^1\.\d+\.\d+$/);
 });
