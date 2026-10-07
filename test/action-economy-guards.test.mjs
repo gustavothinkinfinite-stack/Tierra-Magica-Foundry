@@ -3,7 +3,22 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { installActionEconomyGuards } from "../scripts/rules/action-economy-guards.mjs";
 
-globalThis.ui = { notifications: { warn: () => null } };
+const activeNotifications = new Set();
+globalThis.ui = {
+  notifications: {
+    warn: () => {
+      const notification = {};
+      activeNotifications.add(notification);
+      return notification;
+    },
+    info: () => {
+      const notification = {};
+      activeNotifications.add(notification);
+      return notification;
+    },
+    has: (notification) => activeNotifications.has(notification)
+  }
+};
 
 class ActorStub {
   constructor() {
@@ -131,4 +146,53 @@ test("CRAFT-13I: una aplicación contextual no inventa coste de Acción universa
   assert.ok(result);
   assert.equal(actor.calls,1);
   assert.equal(actor.system.turn.action,true);
+});
+
+
+test("un Notification de validación no consume ni bloquea la Acción", async () => {
+  class NotificationActor {
+    constructor() {
+      this.name = "Prueba aviso";
+      this.system = { turn: { action: true, reaction: true } };
+      this.calls = 0;
+    }
+    async update(changes) {
+      if (Object.hasOwn(changes, "system.turn.action")) this.system.turn.action = changes["system.turn.action"];
+      if (Object.hasOwn(changes, "system.turn.reaction")) this.system.turn.reaction = changes["system.turn.reaction"];
+    }
+    async useDevice() {
+      this.calls += 1;
+      return ui.notifications.warn("La activación no es válida.");
+    }
+  }
+
+  installActionEconomyGuards(NotificationActor);
+  const actor = new NotificationActor();
+  const first = await actor.useDevice({});
+  assert.equal(first, null);
+  assert.equal(actor.calls, 1);
+  assert.equal(actor.system.turn.action, true);
+
+  const second = await actor.useDevice({});
+  assert.equal(second, null);
+  assert.equal(actor.calls, 2);
+  assert.equal(actor.system.turn.action, true);
+});
+
+test("una resolución explícita tmActionResolved sí consume la Acción", async () => {
+  class ExplicitResolutionActor {
+    constructor() {
+      this.name = "Prueba resolución";
+      this.system = { turn: { action: true, reaction: true } };
+    }
+    async update(changes) {
+      if (Object.hasOwn(changes, "system.turn.action")) this.system.turn.action = changes["system.turn.action"];
+    }
+    async useDevice() { return { tmActionResolved: true }; }
+  }
+
+  installActionEconomyGuards(ExplicitResolutionActor);
+  const actor = new ExplicitResolutionActor();
+  assert.ok(await actor.useDevice({}));
+  assert.equal(actor.system.turn.action, false);
 });
