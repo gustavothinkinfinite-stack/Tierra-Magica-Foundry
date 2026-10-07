@@ -85,11 +85,25 @@ test("daño mágico se aplica una sola vez por Actor, usa autoridad y conserva a
   assert.equal(guards.includes("pendiente de aprobación del DJ"), true);
 });
 
-test("la ruta de lanzamiento pregunta la incertidumbre contextual sin alterar hechizos automáticos u opuestos", async () => {
+test("la ruta contextual usa DialogV2 modal y cancelar no fuerza un lanzamiento", async () => {
   const guards = await readFile(resolve(root, "scripts/rules/magic-guards.mjs"), "utf8");
-  assert.equal(guards.includes('await Dialog.confirm({'), true);
-  assert.equal(guards.includes('¿Existe incertidumbre significativa, oposición o una dificultad real en este lanzamiento?'), true);
+  assert.equal(guards.includes('foundry?.applications?.api?.DialogV2'), true);
+  assert.equal(guards.includes('modal: true'), true);
+  assert.equal(guards.includes('if (contextualDecision.cancelled) return null;'), true);
   assert.equal(guards.includes('const needsCheck = spellNeedsCheck(item, { contextualCheck })'), true);
+
+  const { promptContextualSpellCheck } = await import("../scripts/rules/magic-guards.mjs");
+  let config=null;
+  const cancelled=await promptContextualSpellCheck({name:"Piel Alterada"},{dialogClass:{confirm:async (value)=>{config=value; return null;}}});
+  assert.deepEqual(cancelled,{cancelled:true,contextualCheck:false});
+  assert.equal(config.modal,true);
+  assert.equal(config.rejectClose,false);
+  assert.equal(config.window.title,"Prueba contextual — Piel Alterada");
+
+  const automatic=await promptContextualSpellCheck({name:"Piel Alterada"},{dialogClass:{confirm:async()=>false}});
+  assert.deepEqual(automatic,{cancelled:false,contextualCheck:false});
+  const checked=await promptContextualSpellCheck({name:"Piel Alterada"},{dialogClass:{confirm:async()=>true}});
+  assert.deepEqual(checked,{cancelled:false,contextualCheck:true});
 });
 
 
