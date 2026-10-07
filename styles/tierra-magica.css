@@ -857,3 +857,422 @@
 @media (max-width: 850px) {
   .tm-derived-diagnostics-grid { grid-template-columns: 1fr; }
 }
+
+
+/* =========================================================
+   PROYECTOS / CRAFTING — FLUJO DE JUGADOR SIMPLIFICADO
+   ========================================================= */
+
+.tierra-magica .tm-project-simple {
+  display: grid;
+  gap: 12px;
+}
+.tierra-magica .tm-project-simple > section,
+.tierra-magica .tm-project-advanced {
+  padding: 12px;
+  background: rgba(251,248,239,.82);
+  border: 1px solid #b8a98c;
+  border-radius: 4px;
+  box-shadow: 0 2px 7px rgba(49,39,23,.07);
+}
+.tierra-magica .tm-project-recipe-picker {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+.tierra-magica .tm-project-recipe-picker select {
+  min-width: 0;
+  height: 34px;
+  background: #fffdf7;
+  border: 1px solid #a98d5e;
+}
+.tierra-magica .tm-project-primary-small,
+.tierra-magica .tm-project-main-button {
+  color: #f7e8bd;
+  background: linear-gradient(180deg,#174c58,#0c3440);
+  border: 1px solid #a98042;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.tierra-magica .tm-project-primary-small {
+  min-height: 34px;
+  padding: 5px 10px;
+}
+.tierra-magica .tm-project-recipe-card {
+  display: grid;
+  grid-template-columns: minmax(0,1.3fr) minmax(280px,1fr);
+  gap: 12px;
+  margin-top: 10px;
+  padding: 11px 12px;
+  background: linear-gradient(180deg,#f8efd8,#ead8ad);
+  border-left: 4px solid #1d7d90;
+}
+.tierra-magica .tm-project-recipe-card > div:first-child {
+  min-width: 0;
+}
+.tierra-magica .tm-project-recipe-card > div:first-child > small {
+  display: block;
+  margin-bottom: 2px;
+  color: #7b684a;
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.tierra-magica .tm-project-recipe-card > div:first-child > strong {
+  color: #173b46;
+  font: 700 16px Georgia, serif;
+}
+.tierra-magica .tm-project-recipe-card p {
+  margin: 5px 0 0;
+  color: #66583f;
+  font-size: 10px;
+  line-height: 1.35;
+}
+.tierra-magica .tm-project-recipe-facts {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 6px;
+}
+.tierra-magica .tm-project-recipe-facts > span,
+.tierra-magica .tm-project-requirement-summary > span,
+.tierra-magica .tm-project-progress > span {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 7px 8px;
+  background: rgba(255,253,246,.58);
+  border: 1px solid rgba(145,111,62,.28);
+}
+.tierra-magica .tm-project-recipe-facts small,
+.tierra-magica .tm-project-requirement-summary small,
+.tierra-magica .tm-project-progress small {
+  color: #806d50;
+  font-size: 7px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.tierra-magica .tm-project-recipe-facts b,
+.tierra-magica .tm-project-requirement-summary b,
+.tierra-magica .tm-project-progress b {
+  overflow: hidden;
+  color: #173b46;
+  font: 700 11px Georgia, serif;
+  text-overflow: ellipsis;
+}
+.tierra-magica .tm-project-empty-state {
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 10px;
+  color: #77674e;
+  border: 1px dashed rgba(142,108,59,.42);
+}
+.tierra-magica .tm-project-empty-state i {
+  color: #1b7d90;
+  font-size: 22px;
+}
+.tierra-magica .tm-project-empty-state p {
+  margin: 0;
+  font-size: 10px;
+  text-align: center;
+}
+
+.tierra-magica .tm-project-readiness {
+  border-left-width: 4px !important;
+}
+.tierra-magica .tm-project-readiness.ready { border-left-color: #3a7b60 !important; }
+.tierra-magica .tm-project-readiness.blocked { border-left-color: #a65f3f !important; }
+.tierra-magica .tm-project-requirement-summary {
+  display: grid;
+  grid-template-columns: repeat(5,minmax(0,1fr));
+  gap: 6px;
+}
+.tierra-magica .tm-project-requirement-summary em {
+  color: #887458;
+  font-size: 7px;
+  font-style: normal;
+}
+.tierra-magica .tm-project-missing {
+  margin-top: 9px;
+  padding: 9px 10px;
+  background: rgba(154,73,49,.08);
+  border: 1px solid rgba(154,73,49,.32);
+}
+.tierra-magica .tm-project-missing > strong {
+  color: #7d3d2d;
+  font-size: 10px;
+}
+.tierra-magica .tm-project-missing ul {
+  margin: 6px 0 0 18px;
+  padding: 0;
+}
+.tierra-magica .tm-project-missing li {
+  margin: 3px 0;
+  font-size: 9px;
+  line-height: 1.35;
+}
+.tierra-magica .tm-project-ready-note {
+  margin-top: 9px;
+  padding: 9px 10px;
+  color: #285943;
+  background: rgba(55,119,88,.08);
+  border: 1px solid rgba(55,119,88,.30);
+  font-size: 9px;
+}
+
+.tierra-magica .tm-project-resource-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 8px;
+}
+.tierra-magica .tm-project-resource-grid > label:not(.tm-project-check) {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.tierra-magica .tm-project-resource-grid select {
+  height: 32px;
+  background: #fffdf7;
+  border: 1px solid #b8aa8e;
+}
+.tierra-magica .tm-project-check {
+  min-height: 50px;
+  display: grid !important;
+  grid-template-columns: 24px minmax(0,1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 7px 8px;
+  background: rgba(235,224,195,.42);
+  border: 1px solid rgba(153,118,67,.32);
+  text-transform: none !important;
+}
+.tierra-magica .tm-project-check input {
+  width: 18px;
+  height: 18px;
+}
+.tierra-magica .tm-project-check > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tierra-magica .tm-project-check b {
+  color: #173b46;
+  font-size: 10px;
+}
+.tierra-magica .tm-project-check small {
+  color: #78684f;
+  font-size: 8px;
+  font-weight: 400;
+}
+
+.tierra-magica .tm-project-materials {
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px solid rgba(146,111,61,.28);
+}
+.tierra-magica .tm-project-material-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+.tierra-magica .tm-project-material-head > span {
+  display: flex;
+  flex-direction: column;
+}
+.tierra-magica .tm-project-material-head b {
+  color: #173b46;
+  font: 700 11px Georgia, serif;
+}
+.tierra-magica .tm-project-material-head small,
+.tierra-magica .tm-project-no-lots {
+  color: #7c6a50;
+  font-size: 8px;
+}
+.tierra-magica .tm-project-material-head > strong {
+  color: #8b542e;
+  font-size: 9px;
+}
+.tierra-magica .tm-project-material-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 32px;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 5px 7px;
+  background: rgba(255,253,246,.56);
+  border: 1px solid rgba(153,118,67,.25);
+}
+.tierra-magica .tm-project-material-row > span {
+  display: flex;
+  flex-direction: column;
+}
+.tierra-magica .tm-project-material-row small {
+  color: #817055;
+  font-size: 7px;
+}
+.tierra-magica .tm-project-empty-material {
+  margin: 6px 0;
+  color: #7e6c52;
+  font-size: 9px;
+  font-style: italic;
+}
+.tierra-magica .tm-project-material-add {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 105px auto;
+  gap: 6px;
+  align-items: center;
+}
+.tierra-magica .tm-project-material-add select,
+.tierra-magica .tm-project-material-add input {
+  height: 31px;
+  background: #fffdf7;
+  border: 1px solid #b8aa8e;
+}
+.tierra-magica .tm-project-material-add button {
+  min-height: 31px;
+  color: #f1e2ba;
+  background: #173b46;
+  border: 1px solid #8f6b3a;
+}
+
+.tierra-magica .tm-project-flow {
+  background: linear-gradient(180deg,rgba(20,60,71,.96),rgba(9,42,51,.98)) !important;
+  border-color: #99713a !important;
+}
+.tierra-magica .tm-project-progress {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 1px;
+  margin-bottom: 9px;
+  overflow: hidden;
+  background: rgba(190,147,71,.7);
+  border: 1px solid #9b753e;
+}
+.tierra-magica .tm-project-progress > span {
+  background: rgba(255,249,229,.94);
+}
+.tierra-magica .tm-project-main-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  align-items: center;
+}
+.tierra-magica .tm-project-main-button {
+  min-height: 38px;
+  width: auto;
+  padding: 6px 13px;
+  font-size: 10px;
+  font-weight: 800;
+}
+.tierra-magica .tm-project-main-button:hover,
+.tierra-magica .tm-project-primary-small:hover {
+  color: #fff0c8;
+  background: linear-gradient(180deg,#1e5b68,#10414c);
+}
+.tierra-magica .tm-project-secondary-button {
+  width: auto;
+  min-height: 34px;
+  padding: 5px 10px;
+  color: #4e402e;
+  background: #e7ddc7;
+  border: 1px solid #9f8c69;
+}
+.tierra-magica .tm-project-work-control {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.tierra-magica .tm-project-work-control input {
+  width: 105px;
+  height: 38px;
+  text-align: center;
+  background: #fffdf7;
+}
+.tierra-magica .tm-project-research-resolution {
+  flex: 1 1 100%;
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr)) auto;
+  gap: 6px;
+  align-items: end;
+}
+.tierra-magica .tm-project-research-resolution label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #e8dbb9;
+  font-size: 8px;
+}
+.tierra-magica .tm-project-specialized {
+  font-size: 9px;
+}
+.tierra-magica .tm-project-repair-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 150px 180px;
+  gap: 7px;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px dotted rgba(133,103,60,.28);
+}
+
+.tierra-magica .tm-project-advanced {
+  padding: 0 !important;
+  overflow: hidden;
+}
+.tierra-magica .tm-project-advanced > summary {
+  min-height: 38px;
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  gap: 7px;
+  align-items: center;
+  padding: 8px 11px;
+  cursor: pointer;
+  color: #594a33;
+  background: #e5dbc6;
+  list-style: none;
+}
+.tierra-magica .tm-project-advanced > summary::-webkit-details-marker { display: none; }
+.tierra-magica .tm-project-advanced > summary i { color: #1a7182; }
+.tierra-magica .tm-project-advanced > summary span { font-weight: 800; }
+.tierra-magica .tm-project-advanced > summary small { color: #7b6a51; font-size: 8px; }
+.tierra-magica .tm-project-advanced-grid {
+  padding: 11px;
+  border-top: 1px solid #b8a98c;
+}
+.tierra-magica .tm-project-advanced-integrity {
+  margin: 0 11px 11px;
+  padding: 8px 9px;
+  background: rgba(142,92,55,.07);
+  border: 1px solid rgba(142,92,55,.28);
+}
+.tierra-magica .tm-project-advanced-integrity h3 {
+  margin: 0 0 6px;
+  color: #173b46;
+  font: 700 12px Georgia, serif;
+}
+.tierra-magica .tm-project-advanced-integrity p {
+  margin: 3px 0;
+  font-size: 8px;
+}
+
+@media (max-width: 700px) {
+  .tierra-magica .tm-project-recipe-card,
+  .tierra-magica .tm-project-resource-grid {
+    grid-template-columns: 1fr;
+  }
+  .tierra-magica .tm-project-requirement-summary {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  .tierra-magica .tm-project-material-add,
+  .tierra-magica .tm-project-research-resolution {
+    grid-template-columns: 1fr;
+  }
+}

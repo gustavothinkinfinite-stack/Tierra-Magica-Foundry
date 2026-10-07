@@ -191,19 +191,57 @@ test("personajes nuevos usan un asistente secuencial obligatorio en Desarrollo",
   assert.equal(logic.includes("#advanceCreationWizard"),true);
 });
 
-test("la cabecera de juego queda compacta y no repite Facetas en todas las pestañas",async()=>{
+test("la cabecera de juego no repite Nombre, Concepto ni identidad fuera del retrato",async()=>{
   const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
   const css=await readFile(resolve(root,"styles/character-sheet-v03.css"),"utf8");
   const headerEnd=sheet.indexOf('<nav class="tm-tabs');
   const header=sheet.slice(0,headerEnd);
-  assert.equal(header.includes("tm-v10-identity-strip"),true);
-  assert.equal(header.includes("Faceta de Origen"),false);
-  assert.equal(header.includes("Facetas de Trasfondo"),false);
-  assert.equal(css.includes(".tm-character-sheet-v03 .tm-v10-header"),true);
-  assert.equal(css.includes("height: 118px !important"),true);
+  assert.equal(header.includes("tm-v10-identity-strip"),false);
+  assert.equal(header.includes('name="system.details.concept"'),false);
+  assert.equal(sheet.includes("tm-v11-character-name"),true);
+  assert.equal(sheet.includes("identityItems.ancestry"),true);
+  assert.equal(sheet.includes("identityItems.origin"),true);
+  assert.equal(sheet.includes("identityItems.background"),true);
+  assert.equal(css.includes(".tm-v11-portrait-identity"),true);
 });
 
 test("durante creación las compras de catálogo no abren fichas técnicas automáticamente",async()=>{
   const logic=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");
   assert.equal(logic.includes('!singular && this.actor.system.creation?.status !== "building"'),true);
+});
+
+
+test("rediseño de juego separa controles técnicos de la experiencia del jugador",async()=>{
+  const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  const logic=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");
+  assert.equal(logic.includes("context.isGM = Boolean(game.user?.isGM)"),true);
+  assert.equal(sheet.includes("tm-v11-combat-overview"),true);
+  assert.equal(sheet.includes("tm-v11-defense-action-grid"),true);
+  assert.equal(sheet.includes("tm-v11-advanced-panel"),true);
+  assert.equal(sheet.includes("Configuración avanzada de combate"),true);
+  assert.equal(sheet.includes("tm-v11-diagnostics-details"),true);
+  assert.equal(sheet.includes("Diagnóstico técnico de derivados"),true);
+});
+
+test("Habilidades elimina el cartel permanente de creación cerrada y destaca temporales",async()=>{
+  const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  const css=await readFile(resolve(root,"styles/character-sheet-v03.css"),"utf8");
+  assert.equal(sheet.includes("Creación cerrada: reducir rangos requiere una reconstrucción autorizada."),false);
+  assert.equal(sheet.includes("tm-v11-skill-build-status"),true);
+  assert.equal(css.includes(".tm-character-sheet-v03 .tm-v03-skills-hero .tm-v04-clear-temporaries"),true);
+  assert.equal(css.includes(".tm-character-sheet-v03 .tm-v04-skill-detail"),true);
+});
+
+test("Magia prioriza Maná, competencias, Disciplinas y Grimorio",async()=>{
+  const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  for(const marker of [
+    "tm-v11-magic-overview",
+    "tm-v11-magic-skills",
+    "tm-v11-discipline-list",
+    "tm-v11-grimoire",
+    "tm-v11-spell-card",
+    "tm-v11-cast-button",
+    "Otras artes y recursos"
+  ]) assert.equal(sheet.includes(marker),true,marker);
+  assert.equal(sheet.includes("Sin efectos sostenidos demandantes."),true);
 });

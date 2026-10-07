@@ -3795,3 +3795,592 @@ form.tm-character-sheet-v03 {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* =========================================================
+   REDISEÑO DE FICHA — PASADA DE JERARQUÍA Y LEGIBILIDAD
+   ========================================================= */
+
+/* La cabecera de juego deja de repetir Nombre, Concepto e identidad. */
+.tm-character-sheet-v03 .tm-v03-body {
+  padding-top: 10px;
+}
+
+/* Nombre e identidad viven en el retrato. */
+.tm-character-sheet-v03 .tm-v11-portrait-identity {
+  left: 1%;
+  right: 1%;
+  bottom: -50px;
+  min-height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 2px;
+  padding: 5px 10px 6px;
+  overflow: visible;
+  white-space: normal;
+}
+.tm-character-sheet-v03 .tm-v11-character-name {
+  width: 100%;
+  height: 23px;
+  margin: 0;
+  padding: 0 4px;
+  color: #f6e7bc;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(196,154,77,.34);
+  border-radius: 0;
+  outline: 0;
+  font: 700 15px/1.1 Georgia, serif;
+  text-align: center;
+}
+.tm-character-sheet-v03 .tm-v11-character-name:focus {
+  border-bottom-color: #67d7eb;
+  box-shadow: none;
+}
+.tm-character-sheet-v03 .tm-v11-portrait-identity small {
+  display: block;
+  overflow: hidden;
+  color: #cdbd98;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Las Defensas dicen para qué sirven sin crear un segundo diagnóstico. */
+.tm-character-sheet-v03 .tm-v03-defense-grid > div {
+  position: relative;
+}
+.tm-character-sheet-v03 .tm-v03-defense-grid > div > small {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 8px;
+  overflow: hidden;
+  color: #826a42;
+  font-size: 6px;
+  font-weight: 700;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tm-character-sheet-v03 .tm-v03-defense-grid > div > b {
+  margin-bottom: 8px;
+}
+
+/* Habilidades: acción principal arriba, desglose liviano abajo. */
+.tm-character-sheet-v03 .tm-v03-skills-hero .tm-v04-clear-temporaries {
+  min-width: 154px;
+  min-height: 44px;
+  color: #082a34;
+  background: linear-gradient(180deg,#79d9e9,#47aec2);
+  border: 1px solid #d7b66d;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.26),
+    0 3px 8px rgba(0,0,0,.22);
+  font-size: 9px;
+  letter-spacing: .055em;
+}
+.tm-character-sheet-v03 .tm-v03-skills-hero .tm-v04-clear-temporaries i {
+  color: #073945;
+  font-size: 12px;
+}
+.tm-character-sheet-v03 .tm-v03-skills-hero .tm-v04-clear-temporaries:hover {
+  color: #061f27;
+  background: linear-gradient(180deg,#91e6f3,#58bfd1);
+  border-color: #e2c174;
+}
+
+.tm-character-sheet-v03 .tm-v11-skill-build-status {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 9px;
+  padding: 7px 11px;
+  color: #5b4a2e;
+  background: rgba(255,250,235,.56);
+  border: 1px solid rgba(152,111,58,.34);
+  font-size: 9px;
+}
+.tm-character-sheet-v03 .tm-v11-skill-build-status i { color: #147588; }
+.tm-character-sheet-v03 .tm-v11-skill-alert { padding: 8px 10px; }
+
+.tm-character-sheet-v03 .tm-v04-skill-category-list {
+  display: grid;
+  gap: 7px;
+  padding: 8px;
+}
+.tm-character-sheet-v03 .tm-v04-skill-detail {
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg,rgba(255,252,241,.86),rgba(244,233,203,.70));
+  border: 1px solid rgba(145,105,53,.42);
+  border-left: 3px solid #9c7439;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(70,49,22,.08);
+}
+.tm-character-sheet-v03 .tm-v04-skill-main {
+  min-height: 48px;
+  grid-template-columns: minmax(150px,1fr) minmax(145px,.72fr) 72px 38px;
+  gap: 8px;
+  padding: 6px 8px;
+  background: rgba(255,255,255,.18);
+  border-bottom: 1px solid rgba(128,91,44,.18);
+}
+.tm-character-sheet-v03 .tm-v04-skill-name {
+  height: 34px;
+  padding: 0 8px;
+  color: #173b46;
+  background: transparent;
+}
+.tm-character-sheet-v03 .tm-v04-skill-name span {
+  font: 700 13px Georgia, serif;
+}
+.tm-character-sheet-v03 .tm-v04-skill-name i {
+  color: #168398;
+  opacity: .78;
+}
+.tm-character-sheet-v03 .tm-v04-skill-main select {
+  height: 31px;
+  padding: 0 7px;
+  background: rgba(255,253,245,.82);
+  border: 1px solid rgba(149,111,58,.43);
+  border-radius: 3px;
+  font-size: 9px;
+}
+.tm-character-sheet-v03 .tm-v04-skill-total {
+  height: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #f7e8bd;
+  background: #123d48;
+  border: 1px solid #8c6838;
+  border-radius: 3px;
+}
+.tm-character-sheet-v03 .tm-v04-skill-total small {
+  color: #a8d9e1;
+  font-size: 6px;
+  text-transform: uppercase;
+}
+.tm-character-sheet-v03 .tm-v04-skill-total b {
+  color: #fff0c7;
+  font: 700 15px Georgia, serif;
+}
+.tm-character-sheet-v03 .tm-v04-roll-button {
+  width: 36px;
+  height: 34px;
+  color: #74d8e9;
+  background: #0d3440;
+  border: 1px solid #9c763e;
+  border-radius: 3px;
+}
+.tm-character-sheet-v03 .tm-v04-skill-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 6px 8px 7px;
+  background: rgba(21,58,69,.025);
+}
+.tm-character-sheet-v03 .tm-v04-modifier-chip,
+.tm-character-sheet-v03 .tm-v04-manual-modifier {
+  min-width: 72px;
+  flex: 1 1 72px;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 5px 7px;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid rgba(131,96,50,.20);
+}
+.tm-character-sheet-v03 .tm-v04-modifier-chip:last-of-type { border-right: 0; }
+.tm-character-sheet-v03 .tm-v04-modifier-chip small,
+.tm-character-sheet-v03 .tm-v04-manual-modifier small {
+  color: #7d6a4a;
+  font-size: 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.tm-character-sheet-v03 .tm-v04-modifier-chip b {
+  color: #173b46;
+  font: 700 11px Georgia, serif;
+}
+.tm-character-sheet-v03 .tm-v04-manual-modifier input {
+  width: 45px;
+  height: 24px;
+  text-align: center;
+  background: rgba(255,253,245,.82);
+  border: 1px solid rgba(149,111,58,.38);
+  border-radius: 3px;
+}
+
+/* Combate: mostrar juego; configuración interna sólo como detalle de DJ. */
+.tm-character-sheet-v03 .tm-v11-combat-overview {
+  display: grid;
+  grid-template-columns: repeat(7,minmax(0,1fr));
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.tm-character-sheet-v03 .tm-v11-combat-overview > article,
+.tm-character-sheet-v03 .tm-v11-combat-overview > button {
+  min-height: 76px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 5px;
+  color: #173b46;
+  background: linear-gradient(180deg,#f8efd6,#e6d09c);
+  border: 1px solid #9f7840;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.22);
+}
+.tm-character-sheet-v03 .tm-v11-combat-overview > button {
+  color: #f6e5b8;
+  background: linear-gradient(180deg,#164550,#0b303a);
+}
+.tm-character-sheet-v03 .tm-v11-combat-overview span {
+  font-size: 7px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .045em;
+}
+.tm-character-sheet-v03 .tm-v11-combat-overview b {
+  font: 700 22px Georgia, serif;
+}
+.tm-character-sheet-v03 .tm-v11-combat-overview small {
+  color: #78633e;
+  font-size: 7px;
+  text-align: center;
+}
+.tm-character-sheet-v03 .tm-v11-combat-overview > button small { color: #8fd7e3; }
+
+.tm-character-sheet-v03 .tm-v11-defense-actions {
+  padding: 11px 13px 13px;
+}
+.tm-character-sheet-v03 .tm-v11-defense-action-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 8px;
+}
+.tm-character-sheet-v03 .tm-v11-defense-action-grid > button {
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  color: #f6e6ba;
+  background: linear-gradient(180deg,#164550,#0b303a);
+  border: 1px solid #9a743c;
+  border-radius: 4px;
+  text-align: left;
+}
+.tm-character-sheet-v03 .tm-v11-defense-action-grid > button > i {
+  color: #65d5e8;
+  font-size: 18px;
+  text-align: center;
+}
+.tm-character-sheet-v03 .tm-v11-defense-action-grid > button span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tm-character-sheet-v03 .tm-v11-defense-action-grid > button b { font: 700 12px Georgia, serif; }
+.tm-character-sheet-v03 .tm-v11-defense-action-grid > button small { color: #cbbd99; font-size: 8px; }
+.tm-character-sheet-v03 .tm-v11-defense-action-grid > button.spent {
+  opacity: .52;
+  filter: grayscale(.55);
+}
+
+.tm-character-sheet-v03 .tm-v11-advanced-panel {
+  padding: 0;
+  overflow: hidden;
+}
+.tm-character-sheet-v03 .tm-v11-advanced-panel > summary,
+.tm-character-sheet-v03 .tm-v11-diagnostics-details > summary {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 11px;
+  cursor: pointer;
+  color: #5b4b32;
+  background: rgba(255,252,240,.62);
+  list-style: none;
+}
+.tm-character-sheet-v03 .tm-v11-advanced-panel > summary::-webkit-details-marker,
+.tm-character-sheet-v03 .tm-v11-diagnostics-details > summary::-webkit-details-marker { display: none; }
+.tm-character-sheet-v03 .tm-v11-advanced-panel > summary span,
+.tm-character-sheet-v03 .tm-v11-diagnostics-details > summary span { font-weight: 800; }
+.tm-character-sheet-v03 .tm-v11-advanced-panel > summary small,
+.tm-character-sheet-v03 .tm-v11-diagnostics-details > summary small { color: #887355; font-size: 8px; }
+.tm-character-sheet-v03 .tm-v11-advanced-grid { padding: 10px 12px 12px; }
+
+/* Magia: Grimorio protagonista; Disciplinas y Habilidades mágicas como contexto. */
+.tm-character-sheet-v03 .tm-v11-magic-overview {
+  display: grid;
+  grid-template-columns: minmax(250px,.72fr) minmax(0,1.6fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.tm-character-sheet-v03 .tm-v11-magic-skills {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 1px;
+  overflow: hidden;
+  background: #9a7440;
+  border: 1px solid #8d6938;
+  border-radius: 4px;
+}
+.tm-character-sheet-v03 .tm-v11-magic-skills > span {
+  min-height: 65px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: linear-gradient(180deg,#113f4b,#092c35);
+}
+.tm-character-sheet-v03 .tm-v11-magic-skills small {
+  color: #a9d6de;
+  font-size: 7px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.tm-character-sheet-v03 .tm-v11-magic-skills b {
+  color: #f5e5b9;
+  font: 700 18px Georgia, serif;
+}
+.tm-character-sheet-v03 .tm-v11-discipline-summary {
+  padding: 8px 10px;
+  background: rgba(255,250,235,.68);
+  border: 1px solid rgba(150,109,56,.48);
+  border-radius: 4px;
+}
+.tm-character-sheet-v03 .tm-v11-section-title,
+.tm-character-sheet-v03 .tm-v11-secondary-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+.tm-character-sheet-v03 .tm-v11-section-title > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #173b46;
+}
+.tm-character-sheet-v03 .tm-v11-section-title > span i { color: #168398; }
+.tm-character-sheet-v03 .tm-v11-section-title > div { display: flex; gap: 5px; }
+.tm-character-sheet-v03 .tm-v11-discipline-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tm-character-sheet-v03 .tm-v11-discipline-card {
+  min-width: 210px;
+  flex: 1 1 220px;
+  display: grid;
+  grid-template-columns: 30px 1fr 30px 30px;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 8px;
+  background: #f8efd7;
+  border: 1px solid rgba(145,104,52,.38);
+  border-radius: 3px;
+}
+.tm-character-sheet-v03 .tm-v11-discipline-card > i {
+  color: #168398;
+  font-size: 16px;
+  text-align: center;
+}
+.tm-character-sheet-v03 .tm-v11-discipline-card > span {
+  display: flex;
+  flex-direction: column;
+}
+.tm-character-sheet-v03 .tm-v11-discipline-card b { font: 700 12px Georgia, serif; color: #173b46; }
+.tm-character-sheet-v03 .tm-v11-discipline-card small { color: #806d50; font-size: 8px; }
+.tm-character-sheet-v03 .tm-v11-empty-inline { margin: 4px 0; color: #7c6a4b; font-size: 9px; font-style: italic; }
+
+.tm-character-sheet-v03 .tm-v11-sustained-empty {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  padding: 7px 10px;
+  color: #776548;
+  background: rgba(255,250,235,.40);
+  border: 1px dashed rgba(144,106,55,.38);
+  font-size: 9px;
+}
+.tm-character-sheet-v03 .tm-v11-sustained-empty i { color: #5a929c; }
+.tm-character-sheet-v03 .tm-v11-sustained-active { margin-bottom: 10px; }
+
+.tm-character-sheet-v03 .tm-v11-grimoire {
+  padding: 12px;
+  border-color: #91692f;
+  box-shadow: 0 3px 9px rgba(57,39,17,.11);
+}
+.tm-character-sheet-v03 .tm-v11-grimoire > .tm-section-heading {
+  align-items: flex-end;
+}
+.tm-character-sheet-v03 .tm-v11-grimoire > .tm-section-heading > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.tm-character-sheet-v03 .tm-v11-grimoire > .tm-section-heading small {
+  color: #7d6a4b;
+  font-size: 8px;
+}
+.tm-character-sheet-v03 .tm-v11-spell-list {
+  display: grid;
+  gap: 7px;
+}
+.tm-character-sheet-v03 .tm-v11-spell-card {
+  min-height: 66px;
+  display: grid;
+  grid-template-columns: 48px minmax(0,1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px;
+  background: linear-gradient(180deg,#fbf3de,#ead7aa);
+  border: 1px solid rgba(143,101,48,.48);
+  border-left: 4px solid #168398;
+  border-radius: 4px;
+}
+.tm-character-sheet-v03 .tm-v11-spell-card > img {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border: 1px solid #94713e;
+  border-radius: 4px;
+}
+.tm-character-sheet-v03 .tm-v11-spell-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tm-character-sheet-v03 .tm-v11-spell-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.tm-character-sheet-v03 .tm-v11-spell-title strong {
+  overflow: hidden;
+  color: #173b46;
+  font: 700 14px Georgia, serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tm-character-sheet-v03 .tm-v11-spell-title > span {
+  flex: 0 0 auto;
+  color: #5b451f;
+  font-size: 8px;
+  font-weight: 900;
+}
+.tm-character-sheet-v03 .tm-v11-spell-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.tm-character-sheet-v03 .tm-v11-spell-tags span {
+  padding: 3px 6px;
+  color: #5c4b31;
+  background: rgba(255,252,241,.68);
+  border: 1px solid rgba(137,99,48,.26);
+  border-radius: 999px;
+  font-size: 7px;
+  font-weight: 700;
+}
+.tm-character-sheet-v03 .tm-v11-spell-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.tm-character-sheet-v03 .tm-v11-cast-button {
+  min-width: 78px;
+  height: 38px;
+  color: #f7e7b9;
+  background: linear-gradient(180deg,#145061,#0b3540);
+  border: 1px solid #b18443;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 900;
+}
+.tm-character-sheet-v03 .tm-v11-cast-button i { color: #62d4e8; }
+
+.tm-character-sheet-v03 .tm-v11-secondary-magic {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 2px solid rgba(140,100,46,.42);
+}
+.tm-character-sheet-v03 .tm-v11-secondary-heading {
+  justify-content: flex-start;
+  align-items: baseline;
+  margin: 0 2px 8px;
+}
+.tm-character-sheet-v03 .tm-v11-secondary-heading > span {
+  color: #173b46;
+  font: 700 13px Georgia, serif;
+}
+.tm-character-sheet-v03 .tm-v11-secondary-heading > small {
+  color: #7d6a4d;
+  font-size: 8px;
+}
+
+/* Diagnóstico: herramienta técnica del DJ, no contenido de portada. */
+.tm-character-sheet-v03 .tm-v11-diagnostics-details {
+  margin: 10px 0;
+  overflow: hidden;
+  background: rgba(255,250,235,.46);
+  border: 1px solid rgba(139,101,51,.42);
+}
+.tm-character-sheet-v03 .tm-v11-diagnostics-details > .tm-derived-diagnostics-panel {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid rgba(139,101,51,.25);
+}
+
+@container tm-character-sheet (max-width: 980px) {
+  .tm-character-sheet-v03 .tm-v11-combat-overview {
+    grid-template-columns: repeat(4,minmax(0,1fr));
+  }
+  .tm-character-sheet-v03 .tm-v11-magic-overview {
+    grid-template-columns: 1fr;
+  }
+}
+@container tm-character-sheet (max-width: 720px) {
+  .tm-character-sheet-v03 .tm-v11-combat-overview {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  .tm-character-sheet-v03 .tm-v11-defense-action-grid {
+    grid-template-columns: 1fr;
+  }
+  .tm-character-sheet-v03 .tm-v04-skill-main {
+    grid-template-columns: minmax(0,1fr) 100px 58px 34px;
+  }
+  .tm-character-sheet-v03 .tm-v11-spell-card {
+    grid-template-columns: 42px minmax(0,1fr);
+  }
+  .tm-character-sheet-v03 .tm-v11-spell-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+}

@@ -1,3 +1,19 @@
+## 1.5.0 — Rediseño de ficha y crafting guiado — 2026-10-06
+
+- Rediseña la ficha de personaje para priorizar información y acciones de juego sobre configuración técnica.
+- La cabecera elimina duplicaciones de Nombre, Concepto e identidad y concentra Ascendencia, Origen y Trasfondo junto al retrato.
+- Habilidades reduce ruido permanente y destaca mejor rangos, fuentes y modificadores temporales.
+- Combate pasa a una vista operativa con resumen, defensas y respuestas preparadas; los ajustes manuales quedan como configuración avanzada del DJ.
+- Magia prioriza Maná, competencias, Disciplinas, Sostenimiento y Grimorio, dejando diagnósticos y controles técnicos fuera del flujo principal.
+- La ficha de Proyecto/crafting se reorganiza como **receta → requisitos → recursos → tiempo → trabajo → resultado**.
+- Los campos internos de Proyecto —Operación, UUID, TBA, revisión, token, ledger y otros— dejan de dominar la interfaz normal y quedan en un panel técnico de DJ.
+- Los requisitos de crafting se traducen a mensajes de jugador legibles: Habilidad/rango, Especialización, instalación, procedimiento, materiales y herramienta/Kit.
+- La receta vuelve a ser la autoridad visible del Proyecto, evitando cambios accidentales de Operación que podían convertir una fabricación en Investigación.
+- El sistema conserva por debajo el modelo transaccional de CRAFT-13, reservas de materiales, validación, autoridad compartida y controles de concurrencia.
+- La interfaz deja de presentar «Asignaciones de VI» y «Flujo de Proyecto» como conceptos principales; VI permanece como mecánica interna de materiales.
+- Se mantienen Foundry VTT 13 mínimo y 14 verificado.
+- No cambia balance, costes, economía, reglas de combate ni canon mecánico por este rediseño.
+
 ## 1.4.2 — Hotfix de reservas huérfanas de Acción/Reacción — 2026-10-06
 
 - Corrige el estado persistente que podía dejar a un Actor permanentemente en **«ya está resolviendo su Acción»** después de recargar Foundry.

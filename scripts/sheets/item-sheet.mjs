@@ -30,6 +30,45 @@ function formatWorkTime(minutes) {
   return value+" min";
 }
 
+
+function projectIssueLeaves(issues=[]) {
+  const result=[];
+  for(const issue of Array.isArray(issues)?issues:[]) {
+    const nested=issue?.detail?.issues;
+    if(Array.isArray(nested)&&nested.length) {
+      result.push(...projectIssueLeaves(nested));
+      continue;
+    }
+    result.push(issue);
+  }
+  return result;
+}
+
+function projectIssueDisplay(issue,{project,reference}={}) {
+  const code=String(issue?.code??"");
+  const requiredRank=TM_CONFIG.rankLabels?.[project?.professional?.requiredRank]??project?.professional?.requiredRank??"";
+  const requiredInstallation=TM_CONFIG.craftingInstallations?.[project?.professional?.requiredInstallation]??project?.professional?.requiredInstallation??"";
+  const skillLabel=TM_CONFIG.skillLabels?.[project?.professional?.skill]??project?.professional?.skill??"Habilidad";
+  const materialDisplay=formatCurrency(project?.ledger?.estimatedMaterialsCopper??0);
+  const specialization=String(reference?.specialization??project?.professional?.specialization??"").trim();
+  const friendly={
+    rank:"Necesitás "+skillLabel+" "+requiredRank+" o superior.",
+    installation:"Necesitás una instalación "+requiredInstallation+" o mejor.",
+    procedure:"Necesitás el Plano, Fórmula o procedimiento estable requerido por la receta.",
+    materials:"Faltan materiales o componentes esenciales.",
+    tool:"Falta la herramienta o Kit esencial de la receta.",
+    "material-allocation":"Tenés que asignar "+materialDisplay+" en materiales compatibles al Proyecto.",
+    "material-estimate":"La receta y el coste de materiales quedaron desincronizados; volvé a cargar la receta.",
+    "formula-knowledge":"Tu personaje debe conocer personalmente esta Fórmula.",
+    "formula-rank":"Tu rango de Alquimia no alcanza para preparar esta Fórmula.",
+    "formula-specialization":specialization?"La preparación requiere la Especialización "+specialization+".":"Falta la Especialización requerida por la Fórmula.",
+    "formula-specialization-owned":specialization?"Tu personaje no posee la Especialización "+specialization+".":"Tu personaje no posee la Especialización requerida.",
+    "formula-installation":"La instalación disponible no alcanza para esta Fórmula.",
+    "component-binding":"Falta vincular un componente físico requerido por la receta."
+  };
+  return friendly[code]??String(issue?.message??"Requisito pendiente.");
+}
+
 async function resolveProjectTarget(item,project) {
   const uuid=String(project?.target?.itemUuid??"").trim();
   if(!uuid) return null;
@@ -60,6 +99,7 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     context.system = this.item.system;
     context.config = TM_CONFIG;
     context.editable = this.isEditable;
+    context.isGM = Boolean(game.user?.isGM);
     for (const type of Object.keys(TM_CONFIG.itemTypes)) {
       context["is" + type.charAt(0).toUpperCase() + type.slice(1)] = this.item.type === type;
     }
@@ -111,6 +151,8 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
       context.projectMaterialDisplay=formatCurrency(context.project.ledger.estimatedMaterialsCopper);
       context.projectAllocatedDisplay=formatCurrency(context.projectPreview.allocatedMaterialCopper??0);
       context.projectMissingDisplay=formatCurrency(context.projectPreview.missingMaterialCopper??0);
+      context.projectHasMaterialCost=context.project.ledger.estimatedMaterialsCopper>0;
+      context.projectMissingCopper=Math.max(0,Number(context.projectPreview.missingMaterialCopper)||0);
 
       context.projectMaterialAllocations=context.project.ledger.entries
         .map((entry,index)=>({entry,index}))
@@ -170,8 +212,36 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
       } : null;
 
       const state=context.project.state;
+      const actorRank=Math.max(0,Number(this.item.parent?.system?.skills?.[context.project.professional.skill]?.rank)||0);
+      const flattenedIssues=projectIssueLeaves(context.projectPreviewIssues);
+      const seenIssues=new Set();
+      context.projectRequirementIssues=flattenedIssues
+        .map((issue)=>({code:String(issue?.code??""),message:projectIssueDisplay(issue,{project:context.project,reference:context.projectReference})}))
+        .filter((issue)=>{
+          if(!issue.message || seenIssues.has(issue.message)) return false;
+          seenIssues.add(issue.message);
+          return true;
+        });
+      context.projectSummary={
+        hasReference:Boolean(context.project.source.profileRef),
+        resultName:context.project.target.resultName||context.projectReference?.name||this.item.name,
+        operationLabel:TM_CONFIG.craftingProjectOperations[context.project.operation]??context.project.operation,
+        stateLabel:TM_CONFIG.craftingProjectStates[state]??state,
+        timeDisplay:formatWorkTime(context.project.time.requiredMinutes),
+        remainingDisplay:formatWorkTime(context.projectRemainingMinutes),
+        completedDisplay:formatWorkTime(context.project.time.completedMinutes),
+        skillLabel:TM_CONFIG.skillLabels[context.project.professional.skill]??context.project.professional.skill,
+        requiredRankLabel:TM_CONFIG.rankLabels[context.project.professional.requiredRank]??context.project.professional.requiredRank,
+        actorRankLabel:TM_CONFIG.rankLabels[actorRank]??actorRank,
+        specialization:context.project.professional.specialization,
+        requiredInstallationLabel:TM_CONFIG.craftingInstallations[context.project.professional.requiredInstallation]??context.project.professional.requiredInstallation,
+        availableInstallationLabel:TM_CONFIG.craftingInstallations[context.project.professional.availableInstallation]??context.project.professional.availableInstallation,
+        ready:context.projectPreview.valid,
+        issueCount:context.projectRequirementIssues.length
+      };
       context.projectActions={
         canLoadReference:state==="draft",
+        canStart:Boolean(game.user?.isGM)&&["draft","ready"].includes(state),
         canPrepare:Boolean(game.user?.isGM)&&state==="draft",
         canReserve:state==="ready",
         canRelease:state==="active",
@@ -252,6 +322,7 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     html.find("[data-action='project-repair-layer']").change((event) => this.#toggleRepairLayer(event));
     html.find("[data-action='project-repair-runic']").change((event) => this.#toggleRepairBoolean("runicMatrixAffected",event));
     html.find("[data-action='project-repair-enchantment']").change((event) => this.#toggleRepairBoolean("enchantmentMatrixAffected",event));
+    html.find("[data-action='project-start']").click(() => this.#startProject(html));
     html.find("[data-action='project-prepare']").click(() => this.#projectAction("prepare",html));
     html.find("[data-action='project-reserve']").click(() => this.#projectAction("reserve",html));
     html.find("[data-action='project-release']").click(() => this.#projectAction("release",html));
@@ -368,8 +439,14 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     if(this.item.type!=="project" || String(this.item.system?.state??"draft")!=="draft") return;
     const sourceUuid=String(html.find("[data-project-material-source]").val()??"").trim();
     const amountCopper=Math.max(0,Math.floor(Number(html.find("[data-project-material-amount]").val())||0));
-    const compatibility=String(html.find("[data-project-material-compatibility]").val()??"").trim();
-    if(!sourceUuid || !amountCopper) return ui.notifications.warn("Selecciona un Lote y un VI mayor que cero.");
+    let compatibility=String(html.find("[data-project-material-compatibility]").val()??"").trim();
+    const source=Array.from(this.item.parent?.items??[]).find((candidate)=>String(candidate?.uuid??"")===sourceUuid);
+    if(!compatibility && source){
+      const options=Array.isArray(source.system?.craftingLot?.compatibility)?source.system.craftingLot.compatibility.filter(Boolean):[];
+      compatibility=String(options[0]??"");
+    }
+    if(!sourceUuid || !amountCopper) return ui.notifications.warn("Elegí un Lote y un valor de materiales mayor que cero.");
+    if(!compatibility) return ui.notifications.warn("Ese Lote no declara una compatibilidad de fabricación utilizable.");
     const entries=foundry.utils.deepClone(Array.isArray(this.item.system?.ledger?.entries)?this.item.system.ledger.entries:[]);
     entries.push({
       id:"material-ui-"+Date.now(),
@@ -420,6 +497,44 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     if(this.item.type!=="project" || String(this.item.system?.state??"draft")!=="draft") return;
     await this.item.update({["system.repair."+field]:event.currentTarget.checked});
     this.render(false);
+  }
+
+  async #startProject(html) {
+    if(this.item.type!=="project") return;
+    const api=game.tierraMagica?.crafting;
+    if(!api) return ui.notifications.warn("La operación de crafting no está disponible.");
+    const state=String(this.item.system?.state??"draft");
+    let result;
+    if(state==="draft"){
+      const preview=await previewCraftingProject(this.item);
+      if(!preview.valid){
+        const project=normalizeCraftingProject(this.item.system);
+        const reference=craftingReferenceGuidance(project.source.profileRef)?.entry??null;
+        const messages=[];
+        const seen=new Set();
+        for(const issue of projectIssueLeaves(preview.issues)){
+          const message=projectIssueDisplay(issue,{project,reference});
+          if(message&&!seen.has(message)){seen.add(message);messages.push(message);}
+        }
+        return ui.notifications.warn("Todavía no puede comenzar. "+messages.join(" "));
+      }
+      result=await api.prepare?.(this.item);
+      if(!result?.ok) {
+        const detail=Array.isArray(result?.issues)?result.issues.map((issue)=>issue.message).filter(Boolean).join(" "):"";
+        return ui.notifications.warn((result?.error??"No se pudo preparar el Proyecto.")+(detail?" "+detail:""));
+      }
+      this.render(false);
+      return ui.notifications.info("Proyecto preparado. Pulsá Iniciar trabajo para comprometer los materiales.");
+    }
+    if(state==="ready"){
+      result=await api.reserve?.(this.item);
+      if(!result?.ok) {
+        const detail=Array.isArray(result?.issues)?result.issues.map((issue)=>issue.message).filter(Boolean).join(" "):"";
+        return ui.notifications.warn((result?.error??"No se pudo iniciar el Proyecto.")+(detail?" "+detail:""));
+      }
+      this.render(false);
+      return ui.notifications.info("Proyecto iniciado. Los recursos quedaron comprometidos.");
+    }
   }
 
   async #projectAction(action,html) {
