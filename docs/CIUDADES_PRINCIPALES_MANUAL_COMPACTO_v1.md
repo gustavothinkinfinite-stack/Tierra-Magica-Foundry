@@ -310,40 +310,45 @@ Espionaje naval, mapas falsos, contrabando, disputas sobre salvamento y presión
 ---
 
 # VIGILIA ALTA
-*La ciudad del cielo y de las rutas de dirigibles.*
+*La Ciudad Libre del cielo y de las rutas de dirigibles.*
 
-**Ficha rápida:** Ciudad Libre · ≈92.000 habitantes · ≈18.000 flotantes · asentamiento elevado · Cinturón Flotante al norte.
+**Ficha rápida:** Ciudad Libre · ≈92.000 habitantes · ≈18.000 de población flotante · asentamiento elevado · centro de dirigibles, meteorología y observación · Cinturón Flotante al norte.
 
 ## Identidad y ubicación
-Vigilia Alta se alza en un emplazamiento elevado, con el Cinturón Flotante de Vigilia al norte. Es el principal centro conocido de rutas de dirigibles y observación de islas flotantes.
+Vigilia Alta se alza en un emplazamiento elevado, con el Cinturón Flotante de Vigilia al norte. Es uno de los principales centros conocidos de navegación aérea de Edria y el punto natural desde el que se estudian, cartografían y alcanzan muchas de las islas flotantes de la región.
 
 ## Gobierno y poder
-Como Ciudad Libre, se propone gobernada por un Consejo de Altura y un Primer Consejero elegido por ese órgano. Compañías aéreas, talleres y observatorios participan en la vida política, pero no controlan formalmente la Guardia ni el puerto aéreo. El Capitán del Alto Puerto gestiona tráfico y seguridad; el Director del Observatorio puede ordenar cierres técnicos temporales por peligro.
+Como Ciudad Libre, Vigilia Alta se propone gobernada por un **Consejo de Altura** y un **Primer Consejero** elegido por ese órgano. Compañías de dirigibles, talleres y observatorios poseen gran influencia, pero no gobiernan por sí solos. El **Capitán del Alto Puerto** controla tráfico y seguridad aérea, mientras el **Director del Observatorio** puede ordenar cierres técnicos temporales ante tormentas, anomalías o condiciones peligrosas. La autoridad técnica pesa mucho, pero continúa subordinada al gobierno civil.
 
-## Ciudad y arquitectura
-La ciudad se organiza sobre terrazas y bordes de altura con hangares, plataformas de amarre, torres de señalización, talleres y observatorios. Piedra resistente, acero, cables y estructuras reforzadas predominan. Todo está diseñado contra viento, fuego y accidentes.
+## Ciudad, pueblo y arquitectura
+La ciudad se organiza sobre terrazas, bordes de altura y plataformas protegidas del viento. Hangares, torres de amarre, talleres, depósitos, observatorios y sistemas de señales forman parte del paisaje. Piedra resistente, acero, cables y estructuras reforzadas predominan, con una arquitectura diseñada para soportar ráfagas, incendios y accidentes.
 
-## Pueblo, economía y cultura
-Pilotos, mecánicos, meteorólogos, observadores, cargadores, exploradores y comerciantes componen una población acostumbrada a depender del clima. La ciudad vive de transporte aéreo, correo urgente, mantenimiento, meteorología y expediciones. La reputación de un buen piloto puede valer más que un título social.
+Pilotos, mecánicos, meteorólogos, observadores, cargadores, exploradores y comerciantes forman una población acostumbrada a que el clima determine horarios, rutas y riesgos. La competencia técnica tiene enorme prestigio: un piloto fiable o un buen mecánico pueden tener más reconocimiento social que alguien con título o fortuna.
+
+## Comercio y vida cotidiana
+Vigilia Alta vive del transporte aéreo, correo urgente, pasajeros de alto valor, mantenimiento de dirigibles, observación meteorológica y expediciones al Cinturón Flotante. Importa alimentos, combustible, metales, telas técnicas y piezas que su emplazamiento no puede producir en cantidad suficiente.
+
+No compite con Cobravia o Nacariel en volumen de mercancías. Su valor está en **mover rápido lo que no puede esperar**, alcanzar lugares difíciles y proporcionar información sobre clima y rutas. La vida cotidiana gira alrededor de horarios de vuelo, partes meteorológicos, cierres de plataformas y llegadas de aeronaves.
 
 ## Magia y tecnología
-Vigilia Alta posee tecnología aeronáutica muy especializada. La magia ayuda en navegación, observación y sistemas de seguridad, pero los dirigibles siguen requiriendo ingeniería, tripulación y mantenimiento.
+Vigilia Alta posee una de las concentraciones más especializadas de tecnología aeronáutica de Edria. La magia se utiliza para navegación, observación, comunicaciones limitadas y sistemas de seguridad, pero los dirigibles siguen dependiendo de ingeniería, tripulación, combustible y mantenimiento. La ciudad debe sentirse audaz y avanzada, no futurista.
 
 ## Historia y acontecimientos
-Vigilia Alta se consolidó por su relación con el Cinturón Flotante y el desarrollo de navegación aérea. Se proponen tres hitos: **el Primer Gran Amarre**, que inauguró el Alto Puerto; **la Tormenta del Cinturón**, crisis que llevó a crear protocolos modernos de vuelo; y **la Deriva de la Isla Errante**, episodio que demostró que algunas islas flotantes modifican lentamente su posición y obligó a revisar cartas aéreas. Fechas siguen PROVISIONALES.
+Vigilia Alta se consolidó por su relación con el Cinturón Flotante y el desarrollo de la navegación aérea. Su cronología definitiva continúa abierta. Se proponen tres hitos principales: **el Primer Gran Amarre**, que inauguró el Alto Puerto; **la Tormenta del Cinturón**, crisis que llevó a establecer protocolos modernos de vuelo; y **la Deriva de la Isla Errante**, episodio que confirmó que algunas islas flotantes cambian lentamente de posición y obligó a revisar cartas y rutas. Nombres y fechas continúan PROVISIONALES.
 
 ## Lugares importantes
-**Alto Puerto:** principal terminal de dirigibles.  
-**Torre de Vigilia:** observatorio y señalización.  
-**Hangar Mayor:** mantenimiento de aeronaves.  
-**Balcón del Cinturón:** punto de observación de islas flotantes.  
-**Mercado del Viento:** comercio de equipo aeronáutico.
+**Alto Puerto:** principal terminal de dirigibles y corazón económico de la ciudad.  
+**Torre de Vigilia:** observatorio, señalización y vigilancia del espacio aéreo.  
+**Hangar Mayor:** principal complejo de reparación y mantenimiento aeronáutico.  
+**Balcón del Cinturón:** punto de observación de las islas flotantes.  
+**Mercado del Viento:** venta de instrumentos, equipo de navegación y suministros de altura.  
+**Casa de Cartas Aéreas:** centro propuesto para registro y actualización de rutas.
 
 ## Personalidades importantes
-**Propuestas provisionales:** **Elian Rovert**, Primer Consejero de Altura; **Mara Selven**, Capitana del Alto Puerto; **Tarel Vonn**, director del Observatorio; **Isha Kern**, maestra de talleres aeronáuticos.
+**Elian Rovert**, Primer Consejero de Altura; **Mara Selven**, Capitana del Alto Puerto; **Tarel Vonn**, director del Observatorio; **Isha Kern**, maestra de talleres aeronáuticos. **Todos estos nombres continúan PROVISIONALES hasta aprobación.**
 
 ## Situación actual
-Tormentas, sabotaje, monopolios de rutas, accidentes y movimientos impredecibles de algunas islas flotantes mantienen a la ciudad en alerta constante.
+Tormentas, sabotaje, accidentes, competencia entre compañías y movimientos impredecibles de algunas islas flotantes mantienen a Vigilia Alta en alerta constante. Para los aventureros ofrece transporte rápido, expediciones aéreas, rescates, contrabando de altura, investigación meteorológica y acceso a regiones que ninguna carretera o ferrocarril puede alcanzar.
 
 ---
 
