@@ -19,6 +19,7 @@ globalThis.game = { user:{ id:"local" }, users:[] };
 
 const {
   claimKineticBarrier,
+  clearTurnResourceReservation,
   clearTurnResourceReservations,
   consumeDeviceEnergyAuthoritatively
 } = await import("../scripts/rules/state-authority.mjs");
@@ -91,4 +92,23 @@ test("ready del DJ limpia reservas huérfanas de sesiones anteriores", async () 
   assert.match(source,/clearTurnResourceReservations/);
   assert.match(source,/turnReservations/);
   assert.match(source,/reservas huérfanas de Acción\/Reacción/);
+});
+
+
+test("la recuperación manual puede limpiar sólo la reserva de Acción", async () => {
+  const actor = {
+    flags: { action:{id:"a"}, reaction:{id:"r"} },
+    getFlag(){ return this.flags; },
+    async setFlag(_scope,_key,value){ this.flags=value; }
+  };
+  assert.equal(await clearTurnResourceReservation(actor, "action"), true);
+  assert.deepEqual(actor.flags, { reaction:{id:"r"} });
+});
+
+test("autoridad alquímica rechaza un Notification como resultado mecánico válido", async () => {
+  const source = await import("node:fs/promises").then(({readFile}) =>
+    readFile(new URL("../scripts/rules/state-authority.mjs", import.meta.url), "utf8")
+  );
+  assert.match(source,/isUiNotificationResult/);
+  assert.match(source,/!result \|\| isUiNotificationResult\(result\)/);
 });
