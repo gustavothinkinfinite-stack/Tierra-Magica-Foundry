@@ -78,6 +78,10 @@ La ampliación del grimorio está **CERRADA Y CANONIZADA**. El Manual Maestro de
 
 Foundry adopta schema v5 para contratos de objetivos mágicos y migración del cierre espacial.
 
+## Estado de publicación 1.5.1
+
+Foundry T.M. **v1.5.1** es la release objetivo de un hotfix técnico de economía de turno: corrige reservas de Acción/Reacción ante validaciones fallidas y añade recuperación segura de reservas huérfanas dentro de la sesión. **No modifica reglas, costes, canon ni presupuestos**; corrige exclusivamente la interpretación y persistencia del estado runtime.
+
 ## Estado de publicación 1.3.2
 
 Foundry T.M. **v1.3.2 está publicada** desde el commit `4d0c9e8c423e696f2b8f5835a262c50dee0b0bc4`. Es la release pública **Latest** e integra el asistente secuencial obligatorio en Desarrollo, el bloqueo de pestañas durante la creación inicial y la cabecera compacta una vez completado el personaje. No modifica el canon ni los presupuestos de creación. El manifiesto estable de instalación apunta a esta release.

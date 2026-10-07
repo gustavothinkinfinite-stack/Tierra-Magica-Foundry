@@ -1,3 +1,15 @@
+## 1.5.1 — Hotfix de economía de Acción/Reacción — 2026-10-07
+
+- Corrige el caso en que una validación fallida podía consumir o dejar reservada una **Acción/Reacción**.
+- Foundry v14 devuelve un objeto `Notification` desde `ui.notifications.warn/info`; esos avisos ya no se interpretan como una resolución mecánica válida.
+- Atacar sin objetivo, fallar requisitos de una activación u otras validaciones previas vuelven a liberar la reserva sin gastar el recurso.
+- La misma protección se aplica a Reacciones y al uso autoritativo de Fórmulas.
+- **Reiniciar turno** limpia también reservas huérfanas de Acción/Reacción dentro de la sesión actual.
+- Reactivar manualmente Acción o Reacción limpia la reserva persistida de ese recurso antes de habilitarlo.
+- Una operación realmente en curso sigue protegida contra doble clic y concurrencia; el hotfix no elimina la exclusión mutua.
+- Se añaden regresiones específicas para objetos `Notification` truthy, recuperación granular y reset manual.
+- Se sincroniza la regresión de estructura documental con los documentos urbanos y el registro visual ya presentes en `main`.
+
 ## 1.5.0 — Rediseño de ficha y crafting guiado — 2026-10-06
 
 - Rediseña la ficha de personaje para priorizar información y acciones de juego sobre configuración técnica.
