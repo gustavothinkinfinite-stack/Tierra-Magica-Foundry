@@ -80,7 +80,7 @@ Foundry adopta schema v5 para contratos de objetivos mágicos y migración del c
 
 ## Estado de publicación 1.5.1
 
-Foundry T.M. **v1.5.1** es la release objetivo de un hotfix técnico de economía de turno: corrige reservas de Acción/Reacción ante validaciones fallidas y añade recuperación segura de reservas huérfanas dentro de la sesión. **No modifica reglas, costes, canon ni presupuestos**; corrige exclusivamente la interpretación y persistencia del estado runtime.
+Foundry T.M. **v1.5.1 está publicada** desde el commit `558372be4adf6abddd9cd5985cfb065e406127c3`. Es la release pública **Latest** y corrige reservas de Acción/Reacción ante validaciones fallidas, además de añadir recuperación segura de reservas huérfanas dentro de la sesión. **No modifica reglas, costes, canon ni presupuestos**; corrige exclusivamente la interpretación y persistencia del estado runtime.
 
 ## Estado de publicación 1.3.2
 
