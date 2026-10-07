@@ -11135,16 +11135,1084 @@ Estos ámbitos no conceden capacidades mecánicas automáticamente. Los milagros
 
 La apariencia y avatares definitivos de Vaelun, sus cultos, órdenes religiosas, ritos funerarios completos, milagros, Vínculos específicos, estructura del más allá y destino último de las almas permanecen abiertos.
 
-## 33. Relaciones del Panteón y límites de canon
+## 33. Aurea, la Llama
 
-Los siete principios forman una secuencia cosmológica, no una tabla simple de aliados y enemigos. Eïra y Khorun describen Vida y Forma; Varkor introduce Conflicto; Aster, Elección; Ilyr, responsabilidad moral; Nereth, la corrupción deliberada de esos límites; Vaelun, el derecho al final y al tránsito.
+**Aurea, la Llama** es una de las Cinco Luminarias, Dioses Menores reales surgidos después de los siete Primordiales. Es una entidad divina independiente y no un aspecto, nombre alternativo ni avatar de Eïra o Ilyr.
+
+Sus ámbitos tradicionales son **vida, hogar, valor, renovación y juramentos de protección**.
+
+Una formulación frecuente de su principio afirma:
+
+**«Una llama permanece mientras alguien decida cuidarla.»**
+
+Aurea no creó la Vida. Ese principio pertenece primordialmente a Eïra. Tampoco creó el Bien ni constituye la autoridad moral universal de la protección, ámbito estrechamente relacionado con Ilyr.
+
+Aurea representa aquello que seres conscientes deciden **mantener vivo, protegido, reunido y capaz de continuar**: un hogar, una familia, una comunidad, una tripulación, un refugio o cualquier vínculo concreto de cuidado asumido voluntariamente.
+
+Su fuego no debe confundirse con el principio elemental de Khorun. La Llama de Aurea es principalmente el **fuego sostenido**: hogar, lámpara, brasero, horno, faro, fogón o fuego de campamento cuya continuidad depende de alguien que lo cuide.
+
+> **Símbolo religioso definitivo: PENDIENTE DE DEFINICIÓN ESTRUCTURADA.** La identidad visual canónica de Aurea permanece vigente, pero el símbolo doctrinal no se fija todavía.
+
+### El Primer Reencendido
+
+Las tradiciones de Aurea recuerdan un acontecimiento posterior a la era primordial conocido como el **Primer Reencendido**.
+
+Según el relato, una comunidad antigua había sido destruida por una catástrofe cuya naturaleza, época y localización exactas permanecen sin fijar.
+
+Entre los supervivientes, una persona conservó una pequeña llama. No podía alimentarla sola.
+
+Otros comenzaron a aportar combustible, alimento, herramientas, refugio, vigilancia y trabajo. La llama permaneció encendida porque muchas personas aceptaron sostener aquello que ninguna podía conservar por sí sola.
+
+Alrededor de ese fuego reconstruyeron un hogar.
+
+Las distintas tradiciones discrepan sobre lo que ocurrió entonces. Algunas afirman que Aurea nació de aquel acto colectivo. Otras sostienen que ya existía y fue reconocida por primera vez. Otras consideran que aquel acontecimiento permitió que una potencia divina todavía difusa adquiriese identidad.
+
+El canon no decide todavía entre estas explicaciones.
+
+Lo canónico es que el **Primer Reencendido** constituye el gran acontecimiento religioso asociado a Aurea y expresa la transición entre supervivencia individual y cuidado consciente de una comunidad compartida.
+
+A diferencia de los acontecimientos Primordiales, el Primer Reencendido no funda una ley cosmológica universal. Pertenece a una etapa posterior de la historia divina.
+
+### El Hogar
+
+Para las tradiciones aureanas, **hogar no equivale necesariamente a propiedad, edificio permanente ni parentesco biológico**.
+
+Un hogar es un lugar o comunidad en el que alguien puede ser recibido, sostenido y reconocido como parte de aquello que se protege.
+
+Una casa puede ser un hogar, pero también pueden serlo un barco, una caravana, un cuartel, un campamento, una posada, un monasterio, un hospital o un refugio improvisado durante una crisis.
+
+El hogar existe por las relaciones que lo sostienen.
+
+Una enseñanza aureana ampliamente difundida afirma:
+
+**«Un hogar deja de proteger cuando se convierte en prisión.»**
+
+Por ello la protección no concede propiedad sobre las personas protegidas. Utilizar cuidado, familia o seguridad como justificación para destruir la voluntad de otro constituye una corrupción de este principio.
+
+### Hospitalidad
+
+Numerosas tradiciones de Aurea consideran la hospitalidad una extensión del Hogar.
+
+Recibir formalmente a alguien bajo un techo, alrededor de una llama o dentro de una comunidad puede generar una responsabilidad temporal de cuidado.
+
+Esta obligación no es absoluta. Quien utiliza deliberadamente la hospitalidad para atacar o traicionar a quienes lo reciben puede quebrar esa relación.
+
+Las leyes, ritos y costumbres concretas de hospitalidad varían entre culturas.
+
+### Valor
+
+El Valor de Aurea no consiste simplemente en buscar conflicto o demostrar superioridad.
+
+Es la capacidad de **permanecer y actuar cuando aquello que depende de uno se encuentra amenazado**.
+
+Puede expresarse en batalla, pero también en un incendio, una epidemia, una evacuación, una tormenta, un accidente industrial o cualquier situación donde abandonar resulte más fácil que cumplir una responsabilidad aceptada.
+
+Una enseñanza tradicional sostiene:
+
+**«El valor no exige no sentir miedo. Exige decidir qué no abandonarás por causa de él.»**
+
+Este principio diferencia el Valor aureano del Conflicto de Varkor. Varkor pregunta si alguien puede resistir una oposición; Aurea pregunta qué está intentando preservar mediante esa resistencia.
+
+### Renovación
+
+La Renovación de Aurea no sustituye los ciclos naturales de Eïra ni permite negar el Tránsito de Vaelun.
+
+Representa principalmente **reconstrucción después de una pérdida**.
+
+Una casa puede reconstruirse. Una comunidad puede reorganizarse. Una familia puede aprender a continuar después de una muerte. Una institución puede recuperarse de una guerra. Una persona puede volver a encontrar un lugar al que llamar hogar.
+
+Renovar no significa reproducir exactamente aquello que existía antes.
+
+En algunas circunstancias, continuar exige cambiar.
+
+Por ello los cultos de Aurea distinguen renovación de negación. Proteger algo no garantiza conservarlo para siempre.
+
+La pregunta aureana después de una pérdida es:
+
+**qué debe ser llorado, qué puede salvarse y qué puede volver a construirse.**
+
+### Los Juramentos de la Llama
+
+Los **Juramentos de la Llama** son compromisos de protección asociados con Aurea.
+
+Un juramento apropiadamente formulado identifica aquello que una persona acepta proteger y, según la tradición concreta, puede establecer límites, duración o condiciones de finalización.
+
+El juramento no concede automáticamente poderes sobrenaturales.
+
+Fracasar pese a haber realizado un esfuerzo genuino no equivale necesariamente a quebrarlo. La transgresión central es abandonar deliberadamente una responsabilidad aceptada cuando todavía existía capacidad razonable para actuar conforme a ella.
+
+Los juramentos tampoco son necesariamente eternos. Pueden concluir al cumplirse, por acuerdo, por vencimiento de sus condiciones o cuando aquello que protegían ha llegado legítimamente a su final.
+
+La fidelidad no exige negar todo final.
+
+### Cultos de Aurea
+
+Aurea no posee una única iglesia mundial.
+
+Su culto es especialmente común en la vida cotidiana y adopta formas domésticas, comunitarias y sacerdotales diferentes.
+
+Las **Llamas Domésticas** son altares, fuegos o rituales familiares y comunitarios que no requieren necesariamente sacerdocio.
+
+Las **Casas de la Llama** son templos o instituciones comunitarias que pueden funcionar también como refugios, cocinas, lugares de reunión, alojamiento de emergencia o centros de ayuda durante crisis.
+
+Los **Guardianes de la Llama** son denominaciones extendidas para sacerdotes, juramentados y servidores dedicados al culto. Pueden actuar como cuidadores, mediadores, rescatistas, administradores de refugios, sanadores o protectores comunitarios. No constituyen necesariamente una orden militar ni una organización mundial única.
+
+La existencia de instituciones civiles o multirreligiosas dedicadas a salud, refugio o emergencias no las convierte automáticamente en organizaciones de Aurea. En particular, el **Círculo de Sanadores de la Lámpara Blanca** mantiene su identidad institucional propia aunque algunos de sus miembros puedan venerarla.
+
+### Celebraciones
+
+El **Reencendido** es una celebración presente en numerosas tradiciones aureanas. Una comunidad apaga o deja extinguir simbólicamente una llama y la vuelve a encender desde un fuego compartido, recordando que continuidad no significa inmovilidad.
+
+Algunas regiones celebran también una **Noche de las Puertas Abiertas**, durante la cual hogares, templos o instituciones reservan alimento, calor o refugio para viajeros y personas sin protección.
+
+Estas celebraciones no poseen todavía fechas universales. Sus calendarios y formas cambian según región y cultura.
+
+### Aurea y los otros principios
+
+Eïra representa la Vida como principio y ciclo natural; Aurea representa el esfuerzo consciente por preservar vidas y comunidades concretas.
+
+Ilyr sostiene que la dignidad de otro puede generar responsabilidad moral incluso sin una relación previa; Aurea se concentra especialmente en responsabilidades concretas que una persona o comunidad ha aceptado. Una responsabilidad de protección tampoco vuelve automáticamente justa a la causa protegida.
+
+Varkor representa resistencia y conflicto. Aurea puede valorar el coraje necesario para proteger aquello que se encuentra bajo cuidado, pero no considera la victoria o el enfrentamiento fines en sí mismos.
+
+Aster abre nuevas posibilidades. Aurea pregunta qué merece conservarse y reconstruirse mientras esas posibilidades transforman el mundo.
+
+Vaelun protege el derecho de aquello que terminó a completar su final. Aurea protege la capacidad de quienes permanecen de continuar después de la pérdida. Una enseñanza compartida por determinadas tradiciones dice: **«Vaelun enseña a dejar partir. Aurea enseña a volver a encender.»**
+
+Nereth puede corromper los principios de Aurea: protección puede convertirse en posesión; hogar, en prisión; lealtad, en sometimiento; juramento, en cadena. Los cultos aureanos que reconocen esta frontera sostienen que cuidar a alguien no concede derecho a destruir su voluntad.
+
+### Aurea en la era arcano-industrial
+
+La presencia de Aurea no se limita a hogares rurales o fogones tradicionales.
+
+Sus símbolos y cultos pueden encontrarse en barrios industriales, estaciones ferroviarias, barcos, dirigibles, hospitales, cuerpos de emergencia, refugios, colonias fronterizas y campamentos de expedición.
+
+La tecnología no es contraria a su principio. Una caldera, horno o lámpara no son sagrados por sí mismos: adquieren significado religioso cuando forman parte de aquello mediante lo cual una comunidad se sostiene y protege.
+
+### Aurea y la magia divina
+
+Aurea puede actuar como **Fuente Divina** mediante un Vínculo apropiado.
+
+Sus ámbitos pueden inspirar Vínculos relacionados con protección de personas bajo cuidado, valor, refugio, calor, preservación comunitaria, reconstrucción y juramentos de protección.
+
+Estos ámbitos no conceden efectos mecánicos por sí mismos.
+
+Aurea no concede por defecto inmunidad al fuego, curación ilimitada, resurrección, barreras invulnerables ni beneficios automáticos por encontrarse dentro de un hogar.
+
+Los milagros, Vínculos específicos, consecuencias de juramentos y demás efectos sobrenaturales concretos permanecen abiertos hasta su desarrollo mecánico.
+
+## 34. Nemor, el Guardián
+
+**Nemor, el Guardián** es una de las Cinco Luminarias, Dioses Menores reales surgidos después de los siete Primordiales.
+
+Sus ámbitos tradicionales son **muerte, memoria, ancestros, límites y custodia de tumbas**.
+
+Nemor no es otro nombre de Vaelun ni un aspecto suyo.
+
+Una formulación habitual de la relación entre ambos afirma:
+
+**«Vaelun protege a quien parte. Nemor protege lo que queda.»**
+
+Vaelun custodia principalmente el tránsito del alma. Nemor se ocupa de la relación que los vivos mantienen con quienes murieron: sus nombres, restos, tumbas, historias, legados y límites.
+
+Una máxima ampliamente extendida entre sus cultos sostiene:
+
+**«Dejar partir no significa olvidar.»**
+
+Esta enseñanza complementa, sin sustituirla, la máxima Ankar **«Recordar no significa retener.»**
+
+> **Símbolo religioso definitivo: PENDIENTE DE DEFINICIÓN ESTRUCTURADA.** La identidad visual canónica de Nemor permanece vigente, pero el símbolo doctrinal no se fija todavía.
+
+### Memoria y muerte
+
+Nemor no creó la muerte ni determina el destino último de las almas.
+
+Su dominio sobre la muerte describe principalmente aquello que la muerte produce entre quienes permanecen vivos: ausencia, memoria, herencia, duelo y responsabilidad respecto de los restos y la historia de quien murió.
+
+La existencia de Nemor no resuelve qué existe más allá del Último Umbral.
+
+Tampoco establece que las almas de los ancestros permanezcan bajo su autoridad.
+
+Una comunidad puede venerar la memoria de sus muertos sin que sus almas continúen presentes.
+
+### La Primera Piedra de Memoria
+
+Las tradiciones de Nemor recuerdan un acontecimiento posterior a la era primordial conocido como la **Primera Piedra de Memoria**.
+
+Una comunidad antigua había sufrido una gran pérdida. Sus muertos recibieron sepultura, pero con el paso del tiempo comenzaron a desaparecer sus nombres.
+
+Las tumbas permanecían.
+
+La memoria de quienes descansaban en ellas no.
+
+Según la tradición, una persona comenzó a recuperar los nombres que todavía podían encontrarse y a grabarlos nuevamente sobre piedra.
+
+Cuando le preguntaron por qué importaba recordar a personas que ya habían partido, respondió:
+
+**«Porque morir no significa no haber estado aquí.»**
+
+En ese acontecimiento Nemor apareció, fue reconocido o adquirió una identidad divina definida, según la tradición que narre el relato.
+
+El canon no establece todavía cuál de esas interpretaciones es correcta.
+
+La Primera Piedra de Memoria tampoco fue necesariamente la primera tumba ni el primer funeral. Representa la decisión consciente de que la muerte no concede a los vivos derecho a borrar la existencia de quien murió.
+
+### Los Ancestros
+
+En las tradiciones de Nemor, un **ancestro** no necesita ser exclusivamente un antepasado biológico.
+
+Puede ser una persona cuya vida continúa dando forma a una familia, comunidad, profesión, institución o tradición.
+
+Fundadores, maestras, dirigentes, artesanos, protectores o figuras adoptadas dentro de una genealogía pueden recibir consideración ancestral según la cultura correspondiente.
+
+La veneración ancestral no demuestra que el alma del ancestro habite un altar, objeto o monumento.
+
+Los altares, nombres, retratos, genealogías y reliquias pueden funcionar como actos de memoria sin contener una presencia espiritual literal.
+
+### Los Límites
+
+El dominio de los **Límites** expresa las fronteras que permiten a vivos y muertos conservar dignidad sin apropiarse unos de otros.
+
+Una tumba no se convierte automáticamente en un depósito libre de dueño.
+
+Un cadáver no deja de poseer historia por carecer de vida.
+
+El duelo no concede propiedad sobre un alma.
+
+Una tradición ancestral puede orientar sin gobernar eternamente a quienes nacieron después.
+
+Una máxima nemoriana afirma:
+
+**«Hasta la memoria necesita una frontera.»**
+
+Por ello los cultos de Nemor rechazan tanto el borrado deliberado de los muertos como el intento de obligar a los vivos a reproducir indefinidamente sus vidas.
+
+**Honrar a los muertos no exige vivir sus vidas.**
+
+### Memoria y olvido
+
+Olvidar no constituye automáticamente una transgresión.
+
+La memoria posee límites. Los registros se pierden, los idiomas cambian y las culturas desaparecen.
+
+Los cultos de Nemor distinguen el olvido inevitable del **borrado deliberado**.
+
+Destruir conscientemente nombres, tumbas o registros para negar que una persona o comunidad existió constituye una transgresión especialmente grave para muchas de sus tradiciones.
+
+Nemor tampoco exige preservar toda información acerca de alguien.
+
+Recordar que una persona existió no implica que toda su vida deba hacerse pública.
+
+### Tumbas y restos
+
+Las tumbas son lugares de memoria, tratamiento funerario y relación entre vivos y muertos.
+
+Su custodia constituye uno de los ámbitos principales de Nemor.
+
+Esto no crea una prohibición universal contra exhumación, arqueología, autopsia, investigación o traslado de restos.
+
+La valoración depende de finalidad, consentimiento cuando pueda conocerse, costumbre, necesidad y respeto por aquello que se encuentra.
+
+**Abrir una tumba no es necesariamente profanarla. Tratar a quien yace en ella como si nunca hubiera sido persona puede serlo.**
+
+### Legado
+
+Aster y Nemor comparten aspectos relacionados con aquello que atraviesa generaciones, pero desde perspectivas distintas.
+
+Aster representa el **Legado** desde quien elige crear algo que puede continuar después de su muerte.
+
+Nemor representa la **Memoria** desde quienes reciben aquello que una persona dejó.
+
+Ningún legado obtiene autoridad eterna únicamente porque proceda de un muerto.
+
+Los vivos conservan responsabilidad por aquello que deciden continuar.
+
+### Ritos funerarios
+
+Numerosas tradiciones de Nemor incluyen tres prácticas generales:
+
+- **Nombrar:** pronunciar, escribir o registrar el nombre del muerto y reconocer públicamente su existencia.
+- **Marcar:** dejar alguna señal de memoria: piedra, placa, árbol, libro, monumento, símbolo u otro registro apropiado para la cultura.
+- **Cerrar:** reconocer que determinadas responsabilidades, derechos o relaciones de la persona han terminado o deben pasar a otros.
+
+Estos ritos no constituyen fórmulas universales y pueden combinarse con prácticas de Vaelun, Eïra, Aurea u otras divinidades.
+
+### Cultos de Nemor
+
+Nemor no posee una única iglesia mundial.
+
+Las **Casas de los Nombres** son templos, archivos o santuarios donde determinadas comunidades preservan nombres, genealogías, epitafios, historias locales y registros de desaparecidos.
+
+Los **Guardianes de Piedra** custodian cementerios, monumentos, tumbas y lugares de memoria. La denominación no implica necesariamente una función militar.
+
+Los **Portadores de Memoria** actúan como oficiantes funerarios, cronistas, genealogistas, cuidadores de archivos familiares o depositarios de historias comunitarias.
+
+Estas denominaciones describen tradiciones extendidas y no tres organizaciones universales sometidas a una autoridad única.
+
+### Desaparecidos
+
+La ausencia de cadáver no elimina el derecho a ser recordado.
+
+Por ello muchas tradiciones de Nemor mantienen registros de desaparecidos, cenotafios y memoriales para personas cuyo destino o lugar de descanso se desconoce.
+
+El recuerdo puede mantenerse aun cuando no sea posible determinar si la persona murió, dónde ocurrió o qué sucedió con sus restos.
+
+### Celebraciones
+
+La **Noche de los Nombres** es una celebración extendida en la que familias y comunidades recuerdan a muertos recientes y antiguos mediante nombres, historias, comida, música o visitas a lugares funerarios.
+
+El **Día de las Piedras** es una tradición presente en determinadas regiones dedicada a reparar cementerios, limpiar monumentos y restaurar lugares de memoria.
+
+Sus fechas y formas concretas dependen de cada cultura y calendario.
+
+### Nemor y los otros principios
+
+Vaelun protege el derecho del alma a completar su tránsito; Nemor protege la responsabilidad de los vivos hacia la memoria, restos e historia de quien murió.
+
+Nereth transforma cuerpo, alma, identidad o memoria en recursos susceptibles de apropiación. Nemor afirma que la muerte no elimina automáticamente la dignidad de una persona ni convierte su identidad histórica en propiedad de otros.
+
+Aster enseña que una persona puede dejar consecuencias que sobrevivan a su vida; Nemor se ocupa de cómo las generaciones posteriores recuerdan, interpretan y reciben esas consecuencias.
+
+Oria protege ley, acuerdos y conocimiento registrado; Nemor protege memoria, especialmente aquella vinculada a personas, muertos y comunidades.
+
+Selene reconoce intimidad y secreto. Recordar a alguien no exige convertir toda su intimidad en conocimiento público.
+
+### No Muertos conscientes
+
+La existencia de un No Muerto consciente puede generar cuestiones funerarias, históricas y jurídicas complejas.
+
+Si conserva identidad y voluntad, Nemor no obliga a tratarlo como simple cadáver.
+
+Sin embargo, una muerte declarada puede haber producido herencias, tumbas, registros y obligaciones que no desaparecen automáticamente si esa persona continúa existiendo de otra manera.
+
+El canon no fija todavía soluciones universales para propiedad, herencia, matrimonio, ciudadanía u otros efectos jurídicos de la No Muerte consciente.
+
+Estas cuestiones pueden involucrar simultáneamente a Nemor, Vaelun y Oria.
+
+### Nemor en la era arcano-industrial
+
+El culto de Nemor no pertenece únicamente a cementerios antiguos.
+
+Puede participar en identificación de cadáveres, registros de víctimas, memoriales ferroviarios o industriales, archivos de guerra, listas de pasajeros, cenotafios, genealogía, conservación histórica y documentación de catástrofes.
+
+La expansión tecnológica produce nuevas formas de registrar a una persona, pero no elimina las preguntas sobre qué merece ser preservado y quién decide cómo será recordado.
+
+### Nemor y la magia divina
+
+Nemor puede actuar como **Fuente Divina** mediante un Vínculo apropiado.
+
+Sus ámbitos pueden inspirar Vínculos relacionados con custodia funeraria, preservación de restos, memoria, identificación, reconocimiento de profanaciones y protección de lugares vinculados a muertos.
+
+Estos ámbitos no conceden capacidades mecánicas por sí mismos.
+
+Un Vínculo con Nemor no permite automáticamente convocar muertos, conocer toda la historia de un cadáver, acceder a recuerdos completos de una persona, detectar cualquier falsedad histórica ni impedir universalmente la No Muerte.
+
+Los milagros, Vínculos específicos, ritos sobrenaturales y demás efectos mecánicos permanecen abiertos hasta su desarrollo posterior.
+
+## 35. Oria, la Balanza
+
+**Oria, la Balanza** es una de las Cinco Luminarias, Dioses Menores reales surgidos después de los siete Primordiales.
+
+Sus ámbitos tradicionales son **ley, intercambio, acuerdos y conocimiento registrado**.
+
+Oria representa la posibilidad de que individuos, comunidades e instituciones establezcan reglas y compromisos suficientemente claros como para permitir cooperación incluso cuando no existe confianza absoluta entre las partes.
+
+Una enseñanza tradicional afirma:
+
+**«La balanza se fija antes de colocar el peso.»**
+
+Oria no representa la Justicia moral. Ese ámbito pertenece especialmente a Ilyr.
+
+Una norma puede existir legítimamente dentro de un sistema jurídico y continuar siendo moralmente injusta. Del mismo modo, una acción moralmente defendible puede violar una ley vigente.
+
+**Legal y justo no son sinónimos.**
+
+> **Símbolo religioso definitivo: PENDIENTE DE DEFINICIÓN ESTRUCTURADA.** La identidad visual canónica de Oria permanece vigente, pero el símbolo doctrinal no se fija todavía.
+
+### La Balanza
+
+La Balanza de Oria no representa igualdad matemática entre todas las partes.
+
+Representa la capacidad de hacer comparables obligaciones diferentes.
+
+Dinero puede intercambiarse por trabajo; acceso por información; protección por contribuciones; derechos por responsabilidades; riesgo por compensación.
+
+Lo importante es que las partes puedan comprender qué se entrega, qué se recibe y qué consecuencias produce el acuerdo.
+
+Por ello muchas tradiciones de Oria se relacionan históricamente con pesos, medidas, monedas, valoración y estándares verificables.
+
+### Ley
+
+Oria no es la diosa exclusiva del Estado.
+
+Una regla puede surgir de un reino, ciudad, gremio, comunidad, universidad, templo, compañía, tripulación o acuerdo privado.
+
+Sus cultos distinguen entre diferentes clases de obligación y no consideran que toda norma posea la misma autoridad en todos los contextos.
+
+Uno de los valores centrales de la ley es la **previsibilidad**.
+
+Quien está sujeto a una norma debería poder conocer razonablemente qué se espera, quién posee autoridad para decidir y qué consecuencias pueden producirse.
+
+Muchas tradiciones orianas consideran especialmente defectuosa una norma utilizada para castigar a alguien que razonablemente no podía conocer su existencia.
+
+### El Primer Acuerdo Registrado
+
+Las tradiciones de Oria recuerdan un acontecimiento posterior a la era primordial conocido como el **Primer Acuerdo Registrado**.
+
+No fue necesariamente el primer intercambio, contrato o texto de la historia.
+
+El relato cuenta que dos comunidades dependían una de otra para obtener recursos que ninguna poseía por sí sola. Habían realizado intercambios anteriormente, pero cada disputa terminaba con versiones diferentes acerca de lo que se había prometido.
+
+Una mediadora reunió a representantes de ambos grupos.
+
+Colocó entre ellos una balanza, estableció pesos que ambas partes aceptaron y pidió que definieran qué entregaría cada comunidad, cuándo debía hacerlo y qué ocurriría si algo impedía cumplir.
+
+Después registró los términos y entregó una copia a cada lado.
+
+Cuando las partes colocaron sus marcas sobre el acuerdo, Oria apareció, fue reconocida o adquirió identidad divina según la tradición que narre el acontecimiento.
+
+Una frase atribuida a aquel episodio afirma:
+
+**«Lo que sólo uno recuerda puede discutirse. Lo que ambos aceptan puede medirse.»**
+
+El canon no determina todavía si Oria nació durante este acontecimiento o si una divinidad anterior fue reconocida entonces por primera vez.
+
+### Acuerdo y consentimiento
+
+Un acuerdo requiere alguna forma significativa de consentimiento.
+
+Las partes deben poseer capacidad suficiente para comprender aquello que aceptan y alguna posibilidad real de ejercer voluntad.
+
+Esto no significa que toda negociación deba ocurrir entre personas igualmente poderosas. Necesidad, desigualdad económica, urgencia y presión forman parte de muchas relaciones sociales.
+
+Sin embargo, existe un punto en el que coerción extrema deja únicamente la apariencia de acuerdo.
+
+La existencia de una firma, sello o testigo no convierte automáticamente una imposición en consentimiento.
+
+Una enseñanza jurídica de algunas tradiciones orianas afirma:
+
+**«Una marca bajo la cadena pesa menos que la cadena.»**
+
+### Fraude y buena fe
+
+El secreto y la negociación no constituyen por sí mismos fraude.
+
+Una persona no está obligada a revelar cada conocimiento, intención o ventaja antes de negociar.
+
+El fraude aparece cuando una parte altera o representa falsamente información fundamental para que la otra comprenda aquello que está aceptando: cantidad, naturaleza, identidad, condiciones, riesgo declarado u otros elementos esenciales del acuerdo.
+
+Muchas tradiciones de Oria valoran además la **buena fe**: actuar de manera compatible con las expectativas que razonablemente se crearon durante el acuerdo.
+
+Un incumplimiento tampoco constituye automáticamente una transgresión.
+
+Fracaso, error, fuerza mayor, fraude descubierto o imposibilidad material pueden justificar revisión o terminación de obligaciones.
+
+La diferencia principal se encuentra entre no poder cumplir y negarse deliberadamente a cumplir después de haber obtenido aquello que la otra parte entregó conforme al acuerdo.
+
+### Modificación y final de los acuerdos
+
+Los acuerdos no son necesariamente eternos.
+
+Pueden ser modificados, renovados, transferidos, rescindidos o concluidos según sus propios términos y las reglas aplicables.
+
+La obligación organizada no debe confundirse con esclavitud.
+
+Una deuda puede generar derecho a reclamar aquello acordado.
+
+No concede automáticamente propiedad sobre la persona del deudor.
+
+### Procedimiento
+
+Las tradiciones de Oria consideran el procedimiento una defensa contra arbitrariedad.
+
+Una acusación, inspección, reclamación o juicio debería determinar con suficiente claridad qué norma se aplica, quién posee autoridad, qué evidencia puede presentarse, cómo puede responder la parte afectada, cómo se registra la decisión y qué mecanismos de revisión existen cuando corresponda.
+
+Esto no garantiza que el resultado sea justo.
+
+Permite, sin embargo, identificar qué ocurrió y quién debe responder por ello.
+
+Cambiar deliberadamente una regla después de conocer a quién perjudicará constituye una transgresión especialmente clara de muchas doctrinas orianas.
+
+### Conocimiento registrado
+
+Oria protege especialmente conocimiento que debe sobrevivir a la memoria individual y permanecer disponible para consulta, comparación o auditoría.
+
+Entre sus ámbitos frecuentes se encuentran contratos, actas, censos, registros de propiedad, tratados, protocolos, manuales, licencias, patentes, sentencias, libros contables y archivos institucionales.
+
+Registrar algo no lo convierte automáticamente en verdadero.
+
+Un documento puede contener error, engaño, información incompleta o propaganda.
+
+El valor del registro reside en permitir conservar afirmaciones, atribuirlas, compararlas con otras fuentes, corregirlas y determinar responsabilidades.
+
+### Pesos, medidas y estándares
+
+Los cultos de Oria participaron históricamente en muchas tradiciones de normalización de pesos, medidas, monedas y procedimientos comerciales.
+
+En la era arcano-industrial, ese mismo principio puede aplicarse a estándares técnicos como presión, tolerancias, capacidad, calibres, señalización, seguridad o certificación.
+
+Esto no convierte al Colegio de Ingenieros, gremios profesionales ni organismos civiles en instituciones religiosas de Oria.
+
+Pueden compartir estándares sin compartir culto.
+
+### Propiedad, patentes y derechos
+
+Oria no establece por sí sola qué cosas deberían poder poseerse.
+
+Las sociedades de Edria discrepan sobre propiedad, monopolios, duración de patentes, derechos de explotación, conocimiento público y secretos comerciales.
+
+Su principio exige principalmente que, cuando una sociedad reconoce uno de esos derechos, pueda definirlo y registrarlo de forma suficientemente clara para saber quién lo posee, qué permite y dónde termina.
+
+### Cultos de Oria
+
+Oria no posee una única iglesia mundial.
+
+Las **Casas de la Balanza** son templos o instituciones religiosas que en numerosas ciudades funcionan también como lugares neutrales para firma, depósito de copias, mediación y arbitraje.
+
+Los **Testigos de Oria** son sacerdotes, juramentados, notarios o mediadores especializados en presenciar acuerdos importantes. Su participación certifica principalmente lo que las partes declararon y aceptaron; no convierte automáticamente el contenido del acuerdo en legal o moralmente justo.
+
+Los **Custodios del Registro** mantienen archivos, copias, índices, sellos y cadenas de custodia. Su formación no les concede conocimiento sobrenatural automático acerca de la verdad de cada documento.
+
+Estas denominaciones describen tradiciones extendidas y no tres organizaciones universales.
+
+### Celebraciones
+
+El **Día de las Cuentas** es una tradición periódica en numerosas comunidades mercantiles. Se revisan libros, se liquidan obligaciones, se renuevan acuerdos, se corrigen errores y se intenta resolver disputas menores antes de iniciar un nuevo ciclo comercial.
+
+La **Feria de las Balanzas** es una celebración regional asociada con mercados, inspección pública de pesos y medidas, intercambio y renovación de instrumentos comerciales.
+
+Las fechas y formas concretas varían según cultura y calendario.
+
+### Oria y los otros principios
+
+Oria pregunta qué regla existe, qué acuerdo fue aceptado y cómo debe aplicarse; Ilyr pregunta si esa regla o acuerdo es moralmente defendible.
+
+Aster representa Elección; Oria representa una de las consecuencias de elegir conjuntamente: la capacidad de crear expectativas y obligaciones entre voluntades independientes.
+
+Nemor preserva memoria porque alguien existió; Oria preserva registros porque algo debe poder verificarse.
+
+Ley, deuda y contrato pueden convertirse en instrumentos de dominación. Una forma jurídica correcta no impide que una relación sea explotadora, coercitiva o corrupta y, en esos casos, puede aproximarse al principio de Nereth.
+
+Registro y secreto no son principios necesariamente opuestos. Una sociedad puede registrar información y limitar legítimamente quién puede consultarla; esa frontera se relaciona especialmente con Selene.
+
+### Oria en la era de la Concordia
+
+Tratados, seguros, bancos, compañías, patentes, gremios, licencias, aduanas y redes comerciales han aumentado enormemente la importancia cotidiana de los ámbitos de Oria.
+
+La **Concordia de Auraval**, la Mesa de Concordia y las instituciones civiles de Edria no son organizaciones religiosas de Oria. Sin embargo, juristas, escribas, negociadores o custodios de documentos vinculados a su culto pueden trabajar dentro de ellas.
+
+Nacariel, con su comercio marítimo y sistemas de seguros, constituye un ejemplo de entorno donde sus principios pueden poseer gran relevancia sin que la ciudad pertenezca a su culto.
+
+Un seguro expresa de manera especialmente clara la relación entre Oria y Vael: Vael representa la incertidumbre del viaje y el riesgo; Oria permite definir por adelantado qué obligaciones surgirán si ese riesgo se materializa.
+
+### Oria y la magia divina
+
+Oria puede actuar como **Fuente Divina** mediante un Vínculo apropiado.
+
+Sus ámbitos pueden inspirar Vínculos relacionados con acuerdos, testimonio, mediación, custodia documental, protección de registros, identificación de alteraciones o verificación limitada de sellos y términos.
+
+Estos ámbitos no conceden capacidades mecánicas por sí mismos.
+
+Un Vínculo con Oria no proporciona automáticamente detección universal de mentiras, lectura de intenciones, conocimiento perfecto de toda ley, compulsión a obedecer contratos ni creación de obligaciones sobrenaturales sin consentimiento.
+
+Los milagros, Vínculos específicos, ritos contractuales y demás efectos mecánicos permanecen abiertos hasta desarrollo posterior.
+
+## 36. Vael, el Navegante
+
+**Vael, el Navegante** es una de las Cinco Luminarias, Dioses Menores reales surgidos después de los siete Primordiales.
+
+Sus ámbitos tradicionales son **viaje, cambio, tormentas, descubrimiento y fortuna incierta**.
+
+Vael representa la experiencia de abandonar aquello conocido y atravesar un mundo cuyo comportamiento, peligros y oportunidades nunca pueden predecirse por completo.
+
+Una enseñanza tradicional afirma:
+
+**«Respeta el mapa. Desconfía de sus bordes.»**
+
+Vael no sustituye a Aster.
+
+Aster representa la capacidad de reconocer caminos diferentes y elegir cuál recorrer.
+
+Vael representa aquello que sucede después de partir: desvío, incertidumbre, transformación, pérdida de referencias, encuentro y descubrimiento.
+
+**Aster abre el camino. Vael gobierna lo que ocurre cuando realmente lo recorres.**
+
+> **Símbolo religioso definitivo: PENDIENTE DE DEFINICIÓN ESTRUCTURADA.** La identidad visual canónica de Vael permanece vigente, pero el símbolo doctrinal no se fija todavía.
+
+### Viaje
+
+El Viaje no exige una distancia determinada.
+
+Puede ser cruzar un océano, atravesar una cordillera, trasladarse a otra ciudad, emigrar, seguir una caravana, acompañar una expedición o regresar a un lugar abandonado décadas antes.
+
+Lo fundamental es abandonar una posición conocida y entrar en otra donde no pueden controlarse por completo las condiciones del recorrido.
+
+El viaje tampoco necesita ser voluntario.
+
+Refugiados, desplazados y personas obligadas por las circunstancias a abandonar su hogar pueden reconocer a Vael aunque la decisión inicial de partir no haya sido libre.
+
+### Cambio
+
+El Cambio de Vael se diferencia del principio de Aster.
+
+Aster representa especialmente el cambio escogido: reconocer alternativas y decidir actuar de otra manera.
+
+Vael representa también el cambio producido por aquello que se encuentra durante el recorrido.
+
+Un viajero puede salir con una intención concreta y regresar con conocimientos, heridas, vínculos o perspectivas que nunca había buscado.
+
+Una máxima vaeliana afirma:
+
+**«Nadie regresa por el mismo camino siendo exactamente quien partió.»**
+
+### Fortuna incierta
+
+Vael no garantiza buena suerte.
+
+La **fortuna incierta** expresa la realidad de actuar cuando una parte significativa del resultado permanece fuera del conocimiento o control de quienes actúan.
+
+Clima, corrientes, encuentros, fallos, oportunidades, cambios de ruta y fenómenos mágicos pueden alterar incluso un plan cuidadosamente preparado.
+
+Preparación, conocimiento y habilidad importan.
+
+No eliminan por completo la incertidumbre.
+
+Por ello los cultos de Vael no consideran la prudencia contraria a su principio.
+
+### Tormentas
+
+Vael no es una deidad elemental del Aire o del Agua.
+
+Las tormentas pertenecen a su ámbito porque representan fuerzas que alteran rutas, destruyen previsiones y obligan a reaccionar ante circunstancias no elegidas.
+
+Una tormenta puede destruir una expedición. También puede revelar una isla, abrir un paso o llevar a un viajero hacia algo que nunca habría encontrado siguiendo el plan original.
+
+Su significado religioso reside en esa capacidad de transformar un recorrido.
+
+### La Primera Ruta Perdida
+
+Las tradiciones de Vael recuerdan un acontecimiento posterior a la era primordial conocido como la **Primera Ruta Perdida**.
+
+No fue necesariamente el primer viaje ni la primera exploración.
+
+Una expedición antigua recorría una ruta conocida hacia un destino conocido cuando una tormenta, alteración natural o fenómeno mágico volvió irreconocible el camino.
+
+Ya no podían regresar conforme a sus mapas ni continuar según el plan.
+
+Según el relato, una de las viajeras señaló una dirección que no figuraba en ninguna carta y dijo:
+
+**«Si el camino desapareció, tendremos que encontrar otro.»**
+
+La expedición continuó y encontró una ruta nueva.
+
+Aquello que descubrió permanece deliberadamente sin establecer.
+
+En ese acontecimiento Vael apareció, fue reconocido o adquirió identidad divina según la tradición que narre el mito.
+
+El canon no decide cuál de esas interpretaciones es correcta.
+
+La Primera Ruta Perdida representa el momento en que el viaje dejó de entenderse únicamente como movimiento entre dos puntos conocidos y comenzó a reconocerse también como relación consciente con lo incierto.
+
+### Mapas y rutas
+
+Los cultos de Vael respetan la cartografía.
+
+Un buen mapa puede salvar vidas.
+
+Pero ningún mapa constituye una descripción eterna del mundo.
+
+Costas cambian, pasos se cierran, bosques alteran rutas, islas aparecen y fenómenos mágicos modifican territorios.
+
+Por ello una carta correcta debe entenderse como la mejor descripción disponible para un momento y propósito concretos.
+
+Esta visión no convierte a la **Hermandad de Cartógrafos del Horizonte** en una institución religiosa. Es un gremio profesional independiente cuyos miembros pueden seguir cualquier culto o ninguno.
+
+### Descubrimiento
+
+El Descubrimiento de Vael incluye aquello que se busca y también aquello que aparece de manera inesperada.
+
+Una expedición puede buscar mineral y encontrar ruinas. Un navegante puede perseguir una ruta y descubrir un pueblo. Un viajero puede investigar un fenómeno y revelar un peligro.
+
+Descubrir no significa necesariamente encontrar algo beneficioso.
+
+El mundo contiene conocimientos y lugares cuya existencia puede producir nuevas responsabilidades o amenazas.
+
+### La Ley del Camino
+
+Numerosas tradiciones de Vael comparten costumbres de ayuda entre viajeros conocidas colectivamente como **Ley del Camino**.
+
+No constituyen una ley jurídica universal.
+
+Sus formulaciones regionales varían, pero suelen incluir principios como:
+
+- no destruir deliberadamente una señal de ruta correcta sin necesidad;
+- advertir de un peligro mortal conocido cuando otro viajero depende razonablemente de esa información;
+- no inutilizar refugios de emergencia sin causa;
+- ofrecer auxilio razonable cuando hacerlo no exige condenar al propio grupo.
+
+Estas obligaciones nacen de reconocer que todo viajero puede depender algún día de aquello que otro dejó detrás.
+
+### Partida y regreso
+
+El regreso forma parte del Viaje tanto como la partida.
+
+Volver puede exigir reintegrarse a un lugar que también cambió durante la ausencia.
+
+Las tradiciones de Vael valoran el relato del viajero porque aquello descubierto puede modificar la comprensión colectiva del mundo.
+
+Esto no obliga a revelar todo conocimiento adquirido. Existen secretos, peligros e información cuya custodia puede pertenecer a otros principios, especialmente a Selene.
+
+### Cultos de Vael
+
+Vael no posee una única iglesia mundial.
+
+Las **Casas del Camino** son santuarios, refugios o pequeños templos situados con frecuencia cerca de caminos, puertos, estaciones, pasos montañosos y rutas de navegación.
+
+Los **Navegantes de Vael** son sacerdotes, religiosos itinerantes, guías o pilotos vinculados a su culto. La denominación no implica que toda persona que navegue profesionalmente pertenezca a esta tradición.
+
+Los **Guardianes de Hitos** mantienen mojones, señales, refugios y marcas utilizadas por viajeros. Pueden además conservar registros locales de cambios en rutas o peligros.
+
+Estas denominaciones describen tradiciones extendidas y no una organización religiosa única.
+
+### Viajeros, migrantes y peregrinos
+
+Vael puede ser venerado tanto por exploradores voluntarios como por quienes viajan por necesidad.
+
+Comerciantes, mensajeros, emigrantes, refugiados, pilotos, marineros, caravaneros, peregrinos y aventureros pueden relacionarse con su culto por motivos diferentes.
+
+Ningún oficio o condición obliga a venerarlo.
+
+### Celebraciones
+
+El **Día de la Partida** es una tradición presente en distintas regiones para bendecir viajeros, revisar rutas, intercambiar noticias y recordar a quienes se encuentran lejos.
+
+Muchas comunidades poseen además celebraciones asociadas con el **Regreso**, especialmente después de temporadas marítimas, caravaneras o expedicionarias peligrosas. Sus nombres y fechas varían ampliamente.
+
+No existe por ahora un calendario universal de Vael.
+
+### Vael y los otros principios
+
+Aster representa la elección de un camino; Vael representa la incertidumbre de recorrerlo.
+
+Aurea representa hogar y continuidad; Vael representa partida y transformación. Sus principios no son enemigos.
+
+Oria permite definir acuerdos y responsabilidades frente a aquello que puede ocurrir. Un seguro expresa bien esa relación: el peligro permanece incierto, pero las partes pueden acordar previamente qué ocurrirá si se materializa.
+
+Khorun permite construir caminos, puentes, barcos, locomotoras y dirigibles capaces de resistir viajes; Vael recuerda que ninguna ingeniería elimina completamente clima, distancia, error, accidente o aquello todavía desconocido.
+
+Varkor representa oposición; Vael representa incertidumbre.
+
+Nemor preserva nombres y memoria de quienes murieron o desaparecieron; Vael representa las rutas en las que esas personas partieron.
+
+Selene se relaciona con el límite que separa lo conocido de aquello que permanece fuera de percepción. **Vael atraviesa el límite; Selene pregunta qué significa que ese límite exista.**
+
+### Vael en la era arcano-industrial
+
+La Segunda Forja transformó los medios de viaje sin eliminar la incertidumbre.
+
+Ferrocarriles, dirigibles, barcos industriales, estaciones y nuevas cartas permiten desplazamientos antes imposibles, pero producen también accidentes, dependencias logísticas y riesgos desconocidos.
+
+Los cultos de Vael pueden encontrarse en puertos, estaciones, aeródromos, caravasares, pasos montañosos y centros de expedición.
+
+Regiones como el **Mar de Nacre**, el **Desierto de Vidrio** y el **Cinturón Flotante de Vigilia** poseen condiciones especialmente relevantes para sus tradiciones, pero ningún territorio pertenece religiosamente a Vael por definición.
+
+La desaparición de expediciones durante la **Crisis de Nacre de 598 C.** puede tener importancia religiosa para sus seguidores, pero el canon todavía no establece qué ocurrió ni cómo reaccionaron sus organizaciones.
+
+### Vael y la magia divina
+
+Vael puede actuar como **Fuente Divina** mediante un Vínculo apropiado.
+
+Sus ámbitos pueden inspirar Vínculos relacionados con viaje, orientación, navegación, movimiento, adaptación durante rutas, supervivencia expedicionaria y respuesta ante cambios inesperados.
+
+Estos ámbitos no conceden capacidades mecánicas por sí mismos.
+
+Un Vínculo con Vael no permite automáticamente conocer la ruta correcta, predecir el futuro, ignorar tormentas, teletransportarse sin límites, manipular la fortuna de manera universal ni saber qué existe más allá de un territorio desconocido.
+
+Los milagros, Vínculos específicos, ritos de viaje y efectos relacionados con fortuna permanecen abiertos hasta su desarrollo posterior.
+
+## 37. Selene, la Velada
+
+**Selene, la Velada** es una de las Cinco Luminarias, Dioses Menores reales surgidos después de los siete Primordiales.
+
+Sus ámbitos tradicionales son **sueño, misterio, percepción, secretos y fronteras entre mundos**.
+
+Selene representa los límites entre aquello que una consciencia puede percibir y aquello que permanece fuera de su alcance, así como la responsabilidad de decidir cuándo una frontera de conocimiento, intimidad o realidad debe ser atravesada.
+
+Una enseñanza tradicional afirma:
+
+**«No todo lo oculto está perdido. No todo lo visible está comprendido.»**
+
+El concepto central de sus tradiciones es **el Velo**: aquello que separa sin necesariamente destruir la relación entre ambos lados.
+
+> **Símbolo religioso definitivo: PENDIENTE DE DEFINICIÓN ESTRUCTURADA.** La identidad visual canónica de Selene permanece vigente, pero el símbolo doctrinal no se fija todavía.
+
+### Misterio
+
+Selene no representa toda ignorancia.
+
+Desconocer algo por falta de educación, información o experiencia no convierte automáticamente esa cuestión en un misterio religioso.
+
+El Misterio aparece especialmente cuando existe una frontera significativa entre apariencia y realidad, conocimiento y secreto o aquello que puede observarse y aquello que permanece oculto.
+
+Un misterio tampoco está obligado a permanecer irresuelto.
+
+Puede investigarse, revelarse y comprenderse.
+
+Una enseñanza selenita afirma:
+
+**«Un misterio no exige permanecer cerrado. Exige saber qué puerta estás abriendo.»**
+
+### Percepción
+
+Percibir algo y comprenderlo son actos diferentes.
+
+Una imagen puede ser verdadera pero incompleta. Una voz puede ser real sin que su origen sea evidente. Una manifestación mágica puede detectarse sin revelar automáticamente qué la produjo.
+
+Por ello las tradiciones de Selene distinguen entre **señal** e **interpretación**.
+
+La percepción proporciona acceso parcial a la realidad.
+
+No garantiza comprensión.
+
+Este principio no modifica las reglas generales de Percepción, Ilusión o magia sensorial del sistema.
+
+### Selene y las ilusiones
+
+Las ilusiones poseen afinidad temática con Selene porque exploran la diferencia entre percepción y realidad.
+
+Sin embargo, **Selene no es la propietaria divina de la magia de Ilusión**.
+
+La disciplina arcana de Percepción e Ilusión puede practicarse sin Vínculo religioso, y venerar a Selene no concede automáticamente acceso a sus hechizos.
+
+Dominio religioso y Disciplina mágica permanecen separados.
+
+### Sueño
+
+El sueño altera la relación ordinaria entre consciencia, percepción y memoria.
+
+Por ello pertenece a Selene.
+
+La mayoría de los sueños no son necesariamente sobrenaturales.
+
+No constituyen automáticamente profecías, mensajes divinos, viajes planares ni recuerdos verdaderos.
+
+Sin embargo, determinadas entidades y fenómenos mágicos pueden utilizar estados de sueño como vía de comunicación, influencia o manifestación.
+
+El canon no establece todavía la existencia de un único plano universal de los sueños visitado por toda criatura que duerme.
+
+Las diferentes tradiciones pueden proponer cosmologías oníricas incompatibles sin que ninguna haya recibido confirmación definitiva.
+
+### Visiones y profecías
+
+Una visión puede advertir, simbolizar, comunicar o representar información de manera incompleta.
+
+No garantiza por sí sola que un acontecimiento futuro vaya a producirse exactamente como fue percibido.
+
+Los cultos de Selene pueden poseer tradiciones de interpretación de sueños y visiones, pero ninguna obtiene infalibilidad automática.
+
+El futuro continúa permitiendo elección, cambio, error e incertidumbre.
+
+### Secretos
+
+Un secreto no es automáticamente una transgresión.
+
+Determinada información puede ocultarse para proteger intimidad, seguridad, personas vulnerables, rutas, conocimientos peligrosos o derechos legítimos.
+
+El secreto tampoco es automáticamente virtuoso.
+
+Puede utilizarse para ocultar abuso, explotación, fraude o corrupción.
+
+Selene no enseña que todo secreto deba conservarse.
+
+Enseña que **revelar y ocultar son actos con consecuencias**.
+
+### Secreto, silencio y mentira
+
+Guardar información no equivale necesariamente a realizar una afirmación falsa.
+
+Callar, negarse a responder, cifrar un documento o limitar acceso son acciones diferentes de mentir.
+
+Esta distinción permite que las tradiciones de Selene convivan con la Verdad de Ilyr y con los registros de Oria.
+
+La existencia de un secreto tampoco elimina responsabilidad moral por aquello que se mantiene oculto.
+
+### Privacidad y fronteras de la mente
+
+Numerosas tradiciones de Selene reconocen la **privacidad** como una frontera legítima.
+
+Una persona no pierde automáticamente todo derecho a reservar pensamientos, recuerdos, correspondencia o aspectos íntimos de su vida porque otra persona posea medios para descubrirlos.
+
+Una máxima atribuida a estos cultos afirma:
+
+**«Ser visto no concede derecho a mirar más profundamente.»**
+
+La mente también posee límites.
+
+Los cultos selenitas pueden considerar especialmente delicadas las prácticas capaces de acceder, modificar o extraer recuerdos, sueños, emociones o pensamientos sin consentimiento.
+
+Esto no convierte toda magia mental en una Arte Prohibida ni crea por sí solo una regla jurídica universal.
+
+### La Primera Veladura
+
+Las tradiciones de Selene recuerdan un acontecimiento posterior a la era primordial conocido como la **Primera Veladura**.
+
+En una comunidad antigua, varias personas comenzaron a experimentar sueños extraordinariamente similares.
+
+En ellos aparecía un mismo lugar, una abertura y algo que parecía encontrarse al otro lado.
+
+Con el tiempo se descubrió una anomalía real relacionada con aquellas visiones.
+
+Nadie podía determinar con certeza si observaban otro mundo, eran observados desde él, respondían a una entidad o experimentaban algún fenómeno todavía desconocido.
+
+Cuanto más intentaban comprender la abertura, más parecía responder aquello que existía más allá.
+
+Según la tradición, una guardiana decidió finalmente ocultar el método exacto mediante el cual podía abrirse.
+
+No destruyó todo registro.
+
+Preservó la existencia del peligro, sus señales y aquello necesario para vigilarlo, pero separó ese conocimiento de las instrucciones capaces de atravesar la frontera.
+
+Entonces Selene apareció, fue reconocida o adquirió identidad divina, según la tradición que narre el acontecimiento.
+
+El canon no decide todavía cuál de estas interpretaciones es correcta.
+
+Tampoco determina qué existía al otro lado, dónde ocurrió la Primera Veladura ni qué naturaleza poseía la frontera.
+
+### Conservar no significa permitir acceso
+
+La Primera Veladura expresa una enseñanza central de Selene:
+
+**conservar conocimiento no obliga a hacerlo accesible a cualquiera.**
+
+Determinada información puede necesitar ser registrada precisamente para impedir que se pierda, mientras su acceso permanece limitado porque su uso produciría riesgos.
+
+Esto no convierte el conocimiento mismo en maligno.
+
+La cuestión es quién accede a él, para qué y con qué consecuencias.
+
+### Custodia de secretos
+
+Una formulación extendida sostiene que un secreto legítimamente custodiado debería poder responder, al menos para su custodio, dos preguntas:
+
+**qué protege y de quién necesita protección.**
+
+Esto no obliga a publicar las respuestas.
+
+Distingue la custodia consciente del secreto mantenido únicamente por costumbre, ventaja o poder.
+
+Cuando ocultar información sólo permite continuar una transgresión grave, distintas tradiciones selenitas pueden considerar que la obligación de secreto ha terminado.
+
+### Revelación responsable
+
+El opuesto de guardar un secreto no es necesariamente hacerlo público.
+
+Una información puede revelarse únicamente a quien posee necesidad, responsabilidad o derecho de conocerla.
+
+Por ello los cultos de Selene desarrollan conceptos de **acceso limitado**, **custodia** y **revelación responsable**.
+
+Estas prácticas pueden coincidir con las normas de Oria sin confundirse con ellas.
+
+### Fronteras entre mundos
+
+Selene se relaciona con lugares donde realidades, planos, estados de consciencia o espacios normalmente separados pueden aproximarse, solaparse o comunicarse.
+
+No gobierna necesariamente todos los planos ni conoce automáticamente aquello que existe tras cada frontera.
+
+Su principio se concentra en el **Velo** que separa ambos lados y en los riesgos de percibirlo, debilitarlo o atravesarlo.
+
+### Selene y los otros principios
+
+Vaelun custodia el tránsito del alma asociado a la muerte. Selene se relaciona con fronteras espirituales y planares de naturaleza más amplia.
+
+Oria se ocupa de que información, reglas y acuerdos puedan registrarse, conservarse y verificarse; Selene se ocupa especialmente de **quién puede acceder a determinada información y por qué**.
+
+Ilyr valora la Verdad especialmente cuando engaño y manipulación destruyen dignidad, responsabilidad o consentimiento. Selene reconoce que poseer información verdadera no genera automáticamente obligación de revelarla públicamente.
+
+Nemor protege memoria e identidad histórica; Selene reconoce intimidad y secreto.
+
+Vael representa atravesar lo desconocido; Selene representa comprender que existe un límite y considerar qué significa atravesarlo. Una enseñanza comparativa sostiene: **«Vael pregunta qué encontrarás al cruzar. Selene pregunta si comprendes qué estás cruzando.»**
+
+Aster impulsa elección, descubrimiento y apertura de posibilidades. Selene recuerda que la capacidad de descubrir algo no resuelve automáticamente cómo debería utilizarse o divulgarse.
+
+Nereth puede utilizar secreto, percepción y conocimiento para manipular o dominar. Selene no protege automáticamente aquello que permanece oculto.
+
+### Cultos de Selene
+
+Selene no posee una única iglesia mundial.
+
+Las **Casas del Velo** son templos, santuarios o instituciones dedicadas a contemplación, sueño, confidencialidad y custodia de conocimientos sensibles.
+
+Los **Guardianes del Velo** se ocupan de fenómenos relacionados con fronteras espirituales, anomalías planares, sueños sobrenaturales y conocimientos cuyo acceso requiere precaución.
+
+Los **Oyentes del Velo** son sacerdotes o servidores religiosos especializados en recibir información confidencial, testimonios, sueños o confesiones bajo obligaciones estrictas de custodia.
+
+Estas denominaciones describen tradiciones extendidas y no tres organizaciones universales.
+
+La **Orden del Umbral Sereno** no constituye automáticamente una orden religiosa de Selene. Es una institución independiente formada por religiosos, arcanistas y juristas de procedencias diversas, aunque sus funciones puedan coincidir con preocupaciones selenitas.
+
+### Prácticas de sueño
+
+Algunas tradiciones registran sueños recurrentes o compartidos y comparan sus patrones para identificar posibles influencias sobrenaturales.
+
+Estas prácticas distinguen observación de interpretación.
+
+Que varias personas hayan soñado una misma imagen constituye un dato.
+
+Determinar qué significa continúa requiriendo investigación.
+
+No existe una gramática universal e infalible de los sueños.
+
+### Celebraciones
+
+La **Noche del Velo** es una celebración presente en diferentes tradiciones dedicada al silencio, sueño, intimidad, contemplación y aquello que no necesita exposición pública.
+
+La **Vigilia de los Umbrales** aparece especialmente en regiones donde existen sellos, lugares liminales o fenómenos planares. Sus participantes revisan custodias, señales y registros vinculados a esos lugares.
+
+Sus fechas y formas concretas varían según región y cultura.
+
+### Selene en Edria contemporánea
+
+Los principios de Selene poseen especial relevancia en una sociedad donde investigación arcana, archivos, espionaje, magia mental y entidades externas forman parte de la realidad política.
+
+Lysendra, con sus regulaciones sobre conjuración y manipulación de memoria, contiene debates especialmente compatibles con sus dominios, pero el Principado no pertenece por ello al culto de Selene.
+
+El **Problema de los Umbrales** vuelve particularmente relevantes a sus tradiciones en el presente de 612 C., sin demostrar que Selene conozca la causa del debilitamiento entre planos ni que pueda solucionarlo automáticamente.
+
+Fenómenos como las alteraciones perceptivas del **Bosque de las Mil Voces** o las imágenes imposibles del **Desierto de Vidrio** pueden atraer investigadores vinculados a Selene, pero no constituyen por sí mismos manifestaciones de la diosa.
+
+### Selene y la magia divina
+
+Selene puede actuar como **Fuente Divina** mediante un Vínculo apropiado.
+
+Sus ámbitos pueden inspirar Vínculos relacionados con sueño, percepción, custodia de secretos, ocultación limitada, vigilancia, resistencia frente a intrusión mental y reconocimiento de alteraciones en fronteras espirituales.
+
+Estos ámbitos no conceden capacidades mecánicas por sí mismos.
+
+Un Vínculo con Selene no permite automáticamente detectar mentiras, leer pensamientos, conocer secretos, recibir profecías infalibles, volverse perfectamente invisible, atravesar fronteras planares ni conocer aquello que existe detrás de todo Umbral.
+
+**La diosa del Misterio no elimina mecánicamente el misterio.**
+
+Los milagros, Vínculos específicos, ritos oníricos, capacidades de custodia y efectos relacionados con Umbrales permanecen abiertos hasta su desarrollo posterior.
+
+## 38. Relaciones del Panteón y límites de canon
+
+Los siete Primordiales y las cinco Luminarias forman los **Doce del Panteón Central canónico conocido**.
+
+Los siete principios Primordiales forman una secuencia cosmológica: Eïra y Khorun describen Vida y Forma; Varkor introduce Conflicto; Aster, Elección; Ilyr, responsabilidad moral; Nereth, la corrupción deliberada de esos límites; Vaelun, el derecho al final y al tránsito.
+
+Las cinco Luminarias son divinidades posteriores y no extensiones de esa secuencia primordial. Sus ámbitos se concentran en relaciones, instituciones, prácticas y límites desarrollados por sociedades conscientes: **Aurea** en cuidado, hogar y reconstrucción; **Nemor** en memoria de los muertos y límites entre generaciones; **Oria** en acuerdos, ley, intercambio y registro; **Vael** en viaje, incertidumbre y transformación; **Selene** en percepción, secreto, sueño y fronteras veladas.
+
+Los dominios divinos no son propiedades exclusivas. Compartir un ámbito no implica identidad, subordinación ni parentesco necesario entre deidades.
 
 Los cultos no son equivalentes a las deidades. Instituciones religiosas pueden equivocarse, dividirse, corromperse o interpretar de forma diferente un mismo principio. Una deidad no aprueba automáticamente todo lo que una organización realiza en su nombre.
 
 Las deidades pueden actuar como **Fuente Divina** para personajes con un Vínculo apropiado. Esto concede acceso narrativo/mágico según las reglas correspondientes, no autoridad moral automática, inmunidad a consecuencias ni un paquete universal de poderes.
 
-Permanecen abiertos para desarrollo futuro los elementos que el canon vigente y el material histórico mantienen expresamente sin fijar: avatares y apariencias definitivas, dogmas completos, estructuras universales de culto, festividades, milagros detallados, Vínculos Divinos específicos, planos, destino último de las almas, Archidemonios concretos, mecánicas completas de corrupción/posesión/Necromancia y numerosos paquetes jugables de pueblos primordiales. El Manual Maestro no rellena esos huecos por inferencia.
+### Estado pendiente de símbolos
 
+Los **símbolos religiosos definitivos de las Cinco Luminarias no quedan fijados por estos capítulos**. Sus imágenes visuales canónicas siguen funcionando como referencia de identidad, pero los símbolos serán diseñados posteriormente mediante una estructura común y explícita antes de incorporarse como canon doctrinal.
+
+Permanecen abiertos para desarrollo futuro los elementos que el canon vigente mantiene expresamente sin fijar: símbolos doctrinales pendientes de las Luminarias, avatares y manifestaciones no definidas, estructuras universales de culto, calendarios exactos de festividades, milagros detallados, Vínculos Divinos específicos, planos, destino último de las almas, Archidemonios concretos, mecánicas completas de corrupción/posesión/Necromancia y numerosos paquetes jugables de pueblos primordiales. El Manual Maestro no rellena esos huecos por inferencia.
 ---
 
 # PARTE II — CANON DEL MUNDO v1.2 INTEGRADO
@@ -11774,7 +12842,7 @@ Fin del Canon del Mundo v1.2
 
 El Archivo Narrativo Recuperado ya no forma parte del circuito editorial activo. El trabajo nuevo se realiza directamente en este Manual y cualquier recuperación histórica debe ser explícita.
 
-1. Completar y depurar las **Cinco Luminarias** y realizar una pasada única de coherencia sobre los Doce del Panteón Central.
+1. Diseñar mediante una estructura común los **símbolos religiosos de las Cinco Luminarias** y realizar después una pasada única de coherencia sobre los Doce del Panteón Central.
 2. Desarrollar la **historia intermedia de Edria** entre los grandes hitos ya canónicos, sin inventar sobre espacios deliberadamente abiertos.
 3. Completar ejemplos de juego, ejemplos de creación y ejemplos de combate sin alterar reglas.
 4. Revisar tablas de equipo, precios, disponibilidad y contenido de mercado para edición.
