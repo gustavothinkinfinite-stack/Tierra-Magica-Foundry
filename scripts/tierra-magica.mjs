@@ -32,6 +32,7 @@ import {
   completeCraftingProjectAuthoritatively,
   prepareCraftingProjectAuthoritatively,
   installStateAuthorityBridge,
+  clearTurnResourceReservations,
   releaseCraftingProjectAuthoritatively,
   reserveCraftingProjectAuthoritatively,
   resolveResearchProjectStageAuthoritatively
@@ -408,8 +409,16 @@ Hooks.once("ready", async () => {
   });
   const dataMigration = await migrateWorldData({ catalog });
   let resourceReconciliations = 0;
+  let orphanTurnReservations = 0;
   if (game.user.isGM) {
-    for (const actor of game.actors) if (await reconcileActorResources(actor)) resourceReconciliations += 1;
+    for (const actor of game.actors) {
+      const reservations = actor.getFlag?.("tierra-magica", "turnReservations");
+      if (reservations && typeof reservations === "object" && Object.keys(reservations).length) {
+        await clearTurnResourceReservations(actor);
+        orphanTurnReservations += 1;
+      }
+      if (await reconcileActorResources(actor)) resourceReconciliations += 1;
+    }
   }
   game.tierraMagica = {
     ...(game.tierraMagica ?? {}),
@@ -428,6 +437,7 @@ Hooks.once("ready", async () => {
   };
   if (repaired) ui.notifications.info("Tierra Mágica: se repararon " + repaired + " ficha(s) afectadas por el guardado de v0.3.1.");
   if (retired) ui.notifications.info("Tierra Mágica: se retiraron campos mecánicos históricos de " + retired + " actor(es).");
+  if (orphanTurnReservations) ui.notifications.info("Tierra Mágica: se liberaron reservas huérfanas de Acción/Reacción en " + orphanTurnReservations + " Actor(es).");
   if (currencyMigration.actors || currencyMigration.items) {
     ui.notifications.info("Tierra Mágica: CREA-09 migró " + currencyMigration.actors + " Actor(es) y " + currencyMigration.items + " Item(s) al modelo monetario canónico.");
   }
