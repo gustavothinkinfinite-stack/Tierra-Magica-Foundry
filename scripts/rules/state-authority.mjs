@@ -22,7 +22,6 @@ const authorityQueues = new Map();
 const authorityRequestInflight = new Map();
 const turnReservations = new Map(); // fallback para stubs/documentos sin flags persistentes.
 const TURN_RESERVATION_FLAG = "turnReservations";
-export const TURN_RESERVATION_STALE_MS = 10 * 60 * 1000;
 const AUTHORITY_RECEIPTS_FLAG = "authorityReceipts";
 const MAX_AUTHORITY_RECEIPTS = 128;
 let bridgeInstalled = false;
@@ -285,14 +284,6 @@ function currentTurnReservation(actor, resource) {
   return turnReservations.get(turnReservationKey(actor, resource)) ?? null;
 }
 
-
-export function turnReservationIsStale(reservation, { now = Date.now() } = {}) {
-  if (!reservation || typeof reservation !== "object") return true;
-  const createdAt = Number(reservation.createdAt);
-  if (!Number.isFinite(createdAt) || createdAt <= 0) return true;
-  return Math.max(0, Number(now) - createdAt) >= TURN_RESERVATION_STALE_MS;
-}
-
 async function setTurnReservation(actor, resource, reservation) {
   const persisted = persistentTurnReservations(actor);
   if (persisted && typeof actor?.setFlag === "function") {
@@ -322,11 +313,7 @@ async function reserveTurnResource(actor, resource, requesterId = "") {
   return serial("turn-state:" + actorAuthorityKey(actor), async () => {
     if (actorIncapacitated(actor)) return { ok:true, claimed:false, reason:"incapacitated" };
     if (!(actor.system.turn?.[resource] ?? true)) return { ok:true, claimed:false, reason:"spent" };
-    const existingReservation = currentTurnReservation(actor, resource);
-    if (existingReservation) {
-      if (!turnReservationIsStale(existingReservation)) return { ok:true, claimed:false, reason:"reserved" };
-      await deleteTurnReservation(actor, resource);
-    }
+    if (currentTurnReservation(actor, resource)) return { ok:true, claimed:false, reason:"reserved" };
     const reservationId = requestId();
     await setTurnReservation(actor, resource, {
       id:reservationId,
