@@ -56,39 +56,43 @@ Auraval atraviesa problemas propios de una capital en expansión: congestión de
 # COBRAVIA
 *El gran puerto industrial del litoral sur.*
 
-**Ficha rápida:** Liga de Bronce · ≈312.000 habitantes · ≈41.000 flotantes · mayor ciudad del conjunto propuesto · principal polo industrial · magia aplicada a producción.
+**Ficha rápida:** Liga de Bronce · ≈312.000 habitantes · ≈41.000 de población flotante · mayor ciudad del conjunto propuesto · principal polo industrial del sur · magia aplicada a producción e ingeniería.
 
 ## Identidad y ubicación
-Cobravia ocupa el litoral sur de Edria y funciona como el mayor puerto industrial de la Liga de Bronce. Astilleros, fábricas, fundiciones, almacenes y dársenas dominan su horizonte. Es una ciudad de producción, movimiento y trabajo continuo.
+Cobravia ocupa el litoral sur de Edria y es el mayor puerto industrial de la Liga de Bronce. Astilleros, fábricas, fundiciones, almacenes y dársenas dominan su horizonte. Es una ciudad construida alrededor del movimiento de materias primas, mercancías, trabajadores y barcos; cuando el puerto se detiene, buena parte de la ciudad también lo hace.
 
 ## Gobierno y poder
-La Liga de Bronce es una **federación de ciudades industriales**. Cada ciudad conserva amplia autonomía, mientras el nivel federal coordina defensa, relaciones exteriores comunes, normas técnicas y grandes corredores comerciales. Cobravia se propone gobernada por un Primer Magistrado elegido por un Consejo Cívico-Industrial en el que participan distritos, gremios, intereses mercantiles, puerto y trabajadores organizados. Las grandes casas industriales tienen enorme influencia, pero no autoridad formal sobre Guardia o tribunales.
+La Liga de Bronce es una **federación de ciudades industriales**. Cada ciudad conserva amplia autonomía, mientras el gobierno federal coordina defensa común, relaciones exteriores, grandes corredores comerciales y determinadas normas técnicas. En Cobravia se propone un **Primer Magistrado** elegido por un **Consejo Cívico-Industrial** donde están representados distritos, gremios, intereses mercantiles, puerto y trabajadores organizados. Las grandes casas industriales poseen enorme influencia económica, pero no gobiernan formalmente la Guardia ni los tribunales.
 
-## Ciudad y arquitectura
-La ciudad se extiende alrededor de dársenas y canales de carga. Ladrillo, piedra, hierro, acero ennegrecido, cobre y madera naval predominan. Grúas, chimeneas, puentes móviles y depósitos forman parte funcional del paisaje. Los barrios obreros son densos; los distritos mercantiles y administrativos se elevan sobre zonas portuarias y fabriles.
+## Ciudad, pueblo y arquitectura
+Cobravia se extiende alrededor de grandes dársenas, canales de carga y barrios fabriles. Ladrillo, piedra, hierro, acero ennegrecido, cobre y madera naval predominan. Grúas, chimeneas, puentes móviles, depósitos y líneas de carga forman parte del paisaje cotidiano.
 
-## Pueblo, economía y cultura
-Obreros, artesanos, mecánicos, capataces, marineros, ingenieros y comerciantes dominan la vida urbana. Cobravia produce barcos, maquinaria, metal trabajado y manufactura pesada. La Liga importa alimento, carbón y cristal, por lo que el puerto es también un punto crítico de abastecimiento. La cultura local valora oficio, eficacia, resistencia y orgullo gremial.
+Los barrios obreros son densos y ruidosos; los sectores mercantiles y administrativos ocupan zonas mejor conectadas y menos expuestas al humo y al tráfico pesado. Obreros, mecánicos, artesanos, capataces, marineros, ingenieros y comerciantes constituyen la mayor parte de la población.
+
+## Comercio y vida cotidiana
+Cobravia produce barcos, maquinaria, herramientas, piezas metálicas y manufacturas pesadas. Su puerto recibe grandes cantidades de alimento, carbón, cristal y otras materias primas que la Liga necesita importar. También redistribuye producción industrial hacia otras regiones de Edria.
+
+La cultura local valora oficio, productividad, resistencia y pertenencia gremial. Los turnos fabriles, las sirenas de puerto, las tabernas de trabajadores y las ferias técnicas marcan el ritmo cotidiano. El prestigio suele ganarse demostrando que algo funciona, resiste o puede construirse mejor.
 
 ## Magia y tecnología
-La ingeniería arcano-industrial alcanza aquí una de sus mayores concentraciones. La magia se integra en maquinaria, seguridad, instrumentación y procesos especializados, pero no sustituye mano de obra, combustible ni mantenimiento. Cobravia debe sentirse industrial, no futurista.
+La ingeniería arcano-industrial alcanza en Cobravia una de sus mayores concentraciones conocidas. La magia se utiliza en instrumentación, seguridad, control de maquinaria y procesos especializados, pero no reemplaza combustible, mano de obra ni mantenimiento. El vapor, las grúas, las fundiciones y los talleres deben sentirse fabricables y peligrosos: Cobravia es avanzada, pero no futurista.
 
 ## Historia y acontecimientos
-Cobravia creció desde un puerto comercial hasta convertirse en el mayor complejo industrial del sur. Se proponen tres acontecimientos recordados por sus habitantes: **la Apertura de las Grandes Dársenas**, inicio de su expansión industrial; **la Huelga de los Martillos**, conflicto laboral que obligó a revisar seguridad y representación gremial; y **el Incendio de Calderas**, catástrofe fabril que transformó los códigos de prevención. Fechas y denominaciones siguen PROVISIONALES.
+Cobravia creció desde un puerto comercial hasta convertirse en el gran complejo industrial del sur. Su cronología definitiva todavía está abierta. Se proponen tres acontecimientos centrales: **la Apertura de las Grandes Dársenas**, que inició su gran expansión industrial; **la Huelga de los Martillos**, conflicto laboral que obligó a revisar seguridad y representación gremial; y **el Incendio de Calderas**, catástrofe fabril que transformó las normas de prevención y respuesta ante emergencias. Nombres y fechas continúan PROVISIONALES.
 
 ## Lugares importantes
-**Gran Astillero:** construcción y reparación de grandes naves.  
-**Dársenas Profundas:** corazón del tráfico marítimo.  
-**Mercado de Bronce:** gran centro de materias primas y manufacturas.  
-**Fundiciones:** zona de metalurgia pesada.  
-**Estación Sur:** nodo de carga terrestre y ferroviaria propuesto.  
-**Rompeolas Mayor:** defensa y símbolo del puerto.
+**Gran Astillero:** principal complejo de construcción y reparación naval.  
+**Dársenas Profundas:** corazón del tráfico marítimo y de las grandes cargas.  
+**Mercado de Bronce:** gran centro de materias primas, herramientas y manufacturas.  
+**Fundiciones:** zona de metalurgia pesada y uno de los lugares más peligrosos de la ciudad.  
+**Estación Sur:** nodo propuesto para carga terrestre y ferroviaria.  
+**Rompeolas Mayor:** defensa portuaria y uno de los grandes símbolos de Cobravia.
 
 ## Personalidades importantes
-**Propuestas provisionales:** **Daria Vossel**, Primera Magistrada; **Brann Orvek**, maestro de los Grandes Astilleros; **Letha Marven**, inspectora principal de fábricas; **Odran Kes**, influyente dirigente de trabajadores y gremios.
+**Daria Vossel**, Primera Magistrada de Cobravia; **Brann Orvek**, maestro de los Grandes Astilleros; **Letha Marven**, inspectora principal de fábricas; **Odran Kes**, influyente dirigente de trabajadores y gremios. **Todos estos nombres continúan PROVISIONALES hasta aprobación.**
 
 ## Situación actual
-Accidentes, contaminación, incendios, dependencia energética y alimentaria, conflictos laborales, espionaje industrial y contrabando convierten a Cobravia en una ciudad próspera pero permanentemente tensionada.
+Cobravia prospera, pero esa prosperidad depende de que fábricas, astilleros y puerto continúen funcionando. Accidentes, contaminación, incendios, conflictos laborales, dependencia de alimento y combustible, espionaje industrial y contrabando mantienen una tensión constante. Para los aventureros ofrece sabotajes, huelgas, robos de carga, investigaciones técnicas, persecuciones entre astilleros y disputas donde un problema de una fábrica puede terminar afectando a toda la Liga.
 
 ---
 
