@@ -5,6 +5,8 @@
 **Alcance:** todas las ciudades principales, ciudades libres y ciudades de frontera de Tierra Mágica.  
 **Regla de autoridad:** la estructura de esta ficha es obligatoria. Los datos de cada ciudad conservan su propio estado: CANÓNICO, PROVISIONAL o POR DEFINIR.
 
+**Referencia canónica de las diez ciudades principales:** `docs/CANON_CIUDADES_PRINCIPALES_v1.md`. Cuando exista conflicto entre una propuesta anterior de este documento y esa consolidación, prevalece `CANON_CIUDADES_PRINCIPALES_v1.md` para el núcleo urbano aprobado.
+
 ## 1. Reglas de trabajo
 
 1. Todas las ciudades se documentan con los mismos 24 apartados y en el mismo orden.
