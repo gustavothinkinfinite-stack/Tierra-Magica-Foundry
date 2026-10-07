@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import assert from "node:assert/strict";
 
@@ -219,7 +220,7 @@ test("CRAFT-13E runtime: Piedra sin herramientas apropiadas no puede insertarse 
   assert.equal(host.system.runic.imprints.length,0);
 });
 
-test("CRAFT-13E runtime: Preparar trampa manual consume Acción y el disparo posterior consume Reacción",async()=>{
+test("CRAFT-13E runtime: Preparar y disparar trampa manual no bloquea por marcadores de turno",async()=>{
   const actor=new StubActor("prepared-trap");
   const trap=actor.add(new StubItem({
     id:"manual-trap",
@@ -248,7 +249,7 @@ test("CRAFT-13E runtime: Preparar trampa manual consume Acción y el disparo pos
 
   const prepared=await actor.prepareManualTrapReaction(trap,{triggerKey:"door-opens"});
   assert.equal(prepared.ok,true);
-  assert.equal(actor.system.turn.action,false);
+  assert.equal(actor.system.turn.action,true);
   assert.equal(actor.system.magic.preparedTrap.trapUuid,trap.uuid);
 
   const wrong=await actor.triggerCraftedTrap(trap,{reactive:true,preparedTriggerKey:"window-opens"});
@@ -258,7 +259,7 @@ test("CRAFT-13E runtime: Preparar trampa manual consume Acción y el disparo pos
 
   const fired=await actor.triggerCraftedTrap(trap,{reactive:true,preparedTriggerKey:"door-opens"});
   assert.equal(fired.ok,true);
-  assert.equal(actor.system.turn.reaction,false);
+  assert.equal(actor.system.turn.reaction,true);
   assert.deepEqual(actor.system.magic.preparedTrap,{trapUuid:"",triggerKey:""});
   assert.equal(trap.system.trap.state,"discharged");
 });
@@ -288,7 +289,7 @@ test("CRAFT-13E runtime: Pasivos sólo se exponen al Actor realmente Sintonizado
   assert.equal(passives.length,0);
 });
 
-test("CRAFT-13E runtime: Hechizo Vinculado gasta RE y economía normal, no Maná",async()=>{
+test("CRAFT-13E runtime: Hechizo Vinculado gasta RE sin bloquear por Acción/Reacción",async()=>{
   const actor=new StubActor("bound-spell");
   actor.system.resources.mana.value=7;
   const item=enchanted(actor,{spell:{slug:"barrera-cinetica",manaCost:3,activation:"Reacción",sustained:false}});
@@ -296,7 +297,7 @@ test("CRAFT-13E runtime: Hechizo Vinculado gasta RE y economía normal, no Maná
   assert.equal(result.ok,true);
   assert.equal(item.system.enchantment.reserve.value,3);
   assert.equal(actor.system.resources.mana.value,7);
-  assert.equal(actor.system.turn.reaction,false);
+  assert.equal(actor.system.turn.reaction,true);
   assert.equal(result.power,4);
   assert.equal(result.derivedDf,15);
 });
@@ -474,4 +475,13 @@ test("CRAFT-13E runtime: una trampa automática no puede dispararse desde un eve
   assert.equal(wrong.ok,false);
   assert.equal(trap.system.trap.state,"armed");
   assert.deepEqual(target.system.magic.automaticEventClaims,{});
+});
+
+
+test("CRAFT-13E runtime: el motor mágico no escribe Acción/Reacción automáticamente",async()=>{
+  const source=await readFile(new URL("../scripts/rules/crafting-magic-runtime.mjs", import.meta.url),"utf8");
+  assert.equal(source.includes('"system.turn.action":false'),false);
+  assert.equal(source.includes('"system.turn.reaction":false'),false);
+  assert.equal(source.includes("La Acción ya fue gastada."),false);
+  assert.equal(source.includes("La Reacción ya fue gastada."),false);
 });

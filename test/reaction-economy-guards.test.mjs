@@ -3,122 +3,57 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { installReactionEconomyGuards } from "../scripts/rules/reaction-economy-guards.mjs";
 
-const activeNotifications = new Set();
-globalThis.ui = {
-  notifications: {
-    warn: () => {
-      const notification = {};
-      activeNotifications.add(notification);
-      return notification;
-    },
-    has: (notification) => activeNotifications.has(notification)
-  }
-};
+globalThis.ui = { notifications: { warn: () => null } };
+globalThis.Hooks = { on: () => null };
 
 class ActorStub {
   constructor() {
     this.name = "Prueba";
-    this.system = { turn: { reaction: true } };
+    this.system = {
+      turn: { reaction: false },
+      status: { incapacitated: false },
+      resources: { health: { value: 10 } }
+    };
     this.calls = [];
   }
-  async update(changes) {
-    if (Object.hasOwn(changes, "system.turn.reaction")) this.system.turn.reaction = changes["system.turn.reaction"];
-  }
-  async parry() {
-    this.calls.push("parry");
-    await new Promise((resolve) => setTimeout(resolve, 10));
-    this.system.turn.reaction = false;
-    return { ok: true };
-  }
-  async useCounterspell() {
-    this.calls.push("counterspell");
-    await new Promise((resolve) => setTimeout(resolve, 10));
-    this.system.turn.reaction = false;
-    return { ok: true };
-  }
-  async receiveCharge() { this.calls.push("charge"); this.system.turn.reaction = false; return { ok: true }; }
-  async interceptAttack() { this.calls.push("intercept"); this.system.turn.reaction = false; return { ok: true }; }
-  async linkedFamiliarAction() { this.calls.push("familiar"); await new Promise((resolve) => setTimeout(resolve, 10)); this.system.turn.reaction = false; return { ok: true }; }
-  async triggerFamiliarReaction() { this.calls.push("familiar-reactive"); this.system.turn.reaction = false; return { ok: true }; }
+  async parry() { this.calls.push("parry"); await new Promise((resolve) => setTimeout(resolve, 5)); return { ok: true }; }
+  async useCounterspell() { this.calls.push("counterspell"); await new Promise((resolve) => setTimeout(resolve, 5)); return { ok: true }; }
+  async receiveCharge() { this.calls.push("charge"); return { ok: true }; }
+  async interceptAttack() { this.calls.push("intercept"); return { ok: true }; }
+  async linkedFamiliarAction() { this.calls.push("familiar"); return { ok: true }; }
+  async triggerFamiliarReaction() { this.calls.push("familiar-reactive"); return { ok: true }; }
 }
 
 installReactionEconomyGuards(ActorStub);
 
-test("dos Reacciones concurrentes de subsistemas distintos no reutilizan el recurso", async () => {
+test("dos Reacciones concurrentes se resuelven sin lock transversal", async () => {
   const actor = new ActorStub();
   const [first, second] = await Promise.all([actor.parry(), actor.useCounterspell()]);
-  assert.equal(actor.calls.length, 1);
+  assert.ok(first);
+  assert.ok(second);
+  assert.deepEqual(actor.calls.sort(), ["counterspell","parry"]);
   assert.equal(actor.system.turn.reaction, false);
-  assert.equal([first, second].filter(Boolean).length, 1);
 });
 
-test("una Reacción ya gastada se bloquea antes de entrar a la regla especializada", async () => {
+test("una Reacción se ejecuta aunque el marcador figure gastado", async () => {
   const actor = new ActorStub();
-  actor.system.turn.reaction = false;
-  assert.equal(await actor.receiveCharge(), null);
+  assert.ok(await actor.receiveCharge());
+  assert.ok(await actor.interceptAttack());
+  assert.deepEqual(actor.calls, ["charge","intercept"]);
+});
+
+test("Incapacitado sigue bloqueando Reacciones", async () => {
+  const actor = new ActorStub();
+  actor.system.status.incapacitated = true;
+  assert.equal(await actor.parry(), null);
   assert.deepEqual(actor.calls, []);
 });
 
-test("una resolución inválida libera el bloqueo sin inventar gasto", async () => {
-  class InvalidActor extends ActorStub {}
-  InvalidActor.prototype.parry = async function () { this.calls.push("invalid"); return null; };
-  installReactionEconomyGuards(InvalidActor);
-  const actor = new InvalidActor();
-  assert.equal(await actor.parry(), null);
-  assert.equal(actor.system.turn.reaction, true);
-  const result = await actor.useCounterspell();
-  assert.ok(result);
-  assert.equal(actor.system.turn.reaction, false);
-});
-
-
-test("Parada y Acción Vinculada concurrentes comparten la misma Reacción", async () => {
-  const actor = new ActorStub();
-  const [parry, familiar] = await Promise.all([actor.parry(), actor.linkedFamiliarAction()]);
-  assert.equal(actor.calls.length, 1);
-  assert.equal(actor.system.turn.reaction, false);
-  assert.equal([parry, familiar].filter(Boolean).length, 1);
-});
-
-test("Contramagia y Coordinación Reactiva concurrentes comparten la misma Reacción", async () => {
-  const actor = new ActorStub();
-  const [counterspell, familiar] = await Promise.all([actor.useCounterspell(), actor.triggerFamiliarReaction()]);
-  assert.equal(actor.calls.length, 1);
-  assert.equal(actor.system.turn.reaction, false);
-  assert.equal([counterspell, familiar].filter(Boolean).length, 1);
-});
-
-
-test("la Reacción usa reserva distribuida además del bloqueo local", async () => {
+test("la capa de Reacción ya no usa reservas ni exclusión mutua", async () => {
   const source = await readFile(new URL("../scripts/rules/reaction-economy-guards.mjs", import.meta.url), "utf8");
-  assert.equal(source.includes('reserveTurnResourceAuthoritatively(actor, "reaction")'), true);
-  assert.equal(source.includes('commitTurnResourceReservation(actor, "reaction"'), true);
-  assert.equal(source.includes('releaseTurnResourceReservation(actor, "reaction"'), true);
-});
-
-
-test("un Notification de validación no consume ni bloquea la Reacción", async () => {
-  class NotificationReactionActor {
-    constructor() {
-      this.name = "Prueba aviso reactivo";
-      this.system = { turn: { reaction: true } };
-      this.calls = 0;
-    }
-    async update(changes) {
-      if (Object.hasOwn(changes, "system.turn.reaction")) this.system.turn.reaction = changes["system.turn.reaction"];
-    }
-    async parry() {
-      this.calls += 1;
-      return ui.notifications.warn("La Reacción no es válida.");
-    }
-  }
-
-  installReactionEconomyGuards(NotificationReactionActor);
-  const actor = new NotificationReactionActor();
-  assert.equal(await actor.parry(), null);
-  assert.equal(actor.calls, 1);
-  assert.equal(actor.system.turn.reaction, true);
-  assert.equal(await actor.parry(), null);
-  assert.equal(actor.calls, 2);
-  assert.equal(actor.system.turn.reaction, true);
+  assert.equal(source.includes("reserveTurnResourceAuthoritatively"), false);
+  assert.equal(source.includes("commitTurnResourceReservation"), false);
+  assert.equal(source.includes("reactionLocks"), false);
+  assert.equal(source.includes("ya gastó su Reacción"), false);
+  assert.equal(source.includes("resetCurrentCombatantTurn"), true);
 });

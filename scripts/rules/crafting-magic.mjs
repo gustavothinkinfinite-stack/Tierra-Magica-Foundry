@@ -307,7 +307,6 @@ export function validateImprintActivation({actor,item,imprint,resolutionId="",re
   if(!profile) return {valid:false,issues:[{code:"imprint-profile",message:"Impronta desconocida."}]};
   const mana=Math.max(0,number(actor?.system?.resources?.mana?.value));
   if(mana<profile.manaCost) issues.push({code:"imprint-mana",message:"Maná personal insuficiente; las Improntas no usan Sobrecarga."});
-  if(profile.activation==="action" && actor?.system?.turn?.action===false) issues.push({code:"imprint-action",message:"La Acción ya fue gastada."});
   if(profile.activation==="reaction") {
     if(actor?.system?.turn?.reaction===false) issues.push({code:"imprint-reaction",message:"La Reacción ya fue gastada."});
     if(reactionTriggerValid!==true) issues.push({code:"imprint-reaction-trigger",message:"Una Impronta de Reacción necesita un disparador reactivo válido."});
@@ -525,8 +524,7 @@ export function validateEnchantedActivation(actor,item){
     if(reserve<cost) issues.push({code:"enchantment-reserve",message:"Reserva Encantada insuficiente; RE no admite Sobrecarga."});
     const activation=String(spell.activation??"Acción").toLowerCase();
     if(activation.includes("reacción")||activation.includes("reaction")){
-      if(actor?.system?.turn?.reaction===false) issues.push({code:"enchantment-reaction",message:"La Reacción ya fue gastada."});
-    } else if(actor?.system?.turn?.action===false) {
+      } else if(actor?.system?.turn?.action===false) {
       issues.push({code:"enchantment-action",message:"La Acción ya fue gastada."});
     }
   }
