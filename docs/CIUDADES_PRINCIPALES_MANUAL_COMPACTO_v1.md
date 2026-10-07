@@ -31,7 +31,7 @@ Funcionarios, comerciantes, escribanos, artesanos, diplomáticos, soldados y tra
 La magia es visible sobre todo en instituciones, archivos, seguridad, iluminación y determinados servicios especializados. El vapor y la ingeniería mecánica ayudan a mover agua y carga entre terrazas. Auraval es avanzada, pero no debe parecer una ciudad fabril: su tecnología sirve al gobierno, al comercio y a la infraestructura.
 
 ## Historia y acontecimientos
-Su crecimiento se vincula al control de un cruce fluvial y terrestre de gran valor. La fundación, dinastías y principales guerras todavía requieren una cronología definitiva. Los grandes hitos seguros son su consolidación como capital de Valdoria y su papel como sede de la Mesa de Concordia y de los Archivos Internacionales.
+La ciudad creció alrededor de un cruce fluvial y terrestre defensible. La cronología exacta continúa abierta, pero se proponen tres hitos para desarrollarla: **la Reforma de la Carta de Valdoria**, que consolidó límites y competencias entre Corona y ciudades; **la instalación de la Mesa de Concordia en Auraval**, que convirtió a la capital en centro diplomático; y **la Gran Crecida de las Terrazas Bajas**, desastre que impulsó nuevas defensas fluviales y obras de bombeo. Nombres y fechas siguen PROVISIONALES.
 
 ## Lugares importantes
 **Palacio de la Corona:** núcleo del poder valdoriano.  
@@ -42,7 +42,7 @@ Su crecimiento se vincula al control de un cruce fluvial y terrestre de gran val
 **Gran Escalinata:** eje monumental que comunica distintos niveles de la ciudad.
 
 ## Personalidades importantes
-Soberano/a de Valdoria; Administrador/a de Auraval; coordinador/a de la Mesa de Concordia; Custodio/a Mayor de los Archivos; comandante de la Guardia. **Nombres propios: POR DEFINIR.**
+**Propuestas provisionales:** **reina Maelia II de Valdoria**, soberana del reino; **Orren Valcázar**, Administrador de Auraval; **Ysara Velden**, coordinadora de la Mesa de Concordia; **Teren Halvay**, Custodio Mayor de los Archivos. Los nombres no pasan a canon hasta aprobación.
 
 ## Situación actual
 Auraval enfrenta congestión de puentes, presión sobre vivienda, espionaje, falsificación documental, tensiones entre gremios y mecanización, y contrabando de componentes arcanos. Es un escenario natural para intriga, investigación, diplomacia y crimen urbano.
@@ -70,7 +70,7 @@ Obreros, artesanos, mecánicos, capataces, marineros, ingenieros y comerciantes 
 La ingeniería arcano-industrial alcanza aquí una de sus mayores concentraciones. La magia se integra en maquinaria, seguridad, instrumentación y procesos especializados, pero no sustituye mano de obra, combustible ni mantenimiento. Cobravia debe sentirse industrial, no futurista.
 
 ## Historia y acontecimientos
-Creció desde un enclave portuario hasta convertirse en centro fabril y naval del sur. Las fechas exactas de fundación, expansión industrial y conflictos laborales o militares permanecen por definir. Su gran transformación histórica fue el paso de puerto comercial a complejo industrial continental.
+Cobravia creció desde un puerto comercial hasta convertirse en el mayor complejo industrial del sur. Se proponen tres acontecimientos recordados por sus habitantes: **la Apertura de las Grandes Dársenas**, inicio de su expansión industrial; **la Huelga de los Martillos**, conflicto laboral que obligó a revisar seguridad y representación gremial; y **el Incendio de Calderas**, catástrofe fabril que transformó los códigos de prevención. Fechas y denominaciones siguen PROVISIONALES.
 
 ## Lugares importantes
 **Gran Astillero:** construcción y reparación de grandes naves.  
@@ -81,7 +81,7 @@ Creció desde un enclave portuario hasta convertirse en centro fabril y naval de
 **Rompeolas Mayor:** defensa y símbolo del puerto.
 
 ## Personalidades importantes
-Primer Magistrado/a; maestro/a de astilleros; inspector/a industrial; dirigente de trabajadores; capitán/a del puerto; gran comerciante. **Nombres: POR DEFINIR.**
+**Propuestas provisionales:** **Daria Vossel**, Primera Magistrada; **Brann Orvek**, maestro de los Grandes Astilleros; **Letha Marven**, inspectora principal de fábricas; **Odran Kes**, influyente dirigente de trabajadores y gremios.
 
 ## Situación actual
 Accidentes, contaminación, incendios, dependencia energética y alimentaria, conflictos laborales, espionaje industrial y contrabando convierten a Cobravia en una ciudad próspera pero permanentemente tensionada.
@@ -109,7 +109,7 @@ Estudiantes, profesores, investigadores, artesanos de precisión, copistas, come
 Lys posee una de las mayores concentraciones de magia académica competente de Edria. Laboratorios, instrumentos, observatorios y dispositivos especializados son comunes en instituciones, pero no en todos los hogares. La tecnología local destaca por precisión más que por volumen industrial.
 
 ## Historia y acontecimientos
-Su crecimiento estuvo ligado al lago, a las primeras instituciones de estudio y al Observatorio de los Fundadores. La cronología exacta de fundación y los grandes descubrimientos todavía deben fijarse.
+La ciudad se desarrolló alrededor del lago y de sus instituciones de estudio. Se proponen tres hitos: **la fundación del Observatorio de los Fundadores** como acontecimiento formador de su identidad; **el Concordato de las Academias**, que reconoció formalmente el peso político de las instituciones académicas; y **el Cierre de las Galerías Bajas**, consecuencia de un accidente de investigación que reforzó la regulación arcana. Fechas y detalles siguen PROVISIONALES.
 
 ## Lugares importantes
 **Observatorio de los Fundadores:** referencia científica y arcana de alcance continental.  
@@ -119,7 +119,7 @@ Su crecimiento estuvo ligado al lago, a las primeras instituciones de estudio y 
 **Muelles del Lago:** transporte local y acceso a investigaciones lacustres.
 
 ## Personalidades importantes
-Príncipe/Princesa de Lysendra; Canciller de Lys; rector/a principal; custodio/a del Observatorio; investigador/a destacado/a. **Nombres: POR DEFINIR.**
+**Propuestas provisionales:** **príncipe Erian de Lysendra**, soberano del principado; **Maelis Corven**, Canciller de Lys; **Thessa Irian**, rectora de una de las principales academias; **Oren Caldus**, custodio del Observatorio de los Fundadores.
 
 ## Situación actual
 Las tensiones surgen de rivalidades entre academias, investigaciones peligrosas, robo de conocimiento, presión sobre vivienda y misterios asociados al lago profundo.
@@ -147,7 +147,7 @@ Barqueros, herbolarios, alquimistas, artesanos, comerciantes, guías y expedicio
 La magia aparece especialmente en alquimia, conservación, navegación y manejo de recursos naturales. La tecnología es funcional y adaptada a ambientes húmedos; la gran industria pesada tendría poco sentido dentro del núcleo urbano.
 
 ## Historia y acontecimientos
-La ciudad se desarrolló como punto de encuentro entre navegación fluvial, comercio de recursos y exploración del bosque. La cronología precisa sigue abierta. Su relación prolongada con un entorno de cartografía inestable es uno de los rasgos históricos más importantes.
+Verdelinde creció como nodo entre navegación, alquimia y expediciones. Se proponen tres hitos: **la Crecida de las Raíces**, que rediseñó canales y muelles; **el Pacto de Recolección**, acuerdo que limitó la extracción de recursos del bosque; y **la Expedición Perdida de las Mil Voces**, desaparición todavía discutida que marcó las normas modernas de exploración. Fechas siguen PROVISIONALES.
 
 ## Lugares importantes
 **Mercado de Alquimia:** principal centro comercial especializado.  
@@ -157,7 +157,7 @@ La ciudad se desarrolló como punto de encuentro entre navegación fluvial, come
 **Jardín de Reactivos:** cultivo y estudio controlado de especies útiles.
 
 ## Personalidades importantes
-Coordinador/a de Verdelinde; maestro/a alquimista; capitán/a fluvial; jefe/a de expediciones; custodio/a del bosque. **Nombres: POR DEFINIR.**
+**Propuestas provisionales:** **Liora Venel**, Coordinadora de Verdelinde; **Rhael Sen**, maestro alquimista del mercado; **Kael Tervan**, capitán fluvial de gran reputación; **Edda Miren**, responsable de una de las principales casas de expediciones.
 
 ## Situación actual
 Crecidas, contaminación alquímica, extracción ilegal, desapariciones en el bosque y disputas sobre recursos mantienen un equilibrio constante entre prosperidad y riesgo.
@@ -185,7 +185,7 @@ Clérigos, sanadores, peregrinos, comerciantes, caravaneros, pacientes, artesano
 La magia tiene fuerte presencia institucional y terapéutica. Hospitales y autoridades religiosas emplean especialistas, mientras sistemas de agua, saneamiento y logística hacen tanto por la supervivencia urbana como la magia.
 
 ## Historia y acontecimientos
-Heliara creció como lugar sagrado, centro hospitalario y terminal de rutas orientales. La historia del Sínodo, la fundación urbana y sus dinastías todavía necesitan cronología específica.
+Heliara creció como santuario, centro sanitario y terminal de rutas orientales. Se proponen tres hitos: **la Fundación del Gran Hospital**, que consolidó su prestigio médico; **la Crisis de las Cisternas**, período de escasez que llevó a reformar el sistema de agua; y **el Acuerdo de las Dos Autoridades**, precedente que delimitó competencias entre Corona y Sínodo. Fechas y nombres definitivos siguen PROVISIONALES.
 
 ## Lugares importantes
 **Sede del Sínodo de las Luminarias:** principal autoridad religiosa local.  
@@ -195,7 +195,7 @@ Heliara creció como lugar sagrado, centro hospitalario y terminal de rutas orie
 **Plaza de las Fuentes:** centro cívico y de abastecimiento.
 
 ## Personalidades importantes
-Monarca de Solenar; Prefecto/a de Heliara; máxima autoridad del Sínodo; director/a del gran hospital; maestro/a caravanero. **Nombres: POR DEFINIR.**
+**Propuestas provisionales:** **reina Avelia de Solenar**, soberana del Dominio; **Darien Solvar**, Prefecto de Heliara; **Sarel Ithra**, figura principal del Sínodo de las Luminarias; **Elen Vara**, sanadora responsable de uno de los mayores complejos hospitalarios.
 
 ## Situación actual
 Escasez de agua, hospitales saturados, tensiones entre autoridad civil y religiosa, contrabando oriental, falsas reliquias y caravanas desaparecidas generan numerosos conflictos.
@@ -223,7 +223,7 @@ Mineros, fundidores, ferroviarios, ingenieros, soldados y comerciantes viven en 
 La tecnología minera, ferroviaria y metalúrgica es muy avanzada para los estándares de Edria. La magia se emplea como apoyo en forja, detección, seguridad y obras, no como sustituto del trabajo de ingeniería.
 
 ## Historia y acontecimientos
-Kar-Dur nació de la necesidad de fortificar y explotar una garganta estratégica. Las minas y fundiciones consolidaron la ciudad; el ferrocarril subterráneo reforzó posteriormente su importancia continental. Las fechas exactas siguen abiertas.
+Kar-Dur nació de la necesidad de controlar y defender una garganta estratégica. Minas y fundiciones ampliaron el asentamiento y el ferrocarril subterráneo reforzó su importancia. Se proponen como hitos **el Primer Cierre de la Garganta**, defensa que consolidó la reputación militar de la ciudad; **el Derrumbe de la Tercera Galería**, desastre minero que reformó protocolos de seguridad; y **la Integración Ferroviaria Profunda**, etapa que conectó minas, fundiciones y tránsito continental. Fechas siguen PROVISIONALES.
 
 ## Lugares importantes
 **Gran Puerta de la Garganta:** principal defensa exterior.  
@@ -233,7 +233,7 @@ Kar-Dur nació de la necesidad de fortificar y explotar una garganta estratégic
 **Fortaleza Alta:** mando defensivo.
 
 ## Personalidades importantes
-Primer Custodio/a; Comandante de la Garganta; maestro/a de Fundiciones; jefe/a ferroviario; inspector/a de Minas. **Nombres: POR DEFINIR.**
+**Propuestas provisionales:** **Dorun Kharvek**, Primer Custodio; **Mara Durn**, Comandante de la Garganta; **Hadrik Volm**, maestro de Fundiciones; **Tessa Orun**, responsable de la red ferroviaria de Kar-Dur.
 
 ## Situación actual
 Derrumbes, gases, accidentes, sabotaje ferroviario, disputas sobre vetas y tensión entre necesidades militares y civiles forman el núcleo de sus problemas.
@@ -261,7 +261,7 @@ Marineros, pilotos, cartógrafos, intérpretes, comerciantes, artesanos navales 
 La magia se aplica a navegación, meteorología, señalización y seguridad marítima. La tecnología naval es avanzada, pero Nacariel no debe competir con Cobravia en industria pesada.
 
 ## Historia y acontecimientos
-La ciudad creció alrededor de un puerto natural seguro y consolidó su importancia mediante su neutralidad. Los tratados y crisis que dieron forma a esa neutralidad todavía necesitan una cronología específica.
+Nacariel creció gracias a una bahía segura y al comercio de larga distancia. Se proponen tres acontecimientos fundamentales: **la Carta de Neutralidad**, base jurídica de su independencia política; **la Tormenta de los Cien Mástiles**, desastre naval que impulsó nuevos faros y protocolos de puerto; y **la Apertura de la Casa de las Cartas**, momento en que la cartografía se convirtió en una de sus principales industrias de conocimiento. Fechas siguen PROVISIONALES.
 
 ## Lugares importantes
 **Puerto Neutral:** corazón económico y político.  
@@ -271,7 +271,7 @@ La ciudad creció alrededor de un puerto natural seguro y consolidó su importan
 **Tribunal Marítimo:** resolución de disputas navales.
 
 ## Personalidades importantes
-Primer Síndico/a; Capitán/a del Puerto; maestro/a cartógrafo; juez/a marítimo; gran comerciante. **Nombres: POR DEFINIR.**
+**Propuestas provisionales:** **Mariel Varen**, Primera Síndica; **Oris Navar**, Capitán del Puerto; **Sela Miren**, maestra cartógrafa; **Tamir Osen**, magistrado del Tribunal Marítimo.
 
 ## Situación actual
 Espionaje naval, mapas falsos, contrabando y presión de potencias amenazan una neutralidad que constituye simultáneamente la mayor riqueza y la mayor vulnerabilidad de Nacariel.
@@ -299,7 +299,7 @@ Pilotos, mecánicos, meteorólogos, observadores, cargadores, exploradores y com
 Vigilia Alta posee tecnología aeronáutica muy especializada. La magia ayuda en navegación, observación y sistemas de seguridad, pero los dirigibles siguen requiriendo ingeniería, tripulación y mantenimiento.
 
 ## Historia y acontecimientos
-La ciudad creció por su relación con el Cinturón Flotante y por la necesidad de estudiar y explotar rutas aéreas. La evolución exacta de la navegación aérea queda pendiente de una cronología técnica del mundo.
+Vigilia Alta se consolidó por su relación con el Cinturón Flotante y el desarrollo de navegación aérea. Se proponen tres hitos: **el Primer Gran Amarre**, que inauguró el Alto Puerto; **la Tormenta del Cinturón**, crisis que llevó a crear protocolos modernos de vuelo; y **la Deriva de la Isla Errante**, episodio que demostró que algunas islas flotantes modifican lentamente su posición y obligó a revisar cartas aéreas. Fechas siguen PROVISIONALES.
 
 ## Lugares importantes
 **Alto Puerto:** principal terminal de dirigibles.  
@@ -309,7 +309,7 @@ La ciudad creció por su relación con el Cinturón Flotante y por la necesidad 
 **Mercado del Viento:** comercio de equipo aeronáutico.
 
 ## Personalidades importantes
-Primer Consejero/a; Capitán/a del Alto Puerto; Director/a del Observatorio; maestro/a de talleres; piloto célebre. **Nombres: POR DEFINIR.**
+**Propuestas provisionales:** **Elian Rovert**, Primer Consejero de Altura; **Mara Selven**, Capitana del Alto Puerto; **Tarel Vonn**, director del Observatorio; **Isha Kern**, maestra de talleres aeronáuticos.
 
 ## Situación actual
 Tormentas, sabotaje, monopolios de rutas, accidentes y movimientos impredecibles de algunas islas flotantes mantienen a la ciudad en alerta constante.
@@ -337,7 +337,7 @@ Mineros, prospectores, soldados, comerciantes y técnicos conviven con una pobla
 El entorno posee alta saturación o riesgo arcano, pero eso no significa uso mágico cotidiano superior. La tecnología local se especializa en minería, seguridad, contención y supervivencia en terrenos alterados.
 
 ## Historia y acontecimientos
-La **erupción arcana** que afectó la región es el acontecimiento histórico central de la ciudad. Su fecha, causa y consecuencias detalladas permanecen por definir. La explotación minera posterior convirtió el asentamiento en un puesto estratégico de Valdoria.
+La **erupción arcana** que alteró la región es el gran acontecimiento canónico asociado a Risco de Ceniza. Para completar su historia se proponen dos hitos posteriores: **la Reapertura de los Pozos**, cuando la explotación minera regresó bajo nuevas medidas de seguridad; y **la Revuelta de las Concesiones**, conflicto entre compañías, trabajadores y autoridad valdoriana que limitó ciertos privilegios mineros. Fechas y denominaciones siguen PROVISIONALES.
 
 ## Lugares importantes
 **Bastión del Risco:** centro militar.  
@@ -347,7 +347,7 @@ La **erupción arcana** que afectó la región es el acontecimiento histórico c
 **Campamento de Contratos:** alojamiento de trabajadores temporales.
 
 ## Personalidades importantes
-Prefecto/a Fronterizo; Comandante del Bastión; inspector/a de Minas; responsable de Contención Arcana; representante de los mineros. **Nombres: POR DEFINIR.**
+**Propuestas provisionales:** **Varena Tol**, Prefecta Fronteriza; **Bran Varren**, Comandante del Bastión; **Oren Kalt**, inspector principal de minas; **Yara Vesren**, responsable de la Oficina de Contención Arcana.
 
 ## Situación actual
 Accidentes, contaminación, explotación laboral, concesiones disputadas, contrabando mineral y fenómenos arcanos convierten a Risco en uno de los lugares más peligrosos y lucrativos de Valdoria.
@@ -375,7 +375,7 @@ Marineros, exploradores, cartógrafos, arqueólogos, mercenarios, cargadores y c
 La ciudad utiliza tecnología marítima, instrumentos de navegación y magia especializada para expediciones, detección, seguridad y catalogación. Los artefactos traídos de ruinas son una fuente constante de oportunidad y peligro.
 
 ## Historia y acontecimientos
-Puerto Umbral creció al convertirse en el último puerto fiable antes de rutas orientales cada vez más inciertas. Su fundación y soberanía histórica siguen abiertas. Las expediciones desaparecidas, hallazgos extraordinarios y ruinas emergentes son parte recurrente de su historia reciente.
+Puerto Umbral creció al consolidarse como último puerto fiable antes de las rutas orientales de exploración. Se proponen tres hitos: **la creación del Registro de Expediciones**, que comenzó a documentar salidas y retornos; **la Primera Gran Cuarentena**, provocada por un hallazgo peligroso traído desde el este; y **la Aparición de las Ruinas Emergentes**, fenómeno que multiplicó expediciones y disputas por descubrimientos. Fechas y detalles siguen PROVISIONALES.
 
 ## Lugares importantes
 **Dársena Segura:** corazón portuario.  
@@ -385,7 +385,7 @@ Puerto Umbral creció al convertirse en el último puerto fiable antes de rutas 
 **Junta de Cuarentena:** control de riesgos sanitarios y arcanos.
 
 ## Personalidades importantes
-Magistrado/a Portuario; Capitán/a del Puerto; jefe/a del Registro de Expediciones; cartógrafo/a mayor; comandante de defensa. **Nombres: POR DEFINIR.**
+**Propuestas provisionales:** **Miren Ordan**, Magistrada Portuaria; **Kael Varo**, Capitán del Puerto; **Nara Essel**, responsable del Registro de Expediciones; **Serrin Val**, cartógrafo especializado en las rutas orientales.
 
 ## Situación actual
 Expediciones desaparecidas, mapas incompletos, cuarentenas, artefactos peligrosos, piratería y disputas sobre propiedad de hallazgos convierten a Puerto Umbral en el punto natural de partida para campañas de exploración.
@@ -396,10 +396,10 @@ Expediciones desaparecidas, mapas incompletos, cuarentenas, artefactos peligroso
 
 Para el libro, estas fichas deben mantenerse compactas. La documentación extensa de población, distritos, jerarquías administrativas, guardias, infraestructura y economía permanece en los documentos internos del proyecto y solo se recupera cuando una aventura o suplemento necesita mayor detalle.
 
-Antes de considerar esta versión lista para maquetación todavía deben cerrarse principalmente:
+Antes de considerar esta versión lista para maquetación todavía deben aprobarse o revisarse principalmente:
 
-- nombres de las personalidades que realmente aparecerán en el libro;
-- 2–4 acontecimientos históricos concretos por ciudad cuando la cronología general quede definida;
+- los nombres provisionales de las personalidades propuestas;
+- los acontecimientos históricos propuestos y, más adelante, sus fechas dentro de la cronología general;
 - algunos nombres de lugares hoy provisionales;
 - soberanía final de Puerto Umbral;
 - ubicación cartográfica definitiva de las ciudades cuya posición aún está abierta.
