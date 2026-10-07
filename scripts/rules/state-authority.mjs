@@ -370,13 +370,13 @@ async function spendMovement(actor, amount, requesterId = "", { consumeReaction 
   });
 }
 
-function healthMutationUpdates(target, next, previous) {
+function healthMutationUpdates(target, next, previous, { damageMode = "lethal" } = {}) {
   const updates = { "system.resources.health.value": next };
   if (previous > 0 && next === 0) {
     updates["system.status.incapacitated"] = true;
     updates["system.magic.sustainedSpellIds"] = [];
     if (target.type === "familiar") updates["system.familiar.incapacitated"] = true;
-    if (target.type === "character" && number(target.system.status?.trauma) === 0) updates["system.status.trauma"] = 1;
+    if (damageMode !== "nonlethal" && target.type === "character" && number(target.system.status?.trauma) === 0) updates["system.status.trauma"] = 1;
   } else if (next > 0) {
     updates["system.status.incapacitated"] = false;
     if (target.type === "familiar") updates["system.familiar.incapacitated"] = false;
@@ -390,7 +390,7 @@ function healingLimit(target) {
   return Math.max(0, Math.min(maximum, configured));
 }
 
-async function mutateHealth(target, { damage = 0, healing = 0 } = {}) {
+async function mutateHealth(target, { damage = 0, healing = 0, damageMode = "lethal" } = {}) {
   if (!target?.system || typeof target.update !== "function") return { ok:false, error:"El objetivo de Vida ya no está disponible." };
   if (!canModify(target)) return { ok:false, error:"El DJ activo no puede modificar la Vida del objetivo." };
 
@@ -411,7 +411,7 @@ async function mutateHealth(target, { damage = 0, healing = 0 } = {}) {
     }
 
     next = Math.min(maximum, next);
-    if (next !== previous) await target.update(healthMutationUpdates(target, next, previous));
+    if (next !== previous) await target.update(healthMutationUpdates(target, next, previous, { damageMode }));
     return { ok:true, healthBefore:previous, healthAfter:next, applied };
   });
 }
@@ -594,7 +594,7 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
     const requesterMayUpdate = Boolean(requester?.isGM) ||
       (typeof target.canUserModify === "function" ? Boolean(target.canUserModify(requester, "update")) : Boolean(target.isOwner));
     if (!requesterMayUpdate) return { ok:false, error:"El solicitante no posee permisos para modificar directamente la Vida del objetivo." };
-    if (action === "apply-health-damage") return mutateHealth(target, { damage:payload.amount });
+    if (action === "apply-health-damage") return mutateHealth(target, { damage:payload.amount, damageMode:payload.damageMode });
     return mutateHealth(target, { healing:payload.amount });
   }
 
@@ -961,7 +961,7 @@ export async function claimCounterattackAuthoritatively(target) {
   });
 }
 
-export async function applyHealthDamageAuthoritatively(target, damage) {
+export async function applyHealthDamageAuthoritatively(target, damage, { damageMode = "lethal" } = {}) {
   const amount = Math.max(0, number(damage));
   if (!amount) return { ok:true, healthBefore:number(target?.system?.resources?.health?.value), healthAfter:number(target?.system?.resources?.health?.value), applied:0 };
 
@@ -969,9 +969,9 @@ export async function applyHealthDamageAuthoritatively(target, damage) {
     const gm = primaryActiveGm(activeUsers());
     if (!gm) return { ok:false, error:"Se requiere un DJ activo para aplicar daño compartido con seguridad." };
     if (!target?.uuid) return { ok:false, error:"El objetivo no posee UUID para arbitrar su Vida." };
-    return requestPrimaryGm("apply-health-damage", { targetUuid:target.uuid, amount });
+    return requestPrimaryGm("apply-health-damage", { targetUuid:target.uuid, amount, damageMode });
   }
-  return mutateHealth(target, { damage:amount });
+  return mutateHealth(target, { damage:amount, damageMode });
 }
 
 export async function applyHealthHealingAuthoritatively(target, healing) {
@@ -997,7 +997,7 @@ export async function approvePendingDamageAuthoritatively(message) {
     if (!request) return { ok:true, resolved:false, alreadyResolved:true, applied:0 };
     const target = await actorFromUuid(request.targetUuid);
     if (!target) return { ok:false, error:"El objetivo de esta solicitud ya no está disponible." };
-    const result = await applyHealthDamageAuthoritatively(target, request.damage);
+    const result = await applyHealthDamageAuthoritatively(target, request.damage, { damageMode:request.damageMode });
     if (!result.ok) return result;
     await message.setFlag?.("tierra-magica", "pendingDamage", { ...request, resolved:true });
     return { ...result, resolved:true, alreadyResolved:false };

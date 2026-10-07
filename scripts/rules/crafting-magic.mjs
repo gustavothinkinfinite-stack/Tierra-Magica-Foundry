@@ -69,12 +69,12 @@ export const IMPRINTS=Object.freeze({
   runicNeedleI:Object.freeze({key:"runicNeedleI",label:"Aguja Rúnica I",grade:1,cru:1,activation:"linked",manaCost:2,group:"penetration-manufacture",weaponHost:true,effect:Object.freeze({penetrationBonus:1,penetrationMax:3})}),
   runicGuardI:Object.freeze({key:"runicGuardI",label:"Guardia Rúnica I",grade:1,cru:1,activation:"reaction",manaCost:2,group:"barrier-defense",effect:Object.freeze({defenseBonus:1})}),
   runicAnchorI:Object.freeze({key:"runicAnchorI",label:"Ancla Rúnica I",grade:1,cru:1,activation:"reaction",manaCost:1,group:"maneuver-defense",effect:Object.freeze({maneuverDefenseBonus:2})}),
-  thermalWardI:Object.freeze({key:"thermalWardI",label:"Resguardo Térmico I",grade:1,cru:1,activation:"reaction",manaCost:2,group:"thermal-reduction",effect:Object.freeze({thermalDamageReduction:2})}),
+  thermalWardI:Object.freeze({key:"thermalWardI",label:"Resguardo Térmico I",grade:1,cru:1,activation:"reaction",manaCost:2,group:"thermal-reduction",effect:Object.freeze({thermalDamageReduction:2,damageTypes:Object.freeze(["fire","cold"])})}),
   matterSilenceI:Object.freeze({key:"matterSilenceI",label:"Silencio de Materia I",grade:1,cru:1,activation:"action",manaCost:1,group:"silent",effect:Object.freeze({silenceOwnObject:true,duration:"scene"})}),
   craftClarityI:Object.freeze({key:"craftClarityI",label:"Claridad de Oficio I",grade:1,cru:1,activation:"linked",manaCost:2,group:"professional-advantage",effect:Object.freeze({professionalAdvantage:true})}),
   runicBarrierII:Object.freeze({key:"runicBarrierII",label:"Barrera Rúnica II",grade:2,cru:2,activation:"reaction",manaCost:3,group:"barrier-defense",effect:Object.freeze({defenseBonus:2})}),
   penetratingEdgeII:Object.freeze({key:"penetratingEdgeII",label:"Filo Penetrante II",grade:2,cru:2,activation:"linked",manaCost:3,group:"damage-penetration-manufacture",weaponHost:true,effect:Object.freeze({damageBonus:1,penetrationBonus:1,penetrationMax:3})}),
-  thermalWardII:Object.freeze({key:"thermalWardII",label:"Resguardo Térmico II",grade:2,cru:2,activation:"reaction",manaCost:3,group:"thermal-reduction",effect:Object.freeze({thermalDamageReduction:4})}),
+  thermalWardII:Object.freeze({key:"thermalWardII",label:"Resguardo Térmico II",grade:2,cru:2,activation:"reaction",manaCost:3,group:"thermal-reduction",effect:Object.freeze({thermalDamageReduction:4,damageTypes:Object.freeze(["fire","cold"])})}),
   runicStabilityII:Object.freeze({key:"runicStabilityII",label:"Estabilidad Rúnica II",grade:2,cru:2,activation:"reaction",manaCost:2,group:"state-deterioration",effect:Object.freeze({deteriorationStepsReduced:1})}),
   kineticImpulseII:Object.freeze({key:"kineticImpulseII",label:"Impulso Cinético II",grade:2,cru:2,activation:"linked",manaCost:3,group:"kinetic-displacement",weaponHost:true,effect:Object.freeze({displacement:1,maxTargetScaleDelta:0})})
 });

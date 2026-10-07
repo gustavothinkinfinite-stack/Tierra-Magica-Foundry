@@ -3,7 +3,13 @@ import test from "node:test";
 import { offensiveSpellNeedsTargets, resolveSpellImpacts, spellImpact, spellAreaKind, spellTargetMode, uniqueSpellTargets, validateSpellTargets } from "../scripts/rules/spell-impact.mjs";
 
 test("Penetración reduce Protección pero nunca la vuelve negativa", () => {
-  assert.deepEqual(spellImpact({damage:8, penetration:3, protection:5, severeThreshold:6}), {base:8,bonus:0,penetration:3,protection:5,effectiveProtection:2,damage:6,severe:true});
+  const impact=spellImpact({damage:8, penetration:3, protection:5, severeThreshold:6});
+  assert.equal(impact.base,8);
+  assert.equal(impact.effectiveProtection,2);
+  assert.equal(impact.damage,6);
+  assert.equal(impact.damageType,"arcane");
+  assert.equal(impact.damageMode,"lethal");
+  assert.equal(impact.severe,true);
   assert.equal(spellImpact({damage:5, penetration:99, protection:2}).damage, 5);
 });
 
@@ -90,4 +96,15 @@ test("hechizo personal rechaza selección externa", () => {
   const spell={type:"spell",system:{targetMode:"self"}};
   assert.equal(validateSpellTargets(spell,[]).ok,true);
   assert.equal(validateSpellTargets(spell,[{id:"A"}]).reason,"self-target");
+});
+
+
+test("hechizo aplica resistencia del tipo y respeta inmunidad", () => {
+  const resistant={id:"R",system:{derived:{protection:1,severeThreshold:9,damageTraits:{resistances:{fire:2},immunities:[],vulnerabilities:{}}}}};
+  const immune={id:"I",system:{derived:{protection:1,severeThreshold:9,damageTraits:{resistances:{},immunities:["fire"],vulnerabilities:{}}}}};
+  const spell={type:"spell",system:{damage:7,penetration:1,damageType:"fire",damageMode:"lethal"}};
+  assert.equal(resolveSpellImpacts(spell,[resistant])[0].damage,5);
+  const result=resolveSpellImpacts(spell,[immune])[0];
+  assert.equal(result.damage,0);
+  assert.equal(result.immune,true);
 });

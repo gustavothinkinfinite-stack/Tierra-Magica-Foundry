@@ -65,6 +65,15 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     }
     context.isPhysical = PHYSICAL_TYPES.has(this.item.type);
     context.typeLabel = TM_CONFIG.itemTypes[this.item.type] ?? this.item.type;
+    context.hasDamageTraitsEditor = ["ancestry","trait","effect","armor","shield","equipment","device"].includes(this.item.type);
+    const manualDamageTraits = this.item.system.damageTraits ?? {};
+    context.damageTraitRows = Object.entries(TM_CONFIG.damageTypes).map(([id, label]) => ({
+      id,
+      label,
+      resistance: Math.max(0, Number(manualDamageTraits.resistances?.[id]) || 0),
+      immunity: Boolean(manualDamageTraits.immunities?.[id]),
+      vulnerability: Math.max(0, Number(manualDamageTraits.vulnerabilities?.[id]) || 0)
+    }));
     context.priceDisplay = context.isPhysical
       ? this.item.system.priceStatus === "exact"
         ? formatCurrency(this.item.system.priceCopper)

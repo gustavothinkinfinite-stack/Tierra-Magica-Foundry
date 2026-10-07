@@ -262,6 +262,24 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
 
     context.derivedDiagnostics = this.#buildDerivedDiagnostics();
 
+    const manualDamageTraits = this.actor.system.damageTraits ?? {};
+    const derivedDamageTraits = this.actor.system.derived?.damageTraits ?? {};
+    const effectiveImmunities = new Set(
+      Array.isArray(derivedDamageTraits.immunities)
+        ? derivedDamageTraits.immunities
+        : Object.entries(derivedDamageTraits.immunities ?? {}).filter(([, enabled]) => Boolean(enabled)).map(([type]) => type)
+    );
+    context.damageTraitRows = Object.entries(TM_CONFIG.damageTypes).map(([id, label]) => ({
+      id,
+      label,
+      resistance: Math.max(0, toNumber(manualDamageTraits.resistances?.[id])),
+      effectiveResistance: Math.max(0, toNumber(derivedDamageTraits.resistances?.[id])),
+      immunity: Boolean(manualDamageTraits.immunities?.[id]),
+      effectiveImmunity: effectiveImmunities.has(id),
+      vulnerability: Math.max(0, toNumber(manualDamageTraits.vulnerabilities?.[id])),
+      effectiveVulnerability: Math.max(0, toNumber(derivedDamageTraits.vulnerabilities?.[id]))
+    }));
+
     context.familiar = game.actors.find((actor) =>
       actor.type === "familiar" && actor.system.details?.ownerUuid === this.actor.uuid
     ) ?? null;

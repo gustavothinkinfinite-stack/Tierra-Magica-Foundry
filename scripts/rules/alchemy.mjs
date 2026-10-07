@@ -49,7 +49,7 @@ export const ALCHEMY_FORMULAS=Object.freeze({
     ref:"REF-ALQ-08",name:"Bomba Incendiaria",grade:"complex",knowledgePd:2,
     priceCopper:300,materialCopper:150,timeMinutes:480,rank:3,specialization:"Explosivos",installation:"professional",
     route:"Colocación/lanzamiento",activation:"Colocación o lanzamiento",duration:"Instantánea",saturating:false,family:"",
-    effectKind:"contextual"
+    damage:6,damageType:"fire",damageMode:"lethal",penetration:1,effectKind:"contextual"
   })
 });
 

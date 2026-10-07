@@ -4,6 +4,7 @@ import { normalizeSlug } from "./identity.mjs";
 import { resolveActorDefense } from "./defense-context.mjs";
 import { applyHealthDamageAuthoritatively, claimKineticBarrier, canResolveSharedMutation } from "./state-authority.mjs";
 import { pendingDamageRequest } from "./damage-delivery.mjs";
+import { damageTypeLabel } from "./damage-types.mjs";
 
 const number = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -190,7 +191,7 @@ export function installMagicGuards(ActorClass) {
         const canUpdate = impact.actor.canUserModify?.(game.user, "update") ?? impact.actor.isOwner ?? false;
         let delivered = false;
         if (canUpdate) {
-          const delivery = await applyHealthDamageAuthoritatively(impact.actor, impact.damage);
+          const delivery = await applyHealthDamageAuthoritatively(impact.actor, impact.damage, { damageMode:impact.damageMode });
           delivered = delivery.ok;
           if (!delivery.ok) ui.notifications.warn(delivery.error);
         }
@@ -198,14 +199,21 @@ export function installMagicGuards(ActorClass) {
           targetUuid: impact.actor.uuid,
           damage: impact.damage,
           source: item.name,
-          attacker: this.name
+          attacker: this.name,
+          damageType: impact.damageType,
+          damageMode: impact.damageMode
         }) : null;
         if (request) pending.push({ impact, request });
         applied.push({ ...impact, applied: delivered, pending: Boolean(request) });
       }
       const rows = applied.map((impact) =>
         "<p><strong>" + foundry.utils.escapeHTML(impact.actor.name) + "</strong>: " + impact.damage +
-        " daño (Protección " + impact.protection + ", efectiva " + impact.effectiveProtection + ")" +
+        " daño " + foundry.utils.escapeHTML(damageTypeLabel(impact.damageType, globalThis.CONFIG?.TM?.damageTypes)) +
+        (impact.damageMode === "nonlethal" ? " · No letal" : "") +
+        " (Protección " + impact.protection + ", efectiva " + impact.effectiveProtection + ")" +
+        (impact.resistance ? " · Resistencia -" + impact.resistance : "") +
+        (impact.vulnerability ? " · Vulnerabilidad +" + impact.vulnerability : "") +
+        (impact.immune ? " · Inmunidad" : "") +
         (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") +
         (impact.pending ? " · <em>pendiente de aprobación del DJ</em>" : "") + "</p>"
       ).join("");
@@ -221,7 +229,8 @@ export function installMagicGuards(ActorClass) {
           flags: { "tierra-magica": { pendingDamage: request } },
           content: "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(item.name) +
             " — aprobación de daño</strong><p>" + foundry.utils.escapeHTML(impact.actor.name) +
-            ": " + impact.damage + " daño pendiente de aprobación del DJ.</p></div>"
+            ": " + impact.damage + " daño " + foundry.utils.escapeHTML(damageTypeLabel(impact.damageType, globalThis.CONFIG?.TM?.damageTypes)) +
+            (impact.damageMode === "nonlethal" ? " · No letal" : "") + " pendiente de aprobación del DJ.</p></div>"
         });
       }
     }

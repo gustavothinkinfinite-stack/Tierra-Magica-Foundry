@@ -56,7 +56,7 @@ test("la ficha usa una ruta atómica y no ofrece un segundo botón explotable de
   const sheetSource = await readFile(new URL("../templates/actor/parts/item-section.hbs", import.meta.url), "utf8");
   assert.equal(actorSource.includes("uniqueTargets.length !== 1"), true);
   assert.equal(actorSource.includes("attackHits(total, targetDf)"), true);
-  assert.equal(actorSource.includes("applyHealthDamageAuthoritatively(target, impact.damage)"), true);
+  assert.equal(actorSource.includes("applyHealthDamageAuthoritatively(target, impact.damage, { damageMode:impact.damageMode })"), true);
   assert.equal(actorSource.includes("El daño físico se resuelve únicamente como parte del ataque"), true);
   assert.equal(sheetSource.includes('data-action="item-damage"'), false);
 });
@@ -139,4 +139,28 @@ test("impacto físico acepta Protección contextual sin convertirla en universal
   const w=weapon({damage:5,penetration:0});
   assert.equal(resolveWeaponImpact(w,actor(),target).protection,1);
   assert.equal(resolveWeaponImpact(w,actor(),target,{protectionContext:{alteredSkinCompatible:true}}).protection,2);
+});
+
+
+test("resistencia tipada se aplica después de Protección y no reduce otros tipos", () => {
+  const target=actor({}, { protection:2, severeThreshold:9, damageTraits:{resistances:{fire:3},immunities:[],vulnerabilities:{}} });
+  const fire=weapon({damage:8,penetration:0,damageType:"fire",damageMode:"lethal"});
+  const cold=weapon({damage:8,penetration:0,damageType:"cold",damageMode:"lethal"});
+  const fireImpact=resolveWeaponImpact(fire,actor(),target);
+  const coldImpact=resolveWeaponImpact(cold,actor(),target);
+  assert.equal(fireImpact.postProtectionDamage,6);
+  assert.equal(fireImpact.resistance,3);
+  assert.equal(fireImpact.damage,3);
+  assert.equal(coldImpact.damage,6);
+});
+
+test("daño no letal conserva daño pero nunca activa Daño Grave", () => {
+  const result=resolveWeaponImpact(
+    weapon({damage:12,damageType:"bludgeoning",damageMode:"nonlethal"}),
+    actor(),
+    actor({}, {protection:0,severeThreshold:5})
+  );
+  assert.equal(result.damage,12);
+  assert.equal(result.damageMode,"nonlethal");
+  assert.equal(result.severe,false);
 });

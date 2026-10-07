@@ -2743,6 +2743,45 @@ El procedimiento es:
 
 La Penetración nunca vuelve negativa la Protección. Si la Protección efectiva reduce el daño a 0, el impacto causa 0 daño salvo regla expresa.
 
+### Tipos de daño, resistencias y daño no letal
+
+Todo efecto que cause daño posee un **Tipo de Daño** y un **Modo de Daño**. El tipo describe qué clase de agresión recibe el objetivo; el modo determina si esa pérdida de Vida puede producir las consecuencias ordinarias de una lesión letal.
+
+La taxonomía canónica inicial es:
+
+| Tipo | Familia / referencia |
+|---|---|
+| **Cortante** | filos, tajos y cortes físicos. |
+| **Perforante** | puntas, proyectiles, estocadas y penetraciones físicas. |
+| **Contundente** | golpes, aplastamiento e impactos físicos. |
+| **Fuego** | combustión, llama y calor dañino. |
+| **Frío / Hielo** | congelación, frío dañino y efectos gélidos. |
+| **Eléctrico** | descarga y efectos fulminantes. |
+| **Cinético** | fuerza, choque o impulso energético que no depende de un filo o proyectil material. |
+| **Arcano** | energía mágica dañina sin otro tipo más específico. |
+| **Divino** | daño expresamente declarado como manifestación divina. |
+| **Tóxico** | daño producido por toxinas o venenos cuando una regla lo expresa como pérdida de Vida. |
+| **Corrosivo** | ácidos, corrosión y degradación química dañina. |
+| **Especial** | categoría de reserva para una fuente que no encaja todavía en otra entrada. |
+
+**Fuente mágica y Tipo de Daño son conceptos distintos.** Utilizar la Fuente Divina no convierte automáticamente un efecto en daño Divino; un milagro de fuego puede causar Fuego y un efecto de Fuente Alma puede causar Arcano, Cinético u otro tipo si su entrada así lo declara.
+
+El orden de mitigación es:
+
+1. calcula el daño bruto;
+2. calcula **Protección efectiva = max(0, Protección - Penetración)**;
+3. resta la Protección efectiva cuando corresponda;
+4. si existe **Inmunidad** al tipo, el daño final es 0;
+5. si no existe Inmunidad, aplica **Resistencia** y **Vulnerabilidad** de ese tipo:  
+   **Daño final = max(0, daño tras Protección + Vulnerabilidad - Resistencia)**;
+6. aplica Vida y consecuencias.
+
+La **Penetración sólo reduce Protección**; no reduce Resistencia. Varias Resistencias del mismo tipo no se suman: se utiliza la mayor. Varias Vulnerabilidades equivalentes tampoco se suman: se utiliza la mayor. La Inmunidad prevalece sobre Resistencia y Vulnerabilidad.
+
+Foundry puede registrar tipos personalizados para una campaña. Esa capacidad es una extensión operativa: **un tipo personalizado no pasa a ser canon de Tierra Mágica hasta quedar definido en este Manual**.
+
+El **Modo No letal** no es un tipo de daño ni puede poseer una Resistencia propia. Un ataque puede ser, por ejemplo, **Contundente + No letal**. El daño no letal reduce Vida normalmente y puede llevar a 0 Vida e Incapacitado, pero esa caída no aumenta Trauma y ese impacto no activa por sí solo el umbral de Daño Grave, una Herida Grave o Sangrado. Una capacidad puede establecer una excepción expresa.
+
 ### Defensas: qué representan y cuándo se usan
 
 En la mayoría de los ataques el defensor **no hace una tirada defensiva separada**. El atacante tira contra una Defensa estática.
@@ -3509,7 +3548,7 @@ Trauma 0: Sin Trauma. Trauma 1: Grave. Trauma 2: Crítico. Trauma 3: Terminal. T
 
 Una **Herida Grave** es una lesión concreta; Trauma representa deterioro sistémico. No son lo mismo. Varias Heridas Graves no aumentan automáticamente Trauma. Una Herida Grave puede surgir por una capacidad explícita, una Hazaña apropiada con daño significativo, un impacto que alcance el umbral cuando la naturaleza del golpe lo justifique o una lesión severa evidente. Un único impacto normalmente produce como máximo una Herida Grave.
 
-Estados de una Herida Grave: **Activa -> Controlada -> Tratada -> Recuperada**. Tipos de daño de referencia: Cortante, Perforante, Contundente, Térmico y Especial.
+Estados de una Herida Grave: **Activa -> Controlada -> Tratada -> Recuperada**. La naturaleza de la lesión toma como referencia el Tipo de Daño que produjo el impacto. La antigua categoría genérica **Térmico** queda sustituida por los tipos separados **Fuego** y **Frío / Hielo**.
 
 Sangrado ordinario causa 1 Vida al final del turno. Sangrado Grave 2 sólo aparece cuando una regla o lesión lo establece. Si varias fuentes se solapan, normalmente se aplica la más fuerte y no se suman indefinidamente.
 
@@ -3788,11 +3827,13 @@ Los hechizos con daño utilizan las mismas reglas generales de daño físico cua
 
 **Protección efectiva = max(0, Protección - Penetración).**
 
-**Daño final = max(0, daño base + bonos permitidos - Protección efectiva).**
+**Daño tras Protección = max(0, daño base + bonos permitidos - Protección efectiva).**
+
+Después se aplican Inmunidad, Resistencia y Vulnerabilidad del **Tipo de Daño** exactamente igual que en cualquier otro impacto. El hechizo especifica su Tipo de Daño y Modo; usar magia no crea por sí mismo un tipo universal «Mágico».
 
 El hechizo especifica si añade algún Atributo al daño. No se añade uno por defecto sólo porque la tirada haya usado INT, PRE, PER u otro Atributo.
 
-La Penetración nunca vuelve negativa la Protección.
+La Penetración nunca vuelve negativa la Protección ni reduce Resistencia.
 
 ### Curación mágica
 
@@ -4334,7 +4375,7 @@ Esto impide multiplicar resistencias, daño o recuperación apilando físicament
 | Supresor del Dolor | Refinada | 8 p | Analgésica | Ignora una Desventaja causada por dolor compatible; no repara lesión. |
 | Neutralizante Común | Refinada | 1 o | Antitóxica | Nueva resistencia con Ventaja contra una toxina compatible. |
 | Toxina Debilitante | Compleja | 1 o 5 p | Sangre | VIG DF14; fallo: Desventaja en acciones físicas dependientes de fuerza muscular. |
-| Bomba Incendiaria | Compleja | 3 o | — | Área pequeña, Daño 6, Pen 1; requiere colocación válida. |
+| Bomba Incendiaria | Compleja | 3 o | — | Área pequeña, Daño 6 de Fuego, Pen 1; requiere colocación válida. |
 
 Un veneno define Vía, Latencia, DF, Efecto y Duración. Normalmente concede una resistencia y no exige pruebas repetidas sin cambio. Aplicar veneno a un arma requiere preparación/Acción apropiada y la primera aplicación válida consume la dosis.
 
@@ -6131,7 +6172,7 @@ Una preparación alquímica o explosiva puede integrarse si existe físicamente 
 
 Al activarse utiliza **exactamente su efecto normal**.
 
-Ejemplo: una Bomba Incendiaria mantiene **área pequeña, Daño 6, Pen 1**. El Armazón no aumenta Daño, Pen ni área.
+Ejemplo: una Bomba Incendiaria mantiene **área pequeña, Daño 6 de Fuego, Pen 1**. El Armazón no aumenta Daño, Pen ni área.
 
 Si la carga ya define resistencia, ataque, colocación u otra resolución, se utiliza esa regla. No se añade una segunda prueba defensiva genérica sólo porque esté dentro de una trampa.
 
@@ -6830,7 +6871,7 @@ Reglas universales:
 ##### Resguardo Térmico I
 
 - **Compatibilidad:** armadura, escudo o equipo corporal preparado.
-- **Activación:** Reacción cuando el usuario va a recibir daño Térmico.
+- **Activación:** Reacción cuando el usuario va a recibir daño de **Fuego** o **Frío / Hielo**.
 - **Coste:** 2 Maná.
 - **Efecto:** después de la mitigación ordinaria, reduce el daño final en **2**, mínimo 0.
 - **Apilamiento:** no se acumula con otra reducción rúnica/mágica equivalente; se aplica la mejor.
@@ -6875,7 +6916,7 @@ Reglas universales:
 ##### Resguardo Térmico II
 
 - **Compatibilidad:** armadura, escudo o equipo corporal preparado.
-- **Activación:** Reacción cuando el usuario va a recibir daño Térmico.
+- **Activación:** Reacción cuando el usuario va a recibir daño de **Fuego** o **Frío / Hielo**.
 - **Coste:** 3 Maná.
 - **Efecto:** después de la mitigación ordinaria, reduce el daño final en **4**, mínimo 0.
 - **Apilamiento:** reemplaza, no suma, Resguardo Térmico I u otra reducción equivalente.
@@ -7262,7 +7303,7 @@ Ejemplos:
 
 - **Seco:** el objeto repele lluvia ordinaria y humedad superficial.
 - **Pulcro:** suciedad ordinaria no se adhiere de forma persistente.
-- **Templado:** mantiene una temperatura de uso confortable en clima ordinario; no protege contra daño Térmico.
+- **Templado:** mantiene una temperatura de uso confortable en clima ordinario; no protege contra daño de Fuego ni Frío / Hielo.
 - **Luz de Cortesía:** emite o apaga una luz tenue utilitaria; no equivale a una fuente táctica intensa ni revela magia.
 - **Croma:** cambia entre una paleta de colores o motivos predefinidos.
 

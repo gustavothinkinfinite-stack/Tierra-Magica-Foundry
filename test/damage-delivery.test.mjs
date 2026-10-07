@@ -7,9 +7,10 @@ test("una solicitud de daño pendiente sólo acepta objetivo y daño positivos",
   assert.equal(pendingDamageRequest({ targetUuid: "", damage: 4 }), null);
   assert.equal(pendingDamageRequest({ targetUuid: "Actor.X", damage: 0 }), null);
   assert.equal(pendingDamageRequest({ targetUuid: "Actor.X", damage: -5 }), null);
-  const request = pendingDamageRequest({ targetUuid: "Actor.X", damage: 7, source: "Espada", attacker: "Heroína" });
+  const request = pendingDamageRequest({ targetUuid: "Actor.X", damage: 7, source: "Espada", attacker: "Heroína", damageType:"slashing", damageMode:"nonlethal" });
   assert.deepEqual(request, {
-    targetUuid: "Actor.X", damage: 7, source: "Espada", attacker: "Heroína", resolved: false
+    targetUuid: "Actor.X", damage: 7, source: "Espada", attacker: "Heroína",
+    damageType:"slashing", damageMode:"nonlethal", resolved: false
   });
 });
 

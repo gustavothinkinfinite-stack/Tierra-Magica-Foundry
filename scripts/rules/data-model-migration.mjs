@@ -1,6 +1,6 @@
 import { normalizeSlug } from "./identity.mjs";
 
-export const TM_SCHEMA_VERSION = 5;
+export const TM_SCHEMA_VERSION = 6;
 
 const SPELL_PD = Object.freeze({ trick: 1, minor: 1, basic: 2, advanced: 3, master: 5, legendary: 8 });
 const TECHNIQUE_PD = Object.freeze({ basic: 2, advanced: 3, master: 5, legendary: 8 });
@@ -32,6 +32,16 @@ function manualModifier(id, selector, value, label) {
 
 function migrateActorSourceV2(actor) {
   const system = actor.system ??= {};
+  system.damageTraits = system.damageTraits && typeof system.damageTraits === "object" && !Array.isArray(system.damageTraits)
+    ? system.damageTraits
+    : { resistances:{}, immunities:[], vulnerabilities:{} };
+  system.damageTraits.resistances = system.damageTraits.resistances && typeof system.damageTraits.resistances === "object" && !Array.isArray(system.damageTraits.resistances) ? system.damageTraits.resistances : {};
+  if (Array.isArray(system.damageTraits.immunities)) {
+    system.damageTraits.immunities = Object.fromEntries(system.damageTraits.immunities.map((type) => [String(type), true]));
+  } else if (!system.damageTraits.immunities || typeof system.damageTraits.immunities !== "object") {
+    system.damageTraits.immunities = {};
+  }
+  system.damageTraits.vulnerabilities = system.damageTraits.vulnerabilities && typeof system.damageTraits.vulnerabilities === "object" && !Array.isArray(system.damageTraits.vulnerabilities) ? system.damageTraits.vulnerabilities : {};
   const combat = system.combat ??= {};
   const legacyMovementBonus = number(combat.movementBonus);
   const familiarMovement = actor.type === "familiar" ? number(system.familiar?.movement, 6) : 6;
@@ -187,6 +197,50 @@ function migrateItemSourceV5(item) {
       system.effect = "Abre un paso espacial local a través de una barrera continua de hasta 2 espacios de espesor. Una criatura voluntaria puede atravesarlo una vez antes de que se cierre; no conecta Anclas ni crea un Portal persistente.";
     }
   }
+  system.schemaVersion = 5;
+  return item;
+}
+
+function inferWeaponDamageType(item) {
+  const slug = normalizeSlug(item?.system?.slug || item?.name);
+  if (/(maza|martillo|garrote|porra|contund|mazo)/.test(slug)) return "bludgeoning";
+  if (/(daga|lanza|pica|arco|ballesta|pistola|rifle|fusil|mosquete|arcabuz|aguja|arpon)/.test(slug)) return "piercing";
+  if (/(espada|sable|hacha|mandoble|alabarda|cuchilla|filo)/.test(slug)) return "slashing";
+  return "special";
+}
+
+function inferSpellDamageType(item) {
+  const slug = normalizeSlug(item?.system?.slug || item?.name);
+  const explicit = {
+    "proyectil-igneo":"fire",
+    "aguja-gelida":"cold",
+    "arco-fulminante":"lightning",
+    "onda-de-choque":"kinetic",
+    "martillo-cinetico":"kinetic",
+    "rayo-de-ruptura":"arcane",
+    "tormenta-arcana":"arcane"
+  };
+  return explicit[slug] ?? "arcane";
+}
+
+function migrateItemSourceV6(item) {
+  const system = item.system ??= {};
+  if (item.type === "weapon") {
+    if (!String(system.damageType ?? "").trim()) system.damageType = inferWeaponDamageType(item);
+    if (!["lethal","nonlethal"].includes(String(system.damageMode ?? "").toLowerCase())) system.damageMode = "lethal";
+  }
+  if (item.type === "spell") {
+    if (!String(system.damageType ?? "").trim()) system.damageType = inferSpellDamageType(item);
+    if (!["lethal","nonlethal"].includes(String(system.damageMode ?? "").toLowerCase())) system.damageMode = "lethal";
+  }
+  if (item.type === "formula" && Math.max(0, number(system.damage)) > 0) {
+    if (!String(system.damageType ?? "").trim()) system.damageType = normalizeSlug(system.slug || item.name) === "bomba-incendiaria" ? "fire" : "special";
+    if (!["lethal","nonlethal"].includes(String(system.damageMode ?? "").toLowerCase())) system.damageMode = "lethal";
+  }
+  if (system.trap?.load && typeof system.trap.load === "object") {
+    if (!String(system.trap.load.damageType ?? "").trim()) system.trap.load.damageType = "special";
+    if (!["lethal","nonlethal"].includes(String(system.trap.load.damageMode ?? "").toLowerCase())) system.trap.load.damageMode = "lethal";
+  }
   system.schemaVersion = TM_SCHEMA_VERSION;
   return item;
 }
@@ -216,9 +270,10 @@ export function migrateItemSource(source, { embedded = false } = {}) {
   const system = item.system;
   const currentVersion = number(system.schemaVersion);
   if (currentVersion >= TM_SCHEMA_VERSION) return item;
-  if (currentVersion >= 4) return migrateItemSourceV5(item);
-  if (currentVersion >= 3) return migrateItemSourceV5(migrateItemSourceV4(item));
-  if (currentVersion >= 1) return migrateItemSourceV5(migrateItemSourceV4(migrateItemSourceV3(item)));
+  if (currentVersion >= 5) return migrateItemSourceV6(item);
+  if (currentVersion >= 4) return migrateItemSourceV6(migrateItemSourceV5(item));
+  if (currentVersion >= 3) return migrateItemSourceV6(migrateItemSourceV5(migrateItemSourceV4(item)));
+  if (currentVersion >= 1) return migrateItemSourceV6(migrateItemSourceV5(migrateItemSourceV4(migrateItemSourceV3(item))));
 
   const oldRequirements = typeof system.requirements === "string" ? system.requirements : "";
   const oldSkillRequirements = clone(system.skillRequirements ?? []);
@@ -244,7 +299,7 @@ export function migrateItemSource(source, { embedded = false } = {}) {
   system.legacy ??= {};
   if (oldSkillRequirements.length) system.legacy.skillRequirements = oldSkillRequirements;
   if (oldSkillModifiers.length) system.legacy.skillModifiers = oldSkillModifiers;
-  return migrateItemSourceV5(migrateItemSourceV4(migrateItemSourceV3(item)));
+  return migrateItemSourceV6(migrateItemSourceV5(migrateItemSourceV4(migrateItemSourceV3(item))));
 }
 
 export function migrateActorSource(source) {

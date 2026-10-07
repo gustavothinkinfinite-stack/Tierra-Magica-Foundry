@@ -13,6 +13,19 @@
     </div>
   </section>
 
+  {{#if hasDamageTraitsEditor}}
+  <section class="tm-panel tm-item-fields">
+    <div class="tm-section-heading"><h2>Resistencias que concede</h2><span>Fuente estructurada</span></div>
+    <div class="tm-form-grid">
+      {{#each damageTraitRows as |row|}}
+        <label><span>{{row.label}} · Resistencia</span><input type="number" min="0" name="system.damageTraits.resistances.{{row.id}}" value="{{row.resistance}}" /></label>
+        <label class="tm-check"><span>{{row.label}} · Inmunidad</span><input type="checkbox" name="system.damageTraits.immunities.{{row.id}}" {{checked row.immunity}} /></label>
+        <label><span>{{row.label}} · Vulnerabilidad</span><input type="number" min="0" name="system.damageTraits.vulnerabilities.{{row.id}}" value="{{row.vulnerability}}" /></label>
+      {{/each}}
+    </div>
+  </section>
+  {{/if}}
+
   <section class="tm-panel tm-item-fields">
     <div class="tm-form-grid">
       {{#if isWeapon}}
@@ -20,6 +33,8 @@
         <label><span>Atributo de ataque</span><select name="system.attackAttribute">{{selectOptions config.attributes selected=system.attackAttribute}}</select></label>
         <label><span>Atributo al daño</span><select name="system.damageAttribute"><option value="">Ninguno</option>{{selectOptions config.attributes selected=system.damageAttribute}}</select></label>
         <label><span>Daño base</span><input type="number" name="system.damage" value="{{system.damage}}" min="0" /></label>
+        <label><span>Tipo de daño</span><select name="system.damageType">{{selectOptions config.damageTypes selected=system.damageType}}</select></label>
+        <label><span>Modo</span><select name="system.damageMode">{{selectOptions config.damageModes selected=system.damageMode}}</select></label>
         <label><span>Penetración</span><input type="number" name="system.penetration" value="{{system.penetration}}" min="0" /></label>
         <label><span>FUE mínima</span><input type="number" name="system.strengthMin" value="{{system.strengthMin}}" min="0" /></label>
         <label><span>Alcance óptimo (esp.)</span><input type="number" name="system.rangeOptimal" value="{{system.rangeOptimal}}" min="0" /></label>
@@ -56,6 +71,8 @@
         </select></label>
         <label><span>DF</span><input type="number" name="system.difficulty" value="{{system.difficulty}}" /></label>
         <label><span>Daño</span><input type="number" name="system.damage" value="{{system.damage}}" min="0" /></label>
+        <label><span>Tipo de daño</span><select name="system.damageType">{{selectOptions config.damageTypes selected=system.damageType}}</select></label>
+        <label><span>Modo</span><select name="system.damageMode">{{selectOptions config.damageModes selected=system.damageMode}}</select></label>
         <label><span>Penetración</span><input type="number" name="system.penetration" value="{{system.penetration}}" min="0" /></label>
         <label><span>Alcance</span><input type="text" name="system.range" value="{{system.range}}" /></label>
         <label><span>Objetivos</span><select name="system.targetMode">
@@ -104,6 +121,10 @@
         <label class="tm-check"><span>Saturante</span><input type="checkbox" name="system.saturating" {{checked system.saturating}} /></label>
         <label><span>Efecto</span><input type="text" name="system.effect" value="{{system.effect}}" /></label>
         <label><span>Conservación</span><input type="text" name="system.preservation" value="{{system.preservation}}" /></label>
+        <label><span>Daño</span><input type="number" min="0" name="system.damage" value="{{system.damage}}" /></label>
+        <label><span>Tipo de daño</span><select name="system.damageType">{{selectOptions config.damageTypes selected=system.damageType}}</select></label>
+        <label><span>Modo</span><select name="system.damageMode">{{selectOptions config.damageModes selected=system.damageMode}}</select></label>
+        <label><span>Penetración</span><input type="number" min="0" name="system.penetration" value="{{system.penetration}}" /></label>
       {{/if}}
 
       {{#if isRitual}}

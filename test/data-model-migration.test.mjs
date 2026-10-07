@@ -202,3 +202,19 @@ test("Terio histórico conserva Escala ya elegida al incorporar ChoiceSet",()=>{
   const updates=ancestryProfileUpdates(source,catalog,{actorSize:"small"});
   assert.equal(updates["system.choices"].scale,"small");
 });
+
+
+test("schema v5 migra tipos de daño, modos y resistencias de Actor a v6",()=>{
+  const fire=migrateItemSource({name:"Proyectil Ígneo",type:"spell",system:{schemaVersion:5,slug:"proyectil-igneo",damage:6}},{embedded:true});
+  assert.equal(fire.system.schemaVersion,TM_SCHEMA_VERSION);
+  assert.equal(fire.system.damageType,"fire");
+  assert.equal(fire.system.damageMode,"lethal");
+
+  const mace=migrateItemSource({name:"Maza",type:"weapon",system:{schemaVersion:5,slug:"maza",damage:5}},{embedded:true});
+  assert.equal(mace.system.damageType,"bludgeoning");
+  assert.equal(mace.system.damageMode,"lethal");
+
+  const actor=migrateActorSource({type:"character",system:{schemaVersion:5,combat:{},turn:{},movement:{base:6}}});
+  assert.equal(actor.system.schemaVersion,TM_SCHEMA_VERSION);
+  assert.deepEqual(actor.system.damageTraits,{resistances:{},immunities:{},vulnerabilities:{}});
+});
