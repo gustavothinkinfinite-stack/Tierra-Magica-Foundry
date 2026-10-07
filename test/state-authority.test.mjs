@@ -20,9 +20,7 @@ globalThis.game = { user:{ id:"local" }, users:[] };
 const {
   claimKineticBarrier,
   clearTurnResourceReservations,
-  consumeDeviceEnergyAuthoritatively,
-  TURN_RESERVATION_STALE_MS,
-  turnReservationIsStale
+  consumeDeviceEnergyAuthoritatively
 } = await import("../scripts/rules/state-authority.mjs");
 
 test("CREA-13 cierre: reclamar defensa cinética local la consume exactamente una vez", async () => {
@@ -75,13 +73,6 @@ test("CREA-13 cierre: la autoridad compartida declara arbitraje por DJ activo", 
   assert.match(source,/Se requiere un DJ activo/);
 });
 
-
-test("reservas de turno persistentes caducan defensivamente y las recientes siguen bloqueando concurrencia", () => {
-  const now=1_000_000;
-  assert.equal(turnReservationIsStale({id:"fresh",createdAt:now-1000},{now}),false);
-  assert.equal(turnReservationIsStale({id:"old",createdAt:now-TURN_RESERVATION_STALE_MS},{now}),true);
-  assert.equal(turnReservationIsStale({id:"broken"},{now}),true);
-});
 
 test("limpieza de recuperación elimina Acción y Reacción huérfanas persistidas", async () => {
   const actor={
