@@ -1,6 +1,6 @@
 # CIUDADES PRINCIPALES DE TIERRA MÁGICA — VERSIÓN COMPACTA PARA MANUAL v1.0
 
-**Estado:** AUDITADO — CANDIDATO EDITORIAL PARA APROBACIÓN CANÓNICA.  
+**Estado:** BASE URBANA CANONIZADA — MANUSCRITO EDITORIAL EN REVISIÓN. Los nombres propios, acontecimientos, lugares secundarios y cuestiones cartográficas marcados como provisionales continúan sin canonizar.  
 **Objetivo:** presentar cada ciudad principal en aproximadamente 1–2 páginas de manual.  
 **Regla:** los elementos ya establecidos por canon conservan ese estado; cifras, sobrenombres, instituciones secundarias, lugares propuestos y detalles nuevos siguen siendo PROVISIONALES hasta aprobación explícita. Los nombres de personalidades que aún no existen en canon se mantienen POR DEFINIR para no fijarlos accidentalmente.
 
