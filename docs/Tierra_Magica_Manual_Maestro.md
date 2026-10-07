@@ -11164,7 +11164,7 @@ Aurea representa aquello que seres conscientes deciden **mantener vivo, protegid
 
 Su fuego no debe confundirse con el principio elemental de Khorun. La Llama de Aurea es principalmente el **fuego sostenido**: hogar, lámpara, brasero, horno, faro, fogón o fuego de campamento cuya continuidad depende de alguien que lo cuide.
 
-> **Símbolo religioso — geometría aprobada:** **La Llama Custodiada** (`SYM-DIV-AUREA-001`). Su geometría vectorial es inmutable y está especificada en `docs/visual/SIMBOLOS_CANONICOS.md`; la cromática, variantes y pruebas finales permanecen pendientes antes de elevar la ficha completa a CANON v1.0.
+> **Símbolo religioso — geometría y cromática aprobadas:** **La Llama Custodiada** (`SYM-DIV-AUREA-001`). Su geometría vectorial y su cromática formal —Oro Aureano, Azul Custodio y Marfil del Reencendido, con Ámbar de Resplandor reservado a iluminación contextual— son inmutables y están especificadas en `docs/visual/SIMBOLOS_CANONICOS.md`. La reducción, escalas mínimas, área de protección y pruebas finales permanecen pendientes antes de elevar la ficha completa a CANON v1.0.
 
 ### El Primer Reencendido
 
@@ -12223,7 +12223,7 @@ Las deidades pueden actuar como **Fuente Divina** para personajes con un Víncul
 
 ### Estado pendiente de símbolos
 
-Los símbolos religiosos de las Luminarias se desarrollan mediante el estándar común del registro técnico. **Aurea ya posee geometría aprobada para La Llama Custodiada**, mientras que Nemor, Oria, Vael y Selene continúan sin símbolo doctrinal fijado. La ficha completa de Aurea aún requiere cromática, variantes y pruebas antes de alcanzar CANON v1.0.
+Los símbolos religiosos de las Luminarias se desarrollan mediante el estándar común del registro técnico. **Aurea ya posee geometría y cromática aprobadas para La Llama Custodiada**, mientras que Nemor, Oria, Vael y Selene continúan sin símbolo doctrinal fijado. La ficha completa de Aurea aún requiere reducción, escalas mínimas, área de protección y pruebas contextuales antes de alcanzar CANON v1.0.
 
 La estructura obligatoria para diseñarlos y reproducirlos es el **Estándar Universal de Símbolos Canónicos** definido en `docs/visual/SIMBOLOS_CANONICOS.md`. Cada símbolo sólo pasará a CANON cuando su ficha complete geometría, reconocimiento, color, variantes, pruebas y activo maestro conforme a ese estándar.
 

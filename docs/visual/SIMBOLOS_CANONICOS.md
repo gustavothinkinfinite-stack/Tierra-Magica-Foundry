@@ -647,15 +647,16 @@ El registro contiene fichas en distintos estados. Sólo las marcadas **CANON** h
 
 ### Identidad
 
-**ID canónico:** \`SYM-DIV-AUREA-001\`  
+**ID canónico:** `SYM-DIV-AUREA-001`  
 **Entidad:** Aurea, la Llama  
 **Nombre del símbolo:** La Llama Custodiada  
 **Tipo:** DIV — deidad / símbolo religioso  
-**Estado:** **PROVISIONAL — GEOMETRÍA APROBADA E INMUTABLE**  
-**Versión:** v0.2  
+**Estado:** **PROVISIONAL — GEOMETRÍA Y CROMÁTICA APROBADAS E INMUTABLES**  
+**Versión:** v0.3  
 **Fecha de aprobación geométrica:** 2026-10-07  
+**Fecha de aprobación cromática:** 2026-10-07  
 
-La ficha permanece PROVISIONAL únicamente porque todavía faltan cerrar cromática, variante invertida/reducida, tamaños mínimos, área de protección y las pruebas contextuales exigidas por este estándar. Esos pendientes no autorizan a modificar la geometría aprobada.
+La ficha permanece PROVISIONAL únicamente porque todavía faltan cerrar la versión reducida, tamaños mínimos, área de protección y las pruebas contextuales exigidas por este estándar. Esos pendientes no autorizan a modificar la geometría ni la cromática aprobadas.
 
 ### Concepto
 
@@ -678,7 +679,7 @@ La ficha permanece PROVISIONAL únicamente porque todavía faltan cerrar cromát
 
 **Trayectorias maestras exactas:**
 
-\`\`\`svg
+```svg
 <!-- brazo izquierdo -->
 <path d="M420 850 C405 815 380 775 340 740 C285 692 255 630 248 565 C242 500 265 425 305 335 C314 315 325 321 322 350 C312 415 300 470 306 520 C314 585 346 635 391 675 C426 706 446 740 440 783 C436 812 430 837 420 850 Z"/>
 
@@ -687,7 +688,7 @@ La ficha permanece PROVISIONAL únicamente porque todavía faltan cerrar cromát
 
 <!-- llama central + vacío interior; fill-rule="evenodd" -->
 <path fill-rule="evenodd" d="M500 775 C478 735 440 700 405 665 C360 620 345 560 365 500 C385 440 430 390 470 340 C510 290 535 245 520 150 C566 181 600 225 610 280 C620 340 590 380 590 410 C590 455 615 470 630 405 C665 455 675 520 655 585 C635 645 585 690 545 730 C525 750 510 770 500 775 Z M500 430 C530 470 538 515 530 565 C523 607 510 635 500 645 C477 628 463 598 460 555 C457 510 470 465 500 430 Z"/>
-\`\`\`
+```
 
 Estas trayectorias son normativas. Una reconstrucción vectorial no debe reinterpretarlas.
 
@@ -723,12 +724,35 @@ Los valores exactos de contorno están definidos por las trayectorias SVG maestr
 
 ### Color
 
-**Colores canónicos:** PENDIENTE.  
-**Jerarquía cromática:** PENDIENTE.  
-**Versión monocroma:** la geometría aprobada puede representarse temporalmente como masa negra sobre fondo claro únicamente para construcción, prueba y documentación.  
-**Versión invertida:** PENDIENTE.
+La cromática formal de **La Llama Custodiada** queda aprobada y no puede alterarse sin revisión explícita.
 
-La aprobación geométrica no canoniza negro como color litúrgico de Aurea.
+| Nombre | Función | HEX | RGB |
+|---|---|---|---|
+| **Oro Aureano** | color principal del símbolo | `#D9A14A` | 217, 161, 74 |
+| **Azul Custodio** | campo oscuro principal y alternativa del símbolo | `#202A46` | 32, 42, 70 |
+| **Marfil del Reencendido** | campo claro e inversión | `#F3E7CF` | 243, 231, 207 |
+| **Ámbar de Resplandor** | iluminación contextual exclusivamente | `#FFD98A` | 255, 217, 138 |
+
+**Jerarquía cromática oficial:**
+
+1. **Principal:** símbolo completo en Oro Aureano sobre Azul Custodio.
+2. **Campo claro:** símbolo completo en Azul Custodio sobre Marfil del Reencendido.
+3. **Invertida:** símbolo completo en Marfil del Reencendido sobre Azul Custodio.
+
+La llama y los brazos de custodia utilizan siempre el mismo color dentro de una versión formal. Queda prohibida la separación cromática interna entre esos componentes.
+
+**Versión monocroma:** masa sólida negra sobre fondo claro o masa sólida blanca/marfil sobre fondo oscuro. No utiliza grises para diferenciar componentes. Los espacios negativos siguen siendo vacíos reales.
+
+**Versión invertida autorizada:** Marfil del Reencendido sobre Azul Custodio.
+
+**Ámbar de Resplandor:** no forma parte de la geometría ni de la marca plana. Sólo puede usarse como halo o emisión luminosa contextual cuando la representación realmente emite luz. No puede rellenar espacios negativos ni modificar el contorno.
+
+**Gradientes en marca formal:** prohibidos.  
+**Sombras en marca formal:** prohibidas.  
+**Textura metálica incorporada al SVG formal:** prohibida.  
+**Dependencia cromática para reconocimiento:** prohibida.
+
+El color **Oro Aureano** y un material físico de oro, bronce o latón son conceptos distintos. En objetos diegéticos el material puede variar mientras conserve la geometría; los valores HEX/RGB son obligatorios para reproducción gráfica EXACTA.
 
 ### Reconocimiento
 
@@ -745,7 +769,14 @@ La aprobación geométrica no canoniza negro como color litúrgico de Aurea.
 
 ### Variantes y escala
 
-**Variantes autorizadas actualmente:** sólo la geometría maestra monocroma de construcción \`MONO-GEOMETRY-01\`. No constituye todavía una variante litúrgica final.
+**Variantes cromáticas autorizadas:**
+
+- `PRIMARY-01` — Oro Aureano `#D9A14A` sobre Azul Custodio `#202A46`.
+- `LIGHT-01` — Azul Custodio `#202A46` sobre Marfil del Reencendido `#F3E7CF`.
+- `INVERTED-01` — Marfil del Reencendido `#F3E7CF` sobre Azul Custodio `#202A46`.
+- `MONO-GEOMETRY-01` — negro sobre fondo claro, reservado para construcción, reproducción monocroma y pruebas.
+
+No existen otras combinaciones cromáticas oficiales.
 
 **Versión reducida:** PENDIENTE.  
 **Tamaño mínimo:** PENDIENTE DE PRUEBA.  
@@ -763,23 +794,35 @@ La aprobación geométrica no canoniza negro como color litúrgico de Aurea.
 
 **Instrucción técnica completa:**
 
-1. crear un lienzo con \`viewBox="0 0 1000 1000"\`;
+1. crear un lienzo con `viewBox="0 0 1000 1000"`;
 2. reproducir exactamente las tres trayectorias maestras;
-3. usar \`fill-rule="evenodd"\` en la llama central para conservar la semilla/gota negativa;
+3. usar `fill-rule="evenodd"` en la llama central para conservar la semilla/gota negativa;
 4. no rotar, reflejar, cerrar aperturas ni añadir elementos;
-5. mientras la cromática permanezca pendiente, usar negro sobre fondo claro sólo para pruebas técnicas.
+5. para reproducción gráfica formal utilizar exclusivamente una de las variantes cromáticas autorizadas;
+6. para reproducción monocroma conservar todas las masas y espacios negativos sin grises internos.
 
-**Instrucción breve para ilustraciones:** una llama central alta y asimétrica, con vacío interior único de semilla/gota, custodiada por dos brazos curvos simétricos separados de la llama y abiertos arriba y abajo. No añadir escudo, círculo, manos, texto ni ornamentos al símbolo.
+**Instrucción breve para ilustraciones:** una llama central alta y asimétrica, con vacío interior único de semilla/gota, custodiada por dos brazos curvos simétricos separados de la llama y abiertos arriba y abajo. En presentación formal usar Oro Aureano sobre Azul Custodio, Azul Custodio sobre Marfil o Marfil sobre Azul. No añadir escudo, círculo, manos, texto ni ornamentos al símbolo.
 
 **Nivel de fidelidad actual:** EXACTA cuando el símbolo sea legible o protagonista; FIEL cuando el soporte introduzca perspectiva/desgaste. La modalidad SUGERIDA se definirá junto con la versión reducida.
 
 ### Activos
 
-**Archivo SVG maestro geométrico:** \`assets/symbols/divinities/SYM-DIV-AUREA-001_MASTER.svg\`  
-**Archivo PNG de referencia:** PENDIENTE DE CIERRE v1.0.  
-**SHA-256 del SVG maestro:** \`4fe5845533ad8e0fec40ea28b37897aef6eac743285b7450a84d8c226cd3ff89\`
+**Archivo SVG maestro geométrico:** `assets/symbols/divinities/SYM-DIV-AUREA-001_MASTER.svg`  
+**SHA-256 del SVG maestro geométrico:** `4fe5845533ad8e0fec40ea28b37897aef6eac743285b7450a84d8c226cd3ff89`
+
+**SVG principal:** `assets/symbols/divinities/SYM-DIV-AUREA-001_PRIMARY.svg`  
+**SHA-256:** `a2d809f7ef32dc574c121179c47f997e827d8fcd50ac2413b15fb55f2314b181`
+
+**SVG campo claro:** `assets/symbols/divinities/SYM-DIV-AUREA-001_LIGHT.svg`  
+**SHA-256:** `d62ecdb115b871db96fbf2189eb73550efbc63ee7402d652c6664236effcb310`
+
+**SVG invertido:** `assets/symbols/divinities/SYM-DIV-AUREA-001_INVERTED.svg`  
+**SHA-256:** `e4cec1459a3d3819a60b60bd978ac1cff7c9f28d1f94cfe93e3b92784c4186f7`
+
+**Archivo PNG de referencia:** PENDIENTE DE CIERRE v1.0.
 
 ### Historial
 
 - **v0.1 — 2026-10-07:** concepto y geometría propuestos.
 - **v0.2 — 2026-10-07:** geometría aprobada; trayectorias vectoriales maestras fijadas; color y variantes permanecen pendientes.
+- **v0.3 — 2026-10-07:** cromática aprobada; se fijan Oro Aureano, Azul Custodio, Marfil del Reencendido y Ámbar de Resplandor; se autorizan las variantes PRIMARY-01, LIGHT-01 e INVERTED-01.
