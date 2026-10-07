@@ -183,38 +183,43 @@ Verdelinde prospera gracias a recursos que también pueden destruir su equilibri
 # HELIARA
 *La ciudad de los hospitales, el Sínodo y las caravanas del este.*
 
-**Ficha rápida:** Dominio de Solenar · ≈156.000 habitantes · ≈32.000 flotantes · sede del Sínodo de las Luminarias · gran centro sanitario y caravanero.
+**Ficha rápida:** Dominio de Solenar · ≈156.000 habitantes · ≈32.000 de población flotante · sede del Sínodo de las Luminarias · gran centro sanitario, religioso y caravanero.
 
 ## Identidad y ubicación
-Heliara ocupa las mesetas orientales de Solenar y funciona como uno de los principales puntos de salida hacia las rutas del este y el Desierto de Vidrio. Hospitales, hospicios, santuarios y caravasares dan forma a su identidad.
+Heliara ocupa las mesetas orientales de Solenar y funciona como uno de los principales puntos de salida hacia las rutas del este y el Desierto de Vidrio. Hospitales, hospicios, santuarios, mercados y grandes caravasares dan forma a una ciudad acostumbrada a recibir peregrinos, enfermos, comerciantes y viajeros de larga distancia.
 
 ## Gobierno y poder
-Solenar es una **monarquía sacra limitada**. La Corona gobierna asuntos civiles y militares, mientras el Sínodo de las Luminarias ejerce autoridad religiosa. En Heliara, un Prefecto civil propuesto administra la ciudad junto a un consejo urbano; el Sínodo controla doctrina y sus propias instituciones. Ninguna autoridad absorbe completamente a la otra.
+Solenar es una **monarquía sacra limitada**. La Corona conserva el gobierno civil, la defensa y la administración general, mientras el **Sínodo de las Luminarias** ejerce autoridad religiosa y dirige sus propias instituciones. Heliara no es una teocracia absoluta: ambas autoridades conviven y se limitan mutuamente. En la ciudad se propone un **Prefecto de Heliara** como máxima autoridad civil, acompañado por un consejo urbano, mientras el Sínodo mantiene gran influencia sobre hospitales religiosos, peregrinaciones y vida espiritual.
 
-## Ciudad y arquitectura
-Plazas, patios interiores, galerías de sombra, depósitos de agua y grandes complejos hospitalarios caracterizan la ciudad. Predomina piedra clara con metal dorado envejecido y sistemas de agua cuidadosamente mantenidos. Los grandes caravasares ocupan las rutas de entrada y salida.
+## Ciudad, pueblo y arquitectura
+Heliara está formada por plazas abiertas, patios interiores, galerías de sombra, depósitos de agua, hospitales, hospicios y caravasares. Predominan piedra clara, madera, tejidos gruesos y metal dorado envejecido. Cisternas, conducciones y fuentes son tan importantes como templos o murallas, porque el agua condiciona toda la vida de la ciudad.
 
-## Pueblo, economía y cultura
-Clérigos, sanadores, peregrinos, comerciantes, caravaneros, pacientes, artesanos y guías orientales se mezclan de manera constante. La economía depende de sanación, hospitalidad, peregrinación, suministros y comercio de larga distancia. La asistencia al viajero y al enfermo tiene gran peso cultural.
+Clérigos, sanadores, peregrinos, comerciantes, caravaneros, pacientes, artesanos y guías del este se mezclan constantemente. La población flotante es elevada y muchos barrios están preparados para alojar grandes cantidades de viajeros durante períodos breves.
+
+## Comercio y vida cotidiana
+Heliara vive de la sanación, la hospitalidad, las peregrinaciones, el abastecimiento de caravanas y el comercio de larga distancia. Medicinas, alimentos secos, animales de carga, herramientas, mapas, tejidos y equipo de viaje pasan por sus mercados. También importa madera, metal y otros recursos que las mesetas orientales no producen con facilidad.
+
+La hospitalidad tiene valor económico y cultural. Posadas, hospitales, casas religiosas y caravasares compiten en reputación. El calendario urbano está marcado por peregrinaciones, llegada de caravanas y temporadas favorables para viajar hacia el este.
 
 ## Magia y tecnología
-La magia tiene fuerte presencia institucional y terapéutica. Hospitales y autoridades religiosas emplean especialistas, mientras sistemas de agua, saneamiento y logística hacen tanto por la supervivencia urbana como la magia.
+La magia tiene una presencia importante en sanación, diagnóstico, protección y rituales institucionales, pero no reemplaza medicina, higiene ni infraestructura. Heliara depende de cisternas, saneamiento, almacenamiento, transporte y personal entrenado tanto como de sus especialistas mágicos. Su tecnología es menos industrial que la de Cobravia y más orientada a medicina, logística y supervivencia.
 
 ## Historia y acontecimientos
-Heliara creció como santuario, centro sanitario y terminal de rutas orientales. Se proponen tres hitos: **la Fundación del Gran Hospital**, que consolidó su prestigio médico; **la Crisis de las Cisternas**, período de escasez que llevó a reformar el sistema de agua; y **el Acuerdo de las Dos Autoridades**, precedente que delimitó competencias entre Corona y Sínodo. Fechas y nombres definitivos siguen PROVISIONALES.
+Heliara creció como santuario, centro sanitario y terminal de rutas orientales. Su cronología definitiva todavía está abierta. Se proponen tres hitos principales: **la Fundación del Gran Hospital**, que consolidó su prestigio médico; **la Crisis de las Cisternas**, período de escasez que obligó a reformar el sistema de agua; y **el Acuerdo de las Dos Autoridades**, precedente que delimitó competencias entre la Corona y el Sínodo. Nombres y fechas continúan PROVISIONALES.
 
 ## Lugares importantes
-**Sede del Sínodo de las Luminarias:** principal autoridad religiosa local.  
-**Gran Hospital:** complejo sanitario propuesto.  
-**Caravasar de las Cien Puertas:** gran terminal de viajeros propuesta.  
-**Puerta Oriental:** salida hacia rutas del este.  
-**Plaza de las Fuentes:** centro cívico y de abastecimiento.
+**Sede del Sínodo de las Luminarias:** principal centro de autoridad religiosa de Solenar.  
+**Gran Hospital:** gran complejo sanitario y de formación médica propuesto.  
+**Caravasar de las Cien Puertas:** terminal de viajeros, comerciantes y expediciones.  
+**Puerta Oriental:** principal salida hacia las rutas del este.  
+**Plaza de las Fuentes:** centro cívico, de abastecimiento y encuentro.  
+**Barrio de Hospitales:** conjunto de instituciones médicas, hospicios y casas de asistencia.
 
 ## Personalidades importantes
-**Propuestas provisionales:** **reina Avelia de Solenar**, soberana del Dominio; **Darien Solvar**, Prefecto de Heliara; **Sarel Ithra**, figura principal del Sínodo de las Luminarias; **Elen Vara**, sanadora responsable de uno de los mayores complejos hospitalarios.
+**Avelia de Solenar**, reina del Dominio; **Darien Solvar**, Prefecto de Heliara; **Sarel Ithra**, figura principal del Sínodo de las Luminarias; **Elen Vara**, sanadora responsable de uno de los mayores complejos hospitalarios. **Todos estos nombres continúan PROVISIONALES hasta aprobación.**
 
 ## Situación actual
-Escasez de agua, hospitales saturados, tensiones entre autoridad civil y religiosa, contrabando oriental, falsas reliquias y caravanas desaparecidas generan numerosos conflictos.
+Heliara enfrenta escasez periódica de agua, hospitales saturados, tensiones sobre los límites entre autoridad civil y religiosa, contrabando procedente del este, falsas reliquias y desapariciones de caravanas. Para los aventureros es un punto natural de recuperación, peregrinación, preparación de expediciones, investigación médica, política religiosa y acceso a regiones orientales mucho menos seguras.
 
 ---
 
