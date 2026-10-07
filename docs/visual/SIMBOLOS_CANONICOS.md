@@ -641,4 +641,145 @@ Después de canonizarlo, la tarea es reproducirlo.
 
 # REGISTRO DE SÍMBOLOS
 
-Todavía no existen fichas CANON bajo este estándar. El primer símbolo piloto será definido de forma explícita y aprobado antes de incorporarse aquí.
+El registro contiene fichas en distintos estados. Sólo las marcadas **CANON** han completado todo el estándar. Una geometría aprobada dentro de una ficha PROVISIONAL no puede modificarse sin revisión explícita.
+
+## SYM-DIV-AUREA-001 — La Llama Custodiada
+
+### Identidad
+
+**ID canónico:** \`SYM-DIV-AUREA-001\`  
+**Entidad:** Aurea, la Llama  
+**Nombre del símbolo:** La Llama Custodiada  
+**Tipo:** DIV — deidad / símbolo religioso  
+**Estado:** **PROVISIONAL — GEOMETRÍA APROBADA E INMUTABLE**  
+**Versión:** v0.2  
+**Fecha de aprobación geométrica:** 2026-10-07  
+
+La ficha permanece PROVISIONAL únicamente porque todavía faltan cerrar cromática, variante invertida/reducida, tamaños mínimos, área de protección y las pruebas contextuales exigidas por este estándar. Esos pendientes no autorizan a modificar la geometría aprobada.
+
+### Concepto
+
+**Representa:** la vida concreta que alguien decide mantener encendida y la custodia que la protege sin convertirla en prisión.
+
+**Ideas que debe comunicar:** llama sostenida, cuidado, hogar, protección abierta y capacidad de renovación.
+
+**Justificación de sus elementos:** una única llama expresa continuidad; dos brazos curvos laterales expresan custodia sin cierre; el vacío interior en forma de semilla/gota expresa renovación y posibilidad de recomenzar.
+
+**No representa:** fuego elemental de Khorun, autoridad moral universal de Ilyr, ciclo natural de Eïra, guerra, heráldica estatal ni una casa literal.
+
+### Construcción
+
+**Lienzo maestro:** 1000 × 1000  
+**Módulo X:** 40 unidades.
+
+**Caja geométrica principal aproximada:** X 248–752; Y 150–850. La altura estructural es 700 unidades.
+
+**Estructura:** tres masas cerradas: brazo izquierdo, brazo derecho y llama central compuesta con un único vacío interior.
+
+**Trayectorias maestras exactas:**
+
+\`\`\`svg
+<!-- brazo izquierdo -->
+<path d="M420 850 C405 815 380 775 340 740 C285 692 255 630 248 565 C242 500 265 425 305 335 C314 315 325 321 322 350 C312 415 300 470 306 520 C314 585 346 635 391 675 C426 706 446 740 440 783 C436 812 430 837 420 850 Z"/>
+
+<!-- brazo derecho -->
+<path d="M580 850 C595 815 620 775 660 740 C715 692 745 630 752 565 C758 500 735 425 695 335 C686 315 675 321 678 350 C688 415 700 470 694 520 C686 585 654 635 609 675 C574 706 554 740 560 783 C564 812 570 837 580 850 Z"/>
+
+<!-- llama central + vacío interior; fill-rule="evenodd" -->
+<path fill-rule="evenodd" d="M500 775 C478 735 440 700 405 665 C360 620 345 560 365 500 C385 440 430 390 470 340 C510 290 535 245 520 150 C566 181 600 225 610 280 C620 340 590 380 590 410 C590 455 615 470 630 405 C665 455 675 520 655 585 C635 645 585 690 545 730 C525 750 510 770 500 775 Z M500 430 C530 470 538 515 530 565 C523 607 510 635 500 645 C477 628 463 598 460 555 C457 510 470 465 500 430 Z"/>
+\`\`\`
+
+Estas trayectorias son normativas. Una reconstrucción vectorial no debe reinterpretarlas.
+
+**Ejes y simetría:** los dos brazos de custodia son reflejos geométricos respecto de X=500. La llama central posee asimetría deliberada y obligatoria en su zona superior: su punta se desplaza hacia la derecha y contiene una segunda lengua/concavidad en ese lado. El conjunto conserva equilibrio bilateral sin convertir la llama en una figura simétrica.
+
+**Orientación:** vertical, punta de la llama hacia arriba.
+
+**Rotación permitida:** no.  
+**Reflejo horizontal permitido:** no.  
+**Reflejo vertical permitido:** no.
+
+**Orden de capas:** las tres masas se encuentran en un mismo plano gráfico y no se superponen. El vacío interior se recorta mediante regla par-impar dentro de la llama central.
+
+**Espacio negativo obligatorio:**
+- corredor abierto entre brazo izquierdo y llama;
+- corredor abierto entre brazo derecho y llama;
+- vacío único interior con forma de gota/semilla;
+- apertura inferior entre ambos brazos.
+
+Ninguno puede rellenarse en la versión principal.
+
+### Proporciones aprobadas
+
+- altura de la figura: 700 unidades;
+- ancho máximo aproximado: 504 unidades;
+- punto superior normativo: (520,150);
+- punto inferior de la llama central: (500,775);
+- extremos inferiores de brazos: (420,850) y (580,850);
+- vacío interior: aproximadamente X 460–538 / Y 430–645;
+- eje estructural: X=500.
+
+Los valores exactos de contorno están definidos por las trayectorias SVG maestras.
+
+### Color
+
+**Colores canónicos:** PENDIENTE.  
+**Jerarquía cromática:** PENDIENTE.  
+**Versión monocroma:** la geometría aprobada puede representarse temporalmente como masa negra sobre fondo claro únicamente para construcción, prueba y documentación.  
+**Versión invertida:** PENDIENTE.
+
+La aprobación geométrica no canoniza negro como color litúrgico de Aurea.
+
+### Reconocimiento
+
+**Rasgos de reconocimiento obligatorio:**
+
+1. una única llama vertical central;
+2. dos brazos curvos laterales, abiertos hacia arriba;
+3. los brazos no tocan ni encierran completamente la llama;
+4. un único vacío interior en forma de gota/semilla dentro de la llama.
+
+**Elementos obligatorios:** llama central asimétrica, ambos brazos, apertura entre brazos y llama, vacío interior.
+
+**Elementos prohibidos en la versión principal:** círculo exterior, escudo heráldico, techo de casa, manos anatómicas, corazón, espada, alas, rayos solares, corona, texto, runas adicionales, múltiples llamas, antorcha, brasero, árbol o ramas.
+
+### Variantes y escala
+
+**Variantes autorizadas actualmente:** sólo la geometría maestra monocroma de construcción \`MONO-GEOMETRY-01\`. No constituye todavía una variante litúrgica final.
+
+**Versión reducida:** PENDIENTE.  
+**Tamaño mínimo:** PENDIENTE DE PRUEBA.  
+**Área de protección:** PENDIENTE.
+
+### Contexto
+
+**Materiales y acabados permitidos:** PENDIENTE DE CIERRE. La geometría no puede alterarse al probar materiales.
+
+**Usos culturales previsibles a validar:** Casas de la Llama, Guardianes de la Llama, altares, refugios, estandartes, sellos religiosos y arquitectura aureana. La presencia en estos soportes no crea una variante nueva.
+
+**Relación con otra iconografía:** una representación figurativa de Aurea, una llama real, un hogar, un brasero o cualquier escena de cuidado no constituye automáticamente este símbolo.
+
+### Reproducción
+
+**Instrucción técnica completa:**
+
+1. crear un lienzo con \`viewBox="0 0 1000 1000"\`;
+2. reproducir exactamente las tres trayectorias maestras;
+3. usar \`fill-rule="evenodd"\` en la llama central para conservar la semilla/gota negativa;
+4. no rotar, reflejar, cerrar aperturas ni añadir elementos;
+5. mientras la cromática permanezca pendiente, usar negro sobre fondo claro sólo para pruebas técnicas.
+
+**Instrucción breve para ilustraciones:** una llama central alta y asimétrica, con vacío interior único de semilla/gota, custodiada por dos brazos curvos simétricos separados de la llama y abiertos arriba y abajo. No añadir escudo, círculo, manos, texto ni ornamentos al símbolo.
+
+**Nivel de fidelidad actual:** EXACTA cuando el símbolo sea legible o protagonista; FIEL cuando el soporte introduzca perspectiva/desgaste. La modalidad SUGERIDA se definirá junto con la versión reducida.
+
+### Activos
+
+**Archivo SVG maestro geométrico:** \`assets/symbols/divinities/SYM-DIV-AUREA-001_MASTER.svg\`  
+**Archivo PNG de referencia:** PENDIENTE DE CIERRE v1.0.  
+**SHA-256 del SVG maestro:** \`4fe5845533ad8e0fec40ea28b37897aef6eac743285b7450a84d8c226cd3ff89\`
+
+### Historial
+
+- **v0.1 — 2026-10-07:** concepto y geometría propuestos.
+- **v0.2 — 2026-10-07:** geometría aprobada; trayectorias vectoriales maestras fijadas; color y variantes permanecen pendientes.
