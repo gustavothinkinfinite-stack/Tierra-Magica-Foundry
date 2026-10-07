@@ -33,7 +33,7 @@ test("docs raíz contiene sólo documentación activa más el archivo",async()=>
     "REFERENCIA_RAPIDA_GLOSARIO_1.0.md",
     "Tierra_Magica_Manual_Maestro.md"
   ].sort());
-  assert.deepEqual(dirs,["archive"]);
+  assert.deepEqual(dirs,["archive","visual"].sort());
 });
 
 test("archivo documental está separado por función",async()=>{
