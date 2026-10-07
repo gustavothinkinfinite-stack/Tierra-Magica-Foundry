@@ -2,8 +2,8 @@
 
 - Corrige el estado persistente que podía dejar a un Actor permanentemente en **«ya está resolviendo su Acción»** después de recargar Foundry.
 - Al quedar listo el mundo, el DJ limpia reservas de Acción/Reacción pertenecientes a operaciones de una sesión anterior.
-- Las reservas persistentes incorporan además una caducidad defensiva de 10 minutos para recuperarse de cortes de red o cierres inesperados sin quedar bloqueadas indefinidamente.
-- La protección contra doble clic y ejecuciones concurrentes sigue activa para reservas recientes.
+- Las reservas **no caducan por tiempo**: se conserva la protección contra doble clic y ejecuciones concurrentes incluso en resoluciones largas.
+- La recuperación ocurre en el límite seguro de sesión: al volver a cargar el mundo con autoridad del DJ, las operaciones anteriores ya no pueden seguir activas y sus reservas se consideran huérfanas.
 - El arreglo es transversal: afecta hechizos, pociones/fórmulas, ataques, dispositivos, Guardia y demás operaciones que usan la economía de Acción.
 - No modifica costes, reglas de turno ni consumo válido de Acción/Reacción.
 
