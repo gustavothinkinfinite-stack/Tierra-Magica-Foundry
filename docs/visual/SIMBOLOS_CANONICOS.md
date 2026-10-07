@@ -651,12 +651,13 @@ El registro contiene fichas en distintos estados. Sólo las marcadas **CANON** h
 **Entidad:** Aurea, la Llama  
 **Nombre del símbolo:** La Llama Custodiada  
 **Tipo:** DIV — deidad / símbolo religioso  
-**Estado:** **PROVISIONAL — GEOMETRÍA Y CROMÁTICA APROBADAS E INMUTABLES**  
-**Versión:** v0.3  
+**Estado:** **PROVISIONAL — GEOMETRÍA, CROMÁTICA Y ESCALA APROBADAS E INMUTABLES**  
+**Versión:** v0.4  
 **Fecha de aprobación geométrica:** 2026-10-07  
 **Fecha de aprobación cromática:** 2026-10-07  
+**Fecha de aprobación de escala:** 2026-10-07  
 
-La ficha permanece PROVISIONAL únicamente porque todavía faltan cerrar la versión reducida, tamaños mínimos, área de protección y las pruebas contextuales exigidas por este estándar. Esos pendientes no autorizan a modificar la geometría ni la cromática aprobadas.
+La ficha permanece PROVISIONAL únicamente porque todavía faltan las pruebas contextuales y de materiales exigidas por este estándar, además de la vista PNG definitiva de referencia. Esos pendientes no autorizan a modificar la geometría, cromática, versión reducida ni reglas de escala aprobadas.
 
 ### Concepto
 
@@ -778,9 +779,58 @@ El color **Oro Aureano** y un material físico de oro, bronce o latón son conce
 
 No existen otras combinaciones cromáticas oficiales.
 
-**Versión reducida:** PENDIENTE.  
-**Tamaño mínimo:** PENDIENTE DE PRUEBA.  
-**Área de protección:** PENDIENTE.
+#### Versión reducida — REDUCED-01
+
+`REDUCED-01` es la única simplificación geométrica autorizada para tamaños pequeños.
+
+Conserva obligatoriamente:
+
+- ambos brazos de custodia sin modificación;
+- llama central;
+- apertura entre brazos y llama;
+- vacío interior de semilla/gota;
+- orientación vertical.
+
+La llama reducida elimina la concavidad secundaria derecha de la versión principal y amplía el vacío interior para conservar legibilidad.
+
+**Trayectoria reducida normativa de la llama:**
+
+```svg
+<path fill-rule="evenodd" d="M500 775 C478 735 440 700 405 665 C360 620 345 560 365 500 C385 440 430 390 470 340 C510 290 535 245 520 160 C570 195 605 245 615 300 C625 355 610 410 625 455 C640 500 675 520 660 585 C645 645 590 690 545 730 C525 750 510 770 500 775 Z M500 410 C540 465 548 525 535 580 C528 620 513 650 500 665 C470 642 452 607 448 555 C444 500 462 450 500 410 Z"/>
+```
+
+Los brazos permanecen idénticos al SVG maestro principal.
+
+#### Umbrales de escala
+
+| Uso | Regla |
+|---|---|
+| **32 px o más** | utilizar versión principal |
+| **16–31 px** | utilizar `REDUCED-01` |
+| **menos de 16 px** | no reproducir el símbolo completo |
+
+**Impresión mínima recomendada de la versión principal:** 8 mm de alto.  
+**Grabado o talla mínima recomendada:** 12 mm de alto.  
+**Bordado mínimo recomendado:** 20 mm de alto.
+
+No se autoriza una tercera versión «micro». Por debajo de 16 px debe usarse una etiqueta, marcador genérico o composición posterior con activo maestro si la identidad necesita resultar legible.
+
+#### Área de protección
+
+**Área mínima formal:** `2X = 80 unidades` desde el punto exterior más próximo del símbolo.
+
+Tomando como caja geométrica aproximada X 248–752 / Y 150–850, la zona formal protegida resultante es aproximadamente:
+
+- X 168–832;
+- Y 70–930.
+
+Texto, otros emblemas, marcos decorativos o elementos gráficos dominantes no deben penetrar esa zona en documentos, interfaces, sellos formales, señalética o identidad editorial.
+
+En representaciones diegéticas —talla arquitectónica, armadura, bordado, ruina, objeto deteriorado— el entorno puede aproximarse más, siempre que los rasgos obligatorios continúen reconocibles.
+
+#### Regla para ilustraciones
+
+Si el símbolo debe aparecer con una altura final inferior a aproximadamente 32 px, utilizar `REDUCED-01`. Si quedará por debajo de 16 px, no exigir al proceso generativo la reproducción detallada: integrar posteriormente el activo apropiado si su identidad necesita ser legible.
 
 ### Contexto
 
@@ -819,6 +869,18 @@ No existen otras combinaciones cromáticas oficiales.
 **SVG invertido:** `assets/symbols/divinities/SYM-DIV-AUREA-001_INVERTED.svg`  
 **SHA-256:** `e4cec1459a3d3819a60b60bd978ac1cff7c9f28d1f94cfe93e3b92784c4186f7`
 
+**SVG reducido maestro:** `assets/symbols/divinities/SYM-DIV-AUREA-001_REDUCED.svg`  
+**SHA-256:** `1dea393d1adbdd0f0a7ef4c8e47a7d50fe97997d05e762b116c00a4f1b45013c`
+
+**SVG reducido principal:** `assets/symbols/divinities/SYM-DIV-AUREA-001_REDUCED_PRIMARY.svg`  
+**SHA-256:** `99a94f3d14003166046547c8055a71d33fe2b967aa16bee3669d0660715cbc00`
+
+**SVG reducido campo claro:** `assets/symbols/divinities/SYM-DIV-AUREA-001_REDUCED_LIGHT.svg`  
+**SHA-256:** `bcf108fb3907470cc757c9976cb7ce62e52a351ba9cbc8dca97d9426e7b75eb9`
+
+**SVG reducido invertido:** `assets/symbols/divinities/SYM-DIV-AUREA-001_REDUCED_INVERTED.svg`  
+**SHA-256:** `b908b50070e03e30f7d5689b9929a666f2d82b15f11e88ab39397e7b3ce00421`
+
 **Archivo PNG de referencia:** PENDIENTE DE CIERRE v1.0.
 
 ### Historial
@@ -826,3 +888,4 @@ No existen otras combinaciones cromáticas oficiales.
 - **v0.1 — 2026-10-07:** concepto y geometría propuestos.
 - **v0.2 — 2026-10-07:** geometría aprobada; trayectorias vectoriales maestras fijadas; color y variantes permanecen pendientes.
 - **v0.3 — 2026-10-07:** cromática aprobada; se fijan Oro Aureano, Azul Custodio, Marfil del Reencendido y Ámbar de Resplandor; se autorizan las variantes PRIMARY-01, LIGHT-01 e INVERTED-01.
+- **v0.4 — 2026-10-07:** se aprueba REDUCED-01, umbral principal de 32 px, mínimo absoluto de 16 px, mínimos físicos recomendados y área de protección 2X.
