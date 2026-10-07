@@ -13,9 +13,11 @@ test("el integrador defensivo usa la autoridad contextual común", async () => {
   assert.equal(source.includes("this.system.derived.defense ="), false);
 });
 
-test("Guardia persiste estado pero no muta derived manualmente", async () => {
+test("Guardia persiste su estado sin bloquear ni consumir el marcador de Acción", async () => {
   const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
-  assert.equal(source.includes('"system.turn.action": false, "system.combat.guardActive": true'), true);
+  assert.equal(source.includes('"system.combat.guardActive": true'), true);
+  assert.equal(source.includes('"system.turn.action": false'), false);
+  assert.equal(source.includes("ya gastó su Acción"), false);
   assert.equal(source.includes("guardDefense"), false);
 });
 
@@ -63,4 +65,11 @@ test("Contraataque reclama una única oportunidad y reutiliza el wrapper context
   assert.equal(source.includes("claimCounterattackAuthoritatively(this)"), true);
   assert.equal(source.includes('return this.rollWeapon(item, { technique: "Contraataque", tmReactionAttack: true })'), true);
   assert.equal(source.includes('return originalRollWeapon.call(this, item, { technique: "Contraataque", tmReactionAttack: true })'), false);
+});
+
+
+test("ataques físicos no consultan ni consumen el marcador de Acción", async () => {
+  const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
+  assert.equal(source.includes("spendAction"), false);
+  assert.equal(source.includes("system.turn?.action"), false);
 });
