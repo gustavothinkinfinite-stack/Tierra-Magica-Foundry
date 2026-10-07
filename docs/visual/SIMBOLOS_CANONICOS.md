@@ -931,9 +931,10 @@ La autorización de un soporte no obliga a que el símbolo aparezca en todos los
 ## SYM-DIV-NEMOR-001 — El Umbral de Piedra
 
 **Entidad:** Nemor, el Guardián  
-**Estado:** **PROVISIONAL — GEOMETRÍA Y CROMÁTICA APROBADAS E INMUTABLES**  
-**Versión:** v0.3  
-**Aprobación geométrica y cromática:** 2026-10-07
+**Estado:** **PROVISIONAL — GEOMETRÍA, CROMÁTICA Y ESCALA APROBADAS E INMUTABLES**  
+**Versión:** v0.4  
+**Aprobación geométrica y cromática:** 2026-10-07  
+**Aprobación de escala y reducción:** 2026-10-07
 
 ### Concepto
 El símbolo representa **memoria custodiada, límite respetado y preservación del nombre**. No representa tránsito del alma ni una puerta abierta. Está formado por dos pilares laterales, un dintel superior y una piedra memorial central separada de la estructura. La piedra contiene una única **Marca del Nombre** horizontal en espacio negativo.
@@ -965,6 +966,32 @@ Trayectorias inmutables. Eje vertical X=500. Rotación y reflejos prohibidos com
 **Invertido:** Marfil de Inscripción sobre Pizarra Guardiana.  
 Los componentes usan un único color por variante formal. Sin gradientes, sombras ni texturas incorporadas.
 
+### Reducción, escala y área de protección
+**REDUCED-01** es la única simplificación autorizada para pequeña escala. Mantiene pilares, dintel, piedra central, Marca del Nombre y separación entre componentes, pero elimina los remates biselados de los pilares, simplifica el dintel y amplía la Marca del Nombre.
+
+```svg
+<path d="M190 850 L190 190 L275 190 L275 850 Z"/>
+<path d="M725 850 L725 190 L810 190 L810 850 Z"/>
+<path d="M150 150 L850 150 L850 235 L150 235 Z"/>
+<path fill-rule="evenodd" d="M405 850 L405 405 L455 330 L545 330 L595 405 L595 850 Z M435 495 L565 495 L565 555 L435 555 Z"/>
+```
+
+**Umbrales digitales:**
+- 32 px o más: versión principal;
+- 16–31 px: `REDUCED-01`;
+- menos de 16 px: no reproducir el símbolo completo.
+
+**Mínimos físicos recomendados:**
+- impresión: 10 mm de alto;
+- grabado/talla: 14 mm;
+- bordado: 22 mm.
+
+No se autoriza una versión micro.
+
+**Área de protección formal:** `2X = 80 unidades`. Con caja geométrica X 150–850 / Y 150–850, la zona protegida es X 70–930 / Y 70–930.
+
+La versión reducida puede simplificar remates, pero nunca eliminar la relación **pilar + dintel + piedra + Marca del Nombre + separación**.
+
 ### Prohibiciones
 No convertir la figura en una puerta transitable. No añadir texto literal, runas, calaveras, huesos, guadañas, llamas, alas, ojos, cadenas, animales ni símbolos de otras deidades.
 
@@ -972,13 +999,18 @@ No convertir la figura en una puerta transitable. No añadir texto literal, runa
 - `SYM-DIV-NEMOR-001_MASTER.svg`
 - `SYM-DIV-NEMOR-001_PRIMARY.svg`
 - `SYM-DIV-NEMOR-001_LIGHT.svg`
-- `SYM-DIV-NEMOR-001_INVERTED.svg` — pendiente de escritura técnica si el activo aún no está presente.
+- `SYM-DIV-NEMOR-001_INVERTED.svg` — variante invertida oficial.
+- `SYM-DIV-NEMOR-001_REDUCED.svg` — maestro reducido.
+- `SYM-DIV-NEMOR-001_REDUCED_PRIMARY.svg` — reducido principal.
+- `SYM-DIV-NEMOR-001_REDUCED_LIGHT.svg` — reducido claro.
+- `SYM-DIV-NEMOR-001_REDUCED_INVERTED.svg` — reducido invertido.
 
 ### Pendientes para v1.0
-Versión reducida, tamaño mínimo, área de protección, pruebas contextuales/materiales y PNG definitivo.
+Pruebas contextuales/materiales y PNG definitivo.
 
 ### Historial
 - **v0.1:** La Piedra del Nombre, propuesta descartada antes de canonización.
 - **v0.2:** El Umbral de Piedra seleccionado y geometría aprobada.
 - **v0.3:** cromática aprobada.
+- **v0.4:** versión `REDUCED-01`, umbrales digitales, mínimos físicos y área de protección aprobados.
 
