@@ -139,40 +139,44 @@ Lys vive entre cooperación y competencia intelectual. Rivalidades entre academi
 ---
 
 # VERDELINDE
-*La gran ciudad fluvial entre árboles monumentales.*
+*La gran ciudad fluvial entre raíces, canales y bosque antiguo.*
 
-**Ficha rápida:** Confederación de Erelia · ≈128.000 habitantes · ≈19.000 flotantes · centro de alquimia y expediciones · ciudad de canales y bosque.
+**Ficha rápida:** Confederación de Erelia · ≈128.000 habitantes · ≈19.000 de población flotante · centro de alquimia y navegación fluvial · principal puerta de expediciones hacia el Bosque de las Mil Voces.
 
 ## Identidad y ubicación
-Verdelinde se encuentra en el nordeste de Edria, dentro de Erelia, entre ríos, canales y árboles de escala monumental. Es puerta de entrada al bosque antiguo y centro del comercio alquímico regional.
+Verdelinde se encuentra en el nordeste de Edria, dentro de la Confederación de Erelia. La ciudad creció entre ríos, canales y árboles monumentales, y funciona como uno de los grandes puntos de entrada hacia el Bosque de las Mil Voces. Su identidad combina comercio fluvial, alquimia, conocimiento práctico del territorio y preparación de expediciones.
 
 ## Gobierno y poder
-Erelia es una **confederación descentralizada**. Verdelinde conserva amplia autonomía y se propone gobernada principalmente por un Consejo Fluvial que representa barrios, navegantes, mercados, alquimistas y comunidades vinculadas al bosque. Un Coordinador ejecuta las decisiones del consejo, pero no concentra el poder de un gobernador o monarca.
+Erelia es una **confederación descentralizada**, por lo que Verdelinde conserva una autonomía considerable. Se propone que la ciudad sea gobernada por un **Consejo Fluvial** donde participan barrios, navegantes, comerciantes, alquimistas y comunidades vinculadas al bosque. Un **Coordinador de Verdelinde** ejecuta las decisiones del consejo, pero posee menos poder individual que un gobernador, magistrado o monarca. La negociación entre intereses locales es parte normal de la política urbana.
 
-## Ciudad y arquitectura
-Muelles escalonados, puentes, pasarelas y edificios construidos entre raíces definen su forma. Madera tratada, piedra y cobre predominan. La ciudad se adapta al agua y a los árboles en lugar de intentar borrar el paisaje. Los canales funcionan como calles principales para mercancías y pasajeros.
+## Ciudad, pueblo y arquitectura
+Verdelinde no intenta imponerse al paisaje: se adapta a él. Muelles escalonados, puentes, pasarelas y construcciones de madera tratada, piedra y cobre se integran entre raíces, cursos de agua y árboles gigantes. Los canales funcionan como verdaderas calles por las que circulan pasajeros, reactivos, alimentos y mercancías.
 
-## Pueblo, economía y cultura
-Barqueros, herbolarios, alquimistas, artesanos, comerciantes, guías y expedicionarios forman una sociedad ligada al río y al bosque. Verdelinde vive de reactivos, preparados alquímicos, plantas, resinas, productos forestales controlados, navegación y expediciones. Su cultura sigue las crecidas, lluvias y temporadas de exploración.
+Barqueros, herbolarios, alquimistas, comerciantes, artesanos, guías y expedicionarios forman una población acostumbrada a las lluvias, las crecidas y la llegada constante de viajeros. El conocimiento práctico tiene gran prestigio: saber leer un río, reconocer una planta o regresar vivo del bosque puede pesar tanto como cualquier título académico.
+
+## Comercio y vida cotidiana
+La economía gira alrededor de alquimia, navegación, plantas, resinas, preparados, productos forestales regulados y servicios para expediciones. Verdelinde importa herramientas, metales y manufacturas que no produce en cantidad suficiente, mientras exporta reactivos, preparados y conocimientos difíciles de obtener en otros lugares.
+
+La vida cotidiana sigue el ritmo del agua y de las temporadas de exploración. Los mercados cambian según lo que regresa de los ríos y del bosque, y buena parte de la población conoce historias sobre rutas que dejan de ser fiables, ruinas ocultas y expediciones que nunca regresaron.
 
 ## Magia y tecnología
-La magia aparece especialmente en alquimia, conservación, navegación y manejo de recursos naturales. La tecnología es funcional y adaptada a ambientes húmedos; la gran industria pesada tendría poco sentido dentro del núcleo urbano.
+La magia se manifiesta especialmente mediante alquimia, conservación, navegación y manejo de recursos naturales. La tecnología local es práctica, resistente a la humedad y adaptada a canales, embarcaciones y almacenamiento de sustancias delicadas. La industria pesada tiene poca presencia dentro del núcleo urbano. A diferencia de Lys, Verdelinde no se define por grandes instituciones académicas: su conocimiento nace principalmente del **territorio, el oficio y la experiencia**.
 
 ## Historia y acontecimientos
-Verdelinde creció como nodo entre navegación, alquimia y expediciones. Se proponen tres hitos: **la Crecida de las Raíces**, que rediseñó canales y muelles; **el Pacto de Recolección**, acuerdo que limitó la extracción de recursos del bosque; y **la Expedición Perdida de las Mil Voces**, desaparición todavía discutida que marcó las normas modernas de exploración. Fechas siguen PROVISIONALES.
+Verdelinde creció como punto de unión entre navegación fluvial, comercio alquímico y exploración del bosque. Su cronología definitiva continúa abierta. Se proponen tres hitos centrales: **la Crecida de las Raíces**, que obligó a rediseñar canales y muelles; **el Pacto de Recolección**, acuerdo que limitó la extracción de ciertos recursos forestales; y **la Expedición Perdida de las Mil Voces**, desaparición que modificó las normas modernas de exploración y todavía alimenta rumores. Nombres y fechas continúan PROVISIONALES.
 
 ## Lugares importantes
-**Mercado de Alquimia:** principal centro comercial especializado.  
-**Muelles Escalonados:** núcleo de transporte fluvial.  
-**Casa de Expediciones:** organización y contratación de viajes al bosque.  
-**Puente de las Raíces:** paso emblemático propuesto.  
-**Jardín de Reactivos:** cultivo y estudio controlado de especies útiles.
+**Mercado de Alquimia:** principal centro de reactivos, preparados y sustancias especializadas.  
+**Muelles Escalonados:** corazón del transporte y comercio fluvial.  
+**Casa de Expediciones:** contratación de guías, formación de grupos y organización de viajes al bosque.  
+**Puente de las Raíces:** paso emblemático integrado entre grandes raíces y canales.  
+**Jardín de Reactivos:** cultivo, clasificación y estudio controlado de especies útiles.
 
 ## Personalidades importantes
-**Propuestas provisionales:** **Liora Venel**, Coordinadora de Verdelinde; **Rhael Sen**, maestro alquimista del mercado; **Kael Tervan**, capitán fluvial de gran reputación; **Edda Miren**, responsable de una de las principales casas de expediciones.
+**Liora Venel**, Coordinadora de Verdelinde; **Rhael Sen**, maestro alquimista del mercado; **Kael Tervan**, capitán fluvial de gran reputación; **Edda Miren**, responsable de una de las principales casas de expediciones. **Todos estos nombres continúan PROVISIONALES hasta aprobación.**
 
 ## Situación actual
-Crecidas, contaminación alquímica, extracción ilegal, desapariciones en el bosque y disputas sobre recursos mantienen un equilibrio constante entre prosperidad y riesgo.
+Verdelinde prospera gracias a recursos que también pueden destruir su equilibrio. Crecidas, contaminación alquímica, extracción ilegal, disputas por acceso al bosque y nuevas desapariciones de expediciones mantienen una tensión constante. Para los aventureros ofrece guías, reactivos, encargos de exploración, contrabando especializado, ruinas bajo raíces y rutas cuya geografía puede cambiar antes de que alguien regrese.
 
 ---
 
