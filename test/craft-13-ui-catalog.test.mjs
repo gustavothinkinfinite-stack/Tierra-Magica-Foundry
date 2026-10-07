@@ -123,7 +123,7 @@ test("CRAFT-13H: preview y Preparar usan validación transaccional, no edición 
   assert.equal(project.system.execution.revision,1);
 });
 
-test("CRAFT-13H: la ficha expone catálogo, preview, VI, reparación, recuperación y flujo",async()=>{
+test("CRAFT-13H: la ficha de Proyecto prioriza receta, requisitos, tiempo y ejecución",async()=>{
   const itemSheet=await readFile(new URL("../templates/item/item-sheet.hbs",import.meta.url),"utf8");
   const actorSheet=await readFile(new URL("../templates/actor/character-sheet.hbs",import.meta.url),"utf8");
   const actorLogic=await readFile(new URL("../scripts/sheets/actor-sheet.mjs",import.meta.url),"utf8");
@@ -131,12 +131,23 @@ test("CRAFT-13H: la ficha expone catálogo, preview, VI, reparación, recuperaci
   const entry=await readFile(new URL("../scripts/tierra-magica.mjs",import.meta.url),"utf8");
 
   for(const marker of [
-    "CRAFT-11 · referencia","Previsualización","Asignaciones de VI","Capas afectadas",
-    "Recuperación prevista","Flujo de Proyecto","project-research-resolve"
+    "¿Qué querés hacer?","Antes de comenzar","Te falta resolver","Recursos disponibles",
+    "Materiales asignados","Comprobar y preparar","Iniciar trabajo","Datos técnicos del Proyecto",
+    "Recuperación prevista","project-research-resolve","project-start"
   ]) assert.equal(itemSheet.includes(marker),true,marker);
+
+  assert.equal(itemSheet.includes("CRAFT-11 · referencia"),false);
+  assert.equal(itemSheet.includes("Asignaciones de VI"),false);
+  assert.equal(itemSheet.includes("Flujo de Proyecto"),false);
+  assert.equal(itemSheet.includes("tm-project-advanced"),true);
+  assert.equal(itemSheet.includes("{{#unless isProject}}"),true);
   assert.equal(actorSheet.includes('type="project"'),true);
   assert.equal(actorLogic.includes("craftingReferenceGroups"),true);
   assert.equal(actorLogic.includes("craftingProjectSourceFromReference"),true);
   assert.equal(itemLogic.includes("previewCraftingProject"),true);
+  assert.equal(itemLogic.includes("projectIssueDisplay"),true);
+  assert.equal(itemLogic.includes("projectIssueLeaves"),true);
+  assert.equal(itemLogic.includes("async #startProject"),true);
+  assert.equal(itemLogic.includes("craftingLot?.compatibility"),true);
   assert.equal(entry.includes("prepare: prepareCraftingProjectAuthoritatively"),true);
 });
