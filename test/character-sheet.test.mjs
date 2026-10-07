@@ -245,3 +245,10 @@ test("Magia prioriza Maná, competencias, Disciplinas y Grimorio",async()=>{
   ]) assert.equal(sheet.includes(marker),true,marker);
   assert.equal(sheet.includes("Sin efectos sostenidos demandantes."),true);
 });
+
+
+test("reiniciar o reactivar economía limpia reservas huérfanas de la sesión",async()=>{
+  const logic=await readFile(resolve(root,"scripts/sheets/actor-sheet.mjs"),"utf8");
+  assert.equal(logic.includes("if (next) await clearTurnResourceReservation(this.actor, key)"),true);
+  assert.equal(logic.includes("await clearTurnResourceReservations(this.actor)"),true);
+});
