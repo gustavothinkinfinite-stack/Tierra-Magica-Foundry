@@ -126,7 +126,7 @@ Las cifras pueden expresarse mediante aproximaciones y rangos. Se prioriza la co
 
 ---
 
-# AURAVAL — FICHA DE DESARROLLO v0.1
+# AURAVAL — FICHA DE DESARROLLO v0.2
 
 **Estado general:** PROVISIONAL, salvo los elementos indicados expresamente como CANÓNICOS.
 
@@ -165,20 +165,48 @@ Las cifras pueden expresarse mediante aproximaciones y rangos. Se prioriza la co
 - **Situación actual:** sede de la Corona, de la Mesa de Concordia y de los archivos internacionales — CANÓNICO.
 
 ## 5. Forma y estructura urbana
-Auraval se propone como una ciudad escalonada en terrazas conectadas por avenidas en pendiente, escalinatas, puentes y sistemas mecánicos de elevación de carga.
+Auraval se propone como una ciudad escalonada en terrazas conectadas por avenidas en pendiente, escalinatas, puentes y sistemas mecánicos de elevación de carga. La estructura urbana debe hacer visible la jerarquía física: terrazas altas para poder e instituciones; terrazas medias para administración, comercio y vivienda densa; terrazas bajas para puertos, almacenes y trabajo ligado a los ríos.
 
-**Distritos provisionales:**
-1. Terraza de la Corona.
-2. Concordia.
-3. Escalinatas Viejas.
-4. Mercado Mayor.
-5. Muelles Gemelos.
-6. Barrio de los Talleres.
-7. Barrio de los Faroles.
-8. Jardines Occidentales.
-9. Puertas Exteriores.
+### 5.1 Distribución urbana provisional
 
-La Terraza de la Corona concentra poder político; las terrazas intermedias concentran comercio y administración; las bajas concentran muelles, almacenes y actividades dependientes de los ríos.
+| Distrito | Población | Superficie | Densidad aprox. | Función dominante |
+|---|---:|---:|---:|---|
+| Terraza de la Corona | 16.000 | 3,2 km² | 5.000 hab./km² | Corona, altos funcionarios, residencias de élite, guarnición |
+| Concordia | 22.000 | 3,0 km² | 7.330 hab./km² | diplomacia, archivos, escribanos, delegaciones |
+| Escalinatas Viejas | 34.000 | 3,1 km² | 10.970 hab./km² | casco antiguo, vivienda densa, pequeños comercios |
+| Mercado Mayor | 31.000 | 3,2 km² | 9.690 hab./km² | mercados, hospedaje, distribución de bienes |
+| Muelles Gemelos | 42.000 | 5,3 km² | 7.925 hab./km² | puerto fluvial, almacenes, transporte, jornaleros |
+| Barrio de los Talleres | 36.000 | 4,6 km² | 7.825 hab./km² | manufactura, imprentas, metalistería, reparación |
+| Barrio de los Faroles | 28.000 | 3,4 km² | 8.235 hab./km² | vivienda popular-media, tabernas, servicios nocturnos |
+| Jardines Occidentales | 12.000 | 4,7 km² | 2.555 hab./km² | residencias acomodadas, jardines, embajadas y casas de campo urbanas |
+| Puertas Exteriores | 17.000 | 5,5 km² | 3.090 hab./km² | caravanas, establos, depósitos, barrios de expansión |
+| **TOTAL** | **238.000** | **36,0 km²** | **≈6.610 hab./km²** | — |
+
+### 5.2 Lógica de cada distrito
+
+**Terraza de la Corona.** Punto urbano más alto y controlado. Contiene el núcleo palaciego, dependencias de gobierno, cuarteles selectos y residencias de la alta administración. Tiene menor densidad que los distritos centrales porque una parte significativa del suelo está ocupada por complejos institucionales, patios, jardines y defensas.
+
+**Concordia.** Distrito internacional y burocrático. Reúne la Mesa de Concordia, los archivos internacionales, residencias diplomáticas, escribanías, oficinas jurídicas, imprentas oficiales y hospedajes de alto nivel. La circulación y el acceso están más regulados que en cualquier otro distrito salvo la Corona.
+
+**Escalinatas Viejas.** Núcleo histórico de trama estrecha y vertical. Edificios antiguos adaptados, pasajes, escaleras, pequeños patios, talleres familiares y vivienda superpuesta explican que sea el distrito más denso de Auraval.
+
+**Mercado Mayor.** Centro de intercambio entre las rutas terrestres, el tráfico de los ríos y el consumo de la capital. Aloja mercados cubiertos y abiertos, casas de cambio, posadas, depósitos de corto plazo, corredores mercantiles y servicios para viajeros.
+
+**Muelles Gemelos.** Ocupa las terrazas bajas junto a ambos ríos. Sus muelles, grúas, almacenes, aduanas y patios de carga son vitales para abastecer una ciudad de este tamaño. Es el distrito con mayor población absoluta y uno de los principales focos de contrabando y conflicto laboral.
+
+**Barrio de los Talleres.** Principal zona manufacturera ligera y media de Auraval. Predominan imprentas, encuadernadores, metalistería, carpintería, fabricación de instrumentos, reparación mecánica y talleres arcanotécnicos regulados. No alberga la industria pesada que caracteriza a Cobravia.
+
+**Barrio de los Faroles.** Distrito residencial y de servicios con actividad intensa después del anochecer. Reúne tabernas, fondas, teatros menores, baños, comercios y vivienda de trabajadores cualificados. Su nombre queda PROVISIONAL hasta aprobación.
+
+**Jardines Occidentales.** Sector de baja densidad con residencias acomodadas, jardines, pequeñas fincas intramuros o periurbanas y delegaciones extranjeras que requieren mayor privacidad. No debe convertirse en una zona completamente aislada del tejido urbano.
+
+**Puertas Exteriores.** Franja de transición entre la ciudad consolidada y la red de caminos de Valdoria. Concentra patios de caravanas, establos, depósitos, talleres de reparación de vehículos, mercados de ganado y nuevos asentamientos. Es la principal dirección de crecimiento físico de Auraval mientras la topografía de terrazas limite otras expansiones.
+
+### 5.3 Flujo vertical de la ciudad
+
+Auraval funciona de abajo hacia arriba. Alimentos, materias primas, combustible y mercancías llegan principalmente a las terrazas bajas o accesos exteriores; desde allí ascienden mediante carros, animales de tiro, rampas, escalinatas de carga y elevadores mecánicos. Documentos, órdenes, capital y decisiones administrativas tienden a circular desde las terrazas altas hacia el resto de la ciudad.
+
+Esta organización crea tres cuellos de botella deliberados para la ficción y el juego: **los puentes**, **los ascensos entre terrazas** y **las puertas exteriores**. Una avería, huelga, inundación, atentado o bloqueo en cualquiera de ellos puede afectar a sectores enteros sin paralizar de forma artificial toda la ciudad.
 
 ## 6. Arquitectura
 - Base de piedra cálida, madera, hierro, acero oscuro, latón y cobre.
@@ -328,4 +356,4 @@ Tipos de aventura: documentos desaparecidos; asesinatos diplomáticos; sabotaje 
 
 ## 25. Control de aprobación de Auraval
 
-Esta ficha es **v0.1 PROVISIONAL**. Los elementos provenientes del canon previo permanecen vinculantes. Los nuevos nombres, cifras, distritos y detalles no se consideran canon hasta aprobación explícita.
+Esta ficha es **v0.2 PROVISIONAL**. Los elementos provenientes del canon previo permanecen vinculantes. Los nuevos nombres, cifras, distritos y detalles no se consideran canon hasta aprobación explícita.
