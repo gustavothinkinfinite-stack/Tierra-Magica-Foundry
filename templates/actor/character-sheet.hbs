@@ -118,12 +118,12 @@
                 <span>Movimiento</span>
                 <small>{{turn.movementRemaining}} / {{turn.movementMax}} esp.</small>
               </button>
-              <button type="button" class="{{#unless turn.action}}spent{{/unless}}" data-action="toggle-turn" data-key="action">
+              <button type="button" class="{{#unless turn.action}}spent{{/unless}}" data-action="toggle-turn" data-key="action" title="Marcador manual de Acción; no bloquea ataques, magia ni otras resoluciones">
                 <i class="fa-solid fa-bolt"></i>
                 <span>Acción</span>
                 <small>{{#if turn.action}}Disponible{{else}}Gastada{{/if}}</small>
               </button>
-              <button type="button" class="{{#unless turn.reaction}}spent{{/unless}}" data-action="toggle-turn" data-key="reaction">
+              <button type="button" class="{{#unless turn.reaction}}spent{{/unless}}" data-action="toggle-turn" data-key="reaction" title="Marcador manual de Reacción; no bloquea respuestas ni otras resoluciones">
                 <i class="fa-solid fa-shield-halved"></i>
                 <span>Reacción</span>
                 <small>{{#if turn.reaction}}Disponible{{else}}Gastada{{/if}}</small>
