@@ -1,6 +1,6 @@
 # CRONOLOGÍA URBANA DE EDRIA — PROPUESTA DE VENTANAS v1.0
 
-**Estado:** PROVISIONAL PARA REVISIÓN.  
+**Estado:** RATIFICADA COMO BASE Y SUPERADA POR `docs/CRONOLOGIA_URBANA_CANON_v1.md`. Este archivo se conserva como registro de razonamiento y ventanas previas.  
 **Referencia obligatoria:** `docs/CRONOLOGIA_EDRIA_CANON_v1.md`.  
 **Objetivo:** ubicar los acontecimientos editoriales de las diez ciudades principales dentro de ventanas históricas coherentes sin inventar precisión innecesaria.
 
