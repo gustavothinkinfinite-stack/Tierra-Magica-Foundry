@@ -264,7 +264,7 @@
                   </label>
                 </div>
 
-                {{#if projectMaterialDisplay}}
+                {{#if projectHasMaterialCost}}
                   <div class="tm-project-materials">
                     <div class="tm-project-material-head">
                       <span><b>Materiales asignados</b><small>{{projectAllocatedDisplay}} de {{projectMaterialDisplay}}</small></span>
@@ -285,7 +285,7 @@
                           <option value="">Elegir Lote de materiales...</option>
                           {{#each projectCraftingLots as |lot|}}<option value="{{lot.uuid}}">{{lot.name}} · disponible {{lot.availableDisplay}}</option>{{/each}}
                         </select>
-                        <input type="number" min="1" step="1" data-project-material-amount placeholder="Valor a usar (c)" />
+                        <input type="number" min="1" step="1" data-project-material-amount value="{{projectMissingCopper}}" placeholder="Valor a usar (c)" />
                         <button type="button" data-action="project-material-add"><i class="fa-solid fa-plus"></i> Usar material</button>
                       </div>
                     {{else}}
