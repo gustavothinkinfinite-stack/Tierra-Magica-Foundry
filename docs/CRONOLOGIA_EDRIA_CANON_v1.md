@@ -3,7 +3,7 @@
 **Estado:** CANÓNICO como consolidación de las fechas y secuencias ya establecidas.  
 **Presente canónico:** **612 C.**  
 **Fuente de autoridad:** `docs/Tierra_Magica_Manual_Maestro.md`, Canon del Mundo integrado vigente.  
-**Regla:** este documento ordena material existente. No introduce fechas nuevas para acontecimientos que el canon todavía mantiene sin datar.
+**Regla:** este documento ordena material existente. La cronología urbana desarrollada posteriormente se consolida en `docs/CRONOLOGIA_URBANA_CANON_v1.md`, que debe leerse como extensión canónica de esta cronología general.
 
 ---
 
@@ -284,6 +284,27 @@ La magia de alto nivel continúa siendo escasa y políticamente sensible.
 
 ---
 
+## 12.1 Anclajes urbanos canonizados
+
+La cronología detallada de las diez ciudades principales se encuentra en `docs/CRONOLOGIA_URBANA_CANON_v1.md`.
+
+Entre sus años exactos quedan fijados:
+
+- **29 C.** Carta de Neutralidad de Nacariel;
+- **31 C.** Primer Gran Amarre de Vigilia Alta;
+- **63 C.** Reforma de la Carta de Valdoria;
+- **76 C.** Concordato de las Academias de Lys;
+- **94 C.** Acuerdo de las Dos Autoridades de Heliara;
+- **468 C.** Integración Ferroviaria Profunda de Kar-Dur;
+- **487 C.** Apertura de las Grandes Dársenas de Cobravia;
+- **493 C.** creación del Registro de Expediciones de Puerto Umbral;
+- **512 C.** Reapertura de los Pozos de Risco de Ceniza;
+- **521 C.** Pacto de Recolección de Verdelinde.
+
+Los desastres, tormentas, accidentes y episodios de memoria histórica conservan datación aproximada cuando una precisión exacta no aporta valor.
+
+---
+
 # 13. Conflictos activos en 612 C.
 
 Los siguientes conflictos forman parte del presente canónico, pero no poseen necesariamente un único año de inicio fijado.
@@ -373,7 +394,7 @@ Al fechar nuevos acontecimientos deberá respetarse:
 - dinastías y sucesiones;
 - guerras menores;
 - desastres urbanos;
-- acontecimientos editoriales de las ciudades;
-- fecha de la erupción arcana de Risco de Ceniza.
+- fecha de la erupción arcana de Risco de Ceniza;
+- fundaciones políticas todavía no establecidas de varias ciudades.
 
 La cronología queda suficientemente consolidada para comenzar a fechar acontecimientos urbanos sin alterar el canon histórico general.
