@@ -1,3 +1,13 @@
+## Publicación v1.5.1 — 2026-10-07
+
+- **v1.5.1 fue publicada** desde el commit `558372be4adf6abddd9cd5985cfb065e406127c3` mediante `Publicar sistema #37703400848`.
+- GitHub reconoce v1.5.1 como la release **Latest**, no prerelease.
+- Assets publicados: `system.json` y `tierra-magica.zip`.
+- El workflow ejecutó validación completa, construcción/verificación de Compendios, staging runtime y publicación correctamente.
+- SHA-256 `system.json`: `8828056064d802963d6b9d71ce1791b62e61c0e27a53e93fa4fce5a61b42ed10`.
+- SHA-256 `tierra-magica.zip`: `8b21990e68ede2a37dd56e44a5dccfd7d256b568aba65ab9865477207afd537a`.
+- El canal estable `releases/latest/download/system.json` queda actualizado a v1.5.1.
+
 ## 1.5.1 — Hotfix de economía de Acción/Reacción — 2026-10-07
 
 - Corrige el caso en que una validación fallida podía consumir o dejar reservada una **Acción/Reacción**.
