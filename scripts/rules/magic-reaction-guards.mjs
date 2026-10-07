@@ -6,13 +6,11 @@ export function installMagicReactionGuards(ActorClass) {
   ActorClass.prototype.useCounterspell = async function () {
     const owns = this.items.some((entry) => entry.type === "technique" && normalizeSlug(entry.system?.slug || entry.name) === "contramagia");
     if (!owns) return ui.notifications.warn(this.name + " no posee la Técnica Contramagia.");
-    if (!(this.system.turn?.reaction ?? true)) return ui.notifications.warn(this.name + " ya gastó su Reacción.");
-    await this.update({ "system.turn.reaction": false });
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>Contramagia</strong><p>" +
         foundry.utils.escapeHTML(this.name) +
-        " consume su Reacción y declara Contramagia. Su resolución permanece contextual: no cancela automáticamente el hechizo, no concede una segunda Reacción y no crea una DF universal.</p></div>"
+        " declara Contramagia. La Reacción se registra manualmente en mesa. Su resolución permanece contextual: no cancela automáticamente el hechizo y no crea una DF universal.</p></div>"
     });
   };
 }
