@@ -267,40 +267,45 @@ Derrumbes, gases, accidentes industriales, sabotaje ferroviario, disputas por nu
 ---
 
 # NACARIEL
-*Puerto neutral, ciudad libre y gran centro cartográfico.*
+*Puerto neutral, Ciudad Libre y gran centro cartográfico de Edria.*
 
-**Ficha rápida:** Ciudad Libre · ≈176.000 habitantes · ≈36.000 flotantes · isla de bahía profunda · comercio oceánico y cartografía.
+**Ficha rápida:** Ciudad Libre · ≈176.000 habitantes · ≈36.000 de población flotante · isla de bahía profunda · comercio oceánico · cartografía, pilotaje y servicios marítimos.
 
 ## Identidad y ubicación
-Nacariel ocupa una isla con bahía profunda. Su posición continental exacta todavía está abierta. La ciudad mantiene condición neutral y vive del tránsito marítimo, la cartografía, el pilotaje y el comercio oceánico.
+Nacariel ocupa una isla con una bahía profunda y protegida. Su posición exacta dentro del esquema continental todavía permanece abierta. La ciudad se desarrolló como puerto neutral y punto de encuentro entre rutas oceánicas, comerciantes extranjeros, navegantes y cartógrafos. Su mayor riqueza no es solo lo que pasa por sus muelles, sino también la información necesaria para que esos viajes sean posibles.
 
 ## Gobierno y poder
-Nacariel se propone como una **república mercantil urbana**. El Consejo de la Bahía actúa como órgano soberano y elige a un Primer Síndico que representa y administra la ciudad. La neutralidad limita la capacidad de cualquier casa comercial o potencia extranjera para monopolizar el gobierno. El Capitán del Puerto y un Tribunal Marítimo poseen competencias técnicas específicas.
+Nacariel se propone como una **república mercantil urbana** y Ciudad Libre. El **Consejo de la Bahía** funciona como autoridad soberana y elige a un **Primer Síndico** encargado de representar y administrar la ciudad. Grandes comerciantes, pilotos, cartógrafos y gremios marítimos poseen influencia considerable, pero ninguna casa comercial debería poder apropiarse formalmente del gobierno. La neutralidad es parte esencial de su estabilidad política y económica.
 
-## Ciudad y arquitectura
-La ciudad abraza la bahía mediante muelles profundos, almacenes, barrios de tripulaciones, astilleros menores, torres de señales y calles que ascienden hacia sectores residenciales. Piedra costera, madera naval y cobre son materiales comunes.
+## Ciudad, pueblo y arquitectura
+La ciudad abraza la bahía mediante muelles profundos, almacenes, barrios de tripulaciones, astilleros menores, torres de señales y calles que ascienden hacia sectores residenciales. Piedra costera, madera naval, hierro y cobre predominan. Faros, boyas, depósitos y edificios de aduanas son tan importantes para su imagen como palacios o plazas.
 
-## Pueblo, economía y cultura
-Marineros, pilotos, cartógrafos, intérpretes, comerciantes, artesanos navales y comunidades extranjeras forman una sociedad cosmopolita. La riqueza procede de comercio, almacenaje, reparación, seguros marítimos, navegación y venta de información cartográfica. Neutralidad, contratos y reputación son valores centrales.
+Marineros, pilotos, cartógrafos, intérpretes, comerciantes, aseguradores, artesanos navales y comunidades extranjeras forman una sociedad cosmopolita. Muchas lenguas, monedas y costumbres pueden encontrarse en sus mercados y tabernas.
+
+## Comercio y vida cotidiana
+Nacariel vive del comercio oceánico, almacenaje, reparación naval, pilotaje, seguros, intermediación y venta de cartas marítimas. Importa alimentos, combustible y materias continentales, y redistribuye mercancías procedentes de rutas lejanas.
+
+La reputación es una moneda real. Un capitán fiable, un mapa preciso o un comerciante que cumple su palabra pueden valer más que una carga entera. Los rumores de tormentas, nuevas rutas, naufragios o puertos inseguros corren por la ciudad con enorme rapidez.
 
 ## Magia y tecnología
-La magia se aplica a navegación, meteorología, señalización y seguridad marítima. La tecnología naval es avanzada, pero Nacariel no debe competir con Cobravia en industria pesada.
+La magia se utiliza principalmente en navegación, meteorología, señalización, protección de cargamentos y seguridad marítima. La tecnología naval es avanzada, pero Nacariel no compite con Cobravia en producción industrial masiva. Su especialidad es **mover, orientar y asegurar** barcos y mercancías, no construir la mayor cantidad posible.
 
 ## Historia y acontecimientos
-Nacariel creció gracias a una bahía segura y al comercio de larga distancia. Se proponen tres acontecimientos fundamentales: **la Carta de Neutralidad**, base jurídica de su independencia política; **la Tormenta de los Cien Mástiles**, desastre naval que impulsó nuevos faros y protocolos de puerto; y **la Apertura de la Casa de las Cartas**, momento en que la cartografía se convirtió en una de sus principales industrias de conocimiento. Fechas siguen PROVISIONALES.
+Nacariel creció gracias a la combinación de una bahía segura, comercio de larga distancia y una política de neutralidad. Su cronología definitiva continúa abierta. Se proponen tres hitos principales: **la Carta de Neutralidad**, que estableció las bases de su independencia política; **la Tormenta de los Cien Mástiles**, desastre naval que llevó a reforzar faros, señales y protocolos del puerto; y **la Apertura de la Casa de las Cartas**, momento en que la cartografía se convirtió en una de las grandes industrias de conocimiento de la ciudad. Nombres y fechas continúan PROVISIONALES.
 
 ## Lugares importantes
-**Puerto Neutral:** corazón económico y político.  
-**Casa de las Cartas:** centro cartográfico propuesto.  
-**Gran Faro:** navegación y señalización.  
-**Dársena de las Naciones:** atraques internacionales propuestos.  
-**Tribunal Marítimo:** resolución de disputas navales.
+**Puerto Neutral:** corazón económico y político de Nacariel.  
+**Casa de las Cartas:** principal centro cartográfico y de información náutica propuesto.  
+**Gran Faro:** referencia para navegación, señalización y seguridad de la bahía.  
+**Dársena de las Naciones:** atraques reservados al gran tráfico internacional.  
+**Tribunal Marítimo:** resolución de contratos, daños, fletes y disputas navales.  
+**Mercado de Ultramar:** principal punto de intercambio de mercancías llegadas de rutas lejanas.
 
 ## Personalidades importantes
-**Propuestas provisionales:** **Mariel Varen**, Primera Síndica; **Oris Navar**, Capitán del Puerto; **Sela Miren**, maestra cartógrafa; **Tamir Osen**, magistrado del Tribunal Marítimo.
+**Mariel Varen**, Primera Síndica de Nacariel; **Oris Navar**, Capitán del Puerto; **Sela Miren**, maestra cartógrafa; **Tamir Osen**, magistrado del Tribunal Marítimo. **Todos estos nombres continúan PROVISIONALES hasta aprobación.**
 
 ## Situación actual
-Espionaje naval, mapas falsos, contrabando y presión de potencias amenazan una neutralidad que constituye simultáneamente la mayor riqueza y la mayor vulnerabilidad de Nacariel.
+Espionaje naval, mapas falsos, contrabando, disputas sobre salvamento y presión de potencias extranjeras amenazan una neutralidad que constituye a la vez la mayor fortaleza y la mayor vulnerabilidad de Nacariel. Para los aventureros es un lugar ideal para conseguir barcos, cartas, información, pasajes, contactos internacionales o problemas capaces de comenzar en un muelle y terminar al otro lado del mar.
 
 ---
 
