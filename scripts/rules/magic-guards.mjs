@@ -50,6 +50,23 @@ export function spellNeedsCheck(item, { contextualCheck = false } = {}) {
   return mode === "contextual" && Boolean(contextualCheck);
 }
 
+
+export async function promptContextualSpellCheck(item, {
+  dialogClass = globalThis.foundry?.applications?.api?.DialogV2
+} = {}) {
+  if (!dialogClass?.confirm) throw new Error("Foundry DialogV2 no está disponible para resolver la prueba contextual.");
+  const response = await dialogClass.confirm({
+    window: { title: "Prueba contextual — " + String(item?.name ?? "Hechizo") },
+    content: "<p>¿Existe incertidumbre significativa, oposición o una dificultad real en este lanzamiento?</p><p><strong>Sí</strong>: realiza la prueba. <strong>No</strong>: resuelve el lanzamiento sin tirada.</p>",
+    modal: true,
+    rejectClose: false,
+    yes: { label: "Sí, realizar prueba" },
+    no: { label: "No, lanzamiento automático" }
+  });
+  if (response === null || response === undefined) return { cancelled: true, contextualCheck: false };
+  return { cancelled: false, contextualCheck: response === true };
+}
+
 export function installMagicGuards(ActorClass) {
   const originalRollCheck = ActorClass.prototype.rollCheck;
   ActorClass.prototype.rollCheck = async function (...args) {
@@ -101,13 +118,9 @@ export function installMagicGuards(ActorClass) {
     let contextualCheck = false;
     const defense = String(item.system?.defense ?? "");
     if (String(item.system?.checkMode ?? "contextual") === "contextual" && !["normal", "mental", "body"].includes(defense)) {
-      contextualCheck = await Dialog.confirm({
-        title: "Prueba contextual — " + item.name,
-        content: "<p>¿Existe incertidumbre significativa, oposición o una dificultad real en este lanzamiento?</p><p><strong>Sí</strong>: realiza la prueba. <strong>No</strong>: resuelve el lanzamiento sin tirada.</p>",
-        yes: () => true,
-        no: () => false,
-        defaultYes: false
-      });
+      const contextualDecision = await promptContextualSpellCheck(item);
+      if (contextualDecision.cancelled) return null;
+      contextualCheck = contextualDecision.contextualCheck;
     }
     const needsCheck = spellNeedsCheck(item, { contextualCheck });
 
