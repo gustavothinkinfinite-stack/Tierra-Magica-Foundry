@@ -5,6 +5,8 @@
 **Alcance:** núcleo urbano de las diez ciudades principales de Edria desarrollado para el Manual Básico.  
 **Regla:** este documento canoniza únicamente los elementos expresamente incluidos aquí. Los nombres propios de personalidades, acontecimientos históricos sin cronología cerrada, nombres secundarios de lugares y cuestiones cartográficas abiertas continúan PROVISIONALES o POR DEFINIR.
 
+**Referencia cronológica:** `docs/CRONOLOGIA_EDRIA_CANON_v1.md`.
+
 ---
 
 ## 1. Criterio canónico común
