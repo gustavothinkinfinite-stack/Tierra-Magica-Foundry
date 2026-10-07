@@ -30,6 +30,45 @@ function formatWorkTime(minutes) {
   return value+" min";
 }
 
+
+function projectIssueLeaves(issues=[]) {
+  const result=[];
+  for(const issue of Array.isArray(issues)?issues:[]) {
+    const nested=issue?.detail?.issues;
+    if(Array.isArray(nested)&&nested.length) {
+      result.push(...projectIssueLeaves(nested));
+      continue;
+    }
+    result.push(issue);
+  }
+  return result;
+}
+
+function projectIssueDisplay(issue,{project,reference}={}) {
+  const code=String(issue?.code??"");
+  const requiredRank=TM_CONFIG.rankLabels?.[project?.professional?.requiredRank]??project?.professional?.requiredRank??"";
+  const requiredInstallation=TM_CONFIG.craftingInstallations?.[project?.professional?.requiredInstallation]??project?.professional?.requiredInstallation??"";
+  const skillLabel=TM_CONFIG.skillLabels?.[project?.professional?.skill]??project?.professional?.skill??"Habilidad";
+  const materialDisplay=formatCurrency(project?.ledger?.estimatedMaterialsCopper??0);
+  const specialization=String(reference?.specialization??project?.professional?.specialization??"").trim();
+  const friendly={
+    rank:"Necesitás "+skillLabel+" "+requiredRank+" o superior.",
+    installation:"Necesitás una instalación "+requiredInstallation+" o mejor.",
+    procedure:"Necesitás el Plano, Fórmula o procedimiento estable requerido por la receta.",
+    materials:"Faltan materiales o componentes esenciales.",
+    tool:"Falta la herramienta o Kit esencial de la receta.",
+    "material-allocation":"Tenés que asignar "+materialDisplay+" en materiales compatibles al Proyecto.",
+    "material-estimate":"La receta y el coste de materiales quedaron desincronizados; volvé a cargar la receta.",
+    "formula-knowledge":"Tu personaje debe conocer personalmente esta Fórmula.",
+    "formula-rank":"Tu rango de Alquimia no alcanza para preparar esta Fórmula.",
+    "formula-specialization":specialization?"La preparación requiere la Especialización "+specialization+".":"Falta la Especialización requerida por la Fórmula.",
+    "formula-specialization-owned":specialization?"Tu personaje no posee la Especialización "+specialization+".":"Tu personaje no posee la Especialización requerida.",
+    "formula-installation":"La instalación disponible no alcanza para esta Fórmula.",
+    "component-binding":"Falta vincular un componente físico requerido por la receta."
+  };
+  return friendly[code]??String(issue?.message??"Requisito pendiente.");
+}
+
 async function resolveProjectTarget(item,project) {
   const uuid=String(project?.target?.itemUuid??"").trim();
   if(!uuid) return null;
@@ -60,6 +99,7 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     context.system = this.item.system;
     context.config = TM_CONFIG;
     context.editable = this.isEditable;
+    context.isGM = Boolean(game.user?.isGM);
     for (const type of Object.keys(TM_CONFIG.itemTypes)) {
       context["is" + type.charAt(0).toUpperCase() + type.slice(1)] = this.item.type === type;
     }
@@ -170,8 +210,36 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
       } : null;
 
       const state=context.project.state;
+      const actorRank=Math.max(0,Number(this.item.parent?.system?.skills?.[context.project.professional.skill]?.rank)||0);
+      const flattenedIssues=projectIssueLeaves(context.projectPreviewIssues);
+      const seenIssues=new Set();
+      context.projectRequirementIssues=flattenedIssues
+        .map((issue)=>({code:String(issue?.code??""),message:projectIssueDisplay(issue,{project:context.project,reference:context.projectReference})}))
+        .filter((issue)=>{
+          if(!issue.message || seenIssues.has(issue.message)) return false;
+          seenIssues.add(issue.message);
+          return true;
+        });
+      context.projectSummary={
+        hasReference:Boolean(context.project.source.profileRef),
+        resultName:context.project.target.resultName||context.projectReference?.name||this.item.name,
+        operationLabel:TM_CONFIG.craftingProjectOperations[context.project.operation]??context.project.operation,
+        stateLabel:TM_CONFIG.craftingProjectStates[state]??state,
+        timeDisplay:formatWorkTime(context.project.time.requiredMinutes),
+        remainingDisplay:formatWorkTime(context.projectRemainingMinutes),
+        completedDisplay:formatWorkTime(context.project.time.completedMinutes),
+        skillLabel:TM_CONFIG.skillLabels[context.project.professional.skill]??context.project.professional.skill,
+        requiredRankLabel:TM_CONFIG.rankLabels[context.project.professional.requiredRank]??context.project.professional.requiredRank,
+        actorRankLabel:TM_CONFIG.rankLabels[actorRank]??actorRank,
+        specialization:context.project.professional.specialization,
+        requiredInstallationLabel:TM_CONFIG.craftingInstallations[context.project.professional.requiredInstallation]??context.project.professional.requiredInstallation,
+        availableInstallationLabel:TM_CONFIG.craftingInstallations[context.project.professional.availableInstallation]??context.project.professional.availableInstallation,
+        ready:context.projectPreview.valid,
+        issueCount:context.projectRequirementIssues.length
+      };
       context.projectActions={
         canLoadReference:state==="draft",
+        canStart:Boolean(game.user?.isGM)&&["draft","ready"].includes(state),
         canPrepare:Boolean(game.user?.isGM)&&state==="draft",
         canReserve:state==="ready",
         canRelease:state==="active",
@@ -252,6 +320,7 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     html.find("[data-action='project-repair-layer']").change((event) => this.#toggleRepairLayer(event));
     html.find("[data-action='project-repair-runic']").change((event) => this.#toggleRepairBoolean("runicMatrixAffected",event));
     html.find("[data-action='project-repair-enchantment']").change((event) => this.#toggleRepairBoolean("enchantmentMatrixAffected",event));
+    html.find("[data-action='project-start']").click(() => this.#startProject(html));
     html.find("[data-action='project-prepare']").click(() => this.#projectAction("prepare",html));
     html.find("[data-action='project-reserve']").click(() => this.#projectAction("reserve",html));
     html.find("[data-action='project-release']").click(() => this.#projectAction("release",html));
@@ -420,6 +489,32 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     if(this.item.type!=="project" || String(this.item.system?.state??"draft")!=="draft") return;
     await this.item.update({["system.repair."+field]:event.currentTarget.checked});
     this.render(false);
+  }
+
+  async #startProject(html) {
+    if(this.item.type!=="project") return;
+    const api=game.tierraMagica?.crafting;
+    if(!api) return ui.notifications.warn("La operación de crafting no está disponible.");
+    const state=String(this.item.system?.state??"draft");
+    let result;
+    if(state==="draft"){
+      result=await api.prepare?.(this.item);
+      if(!result?.ok) {
+        const detail=Array.isArray(result?.issues)?result.issues.map((issue)=>issue.message).filter(Boolean).join(" "):"";
+        return ui.notifications.warn((result?.error??"No se pudo preparar el Proyecto.")+(detail?" "+detail:""));
+      }
+      this.render(false);
+      return ui.notifications.info("Proyecto preparado. Revisá los materiales y pulsá Iniciar trabajo.");
+    }
+    if(state==="ready"){
+      result=await api.reserve?.(this.item);
+      if(!result?.ok) {
+        const detail=Array.isArray(result?.issues)?result.issues.map((issue)=>issue.message).filter(Boolean).join(" "):"";
+        return ui.notifications.warn((result?.error??"No se pudo iniciar el Proyecto.")+(detail?" "+detail:""));
+      }
+      this.render(false);
+      return ui.notifications.info("Proyecto iniciado. Los recursos quedaron comprometidos.");
+    }
   }
 
   async #projectAction(action,html) {
