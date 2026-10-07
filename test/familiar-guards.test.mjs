@@ -60,9 +60,9 @@ test("orden persistente ajena o sobre Familiar incapacitado no consume Acción n
   }
 });
 
-test("Sentidos Compartidos exige Técnica y Vínculo II y no duplica Acción", async () => {
+test("Sentidos Compartidos exige Técnica y Vínculo II pero no bloquea por el marcador de Acción", async () => {
   const pet = familiar({ bondLevel: 2 }); const without = owner(); await without.useFamiliarSense(pet); assert.equal(without.system.turn.action, true);
-  const pc = owner([technique("Sentidos Compartidos")]); await pc.useFamiliarSense(pet); assert.equal(pc.system.turn.action, false);
+  const pc = owner([technique("Sentidos Compartidos")]); await pc.useFamiliarSense(pet); assert.equal(pc.system.turn.action, true);
   const count = pc.updates.length; await pc.useFamiliarSense(pet); assert.equal(pc.updates.length, count);
 });
 
@@ -109,10 +109,15 @@ test("Vida 0 incapacita Familiar sin aplicar Trauma de personaje", async () => {
   assert.equal(pet.system.resources.health.value, 0); assert.equal(pet.system.status.incapacitated, true); assert.equal(pet.system.familiar.incapacitated, true); assert.equal(pet.system.status.trauma, 0);
 });
 
-test("Coordinación Reactiva no encadena una segunda Reacción", async () => {
+test("Coordinación Reactiva valida Técnica y disparador sin bloquear por el marcador de Reacción", async () => {
   const pc = owner([technique("Coordinación Reactiva")]); const pet = familiar({ bondLevel: 3 });
-  await pc.setFamiliarReactiveTrigger(pet, "cuando alguien cruce la puerta"); await pc.triggerFamiliarReaction(pet, "avisar y distraer"); assert.equal(pc.system.turn.reaction, false);
-  const count = pc.updates.length; await pc.triggerFamiliarReaction(pet, "repetir"); assert.equal(pc.updates.length, count);
+  await pc.setFamiliarReactiveTrigger(pet, "cuando alguien cruce la puerta");
+  const first = await pc.triggerFamiliarReaction(pet, "avisar y distraer");
+  assert.ok(first);
+  assert.equal(pc.system.turn.reaction, true);
+  const second = await pc.triggerFamiliarReaction(pet, "repetir");
+  assert.ok(second);
+  assert.equal(pc.system.turn.reaction, true);
 });
 
 test("Coordinación Reactiva rechaza respuesta vacía sin consumir Reacción", async () => {
