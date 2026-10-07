@@ -225,7 +225,7 @@ test("CRAFT-13I multiusuario: Sintonización concurrente revalida capacidad en l
   assert.equal(one.system.enchantment.reserve.value+two.system.enchantment.reserve.value,0);
 });
 
-test("CRAFT-13I multiusuario: dos clientes no pueden gastar la misma ventana de Acción/RE encantada",async()=>{
+test("CRAFT-13I multiusuario: dos clientes pueden activar sin lock de Acción y la RE sigue siendo autoritativa",async()=>{
   const actor=new MagicActor("re-race");
   const item=magicItem(actor,{
     id:"brooch",
@@ -247,9 +247,9 @@ test("CRAFT-13I multiusuario: dos clientes no pueden gastar la misma ventana de 
     }))
   ]);
 
-  assert.equal([a,b].filter((row)=>row?.ok).length,1);
-  assert.equal(item.system.enchantment.reserve.value,3);
-  assert.equal(actor.system.turn.action,false);
+  assert.equal([a,b].filter((row)=>row?.ok).length,2);
+  assert.equal(item.system.enchantment.reserve.value,0);
+  assert.equal(actor.system.turn.action,true);
 });
 
 function trap(actor,id,key){
