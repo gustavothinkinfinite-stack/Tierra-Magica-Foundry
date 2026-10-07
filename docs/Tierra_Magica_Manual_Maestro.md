@@ -10,6 +10,19 @@ Toda decisión nueva que afecte reglas, creación de personaje, magia, equipo, F
 
 Si se descubre una contradicción, no se corrige silenciosamente en otro documento. Se corrige aquí, se registra el motivo en Git y después se propaga a la implementación.
 
+### Anexos técnicos controlados
+
+El Manual Maestro puede delegar **especificaciones técnicas extensas y reproducibles** a anexos especializados cuando duplicarlas aquí perjudicaría su mantenimiento. Esa delegación no crea una segunda autoridad narrativa.
+
+Para símbolos visuales, el registro técnico autorizado es:
+
+`docs/visual/SIMBOLOS_CANONICOS.md`
+
+Ese archivo sólo puede desarrollar entidades y símbolos previamente autorizados por este Manual. Una ficha visual adquiere estado **CANON** únicamente después de aprobación explícita y de que este Manual registre o remita a esa definición. Si ambos documentos entran en contradicción, prevalece el Manual Maestro y la ficha técnica debe marcarse como inconsistente hasta corregirse.
+
+Los activos `SVG/PNG` derivados implementan la ficha técnica; no crean canon por sí mismos.
+
+
 ### Protección contra pérdida de información
 
 Ninguna fuente histórica vuelve a eliminarse por considerarse «vieja» hasta comprobar que su contenido útil está integrado o archivado dentro de este Manual. El historial de Git constituye el respaldo de versiones anteriores.
@@ -12211,6 +12224,8 @@ Las deidades pueden actuar como **Fuente Divina** para personajes con un Víncul
 ### Estado pendiente de símbolos
 
 Los **símbolos religiosos definitivos de las Cinco Luminarias no quedan fijados por estos capítulos**. Sus imágenes visuales canónicas siguen funcionando como referencia de identidad, pero los símbolos serán diseñados posteriormente mediante una estructura común y explícita antes de incorporarse como canon doctrinal.
+
+La estructura obligatoria para diseñarlos y reproducirlos es el **Estándar Universal de Símbolos Canónicos** definido en `docs/visual/SIMBOLOS_CANONICOS.md`. Cada símbolo sólo pasará a CANON cuando su ficha complete geometría, reconocimiento, color, variantes, pruebas y activo maestro conforme a ese estándar.
 
 Permanecen abiertos para desarrollo futuro los elementos que el canon vigente mantiene expresamente sin fijar: símbolos doctrinales pendientes de las Luminarias, avatares y manifestaciones no definidas, estructuras universales de culto, calendarios exactos de festividades, milagros detallados, Vínculos Divinos específicos, planos, destino último de las almas, Archidemonios concretos, mecánicas completas de corrupción/posesión/Necromancia y numerosos paquetes jugables de pueblos primordiales. El Manual Maestro no rellena esos huecos por inferencia.
 ---

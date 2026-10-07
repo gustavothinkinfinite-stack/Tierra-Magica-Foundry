@@ -102,6 +102,14 @@ Foundry T.M. **v1.1.0 fue publicada** desde el commit `0fc8ffab5c0376533ebb20433
 
 La guía visual, portada de referencia e ilustraciones siguen siendo activos visuales separados porque no son texto del manual. Orientan la futura maquetación y arte, pero no sustituyen la fuente textual única.
 
+### Registro técnico de símbolos
+
+`docs/visual/SIMBOLOS_CANONICOS.md` es un **anexo técnico controlado** autorizado por el Manual Maestro para almacenar especificaciones geométricas, cromáticas y de reproducción que serían imprácticas de duplicar dentro del cuerpo principal.
+
+No es una segunda fuente narrativa: no puede crear entidades, dominios, religiones, ciudades ni decisiones de mundo. Una ficha de símbolo sólo se vuelve CANON después de aprobación explícita y referencia correspondiente en el Manual Maestro. Ante contradicción, prevalece el Manual Maestro y la ficha se considera inconsistente hasta su corrección.
+
+Los SVG/PNG bajo `assets/symbols/` serán implementaciones del registro y no autoridades independientes.
+
 
 ## Depuración narrativa del 2026-10-06
 
