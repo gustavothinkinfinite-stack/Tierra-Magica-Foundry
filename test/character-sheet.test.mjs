@@ -254,3 +254,10 @@ test("los marcadores de Acción/Reacción de la ficha son controles manuales sim
   assert.equal(logic.includes("[data-action='toggle-turn']"),true);
   assert.equal(logic.includes("[data-action='reset-turn']"),true);
 });
+
+
+test("la ficha aclara que Acción y Reacción son marcadores manuales",async()=>{
+  const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  assert.equal(sheet.includes("Marcador manual de Acción; no bloquea ataques, magia ni otras resoluciones"),true);
+  assert.equal(sheet.includes("Marcador manual de Reacción; no bloquea respuestas ni otras resoluciones"),true);
+});
