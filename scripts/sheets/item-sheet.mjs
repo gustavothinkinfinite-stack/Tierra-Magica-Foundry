@@ -151,6 +151,8 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
       context.projectMaterialDisplay=formatCurrency(context.project.ledger.estimatedMaterialsCopper);
       context.projectAllocatedDisplay=formatCurrency(context.projectPreview.allocatedMaterialCopper??0);
       context.projectMissingDisplay=formatCurrency(context.projectPreview.missingMaterialCopper??0);
+      context.projectHasMaterialCost=context.project.ledger.estimatedMaterialsCopper>0;
+      context.projectMissingCopper=Math.max(0,Number(context.projectPreview.missingMaterialCopper)||0);
 
       context.projectMaterialAllocations=context.project.ledger.entries
         .map((entry,index)=>({entry,index}))
@@ -437,8 +439,14 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     if(this.item.type!=="project" || String(this.item.system?.state??"draft")!=="draft") return;
     const sourceUuid=String(html.find("[data-project-material-source]").val()??"").trim();
     const amountCopper=Math.max(0,Math.floor(Number(html.find("[data-project-material-amount]").val())||0));
-    const compatibility=String(html.find("[data-project-material-compatibility]").val()??"").trim();
-    if(!sourceUuid || !amountCopper) return ui.notifications.warn("Selecciona un Lote y un VI mayor que cero.");
+    let compatibility=String(html.find("[data-project-material-compatibility]").val()??"").trim();
+    const source=Array.from(this.item.parent?.items??[]).find((candidate)=>String(candidate?.uuid??"")===sourceUuid);
+    if(!compatibility && source){
+      const options=Array.isArray(source.system?.craftingLot?.compatibility)?source.system.craftingLot.compatibility.filter(Boolean):[];
+      compatibility=String(options[0]??"");
+    }
+    if(!sourceUuid || !amountCopper) return ui.notifications.warn("Elegí un Lote y un valor de materiales mayor que cero.");
+    if(!compatibility) return ui.notifications.warn("Ese Lote no declara una compatibilidad de fabricación utilizable.");
     const entries=foundry.utils.deepClone(Array.isArray(this.item.system?.ledger?.entries)?this.item.system.ledger.entries:[]);
     entries.push({
       id:"material-ui-"+Date.now(),
@@ -498,13 +506,25 @@ export class TierraMagicaItemSheet extends ItemSheetV1 {
     const state=String(this.item.system?.state??"draft");
     let result;
     if(state==="draft"){
+      const preview=await previewCraftingProject(this.item);
+      if(!preview.valid){
+        const project=normalizeCraftingProject(this.item.system);
+        const reference=craftingReferenceGuidance(project.source.profileRef)?.entry??null;
+        const messages=[];
+        const seen=new Set();
+        for(const issue of projectIssueLeaves(preview.issues)){
+          const message=projectIssueDisplay(issue,{project,reference});
+          if(message&&!seen.has(message)){seen.add(message);messages.push(message);}
+        }
+        return ui.notifications.warn("Todavía no puede comenzar. "+messages.join(" "));
+      }
       result=await api.prepare?.(this.item);
       if(!result?.ok) {
         const detail=Array.isArray(result?.issues)?result.issues.map((issue)=>issue.message).filter(Boolean).join(" "):"";
         return ui.notifications.warn((result?.error??"No se pudo preparar el Proyecto.")+(detail?" "+detail:""));
       }
       this.render(false);
-      return ui.notifications.info("Proyecto preparado. Revisá los materiales y pulsá Iniciar trabajo.");
+      return ui.notifications.info("Proyecto preparado. Pulsá Iniciar trabajo para comprometer los materiales.");
     }
     if(state==="ready"){
       result=await api.reserve?.(this.item);
