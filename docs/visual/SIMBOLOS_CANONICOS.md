@@ -927,3 +927,58 @@ La autorización de un soporte no obliga a que el símbolo aparezca en todos los
 - **v0.3 — 2026-10-07:** cromática aprobada; se fijan Oro Aureano, Azul Custodio, Marfil del Reencendido y Ámbar de Resplandor; se autorizan las variantes PRIMARY-01, LIGHT-01 e INVERTED-01.
 - **v0.4 — 2026-10-07:** se aprueba REDUCED-01, umbral principal de 32 px, mínimo absoluto de 16 px, mínimos físicos recomendados y área de protección 2X.
 - **v1.0 — 2026-10-07:** pruebas contextuales/materiales superadas; se validan soportes, perspectiva, deterioro y usos culturales; se incorpora PNG de referencia y la ficha pasa a CANON.
+
+## SYM-DIV-NEMOR-001 — El Umbral de Piedra
+
+**Entidad:** Nemor, el Guardián  
+**Estado:** **PROVISIONAL — GEOMETRÍA Y CROMÁTICA APROBADAS E INMUTABLES**  
+**Versión:** v0.3  
+**Aprobación geométrica y cromática:** 2026-10-07
+
+### Concepto
+El símbolo representa **memoria custodiada, límite respetado y preservación del nombre**. No representa tránsito del alma ni una puerta abierta. Está formado por dos pilares laterales, un dintel superior y una piedra memorial central separada de la estructura. La piedra contiene una única **Marca del Nombre** horizontal en espacio negativo.
+
+### Geometría normativa
+Lienzo maestro: `1000 × 1000`. Módulo X: 40.
+
+```svg
+<path d="M185 850 L185 810 L205 790 L205 250 L185 230 L185 190 L285 190 L285 230 L265 250 L265 790 L285 810 L285 850 Z"/>
+<path d="M715 850 L715 810 L735 790 L735 250 L715 230 L715 190 L815 190 L815 230 L795 250 L795 790 L815 810 L815 850 Z"/>
+<path d="M150 150 L850 150 L850 210 L825 230 L175 230 L150 210 Z"/>
+<path fill-rule="evenodd" d="M410 850 L410 410 L455 340 L545 340 L590 410 L590 850 Z M445 505 L555 505 L555 545 L445 545 Z"/>
+```
+
+Trayectorias inmutables. Eje vertical X=500. Rotación y reflejos prohibidos como transformaciones formales. Deben conservarse separaciones visibles entre piedra, pilares y dintel.
+
+**Rasgos obligatorios:** dos pilares; dintel completo; piedra central separada; Marca del Nombre negativa; separación entre todos los componentes.
+
+### Cromática
+| Nombre | HEX | RGB | Uso |
+|---|---|---|---|
+| **Pizarra Guardiana** | `#2F343B` | 47,52,59 | campo oscuro |
+| **Piedra Memorial** | `#A7A196` | 167,161,150 | símbolo principal |
+| **Marfil de Inscripción** | `#DDD6C6` | 221,214,198 | campo claro/inversión |
+| **Bronce de Vigilia** | `#8A7350` | 138,115,80 | material/acento contextual |
+
+**Principal:** Piedra Memorial sobre Pizarra Guardiana.  
+**Claro:** Pizarra Guardiana sobre Marfil de Inscripción.  
+**Invertido:** Marfil de Inscripción sobre Pizarra Guardiana.  
+Los componentes usan un único color por variante formal. Sin gradientes, sombras ni texturas incorporadas.
+
+### Prohibiciones
+No convertir la figura en una puerta transitable. No añadir texto literal, runas, calaveras, huesos, guadañas, llamas, alas, ojos, cadenas, animales ni símbolos de otras deidades.
+
+### Activos
+- `SYM-DIV-NEMOR-001_MASTER.svg`
+- `SYM-DIV-NEMOR-001_PRIMARY.svg`
+- `SYM-DIV-NEMOR-001_LIGHT.svg`
+- `SYM-DIV-NEMOR-001_INVERTED.svg` — pendiente de escritura técnica si el activo aún no está presente.
+
+### Pendientes para v1.0
+Versión reducida, tamaño mínimo, área de protección, pruebas contextuales/materiales y PNG definitivo.
+
+### Historial
+- **v0.1:** La Piedra del Nombre, propuesta descartada antes de canonización.
+- **v0.2:** El Umbral de Piedra seleccionado y geometría aprobada.
+- **v0.3:** cromática aprobada.
+
