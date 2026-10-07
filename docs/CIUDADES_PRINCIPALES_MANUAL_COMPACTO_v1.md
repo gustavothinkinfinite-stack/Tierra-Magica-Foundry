@@ -97,40 +97,44 @@ Cobravia prospera, pero esa prosperidad depende de que fábricas, astilleros y p
 ---
 
 # LYS
-*La ciudad universitaria levantada alrededor de un lago profundo.*
+*La ciudad universitaria construida alrededor de un lago profundo.*
 
-**Ficha rápida:** Principado de Lysendra · ≈142.000 habitantes · ≈24.000 flotantes · centro académico y arcano · alfabetización muy alta.
+**Ficha rápida:** Principado de Lysendra · ≈142.000 habitantes · ≈24.000 de población flotante · gran centro académico y arcano · alta alfabetización · tecnología especializada en instrumentación.
 
 ## Identidad y ubicación
-Lys se extiende alrededor de un lago profundo en los valles altos de Lysendra. Su posición exacta respecto del Espinazo del Mundo y el nombre del lago permanecen abiertos. Universidades, academias, bibliotecas y el Observatorio de los Fundadores convierten a la ciudad en uno de los grandes centros intelectuales de Edria.
+Lys se extiende alrededor de un lago profundo entre los valles altos de Lysendra. El nombre y la forma exacta del lago, así como la posición definitiva del Principado respecto del Espinazo del Mundo, permanecen abiertos hasta cerrar la cartografía. Universidades, academias, bibliotecas y el Observatorio de los Fundadores convierten a Lys en uno de los principales centros de conocimiento de Edria.
 
 ## Gobierno y poder
-Lysendra es un **principado apoyado por academias arcanas**. El príncipe o princesa conserva soberanía, defensa y política exterior, pero las academias tienen influencia institucional real. Se propone que Lys sea administrada por un Canciller respaldado por un Consejo Cívico-Académico, mientras un Consejo de Academias asesora al Principado en asuntos mágicos, científicos y educativos.
+Lysendra es un **principado apoyado por academias arcanas**. El príncipe o princesa conserva soberanía, defensa y política exterior, mientras las academias participan de manera reconocida en asuntos científicos, educativos y mágicos. En Lys se propone un **Canciller** encargado de la administración urbana y un **Consejo Cívico-Académico** donde conviven representantes de la ciudad, instituciones de estudio y autoridades del Principado. Las academias influyen profundamente, pero no sustituyen al gobierno principesco.
 
-## Ciudad y arquitectura
-La ciudad forma un anillo irregular alrededor del lago, con campus, barrios residenciales, talleres de instrumentos y pequeños muelles. Predominan piedra, madera, vidrio y cobre. Torres de observación, laboratorios y edificios académicos se integran sin convertir la ciudad en un conjunto de torres mágicas desconectadas de la vida cotidiana.
+## Ciudad, pueblo y arquitectura
+La ciudad forma un anillo irregular alrededor del lago. Campus, bibliotecas, residencias, talleres de precisión y pequeños muelles se alternan con barrios más antiguos y zonas de servicios. Piedra clara y oscura, madera, vidrio y cobre dominan la arquitectura; torres de observación y laboratorios aparecen integrados al tejido urbano en lugar de aislarse como fortalezas mágicas.
 
-## Pueblo, economía y cultura
-Estudiantes, profesores, investigadores, artesanos de precisión, copistas, comerciantes y navegantes lacustres forman una sociedad intensamente ligada al conocimiento. La economía se apoya en educación, libros, instrumentos ópticos y arcanos, investigación, hospedaje y servicios especializados. El debate intelectual forma parte de la vida cotidiana.
+Estudiantes, profesores, investigadores, artesanos, copistas, comerciantes y navegantes lacustres forman una población acostumbrada a convivir con visitantes temporales y debates constantes. El prestigio académico tiene verdadero peso social, aunque riqueza, linaje y conexiones políticas siguen importando.
+
+## Comercio y vida cotidiana
+Lys obtiene buena parte de su riqueza de educación, libros, servicios especializados, investigación y fabricación de instrumentos ópticos, científicos y arcanos. Importa alimentos, combustible y materias industriales que su geografía y especialización no producen en cantidad suficiente.
+
+La vida cotidiana está marcada por calendarios académicos, conferencias, mercados de libros e instrumentos, salones de discusión y rivalidades entre escuelas. En Lys, una nueva teoría o un descubrimiento pueden alterar reputaciones con la misma rapidez que un escándalo político.
 
 ## Magia y tecnología
-Lys posee una de las mayores concentraciones de magia académica competente de Edria. Laboratorios, instrumentos, observatorios y dispositivos especializados son comunes en instituciones, pero no en todos los hogares. La tecnología local destaca por precisión más que por volumen industrial.
+Lys posee una de las mayores concentraciones de magia académica competente de Edria. Laboratorios, observatorios, instrumentos de medición y dispositivos especializados son frecuentes dentro de instituciones, pero no convierten la magia avanzada en algo cotidiano para toda la población. Su tecnología destaca por **precisión y conocimiento**, no por producción masiva: Cobravia fabrica a escala; Lys diseña, estudia y perfecciona.
 
 ## Historia y acontecimientos
-La ciudad se desarrolló alrededor del lago y de sus instituciones de estudio. Se proponen tres hitos: **la fundación del Observatorio de los Fundadores** como acontecimiento formador de su identidad; **el Concordato de las Academias**, que reconoció formalmente el peso político de las instituciones académicas; y **el Cierre de las Galerías Bajas**, consecuencia de un accidente de investigación que reforzó la regulación arcana. Fechas y detalles siguen PROVISIONALES.
+La ciudad creció alrededor del lago y de sus instituciones de estudio. Su cronología definitiva todavía está abierta. Se proponen tres hitos principales: **la fundación del Observatorio de los Fundadores**, que consolidó su prestigio intelectual; **el Concordato de las Academias**, que reconoció formalmente la influencia institucional de las grandes escuelas; y **el Cierre de las Galerías Bajas**, consecuencia de un accidente de investigación que endureció la regulación de ciertos trabajos arcanos. Fechas y detalles continúan PROVISIONALES.
 
 ## Lugares importantes
-**Observatorio de los Fundadores:** referencia científica y arcana de alcance continental.  
-**Gran Biblioteca:** colección académica propuesta.  
-**Claustro de las Ocho Galerías:** centro universitario propuesto.  
-**Mercado de Instrumentos:** óptica, medición y arcanotecnia.  
-**Muelles del Lago:** transporte local y acceso a investigaciones lacustres.
+**Observatorio de los Fundadores:** gran referencia científica y arcana de Lys.  
+**Gran Biblioteca:** principal colección académica propuesta de la ciudad.  
+**Claustro de las Ocho Galerías:** complejo universitario y centro de debate.  
+**Mercado de Instrumentos:** óptica, medición, herramientas de precisión y arcanotecnia.  
+**Muelles del Lago:** transporte local y punto de partida para estudios del lago profundo.
 
 ## Personalidades importantes
-**Propuestas provisionales:** **príncipe Erian de Lysendra**, soberano del principado; **Maelis Corven**, Canciller de Lys; **Thessa Irian**, rectora de una de las principales academias; **Oren Caldus**, custodio del Observatorio de los Fundadores.
+**Erian de Lysendra**, príncipe del Principado; **Maelis Corven**, Canciller de Lys; **Thessa Irian**, rectora de una de sus academias más influyentes; **Oren Caldus**, custodio del Observatorio de los Fundadores. **Todos estos nombres continúan PROVISIONALES hasta aprobación.**
 
 ## Situación actual
-Las tensiones surgen de rivalidades entre academias, investigaciones peligrosas, robo de conocimiento, presión sobre vivienda y misterios asociados al lago profundo.
+Lys vive entre cooperación y competencia intelectual. Rivalidades entre academias, investigaciones peligrosas, robo de conocimiento, presión sobre vivienda estudiantil y preguntas todavía sin respuesta sobre el lago generan conflictos constantes. Para los aventureros es un centro natural de investigación, interpretación de artefactos, expediciones científicas, secretos académicos y fenómenos arcanos difíciles de comprender.
 
 ---
 
