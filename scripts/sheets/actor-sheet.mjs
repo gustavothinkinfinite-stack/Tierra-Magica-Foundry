@@ -40,6 +40,7 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     context.system = this.actor.system;
     context.config = TM_CONFIG;
     context.editable = this.isEditable;
+    context.isGM = Boolean(game.user?.isGM);
     context.isCharacter = this.actor.type === "character";
     context.isNpc = this.actor.type === "npc";
     context.isFamiliar = this.actor.type === "familiar";
