@@ -224,40 +224,45 @@ Heliara enfrenta escasez periódica de agua, hospitales saturados, tensiones sob
 ---
 
 # KAR-DUR
-*Ciudad-fortaleza excavada en el Espinazo del Mundo.*
+*La ciudad-fortaleza que mantiene abierto el paso por el Espinazo del Mundo.*
 
-**Ficha rápida:** Holdas de Kharum · ≈104.000 habitantes · ≈13.000 flotantes · fortaleza de montaña · fundiciones, minas y ferrocarril subterráneo.
+**Ficha rápida:** Holdas de Kharum · ≈104.000 habitantes · ≈13.000 de población flotante · fortaleza de montaña · gran centro minero y metalúrgico · ferrocarril subterráneo.
 
 ## Identidad y ubicación
-Kar-Dur se encuentra en una garganta del Espinazo del Mundo. Parte de la ciudad ocupa el exterior de la roca y otra parte se extiende por niveles y galerías interiores. Controla tránsito, minería y defensa de montaña.
+Kar-Dur se encuentra en una garganta estratégica del Espinazo del Mundo. Parte de la ciudad se levanta sobre puentes, terrazas y fortificaciones exteriores; otra parte penetra profundamente en la montaña mediante galerías, estaciones, fundiciones y barrios excavados en la roca. Su importancia depende tanto de lo que extrae y fabrica como de su capacidad para mantener abiertos los pasos y túneles que atraviesan la cordillera.
 
 ## Gobierno y poder
-Kharum es una **confederación de ciudades-fortaleza**. Cada holda conserva amplia autonomía. Kar-Dur se propone gobernada por un Consejo de la Holda y un Primer Custodio civil. El Comandante de la Garganta dirige la defensa, pero no gobierna la ciudad en tiempos ordinarios. Durante asedios o desastres puede recibir facultades operativas temporales.
+Kharum es una **confederación de ciudades-fortaleza**, o holdas, cada una con amplia autonomía. En Kar-Dur se propone un **Consejo de la Holda** como principal autoridad civil y un **Primer Custodio** encargado de ejecutar sus decisiones. El **Comandante de la Garganta** controla la defensa, pero no gobierna la ciudad en tiempos ordinarios. Durante asedios, derrumbes mayores o amenazas al paso puede recibir facultades operativas temporales. Esa separación entre autoridad civil y militar es una parte importante de la identidad política de Kar-Dur.
 
-## Ciudad y arquitectura
-Puertas monumentales, fortificaciones, puentes, túneles, bóvedas, ascensores y chimeneas de ventilación forman el paisaje. Piedra excavada, hierro, acero y bronce oscuro dominan. La ingeniería debe responder siempre a carga, calor, ventilación, transporte y defensa.
+## Ciudad, pueblo y arquitectura
+Puertas monumentales, puentes, túneles, bóvedas, ascensores, vías férreas y grandes chimeneas de ventilación forman parte del paisaje diario. Piedra excavada, hierro, acero y bronce oscuro dominan la arquitectura. Casi toda construcción debe justificar su peso, ventilación, acceso, resistencia al fuego y utilidad defensiva.
 
-## Pueblo, economía y cultura
-Mineros, fundidores, ferroviarios, ingenieros, soldados y comerciantes viven en una sociedad disciplinada por turnos y seguridad colectiva. Kar-Dur produce mineral, metal trabajado, herramientas, armamento y componentes ferroviarios. Depende del exterior para buena parte de sus alimentos, madera y textiles.
+Mineros, fundidores, ferroviarios, ingenieros, soldados, comerciantes y familias vinculadas a oficios especializados forman una sociedad donde la disciplina colectiva es necesaria para sobrevivir. Cerrar una compuerta, mantener una galería o respetar una señal ferroviaria puede ser una cuestión de vida o muerte.
+
+## Comercio y vida cotidiana
+Kar-Dur exporta mineral, metal trabajado, herramientas, armamento, componentes ferroviarios y conocimiento técnico de montaña. Importa gran parte de sus alimentos, madera, textiles y bienes agrícolas, lo que vuelve esenciales las rutas de suministro.
+
+La vida cotidiana está organizada alrededor de turnos de mina, hornos, convoyes y mantenimiento. Existen fuertes tradiciones de oficio, aprendizaje y responsabilidad compartida. Un trabajador competente, un ingeniero fiable o un jefe de brigada respetado puede poseer enorme prestigio social incluso sin riqueza o rango militar.
 
 ## Magia y tecnología
-La tecnología minera, ferroviaria y metalúrgica es muy avanzada para los estándares de Edria. La magia se emplea como apoyo en forja, detección, seguridad y obras, no como sustituto del trabajo de ingeniería.
+Kar-Dur posee tecnología avanzada en minería, fundición, estructuras y ferrocarril. La magia se utiliza para detección, seguridad, estabilización, forja y determinadas obras, pero nunca elimina la necesidad de ingeniería, inspección o mano de obra. La ciudad debe transmitir la sensación de que cada gran mecanismo ha sido construido para funcionar bajo condiciones extremas.
 
 ## Historia y acontecimientos
-Kar-Dur nació de la necesidad de controlar y defender una garganta estratégica. Minas y fundiciones ampliaron el asentamiento y el ferrocarril subterráneo reforzó su importancia. Se proponen como hitos **el Primer Cierre de la Garganta**, defensa que consolidó la reputación militar de la ciudad; **el Derrumbe de la Tercera Galería**, desastre minero que reformó protocolos de seguridad; y **la Integración Ferroviaria Profunda**, etapa que conectó minas, fundiciones y tránsito continental. Fechas siguen PROVISIONALES.
+Kar-Dur nació de la necesidad de controlar y defender una garganta estratégica. Las minas y fundiciones transformaron la fortaleza original en una gran ciudad industrial, y el ferrocarril subterráneo reforzó su importancia continental. Se proponen tres hitos principales: **el Primer Cierre de la Garganta**, defensa que consolidó la reputación militar de Kar-Dur; **el Derrumbe de la Tercera Galería**, desastre minero que reformó los protocolos de seguridad; y **la Integración Ferroviaria Profunda**, etapa que conectó minas, fundiciones y tránsito a través de la montaña. Fechas y detalles continúan PROVISIONALES.
 
 ## Lugares importantes
-**Gran Puerta de la Garganta:** principal defensa exterior.  
-**Estación Profunda:** centro ferroviario subterráneo.  
-**Cámara de Fundición Mayor:** complejo metalúrgico.  
-**Nivel de Minas:** acceso a explotaciones y galerías.  
-**Fortaleza Alta:** mando defensivo.
+**Gran Puerta de la Garganta:** principal acceso y símbolo defensivo de Kar-Dur.  
+**Estación Profunda:** corazón del ferrocarril subterráneo y del movimiento de carga.  
+**Cámara de Fundición Mayor:** gran complejo metalúrgico de la ciudad.  
+**Nivel de Minas:** conjunto de galerías y accesos hacia explotaciones activas.  
+**Fortaleza Alta:** centro del mando militar y defensa exterior.  
+**Salones Civiles:** sede propuesta del Consejo de la Holda y de la administración urbana.
 
 ## Personalidades importantes
-**Propuestas provisionales:** **Dorun Kharvek**, Primer Custodio; **Mara Durn**, Comandante de la Garganta; **Hadrik Volm**, maestro de Fundiciones; **Tessa Orun**, responsable de la red ferroviaria de Kar-Dur.
+**Dorun Kharvek**, Primer Custodio de Kar-Dur; **Mara Durn**, Comandante de la Garganta; **Hadrik Volm**, maestro de Fundiciones; **Tessa Orun**, responsable de la red ferroviaria local. **Todos estos nombres continúan PROVISIONALES hasta aprobación.**
 
 ## Situación actual
-Derrumbes, gases, accidentes, sabotaje ferroviario, disputas sobre vetas y tensión entre necesidades militares y civiles forman el núcleo de sus problemas.
+Derrumbes, gases, accidentes industriales, sabotaje ferroviario, disputas por nuevas vetas y tensión entre prioridades militares y civiles forman parte de la vida de Kar-Dur. Para los aventureros ofrece rescates subterráneos, conspiraciones gremiales, sabotajes, asedios, expediciones mineras y viajes por corredores donde un fallo técnico puede aislar sectores enteros de la ciudad.
 
 ---
 
