@@ -1,3 +1,12 @@
+## 1.8.1 — Hotfix de fichas de Actor — 2026-10-08
+
+- Corrige el error de compilación Handlebars `Parse error on line 93` en la plantilla compartida `templates/actor/parts/actor-sheet.hbs`: faltaba `}` al cerrar una inclusión de plantilla.
+- Restablece la apertura de las fichas de personaje, PNJ y familiar con la plantilla compartida.
+- Añade una protección de renderizado V1 ante el objeto `TokenDocument` de solo lectura entregado por Foundry v14; evita combinarlo recursivamente como opción de ventana al abrir fichas desde un token.
+- Incorpora validación mediante Handlebars real de todas las plantillas del sistema, además de pruebas de opciones de renderizado y del caso exacto de la inclusión incompleta.
+- No cambia reglas, datos de criaturas, estadísticas, ni rutas o contenido del arte del Bestiario v1.8.0.
+- Los avisos de deprecación `FilePicker` del módulo The Forge y del framework `ApplicationV1` no son cambios de reglas: su eliminación completa requiere una migración de API separada.
+
 ## 1.8.0 — Arte del Bestiario y Lobo del Eco Muerto — 2026-10-08
 
 - Incorpora **22 archivos WebP reales** (11 retratos y 11 tokens circulares), con nombres y rutas propias de Foundry, directamente dentro de `assets/bestiary/`.
