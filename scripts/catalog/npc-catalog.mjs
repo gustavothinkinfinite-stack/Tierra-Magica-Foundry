@@ -1,3 +1,5 @@
+import { resolveBestiaryArt } from "./npc-art.mjs";
+
 // Transcripción estructurada de «23. PNJ y criaturas — Perfiles de referencia»
 // del Manual Maestro. Los campos no definidos permanecen identificados como tales.
 // No se escalan perfiles con nivel, PD o PR de jugadores.
@@ -18,8 +20,9 @@ export const NPC_REFERENCE_PROFILES = Object.freeze([
 const finite = (value) => typeof value === "number" && Number.isFinite(value);
 
 // Conserva el dato «—» del Centinela y el intervalo de Protección del Canalizador.
-export function npcReferenceCatalog() {
+export function npcReferenceCatalog({ availableArtFiles = new Set() } = {}) {
   return NPC_REFERENCE_PROFILES.map((entry) => {
+    const art=resolveBestiaryArt(entry.slug, availableArtFiles);
     const profile = {
       enabled:true,
       source:"Manual Maestro §23 — PNJ y criaturas",
@@ -49,13 +52,13 @@ export function npcReferenceCatalog() {
     return {
       name:entry.name,
       type:"npc",
-      img:"systems/tierra-magica/assets/icons/actor.svg",
+      img:art?.portrait ?? "systems/tierra-magica/assets/icons/actor.svg",
       system:{
         details:{role:entry.role,threat:"",concept:"Perfil de referencia del Manual Maestro"},
         npcProfile:profile,
         resources:{health:{value:entry.life,max:entry.life},mana:{value:profile.mana,max:profile.mana}}
       },
-      prototypeToken:{actorLink:false,name:entry.name}
+      prototypeToken:{actorLink:false,name:entry.name,...(art ? {texture:{src:art.token}} : {})}
     };
   });
 }

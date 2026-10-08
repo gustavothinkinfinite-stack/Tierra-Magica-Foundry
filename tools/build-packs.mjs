@@ -1,9 +1,10 @@
 import { compilePack, extractPack } from "@foundryvtt/foundryvtt-cli";
 import { createHash } from "node:crypto";
-import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { coreCatalog } from "../scripts/catalog/core-catalog.mjs";
 import { npcReferenceCatalog } from "../scripts/catalog/npc-catalog.mjs";
+import { APPROVED_BESTIARY_ART_SLUGS, bestiaryArtFiles } from "../scripts/catalog/npc-art.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const sourceRoot = resolve(root, ".pack-source");
@@ -59,7 +60,30 @@ await rm(verifyRoot,{recursive:true,force:true});
 
 // Compendio de Actor separado: los NPC no son Items, ni siguen presupuestos PJ.
 const actorPack="bestiary";
-const actorEntries=npcReferenceCatalog();
+// El paquete solamente apunta a arte verdaderamente presente en la release.
+const artDir=resolve(root,"assets/bestiary");
+const availableArtFiles=new Set(await readdir(artDir).catch((error)=>{
+  if(error.code==="ENOENT") return [];
+  throw error;
+}));
+const expectedArtFiles=new Set(APPROVED_BESTIARY_ART_SLUGS.flatMap((slug)=>{
+  const files=bestiaryArtFiles(slug);
+  return [files.portrait,files.token];
+}));
+for(const name of availableArtFiles) {
+  if(!expectedArtFiles.has(name)) throw new Error("Arte del Bestiario no registrado o provisional: "+name);
+  const bytes=await readFile(resolve(artDir,name));
+  if(bytes.length<128 || bytes.toString("ascii",0,4)!=="RIFF" || bytes.toString("ascii",8,12)!=="WEBP") {
+    throw new Error("Arte del Bestiario no es WebP válido: "+name);
+  }
+}
+for(const slug of APPROVED_BESTIARY_ART_SLUGS) {
+  const files=bestiaryArtFiles(slug);
+  if(availableArtFiles.has(files.portrait)!==availableArtFiles.has(files.token)) {
+    throw new Error("El retrato y el token deben publicarse juntos: "+slug);
+  }
+}
+const actorEntries=npcReferenceCatalog({availableArtFiles});
 const actorSource=resolve(sourceRoot,actorPack);
 const actorOutput=resolve(outputRoot,actorPack);
 await mkdir(actorSource,{recursive:true});
