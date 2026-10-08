@@ -11334,7 +11334,7 @@ Una máxima ampliamente extendida entre sus cultos sostiene:
 
 Esta enseñanza complementa, sin sustituirla, la máxima Ankar **«Recordar no significa retener.»**
 
-> **Símbolo religioso — geometría, cromática y escala aprobadas:** **El Umbral de Piedra** (`SYM-DIV-NEMOR-001`). Su geometría vectorial, cromática formal y variante `REDUCED-01` son inmutables y están especificadas en `docs/visual/SIMBOLOS_CANONICOS.md`. La versión principal se usa desde 32 px; `REDUCED-01` entre 16 y 31 px; por debajo de 16 px no se reproduce el símbolo completo. Sólo quedan pruebas contextuales/materiales y PNG definitivo antes de CANON v1.0.
+> **Símbolo religioso canónico:** **El Umbral de Piedra** (`SYM-DIV-NEMOR-001`, CANON v1.0). Su geometría, cromática, variante `REDUCED-01`, escalas, área de protección, materiales, perspectiva y reglas de deterioro están fijadas en `docs/visual/SIMBOLOS_CANONICOS.md`. La versión principal se usa desde 32 px; `REDUCED-01` entre 16 y 31 px; por debajo de 16 px no se reproduce el símbolo completo.
 
 ### Memoria y muerte
 
@@ -12223,7 +12223,7 @@ Las deidades pueden actuar como **Fuente Divina** para personajes con un Víncul
 
 ### Estado pendiente de símbolos
 
-Los símbolos religiosos de las Luminarias se desarrollan mediante el estándar común del registro técnico. **Aurea ya posee símbolo completo CANON v1.0 para La Llama Custodiada**, mientras que Nemor posee geometría, cromática y escala aprobadas para El Umbral de Piedra; Oria, Vael y Selene continúan sin símbolo doctrinal fijado. La ficha de Aurea está cerrada. Nemor, Oria, Vael y Selene continúan pendientes de definición bajo el mismo estándar.
+Los símbolos religiosos de las Luminarias se desarrollan mediante el estándar común del registro técnico. **Aurea ya posee símbolo completo CANON v1.0 para La Llama Custodiada**, mientras que Nemor posee símbolo completo CANON v1.0 para El Umbral de Piedra; Oria, Vael y Selene continúan sin símbolo doctrinal fijado. La ficha de Aurea está cerrada. Nemor, Oria, Vael y Selene continúan pendientes de definición bajo el mismo estándar.
 
 La estructura obligatoria para diseñarlos y reproducirlos es el **Estándar Universal de Símbolos Canónicos** definido en `docs/visual/SIMBOLOS_CANONICOS.md`. Cada símbolo sólo pasará a CANON cuando su ficha complete geometría, reconocimiento, color, variantes, pruebas y activo maestro conforme a ese estándar.
 

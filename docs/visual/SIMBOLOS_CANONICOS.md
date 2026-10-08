@@ -931,10 +931,11 @@ La autorización de un soporte no obliga a que el símbolo aparezca en todos los
 ## SYM-DIV-NEMOR-001 — El Umbral de Piedra
 
 **Entidad:** Nemor, el Guardián  
-**Estado:** **PROVISIONAL — GEOMETRÍA, CROMÁTICA Y ESCALA APROBADAS E INMUTABLES**  
-**Versión:** v0.4  
+**Estado:** **CANON**  
+**Versión:** v1.0  
 **Aprobación geométrica y cromática:** 2026-10-07  
-**Aprobación de escala y reducción:** 2026-10-07
+**Aprobación de escala y reducción:** 2026-10-07  
+**Canonización completa:** 2026-10-08
 
 ### Concepto
 El símbolo representa **memoria custodiada, límite respetado y preservación del nombre**. No representa tránsito del alma ni una puerta abierta. Está formado por dos pilares laterales, un dintel superior y una piedra memorial central separada de la estructura. La piedra contiene una única **Marca del Nombre** horizontal en espacio negativo.
@@ -1005,12 +1006,32 @@ No convertir la figura en una puerta transitable. No añadir texto literal, runa
 - `SYM-DIV-NEMOR-001_REDUCED_LIGHT.svg` — reducido claro.
 - `SYM-DIV-NEMOR-001_REDUCED_INVERTED.svg` — reducido invertido.
 
-### Pendientes para v1.0
-Pruebas contextuales/materiales y PNG definitivo.
+### Materiales, contexto y deterioro
+
+La Fase 4 validó El Umbral de Piedra sin rediseño en documento/archivo memorial, piedra tallada, Bronce de Vigilia, bordado ceremonial, placa memorial y arquitectura en perspectiva.
+
+**Piedra y madera:** se permiten talla, bajorrelieve, incisión, erosión y grietas. La Marca del Nombre debe permanecer reconocible como vacío.
+
+**Metal:** hierro, bronce, latón, plata u otros metales son válidos. Bronce de Vigilia `#8A7350` es referencia contextual, no obligación física.
+
+**Tela:** se permiten trama, costuras y desgaste, siempre que pilares, dintel, piedra y Marca del Nombre sigan separados. Se conserva el mínimo recomendado de 22 mm.
+
+**Documentos:** se recomienda Pizarra Guardiana sobre Marfil de Inscripción. Sin sombras, biseles ni ornamentación dentro de la marca formal.
+
+**Perspectiva:** la deformación aparente causada por perspectiva, curvatura o soporte físico no crea una variante nueva. La geometría aplicada al soporte debe seguir siendo la maestra.
+
+**Deterioro:** puede ocultar parcialmente elementos, pero nunca autoriza una reconstrucción improvisada. Para seguir siendo una representación fiable deben reconocerse ambos pilares y el dintel como estructura, la piedra central separada y la Marca del Nombre. Si la piedra parece tocar la estructura por deterioro o mala reproducción, la representación deja de ser fiable.
+
+**Usos culturales validados:** Casas de los Nombres, cementerios, cenotafios, monumentos, archivos memoriales, placas funerarias, documentos, vestiduras religiosas, estandartes, arquitectura, sellos y objetos devocionales.
+
+### Activo PNG definitivo
+**Archivo:** `assets/symbols/divinities/SYM-DIV-NEMOR-001_PREVIEW.png`  
+**SHA-256:** `44f82067c4abea3be28af4f6ab5bf789bd89855fe9709d949e6ac95db88fd3f8`
 
 ### Historial
 - **v0.1:** La Piedra del Nombre, propuesta descartada antes de canonización.
 - **v0.2:** El Umbral de Piedra seleccionado y geometría aprobada.
 - **v0.3:** cromática aprobada.
 - **v0.4:** versión `REDUCED-01`, umbrales digitales, mínimos físicos y área de protección aprobados.
+- **v1.0 — 2026-10-08:** pruebas contextuales/materiales aprobadas; materiales, perspectiva, deterioro y usos culturales validados; PNG definitivo incorporado; ficha elevada a CANON.
 
