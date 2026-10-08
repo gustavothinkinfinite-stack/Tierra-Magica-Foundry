@@ -1201,9 +1201,10 @@ La Fase 4 validó La Medida Acordada sin rediseño en documento/registro, latón
 ## SYM-DIV-VAEL-001 — El Rumbo Desviado
 
 **Entidad:** Vael, el Navegante  
-**Estado:** **PROVISIONAL — GEOMETRÍA APROBADA E INMUTABLE**  
-**Versión:** v0.2  
-**Fecha de aprobación conceptual y geométrica:** 2026-10-08
+**Estado:** **PROVISIONAL — GEOMETRÍA Y CROMÁTICA APROBADAS E INMUTABLES**  
+**Versión:** v0.3  
+**Fecha de aprobación conceptual y geométrica:** 2026-10-08  
+**Fecha de aprobación cromática:** 2026-10-08
 
 ### Concepto
 El Rumbo Desviado representa una única ruta ya emprendida que encuentra condiciones no previstas, modifica su trayectoria y continúa hacia un rumbo distinto. No representa elección entre caminos posibles: ese principio pertenece a Aster.
@@ -1229,6 +1230,26 @@ La lámina conceptual mostró un círculo de guía llamado **Ojo de la Tormenta*
 **Área circular de exclusión constructiva:** centro (500,500), radio 95. No se reproduce como elemento gráfico.
 
 **Marca del Descubrimiento:** rombo 50 × 50, centrado en (760,215), separado de la ruta.
+
+### Cromática
+| Nombre | Función | HEX | RGB |
+|---|---|---|---|
+| **Azul de Deriva** | campo oscuro principal | `#183B56` | 24, 59, 86 |
+| **Oro de Horizonte** | color principal del símbolo | `#C99446` | 201, 148, 70 |
+| **Marfil de Espuma** | campo claro / inversión | `#F2E9D8` | 242, 233, 216 |
+| **Cian de Tormenta** | acento contextual | `#4FA9C6` | 79, 169, 198 |
+
+**Variantes oficiales:**
+- `PRIMARY-01` — Oro de Horizonte sobre Azul de Deriva.
+- `LIGHT-01` — Azul de Deriva sobre Marfil de Espuma.
+- `INVERTED-01` — Marfil de Espuma sobre Azul de Deriva.
+- `MONO-GEOMETRY-01` — negro sobre fondo claro para construcción y pruebas.
+
+Toda la marca utiliza un único color sólido dentro de cada variante formal. El tramo inicial, el tramo desviado y la Marca del Descubrimiento no reciben colores distintos.
+
+**Cian de Tormenta** no forma parte de la marca plana. Puede aparecer en agua, iluminación, fenómenos atmosféricos, reflejos o energía contextual.
+
+En la marca formal quedan prohibidos gradientes, sombras, brillo interno, texturas, doble trazo y halos. El Oro de Horizonte no implica emisión luminosa.
 
 ### Reconocimiento
 **Rasgos obligatorios:**
@@ -1256,10 +1277,16 @@ El símbolo nunca debe mostrar dos o más alternativas previas a una decisión.
 **SVG maestro:** `assets/symbols/divinities/SYM-DIV-VAEL-001_MASTER.svg`  
 **SHA-256:** `2145e5ead723d845ff54e5e5d884b113e3a9a673ca627ec7da1187c2c4c288e4`
 
+### Activos cromáticos
+- `assets/symbols/divinities/SYM-DIV-VAEL-001_PRIMARY.svg`
+- `assets/symbols/divinities/SYM-DIV-VAEL-001_LIGHT.svg`
+- `assets/symbols/divinities/SYM-DIV-VAEL-001_INVERTED.svg`
+
 ### Pendientes para v1.0
-Cromática, versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
+Versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
 
 ### Historial
 - **v0.1 — 2026-10-08:** concepto y lámina técnica monocroma aprobados.
 - **v0.2 — 2026-10-08:** geometría exacta y función del área de exclusión normalizadas; silueta fijada como inmutable.
+- **v0.3 — 2026-10-08:** cromática aprobada; se fijan Azul de Deriva, Oro de Horizonte, Marfil de Espuma y Cian de Tormenta; se autorizan PRIMARY-01, LIGHT-01 e INVERTED-01.
 
