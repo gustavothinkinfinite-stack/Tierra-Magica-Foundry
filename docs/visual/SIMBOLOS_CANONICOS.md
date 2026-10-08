@@ -1201,11 +1201,12 @@ La Fase 4 validó La Medida Acordada sin rediseño en documento/registro, latón
 ## SYM-DIV-VAEL-001 — El Rumbo Desviado
 
 **Entidad:** Vael, el Navegante  
-**Estado:** **PROVISIONAL — GEOMETRÍA, CROMÁTICA Y ESCALA APROBADAS E INMUTABLES**  
-**Versión:** v0.4  
+**Estado:** **CANON**  
+**Versión:** v1.0  
 **Fecha de aprobación conceptual y geométrica:** 2026-10-08  
 **Fecha de aprobación cromática:** 2026-10-08  
-**Fecha de aprobación de escala y reducción:** 2026-10-08
+**Fecha de aprobación de escala y reducción:** 2026-10-08  
+**Fecha de canonización completa:** 2026-10-08
 
 ### Concepto
 El Rumbo Desviado representa una única ruta ya emprendida que encuentra condiciones no previstas, modifica su trayectoria y continúa hacia un rumbo distinto. No representa elección entre caminos posibles: ese principio pertenece a Aster.
@@ -1322,12 +1323,33 @@ El símbolo nunca debe mostrar dos o más alternativas previas a una decisión.
 - `assets/symbols/divinities/SYM-DIV-VAEL-001_REDUCED_LIGHT.svg`
 - `assets/symbols/divinities/SYM-DIV-VAEL-001_REDUCED_INVERTED.svg`
 
-### Pendientes para v1.0
-Pruebas contextuales/materiales y PNG definitivo.
+### Materiales, contexto y deterioro
+La Fase 4 validó El Rumbo Desviado sin rediseño en carta/documento de ruta, instrumento de navegación, mojón o piedra de ruta, estandarte/bordado, señal/placa de ruta y arquitectura en perspectiva.
+
+**Documento y cartografía:** preferencia por `LIGHT-01`; la ornamentación no puede alterar la trayectoria.
+
+**Metal:** bronce, latón, hierro, acero y otros metales son válidos. Pátina y relieve están permitidos si conservan una sola ruta continua y el rombo separado.
+
+**Piedra y madera:** se permiten talla, incisión, erosión y desgaste. El deterioro no puede hacer parecer que existen dos rutas ni convertir la trayectoria en una diagonal simple.
+
+**Tela:** se permiten trama, costuras y desgaste. Se conserva el mínimo recomendado de 18 mm.
+
+**Cian de Tormenta:** puede aparecer únicamente como iluminación, agua, fenómeno atmosférico o energía contextual; no forma parte obligatoria de la marca plana.
+
+**Perspectiva:** la deformación aparente producida por perspectiva, curvatura o soporte físico no crea una variante. La geometría aplicada al soporte sigue siendo la maestra.
+
+**Deterioro:** la representación continúa siendo fiable sólo mientras se reconozcan tramo inicial vertical, desvío continuo, salida desplazada y Marca del Descubrimiento separada. Si la erosión produce una bifurcación aparente, dos rutas o una diagonal simple, deja de ser fiable.
+
+**Usos culturales validados:** cartas y documentos de viaje, mojones y señales de ruta, puertos y estaciones, casas o santuarios de Vael, instrumentos de navegación, estandartes de expedición, arquitectura, placas, sellos y objetos devocionales.
+
+### PNG definitivo
+**Archivo:** `assets/symbols/divinities/SYM-DIV-VAEL-001_PREVIEW.png`  
+**SHA-256:** `85ba3c013f945107d2b8afbb96a5548067adf50396a60b6eaf988bba5662fcc6`
 
 ### Historial
 - **v0.1 — 2026-10-08:** concepto y lámina técnica monocroma aprobados.
 - **v0.2 — 2026-10-08:** geometría exacta y función del área de exclusión normalizadas; silueta fijada como inmutable.
 - **v0.3 — 2026-10-08:** cromática aprobada; se fijan Azul de Deriva, Oro de Horizonte, Marfil de Espuma y Cian de Tormenta; se autorizan PRIMARY-01, LIGHT-01 e INVERTED-01.
 - **v0.4 — 2026-10-08:** se aprueban REDUCED-01, umbrales digitales, mínimos físicos y área de protección.
+- **v1.0 — 2026-10-08:** pruebas contextuales/materiales superadas; materiales, perspectiva, deterioro, usos culturales y PNG definitivo aprobados; ficha elevada a CANON.
 
