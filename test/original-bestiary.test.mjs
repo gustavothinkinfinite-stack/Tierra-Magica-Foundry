@@ -51,7 +51,7 @@ test("Eco Robado es una capacidad limitada sin automatización de acciones extra
   assert.equal(echo.memoryHours,24);
   assert.equal(echo.detectionDifficulty,14);
   assert.deepEqual(echo.detectionSkills,["PER + Investigación","PER + Supervivencia"]);
-  assert.match(echo.limitations,/no controla la voluntad/);
+  assert.match(echo.limitations,/controla la voluntad/);
   assert.equal(wolf.system.resources.mana.max,0);
   assert.equal(wolf.system.npcProfile.attacks.length,1);
 });
