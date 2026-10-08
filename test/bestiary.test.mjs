@@ -59,7 +59,7 @@ test("ficha NPC oculta la creación de PJ y mantiene ataque e iniciativa", async
   assert.match(js,/npcBodyDefenseApplicable/);
   assert.match(js,/rollNpcAttack/);
   const stack=[];
-  const tokens=source.matchAll(/{{([#\\/])\\s*(if|unless|each|with)\\b[^}]*}}/g);
+  const tokens=source.matchAll(new RegExp("{{([#/])\\s*(if|unless|each|with)\\b[^}]*}}","g"));
   for (const token of tokens) {
     if (token[1]==="#") stack.push(token[2]);
     else assert.equal(stack.pop(),token[2],"secuencia de bloques HBS");
