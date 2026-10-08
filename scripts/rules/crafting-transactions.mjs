@@ -117,7 +117,7 @@ function normalizedReservationMap(input) {
 
 function competingActiveProjectUsesLot(project, lotUuid) {
   const actor=project?.parent;
-  for(const other of actor?.items ?? []){
+  for(const other of actor?.items?.values?.() ?? actor?.items ?? []){
     if(other.type!=="project" || String(other.id)===String(project.id)) continue;
     if(other.system?.state!=="active" || other.system?.execution?.committed!==true) continue;
     if(craftingProjectMaterialAllocations(other).some((row)=>row.sourceUuid===lotUuid)) return true;
