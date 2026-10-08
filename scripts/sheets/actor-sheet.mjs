@@ -1,3 +1,4 @@
+import { orphanCraftingReservationPlan, repairOrphanCraftingReservations } from "../rules/crafting-orphan-reservations.mjs";
 import { safeActorSheetRenderOptions } from "./actor-sheet-render-options.mjs";
 import { TM_CONFIG } from "../config.mjs";
 import { toNumber } from "../rules.mjs";
@@ -457,6 +458,7 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     html.find("[data-action='familiar-call']").click(() => { const familiar=this.#linkedFamiliar(); if (familiar) return this.actor.callFamiliar(familiar); });
     html.find("[data-action='familiar-senses']").click(() => { const familiar=this.#linkedFamiliar(); if (familiar) return this.actor.useFamiliarSense(familiar); });
 
+    html.find("[data-action='repair-orphan-craft-reservations']").click(()=>this.#repairOrphanCraftReservations());
     html.find("[data-action='item-create']").click((event) => this.#createItem(event.currentTarget.dataset.type));
     html.find("[data-action='content-browser']").click((event) => {
       const type=event.currentTarget.dataset.type;
@@ -709,6 +711,30 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
   async #toggleItem(event) {
     const item = this.#getItem(event);
     if (item) await item.update({ "system.equipped": !item.system.equipped });
+  }
+
+  async #repairOrphanCraftReservations() {
+    if (!game.user?.isGM) return ui.notifications.warn("Sólo el DJ puede reparar reservas huérfanas.");
+    const plan=orphanCraftingReservationPlan(this.actor);
+    if(!plan.valid) return ui.notifications.warn(plan.error);
+    if(!plan.orphanReservations) return ui.notifications.info(
+      plan.unverifiable.length
+        ? "No se encontraron reservas huérfanas verificables. Hay "+plan.unverifiable.length+" reservas que requieren revisión manual del DJ."
+        : "No se encontraron reservas huérfanas."
+    );
+    const confirmed=await Dialog.confirm({
+      title:"Recuperar materiales de Proyectos eliminados",
+      content:"<p>Se detectaron <strong>"+plan.orphanReservations+
+        " reserva(s)</strong> sin Proyecto asociado en "+plan.operations.length+
+        " objeto(s). Se liberarán las reservas, pero <strong>no</strong> se modificará el VI, las cantidades, el dinero ni las reservas de Proyectos existentes.</p>"+
+        (plan.unverifiable.length?"<p>"+plan.unverifiable.length+" reserva(s) inciertas permanecerán intactas para su revisión.</p>":"")+
+        "<p>¿Confirmar reparación?</p>"
+    });
+    if(!confirmed)return;
+    const result=await repairOrphanCraftingReservations(this.actor,{confirm:true});
+    if(!result.ok)return ui.notifications.warn(result.error);
+    ui.notifications.info("Reservas huérfanas liberadas: "+result.released+" en "+result.lots+" objetos. Materiales conservados.");
+    this.render(false);
   }
 
   async #openCraftingReferenceBrowser() {
