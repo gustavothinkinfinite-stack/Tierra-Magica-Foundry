@@ -48,6 +48,13 @@ export function originalBestiaryCatalog({availableArtFiles = new Set()} = {}) {
       threat:spec.threat,
       concept:spec.concept
     };
+    actor.system.traits={size:"medium",languages:"",senses:"Oído y olfato naturales",notes:"Cánido vivo, no espíritu ni no muerto."};
+    actor.system.biography="<p><strong>Lobo del Eco Muerto.</strong> Cánido nocturno de pelaje gris ceniza, ojos pálidos y resonancia azul tenue bajo la mandíbula. Escucha las señales del ganado y reproduce llamadas breves para separar a sus presas.</p>"+
+      "<p><strong>Ecología:</strong> bosques templados, linderos agrícolas y ruinas rurales; depredador solitario. Evita confrontaciones prolongadas y se retira si pierde la ventaja.</p>"+
+      "<p><strong>Señales:</strong> silbidos imposibles, balidos fuera del corral, huellas de lobo, pelos gris azulado y rastros de mordidas comunes.</p>"+
+      "<p><strong>Contramedidas:</strong> cambiar llamadas, vigilar en parejas, iluminar espacios despejados y seguir sus rastros.</p>";
+    actor.system.notes="<p><strong>Propuesta editorial pendiente de canon.</strong> No sustituye al lobo común. Eco Robado se resuelve narrativamente: 1 Acción, 4 espacios, sonidos de hasta 24 h, DF 14 para reconocer anomalías. No produce miedo, movimiento forzoso ni acciones extra.</p>"+
+      "<p><strong>Aventura:</strong> La voz detrás del corral. Investigar pérdidas de ganado; seguir huellas hasta conducciones rurales; cazar, capturar o ahuyentar al animal.</p>";
     actor.system.npcProfile={
       ...actor.system.npcProfile,
       source:spec.source,
