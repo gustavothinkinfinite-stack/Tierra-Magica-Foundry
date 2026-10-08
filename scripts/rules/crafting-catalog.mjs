@@ -1,4 +1,5 @@
 import { normalizeSlug } from "./identity.mjs";
+import { CANONICAL_EQUIPMENT } from "../catalog/equipment-canonical.mjs";
 
 const J=480;
 const rows=[
@@ -51,11 +52,59 @@ const rows=[
 ["REF-INV-02","Investigación","Reconstruir el Patrón de una Piedra de Impronta I","research","research",null,4320,null,"ritualism",0,"","improvised","equipment","Reconstrucción Compleja; CMP 2 o; TBP 1 Jornada; secuencia base aproximada 9 Jornadas."]
 ];
 
-export const CRAFTING_REFERENCE_CATALOG=Object.freeze(rows.map((row)=>Object.freeze({
+// Recetas ordinarias ya cerradas en CRAFT-03. No promovemos las propuestas
+// de EQP-01 sin precio ni los cuatro consumibles sin receta técnica universal.
+// [nombre, tiempo en minutos, rango de Artesanía, especialización principal,
+//  instalación, plano estable, competencia auxiliar esencial informativa].
+const commonEquipmentRecipeRows=Object.freeze([
+  ["Gancho de escalada",120,1,"","improvised",false,""],
+  ["Palanca",120,1,"","improvised",false,""],
+  ["Pico o pala",240,2,"Forja y metal","adequate",false,""],
+  ["Caja pequeña asegurada",360,2,"Carpintería","adequate",false,"Latrocinio Aprendiz sólo si fabrica el cierre; un cierre comercial compatible está incluido en el CM."],
+  ["Catalejo",1440,3,"Vidrio y cristal","professional",true,"Ingeniería Aprendiz"],
+  ["Estuche impermeable de documentos/mapas",240,2,"Cuero y textiles","adequate",false,""],
+  ["Kit Artesano",480,2,"","adequate",false,"Especialización coherente con el Kit."],
+  ["Kit Ingeniería de campo",960,2,"Forja y metal","adequate",false,"Ingeniería Aprendiz"],
+  ["Kit Minería",480,2,"Forja y metal","adequate",false,""],
+  ["Kit Médico",960,2,"Forja y metal","adequate",false,"Medicina Aprendiz; Cuero y textiles también es especialización principal válida."],
+  ["Kit Alquimia de campo",960,2,"Vidrio y cristal","adequate",false,"Alquimia Aprendiz"],
+  ["Kit Infiltración",480,2,"Forja y metal","adequate",false,"Latrocinio Aprendiz"],
+  ["Kit Cartográfico",480,2,"Carpintería","adequate",false,"Supervivencia o Investigación Aprendiz; Vidrio y cristal también es especialización principal válida."],
+  ["Kit Navegación",960,2,"Vidrio y cristal","adequate",false,"Pilotaje Aprendiz; Forja y metal también es especialización principal válida."],
+  ["Kit Campaña",240,1,"","improvised",false,""],
+  ["Kit Escalada",480,2,"Forja y metal","adequate",false,"Atletismo Aprendiz; Cuero y textiles también es especialización principal válida."],
+  ["Kit Escribanía",240,1,"","improvised",false,""],
+  ["Kit Mercantil",480,2,"","adequate",false,"Investigación Aprendiz; especialización principal coherente con el instrumental."],
+  ["Kit Académico",960,2,"","adequate",false,"Investigación Aprendiz; especialización principal coherente con el instrumental."],
+  ["Kit Instrumental Arcano de campo",1440,3,"Vidrio y cristal","professional",false,"Arcana Entrenada"],
+  ["Kit Mantenimiento de armas de fuego",480,2,"Forja y metal","adequate",false,"Ingeniería Aprendiz; Armamento cuando Ingeniería esté Entrenada."]
+]);
+
+const equipmentByName=new Map(CANONICAL_EQUIPMENT.map((item)=>[item.name,item]));
+export const CRAFTING_COMMON_EQUIPMENT_RECIPES=Object.freeze(commonEquipmentRecipeRows.map((row,index)=>{
+  const [name,timeMinutes,rank,specialization,installation,needsPlan,auxiliary]=row;
+  const canonical=equipmentByName.get(name);
+  if(!canonical || !Number.isInteger(canonical.priceCopper) || canonical.priceCopper<=0){
+    throw new Error("Receta CRAFT-03 sin equipo canónico de precio exacto: "+name);
+  }
+  return Object.freeze({
+    ref:"REF-COM-"+String(index+1).padStart(2,"0"),
+    category:"Equipo común",name,operation:"fabricate",execution:"equipment",
+    materialCopper:Math.ceil(canonical.priceCopper/2),timeMinutes,
+    valueCopper:canonical.priceCopper,skill:"crafting",rank,
+    specialization,installation,resultType:"equipment",
+    needsPlan,auxiliary,
+    summary:"CRAFT-03: "+(needsPlan?"Plano estable requerido. ":"Diseño de oficio. ")+
+      (auxiliary ? "Auxiliar: "+auxiliary+" " : "")+
+      "Produce el objeto Común sin bonificaciones añadidas."
+  });
+}));
+
+export const CRAFTING_REFERENCE_CATALOG=Object.freeze([...rows.map((row)=>Object.freeze({
   ref:row[0],category:row[1],name:row[2],operation:row[3],execution:row[4],
   materialCopper:row[5],timeMinutes:row[6],valueCopper:row[7],
   skill:row[8],rank:row[9],specialization:row[10],installation:row[11],resultType:row[12],summary:row[13]
-})));
+})),...CRAFTING_COMMON_EQUIPMENT_RECIPES]);
 
 const BY_REF=new Map(CRAFTING_REFERENCE_CATALOG.map((entry)=>[entry.ref,entry]));
 
@@ -156,6 +205,26 @@ function formulaSystem(entry,catalog){
   return system;
 }
 
+function ordinaryEquipmentSystem(entry,catalog){
+  // Una receta sólo puede materializarse con el Item canónico REAL.
+  // No se fabrica un Item vacío ni se inventan propiedades.
+  const source=catalogItem(catalog,entry.name,"equipment");
+  if(!source || Number(source.system?.priceCopper)!==entry.valueCopper ||
+    String(source.system?.priceStatus)!=="exact") return null;
+  const system=baseSystem(entry);
+  system.source.sourceRevision="craft-03";
+  system.target.resultData={
+    name:source.name,
+    type:"equipment",
+    system:clone(source.system)
+  };
+  system.economy.referenceValueCopper=entry.valueCopper;
+  system.economy.fixedPriceCopper=entry.valueCopper;
+  system.economy.priceStatus="exact";
+  system.professional.stableProcedure=entry.needsPlan!==true;
+  return system;
+}
+
 function researchSystem(entry){
   const system=baseSystem(entry);
   const firstMinutes=entry.ref==="REF-INV-01"?5*J:3*J;
@@ -215,11 +284,14 @@ function researchSystem(entry){
 export function craftingProjectSourceFromReference(ref,{catalog=[]}={}){
   const entry=craftingReference(ref);
   if(!entry) return null;
-  const system=entry.execution==="formula"
-    ? formulaSystem(entry,catalog)
-    : entry.execution==="research"
-      ? researchSystem(entry)
-      : baseSystem(entry);
+  const system=entry.execution==="equipment"
+    ? ordinaryEquipmentSystem(entry,catalog)
+    : entry.execution==="formula"
+      ? formulaSystem(entry,catalog)
+      : entry.execution==="research"
+        ? researchSystem(entry)
+        : baseSystem(entry);
+  if(!system) return null;
   return {
     name:"Proyecto — "+entry.name,
     type:"project",
@@ -236,6 +308,11 @@ export function craftingReferenceGuidance(ref){
   }
   if(entry.execution==="reference-only"){
     notes.push("Referencia de servicio: su resolución pertenece a otro motor y no debe fingirse como fabricación material.");
+  }
+  if(entry.execution==="equipment"){
+    notes.push("Receta ordinaria CRAFT-03 con resultado exacto del catálogo, coste 50% del VR y tiempo canónico.");
+    if(entry.needsPlan) notes.push("Requiere Plano estable antes de preparar.");
+    if(entry.auxiliary) notes.push("Requisito auxiliar a verificar con DJ: "+entry.auxiliary);
   }
   if(entry.execution==="formula"){
     notes.push("Borrador ejecutable cuando el Actor conoce la Fórmula, posee Especialización/instalación y asigna sus materiales.");
