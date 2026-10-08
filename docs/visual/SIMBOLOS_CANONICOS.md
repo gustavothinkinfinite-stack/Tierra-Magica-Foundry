@@ -1038,11 +1038,12 @@ La Fase 4 validó El Umbral de Piedra sin rediseño en documento/archivo memoria
 ## SYM-DIV-ORIA-001 — La Medida Acordada
 
 **Entidad:** Oria, la Balanza  
-**Estado:** **PROVISIONAL — GEOMETRÍA, CROMÁTICA Y ESCALA APROBADAS E INMUTABLES**  
-**Versión:** v0.4  
+**Estado:** **CANON**  
+**Versión:** v1.0  
 **Fecha de aprobación conceptual y geométrica:** 2026-10-08  
 **Fecha de aprobación cromática:** 2026-10-08  
-**Fecha de aprobación de escala y reducción:** 2026-10-08
+**Fecha de aprobación de escala y reducción:** 2026-10-08  
+**Fecha de canonización completa:** 2026-10-08
 
 ### Concepto
 La Medida Acordada representa la capacidad de hacer comparables obligaciones diferentes cuando existe un estándar común previamente fijado. No representa igualdad matemática ni justicia moral absoluta.
@@ -1169,12 +1170,31 @@ Una barra nivelada con cargas visualmente distintas no significa que ambas parte
 - `assets/symbols/divinities/SYM-DIV-ORIA-001_REDUCED_LIGHT.svg`
 - `assets/symbols/divinities/SYM-DIV-ORIA-001_REDUCED_INVERTED.svg`
 
-### Pendientes para v1.0
-Pruebas contextuales/materiales y PNG definitivo.
+### Materiales, contexto y deterioro
+La Fase 4 validó La Medida Acordada sin rediseño en documento/registro, latón calibrado, piedra grabada, bordado institucional, placa de acuerdo y arquitectura en perspectiva.
+
+**Documento y registro:** preferencia por `LIGHT-01`; sin sombras, biseles ni ornamentación dentro del símbolo.
+
+**Metal:** latón, bronce, hierro, acero, plata u otros metales son válidos. Latón de Archivo `#9B7840` es una referencia contextual, no una obligación física.
+
+**Piedra y madera:** se permiten grabado, talla, incisión y desgaste. Deben seguir distinguiéndose las tres graduaciones y la asimetría de cargas.
+
+**Tela:** se permiten trama, costuras y desgaste, manteniendo cuadrado grande a la izquierda y círculo menor a la derecha. Se conserva el mínimo recomendado de 22 mm.
+
+**Perspectiva:** una deformación causada por perspectiva, curvatura o soporte físico no crea una nueva variante. La geometría aplicada al soporte sigue siendo la maestra.
+
+**Deterioro:** pueden perderse pequeñas áreas o pigmento. La representación continúa siendo fiable sólo mientras se reconozcan patrón graduado, barra nivelada, fulcro y ambas cargas diferentes en su orientación correcta. Si desaparecen las graduaciones o las cargas se vuelven equivalentes, deja de ser una reproducción fiable.
+
+**Usos culturales validados:** templos y espacios de Oria, archivos, contratos y registros ceremoniales, casas de cambio y medida, gremios, universidades, tribunales administrativos, placas de estándares, instrumentos de medición, sellos, estandartes, arquitectura y objetos devocionales.
+
+### PNG definitivo
+**Archivo:** `assets/symbols/divinities/SYM-DIV-ORIA-001_PREVIEW.png`  
+**SHA-256:** `29fdc599521ac171164ccc2e42f9b30b07c604363a7627b279d57141edb15ce3`
 
 ### Historial
 - **v0.1 — 2026-10-08:** concepto y lámina monocroma aprobados.
 - **v0.2 — 2026-10-08:** geometría exacta normalizada y fijada como inmutable.
 - **v0.3 — 2026-10-08:** cromática aprobada; se fijan Azul de Estatuto, Oro de Medida, Marfil de Registro y Latón de Archivo; se autorizan PRIMARY-01, LIGHT-01 e INVERTED-01.
 - **v0.4 — 2026-10-08:** se aprueban REDUCED-01, umbrales digitales, mínimos físicos y área de protección.
+- **v1.0 — 2026-10-08:** pruebas contextuales/materiales superadas; materiales, perspectiva, deterioro, usos culturales y PNG definitivo aprobados; ficha elevada a CANON.
 
