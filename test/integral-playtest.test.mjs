@@ -4,19 +4,19 @@ import { readFile } from "node:fs/promises";
 
 const read = (path) => readFile(new URL("../" + path, import.meta.url), "utf8");
 
-test("partida integral: Acción es una autoridad compartida entre ataque, magia, alquimia y dispositivos", async () => {
+test("partida integral: ataque, magia, alquimia y dispositivos no dependen de una reserva global de Acción", async () => {
   const source = await read("scripts/rules/action-economy-guards.mjs");
   for (const route of ["useSpell", "useFormula", "useDevice", "overloadDevice", "rollWeapon", "dualWieldAttack", "sweepAttack"]) {
     assert.equal(source.includes("ActorClass.prototype." + route), true, route);
   }
-  assert.match(source, /const actionLocks = new WeakSet/);
+  assert.doesNotMatch(source, /actionLocks|reserveTurnResourceAuthoritatively/);
 });
 
-test("partida integral: Reacción es compartida por defensas, magia reactiva y familiar", async () => {
+test("partida integral: Reacción es un indicador manual y la validación específica del Familiar se conserva", async () => {
   const reaction = await read("scripts/rules/reaction-economy-guards.mjs");
   const familiar = await read("scripts/rules/familiar-guards.mjs");
-  assert.match(reaction, /reactionLocks/);
-  assert.match(familiar, /system\.turn\.reaction/);
+  assert.doesNotMatch(reaction, /reactionLocks|reserveTurnResourceAuthoritatively/);
+  assert.doesNotMatch(familiar, /if \(!\(this\.system\.turn\?\.reaction/);
   assert.match(familiar, /no puede encadenar otra respuesta reactiva/);
 });
 
@@ -103,7 +103,7 @@ test("exploit: incapacitado no recupera Acción, Movimiento ni Reacción al avan
   for (const field of ["action", "reaction"]) assert.match(turn, new RegExp('"system\\.turn\\.' + field + '": !incapacitated'));
 });
 
-test("exploit: Acción y Reacción rechazan actores incapacitados antes de entrar al subsistema", async () => {
+test("jugabilidad: la economía manual mantiene el bloqueo por incapacitación", async () => {
   const action = await read("scripts/rules/action-economy-guards.mjs");
   const reaction = await read("scripts/rules/reaction-economy-guards.mjs");
   assert.match(action, /status\?\.incapacitated[\s\S]*health\?\.value[\s\S]*Incapacitado/);
@@ -111,10 +111,10 @@ test("exploit: Acción y Reacción rechazan actores incapacitados antes de entra
 });
 
 
-test("CREA-12: Intercepción consume Movimiento cuantificado y Reacción en una actualización", async () => {
+test("CREA-12: Intercepción consume Movimiento cuantificado sin modificar automáticamente Reacción", async () => {
   const reactive = await read("scripts/rules/reactive-technique-guards.mjs");
   assert.match(reactive, /movementRemaining\(this\)/);
-  assert.match(reactive, /spendActorMovement\(this, cost, \{ "system\.turn\.reaction": false \}\)/);
+  assert.match(reactive, /spendActorMovement\(this, cost\)/);
   assert.equal(reactive.includes("system.turn.movementRemaining"), false);
   assert.equal(reactive.includes('"system.turn.movement": false'), false);
 });
