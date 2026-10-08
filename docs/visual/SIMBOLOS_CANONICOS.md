@@ -1356,10 +1356,11 @@ La Fase 4 validó El Rumbo Desviado sin rediseño en carta/documento de ruta, in
 ## SYM-DIV-SELENE-001 — El Velo Entreabierto
 
 **Entidad:** Selene, la Velada  
-**Estado:** **PROVISIONAL — GEOMETRÍA Y CROMÁTICA APROBADAS E INMUTABLES**  
-**Versión:** v0.3  
+**Estado:** **PROVISIONAL — GEOMETRÍA, CROMÁTICA Y ESCALA APROBADAS E INMUTABLES**  
+**Versión:** v0.4  
 **Fecha de aprobación conceptual y geométrica:** 2026-10-08  
-**Fecha de aprobación cromática:** 2026-10-08
+**Fecha de aprobación cromática:** 2026-10-08  
+**Fecha de aprobación de escala y reducción:** 2026-10-08
 
 ### Concepto
 El Velo Entreabierto representa percepción parcial, misterio, secreto y una frontera que separa sin romper por completo la relación entre ambos lados.
@@ -1410,6 +1411,42 @@ Los dos Velos y la Señal usan el mismo color dentro de cada variante formal. La
 
 En la marca formal quedan prohibidos gradientes, transparencias, resplandor del rombo, estrellas, halo lunar, sombras internas y textura nebulosa.
 
+### Reducción, escala y área de protección
+**REDUCED-01** es la única simplificación autorizada para pequeña escala.
+
+Mantiene:
+- dos masas verticales de Velo enfrentadas;
+- abertura central sinuosa;
+- Señal romboidal central;
+- ocultación parcial de la Señal;
+- separación permanente entre ambos Velos.
+
+La reducción simplifica algunos quiebres interiores, ensancha ligeramente la abertura y aumenta la Señal. No puede convertir la abertura en una ranura recta, exponer completamente la Señal ni hacer que ambos Velos se toquen.
+
+**Geometría reducida normativa:**
+
+```svg
+<path d="M500 438 L562 500 L500 562 L438 500 Z"/>
+<path d="M410 150 L315 195 L265 305 L260 500 L270 695 L325 805 L410 850 L440 850 L410 800 L400 730 L410 650 L435 575 L450 500 L438 425 L450 345 L478 275 L495 205 L470 150 Z"/>
+<path d="M590 150 L685 195 L735 305 L740 500 L730 695 L675 805 L590 850 L560 850 L595 815 L605 750 L595 680 L570 600 L555 520 L568 450 L550 365 L522 290 L505 215 L530 150 Z"/>
+```
+
+**Orden de capas reducido:** Señal primero; ambos Velos encima.
+
+**Umbrales digitales:**
+- 32 px o más: versión principal;
+- 16–31 px: `REDUCED-01`;
+- menos de 16 px: no reproducir el símbolo completo.
+
+**Mínimos físicos recomendados:**
+- impresión: 10 mm;
+- grabado/talla: 14 mm;
+- bordado: 22 mm.
+
+No existe versión micro.
+
+**Área de protección formal:** `2X = 80 unidades`.
+
 ### Reconocimiento
 **Rasgos obligatorios:**
 1. dos masas verticales de Velo enfrentadas;
@@ -1445,11 +1482,18 @@ No usar ojo literal, luna creciente, luna llena, estrellas, puerta, arco, llave,
 - `assets/symbols/divinities/SYM-DIV-SELENE-001_LIGHT.svg`
 - `assets/symbols/divinities/SYM-DIV-SELENE-001_INVERTED.svg`
 
+### Activos de reducción
+- `assets/symbols/divinities/SYM-DIV-SELENE-001_REDUCED.svg`
+- `assets/symbols/divinities/SYM-DIV-SELENE-001_REDUCED_PRIMARY.svg`
+- `assets/symbols/divinities/SYM-DIV-SELENE-001_REDUCED_LIGHT.svg`
+- `assets/symbols/divinities/SYM-DIV-SELENE-001_REDUCED_INVERTED.svg`
+
 ### Pendientes para v1.0
-Versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
+Pruebas contextuales/materiales y PNG definitivo.
 
 ### Historial
 - **v0.1 — 2026-10-08:** concepto y lámina técnica monocroma aprobados.
 - **v0.2 — 2026-10-08:** geometría exacta fijada como inmutable.
 - **v0.3 — 2026-10-08:** cromática aprobada; se fijan Índigo del Velo, Plata Velada, Marfil de Sueño y Violeta de Umbral; se autorizan PRIMARY-01, LIGHT-01 e INVERTED-01.
+- **v0.4 — 2026-10-08:** se aprueban REDUCED-01, umbrales digitales, mínimos físicos y área de protección.
 
