@@ -223,7 +223,9 @@ test("CRAFT común: vista previa de herramienta ordinaria utiliza economía y ti
   };
   actor.items.set(project.id,project);
   const preview=await previewCraftingProject(project);
-  assert.equal(preview.valid,true);
+  assert.equal(preview.valid,false); // Aún faltan insumos y la verificación de herramientas/instalación.
   assert.equal(preview.expectedMaterialCopper,15);
+  assert.equal(preview.missingMaterialCopper,15);
+  assert.ok(preview.issues.some((issue)=>issue.code==="material-allocation"));
   assert.equal(project.system.state,"draft");
 });
