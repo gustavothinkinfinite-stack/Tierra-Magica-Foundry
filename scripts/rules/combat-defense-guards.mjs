@@ -67,7 +67,7 @@ export function installCombatDefenseGuards(ActorClass) {
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>Guardia</strong><p>" +
         foundry.utils.escapeHTML(this.name) +
-        " consume su Acción y obtiene +2 Defensa hasta el inicio de su siguiente turno.</p></div>"
+        " declara Guardia (+2 Defensa hasta el inicio de su siguiente turno). Requiere Acción según las reglas; marcala manualmente.</p></div>"
     });
   };
 
@@ -88,7 +88,7 @@ export function installCombatDefenseGuards(ActorClass) {
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>Parada</strong><p>" +
         foundry.utils.escapeHTML(this.name) +
-        " consume su Reacción y obtiene +" + bonus + " Defensa contra el siguiente ataque cuerpo a cuerpo parable que la desencadene." +
+        " declara Parada: +" + bonus + " Defensa contra el siguiente ataque cuerpo a cuerpo parable que la desencadene. Requiere Reacción según las reglas; marcala manualmente." +
         (weapon ? " Fuente: " + foundry.utils.escapeHTML(weapon.name) + "." : "") +
         " No se aplica por defecto a distancia, áreas ni hechizos.</p></div>"
     });
