@@ -1,3 +1,10 @@
+## Publicación v1.7.0 — 2026-10-08
+
+- Release estable publicada desde el commit `72f755060c87bb64e4c783be05e2b1215e1746ff` mediante workflow de GitHub Actions `#37812848808`.
+- Validación automática y preparación del ZIP terminadas con éxito.
+- Assets publicados y comprobados: `system.json` y `tierra-magica.zip`.
+- El manifiesto estable `releases/latest/download/system.json` apunta ahora a v1.7.0.
+
 ## 1.7.0 — Bestiario inicial de PNJ y criaturas — 2026-10-08
 
 - Añade el compendio `Tierra Mágica — Bestiario` de tipo Actor con 11 perfiles canónicos del Manual Maestro §23.
