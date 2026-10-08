@@ -14,7 +14,7 @@ test("Contramagia conserva resolución contextual y exige la Técnica, sin bloqu
   assert.equal(guards.includes('this.system.turn?.reaction ?? true'), false);
   assert.equal(guards.includes('"system.turn.reaction": false'), false);
   assert.equal(guards.includes("no cancela automáticamente el hechizo"), true);
-  assert.equal(guards.includes("no crea una DF universal"), true);
+  assert.equal(guards.includes("ni crea una DF universal"), true);
 });
 
 test("Contramagia no crea estados apilables ni restaura Reacción", async () => {
