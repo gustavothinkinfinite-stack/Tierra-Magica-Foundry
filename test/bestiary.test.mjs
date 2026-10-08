@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { NPC_REFERENCE_PROFILES, npcReferenceCatalog } from "../scripts/catalog/npc-catalog.mjs";
@@ -46,4 +48,21 @@ test("Troll conserva opciones potenciales sin acciones extra activadas de oficio
   assert.equal(troll.system.npcProfile.attacks.length,2);
   assert.match(troll.system.npcProfile.notes,/puede incluir/);
   assert.equal(troll.system.npcProfile.reactions,undefined);
+});
+
+test("ficha NPC oculta la creación de PJ y mantiene ataque e iniciativa", async () => {
+  const source=await readFile(resolve("templates/actor/parts/actor-sheet.hbs"),"utf8");
+  const js=await readFile(resolve("scripts/sheets/actor-sheet.mjs"),"utf8");
+  assert.match(source,/tm-npc-reference/);
+  assert.match(source,/roll-npc-attack/);
+  assert.match(source,/npcBodyDefenseApplicable/);
+  assert.match(js,/npcBodyDefenseApplicable/);
+  assert.match(js,/rollNpcAttack/);
+  const stack=[];
+  const tokens=source.matchAll(/{{([#\\/])\\s*(if|unless|each|with)\\b[^}]*}}/g);
+  for (const token of tokens) {
+    if (token[1]==="#") stack.push(token[2]);
+    else assert.equal(stack.pop(),token[2],"secuencia de bloques HBS");
+  }
+  assert.equal(stack.length,0,"todos los condicionales HBS están cerrados");
 });
