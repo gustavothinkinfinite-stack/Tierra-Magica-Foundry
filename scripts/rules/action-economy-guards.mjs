@@ -64,9 +64,8 @@ export function installActionEconomyGuards(ActorClass) {
     return runAction(this, () => originalOverloadDevice.call(this, item, ...args));
   };
 
-  // Combate ya valida y persiste el gasto internamente. Esta envoltura añade la
-  // exclusión mutua compartida con magia/alquimia/dispositivos, cerrando el caso
-  // de doble clic cruzado sin cambiar costes ni el orden de validación existente.
+  // Ataques mantienen validación de objetivos, defensas y daño,
+  // pero no consultan ni modifican el indicador de Acción.
   ActorClass.prototype.rollWeapon = async function (item, options = {}) {
     if (options?.tmReactionAttack) return originalRollWeapon.call(this, item, options);
     return runAction(this, () => originalRollWeapon.call(this, item, options));
@@ -77,8 +76,8 @@ export function installActionEconomyGuards(ActorClass) {
   ActorClass.prototype.sweepAttack = async function (...args) {
     return runAction(this, () => originalSweepAttack.apply(this, args));
   };
-  // Estas rutas también consumen la Acción y deben compartir el mismo bloqueo
-  // transversal; de lo contrario un doble clic cruzado puede ejecutarlas a la vez.
+  // Guardia y familiares ejecutan directamente sus reglas específicas.
+  // La Acción requerida se registra manualmente.
   if (originalGuard) ActorClass.prototype.guard = async function (...args) {
     return runAction(this, () => originalGuard.apply(this, args));
   };
