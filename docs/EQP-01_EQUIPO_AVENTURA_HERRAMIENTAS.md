@@ -113,3 +113,14 @@ Archivos principales:
 - `test/equipment-catalog-master.test.mjs`
 
 La integración se realiza mediante `coreCatalog()`, sin modificar `STARTER_CONTENT`, `template.json`, `system.json`, `package.json` ni los módulos de CRAFT-13.
+
+
+## Recetas de equipo común en Foundry
+
+El motor CRAFT-03 ya define recetas de oficio para **21** de los 25 objetos ordinarios canónicos de EQP-01: seis herramientas o elementos de aventura y los quince Kits profesionales. Estas recetas están disponibles desde la ficha, en **Desarrollo → Proyectos de fabricación e investigación → Catálogo → Equipo común**.
+
+Cada proyecto usa exactamente el perfil de objeto publicado en el Compendio de Equipo, el precio comercial vigente (VR), **CM = mitad del VR redondeada hacia arriba**, tiempo base del Manual y rango/instalación del procedimiento de CRAFT-03. No concede bonificaciones nuevas. El objeto terminado se incorpora al inventario sólo después de preparar, aportar los lotes/materiales compatibles, registrar el trabajo efectivo y completar el proyecto mediante el motor transaccional. Los requisitos auxiliares escritos en CRAFT-03 siguen requiriendo verificación humana; la interfaz los anuncia al elegir el proyecto.
+
+**No se crean recetas ficticias** para los cuatro consumibles sin procedimiento universal en CRAFT-03: Materiales de escritura, Repuesto médico (5 usos), Provisiones (7 días) y Combustible de iluminación (5 noches). Tampoco se habilitan las 65 propuestas mundanas sin precio ni las diez propuestas especiales bloqueadas.
+
+Para probar: seleccionar **REF-COM-01 · Gancho de escalada** (VR 30 c, CM 15 c, trabajo 2 h, Artesanía Aprendiz, instalación Improvisada), acreditar herramientas y materiales disponibles, completar el proceso y comprobar que el resultado conserva la descripción y propiedades canónicas del Gancho.
