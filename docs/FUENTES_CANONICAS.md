@@ -78,6 +78,10 @@ La ampliación del grimorio está **CERRADA Y CANONIZADA**. El Manual Maestro de
 
 Foundry adopta schema v5 para contratos de objetivos mágicos y migración del cierre espacial.
 
+## Estado de publicación 1.6.0
+
+Foundry T.M. **v1.6.0** es la versión objetivo de la incorporación de 21 recetas ordinarias CRAFT-03 para los objetos canónicos ya aprobados en EQP-01. Los costes, requisitos y tiempos provienen del Manual Maestro; no se crean nuevas reglas ni precios. La publicación oficial se registrará una vez concluida la validación.
+
 ## Estado de publicación 1.5.2
 
 La versión **v1.5.2 está publicada** como release estable desde el commit `c264143991479a627364e71aacbde5de6998f1c3` e introduce control de turno manual en Foundry. La ejecución de ataques, magia, técnicas, dispositivos y familiares es independiente del indicador de Acción o Reacción. Los costes mecánicos y las reglas canónicas continúan vigentes; el DJ y los jugadores verifican el límite de actuaciones por turno.
