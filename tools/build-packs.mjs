@@ -62,10 +62,10 @@ await rm(verifyRoot,{recursive:true,force:true});
 const actorPack="bestiary";
 // El paquete solamente apunta a arte verdaderamente presente en la release.
 const artDir=resolve(root,"assets/bestiary");
-const availableArtFiles=new Set(await readdir(artDir).catch((error)=>{
+const availableArtFiles=new Set((await readdir(artDir).catch((error)=>{
   if(error.code==="ENOENT") return [];
   throw error;
-}));
+})).filter((name)=>name!== "README.md"));
 const expectedArtFiles=new Set(APPROVED_BESTIARY_ART_SLUGS.flatMap((slug)=>{
   const files=bestiaryArtFiles(slug);
   return [files.portrait,files.token];
