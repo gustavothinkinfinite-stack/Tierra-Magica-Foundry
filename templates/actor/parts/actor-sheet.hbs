@@ -83,6 +83,46 @@
 
       {{> "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"}}
 
+      {{#if isNpc}}
+      {{#if system.npcProfile.enabled}}
+      <section class="tm-panel tm-wide tm-npc-reference">
+        <h2>Perfil de PNJ — Manual Maestro §23</h2>
+        <p>Las cifras son directas del perfil de referencia: no provienen de puntos de desarrollo o progresión de un PJ.</p>
+        <div class="tm-form-grid">
+          <label><span>Vida máxima de perfil</span><input type="number" min="1" name="system.npcProfile.life" value="{{system.npcProfile.life}}" /></label>
+          <label><span>Defensa</span><input type="number" min="0" name="system.npcProfile.defense" value="{{system.npcProfile.defense}}" /></label>
+          <label><span>Defensa de Maniobra</span><input type="number" min="0" name="system.npcProfile.maneuverDefense" value="{{system.npcProfile.maneuverDefense}}" /></label>
+          <label><span>Defensa Mental</span><input type="number" min="0" name="system.npcProfile.mentalDefense" value="{{system.npcProfile.mentalDefense}}" /></label>
+          {{#if system.npcProfile.bodyDefense}}
+          <label><span>Defensa Corporal</span><input type="number" min="0" name="system.npcProfile.bodyDefense" value="{{system.npcProfile.bodyDefense}}" /></label>
+          {{else}}
+          <div><span>Defensa Corporal: — (no aplicable)</span></div>
+          {{/if}}
+          <label><span>Protección</span><input type="number" min="0" name="system.npcProfile.protection" value="{{system.npcProfile.protection}}" /></label>
+          <label><span>Movimiento (espacios)</span><input type="number" min="1" name="system.npcProfile.movement" value="{{system.npcProfile.movement}}" /></label>
+          <label><span>Iniciativa</span><input type="number" name="system.npcProfile.initiative" value="{{system.npcProfile.initiative}}" /></label>
+          <label><span>Maná operativo</span><input type="number" min="0" name="system.npcProfile.mana" value="{{system.npcProfile.mana}}" /></label>
+        </div>
+        {{#if system.npcProfile.protectionRange.length}}
+        <p>Protección canónica: 0–1 según equipo. La cifra de ficha es el valor operativo elegido.</p>
+        {{/if}}
+        {{#if system.npcProfile.channelingBonus}}
+        <p>Canalización: +{{system.npcProfile.channelingBonus}}. No se asignan hechizos que no figuren en el perfil.</p>
+        {{/if}}
+        <h3>Ataques de referencia</h3>
+        {{#each system.npcProfile.attacks as |attack index|}}
+        <button type="button" data-action="roll-npc-attack" data-index="{{index}}">
+          <i class="fa-solid fa-dice"></i> {{attack.name}} +{{attack.bonus}} · Daño {{attack.damage}} · Pen {{attack.penetration}}
+        </button>
+        {{else}}
+        <p>No se especifican ataques directos en este perfil.</p>
+        {{/each}}
+        <p>Los ataques muestran los valores del Manual; el daño no se aplica automáticamente.</p>
+        {{#if system.npcProfile.notes}}<p>{{system.npcProfile.notes}}</p>{{/if}}
+      </section>
+      {{/if}}
+      {{/if}}
+
       <section class="tm-panel tm-wide">
         <h2>Estado y recuperación</h2>
         <div class="tm-form-grid">
