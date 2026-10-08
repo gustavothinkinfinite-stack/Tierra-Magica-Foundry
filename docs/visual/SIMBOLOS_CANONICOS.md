@@ -1356,9 +1356,10 @@ La Fase 4 validó El Rumbo Desviado sin rediseño en carta/documento de ruta, in
 ## SYM-DIV-SELENE-001 — El Velo Entreabierto
 
 **Entidad:** Selene, la Velada  
-**Estado:** **PROVISIONAL — GEOMETRÍA APROBADA E INMUTABLE**  
-**Versión:** v0.2  
-**Fecha de aprobación conceptual y geométrica:** 2026-10-08
+**Estado:** **PROVISIONAL — GEOMETRÍA Y CROMÁTICA APROBADAS E INMUTABLES**  
+**Versión:** v0.3  
+**Fecha de aprobación conceptual y geométrica:** 2026-10-08  
+**Fecha de aprobación cromática:** 2026-10-08
 
 ### Concepto
 El Velo Entreabierto representa percepción parcial, misterio, secreto y una frontera que separa sin romper por completo la relación entre ambos lados.
@@ -1388,6 +1389,26 @@ No representa una puerta transitable, un ojo literal, una luna ni una revelació
 **Abertura central:** espacio negativo sinuoso, nunca recto, nunca cerrado y nunca suficientemente ancho para funcionar visualmente como puerta.
 
 **Señal:** rombo de 110 × 110 unidades centrado en (500,500), parcialmente cubierto por los velos.
+
+### Cromática
+| Nombre | Función | HEX | RGB |
+|---|---|---|---|
+| **Índigo del Velo** | campo oscuro principal | `#252842` | 37, 40, 66 |
+| **Plata Velada** | color principal del símbolo | `#B8B6C3` | 184, 182, 195 |
+| **Marfil de Sueño** | campo claro / inversión | `#E9E3DA` | 233, 227, 218 |
+| **Violeta de Umbral** | acento contextual | `#71658C` | 113, 101, 140 |
+
+**Variantes oficiales:**
+- `PRIMARY-01` — Plata Velada sobre Índigo del Velo.
+- `LIGHT-01` — Índigo del Velo sobre Marfil de Sueño.
+- `INVERTED-01` — Marfil de Sueño sobre Índigo del Velo.
+- `MONO-GEOMETRY-01` — negro sobre fondo claro para construcción y pruebas.
+
+Los dos Velos y la Señal usan el mismo color dentro de cada variante formal. La Señal no recibe brillo ni contraste cromático independiente.
+
+**Violeta de Umbral** no forma parte de la marca plana. Puede aparecer en iluminación, vidrio, fenómenos oníricos, energía ambiental o contexto narrativo.
+
+En la marca formal quedan prohibidos gradientes, transparencias, resplandor del rombo, estrellas, halo lunar, sombras internas y textura nebulosa.
 
 ### Reconocimiento
 **Rasgos obligatorios:**
@@ -1419,10 +1440,16 @@ No usar ojo literal, luna creciente, luna llena, estrellas, puerta, arco, llave,
 **SVG maestro:** `assets/symbols/divinities/SYM-DIV-SELENE-001_MASTER.svg`  
 **SHA-256:** `de64aa0c826629a32d25472f27b7a682b69cdeabbe2dc0dd4bcc451c01782e33`
 
+### Activos cromáticos
+- `assets/symbols/divinities/SYM-DIV-SELENE-001_PRIMARY.svg`
+- `assets/symbols/divinities/SYM-DIV-SELENE-001_LIGHT.svg`
+- `assets/symbols/divinities/SYM-DIV-SELENE-001_INVERTED.svg`
+
 ### Pendientes para v1.0
-Cromática, versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
+Versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
 
 ### Historial
 - **v0.1 — 2026-10-08:** concepto y lámina técnica monocroma aprobados.
 - **v0.2 — 2026-10-08:** geometría exacta fijada como inmutable.
+- **v0.3 — 2026-10-08:** cromática aprobada; se fijan Índigo del Velo, Plata Velada, Marfil de Sueño y Violeta de Umbral; se autorizan PRIMARY-01, LIGHT-01 e INVERTED-01.
 
