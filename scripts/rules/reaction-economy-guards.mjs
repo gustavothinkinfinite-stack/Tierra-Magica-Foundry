@@ -7,7 +7,11 @@ import { resetCurrentCombatantTurn } from "./turn-economy.mjs";
 const REACTION_GUARD = Symbol("tierraMagicaReactionGuard");
 let turnHookInstalled = false;
 
-export async function runReaction(_actor, operation) {
+export async function runReaction(actor, operation) {
+  if (actor.system?.status?.incapacitated || Number(actor.system?.resources?.health?.value) <= 0) {
+    globalThis.ui?.notifications?.warn?.(actor.name + " está Incapacitado y no puede ejecutar una Reacción.");
+    return null;
+  }
   return operation();
 }
 
