@@ -2,7 +2,11 @@
 // sin bloquearla por Acción/Reacción gastada y conserva sus validaciones propias.
 // Acción y Reacción son indicadores manuales, no candados automáticos.
 
-export async function runAction(_actor, operation) {
+export async function runAction(actor, operation) {
+  if (actor.system?.status?.incapacitated || Number(actor.system?.resources?.health?.value) <= 0) {
+    globalThis.ui?.notifications?.warn?.(actor.name + " está Incapacitado y no puede ejecutar una Acción.");
+    return null;
+  }
   return operation();
 }
 
