@@ -11540,7 +11540,7 @@ Una norma puede existir legítimamente dentro de un sistema jurídico y continua
 
 **Legal y justo no son sinónimos.**
 
-> **Símbolo religioso definitivo: PENDIENTE DE DEFINICIÓN ESTRUCTURADA.** La identidad visual canónica de Oria permanece vigente, pero el símbolo doctrinal no se fija todavía.
+> **Símbolo religioso — geometría aprobada:** **La Medida Acordada** (`SYM-DIV-ORIA-001`). Su geometría vectorial está fijada como inmutable en `docs/visual/SIMBOLOS_CANONICOS.md`: patrón vertical graduado, fulcro romboidal, barra nivelada y dos obligaciones diferentes —cuadrado grande a la izquierda y círculo menor más alejado a la derecha—. Cromática, reducción, escalas y pruebas finales permanecen pendientes antes de CANON v1.0.
 
 ### La Balanza
 

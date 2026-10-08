@@ -1035,3 +1035,78 @@ La Fase 4 validó El Umbral de Piedra sin rediseño en documento/archivo memoria
 - **v0.4:** versión `REDUCED-01`, umbrales digitales, mínimos físicos y área de protección aprobados.
 - **v1.0 — 2026-10-08:** pruebas contextuales/materiales aprobadas; materiales, perspectiva, deterioro y usos culturales validados; PNG definitivo incorporado; ficha elevada a CANON.
 
+## SYM-DIV-ORIA-001 — La Medida Acordada
+
+**Entidad:** Oria, la Balanza  
+**Estado:** **PROVISIONAL — GEOMETRÍA APROBADA E INMUTABLE**  
+**Versión:** v0.2  
+**Fecha de aprobación conceptual y geométrica:** 2026-10-08
+
+### Concepto
+La Medida Acordada representa la capacidad de hacer comparables obligaciones diferentes cuando existe un estándar común previamente fijado. No representa igualdad matemática ni justicia moral absoluta.
+
+La composición combina un patrón vertical graduado, un fulcro romboidal, una barra horizontal nivelada, un peso cuadrado grande próximo al centro y un peso circular menor situado más lejos del fulcro. La asimetría es doctrinalmente obligatoria.
+
+### Construcción
+**Lienzo maestro:** 1000 × 1000  
+**Módulo X:** 40 unidades.  
+**Eje estructural:** X=500.
+
+**Patrón vertical:** X 470–530; Y 170–820, con base trapezoidal inferior integrada.  
+**Barra nivelada:** X 210–790; Y 335–385.  
+**Fulcro:** rombo centrado aproximadamente en (500,385), 70 × 70.  
+**Peso izquierdo:** cuadrado X 300–430 / Y 520–650, suspensión en X≈365.  
+**Peso derecho:** círculo de diámetro 90, centro aproximado (700,595), suspensión en X=700.
+
+**Graduaciones negativas:** tres marcas horizontales decrecientes contenidas dentro del patrón central. La lámina conceptual rotuló por error anchos 90/70/50 sobre un patrón de sólo 60 unidades; la geometría normativa corrige esa incompatibilidad sin alterar la lectura visual y fija anchos de **44/36/28 unidades**.
+
+### Geometría normativa
+
+```svg
+<path fill-rule="evenodd" d="M470 170 H530 V820 H560 L610 910 H390 L440 820 H470 Z M478 250 H522 V265 H478 Z M482 305 H518 V320 H482 Z M486 360 H514 V375 H486 Z"/>
+<path d="M210 335 H790 V385 H210 Z"/>
+<path d="M500 350 L535 385 L500 420 L465 385 Z"/>
+<path d="M357 385 H373 V520 H357 Z"/>
+<path d="M300 520 H430 V650 H300 Z"/>
+<path d="M693 385 H707 V550 H693 Z"/>
+<path d="M700 550 A45 45 0 1 1 699.999 550 Z"/>
+```
+
+Estas trayectorias son normativas y no deben reinterpretarse creativamente.
+
+### Reconocimiento
+**Rasgos obligatorios:**
+1. patrón vertical central;
+2. tres graduaciones horizontales negativas;
+3. fulcro romboidal;
+4. barra horizontal perfectamente nivelada;
+5. peso cuadrado grande a la izquierda, más próximo al centro;
+6. peso circular menor a la derecha, más alejado del centro.
+
+**Orientación:** única.  
+**Rotación:** prohibida.  
+**Reflejo horizontal:** prohibido.  
+**Reflejo vertical:** prohibido.
+
+La inversión izquierda/derecha altera la lectura canónica y no está autorizada.
+
+### Prohibiciones
+No usar espada, venda, martillo judicial, dos platillos idénticos, figura humana, corona, libro abierto como elemento principal, pergamino, manos estrechándose, monedas literales, texto, runas, alas, llamas, rayos ni cadenas.
+
+### Diferenciación doctrinal
+**Ilyr:** justicia moral.  
+**Oria:** medida, acuerdo, registro, intercambio y exigibilidad.
+
+Una barra nivelada con cargas visualmente distintas no significa que ambas partes reciban lo mismo, sino que existe una medida aceptada capaz de hacer comparables obligaciones diferentes.
+
+### Activo
+**SVG maestro geométrico:** `assets/symbols/divinities/SYM-DIV-ORIA-001_MASTER.svg`  
+**SHA-256:** `ce8fe53f891bb15f9d9743f585ca1df5437829ac6c2a06b5f4cb623725d16f0b`
+
+### Pendientes para v1.0
+Cromática, versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
+
+### Historial
+- **v0.1 — 2026-10-08:** concepto y lámina monocroma aprobados.
+- **v0.2 — 2026-10-08:** geometría exacta normalizada y fijada como inmutable.
+
