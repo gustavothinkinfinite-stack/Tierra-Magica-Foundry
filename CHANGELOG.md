@@ -1,3 +1,12 @@
+## Publicación v1.5.2 — 2026-10-07
+
+- Publicada como release estable desde `c264143991479a627364e71aacbde5de6998f1c3`.
+- Workflow de publicación `#37706682891` finalizado correctamente.
+- Assets: `system.json` y `tierra-magica.zip`.
+- SHA-256 de `system.json`: `aeea019d1b0bea98fcf469b5593608fef33aa8273fdf106653955257b35adf00`.
+- SHA-256 de `tierra-magica.zip`: `5ed25e10b81eeae66a720a186d8144c1dde3829a05721f6905a82275b3df872b`.
+- El manifiesto de instalación `releases/latest/download/system.json` corresponde a v1.5.2.
+
 ## 1.5.2 — Control de turno manual — 2026-10-07
 
 - Ataques, hechizos, alquimia, dispositivos, técnicas y familiares se resuelven sin consultar el estado previo de Acción o Reacción.
