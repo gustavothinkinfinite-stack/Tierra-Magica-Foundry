@@ -133,7 +133,7 @@
         {{else}}
         <p>No se especifican ataques directos en este perfil.</p>
         {{/each}}
-        <p>Los ataques muestran los valores del Manual; el daño no se aplica automáticamente.</p>
+        {{#if system.npcProfile.abilities.length}}<p>Los ataques de esta propuesta mantienen los valores del Lobo del Manual. El daño se aplica manualmente.</p>{{else}}<p>Los ataques muestran los valores del Manual; el daño no se aplica automáticamente.</p>{{/if}}
         {{#if system.npcProfile.abilities.length}}
         <h3>Capacidades sobrenaturales</h3>
         {{#each system.npcProfile.abilities as |ability|}}
