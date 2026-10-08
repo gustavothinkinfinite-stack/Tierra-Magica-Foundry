@@ -11540,7 +11540,7 @@ Una norma puede existir legítimamente dentro de un sistema jurídico y continua
 
 **Legal y justo no son sinónimos.**
 
-> **Símbolo religioso — geometría y cromática aprobadas:** **La Medida Acordada** (`SYM-DIV-ORIA-001`). Su geometría vectorial y cromática formal —Oro de Medida, Azul de Estatuto y Marfil de Registro, con Latón de Archivo reservado a materiales/contexto— son inmutables y están especificadas en `docs/visual/SIMBOLOS_CANONICOS.md`. Reducción, escalas mínimas, área de protección y pruebas finales permanecen pendientes antes de CANON v1.0.
+> **Símbolo religioso — geometría, cromática y escala aprobadas:** **La Medida Acordada** (`SYM-DIV-ORIA-001`). Su geometría vectorial, cromática formal y variante `REDUCED-01` son inmutables y están especificadas en `docs/visual/SIMBOLOS_CANONICOS.md`. La versión principal se usa desde 32 px; `REDUCED-01` entre 16 y 31 px; por debajo de 16 px no se reproduce el símbolo completo. Sólo quedan pruebas contextuales/materiales y PNG definitivo antes de CANON v1.0.
 
 ### La Balanza
 

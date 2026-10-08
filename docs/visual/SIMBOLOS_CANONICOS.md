@@ -1038,10 +1038,11 @@ La Fase 4 validó El Umbral de Piedra sin rediseño en documento/archivo memoria
 ## SYM-DIV-ORIA-001 — La Medida Acordada
 
 **Entidad:** Oria, la Balanza  
-**Estado:** **PROVISIONAL — GEOMETRÍA Y CROMÁTICA APROBADAS E INMUTABLES**  
-**Versión:** v0.3  
+**Estado:** **PROVISIONAL — GEOMETRÍA, CROMÁTICA Y ESCALA APROBADAS E INMUTABLES**  
+**Versión:** v0.4  
 **Fecha de aprobación conceptual y geométrica:** 2026-10-08  
-**Fecha de aprobación cromática:** 2026-10-08
+**Fecha de aprobación cromática:** 2026-10-08  
+**Fecha de aprobación de escala y reducción:** 2026-10-08
 
 ### Concepto
 La Medida Acordada representa la capacidad de hacer comparables obligaciones diferentes cuando existe un estándar común previamente fijado. No representa igualdad matemática ni justicia moral absoluta.
@@ -1097,6 +1098,37 @@ En la marca formal quedan prohibidos gradientes, sombras, brillo interior y text
 
 El Oro de Medida no implica emisión luminosa ni halo propio.
 
+### Reducción, escala y área de protección
+**REDUCED-01** es la única simplificación autorizada para pequeña escala. Conserva patrón vertical, tres graduaciones, fulcro romboidal, barra horizontal, carga cuadrada grande a la izquierda y carga circular menor a la derecha.
+
+La reducción puede simplificar la base y engrosar o ampliar las graduaciones, pero nunca puede igualar ambas cargas ni invertir izquierda/derecha.
+
+**Geometría reducida normativa:**
+
+```svg
+<path fill-rule="evenodd" d="M472 170 H528 V820 H555 L600 900 H400 L445 820 H472 Z M476 245 H524 V266 H476 Z M480 301 H520 V322 H480 Z M484 357 H516 V378 H484 Z"/>
+<path d="M220 338 H780 V382 H220 Z"/>
+<path d="M500 350 L535 385 L500 420 L465 385 Z"/>
+<path d="M360 382 H372 V515 H360 Z"/>
+<path d="M305 515 H427 V637 H305 Z"/>
+<path d="M694 382 H706 V548 H694 Z"/>
+<circle cx="700" cy="595" r="45"/>
+```
+
+**Umbrales digitales:**
+- 32 px o más: versión principal;
+- 16–31 px: `REDUCED-01`;
+- menos de 16 px: no reproducir el símbolo completo.
+
+**Mínimos físicos recomendados:**
+- impresión: 10 mm;
+- grabado/talla: 14 mm;
+- bordado: 22 mm.
+
+No existe versión micro.
+
+**Área de protección formal:** `2X = 80 unidades`. Zona protegida aproximada: X 130–870 / Y 90–990.
+
 ### Reconocimiento
 **Rasgos obligatorios:**
 1. patrón vertical central;
@@ -1131,11 +1163,18 @@ Una barra nivelada con cargas visualmente distintas no significa que ambas parte
 - `assets/symbols/divinities/SYM-DIV-ORIA-001_LIGHT.svg`
 - `assets/symbols/divinities/SYM-DIV-ORIA-001_INVERTED.svg`
 
+### Activos de reducción
+- `assets/symbols/divinities/SYM-DIV-ORIA-001_REDUCED.svg`
+- `assets/symbols/divinities/SYM-DIV-ORIA-001_REDUCED_PRIMARY.svg`
+- `assets/symbols/divinities/SYM-DIV-ORIA-001_REDUCED_LIGHT.svg`
+- `assets/symbols/divinities/SYM-DIV-ORIA-001_REDUCED_INVERTED.svg`
+
 ### Pendientes para v1.0
-Versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
+Pruebas contextuales/materiales y PNG definitivo.
 
 ### Historial
 - **v0.1 — 2026-10-08:** concepto y lámina monocroma aprobados.
 - **v0.2 — 2026-10-08:** geometría exacta normalizada y fijada como inmutable.
 - **v0.3 — 2026-10-08:** cromática aprobada; se fijan Azul de Estatuto, Oro de Medida, Marfil de Registro y Latón de Archivo; se autorizan PRIMARY-01, LIGHT-01 e INVERTED-01.
+- **v0.4 — 2026-10-08:** se aprueban REDUCED-01, umbrales digitales, mínimos físicos y área de protección.
 
