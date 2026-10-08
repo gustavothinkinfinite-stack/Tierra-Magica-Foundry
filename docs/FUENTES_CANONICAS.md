@@ -80,7 +80,7 @@ Foundry adopta schema v5 para contratos de objetivos mágicos y migración del c
 
 ## Estado de publicación 1.6.1
 
-El hotfix objetivo **v1.6.1** corrige exclusivamente las claves y recuperación segura de reservas de Lotes CRAFT-13 para proyectos ya iniciados. No altera tiempos, costes ni el Manual Maestro. Se registrará la publicación oficial al completar la release.
+El hotfix **v1.6.1 está publicado** desde `2489c95726b6ccfa9f59ee92c5f886245360cf66` y corrige las claves y recuperación segura de reservas de Lotes CRAFT-13 para proyectos ya iniciados. No altera tiempos, costes ni el Manual Maestro.
 
 ## Estado de publicación 1.6.0
 

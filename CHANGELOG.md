@@ -1,3 +1,11 @@
+## Publicación v1.6.1 — 2026-10-08
+
+- Hotfix **v1.6.1** publicado desde `2489c95726b6ccfa9f59ee92c5f886245360cf66` como release estable Latest.
+- Validación completa, compilación de Compendios y publicación en workflow `#37720307634`.
+- Assets verificados: `system.json` y `tierra-magica.zip`.
+- SHA-256 `system.json`: `607a35b21445b31cc5ed75b6f48f3a5a3cbc806da4eeeeae0cc708003364e03a`.
+- SHA-256 `tierra-magica.zip`: `a57fb6e70b3912c1728f90e8a2e5f9d2266bba23611ccfcfd623b87a21c54aeb`.
+
 ## 1.6.1 — Hotfix de reservas de fabricación — 2026-10-07
 
 - Corrige «La reserva de un Lote ya no coincide con el Proyecto» después de completar el trabajo.
