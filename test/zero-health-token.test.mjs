@@ -73,7 +73,7 @@ test("el indicador usa una X roja completa y transparente sobre la ilustración 
  assert.match(svg,/viewBox="0 0 100 100"/);
  assert.match(svg,/M 10 10 L 90 90 M 90 10 L 10 90/);
  assert.match(svg,/stroke="#df2431"/);
- assert.doesNotMatch(svg,/<(?:circle|rect|image)\\b/i);
+ assert.doesNotMatch(svg,/<(?:circle|rect|image)[ >]/i);
  const config={statusEffects:{}};
  registerZeroHealthStatus(config);
  assert.equal(config.statusEffects[ZERO_HEALTH_STATUS_ID].img,
