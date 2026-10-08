@@ -78,6 +78,10 @@ La ampliación del grimorio está **CERRADA Y CANONIZADA**. El Manual Maestro de
 
 Foundry adopta schema v5 para contratos de objetivos mágicos y migración del cierre espacial.
 
+## Estado de publicación 1.7.0 — Bestiario
+
+**v1.7.0 está publicada** desde el commit `72f755060c87bb64e4c783be05e2b1215e1746ff`; publica un compendio `Actor` de 11 perfiles de PNJ/criaturas del capítulo 23 del Manual Maestro, con ficha y tiradas de ataque referenciales. No crea nuevas reglas: los valores ambiguos permanecen explícitos y la fuente canónica sigue siendo el Manual Maestro. Las pruebas automáticas y el workflow de publicación `#37812848808` terminaron correctamente. La comprobación visual en una sesión real de Foundry aún es recomendable.
+
 ## Estado de publicación 1.6.1
 
 El hotfix **v1.6.1 está publicado** desde `2489c95726b6ccfa9f59ee92c5f886245360cf66` y corrige las claves y recuperación segura de reservas de Lotes CRAFT-13 para proyectos ya iniciados. No altera tiempos, costes ni el Manual Maestro.
