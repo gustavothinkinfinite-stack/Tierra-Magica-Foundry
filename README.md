@@ -93,3 +93,36 @@ aprobación. Su documentación editorial está en
 `docs/visual/Lobo_del_Eco_Muerto_Bestiario_Original.md`; no modifica las
 reglas del Manual Maestro.
 
+
+
+## Fabricación: Lotes de Materiales y recuperación de reservas (v1.10.0)
+
+**Compra de lotes:** en una ficha de personaje, abrir **Equipo → + Equipo**,
+elegir uno de los 13 ítems **Lote de materiales** del compendio **Tierra Mágica — Equipo**
+y adquirirlo por el flujo normal. Paquetes ordinarios: 1 plata (10 c de VI),
+5 platas (50 c de VI) o 1 oro (100 c de VI). También hay familias
+(metal, madera, cuero, vidrio, alquimia, construcción, ingeniería) y grados
+especializados/raros/excepcionales para asignación por el DJ.
+
+El **VI no es moneda**: el lote precisa acceso a materiales realmente disponibles
+y compatibilidad de oficio con el Proyecto. Los precios de lotes ordinarios
+son provisiones de prueba operativa, no precios universales canónicos.
+Para materiales raros y excepcionales **no se inventan precios**; el DJ
+adjudica adquisición y valor comercial. Los lotes no crean materiales
+especiales ni reactivos mágicos sin una regla específica.
+
+**Reparación de un mundo afectado por proyectos borrados:**
+
+1. Abrir la ficha del personaje con permisos de **DJ**.
+2. Ir a **Desarrollo → Proyectos de fabricación e investigación**.
+3. En **Diagnóstico de materiales**, seleccionar **Recuperar reservas huérfanas**.
+4. Revisar la cantidad que muestra el diálogo y confirmar.
+
+La reparación sólo libera reservas que mencionan un Proyecto eliminado.
+No borra materiales, no resta VI, no aumenta dinero y no toca reservas
+de Proyectos que todavía existen, incluso los activos. Las referencias
+que no pueden identificarse con seguridad quedan intactas para revisión manual.
+Se puede ejecutar de nuevo sin duplicar recursos.
+
+**Prevención:** no borrar directamente Proyectos activos o con materiales
+comprometidos. Primero usar su acción **Liberar / Cancelar Proyecto**.
