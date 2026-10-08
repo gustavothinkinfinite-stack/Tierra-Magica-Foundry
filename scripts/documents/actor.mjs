@@ -1,3 +1,4 @@
+import { weaponImpactChat, weaponMissChat } from "../rules/combat-chat.mjs";
 import { TM_CONFIG } from "../config.mjs";
 import {
   toNumber, clamp, rankBonus, rollFormula,
@@ -169,7 +170,7 @@ export class TierraMagicaActor extends Actor {
     });
   }
 
-  async rollCheck({ label, attributeKey, skillKey = null, df = null, mode = "normal", modifier = 0 } = {}) {
+  async rollCheck({ label, attributeKey, skillKey = null, df = null, mode = "normal", modifier = 0, targetName = "" } = {}) {
     const attribute = toNumber(this.system.attributes?.[attributeKey]?.value);
     const skillData = skillKey ? this.system.skills?.[skillKey] : null;
     const skill = skillData ? toNumber(skillData.bonus) : 0;
@@ -199,7 +200,7 @@ export class TierraMagicaActor extends Actor {
       foundry.utils.escapeHTML(TM_CONFIG.attributes[attributeKey] ?? attributeKey) +
       (skillKey ? " + " + foundry.utils.escapeHTML(TM_CONFIG.skills[skillKey]?.label ?? skillKey) : "") +
       " · " + (mode === "advantage" ? "Ventaja" : mode === "disadvantage" ? "Desventaja" : "Normal") +
-      "</p>" + skillBreakdown + resultText + "</div>";
+      "</p>" + (targetName ? "<p>Objetivo: <strong>"+foundry.utils.escapeHTML(targetName)+"</strong>.</p>" : "") + skillBreakdown + resultText + "</div>";
 
     return roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
@@ -586,6 +587,7 @@ export class TierraMagicaActor extends Actor {
       attributeKey: item.system.attackAttribute || "agi",
       skillKey: item.system.skill || "martialWeapons",
       df: targetDf,
+      targetName:target.name,
       mode,
       modifier
     });
@@ -594,37 +596,34 @@ export class TierraMagicaActor extends Actor {
     if (!hit) {
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
-        content: "<div class='tm-chat-card'><strong>Impacto — " + foundry.utils.escapeHTML(item.name) +
-          "</strong><p>" + foundry.utils.escapeHTML(target.name) + ": fallo. No se genera daño.</p></div>"
+        content:weaponMissChat({attacker:this.name,target:target.name,weapon:item.name,total,defense:targetDf})
       });
       return roll;
     }
     const impact = resolveWeaponImpact(item, this, target, { damageBonus, penetrationBonus, protectionContext });
     const canUpdate = target.canUserModify?.(game.user, "update") ?? target.isOwner ?? false;
-    let appliedDamage = impact.damage <= 0;
+    let delivery=impact.damage===0 ? {
+      ok:true,
+      healthBefore:target.system.resources?.health?.value??0,
+      healthAfter:target.system.resources?.health?.value??0,
+      applied:0
+    } : null;
     if (impact.damage > 0 && canUpdate) {
-      const delivery = await applyHealthDamageAuthoritatively(target, impact.damage, { damageMode:impact.damageMode });
-      appliedDamage = delivery.ok;
+      delivery = await applyHealthDamageAuthoritatively(target, impact.damage, { damageMode:impact.damageMode });
       if (!delivery.ok) ui.notifications.warn(delivery.error);
     }
-    const pendingDamage = impact.damage > 0 && !appliedDamage ? pendingDamageRequest({
+    const pendingDamage = impact.damage > 0 && delivery?.ok!==true ? pendingDamageRequest({
       targetUuid: target.uuid, damage: impact.damage, source: item.name, attacker: this.name,
       damageType: impact.damageType, damageMode: impact.damageMode
     }) : null;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       flags: pendingDamage ? { "tierra-magica": { pendingDamage } } : {},
-      content: "<div class='tm-chat-card'><strong>Impacto — " + foundry.utils.escapeHTML(item.name) +
-        "</strong><p><strong>" + foundry.utils.escapeHTML(target.name) + "</strong>: " + impact.damage +
-        " daño " + foundry.utils.escapeHTML(damageTypeLabel(impact.damageType, TM_CONFIG.damageTypes)) +
-        (impact.damageMode === "nonlethal" ? " · No letal" : "") +
-        " · Protección " + impact.protection + " → " + impact.effectiveProtection +
-        (impact.resistance ? " · Resistencia -" + impact.resistance : "") +
-        (impact.vulnerability ? " · Vulnerabilidad +" + impact.vulnerability : "") +
-        (impact.immune ? " · Inmunidad" : "") +
-        (impact.severe ? " · <span class='tm-danger-text'>umbral de Daño Grave</span>" : "") +
-        (pendingDamage ? " · <em>pendiente de aprobación del DJ</em>" : "") +
-        "</p>" + (technique ? "<p>Técnica: " + foundry.utils.escapeHTML(technique) + ".</p>" : "") + "<p>El umbral de Daño Grave no crea automáticamente una Herida Grave.</p></div>"
+      content:weaponImpactChat({
+        attacker:this.name,target:target.name,weapon:item.name,total,defense:targetDf,
+        impact:{...impact,damageTypeLabel:damageTypeLabel(impact.damageType,TM_CONFIG.damageTypes)},
+        delivery,pending:Boolean(pendingDamage),technique
+      })
     });
     return roll;
   }
