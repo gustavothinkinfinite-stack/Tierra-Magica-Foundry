@@ -653,8 +653,8 @@ test("CRAFT-13C: dos Proyectos no pueden reservar la misma unidad de componente"
   const second=await reserveCraftingProjectMaterials(two,{resolver});
   assert.equal(first.ok,true);
   assert.equal(second.ok,false);
-  assert.equal(component.system.craftingReservations[one.uuid].quantity,1);
-  assert.equal(component.system.craftingReservations[two.uuid],undefined);
+  assert.equal(component.system.craftingReservations["p_"+one.id].quantity,1);
+  assert.equal(component.system.craftingReservations["p_"+two.id],undefined);
 });
 
 test("CRAFT-13C: componente separado sin Item físico bloquea el compromiso",async()=>{
