@@ -10,7 +10,7 @@ Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 
 
 El núcleo 1.0 permanece **completo y jugable**. Cualquier ampliación mecánica futura debe partir de una decisión explícita incorporada primero al Manual Maestro; una fase nueva no se infiere automáticamente a partir del código.
 
-La release pública objetivo del hotfix es **v1.6.1**. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
+La release pública actual es **v1.6.1**. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
 
 ## Instalación
 
