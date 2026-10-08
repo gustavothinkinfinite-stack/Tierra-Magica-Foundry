@@ -65,6 +65,13 @@
       "path": "packs/production",
       "type": "Item",
       "system": "tierra-magica"
+    },
+    {
+      "name": "bestiary",
+      "label": "Tierra Mágica — Bestiario",
+      "path": "packs/bestiary",
+      "type": "Actor",
+      "system": "tierra-magica"
     }
   ],
   "documentTypes": {
