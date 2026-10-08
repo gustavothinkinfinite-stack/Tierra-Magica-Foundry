@@ -1038,9 +1038,10 @@ La Fase 4 validó El Umbral de Piedra sin rediseño en documento/archivo memoria
 ## SYM-DIV-ORIA-001 — La Medida Acordada
 
 **Entidad:** Oria, la Balanza  
-**Estado:** **PROVISIONAL — GEOMETRÍA APROBADA E INMUTABLE**  
-**Versión:** v0.2  
-**Fecha de aprobación conceptual y geométrica:** 2026-10-08
+**Estado:** **PROVISIONAL — GEOMETRÍA Y CROMÁTICA APROBADAS E INMUTABLES**  
+**Versión:** v0.3  
+**Fecha de aprobación conceptual y geométrica:** 2026-10-08  
+**Fecha de aprobación cromática:** 2026-10-08
 
 ### Concepto
 La Medida Acordada representa la capacidad de hacer comparables obligaciones diferentes cuando existe un estándar común previamente fijado. No representa igualdad matemática ni justicia moral absoluta.
@@ -1074,6 +1075,28 @@ La composición combina un patrón vertical graduado, un fulcro romboidal, una b
 
 Estas trayectorias son normativas y no deben reinterpretarse creativamente.
 
+### Cromática
+| Nombre | Función | HEX | RGB |
+|---|---|---|---|
+| **Azul de Estatuto** | campo oscuro principal | `#24304A` | 36, 48, 74 |
+| **Oro de Medida** | color principal del símbolo | `#C79A47` | 199, 154, 71 |
+| **Marfil de Registro** | campo claro / inversión | `#EFE5D2` | 239, 229, 210 |
+| **Latón de Archivo** | material / acento contextual | `#9B7840` | 155, 120, 64 |
+
+**Variantes oficiales:**
+- `PRIMARY-01` — Oro de Medida sobre Azul de Estatuto.
+- `LIGHT-01` — Azul de Estatuto sobre Marfil de Registro.
+- `INVERTED-01` — Marfil de Registro sobre Azul de Estatuto.
+- `MONO-GEOMETRY-01` — negro sobre fondo claro para construcción y pruebas.
+
+Toda la geometría utiliza un único color dentro de cada variante formal. La diferencia entre obligaciones se expresa por forma y distancia, no por color.
+
+**Latón de Archivo** no constituye una cuarta variante plana. Puede utilizarse en materiales, instrumentos, placas, sellos, arquitectura u objetos diegéticos.
+
+En la marca formal quedan prohibidos gradientes, sombras, brillo interior y texturas. La cromática no es necesaria para reconocer el símbolo.
+
+El Oro de Medida no implica emisión luminosa ni halo propio.
+
 ### Reconocimiento
 **Rasgos obligatorios:**
 1. patrón vertical central;
@@ -1103,10 +1126,16 @@ Una barra nivelada con cargas visualmente distintas no significa que ambas parte
 **SVG maestro geométrico:** `assets/symbols/divinities/SYM-DIV-ORIA-001_MASTER.svg`  
 **SHA-256:** `ce8fe53f891bb15f9d9743f585ca1df5437829ac6c2a06b5f4cb623725d16f0b`
 
+### Activos cromáticos
+- `assets/symbols/divinities/SYM-DIV-ORIA-001_PRIMARY.svg`
+- `assets/symbols/divinities/SYM-DIV-ORIA-001_LIGHT.svg`
+- `assets/symbols/divinities/SYM-DIV-ORIA-001_INVERTED.svg`
+
 ### Pendientes para v1.0
-Cromática, versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
+Versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
 
 ### Historial
 - **v0.1 — 2026-10-08:** concepto y lámina monocroma aprobados.
 - **v0.2 — 2026-10-08:** geometría exacta normalizada y fijada como inmutable.
+- **v0.3 — 2026-10-08:** cromática aprobada; se fijan Azul de Estatuto, Oro de Medida, Marfil de Registro y Latón de Archivo; se autorizan PRIMARY-01, LIGHT-01 e INVERTED-01.
 
