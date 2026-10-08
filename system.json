@@ -1,8 +1,8 @@
 {
   "id": "tierra-magica",
   "title": "Tierra Mágica — Foundry T.M.",
-  "description": "Foundry T.M. 1.8.1: corrige carga de fichas Actor con plantillas Handlebars y opciones de TokenDocument en Foundry v14; Bestiario de 12 actores y 22 artes.",
-  "version": "1.8.1",
+  "description": "Foundry T.M. 1.9.0: chat de combate detallado con daño aplicado, marcador configurable de Incapacitado a 0 Vida, bestiario de 12 Actores y 22 artes.",
+  "version": "1.9.0",
   "compatibility": {
     "minimum": "13",
     "verified": "14"

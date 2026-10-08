@@ -1,3 +1,15 @@
+## 1.9.0 — Chat de combate claro e Incapacitado a 0 Vida — 2026-10-08
+
+- Los ataques normales con armas ahora identifican atacante, objetivo, arma, total del ataque, Defensa y margen.
+- Los impactos desglosan daño inicial, Protección, Penetración, mitigación efectiva, resistencia, vulnerabilidad, daño calculado y **daño efectivamente descontado**.
+- Cuando el personaje no tiene permisos para aplicar el daño, el chat distingue de forma visible **pendiente de aprobación del DJ**, sin afirmar que la Vida fue descontada.
+- El chat muestra los valores de Vida **antes → después** y advierte claramente al llegar a **0 Vida**.
+- Daño Grave informa el **umbral numérico** cuando el perfil lo tiene y si se alcanzó; perfiles sin umbral lo indican expresamente. La superación de umbral no aplica Herida Grave automática.
+- Nuevo icono visual **Incapacitado — 0 Vida** en tokens. Se aplica desde el estado del Actor y se retira automáticamente al recuperar Vida.
+- Nueva opción del mundo en Configuración → Ajustes de Tierra Mágica: **Mostrar indicador de Incapacitado a 0 Vida**, activa por defecto. La señal no significa muerte, Derribado ni pérdida de consciencia automática.
+- Pruebas para formato de chat, protección, permisos, umbral, cero Vida, configuración y sincronización del marcador.
+- No cambia la regla de Daño Grave, Trauma, Caída a 0 Vida, protección ni los perfiles del Bestiario.
+
 ## 1.8.1 — Hotfix de fichas de Actor — 2026-10-08
 
 - Corrige el error de compilación Handlebars `Parse error on line 93` en la plantilla compartida `templates/actor/parts/actor-sheet.hbs`: faltaba `}` al cerrar una inclusión de plantilla.

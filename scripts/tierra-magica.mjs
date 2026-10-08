@@ -1,3 +1,4 @@
+import { installZeroHealthTokenHooks, registerZeroHealthStatus } from "./rules/zero-health-token.mjs";
 import { TM_CONFIG } from "./config.mjs";
 import { damageTypeRegistry } from "./rules/damage-types.mjs";
 import { TierraMagicaActor } from "./documents/actor.mjs";
@@ -53,6 +54,7 @@ installActionEconomyGuards(TierraMagicaActor);
 installReactionEconomyGuards(TierraMagicaActor);
 installCurrencyRules(TierraMagicaActor);
 installResourceReconciliationHooks(Hooks);
+installZeroHealthTokenHooks(Hooks);
 
 function forcedDeletion() {
   const ForcedDeletion = globalThis.foundry?.data?.operators?.ForcedDeletion;
@@ -71,6 +73,16 @@ Hooks.once("init", async () => {
     default: "",
     requiresReload: true
   });
+  game.settings.register("tierra-magica", "zeroHealthTokenIndicator", {
+    name:"Mostrar indicador de Incapacitado a 0 Vida",
+    hint:"Muestra un icono sobre los tokens cuya Vida es 0. No significa muerte, inconsciencia ni Derribado; es sólo la señal visual de Incapacitado. Puede desactivarse aquí.",
+    scope:"world",
+    config:true,
+    type:Boolean,
+    default:true,
+    requiresReload:true
+  });
+  registerZeroHealthStatus(CONFIG);
   TM_CONFIG.damageTypes = damageTypeRegistry(game.settings.get("tierra-magica", "customDamageTypes"));
   CONFIG.TM = TM_CONFIG;
   CONFIG.Actor.documentClass = TierraMagicaActor;
