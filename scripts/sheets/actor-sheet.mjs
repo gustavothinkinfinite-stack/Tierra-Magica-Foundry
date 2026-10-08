@@ -1,3 +1,4 @@
+import { safeActorSheetRenderOptions } from "./actor-sheet-render-options.mjs";
 import { TM_CONFIG } from "../config.mjs";
 import { toNumber } from "../rules.mjs";
 import { normalizeSlug } from "../rules/identity.mjs";
@@ -14,12 +15,18 @@ import {
 const ActorSheetV1 = foundry.appv1.sheets.ActorSheet;
 const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
 
+
 export class TierraMagicaActorSheet extends ActorSheetV1 {
   constructor(...args) {
     super(...args);
     if (this.actor?.type === "character" && this.actor.system.creation?.status === "building" && this.options.tabs?.[0]) {
       this.options.tabs[0].initial = "development";
     }
+  }
+
+  // Evita el merge recursivo de documentos TokenDocument de solo lectura.
+  render(force = false, options = {}) {
+    return super.render(force, safeActorSheetRenderOptions(options));
   }
 
   static get defaultOptions() {
