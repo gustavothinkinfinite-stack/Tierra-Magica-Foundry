@@ -68,3 +68,36 @@ temporalmente la fórmula general 5 + VIG y no figura en los perfiles §23.
 
 Los NPC nuevos que no proceden del compendio siguen utilizando la ficha
 habitual salvo que su `npcProfile.enabled` se active explícitamente.
+
+## Arte del Bestiario — integración de retratos y tokens
+
+El generador de compendios de Foundry reconoce hasta **10 parejas de arte aprobadas**:
+Civil, Bandido, Guardia, Soldado, Veterano, Canalizador hostil, Lobo, Ogro,
+Centinela de Bronce y Troll dominante. Cada pareja contiene un retrato
+`<slug>-retrato.webp` y un token circular `<slug>-token.webp`, ambos
+en `assets/bestiary/`. Se usa automáticamente:
+
+- Ficha de Actor: `systems/tierra-magica/assets/bestiary/<slug>-retrato.webp`.
+- Token prototipo: `systems/tierra-magica/assets/bestiary/<slug>-token.webp`.
+
+**Estado de distribución:** el paquete de imágenes existe como ZIP generado para
+Foundry, pero los archivos WebP tienen que incorporarse todavía al repositorio
+GitHub para que formen parte del instalador. El compilador no publicará rutas
+de imágenes inexistentes: conserva el ícono original en tanto no esté
+presente la pareja completa de archivos.
+
+Para cargar el arte aprobado al repositorio desde la carpeta extraída del ZIP:
+
+```bash
+node tools/install-bestiary-art.mjs "/ruta/TM_Bestiario_Arte_Foundry_v1"
+npm run validate
+git add assets/bestiary/
+git commit -m "assets(bestiary): add approved NPC portraits and tokens"
+git push
+```
+
+No agregar archivos de `bocetos-no-aprobados`: el **Tirador** todavía
+carece de ilustración correcta con el **rifle** que exige el Manual Maestro,
+por lo que permanece con icono genérico. La carga de arte no modifica
+estadísticas ni mecánicas canónicas. El nuevo arte se incluirá en una release
+posterior, una vez que los archivos binarios estén efectivamente versionados.
