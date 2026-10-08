@@ -1,6 +1,5 @@
 // CRAFT: recuperación GM de reservas huérfanas tras eliminar un Proyecto.
 // No altera VI ni cantidad, nunca libera reservas que aún tengan un Proyecto.
-import { readFile } from "node:fs/promises";
 const isObject=(v)=>v&&typeof v==="object"&&!Array.isArray(v);
 const clone=(v)=>structuredClone(v??{});
 const n=(v)=>Math.max(0,Math.floor(Number(v)||0));
