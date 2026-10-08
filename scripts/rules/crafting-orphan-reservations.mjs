@@ -26,6 +26,23 @@ function projectIdentity(key,entry){
   return id??(key.startsWith("p_")?key.slice(2):null);
 }
 const itemsOf=(actor)=>Array.from(actor?.items?.values?.()??actor?.items??[]);
+export function hasCraftingReservationsForProject(project) {
+  const actor=project?.parent;
+  if(!actor||project?.type!=="project")return false;
+  const id=String(project.id??"");
+  const uuid=String(project.uuid??"");
+  for(const item of itemsOf(actor)){
+    if(item.type==="project")continue;
+    for(const current of [item.system?.craftingLot?.reservations,item.system?.craftingReservations]){
+      for(const [key,entry] of Object.entries(normalizedReservations(current))){
+        if(projectIdentity(key,entry)===id ||
+          (uuid&&String(entry.projectUuid??"")===uuid))return true;
+      }
+    }
+  }
+  return false;
+}
+
 export function orphanCraftingReservationPlan(actor){
   if(!actor?.id||actor.type!=="character")return {valid:false,error:"Se requiere un Actor de personaje."};
   const items=itemsOf(actor);
