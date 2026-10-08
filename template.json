@@ -343,6 +343,7 @@
         "manaSpecified": false,
         "channelingBonus": null,
         "attacks": [],
+        "abilities": [],
         "notes": ""
       }
     },
