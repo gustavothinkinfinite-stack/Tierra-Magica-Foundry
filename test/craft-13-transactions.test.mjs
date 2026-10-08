@@ -5,6 +5,7 @@ import {
   advanceCraftingProjectWork,
   completeCraftingProject,
   craftingLotAvailableCopper,
+  craftingLotReservedCopper,
   prepareCraftingProject,
   previewCraftingProject,
   releaseCraftingProjectMaterials,
@@ -565,7 +566,7 @@ test("CRAFT-13C: componente separado se reserva por cantidad y no aumenta el VI 
   assert.equal(craft.system.ledger.committedMaterialsCopper,50);
   assert.equal(material.system.craftingLot.reservations["p_"+craft.id].amountCopper,50);
   assert.equal(component.system.quantity,2);
-  assert.equal(component.system.craftingReservations[craft.uuid].quantity,1);
+  assert.equal(component.system.craftingReservations["p_"+craft.id].quantity,1);
 
   const released=await releaseCraftingProjectMaterials(craft,{expectedRevision:1,resolver});
   assert.equal(released.ok,true);
@@ -612,7 +613,7 @@ test("CRAFT-13C: completar consume el componente físico exactamente una vez",as
     }
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,10,{expectedRevision:1});
   const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
   assert.equal(completed.ok,true);
@@ -704,7 +705,7 @@ test("CRAFT-13D: ascenso Común -> Superior consume sólo +25% VR y puede ocupar
     availableInstallation:"professional"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,60,{expectedRevision:1});
   const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
   assert.equal(completed.ok,true);
@@ -745,7 +746,7 @@ test("CRAFT-13D: modificación posterior usa CapM libre, cobra por punto y no re
     availableInstallation:"specialized"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,60,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(target.system.damage,6);
@@ -866,7 +867,7 @@ test("CRAFT-13D: incorporar Material Especial exige Lote preparado del mismo Per
     availableInstallation:"professional"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,60,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(specialLot.system.craftingLot.inputValueCopper,25);
@@ -1042,7 +1043,7 @@ test("CRAFT-13D: desmantelar separa VI ordinario de VI especial y no recicla VRQ
     availableInstallation:"adequate"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
   const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
   assert.equal(completed.ok,true);
@@ -1124,7 +1125,7 @@ test("CRAFT-13D: si el estado cambia tras reservar, la reparación no usa el cos
   });
   craft.system.economy.affectedValueCopper=150;
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,180,{expectedRevision:1});
   target.system.condition="disabled";
   const rejected=await completeCraftingProject(craft,{expectedRevision:2,resolver});
@@ -1169,7 +1170,7 @@ test("CRAFT-13D: sustituir una Modificación libera su CapM antes de validar la 
     availableInstallation:"specialized"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,60,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(target.system.damage,6);
@@ -1212,7 +1213,7 @@ test("CRAFT-13D: retirar una Modificación sin reemplazo libera CapM, cuesta 0 V
     availableInstallation:"professional"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(target.system.manufacture.capMUsed,0);
@@ -1318,7 +1319,7 @@ test("CRAFT-13D: reemplazar con material ordinario repara pero elimina la propie
   });
   craft.system.economy.affectedValueCopper=150;
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(target.system.condition,"operative");
@@ -1378,7 +1379,7 @@ test("CRAFT-13D: preservar una parte especial reemplazada exige Lote preparado d
   });
   craft.system.economy.affectedValueCopper=150;
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(target.system.manufacture.specialMaterials[0].profileKey,"kharumSteel");
@@ -1491,7 +1492,7 @@ test("CRAFT-13E: Matriz Rúnica reserva VI compatible y persiste CRu sin tocar C
     availableInstallation:"professional"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,120,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(target.system.runic.capacityPrepared,1);
@@ -1545,7 +1546,7 @@ test("CRAFT-13E: Runa inscrita exige VI compatible y ocupa Canal de Inscripción
     availableInstallation:"professional"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,240,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(target.system.runic.imprints.length,1);
@@ -1772,7 +1773,7 @@ test("CRAFT-13E: reparación física no cobra Encantamiento si su matriz no fue 
   });
   craft.system.economy.affectedValueCopper=100;
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(target.system.enchantment.grade,1);
@@ -1942,7 +1943,7 @@ test("CRAFT-13E: desmantelar recupera VI integrado rúnico/encantado a tasa can�
     availableInstallation:"adequate"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,30,{expectedRevision:1});
   const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
   assert.equal(completed.ok,true);
@@ -2052,7 +2053,7 @@ test("CRAFT-13E: Soporte Dedicado I usa VR 2 o, CM 1 o y una Jornada",async()=>{
     availableInstallation:"professional"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,480,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   const output=[...actor.items.values()].find((entry)=>entry.name==="Broche Dedicado I");
@@ -2213,7 +2214,7 @@ test("CRAFT-13E: borrar una Runa libera CRu, no devuelve VI y reduce sólo su va
     availableInstallation:"adequate"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,60,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(target.system.runic.capacityPrepared,1);
@@ -2278,7 +2279,7 @@ test("CRAFT-13E: Utilitario puede coexistir con Encantamiento principal sin crea
     availableInstallation:"professional"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,480,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(target.system.enchantment.grade,1);
@@ -2350,7 +2351,7 @@ test("CRAFT-13E: Encantamiento principal puede añadirse a un objeto que ya pose
     availableInstallation:"specialized"
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,1440,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   assert.equal(target.system.enchantment.utilityKey,"clean");
@@ -2500,7 +2501,7 @@ test("CRAFT-13E: Ocultación de trampa cobra materiales/tiempo y exige Latrocini
   assert.ok(denied.expectedRank===2 || denied.issues?.some((issue)=>issue.code==="rank"));
 
   actor.system.skills.thievery.rank=2;
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,150,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
   const trap=[...actor.items.values()].find((entry)=>entry.name==="Alarma Oculta");
@@ -2561,7 +2562,7 @@ test("CRAFT-13E: Supervivencia sólo sustituye Latrocinio en trampa Simple de ca
   craft.system.professional.baseRank=1;
   craft.system.professional.baseInstallation="improvised";
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
 });
 
 test("CRAFT-13E: Supervivencia no fabrica Armazones Estándar aunque tenga rango alto",async()=>{
@@ -2768,7 +2769,7 @@ test("CRAFT-13I: un componente separable viaja con el objeto y vuelve como objet
     }
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,120,{expectedRevision:1});
   assert.equal((await completeCraftingProject(craft,{expectedRevision:2,resolver})).ok,true);
 
@@ -2829,7 +2830,7 @@ test("CRAFT-13I: un Proyecto reservado puede guardarse, reabrirse y completarse 
     }
   });
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   assert.equal(craft.system.execution.revision,1);
   assert.equal(craft.system.execution.committed,true);
 
@@ -2890,7 +2891,7 @@ test("CRAFT-13I: reparar un acumulador no rellena Energía",async()=>{
   });
   craft.system.economy.affectedValueCopper=500;
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   await advanceCraftingProjectWork(craft,240,{expectedRevision:1});
   const result=await completeCraftingProject(craft,{expectedRevision:2,resolver});
   assert.equal(result.ok,true);
@@ -2909,7 +2910,7 @@ test("CRAFT hotfix: una reserva persistida con UUID anidado se completa una sola
   const craft=project(actor,{id:"palanca",material,materialCopper:10,referenceValueCopper:20,requiredMinutes:120,
     resultData,requiredInstallation:"improvised",availableInstallation:"specialized"});
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   const record=structuredClone(material.system.craftingLot.reservations["p_"+craft.id]);
   // El mapa antiguo se había serializado como una ruta Actor.X.Item.Y.
   material.system.craftingLot.reservations={
@@ -2935,7 +2936,7 @@ test("CRAFT hotfix: proyecto activo con reserva histórica perdida se recupera s
     system:{category:"Herramienta",priceCopper:20,priceStatus:"exact",quality:"common",quantity:1}},
     requiredInstallation:"improvised",availableInstallation:"specialized"});
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   material.system.craftingLot.reservations={}; // Simula pérdida real tras reiniciar el mundo.
   assert.equal((await advanceCraftingProjectWork(craft,120,{expectedRevision:1})).ok,true);
   const finished=await completeCraftingProject(craft,{expectedRevision:2,resolver});
@@ -2952,7 +2953,7 @@ test("CRAFT hotfix: no se reconstruye una reserva perdida con un competidor o VI
     resultData:{name:"Objeto",type:"equipment",system:{quality:"common",priceCopper:100}}});
   const second=project(actor,{id:"second",material,materialCopper:50,referenceValueCopper:100});
   const resolver=resolverFor(actor);
-  assert.equal((await reserveCraftingProjectMaterials(first,{resolver})).ok,true);
+  const reservationResult=await reserveCraftingProjectMaterials; assert.equal(reservationResult.ok,true,JSON.stringify(reservationResult));
   material.system.craftingLot.reservations={};
   second.system.state="active";
   second.system.execution.committed=true;
