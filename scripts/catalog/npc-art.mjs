@@ -8,6 +8,7 @@ export const APPROVED_BESTIARY_ART_SLUGS = Object.freeze([
   "veterano",
   "canalizador-hostil",
   "lobo",
+  "lobo-del-eco-muerto",
   "ogro",
   "centinela-de-bronce",
   "troll-dominante"

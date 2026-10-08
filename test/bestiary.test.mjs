@@ -69,7 +69,7 @@ test("ficha NPC oculta la creación de PJ y mantiene ataque e iniciativa", async
 });
 
 test("cada pareja de arte aprobada asigna retrato y token reales a su Actor", () => {
-  assert.equal(APPROVED_BESTIARY_ART_SLUGS.length,10);
+  assert.equal(APPROVED_BESTIARY_ART_SLUGS.length,11);
   const allFiles=new Set(APPROVED_BESTIARY_ART_SLUGS.flatMap((slug)=>Object.values(bestiaryArtFiles(slug))));
   const actors=npcReferenceCatalog({availableArtFiles:allFiles});
   for(const actor of actors){

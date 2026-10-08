@@ -96,8 +96,13 @@
       {{#if isNpc}}
       {{#if system.npcProfile.enabled}}
       <section class="tm-panel tm-wide tm-npc-reference">
+        {{#if system.npcProfile.abilities.length}}
+        <h2>Perfil de criatura — Bestiario original (propuesta)</h2>
+        <p>Capacidades nuevas en revisión; no modifica las reglas del Manual Maestro. Daño y efectos se resuelven conforme al núcleo.</p>
+        {{else}}
         <h2>Perfil de PNJ — Manual Maestro §23</h2>
         <p>Las cifras son directas del perfil de referencia: no provienen de puntos de desarrollo o progresión de un PJ.</p>
+        {{/if}}
         <div class="tm-form-grid">
           <label><span>Vida máxima de perfil</span><input type="number" min="1" name="system.npcProfile.life" value="{{system.npcProfile.life}}" /></label>
           <label><span>Defensa</span><input type="number" min="0" name="system.npcProfile.defense" value="{{system.npcProfile.defense}}" /></label>
@@ -120,7 +125,7 @@
         <p>Canalización: +{{system.npcProfile.channelingBonus}}. No se asignan hechizos que no figuren en el perfil.</p>
         {{/if}}
         <button type="button" data-action="roll-initiative"><i class="fa-solid fa-dice"></i> Iniciativa +{{system.derived.initiativeModifier}}</button>
-        <h3>Ataques de referencia</h3>
+        <h3>{{#if system.npcProfile.abilities.length}}Ataques{{else}}Ataques de referencia{{/if}}</h3>
         {{#each system.npcProfile.attacks as |attack index|}}
         <button type="button" data-action="roll-npc-attack" data-index="{{index}}">
           <i class="fa-solid fa-dice"></i> {{attack.name}} +{{attack.bonus}} · Daño {{attack.damage}} · Pen {{attack.penetration}}
@@ -128,7 +133,20 @@
         {{else}}
         <p>No se especifican ataques directos en este perfil.</p>
         {{/each}}
-        <p>Los ataques muestran los valores del Manual; el daño no se aplica automáticamente.</p>
+        {{#if system.npcProfile.abilities.length}}<p>Los ataques de esta propuesta mantienen los valores del Lobo del Manual. El daño se aplica manualmente.</p>{{else}}<p>Los ataques muestran los valores del Manual; el daño no se aplica automáticamente.</p>{{/if}}
+        {{#if system.npcProfile.abilities.length}}
+        <h3>Capacidades sobrenaturales</h3>
+        {{#each system.npcProfile.abilities as |ability|}}
+        <div class="tm-npc-ability">
+          <strong>{{ability.name}}</strong>
+          <p>Activación: {{ability.activation}} · Alcance: {{ability.rangeSpaces}} espacios · Coste de Maná: {{ability.manaCost}} · Duración: {{ability.duration}}</p>
+          <p>{{ability.description}}</p>
+          <p>Identificación: DF {{ability.detectionDifficulty}} mediante {{#each ability.detectionSkills as |skill|}}{{#if @index}} o {{/if}}{{skill}}{{/each}}.</p>
+          <p>Límites: {{ability.limitations}}</p>
+          <p><em>{{ability.resolution}}</em></p>
+        </div>
+        {{/each}}
+        {{/if}}
         {{#if system.npcProfile.notes}}<p>{{system.npcProfile.notes}}</p>{{/if}}
       </section>
       {{/if}}

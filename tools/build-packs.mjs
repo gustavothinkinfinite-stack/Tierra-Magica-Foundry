@@ -4,6 +4,7 @@ import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { coreCatalog } from "../scripts/catalog/core-catalog.mjs";
 import { npcReferenceCatalog } from "../scripts/catalog/npc-catalog.mjs";
+import { originalBestiaryCatalog } from "../scripts/catalog/original-bestiary.mjs";
 import { APPROVED_BESTIARY_ART_SLUGS, bestiaryArtFiles } from "../scripts/catalog/npc-art.mjs";
 
 const root = resolve(import.meta.dirname, "..");
@@ -83,7 +84,10 @@ for(const slug of APPROVED_BESTIARY_ART_SLUGS) {
     throw new Error("El retrato y el token deben publicarse juntos: "+slug);
   }
 }
-const actorEntries=npcReferenceCatalog({availableArtFiles});
+const actorEntries=[
+  ...npcReferenceCatalog({availableArtFiles}),
+  ...originalBestiaryCatalog({availableArtFiles})
+];
 const actorSource=resolve(sourceRoot,actorPack);
 const actorOutput=resolve(outputRoot,actorPack);
 await mkdir(actorSource,{recursive:true});
@@ -104,7 +108,11 @@ for (const entry of actorEntries) {
     folder:null,
     sort:0,
     ownership:{default:0},
-    flags:{"tierra-magica":{source:"manual-maestro-23",referenceSlug:slug}}
+    flags:{"tierra-magica":{
+      source:entry.system.npcProfile.abilities?.length ? "original-bestiary-proposal" : "manual-maestro-23",
+      referenceSlug:slug,
+      ...(entry.system.npcProfile.abilities?.length ? {canonicalStatus:"propuesta-pendiente"} : {})
+    }}
   };
   await writeFile(resolve(actorSource,id+".json"),JSON.stringify(document,null,2)+"\n","utf8");
 }

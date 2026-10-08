@@ -1,7 +1,7 @@
 // Ejecutar desde la raíz del repositorio:
 // node tools/install-bestiary-art.mjs "/ruta/TM_Bestiario_Arte_Foundry_v1"
 // La carpeta debe contener assets/bestiary/*.webp.
-// Rechaza material provisional y parejas incompletas.
+// Rechaza material provisional y parejas incompletas; permite tandas aprobadas.
 import { copyFile, mkdir, readFile, readdir, stat } from "node:fs/promises";
 import { resolve, join } from "node:path";
 import { APPROVED_BESTIARY_ART_SLUGS, bestiaryArtFiles } from "../scripts/catalog/npc-art.mjs";
@@ -18,11 +18,15 @@ if(!packageDir){
   for(const name of names){
     if(!expected.has(name)) throw new Error("Archivo de arte no aprobado: "+name);
   }
-  if(names.length!==expected.size) throw new Error(
-    "Paquete incompleto: se esperaban "+expected.size+" WebP aprobados y hay "+names.length+"."
-  );
+  if(names.length===0) throw new Error("El paquete de imágenes está vacío.");
+  for(const slug of APPROVED_BESTIARY_ART_SLUGS) {
+    const pair=bestiaryArtFiles(slug);
+    if(names.includes(pair.portrait)!==names.includes(pair.token)) {
+      throw new Error("Falta retrato o token de la pareja "+slug);
+    }
+  }
   const validated=[];
-  for(const name of expected) {
+  for(const name of names) {
     const path=join(source,name);
     const info=await stat(path);
     const bytes=await readFile(path);
