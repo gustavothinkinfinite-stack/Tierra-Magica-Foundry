@@ -7,7 +7,8 @@ import { clearTurnResourceReservation, clearTurnResourceReservations } from "../
 import { nextAttributeUpgradeCost, validateCreationState, validateInitialAttributes } from "../rules/creation.mjs";
 import {
   craftingProjectSourceFromReference,
-  craftingReferenceGroups
+  craftingReferenceGroups,
+  craftingReferenceGuidance
 } from "../rules/crafting-catalog.mjs";
 
 const ActorSheetV1 = foundry.appv1.sheets.ActorSheet;
@@ -702,7 +703,7 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
 
   async #openCraftingReferenceBrowser() {
     const groups=craftingReferenceGroups();
-    if(!groups.length) return ui.notifications.warn("No hay referencias CRAFT-11 disponibles.");
+    if(!groups.length) return ui.notifications.warn("No hay recetas disponibles.");
     const options=groups.map((group)=>
       "<optgroup label='"+foundry.utils.escapeHTML(group.category)+"'>"+
       group.entries.map((entry)=>
@@ -711,18 +712,24 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       "</optgroup>"
     ).join("");
     const selected=await Dialog.prompt({
-      title:"Nuevo Proyecto desde CRAFT-11",
-      content:"<div class='form-group'><label>Referencia canónica</label><select name='reference'>"+options+"</select></div>"+
-        "<p>Las referencias compuestas crean un borrador guiado: Foundry no inventa objetivos, componentes ni propiedades no vinculadas.</p>",
+      title:"Elegir receta o proyecto de fabricación",
+      content:"<div class='form-group'><label>Receta disponible</label><select name='reference'>"+options+"</select></div>"+
+        "<p>Equipo común: receta con precio, coste material y tiempo canónicos. El proyecto pide acreditar materiales, instalación, competencia y herramientas antes de trabajar. Los proyectos compuestos requieren configuración adicional.</p>",
       label:"Crear Proyecto",
       callback:(html)=>String(html.find("[name='reference']").val()??""),
       rejectClose:false
     });
     if(!selected) return;
     const source=craftingProjectSourceFromReference(selected,{catalog:game.tierraMagica?.catalog??[]});
-    if(!source) return ui.notifications.warn("Referencia CRAFT-11 desconocida.");
+    if(!source) return ui.notifications.warn("No se pudo construir la receta. Debe existir un Item canónico con precio exacto.");
     const created=await this.actor.createEmbeddedDocuments("Item",[source]);
-    created?.[0]?.sheet?.render(true);
+    if(created?.[0]){
+      const guidance=craftingReferenceGuidance(selected);
+      for(const note of guidance?.notes??[]){
+        if(note.startsWith("Requisito auxiliar")) ui.notifications.info(note);
+      }
+      created[0].sheet?.render(true);
+    }
   }
 
   async #openContentBrowser(type) {
