@@ -399,13 +399,13 @@
       <section class="tm-panel tm-v03-page-panel tm-v11-defense-actions">
         <div class="tm-section-heading"><h2>Respuestas defensivas</h2><span>Elegí una respuesta cuando exista un disparador válido.</span></div>
         <div class="tm-v11-defense-action-grid">
-          <button type="button" class="{{#unless turn.action}}spent{{/unless}}" data-action="combat-guard">
+          <button type="button" data-action="combat-guard">
             <i class="fa-solid fa-shield"></i><span><b>Guardia</b><small>Acción · +2 Defensa</small></span>
           </button>
-          <button type="button" class="{{#unless turn.reaction}}spent{{/unless}}" data-action="combat-parry">
+          <button type="button" data-action="combat-parry">
             <i class="fa-solid fa-swords"></i><span><b>Parada</b><small>Reacción · ataque parable</small></span>
           </button>
-          <button type="button" class="{{#unless turn.reaction}}spent{{/unless}}" data-action="combat-counterattack">
+          <button type="button" data-action="combat-counterattack">
             <i class="fa-solid fa-arrow-rotate-left"></i><span><b>Contraataque</b><small>Tras una Parada válida</small></span>
           </button>
         </div>
