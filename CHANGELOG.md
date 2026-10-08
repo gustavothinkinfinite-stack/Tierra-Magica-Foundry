@@ -1,3 +1,12 @@
+## Publicación v1.6.0 — 2026-10-07
+
+- Release estable **v1.6.0** publicada desde el commit `078c1e5f77dc7df3ab68a6ef3ea68fb4b8062dfa`.
+- Validación, construcción de Compendios, verificación de paquete y publicación completadas en workflow `#37709086643`.
+- Assets publicados: `system.json` y `tierra-magica.zip`.
+- SHA-256 `system.json`: `5d5941b2798be6de46f92513576a597bcf5f45c43b745e02cf0baf495df04daf`.
+- SHA-256 `tierra-magica.zip`: `6411619e68a9ed8b75f876a4f2af3113cf02b125a797f9935f0b0842b74eb672`.
+- El manifiesto estable `releases/latest/download/system.json` ahora apunta a v1.6.0.
+
 ## 1.6.0 — Recetas de equipo común en Foundry — 2026-10-07
 
 - Incorpora 21 recetas CRAFT-03 al selector Desarrollo → Proyectos de fabricación e investigación → Catálogo → Equipo común.

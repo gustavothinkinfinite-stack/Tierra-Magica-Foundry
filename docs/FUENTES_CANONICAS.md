@@ -80,7 +80,7 @@ Foundry adopta schema v5 para contratos de objetivos mágicos y migración del c
 
 ## Estado de publicación 1.6.0
 
-Foundry T.M. **v1.6.0** es la versión objetivo de la incorporación de 21 recetas ordinarias CRAFT-03 para los objetos canónicos ya aprobados en EQP-01. Los costes, requisitos y tiempos provienen del Manual Maestro; no se crean nuevas reglas ni precios. La publicación oficial se registrará una vez concluida la validación.
+Foundry T.M. **v1.6.0 está publicada** desde el commit `078c1e5f77dc7df3ab68a6ef3ea68fb4b8062dfa`, con 21 recetas ordinarias CRAFT-03 para objetos canónicos EQP-01. Los costes, requisitos y tiempos provienen del Manual Maestro; no se crean nuevas reglas ni precios.
 
 ## Estado de publicación 1.5.2
 
