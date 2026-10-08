@@ -326,6 +326,24 @@
       "details": {
         "role": "",
         "threat": ""
+      },
+      "npcProfile": {
+        "enabled": false,
+        "source": "",
+        "life": 12,
+        "defense": 12,
+        "bodyDefense": 12,
+        "mentalDefense": 12,
+        "maneuverDefense": 12,
+        "protection": 0,
+        "protectionRange": [],
+        "movement": 6,
+        "initiative": 1,
+        "mana": 0,
+        "manaSpecified": false,
+        "channelingBonus": null,
+        "attacks": [],
+        "notes": ""
       }
     },
     "familiar": {
@@ -333,8 +351,14 @@
         "base"
       ],
       "resources": {
-        "health": {"value": 10, "max": 10},
-        "mana": {"value": 0, "max": 0}
+        "health": {
+          "value": 10,
+          "max": 10
+        },
+        "mana": {
+          "value": 0,
+          "max": 0
+        }
       },
       "details": {
         "ownerName": "",

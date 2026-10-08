@@ -45,4 +45,6 @@ test("workflow bloquea versión incoherente y publica ZIP más manifest",async()
   assert.match(workflow,/tierra-magica\.zip/);
   assert.match(workflow,/package\/tierra-magica\/system\.json/);
   assert.match(workflow,/releases\/latest\/download\/system\.json/);
+  assert.match(workflow,/tierra-magica\/packs\/bestiary\//);
+  assert.match(workflow,/bestiary\?\.type/);
 });

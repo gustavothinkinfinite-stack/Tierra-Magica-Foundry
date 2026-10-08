@@ -45,6 +45,7 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     context.isGM = Boolean(game.user?.isGM);
     context.isCharacter = this.actor.type === "character";
     context.isNpc = this.actor.type === "npc";
+    context.npcBodyDefenseApplicable = this.actor.type === "npc" && this.actor.system.npcProfile?.enabled === true && this.actor.system.npcProfile.bodyDefense !== null;
     context.isFamiliar = this.actor.type === "familiar";
     context.itemGroups = this.#groupItems(this.actor.items);
     context.itemCounts = Object.fromEntries(Object.entries(context.itemGroups).map(([type, items]) => [type, items.length]));
@@ -306,6 +307,8 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     });
     html.find("[data-action='roll-skill']").click((event) => this.actor.configureAndRollSkill(event.currentTarget.dataset.key));
     html.find("[data-action='roll-initiative']").click(() => this.actor.rollInitiativeCheck());
+    html.find("[data-action='roll-npc-attack']").click((event) =>
+      this.actor.rollNpcAttack(Number(event.currentTarget.dataset.index)));
     html.find("[data-action='resource-change']").click((event) => this.actor.adjustResource(event.currentTarget.dataset.resource, event.currentTarget.dataset.amount));
     html.find("[data-action='rest']").click((event) => this.actor.rest(event.currentTarget.dataset.kind));
     html.find("[data-action='currency-denomination']").change((event) => this.#updateCurrencyBreakdown(event));

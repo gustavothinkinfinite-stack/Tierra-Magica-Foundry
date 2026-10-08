@@ -140,6 +140,72 @@ export function deriveActorState({
   rulePreparation = {},
   defensiveRankBonuses = [0, 0, 1, 2, 3, 4]
 } = {}) {
+  // Un perfil de referencia de PNJ contiene valores completos del Manual
+  // Maestro. No son compras de personaje, ni derivan Defensa/Vida del nivel.
+  if (actorType === "npc" && system.npcProfile?.enabled === true) {
+    const profile=system.npcProfile;
+    const profileNumber=(key,fallback=0)=>Math.max(0,number(profile[key],fallback));
+    const fromProfile=(selector,key,description,minimum=0)=>{
+      const result=breakdown({
+        base:profileNumber(key),
+        formula:description,
+        contributions:selectorContributions(rulePreparation,selector)
+      });
+      result.total=Math.max(minimum,result.total);
+      return result;
+    };
+    const health=fromProfile("healthMax","life","Perfil de PNJ — Manual Maestro §23",1);
+    const mana=fromProfile("manaMax","mana","Reserva de PNJ (0 si no especificada)");
+    const maneuver=fromProfile("maneuverDefense","maneuverDefense","Perfil de PNJ — Manual Maestro §23");
+    const mental=fromProfile("mentalDefense","mentalDefense","Perfil de PNJ — Manual Maestro §23");
+    const unavailableBody=profile.bodyDefense === null;
+    const body=unavailableBody
+      ? {base:null,formula:"No aplicable (—) en el Manual Maestro",contributions:[],contextual:[],modifier:0,total:null}
+      : fromProfile("bodyDefense","bodyDefense","Perfil de PNJ — Manual Maestro §23");
+    const protection=fromProfile("protection","protection","Protección efectiva de perfil (no añadir armadura otra vez)");
+    const movement=fromProfile("movement","movement","Perfil de PNJ — Manual Maestro §23",1);
+    const initiative=fromProfile("initiativeModifier","initiative","Perfil de PNJ — Manual Maestro §23");
+    const defenseContributions=selectorContributions(rulePreparation,"defense");
+    if (system.combat?.guardActive) defenseContributions.push(contribution({
+      selector:"defense",value:2,label:"Guardia",sourceType:"state"
+    }));
+    if (system.combat?.kineticBarrierActive) defenseContributions.push(contribution({
+      selector:"defense",value:2,label:String(system.combat.kineticDefenseSource || "Barrera Cinética"),
+      sourceType:"state",contextual:true,context:"kineticBarrier"
+    }));
+    if (system.combat?.parryActive) defenseContributions.push(contribution({
+      selector:"defense",value:Math.max(2,Math.min(3,number(system.combat.parryBonus,2))),
+      label:"Parada",sourceType:"state",contextual:true,context:"parryable"
+    }));
+    const defense=breakdown({
+      base:profileNumber("defense"),formula:"Perfil de PNJ — Manual Maestro §23",
+      contributions:defenseContributions,
+      contextual:defenseContributions.filter((c)=>c.contextual)
+    });
+    // El capítulo 23 no da el umbral de Daño Grave de estos perfiles.
+    // Se mantiene el cálculo general existente, sin elevarlo a dato del bestiario.
+    const severe=breakdown({
+      base:5+number(system.attributes?.vig?.value,1),
+      formula:"5 + VIG (umbral general; no definido en tabla de PNJ)"
+    });
+    const defensive=breakdown({base:0,formula:"Incluido en la Defensa del perfil"});
+    return {
+      healthMax:health.total,manaMax:mana.total,severeThreshold:severe.total,
+      defensiveBonus:0,defense:defense.total,maneuverDefense:maneuver.total,
+      mentalDefense:mental.total,bodyDefense:body.total,protection:protection.total,
+      movement:movement.total,initiativeModifier:initiative.total,initiative:initiative.total,
+      martialDefense:0,equippedShield:0,
+      unavailableDefenses:unavailableBody?["bodyDefense"]:[],
+      breakdowns:{
+        healthMax:health,manaMax:mana,severeThreshold:severe,defensiveBonus:defensive,
+        defense,maneuverDefense:maneuver,mentalDefense:mental,bodyDefense:body,
+        protection,movement,initiativeModifier:initiative
+      },
+      contextual:{defense:defenseContributions.filter((c)=>c.contextual),protection:[]},
+      equipmentIssues:[]
+    };
+  }
+
   if (actorType === "familiar") {
     const familiar = system.familiar ?? {};
     const profileHealth = Math.max(1, Math.floor(number(familiar.lifeMax, 10)));
@@ -539,6 +605,9 @@ export function deriveActorState({
 
 export function resolveDerivedSelector(derived, selector, context = {}) {
   const canonical = normalizeSelector(selector);
+  if (derived?.unavailableDefenses?.includes(canonical)) {
+    return {selector:canonical,base:null,contextual:[],total:Number.NaN,unavailable:true};
+  }
   const base = number(derived?.[canonical]);
   const contextual = Array.isArray(derived?.contextual?.[canonical])
     ? derived.contextual[canonical]

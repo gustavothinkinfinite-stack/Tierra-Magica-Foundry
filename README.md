@@ -6,11 +6,11 @@ La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuent
 
 Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**Estado de desarrollo 1.6.1.** CREA-12 a CREA-15 están cerradas e integradas. El grimorio ampliado está auditado y canonizado en **60 hechizos**, con schema v5 para contratos de objetivos y cierre espacial definido. CREA-14 cerró la autosuficiencia de creación de nivel 1, CREA-15 cierra la autosuficiencia de progresión ordinaria 2–20 y CRAFT-01 a CRAFT-13 cierran el sistema de fabricación, reparación, desmantelamiento, modificaciones, magia de objetos, ingeniería, alquimia, investigación, interfaz y auditoría Foundry. CAT-01…11, ARM-01, ESC-01 y EQP-01 integran los catálogos maestros de armas, armaduras, escudos y equipo sobre esa base.
+**Estado de desarrollo 1.7.0.** CREA-12 a CREA-15 están cerradas e integradas. El grimorio ampliado está auditado y canonizado en **60 hechizos**, con schema v5 para contratos de objetivos y cierre espacial definido. CREA-14 cerró la autosuficiencia de creación de nivel 1, CREA-15 cierra la autosuficiencia de progresión ordinaria 2–20 y CRAFT-01 a CRAFT-13 cierran el sistema de fabricación, reparación, desmantelamiento, modificaciones, magia de objetos, ingeniería, alquimia, investigación, interfaz y auditoría Foundry. CAT-01…11, ARM-01, ESC-01 y EQP-01 integran los catálogos maestros de armas, armaduras, escudos y equipo sobre esa base.
 
 El núcleo 1.0 permanece **completo y jugable**. Cualquier ampliación mecánica futura debe partir de una decisión explícita incorporada primero al Manual Maestro; una fase nueva no se infiere automáticamente a partir del código.
 
-La release pública actual es **v1.6.1**. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
+La próxima release prevista es **v1.7.0**; la última publicada sigue siendo **v1.6.1** hasta completar el workflow. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
 
 ## Instalación
 
@@ -24,7 +24,7 @@ Ese manifiesto apunta siempre al ZIP de su propia versión, evitando que cambios
 
 ## Recuperación de reservas de fabricación
 
-En v1.6.1 se corrige un problema de persistencia de la clave de reserva de materiales que impedía finalizar Proyectos ya iniciados. Proyectos existentes en estado «En curso» pueden recuperar automáticamente su reserva al completar, siempre que el libro de materiales comprometidos cuadre, el Lote siga disponible y no haya otro Proyecto activo compitiendo por el mismo material. No se repite el trabajo ni el pago. Los controles de VI, materiales compatibles, idempotencia y concurrencia continúan.
+En v1.6.1 se corrigió un problema de persistencia de la clave de reserva de materiales que impedía finalizar Proyectos ya iniciados. Proyectos existentes en estado «En curso» pueden recuperar automáticamente su reserva al completar, siempre que el libro de materiales comprometidos cuadre, el Lote siga disponible y no haya otro Proyecto activo compitiendo por el mismo material. No se repite el trabajo ni el pago. Los controles de VI, materiales compatibles, idempotencia y concurrencia continúan.
 
 ## Fabricación de equipo común
 
@@ -41,3 +41,30 @@ Acción y Reacción son indicadores manuales. Los botones de ataque, magia, alqu
 ```bash
 npm run validate
 ```
+
+## Bestiario — perfiles de referencia
+
+El sistema incluye el compendio de Actors **Tierra Mágica — Bestiario**.
+El generador `npm run build:packs` produce 11 PNJ/criaturas del capítulo 23
+del Manual Maestro. Para usarlos, abre el Compendio de Bestiario e importa
+el Actor al mundo; desde la pestaña de Actores se puede colocar en una escena.
+
+Los perfiles importados usan sus valores directos de Vida, Defensas,
+Protección, Movimiento e Iniciativa; no siguen los 25 PD / 3 PR ni reciben
+escalado por nivel. Las tiradas de ataques referenciales muestran el
+bonificador, daño y Penetración del Manual, pero **no aplican daño automático**;
+el Director resuelve Protección, resistencias, daño y condiciones según
+el contexto normal de combate.
+
+**Datos deliberadamente abiertos:** la Defensa Corporal del Centinela de
+Bronce es «—» y no se transforma en 0; su Defensa Mental sólo se consulta
+ante efectos capaces de afectarlo. La Protección 0–1 del Canalizador hostil
+se muestra como rango (se importa con valor operativo 0, editable). Las
+capas de hechizos concretos, daños del tipo de arma, vulnerabilidades,
+rasgos y acciones opcionales no se inventan al importar. Fuera del Canalizador
+hostil el Manual no cuantifica Maná: se inicializa en 0 como
+valor operativo, no como nueva regla. El umbral de Daño Grave utiliza
+temporalmente la fórmula general 5 + VIG y no figura en los perfiles §23.
+
+Los NPC nuevos que no proceden del compendio siguen utilizando la ficha
+habitual salvo que su `npcProfile.enabled` se active explícitamente.

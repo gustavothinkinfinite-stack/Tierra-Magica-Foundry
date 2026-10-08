@@ -1,3 +1,13 @@
+## 1.7.0 — Bestiario inicial de PNJ y criaturas — 2026-10-08
+
+- Añade el compendio `Tierra Mágica — Bestiario` de tipo Actor con 11 perfiles canónicos del Manual Maestro §23.
+- Los PNJ de referencia utilizan Vida, Defensas, Protección, Movimiento e Iniciativa directos, sin presupuestos ni escalado de PJ.
+- Incluye ataques de referencia con tirada `2d10 + bono`, sin aplicar daño automático ni inventar tipo de daño, habilidades, hechizos o equipo.
+- Presenta una ficha NPC reducida que evita fórmulas y controles de creación/progresión de PJ.
+- Mantiene sin completar los datos abiertos del Manual: Defensa Corporal del Centinela de Bronce, Protección 0–1 del Canalizador y capacidades opcionales del Troll.
+- Integra pruebas de canon, compendios, esquema, visualización declarativa de la ficha y contenido del paquete de publicación.
+- No introduce cambios de reglas canónicas.
+
 ## Publicación v1.6.1 — 2026-10-08
 
 - Hotfix **v1.6.1** publicado desde `2489c95726b6ccfa9f59ee92c5f886245360cf66` como release estable Latest.

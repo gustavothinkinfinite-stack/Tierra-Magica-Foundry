@@ -1,9 +1,12 @@
 <header class="tm-sheet-header">
   <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
   <div class="tm-identity">
-    <span class="tm-kicker">Foundry T.M. · Manual Básico v0.1</span>
+    <span class="tm-kicker">Foundry T.M. · {{#if system.npcProfile.enabled}}Perfil de PNJ{{else}}Manual Básico{{/if}}</span>
     <input class="tm-name" name="name" type="text" value="{{actor.name}}" placeholder="Nombre" />
     <div class="tm-identity-grid">
+      {{#if system.npcProfile.enabled}}
+      <label><span>Rol</span><input type="text" name="system.details.role" value="{{system.details.role}}" /></label>
+      {{else}}
       <label><span>Nivel</span><input type="number" name="system.details.level" value="{{system.details.level}}" min="1" max="20" /></label>
       {{#if isFamiliar}}
         <label><span>Receptor</span><input type="text" name="system.details.ownerName" value="{{system.details.ownerName}}" /></label>
@@ -14,10 +17,13 @@
         <label><span>Origen / Raza</span><input type="text" name="system.details.ancestry" value="{{system.details.ancestry}}" /></label>
         <label><span>Trasfondo</span><input type="text" name="system.details.background" value="{{system.details.background}}" /></label>
       {{/if}}
+      {{/if}}
     </div>
   </div>
   <div class="tm-header-actions">
+    {{#unless system.npcProfile.enabled}}
     <div class="tm-level-seal"><span>NIVEL</span><strong>{{system.details.level}}</strong></div>
+    {{/unless}}
   </div>
 </header>
 
@@ -40,10 +46,10 @@
 
 <nav class="tm-tabs tabs" data-group="primary">
   <a class="item" data-tab="summary"><i class="fa-solid fa-shield-halved"></i> Resumen</a>
-  <a class="item" data-tab="skills"><i class="fa-solid fa-list-check"></i> Habilidades</a>
+  {{#unless system.npcProfile.enabled}}<a class="item" data-tab="skills"><i class="fa-solid fa-list-check"></i> Habilidades</a>{{/unless}}
   <a class="item" data-tab="combat"><i class="fa-solid fa-swords"></i> Combate</a>
   <a class="item" data-tab="magic"><i class="fa-solid fa-wand-sparkles"></i> Magia</a>
-  <a class="item" data-tab="development"><i class="fa-solid fa-diagram-project"></i> Desarrollo</a>
+  {{#unless system.npcProfile.enabled}}<a class="item" data-tab="development"><i class="fa-solid fa-diagram-project"></i> Desarrollo</a>{{/unless}}
   <a class="item" data-tab="inventory"><i class="fa-solid fa-backpack"></i> Equipo</a>
   <a class="item" data-tab="biography"><i class="fa-solid fa-feather"></i> Historia</a>
 </nav>
@@ -51,6 +57,7 @@
 <section class="tm-sheet-body">
   <div class="tab" data-group="primary" data-tab="summary">
     <div class="tm-summary-grid">
+      {{#unless system.npcProfile.enabled}}
       <section class="tm-panel">
         <div class="tm-section-heading"><h2>Atributos</h2><span>Base inicial 1 · 6 aumentos · máximo inicial 3</span></div>
         <div class="tm-abilities">
@@ -81,7 +88,51 @@
         </div>
       </section>
 
-      {{> "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"}}
+      {{/unless}}
+      {{#unless system.npcProfile.enabled}}
+      {{> "systems/tierra-magica/templates/actor/parts/derived-diagnostics.hbs"}
+      {{/unless}}
+
+      {{#if isNpc}}
+      {{#if system.npcProfile.enabled}}
+      <section class="tm-panel tm-wide tm-npc-reference">
+        <h2>Perfil de PNJ — Manual Maestro §23</h2>
+        <p>Las cifras son directas del perfil de referencia: no provienen de puntos de desarrollo o progresión de un PJ.</p>
+        <div class="tm-form-grid">
+          <label><span>Vida máxima de perfil</span><input type="number" min="1" name="system.npcProfile.life" value="{{system.npcProfile.life}}" /></label>
+          <label><span>Defensa</span><input type="number" min="0" name="system.npcProfile.defense" value="{{system.npcProfile.defense}}" /></label>
+          <label><span>Defensa de Maniobra</span><input type="number" min="0" name="system.npcProfile.maneuverDefense" value="{{system.npcProfile.maneuverDefense}}" /></label>
+          <label><span>Defensa Mental</span><input type="number" min="0" name="system.npcProfile.mentalDefense" value="{{system.npcProfile.mentalDefense}}" /></label>
+          {{#if npcBodyDefenseApplicable}}
+          <label><span>Defensa Corporal</span><input type="number" min="0" name="system.npcProfile.bodyDefense" value="{{system.npcProfile.bodyDefense}}" /></label>
+          {{else}}
+          <div><span>Defensa Corporal: — (no aplicable)</span></div>
+          {{/if}}
+          <label><span>Protección</span><input type="number" min="0" name="system.npcProfile.protection" value="{{system.npcProfile.protection}}" /></label>
+          <label><span>Movimiento (espacios)</span><input type="number" min="1" name="system.npcProfile.movement" value="{{system.npcProfile.movement}}" /></label>
+          <label><span>Iniciativa</span><input type="number" name="system.npcProfile.initiative" value="{{system.npcProfile.initiative}}" /></label>
+          <label><span>Maná operativo</span><input type="number" min="0" name="system.npcProfile.mana" value="{{system.npcProfile.mana}}" /></label>
+        </div>
+        {{#if system.npcProfile.protectionRange.length}}
+        <p>Protección canónica: 0–1 según equipo. La cifra de ficha es el valor operativo elegido.</p>
+        {{/if}}
+        {{#if system.npcProfile.channelingBonus}}
+        <p>Canalización: +{{system.npcProfile.channelingBonus}}. No se asignan hechizos que no figuren en el perfil.</p>
+        {{/if}}
+        <button type="button" data-action="roll-initiative"><i class="fa-solid fa-dice"></i> Iniciativa +{{system.derived.initiativeModifier}}</button>
+        <h3>Ataques de referencia</h3>
+        {{#each system.npcProfile.attacks as |attack index|}}
+        <button type="button" data-action="roll-npc-attack" data-index="{{index}}">
+          <i class="fa-solid fa-dice"></i> {{attack.name}} +{{attack.bonus}} · Daño {{attack.damage}} · Pen {{attack.penetration}}
+        </button>
+        {{else}}
+        <p>No se especifican ataques directos en este perfil.</p>
+        {{/each}}
+        <p>Los ataques muestran los valores del Manual; el daño no se aplica automáticamente.</p>
+        {{#if system.npcProfile.notes}}<p>{{system.npcProfile.notes}}</p>{{/if}}
+      </section>
+      {{/if}}
+      {{/if}}
 
       <section class="tm-panel tm-wide">
         <h2>Estado y recuperación</h2>
@@ -91,10 +142,14 @@
           <label><span>Sangrado por turno</span><input type="number" name="system.status.bleeding" value="{{system.status.bleeding}}" min="0" max="2" /></label>
           <label><span>Condiciones</span><input type="text" name="system.status.conditions" value="{{system.status.conditions}}" placeholder="Derribado, Agarrado..." /></label>
         </div>
+        {{#unless system.npcProfile.enabled}}
         <div class="tm-rest-actions">
           <button type="button" data-action="rest" data-kind="rest">Descanso ~1 h: VIG+2 Vida, VOL+1 Maná</button>
           <button type="button" data-action="rest" data-kind="full">Reposo completo ~8 h</button>
         </div>
+        {{else}}
+        <p>Los descansos y recuperaciones de este PNJ se resuelven según su naturaleza y las reglas aplicables.</p>
+        {{/unless}}
       </section>
 
       <section class="tm-panel tm-wide">
@@ -131,6 +186,7 @@
   </div>
 
   <div class="tab" data-group="primary" data-tab="combat">
+    {{#unless system.npcProfile.enabled}}
     <section class="tm-panel">
       <h2>Configuración defensiva</h2>
       <div class="tm-form-grid">
@@ -142,6 +198,7 @@
         <label><span>Ajuste Iniciativa</span><input type="number" name="system.modifiers.manual.initiativeModifier.value" value="{{system.modifiers.manual.initiativeModifier.value}}" /></label>
       </div>
     </section>
+    {{/unless}}
     <section class="tm-panel tm-wide">
       <div class="tm-section-heading"><h2>Resistencias de daño</h2><span>Manual + fuentes derivadas</span></div>
       <p>La Resistencia reduce daño después de Protección; Inmunidad lo reduce a 0. Vulnerabilidad añade daño del tipo después de Protección. Fuentes equivalentes usan el valor más alto.</p>
@@ -161,7 +218,7 @@
   </div>
 
   <div class="tab" data-group="primary" data-tab="magic">
-    <section class="tm-panel"><p><strong>Maná = 6 + VOL × 3.</strong> El lanzamiento usa 2d10 + Atributo apropiado + Canalización. VOL no es el atributo universal de lanzamiento.</p></section>
+    {{#unless system.npcProfile.enabled}}<section class="tm-panel"><p><strong>Maná = 6 + VOL × 3.</strong> El lanzamiento usa 2d10 + Atributo apropiado + Canalización. VOL no es el atributo universal de lanzamiento.</p></section>{{else}}<section class="tm-panel"><p>Perfil de PNJ: la reserva de Maná y los conjuros requieren definición expresa; no se derivan de los Atributos iniciales de PJ.</p></section>{{/unless}}
     {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Hechizos" type="spell" items=itemGroups.spell}}
   </div>
 
