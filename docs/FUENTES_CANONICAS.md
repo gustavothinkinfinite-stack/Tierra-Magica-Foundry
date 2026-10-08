@@ -80,7 +80,7 @@ Foundry adopta schema v5 para contratos de objetivos mágicos y migración del c
 
 ## Estado de publicación 1.5.2
 
-La versión objetivo **v1.5.2** introduce control de turno manual en Foundry. La ejecución de ataques, magia, técnicas, dispositivos y familiares es independiente del indicador de Acción o Reacción. Los costes mecánicos y las reglas canónicas continúan vigentes; el DJ y los jugadores verifican el límite de actuaciones por turno.
+La versión **v1.5.2 está publicada** como release estable desde el commit `c264143991479a627364e71aacbde5de6998f1c3` e introduce control de turno manual en Foundry. La ejecución de ataques, magia, técnicas, dispositivos y familiares es independiente del indicador de Acción o Reacción. Los costes mecánicos y las reglas canónicas continúan vigentes; el DJ y los jugadores verifican el límite de actuaciones por turno.
 
 ## Estado de publicación 1.5.1
 
