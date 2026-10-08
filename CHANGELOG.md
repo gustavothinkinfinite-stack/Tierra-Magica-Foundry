@@ -1,3 +1,14 @@
+## 1.8.0 — Arte del Bestiario y Lobo del Eco Muerto — 2026-10-08
+
+- Incorpora **22 archivos WebP reales** (11 retratos y 11 tokens circulares), con nombres y rutas propias de Foundry, directamente dentro de `assets/bestiary/`.
+- El compendio `Tierra Mágica — Bestiario` contiene ahora **12 Actors**: los 11 perfiles de referencia del Manual Maestro y la propuesta original **Lobo del Eco Muerto**.
+- Para los 10 perfiles con arte aprobado y el Lobo del Eco Muerto, el generador conecta automáticamente `img` y `prototypeToken.texture.src` a sus archivos reales.
+- **Tirador:** conserva el icono genérico mientras se diseña su ilustración fiel al rifle temprano del Manual Maestro; no se incluye la versión provisional con arco.
+- Eco Robado conserva sus límites: una Acción, cuatro espacios de origen aparente, sonidos de las últimas 24 horas, DF 14 para reconocer anomalías, sin control mental ni acciones adicionales.
+- El nuevo lobo figura expresamente como **propuesta editorial pendiente de canon** y no modifica `docs/Tierra_Magica_Manual_Maestro.md`.
+- Se mantienen las pruebas de pares completos de arte, detección de WebP, separación entre lobo original y ordinario, y construcción del Compendio.
+- El ZIP de publicación incluye las imágenes; no se requieren cargas manuales de arte en mundos nuevos tras actualizar el sistema.
+
 ## Publicación v1.7.0 — 2026-10-08
 
 - Release estable publicada desde el commit `72f755060c87bb64e4c783be05e2b1215e1746ff` mediante workflow de GitHub Actions `#37812848808`.
