@@ -10,7 +10,7 @@ export function installMagicReactionGuards(ActorClass) {
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>Contramagia</strong><p>" +
         foundry.utils.escapeHTML(this.name) +
-        " consume su Reacción y declara Contramagia. Su resolución permanece contextual: no cancela automáticamente el hechizo, no concede una segunda Reacción y no crea una DF universal.</p></div>"
+        " declara Contramagia. Requiere Reacción según las reglas (registro manual). Su resolución permanece contextual: no cancela automáticamente el hechizo ni crea una DF universal.</p></div>"
     });
   };
 }
