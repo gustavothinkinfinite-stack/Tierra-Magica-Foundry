@@ -1,3 +1,10 @@
+## 1.5.2 — Control de turno manual — 2026-10-07
+
+- Ataques, hechizos, alquimia, dispositivos, técnicas y familiares se resuelven sin consultar el estado previo de Acción o Reacción.
+- Acción y Reacción se gestionan manualmente desde la ficha, respetando las reglas de turno de la mesa.
+- Siguen aplicándose las validaciones de objetivos, capacidades, Maná, Energía, Movimiento, condiciones y efectos defensivos.
+- La interfaz explica el nuevo comportamiento y la batería de pruebas comprueba ejecución repetida.
+
 ## Publicación v1.5.1 — 2026-10-07
 
 - **v1.5.1 fue publicada** desde el commit `558372be4adf6abddd9cd5985cfb065e406127c3` mediante `Publicar sistema #37703400848`.
