@@ -41,3 +41,30 @@ Acción y Reacción son indicadores manuales. Los botones de ataque, magia, alqu
 ```bash
 npm run validate
 ```
+
+## Bestiario — perfiles de referencia
+
+El sistema incluye el compendio de Actors **Tierra Mágica — Bestiario**.
+El generador `npm run build:packs` produce 11 PNJ/criaturas del capítulo 23
+del Manual Maestro. Para usarlos, abre el Compendio de Bestiario e importa
+el Actor al mundo; desde la pestaña de Actores se puede colocar en una escena.
+
+Los perfiles importados usan sus valores directos de Vida, Defensas,
+Protección, Movimiento e Iniciativa; no siguen los 25 PD / 3 PR ni reciben
+escalado por nivel. Las tiradas de ataques referenciales muestran el
+bonificador, daño y Penetración del Manual, pero **no aplican daño automático**;
+el Director resuelve Protección, resistencias, daño y condiciones según
+el contexto normal de combate.
+
+**Datos deliberadamente abiertos:** la Defensa Corporal del Centinela de
+Bronce es «—» y no se transforma en 0; su Defensa Mental sólo se consulta
+ante efectos capaces de afectarlo. La Protección 0–1 del Canalizador hostil
+se muestra como rango (se importa con valor operativo 0, editable). Las
+capas de hechizos concretos, daños del tipo de arma, vulnerabilidades,
+rasgos y acciones opcionales no se inventan al importar. Fuera del Canalizador
+hostil el Manual no cuantifica Maná: se inicializa en 0 como
+valor operativo, no como nueva regla. El umbral de Daño Grave utiliza
+temporalmente la fórmula general 5 + VIG y no figura en los perfiles §23.
+
+Los NPC nuevos que no proceden del compendio siguen utilizando la ficha
+habitual salvo que su `npcProfile.enabled` se active explícitamente.
