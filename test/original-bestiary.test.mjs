@@ -32,7 +32,7 @@ test("las cifras base mantienen el lobo canónico del Manual Maestro",()=>{
     assert.equal(wolf.system.npcProfile[key],ordinaryWolf.system.npcProfile[key],key);
   }
   assert.deepEqual(wolf.system.npcProfile.attacks.map(({name,bonus,damage,penetration})=>
-    ({name,bonus,damage,penetration})),ordinaryWolf.system.npcProfile.attacks);
+    ({name,bonus,damage,penetration})),ordinaryWolf.system.npcProfile.attacks.map(({name,bonus,damage,penetration})=>({name,bonus,damage,penetration})));
   const derived=deriveActorState({actorType:"npc",system:wolf.system});
   assert.equal(derived.healthMax,10);
   assert.equal(derived.defense,14);
