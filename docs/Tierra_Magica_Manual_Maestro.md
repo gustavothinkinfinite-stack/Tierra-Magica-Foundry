@@ -11750,7 +11750,7 @@ Vael representa aquello que sucede después de partir: desvío, incertidumbre, t
 
 **Aster abre el camino. Vael gobierna lo que ocurre cuando realmente lo recorres.**
 
-> **Símbolo religioso definitivo: PENDIENTE DE DEFINICIÓN ESTRUCTURADA.** La identidad visual canónica de Vael permanece vigente, pero el símbolo doctrinal no se fija todavía.
+> **Símbolo religioso — geometría aprobada:** **El Rumbo Desviado** (`SYM-DIV-VAEL-001`). Su geometría vectorial está fijada como inmutable en `docs/visual/SIMBOLOS_CANONICOS.md`: una única ruta iniciada en vertical, desviada por una zona de exclusión constructiva y terminada en un eje distinto, acompañada por una Marca del Descubrimiento romboidal separada. Cromática, reducción, escalas y pruebas finales permanecen pendientes antes de CANON v1.0.
 
 ### Viaje
 

@@ -1198,3 +1198,68 @@ La Fase 4 validó La Medida Acordada sin rediseño en documento/registro, latón
 - **v0.4 — 2026-10-08:** se aprueban REDUCED-01, umbrales digitales, mínimos físicos y área de protección.
 - **v1.0 — 2026-10-08:** pruebas contextuales/materiales superadas; materiales, perspectiva, deterioro, usos culturales y PNG definitivo aprobados; ficha elevada a CANON.
 
+## SYM-DIV-VAEL-001 — El Rumbo Desviado
+
+**Entidad:** Vael, el Navegante  
+**Estado:** **PROVISIONAL — GEOMETRÍA APROBADA E INMUTABLE**  
+**Versión:** v0.2  
+**Fecha de aprobación conceptual y geométrica:** 2026-10-08
+
+### Concepto
+El Rumbo Desviado representa una única ruta ya emprendida que encuentra condiciones no previstas, modifica su trayectoria y continúa hacia un rumbo distinto. No representa elección entre caminos posibles: ese principio pertenece a Aster.
+
+La composición se basa en una sola ruta continua, un tramo inicial vertical, una curvatura obligada alrededor de un área circular de exclusión constructiva y una Marca del Descubrimiento romboidal separada del extremo de la ruta.
+
+### Precisión constructiva
+La lámina conceptual mostró un círculo de guía llamado **Ojo de la Tormenta**. En la silueta aprobada ese círculo no es una masa, anillo ni hueco cerrado visible: es una **zona circular de exclusión** centrada aproximadamente en (500,500), radio 95, que la ruta no debe invadir. Su función es forzar el desvío geométrico. No debe dibujarse como círculo en el símbolo final.
+
+### Construcción
+**Lienzo maestro:** 1000 × 1000  
+**Módulo X:** 40 unidades.
+
+**Ruta normativa:** ancho 70 unidades, extremos rectos, uniones redondeadas.
+
+```svg
+<path d="M430 850 L430 650 L455 630 L520 625 L590 600 L645 550 L675 480 L690 390 L700 300 L705 240"
+      fill="none" stroke="#000" stroke-width="70"
+      stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M760 190 L785 215 L760 240 L735 215 Z" fill="#000"/>
+```
+
+**Área circular de exclusión constructiva:** centro (500,500), radio 95. No se reproduce como elemento gráfico.
+
+**Marca del Descubrimiento:** rombo 50 × 50, centrado en (760,215), separado de la ruta.
+
+### Reconocimiento
+**Rasgos obligatorios:**
+1. una única ruta continua;
+2. tramo inicial vertical;
+3. curva de desvío alrededor del área de exclusión;
+4. salida superior desplazada hacia la derecha respecto del eje inicial;
+5. rombo de descubrimiento separado de la ruta.
+
+**Orientación:** entrada inferior → desvío → salida superior derecha.  
+**Rotación:** prohibida.  
+**Reflejo horizontal:** prohibido.  
+**Reflejo vertical:** prohibido.
+
+### Prohibiciones
+No usar rosa de los vientos completa, brújula literal, barco, timón, ancla, mapa desplegado, múltiples rutas bifurcadas, flechas direccionales, portal, relámpagos, olas dominantes, remolino explícito, texto, runas, sol, luna ni estrella de ocho puntas.
+
+### Diferenciación doctrinal
+**Aster:** caminos posibles y elección.  
+**Vael:** una ruta ya iniciada que cambia por aquello que sucede durante el viaje.
+
+El símbolo nunca debe mostrar dos o más alternativas previas a una decisión.
+
+### Activo
+**SVG maestro:** `assets/symbols/divinities/SYM-DIV-VAEL-001_MASTER.svg`  
+**SHA-256:** `2145e5ead723d845ff54e5e5d884b113e3a9a673ca627ec7da1187c2c4c288e4`
+
+### Pendientes para v1.0
+Cromática, versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
+
+### Historial
+- **v0.1 — 2026-10-08:** concepto y lámina técnica monocroma aprobados.
+- **v0.2 — 2026-10-08:** geometría exacta y función del área de exclusión normalizadas; silueta fijada como inmutable.
+
