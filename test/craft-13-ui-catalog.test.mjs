@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 
 import {
   CRAFTING_REFERENCE_CATALOG,
+  CRAFTING_COMMON_EQUIPMENT_RECIPES,
   craftingProjectSourceFromReference,
   craftingReference,
   craftingReferenceGroups
@@ -12,6 +13,9 @@ import {
   prepareCraftingProject,
   previewCraftingProject
 } from "../scripts/rules/crafting-transactions.mjs";
+import { coreCatalog } from "../scripts/catalog/core-catalog.mjs";
+import { CANONICAL_EQUIPMENT } from "../scripts/catalog/equipment-canonical.mjs";
+import { equipmentCatalogMaster } from "../scripts/catalog/equipment-catalog-master.mjs";
 
 function applyChanges(document,changes){
   for(const [path,value] of Object.entries(changes)){
@@ -27,9 +31,9 @@ function applyChanges(document,changes){
   }
 }
 
-test("CRAFT-13H: catálogo expone exactamente las 41 referencias CRAFT-11 sin duplicados",()=>{
-  assert.equal(CRAFTING_REFERENCE_CATALOG.length,41);
-  assert.equal(new Set(CRAFTING_REFERENCE_CATALOG.map((row)=>row.ref)).size,41);
+test("CRAFT: catálogo reúne las 41 referencias CRAFT-11 y 21 recetas ordinarias CRAFT-03",()=>{
+  assert.equal(CRAFTING_REFERENCE_CATALOG.length,62);
+  assert.equal(new Set(CRAFTING_REFERENCE_CATALOG.map((row)=>row.ref)).size,62);
   assert.deepEqual(
     craftingReferenceGroups().map((group)=>[group.category,group.entries.length]),
     [
@@ -39,7 +43,8 @@ test("CRAFT-13H: catálogo expone exactamente las 41 referencias CRAFT-11 sin du
       ["Trampas y construcciones",6],
       ["Ingeniería",7],
       ["Servicios",5],
-      ["Investigación",2]
+      ["Investigación",2],
+      ["Equipo común",21]
     ]
   );
 });
@@ -150,4 +155,75 @@ test("CRAFT-13H: la ficha de Proyecto prioriza receta, requisitos, tiempo y ejec
   assert.equal(itemLogic.includes("async #startProject"),true);
   assert.equal(itemLogic.includes("craftingLot?.compatibility"),true);
   assert.equal(entry.includes("prepare: prepareCraftingProjectAuthoritatively"),true);
+});
+
+
+test("CRAFT común: 21 recetas del Manual usan sólo equipos exactos y CM universal",()=>{
+  assert.equal(CRAFTING_COMMON_EQUIPMENT_RECIPES.length,21);
+  const equipment=new Map(CANONICAL_EQUIPMENT.map((item)=>[item.name,item]));
+  for(const row of CRAFTING_COMMON_EQUIPMENT_RECIPES){
+    const canon=equipment.get(row.name);
+    assert.ok(canon,row.name);
+    assert.equal(row.execution,"equipment",row.name);
+    assert.equal(row.operation,"fabricate",row.name);
+    assert.equal(row.valueCopper,canon.priceCopper,row.name);
+    assert.equal(row.materialCopper,Math.ceil(canon.priceCopper/2),row.name);
+    assert.ok(row.timeMinutes>0,row.name);
+    assert.ok(row.rank>=1 && row.rank<=3,row.name);
+  }
+  const allNames=new Set(CRAFTING_COMMON_EQUIPMENT_RECIPES.map((row)=>row.name));
+  for(const missing of ["Materiales de escritura","Repuesto médico, 5 usos","Provisiones 7 días","Combustible de iluminación 5 noches"]){
+    assert.equal(allNames.has(missing),false,missing);
+  }
+  for(const proposal of equipmentCatalogMaster().filter((entry)=>entry.status==="proposal")){
+    assert.equal(allNames.has(proposal.name),false,proposal.name);
+  }
+});
+
+test("CRAFT común: proyectos presentan Item canónico completo, coste y tiempo correctos",async()=>{
+  const catalog=coreCatalog();
+  for(const entry of CRAFTING_COMMON_EQUIPMENT_RECIPES){
+    const source=craftingProjectSourceFromReference(entry.ref,{catalog});
+    assert.ok(source,entry.ref);
+    assert.equal(source.type,"project");
+    assert.equal(source.system.operation,"fabricate");
+    assert.equal(source.system.source.sourceRevision,"craft-03");
+    assert.equal(source.system.target.resultData.type,"equipment");
+    assert.equal(source.system.target.resultData.name,entry.name);
+    const equipment=catalog.find((row)=>row.name===entry.name && row.type==="equipment");
+    assert.deepEqual(source.system.target.resultData.system,equipment.system,entry.name);
+    assert.equal(source.system.economy.referenceValueCopper,entry.valueCopper);
+    assert.equal(source.system.economy.priceStatus,"exact");
+    assert.equal(source.system.ledger.estimatedMaterialsCopper,entry.materialCopper);
+    assert.equal(source.system.time.requiredMinutes,entry.timeMinutes);
+    assert.equal(source.system.professional.baseRank,entry.rank);
+    assert.equal(source.system.professional.baseInstallation,entry.installation);
+    assert.equal(source.system.professional.stableProcedure,!entry.needsPlan);
+  }
+});
+
+test("CRAFT común: sin catálogo canónico o con precio adulterado no crea un proyecto ficticio",()=>{
+  const known=CRAFTING_COMMON_EQUIPMENT_RECIPES[0];
+  assert.equal(craftingProjectSourceFromReference(known.ref,{catalog:[]}),null);
+  assert.equal(craftingProjectSourceFromReference(known.ref,{catalog:[{
+    name:known.name,type:"equipment",
+    system:{slug:known.name.toLowerCase().replaceAll(" ","-"),priceCopper:999,priceStatus:"exact"}
+  }]}),null);
+});
+
+test("CRAFT común: vista previa de herramienta ordinaria utiliza economía y tiempos ejecutables",async()=>{
+  const source=craftingProjectSourceFromReference("REF-COM-01",{catalog:coreCatalog()});
+  const actor={
+    id:"craftsperson",uuid:"Actor.craftsperson",type:"character",
+    system:{creation:{status:"complete"},skills:{crafting:{rank:2}}},items:new Map()
+  };
+  const project={
+    id:"project",uuid:"Actor.craftsperson.Item.project",name:source.name,type:"project",
+    parent:actor,system:structuredClone(source.system)
+  };
+  actor.items.set(project.id,project);
+  const preview=await previewCraftingProject(project);
+  assert.equal(preview.valid,true);
+  assert.equal(preview.expectedMaterialCopper,15);
+  assert.equal(project.system.state,"draft");
 });
