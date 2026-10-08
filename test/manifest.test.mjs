@@ -17,8 +17,10 @@ test("el manifiesto describe Foundry T.M. 1.6.1", async () => {
   assert.equal(manifest.download, "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/tierra-magica.zip");
   await Promise.all([...manifest.esmodules, ...manifest.styles, ...manifest.languages.map((l) => l.path)]
     .map((file) => access(resolve(root, file))));
-  assert.deepEqual(manifest.packs.map((pack) => pack.name), ["character-options","magic","equipment","production"]);
-  assert.equal(manifest.packs.every((pack) => pack.type === "Item" && pack.system === "tierra-magica"), true);
+  assert.deepEqual(manifest.packs.map((pack) => pack.name), ["character-options","magic","equipment","production","bestiary"]);
+  assert.equal(manifest.packs.filter((pack) => pack.type === "Item").length,4);
+  assert.equal(manifest.packs.every((pack) => pack.system === "tierra-magica"),true);
+  assert.equal(manifest.packs.find((pack)=>pack.name==="bestiary")?.type,"Actor");
   assert.deepEqual(Object.keys(manifest.documentTypes.Actor), ["character","npc","familiar"]);
   assert.deepEqual(Object.keys(manifest.documentTypes.Item), ["weapon","armor","shield","equipment","spell","technique","trait","specialization","formula","ritual","device","ancestry","origin","background","discipline","effect","project"]);
   await Promise.all(manifest.packs.map((pack) => access(resolve(root, pack.path))));
@@ -37,6 +39,7 @@ test("el esquema contiene actores y tipos de objeto del sistema", async () => {
   assert.equal(templates.Item.templates.base.requirements, null);
   assert.deepEqual(templates.Item.templates.base.costs, []);
   assert.equal(templates.Actor.character.creation.status, "building");
+  assert.equal(templates.Actor.npc.npcProfile.enabled,false);
   assert.equal(templates.Actor.character.creation.equipmentBudgetCopper, 2000);
   assert.equal(templates.Item.weapon.templates.includes("physical"), true);
   assert.equal(templates.Item.discipline.templates.includes("physical"), false);
