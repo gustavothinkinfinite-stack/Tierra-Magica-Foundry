@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { coreCatalog } from "../scripts/catalog/core-catalog.mjs";
+import { npcReferenceCatalog } from "../scripts/catalog/npc-catalog.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const sourceRoot = resolve(root, ".pack-source");
@@ -55,3 +56,41 @@ for (const [pack, types] of Object.entries(groups)) {
   console.log("Built "+pack+" ("+entries.length+" Items)");
 }
 await rm(verifyRoot,{recursive:true,force:true});
+
+// Compendio de Actor separado: los NPC no son Items, ni siguen presupuestos PJ.
+const actorPack="bestiary";
+const actorEntries=npcReferenceCatalog();
+const actorSource=resolve(sourceRoot,actorPack);
+const actorOutput=resolve(outputRoot,actorPack);
+await mkdir(actorSource,{recursive:true});
+for (const entry of actorEntries) {
+  const slug=entry.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+  const id=idFor("npc",slug);
+  const document={
+    _id:id,
+    _key:"!actors!"+id,
+    name:entry.name,
+    type:"npc",
+    img:entry.img,
+    system:entry.system,
+    prototypeToken:entry.prototypeToken,
+    items:[],
+    effects:[],
+    folder:null,
+    sort:0,
+    ownership:{default:0},
+    flags:{"tierra-magica":{source:"manual-maestro-23",referenceSlug:slug}}
+  };
+  await writeFile(resolve(actorSource,id+".json"),JSON.stringify(document,null,2)+"\n","utf8");
+}
+await compilePack(actorSource,actorOutput,{log:false});
+const actorVerify=resolve(verifyRoot,actorPack);
+await extractPack(actorOutput,actorVerify,{log:false,clean:true});
+const extractedActors=(await readdir(actorVerify)).filter((name)=>name.endsWith(".json"));
+if(extractedActors.length!==actorEntries.length) {
+  throw new Error("Bestiario inválido: esperaba "+actorEntries.length+
+    " Actors y contiene "+extractedActors.length+".");
+}
+console.log("Built "+actorPack+" ("+actorEntries.length+" Actors)");
+await rm(actorVerify,{recursive:true,force:true});
