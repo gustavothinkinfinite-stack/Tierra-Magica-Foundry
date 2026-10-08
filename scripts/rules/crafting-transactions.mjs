@@ -83,6 +83,12 @@ function reservationKey(project) {
   return "p_" + id.replace(/[^a-zA-Z0-9_-]/g, "_");
 }
 
+function reservationKeyFromReference(ref) {
+  const key=String(ref??"");
+  if(!key || key.startsWith("p_")) return key;
+  return "p_" + key.split(".").at(-1).replace(/[^a-zA-Z0-9_-]/g, "_");
+}
+
 // Lee tanto claves seguras como las claves UUID planas/anidadas que dejaron
 // las versiones anteriores. Al volver a escribir, todas quedan normalizadas.
 function normalizedReservationMap(input) {
@@ -158,8 +164,9 @@ function reservationAmount(entry) {
 
 export function craftingLotReservedCopper(item, { excludingProject = "" } = {}) {
   const lot = lotData(item);
+  const excluded=reservationKeyFromReference(excludingProject);
   return Object.entries(lot.reservations).reduce((sum, [key, reservation]) => {
-    if (excludingProject && key === excludingProject) return sum;
+    if (excluded && key === excluded) return sum;
     return sum + reservationAmount(reservation);
   }, 0);
 }
@@ -197,8 +204,9 @@ function componentReservationQuantity(entry) {
 }
 
 export function craftingComponentReservedQuantity(item, { excludingProject = "" } = {}) {
+  const excluded=reservationKeyFromReference(excludingProject);
   return Object.entries(componentReservationData(item)).reduce((sum, [key, reservation]) => {
-    if (excludingProject && key === excludingProject) return sum;
+    if (excluded && key === excluded) return sum;
     return sum + componentReservationQuantity(reservation);
   }, 0);
 }
