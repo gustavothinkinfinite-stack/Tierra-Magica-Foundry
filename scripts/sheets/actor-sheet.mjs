@@ -14,12 +14,31 @@ import {
 const ActorSheetV1 = foundry.appv1.sheets.ActorSheet;
 const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
 
+
+// Foundry v14 todavía llama a las fichas V1 desde tokens colocados.
+// V1 combina profundamente las opciones de render; si llega un
+// TokenDocument como `options.token`, intenta escribir su _id inmutable.
+// La ficha ya puede obtener el token desde `this.actor.token`.
+export function safeActorSheetRenderOptions(options = {}) {
+  if (!options || typeof options !== "object") return {};
+  const token=options.token;
+  if (!token || typeof token !== "object") return options;
+  if (token.documentName !== "Token" && typeof token.toObject !== "function") return options;
+  const {token: _tokenDocument, ...safeOptions}=options;
+  return safeOptions;
+}
+
 export class TierraMagicaActorSheet extends ActorSheetV1 {
   constructor(...args) {
     super(...args);
     if (this.actor?.type === "character" && this.actor.system.creation?.status === "building" && this.options.tabs?.[0]) {
       this.options.tabs[0].initial = "development";
     }
+  }
+
+  // Evita el merge recursivo de documentos TokenDocument de solo lectura.
+  render(force = false, options = {}) {
+    return super.render(force, safeActorSheetRenderOptions(options));
   }
 
   static get defaultOptions() {
