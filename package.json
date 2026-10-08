@@ -1,6 +1,6 @@
 {
   "name": "tierra-magica-foundry",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "private": true,
   "type": "module",
   "description": "Foundry T.M. — sistema Tierra Mágica para Foundry VTT",
@@ -24,6 +24,7 @@
     "node": ">=20"
   },
   "devDependencies": {
-    "@foundryvtt/foundryvtt-cli": "3.0.4"
+    "@foundryvtt/foundryvtt-cli": "3.0.4",
+    "handlebars": "^4.7.8"
   }
 }
