@@ -1,3 +1,14 @@
+## 1.6.0 — Recetas de equipo común en Foundry — 2026-10-07
+
+- Incorpora 21 recetas CRAFT-03 al selector Desarrollo → Proyectos de fabricación e investigación → Catálogo → Equipo común.
+- Fabricables: Gancho, Palanca, Pico o pala, Caja pequeña asegurada, Catalejo, Estuche impermeable y los 15 Kits profesionales canónicos.
+- Cada receta conserva el Item físico canónico de EQP-01, precio exacto, coste de materiales 50% de VR, tiempos, rango y tipo de instalación de CRAFT-03.
+- Los proyectos nacen en Borrador: no pueden completarse sin materiales reales compatibles, herramienta/Kit, competencias, tiempo y preparación.
+- El Catalejo conserva su requisito de Plano estable; se notifican competencias auxiliares cuando corresponda.
+- No se fabrican por inferencia los cuatro consumibles sin procedimiento universal ni las 75 propuestas de EQP-01 pendientes de auditoría.
+- Se amplían pruebas de catálogo, fuente de resultado, invariantes económicos y vista previa del Proyecto.
+- No cambia el canon, los precios, las estadísticas ni el motor transaccional CRAFT-13.
+
 ## Publicación v1.5.2 — 2026-10-07
 
 - Publicada como release estable desde `c264143991479a627364e71aacbde5de6998f1c3`.
