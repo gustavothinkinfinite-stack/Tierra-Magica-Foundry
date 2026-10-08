@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { NPC_REFERENCE_PROFILES, npcReferenceCatalog } from "../scripts/catalog/npc-catalog.mjs";
+import { APPROVED_BESTIARY_ART_SLUGS, PENDING_BESTIARY_ART_SLUGS, bestiaryArtFiles, resolveBestiaryArt } from "../scripts/catalog/npc-art.mjs";
 import { deriveActorState, resolveDerivedSelector } from "../scripts/rules/derived-state.mjs";
 
 test("Bestiario contiene exactamente los 11 perfiles del Manual Maestro §23", () => {
@@ -65,4 +66,41 @@ test("ficha NPC oculta la creación de PJ y mantiene ataque e iniciativa", async
     else assert.equal(stack.pop(),token[2],"secuencia de bloques HBS");
   }
   assert.equal(stack.length,0,"todos los condicionales HBS están cerrados");
+});
+
+test("cada pareja de arte aprobada asigna retrato y token reales a su Actor", () => {
+  assert.equal(APPROVED_BESTIARY_ART_SLUGS.length,10);
+  const allFiles=new Set(APPROVED_BESTIARY_ART_SLUGS.flatMap((slug)=>Object.values(bestiaryArtFiles(slug))));
+  const actors=npcReferenceCatalog({availableArtFiles:allFiles});
+  for(const actor of actors){
+    const slug=NPC_REFERENCE_PROFILES.find((entry)=>entry.name===actor.name).slug;
+    if(PENDING_BESTIARY_ART_SLUGS.includes(slug)){
+      assert.equal(actor.img,"systems/tierra-magica/assets/icons/actor.svg");
+      assert.equal(actor.prototypeToken.texture,undefined);
+      continue;
+    }
+    assert.equal(actor.img,"systems/tierra-magica/assets/bestiary/"+slug+"-retrato.webp",actor.name);
+    assert.equal(actor.prototypeToken.texture.src,"systems/tierra-magica/assets/bestiary/"+slug+"-token.webp",actor.name);
+    assert.equal(actor.prototypeToken.actorLink,false);
+  }
+});
+
+test("una imagen suelta nunca activa una referencia rota ni promociona al Tirador", () => {
+  const first=bestiaryArtFiles("lobo");
+  assert.equal(resolveBestiaryArt("lobo",new Set([first.portrait])),null);
+  assert.equal(resolveBestiaryArt("lobo",new Set([first.token])),null);
+  assert.equal(resolveBestiaryArt("tirador",new Set(["tirador-retrato.webp","tirador-token.webp"])),null);
+  const actor=npcReferenceCatalog({availableArtFiles:new Set([first.portrait])})
+    .find((entry)=>entry.name==="Lobo");
+  assert.equal(actor.img,"systems/tierra-magica/assets/icons/actor.svg");
+});
+
+test("el compilador valida las parejas WebP antes de enlazarlas", async () => {
+  const source=await readFile(resolve("tools/build-packs.mjs"),"utf8");
+  const installer=await readFile(resolve("tools/install-bestiary-art.mjs"),"utf8");
+  assert.match(source,/npcReferenceCatalog\(\{availableArtFiles\}\)/);
+  assert.match(source,/WEBP/);
+  assert.match(source,/portrait\)!==availableArtFiles\.has/);
+  assert.match(installer,/APPROVED_BESTIARY_ART_SLUGS/);
+  assert.match(installer,/copyFile/);
 });
