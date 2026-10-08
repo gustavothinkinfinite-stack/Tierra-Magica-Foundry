@@ -1,3 +1,4 @@
+import { hasCraftingReservationsForProject } from "./rules/crafting-orphan-reservations.mjs";
 import { installZeroHealthTokenHooks, registerZeroHealthStatus } from "./rules/zero-health-token.mjs";
 import { TM_CONFIG } from "./config.mjs";
 import { damageTypeRegistry } from "./rules/damage-types.mjs";
@@ -200,7 +201,7 @@ Hooks.on("createItem", async (item, options = {}) => {
 Hooks.on("preDeleteItem", (item, options = {}) => {
   const actor = item.parent;
   if (!actor || actor.type !== "character" || options.tmValidated) return;
-  if (item.type === "project" && item.system?.execution?.committed) {
+  if (item.type === "project" && (item.system?.execution?.committed || item.system?.state === "active" || hasCraftingReservationsForProject(item))) {
     ui.notifications.warn("Cancela o libera el Proyecto antes de eliminarlo; posee materiales reservados.");
     return false;
   }
