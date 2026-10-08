@@ -73,6 +73,7 @@ jobs:
           grep -q "tierra-magica/packs/magic/" release-contents.txt
           grep -q "tierra-magica/packs/equipment/" release-contents.txt
           grep -q "tierra-magica/packs/production/" release-contents.txt
+          grep -q "tierra-magica/packs/bestiary/" release-contents.txt
 
           if grep -Eq "tierra-magica/(docs/|test/|tools/|node_modules/|\.pack-source/|package\.json)" release-contents.txt; then
             echo "::error::El ZIP contiene archivos de desarrollo."
@@ -86,6 +87,8 @@ jobs:
           if (process.env.TM_RELEASE_TAG!==expected) throw new Error("Tag y manifiesto no coinciden.");
           if (!manifest.manifest.endsWith("/releases/latest/download/system.json")) throw new Error("Manifest URL de release no es estable.");
           if (!manifest.download.endsWith("/releases/download/"+expected+"/tierra-magica.zip")) throw new Error("Download URL no está fijada a la versión.");
+          const bestiary=manifest.packs.find(pack=>pack.name==="bestiary");
+          if (bestiary?.type!=="Actor" || bestiary.path!=="packs/bestiary") throw new Error("El Bestiario debe figurar como compendio Actor.");
           NODE
 
       - name: Crear publicación
