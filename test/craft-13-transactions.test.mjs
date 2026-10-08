@@ -2908,7 +2908,7 @@ test("CRAFT hotfix: una reserva persistida con UUID anidado se completa una sola
     system:{category:"Herramienta",priceCopper:20,priceStatus:"exact",quality:"common",quantity:1}
   };
   const craft=project(actor,{id:"palanca",material,materialCopper:10,referenceValueCopper:20,requiredMinutes:120,
-    resultData,requiredInstallation:"improvised",availableInstallation:"specialized"});
+    resultData,requiredInstallation:"adequate",availableInstallation:"specialized"});
   const resolver=resolverFor(actor);
   { const result=await reserveCraftingProjectMaterials(craft,{resolver}); assert.equal(result.ok,true,JSON.stringify(result)); }
   const record=structuredClone(material.system.craftingLot.reservations["p_"+craft.id]);
@@ -2934,7 +2934,7 @@ test("CRAFT hotfix: proyecto activo con reserva histórica perdida se recupera s
   const craft=project(actor,{id:"palanca",material,materialCopper:10,referenceValueCopper:20,
     requiredMinutes:120,resultData:{name:"Palanca",type:"equipment",
     system:{category:"Herramienta",priceCopper:20,priceStatus:"exact",quality:"common",quantity:1}},
-    requiredInstallation:"improvised",availableInstallation:"specialized"});
+    requiredInstallation:"adequate",availableInstallation:"specialized"});
   const resolver=resolverFor(actor);
   { const result=await reserveCraftingProjectMaterials(craft,{resolver}); assert.equal(result.ok,true,JSON.stringify(result)); }
   material.system.craftingLot.reservations={}; // Simula pérdida real tras reiniciar el mundo.
@@ -2953,7 +2953,7 @@ test("CRAFT hotfix: no se reconstruye una reserva perdida con un competidor o VI
     resultData:{name:"Objeto",type:"equipment",system:{quality:"common",priceCopper:100}}});
   const second=project(actor,{id:"second",material,materialCopper:50,referenceValueCopper:100});
   const resolver=resolverFor(actor);
-  { const result=await reserveCraftingProjectMaterials(craft,{resolver}); assert.equal(result.ok,true,JSON.stringify(result)); }
+  { const result=await reserveCraftingProjectMaterials(first,{resolver}); assert.equal(result.ok,true,JSON.stringify(result)); }
   material.system.craftingLot.reservations={};
   second.system.state="active";
   second.system.execution.committed=true;
