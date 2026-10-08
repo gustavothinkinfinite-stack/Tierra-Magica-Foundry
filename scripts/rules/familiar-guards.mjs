@@ -64,7 +64,7 @@ export function installFamiliarGuards(ActorClass) {
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>Acción Vinculada — " + foundry.utils.escapeHTML(familiar.name) +
-        "</strong><p>" + foundry.utils.escapeHTML(text) + "</p><p>Consume la Reacción de " +
+        "</strong><p>" + foundry.utils.escapeHTML(text) + "</p><p>Requiere Reacción de " +
         foundry.utils.escapeHTML(this.name) + ". No concede un segundo turno ni una Reacción adicional.</p></div>"
     });
   };
