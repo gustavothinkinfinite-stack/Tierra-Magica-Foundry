@@ -10,7 +10,7 @@ Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 
 
 El núcleo 1.0 permanece **completo y jugable**. Cualquier ampliación mecánica futura debe partir de una decisión explícita incorporada primero al Manual Maestro; una fase nueva no se infiere automáticamente a partir del código.
 
-La próxima release prevista es **v1.7.0**; la última publicada sigue siendo **v1.6.1** hasta completar el workflow. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
+La release pública actual es **v1.7.0**, publicada el 2026-10-08. Incluye el compendio de Actors «Tierra Mágica — Bestiario» con 11 perfiles canónicos. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
 
 ## Instalación
 
