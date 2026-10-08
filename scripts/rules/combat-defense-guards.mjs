@@ -29,15 +29,6 @@ const parryBonusForWeapon = (weapon) => {
   return Math.max(2, Math.min(3, Number.isFinite(configured) ? configured : 2));
 };
 
-async function spendAction(actor) {
-  if (!(actor.system.turn?.action ?? true)) {
-    ui.notifications.warn(actor.name + " ya gastó su Acción.");
-    return false;
-  }
-  await actor.update({ "system.turn.action": false });
-  return true;
-}
-
 function parrySucceeded(total, baseDefense, parryDefense) {
   return Number.isFinite(total) &&
     Number.isFinite(baseDefense) &&
@@ -71,8 +62,7 @@ export function installCombatDefenseGuards(ActorClass) {
   const originalRollWeapon = ActorClass.prototype.rollWeapon;
 
   ActorClass.prototype.guard = async function () {
-    if (!(this.system.turn?.action ?? true)) return ui.notifications.warn(this.name + " ya gastó su Acción.");
-    await this.update({ "system.turn.action": false, "system.combat.guardActive": true });
+    await this.update({ "system.combat.guardActive": true });
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>Guardia</strong><p>" +
@@ -83,13 +73,11 @@ export function installCombatDefenseGuards(ActorClass) {
 
   ActorClass.prototype.parry = async function (weapon = null) {
     if (!ownsTechnique(this, "Parada")) return ui.notifications.warn(this.name + " no posee la Técnica Parada.");
-    if (!(this.system.turn?.reaction ?? true)) return ui.notifications.warn(this.name + " ya gastó su Reacción.");
     if (weapon && (weapon.type !== "weapon" || weapon.parent !== this || isRangedWeapon(weapon))) {
       return ui.notifications.warn("Parada debe declararse con un arma cuerpo a cuerpo válida del Actor.");
     }
     const bonus = parryBonusForWeapon(weapon);
     await this.update({
-      "system.turn.reaction": false,
       "system.combat.parryActive": true,
       "system.combat.parrySucceeded": false,
       "system.combat.counterattackUsed": false,
@@ -136,7 +124,6 @@ export function installCombatDefenseGuards(ActorClass) {
     if (parryableAttack && target.system?.combat?.parryActive && !canResolveSharedMutation(target)) {
       return ui.notifications.warn("No hay una autoridad activa capaz de consumir la Parada del objetivo.");
     }
-    if (!options.tmReactionAttack && !(await spendAction(this))) return null;
 
     const kineticClaim = await claimKineticBarrier(target);
     if (!kineticClaim.ok) return ui.notifications.warn(kineticClaim.error);
@@ -186,7 +173,6 @@ export function installCombatDefenseGuards(ActorClass) {
     if (hasParryableAttack && target.system?.combat?.parryActive && !canResolveSharedMutation(target)) {
       return ui.notifications.warn("No hay una autoridad activa capaz de consumir la Parada del objetivo.");
     }
-    if (!(await spendAction(this))) return null;
     const kineticClaim = await claimKineticBarrier(target);
     if (!kineticClaim.ok) return ui.notifications.warn(kineticClaim.error);
     const parryClaim = hasParryableAttack ? await claimParryAuthoritatively(target) : { ok:true, claimed:false };
@@ -270,7 +256,6 @@ export function installCombatDefenseGuards(ActorClass) {
     if (parryable && targets.some((target) => target.system?.combat?.parryActive && !canResolveSharedMutation(target))) {
       return ui.notifications.warn("No hay una autoridad activa capaz de consumir todas las Paradas de Barrido.");
     }
-    if (!(await spendAction(this))) return null;
 
     const claims = new Map();
     const parryClaims = new Map();
