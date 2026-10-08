@@ -306,6 +306,8 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     });
     html.find("[data-action='roll-skill']").click((event) => this.actor.configureAndRollSkill(event.currentTarget.dataset.key));
     html.find("[data-action='roll-initiative']").click(() => this.actor.rollInitiativeCheck());
+    html.find("[data-action='roll-npc-attack']").click((event) =>
+      this.actor.rollNpcAttack(Number(event.currentTarget.dataset.index)));
     html.find("[data-action='resource-change']").click((event) => this.actor.adjustResource(event.currentTarget.dataset.resource, event.currentTarget.dataset.amount));
     html.find("[data-action='rest']").click((event) => this.actor.rest(event.currentTarget.dataset.kind));
     html.find("[data-action='currency-denomination']").change((event) => this.#updateCurrencyBreakdown(event));
