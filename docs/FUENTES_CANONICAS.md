@@ -78,6 +78,10 @@ La ampliación del grimorio está **CERRADA Y CANONIZADA**. El Manual Maestro de
 
 Foundry adopta schema v5 para contratos de objetivos mágicos y migración del cierre espacial.
 
+## Estado de publicación 1.6.1
+
+El hotfix objetivo **v1.6.1** corrige exclusivamente las claves y recuperación segura de reservas de Lotes CRAFT-13 para proyectos ya iniciados. No altera tiempos, costes ni el Manual Maestro. Se registrará la publicación oficial al completar la release.
+
 ## Estado de publicación 1.6.0
 
 Foundry T.M. **v1.6.0 está publicada** desde el commit `078c1e5f77dc7df3ab68a6ef3ea68fb4b8062dfa`, con 21 recetas ordinarias CRAFT-03 para objetos canónicos EQP-01. Los costes, requisitos y tiempos provienen del Manual Maestro; no se crean nuevas reglas ni precios.
