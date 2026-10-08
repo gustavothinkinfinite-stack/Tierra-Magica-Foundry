@@ -1,3 +1,4 @@
+import { safeActorSheetRenderOptions } from "./actor-sheet-render-options.mjs";
 import { TM_CONFIG } from "../config.mjs";
 import { toNumber } from "../rules.mjs";
 import { normalizeSlug } from "../rules/identity.mjs";
@@ -14,19 +15,6 @@ import {
 const ActorSheetV1 = foundry.appv1.sheets.ActorSheet;
 const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
 
-
-// Foundry v14 todavía llama a las fichas V1 desde tokens colocados.
-// V1 combina profundamente las opciones de render; si llega un
-// TokenDocument como `options.token`, intenta escribir su _id inmutable.
-// La ficha ya puede obtener el token desde `this.actor.token`.
-export function safeActorSheetRenderOptions(options = {}) {
-  if (!options || typeof options !== "object") return {};
-  const token=options.token;
-  if (!token || typeof token !== "object") return options;
-  if (token.documentName !== "Token" && typeof token.toObject !== "function") return options;
-  const {token: _tokenDocument, ...safeOptions}=options;
-  return safeOptions;
-}
 
 export class TierraMagicaActorSheet extends ActorSheetV1 {
   constructor(...args) {
