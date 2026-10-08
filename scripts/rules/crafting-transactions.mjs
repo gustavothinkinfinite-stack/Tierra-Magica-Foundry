@@ -76,6 +76,49 @@ function actorKey(actor) {
   return String(actor?.uuid ?? actor?.id ?? "");
 }
 
+// No utilizar UUID con puntos como clave de un ObjectField de Foundry:
+// durante la persistencia puede expandirse como ruta y perder la búsqueda plana.
+function reservationKey(project) {
+  const id=String(project?.id ?? project?.uuid?.split(".").at(-1) ?? "");
+  return "p_" + id.replace(/[^a-zA-Z0-9_-]/g, "_");
+}
+
+// Lee tanto claves seguras como las claves UUID planas/anidadas que dejaron
+// las versiones anteriores. Al volver a escribir, todas quedan normalizadas.
+function normalizedReservationMap(input) {
+  const result={};
+  const visit=(data, segments=[])=>{
+    if(!data || typeof data!=="object" || Array.isArray(data)) return;
+    for(const [key,value] of Object.entries(data)){
+      if(!value || typeof value!=="object" || Array.isArray(value)) continue;
+      const path=[...segments,key];
+      if(Object.hasOwn(value,"amountCopper") || Object.hasOwn(value,"quantity")){
+        const uuid=String(value.projectUuid ?? "");
+        const id=uuid.match(/\\.Item\\.([^.]+)$/)?.[1];
+        const currentKey=key.startsWith("p_") ? key :
+          (id ? "p_"+id.replace(/[^a-zA-Z0-9_-]/g,"_") :
+          "legacy_"+path.join("_").replace(/[^a-zA-Z0-9_-]/g,"_"));
+        // En una colisión preferimos no borrar la reserva existente.
+        if(!Object.hasOwn(result,currentKey)) result[currentKey]=clone(value);
+        continue;
+      }
+      visit(value,path);
+    }
+  };
+  visit(input);
+  return result;
+}
+
+function competingActiveProjectUsesLot(project, lotUuid) {
+  const actor=project?.parent;
+  for(const other of actor?.items ?? []){
+    if(other.type!=="project" || String(other.id)===String(project.id)) continue;
+    if(other.system?.state!=="active" || other.system?.execution?.committed!==true) continue;
+    if(craftingProjectMaterialAllocations(other).some((row)=>row.sourceUuid===lotUuid)) return true;
+  }
+  return false;
+}
+
 function craftingCreationWindowIssue(actor) {
   if (actor?.type !== "character") return "";
   const status=String(actor.system?.creation?.status ?? "complete");
@@ -96,9 +139,7 @@ function sameParent(document, actor) {
 
 function lotData(item) {
   const data = item?.system?.craftingLot ?? {};
-  const reservations = data.reservations && typeof data.reservations === "object" && !Array.isArray(data.reservations)
-    ? { ...data.reservations }
-    : {};
+  const reservations = normalizedReservationMap(data.reservations);
   return {
     enabled: data.enabled === true,
     category: String(data.category ?? ""),
@@ -124,7 +165,7 @@ export function craftingLotReservedCopper(item, { excludingProject = "" } = {}) 
 }
 
 export function craftingLotAvailableCopper(item, { project = null } = {}) {
-  const key = projectKey(project);
+  const key = reservationKey(project);
   const lot = lotData(item);
   return Math.max(0, lot.inputValueCopper - craftingLotReservedCopper(item, { excludingProject:key }));
 }
@@ -148,7 +189,7 @@ export function craftingProjectMaterialAllocations(project) {
 
 function componentReservationData(item) {
   const data = item?.system?.craftingReservations;
-  return data && typeof data === "object" && !Array.isArray(data) ? { ...data } : {};
+  return normalizedReservationMap(data);
 }
 
 function componentReservationQuantity(entry) {
@@ -164,7 +205,7 @@ export function craftingComponentReservedQuantity(item, { excludingProject = "" 
 
 export function craftingComponentAvailableQuantity(item, { project = null } = {}) {
   const quantity = Math.max(0, Math.floor(number(item?.system?.quantity, 1)));
-  return Math.max(0, quantity - craftingComponentReservedQuantity(item, { excludingProject:projectKey(project) }));
+  return Math.max(0, quantity - craftingComponentReservedQuantity(item, { excludingProject:reservationKey(project) }));
 }
 
 export function craftingProjectComponentAllocations(project) {
@@ -1673,7 +1714,7 @@ export async function reserveCraftingProjectMaterials(project, {
     for (const row of resolved) {
       const before = clone(row.lot.reservations);
       const next = clone(row.lot.reservations);
-      next[projectKey(project)] = reservationRecord(project, row.allocation.amountCopper);
+      next[reservationKey(project)] = reservationRecord(project, row.allocation.amountCopper);
       snapshots.push({
         document:row.item,
         updates:{ "system.craftingLot.reservations":before }
@@ -1684,7 +1725,7 @@ export async function reserveCraftingProjectMaterials(project, {
     for (const row of resolvedComponents) {
       const before = componentReservationData(row.item);
       const next = clone(before);
-      next[projectKey(project)] = {
+      next[reservationKey(project)] = {
         projectUuid:projectKey(project),
         actorUuid:actorKey(project.parent),
         quantity:row.allocation.quantity,
@@ -1737,9 +1778,9 @@ export async function releaseCraftingProjectMaterials(project, {
     const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
     if (!item) continue;
     const lot = lotData(item);
-    if (!lot.reservations[projectKey(project)]) continue;
+    if (!lot.reservations[reservationKey(project)]) continue;
     const next = clone(lot.reservations);
-    delete next[projectKey(project)];
+    delete next[reservationKey(project)];
     snapshots.push({ document:item, updates:{ "system.craftingLot.reservations":clone(lot.reservations) } });
     await item.update({ "system.craftingLot.reservations":next }, { tmValidated:true, tmCrafting:true });
   }
@@ -1749,9 +1790,9 @@ export async function releaseCraftingProjectMaterials(project, {
     const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
     if (!item) continue;
     const reservations = componentReservationData(item);
-    if (!reservations[projectKey(project)]) continue;
+    if (!reservations[reservationKey(project)]) continue;
     const next = clone(reservations);
-    delete next[projectKey(project)];
+    delete next[reservationKey(project)];
     snapshots.push({ document:item, updates:{ "system.craftingReservations":clone(reservations) } });
     await item.update({ "system.craftingReservations":next }, { tmValidated:true, tmCrafting:true });
   }
@@ -1814,17 +1855,44 @@ async function consumeReservations(project, resolver) {
   const snapshots = [];
   const consumedComponents = [];
 
-  for (const allocation of allocations) {
-    const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
-    if (!item) return { ok:false, error:"Un Lote comprometido ya no existe.", snapshots };
-    const lot = lotData(item);
-    const reservation = lot.reservations[projectKey(project)];
-    if (!reservation || reservationAmount(reservation) !== allocation.amountCopper) {
-      return { ok:false, error:"La reserva de un Lote ya no coincide con el Proyecto.", snapshots };
+  // El Proyecto en curso y su ledger constituyen el comprobante de compromiso.
+  // Si una reserva histórica se perdió por la serialización de UUID con puntos,
+  // la restituimos exclusivamente cuando no hay otro proyecto activo competidor.
+  const recovery=[];
+  const committed=allocations.reduce((sum,row)=>sum+row.amountCopper,0);
+  if(committed!==model.ledger.committedMaterialsCopper){
+    return {ok:false,error:"Los materiales asignados ya no coinciden con el compromiso del Proyecto.",snapshots};
+  }
+  for(const allocation of allocations){
+    const item=await resolveOwnedItem(actor,allocation.sourceUuid,resolver);
+    if(!item) return {ok:false,error:"Un Lote comprometido ya no existe.",snapshots};
+    const lot=lotData(item);
+    const existing=lot.reservations[reservationKey(project)];
+    if(existing && reservationAmount(existing)!==allocation.amountCopper){
+      return {ok:false,error:"La reserva de un Lote ya no coincide con el Proyecto.",snapshots};
     }
-    if (allocation.amountCopper > lot.inputValueCopper) {
-      return { ok:false, error:"Un Lote comprometido ya no posee VI suficiente.", snapshots };
+    if(allocation.amountCopper>lot.inputValueCopper){
+      return {ok:false,error:"Un Lote comprometido ya no posee VI suficiente.",snapshots};
     }
+    if(!existing){
+      const available=lot.inputValueCopper-craftingLotReservedCopper(item);
+      if(!lot.enabled || allocation.compatibilities.some((key)=>!lot.compatibility.includes(key)) ||
+        allocation.amountCopper>available || competingActiveProjectUsesLot(project,allocation.sourceUuid)){
+        return {ok:false,error:"La reserva histórica no puede recuperarse de forma segura. Revisá otros Proyectos y Lotes antes de liberar recursos.",snapshots};
+      }
+      recovery.push({item,lot,allocation});
+    }
+  }
+  try {
+    for(const row of recovery){
+      const next=clone(row.lot.reservations);
+      next[reservationKey(project)]=reservationRecord(project,row.allocation.amountCopper);
+      snapshots.push({document:row.item,updates:{"system.craftingLot.reservations":clone(row.lot.reservations)}});
+      await row.item.update({"system.craftingLot.reservations":next},{tmValidated:true,tmCrafting:true});
+    }
+  } catch(error){
+    await rollbackUpdates(snapshots);
+    return {ok:false,error:"No se pudo recuperar la reserva histórica de forma atómica.",cause:String(error?.message??error),snapshots:[]};
   }
 
   const componentAllocations = craftingProjectComponentAllocations(project);
@@ -1832,7 +1900,7 @@ async function consumeReservations(project, resolver) {
     const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
     if (!item) return { ok:false, error:"Un componente comprometido ya no existe.", snapshots };
     const reservations = componentReservationData(item);
-    const reservation = reservations[projectKey(project)];
+    const reservation = reservations[reservationKey(project)];
     if (!reservation || componentReservationQuantity(reservation) !== allocation.quantity) {
       return { ok:false, error:"La reserva física de un componente ya no coincide con el Proyecto.", snapshots };
     }
