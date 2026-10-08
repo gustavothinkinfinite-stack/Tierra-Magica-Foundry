@@ -5,6 +5,7 @@ import {
   advanceCraftingProjectWork,
   completeCraftingProject,
   craftingLotAvailableCopper,
+  craftingLotReservedCopper,
   prepareCraftingProject,
   previewCraftingProject,
   releaseCraftingProjectMaterials,
@@ -294,7 +295,7 @@ test("CRAFT-13C: reservar VI compromete Lote y activa Proyecto sin consumir toda
   assert.equal(craft.system.execution.committed,true);
   assert.equal(craft.system.ledger.committedMaterialsCopper,60);
   assert.equal(material.system.craftingLot.inputValueCopper,100);
-  assert.equal(material.system.craftingLot.reservations[craft.uuid].amountCopper,60);
+  assert.equal(material.system.craftingLot.reservations["p_"+craft.id].amountCopper,60);
   assert.equal(craftingLotAvailableCopper(material),40);
 });
 
@@ -563,9 +564,9 @@ test("CRAFT-13C: componente separado se reserva por cantidad y no aumenta el VI 
   const result=await reserveCraftingProjectMaterials(craft,{resolver});
   assert.equal(result.ok,true);
   assert.equal(craft.system.ledger.committedMaterialsCopper,50);
-  assert.equal(material.system.craftingLot.reservations[craft.uuid].amountCopper,50);
+  assert.equal(material.system.craftingLot.reservations["p_"+craft.id].amountCopper,50);
   assert.equal(component.system.quantity,2);
-  assert.equal(component.system.craftingReservations[craft.uuid].quantity,1);
+  assert.equal(component.system.craftingReservations["p_"+craft.id].quantity,1);
 
   const released=await releaseCraftingProjectMaterials(craft,{expectedRevision:1,resolver});
   assert.equal(released.ok,true);
@@ -652,8 +653,8 @@ test("CRAFT-13C: dos Proyectos no pueden reservar la misma unidad de componente"
   const second=await reserveCraftingProjectMaterials(two,{resolver});
   assert.equal(first.ok,true);
   assert.equal(second.ok,false);
-  assert.equal(component.system.craftingReservations[one.uuid].quantity,1);
-  assert.equal(component.system.craftingReservations[two.uuid],undefined);
+  assert.equal(component.system.craftingReservations["p_"+one.id].quantity,1);
+  assert.equal(component.system.craftingReservations["p_"+two.id],undefined);
 });
 
 test("CRAFT-13C: componente separado sin Item físico bloquea el compromiso",async()=>{
@@ -1131,7 +1132,7 @@ test("CRAFT-13D: si el estado cambia tras reservar, la reparación no usa el cos
   assert.equal(rejected.ok,false);
   assert.match(rejected.error,/(coste canónico cambió|tiempo base de reparación)/);
   assert.equal(material.system.craftingLot.inputValueCopper,100);
-  assert.equal(material.system.craftingLot.reservations[craft.uuid].amountCopper,15);
+  assert.equal(material.system.craftingLot.reservations["p_"+craft.id].amountCopper,15);
 });
 
 test("CRAFT-13D: sustituir una Modificación libera su CapM antes de validar la nueva",async()=>{
@@ -2843,7 +2844,7 @@ test("CRAFT-13I: un Proyecto reservado puede guardarse, reabrirse y completarse 
   const reopenedResolver=resolverFor(reopened);
 
   assert.equal(reopenedProject.uuid,craft.uuid);
-  assert.equal(reopenedMaterial.system.craftingLot.reservations[reopenedProject.uuid].amountCopper,50);
+  assert.equal(reopenedMaterial.system.craftingLot.reservations["p_"+reopenedProject.id].amountCopper,50);
   assert.equal(reopenedProject.system.ledger.committedMaterialsCopper,50);
 
   const worked=await advanceCraftingProjectWork(reopenedProject,60,{expectedRevision:1});
@@ -2896,4 +2897,88 @@ test("CRAFT-13I: reparar un acumulador no rellena Energía",async()=>{
   assert.equal(result.ok,true);
   assert.equal(target.system.condition,"operative");
   assert.equal(target.system.energy.value,1);
+});
+
+
+test("CRAFT hotfix: una reserva persistida con UUID anidado se completa una sola vez",async()=>{
+  const actor=new StubActor("historic-nested");
+  const material=lot(actor,{id:"material",vi:30});
+  const resultData={
+    name:"Palanca",type:"equipment",
+    system:{category:"Herramienta",priceCopper:20,priceStatus:"exact",quality:"common",quantity:1}
+  };
+  const craft=project(actor,{id:"palanca",material,materialCopper:10,referenceValueCopper:20,requiredMinutes:120,
+    resultData,requiredInstallation:"adequate",availableInstallation:"specialized"});
+  const resolver=resolverFor(actor);
+  { const result=await reserveCraftingProjectMaterials(craft,{resolver}); assert.equal(result.ok,true,JSON.stringify(result)); }
+  const record=structuredClone(material.system.craftingLot.reservations["p_"+craft.id]);
+  // El mapa antiguo se había serializado como una ruta Actor.X.Item.Y.
+  material.system.craftingLot.reservations={
+    Actor:{"historic-nested":{Item:{palanca:record}}}
+  };
+  assert.equal(craftingLotAvailableCopper(material),20);
+  assert.equal((await advanceCraftingProjectWork(craft,120,{expectedRevision:1})).ok,true);
+  const completed=await completeCraftingProject(craft,{expectedRevision:2,resolver});
+  assert.equal(completed.ok,true,completed.error);
+  assert.equal(material.system.craftingLot.inputValueCopper,20);
+  assert.deepEqual(material.system.craftingLot.reservations,{});
+  assert.ok([...actor.items.values()].some(item=>item.name==="Palanca"));
+  const again=await completeCraftingProject(craft,{expectedRevision:3,resolver});
+  assert.equal(again.alreadyCompleted,true);
+  assert.equal(material.system.craftingLot.inputValueCopper,20);
+});
+
+test("CRAFT hotfix: proyecto activo con reserva histórica perdida se recupera sin volver a pagar",async()=>{
+  const actor=new StubActor("lost-persistence");
+  const material=lot(actor,{id:"ordinary",vi:30});
+  const craft=project(actor,{id:"palanca",material,materialCopper:10,referenceValueCopper:20,
+    requiredMinutes:120,resultData:{name:"Palanca",type:"equipment",
+    system:{category:"Herramienta",priceCopper:20,priceStatus:"exact",quality:"common",quantity:1}},
+    requiredInstallation:"adequate",availableInstallation:"specialized"});
+  const resolver=resolverFor(actor);
+  { const result=await reserveCraftingProjectMaterials(craft,{resolver}); assert.equal(result.ok,true,JSON.stringify(result)); }
+  material.system.craftingLot.reservations={}; // Simula pérdida real tras reiniciar el mundo.
+  assert.equal((await advanceCraftingProjectWork(craft,120,{expectedRevision:1})).ok,true);
+  const finished=await completeCraftingProject(craft,{expectedRevision:2,resolver});
+  assert.equal(finished.ok,true,finished.error);
+  assert.equal(material.system.craftingLot.inputValueCopper,20);
+  assert.equal(craft.system.state,"completed");
+  assert.deepEqual(material.system.craftingLot.reservations,{});
+});
+
+test("CRAFT hotfix: no se reconstruye una reserva perdida con un competidor o VI insuficiente",async()=>{
+  const actor=new StubActor("conflicting-work");
+  const material=lot(actor,{id:"ordinary",vi:100});
+  const first=project(actor,{id:"first",material,materialCopper:50,referenceValueCopper:100,
+    resultData:{name:"Objeto",type:"equipment",system:{quality:"common",priceCopper:100}}});
+  const second=project(actor,{id:"second",material,materialCopper:50,referenceValueCopper:100});
+  const resolver=resolverFor(actor);
+  { const result=await reserveCraftingProjectMaterials(first,{resolver}); assert.equal(result.ok,true,JSON.stringify(result)); }
+  material.system.craftingLot.reservations={};
+  second.system.state="active";
+  second.system.execution.committed=true;
+  second.system.ledger.committedMaterialsCopper=50;
+  first.system.time.completedMinutes=first.system.time.requiredMinutes;
+  const rejected=await completeCraftingProject(first,{expectedRevision:1,resolver});
+  assert.equal(rejected.ok,false);
+  assert.match(rejected.error,/recuperarse de forma segura/);
+  assert.equal(material.system.craftingLot.inputValueCopper,100);
+  assert.deepEqual(material.system.craftingLot.reservations,{});
+  second.system.state="cancelled";
+  material.system.craftingLot.inputValueCopper=40;
+  const low=await completeCraftingProject(first,{expectedRevision:1,resolver});
+  assert.equal(low.ok,false);
+  assert.equal(material.system.craftingLot.inputValueCopper,40);
+});
+
+test("CRAFT hotfix: la reserva nueva se guarda con identificador sin puntos",async()=>{
+  const actor=new StubActor("reservation-key");
+  const material=lot(actor,{id:"ordinary",vi:100});
+  const craft=project(actor,{id:"object-1",material,materialCopper:50,referenceValueCopper:100});
+  assert.equal((await reserveCraftingProjectMaterials(craft,{resolver:resolverFor(actor)})).ok,true);
+  const keys=Object.keys(material.system.craftingLot.reservations);
+  assert.deepEqual(keys,["p_object-1"]);
+  assert.equal(keys[0].includes("."),false);
+  assert.equal(craftingLotReservedCopper(material,{excludingProject:craft.uuid}),0);
+  assert.equal(craftingLotReservedCopper(material),50);
 });
