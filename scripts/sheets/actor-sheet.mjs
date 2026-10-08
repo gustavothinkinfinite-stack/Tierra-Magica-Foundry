@@ -45,6 +45,7 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     context.isGM = Boolean(game.user?.isGM);
     context.isCharacter = this.actor.type === "character";
     context.isNpc = this.actor.type === "npc";
+    context.npcBodyDefenseApplicable = this.actor.type === "npc" && this.actor.system.npcProfile?.enabled === true && this.actor.system.npcProfile.bodyDefense !== null;
     context.isFamiliar = this.actor.type === "familiar";
     context.itemGroups = this.#groupItems(this.actor.items);
     context.itemCounts = Object.fromEntries(Object.entries(context.itemGroups).map(([type, items]) => [type, items.length]));
