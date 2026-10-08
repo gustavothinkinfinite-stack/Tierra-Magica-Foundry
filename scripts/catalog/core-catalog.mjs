@@ -12,6 +12,7 @@ import { approvedFlexibleProfileSources } from "./weapon-profiles-flexible-appro
 import { approvedArmorVariantSources } from "./armor-variants-approved.mjs";
 import { approvedShieldVariantSources } from "./shield-variants-approved.mjs";
 import { canonicalEquipmentSources } from "./equipment-canonical.mjs";
+import { craftingMaterialLotSources } from "./crafting-material-lots.mjs";
 
 const ANCESTRIES = [
   {
@@ -446,7 +447,7 @@ export function legacyStarterCatalog() {
   for (const [type, list] of Object.entries(STARTER_CONTENT)) {
     for (const raw of list ?? []) entries.push(migrateItemSource({ name:raw.name, type, system:raw.system ?? {} }, { embedded:false }));
   }
-  for (const raw of [...approvedProjectileProfileSources(), ...approvedFlexibleProfileSources(), ...approvedWeaponVariantSources(), ...approvedSpecialLightVariantSources(), ...approvedMartialVariantSources(), ...approvedHeavyVariantSources(), ...approvedRangedVariantSources(), ...approvedRegionalVariantSources(), ...approvedArmorVariantSources(), ...approvedShieldVariantSources(), ...canonicalEquipmentSources()]) {
+  for (const raw of [...approvedProjectileProfileSources(), ...approvedFlexibleProfileSources(), ...approvedWeaponVariantSources(), ...approvedSpecialLightVariantSources(), ...approvedMartialVariantSources(), ...approvedHeavyVariantSources(), ...approvedRangedVariantSources(), ...approvedRegionalVariantSources(), ...approvedArmorVariantSources(), ...approvedShieldVariantSources(), ...canonicalEquipmentSources(), ...craftingMaterialLotSources()]) {
     entries.push(migrateItemSource(raw,{embedded:false}));
   }
   return entries;
