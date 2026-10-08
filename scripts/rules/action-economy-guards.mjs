@@ -1,95 +1,13 @@
-// Foundry T.M. — autoridad transversal para la Acción de activaciones ejecutables.
-// Sólo consume después de una resolución válida; las validaciones fallidas no queman el turno.
-// Un único bloqueo por Actor impide reutilizar la Acción concurrentemente entre subsistemas.
+// La economía de turno se controla en mesa. Foundry ejecuta cada operación
+// sin bloquearla por Acción/Reacción gastada y conserva sus validaciones propias.
+// Acción y Reacción son indicadores manuales, no candados automáticos.
 
-import { runReaction } from "./reaction-economy-guards.mjs";
-import {
-  commitTurnResourceReservation,
-  releaseTurnResourceReservation,
-  reserveTurnResourceAuthoritatively
-} from "./state-authority.mjs";
-
-const actionLocks = new WeakSet();
-const reactionLocksByActor = new WeakSet();
-
-function isNotificationResult(result) {
-  if (!result) return false;
-  try {
-    return Boolean(globalThis.ui?.notifications?.has?.(result));
-  } catch {
-    return false;
-  }
+export async function runAction(_actor, operation) {
+  return operation();
 }
 
-function actionWasResolved(result) {
-  if (!result) return false;
-  if (result?.tmActionResolved === true) return true;
-  if (result?.tmActionResolved === false) return false;
-  // Foundry v14 devuelve un objeto Notification desde ui.notifications.warn/info.
-  // Ese objeto confirma que hubo un aviso, no que la Acción se haya resuelto.
-  if (isNotificationResult(result)) return false;
-  return true;
-}
-
-export async function runAction(actor, operation) {
-  if (actor.system.status?.incapacitated || Number(actor.system.resources?.health?.value) <= 0) {
-    ui.notifications.warn(actor.name + " está Incapacitado y no puede ejecutar una Acción.");
-    return null;
-  }
-  if (!(actor.system.turn?.action ?? true)) {
-    ui.notifications.warn(actor.name + " ya gastó su Acción.");
-    return null;
-  }
-  if (actionLocks.has(actor)) {
-    ui.notifications.warn(actor.name + " ya está resolviendo su Acción.");
-    return null;
-  }
-
-  actionLocks.add(actor);
-  let reservation = null;
-  try {
-    reservation = await reserveTurnResourceAuthoritatively(actor, "action");
-    if (!reservation?.ok) {
-      ui.notifications.warn(reservation?.error ?? actor.name + " no pudo reservar su Acción.");
-      return null;
-    }
-    if (!reservation.claimed) {
-      ui.notifications.warn(actor.name + (reservation.reason === "reserved"
-        ? " tiene otra Acción pendiente de resolución. Completala o cancelala antes de iniciar otra."
-        : " ya gastó su Acción."));
-      return null;
-    }
-
-    const result = await operation();
-    if (!actionWasResolved(result)) {
-      await releaseTurnResourceReservation(actor, "action", reservation.reservationId);
-      return null;
-    }
-    const committed = await commitTurnResourceReservation(actor, "action", reservation.reservationId);
-    if (!committed?.ok) ui.notifications.warn(committed?.error ?? "No se pudo confirmar el gasto de Acción.");
-    return result;
-  } catch (error) {
-    if (reservation?.claimed) await releaseTurnResourceReservation(actor, "action", reservation.reservationId);
-    throw error;
-  } finally {
-    actionLocks.delete(actor);
-  }
-}
-
-async function runReactionOperation(actor, operation) {
-  // runReaction ya aporta la exclusión transversal con Parada/Contramagia/Familiar.
-  // Este bloqueo local además impide dos lanzamientos reactivos simultáneos antes
-  // de que el primero alcance a persistir el gasto de Reacción.
-  if (reactionLocksByActor.has(actor)) {
-    ui.notifications.warn(actor.name + " ya está resolviendo una Reacción.");
-    return null;
-  }
-  reactionLocksByActor.add(actor);
-  try {
-    return await runReaction(actor, operation);
-  } finally {
-    reactionLocksByActor.delete(actor);
-  }
+async function runReactionOperation(_actor, operation) {
+  return operation();
 }
 
 export function installActionEconomyGuards(ActorClass) {
