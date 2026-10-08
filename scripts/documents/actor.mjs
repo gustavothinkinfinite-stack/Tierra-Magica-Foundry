@@ -536,6 +536,44 @@ export class TierraMagicaActor extends Actor {
   }
 
 
+  // Tirada de ataque referencial de PNJ: no añade Atributos/Habilidades de PJ,
+  // no deduce el tipo de daño y no aplica daño automáticamente.
+  async rollNpcAttack(index) {
+    if (this.type !== "npc" || this.system.npcProfile?.enabled !== true) return null;
+    const attacks=this.system.npcProfile.attacks ?? [];
+    const attack=attacks[Math.floor(Number(index))];
+    if (!attack || !Number.isFinite(Number(attack.bonus))) return null;
+    const targets=[...new Map(
+      [...(game.user.targets ?? [])].map((token)=>token?.actor).filter(Boolean)
+        .map((actor)=>[actor.uuid ?? actor.id,actor])
+    ).values()];
+    if (targets.length > 1) return ui.notifications.warn("Selecciona un único objetivo para el ataque de PNJ.");
+    const target=targets[0] ?? null;
+    const defense=target ? resolveActorDefense(target,{kind:"normal"}).total : null;
+    if (target && !Number.isFinite(defense)) {
+      return ui.notifications.warn("El objetivo no tiene una Defensa general válida.");
+    }
+    const bonus=Number(attack.bonus);
+    const roll=await new Roll(rollFormula("normal",bonus),this.getRollData()).evaluate();
+    const dmg=attack.damage ?? "no especificado";
+    const pen=Number(attack.penetration ?? 0);
+    const escaped=foundry.utils.escapeHTML;
+    const result=target
+      ? ("<p>"+escaped(target.name)+": "+(attackHits(roll.total,defense)?"impacto":"fallo")+
+          " frente a Defensa "+defense+".</p>")
+      : "<p>Sin objetivo: la tirada no se compara con Defensa.</p>";
+    return roll.toMessage({
+      speaker:ChatMessage.getSpeaker({actor:this}),
+      flavor:"<div class='tm-chat-card'><strong>PNJ — "+escaped(this.name)+
+        ": "+escaped(String(attack.name))+"</strong><p>2d10 + "+bonus+
+        " · Daño de perfil "+escaped(String(dmg))+" · Pen "+pen+
+        (attack.notes?" · "+escaped(String(attack.notes)):"")+
+        "</p>"+result+
+        "<p>Referencia: el DJ resuelve el daño y sus efectos; no se aplica automáticamente.</p></div>",
+      rollMode:game.settings.get("core","rollMode")
+    });
+  }
+
   async rollWeapon(item, { df = null, mode = "normal", modifier = 0, damageBonus = 0, penetrationBonus = 0, technique = "", protectionContext = {}, tmFrontal = false } = {}) {
     if (!item || item.type !== "weapon") return null;
     const selected = [...(game.user.targets ?? [])].map((token) => token?.actor).filter(Boolean);
