@@ -103,7 +103,7 @@
           <label><span>Defensa</span><input type="number" min="0" name="system.npcProfile.defense" value="{{system.npcProfile.defense}}" /></label>
           <label><span>Defensa de Maniobra</span><input type="number" min="0" name="system.npcProfile.maneuverDefense" value="{{system.npcProfile.maneuverDefense}}" /></label>
           <label><span>Defensa Mental</span><input type="number" min="0" name="system.npcProfile.mentalDefense" value="{{system.npcProfile.mentalDefense}}" /></label>
-          {{#if system.npcProfile.bodyDefense}}
+          {{#if npcBodyDefenseApplicable}}
           <label><span>Defensa Corporal</span><input type="number" min="0" name="system.npcProfile.bodyDefense" value="{{system.npcProfile.bodyDefense}}" /></label>
           {{else}}
           <div><span>Defensa Corporal: — (no aplicable)</span></div>
@@ -119,6 +119,7 @@
         {{#if system.npcProfile.channelingBonus}}
         <p>Canalización: +{{system.npcProfile.channelingBonus}}. No se asignan hechizos que no figuren en el perfil.</p>
         {{/if}}
+        <button type="button" data-action="roll-initiative"><i class="fa-solid fa-dice"></i> Iniciativa +{{system.derived.initiativeModifier}}</button>
         <h3>Ataques de referencia</h3>
         {{#each system.npcProfile.attacks as |attack index|}}
         <button type="button" data-action="roll-npc-attack" data-index="{{index}}">
