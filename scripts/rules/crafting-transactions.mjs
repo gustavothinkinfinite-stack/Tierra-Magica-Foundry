@@ -94,7 +94,7 @@ function normalizedReservationMap(input) {
       const path=[...segments,key];
       if(Object.hasOwn(value,"amountCopper") || Object.hasOwn(value,"quantity")){
         const uuid=String(value.projectUuid ?? "");
-        const id=uuid.match(/\\.Item\\.([^.]+)$/)?.[1];
+        const id=uuid.match(/\.Item\.([^.]+)$/)?.[1];
         const currentKey=key.startsWith("p_") ? key :
           (id ? "p_"+id.replace(/[^a-zA-Z0-9_-]/g,"_") :
           "legacy_"+path.join("_").replace(/[^a-zA-Z0-9_-]/g,"_"));
@@ -1883,17 +1883,6 @@ async function consumeReservations(project, resolver) {
       recovery.push({item,lot,allocation});
     }
   }
-  try {
-    for(const row of recovery){
-      const next=clone(row.lot.reservations);
-      next[reservationKey(project)]=reservationRecord(project,row.allocation.amountCopper);
-      snapshots.push({document:row.item,updates:{"system.craftingLot.reservations":clone(row.lot.reservations)}});
-      await row.item.update({"system.craftingLot.reservations":next},{tmValidated:true,tmCrafting:true});
-    }
-  } catch(error){
-    await rollbackUpdates(snapshots);
-    return {ok:false,error:"No se pudo recuperar la reserva histórica de forma atómica.",cause:String(error?.message??error),snapshots:[]};
-  }
 
   const componentAllocations = craftingProjectComponentAllocations(project);
   for (const allocation of componentAllocations) {
@@ -1910,12 +1899,24 @@ async function consumeReservations(project, resolver) {
   }
 
   try {
+    for(const row of recovery){
+      const next=clone(row.lot.reservations);
+      next[reservationKey(project)]=reservationRecord(project,row.allocation.amountCopper);
+      snapshots.push({document:row.item,updates:{"system.craftingLot.reservations":clone(row.lot.reservations)}});
+      await row.item.update({"system.craftingLot.reservations":next},{tmValidated:true,tmCrafting:true});
+    }
+  } catch(error){
+    await rollbackUpdates(snapshots);
+    return {ok:false,error:"No se pudo recuperar la reserva histórica de forma atómica.",cause:String(error?.message??error),snapshots:[]};
+  }
+
+  try {
     for (const allocation of allocations) {
       const item = await resolveOwnedItem(actor, allocation.sourceUuid, resolver);
       const lot = lotData(item);
       const previousReservations = clone(lot.reservations);
       const nextReservations = clone(lot.reservations);
-      delete nextReservations[projectKey(project)];
+      delete nextReservations[reservationKey(project)];
       snapshots.push({
         document:item,
         updates:{
@@ -1956,7 +1957,7 @@ async function consumeReservations(project, resolver) {
       }
       const previousReservations = componentReservationData(item);
       const nextReservations = clone(previousReservations);
-      delete nextReservations[projectKey(project)];
+      delete nextReservations[reservationKey(project)];
       const previousQuantity = Math.max(0, Math.floor(number(item.system?.quantity, 1)));
       snapshots.push({
         document:item,
