@@ -15,7 +15,8 @@ test("el integrador defensivo usa la autoridad contextual común", async () => {
 
 test("Guardia persiste estado pero no muta derived manualmente", async () => {
   const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
-  assert.equal(source.includes('"system.turn.action": false, "system.combat.guardActive": true'), true);
+  assert.equal(source.includes('"system.combat.guardActive": true'), true);
+  assert.equal(source.includes('"system.turn.action": false'), false);
   assert.equal(source.includes("guardDefense"), false);
 });
 

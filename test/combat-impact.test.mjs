@@ -87,14 +87,14 @@ test("la ficha expone Técnicas ofensivas y selecciona la segunda arma sin dupli
   assert.equal(sheetLogic.includes('this.actor.useCombatTechnique("golpe-potente", weapon)'), true);
 });
 
-test("Guardia Parada y Contraataque respetan Acción/Reacción y no encadenan", async () => {
+test("Guardia y Parada activan estado sin bloquear el turno; Contraataque mantiene su disparador", async () => {
   const source = await readFile(new URL("../scripts/rules/combat-defense-guards.mjs", import.meta.url), "utf8");
   const sheetSource = await readFile(new URL("../scripts/sheets/actor-sheet.mjs", import.meta.url), "utf8");
   const template = await readFile(new URL("../templates/actor/character-sheet.hbs", import.meta.url), "utf8");
   assert.equal(source.includes('ActorClass.prototype.guard = async function'), true);
-  assert.equal(source.includes('"system.turn.action": false, "system.combat.guardActive": true'), true);
+  assert.equal(source.includes('"system.combat.guardActive": true'), true);
   assert.equal(source.includes('ActorClass.prototype.parry = async function'), true);
-  assert.equal(source.includes('"system.turn.reaction": false'), true);
+  assert.equal(source.includes('"system.turn.reaction": false'), false);
   assert.equal(source.includes('"system.combat.parryActive": true'), true);
   const authority = await readFile(new URL("../scripts/rules/state-authority.mjs", import.meta.url), "utf8");
   assert.equal(source.includes('ActorClass.prototype.counterattack = async function'), true);
@@ -120,10 +120,10 @@ test("Guardia y Parada usan el motor contextual sin mutar derived en el integrad
   assert.equal(authority.includes('"system.combat.parrySucceeded": payload.succeeded === true'), true);
 });
 
-test("Intercepción consume la reserva cuantificada canónica de Movimiento", async () => {
+test("Intercepción cuantifica Movimiento sin bloquear por Reacción manual", async () => {
   const reactive = await readFile(new URL("../scripts/rules/reactive-technique-guards.mjs", import.meta.url), "utf8");
   assert.equal(reactive.includes("const available = movementRemaining(this)"), true);
-  assert.equal(reactive.includes('spendActorMovement(this, cost, { "system.turn.reaction": false })'), true);
+  assert.equal(reactive.includes('spendActorMovement(this, cost)'), true);
   assert.equal(reactive.includes('"system.turn.movement": false'), false);
   assert.equal(reactive.includes("system.turn.movementRemaining"), false);
 });

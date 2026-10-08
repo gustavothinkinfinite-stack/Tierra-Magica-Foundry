@@ -91,7 +91,7 @@ test("13F: una fuente explícita aporta Energía/Caudal y fuentes no vinculadas 
   assert.equal(power.external,true);
 });
 
-test("13F: Escudo de campo vinculado consume la Celda y usa Reacción, no Acción",async()=>{
+test("13F: Escudo de campo consume Energía y respeta la Reacción manual",async()=>{
   const cell=device({id:"cell",name:"Celda arcana menor",energy:4,flow:2});
   const shield=device({id:"shield",name:"Escudo de campo",flow:2,consumption:2,activation:"Reacción",source:"cell",kineticDefense:true});
   const a=actor([cell,shield]);
@@ -99,7 +99,7 @@ test("13F: Escudo de campo vinculado consume la Celda y usa Reacción, no Acció
   assert.ok(result);
   assert.equal(cell.system.energy.value,2);
   assert.equal(shield.system.energy.value,0);
-  assert.equal(a.system.turn.reaction,false);
+  assert.equal(a.system.turn.reaction,true);
   assert.equal(a.system.turn.action,true);
   assert.equal(a.system.combat.kineticBarrierActive,true);
   assert.equal(a.system.combat.kineticDefenseSource,"Escudo de campo");
@@ -133,9 +133,12 @@ test("13F: dos activaciones concurrentes sobre una sola reserva no duplican Ener
   const reactionDevice=device({id:"reaction",name:"Escudo",consumption:2,source:"source",activation:"Reacción"});
   const a=actor([source,actionDevice,reactionDevice]);
   const [one,two]=await Promise.all([a.useDevice(actionDevice),a.useDevice(reactionDevice)]);
-  assert.equal([one,two].filter(Boolean).length,1);
+  // Dos intentos no pueden consumir más Energía de la que existe.
+  // Ningún candado de turno participa de esta protección.
+  assert.ok([one,two].filter(Boolean).length<=1);
   assert.equal(source.system.energy.value,0);
-  assert.equal(Number(a.system.turn.action===false)+Number(a.system.turn.reaction===false),1);
+  assert.equal(a.system.turn.action,true);
+  assert.equal(a.system.turn.reaction,true);
 });
 
 test("13F: Sobrecarga exitosa de dispositivo externo gasta la fuente y daña el consumidor",async()=>{
@@ -148,7 +151,7 @@ test("13F: Sobrecarga exitosa de dispositivo externo gasta la fuente y daña el 
   assert.equal(source.system.energy.value,2);
   assert.equal(consumer.system.condition,"damaged");
   assert.equal(source.system.condition,"operative");
-  assert.equal(a.system.turn.action,false);
+  assert.equal(a.system.turn.action,true);
 });
 
 test("13F: Escudo de campo y Barrera Cinética comparten una sola ventana +2",async()=>{

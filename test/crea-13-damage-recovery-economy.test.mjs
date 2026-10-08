@@ -163,7 +163,7 @@ test("CREA-13 13D: healthCap limita recuperación pero nunca convierte un descan
   assert.equal(actor.system.resources.health.value,10);
 });
 
-test("CREA-13 13D: Saturación bloquea segunda dosis sin gastar Acción ni consumible y Respiro reabre la familia",async()=>{
+test("CREA-13 13D: Saturación bloquea segunda dosis sin gastar consumible y Respiro reabre la familia",async()=>{
   const actor=character({
     "system.resources.health.value":5,
     "system.recovery.healthCap":10
@@ -178,7 +178,7 @@ test("CREA-13 13D: Saturación bloquea segunda dosis sin gastar Acción ni consu
   assert.equal(actor.system.resources.health.value,9);
   assert.equal(potion.system.quantity,1);
   assert.deepEqual(actor.system.alchemy.saturatedFamilies,["restaurativa"]);
-  assert.equal(actor.system.turn.action,false);
+  assert.equal(actor.system.turn.action,true);
 
   actor.system.turn.action=true;
   const blocked=await actor.useFormula(potion);
@@ -196,10 +196,10 @@ test("CREA-13 13D: Saturación bloquea segunda dosis sin gastar Acción ni consu
   assert.ok(second);
   assert.equal(actor.system.resources.health.value,10);
   assert.equal(potion.system.quantity,0);
-  assert.equal(actor.system.turn.action,false);
+  assert.equal(actor.system.turn.action,true);
 });
 
-test("CREA-13 13D: Sobrecarga inválida no gasta; Sobrecarga fallida sí consume Maná, Fatiga y Acción",async()=>{
+test("CREA-13 13D: Sobrecarga conserva coste de Maná/Fatiga, con Acción manual",async()=>{
   const spell={
     id:"spell-overload",type:"spell",name:"Prueba de Sobrecarga",
     system:{
@@ -224,7 +224,7 @@ test("CREA-13 13D: Sobrecarga inválida no gasta; Sobrecarga fallida sí consume
   assert.equal(calls,1);
   assert.equal(failed.system.resources.mana.value,0);
   assert.equal(failed.system.status.fatigue,2);
-  assert.equal(failed.system.turn.action,false);
+  assert.equal(failed.system.turn.action,true);
 });
 
 test("CREA-13 13D: Sobrecarga exitosa conserva las dos resoluciones independientes ratificadas",async()=>{
@@ -250,7 +250,7 @@ test("CREA-13 13D: Sobrecarga exitosa conserva las dos resoluciones independient
   assert.match(labels[1],/^Hechizo:/);
   assert.equal(actor.system.resources.mana.value,0);
   assert.equal(actor.system.status.fatigue,2);
-  assert.equal(actor.system.turn.action,false);
+  assert.equal(actor.system.turn.action,true);
 });
 
 test("CREA-13 13D: curarse durante un turno iniciado a 0 Vida no devuelve economía retroactiva",async()=>{

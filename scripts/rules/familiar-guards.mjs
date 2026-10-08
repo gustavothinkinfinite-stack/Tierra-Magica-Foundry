@@ -54,10 +54,8 @@ export function installFamiliarGuards(ActorClass) {
   ActorClass.prototype.linkedFamiliarAction = async function (familiar, order = "") {
     if (!validFamiliar(this, familiar)) return ui.notifications.warn("No hay un Familiar vinculado válido.");
     if (!familiarOperational(familiar)) return ui.notifications.warn(familiar.name + " está Incapacitado y no puede ejecutar una Acción Vinculada.");
-    if (!(this.system.turn?.reaction ?? true)) return ui.notifications.warn(this.name + " ya gastó su Reacción.");
     const text = String(order ?? "").trim();
     if (!text) return ui.notifications.warn("La Acción Vinculada debe indicar una intervención táctica concreta.");
-    await this.update({ "system.turn.reaction": false });
     await familiar.update({
       "system.familiar.currentOrder": text,
       "system.familiar.orderType": "linked",
@@ -66,7 +64,7 @@ export function installFamiliarGuards(ActorClass) {
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: "<div class='tm-chat-card'><strong>Acción Vinculada — " + foundry.utils.escapeHTML(familiar.name) +
-        "</strong><p>" + foundry.utils.escapeHTML(text) + "</p><p>Consume la Reacción de " +
+        "</strong><p>" + foundry.utils.escapeHTML(text) + "</p><p>Requiere Reacción de " +
         foundry.utils.escapeHTML(this.name) + ". No concede un segundo turno ni una Reacción adicional.</p></div>"
     });
   };
@@ -75,8 +73,6 @@ export function installFamiliarGuards(ActorClass) {
     if (!validFamiliar(this, familiar)) return ui.notifications.warn("No hay un Familiar vinculado válido.");
     if (!hasBondCapability(this, familiar, "Sentidos Compartidos", 2)) return ui.notifications.warn("Sentidos Compartidos requiere su Técnica y Vínculo II o superior.");
     if (!familiarOperational(familiar)) return ui.notifications.warn(familiar.name + " está Incapacitado.");
-    if (!(this.system.turn?.action ?? true)) return ui.notifications.warn(this.name + " ya gastó su Acción.");
-    await this.update({ "system.turn.action": false });
     return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Sentidos Compartidos</strong><p>" + foundry.utils.escapeHTML(this.name) + " percibe temporalmente mediante los sentidos reales de " + foundry.utils.escapeHTML(familiar.name) + ". No obtiene sentidos, conocimiento ni atención adicional.</p></div>" });
   };
 
@@ -95,20 +91,16 @@ export function installFamiliarGuards(ActorClass) {
     if (!hasBondCapability(this, familiar, "Coordinación Reactiva", 3)) return ui.notifications.warn("Coordinación Reactiva requiere su Técnica y Vínculo III o superior.");
     if (!familiarOperational(familiar)) return ui.notifications.warn(familiar.name + " está Incapacitado.");
     if (familiar.system.familiar?.controlMode !== "reactive" || !String(familiar.system.familiar?.reactiveTrigger ?? "").trim()) return ui.notifications.warn("El Familiar no tiene un disparador reactivo válido configurado.");
-    if (!(this.system.turn?.reaction ?? true)) return ui.notifications.warn(this.name + " ya gastó su Reacción.");
     const text = String(response ?? "").trim();
     if (!text) return ui.notifications.warn("La respuesta reactiva debe indicar una acción concreta.");
-    await this.update({ "system.turn.reaction": false });
     return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Coordinación Reactiva — " + foundry.utils.escapeHTML(familiar.name) + "</strong><p>Disparador: " + foundry.utils.escapeHTML(String(familiar.system.familiar.reactiveTrigger)) + "</p><p>Respuesta: " + foundry.utils.escapeHTML(text) + "</p><p>Consume la Reacción de " + foundry.utils.escapeHTML(this.name) + "; no puede encadenar otra respuesta reactiva.</p></div>" });
   };
 
   ActorClass.prototype.commandFamiliar = async function (familiar, order = "") {
     if (!validFamiliar(this, familiar)) return ui.notifications.warn("No hay un Familiar vinculado válido.");
     if (!familiarOperational(familiar)) return ui.notifications.warn(familiar.name + " está Incapacitado y no puede recibir una nueva orden.");
-    if (!(this.system.turn?.action ?? true)) return ui.notifications.warn(this.name + " ya gastó su Acción.");
     const text = String(order ?? "").trim();
     if (!text) return ui.notifications.warn("La nueva orden debe indicar una conducta concreta.");
-    await this.update({ "system.turn.action": false });
     await familiar.update({ "system.familiar.currentOrder": text, "system.familiar.orderType": "persistent", "system.familiar.controlMode": "linked" });
     return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: "<div class='tm-chat-card'><strong>Nueva orden — " + foundry.utils.escapeHTML(familiar.name) + "</strong><p>" + foundry.utils.escapeHTML(text) + "</p><p>Consume la Acción del personaje. Una orden persistente permite conducta rutinaria, pero no concede ataques repetidos, Ayuda táctica ni otra intervención significativa gratuita cada asalto. Esas intervenciones requieren Acción Vinculada u otra capacidad expresa.</p></div>" });
   };

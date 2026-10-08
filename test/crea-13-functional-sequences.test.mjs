@@ -124,7 +124,7 @@ test("CREA-13 13C C13-01 Soldado: defensa contextual y daño físico usan la mis
   assert.equal(impact.severe,true);
 });
 
-test("CREA-13 13C C13-02 Ingeniera: un dispositivo autosuficiente consume Energía, Caudal y una sola Acción",async()=>{
+test("CREA-13 13C C13-02 Ingeniera: dispositivo consume Energía y Caudal con Acción manual",async()=>{
   const source=build("engineer").actor;
   const actor=new TierraMagicaActor({
     id:source.id,name:source.name,type:"character",system:clone(source.system),items:[]
@@ -148,13 +148,13 @@ test("CREA-13 13C C13-02 Ingeniera: un dispositivo autosuficiente consume Energ�
   const first=await actor.useDevice(device);
   assert.ok(first);
   assert.equal(device.system.energy.value,2);
-  assert.equal(actor.system.turn.action,false);
+  assert.equal(actor.system.turn.action,true);
 
   actor.system.turn.action=true;
   const second=await actor.useDevice(device);
   assert.ok(second);
   assert.equal(device.system.energy.value,0);
-  assert.equal(actor.system.turn.action,false);
+  assert.equal(actor.system.turn.action,true);
 
   actor.system.turn.action=true;
   const third=await actor.useDevice(device);
@@ -265,7 +265,7 @@ test("CREA-13 13C C13-06 Canalizador: ataque mágico, Sostenimiento y Protecció
   assert.equal(resolveDerivedSelector(derived,"protection",{alteredSkinCompatible:false}).total,0);
 });
 
-test("CREA-13 13C transversal: Barrera Cinética y otra Reacción comparten bloqueo concurrente",async()=>{
+test("CREA-13 13C transversal: Barrera Cinética y Familiar se ejecutan sin bloqueo de Reacción",async()=>{
   class ReactiveActor {
     constructor(){
       this.name="Canalizador";
@@ -287,12 +287,12 @@ test("CREA-13 13C transversal: Barrera Cinética y otra Reacción comparten bloq
   const actor=new ReactiveActor();
   const barrier={system:{activation:"Reacción"}};
   const [a,b]=await Promise.all([actor.useSpell(barrier),actor.linkedFamiliarAction()]);
-  assert.equal(actor.calls.length,1);
-  assert.equal(actor.system.turn.reaction,false);
-  assert.equal([a,b].filter(Boolean).length,1);
+  assert.equal(actor.calls.length,2);
+  assert.equal(actor.system.turn.reaction,false); // el stub de Familiar actualiza el indicador por sí solo
+  assert.equal([a,b].filter(Boolean).length,2);
 });
 
-test("CREA-13 13C C13-07 Vinculado: Acción Vinculada consume la Reacción del dueño y no crea turno del Familiar",async()=>{
+test("CREA-13 13C C13-07 Vinculado: Acción Vinculada deja indicador manual y no crea turno del Familiar",async()=>{
   class BondActor {
     constructor({uuid,name,type="character",system={},items=[]}){
       Object.assign(this,{uuid,name,type,system,items});
@@ -324,7 +324,7 @@ test("CREA-13 13C C13-07 Vinculado: Acción Vinculada consume la Reacción del d
 
   const message=await owner.linkedFamiliarAction(familiar,"distraer al atacante");
   assert.ok(message);
-  assert.equal(owner.system.turn.reaction,false);
+  assert.equal(owner.system.turn.reaction,true);
   assert.equal(owner.system.turn.action,true);
   assert.equal(familiar.system.familiar.currentOrder,"distraer al atacante");
   assert.equal(familiar.system.familiar.orderType,"linked");
