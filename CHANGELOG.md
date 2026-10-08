@@ -1,3 +1,13 @@
+## 1.6.1 — Hotfix de reservas de fabricación — 2026-10-07
+
+- Corrige «La reserva de un Lote ya no coincide con el Proyecto» después de completar el trabajo.
+- Sustituye UUID con puntos como clave de reserva por IDs seguros para la persistencia en Foundry.
+- Reconoce reservas antiguas serializadas como mapas planos o anidados.
+- Recupera compromisos históricos ausentes únicamente cuando el Proyecto está activo, con VI exacto, Lote disponible y sin otro Proyecto activo competidor.
+- Conserva las operaciones transaccionales, consumo único de materiales, idempotencia y protección frente a sobreasignación.
+- Añade pruebas de persistencia histórica, recuperación sin pago adicional y rechazo de conflictos.
+- No altera coste, recetas, herramientas, tiempos ni reglas canónicas de crafting.
+
 ## Publicación v1.6.0 — 2026-10-07
 
 - Release estable **v1.6.0** publicada desde el commit `078c1e5f77dc7df3ab68a6ef3ea68fb4b8062dfa`.
