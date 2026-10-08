@@ -1,8 +1,8 @@
 {
   "id": "tierra-magica",
   "title": "Tierra Mágica — Foundry T.M.",
-  "description": "Foundry T.M. 1.6.1: ficha de personaje rediseñada, crafting guiado, 2d10, combate, Trauma, Grimorio 60, alquimia, rituales, ingeniería arcano-industrial y familiares.",
-  "version": "1.6.1",
+  "description": "Foundry T.M. 1.7.0: ficha de personaje rediseñada, crafting guiado, 2d10, combate, Trauma, Grimorio 60, alquimia, rituales, ingeniería arcano-industrial y familiares.",
+  "version": "1.7.0",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
