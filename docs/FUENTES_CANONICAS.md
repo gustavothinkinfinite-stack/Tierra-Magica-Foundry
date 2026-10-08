@@ -78,6 +78,10 @@ La ampliación del grimorio está **CERRADA Y CANONIZADA**. El Manual Maestro de
 
 Foundry adopta schema v5 para contratos de objetivos mágicos y migración del cierre espacial.
 
+## Estado de publicación 1.5.2
+
+La versión objetivo **v1.5.2** introduce control de turno manual en Foundry. La ejecución de ataques, magia, técnicas, dispositivos y familiares es independiente del indicador de Acción o Reacción. Los costes mecánicos y las reglas canónicas continúan vigentes; el DJ y los jugadores verifican el límite de actuaciones por turno.
+
 ## Estado de publicación 1.5.1
 
 Foundry T.M. **v1.5.1 está publicada** desde el commit `558372be4adf6abddd9cd5985cfb065e406127c3`. Es la release pública **Latest** y corrige reservas de Acción/Reacción ante validaciones fallidas, además de añadir recuperación segura de reservas huérfanas dentro de la sesión. **No modifica reglas, costes, canon ni presupuestos**; corrige exclusivamente la interpretación y persistencia del estado runtime.
