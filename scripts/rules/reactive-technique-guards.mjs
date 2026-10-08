@@ -20,7 +20,7 @@ export function installReactiveTechniqueGuards(ActorClass) {
     if (!validateReactionTechnique(this, "Recibir Carga")) return null;
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      content: "<div class='tm-chat-card'><strong>Recibir Carga</strong><p>" + foundry.utils.escapeHTML(this.name) + " consume su Reacción. Resuelve ahora un ataque con " + foundry.utils.escapeHTML(weapon.name) + " antes de completar la aproximación. El impacto no detiene automáticamente el movimiento.</p></div>"
+      content: "<div class='tm-chat-card'><strong>Recibir Carga</strong><p>" + foundry.utils.escapeHTML(this.name) + " declara Recibir Carga (Reacción de registro manual). Resuelve ahora un ataque con " + foundry.utils.escapeHTML(weapon.name) + " antes de completar la aproximación. El impacto no detiene automáticamente el movimiento.</p></div>"
     });
     return this.rollWeapon(weapon, { technique: "Recibir Carga", tmReactionAttack: true });
   };
@@ -37,7 +37,7 @@ export function installReactiveTechniqueGuards(ActorClass) {
     }
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      content: "<div class='tm-chat-card'><strong>Intercepción</strong><p>" + foundry.utils.escapeHTML(this.name) + " consume su Reacción y " + cost + " de Movimiento para interponerse" + (ally?.name ? " por " + foundry.utils.escapeHTML(ally.name) : "") + ". El ataque debe cambiar su objetivo a este personaje; no obtiene Defensa adicional. La trayectoria, percepción y validez física deben estar confirmadas en la escena.</p></div>"
+      content: "<div class='tm-chat-card'><strong>Intercepción</strong><p>" + foundry.utils.escapeHTML(this.name) + " declara Intercepción (Reacción de registro manual) y consume " + cost + " de Movimiento para interponerse" + (ally?.name ? " por " + foundry.utils.escapeHTML(ally.name) : "") + ". El ataque debe cambiar su objetivo a este personaje; no obtiene Defensa adicional. La trayectoria, percepción y validez física deben estar confirmadas en la escena.</p></div>"
     });
   };
 }
