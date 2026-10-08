@@ -1201,10 +1201,11 @@ La Fase 4 validó La Medida Acordada sin rediseño en documento/registro, latón
 ## SYM-DIV-VAEL-001 — El Rumbo Desviado
 
 **Entidad:** Vael, el Navegante  
-**Estado:** **PROVISIONAL — GEOMETRÍA Y CROMÁTICA APROBADAS E INMUTABLES**  
-**Versión:** v0.3  
+**Estado:** **PROVISIONAL — GEOMETRÍA, CROMÁTICA Y ESCALA APROBADAS E INMUTABLES**  
+**Versión:** v0.4  
 **Fecha de aprobación conceptual y geométrica:** 2026-10-08  
-**Fecha de aprobación cromática:** 2026-10-08
+**Fecha de aprobación cromática:** 2026-10-08  
+**Fecha de aprobación de escala y reducción:** 2026-10-08
 
 ### Concepto
 El Rumbo Desviado representa una única ruta ya emprendida que encuentra condiciones no previstas, modifica su trayectoria y continúa hacia un rumbo distinto. No representa elección entre caminos posibles: ese principio pertenece a Aster.
@@ -1251,6 +1252,39 @@ Toda la marca utiliza un único color sólido dentro de cada variante formal. El
 
 En la marca formal quedan prohibidos gradientes, sombras, brillo interno, texturas, doble trazo y halos. El Oro de Horizonte no implica emisión luminosa.
 
+### Reducción, escala y área de protección
+**REDUCED-01** es la única simplificación autorizada para pequeña escala.
+
+Mantiene:
+- un único recorrido continuo;
+- tramo inicial vertical;
+- desvío curvo;
+- salida desplazada hacia la derecha;
+- Marca del Descubrimiento separada.
+
+La versión reducida simplifica puntos intermedios de la trayectoria, aumenta el grosor de la ruta y agranda el rombo. No puede convertirse en una diagonal simple ni en una bifurcación.
+
+```svg
+<path d="M430 850 L430 650 L470 620 L545 610 L615 570 L660 500 L685 410 L700 315 L705 245"
+      fill="none" stroke="#000" stroke-width="86"
+      stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M760 180 L795 215 L760 250 L725 215 Z" fill="#000"/>
+```
+
+**Umbrales digitales:**
+- 32 px o más: versión principal;
+- 16–31 px: `REDUCED-01`;
+- menos de 16 px: no reproducir el símbolo completo.
+
+**Mínimos físicos recomendados:**
+- impresión: 8 mm;
+- grabado/talla: 12 mm;
+- bordado: 18 mm.
+
+No existe versión micro.
+
+**Área de protección formal:** `2X = 80 unidades`. Ningún texto, marco, emblema secundario o elemento dominante debe invadir esa distancia desde el contorno del símbolo en usos formales.
+
 ### Reconocimiento
 **Rasgos obligatorios:**
 1. una única ruta continua;
@@ -1282,11 +1316,18 @@ El símbolo nunca debe mostrar dos o más alternativas previas a una decisión.
 - `assets/symbols/divinities/SYM-DIV-VAEL-001_LIGHT.svg`
 - `assets/symbols/divinities/SYM-DIV-VAEL-001_INVERTED.svg`
 
+### Activos de reducción
+- `assets/symbols/divinities/SYM-DIV-VAEL-001_REDUCED.svg`
+- `assets/symbols/divinities/SYM-DIV-VAEL-001_REDUCED_PRIMARY.svg`
+- `assets/symbols/divinities/SYM-DIV-VAEL-001_REDUCED_LIGHT.svg`
+- `assets/symbols/divinities/SYM-DIV-VAEL-001_REDUCED_INVERTED.svg`
+
 ### Pendientes para v1.0
-Versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
+Pruebas contextuales/materiales y PNG definitivo.
 
 ### Historial
 - **v0.1 — 2026-10-08:** concepto y lámina técnica monocroma aprobados.
 - **v0.2 — 2026-10-08:** geometría exacta y función del área de exclusión normalizadas; silueta fijada como inmutable.
 - **v0.3 — 2026-10-08:** cromática aprobada; se fijan Azul de Deriva, Oro de Horizonte, Marfil de Espuma y Cian de Tormenta; se autorizan PRIMARY-01, LIGHT-01 e INVERTED-01.
+- **v0.4 — 2026-10-08:** se aprueban REDUCED-01, umbrales digitales, mínimos físicos y área de protección.
 
