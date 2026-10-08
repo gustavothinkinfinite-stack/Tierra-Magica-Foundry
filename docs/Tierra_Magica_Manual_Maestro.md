@@ -11957,7 +11957,7 @@ Una enseñanza tradicional afirma:
 
 El concepto central de sus tradiciones es **el Velo**: aquello que separa sin necesariamente destruir la relación entre ambos lados.
 
-> **Símbolo religioso definitivo: PENDIENTE DE DEFINICIÓN ESTRUCTURADA.** La identidad visual canónica de Selene permanece vigente, pero el símbolo doctrinal no se fija todavía.
+> **Símbolo religioso — geometría aprobada:** **El Velo Entreabierto** (`SYM-DIV-SELENE-001`). Su geometría vectorial está fijada como inmutable en `docs/visual/SIMBOLOS_CANONICOS.md`: dos masas de Velo enfrentadas, una abertura sinuosa central y una Señal romboidal parcialmente oculta. Cromática, reducción, escalas y pruebas finales permanecen pendientes antes de CANON v1.0.
 
 ### Misterio
 

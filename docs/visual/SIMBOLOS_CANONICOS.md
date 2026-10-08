@@ -1353,3 +1353,76 @@ La Fase 4 validó El Rumbo Desviado sin rediseño en carta/documento de ruta, in
 - **v0.4 — 2026-10-08:** se aprueban REDUCED-01, umbrales digitales, mínimos físicos y área de protección.
 - **v1.0 — 2026-10-08:** pruebas contextuales/materiales superadas; materiales, perspectiva, deterioro, usos culturales y PNG definitivo aprobados; ficha elevada a CANON.
 
+## SYM-DIV-SELENE-001 — El Velo Entreabierto
+
+**Entidad:** Selene, la Velada  
+**Estado:** **PROVISIONAL — GEOMETRÍA APROBADA E INMUTABLE**  
+**Versión:** v0.2  
+**Fecha de aprobación conceptual y geométrica:** 2026-10-08
+
+### Concepto
+El Velo Entreabierto representa percepción parcial, misterio, secreto y una frontera que separa sin romper por completo la relación entre ambos lados.
+
+La composición contiene dos masas verticales enfrentadas que nunca se tocan. Entre ellas queda una abertura sinuosa en S. Detrás de esa abertura existe una Señal romboidal central parcialmente oculta por los velos.
+
+No representa una puerta transitable, un ojo literal, una luna ni una revelación completa.
+
+### Construcción
+**Lienzo maestro:** 1000 × 1000  
+**Módulo X:** 40 unidades.  
+**Caja geométrica aproximada:** X 255–745 / Y 150–850.
+
+```svg
+<!-- Señal posterior -->
+<path d="M500 445 L555 500 L500 555 L445 500 Z"/>
+
+<!-- Velo izquierdo -->
+<path d="M410 150 L315 195 L260 300 L255 500 L265 700 L320 805 L410 850 L435 850 L405 805 L390 735 L400 665 L430 585 L445 500 L430 420 L445 335 L480 270 L495 205 L470 150 Z"/>
+
+<!-- Velo derecho -->
+<path d="M590 150 L685 195 L740 300 L745 500 L735 700 L680 805 L590 850 L565 850 L600 820 L615 760 L605 690 L575 605 L560 520 L575 450 L555 360 L520 285 L505 215 L530 150 Z"/>
+```
+
+**Orden de capas obligatorio:** Señal primero; Velo izquierdo y Velo derecho por encima. Esto garantiza que la Señal permanezca parcialmente oculta.
+
+**Abertura central:** espacio negativo sinuoso, nunca recto, nunca cerrado y nunca suficientemente ancho para funcionar visualmente como puerta.
+
+**Señal:** rombo de 110 × 110 unidades centrado en (500,500), parcialmente cubierto por los velos.
+
+### Reconocimiento
+**Rasgos obligatorios:**
+1. dos masas verticales de Velo enfrentadas;
+2. ninguna toca a la otra;
+3. abertura negativa sinuosa en S;
+4. Señal romboidal central;
+5. Señal parcialmente oculta, nunca completamente expuesta.
+
+**Simetría:** equilibrio bilateral sin simetría geométrica exacta.  
+**Rotación:** prohibida.  
+**Reflejo horizontal:** prohibido.  
+**Reflejo vertical:** prohibido.
+
+### Prohibiciones
+No usar ojo literal, luna creciente, luna llena, estrellas, puerta, arco, llave, cerradura, cortina figurativa, rostro, máscara, manos, libro, pergamino, runas, telaraña, alas, humo ornamental ni portal brillante.
+
+### Diferenciación doctrinal
+**Vaelun:** umbral y tránsito.  
+**Selene:** velo, percepción parcial y sentido del límite.
+
+**Vael:** desplazamiento a través del mundo.  
+**Selene:** frontera de percepción, conocimiento, intimidad o realidad.
+
+**Oria:** registro y verificabilidad.  
+**Selene:** acceso y ocultamiento.
+
+### Activo
+**SVG maestro:** `assets/symbols/divinities/SYM-DIV-SELENE-001_MASTER.svg`  
+**SHA-256:** `de64aa0c826629a32d25472f27b7a682b69cdeabbe2dc0dd4bcc451c01782e33`
+
+### Pendientes para v1.0
+Cromática, versión reducida, escalas mínimas, área de protección, pruebas contextuales/materiales y PNG definitivo.
+
+### Historial
+- **v0.1 — 2026-10-08:** concepto y lámina técnica monocroma aprobados.
+- **v0.2 — 2026-10-08:** geometría exacta fijada como inmutable.
+
