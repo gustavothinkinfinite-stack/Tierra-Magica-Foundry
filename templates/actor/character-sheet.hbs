@@ -722,6 +722,16 @@
         </section>
 
         {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Proyectos de fabricación e investigación" type="project" items=itemGroups.project}}
+        {{#if isGM}}
+        <section class="tm-panel tm-v03-page-panel">
+          <div class="tm-section-heading"><h2>Diagnóstico de materiales (DJ)</h2><span>Proyectos de fabricación e investigación</span></div>
+          <p>Si se eliminó un Proyecto sin liberar sus reservas, se pueden recuperar solamente las que no correspondan a ningún Proyecto existente.</p>
+          <div class="tm-section-buttons">
+            <button type="button" data-action="repair-orphan-craft-reservations"><i class="fa-solid fa-toolbox"></i> Recuperar reservas huérfanas</button>
+          </div>
+          <small>Requiere confirmación. No entrega dinero, ni aumenta VI, ni libera reservas de Proyectos activos.</small>
+        </section>
+        {{/if}}
 
         <section class="tm-v03-development-summary">
           <div><span>Nivel</span><b>{{system.details.level}}</b>{{#if development.canAdvanceLevel}}<button type="button" data-action="advance-level">Subir de nivel (+4 PD)</button>{{/if}}</div>

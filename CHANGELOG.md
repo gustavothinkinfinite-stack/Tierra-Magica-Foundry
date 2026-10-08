@@ -1,3 +1,14 @@
+## 1.10.0 — Materiales para Proyectos y recuperación segura — 2026-10-08
+
+- **Corrección 1:** el marcador de Incapacitado a **0 Vida** pasa a ser una **X roja grande** con fondo transparente, cruzando el retrato del token. Mantiene comportamiento y opción de mundo; no convierte la condición en muerte o Derribado.
+- **Corrección 2:** el sistema protege la eliminación de un Proyecto cuando sigue activo o se detecta una reserva de VI/componentes asociada, aunque su campo de compromiso esté desincronizado.
+- Nuevo botón del DJ en la página **Desarrollo → Proyectos → Diagnóstico de materiales**: **Recuperar reservas huérfanas**. Audita reservas referidas a Proyectos ya eliminados y exige confirmación. Conserva VI, cantidad, moneda y reservas de Proyectos que todavía existen.
+- Admite registros históricos con claves anidadas/UUID y evita liberar reservas de otro Actor. Si no puede determinar su titular, informa para revisión del DJ en vez de liberarlas.
+- Incorpora **13 Lotes de Materiales** a **Tierra Mágica — Equipo**: paquetes ordinarios de 1 plata, 5 platas y 1 oro; lotes por familias de trabajo, y grados Especializado, Raro y Excepcional con VI explícito.
+- Los lotes ordinarios tienen precios orientativos de aprovisionamiento en el catálogo operativo; los materiales raros y excepcionales no reciben un precio comercial inventado. **VI no es moneda** y no se duplica al liberar una reserva.
+- Las nuevas entradas se etiquetan **propuesta-operativa** y no modifican el Manual Maestro ni declaran precios canónicos universales. Los proyectos siguen validando compatibilidad real.
+- Pruebas añadidas para recuperación, reservas activas, confirmación del DJ, rollback, material físico real, compendio y diseño de la X roja.
+
 ## 1.9.0 — Chat de combate claro e Incapacitado a 0 Vida — 2026-10-08
 
 - Los ataques normales con armas ahora identifican atacante, objetivo, arma, total del ataque, Defensa y margen.

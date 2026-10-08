@@ -1,3 +1,4 @@
+import {readFile} from "node:fs/promises";
 import test from "node:test";
 import assert from "node:assert/strict";
 import {registerZeroHealthStatus,shouldMarkIncapacitated,syncZeroHealthToken,installZeroHealthTokenHooks,ZERO_HEALTH_STATUS_ID} from "../scripts/rules/zero-health-token.mjs";
@@ -65,4 +66,16 @@ test("actualizaciones desde token y carga de escena sincronizan sólo desde DJ a
  actor.system.resources.health.value=0;
  await flow.syncAll();
  assert.equal(calls.length,2);
+});
+
+test("el indicador usa una X roja completa y transparente sobre la ilustración del token",async()=>{
+ const svg=await readFile(new URL("../assets/icons/incapacitado.svg",import.meta.url),"utf8");
+ assert.match(svg,/viewBox="0 0 100 100"/);
+ assert.match(svg,/M 10 10 L 90 90 M 90 10 L 10 90/);
+ assert.match(svg,/stroke="#df2431"/);
+ assert.doesNotMatch(svg,/<(?:circle|rect|image)[ >]/i);
+ const config={statusEffects:{}};
+ registerZeroHealthStatus(config);
+ assert.equal(config.statusEffects[ZERO_HEALTH_STATUS_ID].img,
+   "systems/tierra-magica/assets/icons/incapacitado.svg");
 });

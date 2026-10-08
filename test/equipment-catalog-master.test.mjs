@@ -76,9 +76,11 @@ test("EQP-01 implementa exactamente los 25 objetos ya canónicos del Manual",()=
   }
 });
 
-test("EQP-01 añade exactamente 25 equipos runtime y no materializa propuestas",()=>{
+test("EQP-01 conserva 25 equipos canónicos, más lotes operativos propuestos separados",()=>{
   const equipment=coreCatalog().filter((entry)=>entry.type==="equipment");
-  assert.equal(equipment.length,25);
+  assert.equal(equipment.filter(item=>item.system?.tags?.includes("eqp-01")).length,25);
+  assert.equal(equipment.filter(item=>item.system?.tags?.includes("crafting-lot")).length,13);
+  assert.equal(equipment.length,38);
 
   for(const item of CANONICAL_EQUIPMENT){
     assert.ok(equipment.find((entry)=>entry.name===item.name),item.name);
