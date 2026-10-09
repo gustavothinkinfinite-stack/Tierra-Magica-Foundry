@@ -1,3 +1,9 @@
+## Publicación v1.11.0 — 2026-10-08
+
+- Release pública estable **v1.11.0**, commit `7882b2833c5c7334b5d89a013fd35c2c6d91e415`.
+- Pipeline de validación y publicación `#37867612108` finalizado correctamente; contiene los assets `system.json` y `tierra-magica.zip`.
+- La instalación y actualización siguen usando el manifiesto estable `releases/latest/download/system.json`.
+
 ## 1.11.0 — Asistente de creación explicado — 2026-10-08
 
 - Rediseña la selección de Ascendencia, Origen, Trasfondo y compras de catálogo para que se lean descripciones, capacidades y requisitos **antes** de confirmar.
