@@ -553,7 +553,7 @@
             <div class="tm-section-heading"><h2>1 · Elegí tu Ascendencia</h2><span>Tu pueblo y sus capacidades propias; no es una clase ni una profesión.</span></div>
             {{#if identityItems.ancestry}}
               <div class="tm-v10-choice-selected">
-                <div><small>Ascendencia elegida</small><strong>{{identityItems.ancestry.name}}</strong><p>{{identityItems.ancestry.system.description}}</p></div>
+                <div><small>Ascendencia elegida</small><strong>{{identityItems.ancestry.name}}</strong><p>{{creationGuide.ancestryIntroduction}}</p></div>
                 <button type="button" data-action="content-browser" data-type="ancestry">Cambiar</button>
               </div>
               {{#if creationGuide.ancestryProfile}}
@@ -582,7 +582,7 @@
             <div class="tm-section-heading"><h2>2 · Elegí tu Origen</h2><span>La cultura en la que creciste, tus idiomas y un ámbito familiar.</span></div>
             {{#if identityItems.origin}}
               <div class="tm-v10-choice-selected">
-                <div><small>Origen elegido</small><strong>{{identityItems.origin.name}}</strong><p>{{identityItems.origin.system.description}}</p></div>
+                <div><small>Origen elegido</small><strong>{{identityItems.origin.name}}</strong><p>{{creationGuide.originIntroduction}}</p></div>
                 <button type="button" data-action="content-browser" data-type="origin">Cambiar</button>
               </div>
               <div class="tm-v10-wizard-fields">
@@ -600,7 +600,7 @@
             <div class="tm-section-heading"><h2>3 · Elegí tu Trasfondo</h2><span>Tu experiencia previa. Elegí dos aspectos distintos de esa vida.</span></div>
             {{#if identityItems.background}}
               <div class="tm-v10-choice-selected">
-                <div><small>Trasfondo elegido</small><strong>{{identityItems.background.name}}</strong><p>{{identityItems.background.system.description}}</p></div>
+                <div><small>Trasfondo elegido</small><strong>{{identityItems.background.name}}</strong><p>{{creationGuide.backgroundIntroduction}}</p></div>
                 <button type="button" data-action="content-browser" data-type="background">Cambiar</button>
               </div>
               <div class="tm-v10-wizard-fields tm-v10-background-facets">
