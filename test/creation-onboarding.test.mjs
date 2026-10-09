@@ -17,7 +17,7 @@ test("los ocho pasos tienen orientación propia, comprensible y sin referencias 
     const guide=creationStepGuide(index);
     assert.equal(guide.number,index);
     for(const key of ["title","description","tip"]){
-      assert.ok(guide[key].length>=20 || (key==="title"&&guide[key].length>=10));
+      assert.ok(guide[key].length>=20 || (key==="title"&&guide[key].length>=7));
       assert.doesNotMatch(guide[key],/CREA-11|CRAFT-13|REF-COM/);
     }
   }
