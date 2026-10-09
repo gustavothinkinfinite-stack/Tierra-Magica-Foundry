@@ -644,7 +644,8 @@
         "base"
       ],
       "category": "acquired",
-      "effect": ""
+      "effect": "",
+      "situationalBonuses": []
     },
     "specialization": {
       "templates": [
@@ -730,7 +731,8 @@
       "movementBase": 6,
       "movementModes": "",
       "naturalProtection": 0,
-      "racialFeatures": []
+      "racialFeatures": [],
+      "situationalBonuses": []
     },
     "origin": {
       "templates": [

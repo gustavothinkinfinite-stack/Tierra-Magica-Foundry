@@ -1,6 +1,7 @@
 import { defenseBonus } from "../rules.mjs";
 import { normalizeSlug } from "./identity.mjs";
 import { modifiersForSelector } from "./rule-elements.mjs";
+import { ancestryDefenseBonuses } from "./ancestry-situational.mjs";
 
 const number = (value, fallback = 0) => {
   const parsed = Number(value);
@@ -344,6 +345,15 @@ export function deriveActorState({
   const protectionContributions = selectorContributions(rulePreparation, "protection");
   const movementContributions = selectorContributions(rulePreparation, "movement");
   const initiativeContributions = selectorContributions(rulePreparation, "initiativeModifier");
+  // Una defensa racial situacional no altera permanentemente la cifra de
+  // la ficha. Se suma cuando el contexto del ataque cumple su condición.
+  const ancestryDefensiveContext=(selector)=>ancestryDefenseBonuses(items,selector).map((bonus)=>contribution({
+    selector,value:bonus.value,label:bonus.label,sourceItemId:ancestry?.id??null,
+    sourceItemName:ancestry?.name??"",sourceType:"ancestry",contextual:true,
+    context:bonus.context
+  }));
+  const mentalContextual=ancestryDefensiveContext("mentalDefense");
+  const bodyContextual=ancestryDefensiveContext("bodyDefense");
 
   const equipmentIssues = [];
   const fue = number(attributes.fue?.value, 1);
@@ -533,12 +543,14 @@ export function deriveActorState({
   const mental = breakdown({
     base: 11 + vol,
     formula: "11 + VOL",
-    contributions: mentalContributions
+    contributions: mentalContributions,
+    contextual: mentalContextual
   });
   const body = breakdown({
     base: 11 + vig,
     formula: "11 + VIG",
-    contributions: bodyContributions
+    contributions: bodyContributions,
+    contextual: bodyContextual
   });
 
   const protectionContextual = protectionContributions.filter((entry) => entry.contextual);
@@ -597,7 +609,9 @@ export function deriveActorState({
     },
     contextual: {
       defense: defenseContextual,
-      protection: protectionContextual
+      protection: protectionContextual,
+      mentalDefense: mentalContextual,
+      bodyDefense: bodyContextual
     },
     equipmentIssues
   };
