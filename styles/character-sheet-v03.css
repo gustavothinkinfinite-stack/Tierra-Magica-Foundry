@@ -4635,3 +4635,45 @@ form.tm-character-sheet-v03 {
     flex-wrap: wrap;
   }
 }
+
+
+/* Bonos raciales situacionales: legibles y no confundidos con un aumento base. */
+.tm-character-sheet-v03 .tm-v12-racial-bonuses {
+  margin: 8px 9px 11px;
+  padding: 10px 11px;
+  background: #f4ead0;
+  border: 1px solid #c3a36a;
+  color: #253d40;
+}
+.tm-character-sheet-v03 .tm-v12-racial-bonuses > strong {
+  font: 700 12px Georgia, serif;
+  color: #0f4859;
+}
+.tm-character-sheet-v03 .tm-v12-racial-bonuses p,
+.tm-character-sheet-v03 .tm-v12-racial-bonuses li {
+  font-size: 11px;
+  line-height: 1.4;
+}
+.tm-character-sheet-v03 .tm-v12-racial-bonuses p { margin: 5px 0; }
+.tm-character-sheet-v03 .tm-v12-racial-bonuses ul { padding-left: 17px; margin: 5px 0 0; }
+.tm-character-sheet-v03 .tm-v12-racial-bonuses li + li { margin-top: 6px; }
+.tm-character-sheet-v03 .tm-v12-racial-bonuses li b { display: block; color: #096077; }
+.tm-racial-check-options {
+  border: 1px solid #b99b64;
+  padding: 9px;
+  margin-top: 10px;
+  background: #f6edda;
+}
+.tm-racial-check-options legend { color: #194756; font-weight: 800; }
+.tm-racial-check-options p { margin: 4px 0 8px; font-size: 11px; }
+.tm-racial-check-options label {
+  display: flex;
+  gap: 8px;
+  margin: 5px 0;
+  align-items: flex-start;
+  line-height: 1.4;
+  font-size: 12px;
+  cursor: pointer;
+}
+.tm-racial-check-options label > input { flex: 0 0 auto; margin: 2px 3px 0 0; }
+.tm-racial-chat-bonus { color: #12708b; }
