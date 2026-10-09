@@ -8,6 +8,7 @@ import { movementAllowance, movementRemaining, spendActorMovement } from "../rul
 import { clearTurnResourceReservation, clearTurnResourceReservations } from "../rules/state-authority.mjs";
 import { nextAttributeUpgradeCost, validateCreationState, validateInitialAttributes } from "../rules/creation.mjs";
 import { creationChoiceBrowserHtml, creationChoicePresentation, creationStepGuide, CREATION_ATTRIBUTE_HELP } from "../rules/creation-onboarding.mjs";
+import { actorAncestrySituationalBonuses, ancestryCheckChoicesHtml } from "../rules/ancestry-situational.mjs";
 import {
   craftingProjectSourceFromReference,
   craftingReferenceGroups,
@@ -170,6 +171,7 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       attributeIncreases: initialAttributes.increases,
       attributeTarget: 6,
       ancestryProfile,
+      ancestryConditionalBonuses: actorAncestrySituationalBonuses([...this.actor.items]),
       ancestryIntroduction: context.identityItems.ancestry
         ? creationChoicePresentation(context.identityItems.ancestry).introduction : "",
       originIntroduction: context.identityItems.origin
@@ -319,7 +321,7 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
 
     html.find("[data-action='roll-attribute']").click(async (event) => {
       const key = event.currentTarget.dataset.key;
-      if (event.shiftKey) return this.#configureAttributeRoll(key);
+      if (event.shiftKey || this.actor.availableAncestryBonuses(key).length) return this.#configureAttributeRoll(key);
       return this.actor.rollAttribute(key);
     });
     html.find("[data-action='roll-skill']").click((event) => this.actor.configureAndRollSkill(event.currentTarget.dataset.key));
@@ -996,17 +998,20 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
   }
 
   async #configureAttributeRoll(key) {
+    const racialChoices=ancestryCheckChoicesHtml([...this.actor.items],key);
     const result = await Dialog.prompt({
       title: "Tirada de " + (TM_CONFIG.attributes[key] ?? key),
       content:
         "<div class='form-group'><label>Modo</label><select name='mode'><option value='normal'>Normal</option><option value='advantage'>Ventaja</option><option value='disadvantage'>Desventaja</option></select></div>" +
         "<div class='form-group'><label>DF</label><input name='df' type='number' placeholder='Sin DF'/></div>" +
-        "<div class='form-group'><label>Modificador</label><input name='modifier' type='number' value='0'/></div>",
+        "<div class='form-group'><label>Modificador</label><input name='modifier' type='number' value='0'/></div>" +
+        racialChoices,
       label: "Tirar",
       callback: (html) => ({
         mode: html.find("[name='mode']").val(),
         df: html.find("[name='df']").val(),
-        modifier: toNumber(html.find("[name='modifier']").val())
+        modifier: toNumber(html.find("[name='modifier']").val()),
+        situationalBonusIds: html.find("input[name='racialBonuses']:checked").map((_,element)=>element.value).get()
       }),
       rejectClose: false
     });
