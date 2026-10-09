@@ -22,6 +22,7 @@ test("docs raíz contiene sólo documentación activa más el archivo",async()=>
     "CATALOGO_MAESTRO_ARMAS_v1.md",
     "CIUDADES_PRINCIPALES_MANUAL_COMPACTO_v1.md",
     "CIUDADES_PRINCIPALES_REVISION_v1.md",
+    "COMERCIO_NPC_COFRES.md",
     "CRONOLOGIA_EDRIA_CANON_v1.md",
     "CRONOLOGIA_URBANA_CANON_v1.md",
     "CRONOLOGIA_URBANA_PROPUESTA_v1.md",
