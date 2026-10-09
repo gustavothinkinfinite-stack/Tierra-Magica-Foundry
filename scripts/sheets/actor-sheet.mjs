@@ -7,7 +7,7 @@ import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } f
 import { movementAllowance, movementRemaining, spendActorMovement } from "../rules/turn-economy.mjs";
 import { clearTurnResourceReservation, clearTurnResourceReservations } from "../rules/state-authority.mjs";
 import { nextAttributeUpgradeCost, validateCreationState, validateInitialAttributes } from "../rules/creation.mjs";
-import { creationChoiceBrowserHtml, creationStepGuide, CREATION_ATTRIBUTE_HELP } from "../rules/creation-onboarding.mjs";
+import { creationChoiceBrowserHtml, creationChoicePresentation, creationStepGuide, CREATION_ATTRIBUTE_HELP } from "../rules/creation-onboarding.mjs";
 import {
   craftingProjectSourceFromReference,
   craftingReferenceGroups,
@@ -170,6 +170,12 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       attributeIncreases: initialAttributes.increases,
       attributeTarget: 6,
       ancestryProfile,
+      ancestryIntroduction: context.identityItems.ancestry
+        ? creationChoicePresentation(context.identityItems.ancestry).introduction : "",
+      originIntroduction: context.identityItems.origin
+        ? creationChoicePresentation(context.identityItems.origin).introduction : "",
+      backgroundIntroduction: context.identityItems.background
+        ? creationChoicePresentation(context.identityItems.background).introduction : "",
       ancestryScaleLabel: ancestryProfile?.scale ? (TM_CONFIG.sizes[ancestryProfile.scale] ?? ancestryProfile.scale) : "Pendiente",
       originFacet: String(this.actor.system.details?.originFacet ?? ""),
       originFacetOptions: optionMap(originFacetList, "— Elegir Faceta de Origen —"),
