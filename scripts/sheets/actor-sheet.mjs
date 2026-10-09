@@ -326,6 +326,9 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     html.find("[data-action='roll-initiative']").click(() => this.actor.rollInitiativeCheck());
     html.find("[data-action='roll-npc-attack']").click((event) =>
       this.actor.rollNpcAttack(Number(event.currentTarget.dataset.index)));
+    html.find("[data-action='add-npc-ability']").click(()=>this.#editNpcAbilities("add"));
+    html.find("[data-action='remove-npc-ability']").click((event)=>
+      this.#editNpcAbilities("remove",Number(event.currentTarget.dataset.index)));
     html.find("[data-action='resource-change']").click((event) => this.actor.adjustResource(event.currentTarget.dataset.resource, event.currentTarget.dataset.amount));
     html.find("[data-action='rest']").click((event) => this.actor.rest(event.currentTarget.dataset.kind));
     html.find("[data-action='currency-denomination']").change((event) => this.#updateCurrencyBreakdown(event));
@@ -682,6 +685,33 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     const maximum = Math.max(0, toNumber(resource?.max));
     if (!maximum) return 0;
     return Math.max(0, Math.min(100, Math.round((toNumber(resource?.value) / maximum) * 100)));
+  }
+
+  async #editNpcAbilities(action,index=null) {
+    if (this.actor.type !== "npc" || !this.isEditable) return;
+    const abilities=structuredClone(this.actor.system.npcProfile?.abilities ?? []);
+    if(action==="add") {
+      abilities.push({
+        slug:"capacidad-personalizada-"+(abilities.length+1),
+        name:"Nueva capacidad",
+        kind:"innata-sobrenatural",
+        activation:"Acción",actionCost:1,manaCost:0,rangeSpaces:1,
+        duration:"Instantánea",detectionDifficulty:null,detectionSkills:[],
+        description:"Describir el efecto aquí.",
+        limitations:"No concede acciones adicionales ni efectos automáticos.",
+        resolution:"El DJ aplica manualmente el efecto y los recursos."
+      });
+    } else if(action==="remove") {
+      if (!Number.isInteger(index)||index<0||index>=abilities.length) return;
+      const confirmed=await Dialog.confirm({
+        title:"Quitar capacidad",
+        content:"<p>¿Eliminar esta capacidad de la ficha actual?</p>"
+      });
+      if(!confirmed)return;
+      abilities.splice(index,1);
+    } else return;
+    await this.actor.update({"system.npcProfile.abilities":abilities});
+    this.render(false);
   }
 
   async #createItem(type) {

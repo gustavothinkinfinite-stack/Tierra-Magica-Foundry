@@ -7,6 +7,7 @@ on:
       - "assets/bestiary/**"
       - "scripts/catalog/approved-creatures-v1.mjs"
       - "scripts/catalog/approved-creatures-v2.mjs"
+      - "scripts/catalog/eidolon-manivoro.mjs"
       - "scripts/catalog/npc-art.mjs"
       - "tools/build-packs.mjs"
       - "system.json"
@@ -40,7 +41,8 @@ jobs:
           unzip -t tierra-magica-1.12.0-preview.zip
           unzip -l tierra-magica-1.12.0-preview.zip | grep 'tierra-magica/packs/bestiary/'
           unzip -l tierra-magica-1.12.0-preview.zip | grep 'tierra-magica/assets/bestiary/nutria-encantada-token.webp'
-          test "$(find assets/bestiary -name '*.webp' | wc -l)" -eq 42
+          unzip -l tierra-magica-1.12.0-preview.zip | grep 'tierra-magica/assets/bestiary/eidolon-manivoro-token.webp'
+          test "$(find assets/bestiary -name '*.webp' | wc -l)" -eq 44
       - name: Guardar candidato instalable (NO es un release)
         uses: actions/upload-artifact@v4
         with:

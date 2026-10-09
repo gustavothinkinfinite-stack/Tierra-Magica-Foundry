@@ -1,10 +1,12 @@
 ## 1.12.0 — PREPARADA · NO PUBLICADA
 
-- **10 criaturas originales** en dos tandas: Ciervo Astral, Araña de Campanario, Jabalí Ígneo, Garza de Cristal, Sabueso Espectral; Zorro Carmesí, Carnero del Alba Dorada, Lagarto de Cristal, Cuervo de Cobre y Nutria Encantada.
-- `Tierra Mágica — Bestiario` aumenta a **22 Actores**: 11 del Manual Maestro §23, Lobo del Eco Muerto y 10 criaturas originales aprobadas visualmente.
-- **42 WebP distribuidos como 21 parejas** de retrato y token con marcos; 20 imágenes corresponden a las diez criaturas nuevas. Los tokens de la segunda tanda tienen fondo exterior transparente y se enlazan únicamente al existir ambos archivos. El Tirador conserva el icono genérico hasta tener imagen fiel al rifle.
+- **11 criaturas originales** en dos tandas más **Eidolon Manívoro** aprobado (suplantación, drenaje de Maná e influencia mental con límites explícitos): Ciervo Astral, Araña de Campanario, Jabalí Ígneo, Garza de Cristal, Sabueso Espectral; Zorro Carmesí, Carnero del Alba Dorada, Lagarto de Cristal, Cuervo de Cobre y Nutria Encantada.
+- `Tierra Mágica — Bestiario` aumenta a **23 Actores**: 11 del Manual Maestro §23, Lobo del Eco Muerto, diez criaturas de las dos tandas y Eidolon Manívoro.
+- **44 WebP distribuidos como 22 parejas** de retrato y token con marcos; 20 imágenes corresponden a las diez criaturas nuevas. Los tokens de la segunda tanda tienen fondo exterior transparente y se enlazan únicamente al existir ambos archivos. El Tirador conserva el icono genérico hasta tener imagen fiel al rifle.
 - Las nuevas fichas incluyen Vida, defensas, Protección, Movimiento, Iniciativa, ataques, capacidades de 1 Acción sin efectos automáticos, biografías ecológicas, señales y aventuras. No se editan reglas del Manual Maestro ni se inventan presupuestos de nivel/PD/PR.
 - Pruebas de regresión para 22 identidades únicas, cinco dones de la segunda tanda, derivaciones NPC, WebP validado y transparencia alfa de tokens.
+- El **Eidolon Manívoro** tiene retrato y token circular transparente aprobados, Vida 18, Maná 8, Garra Umbría, Rostro Prestado, Sorbo de Maná y Susurro Invasivo. Las habilidades cuestan 1 Acción y se resuelven manualmente, sin alterar el Grimorio ni control mental absoluto.
+- La ficha de PNJ diferencia pruebas de identificación de las oposiciones a Defensa Mental y permite al DJ editar, agregar o quitar capacidades del perfil.
 - **Distribución pospuesta:** código fusionable y ZIP candidato en GitHub Actions, **sin crear tag, rama de publicación ni release** hasta autorización expresa.
 
 

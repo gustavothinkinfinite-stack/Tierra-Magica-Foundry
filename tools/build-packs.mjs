@@ -5,6 +5,7 @@ import { resolve } from "node:path";
 import { coreCatalog } from "../scripts/catalog/core-catalog.mjs";
 import { npcReferenceCatalog } from "../scripts/catalog/npc-catalog.mjs";
 import { originalBestiaryCatalog } from "../scripts/catalog/original-bestiary.mjs";
+import { eidolonManivoroCatalog } from "../scripts/catalog/eidolon-manivoro.mjs";
 import { fiveApprovedCreatureCatalog } from "../scripts/catalog/approved-creatures-v1.mjs";
 import { secondBatchCreatureCatalog } from "../scripts/catalog/approved-creatures-v2.mjs";
 import { APPROVED_BESTIARY_ART_SLUGS, bestiaryArtFiles } from "../scripts/catalog/npc-art.mjs";
@@ -89,6 +90,7 @@ for(const slug of APPROVED_BESTIARY_ART_SLUGS) {
 const actorEntries=[
   ...npcReferenceCatalog({availableArtFiles}),
   ...originalBestiaryCatalog({availableArtFiles}),
+  ...eidolonManivoroCatalog({availableArtFiles}),
   ...fiveApprovedCreatureCatalog({availableArtFiles}),
   ...secondBatchCreatureCatalog({availableArtFiles})
 ];
