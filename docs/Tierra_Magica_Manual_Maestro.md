@@ -12658,6 +12658,16 @@ Permanecen sin fijar los nombres de las tres casas de las Coronas Rotas, las fro
 
 **Alcance exacto de la aprobación:** se fijan **forma global reconocible, proporciones visuales relativas y disposición espacial** tal como aparecen en la referencia indicada. Los perfiles costeros de alta precisión, coordenadas métricas, proyección planetaria, distancia marítima exacta, islas menores ilustrativas, biomas regionales detallados, hidrografía, emplazamientos puntuales de ciudades, lago de Lys, fronteras y rutas no quedan ratificados por esta aprobación. Las capas de simulación y el GeoJSON del Atlas V1 continúan siendo herramientas de trabajo, no autoridad independiente del Manual Maestro. Los derivados posteriores deberán preservar estas dos macroformas, salvo modificación canónica explícita.
 
+### Dirección editorial del mapa principal (2026-10-09)
+
+**VIGENTE — DECISIÓN EDITORIAL Y DE PRESENTACIÓN DEL ATLAS.** El mapa principal de Tierra Mágica será **un mapa geográfico ilustrado único**, limpio y legible, sobre las macroformas aprobadas de Edria y el territorio insular oriental. Su finalidad es mostrar el mundo y facilitar la exploración, no documentar divisiones administrativas ni itinerarios.
+
+- **Mostrar:** costas, islas, cordilleras, relieve, ríos, lagos, bosques, desiertos, anomalías mágicas geográficas reconocibles, y símbolos/rótulos discretos de ciudades y lugares canónicos.
+- **No dibujar sobre el mapa principal:** líneas o zonas de fronteras políticas, divisiones de estados, rutas de caminos, ferrocarriles, tráfico marítimo, rutas aéreas ni flechas de circulación. Tampoco incluir una leyenda dedicada a estas capas.
+- **Permitido:** rótulos de Valdoria, Erelia, Solenar, Lysendra, Kharum y Liga de Bronce como nombres de regiones, sin contornos políticos; rotulación mínima en una capa editorial separada de la base ilustrada.
+- **Control de coherencia fuera de la imagen:** las relaciones políticas, comerciales, distancias y conexiones existentes en el canon continúan siendo válidas; si es necesario modelarlas para comprobar ciudades, puertos y cuencas, hacerlo en datos técnicos separados que no se superponen en el producto editorial.
+- **Producción:** no se requieren mapas político y de rutas como entregables finales. El objetivo es una base geográfica maestra coherente y una edición ilustrada final (y, si conviene, la misma sin rótulos). No confundir omisión gráfica con eliminación de instituciones, caminos o ferrocarriles del mundo narrativo.
+
 ### Cronología esencial
 
 | Fecha | Hecho |
