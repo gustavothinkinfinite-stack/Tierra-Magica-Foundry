@@ -143,7 +143,7 @@ export function configureCommerce(actor) {
         event.originalEvent?.stopPropagation?.();
         try {
           const original = event.originalEvent ?? event;
-          const data = TextEditor.getDragEventData(original);
+          const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(original);
           if (data?.type !== "Item") return;
           if (data.uuid) await add(data.uuid);
           else {
