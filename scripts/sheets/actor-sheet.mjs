@@ -8,7 +8,7 @@ import { movementAllowance, movementRemaining, spendActorMovement } from "../rul
 import { clearTurnResourceReservation, clearTurnResourceReservations } from "../rules/state-authority.mjs";
 import { nextAttributeUpgradeCost, validateCreationState, validateInitialAttributes } from "../rules/creation.mjs";
 import { creationChoiceBrowserHtml, creationChoicePresentation, creationStepGuide, CREATION_ATTRIBUTE_HELP } from "../rules/creation-onboarding.mjs";
-import { actorAncestrySituationalBonuses, ancestryCheckChoicesHtml } from "../rules/ancestry-situational.mjs";
+import { actorAncestrySituationalBonuses, actorSituationalBonuses, ancestryCheckChoicesHtml } from "../rules/ancestry-situational.mjs";
 import {
   craftingProjectSourceFromReference,
   craftingReferenceGroups,
@@ -165,10 +165,11 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       allowProgression: creationStatus === "rebuilding"
     });
     const ancestryProfile = this.actor.system.derived?.ancestryProfile ?? null;
-    const racialBonuses = actorAncestrySituationalBonuses([...this.actor.items]);
+    const ancestralBonuses = actorAncestrySituationalBonuses([...this.actor.items]);
+    const situationalBonuses = actorSituationalBonuses([...this.actor.items]);
     context.ancestryAttributeBonuses = Object.fromEntries(
       Object.keys(TM_CONFIG.attributes).map(key=>{
-        const bonuses=racialBonuses.filter(entry=>entry.selector==="attribute."+key);
+        const bonuses=situationalBonuses.filter(entry=>entry.selector==="attribute."+key);
         return [key,bonuses.length ? {
           value:bonuses.reduce((sum,row)=>sum+Number(row.value),0),
           description:bonuses.map(row=>row.label+": "+row.condition).join(" · ")
@@ -181,7 +182,7 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       attributeIncreases: initialAttributes.increases,
       attributeTarget: 6,
       ancestryProfile,
-      ancestryConditionalBonuses: racialBonuses,
+      ancestryConditionalBonuses: ancestralBonuses,
       ancestryIntroduction: context.identityItems.ancestry
         ? creationChoicePresentation(context.identityItems.ancestry).introduction : "",
       originIntroduction: context.identityItems.origin
