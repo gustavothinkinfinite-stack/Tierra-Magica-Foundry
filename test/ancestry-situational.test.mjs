@@ -5,6 +5,8 @@ import { constructionCatalog } from "../scripts/catalog/core-catalog.mjs";
 import { TM_CONFIG } from "../scripts/config.mjs";
 import {
   ANCESTRY_SITUATIONAL_BONUSES,
+  TRAIT_SITUATIONAL_BONUSES,
+  actorSituationalBonuses,
   ancestrySituationalBonuses,
   actorAncestrySituationalBonuses,
   availableAncestryCheckBonuses,
@@ -142,4 +144,45 @@ test("la ficha enseña bonificaciones condicionales y pide confirmación antes d
   assert.match(sheet,/this\.actor\.availableAncestryBonuses\(key\)/);
   assert.match(sheet,/ancestryCheckChoicesHtml/);
   assert.match(template,/creationGuide\.ancestryConditionalBonuses/);
+});
+
+
+test("Rasgos con +1 circunstancial se ofrecen para elegir, no como atributo permanente",()=>{
+  const traits=constructionCatalog().filter(item=>item.type==="trait");
+  for(const name of ["Sentido Agudo","Afinidad Sobrenatural","Resistencia Ambiental"]){
+    const trait=traits.find(item=>item.name===name);
+    assert.ok(trait,name);
+    assert.deepEqual(trait.system.situationalBonuses,TRAIT_SITUATIONAL_BONUSES[name]);
+    const attr=name==="Resistencia Ambiental"?"vig":"per";
+    const option=trait.system.situationalBonuses[0];
+    assert.equal(resolveAncestryCheckBonuses([trait],attr,[option.id]).total,1);
+    assert.equal(resolveAncestryCheckBonuses([trait],"agi",[option.id]).total,0);
+    assert.equal(resolveAncestryCheckBonuses([trait],attr,[]).total,0);
+  }
+  const significant=traits.find(item=>item.name==="Resistencia Ambiental Significativa");
+  assert.deepEqual(significant.system.situationalBonuses,[]);
+  assert.match(significant.system.description,/Ventaja/);
+});
+
+test("Bonos situacionales de Elfo y Sentido Agudo se muestran por fuente sin alterar PER base",()=>{
+  const elf=racial("Elfo");
+  const sense=constructionCatalog().find(item=>item.type==="trait"&&item.name==="Sentido Agudo");
+  const all=actorSituationalBonuses([elf,sense]);
+  assert.deepEqual(all.map(row=>row.id),["sentidos-elficos","rasgo-sentido-agudo"]);
+  assert.equal(resolveAncestryCheckBonuses([elf,sense],"per",[]).total,0);
+  assert.equal(resolveAncestryCheckBonuses([elf,sense],"per",["sentidos-elficos"]).total,1);
+  assert.equal(resolveAncestryCheckBonuses([elf,sense],"per",["rasgo-sentido-agudo"]).total,1);
+  const html=ancestryCheckChoicesHtml([elf,sense],"per");
+  assert.match(html,/Sentidos Élficos/);
+  assert.match(html,/Sentido Agudo/);
+  assert.match(html,/Ascendencia y Rasgos/);
+});
+
+test("Medallones muestran +1* contextual pero mantienen el número de atributo sin cambios",async()=>{
+  const sheet=await readFile(new URL("../templates/actor/character-sheet.hbs",import.meta.url),"utf8");
+  const controller=await readFile(new URL("../scripts/sheets/actor-sheet.mjs",import.meta.url),"utf8");
+  assert.match(sheet,/tm-v12-context-badge/);
+  assert.match(sheet,/ancestryAttributeBonuses\.per\.description/);
+  assert.match(sheet,/system\.attributes\.per\.value/);
+  assert.match(controller,/const bonuses=situationalBonuses\.filter/);
 });
