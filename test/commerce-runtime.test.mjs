@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
-function environment({ mode = "merchant", stock = 2, money = 500, price = 30, failCreation = false } = {}) {
+function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
   const users = [gm];
   users.get = (id) => id === gm.id ? gm : null;
@@ -10,9 +10,9 @@ function environment({ mode = "merchant", stock = 2, money = 500, price = 30, fa
   const source = {
     documentName: "Item", uuid: "Item.source", name: "Espada",
     type: "weapon", img: "test.svg",
-    system: { stacking: "unique", physical: {
+    system: { stacking, physical: {
       quantity: 1, priceStatus: price === null ? "unset" : "exact",
-      priceCopper: price ?? 0, priceQuantity: 1
+      priceCopper: price ?? 0, priceQuantity
     }},
     toObject() {
       return { _id: "catalog-id", name: this.name, type: this.type, system: structuredClone(this.system) };
@@ -24,7 +24,7 @@ function environment({ mode = "merchant", stock = 2, money = 500, price = 30, fa
     flags: {
       commerce: { mode, tier: "metropolis", specialty: "smith", offers: [
         { id: "offer", uuid: source.uuid, name: source.name, type: source.type,
-          stock, minTier: 1, specialty: "smith", priceCopper: price, priceQuantity: 1 }
+          stock, minTier: 1, specialty: "smith", priceCopper: price, priceQuantity }
       ] },
       commerceReceipts: {}
     },
@@ -128,4 +128,16 @@ test("no se compra sin fondos ni se cobra por encima de existencias", async () =
   assert.equal(env.items.length, 0);
   assert.equal(env.getStock(), 1);
   assert.equal(env.buyer.system.currency.totalCopper, 20);
+});
+
+test("compra de un lote entrega quantity real y cobra el importe del lote", async () => {
+  const env = environment({ stock: 25, price: 20, priceQuantity: 20, stacking: "stackable" });
+  const result = await executeCommerceExchange(env.request("ammo-pack", 20));
+  assert.equal(result.ok, true);
+  assert.equal(result.cost, 20);
+  assert.equal(env.buyer.system.currency.totalCopper, 480);
+  assert.equal(env.getStock(), 5);
+  assert.equal(env.items.length, 1);
+  assert.equal(env.items[0].system.quantity, 20);
+  assert.equal(env.items[0].system.acquisition.paid.amount, 20);
 });
