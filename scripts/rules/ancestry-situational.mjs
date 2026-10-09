@@ -69,7 +69,10 @@ export function actorAncestrySituationalBonuses(items=[]) {
 export function actorSituationalBonuses(items=[]) {
   const entries=Array.from(items);
   const ancestral=actorAncestrySituationalBonuses(entries);
-  const traits=entries.filter(item=>item?.type==="trait").flatMap(item=>{
+  const significantResistance=entries.some(item=>item?.type==="trait" &&
+    item.name==="Resistencia Ambiental Significativa");
+  const traits=entries.filter(item=>item?.type==="trait" &&
+    !(significantResistance && item.name==="Resistencia Ambiental")).flatMap(item=>{
     const bonusArray=item.system?.situationalBonuses;
     const canonical=TRAIT_SITUATIONAL_BONUSES[String(item.name??"")]??[];
     return (Array.isArray(bonusArray) && bonusArray.length ? bonusArray : canonical).map(row=>({...row}));
