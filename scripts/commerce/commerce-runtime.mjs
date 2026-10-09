@@ -190,6 +190,21 @@ export async function requestCommerceExchange({ merchantUuid, buyerUuid, offerId
 
 export function installCommerceRuntime() {
   if (installed || !game.socket?.on) return;
+  // Ningún usuario jugador puede reconfigurar las ofertas ni los recibos de un NPC,
+  // incluso si el DJ le dio propiedad sobre el Actor.
+  Hooks.on("preUpdateActor", (actor, changes) => {
+    if (game.user?.isGM || actor?.type !== "npc") return;
+    const keys = Object.keys(changes ?? {});
+    if (keys.some((key) => key === "flags.tierra-magica.commerce" ||
+      key.startsWith("flags.tierra-magica.commerce.") ||
+      key === "flags.tierra-magica.commerceReceipts" ||
+      key.startsWith("flags.tierra-magica.commerceReceipts.")) ||
+      foundry.utils.hasProperty(changes, "flags.tierra-magica.commerce") ||
+      foundry.utils.hasProperty(changes, "flags.tierra-magica.commerceReceipts")) {
+      ui.notifications.warn("Sólo el DJ modifica el stock y los recibos de un establecimiento.");
+      return false;
+    }
+  });
   installed = true;
   game.socket.on(CHANNEL, async (message) => {
     if (message?.scope !== SCOPE) return;
