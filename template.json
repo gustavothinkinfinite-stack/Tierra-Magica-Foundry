@@ -644,7 +644,8 @@
         "base"
       ],
       "category": "acquired",
-      "effect": ""
+      "effect": "",
+      "situationalBonuses": []
     },
     "specialization": {
       "templates": [
