@@ -76,7 +76,7 @@ test("compra: descuenta cobres, entrega una unidad y agota stock exactamente", a
   assert.equal(env.buyer.system.currency.totalCopper, 470);
   assert.equal(env.getStock(), 0);
   assert.equal(env.items.length, 1);
-  assert.equal(env.items[0].system.physical.quantity, 1);
+  assert.equal(env.items[0].system.quantity, 1);
   assert.equal(env.items[0].system.acquisition.paid.amount, 30);
 });
 
