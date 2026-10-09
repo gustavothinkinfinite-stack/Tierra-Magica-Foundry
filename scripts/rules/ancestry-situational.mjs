@@ -71,8 +71,15 @@ export function actorSituationalBonuses(items=[]) {
   const ancestral=actorAncestrySituationalBonuses(entries);
   const significantResistance=entries.some(item=>item?.type==="trait" &&
     item.name==="Resistencia Ambiental Significativa");
-  const traits=entries.filter(item=>item?.type==="trait" &&
-    !(significantResistance && item.name==="Resistencia Ambiental")).flatMap(item=>{
+  const seenTraits=new Set();
+  const traits=entries.filter(item=>{
+    if(item?.type!=="trait") return false;
+    if(significantResistance && item.name==="Resistencia Ambiental") return false;
+    // La identidad de un Rasgo es única; no sumar copias de datos heredados.
+    if(seenTraits.has(item.name)) return false;
+    seenTraits.add(item.name);
+    return true;
+  }).flatMap(item=>{
     const bonusArray=item.system?.situationalBonuses;
     const canonical=TRAIT_SITUATIONAL_BONUSES[String(item.name??"")]??[];
     return (Array.isArray(bonusArray) && bonusArray.length ? bonusArray : canonical).map(row=>({...row}));
@@ -111,8 +118,9 @@ export function ancestryCheckChoicesHtml(items=[],attributeKey=null) {
     all.map(row=>{
       const key=row.selector.startsWith("attribute.")?row.selector.slice(10):"";
       const selected=attributeKey && key && key!==attributeKey;
+      const requirement=key?" <em>(requiere "+esc(key.toUpperCase())+")</em>":"";
       return "<label data-racial-attribute='"+esc(key)+"'"+(selected?" style='display:none'":"")+"><input type='checkbox' name='racialBonuses' value='"+esc(row.id)+"' />"+
-        "<span><strong>"+esc(row.label)+" (+"+esc(row.value)+")</strong> "+esc(row.condition)+"</span></label>";
+        "<span><strong>"+esc(row.label)+" (+"+esc(row.value)+")</strong>"+requirement+" "+esc(row.condition)+"</span></label>";
     }).join("")+
   "</fieldset>";
 }
