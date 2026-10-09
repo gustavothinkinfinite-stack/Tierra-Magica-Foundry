@@ -78,12 +78,13 @@
             </div>
           </div>
 
+          <div class="tm-v12-status-dock" aria-label="Recursos y economía de turno">
           <section class="tm-v03-resources">
             <article class="tm-v03-resource tm-v03-health" style="--tm-fill: {{healthPercent}}%;">
               <div class="tm-v03-resource-label"><i class="fa-solid fa-heart"></i><span>Vida</span></div>
               <div class="tm-v03-resource-value">
                 <button type="button" data-action="resource-change" data-resource="health" data-amount="-1"><i class="fa-solid fa-minus"></i></button>
-                <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}" />
+                <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}" aria-label="Vida actual" title="Vida actual" />
                 <b>/ {{system.derived.healthMax}}</b>
                 <button type="button" data-action="resource-change" data-resource="health" data-amount="1"><i class="fa-solid fa-plus"></i></button>
               </div>
@@ -94,7 +95,7 @@
               <div class="tm-v03-resource-label"><i class="fa-solid fa-sparkles"></i><span>Maná</span></div>
               <div class="tm-v03-resource-value">
                 <button type="button" data-action="resource-change" data-resource="mana" data-amount="-1"><i class="fa-solid fa-minus"></i></button>
-                <input type="number" name="system.resources.mana.value" value="{{system.resources.mana.value}}" />
+                <input type="number" name="system.resources.mana.value" value="{{system.resources.mana.value}}" aria-label="Maná actual" title="Maná actual" />
                 <b>/ {{system.derived.manaMax}}</b>
                 <button type="button" data-action="resource-change" data-resource="mana" data-amount="1"><i class="fa-solid fa-plus"></i></button>
               </div>
@@ -109,10 +110,9 @@
 
           <section class="tm-v03-turn">
             <div class="tm-v03-turn-heading">
-              <span>Turno</span>
+              <span>Turno <small class="tm-v12-turn-manual-indicator" title="Acción y Reacción son indicadores manuales: no bloquean tiradas ni activaciones.">· Control manual</small></span>
               <button type="button" data-action="reset-turn" title="Restablecer Movimiento, Acción y Reacción"><i class="fa-solid fa-rotate-right"></i></button>
             </div>
-            <p class="tm-v10-manual-turn-note">Acción y Reacción: indicadores manuales. No bloquean tiradas ni activaciones.</p>
             <div class="tm-v03-turn-actions">
               <button type="button" class="{{#if turn.movementDepleted}}spent{{/if}}" data-action="spend-movement">
                 <i class="fa-solid fa-person-running"></i>
@@ -131,6 +131,7 @@
               </button>
             </div>
           </section>
+          </div>
 
           <div class="tm-v09-motto" aria-hidden="true">
             <span>✦</span><b>EXPLORA</b><i>•</i><b>CREA</b><i>•</i><b>ENFRENTA</b><i>•</i><b>TRASCIENDE</b><span>✦</span>
