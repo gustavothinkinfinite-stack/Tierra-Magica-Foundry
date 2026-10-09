@@ -730,7 +730,8 @@
       "movementBase": 6,
       "movementModes": "",
       "naturalProtection": 0,
-      "racialFeatures": []
+      "racialFeatures": [],
+      "situationalBonuses": []
     },
     "origin": {
       "templates": [
