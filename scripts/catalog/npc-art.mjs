@@ -14,6 +14,11 @@ export const APPROVED_BESTIARY_ART_SLUGS = Object.freeze([
   "jabali-igneo",
   "garza-de-cristal",
   "sabueso-espectral",
+  "zorro-carmesi",
+  "carnero-del-alba-dorada",
+  "lagarto-de-cristal",
+  "cuervo-de-cobre",
+  "nutria-encantada",
   "ogro",
   "centinela-de-bronce",
   "troll-dominante"
