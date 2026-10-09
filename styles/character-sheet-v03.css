@@ -4480,3 +4480,158 @@ form.tm-character-sheet-v03 {
   .tm-creation-choice-list { grid-template-columns:1fr; max-height: 58vh; }
   .tm-character-sheet-v03 .tm-v10-player-help { margin:8px; padding:11px; }
 }
+
+
+/* Ficha resumen — recursos y Turno en un mismo flujo vertical.
+   Los paneles anteriores se posicionaban independientemente con bottom fijo.
+   Al añadirse una línea al Turno, crecía encima de los valores de Vida/Maná.
+   Este bloque evita la superposición aunque varíe el alto del contenido. */
+.tm-character-sheet-v03 .tm-v12-status-dock {
+  position: absolute;
+  z-index: 12;
+  left: 12px;
+  right: 12px;
+  bottom: 43px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock > .tm-v03-resources {
+  position: static;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  z-index: auto;
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, .82fr);
+  gap: 6px;
+  padding: 0;
+  box-sizing: border-box;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-resource {
+  width: 100%;
+  min-width: 0;
+  min-height: 78px;
+  box-sizing: border-box;
+  grid-template-rows: 21px 29px 8px;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-development {
+  grid-template-rows: 21px 1fr;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-resource-value {
+  display: grid;
+  grid-template-columns: 20px minmax(30px, 1fr) max-content 20px;
+  gap: 4px;
+  min-width: 0;
+  align-items: center;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-resource-value button {
+  width: 20px;
+  height: 25px;
+  min-height: 25px;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-resource-value input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 27px;
+  margin: 0;
+  padding: 0 2px;
+  color: #fff5d7;
+  font: 700 16px Georgia, serif;
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-resource-value input::-webkit-inner-spin-button,
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-resource-value input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-resource-value b {
+  color: #ffebbd;
+  font: 700 12px Georgia, serif;
+  white-space: nowrap;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-pd-value {
+  min-width: 0;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-pd-value small {
+  color: #d4e3df;
+  font-size: 9px;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock > .tm-v03-turn {
+  position: static;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  z-index: auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 84px;
+  display: grid;
+  grid-template-rows: 24px minmax(0, 1fr);
+  box-sizing: border-box;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-turn-heading {
+  height: 24px;
+  font-size: 10px;
+}
+.tm-character-sheet-v03 .tm-v12-turn-manual-indicator {
+  color: #9ad8e2;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  cursor: help;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-turn-actions {
+  min-width: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-turn-actions button {
+  min-width: 0;
+  min-height: 57px;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-turn-actions span {
+  color: #f3e5c4;
+  font-size: 11px;
+  line-height: 1.2;
+}
+.tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-turn-actions small {
+  color: #b6e0e7;
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+/* Si el panel central se estrecha, no comprimir los números: colocar PD
+   en una fila propia y reservar más alto al escenario para el retrato. */
+@container tm-character-sheet (max-width: 860px) {
+  .tm-character-sheet-v03 .tm-v03-character-stage {
+    min-height: 850px;
+  }
+  .tm-character-sheet-v03 .tm-v03-portrait-frame {
+    top: 35%;
+    height: 42%;
+  }
+  .tm-character-sheet-v03 .tm-v12-status-dock > .tm-v03-resources {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-development {
+    grid-column: 1 / -1;
+    min-height: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .tm-character-sheet-v03 .tm-v12-status-dock .tm-v03-development .tm-v03-pd-value {
+    display: flex;
+    gap: 6px;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+}
