@@ -34,6 +34,20 @@ export const ANCESTRY_SITUATIONAL_BONUSES=Object.freeze({
   ]
 });
 
+// Rasgos cuyos bonos son numéricos y dependen de una condición. Otros
+// Rasgos, como Corpulento, ya se aplican mediante FlatModifier permanente.
+export const TRAIT_SITUATIONAL_BONUSES=Object.freeze({
+  "Sentido Agudo":[
+    {id:"rasgo-sentido-agudo",selector:"attribute.per",value:1,label:"Sentido Agudo",condition:"Sólo al distinguir detalles sutiles con el sentido ordinario elegido al adquirir el Rasgo. No mejora iniciativa."}
+  ],
+  "Afinidad Sobrenatural":[
+    {id:"rasgo-afinidad-sobrenatural",selector:"attribute.per",value:1,label:"Afinidad Sobrenatural",condition:"Sólo para advertir manifestaciones perceptibles de la afinidad estrecha elegida. No sirve para identificar el fenómeno."}
+  ],
+  "Resistencia Ambiental":[
+    {id:"rasgo-resistencia-ambiental",selector:"attribute.vig",value:1,label:"Resistencia Ambiental",condition:"Sólo para resistir la exposición ambiental concreta elegida al adquirir el Rasgo."}
+  ]
+});
+
 const copy=(rows)=>rows.map(row=>({...row}));
 export function ancestrySituationalBonuses(ancestry) {
   if(!ancestry || ancestry.type!=="ancestry") return [];
@@ -52,8 +66,19 @@ export function actorAncestrySituationalBonuses(items=[]) {
     typeof row.selector==="string");
 }
 
+export function actorSituationalBonuses(items=[]) {
+  const entries=Array.from(items);
+  const ancestral=actorAncestrySituationalBonuses(entries);
+  const traits=entries.filter(item=>item?.type==="trait").flatMap(item=>{
+    const bonusArray=item.system?.situationalBonuses;
+    const canonical=TRAIT_SITUATIONAL_BONUSES[String(item.name??"")]??[];
+    return (Array.isArray(bonusArray) && bonusArray.length ? bonusArray : canonical).map(row=>({...row}));
+  }).filter(row=>typeof row.selector==="string" && Number.isFinite(Number(row.value)));
+  return [...ancestral,...traits];
+}
+
 export function availableAncestryCheckBonuses(items=[],attributeKey="") {
-  return actorAncestrySituationalBonuses(items).filter(row=>
+  return actorSituationalBonuses(items).filter(row=>
     row.selector==="check" || row.selector==="attribute."+attributeKey);
 }
 
@@ -75,10 +100,10 @@ export function ancestryBonusDisplay(row) {
 }
 
 export function ancestryCheckChoicesHtml(items=[],attributeKey=null) {
-  const all=actorAncestrySituationalBonuses(items).filter(row=>row.selector==="check" || row.selector.startsWith("attribute."));
+  const all=actorSituationalBonuses(items).filter(row=>row.selector==="check" || row.selector.startsWith("attribute."));
   if(!all.length) return "";
   const esc=(value)=>String(value??"").replace(/[&<>"']/g,character=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[character]));
-  return "<fieldset class='tm-racial-check-options'><legend>Ventajas raciales circunstanciales</legend>"+
+  return "<fieldset class='tm-racial-check-options'><legend>Ventajas circunstanciales (Ascendencia y Rasgos)</legend>"+
     "<p>Activá sólo las que correspondan a la situación. No alteran el Atributo permanente.</p>"+
     all.map(row=>{
       const key=row.selector.startsWith("attribute.")?row.selector.slice(10):"";
