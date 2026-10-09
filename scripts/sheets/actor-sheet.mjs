@@ -165,13 +165,23 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       allowProgression: creationStatus === "rebuilding"
     });
     const ancestryProfile = this.actor.system.derived?.ancestryProfile ?? null;
+    const racialBonuses = actorAncestrySituationalBonuses([...this.actor.items]);
+    context.ancestryAttributeBonuses = Object.fromEntries(
+      Object.keys(TM_CONFIG.attributes).map(key=>{
+        const bonuses=racialBonuses.filter(entry=>entry.selector==="attribute."+key);
+        return [key,bonuses.length ? {
+          value:bonuses.reduce((sum,row)=>sum+Number(row.value),0),
+          description:bonuses.map(row=>row.label+": "+row.condition).join(" · ")
+        } : null];
+      })
+    );
     context.creationGuide = {
       ready: creationIssues.length === 0,
       issues: creationIssues,
       attributeIncreases: initialAttributes.increases,
       attributeTarget: 6,
       ancestryProfile,
-      ancestryConditionalBonuses: actorAncestrySituationalBonuses([...this.actor.items]),
+      ancestryConditionalBonuses: racialBonuses,
       ancestryIntroduction: context.identityItems.ancestry
         ? creationChoicePresentation(context.identityItems.ancestry).introduction : "",
       originIntroduction: context.identityItems.origin
