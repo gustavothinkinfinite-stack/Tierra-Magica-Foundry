@@ -12668,6 +12668,23 @@ Permanecen sin fijar los nombres de las tres casas de las Coronas Rotas, las fro
 - **Control de coherencia fuera de la imagen:** las relaciones políticas, comerciales, distancias y conexiones existentes en el canon continúan siendo válidas; si es necesario modelarlas para comprobar ciudades, puertos y cuencas, hacerlo en datos técnicos separados que no se superponen en el producto editorial.
 - **Producción:** no se requieren mapas político y de rutas como entregables finales. El objetivo es una base geográfica maestra coherente y una edición ilustrada final (y, si conviene, la misma sin rótulos). No confundir omisión gráfica con eliminación de instituciones, caminos o ferrocarriles del mundo narrativo.
 
+### Mapa Maestro único y original — ratificación final (2026-10-09)
+
+**VIGENTE — CANON VISUAL CARTOGRÁFICO, PRIORIDAD SOBRE MAPAS PREVIOS.** Por aprobación expresa de su creador, se establece **un solo mapa general oficial y original** para Tierra Mágica:
+
+- **Archivo único autorizado:** `docs/cartografia/Tierra_Magica_Mapa_Maestro.png`
+- **SHA-256 del archivo exacto:** `e1d27cae1979c44c8cd6d11ac77e37056f522658d8967816f543ed867d57a34a`
+- **SHA de objeto binario Git:** `0ace3abfbb358041568da03fe54d54bbf53e3eb9`
+- **Formato/resolución nativa:** PNG RGB, 1448 × 1086 píxeles, 3.641.728 bytes.
+
+**Este PNG reemplaza como referencia visual cartográfica** todos los bocetos de Edria y Oriente, los mapas generales provisionales C1/C2, los mapas ilustrados anteriores y cualquier versión de prueba. La ratificación antigua del `Tierra_Magica_Mapa_Fisico_Maestro_Borrador_V1.png` documenta una etapa histórica de aprobación de macroformas, pero **ya no autoriza usar esa imagen como mapa original vigente**. Esas fuentes permanecen como archivos históricos para trazabilidad.
+
+Se ratifican visualmente en el mapa único las formas y la distribución general de Edria y **Territorio Oriental** (nombre descriptivo oficial en la rotulación, sin extensión «de los anihombres»), el archipiélago más extenso alrededor de Nacariel, los pantanos del sector sur del Territorio Oriental y **un único asentamiento Vigilia Alta en tierra**, diferenciado del **Cinturón Flotante de Vigilia** situado al norte. El mapa principal **no mostrará fronteras políticas ni rutas**. Los nombres regionales son rótulos geográficos sin delimitación dibujada.
+
+**Relación entre autoridades:** el Manual Maestro sigue siendo la autoridad narrativa y mecánica. Esta imagen es la única autoridad visual del mapa general. Coordenadas métricas, simulaciones climáticas, límites administrativos y recorridos no visibles no deben deducirse como datos científicos o mecánicos cerrados únicamente a partir de sus píxeles.
+
+**Control de versiones:** el archivo maestro original no debe retocarse, regenerarse, reemplazarse, reescalarse ni recomprimirse sin aprobación explícita. Copias de impresión, ampliaciones y mapas parciales serán derivados identificados como tales, con vínculo al PNG canónico. Ver `docs/cartografia/README.md` para huellas y reglas de integridad.
+
 ### Cronología esencial
 
 | Fecha | Hecho |
