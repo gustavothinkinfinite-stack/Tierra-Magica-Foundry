@@ -1,8 +1,8 @@
 {
   "id": "tierra-magica",
   "title": "Tierra Mágica — Foundry T.M.",
-  "description": "Foundry T.M. 1.11.0: indicador X roja a 0 Vida, recuperación segura de reservas de fabricación huérfanas y 13 lotes de materiales preparados en el compendio de Equipo.",
-  "version": "1.11.0",
+  "description": "Foundry T.M. 1.12.0 (preparada, no publicada): cinco criaturas originales con retratos, tokens circulares y fichas completas. Bestiario: 17 Actores, 32 artes WebP.",
+  "version": "1.12.0",
   "compatibility": {
     "minimum": "13",
     "verified": "14"

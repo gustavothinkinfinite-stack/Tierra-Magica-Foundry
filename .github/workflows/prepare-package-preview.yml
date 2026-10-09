@@ -1,0 +1,49 @@
+name: Preparar paquete sin publicar
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "assets/bestiary/**"
+      - "scripts/catalog/approved-creatures-v1.mjs"
+      - "scripts/catalog/npc-art.mjs"
+      - "tools/build-packs.mjs"
+      - "system.json"
+      - "package.json"
+      - ".github/workflows/prepare-package-preview.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener código de la rama
+        uses: actions/checkout@v4
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Instalar dependencias
+        run: npm install --ignore-scripts
+      - name: Verificar el sistema y los compendios
+        run: npm run validate
+      - name: Preparar ZIP sin publicación
+        shell: bash
+        run: |
+          npm run stage:release
+          cd package
+          zip -qr ../tierra-magica-1.12.0-preview.zip tierra-magica
+          cd ..
+          unzip -t tierra-magica-1.12.0-preview.zip
+          unzip -l tierra-magica-1.12.0-preview.zip | grep 'tierra-magica/packs/bestiary/'
+          unzip -l tierra-magica-1.12.0-preview.zip | grep 'tierra-magica/assets/bestiary/sabueso-espectral-token.webp'
+          test "$(find assets/bestiary -name '*.webp' | wc -l)" -eq 32
+      - name: Guardar candidato instalable (NO es un release)
+        uses: actions/upload-artifact@v4
+        with:
+          name: tierra-magica-1.12.0-candidato-sin-publicar
+          path: tierra-magica-1.12.0-preview.zip
+          retention-days: 7
+          if-no-files-found: error

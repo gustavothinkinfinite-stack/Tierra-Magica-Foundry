@@ -75,10 +75,10 @@ habitual salvo que su `npcProfile.enabled` se active explícitamente.
 
 ## Arte del Bestiario — retratos y tokens integrados
 
-Desde **v1.8.0** el sistema distribuye **11 parejas** de WebP directamente
+Desde **v1.8.0** el sistema distribuye retratos y tokens; la **v1.12.0 preparada, no publicada**, reúne **16 parejas** de WebP directamente
 en `assets/bestiary/`: Civil, Bandido, Guardia, Soldado, Veterano,
 Canalizador hostil, Lobo, Ogro, Centinela de Bronce, Troll dominante y
-**Lobo del Eco Muerto**. Cada pareja contiene:
+**Lobo del Eco Muerto**, y las cinco criaturas nuevas **Ciervo Astral**, **Araña de Campanario**, **Jabalí Ígneo**, **Garza de Cristal** y **Sabueso Espectral**. Cada pareja contiene:
 
 - Retrato del Actor: `<slug>-retrato.webp`.
 - Token circular: `<slug>-token.webp`.
@@ -91,7 +91,7 @@ válidos y que cada pareja esté completa.
 El **Tirador** mantiene el icono genérico: su imagen debe mostrar un rifle
 temprano según el Manual Maestro, no el arco de un boceto descartado.
 
-El compendio contiene **12 Actors**. El **Lobo del Eco Muerto** permanece
+La versión preparada del compendio contiene **17 Actores**. El **Lobo del Eco Muerto** permanece
 separado del Lobo canónico y está señalado como propuesta original pendiente de
 aprobación. Su documentación editorial está en
 `docs/visual/Lobo_del_Eco_Muerto_Bestiario_Original.md`; no modifica las
@@ -130,3 +130,7 @@ Se puede ejecutar de nuevo sin duplicar recursos.
 
 **Prevención:** no borrar directamente Proyectos activos o con materiales
 comprometidos. Primero usar su acción **Liberar / Cancelar Proyecto**.
+
+## Cinco criaturas originales (versión en preparación)
+
+Ciervo Astral, Araña de Campanario, Jabalí Ígneo, Garza de Cristal y Sabueso Espectral disponen de fichas NPC completas y arte propio. Consulta `docs/visual/Bestiario_Original_Cinco_Criaturas_Tanda_1.md` para su ecología, estadísticas, capacidades y aventuras. La versión 1.12.0 queda preparada en GitHub, **no publicada**; la instalación de Foundry no se actualiza hasta autorización explícita para crear release.

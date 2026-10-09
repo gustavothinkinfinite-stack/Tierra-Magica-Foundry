@@ -5,6 +5,7 @@ import { resolve } from "node:path";
 import { coreCatalog } from "../scripts/catalog/core-catalog.mjs";
 import { npcReferenceCatalog } from "../scripts/catalog/npc-catalog.mjs";
 import { originalBestiaryCatalog } from "../scripts/catalog/original-bestiary.mjs";
+import { fiveApprovedCreatureCatalog } from "../scripts/catalog/approved-creatures-v1.mjs";
 import { APPROVED_BESTIARY_ART_SLUGS, bestiaryArtFiles } from "../scripts/catalog/npc-art.mjs";
 
 const root = resolve(import.meta.dirname, "..");
@@ -86,7 +87,8 @@ for(const slug of APPROVED_BESTIARY_ART_SLUGS) {
 }
 const actorEntries=[
   ...npcReferenceCatalog({availableArtFiles}),
-  ...originalBestiaryCatalog({availableArtFiles})
+  ...originalBestiaryCatalog({availableArtFiles}),
+  ...fiveApprovedCreatureCatalog({availableArtFiles})
 ];
 const actorSource=resolve(sourceRoot,actorPack);
 const actorOutput=resolve(outputRoot,actorPack);
