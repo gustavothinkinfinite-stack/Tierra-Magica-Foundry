@@ -1,4 +1,5 @@
 import { STARTER_CONTENT } from "../content.mjs";
+import { ANCESTRY_SITUATIONAL_BONUSES } from "../rules/ancestry-situational.mjs";
 import { migrateItemSource, TM_SCHEMA_VERSION } from "../rules/data-model-migration.mjs";
 import { normalizeSlug } from "../rules/identity.mjs";
 import { approvedWeaponVariantSources } from "./weapon-variants-approved.mjs";
@@ -300,6 +301,7 @@ export function constructionCatalog() {
       movementModes:ancestry.movementModes ?? "",
       naturalProtection:ancestry.naturalProtection ?? 0,
       racialFeatures:ancestry.racialFeatures ?? [],
+      situationalBonuses:ANCESTRY_SITUATIONAL_BONUSES[ancestry.name]??[],
       selectionNotes:ancestry.selectionNotes ?? "",
       requirementsText:ancestry.selectionNotes || "El paquete racial se aplica automáticamente desde esta Ascendencia.",
       rules:ancestry.rules ?? [{key:"RollOption",option:"ancestry:"+normalizeSlug(ancestry.name)}]
