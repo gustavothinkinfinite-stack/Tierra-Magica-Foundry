@@ -4384,3 +4384,99 @@ form.tm-character-sheet-v03 {
     justify-content: flex-end;
   }
 }
+
+
+/* Asistente de creación: las decisiones se leen antes de comprarlas. */
+.tm-creation-choice-browser {
+  color: #2c302c;
+  font-size: 13px;
+}
+.tm-creation-choice-browser > p {
+  margin: 3px 3px 12px;
+  line-height: 1.45;
+}
+.tm-creation-choice-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  max-height: min(58vh, 510px);
+  overflow-y: auto;
+  padding: 3px 6px 6px 3px;
+}
+.tm-creation-choice-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid #b29a6a;
+  border-radius: 5px;
+  background: linear-gradient(#fcf6e6, #ede0bf);
+  box-shadow: 0 1px 3px rgba(52,40,22,.11);
+  cursor: pointer;
+}
+.tm-creation-choice-card:has(input:checked) {
+  border: 2px solid #096178;
+  background: #e6f0ed;
+  padding: 12px;
+}
+.tm-creation-choice-card input[type="radio"] {
+  flex: 0 0 auto;
+  margin-top: 4px;
+  accent-color: #096178;
+}
+.tm-creation-choice-text { display:flex; flex:1; flex-direction:column; min-width:0; gap:7px; }
+.tm-creation-choice-text strong { color:#143b47; font: bold 16px Georgia,serif; }
+.tm-creation-choice-intro { font-size:12px; line-height:1.45; }
+.tm-creation-choice-text details { border-top:1px solid #cfbb91; padding-top:6px; }
+.tm-creation-choice-text summary { cursor:pointer; color:#075b74; font-weight:700; font-size:12px; }
+.tm-creation-choice-text ul { padding-left:19px; margin:6px 0; line-height:1.5; }
+.tm-creation-choice-text li + li { margin-top:5px; }
+.tm-creation-choice-text small { font-size:11px; color:#665331; line-height:1.45; }
+
+.tm-character-sheet-v03 .tm-v10-player-help {
+  border-left: 4px solid #0b6981;
+  background: linear-gradient(110deg, #f9f1dc, #f0e1be);
+  margin: 10px 10px 14px;
+  padding: 14px 18px;
+  color: #263b3e;
+}
+.tm-character-sheet-v03 .tm-v10-player-help strong {
+  font: bold 19px Georgia,serif;
+  color: #103b48;
+}
+.tm-character-sheet-v03 .tm-v10-player-help p {
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 7px 0;
+}
+.tm-character-sheet-v03 .tm-v10-player-help small {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #665132;
+}
+.tm-character-sheet-v03 .tm-v10-step-instruction {
+  margin: 9px 14px 14px;
+  padding: 11px 13px;
+  border: 1px solid #d5c29b;
+  background: #fff8e9;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.tm-character-sheet-v03 .tm-v10-inline-heading {
+  margin: 16px 8px 5px;
+  font: bold 15px Georgia,serif;
+  color: #17414c;
+}
+.tm-character-sheet-v03 .tm-v10-attribute-editor label small {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #6b5736;
+}
+@media (max-width: 650px) {
+  .tm-creation-choice-list { grid-template-columns:1fr; max-height: 58vh; }
+  .tm-character-sheet-v03 .tm-v10-player-help { margin:8px; padding:11px; }
+}

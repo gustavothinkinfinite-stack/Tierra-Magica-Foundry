@@ -7,6 +7,7 @@ import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } f
 import { movementAllowance, movementRemaining, spendActorMovement } from "../rules/turn-economy.mjs";
 import { clearTurnResourceReservation, clearTurnResourceReservations } from "../rules/state-authority.mjs";
 import { nextAttributeUpgradeCost, validateCreationState, validateInitialAttributes } from "../rules/creation.mjs";
+import { creationChoiceBrowserHtml, creationChoicePresentation, creationStepGuide, CREATION_ATTRIBUTE_HELP } from "../rules/creation-onboarding.mjs";
 import {
   craftingProjectSourceFromReference,
   craftingReferenceGroups,
@@ -169,6 +170,12 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       attributeIncreases: initialAttributes.increases,
       attributeTarget: 6,
       ancestryProfile,
+      ancestryIntroduction: context.identityItems.ancestry
+        ? creationChoicePresentation(context.identityItems.ancestry).introduction : "",
+      originIntroduction: context.identityItems.origin
+        ? creationChoicePresentation(context.identityItems.origin).introduction : "",
+      backgroundIntroduction: context.identityItems.background
+        ? creationChoicePresentation(context.identityItems.background).introduction : "",
       ancestryScaleLabel: ancestryProfile?.scale ? (TM_CONFIG.sizes[ancestryProfile.scale] ?? ancestryProfile.scale) : "Pendiente",
       originFacet: String(this.actor.system.details?.originFacet ?? ""),
       originFacetOptions: optionMap(originFacetList, "— Elegir Faceta de Origen —"),
@@ -226,6 +233,8 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
       };
     });
     context.creationWizard = {
+      help: creationStepGuide(wizardStep),
+      attributeDescriptions: CREATION_ATTRIBUTE_HELP,
       enabled: creationStatus === "building",
       step: wizardStep,
       total: 8,
@@ -771,15 +780,36 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
   async #openContentBrowser(type) {
     const entries = (game.tierraMagica?.catalog ?? []).filter((entry) => entry.type === type);
     if (!entries.length) return ui.notifications.warn("No hay contenido estructurado disponible para esta categoría.");
-    const options = entries.map((entry, index) =>
-      "<option value='" + index + "'>" + foundry.utils.escapeHTML(entry.name) + "</option>"
-    ).join("");
-    const selected = await Dialog.prompt({
-      title: "Agregar " + (TM_CONFIG.itemTypes[type] ?? "contenido"),
-      content: "<div class='form-group'><label>Catálogo canónico CREA-11</label><select name='entry'>" + options + "</select></div>",
-      label: "Agregar",
-      callback: (html) => Number(html.find("[name='entry']").val()),
-      rejectClose: false
+    // El catálogo mecánico no se presenta como una sigla interna.
+    // Fichas narrativas y capacidades provienen del Item y del Manual Maestro.
+    const selected = await new Promise((resolve) => {
+      let settled = false;
+      const choose = (index) => {
+        if (settled) return;
+        settled = true;
+        resolve(index);
+      };
+      new Dialog({
+        title: "Elegir " + (TM_CONFIG.itemTypes[type] ?? "opción"),
+        content: creationChoiceBrowserHtml(entries,type),
+        buttons: {
+          select: {
+            icon: '<i class="fa-solid fa-check"></i>',
+            label: "Elegir opción",
+            callback: (html) => {
+              const selectedValue = html.find("input[name='entry']:checked").val();
+              if (selectedValue === undefined) {
+                ui.notifications.warn("Primero seleccioná una opción de la lista.");
+                return choose(null);
+              }
+              choose(Number(selectedValue));
+            }
+          },
+          cancel: {label:"Cancelar",callback:()=>choose(null)}
+        },
+        default:"select",
+        close:()=>choose(null)
+      }, {width:720}).render(true);
     });
     if (selected === null || selected === undefined) return;
     const source = foundry.utils.deepClone(entries[selected]);

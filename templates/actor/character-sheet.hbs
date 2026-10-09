@@ -530,7 +530,7 @@
           <div>
             <small>Creación de personaje</small>
             <h2>Paso {{creationWizard.step}} de {{creationWizard.total}}</h2>
-            <p>Completá un paso para desbloquear el siguiente. El resto de la ficha se habilita al finalizar.</p>
+            <p>Elegí con calma: cada etapa explica qué significa, qué aporta y qué te falta. La ficha de juego se habilita al finalizar.</p>
           </div>
         </section>
 
@@ -542,12 +542,18 @@
           {{/each}}
         </section>
 
+        <aside class="tm-v10-player-help" aria-label="Guía de este paso">
+          <strong>{{creationWizard.help.title}}</strong>
+          <p>{{creationWizard.help.description}}</p>
+          <small>{{creationWizard.help.tip}}</small>
+        </aside>
+
         {{#if creationWizard.isStep1}}
           <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
-            <div class="tm-section-heading"><h2>1 · Elegí tu Ascendencia</h2><span>Define el paquete racial del personaje.</span></div>
+            <div class="tm-section-heading"><h2>1 · Elegí tu Ascendencia</h2><span>Tu pueblo y sus capacidades propias; no es una clase ni una profesión.</span></div>
             {{#if identityItems.ancestry}}
               <div class="tm-v10-choice-selected">
-                <div><small>Ascendencia elegida</small><strong>{{identityItems.ancestry.name}}</strong><p>{{identityItems.ancestry.system.description}}</p></div>
+                <div><small>Ascendencia elegida</small><strong>{{identityItems.ancestry.name}}</strong><p>{{creationGuide.ancestryIntroduction}}</p></div>
                 <button type="button" data-action="content-browser" data-type="ancestry">Cambiar</button>
               </div>
               {{#if creationGuide.ancestryProfile}}
@@ -564,7 +570,7 @@
             {{else}}
               <div class="tm-v10-empty-choice">
                 <i class="fa-solid fa-users"></i>
-                <p>Todavía no elegiste Ascendencia.</p>
+                <p>Todavía no elegiste Ascendencia. Compará sus historias y ventajas antes de decidir.</p>
                 <button type="button" data-action="content-browser" data-type="ancestry">Elegir Ascendencia</button>
               </div>
             {{/if}}
@@ -573,15 +579,15 @@
 
         {{#if creationWizard.isStep2}}
           <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
-            <div class="tm-section-heading"><h2>2 · Elegí tu Origen</h2><span>El Origen fija familiaridad cultural, idiomas y una Faceta.</span></div>
+            <div class="tm-section-heading"><h2>2 · Elegí tu Origen</h2><span>La cultura en la que creciste, tus idiomas y un ámbito familiar.</span></div>
             {{#if identityItems.origin}}
               <div class="tm-v10-choice-selected">
-                <div><small>Origen elegido</small><strong>{{identityItems.origin.name}}</strong><p>{{identityItems.origin.system.description}}</p></div>
+                <div><small>Origen elegido</small><strong>{{identityItems.origin.name}}</strong><p>{{creationGuide.originIntroduction}}</p></div>
                 <button type="button" data-action="content-browser" data-type="origin">Cambiar</button>
               </div>
               <div class="tm-v10-wizard-fields">
-                <label><span>Faceta de Origen</span><select data-action="set-origin-facet">{{selectOptions creationGuide.originFacetOptions selected=creationGuide.originFacet}}</select></label>
-                <label><span>Idiomas iniciales</span><input type="text" value="{{creationGuide.languages}}" readonly /></label>
+                <label><span>¿Qué aspecto de tu lugar conocés mejor?</span><select data-action="set-origin-facet">{{selectOptions creationGuide.originFacetOptions selected=creationGuide.originFacet}}</select><small>Esta Faceta expresa familiaridad cultural: no concede puntos de Habilidad.</small></label>
+                <label><span>Idiomas que recibirás</span><input type="text" value="{{creationGuide.languages}}" readonly /><small>Se registran automáticamente. No hace falta comprarlos con PD.</small></label>
               </div>
             {{else}}
               <div class="tm-v10-empty-choice"><i class="fa-solid fa-map-location-dot"></i><p>Todavía no elegiste Origen.</p><button type="button" data-action="content-browser" data-type="origin">Elegir Origen</button></div>
@@ -591,16 +597,16 @@
 
         {{#if creationWizard.isStep3}}
           <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
-            <div class="tm-section-heading"><h2>3 · Elegí tu Trasfondo</h2><span>Seleccioná el Trasfondo y exactamente dos Facetas.</span></div>
+            <div class="tm-section-heading"><h2>3 · Elegí tu Trasfondo</h2><span>Tu experiencia previa. Elegí dos aspectos distintos de esa vida.</span></div>
             {{#if identityItems.background}}
               <div class="tm-v10-choice-selected">
-                <div><small>Trasfondo elegido</small><strong>{{identityItems.background.name}}</strong><p>{{identityItems.background.system.description}}</p></div>
+                <div><small>Trasfondo elegido</small><strong>{{identityItems.background.name}}</strong><p>{{creationGuide.backgroundIntroduction}}</p></div>
                 <button type="button" data-action="content-browser" data-type="background">Cambiar</button>
               </div>
               <div class="tm-v10-wizard-fields tm-v10-background-facets">
-                <label><span>Faceta 1</span><select data-action="set-background-facet" data-index="0">{{selectOptions creationGuide.backgroundFacetOptions selected=creationGuide.backgroundFacet1}}</select></label>
-                <label><span>Faceta 2</span><select data-action="set-background-facet" data-index="1">{{selectOptions creationGuide.backgroundFacetOptions selected=creationGuide.backgroundFacet2}}</select></label>
-                {{#if creationGuide.usesWorkLanguage}}<label><span>Idioma de trabajo</span><input type="text" data-action="set-background-work-language" value="{{creationGuide.workLanguage}}" placeholder="Idioma regional adicional" /></label>{{/if}}
+                <label><span>Primera experiencia</span><select data-action="set-background-facet" data-index="0">{{selectOptions creationGuide.backgroundFacetOptions selected=creationGuide.backgroundFacet1}}</select></label>
+                <label><span>Segunda experiencia (diferente)</span><select data-action="set-background-facet" data-index="1">{{selectOptions creationGuide.backgroundFacetOptions selected=creationGuide.backgroundFacet2}}</select></label>
+                {{#if creationGuide.usesWorkLanguage}}<label><span>¿Qué idioma regional aprendiste trabajando?</span><input type="text" data-action="set-background-work-language" value="{{creationGuide.workLanguage}}" placeholder="Nombre del idioma regional" /><small>Sustituye una de las dos Facetas, no se suma como tercera.</small></label>{{/if}}
               </div>
             {{else}}
               <div class="tm-v10-empty-choice"><i class="fa-solid fa-briefcase"></i><p>Todavía no elegiste Trasfondo.</p><button type="button" data-action="content-browser" data-type="background">Elegir Trasfondo</button></div>
@@ -610,11 +616,11 @@
 
         {{#if creationWizard.isStep4}}
           <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
-            <div class="tm-section-heading"><h2>4 · Repartí tus Atributos</h2><span>Exactamente 6 aumentos gratuitos; ningún Atributo puede superar 3.</span></div>
-            <div class="tm-v10-budget-callout"><strong>{{creationGuide.attributeIncreases}} / {{creationGuide.attributeTarget}}</strong><span>aumentos usados</span></div>
+            <div class="tm-section-heading"><h2>4 · Repartí tus Atributos</h2><span>Tu potencial inicial: todos empiezan en 1, recibís 6 aumentos.</span></div>
+            <div class="tm-v10-budget-callout"><strong>{{creationGuide.attributeIncreases}} / {{creationGuide.attributeTarget}}</strong><span>aumentos usados · debés llegar exactamente a 6</span></div>
             <div class="tm-v03-attribute-editor tm-v10-attribute-editor">
               {{#each system.attributes as |attribute key|}}
-                <label><span>{{lookup ../config.attributes key}}</span><input type="number" data-action="set-creation-attribute" data-key="{{key}}" value="{{attribute.creationValue}}" min="1" max="3" /></label>
+                <label><span>{{lookup ../config.attributes key}}</span><small>{{lookup ../creationWizard.attributeDescriptions key}}</small><input type="number" data-action="set-creation-attribute" data-key="{{key}}" value="{{attribute.creationValue}}" min="1" max="3" /></label>
               {{/each}}
             </div>
           </section>
@@ -622,7 +628,8 @@
 
         {{#if creationWizard.isStep5}}
           <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
-            <div class="tm-section-heading"><h2>5 · Gastá tus PD</h2><span>Habilidades y opciones de desarrollo. Podés dejar PD sin gastar.</span></div>
+            <div class="tm-section-heading"><h2>5 · Elegí qué sabe hacer tu personaje</h2><span>25 PD para entrenamientos y capacidades; no son moneda ni PR.</span></div>
+            <p class="tm-v10-step-instruction">Primero elegí unas pocas Habilidades que definan tu idea de personaje. Después, si cumplís los requisitos, añadí Especializaciones y Técnicas. Para usar magia necesitás Canalización, Disciplinas y Hechizos. Podés guardar PD sin gastar.</p>
             <div class="tm-v10-budget-bar"><span>PD totales <b>{{development.pdTotal}}</b></span><span>Gastados <b>{{development.pdSpent}}</b></span><span>Disponibles <b>{{development.pdAvailable}}</b></span></div>
             {{#if creationWizard.skillIssues.length}}<div class="tm-warning"><strong>Habilidades pendientes</strong><ul>{{#each creationWizard.skillIssues as |issue|}}<li>{{issue}}</li>{{/each}}</ul></div>{{/if}}
             <div class="tm-v10-skill-builder">
@@ -634,6 +641,7 @@
                 </section>
               {{/each}}
             </div>
+            <h3 class="tm-v10-inline-heading">Opciones adicionales — abrí cada catálogo para leer sus efectos y requisitos</h3>
             <div class="tm-v10-catalog-actions">
               <button type="button" data-action="content-browser" data-type="specialization">+ Especialización</button>
               <button type="button" data-action="content-browser" data-type="technique">+ Técnica</button>
@@ -652,7 +660,8 @@
 
         {{#if creationWizard.isStep6}}
           <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
-            <div class="tm-section-heading"><h2>6 · Elegí Rasgos</h2><span>Presupuesto separado de PR. Podés dejar PR sin gastar.</span></div>
+            <div class="tm-section-heading"><h2>6 · Elegí tus Rasgos</h2><span>3 PR: dones, peculiaridades y vínculos especiales, distintos de Habilidades.</span></div>
+            <p class="tm-v10-step-instruction">Leé el coste y los límites de cada Rasgo antes de adquirirlo. Una capacidad racial gratuita no reduce estos 3 PR. También podés dejar puntos disponibles.</p>
             <div class="tm-v10-budget-bar"><span>PR totales <b>{{development.prTotal}}</b></span><span>Gastados <b>{{development.prSpent}}</b></span><span>Disponibles <b>{{development.prAvailable}}</b></span></div>
             <div class="tm-v10-catalog-actions"><button type="button" data-action="content-browser" data-type="trait">+ Elegir Rasgo</button></div>
             <ol class="tm-v10-selected-list">
@@ -665,7 +674,8 @@
 
         {{#if creationWizard.isStep7}}
           <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card">
-            <div class="tm-section-heading"><h2>7 · Comprá Equipo inicial</h2><span>PEI 20 o. El remanente se pierde al completar la creación.</span></div>
+            <div class="tm-section-heading"><h2>7 · Prepará tu equipo</h2><span>Tenés 20 oros sólo para equiparte antes de jugar.</span></div>
+            <p class="tm-v10-step-instruction">Elegí cómo va a viajar y defenderse tu personaje: un arma si la necesita, protección y herramientas de su oficio. Cada compra consume PEI. Lo que sobre no se transforma en dinero, y al finalizar se añade por separado una reserva de 2 oros.</p>
             <div class="tm-v10-budget-bar"><span>PEI total <b>{{development.peiTotal}} c</b></span><span>Gastado <b>{{development.peiSpent}} c</b></span><span>Restante <b>{{creationPei.display}}</b></span></div>
             <div class="tm-v10-catalog-actions">
               <button type="button" data-action="content-browser" data-type="weapon">+ Arma</button>
@@ -684,7 +694,8 @@
 
         {{#if creationWizard.isStep8}}
           <section class="tm-panel tm-v03-page-panel tm-v10-wizard-card tm-v10-review-card">
-            <div class="tm-section-heading"><h2>8 · Revisá y completá</h2><span>Al cerrar la creación se desbloquea toda la ficha.</span></div>
+            <div class="tm-section-heading"><h2>8 · Revisá tu personaje</h2><span>Este es el último control antes de comenzar a jugar.</span></div>
+            <p class="tm-v10-step-instruction">Comprobá que tu pueblo, tu historia, tus fortalezas y tus compras reflejen a quien querías crear. Las advertencias obligatorias deben resolverse; conservar PD o PR sin gastar está permitido. Al confirmar se cierra la creación.</p>
             <div class="tm-v10-review-grid">
               <div><span>Ascendencia</span><b>{{identityItems.ancestry.name}}</b></div>
               <div><span>Origen</span><b>{{identityItems.origin.name}}</b><small>{{creationGuide.originFacet}}</small></div>
@@ -698,7 +709,7 @@
             {{#if creationGuide.issues.length}}
               <div class="tm-warning"><strong>Todavía falta resolver</strong><ul>{{#each creationGuide.issues as |issue|}}<li>{{issue.message}}</li>{{/each}}</ul></div>
             {{else}}
-              <div class="tm-info"><strong>Personaje listo.</strong> La ficha completa se habilitará al finalizar.</div>
+              <div class="tm-info"><strong>Todo lo obligatorio está completo.</strong> Ya podés cerrar la creación y jugar con la ficha completa. Los PD y PR sin gastar quedan disponibles según las reglas.</div>
             {{/if}}
             {{#if creation.warnings.length}}<div class="tm-warning"><strong>Advertencias de legado</strong><ul>{{#each creation.warnings as |warning|}}<li>{{warning}}</li>{{/each}}</ul></div>{{/if}}
           </section>

@@ -182,10 +182,10 @@ test("personajes nuevos usan un asistente secuencial obligatorio en Desarrollo",
     "Elegí tu Origen",
     "Elegí tu Trasfondo",
     "Repartí tus Atributos",
-    "Gastá tus PD",
-    "Elegí Rasgos",
-    "Comprá Equipo inicial",
-    "Revisá y completá"
+    "Elegí qué sabe hacer tu personaje",
+    "Elegí tus Rasgos",
+    "Prepará tu equipo",
+    "Revisá tu personaje"
   ]) assert.equal(sheet.includes(marker),true,marker);
   assert.equal(logic.includes('this.options.tabs[0].initial = "development"'),true);
   assert.equal(logic.includes("#advanceCreationWizard"),true);
