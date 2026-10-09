@@ -198,7 +198,7 @@ export class TierraMagicaActor extends Actor {
 
     const skillBreakdown = skillKey ? this.#skillBreakdownHtml(skillKey, attribute, modifier) : "";
     const racialBreakdown = ancestryBonus.applied.length
-      ? "<p class='tm-racial-chat-bonus'><strong>Ventaja racial circunstancial:</strong> " +
+      ? "<p class='tm-racial-chat-bonus'><strong>Ventaja circunstancial (Ascendencia o Rasgo):</strong> " +
           ancestryBonus.applied.map((bonus) => foundry.utils.escapeHTML(bonus.label) +
             " +" + Number(bonus.value) + " · " + foundry.utils.escapeHTML(bonus.condition)).join("; ") +
           " (total +" + ancestryBonus.total + ").</p>"
