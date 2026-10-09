@@ -12647,7 +12647,7 @@ Eso coloca a Edria exactamente en el punto apropiado para el juego: suficienteme
 
 ### Límites deliberadamente abiertos
 
-Permanecen sin fijar los nombres de las tres casas de las Coronas Rotas, las fronteras históricas exactas, fechas fundacionales de las seis potencias, ubicación precisa de Lysendra, trazado de la Línea del Espinazo, causa de la Fractura, causa de la vitrificación del Desierto de Vidrio, historias individuales de las Ciudades Hundidas, yacimientos concretos de Cristales de Resonancia y explicación de la Crisis de Nacre.
+Permanecen sin fijar los nombres de las tres casas de las Coronas Rotas, las fronteras históricas exactas, fechas fundacionales de las seis potencias, coordenadas y fronteras precisas de Lysendra, trazado de la Línea del Espinazo, causa de la Fractura, causa de la vitrificación del Desierto de Vidrio, historias individuales de las Ciudades Hundidas, yacimientos concretos de Cristales de Resonancia y explicación de la Crisis de Nacre.
 
 ### Cronología esencial
 
@@ -12688,6 +12688,8 @@ La Liga fabrica armas de fuego, calderas, locomotoras y componentes de autómata
 de importaciones de alimento, carbón y cristal. Es la región donde más claramente se ve la vida arcano￾industrial: chimeneas, grúas, tranvías de cable, fábricas, puertos y laboratorios conviven con templos
 medievales y barrios amurallados.
 Principado de Lysendra
+**Ubicación geográfica ratificada (2026-10-09):** el Principado de Lysendra se sitúa en la **vertiente oriental del Espinazo del Mundo**, **al sudoeste de Erelia y al noroeste de Solenar**. Esta relación espacial es canon vinculante. Permanecen abiertos el perímetro político detallado, las coordenadas, el trazado de sus ríos y el origen, la forma, las cotas y las dimensiones del lago profundo de Lys. Los modelos lacustres de las Etapas 7–10 son propuestas técnicas, no datos canónicos.
+
 Lysendra es un pequeño estado de valles altos y lagos profundos, gobernado por una casa principesca
 apoyada por academias arcanas. Posee pocos recursos agrícolas, pero sus observatorios, bibliotecas y
 laboratorios son referentes continentales. La ciudadanía valora el estudio formal, los contratos escritos
