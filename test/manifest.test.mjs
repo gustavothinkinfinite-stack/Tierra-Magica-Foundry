@@ -7,10 +7,10 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = async (file) => JSON.parse(await readFile(resolve(root, file), "utf8"));
 
-test("el manifiesto describe Foundry T.M. 1.10.0", async () => {
+test("el manifiesto describe Foundry T.M. 1.11.0", async () => {
   const manifest = await readJson("system.json");
   assert.equal(manifest.id, "tierra-magica");
-  assert.equal(manifest.version, "1.10.0");
+  assert.equal(manifest.version, "1.11.0");
   assert.equal(manifest.compatibility.verified, "14");
   assert.equal(manifest.initiative, "2d10 + @derived.initiativeModifier");
   assert.equal(manifest.manifest, "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/system.json");
