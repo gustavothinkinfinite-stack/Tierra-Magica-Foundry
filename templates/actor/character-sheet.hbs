@@ -171,6 +171,17 @@
                   <li><span>{{feature}}</span></li>
                 {{/each}}
               </ol>
+              {{#if creationGuide.ancestryConditionalBonuses.length}}
+                <div class="tm-v12-racial-bonuses">
+                  <strong>Bonificaciones circunstanciales</strong>
+                  <p>No cambian el Atributo base. Activá cada ventaja sólo cuando se cumpla su condición.</p>
+                  <ul>
+                  {{#each creationGuide.ancestryConditionalBonuses as |bonus|}}
+                    <li><b>+{{bonus.value}} · {{bonus.label}}</b> <span>{{bonus.condition}}</span></li>
+                  {{/each}}
+                  </ul>
+                </div>
+              {{/if}}
             </section>
           {{/if}}
 
