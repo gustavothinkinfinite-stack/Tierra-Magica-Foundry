@@ -101,9 +101,9 @@ async function doExchange(data) {
     delete itemData.folder;
     delete itemData.ownership;
     itemData.system ??= {};
-    itemData.system.physical ??= {};
-    itemData.system.physical.quantity = quantity;
-    itemData.system.physical.equipped = false;
+    // El template "physical" de Foundry fusiona estos campos en system, no en system.physical.
+    itemData.system.quantity = quantity;
+    itemData.system.equipped = false;
     itemData.system.acquisition = {
       mode: config.mode === "chest" ? "granted" : "purchased",
       stage: "progression",
