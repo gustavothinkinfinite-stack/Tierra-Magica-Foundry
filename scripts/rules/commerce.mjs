@@ -82,7 +82,7 @@ export function createCommerceOffer(item, specialty = "general") {
     type: item.type,
     specialty: allowedSpecialty.has(specialty) ? specialty : "general",
     stock: 1, minTier: offerAvailabilityTier(item),
-    priceCopper: null, // null = usar el precio canónico vigente del Item
+    priceCopper: price.priceStatus === "exact" ? nonnegative(price.priceCopper) : null, // precio fijado al agregar la oferta
     priceQuantity: positive(price.priceQuantity) ?? 1,
     priceStatus: price.priceStatus === "exact" ? "exact" : "unset"
   };
