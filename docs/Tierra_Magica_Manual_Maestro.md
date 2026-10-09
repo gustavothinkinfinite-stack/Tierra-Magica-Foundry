@@ -155,6 +155,39 @@ Se reservan para competencia directa entre dos actores cuando no existe una defe
 
 Cuando una acción requiere resolución completa, el orden general es: declarar la intención; pagar costes obligatorios; comprobar requisitos; resolver Reacciones válidas; realizar la prueba si corresponde; determinar éxito/fallo y Hazaña/Pifia; aplicar efectos; aplicar consecuencias. Los costes ya pagados no se reembolsan por fallar salvo regla expresa.
 
+### Ejemplo de juego: una resolución de exploración
+
+Iria, la exploradora del ejemplo de creación, atraviesa con su grupo una zona boscosa inundada. El ejemplo muestra cuándo tirar, Ayuda, Ventaja, Especializaciones, margen y Repetición sin crear reglas nuevas.
+
+Primero consulta un mapa propio para confirmar una ruta que conoce y dispone de tiempo suficiente. No existe incertidumbre significativa: el Director no pide tirada.
+
+Más adelante una crecida ha borrado el paso habitual. Cruzar sigue siendo posible, pero elegir una línea segura bajo presión tiene una consecuencia real si falla. Antes de tirar, el Director fija **DF 14 — Demandante**.
+
+Iria declara que observa corriente, profundidad, vegetación arrastrada y puntos de apoyo. Usa **PER 2 + Supervivencia Entrenada (+2)**. Su Especialización **Bosque** es coherente con la escena y confirma experiencia concreta, pero **no añade por sí sola un bono numérico**.
+
+Otro viajero con competencia apropiada revisa desde la orilla opuesta la estabilidad de los apoyos y puede contribuir de forma significativa. Esa Ayuda concede **Ventaja**.
+
+Iria tira 3d10 y obtiene **9, 8 y 3**. Conserva 9 y 8:
+
+**9 + 8 + PER 2 + Supervivencia 2 = 21.**
+
+Supera DF 14 por margen 7: es un **éxito Claro**. El grupo encuentra una línea segura y la cruza con una ventaja razonable de tiempo y precisión. El margen no revela un secreto inexistente ni concede información ajena a la acción.
+
+En la ruina situada al otro lado, Iria intenta interpretar una marca arcana dañada. El Director establece **DF 16 — Difícil**. Iria usa **INT 2 + Arcana Aprendiz (+1)**, obtiene 12 en los dados y totaliza **15**: falla.
+
+No puede repetir inmediatamente la misma pregunta con Arcana, Investigación u otra Habilidad sólo para buscar un resultado mejor. Más tarde el grupo encuentra una inscripción relacionada. Esa **información nueva** cambia la situación; si la marca sigue siendo relevante, una nueva prueba puede estar justificada.
+
+### Ejemplo breve: prueba enfrentada social
+
+Un informante intenta sostener una coartada mientras una investigadora observa su conducta. No existe una Defensa pasiva adecuada y ambos compiten directamente, por lo que se usa una prueba enfrentada.
+
+- el informante usa **PRE 2 + Engaño Entrenado (+2)** y obtiene total **17**;
+- la investigadora usa **PER 2 + Empatía Entrenada (+2)** y también obtiene total **17**.
+
+Hay empate. Los bonos relevantes también son iguales (+4 frente a +4), por lo que prevalece el **statu quo**: la investigadora no obtiene de esa lectura conductual una razón suficiente para desmontar la coartada.
+
+Esto no obliga a creer una afirmación imposible ni convierte Empatía en detector de mentiras. Sólo resuelve qué consigue esa confrontación concreta con la información disponible.
+
 ## 3. Creación de personaje paso a paso
 
 La creación de personaje debe poder completarse leyendo únicamente este Manual. La base común es **25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o**, siete Atributos y una identidad narrativa libre de clases obligatorias.
@@ -978,6 +1011,134 @@ Iria es legal porque:
 - sus Rasgos tienen elecciones completas;
 - todos sus valores derivados y ataques preparados están escritos;
 - su paquete Élfico está aplicado por separado de PD y PR, y ninguna parte de su cultura, Origen o Trasfondo añadió un bono mecánico oculto.
+
+### Segundo ejemplo de creación: guardián con Familiar Mágico
+
+Este ejemplo utiliza los mismos presupuestos que Iria, pero construye un personaje marcial sin Disciplinas y gasta los 3 PR completos en **Familiar Mágico**.
+
+#### 1. Concepto e identidad
+
+**Darek** es un Enano guardián de convoyes acostumbrado a rutas montañosas. Su Familiar, **Bruma**, adopta la apariencia de una pequeña ave espiritual. Esa apariencia no añade capacidades fuera de su Perfil Inicial.
+
+Registra:
+
+- **Ascendencia:** Enano;
+- **Origen:** Kharumita;
+- **Faceta de Origen:** Obras públicas;
+- **Trasfondo:** Vida Caravanera;
+- **Facetas de Trasfondo:** Rutas y puestos; Mercancías y seguridad;
+- **Idiomas:** Común de Concordia y Kharumita.
+
+El paquete Enano concede Escala Pequeña, Movimiento 5, Cuerpo de Piedra y Sangre de Metal. No consume PD ni los 3 PR generales.
+
+#### 2. Atributos
+
+Darek reparte exactamente 6 aumentos:
+
+| Atributo | Valor | Aumentos usados |
+|---|---:|---:|
+| FUE | 3 | 2 |
+| AGI | 2 | 1 |
+| VIG | 3 | 2 |
+| INT | 1 | 0 |
+| PER | 2 | 1 |
+| VOL | 1 | 0 |
+| PRE | 1 | 0 |
+| **Total** | **13** | **6** |
+
+#### 3. Presupuesto de 25 PD
+
+| Compra | Coste |
+|---|---:|
+| Armas Marciales Entrenada | 3 PD |
+| Armas a Distancia Entrenada | 3 PD |
+| Atletismo Entrenada | 3 PD |
+| Supervivencia Entrenada | 3 PD |
+| Medicina Entrenada | 3 PD |
+| Investigación Aprendiz | 1 PD |
+| Empatía Aprendiz | 1 PD |
+| Parada | 2 PD |
+| Intercepción | 2 PD |
+| Recibir Carga | 2 PD |
+| Atletismo — Escalada | 1 PD |
+| Supervivencia — Montaña | 1 PD |
+| **Total** | **25 PD** |
+
+Las dos Especializaciones tienen su Habilidad madre Entrenada. Parada cumple su requisito de Habilidad marcial Entrenada. Recibir Carga sólo puede utilizarse cuando Darek tenga un arma de Alcance válida y se produzca su disparador.
+
+#### 4. Rasgo y Familiar
+
+Darek gasta sus **3 PR** en **Familiar Mágico**. El vínculo comienza en **Vínculo I — Compañero**.
+
+Bruma utiliza el Perfil Inicial **Explorador** y elige **Volador** como Locomoción:
+
+- Escala Pequeña;
+- Movimiento terrestre 4 y vuelo 6;
+- Vida 8;
+- Defensa 13;
+- Protección 0;
+- Ataque +1;
+- Daño 2;
+- PER +4;
+- RES +1;
+- VOL +2;
+- Defensa Mental 13;
+- Defensa Corporal 12;
+- temperamento cauteloso y prioridad por conservar una vía de retirada;
+- comunicación ordinaria mediante emociones y conceptos simples;
+- modo inicial **Autónomo**.
+
+Bruma no obtiene Maná propio, Habilidades completas ni un turno táctico gratuito. Una intervención táctica significativa sigue las reglas de Acción Vinculada del capítulo de Familiares.
+
+#### 5. Equipo inicial
+
+Darek selecciona:
+
+| Equipo | Precio |
+|---|---:|
+| Malla | 10 o |
+| Lanza | 5 p |
+| Arco largo | 2 o |
+| 20 flechas | 2 p |
+| Kit Médico | 2 o |
+| Kit Escalada | 1 o |
+| Kit Campaña | 1 o |
+| Provisiones para 7 días | 2 p |
+| Gancho de escalada | 3 p |
+| **Total** | **17 o 2 p = 1.720 c** |
+
+Respeta el **PEI 20 o = 2.000 c**. Los 280 c de PEI no utilizados se descartan al cerrar la preparación y después recibe la **Reserva líquida de 2 o**.
+
+La Malla exige FUE mínima 1; Darek posee FUE 3 y no sufre penalización por requisito insuficiente.
+
+#### 6. Valores derivados y ataques
+
+Su rango marcial defensivo más alto es Entrenado, por lo que su **Bono Defensivo es +1**.
+
+Darek registra:
+
+- Vida máxima **16**;
+- Maná máximo **9**;
+- Defensa **14** = 11 + AGI 2 + Bono Defensivo 1;
+- Defensa de Maniobra **14**;
+- Defensa Corporal **14**;
+- Defensa Mental **12**;
+- Protección **3** por Malla;
+- Iniciativa **2d10 + 2**;
+- Movimiento **5** por su paquete Enano;
+- umbral informativo de Daño Grave **8**;
+- Reserva líquida **2 o**.
+
+Ataques preparados:
+
+- **Lanza:** ataque **2d10 + 5** = FUE 3 + Armas Marciales 2; Daño **8** = base 5 + FUE 3; Pen 0; requiere 2 manos y posee Alcance.
+- **Arco largo:** ataque habitual **2d10 + 4** = PER 2 + Armas a Distancia 2; Daño **8** = base 5 + FUE 3 limitado por Potencia 3; Pen 1; requiere 2 manos y consume una flecha por disparo.
+
+#### 7. Revisión final
+
+Darek es legal porque utiliza exactamente 6 aumentos de Atributo, gasta exactamente 25 PD, no supera límites iniciales de rango o Especializaciones, gasta exactamente 3 PR, completa el perfil numérico de su Familiar y mantiene separado el presupuesto de equipo. Su Origen y Trasfondo explican familiaridades, pero no conceden Habilidades ocultas.
+
+Este segundo ejemplo demuestra además que **Familiar Mágico no exige ser canalizador** y que invertir los 3 PR en el vínculo no modifica el presupuesto profesional de 25 PD.
 
 ## 4. Desarrollo y subida de nivel
 
@@ -3078,6 +3239,23 @@ Mara decide terminar el combate con **Golpe Potente**.
 El impacto de 8 también supera el umbral informativo de Daño Grave del Bandido de referencia, por lo que se evalúa si la ficción justifica una Herida Grave. El número por sí solo no la crea automáticamente.
 
 Como ya no existe oposición activa, la escena puede salir de iniciativa. Si quedaran Sangrado, Heridas Graves, Sostenimientos u otros efectos activos, continuarían según sus propias reglas.
+
+### Ejemplo breve: ataque a distancia, cobertura y Penetración
+
+Una tiradora con **PER 3**, **Armas a Distancia Entrenada (+2)** y **FUE 2** dispara un arco largo contra el Bandido del ejemplo anterior.
+
+El Bandido tiene Defensa 13, Protección 1 y se encuentra tras **cobertura parcial**, por lo que su Defensa aplicable frente a ese disparo es **15**.
+
+1. La tiradora declara el ataque y consume **1 flecha** al realizar el disparo.
+2. Su ataque habitual es **2d10 + 5** = PER 3 + Armas a Distancia 2.
+3. Obtiene 10 en los dados: total **15**.
+4. Igualar Defensa 15 es suficiente: impacta.
+5. El arco largo causa Daño base 5 y Potencia 3 permite añadir sus 2 puntos de FUE: daño bruto **7**.
+6. El arco tiene Pen 1. La Protección efectiva del Bandido es **max(0, 1 - 1) = 0**.
+7. El daño final es **7**.
+8. El Bandido pasa de Vida 12 a **Vida 5**.
+
+La cobertura modificó la posibilidad de impacto; no redujo el daño después de impactar. La Penetración redujo Protección, no Defensa. Si el Bandido hubiera tenido cobertura total sin una línea válida, no habría sido un objetivo directo válido para ese disparo.
 
 ### Resumen rápido del flujo
 
@@ -12986,7 +13164,7 @@ El Archivo Narrativo Recuperado ya no forma parte del circuito editorial activo.
 
 1. Diseñar mediante una estructura común los **símbolos religiosos de las Cinco Luminarias** y realizar después una pasada única de coherencia sobre los Doce del Panteón Central.
 2. **CERRADO 2026-10-08:** historia intermedia de Edria desarrollada entre la Fractura del Cielo, los primeros acumuladores, la difusión de la pólvora, la integración ferroviaria, la Guerra de las Coronas Rotas, la Concordia, la Línea del Espinazo, la Segunda Forja y la Crisis de Nacre; los espacios deliberadamente abiertos permanecen sin fijar.
-3. Completar ejemplos de juego, ejemplos de creación y ejemplos de combate sin alterar reglas.
+3. **CERRADO 2026-10-08:** ejemplos de juego, creación y combate completados y revisados contra las reglas vigentes; se añadieron resolución de exploración y prueba enfrentada social, una creación alternativa con Familiar Mágico y un ejemplo de ataque a distancia con cobertura y Penetración, sin introducir reglas nuevas.
 4. Revisar tablas de equipo, precios, disponibilidad y contenido de mercado para edición.
 5. Resolver cualquier plantilla universal pendiente que todavía obligue a improvisar valores —por ejemplo perfiles concretos de Familiares, PNJ o criaturas— antes de considerarla sección editorialmente cerrada.
 6. Añadir glosario e índices al final del proceso.
