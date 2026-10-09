@@ -39,7 +39,12 @@ export function offerAvailabilityTier(item) {
     common: 1, ordinary: 1, uncommon: 2, specialized: 2,
     rare: 3, exceptional: 4, unique: 4, legendary: 4, restricted: 4
   }[availability] ?? 4; // Valores desconocidos no se comercializan como "comunes" silenciosamente.
-  const magic = item?.system?.enchantment?.enabled === true ||
+  const enchantment = item?.system?.enchantment ?? {};
+  const magic = Number(enchantment.grade ?? 0) > 0 ||
+    Boolean(enchantment.patternKey || enchantment.functionalKey || enchantment.passiveKey ||
+      enchantment.utilityKey || enchantment.boundSpell) ||
+    Number(item?.system?.magicSupport?.grade ?? 0) > 0 ||
+    item?.system?.imprintStone?.enabled === true ||
     (Array.isArray(item?.system?.runic?.imprints) && item.system.runic.imprints.length > 0);
   return Math.max(base, magic ? 3 : 1);
 }
