@@ -87,8 +87,14 @@ export function prepareRuleElements(items = [], {
   const damageVulnerabilities = {};
   const damageImmunities = new Set();
   const issues = [];
+  const traitNames=new Set(Array.from(items).filter(item=>item?.type==="trait").map(item=>item.name));
+  const corpulentReplaced=traitNames.has("Corpulento") && traitNames.has("Masivo");
+  if(corpulentReplaced){
+    issues.push({code:"trait-exclusive",message:"Corpulento y Masivo no son acumulables: se aplica sólo Masivo. Resolvé el conflicto de Rasgos con el DJ."});
+  }
 
   for (const item of items) {
+    if(corpulentReplaced && item?.type==="trait" && item.name==="Corpulento") continue;
     if (item?.type === "effect" && item?.system?.active === false) continue;
     // Bonos de objetos físicos nunca se aplican desde el inventario
     // cuando no están equipados.
@@ -109,6 +115,7 @@ export function prepareRuleElements(items = [], {
   }
 
   for (const item of items) {
+    if(corpulentReplaced && item?.type==="trait" && item.name==="Corpulento") continue;
     if (item?.type === "effect" && item?.system?.active === false) continue;
     // Bonos de objetos físicos nunca se aplican desde el inventario
     // cuando no están equipados.
