@@ -12649,6 +12649,15 @@ Eso coloca a Edria exactamente en el punto apropiado para el juego: suficienteme
 
 Permanecen sin fijar los nombres de las tres casas de las Coronas Rotas, las fronteras históricas exactas, fechas fundacionales de las seis potencias, coordenadas y fronteras precisas de Lysendra, trazado de la Línea del Espinazo, causa de la Fractura, causa de la vitrificación del Desierto de Vidrio, historias individuales de las Ciudades Hundidas, yacimientos concretos de Cristales de Resonancia y explicación de la Crisis de Nacre.
 
+### Ratificación del Mapa Maestro — macroformas de Edria y Oriente Insular (2026-10-09)
+
+**VIGENTE — CANON GEOGRÁFICO DE MACROFORMA.** Tras la selección previa del Modelo C ampliado, quedan **aprobadas las siluetas generales de las dos masas terrestres** representadas en `Tierra_Magica_Mapa_Fisico_Maestro_Borrador_V1.png` (Atlas Maestro de Trabajo V1, referencia visual aprobada el 2026-10-09; SHA-256: `367b260f554dbdb99f0289a1ebdfd1d0ec0f75a0528f2db8ed8b9cc48bec32d6`).
+
+1. **Edria:** se ratifica su silueta asimétrica del Modelo C como continente principal, con el Espinazo del Mundo como eje montañoso central de orientación norte-sur y el litoral meridional recortado. Permanecen vigentes las relaciones espaciales de sus seis potencias, ciudades y accidentes geográficos preexistentes.
+2. **Territorio Oriental de los Anihombres:** se ratifica la existencia de una gran masa **insular**, menor que Edria y mucho mayor que las islas comunes; se conserva su silueta general alargada y su posición **al este-sudeste de Edria**, separada por un espacio marítimo navegable. Se destina al desarrollo de las sociedades anihombres de inspiración japonesa feudal aprobadas conceptualmente. Su nombre propio, divisiones políticas, historia, dimensiones, relieve detallado y relaciones culturales más específicas siguen abiertos. La designación `Territorio Oriental de los Anihombres` es descriptiva y provisional.
+
+**Alcance exacto de la aprobación:** se fijan **forma global reconocible, proporciones visuales relativas y disposición espacial** tal como aparecen en la referencia indicada. Los perfiles costeros de alta precisión, coordenadas métricas, proyección planetaria, distancia marítima exacta, islas menores ilustrativas, biomas regionales detallados, hidrografía, emplazamientos puntuales de ciudades, lago de Lys, fronteras y rutas no quedan ratificados por esta aprobación. Las capas de simulación y el GeoJSON del Atlas V1 continúan siendo herramientas de trabajo, no autoridad independiente del Manual Maestro. Los derivados posteriores deberán preservar estas dos macroformas, salvo modificación canónica explícita.
+
 ### Cronología esencial
 
 | Fecha | Hecho |
