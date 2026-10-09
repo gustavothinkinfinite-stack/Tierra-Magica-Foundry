@@ -1356,11 +1356,12 @@ La Fase 4 validó El Rumbo Desviado sin rediseño en carta/documento de ruta, in
 ## SYM-DIV-SELENE-001 — El Velo Entreabierto
 
 **Entidad:** Selene, la Velada  
-**Estado:** **PROVISIONAL — GEOMETRÍA, CROMÁTICA Y ESCALA APROBADAS E INMUTABLES**  
-**Versión:** v0.4  
+**Estado:** **CANON**  
+**Versión:** v1.0  
 **Fecha de aprobación conceptual y geométrica:** 2026-10-08  
 **Fecha de aprobación cromática:** 2026-10-08  
-**Fecha de aprobación de escala y reducción:** 2026-10-08
+**Fecha de aprobación de escala y reducción:** 2026-10-08  
+**Fecha de canonización completa:** 2026-10-08
 
 ### Concepto
 El Velo Entreabierto representa percepción parcial, misterio, secreto y una frontera que separa sin romper por completo la relación entre ambos lados.
@@ -1488,12 +1489,35 @@ No usar ojo literal, luna creciente, luna llena, estrellas, puerta, arco, llave,
 - `assets/symbols/divinities/SYM-DIV-SELENE-001_REDUCED_LIGHT.svg`
 - `assets/symbols/divinities/SYM-DIV-SELENE-001_REDUCED_INVERTED.svg`
 
-### Pendientes para v1.0
-Pruebas contextuales/materiales y PNG definitivo.
+### Materiales, contexto y deterioro
+La Fase 4 validó El Velo Entreabierto sin rediseño en manuscrito/registro reservado, plata o metal velado, piedra tallada, bordado o velo ceremonial, placa/vidrio opaco y arquitectura en perspectiva.
+
+**Documento:** preferencia por `LIGHT-01`; ningún efecto puede cerrar o ensanchar artificialmente la abertura.
+
+**Metal:** plata, bronce, hierro, latón y otros metales son válidos. Relieve y pátina se permiten mientras la Señal permanezca parcialmente oculta.
+
+**Piedra y madera:** talla, incisión, erosión y desgaste permitidos si ambos Velos continúan separados.
+
+**Tela:** trama, costuras y desgaste permitidos; mínimo recomendado 22 mm. La abertura no puede simplificarse hasta volverse recta.
+
+**Vidrio y materiales translúcidos:** el soporte puede ser translúcido, pero la marca formal se reproduce como masa sólida; la Señal no recibe transparencia o resplandor independiente.
+
+**Violeta de Umbral:** sólo contextual, para iluminación, vidrio, fenómenos oníricos o energía ambiental.
+
+**Perspectiva:** deformación aparente por perspectiva, curvatura o soporte físico no crea variante; la geometría aplicada sigue siendo la maestra.
+
+**Deterioro:** la representación sigue siendo fiable mientras se reconozcan dos Velos separados, abertura sinuosa y Señal parcialmente oculta. Si los Velos se tocan, la abertura se vuelve una ranura recta/puerta o el rombo queda completamente expuesto, deja de ser fiable.
+
+**Usos culturales validados:** santuarios de Selene, archivos restringidos, cámaras de consulta, espacios ligados al sueño y la interpretación, sellos, documentos reservados, vestiduras y estandartes, arquitectura, placas, objetos devocionales y contextos de fronteras perceptivas o planares.
+
+### PNG definitivo
+**Archivo:** `assets/symbols/divinities/SYM-DIV-SELENE-001_PREVIEW.png`  
+**SHA-256:** `742bd541b5f03da66953c3070f345d823bc3da9e55a4a1e2906e4fa34deae534`
 
 ### Historial
 - **v0.1 — 2026-10-08:** concepto y lámina técnica monocroma aprobados.
 - **v0.2 — 2026-10-08:** geometría exacta fijada como inmutable.
 - **v0.3 — 2026-10-08:** cromática aprobada; se fijan Índigo del Velo, Plata Velada, Marfil de Sueño y Violeta de Umbral; se autorizan PRIMARY-01, LIGHT-01 e INVERTED-01.
 - **v0.4 — 2026-10-08:** se aprueban REDUCED-01, umbrales digitales, mínimos físicos y área de protección.
+- **v1.0 — 2026-10-08:** pruebas contextuales/materiales superadas; materiales, perspectiva, deterioro, usos culturales y PNG definitivo aprobados; ficha elevada a CANON.
 

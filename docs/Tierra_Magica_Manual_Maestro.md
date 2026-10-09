@@ -11957,7 +11957,7 @@ Una enseñanza tradicional afirma:
 
 El concepto central de sus tradiciones es **el Velo**: aquello que separa sin necesariamente destruir la relación entre ambos lados.
 
-> **Símbolo religioso — geometría, cromática y escala aprobadas:** **El Velo Entreabierto** (`SYM-DIV-SELENE-001`). Su geometría vectorial, cromática formal y variante `REDUCED-01` son inmutables y están especificadas en `docs/visual/SIMBOLOS_CANONICOS.md`. La versión principal se usa desde 32 px; `REDUCED-01` entre 16 y 31 px; por debajo de 16 px no se reproduce el símbolo completo. Sólo quedan pruebas contextuales/materiales y PNG definitivo antes de CANON v1.0.
+> **Símbolo religioso canónico:** **El Velo Entreabierto** (`SYM-DIV-SELENE-001`, CANON v1.0). Su geometría, cromática, variante `REDUCED-01`, escalas, área de protección, materiales, perspectiva y reglas de deterioro están fijadas en `docs/visual/SIMBOLOS_CANONICOS.md`. La versión principal se usa desde 32 px; `REDUCED-01` entre 16 y 31 px; por debajo de 16 px no se reproduce el símbolo completo.
 
 ### Misterio
 
