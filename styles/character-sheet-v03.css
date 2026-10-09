@@ -4677,3 +4677,26 @@ form.tm-character-sheet-v03 {
 }
 .tm-racial-check-options label > input { flex: 0 0 auto; margin: 2px 3px 0 0; }
 .tm-racial-chat-bonus { color: #12708b; }
+
+
+/* El número central del Atributo sigue siendo base; * indica una ventaja
+   racial situacional consultable al abrir su tirada. */
+.tm-character-sheet-v03 .tm-v03-attribute .tm-v12-context-badge {
+  position: absolute;
+  top: 0;
+  right: -7px;
+  z-index: 8;
+  min-width: 28px;
+  height: 20px;
+  padding: 2px 4px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e3bf6d;
+  border-radius: 10px;
+  background: #063c4c;
+  color: #f9e9b8;
+  box-shadow: 0 2px 4px rgba(0,0,0,.32);
+  font: normal 700 11px/1 Georgia, serif;
+  text-shadow: none;
+  cursor: help;
+}
