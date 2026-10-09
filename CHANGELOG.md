@@ -1,3 +1,14 @@
+## 1.11.0 — Asistente de creación explicado — 2026-10-08
+
+- Rediseña la selección de Ascendencia, Origen, Trasfondo y compras de catálogo para que se lean descripciones, capacidades y requisitos **antes** de confirmar.
+- Las 17 Ascendencias disponibles tienen introducción narrativa basada en el Manual Maestro, incluida la distinción entre Ankar y Terio Chacal.
+- Suprime «Catálogo canónico CREA-11» y otras etiquetas internas de la selección visible al jugador.
+- Añade ayuda contextual específica para los ocho pasos: identidad, Facetas/idiomas, Atributos, PD, Rasgos, equipo inicial y revisión.
+- Añade significado de los siete Atributos y explicaciones de los presupuestos 6 aumentos, 25 PD, 3 PR, 20 o PEI y 2 o de reserva líquida.
+- Los objetos elegidos en identidad conservan un resumen narrativo útil tras seleccionarlos.
+- Mantiene las validaciones, compras, límites de creación y mecánica canónica sin modificaciones.
+- Añade pruebas para cobertura de todas las Ascendencias, los ocho pasos y escape seguro del texto de catálogo.
+
 ## 1.10.0 — Materiales para Proyectos y recuperación segura — 2026-10-08
 
 - **Corrección 1:** el marcador de Incapacitado a **0 Vida** pasa a ser una **X roja grande** con fondo transparente, cruzando el retrato del token. Mantiene comportamiento y opción de mundo; no convierte la condición en muerte o Derribado.
