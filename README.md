@@ -75,7 +75,7 @@ habitual salvo que su `npcProfile.enabled` se active explícitamente.
 
 ## Arte del Bestiario — retratos y tokens integrados
 
-Desde **v1.8.0** el sistema distribuye retratos y tokens; la **v1.12.0 preparada, no publicada**, reúne **16 parejas** de WebP directamente
+Desde **v1.8.0** el sistema distribuye retratos y tokens; la **v1.12.0 preparada, no publicada**, reúne **21 parejas** de WebP directamente
 en `assets/bestiary/`: Civil, Bandido, Guardia, Soldado, Veterano,
 Canalizador hostil, Lobo, Ogro, Centinela de Bronce, Troll dominante y
 **Lobo del Eco Muerto**, y las cinco criaturas nuevas **Ciervo Astral**, **Araña de Campanario**, **Jabalí Ígneo**, **Garza de Cristal** y **Sabueso Espectral**. Cada pareja contiene:
@@ -91,7 +91,7 @@ válidos y que cada pareja esté completa.
 El **Tirador** mantiene el icono genérico: su imagen debe mostrar un rifle
 temprano según el Manual Maestro, no el arco de un boceto descartado.
 
-La versión preparada del compendio contiene **17 Actores**. El **Lobo del Eco Muerto** permanece
+La versión preparada del compendio contiene **22 Actores**. El **Lobo del Eco Muerto** permanece
 separado del Lobo canónico y está señalado como propuesta original pendiente de
 aprobación. Su documentación editorial está en
 `docs/visual/Lobo_del_Eco_Muerto_Bestiario_Original.md`; no modifica las
@@ -134,3 +134,7 @@ comprometidos. Primero usar su acción **Liberar / Cancelar Proyecto**.
 ## Cinco criaturas originales (versión en preparación)
 
 Ciervo Astral, Araña de Campanario, Jabalí Ígneo, Garza de Cristal y Sabueso Espectral disponen de fichas NPC completas y arte propio. Consulta `docs/visual/Bestiario_Original_Cinco_Criaturas_Tanda_1.md` para su ecología, estadísticas, capacidades y aventuras. La versión 1.12.0 queda preparada en GitHub, **no publicada**; la instalación de Foundry no se actualiza hasta autorización explícita para crear release.
+
+## Segunda tanda aprobada del Bestiario — v1.12.0 sin publicar
+
+**Zorro Carmesí, Carnero del Alba Dorada, Lagarto de Cristal, Cuervo de Cobre y Nutria Encantada** se suman a los cinco anteriores con perfiles NPC completos, ataques, dones sobrenaturales limitados, rastros, ecología y aventuras. Sus retratos y tokens circulares se distribuyen juntos como diez WebP más. La versión 1.12.0 preparada alcanza 22 Actores y 42 imágenes (21 parejas; el Tirador sigue con icono genérico). Detalles en `docs/visual/Bestiario_Original_Cinco_Criaturas_Tanda_2.md`. **No crear rama `release/v1.12.0` ni tag hasta la autorización del creador**.

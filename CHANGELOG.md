@@ -1,13 +1,12 @@
 ## 1.12.0 — PREPARADA · NO PUBLICADA
 
-- Se agregan **cinco criaturas originales aprobadas visualmente**: Ciervo Astral, Araña de Campanario, Jabalí Ígneo, Garza de Cristal y Sabueso Espectral.
-- El compendio de Actores **Tierra Mágica — Bestiario** pasa de 12 a **17 perfiles** (11 del Manual Maestro + Lobo del Eco Muerto + cinco originales).
-- Cada criatura nueva incluye **retrato WebP** y **token circular WebP con marco**; se incorporan **10 imágenes** al sistema, para un total de **32 WebP** en 16 parejas aprobadas. El Tirador sigue sin arte propio hasta disponer de una imagen válida con rifle.
-- Se incluyen estadísticas operativas completas, habilidades innatas limitadas, ataques de PNJ, ecología, rastros, contramedidas y ganchos de aventura.
-- Se reutiliza la ficha `npc` de Foundry sin introducir acciones adicionales, estados automáticos ni hechizos nuevos. La aplicación de los dones requiere resolución del DJ.
-- Los cinco diseños son entradas originales de prueba: **no se modifica el Manual Maestro** ni se presentan sus números como canon previo.
-- Se incorporan pruebas de balance estructural, valores derivados, identificación, límites de habilidades, vínculos de imagen y validación del compendio.
-- **Estado de distribución:** preparada para validación y futura release por autorización del usuario; no crear etiqueta `v1.12.0`, rama `release/v1.12.0` ni publicación de GitHub todavía.
+- **10 criaturas originales** en dos tandas: Ciervo Astral, Araña de Campanario, Jabalí Ígneo, Garza de Cristal, Sabueso Espectral; Zorro Carmesí, Carnero del Alba Dorada, Lagarto de Cristal, Cuervo de Cobre y Nutria Encantada.
+- `Tierra Mágica — Bestiario` aumenta a **22 Actores**: 11 del Manual Maestro §23, Lobo del Eco Muerto y 10 criaturas originales aprobadas visualmente.
+- **42 WebP distribuidos como 21 parejas** de retrato y token con marcos; 20 imágenes corresponden a las diez criaturas nuevas. Los tokens de la segunda tanda tienen fondo exterior transparente y se enlazan únicamente al existir ambos archivos. El Tirador conserva el icono genérico hasta tener imagen fiel al rifle.
+- Las nuevas fichas incluyen Vida, defensas, Protección, Movimiento, Iniciativa, ataques, capacidades de 1 Acción sin efectos automáticos, biografías ecológicas, señales y aventuras. No se editan reglas del Manual Maestro ni se inventan presupuestos de nivel/PD/PR.
+- Pruebas de regresión para 22 identidades únicas, cinco dones de la segunda tanda, derivaciones NPC, WebP validado y transparencia alfa de tokens.
+- **Distribución pospuesta:** código fusionable y ZIP candidato en GitHub Actions, **sin crear tag, rama de publicación ni release** hasta autorización expresa.
+
 
 ## Publicación v1.11.0 — 2026-10-08
 
