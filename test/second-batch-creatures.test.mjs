@@ -106,12 +106,12 @@ test("10 WebPs con retratos y tokens alfa válidos, vinculados en pares",async()
  }
 });
 
-test("preparación de v1.12 valida 42 imágenes sin crear workflow de publicación",async()=>{
+test("preparación de v1.12 valida 44 imágenes con Eidolon sin crear workflow de publicación",async()=>{
  const source=await readFile(resolve("tools/build-packs.mjs"),"utf8");
  const preview=await readFile(resolve(".github/workflows/prepare-package-preview.yml"),"utf8");
  const manifest=JSON.parse(await readFile(resolve("system.json"),"utf8"));
  assert.match(source,/\.\.\.secondBatchCreatureCatalog\(\{availableArtFiles\}\)/);
- assert.match(preview,/eq 42/);
+ assert.match(preview,/eq 44/);
  assert.match(preview,/nutria-encantada-token\.webp/);
  assert.match(preview,/upload-artifact/);
  assert.doesNotMatch(preview,/action-gh-release/);
