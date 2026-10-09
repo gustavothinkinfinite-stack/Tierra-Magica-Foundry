@@ -67,7 +67,7 @@ export const APPROVED_ORIGINAL_CREATURES = Object.freeze([
       detectionDifficulty:12,detectionSkills:["PER + Supervivencia","PER + Investigación"],
       description:"Expele vaho y algunas chispas calientes a muy corta distancia, capaces de prender yesca completamente expuesta a discreción del DJ.",
       limitations:"No es una bola de fuego, no causa daño directo a criaturas, no inflige Quemadura ni genera área de combate.",
-      resolution:"Efecto ambiental sobre combustible adecuado; cualquier daño posterior se resuelve con reglas existentes."
+      resolution:"El DJ evalúa si hay combustible adecuado; cualquier daño posterior se resuelve con reglas existentes."
     }]
   },
   {
