@@ -90,6 +90,10 @@ export function prepareRuleElements(items = [], {
 
   for (const item of items) {
     if (item?.type === "effect" && item?.system?.active === false) continue;
+    // Bonos de objetos físicos nunca se aplican desde el inventario
+    // cuando no están equipados.
+    if (["armor","shield","equipment","device","weapon"].includes(item?.type) &&
+        item?.system?.equipped !== true) continue;
     const rules = Array.isArray(item?.system?.rules) ? item.system.rules : [];
 
     for (const rule of rules) {
@@ -106,6 +110,10 @@ export function prepareRuleElements(items = [], {
 
   for (const item of items) {
     if (item?.type === "effect" && item?.system?.active === false) continue;
+    // Bonos de objetos físicos nunca se aplican desde el inventario
+    // cuando no están equipados.
+    if (["armor","shield","equipment","device","weapon"].includes(item?.type) &&
+        item?.system?.equipped !== true) continue;
 
     const directTypes = new Set(["ancestry", "trait", "effect", "armor", "shield", "equipment", "device"]);
     const physicalDirect = new Set(["armor", "shield", "equipment", "device"]);
