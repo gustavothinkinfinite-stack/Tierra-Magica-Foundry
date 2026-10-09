@@ -96,6 +96,16 @@ export function configureCommerce(actor) {
           ui.notifications.info("Establecimiento actualizado: " + actor.name);
         }
       },
+      presets: {
+        label: "Crear 5 comerciantes + cofre",
+        callback: async () => {
+          const confirmed = await Dialog.confirm({
+            title: "Crear establecimientos de ejemplo",
+            content: "<p>Se crearán seis NPC vacíos en la pestaña Actores, sin equiparlos ni colocarlos en el mapa. ¿Continuar?</p>"
+          });
+          if (confirmed) await createStarterCommerceActors();
+        }
+      },
       cancel: { label: "Cancelar" }
     },
     default: "save",
@@ -172,7 +182,7 @@ export function openCommerce(actor) {
     const available = allowed && offer.stock > 0;
     const price = config.mode === "chest"
       ? "Gratis" : offer.priceCopper === null ? "Precio no definido"
-      : formatCurrency(Math.ceil(offer.priceCopper / offer.priceQuantity)) + " por unidad aprox.";
+      : formatCurrency(offer.priceCopper) + " / " + offer.priceQuantity + " ud.";
     const eligible = available && (config.mode === "chest" || offer.priceCopper !== null);
     const reason = !allowed ? "No disponible en este nivel/especialidad"
       : offer.stock === 0 ? "Agotado" : "";
