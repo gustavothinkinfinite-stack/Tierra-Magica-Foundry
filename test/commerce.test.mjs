@@ -33,7 +33,7 @@ test("el nivel de disponibilidad procede del objeto, sin rebajar valores descono
   assert.equal(offerAvailabilityTier(item({ system: { physical: { availability: "rare" } } })), 3);
   assert.equal(offerAvailabilityTier(item({ system: { physical: { availability: "mystery" } } })), 4);
   assert.equal(offerAvailabilityTier(item({ system: {
-    physical: { availability: "common" }, enchantment: { enabled: true }
+    physical: { availability: "common" }, enchantment: { grade: 1, patternKey: 'enchant-test' }
   } })), 3);
 });
 
