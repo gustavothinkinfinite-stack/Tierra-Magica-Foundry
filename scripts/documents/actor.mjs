@@ -12,6 +12,7 @@ import {
   spellOperationalSkill, validateSkillProgression
 } from "../rules/skills.mjs";
 import { prepareRuleElements, modifiersForSelector } from "../rules/rule-elements.mjs";
+import { availableAncestryCheckBonuses, ancestryCheckChoicesHtml, resolveAncestryCheckBonuses } from "../rules/ancestry-situational.mjs";
 import { deriveActorState } from "../rules/derived-state.mjs";
 import { resolveActorDefense } from "../rules/defense-context.mjs";
 import { resourceMaximum } from "../rules/resource-reconciliation.mjs";
@@ -170,11 +171,12 @@ export class TierraMagicaActor extends Actor {
     });
   }
 
-  async rollCheck({ label, attributeKey, skillKey = null, df = null, mode = "normal", modifier = 0, targetName = "" } = {}) {
+  async rollCheck({ label, attributeKey, skillKey = null, df = null, mode = "normal", modifier = 0, targetName = "", situationalBonusIds = [] } = {}) {
     const attribute = toNumber(this.system.attributes?.[attributeKey]?.value);
     const skillData = skillKey ? this.system.skills?.[skillKey] : null;
     const skill = skillData ? toNumber(skillData.bonus) : 0;
-    const totalModifier = attribute + skill + toNumber(modifier);
+    const ancestryBonus = resolveAncestryCheckBonuses([...this.items],attributeKey,situationalBonusIds);
+    const totalModifier = attribute + skill + toNumber(modifier) + ancestryBonus.total;
     const roll = await new Roll(rollFormula(mode, totalModifier), this.getRollData()).evaluate();
 
     let tag = "";
@@ -195,12 +197,18 @@ export class TierraMagicaActor extends Actor {
     }
 
     const skillBreakdown = skillKey ? this.#skillBreakdownHtml(skillKey, attribute, modifier) : "";
+    const racialBreakdown = ancestryBonus.applied.length
+      ? "<p class='tm-racial-chat-bonus'><strong>Ventaja racial circunstancial:</strong> " +
+          ancestryBonus.applied.map((bonus) => foundry.utils.escapeHTML(bonus.label) +
+            " +" + Number(bonus.value) + " · " + foundry.utils.escapeHTML(bonus.condition)).join("; ") +
+          " (total +" + ancestryBonus.total + ").</p>"
+      : "";
     const flavor = "<div class='tm-chat-card'><strong>" + foundry.utils.escapeHTML(label) + " · " +
       foundry.utils.escapeHTML(this.name) + "</strong><p>" +
       foundry.utils.escapeHTML(TM_CONFIG.attributes[attributeKey] ?? attributeKey) +
       (skillKey ? " + " + foundry.utils.escapeHTML(TM_CONFIG.skills[skillKey]?.label ?? skillKey) : "") +
       " · " + (mode === "advantage" ? "Ventaja" : mode === "disadvantage" ? "Desventaja" : "Normal") +
-      "</p>" + (targetName ? "<p>Objetivo: <strong>"+foundry.utils.escapeHTML(targetName)+"</strong>.</p>" : "") + skillBreakdown + resultText + "</div>";
+      "</p>" + (targetName ? "<p>Objetivo: <strong>"+foundry.utils.escapeHTML(targetName)+"</strong>.</p>" : "") + skillBreakdown + racialBreakdown + resultText + "</div>";
 
     return roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
@@ -216,6 +224,7 @@ export class TierraMagicaActor extends Actor {
     const options = Object.entries(TM_CONFIG.attributes)
       .map(([k, v]) => "<option value='" + k + "'" + (k === suggestedAttribute ? " selected" : "") + ">" + v + "</option>").join("");
     const breakdown = skill.breakdown ?? this._buildSkillBreakdown(key, skill);
+    const situationalChoices=ancestryCheckChoicesHtml([...this.items]);
     const result = await Dialog.prompt({
       title: "Tirada de " + (TM_CONFIG.skills[key]?.label ?? key),
       content:
@@ -223,18 +232,25 @@ export class TierraMagicaActor extends Actor {
         "<div class='form-group'><label>Atributo</label><select name='attribute'>" + options + "</select></div>" +
         "<div class='form-group'><label>Modo</label><select name='mode'><option value='normal'>Normal</option><option value='advantage'>Ventaja</option><option value='disadvantage'>Desventaja</option></select></div>" +
         "<div class='form-group'><label>DF</label><input name='df' type='number' placeholder='Sin DF'/></div>" +
-        "<div class='form-group'><label>Modificador de tirada</label><input name='modifier' type='number' value='0'/></div>",
+        "<div class='form-group'><label>Modificador de tirada</label><input name='modifier' type='number' value='0'/></div>" +
+        situationalChoices,
       label: "Tirar",
       callback: (html) => ({
         attributeKey: html.find("[name='attribute']").val(),
         mode: html.find("[name='mode']").val(),
         df: html.find("[name='df']").val(),
-        modifier: html.find("[name='modifier']").val()
+        modifier: html.find("[name='modifier']").val(),
+        situationalBonusIds: html.find("input[name='racialBonuses']:checked").map((_,element)=>element.value).get()
       }),
       rejectClose: false
     });
     if (!result) return null;
     return this.rollSkill(key, result);
+  }
+
+  // La ficha puede consultar estos bonos sin modificar el Atributo base.
+  availableAncestryBonuses(attributeKey) {
+    return availableAncestryCheckBonuses([...this.items],attributeKey);
   }
 
   async rollInitiativeCheck() {
