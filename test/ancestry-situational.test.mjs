@@ -16,6 +16,7 @@ import {
 import { deriveActorState, resolveDerivedSelector } from "../scripts/rules/derived-state.mjs";
 import { resolveActorDefense } from "../scripts/rules/defense-context.mjs";
 import { prepareRuleElements } from "../scripts/rules/rule-elements.mjs";
+import { preflightAcquisition } from "../scripts/rules/acquisition.mjs";
 
 const ancestries=constructionCatalog().filter(item=>item.type==="ancestry");
 const racial=name=>ancestries.find(item=>item.name===name);
@@ -185,4 +186,25 @@ test("Medallones muestran +1* contextual pero mantienen el número de atributo s
   assert.match(sheet,/ancestryAttributeBonuses\.per\.description/);
   assert.match(sheet,/system\.attributes\.per\.value/);
   assert.match(controller,/const bonuses=situationalBonuses\.filter/);
+});
+
+
+test("Rasgos excluyentes no se compran juntos ni se acumulan en partidas anteriores",()=>{
+  const traits=constructionCatalog().filter(item=>item.type==="trait");
+  const corpulento=traits.find(item=>item.name==="Corpulento");
+  const masivo=traits.find(item=>item.name==="Masivo");
+  const menor=traits.find(item=>item.name==="Resistencia Ambiental");
+  const significativo=traits.find(item=>item.name==="Resistencia Ambiental Significativa");
+  const actor={items:[corpulento],system:{creation:{revision:0},skills:{}}};
+  const blocked=preflightAcquisition({actor,candidate:masivo});
+  assert.equal(blocked.valid,false);
+  assert.ok(blocked.issues.some(issue=>issue.code==="trait-exclusive"));
+  const prepared=prepareRuleElements([corpulento,masivo],{skillDefinitions:TM_CONFIG.skills});
+  assert.equal(prepared.modifiers.filter(row=>row.selector==="healthMax").reduce((sum,row)=>sum+row.value,0),8);
+  assert.ok(prepared.issues.some(issue=>issue.code==="trait-exclusive"));
+  const resistanceBlocked=preflightAcquisition({
+    actor:{...actor,items:[menor]},candidate:significativo
+  });
+  assert.ok(resistanceBlocked.issues.some(issue=>issue.code==="trait-exclusive"));
+  assert.equal(actorSituationalBonuses([menor,significativo]).length,0);
 });
