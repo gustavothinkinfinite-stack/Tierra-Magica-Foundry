@@ -38,7 +38,7 @@ const copy=(rows)=>rows.map(row=>({...row}));
 export function ancestrySituationalBonuses(ancestry) {
   if(!ancestry || ancestry.type!=="ancestry") return [];
   const explicit=ancestry.system?.situationalBonuses;
-  if(Array.isArray(explicit)) return copy(explicit);
+  if(Array.isArray(explicit) && explicit.length) return copy(explicit);
   // Compatibilidad con personajes creados antes de que el catálogo
   // guardara las bonificaciones como datos estructurados.
   const canonical=ANCESTRY_SITUATIONAL_BONUSES[String(ancestry.name??"")]??[];
