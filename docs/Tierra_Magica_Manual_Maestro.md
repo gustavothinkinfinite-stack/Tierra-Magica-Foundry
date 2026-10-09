@@ -12286,7 +12286,7 @@ Maná que crece por encima de su máximo. En humanos se vigila especialmente dur
 antes de los quince años; otros pueblos siguen ritmos acordes con su propia madurez biológica y
 mágica.
 La Fractura del Cielo
-Hace aproximadamente novecientos años ocurrió la Fractura del Cielo, el acontecimiento más
+Hace aproximadamente mil quinientos años ocurrió la Fractura del Cielo, el acontecimiento más
 importante de la historia conocida. Durante tres noches se observaron auroras a plena luz del día,
 cambios de gravedad local, tormentas de energía y el surgimiento de islas flotantes en varias regiones.
 Grandes depósitos de cristal arcano aparecieron donde antes no existían y numerosas ruinas antiguas
@@ -12311,60 +12311,187 @@ Los Cristales de Resonancia útiles son escasos. Los yacimientos conocidos se en
 custodia, regulación o tradición local estricta, y su extracción exige identificar piezas intactas sin
 destruir su patrón resonante. No se fija todavía un único yacimiento principal para todo Edria; distintos
 estados, órdenes y comunidades pueden proteger fuentes diferentes.
-Los siglos de recomposición
-Tras la Fractura surgieron nuevas ciudades alrededor de fuentes arcanas, pasos seguros y ruinas
-recuperables. Los primeros acumuladores estables fueron desarrollados dos siglos después, al principio
-como dispositivos ceremoniales y luego como infraestructura civil. La pólvora llegó mucho más tarde y
-fue transformada por la metalurgia y la ingeniería de precisión. La combinación de ambas tradiciones
-—energía arcana y máquina— dio origen a la actual tecnología arcano-industrial.
-La expansión no fue lineal. Epidemias, guerras sucesorias y crisis de recursos destruyeron varios
-reinos. La actual Edria es heredera de esa inestabilidad: casi toda frontera moderna atraviesa
-territorios reclamados por estados desaparecidos, linajes extinguidos o ciudades que alguna vez fueron
-soberanas.
+### La recomposición tras la Fractura — c. -900 a -700 C.
+
+La Fractura del Cielo no destruyó una civilización continental unificada. Su impacto fue desigual. Algunas regiones conservaron ciudades, caminos y estructuras políticas; otras perdieron rutas enteras por alteraciones del terreno, fenómenos mágicos, desplazamientos de población o aparición de zonas que dejaron de ser habitables.
+
+Las primeras generaciones posteriores a la Fractura estuvieron dominadas por la adaptación. Se abandonaron asentamientos situados junto a corrientes arcanas inestables y surgieron otros alrededor de pasos seguros, fuentes de agua, tierras cultivables y depósitos mágicos utilizables. Antiguas calzadas volvieron a emplearse cuando seguían siendo transitables, mientras que ruinas antes enterradas o inaccesibles pasaron a formar parte del paisaje conocido.
+
+La aparición de nuevos depósitos de cristal modificó el valor estratégico de regiones enteras. Sin embargo, la extracción temprana era peligrosa y poco comprendida. Muchos depósitos fueron tratados primero como lugares sagrados, amenazas o curiosidades antes de convertirse en recursos económicos.
+
+Los Cristales de Resonancia comenzaron a reconocerse durante este amplio proceso. No originaron los Vínculos Familiares, que ya existían, pero permitieron que algunas comunidades desarrollaran procedimientos más seguros para localizar y estabilizar vínculos compatibles.
+
+### La recuperación de las redes — c. -700 a -320 C.
+
+Los primeros acumuladores ambientales estables, desarrollados hacia c. -700 C., no provocaron una industrialización inmediata. Eran costosos, difíciles de fabricar y dependían de especialistas capaces de manejar materiales cuya respuesta todavía era parcialmente empírica.
+
+Sus primeros usos fueron limitados: iluminación especializada, instrumentos, bombeo, conservación, talleres, observatorios, instalaciones religiosas y obras donde disponer de una fuente controlada de energía justificaba su elevado coste.
+
+Con el tiempo aparecieron tradiciones de inspección, mantenimiento y transmisión técnica. Gremios, talleres, templos, ciudades y cortes conservaron procedimientos propios, muchas veces incompatibles entre sí. La capacidad para reparar una instalación llegó a ser tan importante como construirla.
+
+Durante estos siglos se recuperaron corredores comerciales entre regiones que habían permanecido parcialmente aisladas. Esto no produjo fronteras modernas ni estados idénticos a los actuales. Edria continuó formada por reinos, ciudades soberanas, confederaciones, territorios religiosos, señoríos, comunidades autónomas y pueblos móviles cuyas relaciones cambiaron repetidamente.
+
+Buena parte de las disputas territoriales del presente procede de este periodo: distintas comunidades pueden conservar documentos válidos que atribuyen el mismo camino, mina, bosque o ruina a autoridades que ya no existen.
+
+### Pólvora, metalurgia y concentración del poder — c. -320 a -150 C.
+
+La difusión de pólvora refinada y fundiciones de precisión alrededor de c. -320 C. alteró lentamente el equilibrio militar.
+
+Las primeras armas de fuego no sustituyeron a arcos, ballestas, armas de asta ni magia de combate. Eran costosas, sufrían problemas de fiabilidad y dependían de suministros especializados. Su importancia estuvo en otra parte: permitieron que estados y ciudades capaces de financiar producción regular concentraran una potencia militar que antes dependía en mayor medida de guerreros excepcionales, fortificaciones tradicionales o canalizadores escasos.
+
+La artillería obligó a modificar murallas y métodos de asedio. Las fundiciones de precisión mejoraron también herramientas, bombas, mecanismos, instrumentos científicos y componentes de acumuladores.
+
+El resultado fue una relación cada vez más estrecha entre gobierno, minería, crédito, ingeniería y guerra. Las campañas largas comenzaron a depender tanto de contratos y cadenas de suministro como de ejércitos.
+
+Durante este periodo fueron tomando forma los antecedentes políticos de las seis potencias actuales, pero **no se fijan fechas únicas de fundación**. Ninguna necesita haber existido durante siglos con exactamente las mismas fronteras, instituciones o dinastías que posee en 612 C.
+
+### La primera integración mecánica — c. -150 a -40 C.
+
+Entre c. -150 y -40 C. aparecieron las primeras líneas ferroviarias regionales y los primeros dirigibles de carga con utilidad económica sostenida.
+
+Eran sistemas fragmentarios. Diferentes regiones utilizaban anchos de vía, enganches, normas de carga, señales y componentes incompatibles. Los primeros ferrocarriles enlazaban sobre todo minas, puertos, talleres y centros de consumo; no constituían todavía una red continental.
+
+Los dirigibles permitieron transportar correo, especialistas y mercancías de alto valor sobre terrenos donde construir carreteras o vías resultaba poco práctico. Seguían dependiendo fuertemente del clima, de instalaciones terrestres y de pilotos experimentados.
+
+La consecuencia política fue más importante que la velocidad: territorios que antes podían sostenerse con economías relativamente separadas comenzaron a depender de carbón, alimento, metal, cristal, crédito y conocimiento procedentes de otras regiones.
+
+La interdependencia aumentó, pero no produjo paz.
+
+### Las décadas previas a las Coronas Rotas — c. -40 a 0 C.
+
+En las décadas anteriores a la guerra, el corredor central de Edria adquirió un valor desproporcionado por combinar rutas terrestres, acceso a mercados y explotaciones de cristal.
+
+Tres casas dinásticas reclamaron derechos incompatibles sobre su sucesión y control. El conflicto no surgió de una sola disputa: antiguas obligaciones feudales, préstamos, concesiones mineras, alianzas matrimoniales y derechos de tránsito hicieron que una crisis inicialmente regional arrastrara progresivamente a otras potencias.
+
+Los ferrocarriles y dirigibles existentes demostraron aquí su doble naturaleza. Las mismas redes capaces de integrar mercados podían movilizar tropas, armas y suministros.
+
+El continente llegó al año 0 C. con una capacidad logística mayor que en cualquier guerra anterior y con instituciones políticas todavía incapaces de controlar sus consecuencias.
+
 ## 3. La edad moderna y la Concordia
-La Guerra de las Coronas Rotas
-Entre 0 y 11 C. —fechada retroactivamente por los tratados posteriores— tres casas dinásticas
-intentaron dominar el corredor central de Edria y sus minas de cristal. La guerra comenzó como
-disputa sucesoria y terminó involucrando a casi todas las potencias vecinas. Se emplearon por primera
-vez baterías de artillería coordinadas con barreras arcanas, dirigibles de observación y autómatas de
-asedio en cantidades significativas.
-El conflicto demostró que ningún reino podía controlar por sí solo las rutas, los centros de producción y
-los especialistas necesarios para mantener una guerra prolongada. Ciudades enteras quedaron
-endeudadas con gremios de ingenieros y casas mercantiles. Al mismo tiempo, templos y hospitales
-civiles desarrollaron redes de ayuda que sobrevivieron a la guerra y hoy son instituciones
-permanentes.
-El Tratado de Concordia
-En el año 12 C. se firmó la Concordia de Auraval. El tratado reconoció seis potencias mayores, estableció
-normas mínimas para el tránsito diplomático, prohibió ciertas prácticas de guerra mágica contra
-población civil y creó la Mesa de Concordia, una asamblea sin soberanía propia donde enviados
-estatales, delegados gremiales y observadores religiosos negocian crisis internacionales.
-La Concordia no trajo paz permanente. Redujo las guerras abiertas entre las grandes potencias, pero
-trasladó muchas rivalidades hacia comercio, espionaje, expediciones, sabotaje industrial y conflictos
-periféricos.
-La Segunda Forja
-Los últimos ciento cincuenta años reciben el nombre de Segunda Forja. La mejora de calderas,
-aleaciones, mecanismos de repetición y acumuladores permitió ferrocarriles, redes de bombeo,
-elevadores urbanos y dirigibles mercantes. Las ciudades crecieron con rapidez y aparecieron barrios
-fabriles, estaciones fortificadas, academias técnicas y mercados de componentes arcanos.
-El presente es una época de expansión y tensión. Las potencias desean nuevas fuentes de cristal, rutas y
-conocimiento antiguo. Los gremios reclaman autonomía. Los campesinos y artesanos tradicionales se
-adaptan a mercados más amplios. La magia cotidiana es visible, pero la magia de alto nivel continúa
-siendo escasa y políticamente sensible.
-Cronología esencial
-Fecha Hecho
-c. -900 C. Fractura del Cielo; aparición de zonas de alta saturación e
-islas flotantes.
-c. -700 C. Primeros acumuladores ambientales estables.
-c. -320 C. Difusión de pólvora refinada y fundiciones de precisión.
--150 a -40 C. Primeras líneas ferroviarias regionales y dirigibles de
-carga.
-0–11 C. Guerra de las Coronas Rotas.
-12 C. Tratado de Concordia de Auraval.
-447 C. Apertura de la Línea del Espinazo, primer corredor
-ferroviario transcontinental de Edria.
-598 C. Crisis de Nacre: desaparición de tres expediciones en un
-archipiélago de ruinas emergentes.
-612 C. Presente canónico.
+
+### La Guerra de las Coronas Rotas — 0 a 11 C.
+
+Entre 0 y 11 C. —fechada retroactivamente por los tratados posteriores— tres casas dinásticas intentaron dominar el corredor central de Edria y sus minas de cristal. La guerra comenzó como disputa sucesoria y terminó involucrando a casi todas las potencias vecinas.
+
+El conflicto convirtió innovaciones dispersas en sistemas militares coordinados: artillería protegida por barreras arcanas, observación mediante dirigibles y autómatas de asedio en cantidades significativas, además de redes ferroviarias y cadenas de suministro contratadas.
+
+También hizo visible una limitación fundamental: ninguna potencia poseía por sí sola alimento, combustible, metal, cristal, industria, conocimiento técnico y rutas suficientes para sostener indefinidamente una guerra de esa escala.
+
+Ciudades enteras quedaron endeudadas con gremios de ingenieros y casas mercantiles. Al mismo tiempo, templos y hospitales civiles desarrollaron redes de ayuda que sobrevivieron a la guerra. De ese entramado surgió la red neutral que daría origen al **Círculo de Sanadores de la Lámpara Blanca**.
+
+No se fijan por ahora los nombres de las tres casas dinásticas, la sucesión concreta que inició la guerra ni un mapa campaña por campaña.
+
+### El Tratado de Concordia — 12 C.
+
+En el año 12 C. se firmó la Concordia de Auraval. El tratado reconoció seis potencias mayores, estableció normas mínimas para el tránsito diplomático, prohibió ciertas prácticas de guerra mágica contra población civil y creó la Mesa de Concordia, una asamblea sin soberanía propia donde enviados estatales, delegados gremiales y observadores religiosos negocian crisis internacionales.
+
+La Concordia no trajo paz permanente. Redujo las guerras abiertas entre las grandes potencias, pero trasladó muchas rivalidades hacia comercio, espionaje, expediciones, sabotaje industrial y conflictos periféricos.
+
+### La Primera Concordia — 12 a c. 150 C.
+
+La Concordia de Auraval no reorganizó Edria desde cero. Reconoció como interlocutores mayores a seis potencias que ya habían sobrevivido a la guerra y estableció procedimientos para impedir que una nueva crisis sucesoria escalara con la misma facilidad.
+
+Durante las primeras generaciones de la Concordia, los principales logros fueron modestos pero acumulativos: credenciales diplomáticas reconocibles, procedimientos para negociar tránsito, normas de tratamiento de enviados, identificación de hospitales protegidos y mecanismos para documentar violaciones de las prohibiciones de guerra.
+
+La Mesa de Concordia carecía de soberanía propia. Su importancia procedía de ofrecer un lugar donde estados que desconfiaban entre sí podían mantener comunicación sin reconocer una autoridad continental superior.
+
+El comercio recuperó rápidamente rutas que la guerra había dañado. La normalización técnica fue más lenta. Cada potencia continuó protegiendo sus propios talleres, patentes, minas y conocimientos estratégicos.
+
+### Los siglos de estandarización — c. 150 a 447 C.
+
+Durante los siglos siguientes, la principal transformación de Edria no fue una única invención, sino la acumulación de **estándares compatibles**.
+
+Ingenieros, comerciantes, cartógrafos y gobiernos descubrieron que una máquina excelente que sólo pudiera repararse en su ciudad de origen tenía menos valor que un sistema ligeramente inferior capaz de funcionar a lo largo de varias rutas.
+
+Se difundieron medidas comunes para piezas críticas, presión, carga, señalización y documentación técnica. Estas convenciones nunca eliminaron los modelos locales, pero hicieron posible conectar infraestructuras construidas por estados diferentes.
+
+La expansión del comercio fortaleció casas mercantiles, bancos, gremios profesionales y comunidades urbanas. Las coronas y gobiernos tradicionales conservaron poder, pero comenzaron a compartirlo de hecho con quienes controlaban crédito, ingeniería, transporte y conocimientos especializados.
+
+También se intensificó la recuperación de obras de los Fundadores. Ninguna potencia obtuvo un monopolio duradero sobre ellas. Las ruinas podían contener conocimiento excepcional, maquinaria inútil, peligros activos o estructuras cuya función seguía siendo incomprensible.
+
+Las rivalidades internacionales se desplazaron progresivamente hacia concesiones, espionaje, derechos de excavación y control de rutas.
+
+### La apertura de la Línea del Espinazo — 447 C.
+
+La Línea del Espinazo no fue el primer ferrocarril de Edria. Fue el primer sistema capaz de enlazar a escala transcontinental redes regionales que hasta entonces funcionaban de manera fragmentada.
+
+Su importancia estuvo tanto en los acuerdos como en la ingeniería: gálibos, cargas, transferencias, seguridad, mantenimiento, horarios, derechos de tránsito y responsabilidad por accidentes tuvieron que funcionar entre jurisdicciones diferentes.
+
+El trazado exacto de la Línea permanece deliberadamente abierto.
+
+La apertura redujo tiempos de transporte, amplió mercados y volvió económicamente viables explotaciones que antes estaban demasiado alejadas de centros de consumo.
+
+También creó nuevas vulnerabilidades. Una huelga, sabotaje, derrumbe, conflicto fronterizo o fallo de infraestructura podía afectar lugares situados a cientos o miles de kilómetros.
+
+### La Segunda Forja — c. 460 a 612 C.
+
+Aproximadamente desde mediados del siglo V de la Concordia, la combinación de mejores calderas, aleaciones, mecanismos de repetición, producción estandarizada y acumuladores más fiables produjo el periodo conocido como **Segunda Forja**.
+
+No fue una segunda revolución mágica. Fue una revolución de **escala, mantenimiento y conexión**.
+
+Tecnologías conocidas desde hacía siglos pudieron fabricarse, repararse y desplegarse con mayor regularidad. Crecieron los ferrocarriles, estaciones, redes de bombeo, elevadores, manufacturas, dirigibles mercantes y sistemas urbanos especializados.
+
+El **Colegio de Ingenieros de la Segunda Forja** expresa esa nueva necesidad de profesionales cuyo trabajo pudiera ser reconocido fuera de una sola ciudad o estado. No se fija todavía una fecha exacta de fundación.
+
+La industrialización también produjo conflictos nuevos. Los talleres tradicionales compitieron con fábricas; los propietarios de patentes con quienes defendían conocimiento común; las ciudades con las regiones proveedoras de carbón, alimento y materias primas; y las comunidades locales con proyectos que atravesaban territorios utilizados durante generaciones.
+
+La tecnología no avanzó de forma uniforme. En 612 C. pueden coexistir una estación ferroviaria fortificada y, a pocas jornadas, comunidades cuya economía todavía depende de caminos de tierra, animales de tiro y producción artesanal.
+
+### La expansión exterior y la Carrera de Nacre — finales del siglo VI C.
+
+La mejora del transporte y de la cartografía hizo rentable financiar expediciones cada vez más lejanas.
+
+El Mar de Nacre adquirió especial importancia por sus islas emergentes, ruinas y recursos potenciales. Estados, academias, compañías, cartógrafos, cultos y aventureros compiten allí sin que ninguno pueda garantizar un control permanente.
+
+Esta expansión también fortaleció a ciudades libres y organizaciones capaces de operar entre jurisdicciones. Seguros, contratos de salvamento, cartas de exploración, escoltas privadas y mercados de información se convirtieron en parte normal de las expediciones de gran escala.
+
+### La Crisis de Nacre — 598 C.
+
+Tres expediciones desaparecieron en un archipiélago de ruinas emergentes. El canon **no determina todavía qué ocurrió**.
+
+La consecuencia conocida fue la contraria a una retirada general. El precio de seguros, escoltas, mapas y contratos aumentó; gobiernos y universidades exigieron mayores garantías; y la presencia de mercenarios y especialistas creció.
+
+La desaparición se convirtió así en símbolo de la contradicción de la era moderna: cuanto mayor es el peligro demostrado de una región, mayor puede ser el valor atribuido a aquello que todavía permanece en ella.
+
+### Edria en 612 C.
+
+Catorce años después de la Crisis de Nacre, Edria posee más capacidad para mover personas, información, mercancías y poder que cualquier sociedad conocida posterior a los Fundadores.
+
+También posee más dependencias.
+
+Valdoria necesita que sus rutas permanezcan abiertas. La Liga de Bronce depende de importaciones. Kharum necesita mercados para su producción y acceso seguro a corredores exteriores. Erelia debe decidir cuánto de su territorio puede integrarse sin destruir aquello que sostiene su prosperidad. Lysendra depende de redes que intercambian conocimiento incluso cuando intenta controlar sus riesgos. Solenar conecta el continente con rutas orientales que ninguna potencia puede sustituir por completo.
+
+La Concordia sigue funcionando porque una guerra total resultaría extraordinariamente costosa, no porque las potencias hayan dejado de competir.
+
+Por eso los principales conflictos del presente adoptan la forma de **espionaje, concesiones, sabotaje, expediciones, conflictos laborales, disputas legales, guerras periféricas y luchas por controlar información o infraestructura**.
+
+Eso coloca a Edria exactamente en el punto apropiado para el juego: suficientemente conectada para que las acciones locales tengan consecuencias continentales y suficientemente fragmentada para que todavía existan fronteras, ruinas, misterios y territorios donde una pequeña expedición pueda cambiar algo importante.
+
+### Límites deliberadamente abiertos
+
+Permanecen sin fijar los nombres de las tres casas de las Coronas Rotas, las fronteras históricas exactas, fechas fundacionales de las seis potencias, ubicación precisa de Lysendra, trazado de la Línea del Espinazo, causa de la Fractura, causa de la vitrificación del Desierto de Vidrio, historias individuales de las Ciudades Hundidas, yacimientos concretos de Cristales de Resonancia y explicación de la Crisis de Nacre.
+
+### Cronología esencial
+
+| Fecha | Hecho |
+|---|---|
+| c. -900 C. | Fractura del Cielo; redistribución de corrientes mágicas, aparición de zonas de alta saturación, islas flotantes, nuevos depósitos de cristal y exposición o activación de ruinas antiguas. |
+| c. -900 a -700 C. | Recomposición posterior a la Fractura; desplazamientos de población, recuperación de pasos seguros y reconocimiento progresivo de nuevos recursos arcanos. |
+| c. -700 C. | Primeros acumuladores ambientales estables. |
+| c. -700 a -320 C. | Recuperación de corredores comerciales y expansión gradual de instalaciones arcanas especializadas. |
+| c. -320 C. | Difusión de pólvora refinada y fundiciones de precisión. |
+| c. -150 a -40 C. | Primeras líneas ferroviarias regionales y dirigibles de carga con utilidad económica sostenida. |
+| c. -40 a 0 C. | Crece la disputa por el corredor central y se acumulan tensiones sucesorias, financieras y territoriales. |
+| 0–11 C. | Guerra de las Coronas Rotas. |
+| 12 C. | Tratado de Concordia de Auraval y creación de la Mesa de Concordia. |
+| 12 a c. 150 C. | Primera Concordia; estabilización diplomática, recuperación comercial y primeros procedimientos continentales comunes. |
+| c. 150–447 C. | Siglos de estandarización técnica, financiera y logística; aumento del comercio y de la recuperación de obras de los Fundadores. |
+| 447 C. | Apertura de la Línea del Espinazo, primer corredor ferroviario transcontinental de Edria. |
+| c. 460–612 C. | Segunda Forja; expansión de producción estandarizada, redes ferroviarias, bombeo, elevadores, dirigibles mercantes e infraestructura arcano-industrial. |
+| finales del siglo VI C. | Intensificación de la Carrera de Nacre y de las expediciones a ruinas e islas emergentes. |
+| 598 C. | Crisis de Nacre: desaparición de tres expediciones; su causa permanece abierta. |
+| 612 C. | Presente canónico. |
+
 ## 4. Las seis potencias de Edria
 Reino de Valdoria
 Valdoria ocupa las tierras fértiles del centro occidental. Es una monarquía de tradición feudal
@@ -12858,7 +12985,7 @@ Fin del Canon del Mundo v1.2
 El Archivo Narrativo Recuperado ya no forma parte del circuito editorial activo. El trabajo nuevo se realiza directamente en este Manual y cualquier recuperación histórica debe ser explícita.
 
 1. Diseñar mediante una estructura común los **símbolos religiosos de las Cinco Luminarias** y realizar después una pasada única de coherencia sobre los Doce del Panteón Central.
-2. Desarrollar la **historia intermedia de Edria** entre los grandes hitos ya canónicos, sin inventar sobre espacios deliberadamente abiertos.
+2. **CERRADO 2026-10-08:** historia intermedia de Edria desarrollada entre la Fractura del Cielo, los primeros acumuladores, la difusión de la pólvora, la integración ferroviaria, la Guerra de las Coronas Rotas, la Concordia, la Línea del Espinazo, la Segunda Forja y la Crisis de Nacre; los espacios deliberadamente abiertos permanecen sin fijar.
 3. Completar ejemplos de juego, ejemplos de creación y ejemplos de combate sin alterar reglas.
 4. Revisar tablas de equipo, precios, disponibilidad y contenido de mercado para edición.
 5. Resolver cualquier plantilla universal pendiente que todavía obligue a improvisar valores —por ejemplo perfiles concretos de Familiares, PNJ o criaturas— antes de considerarla sección editorialmente cerrada.
