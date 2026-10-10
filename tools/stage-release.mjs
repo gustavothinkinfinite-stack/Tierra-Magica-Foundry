@@ -12,6 +12,9 @@ if(sourceManifest.version!==packageJson.version){
 if(!/^\d+\.\d+\.\d+$/.test(sourceManifest.version)){
   throw new Error("La versión debe usar formato semántico X.Y.Z.");
 }
+if(/candidato|no publicado|sin release|pendiente de publicación/i.test(String(sourceManifest.description??""))){
+  throw new Error("La descripción pública no debe contener marcas de versión provisional.");
+}
 
 const runtimeEntries=[
   "assets",

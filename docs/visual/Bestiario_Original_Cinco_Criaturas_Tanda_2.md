@@ -98,6 +98,6 @@ Los valores se proporcionan para **prueba de partida** y no proceden de presupue
 
 Cada criatura recibe `assets/bestiary/<slug>-retrato.webp` y `assets/bestiary/<slug>-token.webp` con **marco circular y fondo exterior transparente**. Si falta un archivo de la pareja, Foundry mantiene el ícono genérico para evitar rutas rotas.
 
-El compilador genera un compendio con **22 Actores**: once referencias del Manual Maestro, el Lobo del Eco Muerto, los cinco originales de la primera tanda y estos cinco de la segunda. Hay **42 imágenes WebP / 21 parejas** (el Tirador mantiene ícono genérico mientras falte una ilustración con rifle correcto).
+Las dos tandas, junto con las 11 referencias del Manual Maestro y el Lobo del Eco Muerto, sumaban históricamente **22 Actores** y **21 parejas**. El candidato completo v1.12.0 agrega **Eidolon Manívoro** y alcanza **23 Actores, 44 imágenes WebP y 22 parejas**. El Tirador conserva el ícono genérico hasta contar con una ilustración correcta con rifle.
 
 **Estado de distribución:** ambas tandas quedan consolidadas en el **candidato v1.12.0**, pero no se crea tag ni rama `release/v1.12.0` ni release público hasta nueva aprobación. Las capacidades siguen siendo descriptivas: no lanzan efectos automáticos sobre tokens, no consumen Maná y no modifican la economía ordinaria de Acciones.

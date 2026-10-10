@@ -29,8 +29,10 @@ jobs:
           node-version: 24
       - name: Instalar dependencias
         run: npm install --ignore-scripts
-      - name: Verificar el sistema y los compendios
-        run: npm run validate
+      - name: Verificar auditoría de fabricación, sistema y compendios
+        run: |
+          npm run audit:crafting
+          npm run validate
       - name: Preparar ZIP sin publicación
         shell: bash
         run: |

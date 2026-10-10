@@ -78,6 +78,10 @@ La ampliación del grimorio está **CERRADA Y CANONIZADA**. El Manual Maestro de
 
 Foundry adopta schema v5 para contratos de objetivos mágicos y migración del cierre espacial.
 
+## Preparación de publicación 1.12.0 — Bestiario ampliado
+
+El candidato técnico **v1.12.0** reúne 23 Actores de Bestiario y 44 imágenes WebP (22 parejas), incluidos los 11 perfiles de referencia del Manual Maestro §23. El Lobo del Eco Muerto continúa como propuesta editorial no canonizada; las habilidades y estadísticas originales de las diez criaturas nuevas y del Eidolon Manívoro se distribuyen como **contenido de prueba**, aunque su arte o concepto visual esté aprobado. Los perfiles experimentales no crean canon mecánico ni sustituyen las reglas del Manual Maestro. La publicación efectiva debe comprobarse en GitHub Releases; preparar el código y el ZIP no equivale a publicar.
+
 ## Estado de publicación 1.7.0 — Bestiario
 
 **v1.7.0 está publicada** desde el commit `72f755060c87bb64e4c783be05e2b1215e1746ff`; publica un compendio `Actor` de 11 perfiles de PNJ/criaturas del capítulo 23 del Manual Maestro, con ficha y tiradas de ataque referenciales. No crea nuevas reglas: los valores ambiguos permanecen explícitos y la fuente canónica sigue siendo el Manual Maestro. Las pruebas automáticas y el workflow de publicación `#37812848808` terminaron correctamente. La comprobación visual en una sesión real de Foundry aún es recomendable.
