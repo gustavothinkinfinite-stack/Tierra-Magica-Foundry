@@ -17,7 +17,8 @@
   ],
   "styles": [
     "styles/tierra-magica.css",
-    "styles/character-sheet-v03.css"
+    "styles/character-sheet-v03.css",
+    "styles/commerce.css"
   ],
   "languages": [
     {
