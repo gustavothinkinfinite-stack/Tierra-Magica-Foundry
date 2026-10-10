@@ -12,6 +12,21 @@ test("release exige una única versión entre manifest y package",async()=>{
   const pkg=JSON.parse(await read("package.json"));
   assert.equal(manifest.version,pkg.version);
   assert.match(manifest.version,/^\d+\.\d+\.\d+$/);
+  assert.doesNotMatch(manifest.description,/candidato|no publicado|sin release|pendiente de publicación/i,
+    "La descripción pública del sistema debe ser neutra antes de crear un tag.");
+});
+
+test("el candidato 1.12 mantiene el inventario y el estado editorial coherentes",async()=>{
+  const manifest=JSON.parse(await read("system.json"));
+  if(manifest.version!=="1.12.0") return;
+  const readme=await read("README.md");
+  const changelog=await read("CHANGELOG.md");
+  const sources=await read("docs/FUENTES_CANONICAS.md");
+  assert.match(readme,/Estado de desarrollo 1\.12\.0/);
+  assert.match(readme,/23 Actores/);
+  assert.match(readme,/44 archivos WebP/);
+  assert.match(changelog,/1\.12\.0 — PREPARADA · NO PUBLICADA/);
+  assert.match(sources,/habilidades y estadísticas originales/);
 });
 
 test("compendios se reconstruyen desde cero y verifican documentos reales",async()=>{
@@ -41,6 +56,9 @@ test("workflow bloquea versión incoherente y publica ZIP más manifest",async()
   assert.match(workflow,/system\.json \(\$VERSION\) y package\.json/);
   assert.match(workflow,/EXPECTED_TAG="v\$VERSION"/);
   assert.match(workflow,/git ls-remote --exit-code --tags/);
+  assert.match(workflow,/npm run audit:crafting/);
+  assert.match(workflow,/npm run validate/);
+  assert.match(workflow,/unzip -t tierra-magica\.zip/);
   assert.match(workflow,/npm run stage:release/);
   assert.match(workflow,/tierra-magica\.zip/);
   assert.match(workflow,/package\/tierra-magica\/system\.json/);

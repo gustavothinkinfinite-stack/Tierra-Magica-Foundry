@@ -6,7 +6,7 @@ La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuent
 
 Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**Estado de desarrollo 1.11.0.** CREA-12 a CREA-15 están cerradas e integradas. El grimorio ampliado está auditado y canonizado en **60 hechizos**, con schema v5 para contratos de objetivos y cierre espacial definido. CREA-14 cerró la autosuficiencia de creación de nivel 1, CREA-15 cierra la autosuficiencia de progresión ordinaria 2–20 y CRAFT-01 a CRAFT-13 cierran el sistema de fabricación, reparación, desmantelamiento, modificaciones, magia de objetos, ingeniería, alquimia, investigación, interfaz y auditoría Foundry. CAT-01…11, ARM-01, ESC-01 y EQP-01 integran los catálogos maestros de armas, armaduras, escudos y equipo sobre esa base.
+**Estado de desarrollo 1.12.0 (candidato preparado, todavía no publicado).** CREA-12 a CREA-15 están cerradas e integradas. El grimorio ampliado está auditado y canonizado en **60 hechizos**, con schema v5 para contratos de objetivos y cierre espacial definido. CREA-14 cerró la autosuficiencia de creación de nivel 1, CREA-15 cierra la autosuficiencia de progresión ordinaria 2–20 y CRAFT-01 a CRAFT-13 cierran el sistema de fabricación, reparación, desmantelamiento, modificaciones, magia de objetos, ingeniería, alquimia, investigación, interfaz y auditoría Foundry. CAT-01…11, ARM-01, ESC-01 y EQP-01 integran los catálogos maestros de armas, armaduras, escudos y equipo sobre esa base.
 
 El núcleo 1.0 permanece **completo y jugable**. Cualquier ampliación mecánica futura debe partir de una decisión explícita incorporada primero al Manual Maestro; una fase nueva no se infiere automáticamente a partir del código.
 
@@ -75,10 +75,11 @@ habitual salvo que su `npcProfile.enabled` se active explícitamente.
 
 ## Arte del Bestiario — retratos y tokens integrados
 
-Desde **v1.8.0** el sistema distribuye retratos y tokens; la **v1.12.0 preparada, no publicada**, reúne **22 parejas** de WebP directamente
-en `assets/bestiary/`: Civil, Bandido, Guardia, Soldado, Veterano,
-Canalizador hostil, Lobo, Ogro, Centinela de Bronce, Troll dominante y
-**Lobo del Eco Muerto**, y las cinco criaturas nuevas **Ciervo Astral**, **Araña de Campanario**, **Jabalí Ígneo**, **Garza de Cristal** y **Sabueso Espectral**. Cada pareja contiene:
+Desde **v1.8.0** el sistema distribuye retratos y tokens; el **candidato v1.12.0**, todavía no publicado, reúne **22 parejas (44 archivos WebP)** en `assets/bestiary/`:
+diez perfiles del Manual Maestro con imagen (Civil, Bandido, Guardia, Soldado, Veterano, Canalizador hostil, Lobo, Ogro, Centinela de Bronce y Troll dominante);
+**Lobo del Eco Muerto** y **Eidolon Manívoro**; y las diez criaturas de las dos tandas:
+**Ciervo Astral**, **Araña de Campanario**, **Jabalí Ígneo**, **Garza de Cristal**, **Sabueso Espectral**, **Zorro Carmesí**, **Carnero del Alba Dorada**, **Lagarto de Cristal**, **Cuervo de Cobre** y **Nutria Encantada**.
+Cada pareja contiene:
 
 - Retrato del Actor: `<slug>-retrato.webp`.
 - Token circular: `<slug>-token.webp`.
@@ -91,11 +92,7 @@ válidos y que cada pareja esté completa.
 El **Tirador** mantiene el icono genérico: su imagen debe mostrar un rifle
 temprano según el Manual Maestro, no el arco de un boceto descartado.
 
-La versión preparada del compendio contiene **23 Actores**. El **Lobo del Eco Muerto** permanece
-separado del Lobo canónico y está señalado como propuesta original pendiente de
-aprobación. Su documentación editorial está en
-`docs/visual/Lobo_del_Eco_Muerto_Bestiario_Original.md`; no modifica las
-reglas del Manual Maestro.
+El compendio preparado contiene **23 Actores**: 11 perfiles canónicos del Manual Maestro §23 y 12 entradas de diseño original (Lobo del Eco Muerto, Eidolon Manívoro y diez criaturas adicionales). El **Lobo del Eco Muerto** sigue siendo una propuesta editorial pendiente de canon, y las mecánicas nuevas de las otras criaturas son contenido operativo de prueba, aunque sus imágenes o conceptos hayan sido aprobados. La aprobación visual **no equivale a canonización mecánica**. Las capacidades se resuelven manualmente por el DJ, no alteran por sí mismas el Manual Maestro. Ver `docs/visual/` para alcance y límites.
 
 
 

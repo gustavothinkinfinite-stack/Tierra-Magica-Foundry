@@ -87,8 +87,7 @@ impone moralmente.
 - Token: `assets/bestiary/lobo-del-eco-muerto-token.webp`.
 - Los archivos se vinculan automáticamente **solamente cuando ambos estén
   presentes en el sistema instalado**. El icono genérico evita rutas rotas.
-- La pareja visual está disponible en el paquete de imágenes preparado
-  separadamente; todavía debe incorporarse como binarios al repositorio.
+- Ambos archivos WebP ya están incorporados al repositorio y se incluyen en el ZIP preparado de v1.12.0. La criatura sigue pendiente de aprobación **canónica**; la disponibilidad de su arte no cambia ese estado.
 
 ## Puntos a revisar antes de declararlo canónico
 

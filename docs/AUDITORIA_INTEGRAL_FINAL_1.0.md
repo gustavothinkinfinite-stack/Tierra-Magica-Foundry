@@ -91,6 +91,10 @@ Foundry deja de tratar nivel y Atributos post-creación como campos de desarroll
 
 El cierre queda documentado en `docs/archive/creacion/CREA-15_CIERRE_AUTOSUFICIENCIA_PROGRESION.md` y protegido por regresiones específicas.
 
+## Aclaración de implementación posterior — 2026-10-10
+
+El cierre histórico describe una **autoridad transversal de Acción/Reacción** que, en aquella implementación, bloqueaba usos repetidos. Esa descripción no debe utilizarse como guía de interfaz actual: desde **v1.5.2**, por decisión registrada en `docs/FUENTES_CANONICAS.md`, Foundry muestra **marcadores manuales** de Acción y Reacción y no bloquea automáticamente operaciones por haber marcado esos indicadores como gastados. Los jugadores y el DJ aplican los límites de la economía de turno. Se mantienen las validaciones propias de las operaciones (recursos, objetivos, Incapacitado según la operación, etc.). Esta aclaración no altera las reglas canónicas del Manual Maestro ni reescribe retroactivamente las pruebas del cierre 1.0.
+
 ## Estado final
 
 **Núcleo 1.0 completo y jugable.** A1–A9 y CREA-09 a CREA-15 quedan integrados o cerrados según su documentación específica. El trabajo posterior corresponde a mantenimiento, documentación, contenido o futuras versiones explícitamente definidas, no a completar el núcleo 1.0.

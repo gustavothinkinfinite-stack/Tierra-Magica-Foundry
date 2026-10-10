@@ -136,8 +136,5 @@ en parejas durante la noche.
 
 ## Control previo a la publicación
 
-Verificar compendio de **17 Actores** (11 Manual + Lobo del Eco Muerto + 5 nuevos),
-las 16 parejas de arte disponibles, la resolución de habilidades sin estados
-automáticos, dimensiones del token y comportamiento de apertura de ficha.
-La documentación y las imágenes pueden integrarse en GitHub sin lanzar release;
-el corte de versión requiere autorización posterior.
+El corte histórico de esta primera tanda tenía **17 Actores** (11 Manual + Lobo del Eco Muerto + 5 nuevos) y **16 parejas** de arte. El candidato completo **v1.12.0** añade la segunda tanda y Eidolon Manívoro, por lo que debe validarse con **23 Actores y 22 parejas (44 WebP)**, sin confundir el conteo de esta tanda con el total final.
+Antes de publicar: verificar en Foundry la resolución de habilidades sin estados automáticos, dimensiones del token y apertura de fichas. La aprobación de arte no canoniza estadísticas nuevas.

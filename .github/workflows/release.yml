@@ -55,8 +55,10 @@ jobs:
       - name: Instalar dependencias de construcción
         run: npm install --ignore-scripts
 
-      - name: Validar sistema y construir Compendios
-        run: npm run validate
+      - name: Auditar fabricación, validar sistema y construir Compendios
+        run: |
+          npm run audit:crafting
+          npm run validate
 
       - name: Preparar paquete runtime
         run: |
@@ -67,6 +69,7 @@ jobs:
       - name: Verificar paquete
         shell: bash
         run: |
+          unzip -t tierra-magica.zip
           unzip -l tierra-magica.zip | tee release-contents.txt
           grep -q "tierra-magica/system.json" release-contents.txt
           grep -q "tierra-magica/packs/character-options/" release-contents.txt
@@ -89,6 +92,9 @@ jobs:
           if (!manifest.download.endsWith("/releases/download/"+expected+"/tierra-magica.zip")) throw new Error("Download URL no está fijada a la versión.");
           const bestiary=manifest.packs.find(pack=>pack.name==="bestiary");
           if (bestiary?.type!=="Actor" || bestiary.path!=="packs/bestiary") throw new Error("El Bestiario debe figurar como compendio Actor.");
+          if (/candidato|no publicado|sin release/i.test(manifest.description)) throw new Error("El manifiesto publicado conserva texto provisional.");
+          const actual=fs.readdirSync("package/tierra-magica/assets/bestiary").filter(name=>name.endsWith(".webp"));
+          if (manifest.version==="1.12.0" && actual.length!==44) throw new Error("El candidato 1.12.0 debe tener 44 imágenes WebP.");
           NODE
 
       - name: Crear publicación
