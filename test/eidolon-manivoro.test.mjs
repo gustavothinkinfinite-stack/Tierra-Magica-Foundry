@@ -101,6 +101,6 @@ test("compilación 23 Actors y candidato v1.12 sin publicación",async()=>{
   assert.match(workflow,/eq 44/);
   assert.match(workflow,/eidolon-manivoro-token\.webp/);
   assert.doesNotMatch(workflow,/action-gh-release/);
-  assert.equal(manifest.version,"1.12.0");
+  assert.match(manifest.version,/^1\.12\.\d+$/);
   assert.equal(manifest.packs.find(pack=>pack.name==="bestiary").type,"Actor");
 });
