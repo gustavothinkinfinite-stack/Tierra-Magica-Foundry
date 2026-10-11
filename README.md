@@ -6,11 +6,11 @@ La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuent
 
 Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**Estado de desarrollo 1.12.1 (Lobby automático incluido).** CREA-12 a CREA-15 están cerradas e integradas. El grimorio ampliado está auditado y canonizado en **60 hechizos**, con schema v5 para contratos de objetivos y cierre espacial definido. CREA-14 cerró la autosuficiencia de creación de nivel 1, CREA-15 cierra la autosuficiencia de progresión ordinaria 2–20 y CRAFT-01 a CRAFT-13 cierran el sistema de fabricación, reparación, desmantelamiento, modificaciones, magia de objetos, ingeniería, alquimia, investigación, interfaz y auditoría Foundry. CAT-01…11, ARM-01, ESC-01 y EQP-01 integran los catálogos maestros de armas, armaduras, escudos y equipo sobre esa base.
+**Estado de desarrollo 1.13.0 (Recolección y búsqueda de recursos incluida).** CREA-12 a CREA-15 están cerradas e integradas. El grimorio ampliado está auditado y canonizado en **60 hechizos**, con schema v5 para contratos de objetivos y cierre espacial definido. CREA-14 cerró la autosuficiencia de creación de nivel 1, CREA-15 cierra la autosuficiencia de progresión ordinaria 2–20 y CRAFT-01 a CRAFT-13 cierran el sistema de fabricación, reparación, desmantelamiento, modificaciones, magia de objetos, ingeniería, alquimia, investigación, interfaz y auditoría Foundry. CAT-01…11, ARM-01, ESC-01 y EQP-01 integran los catálogos maestros de armas, armaduras, escudos y equipo sobre esa base.
 
 El núcleo 1.0 permanece **completo y jugable**. Cualquier ampliación mecánica futura debe partir de una decisión explícita incorporada primero al Manual Maestro; una fase nueva no se infiere automáticamente a partir del código.
 
-La release pública actual es **v1.12.1**. La versión incorpora orientación para jugadores nuevos en los ocho pasos de creación, con descripciones de Ascendencias, Orígenes, Trasfondos y decisiones de PD, PR y Equipo. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
+La última release pública previa a este cambio es **v1.12.1**. La versión incorpora orientación para jugadores nuevos en los ocho pasos de creación, con descripciones de Ascendencias, Orígenes, Trasfondos y decisiones de PD, PR y Equipo. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
 
 ## Creación guiada para jugadores nuevos
 
@@ -156,3 +156,7 @@ aprobadas. Nota histórica anterior a la publicación: no crear rama
 ## Lobby automático de bienvenida (v1.12.1)
 
 El primer Director de Juego activo prepara, al abrir cada mundo, la escena **Lobby** con el fondo visual aprobado (`assets/scenes/lobby.webp`, 1672 × 941) y navegación habilitada. En un mundo sin escena activa, se activa automáticamente para mostrarla a los jugadores. No se interrumpen sesiones con otra escena activa, no se duplica un Lobby existente y se conservan sus modificaciones visuales.
+
+## Recolección y búsqueda (1.13.0)
+
+El DJ asigna un bioma a cada escena y administra un catálogo mundial de recursos en la ficha de personaje, en **Equipo → Administrar búsquedas (DJ)**. Puede crear recursos nuevos o vincular un Item de Mundo/Compendio, configurar las 26 Habilidades, atributo, DF, cantidades y visibilidad. Los jugadores usan **Equipo → Buscar recursos**. El DJ arbitra la tirada y las recompensas con bloqueo de reintentos y apilado en inventario. Las DF y cantidades iniciales son propuestas, no canon del Manual Maestro. Guía operativa: `docs/archive/gathering/RECOLECCION_RECURSOS_1.13.0.md`.
