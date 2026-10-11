@@ -1,3 +1,11 @@
+## 1.12.1 — Lobby de bienvenida automático — 2026-10-11
+
+- Agrega la imagen aprobada del salón de exploradores como `assets/scenes/lobby.webp`.
+- Crea la escena **Lobby** en cada mundo cuando ingresa el primer DJ activo; la fija en navegación y la activa solo si el mundo no tiene escena activa.
+- Evita duplicados, respeta imágenes personalizadas y limita la escritura al primer DJ activo.
+- Adapta la creación del fondo a los niveles de Foundry v14 y conserva compatibilidad con v13.
+- Añade pruebas de regresión sobre creación, activación, navegación, concurrencia y empaquetado del arte.
+
 ## 1.12.0 — PREPARADA · NO PUBLICADA
 
 - **11 criaturas originales** en dos tandas más **Eidolon Manívoro** aprobado (suplantación, drenaje de Maná e influencia mental con límites explícitos): Ciervo Astral, Araña de Campanario, Jabalí Ígneo, Garza de Cristal, Sabueso Espectral; Zorro Carmesí, Carnero del Alba Dorada, Lagarto de Cristal, Cuervo de Cobre y Nutria Encantada.

@@ -6,11 +6,11 @@ La jerarquía completa de fuentes está en `docs/FUENTES_CANONICAS.md`. La fuent
 
 Núcleo: 2d10 + Atributo + Habilidad; Ventaja/Desventaja 3d10 mejores/peores 2; 7 Atributos y 26 Habilidades; Vida 10+2×VIG; Maná 6+3×VOL; 1 Acción + Movimiento + Reacción; 25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o en creación; niveles 1–20; Trauma 0–3; magia de cuatro Fuentes y seis Disciplinas; Alquimia; Ritualismo; Energía/Caudal; familiares.
 
-**Estado de desarrollo 1.12.0 (candidato preparado, todavía no publicado).** CREA-12 a CREA-15 están cerradas e integradas. El grimorio ampliado está auditado y canonizado en **60 hechizos**, con schema v5 para contratos de objetivos y cierre espacial definido. CREA-14 cerró la autosuficiencia de creación de nivel 1, CREA-15 cierra la autosuficiencia de progresión ordinaria 2–20 y CRAFT-01 a CRAFT-13 cierran el sistema de fabricación, reparación, desmantelamiento, modificaciones, magia de objetos, ingeniería, alquimia, investigación, interfaz y auditoría Foundry. CAT-01…11, ARM-01, ESC-01 y EQP-01 integran los catálogos maestros de armas, armaduras, escudos y equipo sobre esa base.
+**Estado de desarrollo 1.12.1 (Lobby automático incluido).** CREA-12 a CREA-15 están cerradas e integradas. El grimorio ampliado está auditado y canonizado en **60 hechizos**, con schema v5 para contratos de objetivos y cierre espacial definido. CREA-14 cerró la autosuficiencia de creación de nivel 1, CREA-15 cierra la autosuficiencia de progresión ordinaria 2–20 y CRAFT-01 a CRAFT-13 cierran el sistema de fabricación, reparación, desmantelamiento, modificaciones, magia de objetos, ingeniería, alquimia, investigación, interfaz y auditoría Foundry. CAT-01…11, ARM-01, ESC-01 y EQP-01 integran los catálogos maestros de armas, armaduras, escudos y equipo sobre esa base.
 
 El núcleo 1.0 permanece **completo y jugable**. Cualquier ampliación mecánica futura debe partir de una decisión explícita incorporada primero al Manual Maestro; una fase nueva no se infiere automáticamente a partir del código.
 
-La release pública actual es **v1.11.0**. La versión incorpora orientación para jugadores nuevos en los ocho pasos de creación, con descripciones de Ascendencias, Orígenes, Trasfondos y decisiones de PD, PR y Equipo. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
+La release pública actual es **v1.12.1**. La versión incorpora orientación para jugadores nuevos en los ocho pasos de creación, con descripciones de Ascendencias, Orígenes, Trasfondos y decisiones de PD, PR y Equipo. El canal oficial de instalación y actualización usa el manifiesto estable publicado como asset de la última release.
 
 ## Creación guiada para jugadores nuevos
 
@@ -75,7 +75,7 @@ habitual salvo que su `npcProfile.enabled` se active explícitamente.
 
 ## Arte del Bestiario — retratos y tokens integrados
 
-Desde **v1.8.0** el sistema distribuye retratos y tokens; el **candidato v1.12.0**, todavía no publicado, reúne **22 parejas (44 archivos WebP)** en `assets/bestiary/`:
+Desde **v1.8.0** el sistema distribuye retratos y tokens; la **versión v1.12.0**, publicada, reúne **22 parejas (44 archivos WebP)** en `assets/bestiary/`:
 diez perfiles del Manual Maestro con imagen (Civil, Bandido, Guardia, Soldado, Veterano, Canalizador hostil, Lobo, Ogro, Centinela de Bronce y Troll dominante);
 **Lobo del Eco Muerto** y **Eidolon Manívoro**; y las diez criaturas de las dos tandas:
 **Ciervo Astral**, **Araña de Campanario**, **Jabalí Ígneo**, **Garza de Cristal**, **Sabueso Espectral**, **Zorro Carmesí**, **Carnero del Alba Dorada**, **Lagarto de Cristal**, **Cuervo de Cobre** y **Nutria Encantada**.
@@ -130,13 +130,13 @@ comprometidos. Primero usar su acción **Liberar / Cancelar Proyecto**.
 
 ## Cinco criaturas originales (versión en preparación)
 
-Ciervo Astral, Araña de Campanario, Jabalí Ígneo, Garza de Cristal y Sabueso Espectral disponen de fichas NPC completas y arte propio. Consulta `docs/visual/Bestiario_Original_Cinco_Criaturas_Tanda_1.md` para su ecología, estadísticas, capacidades y aventuras. La versión 1.12.0 queda preparada en GitHub, **no publicada**; la instalación de Foundry no se actualiza hasta autorización explícita para crear release.
+Ciervo Astral, Araña de Campanario, Jabalí Ígneo, Garza de Cristal y Sabueso Espectral disponen de fichas NPC completas y arte propio. Consulta `docs/visual/Bestiario_Original_Cinco_Criaturas_Tanda_1.md` para su ecología, estadísticas, capacidades y aventuras. La versión 1.12.0 se distribuyó como release pública.
 
-## Segunda tanda aprobada del Bestiario — v1.12.0 sin publicar
+## Segunda tanda aprobada del Bestiario — v1.12.0
 
-**Zorro Carmesí, Carnero del Alba Dorada, Lagarto de Cristal, Cuervo de Cobre y Nutria Encantada** se suman a los cinco anteriores con perfiles NPC completos, ataques, dones sobrenaturales limitados, rastros, ecología y aventuras. Sus retratos y tokens circulares se distribuyen juntos como diez WebP más. La versión 1.12.0 preparada alcanza 23 Actores y 44 imágenes (22 parejas; el Tirador sigue con icono genérico). Detalles en `docs/visual/Bestiario_Original_Cinco_Criaturas_Tanda_2.md`. **No crear rama `release/v1.12.0` ni tag hasta la autorización del creador**.
+**Zorro Carmesí, Carnero del Alba Dorada, Lagarto de Cristal, Cuervo de Cobre y Nutria Encantada** se suman a los cinco anteriores con perfiles NPC completos, ataques, dones sobrenaturales limitados, rastros, ecología y aventuras. Sus retratos y tokens circulares se distribuyen juntos como diez WebP más. La versión 1.12.0 preparada alcanza 23 Actores y 44 imágenes (22 parejas; el Tirador sigue con icono genérico). Detalles en `docs/visual/Bestiario_Original_Cinco_Criaturas_Tanda_2.md`. La versión v1.12.0 fue publicada.
 
-## Eidolon Manívoro aprobado — candidato 1.12.0 sin release
+## Eidolon Manívoro aprobado — versión 1.12.0
 
 La entrada **Eidolon Manívoro** suma un Actor de depredador umbrío con
 **Vida 18, Defensa 15, Maná 8, Garra Umbría +6** y tres capacidades
@@ -149,5 +149,10 @@ Sus variantes orientativas Menor/Base/Mayor y su aventura están en
 `docs/visual/Eidolon_Manivoro_Ficha_Bestiario_Aprobada.md`.
 
 **Total preparado y sin distribuir:** 23 Actores, 44 WebP y 22 parejas
-aprobadas. La versión pública no cambia; no crear rama
+aprobadas. Nota histórica anterior a la publicación: no crear rama
 `release/v1.12.0`, tag ni publicación hasta autorización explícita.
+
+
+## Lobby automático de bienvenida (v1.12.1)
+
+El primer Director de Juego activo prepara, al abrir cada mundo, la escena **Lobby** con el fondo visual aprobado (`assets/scenes/lobby.webp`, 1672 × 941) y navegación habilitada. En un mundo sin escena activa, se activa automáticamente para mostrarla a los jugadores. No se interrumpen sesiones con otra escena activa, no se duplica un Lobby existente y se conservan sus modificaciones visuales.
