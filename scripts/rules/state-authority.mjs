@@ -1,4 +1,5 @@
 import { primaryActiveGm, validatePendingDamageRequest } from "./damage-delivery.mjs";
+import { executeGatheringRequest } from "./gathering-service.mjs";
 import { validatePendingHealingRequest } from "./healing-delivery.mjs";
 import { resourceMaximum } from "./resource-reconciliation.mjs";
 import {
@@ -148,7 +149,7 @@ function authorityReceiptKey(message) {
 }
 
 async function authorityReceiptDocument(action, payload = {}) {
-  if (["reserve-turn-resource", "commit-turn-resource", "release-turn-resource", "spend-movement", "consume-device-energy", "craft-magic-runtime", "formula-use"].includes(action)) {
+  if (["reserve-turn-resource", "commit-turn-resource", "release-turn-resource", "spend-movement", "consume-device-energy", "craft-magic-runtime", "formula-use", "gather-resource"].includes(action)) {
     const actor = await actorFromUuid(String(payload.actorUuid ?? ""));
     if (!["consume-device-energy"].includes(action)) return actor;
     return actor?.items?.get?.(String(payload.sourceItemId ?? "")) ?? actor;
@@ -609,6 +610,14 @@ async function executeAuthorityAction(action, payload = {}, requesterId = "") {
     return mutateHealth(target, { healing:payload.amount });
   }
 
+  if (action === "gather-resource") {
+    const actor=await actorFromUuid(String(payload.actorUuid??""));
+    if(!actor) return {ok:false,error:"Personaje de recolección no disponible."};
+    if(!requesterMayModify(actor,requesterId)) return {ok:false,error:"No tenés permisos sobre ese personaje."};
+    return serial("gathering:"+actorAuthorityKey(actor),
+      ()=>executeGatheringRequest(actor,payload,requesterId));
+  }
+
   if (action === "formula-use") {
     const actor=await actorFromUuid(String(payload.actorUuid??""));
     if(!actor) return {ok:false,error:"El Actor de Alquimia ya no está disponible."};
@@ -1036,6 +1045,16 @@ export async function approvePendingHealingAuthoritatively(message) {
     if (!result.ok) return result;
     await message.setFlag?.("tierra-magica", "pendingHealing", { ...request, resolved:true });
     return { ...result, resolved:true, alreadyResolved:false };
+  });
+}
+
+export async function gatherResourcesAuthoritatively(actor,{sceneId="",resourceId="",skillKey=""}={}){
+  if(!actor?.uuid) return {ok:false,error:"Personaje sin UUID para recolección."};
+  if(!game.user?.isGM && !actor.isOwner) return {ok:false,error:"No controlás este personaje."};
+  if(!runtimeSocketAvailable() && !game.user?.isGM)
+    return {ok:false,error:"Se requiere un DJ activo para resolver la recolección."};
+  return requestPrimaryGm("gather-resource",{
+    actorUuid:actor.uuid,sceneId:String(sceneId),resourceId:String(resourceId),skillKey:String(skillKey)
   });
 }
 
