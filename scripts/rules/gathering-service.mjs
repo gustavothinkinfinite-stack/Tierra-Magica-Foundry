@@ -76,7 +76,7 @@ export async function executeGatheringRequest(actor,payload={},requesterId=""){
   let resource;
   let attemptId;
   if(payload.resourceId==="__explore__"){
-    if(!GATHERING_SKILLS.includes(payload.skillKey)) return fail("Habilidad exploratoria inválida.");
+    if(!Object.hasOwn(TM_CONFIG.skills,String(payload.skillKey??""))) return fail("Habilidad exploratoria inválida.");
     const secret=available.filter(value=>value.hidden&&value.skill===payload.skillKey);
     if(!secret.length) return fail("No hay hallazgos exploratorios configurados para esta búsqueda.");
     resource=secret[Math.floor(Math.random()*secret.length)];
