@@ -22,7 +22,7 @@ export async function openGatheringDialog(actor){
   if(!scene||!GATHERING_BIOMES[biome]) return ui.notifications.warn("El Director debe configurar el bioma de la escena.");
   const available=gatheringResourcesForBiome(catalog(),biome,{skills:Object.keys(TM_CONFIG.skills)});
   const found=available.map(x=>[x.id,x.name+" · "+(TM_CONFIG.skills[x.skill]?.label??x.skill)+" · DF "+x.df]);
-  const unknown=GATHERING_SKILLS.map(key=>["__explore__:"+key,"Explorar lo desconocido · "+TM_CONFIG.skills[key].label]);
+  const unknown=skillPairs().map(([key,label])=>["__explore__:"+key,"Explorar lo desconocido · "+label]);
   const chosen=await Dialog.prompt({
     title:"Buscar recursos · "+GATHERING_BIOMES[biome],
     content:"<p>Seleccioná qué intenta encontrar el personaje. La recolección requiere 2 horas de tiempo mundial para repetir el mismo objetivo en esta escena; el DJ debe avanzar el reloj.</p>"+
