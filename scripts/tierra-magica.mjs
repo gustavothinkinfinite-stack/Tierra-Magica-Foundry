@@ -1,6 +1,7 @@
 import { hasCraftingReservationsForProject } from "./rules/crafting-orphan-reservations.mjs";
 import { installZeroHealthTokenHooks, registerZeroHealthStatus } from "./rules/zero-health-token.mjs";
 import { TM_CONFIG } from "./config.mjs";
+import { ensureDefaultLobby } from "./rules/default-lobby.mjs";
 import { damageTypeRegistry } from "./rules/damage-types.mjs";
 import { TierraMagicaActor } from "./documents/actor.mjs";
 import { TierraMagicaItem } from "./documents/item.mjs";
@@ -476,6 +477,13 @@ Hooks.once("ready", async () => {
   if (!catalogValidation.valid) {
     console.warn("Foundry T.M. | CREA-11 catálogo con incidencias", catalogValidation.issues);
     ui.notifications.warn("Tierra Mágica: el catálogo CREA-11 contiene " + catalogValidation.issues.length + " incidencia(s); revisa la consola.");
+  }
+  try {
+    const lobby = await ensureDefaultLobby({ game, SceneClass: Scene });
+    if (lobby.status === "created") console.info("Foundry T.M. | Lobby de bienvenida instalado");
+  } catch (error) {
+    console.error("Foundry T.M. | No se pudo preparar Lobby", error);
+    if (game.user?.isGM) ui.notifications.warn("Tierra Mágica: no se pudo preparar la escena Lobby; revisa la consola.");
   }
 
 });
