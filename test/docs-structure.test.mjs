@@ -39,7 +39,7 @@ test("docs raíz contiene sólo documentación activa más el archivo",async()=>
 test("archivo documental está separado por función",async()=>{
   const entries=await readdir(resolve(docsRoot,"archive"),{withFileTypes:true});
   const dirs=entries.filter((entry)=>entry.isDirectory()).map((entry)=>entry.name).sort();
-  assert.deepEqual(dirs,["audits","catalogos","crafting","creacion","fuentes_externas","historico","releases"].sort());
+  assert.deepEqual(dirs,["audits","catalogos","crafting","creacion","fuentes_externas","gathering","historico","releases"].sort());
   assert.equal((await stat(resolve(docsRoot,"archive","README.md"))).isFile(),true);
 });
 

@@ -838,6 +838,16 @@
         {{/if}}
         <small>10 c = 1 p · 10 p = 1 o. Oro, plata y cobre son una presentación del mismo saldo.</small>
       </section>
+      {{#if creation.isComplete}}
+      <section class="tm-panel tm-v03-page-panel">
+        <div class="tm-section-heading"><h2>Recolección y búsqueda</h2></div>
+        <p>Busca materiales naturales, componentes y objetos configurados por el DJ para la escena.</p>
+        <div class="tm-section-buttons">
+          <button type="button" data-action="gather-resources"><i class="fa-solid fa-leaf"></i> Buscar recursos</button>
+          {{#if isGM}}<button type="button" data-action="manage-gathering"><i class="fa-solid fa-gears"></i> Administrar búsquedas (DJ)</button>{{/if}}
+        </div>
+      </section>
+      {{/if}}
       {{> "systems/tierra-magica/templates/actor/parts/item-section.hbs" title="Equipo e inventario" type="equipment" items=itemGroups.equipment}}
     </div>
 

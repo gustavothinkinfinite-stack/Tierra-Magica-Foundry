@@ -1,8 +1,8 @@
 {
   "id": "tierra-magica",
   "title": "Tierra Mágica — Foundry T.M.",
-  "description": "Foundry T.M. 1.12.1: sistema Tierra Mágica para Foundry VTT, con 23 Actores en el Bestiario y 44 imágenes WebP en 22 parejas. Las capacidades originales de prueba se resuelven manualmente.",
-  "version": "1.12.1",
+  "description": "Foundry T.M. 1.13.0: búsqueda y recolección de recursos personalizables por DJ con tiradas y entrega al inventario; 23 Actores en el Bestiario y 44 imágenes WebP en 22 parejas.",
+  "version": "1.13.0",
   "compatibility": {
     "minimum": "13",
     "verified": "14"

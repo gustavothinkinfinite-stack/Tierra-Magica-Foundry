@@ -1,6 +1,7 @@
 import { hasCraftingReservationsForProject } from "./rules/crafting-orphan-reservations.mjs";
 import { installZeroHealthTokenHooks, registerZeroHealthStatus } from "./rules/zero-health-token.mjs";
 import { TM_CONFIG } from "./config.mjs";
+import { registerGatheringSettings } from "./rules/gathering-service.mjs";
 import { ensureDefaultLobby } from "./rules/default-lobby.mjs";
 import { damageTypeRegistry } from "./rules/damage-types.mjs";
 import { TierraMagicaActor } from "./documents/actor.mjs";
@@ -65,6 +66,7 @@ function forcedDeletion() {
 }
 
 Hooks.once("init", async () => {
+  registerGatheringSettings();
   console.info("Foundry T.M. | Iniciando Tierra Mágica v" + String(game.system?.version ?? "?"));
   game.settings.register("tierra-magica", "customDamageTypes", {
     name: "Tipos de daño personalizados",

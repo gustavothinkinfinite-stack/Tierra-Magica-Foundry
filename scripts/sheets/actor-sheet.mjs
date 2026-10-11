@@ -1,6 +1,7 @@
 import { orphanCraftingReservationPlan, repairOrphanCraftingReservations } from "../rules/crafting-orphan-reservations.mjs";
 import { safeActorSheetRenderOptions } from "./actor-sheet-render-options.mjs";
 import { TM_CONFIG } from "../config.mjs";
+import { openGatheringDialog,openGatheringManager } from "../rules/gathering-ui.mjs";
 import { toNumber } from "../rules.mjs";
 import { normalizeSlug } from "../rules/identity.mjs";
 import { combineCurrency, formatCurrency, splitCurrency, CREATION_PEI_COPPER } from "../rules/currency.mjs";
@@ -324,6 +325,8 @@ export class TierraMagicaActorSheet extends ActorSheetV1 {
     });
     html.find("[data-action='roll-skill']").click((event) => this.actor.configureAndRollSkill(event.currentTarget.dataset.key));
     html.find("[data-action='roll-initiative']").click(() => this.actor.rollInitiativeCheck());
+    html.find("[data-action='gather-resources']").click(()=>openGatheringDialog(this.actor));
+    html.find("[data-action='manage-gathering']").click(()=>openGatheringManager());
     html.find("[data-action='roll-npc-attack']").click((event) =>
       this.actor.rollNpcAttack(Number(event.currentTarget.dataset.index)));
     html.find("[data-action='add-npc-ability']").click(()=>this.#editNpcAbilities("add"));
