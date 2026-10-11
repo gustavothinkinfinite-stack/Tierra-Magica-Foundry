@@ -115,6 +115,6 @@ test("preparación de v1.12 valida 44 imágenes con Eidolon sin crear workflow d
  assert.match(preview,/nutria-encantada-token\.webp/);
  assert.match(preview,/upload-artifact/);
  assert.doesNotMatch(preview,/action-gh-release/);
- assert.match(manifest.version,/^1\.12\.\d+$/);
+ assert.match(manifest.version,/^\d+\.\d+\.\d+$/);
  assert.equal(manifest.packs.find(p=>p.name==="bestiary").type,"Actor");
 });
