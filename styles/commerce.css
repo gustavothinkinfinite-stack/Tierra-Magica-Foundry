@@ -1,0 +1,29 @@
+/* Tiendas y cofres de Tierra Mágica: interfaz informativa, sin reglas nuevas de precios. */
+.tm-commerce-toolbar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.tm-commerce-toolbar button { width: auto; min-width: 145px; padding: 5px 9px; font-size: 12px; }
+.tm-commerce-editor, .tm-commerce-shop { display: grid; gap: 12px; min-width: 0; }
+.tm-commerce-settings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tm-commerce-settings label, .tm-commerce-edit-row label, .tm-commerce-shop > label { display: grid; align-content: start; gap: 4px; font-size: 12px; }
+.tm-commerce-settings select, .tm-commerce-settings input,
+.tm-commerce-edit-row select, .tm-commerce-edit-row input,
+.tm-commerce-shop select, .tm-commerce-line input { width: 100%; min-width: 0; }
+.tm-commerce-items, .tm-commerce-lines { max-height: 430px; overflow-y: auto; border: 1px solid var(--color-border-light-primary, #777); border-radius: 5px; }
+.tm-commerce-edit-row, .tm-commerce-line { display: grid; align-items: center; gap: 9px; padding: 8px; border-bottom: 1px solid var(--color-border-light-tertiary, #999); }
+.tm-commerce-edit-row { grid-template-columns: 42px minmax(120px, 2fr) minmax(65px, .8fr) minmax(90px, 1fr) minmax(75px, 1fr) minmax(110px, 1.3fr) minmax(115px, 1.3fr) 28px; }
+.tm-commerce-edit-row > img, .tm-commerce-line > img { width: 38px; height: 38px; object-fit: contain; border: 1px solid #777; border-radius: 4px; }
+.tm-commerce-edit-name, .tm-commerce-line > div { display: grid; gap: 3px; min-width: 0; }
+.tm-commerce-edit-name small, .tm-commerce-line small { opacity: .78; font-size: 11px; }
+.tm-commerce-add { display: flex; gap: 8px; }
+.tm-commerce-add input { flex: 1; }
+.tm-commerce-add button { flex: 0 0 auto; width: auto; padding: 4px 12px; }
+.tm-commerce-line { grid-template-columns: 44px minmax(180px, 1fr) minmax(120px, 1fr) 60px 94px; }
+.tm-commerce-line button { width: 100%; }
+.tm-commerce-price { text-align: right; font-variant-numeric: tabular-nums; }
+.tm-c-remove { padding: 0; font-size: 20px; width: 26px; height: 28px; }
+@media (max-width: 850px) {
+  .tm-commerce-settings { grid-template-columns: 1fr; }
+  .tm-commerce-edit-row { grid-template-columns: 35px minmax(90px, 1fr) repeat(2, minmax(70px, 1fr)); }
+  .tm-commerce-edit-row label { grid-column: auto; }
+  .tm-commerce-line { grid-template-columns: 40px minmax(120px, 1fr) 70px 75px; }
+  .tm-commerce-price { grid-column: 2; text-align: left; }
+}
