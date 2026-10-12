@@ -47,6 +47,16 @@ export function gatheringResourcesForBiome(catalog,biome,{showHidden=false,skill
     .map(value=>{try{return normalizeGatheringResource(value,skills)}catch{return null}})
     .filter(value=>value&&value.biome===biome&&(showHidden||!value.hidden));
 }
+// La interfaz muestra únicamente las búsquedas habilitadas en este bioma.
+// El DJ puede asignar cualquiera de las habilidades canónicas a un hallazgo oculto.
+export function gatheringSearchChoices(catalog,biome,{skills=GATHERING_SKILLS}={}){
+  const available=gatheringResourcesForBiome(catalog,biome,{showHidden:true,skills});
+  const known=available.filter(resource=>!resource.hidden);
+  const hiddenSkills=new Set(available.filter(resource=>resource.hidden).map(resource=>resource.skill));
+  const explorationSkills=skills.filter(skill=>hiddenSkills.has(skill));
+  return {known,explorationSkills};
+}
+
 export function gatheringOutcome(resource,total){
   const check=classifyResult(total,resource.df);
   const index=check.degree==="Dominante"?2:check.degree==="Claro"?1:0;
