@@ -59,8 +59,15 @@ test("Lobby oficial: fondo aprobado, navegación y canvas sin cuadrícula", () =
   const v13 = defaultLobbySource({generation:13});
   assert.equal(v13.background.src, DEFAULT_LOBBY_IMAGE);
   assert.equal(v13.levels, undefined);
+  assert.deepEqual(v13.initial, source.initial);
+  assert.deepEqual(v13.ownership, { default: 0 });
   assert.deepEqual([source.width, source.height], [1672, 941]);
-  assert.equal(source.grid.type, 0);
+  assert.deepEqual(source.grid, { type: 0, size: 100 });
+  assert.deepEqual(source.ownership, { default: 0 });
+  assert.equal(source.backgroundColor, "#000000");
+  assert.deepEqual(source.initial, { x: 818, y: 478, scale: 1.186 });
+  assert.equal(source.environment.darknessLevel, 0);
+  assert.deepEqual(source.levels[0].elevation, { bottom: 0, top: 20 });
   assert.equal(source.flags["tierra-magica"].defaultLobby, true);
 });
 
@@ -80,13 +87,23 @@ test("no altera la escena activa de una partida", async () => {
   assert.equal(h.game.scenes.active, other);
 });
 
-test("reutiliza Lobby personalizado, lo hace visible y no reemplaza su imagen", async () => {
+test("reutiliza Lobby personalizado sin sobrescribir imagen, permisos ni cámara", async () => {
   const h = harness({ active: { name: "Aventura" } });
-  const lobby = h.scene({ name: "Lobby", navigation: false, background: { src: "custom.webp" } });
+  const lobby = h.scene({
+    name: "Lobby",
+    navigation: false,
+    background: { src: "custom.webp" },
+    initial: { x: 300, y: 200, scale: 0.8 },
+    ownership: { default: 2 },
+    backgroundColor: "#335577"
+  });
   h.game.scenes.push(lobby);
   assert.deepEqual(await ensureDefaultLobby(h), { status: "existing", activated: false });
   assert.equal(h.created, 0);
   assert.equal(lobby.background.src, "custom.webp");
+  assert.deepEqual(lobby.initial, { x: 300, y: 200, scale: 0.8 });
+  assert.deepEqual(lobby.ownership, { default: 2 });
+  assert.equal(lobby.backgroundColor, "#335577");
   assert.equal(lobby.navigation, true);
   assert.equal(lobby.getFlag("tierra-magica", "defaultLobby"), true);
 });
