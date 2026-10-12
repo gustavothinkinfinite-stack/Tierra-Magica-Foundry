@@ -4,6 +4,7 @@ import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { coreCatalog } from "../scripts/catalog/core-catalog.mjs";
 import { npcReferenceCatalog } from "../scripts/catalog/npc-catalog.mjs";
+import { commerceActorCatalog } from "../scripts/catalog/commerce-actors.mjs";
 import { originalBestiaryCatalog } from "../scripts/catalog/original-bestiary.mjs";
 import { eidolonManivoroCatalog } from "../scripts/catalog/eidolon-manivoro.mjs";
 import { fiveApprovedCreatureCatalog } from "../scripts/catalog/approved-creatures-v1.mjs";
@@ -132,3 +133,48 @@ if(extractedActors.length!==actorEntries.length) {
 }
 console.log("Built "+actorPack+" ("+actorEntries.length+" Actors)");
 await rm(actorVerify,{recursive:true,force:true});
+
+// NPC comerciantes y cofre como compendio Actor propio, separado del Bestiario.
+const commercePack = "commerce";
+const commerceEntries = commerceActorCatalog();
+const commerceSource = resolve(sourceRoot, commercePack);
+const commerceOutput = resolve(outputRoot, commercePack);
+await mkdir(commerceSource, { recursive: true });
+for (const entry of commerceEntries) {
+  const id = idFor("commerce-npc", entry.key);
+  const document = {
+    _id: id,
+    _key: "!actors!" + id,
+    name: entry.name,
+    type: "npc",
+    img: entry.img,
+    system: entry.system,
+    prototypeToken: entry.prototypeToken,
+    items: [],
+    effects: [],
+    folder: null,
+    sort: 0,
+    ownership: entry.ownership,
+    flags: entry.flags
+  };
+  await writeFile(resolve(commerceSource, id + ".json"), JSON.stringify(document, null, 2) + "\n", "utf8");
+}
+await compilePack(commerceSource, commerceOutput, { log: false });
+const commerceVerify = resolve(verifyRoot, commercePack);
+await extractPack(commerceOutput, commerceVerify, { log: false, clean: true });
+const commerceFiles = (await readdir(commerceVerify)).filter((name) => name.endsWith(".json"));
+if (commerceFiles.length !== commerceEntries.length) {
+  throw new Error("Compendio de Comerciantes inválido: esperaba " +
+    commerceEntries.length + " Actors y contiene " + commerceFiles.length + ".");
+}
+for (const filename of commerceFiles) {
+  const actor = JSON.parse(await readFile(resolve(commerceVerify, filename), "utf8"));
+  const settings = actor.flags?.["tierra-magica"]?.commerce;
+  if (!settings || !["merchant", "chest"].includes(settings.mode) ||
+      actor.type !== "npc" || actor.prototypeToken?.actorLink !== true ||
+      actor.prototypeToken?.disposition !== 0 || !Array.isArray(settings.offers)) {
+    throw new Error("Actor comercial incompleto o no vinculado: " + filename);
+  }
+}
+console.log("Built " + commercePack + " (" + commerceEntries.length + " Actors)");
+await rm(commerceVerify, { recursive: true, force: true });

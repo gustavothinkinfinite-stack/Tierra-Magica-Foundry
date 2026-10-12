@@ -8,6 +8,7 @@ import { TierraMagicaActor } from "./documents/actor.mjs";
 import { TierraMagicaItem } from "./documents/item.mjs";
 import { TierraMagicaActorSheet } from "./sheets/actor-sheet.mjs";
 import { TierraMagicaItemSheet } from "./sheets/item-sheet.mjs";
+import { installCommerceInterface } from "./commerce/commerce-ui.mjs";
 import { installFamiliarGuards } from "./rules/familiar-guards.mjs";
 import { installMagicGuards } from "./rules/magic-guards.mjs";
 import { installMagicReactionGuards } from "./rules/magic-reaction-guards.mjs";
@@ -56,6 +57,7 @@ installCraftingMagicGuards(TierraMagicaActor);
 installActionEconomyGuards(TierraMagicaActor);
 installReactionEconomyGuards(TierraMagicaActor);
 installCurrencyRules(TierraMagicaActor);
+installCommerceInterface();
 installResourceReconciliationHooks(Hooks);
 installZeroHealthTokenHooks(Hooks);
 

@@ -7,20 +7,21 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = async (file) => JSON.parse(await readFile(resolve(root, file), "utf8"));
 
-test("el manifiesto describe Foundry T.M. 1.13.0", async () => {
+test("el manifiesto describe Foundry T.M. 1.14.0", async () => {
   const manifest = await readJson("system.json");
   assert.equal(manifest.id, "tierra-magica");
-  assert.equal(manifest.version, "1.13.0");
+  assert.equal(manifest.version, "1.14.0");
   assert.equal(manifest.compatibility.verified, "14");
   assert.equal(manifest.initiative, "2d10 + @derived.initiativeModifier");
   assert.equal(manifest.manifest, "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/system.json");
   assert.equal(manifest.download, "https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/releases/latest/download/tierra-magica.zip");
   await Promise.all([...manifest.esmodules, ...manifest.styles, ...manifest.languages.map((l) => l.path)]
     .map((file) => access(resolve(root, file))));
-  assert.deepEqual(manifest.packs.map((pack) => pack.name), ["character-options","magic","equipment","production","bestiary"]);
+  assert.deepEqual(manifest.packs.map((pack) => pack.name), ["character-options","magic","equipment","production","bestiary","commerce"]);
   assert.equal(manifest.packs.filter((pack) => pack.type === "Item").length,4);
   assert.equal(manifest.packs.every((pack) => pack.system === "tierra-magica"),true);
   assert.equal(manifest.packs.find((pack)=>pack.name==="bestiary")?.type,"Actor");
+  assert.equal(manifest.packs.find((pack)=>pack.name==="commerce")?.type,"Actor");
   assert.deepEqual(Object.keys(manifest.documentTypes.Actor), ["character","npc","familiar"]);
   assert.deepEqual(Object.keys(manifest.documentTypes.Item), ["weapon","armor","shield","equipment","spell","technique","trait","specialization","formula","ritual","device","ancestry","origin","background","discipline","effect","project"]);
   await Promise.all(manifest.packs.map((pack) => access(resolve(root, pack.path))));
