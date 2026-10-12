@@ -14,16 +14,19 @@ export function defaultLobbySource({ generation = 14 } = {}) {
     width: DEFAULT_LOBBY_SIZE.width,
     height: DEFAULT_LOBBY_SIZE.height,
     padding: 0,
-    grid: { type: 0 },
+    grid: { type: 0, size: 100 },
+    ownership: { default: 0 }, // GM Only en la navegación.
+    initial: { x: 818, y: 478, scale: 1.186 },
+    environment: { darknessLevel: 0 },
     // Desde Foundry v14 el fondo vive en el nivel, no en Scene.background.
     ...(v14 ? {
-      levels: [{ name: "Lobby", background: { src: DEFAULT_LOBBY_IMAGE } }],
+      levels: [{ name: "Lobby", elevation: { bottom: 0, top: 20 }, background: { src: DEFAULT_LOBBY_IMAGE } }],
       fog: { mode: 0 }
     } : {
       background: { src: DEFAULT_LOBBY_IMAGE },
       fog: { exploration: false }
     }),
-    backgroundColor: "#17202a",
+    backgroundColor: "#000000",
     flags: { "tierra-magica": { defaultLobby: true } }
   };
 }
