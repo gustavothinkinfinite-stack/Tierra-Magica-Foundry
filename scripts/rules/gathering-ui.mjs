@@ -1,8 +1,8 @@
 import { TM_CONFIG } from "../config.mjs";
 import { gatherResourcesAuthoritatively } from "./state-authority.mjs";
 import { gatheringCatalog, sceneGatheringBiome } from "./gathering-service.mjs";
-import { GATHERING_SETTING,GATHERING_BIOMES,GATHERING_SKILLS,
-  gatheringResourcesForBiome,normalizeGatheringResource } from "./gathering.mjs";
+import { GATHERING_SETTING,GATHERING_BIOMES,
+  gatheringSearchChoices,normalizeGatheringResource } from "./gathering.mjs";
 
 const esc=(value)=>foundry.utils.escapeHTML(String(value??""));
 const options=(pairs,current)=>pairs.map(([id,label])=>
@@ -20,14 +20,27 @@ export async function openGatheringDialog(actor){
   const scene=canvas?.scene;
   const biome=sceneGatheringBiome(scene);
   if(!scene||!GATHERING_BIOMES[biome]) return ui.notifications.warn("El Director debe configurar el bioma de la escena.");
-  const available=gatheringResourcesForBiome(catalog(),biome,{skills:Object.keys(TM_CONFIG.skills)});
-  const found=available.map(x=>[x.id,x.name+" · "+(TM_CONFIG.skills[x.skill]?.label??x.skill)+" · DF "+x.df]);
-  const unknown=skillPairs().map(([key,label])=>["__explore__:"+key,"Explorar lo desconocido · "+label]);
+  const {known,explorationSkills}=gatheringSearchChoices(catalog(),biome,{
+    skills:Object.keys(TM_CONFIG.skills)
+  });
+  const found=known.map(x=>[x.id,x.name+" · "+(TM_CONFIG.skills[x.skill]?.label??x.skill)+" · DF "+x.df]);
+  const unknown=explorationSkills.map(key=>
+    ["__explore__:"+key,TM_CONFIG.skills[key].label]);
+  if(!found.length&&!unknown.length){
+    return ui.notifications.info("El DJ todavía no configuró recursos buscables para este bioma.");
+  }
+  const choices=[
+    found.length?"<optgroup label='Buscar recurso conocido'>"+
+      options(found,found[0][0])+"</optgroup>":"",
+    unknown.length?"<optgroup label='Explorar el entorno (recursos ocultos)'>"+
+      options(unknown,"")+"</optgroup>":""
+  ].join("");
   const chosen=await Dialog.prompt({
     title:"Buscar recursos · "+GATHERING_BIOMES[biome],
-    content:"<p>Seleccioná qué intenta encontrar el personaje. La recolección requiere 2 horas de tiempo mundial para repetir el mismo objetivo en esta escena; el DJ debe avanzar el reloj.</p>"+
+    content:"<p>Elegí un recurso conocido o explorá el entorno con una habilidad disponible. Las búsquedas ocultas no revelan el nombre de los hallazgos.</p>"+
+      "<p>El DJ debe avanzar el tiempo mundial para repetir una búsqueda: intervalo inicial de 2 horas por objetivo.</p>"+
       "<div class='form-group'><label>Objetivo de la búsqueda</label><select name='gatheringChoice'>"+
-      options([...found,...unknown],found[0]?.[0]??unknown[0][0])+"</select></div>",
+      choices+"</select></div>",
     label:"Realizar búsqueda",
     callback:html=>String(html.find("[name='gatheringChoice']").val()??""),
     rejectClose:false
