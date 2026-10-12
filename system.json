@@ -1,7 +1,7 @@
 {
   "id": "tierra-magica",
   "title": "Tierra Mágica — Foundry T.M.",
-  "description": "Foundry T.M. 1.14.0 (candidato NO publicado): tiendas y cofres nativos con compendio de 6 NPC, clasificación de mercados e inventario controlado; conserva recolección de v1.13.0.",
+  "description": "Foundry T.M. 1.14.0: comerciantes NPC, cofres y mercados por niveles; 6 Actores en compendio de comercio; conserva búsqueda y recolección, Bestiario y núcleo.",
   "version": "1.14.0",
   "compatibility": {
     "minimum": "13",
