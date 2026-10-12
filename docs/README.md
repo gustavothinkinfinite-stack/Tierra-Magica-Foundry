@@ -19,6 +19,10 @@ Esta carpeta muestra únicamente la documentación que debe consultarse de forma
 - `ESC-01_CATALOGO_MAESTRO_ESCUDOS.md`
 - `EQP-01_EQUIPO_AVENTURA_HERRAMIENTAS.md`
 
+## Funciones operativas de Foundry
+
+- `COMERCIO_NPC_COFRES.md` — guía de tiendas NPC, cofres gratuitos y niveles de mercado. Documentación de interfaz: no sustituye el Manual Maestro.
+
 ## Archivo
 
 `archive/` es almacenamiento frío: conserva cierres CREA/CRAFT, auditorías históricas, documentos de trabajo de catálogos, manuales sustituidos, narrativa recuperada, fuentes externas congeladas y reportes de releases anteriores.
