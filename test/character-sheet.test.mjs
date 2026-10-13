@@ -252,3 +252,28 @@ test("reiniciar o reactivar economía limpia reservas huérfanas de la sesión",
   assert.equal(logic.includes("if (next) await clearTurnResourceReservation(this.actor, key)"),true);
   assert.equal(logic.includes("await clearTurnResourceReservations(this.actor)"),true);
 });
+
+
+test("la ficha muestra Vida, Maná y Turno sin solapamiento de paneles",async()=>{
+  const sheet=await readFile(resolve(root,"templates/actor/character-sheet.hbs"),"utf8");
+  const css=await readFile(resolve(root,"styles/character-sheet-v03.css"),"utf8");
+  const start=sheet.indexOf('<div class="tm-v12-status-dock"');
+  const resources=sheet.indexOf('<section class="tm-v03-resources">',start);
+  const turn=sheet.indexOf('<section class="tm-v03-turn">',resources);
+  const end=sheet.indexOf('<div class="tm-v09-motto"',turn);
+  assert.ok(start>=0 && resources>start && turn>resources && end>turn);
+  assert.match(sheet.slice(start,end),/name="system.resources.health.value" value="{{system.resources.health.value}}" aria-label="Vida actual"/);
+  assert.match(sheet.slice(start,end),/\/ {{system.derived.healthMax}}/);
+  assert.match(sheet.slice(start,end),/name="system.resources.mana.value" value="{{system.resources.mana.value}}" aria-label="Maná actual"/);
+  assert.match(sheet.slice(start,end),/\/ {{system.derived.manaMax}}/);
+  assert.match(sheet.slice(start,end),/data-action="resource-change"/);
+  assert.match(sheet.slice(start,end),/data-action="reset-turn"/);
+  assert.match(sheet.slice(start,end),/data-action="toggle-turn"/);
+  assert.match(sheet.slice(start,end),/Control manual/);
+  assert.doesNotMatch(sheet.slice(start,end),/tm-v10-manual-turn-note/);
+  assert.match(css,/\.tm-v12-status-dock \{\s*position: absolute;/);
+  assert.match(css,/\.tm-v12-status-dock > \.tm-v03-resources \{\s*position: static;/);
+  assert.match(css,/\.tm-v12-status-dock > \.tm-v03-turn \{\s*position: static;/);
+  assert.match(css,/\.tm-v12-status-dock \.tm-v03-resource-value input \{/);
+  assert.match(css,/@container tm-character-sheet \(max-width: 860px\)/);
+});

@@ -11,13 +11,17 @@ export function resolveActorDefense(actor, {
   kind = "normal",
   frontal = false,
   parryable = false,
-  kineticBarrier = true
+  kineticBarrier = true,
+  racialSoul = false,
+  racialToxins = false
 } = {}) {
   const selector = DEFENSE_SELECTORS[kind] ?? "defense";
   return resolveDerivedSelector(actor?.system?.derived ?? {}, selector, {
     frontal: frontal === true,
     parryable: parryable === true,
-    kineticBarrier: kineticBarrier === true
+    kineticBarrier: kineticBarrier === true,
+    racialSoul: racialSoul === true,
+    racialToxins: racialToxins === true
   });
 }
 

@@ -54,13 +54,13 @@
           <div class="tm-v03-stage-runes" aria-hidden="true"></div>
           <div class="tm-v03-stage-ring" aria-hidden="true"></div>
 
-          <button type="button" class="tm-v03-attribute tm-v03-int" data-action="roll-attribute" data-key="int" title="INT · clic para tirar; Mayús para configurar"><span>INT</span><b>{{system.attributes.int.value}}</b><i class="fa-solid fa-book-open" aria-hidden="true"></i></button>
-          <button type="button" class="tm-v03-attribute tm-v03-per" data-action="roll-attribute" data-key="per" title="PER · clic para tirar; Mayús para configurar"><span>PER</span><b>{{system.attributes.per.value}}</b><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
-          <button type="button" class="tm-v03-attribute tm-v03-vol" data-action="roll-attribute" data-key="vol" title="VOL · clic para tirar; Mayús para configurar"><span>VOL</span><b>{{system.attributes.vol.value}}</b><i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i></button>
-          <button type="button" class="tm-v03-attribute tm-v03-agi" data-action="roll-attribute" data-key="agi" title="AGI · clic para tirar; Mayús para configurar"><span>AGI</span><b>{{system.attributes.agi.value}}</b><i class="fa-solid fa-person-running" aria-hidden="true"></i></button>
-          <button type="button" class="tm-v03-attribute tm-v03-pre" data-action="roll-attribute" data-key="pre" title="PRE · clic para tirar; Mayús para configurar"><span>PRE</span><b>{{system.attributes.pre.value}}</b><i class="fa-solid fa-star" aria-hidden="true"></i></button>
-          <button type="button" class="tm-v03-attribute tm-v03-fue" data-action="roll-attribute" data-key="fue" title="FUE · clic para tirar; Mayús para configurar"><span>FUE</span><b>{{system.attributes.fue.value}}</b><i class="fa-solid fa-hand-fist" aria-hidden="true"></i></button>
-          <button type="button" class="tm-v03-attribute tm-v03-vig" data-action="roll-attribute" data-key="vig" title="VIG · clic para tirar; Mayús para configurar"><span>VIG</span><b>{{system.attributes.vig.value}}</b><i class="fa-solid fa-shield" aria-hidden="true"></i></button>
+          <button type="button" class="tm-v03-attribute tm-v03-int" data-action="roll-attribute" data-key="int" title="INT · clic para tirar; Mayús para configurar"><span>INT</span><b>{{system.attributes.int.value}}</b><i class="fa-solid fa-book-open" aria-hidden="true"></i>{{#if ancestryAttributeBonuses.int}}<em class="tm-v12-context-badge" title="{{ancestryAttributeBonuses.int.description}}" aria-label="Bonificación racial circunstancial +{{ancestryAttributeBonuses.int.value}}">+{{ancestryAttributeBonuses.int.value}}*</em>{{/if}}</button>
+          <button type="button" class="tm-v03-attribute tm-v03-per" data-action="roll-attribute" data-key="per" title="PER · clic para tirar; Mayús para configurar"><span>PER</span><b>{{system.attributes.per.value}}</b><i class="fa-solid fa-eye" aria-hidden="true"></i>{{#if ancestryAttributeBonuses.per}}<em class="tm-v12-context-badge" title="{{ancestryAttributeBonuses.per.description}}" aria-label="Bonificación racial circunstancial +{{ancestryAttributeBonuses.per.value}}">+{{ancestryAttributeBonuses.per.value}}*</em>{{/if}}</button>
+          <button type="button" class="tm-v03-attribute tm-v03-vol" data-action="roll-attribute" data-key="vol" title="VOL · clic para tirar; Mayús para configurar"><span>VOL</span><b>{{system.attributes.vol.value}}</b><i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i>{{#if ancestryAttributeBonuses.vol}}<em class="tm-v12-context-badge" title="{{ancestryAttributeBonuses.vol.description}}" aria-label="Bonificación racial circunstancial +{{ancestryAttributeBonuses.vol.value}}">+{{ancestryAttributeBonuses.vol.value}}*</em>{{/if}}</button>
+          <button type="button" class="tm-v03-attribute tm-v03-agi" data-action="roll-attribute" data-key="agi" title="AGI · clic para tirar; Mayús para configurar"><span>AGI</span><b>{{system.attributes.agi.value}}</b><i class="fa-solid fa-person-running" aria-hidden="true"></i>{{#if ancestryAttributeBonuses.agi}}<em class="tm-v12-context-badge" title="{{ancestryAttributeBonuses.agi.description}}" aria-label="Bonificación racial circunstancial +{{ancestryAttributeBonuses.agi.value}}">+{{ancestryAttributeBonuses.agi.value}}*</em>{{/if}}</button>
+          <button type="button" class="tm-v03-attribute tm-v03-pre" data-action="roll-attribute" data-key="pre" title="PRE · clic para tirar; Mayús para configurar"><span>PRE</span><b>{{system.attributes.pre.value}}</b><i class="fa-solid fa-star" aria-hidden="true"></i>{{#if ancestryAttributeBonuses.pre}}<em class="tm-v12-context-badge" title="{{ancestryAttributeBonuses.pre.description}}" aria-label="Bonificación racial circunstancial +{{ancestryAttributeBonuses.pre.value}}">+{{ancestryAttributeBonuses.pre.value}}*</em>{{/if}}</button>
+          <button type="button" class="tm-v03-attribute tm-v03-fue" data-action="roll-attribute" data-key="fue" title="FUE · clic para tirar; Mayús para configurar"><span>FUE</span><b>{{system.attributes.fue.value}}</b><i class="fa-solid fa-hand-fist" aria-hidden="true"></i>{{#if ancestryAttributeBonuses.fue}}<em class="tm-v12-context-badge" title="{{ancestryAttributeBonuses.fue.description}}" aria-label="Bonificación racial circunstancial +{{ancestryAttributeBonuses.fue.value}}">+{{ancestryAttributeBonuses.fue.value}}*</em>{{/if}}</button>
+          <button type="button" class="tm-v03-attribute tm-v03-vig" data-action="roll-attribute" data-key="vig" title="VIG · clic para tirar; Mayús para configurar"><span>VIG</span><b>{{system.attributes.vig.value}}</b><i class="fa-solid fa-shield" aria-hidden="true"></i>{{#if ancestryAttributeBonuses.vig}}<em class="tm-v12-context-badge" title="{{ancestryAttributeBonuses.vig.description}}" aria-label="Bonificación racial circunstancial +{{ancestryAttributeBonuses.vig.value}}">+{{ancestryAttributeBonuses.vig.value}}*</em>{{/if}}</button>
 
           <div class="tm-v03-portrait-frame">
             <img class="profile-img tm-v03-portrait" src="{{actor.img}}" data-edit="img" title="Cambiar retrato de {{actor.name}}" />
@@ -78,12 +78,13 @@
             </div>
           </div>
 
+          <div class="tm-v12-status-dock" aria-label="Recursos y economía de turno">
           <section class="tm-v03-resources">
             <article class="tm-v03-resource tm-v03-health" style="--tm-fill: {{healthPercent}}%;">
               <div class="tm-v03-resource-label"><i class="fa-solid fa-heart"></i><span>Vida</span></div>
               <div class="tm-v03-resource-value">
                 <button type="button" data-action="resource-change" data-resource="health" data-amount="-1"><i class="fa-solid fa-minus"></i></button>
-                <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}" />
+                <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}" aria-label="Vida actual" title="Vida actual" />
                 <b>/ {{system.derived.healthMax}}</b>
                 <button type="button" data-action="resource-change" data-resource="health" data-amount="1"><i class="fa-solid fa-plus"></i></button>
               </div>
@@ -94,7 +95,7 @@
               <div class="tm-v03-resource-label"><i class="fa-solid fa-sparkles"></i><span>Maná</span></div>
               <div class="tm-v03-resource-value">
                 <button type="button" data-action="resource-change" data-resource="mana" data-amount="-1"><i class="fa-solid fa-minus"></i></button>
-                <input type="number" name="system.resources.mana.value" value="{{system.resources.mana.value}}" />
+                <input type="number" name="system.resources.mana.value" value="{{system.resources.mana.value}}" aria-label="Maná actual" title="Maná actual" />
                 <b>/ {{system.derived.manaMax}}</b>
                 <button type="button" data-action="resource-change" data-resource="mana" data-amount="1"><i class="fa-solid fa-plus"></i></button>
               </div>
@@ -109,10 +110,9 @@
 
           <section class="tm-v03-turn">
             <div class="tm-v03-turn-heading">
-              <span>Turno</span>
+              <span>Turno <small class="tm-v12-turn-manual-indicator" title="Acción y Reacción son indicadores manuales: no bloquean tiradas ni activaciones.">· Control manual</small></span>
               <button type="button" data-action="reset-turn" title="Restablecer Movimiento, Acción y Reacción"><i class="fa-solid fa-rotate-right"></i></button>
             </div>
-            <p class="tm-v10-manual-turn-note">Acción y Reacción: indicadores manuales. No bloquean tiradas ni activaciones.</p>
             <div class="tm-v03-turn-actions">
               <button type="button" class="{{#if turn.movementDepleted}}spent{{/if}}" data-action="spend-movement">
                 <i class="fa-solid fa-person-running"></i>
@@ -131,6 +131,7 @@
               </button>
             </div>
           </section>
+          </div>
 
           <div class="tm-v09-motto" aria-hidden="true">
             <span>✦</span><b>EXPLORA</b><i>•</i><b>CREA</b><i>•</i><b>ENFRENTA</b><i>•</i><b>TRASCIENDE</b><span>✦</span>
@@ -170,6 +171,17 @@
                   <li><span>{{feature}}</span></li>
                 {{/each}}
               </ol>
+              {{#if creationGuide.ancestryConditionalBonuses.length}}
+                <div class="tm-v12-racial-bonuses">
+                  <strong>Bonificaciones circunstanciales</strong>
+                  <p>No cambian el Atributo base. Activá cada ventaja sólo cuando se cumpla su condición.</p>
+                  <ul>
+                  {{#each creationGuide.ancestryConditionalBonuses as |bonus|}}
+                    <li><b>+{{bonus.value}} · {{bonus.label}}</b> <span>{{bonus.condition}}</span></li>
+                  {{/each}}
+                  </ul>
+                </div>
+              {{/if}}
             </section>
           {{/if}}
 

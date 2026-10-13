@@ -75,6 +75,22 @@ export function preflightAcquisition({
   const duplicate = duplicateIdentity(actorItems, candidate);
   if (duplicate) issues.push({ code: "duplicate", message: "El Actor ya posee " + contentIdentityKey(candidate) + "." });
 
+  // Exclusiones expresas del Manual Maestro: no son bonificaciones acumulables.
+  if(candidate?.type==="trait"){
+    const excludedPairs=[
+      ["Corpulento","Masivo"],
+      ["Resistencia Ambiental","Resistencia Ambiental Significativa"]
+    ];
+    for(const pair of excludedPairs){
+      const chosen=pair.includes(String(candidate.name??""));
+      const held=actorItems.find(item=>item?.type==="trait" && pair.includes(item.name) && item.name!==candidate.name);
+      if(chosen && held) issues.push({
+        code:"trait-exclusive",
+        message:candidate.name+" reemplaza a "+held.name+"; no podés tener ambos Rasgos a la vez."
+      });
+    }
+  }
+
   const singular = new Set(["ancestry", "origin", "background"]);
   if (singular.has(candidate?.type) && actorItems.some((item) => item.type === candidate.type)) {
     issues.push({ code: "cardinality", message: "El Actor ya posee un Item singular de tipo " + candidate.type + "." });
