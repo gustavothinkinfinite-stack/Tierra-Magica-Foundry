@@ -64,5 +64,17 @@ test("workflow bloquea versión incoherente y publica ZIP más manifest",async()
   assert.match(workflow,/package\/tierra-magica\/system\.json/);
   assert.match(workflow,/releases\/latest\/download\/system\.json/);
   assert.match(workflow,/tierra-magica\/packs\/bestiary\//);
+  assert.match(workflow,/tierra-magica\/packs\/commerce\//);
   assert.match(workflow,/bestiary\?\.type/);
+  assert.match(workflow,/commerce\?\.type/);
+});
+
+test("documentación pública y manifiesto mantienen la misma versión vigente",async()=>{
+  const manifest=JSON.parse(await read("system.json"));
+  const readme=await read("README.md");
+  const changelog=await read("CHANGELOG.md");
+  const escaped=manifest.version.replace(/\\./g,"\\.");
+  assert.match(readme,new RegExp("Estado de desarrollo "+escaped+"\\b"));
+  assert.match(readme,new RegExp("última release pública estable es \\*\\*v"+escaped+"\\*\\*"));
+  assert.match(changelog,new RegExp("^## "+escaped+" \\u2014 "));
 });

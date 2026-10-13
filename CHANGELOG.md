@@ -1,3 +1,17 @@
+## 1.14.0 — Comerciantes NPC, cofres y búsqueda contextual — 2026-10-12
+
+- Release pública estable **v1.14.0**, publicada el 12 de octubre de 2026 desde el commit `346e5db1c73bee8874090a609381cb9734a2b20a`.
+- Nuevo compendio **Tierra Mágica — Comerciantes y Cofres** de seis Actores NPC: cinco comerciantes y un cofre, importables a los mundos.
+- Tiendas y cofres con ofertas configurables por DJ, niveles de mercado, existencias y operaciones con validación de autoridad, idempotencia y reversión ante errores.
+- El selector de búsqueda de recursos agrupa recursos conocidos y exploración del entorno, restringiendo las habilidades sugeridas a los recursos ocultos configurados en el bioma de la escena.
+- Se mantienen los compendios y sistemas anteriores. La versión incluye `system.json` y `tierra-magica.zip` publicados desde GitHub Actions.
+
+## 1.13.0 — Búsqueda y recolección de recursos — 2026-10-11
+
+- Integra la búsqueda y recolección de recursos según bioma y configuración de escena, con catálogo y resultados administrados por DJ.
+- Añade interfaz de búsqueda para jugadores, edición del catálogo por DJ y pruebas de autoridad y resolución.
+- Conserva el núcleo, la fabricación, el Bestiario y la documentación de referencia. Los detalles operativos constan en `docs/archive/gathering/RECOLECCION_RECURSOS_1.13.0.md`.
+
 ## 1.12.1 — Lobby de bienvenida automático — 2026-10-11
 
 - Agrega la imagen aprobada del salón de exploradores como `assets/scenes/lobby.webp`.
