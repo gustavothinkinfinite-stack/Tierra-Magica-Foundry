@@ -73,7 +73,7 @@ test("documentación pública y manifiesto mantienen la misma versión vigente",
   const manifest=JSON.parse(await read("system.json"));
   const readme=await read("README.md");
   const changelog=await read("CHANGELOG.md");
-  const escaped=manifest.version.replace(/\\./g,"\\.");
+  const escaped=manifest.version.split(".").join(String.raw`\.`);
   assert.match(readme,new RegExp("Estado de desarrollo "+escaped+"\\b"));
   assert.match(readme,new RegExp("última release pública estable es \\*\\*v"+escaped+"\\*\\*"));
   assert.match(changelog,new RegExp("^## "+escaped+" \\u2014 "));
