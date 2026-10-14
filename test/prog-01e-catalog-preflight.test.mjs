@@ -87,3 +87,19 @@ test("PROG-01E: el preflight rechaza revisión obsoleta de construcción",()=>{
   assert.equal(result.valid,false);
   assert.ok(result.issues.some(issue=>issue.code==="revision"));
 });
+
+test("PROG-01E: Contraataque exige Parada adquirida previamente",()=>{
+  const counter=entry("Contraataque","technique");
+  const parry=entry("Parada","technique");
+  assert.ok(counter);
+  assert.ok(parry);
+  const without=preflightAcquisition({actor:actor(5),candidate:counter,stage:"progression"});
+  assert.equal(without.valid,false);
+  assert.ok(without.issues.some(issue=>issue.code==="requirement-item"),JSON.stringify(without.issues));
+  const parryOwned={...parry,id:"owned-parry",system:{...parry.system}};
+  const withParry=preflightAcquisition({
+    actor:actor(5,[parryOwned]),candidate:counter,stage:"progression"
+  });
+  assert.equal(withParry.valid,true,JSON.stringify(withParry.issues));
+  assert.equal(withParry.cost?.amount,3);
+});
