@@ -31,7 +31,7 @@ const challenges=[
   {actor:"marcial",checks:[["survival","fue"]]}]}
 ];
 function dice(seed){let n=seed>>>0;return ()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return 1+Math.floor(n/4294967296*10);};}
-function expedition(level,seed,{excluded=null,policy="adaptive"}={}){
+function expedition(level,seed,{excluded=null,policy="adaptive",dc=16}={}){
  const state={time:0,supplies:5,complications:0,abandoned:[],completed:[],lostOpportunities:0,
   abandonmentTime:0,abandonmentSupplies:0,actions:0,
   byActor:Object.fromEntries(Object.keys(profiles).map(k=>[k,0])),events:[]};
@@ -41,14 +41,19 @@ function expedition(level,seed,{excluded=null,policy="adaptive"}={}){
   const modifier=route=>route.checks.reduce((sum,[skill,attr])=>{
    const p=profiles[route.actor];return sum+p[attr]+SKILL_RANK_BONUSES[p[skill]?.[rankIndex]??0];
   },0)/route.checks.length;
-  routes.sort((a,b)=>policy==="adaptive"?modifier(b)-modifier(a):0);
+  const chance=(bonus,target)=>{let count=0;for(let d1=1;d1<=10;d1++)for(let d2=1;d2<=10;d2++)if(d1+d2+bonus>=target)count++;return count/100;};
+  const routeChance=route=>route.checks.reduce((product,[skill,attr])=>{
+   const p=profiles[route.actor];return product*chance(p[attr]+SKILL_RANK_BONUSES[p[skill]?.[rankIndex]??0],dc);
+  },1);
+  routes.sort((a,b)=>policy==="probability"?routeChance(b)-routeChance(a):
+   policy==="adaptive"?modifier(b)-modifier(a):0);
   let success=false;
   const available=routes.slice(0,2);
   for(const [attempt,route] of available.entries()){
    state.actions++;state.time++;state.byActor[route.actor]++;
    const checks=route.checks.map(([skill,attr],checkIndex)=>{
     const p=profiles[route.actor],roll=dice((seed*101+index*30011+attempt*1871+checkIndex*1301)>>>0);
-    return roll()+roll()+p[attr]+SKILL_RANK_BONUSES[p[skill]?.[rankIndex]??0]>=16;
+    return roll()+roll()+p[attr]+SKILL_RANK_BONUSES[p[skill]?.[rankIndex]??0]>=dc;
    });
    success=checks.every(Boolean);
    state.events.push({challenge:challenge.id,actor:route.actor,success,checks});
@@ -89,7 +94,7 @@ test("PROG-01N ampliado: registrar aportes marginales sin suponer equilibrio",()
  for(const level of levels){
   const full=seeds.map(seed=>expedition(level,seed));
   const mean=(rows,key)=>+(rows.reduce((n,x)=>n+x[key],0)/rows.length).toFixed(2);
-  matrix[level]={full:{completed:mean(full,"lostOpportunities"),time:mean(full,"time"),supplies:mean(full,"supplies")},without:{}};
+  matrix[level]={full:{lost:mean(full,"lostOpportunities"),completed:+(challenges.length-mean(full,"lostOpportunities")).toFixed(2),time:mean(full,"time"),supplies:mean(full,"supplies")},without:{}};
   for(const name of Object.keys(profiles)){
    const rows=seeds.map(seed=>expedition(level,seed,{excluded:name}));
    matrix[level].without[name]={lost:mean(rows,"lostOpportunities"),time:mean(rows,"time"),
@@ -97,4 +102,37 @@ test("PROG-01N ampliado: registrar aportes marginales sin suponer equilibrio",()
   }
  }
  console.log("PROG01N_VERSATILITY "+JSON.stringify(matrix));
+});
+
+test("PROG-01N sensibilidad: probabilidad conjunta frente al selector ingenuo",()=>{
+ const summary={};
+ for(const dc of [13,16,19]){
+  summary[dc]={};
+  for(const level of levels){
+   const fields={};
+   for(const policy of ["adaptive","probability","fixed"]){
+    const baseline=seeds.map(seed=>expedition(level,seed,{policy,dc}));
+    const average=(runs,key)=>+(runs.reduce((sum,x)=>sum+x[key],0)/runs.length).toFixed(2);
+    fields[policy]={fullLost:average(baseline,"lostOpportunities"),without:{}};
+    for(const actor of Object.keys(profiles)){
+     const without=seeds.map(seed=>expedition(level,seed,{policy,dc,excluded:actor}));
+     fields[policy].without[actor]={
+      lost:average(without,"lostOpportunities"),
+      deltaLost:+(average(without,"lostOpportunities")-average(baseline,"lostOpportunities")).toFixed(2)
+     };
+    }
+   }
+   summary[dc][level]=fields;
+  }
+ }
+ assert.ok(summary[16][5].probability.fullLost>=0);
+ console.log("PROG01N_SENSITIVITY "+JSON.stringify(summary));
+});
+test("PROG-01N diagnóstico: ruta híbrida doble no se favorece artificialmente",()=>{
+ for(const level of levels){
+  const i=levels.indexOf(level);
+  const hybrid=profiles.hibrido,other=profiles.canalizador;
+  assert.ok(hybrid.martialWeapons[i]>0&&hybrid.channeling[i]>0);
+  assert.ok(other.channeling[i]>=hybrid.channeling[i]);
+ }
 });
