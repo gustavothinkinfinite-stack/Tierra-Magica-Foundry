@@ -22,7 +22,7 @@ const scenes=[
   {id:"salida",options:[["marcial","survival","fue"],["hibrido","survival","fue"],["especialista","survival","int"]]}]}
 ];
 function die(seed){let v=seed>>>0;return ()=>{v=(Math.imul(v,1664525)+1013904223)>>>0;return 1+Math.floor(v/4294967296*10);};}
-function expedition(level,seed,{policy="adapt",supplyPolicy="protect"}={}){
+function expedition(level,seed,{policy="adapt",supplyPolicy="protect",excluded=null}={}){
  const state={time:0,supplies:5,complications:0,actions:0,completed:[],pending:[],lostOpportunities:0,
   scenes:[],contributions:Object.fromEntries(Object.keys(chars).map(n=>[n,{actions:0,successes:0}]))};
  for(const [sceneIndex,scene] of scenes.entries()){
@@ -33,7 +33,7 @@ function expedition(level,seed,{policy="adapt",supplyPolicy="protect"}={}){
    let solved=false;
    const tried=new Set();
    for(let attempt=0;attempt<2&&!solved;attempt++){
-    const options=challenge.options.filter(([who])=>!tried.has(who));
+    const options=challenge.options.filter(([who])=>!tried.has(who)&&who!==excluded);
     const selected=policy==="fixed"?options[0]:options.slice().sort((a,b)=>{
      const i=levels.indexOf(level),ca=chars[a[0]],cb=chars[b[0]];
      const bonus=x=>chars[x[0]][x[2]]+SKILL_RANK_BONUSES[chars[x[0]][x[1]]?.[i]??0];
@@ -102,4 +102,37 @@ test("PROG-01N expedición: matriz de tiempo, suministros y oportunidades",()=>{
   }
  }
  console.log("PROG01N_EXPEDITION "+JSON.stringify(matrix));
+});
+
+test("PROG-01N marginal: ablación pareada de los cuatro integrantes",()=>{
+ const matrix={};
+ for(const level of levels){
+  matrix[level]={};
+  for(const policy of ["adapt","fixed"]){
+   const baseline=seeds.map(seed=>expedition(level,seed,{policy}));
+   const measures=rows=>{
+    const avg=field=>+(rows.reduce((total,x)=>total+x[field],0)/rows.length).toFixed(2);
+    return {time:avg("time"),supplies:avg("supplies"),
+     missed:avg("lostOpportunities"),completed:+rows.reduce((total,x)=>total+x.completed.length,0)/rows.length};
+   };
+   const full=measures(baseline),without={};
+   for(const name of Object.keys(chars)){
+    const runs=seeds.map(seed=>expedition(level,seed,{policy,excluded:name}));
+    const aggregate=measures(runs);
+    without[name]={...aggregate,deltaTime:+(aggregate.time-full.time).toFixed(2),
+     deltaSupplies:+(aggregate.supplies-full.supplies).toFixed(2),
+     deltaMissed:+(aggregate.missed-full.missed).toFixed(2),
+     deltaCompleted:+(aggregate.completed-full.completed).toFixed(2)};
+    for(const state of runs){
+     assert.equal(state.contributions[name].actions,0,"El excluido no puede actuar");
+     assert.equal(state.completed.length+state.pending.length,6);
+     assert.ok(state.supplies>=0);
+     assert.ok(state.time>=state.actions);
+     assert.ok(state.scenes.every(scene=>scene.events.every(ev=>ev.actor!==name)));
+    }
+   }
+   matrix[level][policy]={full,without};
+  }
+ }
+ console.log("PROG01N_MARGINAL "+JSON.stringify(matrix));
 });
