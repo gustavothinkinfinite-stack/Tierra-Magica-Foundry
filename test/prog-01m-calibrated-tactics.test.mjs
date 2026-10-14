@@ -164,3 +164,32 @@ test("PROG-01M cobertura: Pantalla Cinética protege contra disparos que la atra
  const total=arr=>arr.reduce((sum,x)=>sum+x.received,0);
  assert.ok(total(screen)<=total(basic),"Cobertura no redujo daño recibido en este control");
 });
+
+test("PROG-01M diagnóstico: sensibilidad pareada a dificultad y estrategia",()=>{
+ const matrix={};
+ for(const level of [5,10,15,20]){
+  matrix[level]={};
+  for(const name of Object.keys(ARCHETYPES)){
+   const mild=summary(name,level);
+   const stress=summary(name,level,{difficulty:"stress"});
+   const basic=summary(name,level,{policy:"basic"});
+   const advanced=summary(name,level,{policy:"advanced"});
+   assert.equal(mild.cases,stress.cases);
+   assert.ok(mild.survival>=stress.survival,
+     name+" nivel "+level+" calibración produjo peor supervivencia");
+   matrix[level][name]={
+    mildSurvival:mild.survival,stressSurvival:stress.survival,
+    mildDamage:mild.damage,stressDamage:stress.damage,
+    strategyDamageDelta:+(advanced.damage-basic.damage).toFixed(3),
+    strategyManaDelta:+(advanced.mana-basic.mana).toFixed(3)
+   };
+  }
+ }
+ console.log("PROG01M_SENSITIVITY "+JSON.stringify(matrix));
+});
+test("PROG-01M diagnóstico: capacidades avanzadas no modifican al especialista sin magia",()=>{
+ for(const level of [5,10,15,20]){
+  assert.deepEqual(summary("especialista",level,{policy:"advanced"}),
+    summary("especialista",level,{policy:"basic"}));
+ }
+});
