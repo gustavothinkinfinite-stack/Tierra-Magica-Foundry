@@ -10,8 +10,9 @@ import {CALIBRATED_ENCOUNTERS} from "./fixtures/prog-01m-calibrated.mjs";
 const seeds=[17,71,2026,911,3849,421,1543,3199,8527,101];
 function dice(seed){let n=seed>>>0;return ()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return 2+Math.floor(n/4294967296*10);};}
 const ranks={5:[3,3,2],10:[4,3,3],15:[5,4,3],20:[5,4,3]};
-function run(level,seed,{cooperation=true,tacticalEffects=true,threatPolicy="most-exposed"}={}){
+function run(level,seed,{cooperation=true,tacticalEffects=true,enabledEffects=["information","triage","negotiation"],threatPolicy="most-exposed"}={}){
  const roll=dice(seed),e=CALIBRATED_ENCOUNTERS[level];
+ const effects=new Set(tacticalEffects?enabledEffects:[]);
  // RNG por turno y actor: el consumo de dados no cambia si un efecto omite una Acción.
  const actionRoll=(round,actor,kind)=>dice((seed*101+round*10007+actor*2713+kind*1301)>>>0);
  const names=["marcial","canalizador","hibrido","especialista"];
@@ -25,8 +26,15 @@ function run(level,seed,{cooperation=true,tacticalEffects=true,threatPolicy="mos
  let progress=0,damage=0,damageTaken=0,turns=0,spells=0,parries=0;
  let triageGuard=0,negotiationDelay=0,informationFocus=0;
  const reactionEvents=[],tacticalEvents=[];
- const targetOrder=()=>party.filter(p=>p.hp>0).sort((a,b)=>threatPolicy==="most-exposed"?
-   a.hp-b.hp||a.name.localeCompare(b.name):b.defense-a.defense||a.name.localeCompare(b.name));
+ const targetOrder=(round,foe)=>party.filter(p=>p.hp>0).sort((a,b)=>{
+  if(threatPolicy==="random"){
+   const ra=dice((seed*101+round*10007+foe*2713+a.name.length*337)>>>0)();
+   const rb=dice((seed*101+round*10007+foe*2713+b.name.length*337)>>>0)();
+   return ra-rb||a.name.localeCompare(b.name);
+  }
+  return threatPolicy==="most-exposed"?a.hp-b.hp||a.name.localeCompare(b.name):
+   b.defense-a.defense||a.name.localeCompare(b.name);
+ });
  const combatants=[...party.map(p=>({kind:"hero",entity:p})),...foes.map(f=>({kind:"foe",entity:f}))]
   .sort((a,b)=>b.entity.initiative-a.entity.initiative||
    (a.kind===b.kind?(a.entity.name??String(a.entity.id)).localeCompare(b.entity.name??String(b.entity.id)):
@@ -39,8 +47,8 @@ function run(level,seed,{cooperation=true,tacticalEffects=true,threatPolicy="mos
    if(foes.every(f=>f.hp===0)||party.every(p=>p.hp===0))break;
    if(actor.kind==="foe"){
     const f=actor.entity;if(f.hp===0)continue;
-    if(tacticalEffects&&negotiationDelay>0){negotiationDelay--;tacticalEvents.push({round:turns,type:"negotiated-delay",foe:f.id});continue;}
-    const victim=targetOrder()[0];if(!victim)continue;
+    if(effects.has("negotiation")&&negotiationDelay>0){negotiationDelay--;tacticalEvents.push({round:turns,type:"negotiated-delay",foe:f.id});continue;}
+    const victim=targetOrder(turns,f.id)[0];if(!victim)continue;
     if(f.x>victim.x+1)f.x=Math.max(victim.x+1,f.x-6);
     if(Math.abs(f.x-victim.x)>1)continue;
     let defense=victim.defense;
@@ -51,7 +59,7 @@ function run(level,seed,{cooperation=true,tacticalEffects=true,threatPolicy="mos
     const foeDice=actionRoll(turns,f.id,1);
     if(foeDice()+foeDice()+e.attack>=defense){
      const protection=victim.name==="marcial"?4:victim.name==="canalizador"?2:3;
-     const guard=tacticalEffects&&triageGuard>0?Math.min(2,Math.max(0,e.damage-protection)):0;
+     const guard=effects.has("triage")&&triageGuard>0?Math.min(2,Math.max(0,e.damage-protection)):0;
      if(guard>0){triageGuard=0;tacticalEvents.push({round:turns,type:"triage-preparation",prevented:guard});}
      const dealt=Math.min(victim.hp,Math.max(0,e.damage-protection-guard));
      victim.hp-=dealt;damageTaken+=dealt;
@@ -70,9 +78,9 @@ function run(level,seed,{cooperation=true,tacticalEffects=true,threatPolicy="mos
      const total=taskDice()+taskDice()+attr+SKILL_RANK_BONUSES[ranks[level][index]];
      if(total>=17){
       objectives[task]=true;progress++;
-      if(tacticalEffects&&task==="information")informationFocus=1;
-      if(tacticalEffects&&task==="triage")triageGuard=1;
-      if(tacticalEffects&&task==="negotiation")negotiationDelay=1;
+      if(effects.has("information")&&task==="information")informationFocus=1;
+      if(effects.has("triage")&&task==="triage")triageGuard=1;
+      if(effects.has("negotiation")&&task==="negotiation")negotiationDelay=1;
       tacticalEvents.push({round:turns,type:"objective",task});
      }
      continue;
@@ -191,4 +199,39 @@ test("PROG-01M pareado: igual iniciativa y objetivos, con/sin consecuencias",()=
    deltaDamage:+(a.damage-b.damage).toFixed(2)};
  }
  console.log("PROG01M_PAIRED_TACTICS "+JSON.stringify(matrix));
+});
+
+test("PROG-01M ablación: factorial completo de tres efectos y políticas de amenaza",()=>{
+ const abilities=["information","triage","negotiation"];
+ const policies=["most-exposed","highest-defense","random"];
+ const matrix={};
+ for(const level of [5,10,15,20]){
+  matrix[level]={};
+  for(const policy of policies){
+   const rows={};
+   for(let mask=0;mask<8;mask++){
+    const enabledEffects=abilities.filter((_,index)=>(mask&(1<<index))!==0);
+    const observations=seeds.map(seed=>run(level,seed,{enabledEffects,threatPolicy:policy}));
+    const avg=metric=>+(observations.reduce((sum,obs)=>sum+obs[metric],0)/observations.length).toFixed(2);
+    rows[mask]={effects:enabledEffects,survivors:avg("survivors"),received:avg("damageTaken"),
+      objectives:avg("progress"),damage:avg("damage"),
+      used:Object.fromEntries(["focused-hit","triage-preparation","negotiated-delay"].map(type=>
+        [type,observations.reduce((sum,obs)=>sum+obs.tacticalEvents.filter(e=>e.type===type).length,0)]))};
+    for(const obs of observations){
+     assert.ok(obs.progress>=0&&obs.progress<=3);
+     assert.ok(obs.survivors>=0&&obs.survivors<=4);
+     assert.equal(obs.tacticalEvents.filter(e=>e.type==="objective").length,obs.progress);
+     for(const event of obs.tacticalEvents.filter(e=>e.type!=="objective")){
+      const corresponding={"focused-hit":"information","triage-preparation":"triage",
+        "negotiated-delay":"negotiation"}[event.type];
+      assert.ok(enabledEffects.includes(corresponding),"Efecto desactivado activado "+event.type);
+     }
+    }
+   }
+   matrix[level][policy]=rows;
+   assert.equal(rows[0].used["focused-hit"]+rows[0].used["triage-preparation"]+
+     rows[0].used["negotiated-delay"],0);
+  }
+ }
+ console.log("PROG01M_ABLATION "+JSON.stringify(matrix));
 });
