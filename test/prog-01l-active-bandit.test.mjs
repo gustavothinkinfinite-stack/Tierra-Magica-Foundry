@@ -13,11 +13,10 @@ const bandit={life:12,defense:13,protection:1,attackBonus:4,damage:6,initiative:
 const sums=[];
 for(let a=1;a<=10;a++)for(let b=1;b<=10;b++)sums.push(a+b);
 const prob=(bonus,target)=>sums.filter(sum=>sum+bonus>=target).length/100;
-const expected=Math.fround(0.86); // avoid stochastic tests; all sums enumerated
 test("PROG-01L: Bandido canónico y distribución 2d10",()=>{
   assert.equal(sums.length,100);
   assert.equal(sums.reduce((a,b)=>a+b,0),1100);
-  assert.equal(prob(7,bandit.defense),.85);
+  assert.equal(prob(7,bandit.defense),.90);
 });
 for(const [name,p] of Object.entries(profiles)){
   test("PROG-01L: intercambio de ataques con Bandido — "+name,()=>{
@@ -35,10 +34,9 @@ for(const [name,p] of Object.entries(profiles)){
     assert.ok(outgoing>=0&&outgoing<=1);
     assert.ok(incomingWith<=incomingWithout);
     assert.ok(expectedDamage>=0&&expectedReceived>=0);
-    assert.equal(prob(p.per,13),prob(p.per,13)); // comprobación de reproducibilidad
     if(name==="marcial"||name==="hibrido"){
-      assert.equal(outgoing,.85);
-      assert.equal(expectedDamage,5.95);
+      assert.equal(outgoing,.90);
+      assert.equal(expectedDamage,6.3);
       assert.equal(incomingWithout,.55);
       assert.equal(incomingWith,.36);
     }
