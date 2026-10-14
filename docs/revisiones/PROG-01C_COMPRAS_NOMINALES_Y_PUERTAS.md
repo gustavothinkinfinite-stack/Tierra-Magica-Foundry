@@ -20,21 +20,21 @@ Coste acumulado de habilidad: Aprendiz 1, Entrenado 3, Experto 7, Maestro 13 y G
 | 5 | Armas Pesadas Entrenado (3); Armas a Distancia Entrenado (3); Intercepción (2); Barrido (3); Contraataque (3); Especialización de Armas Marciales (1); Manejo Aprendiz (1) | 16 | 41 | 41 | 0 |
 | 10 | Armas Marciales Experto→Maestro (6); Atletismo Entrenado→Experto (4); Supervivencia Entrenado→Experto (4); Estocada Perforante (3); Manejo Aprendiz→Entrenado (2) | 19 | 60 | 61 | 1 |
 | 15 | Armas Marciales Maestro→Gran Maestro (8); Acrobacia Entrenado→Experto (4); Sigilo Entrenado→Experto (4); Manejo Entrenado→Experto (4) | 20 | 80 | 81 | 1 |
-| 20 | Atletismo Experto→Maestro (6); Supervivencia Experto→Maestro (6); Armas a Distancia Entrenado→Experto (4); Armas Pesadas Entrenado→Experto (4); Manejo Experto→Maestro (6); Acrobacia Experto→Maestro (6); Sigilo Experto→Maestro (6) | 38 | 118 | 101 | **INVÁLIDO: -17** |
+| 20 | Atletismo Experto→Maestro (6); Supervivencia Experto→Maestro (6); Armas a Distancia Entrenado→Experto (4); Armas Pesadas Entrenado→Experto (4) | 20 | 100 | 101 | 1 |
 
-**Detección y corrección del nivel 20:** la fila anterior está deliberadamente expuesta como caso de sobregasto y no es una ruta legal. Reemplazarla por **Atletismo Experto→Maestro (6), Supervivencia Experto→Maestro (6), Armas a Distancia Entrenado→Experto (4), Armas Pesadas Entrenado→Experto (4)**: gasto nuevo 20; gasto acumulado 100; saldo 1. La ruta corregida es la utilizada para las conclusiones. Una compra de Recibir Carga requiere arma de Alcance; el perfil sólo la utiliza si posee el arma física. Contraataque requiere Parada y esta ruta la compra previamente.
+**Requisitos específicos:** Recibir Carga exige un arma con Alcance y sólo funciona si existe el equipo físico correspondiente. Contraataque exige Parada, adquirida anteriormente. Gran Maestro requiere la Especialización marcial previa.
 
 ## B. Canalizador de Evocación
 
 | Nivel | Compras nuevas | Gasto nuevo | Acumulado | Tope | Saldo |
 |---|---|---:|---:|---:|---:|
 | 1 | Canalización Experto (7); Arcana, Investigación, Naturaleza Entrenado (9); Evocación (2); Proyectil Ígneo (2), Luz Arcana (1), Barrera Cinética (2); una Especialización de Investigación (1); Supervivencia Aprendiz (1) | 25 | 25 | 25 | 0 |
-| 5 | Canalización Experto se conserva; Arco Fulminante (3), Aguja Gélida (3), Martillo Cinético (3), Onda de Choque (2), Supervivencia Aprendiz→Entrenado (2), Doble Sostenimiento (5) | 18 | 43 | 41 | **INVÁLIDO: -2** |
-| 10 | La versión corregida a nivel 5 elimina Doble Sostenimiento (queda gasto nuevo 13; total 38 y saldo 3). A nivel 10 compra Canalización Experto→Maestro (6), Pantalla Cinética (5), Rayo de Ruptura (5), Contramagia (3) | 19 | 57 | 61 | 4 |
+| 5 | Arco Fulminante (3), Aguja Gélida (3), Martillo Cinético (3), Onda de Choque (2), Supervivencia Aprendiz→Entrenado (2) | 13 | 38 | 41 | 3 |
+| 10 | Compra Canalización Experto→Maestro (6), Pantalla Cinética (5), Rayo de Ruptura (5), Contramagia (3) | 19 | 57 | 61 | 4 |
 | 15 | Canalización Maestro→Gran Maestro (8); Tormenta Arcana (8 PD como mínimo, comprobar valor del perfil legendario); Naturaleza Entrenado→Experto (4) | 20 | 77 | 81 | 4 |
 | 20 | Doble Sostenimiento (5); Arcana Entrenado→Experto (4); Investigación Entrenado→Experto (4); Naturaleza Experto→Maestro (6) | 19 | 96 | 101 | 5 |
 
-**Advertencias:** la compra de un hechizo de grado Avanzado exige Canalización Experto (se cumple desde nivel 1); Maestro exige Canalización Maestro (desde el nivel 10), Legendario Gran Maestro (desde el nivel 15). **La Técnica Doble Sostenimiento en el plan corregido se aplaza a nivel 20**, evitando su compra temprana sin validar otras capacidades. La disponibilidad del grado Legendario y coste exacto de Tormenta Arcana deben contrastarse con los Items y su configuración de adquisición; la fila es preliminar.
+**Advertencias:** la compra de un hechizo de grado Avanzado exige Canalización Experto (se cumple desde nivel 1); Maestro exige Canalización Maestro (desde el nivel 10), Legendario Gran Maestro (desde el nivel 15). **La Técnica Doble Sostenimiento se adquiere a nivel 20**, evitando su compra temprana sin validar otras capacidades. La disponibilidad del grado Legendario y coste exacto de Tormenta Arcana deben contrastarse con los Items y su configuración de adquisición; la fila es preliminar.
 
 ## C. Híbrido marcial-mágico
 
@@ -60,7 +60,7 @@ Coste acumulado de habilidad: Aprendiz 1, Entrenado 3, Experto 7, Maestro 13 y G
 
 ## Estado de validación y límites
 
-- **Comprobación aritmética:** los topes son 25/41/61/81/101. Las filas identificadas como inválidas deben reemplazarse por su corrección expresa antes de modelar el Actor.
+- **Comprobación aritmética:** los topes son 25/41/61/81/101. Las cuatro rutas nominales respetan los topes aritméticos de PD en los cinco puntos de control; aún falta validar cada requisito de Item y su adquisición real.
 - **Comprobación de fuente:** los nombres y costes proceden del capítulo 4, el grimorio del capítulo 12 y las técnicas del capítulo 13. La Especialización cuesta 1 PD y requiere habilidad madre Entrenada.
 - **NO comprobado:** ejecución en Foundry VTT con actores/Items reales, adquisición de cada Item del compendio, progreso del familiar, requisitos tipados de los documentos, equipamiento físico, tiradas y daño. «Ruta nominal» no significa «personaje jugable verificado».
 - **Cuestiones para PROG-01D:** ¿qué combinación de compras es competitiva?, ¿las rutas mágicas disponen de amplitud útil?, ¿cuántas opciones de Rasgos resultan realmente accesibles después de crear?, ¿debe el DJ autorizar explícitamente ascensos? Ninguna respuesta se ha canonizado.
