@@ -136,3 +136,28 @@ test("PROG-01N diagnóstico: ruta híbrida doble no se favorece artificialmente"
   assert.ok(other.channeling[i]>=hybrid.channeling[i]);
  }
 });
+
+test("PROG-01N cierre: participación efectiva, alternativas y control de costes",()=>{
+ const audit={};
+ for(const dc of [13,16,19]){
+  audit[dc]={};
+  for(const level of levels){
+   const attempts=Object.fromEntries(Object.keys(profiles).map(n=>[n,0]));
+   const aborted=Object.fromEntries(challenges.map(c=>[c.id,0]));
+   let baseTime=0,baseLost=0;
+   for(const seed of seeds){
+    const state=expedition(level,seed,{dc,policy:"probability"});
+    for(const [name,count] of Object.entries(state.byActor))attempts[name]+=count;
+    for(const id of state.abandoned)aborted[id]++;
+    assert.equal(state.abandonmentTime,2*state.lostOpportunities);
+    assert.equal(state.abandonmentSupplies,Math.min(5,state.lostOpportunities));
+    assert.equal(state.supplies+state.abandonmentSupplies,5);
+    baseTime+=state.time;baseLost+=state.lostOpportunities;
+   }
+   audit[dc][level]={attempts,aborted,meanTime:+(baseTime/10).toFixed(2),
+    meanAbandoned:+(baseLost/10).toFixed(2)};
+  }
+ }
+ assert.ok(audit[16][5].attempts.especialista>0);
+ console.log("PROG01N_COVERAGE "+JSON.stringify(audit));
+});
