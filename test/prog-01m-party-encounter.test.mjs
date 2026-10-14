@@ -52,7 +52,7 @@ function run(level,seed,{cooperation=true,threatPolicy="most-exposed"}={}){
     p.actions++;
     const tasks=Object.entries(objectives).filter(([_,done])=>!done);
     if(cooperation&&p.name==="especialista"&&tasks.length){
-     const [task]=tasks[0];
+     const [task]=tasks[round%tasks.length];
      const index={information:0,triage:1,negotiation:2}[task];
      const attr=index===2?3:3;
      const total=roll()+roll()+attr+SKILL_RANK_BONUSES[ranks[level][index]];
