@@ -103,3 +103,35 @@ test("PROG-01E: Contraataque exige Parada adquirida previamente",()=>{
   assert.equal(withParry.valid,true,JSON.stringify(withParry.issues));
   assert.equal(withParry.cost?.amount,3);
 });
+
+test("PROG-01F: compras de técnicas de Familiar verifican Rasgo, propietario y grado",()=>{
+  const trait=entry("Familiar Mágico","trait");
+  const owned={...trait,id:"trait-owned",system:{...trait.system}};
+  const previous=globalThis.game;
+  try {
+    for(const [name,required] of [["Sentidos Compartidos",2],["Comunicación Mejorada",2],["Origen Remoto",3],["Coordinación Reactiva",3]]){
+      const candidate=entry(name,"technique");
+      assert.ok(candidate,name);
+      const pc=actor(10,[owned]);
+      pc.uuid="Actor.owner";
+      globalThis.game={actors:{contents:[]}};
+      const noPet=preflightAcquisition({actor:pc,candidate,stage:"progression"});
+      assert.equal(noPet.valid,false,name+" sin Familiar");
+      assert.ok(noPet.issues.some(issue=>issue.code==="requirement-familiar-bond"));
+      globalThis.game={actors:{contents:[{type:"familiar",system:{details:{ownerUuid:"Actor.other"},familiar:{bondLevel:4}}}]}};
+      const alien=preflightAcquisition({actor:pc,candidate,stage:"progression"});
+      assert.equal(alien.valid,false,name+" Familiar ajeno");
+      globalThis.game={actors:{contents:[{type:"familiar",system:{details:{ownerUuid:pc.uuid},familiar:{bondLevel:required-1}}}]}};
+      const low=preflightAcquisition({actor:pc,candidate,stage:"progression"});
+      assert.equal(low.valid,false,name+" Vínculo insuficiente");
+      globalThis.game={actors:{contents:[{type:"familiar",system:{details:{ownerUuid:pc.uuid},familiar:{bondLevel:required}}}]}};
+      const granted=preflightAcquisition({actor:pc,candidate,stage:"progression"});
+      assert.equal(granted.valid,true,name+" requisito completo: "+JSON.stringify(granted.issues));
+      const withoutTrait=preflightAcquisition({actor:{...pc,items:[]},candidate,stage:"progression"});
+      assert.equal(withoutTrait.valid,false,name+" sin Rasgo");
+      assert.ok(withoutTrait.issues.some(issue=>issue.code==="requirement-item"));
+    }
+  } finally {
+    globalThis.game=previous;
+  }
+});
