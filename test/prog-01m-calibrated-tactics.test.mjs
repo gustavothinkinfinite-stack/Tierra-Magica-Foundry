@@ -19,7 +19,7 @@ const spear=item("weapon","Lanza"),dagger=item("weapon","Daga");
 const seeds=[17,71,2026,911,3849,421,1543,3199,8527,101];
 const orders=["hero-first","enemy-first","alternating"];
 function random(seed){let n=seed>>>0;return ()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return 2+Math.floor(n/4294967296*10);};}
-function encounter(name,level,seed,order,{difficulty="calibrated",policy="advanced"}={}){
+function encounter(name,level,seed,order,{difficulty="calibrated",policy="advanced",enemyMode="melee"}={}){
  const e=(difficulty==="stress"?REFERENCE_ENCOUNTERS:CALIBRATED_ENCOUNTERS)[level];
  const h=ARCHETYPES[name],rank=LEVEL_RANKS[name][level],roll=random(seed);
  const armor=item("armor",h.armor);
@@ -34,6 +34,8 @@ function encounter(name,level,seed,order,{difficulty="calibrated",policy="advanc
   if(policy==="basic")return canUse("Proyectil Ígneo")?"Proyectil Ígneo":null;
   // Pantalla: gastar Acción una sola vez, luego cobertura sólo frente a disparos a través de la pantalla.
   if(level>=10&&!screenActive&&canUse("Pantalla Cinética")&&policy==="screen")return "Pantalla Cinética";
+  if(policy==="control"&&foes.filter(x=>x.hp>0).length>1&&canUse("Onda de Choque"))return "Onda de Choque";
+  if(policy==="control"&&canUse("Aguja Gélida"))return "Aguja Gélida";
   if(level>=15&&foes.filter(x=>x.hp>0).length===2&&canUse("Tormenta Arcana")&&
    Math.abs(foes[0].x-foes[1].x)<=3)return "Tormenta Arcana";
   if(level>=10&&foes.filter(x=>x.hp>0).length===2&&canUse("Rayo de Ruptura")&&
@@ -48,10 +50,13 @@ function encounter(name,level,seed,order,{difficulty="calibrated",policy="advanc
   const attackEnemy=(index)=>{
    const f=foes[index];if(!f||f.hp===0||hp===0)return;
    const movement=Math.max(0,6-f.slow);f.slow=0;
-   if(f.x>position+1)f.x=Math.max(position+1,f.x-movement);
-   if(f.x>position+1)return;
+   if(enemyMode==="melee"){
+    if(f.x>position+1)f.x=Math.max(position+1,f.x-movement);
+    if(f.x>position+1)return;
+   }
    let defense=11+h.agi+[0,0,1,2,3,4][rank[0]];
-   if(h.parry&&!reacted){defense+=2;reacted=true;reactions++;}
+   if(enemyMode==="melee"&&h.parry&&!reacted){defense+=2;reacted=true;reactions++;}
+   if(enemyMode==="ranged"&&screenActive&&f.x>2&&position<2)defense+=2;
    // Los enemigos de este fixture atacan cuerpo a cuerpo; una pantalla de cobertura
    // no suma defensa a ataques que no atraviesan la pantalla.
    if(roll()+roll()+e.attack>=defense){
@@ -67,8 +72,8 @@ function encounter(name,level,seed,order,{difficulty="calibrated",policy="advanc
    actions++;
    if(spell){mana-=spell.manaCost;spent+=spell.manaCost;}
    if(choice==="Pantalla Cinética"){screenActive=true;screenUses++;return;}
-   const multi=choice==="Arco Fulminante"||choice==="Rayo de Ruptura"||choice==="Tormenta Arcana";
-   const targets=multi?active:active.slice(0,1);
+   const multi=choice==="Arco Fulminante"||choice==="Rayo de Ruptura"||choice==="Tormenta Arcana"||choice==="Onda de Choque";
+   const targets=multi?active.filter(f=>choice!=="Onda de Choque"||(f.x>position&&f.x-position<=3)):active.slice(0,1);
    const weapon=name==="canalizador"||name==="especialista"?dagger:spear;
    const bonus=spell?h.int+SKILL_RANK_BONUSES[rank[1]]:h[weapon.attackAttribute??"fue"]+
     SKILL_RANK_BONUSES[rank[0]];
@@ -144,4 +149,18 @@ test("PROG-01M calibración: tabla auditable por nivel",()=>{
  }
  console.log("PROG01M_CALIBRATED "+JSON.stringify(results));
  assert.equal(results[20].hibrido.calibrated.cases,30);
+});
+
+test("PROG-01M control: empuje y ralentización son efectos posicionales observables",()=>{
+ const controls=orders.flatMap(order=>seeds.map(seed=>encounter("canalizador",5,seed,order,{policy:"control"})));
+ assert.ok(controls.some(x=>x.pushes>0),"Onda de Choque nunca empujó");
+ assert.ok(controls.some(x=>x.spent>=4),"No se consumió Maná de control");
+});
+test("PROG-01M cobertura: Pantalla Cinética protege contra disparos que la atraviesan",()=>{
+ const screen=orders.flatMap(order=>seeds.map(seed=>encounter("canalizador",10,seed,order,{policy:"screen",enemyMode:"ranged"})));
+ const basic=orders.flatMap(order=>seeds.map(seed=>encounter("canalizador",10,seed,order,{policy:"basic",enemyMode:"ranged"})));
+ assert.ok(screen.some(x=>x.screenUses>0),"Pantalla nunca se creó");
+ assert.ok(screen.some(x=>x.spent>=8),"Pantalla no consumió Maná");
+ const total=arr=>arr.reduce((sum,x)=>sum+x.received,0);
+ assert.ok(total(screen)<=total(basic),"Cobertura no redujo daño recibido en este control");
 });
