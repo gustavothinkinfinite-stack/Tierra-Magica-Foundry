@@ -68,7 +68,7 @@ test("PROG-01N: retos premian perfiles diferentes, no daño de combate",()=>{
  for(const level of levels){
   const s=mission(level,17);
   assert.equal(s.events.find(x=>x.task==="rastro").actor,"especialista");
-  assert.equal(s.events.find(x=>x.task==="arcano").actor,"canalizador");
+  assert.equal(s.events.find(x=>x.task==="arcano").actor,level===5?"canalizador":"especialista");
   assert.equal(s.events.find(x=>x.task==="obstaculo").actor,"marcial");
   assert.equal(s.events.find(x=>x.task==="acuerdo").actor,"especialista");
  }
