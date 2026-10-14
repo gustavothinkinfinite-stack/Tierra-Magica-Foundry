@@ -73,3 +73,35 @@ test("PROG-01G: habilidades nominales de los cuatro perfiles existen",()=>{
     assert.ok(TM_CONFIG.skills[key],"Habilidad no registrada: "+key);
   }
 });
+
+test("PROG-01H: cada compra nominal pasa preflight secuencial con Items ya adquiridos",()=>{
+  const rankByProfile={
+    marcial:{martialWeapons:3,athletics:2,acrobatics:2,survival:2,stealth:2},
+    canalizador:{channeling:3,arcana:2,investigation:2,nature:2,survival:1},
+    hibrido:{martialWeapons:3,channeling:2,athletics:2,survival:2,stealth:1},
+    especialista:{investigation:3,medicine:2,history:2,nature:2,persuasion:2,survival:2,arcana:2}
+  };
+  for(const [profile,stages] of Object.entries(groups)){
+    const owned=[];
+    for(const stage of stages){
+      const ranks={...rankByProfile[profile]};
+      if(profile==="hibrido"&&stage.level>=5) ranks.channeling=3;
+      if(profile==="hibrido"&&stage.level>=15) ranks.channeling=4;
+      if(profile==="canalizador"&&stage.level>=10) ranks.channeling=4;
+      if(profile==="canalizador"&&stage.level>=15) ranks.channeling=5;
+      const pc={
+        type:"character",uuid:"Actor."+profile,items:owned,
+        system:{details:{level:stage.level},creation:{status:"complete",revision:0},
+          skills:Object.fromEntries(Object.entries(ranks).map(([key,rank])=>[key,{rank}]))}
+      };
+      for(const [type,name,expectedPd] of stage.items){
+        const candidate=find(type,name);
+        const result=preflightAcquisition({actor:pc,candidate,stage:"progression"});
+        assert.equal(result.valid,true,profile+" nivel "+stage.level+" "+name+": "+JSON.stringify(result.issues));
+        assert.equal(result.cost?.amount,expectedPd);
+        owned.push({...candidate,id:"prog-h-"+profile+"-"+owned.length,
+          system:{...candidate.system,acquisition:result.acquisition}});
+      }
+    }
+  }
+});
