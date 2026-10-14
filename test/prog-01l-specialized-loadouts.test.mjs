@@ -132,3 +132,24 @@ test("PROG-01L-4: registrar métricas de equipos diferenciados",()=>{
   assert.equal(Object.keys(rows).length,4);
   console.log("PROG01L4_AGGREGATES "+JSON.stringify(rows));
 });
+
+test("PROG-01L-4: umbrales de balance se verifican por escenario y no solo en promedio",()=>{
+ for(const [name,profile]of Object.entries(configurations)){
+  const cases=[];
+  for(const order of turnOrders)for(const seed of diceSeeds)
+   cases.push(encounter(profile,{seed,order}));
+  const result=aggregate(profile);
+  const mean=key=>Number((cases.reduce((sum,row)=>sum+row[key],0)/cases.length).toFixed(3));
+  assert.equal(result.meanEffectiveDamage,mean("dealt"),name+" daño");
+  assert.equal(result.meanDamageTaken,mean("taken"),name+" recibido");
+  assert.equal(result.meanManaSpent,mean("manaSpent"),name+" maná");
+  assert.equal(result.survivors,cases.filter(x=>x.hp>0).length);
+  assert.equal(result.wins,cases.filter(x=>x.kills===2).length);
+ }
+});
+test("PROG-01L-4: disparidad entre estrategia híbrida física y mágica es medible",()=>{
+ const physical=aggregate(configurations.hibrido,"weapon");
+ const magical=aggregate(configurations.hibrido,"spell");
+ assert.ok(physical.meanManaSpent<magical.meanManaSpent);
+ assert.equal(physical.cases,magical.cases);
+});
