@@ -84,6 +84,22 @@ export function evaluateRequirement(requirement, actor, context = {}) {
       : leafResult(false, { code: "requirement-item", message: "Falta " + targetType + ":" + targetSlug + "." });
   }
 
+  if (type === "familiar-bond") {
+    const minimum = Math.max(1, Math.floor(number(requirement.minimum, 1)));
+    const registry = globalThis.game?.actors;
+    const familiars = Array.isArray(registry) ? registry
+      : Array.isArray(registry?.contents) ? registry.contents
+      : typeof registry?.values === "function" ? [...registry.values()] : [];
+    const eligible = familiars.some((familiar) =>
+      familiar?.type === "familiar" &&
+      familiar?.system?.details?.ownerUuid === actor?.uuid &&
+      Math.floor(number(familiar?.system?.familiar?.bondLevel, 1)) >= minimum
+    );
+    return eligible
+      ? leafResult(true)
+      : leafResult(false, { code: "requirement-familiar-bond", message: "Se requiere Familiar vinculado con Vínculo " + minimum + " o superior." });
+  }
+
   if (type === "attribute") {
     const attr = actor?.system?.attributes?.[requirement.key] ?? actor?.attributes?.[requirement.key];
     if (!attr) return leafResult(false, { code: "requirement-attribute", message: "Atributo inexistente: " + requirement.key });
