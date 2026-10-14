@@ -52,3 +52,38 @@ test("PROG-01E: los grados altos preservan sus requisitos del catálogo",()=>{
     assert.ok(item.system.costs.some(cost=>cost.context==="progression"||cost.context==="any"));
   }
 });
+
+test("PROG-01E: compra secuencial de Familiar impide la segunda adquisición",()=>{
+  const familiar=entry("Familiar Mágico","trait");
+  const first=preflightAcquisition({actor:actor(5),candidate:familiar,stage:"progression"});
+  assert.equal(first.valid,true,JSON.stringify(first.issues));
+  assert.equal(first.acquisition?.paid?.resource,"pd");
+  assert.equal(first.acquisition?.paid?.amount,6);
+  const owned={...familiar,id:"familiar-001",system:{...familiar.system,acquisition:first.acquisition}};
+  const repeated=preflightAcquisition({
+    actor:actor(5,[owned]),candidate:familiar,stage:"progression"
+  });
+  assert.equal(repeated.valid,false);
+  assert.ok(repeated.issues.some(issue=>issue.code==="duplicate"));
+});
+
+test("PROG-01E: sin coste posterior no se puede comprar un Rasgo innato",()=>{
+  for(const name of ["Sentido Agudo","Visión en la Oscuridad","Corpulento","Masivo"]){
+    const item=entry(name,"trait");
+    assert.ok(item,name);
+    const result=preflightAcquisition({
+      actor:actor(10),candidate:item,stage:"progression"
+    });
+    assert.equal(result.valid,false,name);
+    assert.ok(result.issues.some(issue=>issue.code==="cost"),name);
+  }
+});
+
+test("PROG-01E: el preflight rechaza revisión obsoleta de construcción",()=>{
+  const familiar=entry("Familiar Mágico","trait");
+  const result=preflightAcquisition({
+    actor:actor(5),candidate:familiar,stage:"progression",expectedRevision:7
+  });
+  assert.equal(result.valid,false);
+  assert.ok(result.issues.some(issue=>issue.code==="revision"));
+});
