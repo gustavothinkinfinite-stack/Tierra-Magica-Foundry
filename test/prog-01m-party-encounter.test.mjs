@@ -16,11 +16,13 @@ function run(level,seed,{cooperation=true,threatPolicy="most-exposed"}={}){
  const party=names.map(name=>{
   const h=ARCHETYPES[name],skills=LEVEL_RANKS[name][level];
   return {name,h,skills,hp:10+2*h.vig,mana:6+3*h.vol,defense:11+h.agi+[0,0,1,2,3,4][skills[0]],x:0,
-   actions:0,reactions:0,moves:0,initiative:roll()+roll()+h.per};
+   actions:0,reactions:0,reactionReady:true,reactionRefreshes:0,moves:0,initiative:roll()+roll()+h.per};
  });
  const foes=Array.from({length:2},(_,i)=>({id:i,hp:e.hp,x:3+i,initiative:roll()+roll()+2}));
  const objectives={information:false,triage:false,negotiation:false};
  let progress=0,damage=0,damageTaken=0,turns=0,spells=0,parries=0;
+ let triageGuard=0,negotiationDelay=0,informationFocus=0;
+ const reactionEvents=[],tacticalEvents=[];
  const targetOrder=()=>party.filter(p=>p.hp>0).sort((a,b)=>threatPolicy==="most-exposed"?
    a.hp-b.hp||a.name.localeCompare(b.name):b.defense-a.defense||a.name.localeCompare(b.name));
  const combatants=[...party.map(p=>({kind:"hero",entity:p})),...foes.map(f=>({kind:"foe",entity:f}))]
@@ -30,25 +32,31 @@ function run(level,seed,{cooperation=true,threatPolicy="most-exposed"}={}){
  for(let round=0;round<8;round++){
   if(foes.every(f=>f.hp===0)||party.every(p=>p.hp===0))break;
   turns++;
-  const reactionAvailable=new Set(party.filter(p=>p.hp>0).map(p=>p.name));
+
   for(const actor of combatants){
    if(foes.every(f=>f.hp===0)||party.every(p=>p.hp===0))break;
    if(actor.kind==="foe"){
     const f=actor.entity;if(f.hp===0)continue;
+    if(negotiationDelay>0){negotiationDelay--;tacticalEvents.push({round:turns,type:"negotiated-delay",foe:f.id});continue;}
     const victim=targetOrder()[0];if(!victim)continue;
     if(f.x>victim.x+1)f.x=Math.max(victim.x+1,f.x-6);
     if(Math.abs(f.x-victim.x)>1)continue;
     let defense=victim.defense;
-    if(victim.h.parry&&reactionAvailable.has(victim.name)){
-     defense+=2;reactionAvailable.delete(victim.name);victim.reactions++;parries++;
+    if(victim.h.parry&&victim.reactionReady){
+     defense+=2;victim.reactionReady=false;victim.reactions++;parries++;
+     reactionEvents.push({round:turns,type:"spent",actor:victim.name});
     }
     if(roll()+roll()+e.attack>=defense){
      const protection=victim.name==="marcial"?4:victim.name==="canalizador"?2:3;
-     const dealt=Math.min(victim.hp,Math.max(0,e.damage-protection));
+     const guard=triageGuard>0?Math.min(2,Math.max(0,e.damage-protection)):0;
+     if(guard>0){triageGuard=0;tacticalEvents.push({round:turns,type:"triage-preparation",prevented:guard});}
+     const dealt=Math.min(victim.hp,Math.max(0,e.damage-protection-guard));
      victim.hp-=dealt;damageTaken+=dealt;
     }
    }else{
     const p=actor.entity;if(p.hp===0)continue;
+    p.reactionReady=true;p.reactionRefreshes++;
+    reactionEvents.push({round:turns,type:"refresh",actor:p.name});
     p.actions++;
     const tasks=Object.entries(objectives).filter(([_,done])=>!done);
     if(cooperation&&p.name==="especialista"&&tasks.length){
@@ -56,10 +64,16 @@ function run(level,seed,{cooperation=true,threatPolicy="most-exposed"}={}){
      const index={information:0,triage:1,negotiation:2}[task];
      const attr=index===2?3:3;
      const total=roll()+roll()+attr+SKILL_RANK_BONUSES[ranks[level][index]];
-     if(total>=17){objectives[task]=true;progress++;}
+     if(total>=17){
+      objectives[task]=true;progress++;
+      if(task==="information")informationFocus=1;
+      if(task==="triage")triageGuard=1;
+      if(task==="negotiation")negotiationDelay=1;
+      tacticalEvents.push({round:turns,type:"objective",task});
+     }
      continue;
     }
-    const f=foes.find(x=>x.hp>0);if(!f)continue;
+    const f=informationFocus?foes.filter(x=>x.hp>0).sort((a,b)=>a.hp-b.hp)[0]:foes.find(x=>x.hp>0);if(!f)continue;
     const cast=p.name==="canalizador"&&p.mana>=3;
     if(cast){p.mana-=3;spells++;}
     if(!cast&&Math.abs(f.x-p.x)>1){const step=Math.min(6,Math.max(0,f.x-p.x-1));p.x+=step;p.moves+=step;}
@@ -71,14 +85,15 @@ function run(level,seed,{cooperation=true,threatPolicy="most-exposed"}={}){
      const penetration=cast?2:0;
      const dealt=Math.min(f.hp,Math.max(0,raw-Math.max(0,e.protection-penetration)));
      f.hp-=dealt;damage+=dealt;
+     if(informationFocus){informationFocus=0;tacticalEvents.push({round:turns,type:"focused-hit",target:f.id});}
     }
    }
   }
  }
- return {level,seed,turns,objectives,progress,damage,damageTaken,spells,parries,
+ return {level,seed,turns,objectives,progress,damage,damageTaken,spells,parries,reactionEvents,tacticalEvents,
   survivors:party.filter(p=>p.hp>0).length,foesDefeated:foes.filter(f=>f.hp===0).length,
   totalActions:party.reduce((s,p)=>s+p.actions,0),party:party.map(({name,hp,mana,actions,reactions,moves,initiative})=>
-    ({name,hp,mana,actions,reactions,moves,initiative}))};
+    ({name,hp,mana,actions,reactions,reactionRefreshes,reactionReady,moves,initiative}))};
 }
 test("PROG-01M grupo: iniciativa individual, cuatro economías de Acción y Reacción",()=>{
  for(const level of [5,10,15,20])for(const seed of seeds){
@@ -118,4 +133,30 @@ test("PROG-01M grupo: matriz por nivel auditable",()=>{
    foesDefeated:mean("foesDefeated"),spells:mean("spells"),parries:mean("parries")};
  }
  console.log("PROG01M_PARTY "+JSON.stringify(results));
+});
+
+test("PROG-01M: la Reacción se recupera al inicio del turno propio, no al inicio de ronda",()=>{
+ for(const level of [5,10,15,20])for(const seed of seeds){
+  const state=run(level,seed);
+  for(const p of state.party){
+   assert.equal(p.reactionRefreshes,p.actions,"Un refresco por turno propio "+p.name);
+   let ready=true;
+   for(const event of state.reactionEvents.filter(e=>e.actor===p.name)){
+    if(event.type==="refresh")ready=true;
+    else {assert.equal(ready,true,"Reacción duplicada antes de turno propio");ready=false;}
+   }
+   assert.equal(p.reactionReady,ready);
+  }
+ }
+});
+test("PROG-01M: los objetivos causan eventos tácticos verificables sin convertirse en regla canónica",()=>{
+ const states=[5,10,15,20].flatMap(level=>seeds.map(seed=>run(level,seed)));
+ const events=states.flatMap(x=>x.tacticalEvents);
+ assert.ok(events.some(e=>e.type==="objective"&&e.task==="information"));
+ assert.ok(events.some(e=>e.type==="objective"&&e.task==="triage"));
+ assert.ok(events.some(e=>e.type==="objective"&&e.task==="negotiation"));
+ assert.ok(events.some(e=>e.type==="focused-hit"||e.type==="triage-preparation"||e.type==="negotiated-delay"));
+ for(const x of states){
+  assert.equal(x.progress,x.tacticalEvents.filter(e=>e.type==="objective").length);
+ }
 });
