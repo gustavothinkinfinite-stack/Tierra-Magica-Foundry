@@ -6,9 +6,9 @@ import {SKILL_RANK_BONUSES} from "../scripts/rules/skills.mjs";
 // perfiles para ensayo de aptitud, NO fichas completas ni reglas de cooperación.
 const levels=[5,10,15,20],seeds=[17,71,2026,911,3849,421,1543,3199,8527,101];
 const actors={
- marcial:{fue:3,agi:2,int:1,per:1,pre:2,skills:{athletics:[3,4,5,5]}},
- canalizador:{fue:1,agi:2,int:3,per:2,pre:1,skills:{arcana:[3,4,5,5]}},
- hibrido:{fue:3,agi:2,int:2,per:1,pre:1,skills:{athletics:[2,3,4,4],arcana:[2,3,4,4]}},
+ marcial:{fue:3,agi:2,int:1,per:1,pre:2,skills:{athletics:[2,3,3,4]}},
+ canalizador:{fue:1,agi:2,int:3,per:2,pre:1,skills:{arcana:[2,2,2,3]}},
+ hibrido:{fue:3,agi:2,int:2,per:1,pre:1,skills:{athletics:[2,3,3,3],arcana:[0,0,0,0]}},
  especialista:{fue:1,agi:1,int:3,per:2,pre:3,skills:{investigation:[3,4,5,5],persuasion:[2,3,3,3]}}
 };
 const tasks=[
@@ -28,8 +28,7 @@ function mission(level,seed,{assignment="specialized"}={}){
  for(const [index,task] of tasks.entries()){
   const candidates=Object.entries(actors).map(([name,actor])=>({name,actor,rank:actor.skills[task.skill]?.[levels.indexOf(level)]??0}));
   const choice=assignment==="specialized"?candidates.sort((a,b)=>
-   (b.actor[task.attribute]+SKILL_RANK_BONUSES[b.rank])-(a.actor[task.attribute]+SKILL_RANK_BONUSES[a.rank])||
-   a.name.localeCompare(b.name))[0]:candidates.find(a=>a.name==="marcial");
+   (b.actor[task.attribute]+SKILL_RANK_BONUSES[b.rank])-(a.actor[task.attribute]+SKILL_RANK_BONUSES[a.rank]) )[0]:candidates.find(a=>a.name==="marcial");
   // Flujo separado por reto: asignar otro actor no reordena dados de los demás.
   const result=attempt(choice.actor,task,level,(seed*101+index*4309)>>>0);
   used.add(choice.name);
@@ -73,4 +72,16 @@ test("PROG-01N: retos premian perfiles diferentes, no daño de combate",()=>{
   assert.equal(s.events.find(x=>x.task==="obstaculo").actor,"marcial");
   assert.equal(s.events.find(x=>x.task==="acuerdo").actor,"especialista");
  }
+});
+
+test("PROG-01N: rangos de habilidades comparados con la ruta nominal PROG-01G",()=>{
+ assert.deepEqual(actors.marcial.skills.athletics,[2,3,3,4]);
+ assert.deepEqual(actors.canalizador.skills.arcana,[2,2,2,3]);
+ assert.deepEqual(actors.hibrido.skills.athletics,[2,3,3,3]);
+ assert.deepEqual(actors.hibrido.skills.arcana,[0,0,0,0]);
+ assert.deepEqual(actors.especialista.skills.investigation,[3,4,5,5]);
+ assert.deepEqual(actors.especialista.skills.persuasion,[2,3,3,3]);
+ for(const actor of Object.values(actors))
+  for(const ranks of Object.values(actor.skills))
+   assert.ok(ranks.every(n=>n>=0&&n<=5));
 });
