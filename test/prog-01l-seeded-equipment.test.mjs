@@ -120,6 +120,7 @@ test("PROG-01L-3: orden y protección cambian resultados de al menos un perfil",
 });
 test("PROG-01L-3: agregados por arquetipo",()=>{
  const rows=Object.fromEntries(Object.entries(heroes).map(([name,p])=>[name,summarize(p)]));
+ console.log("PROG01L3_AGGREGATES",JSON.stringify(rows));
  assert.equal(rows.marcial.cases,90);
  assert.deepEqual(rows.marcial,rows.hibrido);
  for(const row of Object.values(rows)){
