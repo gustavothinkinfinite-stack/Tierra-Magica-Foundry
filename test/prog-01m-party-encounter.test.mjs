@@ -10,8 +10,10 @@ import {CALIBRATED_ENCOUNTERS} from "./fixtures/prog-01m-calibrated.mjs";
 const seeds=[17,71,2026,911,3849,421,1543,3199,8527,101];
 function dice(seed){let n=seed>>>0;return ()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return 2+Math.floor(n/4294967296*10);};}
 const ranks={5:[3,3,2],10:[4,3,3],15:[5,4,3],20:[5,4,3]};
-function run(level,seed,{cooperation=true,threatPolicy="most-exposed"}={}){
+function run(level,seed,{cooperation=true,tacticalEffects=true,threatPolicy="most-exposed"}={}){
  const roll=dice(seed),e=CALIBRATED_ENCOUNTERS[level];
+ // RNG por turno y actor: el consumo de dados no cambia si un efecto omite una Acción.
+ const actionRoll=(round,actor,kind)=>dice((seed*101+round*10007+actor*2713+kind*1301)>>>0);
  const names=["marcial","canalizador","hibrido","especialista"];
  const party=names.map(name=>{
   const h=ARCHETYPES[name],skills=LEVEL_RANKS[name][level];
@@ -37,7 +39,7 @@ function run(level,seed,{cooperation=true,threatPolicy="most-exposed"}={}){
    if(foes.every(f=>f.hp===0)||party.every(p=>p.hp===0))break;
    if(actor.kind==="foe"){
     const f=actor.entity;if(f.hp===0)continue;
-    if(negotiationDelay>0){negotiationDelay--;tacticalEvents.push({round:turns,type:"negotiated-delay",foe:f.id});continue;}
+    if(tacticalEffects&&negotiationDelay>0){negotiationDelay--;tacticalEvents.push({round:turns,type:"negotiated-delay",foe:f.id});continue;}
     const victim=targetOrder()[0];if(!victim)continue;
     if(f.x>victim.x+1)f.x=Math.max(victim.x+1,f.x-6);
     if(Math.abs(f.x-victim.x)>1)continue;
@@ -46,9 +48,10 @@ function run(level,seed,{cooperation=true,threatPolicy="most-exposed"}={}){
      defense+=2;victim.reactionReady=false;victim.reactions++;parries++;
      reactionEvents.push({round:turns,type:"spent",actor:victim.name});
     }
-    if(roll()+roll()+e.attack>=defense){
+    const foeDice=actionRoll(turns,f.id,1);
+    if(foeDice()+foeDice()+e.attack>=defense){
      const protection=victim.name==="marcial"?4:victim.name==="canalizador"?2:3;
-     const guard=triageGuard>0?Math.min(2,Math.max(0,e.damage-protection)):0;
+     const guard=tacticalEffects&&triageGuard>0?Math.min(2,Math.max(0,e.damage-protection)):0;
      if(guard>0){triageGuard=0;tacticalEvents.push({round:turns,type:"triage-preparation",prevented:guard});}
      const dealt=Math.min(victim.hp,Math.max(0,e.damage-protection-guard));
      victim.hp-=dealt;damageTaken+=dealt;
@@ -63,12 +66,13 @@ function run(level,seed,{cooperation=true,threatPolicy="most-exposed"}={}){
      const [task]=tasks[round%tasks.length];
      const index={information:0,triage:1,negotiation:2}[task];
      const attr=index===2?3:3;
-     const total=roll()+roll()+attr+SKILL_RANK_BONUSES[ranks[level][index]];
+     const taskDice=actionRoll(turns,3,2);
+     const total=taskDice()+taskDice()+attr+SKILL_RANK_BONUSES[ranks[level][index]];
      if(total>=17){
       objectives[task]=true;progress++;
-      if(task==="information")informationFocus=1;
-      if(task==="triage")triageGuard=1;
-      if(task==="negotiation")negotiationDelay=1;
+      if(tacticalEffects&&task==="information")informationFocus=1;
+      if(tacticalEffects&&task==="triage")triageGuard=1;
+      if(tacticalEffects&&task==="negotiation")negotiationDelay=1;
       tacticalEvents.push({round:turns,type:"objective",task});
      }
      continue;
@@ -80,7 +84,8 @@ function run(level,seed,{cooperation=true,threatPolicy="most-exposed"}={}){
     if(!cast&&Math.abs(f.x-p.x)>1)continue;
     const bonus=cast?p.h.int+SKILL_RANK_BONUSES[p.skills[1]]:
       p.h.fue+SKILL_RANK_BONUSES[p.skills[0]];
-    if(roll()+roll()+bonus>=e.defense){
+    const hitDice=actionRoll(turns,names.indexOf(p.name),3);
+    if(hitDice()+hitDice()+bonus>=e.defense){
      const raw=cast?6:5+p.h.fue;
      const penetration=cast?2:0;
      const dealt=Math.min(f.hp,Math.max(0,raw-Math.max(0,e.protection-penetration)));
@@ -159,4 +164,31 @@ test("PROG-01M: los objetivos causan eventos tácticos verificables sin converti
  for(const x of states){
   assert.equal(x.progress,x.tacticalEvents.filter(e=>e.type==="objective").length);
  }
+});
+
+test("PROG-01M pareado: igual iniciativa y objetivos, con/sin consecuencias",()=>{
+ const matrix={};
+ for(const level of [5,10,15,20]){
+  const pairs=seeds.map(seed=>({
+   enabled:run(level,seed,{cooperation:true,tacticalEffects:true}),
+   disabled:run(level,seed,{cooperation:true,tacticalEffects:false})
+  }));
+  for(const {enabled,disabled} of pairs){
+   assert.deepEqual(enabled.party.map(p=>p.initiative),disabled.party.map(p=>p.initiative));
+   assert.deepEqual(enabled.objectives,disabled.objectives);
+   assert.equal(enabled.progress,disabled.progress);
+   assert.equal(disabled.tacticalEvents.filter(e=>e.type!=="objective").length,0);
+  }
+  const mean=(key,field)=>+(pairs.reduce((s,x)=>s+x[key][field],0)/pairs.length).toFixed(2);
+  const a={survivors:mean("enabled","survivors"),received:mean("enabled","damageTaken"),
+   objectives:mean("enabled","progress"),damage:mean("enabled","damage")};
+  const b={survivors:mean("disabled","survivors"),received:mean("disabled","damageTaken"),
+   objectives:mean("disabled","progress"),damage:mean("disabled","damage")};
+  matrix[level]={withEffects:a,withoutEffects:b,
+   deltaSurvivors:+(a.survivors-b.survivors).toFixed(2),
+   deltaReceived:+(a.received-b.received).toFixed(2),
+   deltaObjectives:a.objectives-b.objectives,
+   deltaDamage:+(a.damage-b.damage).toFixed(2)};
+ }
+ console.log("PROG01M_PAIRED_TACTICS "+JSON.stringify(matrix));
 });
