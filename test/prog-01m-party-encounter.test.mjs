@@ -92,7 +92,7 @@ function run(level,seed,{cooperation=true,threatPolicy="most-exposed"}={}){
  }
  return {level,seed,turns,objectives,progress,damage,damageTaken,spells,parries,reactionEvents,tacticalEvents,
   survivors:party.filter(p=>p.hp>0).length,foesDefeated:foes.filter(f=>f.hp===0).length,
-  totalActions:party.reduce((s,p)=>s+p.actions,0),party:party.map(({name,hp,mana,actions,reactions,moves,initiative})=>
+  totalActions:party.reduce((s,p)=>s+p.actions,0),party:party.map(({name,hp,mana,actions,reactions,reactionRefreshes,reactionReady,moves,initiative})=>
     ({name,hp,mana,actions,reactions,reactionRefreshes,reactionReady,moves,initiative}))};
 }
 test("PROG-01M grupo: iniciativa individual, cuatro economías de Acción y Reacción",()=>{
