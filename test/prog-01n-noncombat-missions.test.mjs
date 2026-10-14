@@ -9,7 +9,7 @@ const actors={
  marcial:{fue:3,agi:2,int:1,per:1,pre:2,skills:{athletics:[2,3,3,4]}},
  canalizador:{fue:1,agi:2,int:3,per:2,pre:1,skills:{arcana:[2,2,2,3]}},
  hibrido:{fue:3,agi:2,int:2,per:1,pre:1,skills:{athletics:[2,3,3,3],arcana:[0,0,0,0]}},
- especialista:{fue:1,agi:1,int:3,per:2,pre:3,skills:{investigation:[3,4,5,5],persuasion:[2,3,3,3]}}
+ especialista:{fue:1,agi:1,int:3,per:2,pre:3,skills:{investigation:[3,4,5,5],arcana:[2,3,3,4],persuasion:[2,3,3,3]}}
 };
 const tasks=[
  {id:"obstaculo",label:"Franquear obstáculo",attribute:"fue",skill:"athletics",dc:17,domain:"exploracion"},
@@ -80,6 +80,7 @@ test("PROG-01N: rangos de habilidades comparados con la ruta nominal PROG-01G",(
  assert.deepEqual(actors.hibrido.skills.athletics,[2,3,3,3]);
  assert.deepEqual(actors.hibrido.skills.arcana,[0,0,0,0]);
  assert.deepEqual(actors.especialista.skills.investigation,[3,4,5,5]);
+ assert.deepEqual(actors.especialista.skills.arcana,[2,3,3,4]);
  assert.deepEqual(actors.especialista.skills.persuasion,[2,3,3,3]);
  for(const actor of Object.values(actors))
   for(const ranks of Object.values(actor.skills))
