@@ -133,3 +133,28 @@ test("Coordinación Reactiva rechaza disparadores vacíos, ajenos o incapacitado
     assert.equal(pc.system.turn.action, true); assert.equal(pc.system.turn.reaction, true); assert.equal(pc.updates.length, 0); assert.equal(pet.updates.length, before);
   }
 });
+
+test("PROG-01F: Vínculo I no habilita Sentidos Compartidos",async()=>{
+  const pc=owner([technique("Sentidos Compartidos")]);
+  const pet=familiar({bondLevel:1});
+  const result=await pc.useFamiliarSense(pet);
+  assert.equal(typeof result,"string");
+  assert.equal(pc.updates.length,0);
+});
+
+test("PROG-01F: Familiar ajeno no habilita Sentidos Compartidos aunque tenga Vínculo III",async()=>{
+  const pc=owner([technique("Sentidos Compartidos")]);
+  const result=await pc.useFamiliarSense(familiar({bondLevel:3,ownerUuid:"Actor.other"}));
+  assert.equal(typeof result,"string");
+  assert.equal(pc.updates.length,0);
+});
+
+test("PROG-01F: Origen Remoto sigue bloqueado por debajo de Vínculo III",async()=>{
+  const spell={type:"spell",name:"Prueba",system:{}};
+  for(const bondLevel of [1,2]){
+    const pc=owner([technique("Origen Remoto")]);
+    const result=await pc.castFromFamiliar(familiar({bondLevel}),spell);
+    assert.equal(typeof result,"string");
+    assert.equal(pc.spellUses.length,0);
+  }
+});
