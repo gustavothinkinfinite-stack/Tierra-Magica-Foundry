@@ -22,7 +22,7 @@
 | Oscuros | Proponer **Descenso de las Raíces Profundas** como proceso histórico colectivo: migraciones de refugio a galerías y cuencas subterráneas por presión ambiental, conflictos e interés en corredores minerales; generaciones adaptadas a vida soterrada | Resuelve motivación social sin asignar causa única de toda adaptación; no concede visión nocturna ni inmunidad |
 | Poblaciones mixtas | Entenderlas como comunidades de diversas ramas élficas, mestizaje social entre ellas y poblaciones no adscritas; no confirmar descendencia entre Elfos y otras especies | Respeta compatibilidad reproductiva inter-pueblos abierta |
 | Instituciones | Proponer Archivos de Savia, Asambleas de Cuenca, Casas de Foco y Consejos del Umbral; no son entidades internacionales canónicas | Concretar vida social, enseñanza, conflictos |
-| Rituales | Proponer Libro de Estaciones, Trasplante de Memoria, Acuerdo de Sombra y Observancia de Agua Larga, según comunidad, sin poderes mágicos | Vincular tradición con ciclos y transmitir responsabilidades sin ventajas gratis |
+| Rituales | Proponer Libro de Estaciones, Traspaso de Testimonios, Acuerdo de Sombra y Observancia de Agua Larga, según comunidad, sin poderes mágicos | Vincular tradición con ciclos y transmitir responsabilidades sin ventajas gratis |
 
 ## III. Biología, ciclo vital y organización familiar [PROPUESTA]
 - **Cuerpo:** esbeltez o robustez variables, anatomía humanoide con proporciones distintas pero compatibles con Escala Mediana. Una apariencia «élfica» no obliga a belleza ideal, perfección física ni sentidos sin límite. Las orejas son indicio visual de linaje, no un dispositivo telepático.
@@ -66,7 +66,7 @@
 
 ## V. Religión, filosofía y ritos
 **[CANON]** Eïra no es Bien moral y su religión no es universal entre Elfos. Guardianes de la Savia son una tradición sacerdotal extendida abierta al estudio, continuidad y sanación; los otras familias (Custodios de la Hoja, Hermanos de la Sangre) no quedan excluidas. Primer Brote, Plenitud y Retorno a la Tierra son festividades canónicas de sus cultos, con fechas regionales.
-**[PROPUESTA]** Una misma ciudad élfica puede albergar devotos de Eïra, Aster (elección), Oria (acuerdos), Aurea (hogar) y no creyentes. El **Trasplante de Memoria** sería un rito comunitario no mágico: una persona confía sus registros, herramientas y preguntas abiertas a otra, que puede corregirlos, no sólo preservarlos. Permite dramatizar el contraste «continuidad viva» vs. «tradición inmutable». No concede recuerdos ajenos ni rangos de habilidad. Un individuo puede ser sacerdote por Vínculo adquirido legalmente, no por origen racial.
+**[PROPUESTA]** Una misma ciudad élfica puede albergar devotos de Eïra, Aster (elección), Oria (acuerdos), Aurea (hogar) y no creyentes. El **Traspaso de Testimonios** sería un rito comunitario no mágico: una persona confía sus registros, herramientas y preguntas abiertas a otra, que puede corregirlos, no sólo preservarlos. Permite dramatizar el contraste «continuidad viva» vs. «tradición inmutable». No concede recuerdos ajenos ni rangos de habilidad. Un individuo puede ser sacerdote por Vínculo adquirido legalmente, no por origen racial.
 
 ## VI. Política en 612 C. y relaciones
 - **Con Erelia [CANON+PROPUESTA]:** conflictos entre protección de bosques y expansión industrial afectan a personajes Silvanos y no Silvanos, en bandos variados. Una negociación sobre vías es trama posible, no suceso histórico concreto nuevo.
@@ -92,7 +92,7 @@
 | Silvano | Integración ecosistémica | Asambleas de Cuenca, Observancia del Agua Larga |
 | Oscuro | Profundidades; origen exacto de adaptación abierto | Consejos del Umbral, Acuerdo de Sombra, refugios y comercio |
 | Mixto | Poblaciones comunes/mixtas | Redes multiculturales, identidad elegible |
-| Magia y religión | Eïra, cultos y Vínculo normal | Trasplante de Memoria como rito laico o religioso sin poderes |
+| Magia y religión | Eïra, cultos y Vínculo normal | Traspaso de Testimonios como rito laico o religioso sin poderes |
 | Reglas | Escala Mediana, Movimiento 6, dos capacidades | **Sin cambios**; no existe necesidad de Habilidad racial nueva |
 
 ## IX. Misterios conservados intencionalmente
