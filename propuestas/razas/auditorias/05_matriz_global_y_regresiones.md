@@ -201,3 +201,8 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - [`05_b5_i12_oficios_y_conciliacion.md`](./05_b5_i12_oficios_y_conciliacion.md): cuatro propuestas no canónicas B5-I12-P01–P04, 20 regresiones **DOC no ejecutadas** B5-I12-T01–T20 y conciliación explícita de las doce filas temáticas originales con anexos existentes.
 - Crafting/Alquimia/Ingeniería/Familiares/rituales no heredan recursos, Habilidades, Fórmulas, Maná, Energía, Acción ni materiales gratuitos de Ascendencia/Origen/Trasfondo; Rasgos idénticos no apilan ni cobran doble.
 - **Advertencia de integridad:** números de anexos B5-I05–I11 y filas originales no son isomorfos; la conciliación es temática, no cierre de todas las cuestiones. Siguen abiertos movimiento/caída, conexión sostenida, Anfibio, paridad Hobgoblin, 0 Vida y ejecución de pruebas. **0 Foundry, 0 mesa**. **Siguiente: acta global de cierre documental B5 y decisión de bloqueantes editoriales; fase C aún no autorizada**.
+
+## Acta de conciliación global — 17-11-2026
+- [`05_b5_acta_conciliacion_y_puerta_editorial.md`](./05_b5_acta_conciliacion_y_puerta_editorial.md): auditadas las doce filas temáticas originales y la discrepancia de numeración de anexos.
+- **7 bloqueantes editoriales:** I01, I02, I04, I05, I06, I08, I10; **4 pendientes de cierre editorial:** I03, I07, I09, I11; **1 frontera canónica delimitada:** I12. Ninguno implica aprobación ni prueba de motor.
+- **0/12 escenarios globales ejecutados, 0/66 pares certificados empíricamente, 0 Foundry/mesa.** No cerrar B5 ni habilitar fase C hasta resolver bloqueantes y revisar guiones. Siguiente: procedimiento común I01/I02/I10 (movimiento, anclaje y 0 Vida).
