@@ -1,7 +1,7 @@
 # Tablero — Proyecto razas de Tierra Mágica
 
 **Rama:** `propuestas/razas-autonomas-2026`
-**Estado:** trabajo autónomo en curso; absolutamente todo es **PROPUESTA NO CANÓNICA**.
+**Estado:** trabajo autónomo en curso; absolutamente todo es **PROPUESTA NO CANÓNICA**. **Plan ampliado:** completar 12 expedientes → auditoría múltiple de cada familia y global → redactar 12 versiones finales propuestas para el Manual Básico. Ver [`00_plan_auditorias_y_manual.md`](./00_plan_auditorias_y_manual.md).
 **Fuente canónica:** `main:docs/Tierra_Magica_Manual_Maestro.md`.
 
 | Nº | Familia | Estado del borrador | Siguiente trabajo |
@@ -18,6 +18,24 @@
 | 10 | Verdantes | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar CLN-01, biología y test de Enraizar/biomas |
 | 11 | Micelios | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Enlace, alcance, retransmisión y evaluar MIC-08 |
 | 12 | Coralios | Próximo a trabajar | Auditar Respiración Anfibia, Esqueleto Coralino, Sentido de Corriente; cultura oceánica y doble página |
+
+
+## Fases posteriores al cierre de los 12 expedientes (mandato del creador)
+
+**No detenerse en 12/12.** Las dobles páginas v0.1 son bocetos editoriales sujetos a auditoría, no entrega definitiva para el libro.
+
+| Fase | Estado | Entrega verificable | Próximo hito |
+|---|---|---|---|
+| A. Doce expedientes iniciales | En curso, **10/12** al incorporar plan | Cinco archivos base por familia | Coralios y consolidación de Humanos |
+| B1. Canon y lore | Pendiente | Auditoría individual por 12 familias | Tras A |
+| B2. Mecánicas y costes | Pendiente | Auditoría exhaustiva contra subsistemas completos | Tras B1, por familia |
+| B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
+| B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
+| B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
+| C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
+| D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
+
+En cada mensaje «avanzar» se hace la siguiente unidad sustantiva pendiente. **Si todo está realmente completado**, no rehacer trabajo ni inventar novedades: informar cierre brevemente. No hay permiso para hacer merge ni modificar `main`/Foundry.
 
 ## Registro de ejecución
 
@@ -115,3 +133,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Doble página: **714 palabras imprimibles**. Matriz: **44 casos de aceptación documental**, no partidas ejecutadas ni certificado empírico.
 - **Estado global: 10 de 12 expedientes integrales de BORRADOR completos** —Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar, Cristálidos, Verdantes y Micelios—; Humanos pendiente de consolidación y Coralios pendiente de elaboración. Ninguno aprobado; `main`, mapa y Foundry sin cambios.
 - **Próximo ciclo:** Coralios; después completar Humanos y hacer auditoría cruzada, índice y dossier final.
+
+### 2026-11-17 — Ampliación del alcance editorial por instrucción del creador
+- El objetivo **no** termina cuando los doce expedientes iniciales estén completos. Se requiere auditar cada raza varias veces, comparándola contra **todas** las reglas del proyecto, detectar desequilibrios/exploits, proponer mejoras y revisarlas entre sí.
+- Solo después de completar auditorías individuales y globales debe prepararse el **texto final propuesto para manual** de cada raza, sin confundirlo con la doble página v0.1 anterior.
+- Se creó `00_plan_auditorias_y_manual.md` y se amplió `README.md` con fases A–D, salidas verificables, pruebas documentales vs. empíricas, registro de incidencias, regresiones y criterio de cierre definitivo.
+- **Instrucción «avanzar»:** continuar trabajo sustantivo hasta que ninguna fase tenga tarea pendiente. Tras cierre técnico no repetir ni simular progreso; pausar tarea horaria cuando la herramienta lo permita.
+- Se conserva toda escritura únicamente en esta rama bajo `propuestas/razas/`; `main`, el Manual Maestro vigente y el código Foundry quedan fuera del alcance.
