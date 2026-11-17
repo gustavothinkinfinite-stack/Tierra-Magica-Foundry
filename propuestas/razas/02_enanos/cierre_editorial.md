@@ -4,7 +4,7 @@
 
 ## Paquete comprobado
 - Expediente `auditoria_y_desarrollo.md`: canon, propuesta biológica, instituciones, cuatro tradiciones, religión, diferencias.
-- `doble_pagina.md`: apertura narrativa y cierre jugable, **~852 palabras incluyendo títulos y nota editorial**; aproximadamente objetivo 650–850 palabras impresas si se excluye la nota de producción.
+- `doble_pagina.md`: apertura narrativa y cierre jugable, **767 palabras en el contenido de las dos páginas** (incluidos subtítulos, sin título general, aviso preliminar ni nota final); **810 palabras** al incluir título general y aviso preliminar. Recuento documental reproducible, dentro del objetivo editorial de 650–850.
 - `brief_arte.md`: escena funcional en Kar-Dur; no se generó imagen.
 - `pruebas_balance.md`: 24 casos de prueba definidos más guion de sesión y riesgos.
 - Ningún archivo de `main`, ni Foundry, ni mapa maestro fue alterado.
@@ -23,7 +23,7 @@
 ## Resoluciones tomadas dentro del borrador — sujetas a aprobación
 - Mantener un único paquete Enano con cuatro tradiciones culturales abiertas a la mezcla.
 - Proponer comunidades e instituciones diferenciadas: Junta del Paso, Mesa de Galería, Círculos de Prueba y Casas de Ruta, sin pretender que gobiernen todas las Holdas.
-- Proponer celebraciones locales sin efectos mecánicos: Recuento de Deshielo, Lectura de Estratos, Presentación del Objeto Fallido y Entrega de Herramientas.
+- Proponer celebraciones locales sin efectos mecánicos: Recuento de Deshielo, Lectura de Estratos, Presentación del Objeto Fallido y Registro de Partida.
 - La religión se presenta como plural; las Prácticas de la Obra Abierta no reemplazan la doctrina de Khorun.
 - No inventar Habilidad racial nueva: Ingeniería, Artesanía, Religión, Historia, Supervivencia, etc., ya contemplan formación y oficio.
 - Mantener sin responder qué hay bajo los complejos de los Fundadores; es misterio narrativo útil.
