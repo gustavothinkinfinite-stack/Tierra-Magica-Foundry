@@ -148,3 +148,10 @@ Secuencia obligatoria: **(1)** red fúngica viva, compatible y **continua**; **(
 El mecanismo literal de la Primera Semilla; cómo surge por primera vez la consciencia dentro de redes fúngicas; compatibilidad reproductiva de especies; existencia de redes arcanas excepcionales con poderes adicionales; detalles históricos de colonias sin coordenadas canónicas. Se conservan porque añadir respuestas universales cerraría aventuras sin resolver un vacío de juego.
 
 **Dictamen:** Micelios son jugables con paquete v0.3. **No falta Habilidad racial nueva.** El problema central es evitar encadenamiento de redes, telepatía/radar no previstos y extrapolación de esporas o química. Queda resuelto documentalmente con una guía de compatibilidad que no altera las reglas existentes.
+
+
+## Actualización B3 — 17-11-2026
+
+**B3 documental terminada, no canónica:** `auditorias/03_exploits_y_pruebas.md` contiene 40 escenarios MIC-T61–MIC-T100, cuatro secuencias y doce incidencias; total **100 DOC, 0 MOD/Foundry/mesa**. Se conserva el paquete v0.3 sin cambios: MOV6, Mediana, Sustento Fúngico, +1 PER sólo ante señales químicas cercanas enumeradas y Enlace Micelial con Acción inicial, red viva/compatible/continua, contacto de ambos, consentimiento y 12 espacios. Sin mapa, telepatía, magia remota, regeneración ni recursos ilimitados.
+
+**[PROPUESTAS NUEVAS PARA APROBACIÓN GLOBAL, NO CANON]:** MIC-B3-P01 medición geométrica entre participantes dentro de 12 espacios (sin sustituir continuidad física), MIC-B3-P02 nueva Acción para reconectar tras perder contacto, MIC-B3-P03 retransmisión sólo del mensaje simple realmente conocido con Acción y condiciones de cada emisor, MIC-B3-P04 ficha de señal química (fuente, vía física, clase) sin radio numérico inventado. Ninguna agrega poder, PD, PR, Maná o Acción. **B4/B5** compararán utilidad, coste de oportunidad y geometría antes de versión editorial final.
