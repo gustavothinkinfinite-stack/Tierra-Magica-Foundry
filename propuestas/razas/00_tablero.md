@@ -16,8 +16,8 @@
 | 08 | Ankar | Borrador v0.1; **B1 y B2 documentales completas**; 44 casos | B3: alcance/frecuencia, apilamiento mental y efectos compuestos; B4: balance |
 | 09 | Cristálidos | Borrador v0.1; **B1 y B2 documentales completas**; 68 casos | B3: conexión, Sobrecarga y ocultación; B4: biología y balance |
 | 10 | Verdantes | Borrador v0.1; **B1 y B2 documentales completas**; 56 casos | B3: Enraizar, Sustento, Bioma; B4: CLN-01 y balance |
-| 11 | Micelios | Expediente v0.1 + **B1 canon/lore completada** | B2: alcance químico, continuidad y Acción; B3: retransmisión; B4: biología |
-| 12 | Coralios | Expediente v0.1 + **B1 canon/lore completada** | B2: hidratación, Movimiento 5/6, Protección, Sentido; B4: Anfibio 1 PR |
+| 11 | Micelios | Expediente v0.1; **B1 y B2 documentales completas**, 60 criterios | B3: distancia/red/barreras/retransmisión; B4: utilidad química y biología |
+| 12 | Coralios | Expediente v0.1; **B1 y B2 documentales completas**, 64 criterios | B3: tierra/agua, hidratación y protección; B4: Anfibio 1 PR y balance |
 
 
 ## Fases posteriores al cierre de los 12 expedientes (mandato del creador)
@@ -28,9 +28,9 @@
 |---|---|---|---|
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
-| B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente; B2 en curso |
-| B2. Mecánicas y costes | **En curso: 10/12 (hasta Verdantes)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Micelios**, luego Coralios |
-| B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
+| B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
+| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, con incidencias B3/B4/B5 abiertas | Cerrada documentalmente; **siguiente B3 Humanos** |
+| B3. Exploits y secuencias | **PENDIENTE: 0/12** | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | **Siguiente: Humanos**, luego Enanos y restantes |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -288,3 +288,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Enraizar requiere Acción, suelo e inmovilidad; +1 categoría efectiva sólo en resistencias enumeradas, sin +Defensa. `Martillo Cinético` expresa 0 desplazamiento contra objetivo «anclado», pero confirmar aplicación formal a Enraizar corresponde a B3; no quita el daño o Defensa Corporal del Hechizo.
 - Bioma elige **un** beneficio +1 VIG ambiental **o** eliminar una causa concreta de terreno; no apilar un +1 equivalente comprado, ni extender por inferencia al viaje regional completo. Bioma Llanura/hierba alta continúa **propuesto**.
 - **B2: 10/12; próximo Micelios**, luego Coralios. No se editó `main`, Foundry ni mapa; B3–B5 y capítulos finales siguen posteriores.
+
+### 2026-11-17 — Cierre documental B2 12/12: Micelios y Coralios
+- **Micelios:** reabierto paquete v0.3 de `main` y contrastado con Percepción, Acción/Reacción, distancia, línea de efecto, Familiares/Origen Remoto, Viaje/Forraje/Fatiga, CRAFT/Ritualismo y demás subsistemas. Nuevo `11_micelios/auditorias/02_mecanicas_y_costes.md` con **17 fichas, 20 escenarios y 11 incidencias**. Añadidos `MIC-T45–MIC-T60`, total **60 criterios documentales no ejecutados**; notas B2 al desarrollo y cierre editorial.
+- **Micelios — límites:** Quimiosensibilidad usa señales químicas «cercanas» sin cifra; **12 espacios** sólo corresponden a Enlace. Enlace exige **Acción inicial**, red viva/compatible/continua, contacto, otro Micelio voluntario y mensaje simple; no conferencia, telepatía, radar o línea de efecto. B3 analizará red sinuosa, pared con red realmente continua, interrupciones, reconexión y retransmisión independiente A→B→C.
+- **Coralios:** reabierto paquete v0.3 y comparado con Anfibio 1 PR, Velocidades, Caídas, Protección/Penetración, Fatiga/Descanso/Medicina, Sentido Agudo, CHC-01 y magia/equipo. Nuevo `12_coralios/auditorias/02_mecanicas_y_costes.md` con **18 fichas, 20 escenarios y 11 incidencias**. Añadidos `COR-T49–COR-T64`, total **64 criterios documentales no ejecutados**; notas B2 en desarrollo y cierre editorial. Se corrigió el cierre antiguo que afirmaba que Humanos seguía pendiente: los 12 expedientes A y B1/B2 están completos.
+- **Coralios — límites:** tierra5/agua6 no suman dos reservas; cambio exacto entre medios queda para B3 común con Hada/Terio. Prot Natural 1 **no suma** armadura (armadura3 + Pen1 → Prot efectiva2). Respiración anfibia exige hidratación razonable, sin inmunidad a presión/toxinas/desecación; `CHC-01` no introduce reloj obligatorio. Sentido de Corriente +1 PER sólo cuando el agua transmite señal determinante; `Resonancia Oceánica` no integra paquete.
+- **Se verificó mediante lectura directa la existencia de las doce rutas individuales `auditorias/02_mecanicas_y_costes.md`, de Humanos a Coralios. B1 y B2: 12/12; B3: 0/12.** Los resultados previos son **análisis documentales**, no tests empíricos. **Siguiente unidad sustantiva B3 Humanos**, después B3 Enanos y los demás; tras B3, B4, B5, doce textos finales propuestos y cierre técnico. No se editó `main`, Foundry ni cartografía.
