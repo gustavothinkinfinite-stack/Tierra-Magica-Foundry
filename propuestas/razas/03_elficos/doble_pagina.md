@@ -51,7 +51,7 @@ Los valles de **Erelia**, las academias de **Lysendra** y las ciudades comercial
 **Aprendizaje y creación.** Ser Alto, Silvano, Oscuro o pertenecer a una comunidad mixta no concede INT, AGI, Naturaleza, Sigilo, magia ni características morales. La ascendencia tampoco otorga Habilidades o aumentos de Atributo gratuitos, no consume los **25 PD ni los 3 PR generales** y no progresa automáticamente.
 
 ### Elegir un camino
-Una exploradora de Erelia puede aprender Supervivencia, Cartografía e Investigación. Un estudiante de Lysendra puede dedicarse a Arcana, Ingeniería o Medicina. Una mensajera criada en galerías subterráneas puede especializarse en rutas y negociación. Todas esas capacidades proceden de sus elecciones profesionales, no de la rama élfica.
+Una exploradora de Erelia puede entrenar Supervivencia e Investigación y estudiar cartografía. Un estudiante de Lysendra puede dedicarse a Arcana, Ingeniería o Medicina. Una mensajera criada en galerías subterráneas puede especializarse en rutas y negociación. Todas esas capacidades proceden de sus elecciones profesionales, no de la rama élfica.
 
 El Origen establece la familiaridad cultural y los idiomas iniciales; ningún Elfo conoce una lengua exclusiva por nacimiento.
 
