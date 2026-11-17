@@ -143,3 +143,18 @@ No hay una iglesia orca única ni una doctrina que impida culto a Aurea, Ilyr, O
 **Cerradas solamente dentro de esta rama:** cuatro perfiles culturales suficientemente concretos para el Manual y el juego, biología provisional, instituciones y ritos funcionales, representación mecánica de linajes especiales con Rasgos generales ya costeados. **Ninguna nueva Habilidad es indispensable** para jugar un Orco.
 
 **A conservar en la revisión global:** no añadir subrazas gratuitamente, no demonizar a los Orcos, no confundir Varkor con Nereth, no reemplazar decisión individual con biología. Describir activamente la posibilidad de que el conflicto sea cuidado, negociación, oposición civil y retirada responsable. El origen material exacto de los linajes legendarios continúa siendo un misterio de campaña.
+
+
+## 10. Actualización B3 — explotaciones y evidencia (17-11-2026)
+
+**B3 Orcos completada documentalmente, NO validada en mesa/Foundry.** Nuevo `auditorias/03_exploits_y_pruebas.md` con **24 ataques adversariales, cuatro secuencias y doce incidencias**; `pruebas_balance.md` contiene ahora **64 criterios DOC** (40 anteriores + ORC-T41–T64). `auditorias/modelo_auxiliar_b3_orcos.js` permite reproducir **20 fixtures de clasificación**, cotejados durante auditoría con **20 salidas previstas coincidentes**; seis indican deliberadamente asuntos abiertos, **no** reglas nuevas. Evidencia: **64 DOC, 20 MOD, 0 ENV Foundry, 0 MESA**.
+
+**[CANON, control de habilidad]** `Voluntad del Colmillo` sólo se declara **antes de la prueba**, **una vez por Escena**, ante **Desventaja exclusivamente por dolor, miedo o agotamiento físico**. Si hay otra causa ajena (niebla/terreno/oscuridad), no es elegible. Con **dolor+miedo independientes**, ignorar uno deja Desventaja por el otro; las Desventajas múltiples no se apilan en dados. **[ABIERTA B4/B5 ORC-B3-PROP-01]** decidir si se permite/consume activación que no cambia dados, sin inventar reembolso por defecto.
+
+**[ABIERTA B4/B5 ORC-B3-PROP-02]** `Ayuda` real o `Tónico de Vigor` pueden dar Ventaja que cancela Desventaja; el Manual no establece orden de **elegibilidad y consumo** de Voluntad respecto de esa cancelación. No afirmar Ventaja «sobrante» ni prohibir todo uso antes de comparar resoluciones equivalentes. `Valor Inspirado` otorga +2 **Defensa Mental** en su ámbito, **no** Ventaja universal. `Supresor del Dolor` puede hacer desaparecer una fuente compatible sin curar; Voluntad no genera beneficio cuando ya no hay Desventaja elegible.
+
+**[CANON]** `Complexión Orca` no aumenta FUE global: sólo +1 FUE efectiva al resolver Carga/levantar/arrastrar/fuerza bruta contra **objetos inertes**. No Empujar, Derribar, Agarrar, Desarmar contra oponente activo, Ataque ni Daño por armas. No hay kg/ranuras universales en Carga. La escena de un cuerpo inconsciente sin oposición se documenta como caso contextual de Carga, no como excepción general que regale maniobras.
+
+**[CANON]** Fatigado tiene Desventaja en esfuerzo prolongado pertinente; Exhausto resta **2 a MOV6→4** aun al usar Voluntad; Colapsado impide esfuerzo significativo. A 0 Vida no hay curación, Reacción ni exención de Trauma. Rasgos Sangre/Bastión se compran a coste normal, con Corpulento/Masivo no acumulables. Las cuatro tradiciones siguen sin nuevos paquetes.
+
+**Siguiente B3:** Goblinoides. Después B4/B5 compararán frecuencia de Voluntad y precedencias de Ventaja, sin introducir modificaciones canónicas.
