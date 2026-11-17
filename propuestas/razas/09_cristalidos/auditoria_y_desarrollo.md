@@ -170,3 +170,13 @@ Para evitar una adjudicación arbitraria, se propone una **lista de verificació
 **El paquete racial Cristálido de Matriz Mixta v0.3 es autosuficiente y jugable sin nueva Habilidad.** Sus dos rasgos operativos son herramientas de lectura/puente limitado, no autoridad para crear energía ni resistir daño. El trabajo nuevo necesario es de **lore biológico**, **pluralidad cultural** y **protocolo de interfaz y consentimiento**, todos desarrollados aquí como propuestas completas.
 
 No se modifica `main`, código Foundry, mapa maestro ni economía de Cristales de Resonancia. Las propuestas pueden entrar a revisión global al terminar las doce familias.
+
+## Actualización B3 — 17-11-2026
+
+**[CANON]** Se reabrió el paquete de Matriz Mixta en `main` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`), y las reglas de Sobrecarga mágica, Ingeniería, CRAFT-05/07 y Familiares. **B3 documental completada** en `auditorias/03_exploits_y_pruebas.md`: 28 casos nuevos, cuatro secuencias y diez incidencias. Batería total **96 DOC; 0 Foundry/mesa**.
+
+**[CANON] Resonancia Arcana:** contacto directo y condición energética general, sin lectura de E/C/Est, ubicación de componentes, Fuente, hechizo, constructor, finalidad ni diagnóstico. Los sellos específicos de ocultación siguen su propio texto; no se inventa DF o prioridad universal.
+
+**[CANON] Conductor Vivo:** puente voluntario sólo ante interfaz diseñada, sin generar Energía/Maná, Caudal, Reserva, Acción, Habilidad ni Fuente. Ejemplo E8/C3 Consumo3: E5; Consumo4 ordinario inválido por Caudal. La Sobrecarga Controlada compatible usa **INT+Ingeniería DF16** y puede aumentar C efectivo en 1 durante una activación, dejando dispositivo Dañado al éxito o Deshabilitado al fallo; no se confunde con Sobrecarga mágica **VOL+Canalización DF17**. La Matriz Mixta sigue sujeta a 0 Vida, Trauma, Medicina y Fatiga.
+
+**[PROPUESTA CRI-B3-P01–P03]** checklist de ventana de acoplamiento, retirada de consentimiento sin inmunidad/desconexión gratuita y declaración de lectura energética general. Cada una tiene alcance, coste, límites y pruebas en el informe B3. **No son canon** ni se aplican al Manual Maestro. **[ABIERTA B5]** prioridad de ocultación específica, interrupción de conexión durante activación y continuidad de circuito al 0 Vida. **[ABIERTA B4]** valor comparado de rasgos dependientes de máquinas. Ningún rasgo nuevo, inmunidad o recurso gratuito propuesto.
