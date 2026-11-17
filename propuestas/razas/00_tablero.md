@@ -564,3 +564,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `auditorias/05_b5_anfibio_equivalencias_terios_coralios.md`: cuatro propuestas B5-AMP-P01–P04 y 20 guiones B5-AMP-T01–T20 **DOC no ejecutados**; matriz global actualizada.
 - Terio con Nado MOV6 no recibe respiración acuática gratuita; Anfibio general 1 PR; Coralio innato condicionado a hidratación. Queda bloqueada interpretación de compra Anfibio por Coralio deshidratado; no canonizar alternativa. **59 propuestas, 298 DOC, 0 Foundry/mesa.**
 - **Siguiente:** I06/I07 Hobgoblin/Ojo/Voluntad/Ayuda; B5 abierta, fase C bloqueada.
+
+### 2026-11-17 — B5 I06/I07: cinco escenas comparativas
+- Releídos tablero, README, plan, B2 Goblinoides, anexos I05/I06, acta B5 y Manual Maestro de `main` (blob `334770e7ed7d2605767aecb169f57da6c1100508`).
+- Creado [`auditorias/05_b5_hobgoblin_ojo_voluntad_cinco_escenas.md`](./auditorias/05_b5_hobgoblin_ojo_voluntad_cinco_escenas.md): **5 escenas comparativas y 10 controles documentales revisados por lectura**, sin ejecución empírica. No añadirlos al contador anterior de regresiones *diseñadas* como si fueran pruebas nuevas ejecutadas.
+- **Dictamen:** desigualdad estructural Hobgoblin constatada por comparación de paquetes, magnitud de desbalance no medida; conservar canon y alternativa costeada sólo como propuesta. Secuencia de Ojo/Voluntad/Ayuda explicitada sin cambiar reglas vigentes.
+- **B5 abierta; C bloqueada.** Próximo bloque I03/I09: sentidos/ocultación y sustento; después conciliar bloqueos globales. 0 Foundry/mesa. Sólo rama/carpeta autorizadas.
