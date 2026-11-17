@@ -64,3 +64,8 @@ Origen físico de la conciencia micelial primordial; compatibilidad reproductiva
 - Quimiosensibilidad +1 PER sólo cubre **señales químicas cercanas** enumeradas; **no** tiene el alcance de 12 espacios del Enlace. El Enlace requiere **Acción inicial**, contacto directo con red micelial **viva, compatible y continua**, destinatario Micelio voluntario a **≤12 espacios**, contenido simple y mantenimiento de contacto.
 - Abiertos B3: medir distancia de mapa frente a longitud real de red serpentiforme, cortes durante Reacciones/Movimiento, reconexión, retransmisión y barreras que sí o no contengan micelio materialmente continuo. No hay escaneo, conferencia, archivo, Maná o Hechizo gratuito.
 - `MIC-08` sigue pauta editorial opcional no canónica; redes complejas requieren Proyecto/ritual independiente, no aumento racial. Biología, Fatiga, Descanso y Medicina siguen comunes. Ninguna modificación a `main`, Foundry o atlas.
+
+
+## Actualización B3 — 17-11-2026
+
+Auditoría documental B3 guardada en `auditorias/03_exploits_y_pruebas.md`: **40 nuevos casos MIC-T61–MIC-T100**, cuatro secuencias y doce incidencias. Total **100 criterios DOC, 0 simulaciones, 0 Foundry, 0 mesa**. Se preservó canon de Enlace (Acción, contacto, red viva compatible continua, otro Micelio voluntario, 12 espacios y mensajes simples) y Quimiosensibilidad (+1 PER para señales químicas cercanas, sin radio 12). Propuestas MIC-B3-P01–P04 de métrica geométrica, reconexión, retransmisión y comprobación de señal, **no ratificadas**, pasan a B4/B5. No cambia doble página inicial ni paquete canónico. Siguiente B3: Coralios.
