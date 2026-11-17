@@ -6,7 +6,7 @@
 - Expediente `auditoria_y_desarrollo.md`: canon, propuesta biológica, instituciones, cuatro tradiciones, religión, diferencias.
 - `doble_pagina.md`: apertura narrativa y cierre jugable, **772 palabras en el contenido de las dos páginas** (incluidos subtítulos, sin título general, aviso preliminar ni nota final); **815 palabras** al incluir título general y aviso preliminar. Recuento documental reproducible, dentro del objetivo editorial de 650–850.
 - `brief_arte.md`: escena funcional en Kar-Dur; no se generó imagen.
-- `pruebas_balance.md`: 24 casos de prueba definidos más guion de sesión y riesgos.
+- `pruebas_balance.md`: 44 criterios documentales (24 iniciales + 20 B3) más guion de sesión y riesgos; cero tests de partida/Foundry.
 - Ningún archivo de `main`, ni Foundry, ni mapa maestro fue alterado.
 
 ## Auditoría estática cruzada
@@ -35,3 +35,12 @@
 4. Integrar exclusivamente lo aceptado en Manual Maestro desde revisión separada; luego sincronizar Foundry si alguna regla cambiase.
 
 **Conclusión:** expediente de Enanos suficientemente cerrado como **propuesta editorial completa**. No requiere detener las otras once familias. El estado canónico sigue sin aprobación.
+
+
+## Actualización documental B3 — 17-11-2026
+
+- **B3 Enanos guardada** en `auditorias/03_exploits_y_pruebas.md`: **20 secuencias adversariales, 4 desarrollos, 10 incidencias**. El registro de pruebas se amplió de 24 a **44 criterios documentales**. Se guardó el modelo auxiliar JS `auditorias/modelo_auxiliar_b3_enanos.js`: **16 casos de distancia Empujar y resistencia de Sangre de Metal con expectativas coincidentes**; **no son Foundry ni playtests**.
+- La Escala efectiva Mediana de `Cuerpo de Piedra` sólo sirve para **Carga** y **resistencia a Empujar/Derribar/desplazamiento físico impuesto**. No aumenta Escala real, equipo compatible, ataque, Defensa, Movimiento ni tamaño. **Derribar** carece de un modificador numérico de Escala en su fórmula y el **traslado de Presa** queda abierto como interacción de desplazamiento forzado (propuesta ENA-B3-PROP-01).
+- `Sangre de Metal` concede +1 a VIG bajo los tres contextos escritos y, cuando esos efectos atacan Defensa Corporal, +1 **a esa Defensa solamente**. VIG2: Defensa Corporal 13, contra toxina pertinente 14; sin tirada adicional ni +2 en mismo ataque. No inmuniza a Fatiga por esfuerzo, heridas ni 0 Vida.
+- **Pendientes B4/B5:** utilidad de Derribar, criterio de traslado al estar Agarrado, empujes de `Onda de Choque` / `Martillo Cinético`, interacción de Resistencia Ambiental y Fatiga+Retirada+Correr. No se modificó `main`, código Foundry ni cartografía. No hay visto bueno de canon.
+- **Evidencia:** 44 DOC, 16 comprobaciones de MOD auxiliar, **0 ENV en Foundry y 0 pruebas MESA**. La doble página v0.2 sigue siendo borrador, no capítulo definitivo.
