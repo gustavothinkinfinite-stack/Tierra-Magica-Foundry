@@ -104,3 +104,15 @@
 
 ## X. Decisión para este borrador
 Una sola Ascendencia Élfica, diversidad cultural amplia, sin monstruificación de Oscuros ni «magia racial» universal. Las instituciones y la biología arriba descritas están **resueltas provisionalmente en el expediente** para permitir redacción del libro sin solicitar aprobaciones parciales. No afectan al canon hasta aprobación global.
+
+
+## XI. Actualización B3 — exploits de percepción y magia vital (17-11-2026)
+
+**Auditoría B3 documental completada** en `auditorias/03_exploits_y_pruebas.md`: **20 ataques adversariales, cuatro secuencias desarrolladas y diez incidencias**. `pruebas_balance.md` pasó de 36 a **56 criterios documentales** (`ELF-T37–ELF-T56`). Modelo auxiliar `auditorias/modelo_auxiliar_b3_elficos.js`: **16 verificaciones lógicas con resultados esperados coincidentes**, **no es el motor de Foundry**. **Foundry 0, partidas de mesa 0**.
+
+- **Sentidos Élficos:** no +1 general ni Iniciativa/Ataque/Defensa; requiere PER, detalle natural sutil por vista/oído y que sea determinante. `Sentido Agudo` comprado sobre la misma señal/sentido no suma +1+1.
+- **Resonancia de la Savia:** necesita alteración **mágica**, **significativa**, **directa** sobre vida/proceso/ecosistema, **actual** y área **razonablemente perceptible**. La etiqueta técnica `Sostenido` no es un disparador necesario ni suficiente. No detectar magia industrial genérica, enfermedad natural o cicatriz de sanación pasada.
+- **Secuencia Restauración/Ilusión:** `Espejismo` de árbol sin cambio vital real no activa Resonancia; `Cierre Restaurador` terminado no se detecta retrospectivamente; `Matriz Vital` no revela Vida, pulsos o Hechizo aunque una alteración significativa presente pueda advertirse.
+- **Ocultación y Familiar:** percepción remota por `Sentidos Compartidos` no proyecta Resonancia racial; `Origen Remoto` no crea sensores, información ni línea de efecto gratis. El análisis de `Velo Sensorial` depende de la perceptibilidad efectiva del **área real**.
+- **Abiertas B4/B5:** precisar sin cifra arbitraria qué es alteración **«significativa»**, resolver áreas realmente perceptibles bajo ocultación/barrearas y distinguir efecto mágico **directo** de daño **indirecto** por máquina/clima. No se crean nuevas Habilidades, Fuentes, acciones o radios.
+- **Evidencia separada:** 56 DOC, 16 MOD de lógica auxiliar, **0 ENV Foundry, 0 MESA**. La escala Mediana, Movimiento 6 y el paquete v0.3 permanecen iguales; edad y tradiciones nuevas siguen **propuestas no canónicas**. Siguiente B3 Orcos.
