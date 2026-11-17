@@ -8,7 +8,7 @@
 - `auditoria_y_desarrollo.md`: 2.224 palabras aprox. de revisión y propuestas biológicas, históricas, sociales y religiosas.
 - `doble_pagina.md`: página izquierda narrativa y página derecha jugable; **835 palabras imprimibles** en la revisión actual (excluidos la nota de edición y el rótulo de estado).
 - `brief_arte.md`: dirección artística de escena principal «Acuerdo del río vivo» y cuatro viñetas optativas, sin imagen generada.
-- `pruebas_balance.md`: 24 casos de aceptación documental con resultados esperados y plan de partida; aún no son pruebas de campo.
+- `pruebas_balance.md`: 24 casos iniciales de aceptación documental **más 12 regresiones B2 (ELF-T25–T36) = 36 casos**, todos con resultados esperados, sin pruebas de campo ejecutadas.
 
 ## Auditoría cruzada
 1. **Eïra y cosmología:** el Pueblo Élfico nace de la Savia de la Primera Semilla. No se atribuye su origen a otro primordial. Conforme.
@@ -37,3 +37,8 @@
 - Sólo después de aprobación explícita trasladar cambios aceptados al Manual Maestro de `main` y adaptar Foundry únicamente si hay cambios mecánicos.
 
 **Dictamen:** expediente listo para formar parte de la revisión global de las doce razas. No modificar el canon ni detener el avance de las demás.
+
+
+### Actualización 17-11-2026 — Auditoría B2
+- Disponible `auditorias/02_mecanicas_y_costes.md`: 12 fichas de subsistemas, 15 escenarios, 8 incidencias. Se aclara que una alteración vital mágica **presente** no depende de la etiqueta técnica Sostenido. No se añade radio, coste, Fuente o Habilidad al paquete.
+- Los 36 casos siguen documentales: **cero ejecuciones de Foundry o partidas empíricas**. B3/B4 continúan pendientes; el texto inicial no pasa aún a versión final del manual.
