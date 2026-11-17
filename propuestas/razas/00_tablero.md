@@ -9,7 +9,7 @@
 | 01 | Humanos | Expediente inicial completo; **B1 canon/lore auditado (con observaciones)** | B2: categoría Menor/Significativo; B3/B4 posteriores |
 | 02 | Enanos | Borrador integral v0.2 + **B1 canon/lore completo, con correcciones** | B2: Cuerpo de Piedra, Sangre de Metal; B4: biología |
 | 03 | Élficos | Borrador integral v0.1 + **B1 canon/lore completo, con correcciones** | B2: alcance Resonancia, percepciones; B4: Oscuros y biología |
-| 04 | Orcos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar propuesta de Bastión/Sangre y playtest empírico |
+| 04 | Orcos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: Voluntad/Desventajas; B3: FUE/Carga; B4: Bastión/Sangre y biología |
 | 05 | Goblinoides | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Ojo, Escurridizo y Complexión; revisar biología propuesta |
 | 06 | Terios/Anihombres | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Renkai/Origen Renkaino, sustituciones de Variedad y playtest anatómico |
 | 07 | Feéricos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Continuidad de la Raíz y playtests de vuelo Hada, vínculo y viento |
@@ -28,7 +28,7 @@
 |---|---|---|---|
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
-| B1. Canon y lore | **En curso: 3/12 (Humanos, Enanos, Élficos)** | Auditoría individual por 12 familias | Próximo: Orcos, luego 8 restantes |
+| B1. Canon y lore | **En curso: 4/12 (Humanos, Enanos, Élficos, Orcos)** | Auditoría individual por 12 familias | Próximo: Goblinoides, luego 7 restantes |
 | B2. Mecánicas y costes | Pendiente | Auditoría exhaustiva contra subsistemas completos | Tras B1, por familia |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
@@ -171,3 +171,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Progreso B1 3/12** (Humanos, Enanos, Élficos). Las incidencias mecánicas y de biología se trasladan a B2/B3/B4, no se dan como resueltas por lectura. Enanos tiene 24 casos de prueba documentales; Élficos 24, **ninguno ejecutado empíricamente**.
 - **Siguiente B1:** Orcos; luego Goblinoides, Terios, Feéricos, Ankar, Cristálidos, Verdantes, Micelios y Coralios. No se trabaja todavía en los textos finales `manual_final_propuesto.md` hasta cerrar todas las auditorías B1–B5.
 - No se modificaron `main`, Manual Maestro vigente, sistema Foundry ni mapa oficial; todos los cambios son propuestas aisladas.
+
+### 2026-11-17 — B1 Orcos concluida
+- Contrastados `04_orcos/` con `main` §28 (Varkor, Primera Guerra, Cuatro Virtudes, Orcos Comunes/Sangre/Grises y linajes extraordinarios sin nombre), creación racial v0.3, Rasgos generales, religión, culturas y Edria 612 C.
+- Creado `04_orcos/auditorias/01_canon_y_lore.md`: **25 contrastes de fuente**, **11 cruces de identidad con otras familias**, **6 incidencias** (3 cerradas en borrador y 3 derivadas a B2/B3/B4).
+- Corregido `04_orcos/auditoria_y_desarrollo.md` para que genealogía de Sangre sea relato no demostrado y cualquier sensibilidad requiera **Afinidad Sobrenatural comprada**; «Orcos de Bastión» y sus supuestos archivos quedan como propuestas no ratificadas.
+- Ajustada `04_orcos/doble_pagina.md` (**777 palabras imprimibles**) para evitar atribuir poderes innatos de Sangre o ratificar Bastión como cuarta rama; actualizado `04_orcos/cierre_editorial.md` para preservar jerarquía de fuentes.
+- **B1: 4/12**. Ningún paquete alterado; pruebas ORC-T01–ORC-T30 siguen siendo casos **documentales** sin partidas ejecutadas. Siguiente: Goblinoides; no empezar aún manual_final_propuesto.md.
