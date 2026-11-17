@@ -15,7 +15,7 @@
 | 07 | Feéricos | Borrador integral v0.1 + **B1 y B2 documentales completas**; 52 casos documentales | B3: vuelo mixto, desanclaje y viento; B4: contraste Verdantes/Terios |
 | 08 | Ankar | Borrador v0.1; **B1 y B2 documentales completas**; 44 casos | B3: alcance/frecuencia, apilamiento mental y efectos compuestos; B4: balance |
 | 09 | Cristálidos | Borrador v0.1; **B1 y B2 documentales completas**; 68 casos | B3: conexión, Sobrecarga y ocultación; B4: biología y balance |
-| 10 | Verdantes | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B4: CLN-01 y supervivencia, Enraizar, biomas; B3: exploits de anatomía |
+| 10 | Verdantes | Borrador v0.1; **B1 y B2 documentales completas**; 56 casos | B3: Enraizar, Sustento, Bioma; B4: CLN-01 y balance |
 | 11 | Micelios | Expediente v0.1 + **B1 canon/lore completada** | B2: alcance químico, continuidad y Acción; B3: retransmisión; B4: biología |
 | 12 | Coralios | Expediente v0.1 + **B1 canon/lore completada** | B2: hidratación, Movimiento 5/6, Protección, Sentido; B4: Anfibio 1 PR |
 
@@ -29,7 +29,7 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente; B2 en curso |
-| B2. Mecánicas y costes | **En curso: 9/12 (hasta Cristálidos)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Verdantes**, luego Micelios y Coralios |
+| B2. Mecánicas y costes | **En curso: 10/12 (hasta Verdantes)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Micelios**, luego Coralios |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
@@ -280,3 +280,11 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Hallazgos: **Conductor Vivo no produce Energía, Caudal, Estabilidad ni Maná**; diferencia Sobrecarga de Hechizos **VOL+Canalización DF17** de Sobrecarga Controlada de Ingeniería **INT+Ingeniería DF16**. Ejemplos de acumulador 8 E/C3: Consumo 3 legal si requisitos y E suficientes, Consumo 4 inválido en activación ordinaria; el puente racial no lo corrige. Cristales de Resonancia siguen excluidos de crafting, Piedras de Impronta y facetas corporales.
 - Abiertos B3/B4: contacto bajo ocultación, alcance dentro de estructuras, costes/tiempos del dispositivo, desconexión voluntaria durante avería y comparación de efectividad. `Protocolo de Acoplamiento Seguro` sigue **propuesta opcional no canónica**.
 - **B2: 9/12**; siguiente Verdantes. No se editó `main`, Foundry, ni mapa; sin partidas empíricas.
+
+### 2026-11-17 — B2 Verdantes: Sustento, Enraizar y Bioma
+- Reabiertos paquete Verdante v0.3 de `main` y transversales, Viaje/forrajeo (1 ración/persona/día, 2 h de forrajeo con PER+Supervivencia), falta de agua sin daño fijo diario, Descanso/Fatiga, Acción/Movimiento, Escala y Maniobras, `Martillo Cinético`, Protección y Resistencia Ambiental 1/2 PR. Informe B2 inexistente antes de creación.
+- Guardado `10_verdantes/auditorias/02_mecanicas_y_costes.md`: **17 fichas, 20 escenarios y 11 incidencias**. `pruebas_balance.md` incluye **VER-T41–VER-T56**, total **56 criterios documentales, ninguno ejecutado**. Notas adicionales en `auditoria_y_desarrollo.md` y `cierre_editorial.md`.
+- **CLN-01** de **4 h/24 h** de luz apta continúa marcado como **nueva regla opcional no canónica**, no requisito horario ya existente. Sustento Vegetal reemplaza función de alimento/hidratación, no genera recursos ni tres relojes de Fatiga.
+- Enraizar requiere Acción, suelo e inmovilidad; +1 categoría efectiva sólo en resistencias enumeradas, sin +Defensa. `Martillo Cinético` expresa 0 desplazamiento contra objetivo «anclado», pero confirmar aplicación formal a Enraizar corresponde a B3; no quita el daño o Defensa Corporal del Hechizo.
+- Bioma elige **un** beneficio +1 VIG ambiental **o** eliminar una causa concreta de terreno; no apilar un +1 equivalente comprado, ni extender por inferencia al viaje regional completo. Bioma Llanura/hierba alta continúa **propuesto**.
+- **B2: 10/12; próximo Micelios**, luego Coralios. No se editó `main`, Foundry ni mapa; B3–B5 y capítulos finales siguen posteriores.
