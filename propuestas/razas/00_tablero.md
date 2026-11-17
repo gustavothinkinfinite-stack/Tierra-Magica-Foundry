@@ -7,7 +7,7 @@
 | Nº | Familia | Estado del borrador | Siguiente trabajo |
 |---:|---|---|---|
 | 01 | Humanos | Expediente completo; **B1, B2 y B3 documentales completadas**; 62 casos, 12 comprobaciones de modelo auxiliar (no Foundry) | B4: balance Don vs. otras 11; aclarar grados |
-| 02 | Enanos | Borrador v0.2; **B1 y B2 documentales completas** | B3: escalas, Presa, Fatiga; B4: comparación/biología |
+| 02 | Enanos | Borrador v0.2; **B1, B2 y B3 documentales completas**; 44 criterios y 16 comprobaciones de modelo auxiliar (no Foundry) | B4: Presa/Derribar, Fatiga y balance; validación empírica pendiente |
 | 03 | Élficos | Borrador v0.1; **B1 y B2 documentales completas** | B3: Resonancia/ocultación, magia vital; B4: utilidad comparada y biología |
 | 04 | Orcos | Borrador v0.1; **B1 y B2 documentales completas** | B3: fuentes de Desventaja, Ventaja/Ayuda, Carga; B4: Bastión/Sangre |
 | 05 | Goblinoides | Borrador v0.1; **B1 y B2 documentales completas** | B3: pasos/interrupciones y Ojo; B4: balance Hobgoblin y biología |
@@ -29,8 +29,8 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
-| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, con incidencias B3/B4/B5 abiertas | Cerrada documentalmente; **B3 Humanos cerrada, sigue Enanos** |
-| B3. Exploits y secuencias | **DOCUMENTAL: 1/12** (Humanos) | 62 casos Humanos; 12 comprobaciones de modelo auxiliar; 0 pruebas Foundry/mesa | **Siguiente: Enanos**, luego las demás |
+| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Élficos** |
+| B3. Exploits y secuencias | **DOCUMENTAL: 2/12** (Humanos, Enanos) | B3 Enanos: 44 DOC, 16 MOD; 0 Foundry/mesa | **Siguiente: Élficos**, luego restantes |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -301,3 +301,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Persistida auditoría `01_humanos/auditorias/03_exploits_y_pruebas.md`: **20 escenarios adversariales** (HUM-B3-01–20), cuatro secuencias detalladas, cinco incidencias, fuentes y separación explícita de lectura, modelo auxiliar y pruebas reales. Conserva incertidumbre sobre clasificación de Don y mejora de Resistencia Ambiental, sin inventar conversiones PD/PR.
 - Ampliado `01_humanos/pruebas_balance.md` a **62 criterios documentales** (HUM-T01–62). Versionado `01_humanos/auditorias/modelo_auxiliar_b3_humanos.js` para reproducir 12 fixtures. En el análisis se ejecutó evaluador equivalente con **12/12 expectativas coincidentes**; **no** es el motor Foundry, ni playtest, ni evidencia de que el código de Foundry funcione.
 - **Fase A 12/12; B1 12/12; B2 12/12; B3 documental 1/12; B4, B5 y C pendientes. Siguiente B3 Enanos.** Sin escritura en `main`, Manual Maestro, Foundry ni mapa. Todo sigue siendo **PROPUESTA NO CANÓNICA**.
+
+### 2026-11-17 — B3 Enanos: maniobras, Escala, Sangre de Metal y secuencias
+- Reabiertos `main:docs/Tierra_Magica_Manual_Maestro.md` (SHA `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`), paquete Enano v0.3, §7 de Escala/Derribar/Empujar/Agarrar/Desarmar, Acción/Reacción/Movimiento/Retirada/Correr, Defensa Corporal, Carga sin kg universales, Vida/Trauma, Fatiga/Descanso, Resistencia Ambiental y Hechizos `Onda de Choque`/`Martillo Cinético`/`Potencia Sobrenatural`. Expediente B1/B2 y batería original auditados.
+- Guardado `02_enanos/auditorias/03_exploits_y_pruebas.md`: **20 ataques adversariales, 4 secuencias detalladas y 10 incidencias**. Ampliado `pruebas_balance.md` con `ENA-T25–ENA-T44`: **44 criterios documentales**, **0 ejecuciones reales**. Modelo auxiliar reproducible `02_enanos/auditorias/modelo_auxiliar_b3_enanos.js`, con **16 fixtures** de Empujar y VIG/Defensa Corporal, **16/16 coincidencias** en lógica auxiliar evaluada (**no Foundry**). Actualizados `auditoria_y_desarrollo.md` y `cierre_editorial.md`.
+- **Ejemplos confirmados por reglas:** Pequeño Empuja Enano con margen Claro: 2→**1 espacio**; Dominante 3→**2**. Mediano Empuja Enano Claro: 2→**2**. Enano al **empujar ofensivamente** sigue Pequeño y contra objetivo Mediano Claro produce **1**. VIG2 da Defensa Corporal 13, contra toxina expresamente elegible **14** (sin doble bonificación). `Exhausto`: Movimiento 5→3, no excepción pétrea.
+- **Puntos abiertos B4/B5:** Escala efectiva de Cuerpo de Piedra y eficacia de `Derribar`; posible aplicación a **traslado físico** bajo una Presa ya iniciada, no al agarre inicial; desplazamientos propios de `Onda de Choque`/`Martillo Cinético`; intersección Resistencia Ambiental y Sangre; orden de Retirada+Correr+Fatiga. Propuesta `ENA-B3-PROP-01` sobre fase de arrastre **no es canon**.
+- **Progreso:** A 12/12; B1 12/12; B2 12/12; **B3 2/12 (documental)**; B4/B5 y 12 capítulos finales pendientes. **Próximo B3 Élficos**. 0 tests de Foundry, 0 playtests. No se modificó `main`, código, Manual Maestro ni cartografía.
