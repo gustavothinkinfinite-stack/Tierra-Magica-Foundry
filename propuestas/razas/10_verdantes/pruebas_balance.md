@@ -79,3 +79,26 @@
 
 ## G. Dictamen técnico
 El paquete Verdante v0.3 sigue **jugable sin nueva Habilidad racial**. CLN-01 es una **propuesta opcional** de claridad para sustento, no una obligación vigente. Los 40 resultados son expectativas de revisión documental, **no resultados observados en mesa**. Las situaciones de emergencia y el balance real quedan pendientes de playtest después de la aprobación de la propuesta.
+
+## H. Regresiones B2 — VER-T41 a VER-T56 (documentales, NO ejecutadas)
+
+| ID | Escenario | Resultado esperado de acuerdo con fuente / decisión abierta |
+|---|---|---|
+| VER-T41 | Verdante en ruta de viaje normal con nutrientes y agua transportados | Sustento Vegetal sustituye el **tipo** de raciones; la pauta general de viaje es **1 ración por persona/jornada**. No se consumen simultáneamente raciones humana y vegetal por duplicación |
+| VER-T42 | Verdante forrajea donde existen agua/nutrientes ambientales disponibles | Se aplican tiempo aproximado de **2 h**, `PER+Supervivencia` y DF según disponibilidad cuando exista incertidumbre. No genera raciones para todos sin prueba |
+| VER-T43 | Se pierde fuente de agua en desierto durante jornada | El núcleo no fija litros/día ni daño automático/día; puede haber Fatiga, limitación de marcha o imposibilidad según la situación; no doble penalización por ser Verdante |
+| VER-T44 | Verdante pasa la noche o una jornada en túnel sin luz solar | La regla dice **luz suficiente** sin fijar mínimo horario. **No imponer 4h/24h** salvo activación expresa de CLN-01 como propuesta |
+| VER-T45 | Ensayo opcional de CLN-01 en mina 3 días con luminaria hortícola | Registrar las **4 h acumuladas/24 h** sólo en **ensayo no canónico**; el dispositivo debe existir y pagar sus propios recursos/precios/Consumo, sin luz o Maná gratis |
+| VER-T46 | Grupo de cinco viajeros pretende que un Verdante fotosintético suministre raciones ajenas | Sustento sólo alimenta al Verdante mediante entorno/provisiones; no transforma su biología en despensa del grupo |
+| VER-T47 | Verdante bioma tundra tiene **+1 VIG frío ambiental** y compra Resistencia Ambiental Menor al mismo frío | Dos +1 equivalentes sobre la **misma prueba/amenaza** no forman +2 automáticamente; aplicar no acumulación de propiedad duplicada |
+| VER-T48 | Verdante tundra compra Resistencia Ambiental Significativa (2 PR) contra ese frío | El grado general concede **Ventaja en pruebas VIG**, no «+2 VIG»; evaluar junto al efecto racial específico y reglas de no duplicación sin inventar conversión |
+| VER-T49 | Verdante bioma desierto elige +1 VIG **calor**, recibe quemadura de Proyectil Ígneo | No bonifica Defensa, Protección o VIG general contra ataque de fuego por equivalencia temática; sólo exposición ambiental elegida |
+| VER-T50 | Verdante pantano elige eliminar barro somero; atraviesa espacio con barro y escombros | Ignorar barro no elimina **escombros**, ni atraviesa agua profunda o pantano físicamente intransitable; ninguna inmunidad global al bioma |
+| VER-T51 | Verdante jungla ignora vegetación ordinaria difícil en combate y usa viaje a escala regional | La capacidad elimina **una causa concreta de coste de Movimiento local**; no elimina automáticamente todas las categorías de terreno, riesgos ni DF de Viaje |
+| VER-T52 | Verdante Mediano enraizado es Empujado por criatura Pequeña con margen Claro | Enraizar le da **Grande efectiva** frente a Empujar; dos categorías mayor que atacante Pequeño: no desplazamiento por fuerza corporal ordinaria sin palanca/capacidad, sin +Defensa |
+| VER-T53 | Verdante enraizado objetivo de Derribar convencional | `Derribar` usa Defensa de Maniobra; **no** sumar un +1 numérico por Escala, aunque la diferencia pueda afectar viabilidad de la maniobra según caso |
+| VER-T54 | `Martillo Cinético` alcanza Verdante enraizado, suelo adecuado, anclaje mantenido | Ataque contra **Defensa Corporal** y **Daño 3** normales. El hechizo desplaza 0 a objetivo «anclado»; **B3** debe verificar si este Enraizar cuenta formalmente como anclaje en contexto, sin crear inmunidad al daño |
+| VER-T55 | Verdante enraizado se libera para desplazarse | Liberarse cuesta **1 Movimiento**; no conservar Escala Grande efectiva tras dejar inmovilidad/anclaje; Fatiga/retirada aplican normalmente |
+| VER-T56 | Verdante herido recibe `Piel Alterada` y viste armadura | Se aplica Protección del Hechizo (2 para categoría elegida) y la armadura conforme a **no-acumulación de protección equivalente**; Enraizar no aporta Protección, Vida ni Maná |
+
+**Batería documental:** `VER-T01–VER-T40` + **16 casos VER-T41–VER-T56 = 56 criterios**, **0 ejecuciones de mesa/Foundry**. Los valores de CLN-01 permanecen `[PROPUESTA]`, no parte del paquete racial v0.3. B3 debe probar secuencias Enraizar/liberar/Empujar/Martillo Cinético, suministros y Fatiga; B4 comprobar ventaja relativa de biomas frente a Resistencia Ambiental, Terios y Dríades.
