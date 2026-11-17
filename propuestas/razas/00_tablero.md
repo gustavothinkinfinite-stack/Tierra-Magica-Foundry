@@ -15,8 +15,8 @@
 | 07 | Feéricos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Continuidad de la Raíz y playtests de vuelo Hada, vínculo y viento |
 | 08 | Ankar | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Sentido del Umbral, Custodia del Alma y revisar instituciones |
 | 09 | Cristálidos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar fisiología propuesta y playtest de conducción, interfaces y Resonancia |
-| 10 | Verdantes | Próximo a trabajar | Auditar Eïra y Sustento Vegetal; biomas, Enraizar, culturas y doble página |
-| 11 | Micelios | Pendiente | Redes, individualidad, comunicación y balance, doble página |
+| 10 | Verdantes | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar CLN-01, biología y test de Enraizar/biomas |
+| 11 | Micelios | Próximo a trabajar | Auditar Sustento Fúngico, Quimiosensibilidad y Enlace Micelial; culturas y doble página |
 | 12 | Coralios | Pendiente | Mar, ecosistemas, civilizaciones anfibias, doble página |
 
 ## Registro de ejecución
@@ -97,3 +97,12 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **712 palabras imprimibles** de doble página y **52 casos de aceptación documental**, no ensayos reales. Cuatro tradiciones propuestas y protocolo opcional de acoplamiento; se mantiene intacto el paquete racial existente y se excluyen cuerpos completamente cristalinos del PJ básico.
 - **Estado global: ocho expedientes integrales completos como BORRADORES** —Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar y Cristálidos—; Humanos aún debe consolidar el expediente. Ninguno aprobado; sin cambios a `main`, mapa o Foundry.
 - **Próximo ciclo productivo:** Verdantes; luego Micelios, Coralios y cierre documental de Humanos. Evitar repetir expedientes que el ciclo horario haya adelantado.
+
+### 2026-11-16 — Décimo avance: Verdantes — Pueblos de raíz y camino
+- Leídos `00_tablero.md`, `README.md`, cierre anterior de Cristálidos y los paquetes v0.3 de Verdantes, Dríades, Micelios y regla de Eïra en `main`.
+- Inspeccionada directamente la guía visual 1.0 adjunta y contrastado diseño con atlas oficial sin modificar mapas.
+- Guardados `10_verdantes/auditoria_y_desarrollo.md`, `10_verdantes/doble_pagina.md`, `10_verdantes/brief_arte.md`, `10_verdantes/pruebas_balance.md` y `10_verdantes/cierre_editorial.md`.
+- Se proponen cinco perfiles de bioma (cuatro canónicos y Llanura como extensión explícita), cuatro tradiciones, una biología y ciclo vital concretos, y la pauta optativa `CLN-01 Ciclo de Luz y Nutrientes` (4 h/24 h) separada de reglas canónicas.
+- Editorial: **738 palabras imprimibles**, **40 casos documentales** con expectativas de resultado; **no son partidas ejecutadas**. Paquete Verdante v0.3 sin cambios.
+- **Estado global: nueve expedientes integrales de BORRADOR**, desde Enanos a Verdantes incluyendo Ankar, con Humanos aún pendiente de consolidación; ninguno ratificado.
+- **Próximo ciclo:** Micelios, luego Coralios y cerrar el expediente faltante de Humanos. No tocar `main`, código Foundry ni mapa.
