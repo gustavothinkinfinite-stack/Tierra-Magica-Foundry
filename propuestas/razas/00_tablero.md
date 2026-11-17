@@ -15,7 +15,7 @@
 | 07 | Feéricos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B3: vuelo Hada, viento, raíz; B4: contraste Verdantes y Terios |
 | 08 | Ankar | Borrador integral v0.1 + **B1 canon/lore completado, con correcciones** | B2/B3: detección 6 espacios y efectos mixtos; B4: tradición y biología |
 | 09 | Cristálidos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: interfaz de Conductor, ocultaciones, acciones; B3: energía/recursos; B4: biología |
-| 10 | Verdantes | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar CLN-01, biología y test de Enraizar/biomas |
+| 10 | Verdantes | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B4: CLN-01 y supervivencia, Enraizar, biomas; B3: exploits de anatomía |
 | 11 | Micelios | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Enlace, alcance, retransmisión y evaluar MIC-08 |
 | 12 | Coralios | Borrador integral v0.1 completo para revisión global (no aprobado) | B1/B2: comparar hidratación, Movimiento 5/6, Protección, Sentido y Anfibio 1 PR |
 
@@ -28,7 +28,7 @@
 |---|---|---|---|
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
-| B1. Canon y lore | **En curso: 9/12 (hasta Cristálidos)** | Auditoría individual por 12 familias | Próximo: Verdantes, luego Micelios y Coralios |
+| B1. Canon y lore | **En curso: 10/12 (hasta Verdantes)** | Auditoría individual por 12 familias | Próximos: Micelios y Coralios |
 | B2. Mecánicas y costes | Pendiente | Auditoría exhaustiva contra subsistemas completos | Tras B1, por familia |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
@@ -213,3 +213,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Corregido `09_cristalidos/auditoria_y_desarrollo.md`: el Protocolo de Acoplamiento Seguro ya no exige que un plano contenga literalmente «admite Conductor Vivo»; basta constancia de compatibilidad diseñada de dispositivo, ritual, proyecto o fenómeno, sin presumirla. La adjudicación de ocultaciones especializadas de Resonancia pasa a B2 y no se declara canon inventado.
 - Corregidos casos **CRI-T46 y CRI-T47** en `pruebas_balance.md` para reflejar diferencia entre diseño compatible y etiqueta literal. Hay **52 casos documentales, 0 pruebas empíricas**. `doble_pagina.md` mantiene **712 palabras**.
 - **Progreso B1: 9/12**, siguiente Verdantes; pendientes Micelios y Coralios, B2–B5 y doce textos finales. Ninguna modificación a `main`, Foundry o mapa.
+
+### 2026-11-17 — B1 Verdantes: luz cuantificada es regla nueva
+- Reabierto `main` para paquete v0.3 Verdante, Eïra, Dríades, Enraizar, Adaptación de Bioma, Orígenes y cultura; revisados documentos de `10_verdantes/`.
+- Creado `10_verdantes/auditorias/01_canon_y_lore.md`: **25 controles canónicos, 11 cruces de identidad y 7 incidencias**.
+- Corregidos `10_verdantes/auditoria_y_desarrollo.md`, `cierre_editorial.md` y prueba `VER-T39` en `pruebas_balance.md`: el módulo opcional **CLN-01** («4 horas de luz acumuladas en 24 h») es una **nueva restricción cuantificada NO CANÓNICA**, no simple interpretación de «luz suficiente». Se evaluará pertinencia y posibles efectos desbalanceantes en B2/B4; no aplicarlo en doble página o juego vigente.
+- Bioma Llanura sigue como ejemplo nuevo propuesto; biomas canónicos y condiciones de Enraizar conservan límites. **40 casos documentales, ninguno ejecutado empíricamente**; doble página mantiene **738 palabras**.
+- **Progreso B1: 10/12**, próximos Micelios y Coralios; B2–B5 y textos finales aún pendientes. No editar `main`, Foundry ni atlas.
