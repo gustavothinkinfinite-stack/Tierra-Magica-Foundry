@@ -27,3 +27,11 @@
 - Distinción mecánica importante: `Sentido del Umbral` detecta cuatro tipos de fenómenos espirituales en radio 6, mientras `Custodia del Alma` otorga +1 Defensa Mental contra una lista parcialmente diferente (incluye posesión). No inferir detección automática de toda posesión.
 - Abiertos B3/B4: frecuencia de percepción y muros, sellos especializados, grupo de apilamiento entre `Mente Anclada` y Custodia, ataque mixto miedo/posesión y comparación de utilidad con otras razas. Las reglas completas de posesión/Nigromancia no están ratificadas.
 - No se modificaron `main`, Foundry, mapa ni doble página. Ninguna propuesta está aprobada.
+
+### Actualización B3 — 17-11-2026
+
+- `auditorias/03_exploits_y_pruebas.md` completada con **24 casos nuevos**, cuatro secuencias, 10 incidencias y cuatro propuestas de procedimiento **NO CANÓNICAS**. `pruebas_balance.md` contiene ahora **68 criterios documentales** (30 iniciales + 14 B2 + 24 B3). **0 Foundry, 0 mesa, 0 modelo auxiliar**.
+- La presencia general de Sentido no revela número, dirección, identidad, objetivo o método de exorcismo. Posesión sola activa el ámbito de Custodia, no necesariamente el de Sentido. Barreras y frecuencia siguen B5.
+- Defensa Mental estática 11+VOL; Custodia +1 sólo ante posesión/control/expulsión/retención espiritual. `Mente Anclada` +2 requiere Reacción y 3 Maná; combinar con +1 racial es **propuesta ANK-PB3-03**, no cifra vigente. Miedo/Sugestión sin Custodia; `Valor Inspirado` y `Mente Anclada` no se apilan entre sí.
+- El procedimiento de efecto mental compuesto `ANK-PB3-02` permanece propuesta no ratificada. No se añaden Fuente, Vínculo Divino, Habilidades ni inmunidades.
+- **B3 documental terminada, B4/B5 y texto `manual_final_propuesto.md` pendientes. Siguiente B3: Cristálidos.**
