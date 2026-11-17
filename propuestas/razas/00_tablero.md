@@ -32,7 +32,7 @@
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; B3 cerrada documentalmente |
 | B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
 | B4. Comparación y mejoras | **12/12 documental: todas las familias** | Doce familias: 11 comparaciones cada una; Coralios 4 propuestas y 18 regresiones nuevas; Micelios 4 propuestas y 18 regresiones nuevas; Verdantes 4 propuestas y 16 regresiones nuevas; Cristálidos 3 propuestas y 14 regresiones nuevas; Ankar 3 y 14; Feéricos 4 y 16; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: B5 matriz global 12×12** |
-| B5. Regresiones globales | **EN CURSO: matriz 12×12, 66 pares; B5-I01–I05 desarrolladas documentalmente (19 propuestas; 98 regresiones DOC no ejecutadas); quedan incidencias abiertas** | `auditorias/05_matriz_global_y_regresiones.md`; NO equivale a cierre B5 | **Siguiente: B5-I06 Goblinoides, Ojo, Escurridizo y paridad Hobgoblin** |
+| B5. Regresiones globales | **EN CURSO: matriz 12×12, 66 pares; B5-I01–I06 desarrolladas documentalmente (23 propuestas; 118 regresiones DOC no ejecutadas); quedan incidencias abiertas** | `auditorias/05_matriz_global_y_regresiones.md`; NO equivale a cierre B5 | **Siguiente: B5-I07 Terios, Linaje/Variedad, adaptaciones y Anfibio** |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
 
@@ -498,3 +498,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `auditorias/05_b5_i05_orcos.md`: cuatro propuestas no canónicas B5-I05-P01–P04 y veinte regresiones DOC B5-I05-T01–T20; vinculada matriz global.
 - Orden propuesto de fuentes Ayuda/Ventaja y Voluntad; +1 FUE sólo Carga/objetos inertes. Abiertos cancelación alternativa, múltiples fuentes elegibles y cuerpos inconscientes. **0 Foundry/mesa, no canonizado**.
 - **Siguiente B5-I06:** Ojo para la Oportunidad, Escurridizo y paridad Hobgoblin. Fase C todavía bloqueada.
+
+### 2026-11-17 — B5-I06: Goblinoides y paridad Hobgoblin
+- Releídos tablero, README, plan, matriz global, B2–B4 Goblinoides y Manual Maestro `main` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`).
+- Creado `auditorias/05_b5_i06_goblinoides.md`: cuatro propuestas no canónicas B5-I06-P01–P04 y veinte regresiones DOC B5-I06-T01–T20; matriz global actualizada.
+- Ojo requiere oportunidad previa concreta; Escurridizo paga terreno difícil y no elimina Reacciones; paridad Hobgoblin aún pendiente, alternativa con coste de Acción no aprobada. **0 Foundry/mesa, B5 abierta**.
+- **Siguiente B5-I07:** Terios Linaje/Variedad, sustitución de adaptaciones, branquias/Anfibio y PR. Fase C no habilitada.
