@@ -25,7 +25,7 @@
 7. **Infraestructura:** las redes comunitarias complejas pueden existir, pero exigen desarrollo propio como infraestructura/Proyecto; no son recursos gratis de PJ. **Conforme.**
 8. **Individuo vs. red:** independencia de agencia y recuerdos personales; la interrupción de red no significa muerte, esclavización o conciencia colectiva automática. **Conforme.**
 9. **Biología propuesta:** edad funcional 16–24, vida usual 60–110, talla 1,40–1,90 m y cuatro perfiles visuales son datos **nuevos**, no del Manual. No cambian escala o economía de juego. **No canon.**
-10. **Culturas propuestas:** Casas del Sustrato, Archivos de Esporas, Custodios de Trama Viva, Círculos de Desprendimiento y ritos locales, sin monopolio geográfico o moral. **Conforme como propuesta.**
+10. **Culturas propuestas:** Casas del Sustrato, Archivos de Esporas, Custodios de la Red Viva, Círculos de Desprendimiento y ritos locales, sin monopolio geográfico o moral. **Conforme como propuesta.**
 11. **Religión:** Eïra no obligatoria; no se confunde la descomposición biológica con la No Muerte de Nereth o Vaelun. **Conforme.**
 12. **Estilo:** escena realista arcano-industrial, red concreta y personas independientes, sin telepatía luminosa, imágenes no generadas. **Conforme.**
 13. **Editorial:** 714 palabras dentro del intervalo 650–850; falta maquetación y arte aprobado. **Conforme como texto de borrador.**
@@ -39,7 +39,7 @@
 | MIC-02 | Cuatro perfiles ecológicos ilustrativos | Arte, sin subrazas |
 | MIC-03 | Casas del Sustrato y Mesas de Abasto Húmedo | Sociedad |
 | MIC-04 | Archivos de Esporas y Salas de Testigos | Sociedad y memoria documentada |
-| MIC-05 | Custodios de Trama Viva/Consejos de Continuidad | Infraestructura social |
+| MIC-05 | Custodios de la Red Viva/Consejos de Continuidad | Infraestructura social |
 | MIC-06 | Círculos de Desprendimiento/Posadas Secas | Cultura individualista |
 | MIC-07 | Vigilia de la Descomposición Fértil | Rito opcional |
 | MIC-08 | Lista de continuidad comprobable para Enlace | **Guía interpretativa opcional, no poder nuevo** |
