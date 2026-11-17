@@ -113,6 +113,22 @@ Secuencia obligatoria: **(1)** red fúngica viva, compatible y **continua**; **(
 
 **Coste del protocolo:** 0 PD/0 PR como pauta de lectura del paquete ya existente; no crea tirada, CD, alcance ni bono nuevos. Si se propone un nuevo artefacto o Rasgo de retransmisión debe tener costes y reglas propios en desarrollo posterior, y no autorizarse por este documento.
 
+
+### E. Aclaraciones de alcance y secuencia B2 [CANON / PROPUESTA]
+
+**[CANON: dos alcances diferentes]** La `Quimiosensibilidad` da +1 **PER** sólo a detección de señales químicas **cercanas** enumeradas y no tiene cifra canónica. Los **12 espacios** son exclusivos de la **comunicación** del `Enlace Micelial`, no un radio químico, línea de visión o alcance para recibir ataques. Quimiosensibilidad no sustituye `Naturaleza`, `Medicina`, `Investigación` ni revela detalles sobre la causa, especie, curación, posición exacta o responsable de la contaminación.
+
+**[CANON: Acción y contactos]** Para **iniciar** Enlace se gasta **una Acción**; el emisor toca red fúngica viva/compatible/continua, el receptor es **otro Micelio voluntario** conectado a esa misma red y está a no más de **12 espacios**. Mientras ambos cumplen las condiciones se pueden transmitir mensajes **simples, conceptos o impresiones sensoriales básicas**. El paquete no dice que cada palabra gaste una Acción nueva, ni que se mantenga mediante un Hechizo Sostenido o pagando Maná. Tampoco concede Acción, Reacción, ataque, identificación, ocultación o respuesta táctica gratuita a quien recibe.
+
+**[PENDIENTE B3: geometría]** El texto dice «dentro de 12 espacios» sin especificar si se mide distancia directa de mapa o longitud curva del micelio. No usar una red que serpentea 100 espacios para declarar que dos participantes a gran distancia están «dentro de 12», ni imponer automáticamente regla de alcance por longitud de hifas sin fuentes; registrar ambas distancias y decidir procedimiento coherente. Si una **pared** se atraviesa con un **segmento realmente vivo, compatible y continuo** y ambos extremos están tocados dentro del rango, el paquete **no impone línea de efecto visual**: no declarar bloqueo universal por ser muro, ni declarar que cualquier muro contiene red utilizable por defecto. La pared impide contacto cuando no hay salida de red accesible; el trayecto debe existir.
+
+**[PENDIENTE B3: interrupción temporal]** Romper contacto, cortar red o perder voluntariedad o alcance hace cesar la comunicación en cuanto deja de cumplirse el requisito. El canon no describe un costo de «reconectar» si sólo se desprendió un instante: la lectura conservadora es **repetir Acción de conexión** al iniciar un Enlace nuevo, sin convertir el enlace anterior en canal residual; registrar en simulación interrupción por Movimiento, Derribado, Agarrado, Reacción y Incapacitado. **No imponer un coste universal por mensaje** ni reglas de concentración de Hechizos.
+
+**[CANON + PROPUESTA de retransmisión]** A→B→C no es una emisión con alcance 24, ni A conoce C por la red. Si B actúa como emisor, es **otro Enlace** y debe pagar **su Acción inicial** con contactos y distancia válidos. Aun así, el texto no regula un sistema universal de difusión simultánea o cola de mensajes; el límite «con **otro** Micelio» no se sustituye por conferencia multiusuario sin capacidad nueva. Un Proyecto/ritual pagado podría diseñar infraestructura de comunicación compleja, pero **no es una habilidad racial**.
+
+**[CANON: sustento y medicina]** Un Micelio sigue el sustento general con humedad y nutrientes orgánicos apropiados y Descanso Completo normal. La jornada estándar de viaje emplea **1 ración por persona** y el forrajeo consume aproximadamente **2 horas y PER+Supervivencia** cuando procede; el Manual **no fija litros ni daño diario automático por desecación**. Tampoco otorga «toque y absorber cadáver», inmunidad a hongos tóxicos, producción de veneno/alquimia por esporas ni Vida/Maná por descomposición. Registrar necesidades en ficción, no tres medidores raciales adicionales.
+
+
 ## IX. Propuestas nuevas para revisión global
 
 | ID | Resolución | Tipo |
