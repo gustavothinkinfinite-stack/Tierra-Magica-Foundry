@@ -6,7 +6,7 @@
 *«Lo que tiene forma puede ser transformado. Lo que resiste, perdura.» — Tradición de Khorun.*
 
 ### El Primer Golpe
-En las profundidades del mundo, Khorun halló el fuego primordial y levantó un yunque de primera piedra. Las tradiciones cuentan que el golpe de su martillo despertó las montañas, abrió cavernas y concedió consciencia a la materia. De la Piedra nacieron los **Enanos**, los Hijos de la Piedra.
+Según los relatos de la Primera Forja, Khorun descendió a las profundidades, halló el fuego primordial y levantó un yunque de primera piedra. Cuentan que el Primer Golpe levantó montañas, abrió cavernas y despertó la consciencia de ciertas partes de la materia. De la Piedra nacieron los **Enanos**, los Hijos de la Piedra.
 
 Sus relatos aseguran que el Primer Forjador formó huesos de piedra, fortaleció sangre con metal y encendió la voluntad mediante fuego profundo. Finalmente, entregó herramientas a sus criaturas. No son instrucciones sobre una fisiología literal: son la memoria simbólica de un origen vinculado a Materia y Forma.
 
