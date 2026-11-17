@@ -16,8 +16,8 @@
 | 08 | Ankar | Borrador integral v0.1 + **B1 canon/lore completado, con correcciones** | B2/B3: detección 6 espacios y efectos mixtos; B4: tradición y biología |
 | 09 | Cristálidos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: interfaz de Conductor, ocultaciones, acciones; B3: energía/recursos; B4: biología |
 | 10 | Verdantes | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B4: CLN-01 y supervivencia, Enraizar, biomas; B3: exploits de anatomía |
-| 11 | Micelios | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Enlace, alcance, retransmisión y evaluar MIC-08 |
-| 12 | Coralios | Borrador integral v0.1 completo para revisión global (no aprobado) | B1/B2: comparar hidratación, Movimiento 5/6, Protección, Sentido y Anfibio 1 PR |
+| 11 | Micelios | Expediente v0.1 + **B1 canon/lore completada** | B2: alcance químico, continuidad y Acción; B3: retransmisión; B4: biología |
+| 12 | Coralios | Expediente v0.1 + **B1 canon/lore completada** | B2: hidratación, Movimiento 5/6, Protección, Sentido; B4: Anfibio 1 PR |
 
 
 ## Fases posteriores al cierre de los 12 expedientes (mandato del creador)
@@ -28,8 +28,8 @@
 |---|---|---|---|
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
-| B1. Canon y lore | **En curso: 10/12 (hasta Verdantes)** | Auditoría individual por 12 familias | Próximos: Micelios y Coralios |
-| B2. Mecánicas y costes | Pendiente | Auditoría exhaustiva contra subsistemas completos | Tras B1, por familia |
+| B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente; siguiente B2 Humanos |
+| B2. Mecánicas y costes | **Pendiente: 0/12** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Humanos**, luego Enanos y restantes |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
@@ -220,3 +220,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Corregidos `10_verdantes/auditoria_y_desarrollo.md`, `cierre_editorial.md` y prueba `VER-T39` en `pruebas_balance.md`: el módulo opcional **CLN-01** («4 horas de luz acumuladas en 24 h») es una **nueva restricción cuantificada NO CANÓNICA**, no simple interpretación de «luz suficiente». Se evaluará pertinencia y posibles efectos desbalanceantes en B2/B4; no aplicarlo en doble página o juego vigente.
 - Bioma Llanura sigue como ejemplo nuevo propuesto; biomas canónicos y condiciones de Enraizar conservan límites. **40 casos documentales, ninguno ejecutado empíricamente**; doble página mantiene **738 palabras**.
 - **Progreso B1: 10/12**, próximos Micelios y Coralios; B2–B5 y textos finales aún pendientes. No editar `main`, Foundry ni atlas.
+
+### 2026-11-17 — Cierre de B1 Micelios y Coralios (12/12)
+- Releídos `00_tablero.md`, `README.md`, `00_plan_auditorias_y_manual.md` y expedientes de Micelios/Coralios. Canon contrastado directamente con `main:docs/Tierra_Magica_Manual_Maestro.md`, blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`, §§3, creación/Orígenes, §26 Eïra, historia/atlas y reglas de ambas ascendencias.
+- **Micelios:** creado `11_micelios/auditorias/01_canon_y_lore.md` (26 controles, 11 cruces y 7 incidencias). Renombrados **Custodios de Trama Viva → Custodios de la Red Viva** en `auditoria_y_desarrollo.md`, `doble_pagina.md` y `cierre_editorial.md`, para distinguir infraestructura fúngica de Trama cosmológica. El paquete racial no cambia; 44 pruebas siguen documentales, ninguna ejecutada.
+- **Coralios:** creado `12_coralios/auditorias/01_canon_y_lore.md` (26 controles, 11 cruces y 8 incidencias). Confirmados límites de Respiración Anfibia, Protección Natural 1 no acumulable, Sentido de Corriente, Movimiento 5/6, ausencia de Resonancia Oceánica y CHC-01 como propuesta opcional; 48 pruebas documentales, ninguna ejecutada.
+- **B1 COMPLETADA: 12/12.** Los expedientes iniciales Fase A siguen 12/12. **Próximo bloque sustantivo: B2 Humanos** (PD/PR, creación, Acciones, combate, magia, 0 Vida, crafting, familiares, Rasgos, exploits), luego B2 Enanos y restantes; después B3/B4/B5 y redacción C. **No pausar automatización**: quedan fases sustantivas. Ningún cambio en `main`, Manual Maestro, Foundry o mapa.
