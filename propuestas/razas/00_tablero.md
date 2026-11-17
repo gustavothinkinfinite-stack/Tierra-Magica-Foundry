@@ -14,8 +14,8 @@
 | 06 | Terios/Anihombres | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Renkai/Origen Renkaino, sustituciones de Variedad y playtest anatómico |
 | 07 | Feéricos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Continuidad de la Raíz y playtests de vuelo Hada, vínculo y viento |
 | 08 | Ankar | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Sentido del Umbral, Custodia del Alma y revisar instituciones |
-| 09 | Cristálidos | Próximo a trabajar | Auditar Matriz Mixta, Resonancia Arcana, Conductor Vivo y biología |
-| 10 | Verdantes | Pendiente | Biomas, fisiología, identidad cultural, doble página |
+| 09 | Cristálidos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar fisiología propuesta y playtest de conducción, interfaces y Resonancia |
+| 10 | Verdantes | Próximo a trabajar | Auditar Eïra y Sustento Vegetal; biomas, Enraizar, culturas y doble página |
 | 11 | Micelios | Pendiente | Redes, individualidad, comunicación y balance, doble página |
 | 12 | Coralios | Pendiente | Mar, ecosistemas, civilizaciones anfibias, doble página |
 
@@ -88,3 +88,12 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **30 casos de aceptación documental**, no playtests ejecutados. Doble página editorial de unas 850 palabras de contenido imprimible, pendiente de maquetación. No se resuelve el destino último de las almas.
 - **Estado global: siete expedientes integrales completos como borradores** —Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos y Ankar—; Humanos sigue pendiente de consolidación.
 - **Próximo ciclo:** Cristálidos; después Verdantes, Micelios y Coralios, y consolidación final de Humanos. `main`, mapa oficial y Foundry no modificados.
+
+### 2026-11-16 — Noveno avance: Cristálidos — Matriz Mixta
+- Al abrir el tablero se comprobó que la tarea horaria ya había terminado **Ankar**, de modo que no se duplicó ese expediente. Se leyó su cierre y se pasó a Cristálidos.
+- Consultado `main` en secciones de paquete Cristálido v0.3, Khorun/Primera Forja, crafting y prohibición de usar Cristales de Resonancia como materiales normales, Familiares y origen, geografía y estado 612 C.
+- Leída directamente la guía visual `Foundry_TM_Guia_Estilo_Visual_v1.json` v1.0 del proyecto.
+- Guardados `09_cristalidos/auditoria_y_desarrollo.md`, `09_cristalidos/doble_pagina.md`, `09_cristalidos/brief_arte.md`, `09_cristalidos/pruebas_balance.md`, `09_cristalidos/cierre_editorial.md`.
+- **712 palabras imprimibles** de doble página y **52 casos de aceptación documental**, no ensayos reales. Cuatro tradiciones propuestas y protocolo opcional de acoplamiento; se mantiene intacto el paquete racial existente y se excluyen cuerpos completamente cristalinos del PJ básico.
+- **Estado global: ocho expedientes integrales completos como BORRADORES** —Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar y Cristálidos—; Humanos aún debe consolidar el expediente. Ninguno aprobado; sin cambios a `main`, mapa o Foundry.
+- **Próximo ciclo productivo:** Verdantes; luego Micelios, Coralios y cierre documental de Humanos. Evitar repetir expedientes que el ciclo horario haya adelantado.
