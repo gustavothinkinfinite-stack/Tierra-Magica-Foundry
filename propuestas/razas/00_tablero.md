@@ -11,7 +11,7 @@
 | 03 | Élficos | Borrador integral v0.1 + **B1 canon/lore completo, con correcciones** | B2: alcance Resonancia, percepciones; B4: Oscuros y biología |
 | 04 | Orcos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: Voluntad/Desventajas; B3: FUE/Carga; B4: Bastión/Sangre y biología |
 | 05 | Goblinoides | Borrador integral v0.1 + **B1 canon/lore completo con corrección cultural** | B2/B3: Ojo, Escurridizo, Complexión; B4: biología y balance Hobgoblin |
-| 06 | Terios/Anihombres | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Renkai/Origen Renkaino, sustituciones de Variedad y playtest anatómico |
+| 06 | Terios/Anihombres | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: Variedad/función anatómica, vuelo y equipo; B4: Renkai y biología |
 | 07 | Feéricos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Continuidad de la Raíz y playtests de vuelo Hada, vínculo y viento |
 | 08 | Ankar | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Sentido del Umbral, Custodia del Alma y revisar instituciones |
 | 09 | Cristálidos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar fisiología propuesta y playtest de conducción, interfaces y Resonancia |
@@ -28,7 +28,7 @@
 |---|---|---|---|
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
-| B1. Canon y lore | **En curso: 5/12 (Humanos, Enanos, Élficos, Orcos, Goblinoides)** | Auditoría individual por 12 familias | Próximo: Terios/Anihombres, luego 6 restantes |
+| B1. Canon y lore | **En curso: 6/12 (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios)** | Auditoría individual por 12 familias | Próximo: Feéricos, luego 5 restantes |
 | B2. Mecánicas y costes | Pendiente | Auditoría exhaustiva contra subsistemas completos | Tras B1, por familia |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
@@ -185,3 +185,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Corrección efectiva: renombradas las **Casas de Umbral** de Bugbears a **Casas de Paso Seguro** en `auditoria_y_desarrollo.md`, `doble_pagina.md` y `cierre_editorial.md`, para evitar colisión con Ankar/Vaelun, `Casas del Umbral` de Terios y Puerto Umbral. **No hay cambio mecánico**.
 - Registro de Oportunidad es herramienta documental, sin ampliar el +1; Goblin Escurridizo y Complexión Bugbear conservan límites. **30 casos documentales no ejecutados en partida**.
 - **Progreso B1: 5/12**. Siguiente Terios/Anihombres; la redacción final `manual_final_propuesto.md` sigue prohibida hasta concluir B1–B5. No se tocó `main`, Foundry ni mapa.
+
+### 2026-11-17 — B1 Terios completada
+- Consultados directamente `06_terios/` (cinco archivos y anexo `modulo_origen_renkaino.md`), `main` paquete v0.3, Eïra/Primera Semilla, Orígenes y lenguas, Ankar/Terio Chacal, ratificación de Mapa Maestro y Territorio Oriental.
+- Guardado `06_terios/auditorias/01_canon_y_lore.md`: **28 controles canon**, **11 comparaciones narrativas con las otras razas**, **8 incidencias** documentales, diferenciadas entre corregidas y pendientes B2–B4.
+- Cambios en `auditoria_y_desarrollo.md`: 8 perfiles morfofuncionales (no seis), branquias funcionales ligadas a una capacidad compatible y costeada, equivalencia de sustitución por Variedad marcada explícitamente como **propuesta**, «archipiélago cultural» reemplazado por mosaico cultural de la **gran isla ratificada**, y «Casas del Umbral» renombradas a **Casas de la Calzada** para evitar homonimias espirituales/geográficas.
+- La doble página mantiene **726 palabras**; `Origen Renkaino` sigue como 11.ª opción **no canónica** que requiere aprobación de nombre y lengua. **48 criterios documentales**, sin pruebas reales ejecutadas.
+- **B1: 6/12**. Próximo Feéricos, después Ankar, Cristálidos, Verdantes, Micelios y Coralios; B2–B5 y manual_final_propuesto.md permanecen pendientes. No modificar `main`, Foundry ni mapa.
