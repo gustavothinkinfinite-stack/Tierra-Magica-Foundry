@@ -4,7 +4,7 @@
 
 ## Paquete comprobado
 - Expediente `auditoria_y_desarrollo.md`: canon, propuesta biológica, instituciones, cuatro tradiciones, religión, diferencias.
-- `doble_pagina.md`: apertura narrativa y cierre jugable, **767 palabras en el contenido de las dos páginas** (incluidos subtítulos, sin título general, aviso preliminar ni nota final); **810 palabras** al incluir título general y aviso preliminar. Recuento documental reproducible, dentro del objetivo editorial de 650–850.
+- `doble_pagina.md`: apertura narrativa y cierre jugable, **772 palabras en el contenido de las dos páginas** (incluidos subtítulos, sin título general, aviso preliminar ni nota final); **815 palabras** al incluir título general y aviso preliminar. Recuento documental reproducible, dentro del objetivo editorial de 650–850.
 - `brief_arte.md`: escena funcional en Kar-Dur; no se generó imagen.
 - `pruebas_balance.md`: 24 casos de prueba definidos más guion de sesión y riesgos.
 - Ningún archivo de `main`, ni Foundry, ni mapa maestro fue alterado.
