@@ -15,7 +15,7 @@
 | 07 | Feéricos | Borrador v0.1; **B1, B2 y B3 documentales completas**, **76 DOC + 24 MOD auxiliares** | B4/B5: Hada apoyos/velocidades, Dríade Derribar/desanclaje, Silfo viento mágico |
 | 08 | Ankar | Borrador v0.1; **B1, B2 y B3 documentales completas**; **68 DOC + 28 MOD auxiliares**, 0 Foundry/mesa | B4/B5: frecuencia de Sentido, barreras, efectos mentales mixtos y apilamiento |
 | 09 | Cristálidos | Borrador v0.1; **B1, B2 y B3 documentales completas**; **96 DOC**, 0 Foundry/mesa | B4/B5: valor de lectura/puente, ocultación, consentimiento y 0 Vida |
-| 10 | Verdantes | Borrador v0.1; **B1 y B2 documentales completas**; 56 casos | B3: Enraizar, Sustento, Bioma; B4: CLN-01 y balance |
+| 10 | Verdantes | Borrador v0.1; **B1, B2 y B3 documentales completas**; **86 DOC**, 0 Foundry/mesa | B4/B5: CLN-01, anclaje/Martillo Cinético, Derribar, 0 Vida, biomas y Viaje |
 | 11 | Micelios | Expediente v0.1; **B1 y B2 documentales completas**, 60 criterios | B3: distancia/red/barreras/retransmisión; B4: utilidad química y biología |
 | 12 | Coralios | Expediente v0.1; **B1 y B2 documentales completas**, 64 criterios | B3: tierra/agua, hidratación y protección; B4: Anfibio 1 PR y balance |
 
@@ -30,7 +30,7 @@
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Verdantes** |
-| B3. Exploits y secuencias | **DOCUMENTAL: 9/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar, Cristálidos) | B3 Cristálidos: **96 DOC**, 28 nuevos; 4 secuencias, 10 incidencias; **0 Foundry/mesa** | **Siguiente: Verdantes**, luego Micelios y Coralios |
+| B3. Exploits y secuencias | **DOCUMENTAL: 10/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar, Cristálidos, Verdantes) | B3 Verdantes: **86 DOC**, 30 nuevos; 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Siguiente: Micelios**, luego Coralios |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -367,3 +367,11 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `09_cristalidos/auditorias/03_exploits_y_pruebas.md`: **28 escenarios CRI-T69–T96, cuatro secuencias, diez incidencias, tres procedimientos propuestos no canónicos**. Actualizados `pruebas_balance.md` (**96 DOC**, 0 ENV/mesa), `auditoria_y_desarrollo.md` y `cierre_editorial.md`.
 - Resultados: Resonancia no es radar ni revela E/C/Est; Conductor no crea recursos ni interfaz; Sobrecarga de hechizos **VOL+Canalización DF17** y Controlada **INT+Ingeniería DF16** son sistemas distintos; Matriz Mixta no se repara con Ingeniería; Cristales de Resonancia excluidos de CRAFT-05/07.
 - **B4/B5 abiertos:** sellos anticontacto, interrupción de consentimiento, continuidad de circuito a 0 Vida, utilidad comparativa. **B3: 9/12. Próximo: Verdantes**, después Micelios y Coralios. No se modificaron `main`, Manual Maestro, mapa ni Foundry.
+
+### 2026-11-17 — B3 Verdantes: Enraizar, Sustento y Adaptación de Bioma
+- Se releyeron `00_tablero.md`, `README.md`, `00_plan_auditorias_y_manual.md`, expediente Verdantes B1/B2, pruebas y cierre; último estado real B3 Cristálidos **9/12**, sin duplicarlo. Reabierto canon `main:docs/Tierra_Magica_Manual_Maestro.md`, SHA `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`, paquete Verdante v0.3 y reglas transversales.
+- Creado `10_verdantes/auditorias/03_exploits_y_pruebas.md`: **30 escenarios nuevos VER-T57–VER-T86, cuatro secuencias, doce incidencias y tres procedimientos propuestos**. Actualizados `pruebas_balance.md`, `auditoria_y_desarrollo.md`, `cierre_editorial.md`: **86 criterios DOC**, **0 Foundry, 0 mesa, 0 simulaciones ejecutadas**.
+- **[CANON]** Enraizar exige Acción, suelo apropiado e inmovilidad; +1 Escala efectiva sólo al resistir Empujar, Derribar y desplazamiento físico impuesto; liberación 1 Movimiento. **[PROPUESTA VER-PB3-01]** anclaje válido para desplazamiento 0 de `Martillo Cinético` (Daño 3 y Defensa Corporal intactos). **B5 abierto**: Derribar, pérdida de suelo, desplazamiento legal y 0 Vida.
+- **[CANON]** Adaptación elige bioma y **una sola** propiedad VIG ambiental/terreno. **[PROPUESTA VER-PB3-02]** ficha de selección explícita, sin poderes. **B4/B5**: comparación con Rasgos y Viaje regional, Llanura no canónica.
+- **[CANON]** Sustento necesita agua, luz y nutrientes, sin dispensar Descanso/Fatiga; **[PROPUESTA VER-PB3-03]** registro sin relojes ni castigo triple. `CLN-01` 4h/24h permanece **no canon y aislada**.
+- **B3: 10/12**; siguiente **Micelios**, después Coralios. B4/B5 y Fase C pendientes. No se editó `main`, Manual Maestro, mapa ni Foundry.
