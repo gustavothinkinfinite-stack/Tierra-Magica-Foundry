@@ -576,3 +576,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado [`auditorias/05_b5_sentidos_ocultacion_y_sustento_escenas.md`](./auditorias/05_b5_sentidos_ocultacion_y_sustento_escenas.md): algoritmo de señales, 14 escenas SEN y 12 SUS con expectativas verificables por lectura; **26 casos DOC, 0 ejecutados en Foundry/mesa**.
 - I03 e I09 reciben pauta editorial explícita sin crear radar, recursos infinitos, penalizaciones horarias ni curación. Persisten barreras espirituales, umbrales de privación y bloqueos globales.
 - **B5 abierta; fase C bloqueada.** Próximo trabajo: conciliar los siete bloqueantes, matriz 66 pares y puerta editorial; no modificar `main` ni Foundry.
+
+### 2026-11-17 — Conciliación formal B5 de los siete bloqueos
+- Leídos tablero, README, plan, acta, protocolos de movimiento/anclaje/0 Vida, enlace/Conductor, Anfibio, Hobgoblin y sentidos/sustento; revalidado Manual Maestro `main` blob `334770e7ed7d2605767aecb169f57da6c1100508`.
+- Nuevo [`auditorias/05_b5_conciliacion_bloqueos_y_criterios_de_salida.md`](./auditorias/05_b5_conciliacion_bloqueos_y_criterios_de_salida.md): estado R/D/V para las 12 incidencias, siete decisiones pendientes explicitadas y seis guiones de cruce; **0 ejecuciones Foundry/mesa**. No sumar guiones a pruebas ejecutadas.
+- **B5 abierta, C bloqueada.** Se intentó leer `auditorias/05_b5_matriz_global_12x12.md`, ruta inexistente (404): localizar la matriz real antes de afirmar revisión de 66 pares. Siguiente: revisión pareja por pareja y cierre de decisiones D. Sin escritura fuera de rama/carpeta.
