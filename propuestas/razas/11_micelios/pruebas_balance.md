@@ -108,3 +108,53 @@
 | MIC-T60 | Micelio Exhausto o a 0 Vida intenta usar Enlace para curar / seguir prestando órdenes | Fatiga, 0 Vida y Incapacitado siguen; enlace no recupera Vida/Maná, concede Reacción ni evita Medicina. Resolución de contacto físico al caer queda B3 |
 
 **Resultado de cobertura:** `MIC-T01–MIC-T44` + `MIC-T45–MIC-T60` = **60 escenarios documentales, cero ejecutados**. B3 deberá fijar geometría del radio, reinicio tras interrupción, dobles Acciones, retransmisión en turnos y efectos de ocultación; B4 medirá frecuencia situacional del +1 químico y valor relativo de comunicación en campaña.
+
+
+## I. Regresiones B3 — MIC-T61 a MIC-T100
+
+**40 escenarios documentales adicionales; NO son pruebas ejecutadas.** El análisis, las cuatro secuencias y doce incidencias están en `auditorias/03_exploits_y_pruebas.md`. Las decisiones sobre radio, reconexión y señal química son propuestas no canónicas.
+
+| ID | Escenario | Resultado esperado / límite |
+|---|---|---|
+| MIC-T61 | Red a 12 espacios rectos y 12 de trayecto | Ambos contactos vivos y voluntarios, Acción del emisor: comunicación simple permitida |
+| MIC-T62 | A 13 espacios rectos aunque red mide 13 | Fuera del alcance canónico; no comunica |
+| MIC-T63 | A 8 rectos pero 25 por red serpenteante | AMBIGUO: canon no especifica métrica; propuesta MIC-B3-P01 opta distancia geométrica 8, sin telemetría |
+| MIC-T64 | A 12 rectos y 30 por red con pared perforada | AMBIGUO: mismo criterio de geometría propuesto; red física continua real indispensable |
+| MIC-T65 | Pared estanca y red que termina a cada lado | No existe una misma red continua; no comunica |
+| MIC-T66 | Túnel con micelio vivo continuo bajo pared | Pared no impide por sí misma mensajes; contacto directo y 12 espacios siguen |
+| MIC-T67 | Cable metálico une dos redes cortadas | No es red micelial viva y compatible; no comunica |
+| MIC-T68 | Red muerta sustituida por ilusión | No cumple requisito físico; no comunica |
+| MIC-T69 | Receptor Humano voluntario toca red | No es otro Micelio; no recibe por poder racial |
+| MIC-T70 | Micelio receptor rehúsa escuchar | No comunicación forzada ni lectura mental |
+| MIC-T71 | Emisor conecta y ataca con la misma Acción | Acción ya consumida al conectar; ataque separado |
+| MIC-T72 | Emisor inicia Enlace y lanza Hechizo en misma Acción | No conjuro adicional; sin Canalización gratuita |
+| MIC-T73 | Receptor se desplaza y pierde contacto | Enlace termina en instante de pérdida de contacto |
+| MIC-T74 | Corte de red por Reacción adversa antes de transmisión | Sin continuidad no hay mensaje; orden exacto según disparador de Reacción |
+| MIC-T75 | Corte de red después de mensaje entregado | No se borra mensaje ya recibido; no quedan mensajes en cola por poder |
+| MIC-T76 | Reconectar después de interrupción | Nueva Acción para establecer nuevo Enlace; interpretación conservadora |
+| MIC-T77 | A conecta B y B retransmite a C a 20 de A | B debe iniciar Enlace propio con Acción y radio12 a C; A no amplía rango |
+| MIC-T78 | B recibe de A y transmite a C en turno ajeno | Sin disparador de Reacción que autorice conectar no obtiene Acción fuera de turno |
+| MIC-T79 | A intenta conferencia con B C D | Entrada singular otro Micelio; no difusión racial automática |
+| MIC-T80 | A comunica plano completo de 50 páginas | No es mensaje simple; infraestructura documental/proyecto separado |
+| MIC-T81 | A lee recuerdos de B por contacto | No telepatía ni archivo de recuerdos |
+| MIC-T82 | A envía Hechizo a través de red | Enlace no es línea de efecto ni Fuente/Maná |
+| MIC-T83 | A usa red como radar de enemigos | No mapa ni sensor; no descubre posiciones |
+| MIC-T84 | A ordena a Familiar remoto por red | No sustituye reglas de Familiares ni Origen Remoto |
+| MIC-T85 | Quimiosensibilidad ante esporas cercanas perceptibles | +1 PER sólo para detectar señal química pertinente |
+| MIC-T86 | Quimiosensibilidad ante vial hermético | Sin señal perceptible no hay prueba favorecida por poder |
+| MIC-T87 | Quimiosensibilidad ante trampa mecánica inorgánica | No +1 PER racial por química ajena a categorías |
+| MIC-T88 | Quimiosensibilidad a 12 espacios por analogía de Enlace | No existe radio numérico de Quimiosensibilidad |
+| MIC-T89 | Quimiosensibilidad identifica toxina y antídoto | Detectar no es identificar; requieren competencias pertinentes |
+| MIC-T90 | Micelio obtiene +1 PER y mismo efecto equivalente de Rasgo | No apilar propiedades equivalentes automáticamente; consultar texto de Rasgo |
+| MIC-T91 | Micelio seca entorno y reclama curación por esporas | No curación racial ni generación de recursos |
+| MIC-T92 | Micelio absorbe cadáver y crea materiales alquímicos ilimitados | Sustento no sustituye Alquimia, crafting, costes ni tiempo |
+| MIC-T93 | Micelio sin provisiones durante viaje seco | Aplican supervivencia/Fatiga, no inmunidad ni daño fijo racial inventado |
+| MIC-T94 | Micelio Exhausto conectado mantiene Acción extra | Exhausto reduce MOV2; Enlace no agrega Acción |
+| MIC-T95 | Micelio cae a 0 Vida durante Enlace | No puede emitir órdenes voluntarias incapacitado; contacto/continuidad física requieren adjudicación |
+| MIC-T96 | Micelio reposa con red y reclama Maná adicional | Descanso universal; no Maná ni Vida por red |
+| MIC-T97 | Micelio recibe datos de infraestructura comunitaria mágica | No se hereda acceso ni capacidad de descifrar; Proyecto con requisitos |
+| MIC-T98 | Tres Micelios hacen cadena A B C y retransmiten indefinidamente | Cada salto requiere su Acción y condiciones; sin alcance infinito instantáneo |
+| MIC-T99 | Red crece durante combate 20 espacios en un instante | Sin capacidad, Proyecto o magia explícitos no crece tácticamente gratis |
+| MIC-T100 | Micelio porta maceta de micelio vivo y afirma enlazar cualquier lugar | La maceta sola no crea red compartida continua ni receptor conectado |
+
+**Cobertura total:** MIC-T01–MIC-T100 = **100 DOC**, **0 MOD, 0 ENV, 0 MESA**. B4/B5 verificarán valor relativo, alcance geométrico propuesto e interrupciones.
