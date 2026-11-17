@@ -37,7 +37,7 @@
 **Lectura reproducible:**
 - Un **atacante Pequeño** que obtiene margen Claro contra un **Enano Pequeño con Cuerpo de Piedra** compara la Escala efectiva del defensor **Mediano**: en vez de la distancia plena de 2, reduce a **1 espacio**. La **tirada para impactar** no cambió. Lo mismo ante margen Dominante reduciría **3→2** espacios.
 - Ante **atacante Mediano**, el Enano ya cuenta como Mediano para resistir, por lo que Empujar opera sin reducción adicional por diferencia (distancia por margen). **No** permite proclamar que la capacidad «siempre reduce 1 espacio».
-- Si un atacante fuese **dos o más categorías menor** que Mediano, la maniobra ordinaria no movería al Enano sin palanca/efecto apropiado; revisar la tabla real de Escalas en B3 antes de inventar especies o equivalencias.
+- Si un atacante fuese **dos o más categorías menor** que la Escala efectiva Mediana del defensor, la maniobra ordinaria no movería al Enano sin palanca/efecto apropiado. Este caso es teórico y debe contrastarse con las categorías de Escala realmente disponibles, no necesita inventar una nueva especie.
 - Empujar por efectos mágicos puede tener tabla **propia** (ej. Martillo Cinético). Resolver con texto del efecto y Escala efectiva en su componente físico; no aplicar distancia de Empujar universal a una magia que cuantifica desplazamiento de otro modo.
 
 **Problema detectado:** en textos de ficha abreviados «resistir Empujar» podría ser interpretado como «Defensa +1»; **no existe esa conversión** en la regla racial.
@@ -46,7 +46,7 @@
 
 Derribar gasta Acción, tira método físico contra Defensa de Maniobra y, si acierta, aplica Derribado. El procedimiento no presenta una tabla universal de distancia/resultado por Escala en ese paso. Por tanto, Cuerpo de Piedra **no da +1 Defensa de Maniobra** ni provoca automáticamente un éxito fallido. Su beneficio al resistir Derribar puede importar a la **viabilidad física** de la maniobra, interacción con una capacidad especial o diferencia funcional de Escala que el efecto exija, pero la magnitud **no está cuantificada** en la maniobra ordinaria.
 
-**HUM-B2-PROP-ENA-01 [PROPUESTA DE ACLARACIÓN, NO CANON]:** mantener el texto racial intacto y añadir un ejemplo transversal en la futura referencia rápida de maniobras: *«Al decidir si un Derribar depende de diferencia de Escala, el Enano cuenta como Mediano; el rasgo no altera la Defensa de Maniobra y no anula por sí solo un éxito.»* Si las pruebas B3/B4 muestran que la cláusula carece siempre de utilidad relevante, evaluar una formulación explícita de efecto o un caso donde importe, **sin crear bonificación automática ahora**.
+**ENA-B2-PROP-01 [PROPUESTA DE ACLARACIÓN, NO CANON]:** mantener el texto racial intacto y añadir un ejemplo transversal en la futura referencia rápida de maniobras: *«Al decidir si un Derribar depende de diferencia de Escala, el Enano cuenta como Mediano; el rasgo no altera la Defensa de Maniobra y no anula por sí solo un éxito.»* Si las pruebas B3/B4 muestran que la cláusula carece siempre de utilidad relevante, evaluar una formulación explícita de efecto o un caso donde importe, **sin crear bonificación automática ahora**.
 
 ### 3. Agarrar y desplazamiento desde una Presa
 
