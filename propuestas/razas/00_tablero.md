@@ -32,7 +32,7 @@
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; B3 cerrada documentalmente |
 | B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
 | B4. Comparación y mejoras | **12/12 documental: todas las familias** | Doce familias: 11 comparaciones cada una; Coralios 4 propuestas y 18 regresiones nuevas; Micelios 4 propuestas y 18 regresiones nuevas; Verdantes 4 propuestas y 16 regresiones nuevas; Cristálidos 3 propuestas y 14 regresiones nuevas; Ankar 3 y 14; Feéricos 4 y 16; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: B5 matriz global 12×12** |
-| B5. Regresiones globales | **EN CURSO: matriz 12×12, 66 pares; B5-I01–I09 desarrolladas documentalmente (35 propuestas; 178 regresiones DOC no ejecutadas); quedan incidencias abiertas** | `auditorias/05_matriz_global_y_regresiones.md`; NO equivale a cierre B5 | **Siguiente: B5-I10 Coralios, hidratación, Anfibio, presión y equipo** |
+| B5. Regresiones globales | **EN CURSO: matriz 12×12, 66 pares; B5-I01–I10 desarrolladas documentalmente (39 propuestas; 198 regresiones DOC no ejecutadas); quedan incidencias abiertas** | `auditorias/05_matriz_global_y_regresiones.md`; NO equivale a cierre B5 | **Siguiente: B5-I11 Feéricos, Vuelo Hada, Agarrar, 0 Vida y Fuente** |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
 
@@ -522,3 +522,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `auditorias/05_b5_i09_verdantes.md`: cuatro propuestas no canónicas B5-I09-P01–P04 y veinte regresiones DOC B5-I09-T01–T20; matriz actualizada.
 - Bioma una modalidad; Sustento Vegetal no cura ni exime de descanso; Medicina/Sangrado/0 Vida generales; Enraizar se coordina con B5-I02. Abiertos privación, granularidad del bioma, Trauma y soporte. **0 Foundry/mesa, B5 abierta**.
 - **Siguiente B5-I10:** Coralios, hidratación, Anfibio, presión, Medicina y equipo. Fase C no habilitada.
+
+### 2026-11-17 — B5-I10: Coralios, hidratación y equipo
+- Releídos tablero, README, plan, matriz global, B2–B4 Coralios y Manual Maestro `main` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`).
+- Creado `auditorias/05_b5_i10_coralios.md`: cuatro propuestas no canónicas B5-I10-P01–P04 y veinte regresiones DOC B5-I10-T01–T20; matriz global actualizada.
+- Hidratación condiciona respiración, no inmuniza a presión; MOV5/6 sin doble presupuesto; Protección1 no suma armadura. Abiertos umbral de hidratación, equipo, Anfibio y presión. **0 Foundry/mesa; B5 abierta**.
+- **Siguiente B5-I11:** Feéricos, Vuelo Hada, Agarrar, 0 Vida, Fuente y Escala. Fase C bloqueada.
