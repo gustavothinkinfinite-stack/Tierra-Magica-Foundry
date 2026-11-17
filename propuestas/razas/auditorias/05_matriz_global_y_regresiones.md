@@ -216,3 +216,8 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - [`05_b5_protocolo_enlace_conductor_y_corte.md`](./05_b5_protocolo_enlace_conductor_y_corte.md): cuatro propuestas B5-NEX-P01–P04 y 20 regresiones B5-NEX-T01–T20 **DOC no ejecutadas**.
 - Contratos separados de red viva y puente compatible; 12 espacios y geometría propuesta; consentimiento y continuidad, desconexión, Energía/Caudal, orden de gasto y 0 Vida.
 - I04/I08 **siguen abiertas** hasta validar geometría y diseños concretos. **55 propuestas, 278 criterios DOC diseñados, 0 Foundry/mesa.** Siguiente I05/I11 Anfibio y Rasgos equivalentes; fase C no autorizada.
+
+## Avance 17-11-2026 — I05/I11 Anfibio Terio/Coralio
+- [`05_b5_anfibio_equivalencias_terios_coralios.md`](./05_b5_anfibio_equivalencias_terios_coralios.md): cuatro propuestas B5-AMP-P01–P04, veinte guiones DOC B5-AMP-T01–T20 **no ejecutados**, matriz de respiración/MOV/PR.
+- Terio Locomoción Especializada (nado MOV6) **no** concede respirar agua; Rasgo Anfibio cuesta **1 PR**. Coralio respira ambos medios mientras razonablemente hidratado; compra de Anfibio para respirar deshidratado queda **pendiente** por diferencia de condiciones, no se inventa beneficio.
+- I05 sigue bloqueante, I11 pendiente de cierre; **59 propuestas, 298 criterios DOC diseñados; 0 Foundry/mesa**. Siguiente I06/I07 Hobgoblin/Ojo/Voluntad/Ayuda; B5 abierta y C no autorizada.
