@@ -57,3 +57,10 @@
 - Los cambios de B2 se limitaron a `auditoria_y_desarrollo.md`, `pruebas_balance.md`, este cierre y archivo B2. La separación entre **Sobrecarga de Hechizo (VOL+Canalización DF17)** y **Sobrecarga Controlada de Ingeniería (INT+Ingeniería DF16)** se documentó con los límites reales de E/C/Consumo.
 - **Conductor Vivo** sólo es puente **voluntario** en diseño compatible: no recarga Energía, aumenta Caudal/Estabilidad, genera Maná, sustituye Fuente/operador ni concede Acción extra. `Protocolo de Acoplamiento Seguro` permanece **propuesta opcional de adjudicación**, no nueva capacidad canónica.
 - Abiertos B3/B4: ocultación de Resonancia en contacto, tiempo/Acción de lectura, fase de desconexión y consecuencias ante fallas, sobrecarga con construcción compatible y comparación de utilidad frente a otros sentidos. No cambiar `main`, Foundry, mapa ni el paquete racial.
+
+### Actualización B3 — 17-11-2026
+
+- `auditorias/03_exploits_y_pruebas.md`: **28 ataques nuevos, 4 secuencias reproducibles documentales, 10 incidencias**. `pruebas_balance.md`: **96 criterios CRI-T01–T96** (52 originales + 16 B2 + 28 B3). **0 Foundry, 0 partidas de mesa**.
+- Se verificó separación de Resonancia por contacto vs. radar/diagnóstico, de Conductor Vivo vs. acumulador y de Sobrecarga mágica (VOL+Canalización DF17) vs. Sobrecarga Controlada (INT+Ingeniería DF16). No se transfieren E/C/Est/Maná ni se extraen Cristales de Resonancia del cuerpo.
+- **[PROPUESTA NO CANÓNICA]** CRI-B3-P01 ventana de acoplamiento; CRI-B3-P02 retirada durante operación; CRI-B3-P03 declaración de lectura. Sin Acción, recurso, Habilidad, protección ni inmunidad gratuitos.
+- **Pendientes B4/B5:** valor relativo frente a otras familias, sello anticontacto, ventana de desconexión y continuidad de circuito al 0 Vida. Ninguna decisión se integró a `main` ni al código Foundry.
