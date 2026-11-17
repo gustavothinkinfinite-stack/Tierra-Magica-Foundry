@@ -102,7 +102,7 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 | B5-I03 | Alta | ELF–ANK–CRI–MIC–COR | Tabla de fronteras sensoriales: vital significativo perceptible; espíritu 6; circuito tocado; química cercana; corriente acuática; no convertir ninguna en radar general | Sin +1 PER general ni diagnóstico | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
 | B5-I04 | Alta | MIC–ANK–CRI | Red micelial 12: métrica geométrica vs longitud; continuidad, voluntad, reconexión y 0 Vida; **propuesta:** distancia geométrica, Acción nueva tras ruptura | Sin cadena instantánea, telepatía ni Fuente | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
 | B5-I05 | Alta | TER–COR | Adaptación anfibia Terio vs Coralio racial vs Rasgo General Anfibio 1 PR; comparar presupuesto y condiciones de hidratación, no regalar un segundo beneficio | Mantener costes y límites existentes | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
-| B5-I06 | Media | GOB–HUM–ORC | Hobgoblin sólo Ojo vs variantes con segundo rasgo; medir paridad de escenas sin otorgar Liderazgo gratuito | Cualquier rasgo nuevo exige coste o sustitución explícita | ABIERTA |
+| B5-I06 | Media | GOB–HUM–ORC | Hobgoblin sólo Ojo vs variantes con segundo rasgo; medir paridad de escenas sin otorgar Liderazgo gratuito | Cualquier rasgo nuevo exige coste o sustitución explícita | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
 | B5-I07 | Media | ORC–GOB–HUM | Ojo, Voluntad, Ayuda, Ventaja/Desventaja e Iniciativa; orden de declaración y una oportunidad real | 1/Escena; no duplicar circunstancia | ABIERTA |
 | B5-I08 | Alta | CRI–MIC | Conductor Vivo, consentimiento/desconexión, Energía/Caudal/Sobrecarga; red micelial no sustituye interfaz | Acción y recursos del dispositivo; no Maná ni Energía gratis | ABIERTA |
 | B5-I09 | Media | VER–MIC–COR | Hidratación, nutrientes, luz, Fatiga, Descanso y viaje; evitar contadores arbitrarios como CLN-01 | Provisiones y procedimientos generales | ABIERTA |
@@ -166,3 +166,8 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - [`05_b5_i05_orcos.md`](./05_b5_i05_orcos.md): cuatro propuestas no canónicas B5-I05-P01–P04 y 20 regresiones **DOC no ejecutadas** B5-I05-T01–T20.
 - Propuesta: registrar causas de Desventaja antes de cancelar Ayuda/Ventaja; gastar Voluntad 1/Escena antes de tirar sólo si todas las fuentes de Desventaja son elegibles; no elimina estados ni otorga Ventaja propia. Complexión +1 FUE sólo Carga/objetos inertes, no maniobras.
 - Abiertos: orden alternativo de cancelación, múltiples fuentes elegibles y cuerpos inconscientes en Carga. Cruces Orcos/Humanos/Enanos/Goblinoides/Terios; **0 Foundry, 0 mesa**. Siguiente **B5-I06 Goblinoides**.
+
+## Avance 17-11-2026 — B5-I06 Goblinoides
+- [`05_b5_i06_goblinoides.md`](./05_b5_i06_goblinoides.md): cuatro propuestas no canónicas B5-I06-P01–P04 y 20 regresiones **DOC no ejecutadas** B5-I06-T01–T20.
+- Ojo requiere oportunidad real registrada antes de la prueba; Iniciativa es interpretación condicional no canónica. Escurridizo paga terreno difícil y no anula Reacciones ni ocupación final; Complexión Bugbear sólo Carga/objetos inertes.
+- Paridad Hobgoblin pendiente de medición; alternativa Disciplina Preparada con Acción previa y 1/Escena **no aprobada**. Abiertos interrupción de casilla, Iniciativa y cuerpos en Carga. Cruces X01-05, X02-05, X04-05, X05-06, X05-07; B5-G02/G03/G08; **0 Foundry, 0 mesa**. Siguiente **B5-I07 Terios**.
