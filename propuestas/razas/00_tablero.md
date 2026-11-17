@@ -552,3 +552,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `auditorias/05_b5_procedimiento_movimiento_anclaje_vida.md`: cuatro propuestas B5-PROC-P01–P04 y veinte guiones PROC-T01–T20 **DOC no ejecutados**. Orden de resolución, MOV fraccional, Retirada, soporte, daño, caída, Incapacitado y sostenimientos.
 - Totales: **51 propuestas B5 incluyendo PROC; 258 criterios DOC diseñados; 0 Foundry/mesa**. Bloqueos pendientes de Retirada multimodal, Derribar, persistencia y simultaneidad. **B5 abierta; fase C bloqueada.**
 - **Siguiente:** I04 Micelios + I08 Cristálidos: continuidad, consentimiento, corte, 0 Vida y recursos.
+
+### 2026-11-17 — Protocolo B5 I04/I08: red y Conductor Vivo
+- Releídos tablero, README, plan, B2/B3 Micelios, B2/B5-I08 Cristálidos, acta B5 y Manual Maestro `main` (blob `334770e7ed7d2605767aecb169f57da6c1100508`).
+- Creado `auditorias/05_b5_protocolo_enlace_conductor_y_corte.md`: B5-NEX-P01–P04, 20 guiones B5-NEX-T01–T20 DOC no ejecutados. Diferencia red viva de interfaz, radio 12, voluntad, continuidad, gasto, consentimiento, corte y 0 Vida.
+- Acumulado **55 propuestas y 278 guiones DOC diseñados**, **0 Foundry/mesa**; I04/I08 con protocolos propuestos pero abiertos por geometría, dispositivos concretos, gasto/interrupción y persistencia. B5 abierta; fase C bloqueada.
+- **Siguiente:** I05 Anfibio y equivalencias I11, seguido de I06/I07 Hobgoblin/Ojo.
