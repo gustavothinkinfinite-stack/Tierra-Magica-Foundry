@@ -20,7 +20,7 @@
 
 | Campo | Vacío comprobado | Solución de este borrador [PROPUESTA] |
 |---|---|---|
-| Linajes jugables | El canon evita un catálogo biológico cerrado | Definir ejemplos extensibles en seis familias morfofuncionales, sin limitar el número de linajes posibles |
+| Linajes jugables | El canon evita un catálogo biológico cerrado | Definir ocho perfiles morfofuncionales ilustrativos y extensibles, sin limitar el número de linajes posibles |
 | Variedades | No existen perfiles de sustitución predefinidos | Diseñar variedades con sustitución 1:1; registro explícito del presupuesto final |
 | Cuerpo y ciclo vital | No hay datos universales, necesidades específicas ni madurez establecida | Proponer **ciclo vital por linaje** sin longevidad racial única; sustento, descanso y condiciones ambientales normales |
 | Vestuario y equipo | Órganos muy distintos necesitan soluciones | Guía de adaptación anatómica de equipo sin PR ni ventajas de costo gratuitas; origen/economía rigen compra |
@@ -41,7 +41,7 @@
 | **Elefantino / proboscídeo** | Trompa manipuladora, colmillos variables, gran torso | Mediana (jugable base) | Órgano prensil, Complexión poderosa, Adaptación ambiental; trompa funcional no concede Acción extra |
 | **Aviano** | Plumas, pico, miembros anteriores diferentes según variedad | Pequeña o Mediana | Dominante Vuelo sostenido **si el cuerpo puede realmente volar**; o Principal Locomoción Especializada y Secundaria Sentido especializado |
 | **Quelonio / acorazado** | Caparazón natural, tronco robusto | Pequeña o Mediana | Protección Natural, Complexión poderosa, Adaptación ambiental; no inmunidad al daño, no segunda armadura |
-| **Semiacuático** | Membranas, cola propulsora, piel húmeda, respiración aérea o branquial según cuerpo | Pequeña o Mediana | Locomoción Especializada (nado), Adaptación ambiental, Sentido especializado; **no** respirar bajo agua salvo regla adquirida o propuesta posterior específica |
+| **Semiacuático** | Membranas, cola propulsora, piel húmeda; branquias funcionales únicamente si una capacidad compatible y costeada respalda respirar agua | Pequeña o Mediana | Locomoción Especializada (nado), Adaptación ambiental, Sentido especializado; **no** respirar bajo agua salvo regla adquirida o propuesta posterior específica |
 | **Fosorial** | Extremidades excavadoras, garras, vibrisas | Pequeña | Excavador, Sentido especializado, Movilidad Adaptada; no atravesar roca maciza ni túneles instantáneos |
 | **Quiróptero** | Membranas alares, ecoorientación anatómica posible | Pequeña | Vuelo sostenido Dominante o sentidos/trepa; sonar no equivale a visión total a través de muros |
 
@@ -61,7 +61,7 @@ Cada ejemplo concreta elección, no es una subraza adicional:
 
 ## 4. Variedades y sustitución de adaptaciones [PROPUESTA]
 
-**Protocolo de ficha, sin modificar regla sustantiva:**
+**Protocolo editorial [PROPUESTA, NO CANON]:** la regla vigente sólo dice que una Variedad puede reemplazar una adaptación, sin fijar equivalencia de categoría. Para los ejemplos del borrador se conserva la misma plaza como criterio de balance pendiente de B2; no es una limitación universal ya aprobada.
 1. Anotar Ascendencia «Terio»; Linaje (p. ej., Elefantino) y Variedad (p. ej., Ribereña); Escala y Movimiento.
 2. Elegir un presupuesto completo A: **Principal + Secundaria**, o B: **Dominante**. Una Variedad puede **reemplazar una de las elecciones de A**, conservando el tipo de plaza (Principal por Principal, Secundaria por Secundaria) para que la equivalencia sea transparente. En B, si la Variedad reemplaza el Dominante, cambia el único Dominante; nunca agrega un segundo poder. **Esta regla de equivalencia de rango es una aclaración nueva propuesta**, ya que el texto canónico dice sólo que se puede reemplazar una adaptación.
 3. Escribir qué adaptación dejó de tener: «Variedad __ sustituye Secundaria __ por Secundaria __». Prohibido conservar beneficios de la sustituida.
@@ -79,9 +79,9 @@ Cada ejemplo concreta elección, no es una subraza adicional:
 
 **Límites [CANON]:** isla grande al este-sudeste de Edria; mar navegable; pantanos meridionales ilustrados; nombre de atlas **«Territorio Oriental»**; ninguna frontera, ruta o ciudad nueva aprobada. Inspiración japonesa feudal **conceptual**, no trasplante de la historia real japonesa ni afirmación de equivalencia con un pueblo del mundo real.
 
-**[PROPUESTA] Nombre literario:** **Renkai**, llamado en algunas cartas extranjeras Territorio Oriental. «Renkai» es una nueva propuesta que no reemplaza el rótulo oficial ni modifica el mapa. Su forma político-territorial de borrador es **archipiélago cultural centrado en una isla principal**, sin inventar una cadena de islas cartografiada; islas menores permanecen abiertas y no se dibujan. El carácter insular y su relación marítima con Edria permanecen vinculantes.
+**[PROPUESTA] Nombre literario:** **Renkai**, llamado en algunas cartas extranjeras Territorio Oriental. «Renkai» es una nueva propuesta que no reemplaza el rótulo oficial ni modifica el mapa. Su forma político-territorial de borrador es **un mosaico cultural de comunidades en la gran isla ratificada**, sin afirmar nuevas islas, archipiélagos, fronteras o núcleos urbanos. La existencia y localización de posibles islas menores permanecen abiertas y no se dibujan. El carácter insular y su relación marítima con Edria permanecen vinculantes.
 
-**[PROPUESTA] Organización:** no una «nación de una sola especie». El territorio acoge comunidades multilinaje de Terios y visitantes de otros pueblos. Cada región puede responder a **Casas del Umbral** (gobiernos señoriales locales con responsabilidad sobre caminos, impuestos y refugios), **Consejos de Cuenca** (gestión de riego, arrozales y riesgo de inundación), **Puertos Pactados** (mercados y contratos marítimos) o **Comunidades del Campanario** (centros de estudio y entrenamiento físico/espiritual). No declararlas capitales o jurisdicciones exactas en el mapa.
+**[PROPUESTA] Organización:** no una «nación de una sola especie». El territorio acoge comunidades multilinaje de Terios y visitantes de otros pueblos. Cada región puede responder a **Casas de la Calzada** (gobiernos señoriales locales con responsabilidad sobre caminos, impuestos y refugios), **Consejos de Cuenca** (gestión de riego, arrozales y riesgo de inundación), **Puertos Pactados** (mercados y contratos marítimos) o **Comunidades del Campanario** (centros de estudio y entrenamiento físico/espiritual). No declararlas capitales o jurisdicciones exactas en el mapa.
 
 **[PROPUESTA] Tecnología:** arquitectura de madera, piedra y tejas de inspiración oriental; puentes curvos, terrazas de cultivo, herrería, canales, escuelas de escritura, pequeños talleres de vapor en centros de intercambio con Edria. La ingeniería es funcional; no se prohíben armas de fuego, ferrocarriles o comercio por ser «feudal». Su presencia depende de acceso, política y dinero. No se afirma uniformidad tecnológica ni estética.
  
@@ -100,7 +100,7 @@ Las tradiciones no pertenecen a linajes específicos: una comunidad aviana y una
 
 ### 5.1. Relación con Edria
 - **[CANON]** Edria tiene marinos, cartógrafos, comercio, aeronaves, red industrial y puertos como Nacariel y Puerto Umbral. No afirmar ruta, longitud o precio exactos hacia Renkai sin fuente.
-- **[PROPUESTA]** Las compañías de navegación pueden negociar acceso a Puertos Pactados, mientras estudiosos se interesan en agricultura de pantano y las Casas del Umbral compiten por impuestos. Personajes terios nacidos en Valdoria, Kharum, Nacariel o Erelia no necesitan vínculos con Renkai.
+- **[PROPUESTA]** Las compañías de navegación pueden negociar acceso a Puertos Pactados, mientras estudiosos se interesan en agricultura de pantano y las Casas de la Calzada compiten por impuestos. Personajes terios nacidos en Valdoria, Kharum, Nacariel o Erelia no necesitan vínculos con Renkai.
 - **[PROPUESTA]** «Renkai» no es el origen racial automático ni un **Origen** mecánico ya existente; las opciones actuales de Origen son las diez del Manual Maestro. Para PJ nacidos allí, el DJ puede usar **provisionalmente un perfil de Origen existente por afinidad de trayectoria de crianza**, declarando su carácter de adaptación de campaña, o usar una **futura ficha propuesta** de Origen Renkai con las mismas restricciones de idiomas/familiaridad. Esta última necesita un perfil autosuficiente antes de adoptar reglas; ver §6.
 
 ## 6. Mecánica nueva opcional verdaderamente necesaria: Origen cultural Renkai [PROPUESTA]
@@ -149,7 +149,7 @@ Las tradiciones no pertenecen a linajes específicos: una comunidad aviana y una
 | TER-01 | Taxonomía de 8 familias ejemplares, no cerradas | Editorial/anatomía |
 | TER-02 | Variedades con reemplazo dentro de la misma plaza | Aclaración mecánica opcional, sin aumentar poder |
 | TER-03 | Nombre cultural «Renkai» para la isla | Geografía narrativa, **no** rótulo de mapa vigente |
-| TER-04 | Casas del Umbral, Consejos de Cuenca, Puertos Pactados, Comunidades del Campanario | Instituciones políticas/sociales sin mapa aprobado |
+| TER-04 | Casas de la Calzada, Consejos de Cuenca, Puertos Pactados, Comunidades del Campanario | Instituciones políticas/sociales sin mapa aprobado |
 | TER-05 | Sendas de Guardia, Casas de Aprendizaje, Jardines del Ciclo, Rutas del Salitre | Culturas superpuestas, sin bonificaciones |
 | TER-06 | Debate del Estrecho y contacto con Edria | Conflicto narrativo propuesto, sin nueva guerra canon |
 | TER-07 | Origen Renkaino e idioma regional del mismo nombre | **Nueva opción de Origen**, sin bonos y fuera del paquete racial |
