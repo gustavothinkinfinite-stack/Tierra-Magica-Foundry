@@ -10,8 +10,8 @@
 | 02 | Enanos | Borrador integral v0.2 completo para revisión global (no aprobado) | Tras revisión conjunta: decidir lore biológico y realizar playtest empírico |
 | 03 | Élficos | Borrador integral v0.1 completo para revisión global (no aprobado) | Tras revisión conjunta: validar biología y test de mesa de Resonancia de la Savia |
 | 04 | Orcos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar propuesta de Bastión/Sangre y playtest empírico |
-| 05 | Goblinoides | Próximo a trabajar | Auditar Goblins, Hobgoblins y Bugbears; desarrollar sociedades, páginas y pruebas |
-| 06 | Terios/Anihombres | Pendiente | Linajes, variedades, adaptación, territorio oriental, doble página |
+| 05 | Goblinoides | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Ojo, Escurridizo y Complexión; revisar biología propuesta |
+| 06 | Terios/Anihombres | Próximo a trabajar | Linajes, variedades, adaptación, territorio oriental, doble página |
 | 07 | Feéricos | Pendiente | Hadas, Sátiros, Dríades, Silfos, variedad y reglas |
 | 08 | Ankar | Pendiente | Tránsito, custodia del alma, sociedades, doble página |
 | 09 | Cristálidos | Pendiente | Matriz mixta, biología, otras clases no jugables, doble página |
@@ -54,3 +54,11 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Control editorial: **756 palabras imprimibles**; 30 casos de aceptación mecánica documentales (no playtests ejecutados). Paquete básico Orcos sin cambios.
 - **Estado global: tres expedientes integrales completos para revisión (Enanos, Élficos, Orcos); Humanos tiene doble página v0.1 aún sin consolidar**. Todo sigue sin aprobación ni modificaciones a `main` o Foundry.
 - **Próximo ciclo:** Goblinoides — Hijos del Ojo, con Goblin/Hobgoblin/Bugbear y pruebas específicas de Ojo para la Oportunidad y Escurridizo.
+
+### 2026-11-16 — Quinto avance: Goblinoides — Hijos del Ojo
+- Releídos tablero, README, cierre previo de Orcos y canon de `main`: creación racial, Varkor/Primera Guerra, reglas transversales, culturas, geografía de las seis potencias.
+- Creados `05_goblinoides/auditoria_y_desarrollo.md`, `doble_pagina.md`, `brief_arte.md`, `pruebas_balance.md`, `cierre_editorial.md`.
+- Tres ascendencias Goblin, Hobgoblin y Bugbear conservan exactamente sus capacidades vigentes. Se proponen biología, tres tradiciones cívicas, ritos y lecturas religiosas locales; ninguna Habilidad ni Rasgo nuevo necesario.
+- Doble página de aproximadamente **812 palabras**; **30 casos de aceptación documental** (sin playtest real). No se incluye Kobold, cuya cosmología sigue abierta.
+- **Estado:** Enanos, Élficos, Orcos y Goblinoides tienen expediente integral de borrador. Humanos sigue pendiente de archivar/consolidar. Todo es propuesta sin aprobación.
+- **Próximo ciclo:** Terios/Anihombres. No se modificó `main`, Manual Maestro activo ni Foundry.
