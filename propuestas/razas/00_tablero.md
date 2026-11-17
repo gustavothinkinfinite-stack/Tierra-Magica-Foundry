@@ -140,3 +140,11 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Se creó `00_plan_auditorias_y_manual.md` y se amplió `README.md` con fases A–D, salidas verificables, pruebas documentales vs. empíricas, registro de incidencias, regresiones y criterio de cierre definitivo.
 - **Instrucción «avanzar»:** continuar trabajo sustantivo hasta que ninguna fase tenga tarea pendiente. Tras cierre técnico no repetir ni simular progreso; pausar tarea horaria cuando la herramienta lo permita.
 - Se conserva toda escritura únicamente en esta rama bajo `propuestas/razas/`; `main`, el Manual Maestro vigente y el código Foundry quedan fuera del alcance.
+
+### 2026-11-17 — Duodécimo avance: Coralios — Pueblos de los Arrecifes Vivos
+- Confirmado en GitHub el último estado: 10 expedientes completos, Coralios tenía auditoría, doble página y brief ya guardados pero faltaba cierre. Antes de escribir se comprobó que `12_coralios/pruebas_balance.md` **ya había sido creado por otro avance concurrente**; se leyó y conservó la batería existente de **48 casos documentales**, evitando sobrescribirla o duplicarla.
+- Leídos `00_plan_auditorias_y_manual.md`, `README.md`, los documentos Coralios existentes y reglas transversales del Manual Maestro de `main` (paquete v0.3, creación, Anfibio, Protección, Movimiento y cosmología).
+- Creado `12_coralios/cierre_editorial.md`. Queda expediente inicial de **cinco archivos**: `auditoria_y_desarrollo.md`, `doble_pagina.md` (**709 palabras imprimibles**), `brief_arte.md`, `pruebas_balance.md` (**48 casos documentales, cero empíricos**) y `cierre_editorial.md`.
+- Riesgos pendientes documentados: hidratación, interpretación de Sentido de Corriente, Movimiento mixto, no acumulación de Protección, comparación con Rasgo Anfibio. El protocolo CHC-01 es propuesta opcional, no canon.
+- **Estado: 11 de 12 expedientes iniciales completos**; falta **Humano**. La Fase B de auditorías múltiples y la Fase C de textos finales del manual siguen **pendientes**. No se debe detener el trabajo al llegar a 12/12.
+- **Próximo bloque:** consolidación de Humanos; después B1–B5 y sólo luego C. No se modificó `main`, Manual Maestro, atlas ni Foundry.
