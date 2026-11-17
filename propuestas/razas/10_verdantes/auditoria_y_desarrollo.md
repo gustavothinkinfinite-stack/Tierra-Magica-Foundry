@@ -138,3 +138,15 @@ Ninguna Casa, Archivo, Camino o Círculo se asigna por bioma o fisonomía. Un Ve
 ## X. Dictamen
 
 **El paquete Verdante v0.3 es jugable sin Habilidad nueva.** Lo que faltaba era organización de diversidad biológica y cultural y una interpretación coherente de la luz durante viajes; este expediente define esos contenidos de forma completa **como propuesta**. Ninguna ventaja cultural altera la economía de PD/PR, y el **CLN-01** permanece aislado para evaluación. Siguiente documento: doble página de 650–850 palabras, brief visual y batería contra exploits de sustento, bioma y Enraizar.
+
+## Actualización B3 — 17-11-2026
+
+**[AUDITORÍA DOCUMENTAL, NO CANON]** Guardado `auditorias/03_exploits_y_pruebas.md`: **30 regresiones VER-T57–VER-T86, cuatro secuencias adversariales, doce incidencias y tres procedimientos propuestos**. Total **86 DOC, 0 Foundry, 0 mesa, 0 simulación ejecutada**. Se cotejó nuevamente `main:docs/Tierra_Magica_Manual_Maestro.md` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`).
+
+**[CANON]** Enraizar Verdante cuesta Acción, exige suelo apropiado y **permanecer inmóvil**, +1 Escala efectiva sólo para resistir Empujar/Derribar/desplazamiento físico impuesto, liberación **1 Movimiento**, sin curación. Dríade tiene otra redacción: no importarle literalmente la inmovilidad Verdante. **[PROPUESTA VER-PB3-01]** Tratar Enraizar activo como «anclado» sólo para el componente de desplazamiento 0 de `Martillo Cinético`, sin negar su Daño 3 ni Defensa Corporal. B5 debe fijar desanclaje por suelo destruido, desplazamiento legal, caída, Reacciones y 0 Vida.
+
+**[CANON]** Adaptación de Bioma selecciona una sola propiedad al crear (VIG ambiental +1 o una causa de terreno difícil), no todas las amenazas del bioma. **[PROPUESTA VER-PB3-02]** ficha de registro preciso de bioma/opción/amenaza sin añadir poder. Rasgo ambiental Menor idéntico no duplica +1; Ventaja del Significativo no es +2. Comparar en B4 la relación con otras razas y alcance de terreno local frente a Viaje regional.
+
+**[CANON]** Sustento Vegetal requiere agua, luz suficiente y nutrientes compatibles, y Descanso/Fatiga normales; no establece reloj horario ni triple penalización. **[PROPUESTA VER-PB3-03]** hoja de recursos sin reloj obligatorio ni Fatiga duplicada. **CLN-01** 4h de luz/24h es otra propuesta **no aprobada**, no parte del paquete. Riego no cura, forraje no crea raciones infinitas, corteza y lianas no conceden armas, Protección ni Acciones.
+
+**Próximo:** B3 Micelios y Coralios, después B4/B5; no redactar `manual_final_propuesto.md` hasta cerrar auditorías.
