@@ -32,7 +32,7 @@
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; B3 cerrada documentalmente |
 | B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
 | B4. Comparación y mejoras | **12/12 documental: todas las familias** | Doce familias: 11 comparaciones cada una; Coralios 4 propuestas y 18 regresiones nuevas; Micelios 4 propuestas y 18 regresiones nuevas; Verdantes 4 propuestas y 16 regresiones nuevas; Cristálidos 3 propuestas y 14 regresiones nuevas; Ankar 3 y 14; Feéricos 4 y 16; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: B5 matriz global 12×12** |
-| B5. Regresiones globales | **EN CURSO: matriz 12×12, 66 pares; B5-I01 e I02 desarrolladas documentalmente (3+4 propuestas; 20+18 regresiones DOC no ejecutadas); quedan incidencias abiertas** | `auditorias/05_matriz_global_y_regresiones.md`; NO equivale a cierre B5 | **Siguiente: B5-I03 sentidos, detección y barreras** |
+| B5. Regresiones globales | **EN CURSO: matriz 12×12, 66 pares; B5-I01–I03 desarrolladas documentalmente (11 propuestas; 58 regresiones DOC no ejecutadas); quedan incidencias abiertas** | `auditorias/05_matriz_global_y_regresiones.md`; NO equivale a cierre B5 | **Siguiente: B5-I04 Enlace Micelial, geometría, redes y reconexión** |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
 
@@ -480,3 +480,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `auditorias/05_b5_i02_anclajes.md`: 4 propuestas B5-I02-P01–P04 y 18 regresiones B5-I02-T01–T18 sólo documentales; matriz global actualizada.
 - Preservar Acción, suelo apto, categoría efectiva defensiva y liberación 1 MOV; Martillo Cinético conserva Daño 3. Abiertos Derribar, destrucción de soporte y 0 Vida. **0 pruebas Foundry/mesa; no canonizado**.
 - **Siguiente B5-I03:** sentidos, detección, barreras y ocultación. Fase C aún bloqueada.
+
+### 2026-11-17 — B5-I03: sentidos y detección
+- Verificados tablero, README, plan, matriz global, B4 de Élficos, Ankar, Cristálidos, Micelios y Coralios, y Manual Maestro `main` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`).
+- Creado `auditorias/05_b5_i03_sentidos.md`: 4 propuestas no canónicas B5-I03-P01–P04, 20 regresiones DOC B5-I03-T01–T20; matriz global vinculada.
+- Distinción entre advertencia, localización, identificación y neutralización; barreras y sentidos no equivalentes; no apilar propiedad idéntica. **0 Foundry, 0 mesa; B5 continúa abierta**.
+- **Siguiente B5-I04:** Enlace Micelial, radio geométrico, continuidad, consentimiento y reconexión. Fase C aún no habilitada.
