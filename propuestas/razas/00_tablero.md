@@ -12,7 +12,7 @@
 | 04 | Orcos | Borrador v0.1; **B1, B2 y B3 documentales completas**, 64 DOC, 20 MOD (no Foundry) | B4/B5: gasto de Voluntad sin efecto, orden Ayuda/Ventaja, comparación de Complexión |
 | 05 | Goblinoides | Borrador v0.1; **B1, B2 y B3 documentales completas**, **69 DOC + 20 MOD auxiliares** | B4/B5: Ojo en Iniciativa, repetición de hechos, interrupción Escurridizo y balance Hobgoblin |
 | 06 | Terios/Anihombres | Borrador v0.1; **B1, B2 y B3 documentales completas**, **84 DOC + 22 MOD auxiliares** | B4/B5: Variedad A→B, branquias/Anfibio, vuelo bajo Carga, tramos mixtos y balance |
-| 07 | Feéricos | Borrador integral v0.1 + **B1 y B2 documentales completas**; 52 casos documentales | B3: vuelo mixto, desanclaje y viento; B4: contraste Verdantes/Terios |
+| 07 | Feéricos | Borrador v0.1; **B1, B2 y B3 documentales completas**, **76 DOC + 24 MOD auxiliares** | B4/B5: Hada apoyos/velocidades, Dríade Derribar/desanclaje, Silfo viento mágico |
 | 08 | Ankar | Borrador v0.1; **B1 y B2 documentales completas**; 44 casos | B3: alcance/frecuencia, apilamiento mental y efectos compuestos; B4: balance |
 | 09 | Cristálidos | Borrador v0.1; **B1 y B2 documentales completas**; 68 casos | B3: conexión, Sobrecarga y ocultación; B4: biología y balance |
 | 10 | Verdantes | Borrador v0.1; **B1 y B2 documentales completas**; 56 casos | B3: Enraizar, Sustento, Bioma; B4: CLN-01 y balance |
@@ -29,8 +29,8 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
-| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías profundas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Feéricos** |
-| B3. Exploits y secuencias | **DOCUMENTAL: 6/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios) | B3 Terios: 84 DOC, 22 MOD (3 estados abiertos), **0 Foundry/mesa** | **Siguiente: Feéricos**, luego restantes |
+| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Ankar** |
+| B3. Exploits y secuencias | **DOCUMENTAL: 7/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos) | B3 Feéricos: 76 DOC, 24 MOD (2 estados abiertos), **0 Foundry/mesa** | **Siguiente: Ankar**, luego restantes |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -339,3 +339,12 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **ABIERTAS B4/B5:** reemplazo por Variedad de categorías diferentes y conversión del presupuesto A a B (equivalencia de plaza es **TER-02 propuesta**, no canon); branquias reales/funcionales frente a respiración **Anfibio 1 PR** (obligación de compra solo **propuesta conservadora**); pérdida de sustentación en vuelo bajo Carga Pesada/Excesiva y orden de Caídas/Reacciones; movimiento entre medios sin segunda reserva. Referencia de caída física efectiva de 4 espacios: 6 de daño base, sin afirmar caída automática al tomar peso.
 - **Bloqueos por canon:** Dominante no coexiste con Principal/Secundaria; no escala el paquete al subir nivel; vuelo no da Acciones/Movimientos nuevos ni hereda requisito de apoyo Hada; no ataques/escudos/recargas extra de órganos; Arma natural Daño3 Pen0 no suma daño de espada; Protección1 no suma armadura; Excavador no es `Fase Parcial`; Renkaino sigue Origen cultural no aprobado.
 - **B3 documental: 6/12; siguiente Feéricos.** B1/B2 12/12, B4/B5 y textos finales propuestos pendientes. **0 tests Foundry, 0 mesa**; no se modificaron `main`, sistema, Manual Maestro o cartografía.
+
+### 2026-11-17 — B3 Feéricos: vuelo, Enraizar, viento y secuencias
+- Reabierto `main:docs/Tierra_Magica_Manual_Maestro.md` (SHA `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`), paquete Feérico v0.3, reglas de Movimiento/Retirada/Correr/Reacciones, Escala/Empujar/Derribar, Caídas, Fatiga y magia Alteración. Cotejados expediente, borrador de doble página, B1 y B2; sin tocar canon.
+- Guardado `07_feericos/auditorias/03_exploits_y_pruebas.md`: **24 intentos adversariales, 4 secuencias completas y 12 incidencias**. `pruebas_balance.md` ampliado con `FEE-T53–FEE-T76`: **76 criterios documentales, cero pruebas ejecutadas en Foundry o mesa**. Modelo auxiliar funcional `auditorias/modelo_auxiliar_b3_feericos.js`: **24 fixtures con 24 coincidencias frente a expectativas del propio modelo, 2 salidas ABIERTA**; ninguna implementación de motor. Desarrollo y cierre sincronizados.
+- **Hada:** inicio y fin de cada turno apoyada, tierra5/aire6; no dos reservas de Movimiento ni volar con Carga Pesada/Excesiva. Cambio de medio, pérdida de apoyo entre turnos, carga adquirida en vuelo y secuencia de caída/Reacción quedan **B5 transversal**; `FEE-PB2-01` de conversión es solo propuesta.
+- **Sátiro:** Paso de Cabra sólo elimina sobrecoste de causas naturales enumeradas realmente transitables; Cuernos Daño3/Pen0 no son ataque, Embestida ni Empujar adicional.
+- **Dríade:** Enraizar cuesta Acción, libera por 1 MOV, +1 Escala efectiva sólo al resistir Empujar, Derribar/desplazamiento físico impuesto; ninguna Defensa/Protección gratis. Distinta redacción literal respecto a inmovilidad Verdante, suelo destruido y viabilidad de Derribar **ABIERTAS B4/B5**; `FEE-PB2-02` y módulo `Continuidad de la Raíz` (7 días) siguen **propuestas no ratificadas**.
+- **Silfo:** ignora penalización de desplazamiento únicamente por viento mundano ordinario; +1 Escala efectiva sólo para resistir Empujar causado por viento, segunda cláusula sin repetir «mundano». Viento mágico físicamente causante de Empujar y reglas de hechizos **ABIERTAS B4/B5**; no inmunidad ni vuelo innato.
+- **B3 documental: 7/12**, siguiente **Ankar**; B1/B2 12/12. B4/B5/manual final propuesto pendientes. **0 tests Foundry, 0 playtests**. No se editó `main`, Manual Maestro, sistema ni cartografía.
