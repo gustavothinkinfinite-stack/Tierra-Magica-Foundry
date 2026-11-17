@@ -99,7 +99,7 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 |---|---|---|---|---|---|
 | B5-I01 | Alta | TER–FEE–COR | Definir conversión de MOV entre suelo, agua y aire en un turno; **propuesta:** un solo presupuesto de MOV, cada tramo consume su distancia en unidades de movimiento y se comprueba capacidad por medio, sin sumar reservas; documentar velocidad aplicable al tramo y restricciones de vuelo | Sin Acción extra; Hada debe terminar apoyada; Terio vuelo sin Carga Pesada; Coralio MOV5/6 | ABIERTA, contrastar reglas generales |
 | B5-I02 | Alta | FEE–VER–ENA | Unificar secuencia Enraizar, Derribar, Empujar, Martillo Cinético, caída y pérdida de suelo; **propuesta:** +1 Escala efectiva sólo para resistencia indicada, Acción de enraizar y 1 MOV de liberación; caída/ruptura requieren ventana común | Sin Defensa, Protección ni Reacción adicional | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
-| B5-I03 | Alta | ELF–ANK–CRI–MIC–COR | Tabla de fronteras sensoriales: vital significativo perceptible; espíritu 6; circuito tocado; química cercana; corriente acuática; no convertir ninguna en radar general | Sin +1 PER general ni diagnóstico | ABIERTA |
+| B5-I03 | Alta | ELF–ANK–CRI–MIC–COR | Tabla de fronteras sensoriales: vital significativo perceptible; espíritu 6; circuito tocado; química cercana; corriente acuática; no convertir ninguna en radar general | Sin +1 PER general ni diagnóstico | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
 | B5-I04 | Alta | MIC–ANK–CRI | Red micelial 12: métrica geométrica vs longitud; continuidad, voluntad, reconexión y 0 Vida; **propuesta:** distancia geométrica, Acción nueva tras ruptura | Sin cadena instantánea, telepatía ni Fuente | ABIERTA |
 | B5-I05 | Alta | TER–COR | Adaptación anfibia Terio vs Coralio racial vs Rasgo General Anfibio 1 PR; comparar presupuesto y condiciones de hidratación, no regalar un segundo beneficio | Mantener costes y límites existentes | ABIERTA |
 | B5-I06 | Media | GOB–HUM–ORC | Hobgoblin sólo Ojo vs variantes con segundo rasgo; medir paridad de escenas sin otorgar Liderazgo gratuito | Cualquier rasgo nuevo exige coste o sustitución explícita | ABIERTA |
@@ -151,3 +151,8 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - **B5-I02-P01–P04:** estado único, Empujar/Derribar/Martillo Cinético, pérdida de soporte y 0 Vida/Presa; 18 regresiones **B5-I02-T01–T18 DOC no ejecutadas**.
 - Martillo Cinético: propuesta de 0 desplazamiento si anclado válido, pero Daño 3 permanece. **Reservas abiertas:** viabilidad exacta de Derribar, orden de soporte destruido y persistencia defensiva a 0 Vida.
 - Cruces X07-10, X02-10, X02-07, X07-09; escenarios B5-G04/G05/G11. **Siguiente B5-I03: sentidos y percepción.**
+
+## Avance 17-11-2026 — B5-I03 sentidos y detección
+- Propuesta no canónica: [`05_b5_i03_sentidos.md`](./05_b5_i03_sentidos.md); cuatro propuestas B5-I03-P01–P04 y 20 regresiones **DOC no ejecutadas** B5-I03-T01–T20.
+- Separa evidencia, medio, barreras, radio/contacto y nivel informativo; no equipara advertencia a identificación o neutralización. Cruces X03-08, X03-09, X03-11, X03-12, X08-09, X08-11, X08-12, X09-11, X09-12 y X11-12; B5-G06.
+- Reservas: geometría y ocultación espiritual, «cerca» micelial, combinación de sentidos adquiridos y efectos mágicos; **0 Foundry, 0 mesa**. Siguiente **B5-I04 Enlace Micelial**.
