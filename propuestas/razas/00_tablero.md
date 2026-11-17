@@ -8,7 +8,7 @@
 |---:|---|---|---|
 | 01 | Humanos | Expediente completo; **B1, B2 y B3 documentales completadas**; 62 casos, 12 comprobaciones de modelo auxiliar (no Foundry) | B4: balance Don vs. otras 11; aclarar grados |
 | 02 | Enanos | Borrador v0.2; **B1, B2 y B3 documentales completas**; 44 criterios y 16 comprobaciones de modelo auxiliar (no Foundry) | B4: Presa/Derribar, Fatiga y balance; validación empírica pendiente |
-| 03 | Élficos | Borrador v0.1; **B1 y B2 documentales completas** | B3: Resonancia/ocultación, magia vital; B4: utilidad comparada y biología |
+| 03 | Élficos | Borrador v0.1; **B1, B2 y B3 documentales completas**, 56 DOC y 16 MOD (no Foundry) | B4/B5: significación, ocultación, efecto directo/indirecto y valor comparado |
 | 04 | Orcos | Borrador v0.1; **B1 y B2 documentales completas** | B3: fuentes de Desventaja, Ventaja/Ayuda, Carga; B4: Bastión/Sangre |
 | 05 | Goblinoides | Borrador v0.1; **B1 y B2 documentales completas** | B3: pasos/interrupciones y Ojo; B4: balance Hobgoblin y biología |
 | 06 | Terios/Anihombres | Borrador v0.1; **B1 y B2 documentales completas** | B3: branquias/Anfibio, Variedad, vuelo, equipamiento; B4: Renkai/biología |
@@ -29,8 +29,8 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
-| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Élficos** |
-| B3. Exploits y secuencias | **DOCUMENTAL: 2/12** (Humanos, Enanos) | B3 Enanos: 44 DOC, 16 MOD; 0 Foundry/mesa | **Siguiente: Élficos**, luego restantes |
+| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Orcos** |
+| B3. Exploits y secuencias | **DOCUMENTAL: 3/12** (Humanos, Enanos, Élficos) | B3 Élficos: 56 DOC, 16 MOD; **0 pruebas Foundry/mesa** | **Siguiente: Orcos**, luego demás razas |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -308,3 +308,11 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Ejemplos confirmados por reglas:** Pequeño Empuja Enano con margen Claro: 2→**1 espacio**; Dominante 3→**2**. Mediano Empuja Enano Claro: 2→**2**. Enano al **empujar ofensivamente** sigue Pequeño y contra objetivo Mediano Claro produce **1**. VIG2 da Defensa Corporal 13, contra toxina expresamente elegible **14** (sin doble bonificación). `Exhausto`: Movimiento 5→3, no excepción pétrea.
 - **Puntos abiertos B4/B5:** Escala efectiva de Cuerpo de Piedra y eficacia de `Derribar`; posible aplicación a **traslado físico** bajo una Presa ya iniciada, no al agarre inicial; desplazamientos propios de `Onda de Choque`/`Martillo Cinético`; intersección Resistencia Ambiental y Sangre; orden de Retirada+Correr+Fatiga. Propuesta `ENA-B3-PROP-01` sobre fase de arrastre **no es canon**.
 - **Progreso:** A 12/12; B1 12/12; B2 12/12; **B3 2/12 (documental)**; B4/B5 y 12 capítulos finales pendientes. **Próximo B3 Élficos**. 0 tests de Foundry, 0 playtests. No se modificó `main`, código, Manual Maestro ni cartografía.
+
+### 2026-11-17 — B3 Élficos: Sentidos, Resonancia y ocultaciones
+- Reabierto `main:docs/Tierra_Magica_Manual_Maestro.md` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`), paquete Élfico v0.3, Rasgos `Sentido Agudo`/`Visión en la Oscuridad`/`Afinidad Sobrenatural`, Percepción, Ayuda/repetición, Magia Restauración/Ilusión, Sostenimiento, `Velo Sensorial`, Familiares, `Sentidos Compartidos`/`Origen Remoto` y 0 Vida. Contrastados expedientes B1/B2.
+- Nuevo informe `03_elficos/auditorias/03_exploits_y_pruebas.md`: **20 intentos adversariales, cuatro secuencias desarrolladas y diez incidencias**. Ampliado `pruebas_balance.md` con `ELF-T37–ELF-T56`: **56 criterios documentales, 0 ejecutados en Foundry/mesa**. Guardado `modelo_auxiliar_b3_elficos.js` (16 controles de lógica booleana y PER; **16/16 coincidencias con expectativas del modelo**, no prueba de juego). Sincronizados desarrollo y cierre editorial.
+- **Rasgos:** Sentidos Élficos +1 PER solo cuando señal natural sutil de vista/oído sea determinante; no +Iniciativa/Ataque ni apilamiento con `Sentido Agudo` equivalente. Oscuros no tienen Visión nocturna gratis.
+- **Resonancia:** conjunción de alteración mágica significativa **presente y directa** sobre seres vivos/procesos/ecosistemas y **área razonablemente perceptible**. Un ritual no `Sostenido` puede cumplir; una ilusión Sostenida sin afección vital real no. Una curación concluida no deja lectura retrospectiva. Familiar no extiende sensor racial/línea de efecto; detección no identifica Hechizo/Fuente, número de pulsos, autor ni solución.
+- **ABIERTAS B4/B5:** importancia `significativa` sin umbral numérico, `Velo Sensorial`/barreras frente a perceptibilidad y límite entre magia que daña **directamente** un ecosistema y daño secundario de maquinaria/clima mágicamente activados. No inventar radio, Acción, Maná, prueba o Habilidad nuevos.
+- **Progreso documental:** B1/B2 12/12, **B3 3/12**. Próxima raza **Orcos**. Ninguna propuesta aprobada, 0 tests Foundry, 0 playtests; `main`, Foundry y cartografía intocados.
