@@ -11,8 +11,8 @@
 | 03 | Élficos | Borrador integral v0.1 completo para revisión global (no aprobado) | Tras revisión conjunta: validar biología y test de mesa de Resonancia de la Savia |
 | 04 | Orcos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar propuesta de Bastión/Sangre y playtest empírico |
 | 05 | Goblinoides | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Ojo, Escurridizo y Complexión; revisar biología propuesta |
-| 06 | Terios/Anihombres | Próximo a trabajar | Linajes, variedades, adaptación, territorio oriental, doble página |
-| 07 | Feéricos | Pendiente | Hadas, Sátiros, Dríades, Silfos, variedad y reglas |
+| 06 | Terios/Anihombres | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Renkai/Origen Renkaino, sustituciones de Variedad y playtest anatómico |
+| 07 | Feéricos | Próximo a trabajar | Auditoría Hoja/Eïra; cuatro variantes jugables, culturas, doble página y pruebas |
 | 08 | Ankar | Pendiente | Tránsito, custodia del alma, sociedades, doble página |
 | 09 | Cristálidos | Pendiente | Matriz mixta, biología, otras clases no jugables, doble página |
 | 10 | Verdantes | Pendiente | Biomas, fisiología, identidad cultural, doble página |
@@ -62,3 +62,12 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Doble página de aproximadamente **812 palabras**; **30 casos de aceptación documental** (sin playtest real). No se incluye Kobold, cuya cosmología sigue abierta.
 - **Estado:** Enanos, Élficos, Orcos y Goblinoides tienen expediente integral de borrador. Humanos sigue pendiente de archivar/consolidar. Todo es propuesta sin aprobación.
 - **Próximo ciclo:** Terios/Anihombres. No se modificó `main`, Manual Maestro activo ni Foundry.
+
+### 2026-11-16 — Sexto avance: Terios/Anihombres — Hijos de la Sangre
+- Leídos tablero, README, cierre de Goblinoides y canon `main`: paquete Terio v0.3, Eïra/Primera Semilla, Ankar, reglas transversales, Orígenes y decisiones cartográficas que ratifican el Territorio Oriental.
+- Consultada la guía visual cargada de Tierra Mágica; el Inventario Geográfico v1 anterior no prevalece frente a la ratificación posterior del Mapa Maestro de `main`.
+- Guardados `06_terios/auditoria_y_desarrollo.md`, `06_terios/doble_pagina.md`, `06_terios/brief_arte.md`, `06_terios/pruebas_balance.md`, `06_terios/modulo_origen_renkaino.md` y `06_terios/cierre_editorial.md`.
+- Definidos ocho ejemplos de linaje, seis sustituciones de Variedad, sociedad insular propuesta «Renkai» y un nuevo **Origen Renkaino** autocontenido con una Faceta, Común + lengua regional y sin bonificaciones (11.ª opción sólo si se aprueba). Sin alterar mapa ni reglas actuales.
+- Doble página: **726 palabras imprimibles**; **48 casos documentales**, no pruebas ejecutadas en mesa; brief visual con Terio elefantino instructor en patio oriental, imagen no generada.
+- **Estado global: cinco expedientes integrales completos para revisión** —Enanos, Élficos, Orcos, Goblinoides y Terios—; Humanos sigue pendiente de consolidación. Ninguno está aprobado; `main`, Manual Maestro y Foundry no modificados.
+- **Próximo ciclo:** Feéricos — Hijos de la Hoja, con Hadas, Sátiros, Dríades y Silfos. Después, consolidar el expediente pendiente de Humanos sin duplicar versiones.
