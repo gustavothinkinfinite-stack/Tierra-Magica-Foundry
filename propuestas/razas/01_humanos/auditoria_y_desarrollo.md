@@ -1,7 +1,7 @@
 # Humanos — Hijos del Camino
 ## Auditoría integral, biología y desarrollo cultural v0.1 consolidado
 
-**Estado:** BORRADOR NO CANÓNICO, pendiente de auditorías B1–B5 y aprobación global. Fecha: 17-11-2026.
+**Estado:** BORRADOR NO CANÓNICO; auditorías B1, B2 y B3 **completadas documentalmente**, B4/B5 y aprobación global pendientes. Cero playtests de mesa o Foundry. Fecha: 17-11-2026.
 **Fuentes consultadas literalmente:** `main:docs/Tierra_Magica_Manual_Maestro.md`, blob SHA `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`: paquete Humano v0.3 (líneas 251–265), catálogo de Rasgos y compatibilidad de Don sin Forma (§5, líneas ~2176–2316), Aster/Primera Elección (§29, 10805–10930), culturas y Edria 612 C., creación y Orígenes, reglas transversales. Guía de estilo `Foundry_TM_Guia_Estilo_Visual_v1.json` v1.0.
 **Nota de consolidación:** el tablero registra una doble página Humana v0.1 elaborada en una conversación anterior, pero **no existe archivo versionado accesible** en esta rama. Este expediente produce una **reconstrucción editorial v0.1 desde el canon vigente**, sin pretender transcribir literalmente texto anterior no recuperado. Si apareciera la versión anterior, deberá compararse antes de auditoría B1.
 
@@ -111,3 +111,13 @@ Se ofrecen **instituciones de proyecto**, no razas/naciones/cultos universales. 
 | HUM-08 | Cinco Sendas siguen siendo doctrina amplia, no castas | Respeto a canon |
 
 **Dictamen integral:** paquete Humano operativo y flexible; el expediente resuelve biología/culturas y expone de forma auditable el único punto de precisión mecánica importante. No modificar `main`, el sistema Foundry ni la tabla de Rasgos vigente antes de la revisión global.
+
+
+## XI. Actualización B3 — Don sin Forma, presupuesto y secuencias (17-11-2026)
+
+- Se guardó `auditorias/03_exploits_y_pruebas.md` con **20 ataques adversariales** y cuatro secuencias reproducibles de lectura; `pruebas_balance.md` pasó de 42 a **62 casos documentales**. Se conservó `auditorias/modelo_auxiliar_b3_humanos.js`: **12 combinaciones** y 12 coincidencias con expectativas del **modelo auxiliar**, no de Foundry.
+- **Sin economía fungible:** Don elige **1 Significativo o 2 Menores** compatibles, sin generar crédito de PR; los **3 PR** ordinarios, **25 PD**, Vínculos y compras se llevan aparte. Un Rasgo negativo no concede PR; Vuelo 4 PR no se financia con Don.
+- **No duplicación:** no se compran dos Sentidos Agudos cambiando el sentido; un Rasgo de Resistencia Ambiental con grados no aporta simultáneamente **+1 VIG y Ventaja**. La clasificación de opciones como Menor/Significativo sigue siendo **HUM-B2-DEC-01 PROPUESTA**, sin ratificación, y la compra/sustitución de grados sin descuentos permanece pendiente de B4.
+- **Familiares:** un Familiar adquirido por 3 PR mantiene Vínculo I y no crea un segundo PJ táctico gratis; Acción Vinculada usa normalmente la **Reacción** del propietario y una orden compleja la **Acción**, según condiciones. No se gasta la misma Reacción en Parada y Familiar sin recuperación.
+- **Progresión:** Don no se reelige por subir nivel; PR no se renuevan y no hay equivalencia PR→PD, salvo la excepción explícita **Familiar Mágico posterior 6 PD**. Los sentidos no dan Hechizos, Fuente, información perfecta o línea de efecto.
+- **Evidencia:** 62 casos de lectura/documentación, 12 comprobaciones de modelo auxiliar autónomo, **0 en Foundry**, **0 partidas de mesa**. B3 puede cerrarse **documentalmente**, no empíricamente. B4/B5/Manual final siguen posteriores.
