@@ -63,3 +63,11 @@
 - `CLN-01` establece **4 horas por 24 horas** sólo como **regla nueva opcional no canónica**. `main` exige luz suficiente pero no fija ese mínimo, un daño diario por falta de luz/agua ni tres relojes de privación. Se preservan provisiones/forrajeo/Descanso/Fatiga universales.
 - `Enraizar` cuesta **Acción**, requiere suelo apropiado e inmovilidad, mejora Escala efectiva de resistencia y soltarse cuesta **1 Movimiento**. La interacción con el término **«anclado»** de `Martillo Cinético` sigue abierta para B3: puede afectar desplazamiento, pero no Defensa Corporal ni Daño 3.
 - `Adaptación de Bioma` concede **una** ventaja VIG o terreno específica; idéntico +1 de Resistencia Ambiental Menor comprado no se suma. El alcance sobre las categorías de Ruta/Viaje y el bioma Llanura propuesto requieren B3/B4. Sin cambio de paquete en `main`, Foundry ni atlas.
+
+## Actualización B3 — 17-11-2026
+
+- B3 documental completa: `auditorias/03_exploits_y_pruebas.md` con **30 ataques/regresiones, cuatro secuencias, doce incidencias y tres procedimientos propuestos**. `pruebas_balance.md` alcanza **86 casos VER-T01–VER-T86**, ninguno ejecutado en Foundry o mesa; **no hubo simulación ejecutada**.
+- Enraizar: Acción, inmovilidad, suelo apropiado, +1 Escala efectiva contextual, liberación 1 Movimiento; `Martillo Cinético` mantiene Daño 3 y Defensa Corporal. **VER-PB3-01** (anclado para desplazamiento 0) es propuesta no ratificada, junto con la ventana de pérdida de anclaje y 0 Vida para B5.
+- Adaptación: sólo un beneficio ambiental/terreno registrado; **VER-PB3-02** propone ficha precisa sin bonificación nueva. Comparación con Rasgos de Resistencia Ambiental, otros biomas y Viaje regional sigue B4/B5.
+- Sustento: agua/luz/nutrientes, Descanso y Fatiga normales; sin fotosíntesis curativa ni triple penalización. **VER-PB3-03** propone registro funcional; **CLN-01 (4h/24h)** permanece módulo separado, **no canon**.
+- Se conserva el borrador inicial de doble página y brief visual, sin convertirlos en manual final. Próximo B3 **Micelios**, después Coralios. No se modificaron `main`, Manual Maestro, mapa ni código Foundry.
