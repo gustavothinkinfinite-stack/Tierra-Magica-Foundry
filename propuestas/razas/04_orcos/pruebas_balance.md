@@ -39,8 +39,8 @@
 | ORC-T24 | Declaración después de ver resultado | Prohibido: debe activarse antes de la prueba |
 | ORC-T25 | Segundo intento en la misma Escena | No disponible, aunque cambie la fuente de Desventaja |
 | ORC-T26 | Desventaja únicamente por niebla, oscuridad o terreno | No elegible; no corresponde al conjunto dolor/miedo/agotamiento físico |
-| ORC-T27 | Dolor y niebla simultáneos | No se puede anular fuente ajena; nunca se convierte en ventaja ni en eliminación automática de todas las causas |
-| ORC-T28 | Dolor y miedo como causas separadas | La lectura conservadora es ignorar **una fuente** para esa prueba; si queda otra causa independiente, persiste Desventaja. Este caso requiere prueba editorial de interpretación; no declarar cancelación universal |
+| ORC-T27 | Dolor y niebla simultáneos, ambos causan Desventaja independiente | **No cumple el requisito «exclusivamente» de Voluntad**, por existir causa ajena; no activar como si anulase todas las fuentes. La niebla nunca se elimina por Voluntad |
+| ORC-T28 | Dolor y miedo como dos fuentes elegibles e independientes | Puede ignorarse **una fuente** antes de la prueba según lectura literal conservadora; persiste Desventaja por la otra (las fuentes no apilan dados). **Pendiente B3:** si debe consumirse el uso cuando no cambia la tirada |
 | ORC-T29 | Test sin Desventaja actual | No activa el rasgo para generar Ventaja, +1, repetir tirada ni ignorar condiciones futuras |
 | ORC-T30 | Nueva Escena y personaje sigue dolorido | Se recupera el uso por Escena, pero la condición persiste y sigue sometido a límites de activación |
 
@@ -77,3 +77,20 @@
 - **Prueba de balance real:** **NO EJECUTADA**. Los 30 criterios se basan en inspección de reglas y deben verificarse en mesa o en pruebas automatizables antes de ratificación.
 
 **Estado técnico:** matriz de 30 casos preparada, sin cambio de paquete ni de Foundry. Se puede cerrar la versión editorial propuesta y avanzar a Goblinoides.
+
+## G. Regresiones adicionales B2 — Voluntad, fuentes y equipos (ORC-T31–ORC-T40)
+
+**Casos documentales, no pruebas reales.** El resultado esperado sólo amplía cobertura de lectura; la simultaneidad de Ventaja/Desventaja requiere control B3.
+
+| ID | Situación | Resultado esperado / cuestión abierta |
+|---|---|---|
+| ORC-T31 | Dolor y miedo independientes producen Desventaja; Voluntad elige sólo dolor | Permanece Desventaja por miedo; no pasar automáticamente de 3d10 bajos a 2d10, y mucho menos a Ventaja. Resolver consumo del uso en B3 |
+| ORC-T32 | Dolor más terreno inestable provocan dos Desventajas | El requisito «exclusivamente por dolor, miedo o agotamiento» no se cumple: terreno es ajeno. El rasgo no borra esa fuente |
+| ORC-T33 | Dolor produce Desventaja, Ayuda válida aporta Ventaja | En §2 Ventaja y Desventaja se cancelan. Verificar orden de elegibilidad de Voluntad **antes de tirar**, sin regalar Ventaja al suprimir una Desventaja ya cancelada; pendiente B3 |
+| ORC-T34 | Dos fuentes de Ventaja y miedo provocan una Desventaja | Ventajas no se acumulan; tras cancelación se aplican 2d10. No gastar Voluntad para crear segundo estado de Ventaja sin regla expresa |
+| ORC-T35 | Orco Fatigado por esfuerzo prolongado usa Voluntad una vez | Si prueba tiene Desventaja sólo por agotamiento físico, ignora esa fuente **en esa prueba**. No cambia estado Fatigado |
+| ORC-T36 | Orco Exhausto con MOV normal 6 reducido a 4 | Voluntad no restaura los 2 puntos; ninguna Acción de movimiento adicional |
+| ORC-T37 | Orco Colapsado intenta tarea físicamente imposible | Voluntad no vuelve posible un esfuerzo prohibido por estado; primero se comprueba viabilidad |
+| ORC-T38 | Supresor del Dolor elimina Desventaja por dolor antes de la prueba | No se duplica con Voluntad para obtener Ventaja; verificar si queda otra fuente válida y sus requisitos |
+| ORC-T39 | Orco quiere desmontar una viga anclada con herramientas o arrastrar caja inerte | +1 FUE efectiva sólo en esfuerzo pertinente; no genera herramientas, tiempo gratis, Habilidad o éxito sin prueba cuando sea necesaria |
+| ORC-T40 | Orco usa una correa para arrancar objeto que otra criatura sujeta y se opone | Interacción activa con criatura / Desarmar no hereda +1 de Complexión por declarar al objeto «inerte» |
