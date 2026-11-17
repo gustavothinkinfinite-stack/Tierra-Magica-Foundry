@@ -95,3 +95,26 @@
 
 ## Dictamen
 **52 casos de aceptación documental redactados; ninguno ejecutado en partida real.** El paquete vigente es suficiente. El único componente de regla nuevo es **un procedimiento de verificación editorial opcional** (Protocolo de Acoplamiento Seguro) que no concede capacidades ni recursos y no debe tratarse como canon.
+
+## H. Regresiones B2 — CRI-T53 a CRI-T68 (criterios documentales, NO ejecutados)
+
+| ID | Situación | Resultado esperado por lectura del núcleo / aspecto pendiente |
+|---|---|---|
+| CRI-T53 | Cristálido toca **directamente** una caldera arcana con componentes internos energizados | Reconoce **estado energético general** de estructura tocada; no identifica circuito, plano, cantidad de Energía o posición de cada módulo escondido |
+| CRI-T54 | Cristálido toca con **guante aislante/herramienta**, sin contacto directo con el objeto objetivo | El paquete exige **contacto directo**. No inferir extensión por utensilios, cables o familiar; evaluar cómo se define contacto real en B3 sin crear radar |
+| CRI-T55 | Objeto encantado físicamente tocado tiene sello diseñado contra lectura de Resonancia | El canon **no** establece inmunidad ni ruptura automática del sello: aplicar texto concreto y adjudicar conflicto; no inventar DF universal |
+| CRI-T56 | Cristálido toca objeto cuya **energía se agotó** durante Escena | Puede advertir condición general **inerte** si resulta la condición real; no deducir antigüedad, constructor, propósito o si nunca tuvo magia |
+| CRI-T57 | Dispositivo estándar **8 E / C3 / Est2** intenta activación ordinaria de **Consumo 3** | Es compatible con los límites de **E** y **C** (8≥3, 3≥3); si demás requisitos están cumplidos, activa y reduce E de 8 a **5**, no Maná personal |
+| CRI-T58 | Mismo dispositivo **8 E / C3** intenta **Consumo 4** sin regla especial | Activación ordinaria inválida por **Caudal insuficiente 3 menor que 4**, aunque haya 8 E. Conductor Vivo no aumenta Caudal |
+| CRI-T59 | Dispositivo con **E=2, C=3** intenta Consumo 3 | Falta Energía: **Consumo mayor que E**; Conductor Vivo no crea 1 E faltante ni Maná |
+| CRI-T60 | Un conductor intenta usar su cuerpo como **acumulador 4 E/C2/Est1** | No recibe perfil de acumulador ni recarga ficticia. Energía, Caudal, Estabilidad requieren infraestructura/objeto legítimo |
+| CRI-T61 | Ingeniería intenta **Sobrecarga Controlada** sin infraestructura compatible o energía suficiente | La capacidad racial no habilita procedimiento: éste exige construcción compatible, activación válida y Energía. No resolver éxito por anatomía |
+| CRI-T62 | Construcción apta realiza **Sobrecarga Controlada** conforme a su propio diseño | Método es **INT+Ingeniería vs DF16**, distinto de Sobrecarga de Hechizos; al éxito Caudal efectivo +1 **para la activación** con dispositivo Dañado, fallo Deshabilitado; no inmunidad Cristálida |
+| CRI-T63 | Mago Cristálido a quien falta exactamente 1 Maná para Hechizo quiere usar Conductor Vivo para pagar el faltante | No. Sobrecarga mágica legal sólo bajo sus condiciones: **VOL+Canalización DF17** y Fatiga; Conductor no genera Maná ni reduce coste |
+| CRI-T64 | Ritual pide Director, tiempo, Fuente, Caudal, componentes y auxiliares | Conductor voluntario compatible no reemplaza ninguno. **Energía de máquina y Maná personal no son equivalentes universales** |
+| CRI-T65 | Dos Cristálidos se conectan en serie, con y sin infraestructura de serie prevista | No duplicar Energía/Caudal ni crear Action/Reacción adicional; conexión múltiple únicamente si está diseñada, costeada y aceptada por el proyecto |
+| CRI-T66 | El conductor **retira consentimiento** durante carga energética activa | La conducción es voluntaria; el paquete no otorga desconexión instantánea inmune a lesión. **Pendiente B3:** fase de resolución y consecuencias del diseño |
+| CRI-T67 | Proyecto requiere **Cristal arcano refinado** como conductor material y usuario intenta sustituirlo por **Cristal de Resonancia** o arrancar faceta corporal | No son materiales equivalentes: `Cristales de Resonancia` excluidos CRAFT-05/07 y cuerpo no genera componentes comerciales/energéticos |
+| CRI-T68 | Cristálido queda a **0 Vida/Incapacitado** mientras hace puente de un sistema | Normalmente pierde capacidad de intervención voluntaria; el proyecto define continuidad y desconexión. No crear Sostenimiento, Reacción de emergencia, autorreparación ni inmunidad a Trauma |
+
+**Estado de aceptación:** la batería original contiene `CRI-T01–CRI-T52`; con estos **16 nuevos casos** registra **68 criterios documentales, 0 ejecutados**. **B3** deberá correr secuencias con fuentes de Energía, reversión de consentimiento, averías, contacto con ocultación, economía de Acciones e interacciones de Sostenimiento/0 Vida. **B4** medirá frecuencia y valor comparado con las otras once familias. No hay prueba de mesa ni de Foundry.
