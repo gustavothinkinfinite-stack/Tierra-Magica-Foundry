@@ -32,7 +32,7 @@
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; B3 cerrada documentalmente |
 | B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
 | B4. Comparación y mejoras | **12/12 documental: todas las familias** | Doce familias: 11 comparaciones cada una; Coralios 4 propuestas y 18 regresiones nuevas; Micelios 4 propuestas y 18 regresiones nuevas; Verdantes 4 propuestas y 16 regresiones nuevas; Cristálidos 3 propuestas y 14 regresiones nuevas; Ankar 3 y 14; Feéricos 4 y 16; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: B5 matriz global 12×12** |
-| B5. Regresiones globales | **EN CURSO: matriz 12×12, 66 pares; B5-I01–I12 desarrolladas documentalmente (47 propuestas; 238 regresiones DOC no ejecutadas); conciliación y cierre editorial pendientes** | `auditorias/05_matriz_global_y_regresiones.md`; NO equivale a cierre B5 | **Siguiente: acta global de cierre documental B5, clasificación de bloqueantes y puerta de fase C** |
+| B5. Regresiones globales | **EN CURSO: matriz 12×12, 66 pares; B5-I01–I12 desarrolladas documentalmente (47 propuestas; 238 regresiones DOC no ejecutadas); conciliación y cierre editorial pendientes** | `auditorias/05_matriz_global_y_regresiones.md`; NO equivale a cierre B5 | **Siguiente: resolver I01/I02/I10, movimiento, anclaje, caída y 0 Vida; fase C bloqueada** |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
 
@@ -540,3 +540,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `auditorias/05_b5_i12_oficios_y_conciliacion.md`: cuatro propuestas no canónicas B5-I12-P01–P04, veinte regresiones DOC B5-I12-T01–T20, tabla que reconcilia doce filas originales con anexos de numeración divergente; matriz actualizada.
 - **47 propuestas B5, 238 regresiones DOC, 0 Foundry/mesa**. Los 12 temas están desarrollados, pero no resueltos ni validados íntegramente. Abiertos movimiento/caída, Anfibio, Conductor, 0 Vida y paridad Hobgoblin.
 - **Siguiente:** acta de cierre B5 con clasificación de bloqueantes editoriales y autorización explícita de fase C sólo si corresponde. B5 sigue abierta; no canonizar.
+
+### 2026-11-17 — Acta global de conciliación B5 y puerta editorial
+- Verificados tablero, README, plan, matriz B5, conciliación I12 y Manual Maestro `main` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`).
+- Creada `auditorias/05_b5_acta_conciliacion_y_puerta_editorial.md` y enlazada desde matriz: **7 bloqueantes** (I01/I02/I04/I05/I06/I08/I10), **4 propuestas por cerrar** (I03/I07/I09/I11), **1 frontera canónica delimitada** (I12).
+- 47 propuestas, 238 regresiones DOC diseñadas; **0/12 escenarios globales ejecutados, 0 Foundry/mesa**. B5 NO cerrada, fase C NO autorizada; no cambios en `main` ni Foundry.
+- **Siguiente:** resolución conjunta I01/I02/I10 con secuencias de MOV, anclaje, interrupción, caída y 0 Vida, guiones reproducibles y costes.
