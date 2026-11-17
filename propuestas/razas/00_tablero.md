@@ -10,7 +10,7 @@
 | 02 | Enanos | Borrador integral v0.2 + **B1 canon/lore completo, con correcciones** | B2: Cuerpo de Piedra, Sangre de Metal; B4: biología |
 | 03 | Élficos | Borrador integral v0.1 + **B1 canon/lore completo, con correcciones** | B2: alcance Resonancia, percepciones; B4: Oscuros y biología |
 | 04 | Orcos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: Voluntad/Desventajas; B3: FUE/Carga; B4: Bastión/Sangre y biología |
-| 05 | Goblinoides | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Ojo, Escurridizo y Complexión; revisar biología propuesta |
+| 05 | Goblinoides | Borrador integral v0.1 + **B1 canon/lore completo con corrección cultural** | B2/B3: Ojo, Escurridizo, Complexión; B4: biología y balance Hobgoblin |
 | 06 | Terios/Anihombres | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Renkai/Origen Renkaino, sustituciones de Variedad y playtest anatómico |
 | 07 | Feéricos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Continuidad de la Raíz y playtests de vuelo Hada, vínculo y viento |
 | 08 | Ankar | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Sentido del Umbral, Custodia del Alma y revisar instituciones |
@@ -28,7 +28,7 @@
 |---|---|---|---|
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
-| B1. Canon y lore | **En curso: 4/12 (Humanos, Enanos, Élficos, Orcos)** | Auditoría individual por 12 familias | Próximo: Goblinoides, luego 7 restantes |
+| B1. Canon y lore | **En curso: 5/12 (Humanos, Enanos, Élficos, Orcos, Goblinoides)** | Auditoría individual por 12 familias | Próximo: Terios/Anihombres, luego 6 restantes |
 | B2. Mecánicas y costes | Pendiente | Auditoría exhaustiva contra subsistemas completos | Tras B1, por familia |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
@@ -178,3 +178,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Corregido `04_orcos/auditoria_y_desarrollo.md` para que genealogía de Sangre sea relato no demostrado y cualquier sensibilidad requiera **Afinidad Sobrenatural comprada**; «Orcos de Bastión» y sus supuestos archivos quedan como propuestas no ratificadas.
 - Ajustada `04_orcos/doble_pagina.md` (**777 palabras imprimibles**) para evitar atribuir poderes innatos de Sangre o ratificar Bastión como cuarta rama; actualizado `04_orcos/cierre_editorial.md` para preservar jerarquía de fuentes.
 - **B1: 4/12**. Ningún paquete alterado; pruebas ORC-T01–ORC-T30 siguen siendo casos **documentales** sin partidas ejecutadas. Siguiente: Goblinoides; no empezar aún manual_final_propuesto.md.
+
+### 2026-11-17 — B1 Goblinoides concluida
+- Cotejados `05_goblinoides/` y `main` §28 Varkor/Ojo, paquete Goblin/Hobgoblin/Bugbear v0.3, Kobolds sin origen, Orígenes, culturas, Edria 612 C.; inspeccionada colisión de nomenclatura con `06_terios/` y `08_ankar/`.
+- Creado `05_goblinoides/auditorias/01_canon_y_lore.md`: **24 controles canon**, **11 cruces con otras familias**, **6 incidencias** (1 cerrada en propuesta, 4 pendientes B2/B3/B4, 1 controlada).
+- Corrección efectiva: renombradas las **Casas de Umbral** de Bugbears a **Casas de Paso Seguro** en `auditoria_y_desarrollo.md`, `doble_pagina.md` y `cierre_editorial.md`, para evitar colisión con Ankar/Vaelun, `Casas del Umbral` de Terios y Puerto Umbral. **No hay cambio mecánico**.
+- Registro de Oportunidad es herramienta documental, sin ampliar el +1; Goblin Escurridizo y Complexión Bugbear conservan límites. **30 casos documentales no ejecutados en partida**.
+- **Progreso B1: 5/12**. Siguiente Terios/Anihombres; la redacción final `manual_final_propuesto.md` sigue prohibida hasta concluir B1–B5. No se tocó `main`, Foundry ni mapa.
