@@ -66,8 +66,8 @@
 ## E. Casos del Protocolo de Acoplamiento Seguro [PROPUESTA]
 | Caso | Escenario | Resultado esperado dentro del borrador opcional |
 |---|---|---|
-| CRI-T46 | Plano declara interfaz compatible y se cumplen requisitos | Permitir acoplamiento según tiempo y proceso del propio dispositivo, sin nueva Acción gratuita |
-| CRI-T47 | Plano no declara interfaz | Rechazar suposición de compatibilidad; primero desarrollar un Proyecto/modificación legal, con sus costes normales |
+| CRI-T46 | Diseño o procedimiento acredita interfaz compatible, aunque no use la frase literal «admite Conductor Vivo» | Permitir puente voluntario si compatibilidad está diseñada y se cumplen requisitos; tiempo y Acción siguen el propio dispositivo/ritual |
+| CRI-T47 | No hay evidencia de que dispositivo/ritual/proyecto/fenómeno esté diseñado para admitir conductor | No presumir compatibilidad. Exigir evidencia de diseño o modificación legal del Proyecto, sin exigir una etiqueta textual obligatoria |
 | CRI-T48 | Retirar consentimiento de conducción | Deja de conducir voluntariamente, pero no ignora daño o contratiempos de desconexión que especifique diseño |
 | CRI-T49 | Encadenar 3 conductores sin diseño de circuito | No multiplicar Caudal ni alcance por encadenamiento improvisado |
 | CRI-T50 | Supuesta inmunidad a arco de sobrecarga por ser mineral | No; la regla explícita niega inmunidad y el protocolo no puede concederla |
