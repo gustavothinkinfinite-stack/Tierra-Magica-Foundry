@@ -65,4 +65,35 @@ Cuatro encuentros con 1) cripta de sello activo, eco y alma; 2) ilusión sin esp
 | ANK-43 | Ankar advierte retención a 4 espacios y ordena a su Familiar atacar tras muro | Sentido no produce línea de efecto ni Acción remota, y Familiar/Hechizos siguen sus restricciones propias |
 | ANK-44 | Un No Muerto sin sostén espiritual o un eco repetitivo sin alma atraviesa el radio | No disparar por etiqueta/forma si ninguna de las cuatro categorías está realmente presente; preservar investigación y clasificación específica |
 
-**Interfases B3/B4:** distancia y temporización de presencia, sello/ocultación, barra y línea de efecto, clasificación del No Muerto, efecto espiritual compuesto, costo de Reacción/Maná de Mente Anclada, comparación con Percepción élfica/Cristálida y supervisión del conocimiento. **Total: 44 criterios documentales, 0 pruebas reales ejecutadas.**
+**Interfases B3/B4:** distancia y temporización de presencia, sello/ocultación, barra y línea de efecto, clasificación del No Muerto, efecto espiritual compuesto, costo de Reacción/Maná de Mente Anclada, comparación con Percepción élfica/Cristálida y supervisión del conocimiento. **Total: 44 criterios B1/B2, ampliados a 68 documentales en B3, 0 pruebas reales ejecutadas.**
+
+## B3 — Regresiones ANK-45 a ANK-68 (documentales, no ejecutadas)
+
+| Caso | Situación | Resultado esperado / estado |
+|---|---|---|
+| ANK-45 | Espíritu de tránsito incompleto pasa de 7 a 6 espacios | En alcance; frecuencia de aviso no especificada (B5) |
+| ANK-46 | Alma manifiesta pasa de 6 a 7 espacios | Fuera de alcance; sin rastreo persistente |
+| ANK-47 | Tres almas manifiestas dentro de radio6 | Presencia general, no número ni coordenadas |
+| ANK-48 | Eco sin alma e ilusión de aparición | Sin disparador por apariencia |
+| ANK-49 | Cadáver mecánico sin sostén espiritual | No equivale a No Muerto sostenido espiritualmente |
+| ANK-50 | No Muerto sostenido espiritualmente a 4 | Presencia, sin identificar nombre o debilidad |
+| ANK-51 | Sello inerte de retención antigua | No es efecto activo de retención |
+| ANK-52 | Retención activa a 4 tras muro opaco | Geometría del Sentido B5; sin línea de efecto |
+| ANK-53 | Sello específicamente antipercepción espiritual | Puede requerir investigación/magia; sin DF universal |
+| ANK-54 | Familiar a 3 de alma, Ankar a 12 | No comparte radio ni sentido |
+| ANK-55 | Sentido advierte alma, intenta exorcismo gratis | No: Técnica/Hechizo/Ritual y requisitos independientes |
+| ANK-56 | Posesión sin otra categoría de Sentido | Custodia sí; Sentido no por etiqueta sola |
+| ANK-57 | Posesión vs Defensa Mental, VOL2 | 11+2+1=14 sin Reacción racial |
+| ANK-58 | Temor vs Defensa Mental, VOL2 | 13, sin Custodia |
+| ANK-59 | Sugestión vs Defensa Mental, VOL2 | 13, sin Custodia |
+| ANK-60 | Mente Anclada legal vs Temor, VOL2 | 15 con Reacción y 3 Maná |
+| ANK-61 | Mente Anclada legal vs posesión, VOL2 | +1 racial y +2 mágico: apilamiento pendiente B4/B5; no cifra canónica |
+| ANK-62 | Valor Inspirado y Mente Anclada contra miedo | Mismo grupo mágico, sólo mejor +2 |
+| ANK-63 | Miedo y retención con oposiciones separadas | Custodia sólo a retención que use Defensa Mental |
+| ANK-64 | Efecto indivisible miedo+posesión | Clasificación de efecto principal propuesta, pendiente B4/B5 |
+| ANK-65 | Hechizo de aspecto nigromántico sin retención activa | No se activa por escuela o estética |
+| ANK-66 | Espíritu natural sin tránsito incompleto | No se activa por categoría genérica |
+| ANK-67 | Ankar llega a 0 Vida | Trauma, Fatiga, Descanso y 0 Vida normales |
+| ANK-68 | Dos Ankar cerca de mismo fenómeno | No fusionan radios ni acumulan +1 racial |
+
+**Acumulado: 68 casos documentales ANK-01–ANK-68, cero ensayos Foundry/mesa.** Desarrollo detallado, cuatro secuencias y 10 incidencias en `auditorias/03_exploits_y_pruebas.md`.
