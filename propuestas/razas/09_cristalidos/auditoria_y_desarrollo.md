@@ -127,6 +127,19 @@ Para evitar una adjudicación arbitraria, se propone una **lista de verificació
 7. **Seguridad:** un conductor puede sufrir lesión o sobrecarga si el dispositivo así lo establece; Medicina, Arcana, Ingeniería y protecciones costeadas siguen siendo relevantes.
 8. **Nivel de regla:** propone lectura restrictiva de interfaz diseñada; no inventa nuevos tiempos, DF, cargas, energía o precios universales. Si una mesa quiere dispositivo de prueba, debe diseñarlo mediante reglas de Proyecto/Ingeniería ya existentes.
 
+
+### Nota de auditoría B2 — interfaz de recursos y activaciones [CANON contrastado / PROPUESTA indicada]
+
+**[CANON: Ingeniería]** Un dispositivo usa **Energía (E)**, **Caudal (C)**, **Estabilidad** y **Consumo**, y requiere **Consumo ≤ E disponible y ≤ C**, estado operativo, Acción/Reacción exigida y requisitos propios (Manual, §17 y §6). Un acumulador estándar **8 E / C3 / Est2** no puede activar normalmente un módulo de **Consumo 4**, aunque tenga 8 E. Conductor Vivo **no convierte C3 en C4**, no agrega 1 E, no recarga ni aumenta Estabilidad. Su papel depende de un **diseño compatible real**; si el proyecto describe una función concreta de puente, se ejecuta **esa función**, no la bonificación que imagine el jugador.
+
+**[CANON: dos Sobrecargas distintas]** La **Sobrecarga mágica de Hechizos** sólo procede cuando al lanzador le falta exactamente **1 Maná** (y conserva al menos 1), usa **VOL+Canalización vs DF17** y puede provocar Fatiga. La **Sobrecarga Controlada de Ingeniería** sólo existe en **construcción compatible**, exige energía y activación válidas, usa **INT+Ingeniería vs DF16** y puede dar **Caudal efectivo +1 en esa activación** con deterioro/avería correspondientes. **Conductor Vivo no hace ninguna de las dos pruebas automáticamente ni concede inmunidad** a sus consecuencias; no sustituye Caudal, Fuente ni competidores.
+
+**[CANON: ritual y CRAFT]** Ritualismo posee Director, tiempo, DF, método, asistentes y componentes específicos; Energía de acumulador no es Maná universal. El Cristálido no es Director o asistente competente sólo por conducir; su tiempo y Acción de intervención se determinan por **el ritual/dispositivo/proyecto** compatible. Los **Cristales de Resonancia** de Familiares están expresamente fuera de CRAFT-05 y CRAFT-07; `Cristal arcano refinado` es un **material distinto**, que tampoco genera Energía, Caudal ni Maná por sí solo.
+
+**[PROPUESTA B2-CRI-01: control operacional, no nueva capacidad]** Registrar seis campos antes de una conexión: (a) identidad del proyecto/ritual/dispositivo/fenómeno; (b) evidencia funcional de que el **diseño admite puente conductor** (sin exigir frase literal en plano); (c) consentimiento voluntario actual; (d) operador, herramientas, competencias, tiempo y Acción/Reacción aplicables; (e) suministros E/C/Consumo o Maná/Componentes según subsistema, **sin conversión implícita**; (f) riesgos y procedimiento de salida/avería según diseño. Esta lista **no añade requisito de tirada ni turno a todo puente**. **[PENDIENTE B3]** qué sucede ante retirada de consentimiento durante una resolución ya iniciada o durante fallo energético; no se crea un «botón de seguridad» sin coste.
+
+**[PENDIENTE B3: Resonancia]** Contacto **directo con objeto/estructura** revela **estado energético general**, no lectura de cada módulo interior, metraje de cables o composición de una red. El paquete no asigna Acción propia, ventana 1/Escena, DF de ocultación, escaneo continuo ni interacción universal con un sello anti-resonancia; analizar por reglas específicas y límite ordinario de acceso físico, sin inventar un coste o una detección infalible.
+
 ## VIII. Propuestas nuevas y decisiones de canon pendientes
 
 | Código | Decisión de borrador | Efecto esperado |
