@@ -21,7 +21,7 @@ Los **Bugbears** son corpulentos, de gran talla dentro de la Escala Mediana. Pue
 
 ### El valor de corregir
 
-En ciertos talleres goblins se celebra la Prueba de Revisión: antes de estrenar una máquina, alguien ajeno al proyecto debe buscar su defecto más peligroso. Otras comunidades prefieren el Relevo Público, donde una administración entrega sus registros a la siguiente, incluidos los errores. Algunas Casas de Umbral mantienen refugios y rutas para viajeros de cualquier pueblo.
+En ciertos talleres goblins se celebra la Prueba de Revisión: antes de estrenar una máquina, alguien ajeno al proyecto debe buscar su defecto más peligroso. Otras comunidades prefieren el Relevo Público, donde una administración entrega sus registros a la siguiente, incluidos los errores. Algunas Casas de Paso Seguro mantienen refugios y rutas para viajeros de cualquier pueblo.
 
 Son costumbres locales, no leyes raciales. Un goblin puede valorar una obra que dure siglos, un hobgoblin puede improvisar y un bugbear puede vivir en una biblioteca. Sus religiones, idiomas y lealtades dependen de su historia.
 
