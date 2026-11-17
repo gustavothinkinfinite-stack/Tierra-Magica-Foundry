@@ -14,7 +14,7 @@
 | 06 | Terios/Anihombres | Borrador v0.1; **B1, B2 y B3 documentales completas**, **84 DOC + 22 MOD auxiliares** | B4/B5: Variedad A→B, branquias/Anfibio, vuelo bajo Carga, tramos mixtos y balance |
 | 07 | Feéricos | Borrador v0.1; **B1, B2 y B3 documentales completas**, **76 DOC + 24 MOD auxiliares** | B4/B5: Hada apoyos/velocidades, Dríade Derribar/desanclaje, Silfo viento mágico |
 | 08 | Ankar | Borrador v0.1; **B1, B2 y B3 documentales completas**; **68 DOC + 28 MOD auxiliares**, 0 Foundry/mesa | B4/B5: frecuencia de Sentido, barreras, efectos mentales mixtos y apilamiento |
-| 09 | Cristálidos | Borrador v0.1; **B1 y B2 documentales completas**; 68 casos | B3: conexión, Sobrecarga y ocultación; B4: biología y balance |
+| 09 | Cristálidos | Borrador v0.1; **B1, B2 y B3 documentales completas**; **96 DOC**, 0 Foundry/mesa | B4/B5: valor de lectura/puente, ocultación, consentimiento y 0 Vida |
 | 10 | Verdantes | Borrador v0.1; **B1 y B2 documentales completas**; 56 casos | B3: Enraizar, Sustento, Bioma; B4: CLN-01 y balance |
 | 11 | Micelios | Expediente v0.1; **B1 y B2 documentales completas**, 60 criterios | B3: distancia/red/barreras/retransmisión; B4: utilidad química y biología |
 | 12 | Coralios | Expediente v0.1; **B1 y B2 documentales completas**, 64 criterios | B3: tierra/agua, hidratación y protección; B4: Anfibio 1 PR y balance |
@@ -29,8 +29,8 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
-| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Ankar** |
-| B3. Exploits y secuencias | **DOCUMENTAL: 8/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar) | B3 Ankar: **68 DOC + 28 MOD auxiliares**, 4 estados abiertos, **0 Foundry/mesa** | **Siguiente: Cristálidos**, luego restantes |
+| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Verdantes** |
+| B3. Exploits y secuencias | **DOCUMENTAL: 9/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar, Cristálidos) | B3 Cristálidos: **96 DOC**, 28 nuevos; 4 secuencias, 10 incidencias; **0 Foundry/mesa** | **Siguiente: Verdantes**, luego Micelios y Coralios |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -360,3 +360,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Se añadió `08_ankar/auditorias/modelo_auxiliar_b3_ankar.js`: **28 fixtures de clasificación del Sentido del Umbral y de Defensa Mental**, 28 coincidencias con las expectativas del propio clasificador. Cuatro respuestas marcan **ABIERTA**: ocultación espiritual, muros físicos, apilamiento de Custodia del Alma con Mente Anclada y efecto mixto indivisible.
 - El modelo usa hechos adjudicados como entradas y **no** ejecuta el RPG, Foundry, un hechizo de Posesión, Reacciones ni una sesión de mesa. **No** resuelve ninguna de las cuatro incidencias ni aprueba `ANK-PB3-01–04`. El total documental B3 sigue **68 DOC** (ANK-01–ANK-68); evidencia auxiliar separada **28 MOD; Foundry 0; mesa 0**.
 - Sincronizados informe B3, desarrollo y cierre editorial; **B3 sigue 8/12 y el próximo trabajo es Cristálidos**. No se alteró `main`, manual operativo ni cartografía.
+
+### 2026-11-17 — B3 Cristálidos: Resonancia, Conductor Vivo y sobrecargas
+- Se leyeron `00_tablero.md`, `README.md`, `00_plan_auditorias_y_manual.md` y el expediente Cristálidos, B1/B2, batería y cierre. El tablero mostraba **B3 Ankar completa (8/12)**; no se repitió.
+- Reabierto `main:docs/Tierra_Magica_Manual_Maestro.md`, blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`, paquete Matriz Mixta, Energía/Caudal/Estabilidad, dos Sobrecargas, CRAFT-05/07 y Familiares; sin tocar canon. Brief visual ya existente se conserva.
+- Creado `09_cristalidos/auditorias/03_exploits_y_pruebas.md`: **28 escenarios CRI-T69–T96, cuatro secuencias, diez incidencias, tres procedimientos propuestos no canónicos**. Actualizados `pruebas_balance.md` (**96 DOC**, 0 ENV/mesa), `auditoria_y_desarrollo.md` y `cierre_editorial.md`.
+- Resultados: Resonancia no es radar ni revela E/C/Est; Conductor no crea recursos ni interfaz; Sobrecarga de hechizos **VOL+Canalización DF17** y Controlada **INT+Ingeniería DF16** son sistemas distintos; Matriz Mixta no se repara con Ingeniería; Cristales de Resonancia excluidos de CRAFT-05/07.
+- **B4/B5 abiertos:** sellos anticontacto, interrupción de consentimiento, continuidad de circuito a 0 Vida, utilidad comparativa. **B3: 9/12. Próximo: Verdantes**, después Micelios y Coralios. No se modificaron `main`, Manual Maestro, mapa ni Foundry.
