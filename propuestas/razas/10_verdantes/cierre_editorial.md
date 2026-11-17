@@ -26,7 +26,7 @@
 9. **Relaciones culturales:** Casas del Riego, Archivos de Anillos, Caminos de Germinación y Círculos del Sustrato son instituciones de propuesta y multiespecie, sin ubicaciones cartográficas fijas. **Conforme.**
 10. **Religión:** Eïra no es deidad obligatoria ni Bien universal; no se obtiene Vínculo Divino. **Conforme.**
 11. **Geografía:** referencias a Erelia, Liga y Solenar respetan sus ámbitos; no se crean regiones, rutas ni fronteras oficiales. **Conforme.**
-12. **CLN-01:** mínimo propuesto de 4 horas acumuladas de luz compatible cada 24 horas; raciones de nutrientes/agua normales; ausencia cuenta como privación ordinaria, no penalización nueva acumulada. **NO CANON, separado de la doble página.**
+12. **CLN-01:** mínimo propuesto de 4 horas acumuladas de luz compatible cada 24 horas; raciones de nutrientes/agua normales; ausencia pretende resolverse con privación ordinaria, sin doble penalización. **NO CANON: introduce una condición nueva, cuantificada y potencialmente restrictiva**, no es simple aclaración de «luz suficiente». Requiere evaluación de supervivencia en B2 y balance en B4 antes de adoptarse; separado de la doble página.
 13. **Extensión editorial:** 738 palabras imprimibles (objetivo 650–850). Pendiente comprobar tipografía definitiva y distribución con ilustración. **Conforme como borrador.**
 14. **Balance:** 40 casos de aceptación en matriz, ninguno ejecutado empíricamente. **Pendiente playtest.**
 
