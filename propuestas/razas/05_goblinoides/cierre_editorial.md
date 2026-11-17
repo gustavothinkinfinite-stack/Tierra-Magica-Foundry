@@ -2,7 +2,7 @@
 **BORRADOR COMPLETO PARA REVISIÓN GLOBAL · NO APROBADO.** Fecha: 16/11/2026.
 
 ## Entregables
-`auditoria_y_desarrollo.md`: biología y ciclo vital propuestos, cosmología contrastada, tres culturas e instituciones locales, historia, religión y mecánicas. `doble_pagina.md`: dos páginas listas para maquetación, con narrativa y reglas. `brief_arte.md`: composición principal y viñetas, sin imagen generada. `pruebas_balance.md`: 30 casos documentales, no partidas ejecutadas.
+`auditoria_y_desarrollo.md`: biología y ciclo vital propuestos, cosmología contrastada, tres culturas e instituciones locales, historia, religión y mecánicas. `doble_pagina.md`: dos páginas listas para maquetación, con narrativa y reglas. `brief_arte.md`: composición principal y viñetas, sin imagen generada. `pruebas_balance.md`: **30 casos iniciales y 15 regresiones B2 (GOB-31–GOB-45), total 45 casos documentales**; no partidas ni pruebas Foundry ejecutadas.
 
 ## Auditoría cruzada
 - Varkor/Primera Guerra/Ojo no se equiparan a Mal. **Conforme**.
@@ -22,3 +22,8 @@
 Adoptar Red de Reparaciones/Mesas de Segunda Solución para ciertas comunidades goblins; Registro de Responsabilidades/Consejos de Turno para hobgoblins; Casas de Paso Seguro para bugbears; Tres Preguntas y tres lecturas del Ojo como prácticas locales, nunca universales. Mantener abierta la naturaleza literal del Primer Desafío y el origen de Kobolds hasta cosmología dracónica.
 
 **Próxima raza:** Terios/Anihombres, con linaje, variedad, presupuesto de adaptaciones y pruebas de vuelo, armas naturales y movilidad. No escribir en `main` ni Foundry.
+
+
+### Actualización B2 — 17-11-2026
+- Se creó `auditorias/02_mecanicas_y_costes.md`: **16 fichas mecánicas, 20 escenarios analizados y 11 incidencias**. Correcciones documentales en `auditoria_y_desarrollo.md` y pruebas GOB-16/GOB-25: no hay techo numérico universal de modificadores circunstanciales, y comprobar salida de Escurridizo antes de cruzar se etiqueta como pauta propuesta, no norma literal.
+- **45 criterios documentales sin ejecución empírica**. B3 debe resolver interrupciones durante el tránsito, Retirada/Correr/Exhausto, reuso de oportunidades y legitimidad de combinaciones. B4 comparará utilidad de Hobgoblin (sólo Ojo) frente a Goblin, Bugbear, Humanos y otras razas. No se ha modificado ningún paquete en `main`.
