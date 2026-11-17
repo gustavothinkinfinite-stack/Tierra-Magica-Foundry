@@ -8,8 +8,8 @@
 |---:|---|---|---|
 | 01 | Humanos | Doble página v0.1 elaborada en conversación; aún por archivar aquí | Archivar / verificar capítulo canónico, pulir e incluir brief |
 | 02 | Enanos | Borrador integral v0.2 completo para revisión global (no aprobado) | Tras revisión conjunta: decidir lore biológico y realizar playtest empírico |
-| 03 | Élficos | Pendiente | Auditoría de cosmos, tres tradiciones y sociedad; primera doble página |
-| 04 | Orcos | Pendiente | Auditoría, sociedades modernas, reglas, doble página |
+| 03 | Élficos | Borrador integral v0.1 completo para revisión global (no aprobado) | Tras revisión conjunta: validar biología y test de mesa de Resonancia de la Savia |
+| 04 | Orcos | Próximo a trabajar | Auditar canon de Varkor, desarrollar culturas, escribir doble página y pruebas |
 | 05 | Goblinoides | Pendiente | Desarrollar tres variantes, auditar potencial desequilibrio |
 | 06 | Terios/Anihombres | Pendiente | Linajes, variedades, adaptación, territorio oriental, doble página |
 | 07 | Feéricos | Pendiente | Hadas, Sátiros, Dríades, Silfos, variedad y reglas |
@@ -37,3 +37,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Verificado el paquete mecánico contra canon de `main` y realizado control de extensión: 852 palabras con encabezados y nota editorial.
 - Creado `02_enanos/cierre_editorial.md` para el cierre como borrador completo; permanece pendiente de aprobación global.
 - Pendiente exclusivamente: pruebas empíricas y revisión del creador antes de cualquier ratificación.
+
+### 2026-11-16 — Tercer avance: expediente completo de Élficos
+- Consultadas las secciones de Eïra, el paquete racial Élfico v0.3, Erelia, Lysendra, culturas e Iria.
+- Guardados `03_elficos/auditoria_y_desarrollo.md`, `03_elficos/doble_pagina.md`, `03_elficos/brief_arte.md`, `03_elficos/pruebas_balance.md` y `03_elficos/cierre_editorial.md`.
+- Validación editorial: **835 palabras imprimibles**; 24 casos de aceptación documental con resultados previstos, no partidas ejecutadas.
+- Estado: **Enanos y Élficos completados como BORRADORES**, sin aprobación, sin modificar canon ni Foundry.
+- **Próximo ciclo productivo:** desarrollar Orcos — Hijos del Colmillo. En paralelo archivar Humanos, cuya doble página v0.1 está en la conversación, si puede transcribirse y verificarse sin introducir errores.
