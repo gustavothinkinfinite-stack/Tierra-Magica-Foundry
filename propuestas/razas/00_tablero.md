@@ -8,8 +8,8 @@
 |---:|---|---|---|
 | 01 | Humanos | Expediente completo; **B1 y B2 documentales completadas** | B3: exploits, PR/PD; B4: balance Don vs. otras 11 |
 | 02 | Enanos | Borrador v0.2; **B1 y B2 documentales completas** | B3: escalas, Presa, Fatiga; B4: comparación/biología |
-| 03 | Élficos | Borrador integral v0.1 + **B1 canon/lore completo, con correcciones** | B2: alcance Resonancia, percepciones; B4: Oscuros y biología |
-| 04 | Orcos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: Voluntad/Desventajas; B3: FUE/Carga; B4: Bastión/Sangre y biología |
+| 03 | Élficos | Borrador v0.1; **B1 y B2 documentales completas** | B3: Resonancia/ocultación, magia vital; B4: utilidad comparada y biología |
+| 04 | Orcos | Borrador v0.1; **B1 y B2 documentales completas** | B3: fuentes de Desventaja, Ventaja/Ayuda, Carga; B4: Bastión/Sangre |
 | 05 | Goblinoides | Borrador integral v0.1 + **B1 canon/lore completo con corrección cultural** | B2/B3: Ojo, Escurridizo, Complexión; B4: biología y balance Hobgoblin |
 | 06 | Terios/Anihombres | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: Variedad/función anatómica, vuelo y equipo; B4: Renkai y biología |
 | 07 | Feéricos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B3: vuelo Hada, viento, raíz; B4: contraste Verdantes y Terios |
@@ -29,7 +29,7 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente; B2 en curso |
-| B2. Mecánicas y costes | **En curso: 2/12 (Humanos, Enanos)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Élficos**, luego restantes |
+| B2. Mecánicas y costes | **En curso: 4/12 (Humanos, Enanos, Élficos, Orcos)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Goblinoides**, luego restantes |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
@@ -240,3 +240,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Hallazgo importante: `Cuerpo de Piedra` cuenta Mediano en resistencia a Derribar, pero Derribar general no convierte diferencia de Escala en un +Defensa numérico. **No** inventar +1 Defensa; revisar viabilidad y utilidad real en B3/B4. En Empujar sí se describen resultados de margen y distancia. `Sangre de Metal` se distingue por prueba VIG o ataque a Defensa Corporal, no ambos añadidos dos veces a una sola resolución. No amplía Fatiga ordinaria de marcha.
 - Faltan resolver B3/B4 de Presa, causas de agotamiento, apilamiento contextual de resistencia y balance frente a Orcos/Bugbears/Terios. Sin pruebas empíricas, sin cambios en paquete canónico.
 - **Progreso B2: 2/12**, próximo Élficos. No se editó `main`, Foundry ni mapa. B3–B5 y manual final pendientes.
+
+### 2026-11-17 — B2 Élficos y Orcos completadas
+- **Élficos:** se releyeron paquete v0.3, PER, Sentido Agudo, ocultación/ilusiones, Magia/Hechizos Sostenidos/Restauración, Acción/Reacción, Fuente, 0 Vida, progresión. Nuevo archivo `03_elficos/auditorias/02_mecanicas_y_costes.md`: **12 fichas de subsistemas, 15 casos nuevos y 8 incidencias**, además de pruebas documentales ampliadas de **24 a 36 (ELF-T25–T36)**. Corrección documental en `auditoria_y_desarrollo.md`: alteración mágica significativa **presente** no requiere que el origen lleve etiqueta de Hechizo Sostenido, pero hechizo Sostenido sin efecto vital directo no activa Resonancia. No se fijó radio ni umbral numérico nuevos. Cierre editorial sincronizado.
+- **Orcos:** se cotejaron Complexión Orca, Voluntad del Colmillo, reglas de Ventaja/Desventaja, Ayuda, Fatiga/Descansos, Carga/maniobras, supresor de dolor, 0 Vida, Rasgos y magia. Nuevo archivo `04_orcos/auditorias/02_mecanicas_y_costes.md`: **14 fichas, 18 escenarios, 9 incidencias**. Explicación corregida en `auditoria_y_desarrollo.md`: el requisito «exclusivamente» no habilita ignorar terreno o niebla, dos causas elegibles separadas pueden conservar Desventaja y una Ventaja simultánea exige resolución B3. Ampliada batería **30 a 40 (ORC-T31–T40)**, cierre editorial sincronizado.
+- Ningún escenario nuevo fue ejecutado empíricamente. No se modificó el paquete racial v0.3, `main`, Foundry, mapa ni el Manual Maestro vigente. **B2: 4/12**; siguiente **Goblinoides**. B3/B4/B5 y los 12 textos finales del Manual Básico siguen pendientes.
