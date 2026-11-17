@@ -98,7 +98,7 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 | ID | Severidad | Cruces | Vacío y resolución propuesta NO CANÓNICA | Coste/limitación | Estado |
 |---|---|---|---|---|---|
 | B5-I01 | Alta | TER–FEE–COR | Definir conversión de MOV entre suelo, agua y aire en un turno; **propuesta:** un solo presupuesto de MOV, cada tramo consume su distancia en unidades de movimiento y se comprueba capacidad por medio, sin sumar reservas; documentar velocidad aplicable al tramo y restricciones de vuelo | Sin Acción extra; Hada debe terminar apoyada; Terio vuelo sin Carga Pesada; Coralio MOV5/6 | ABIERTA, contrastar reglas generales |
-| B5-I02 | Alta | FEE–VER–ENA | Unificar secuencia Enraizar, Derribar, Empujar, Martillo Cinético, caída y pérdida de suelo; **propuesta:** +1 Escala efectiva sólo para resistencia indicada, Acción de enraizar y 1 MOV de liberación; caída/ruptura requieren ventana común | Sin Defensa, Protección ni Reacción adicional | ABIERTA |
+| B5-I02 | Alta | FEE–VER–ENA | Unificar secuencia Enraizar, Derribar, Empujar, Martillo Cinético, caída y pérdida de suelo; **propuesta:** +1 Escala efectiva sólo para resistencia indicada, Acción de enraizar y 1 MOV de liberación; caída/ruptura requieren ventana común | Sin Defensa, Protección ni Reacción adicional | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
 | B5-I03 | Alta | ELF–ANK–CRI–MIC–COR | Tabla de fronteras sensoriales: vital significativo perceptible; espíritu 6; circuito tocado; química cercana; corriente acuática; no convertir ninguna en radar general | Sin +1 PER general ni diagnóstico | ABIERTA |
 | B5-I04 | Alta | MIC–ANK–CRI | Red micelial 12: métrica geométrica vs longitud; continuidad, voluntad, reconexión y 0 Vida; **propuesta:** distancia geométrica, Acción nueva tras ruptura | Sin cadena instantánea, telepatía ni Fuente | ABIERTA |
 | B5-I05 | Alta | TER–COR | Adaptación anfibia Terio vs Coralio racial vs Rasgo General Anfibio 1 PR; comparar presupuesto y condiciones de hidratación, no regalar un segundo beneficio | Mantener costes y límites existentes | ABIERTA |
@@ -145,3 +145,9 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - **B5-I01-P03:** registrar altura, apoyo, Carga, ventana y caída; no regalar Reacciones ni aterrizaje.
 - **20 regresiones DOC B5-I01-T01–T20**, no ejecutadas; cruces prioritarios **X06-07, X06-12 y X07-12**. Pendientes: orden de caída/interrupción, diagonal/vertical, Retirada con múltiples amenazas y ejecución de pruebas.
 - **Siguiente incidencia: B5-I02**, anclaje Dríade/Verdante, Derribar, Martillo Cinético y pérdida de soporte.
+
+## Avance 17-11-2026 — B5-I02 anclajes
+- **Propuesta documental, no canonizada:** [`05_b5_i02_anclajes.md`](./05_b5_i02_anclajes.md). Enraizar Dríade/Verdante mantiene Acción, suelo apropiado, +1 Escala efectiva sólo para resistencia enumerada y liberación 1 MOV.
+- **B5-I02-P01–P04:** estado único, Empujar/Derribar/Martillo Cinético, pérdida de soporte y 0 Vida/Presa; 18 regresiones **B5-I02-T01–T18 DOC no ejecutadas**.
+- Martillo Cinético: propuesta de 0 desplazamiento si anclado válido, pero Daño 3 permanece. **Reservas abiertas:** viabilidad exacta de Derribar, orden de soporte destruido y persistencia defensiva a 0 Vida.
+- Cruces X07-10, X02-10, X02-07, X07-09; escenarios B5-G04/G05/G11. **Siguiente B5-I03: sentidos y percepción.**
