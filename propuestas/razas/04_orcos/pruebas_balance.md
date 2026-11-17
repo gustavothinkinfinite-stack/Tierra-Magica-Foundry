@@ -1,5 +1,5 @@
 # Orcos — Auditoría mecánica y pruebas de balance v0.1
-**Estado:** 30 casos de aceptación documental. Estas pruebas **definen comportamientos esperados**: no se ha ejecutado una partida ni se certifica balance empírico.
+**Estado:** **64 criterios documentales** (40 previos + 24 B3), ningún caso ejecutado en mesa o Foundry. Modelo auxiliar de clasificación separado, no motor.
 **Referencia:** Manual Maestro en `main`: creación racial v0.3, reglas transversales, Escala, Rasgos (costes), Acción/Movimiento/Reacción, ventajas y desventajas. Sin cambios a Foundry.
 
 ## A. Creación y cultura
@@ -94,3 +94,37 @@
 | ORC-T38 | Supresor del Dolor elimina Desventaja por dolor antes de la prueba | No se duplica con Voluntad para obtener Ventaja; verificar si queda otra fuente válida y sus requisitos |
 | ORC-T39 | Orco quiere desmontar una viga anclada con herramientas o arrastrar caja inerte | +1 FUE efectiva sólo en esfuerzo pertinente; no genera herramientas, tiempo gratis, Habilidad o éxito sin prueba cuando sea necesaria |
 | ORC-T40 | Orco usa una correa para arrancar objeto que otra criatura sujeta y se opone | Interacción activa con criatura / Desarmar no hereda +1 de Complexión por declarar al objeto «inerte» |
+
+
+## H. Regresiones B3 de secuencia — ORC-T41 a ORC-T64
+
+**Clasificación:** estos 24 casos son **DOC (criterios documentales, no ejecutados en Foundry ni en mesa)**. Un **modelo auxiliar** independiente, `auditorias/modelo_auxiliar_b3_orcos.js`, comprobó **20 fixtures y 20 coincidencias con expectativas de clasificación**, incluidas **6 salidas marcadas como pendientes** por cancelación/consumo; no decidió esas lagunas. No equiparar la simulación con pruebas del motor.
+
+| ID | Cadena de explotación / precondiciones | Resultado esperado de canon o incertidumbre abierta |
+|---|---|---|
+| **ORC-T41** | Orco tiene Desventaja **únicamente por dolor**; declara Voluntad **antes** de lanzar la prueba | Elegible para ignorar la fuente **en esta prueba** una vez por Escena. Tirada normal si no hay otra fuente/ventaja; la lesión persiste |
+| **ORC-T42** | Desventaja por **miedo** solo, con escena en curso y uso disponible | Mismo alcance: no borra miedo, no suma Defensa Mental, no cura ni concede Ventaja |
+| **ORC-T43** | **Fatigado** hace esfuerzo prolongado que realmente provoca Desventaja por **agotamiento físico** | Puede ignorar esa fuente **sólo en esa prueba**; la Fatiga y recursos reales persisten |
+| **ORC-T44** | Jugador espera resultado 1,1 conservado y activa Voluntad para repetir | No: declaración **antes de tirar**, no reroll retroactivo ni Hazaña/Pifia anulada |
+| **ORC-T45** | Ya gastó Voluntad, recibe otro miedo en la **misma Escena** | No segundo uso; recupera disponibilidad al comenzar **otra Escena**, sin sanar condiciones |
+| **ORC-T46** | Desventaja por **dolor y miedo independientes**, ambos elegibles; ignora dolor | Queda miedo y **persiste Desventaja**. **ABIERTO:** permitir/consumir uso que no mejora dados; no inventar devolución |
+| **ORC-T47** | Desventaja por **miedo y agotamiento físico independientes** | Ignorar una fuente deja la otra; no 4d10 de Desventaja ni tirada normal por borrar ambas |
+| **ORC-T48** | Desventaja por **dolor y niebla** (dos causas reales) | No cumple **«exclusivamente»**; Voluntad no se declara legalmente para borrar niebla, ni se activará tras tirar |
+| **ORC-T49** | Desventaja por dolor; **Ayuda válida** concede Ventaja antes de resolver | §2 cancela una Ventaja con una Desventaja. **ABIERTO B4/B5:** elegibilidad/consumo de Voluntad en pre-cancelación. No convertirla en **Ventaja residual gratuita** mediante orden elegido por jugador |
+| **ORC-T50** | Dos fuentes independientes de Ventaja y miedo dan Desventaja | Ventajas no apilan entre sí. Una Ventaja cancela una Desventaja: **2d10 normal** por regla básica. Voluntad no genera un tercer estado de Ventaja |
+| **ORC-T51** | Dolor+miedo y Ayuda válida; jugador ignora dolor y reclama Ventaja «sobrante» | **ABIERTO:** orden de cancelación e imputación de consumo; al menos miedo subsiste como Desventaja de fuente antes de cancelación. Prohibido doble descuento y bonificación no autorizada |
+| **ORC-T52** | `Supresor del Dolor` elimina la **única** fuente de Desventaja antes de prueba; se intenta Voluntad después | Sin Desventaja causal, no activación para generar Ventaja; Supresor no cura lesión ni concede segundo uso |
+| **ORC-T53** | `Tónico de Vigor` da Ventaja en VIG por esfuerzo prolongado, Fatigado da Desventaja | Se cancela Ventaja/Desventaja según §2. Interacción con Voluntad se registra como misma **laguna de orden** que Ayuda, no se obtiene beneficio extra sin regla |
+| **ORC-T54** | `Valor Inspirado` protege contra miedo sobrenatural y jugador trata +2 Defensa Mental como Ventaja/Desventaja en propia prueba | No: +2 **Defensa Mental** por Hechizo específico no equivale a Ventaja en todas las pruebas ni permite recargar Voluntad |
+| **ORC-T55** | Orco **Exhausto** MOV6→MOV4 ignora una Desventaja válida por Voluntad | MOV **4** sigue; Fatiga no desaparece y no se generan Movimiento, Acción o Reacción extras |
+| **ORC-T56** | Orco **Colapsado** intenta acción física significativa imposible, alega «Voluntad» para poder tirar | No hay prueba válida; incapacidad del estado primero. Voluntad no concede recuperación ni evade límites de Colapsado |
+| **ORC-T57** | Orco usa fuerza contra **espada sostenida activamente por adversario**; llama al arma «inerte» | No +1 FUE de Complexión: es **Desarmar/interacción opuesta con criatura**, exclusión escrita |
+| **ORC-T58** | Adversario suelta espada; queda en suelo sin oposición y Orco la levanta de una carga verdaderamente exigente | +1 FUE efectiva **sólo si** levantar objeto inerte requiere FUE. No altera Acción/acceso, no garantiza que exista tirada si es trivial |
+| **ORC-T59** | Orco rompe puerta mediante **Ataque de arma** y transforma +1 fuerza en Ataque/Daño, luego repite como FUE+Atletismo | No +1 al Ataque/Daño. Una prueba distinta de **fuerza bruta contra objeto inerte** puede tener +1 si método/tiempo adecuados; no da tirada adicional gratis ni repetición sin cambio significativo |
+| **ORC-T60** | Arrastra **criatura consciente que se opone** con cuerda y reclama «arrastrar» como objeto inerte | No +1 para Agarrar/Empujar/arrastre opuesto de criatura. **ABIERTO en borde**: cuerpo inconsciente ya sin oposición tratado como carga inerte según escena, sin curación ni acción adicional |
+| **ORC-T61** | Compra `Masivo` 3 PR y también intenta `Corpulento` para +12 Vida por ser Bastión | No apila: se utiliza sólo **+8 Vida máximo** por mayor Rasgo y compras dentro del presupuesto real; no obtiene Escala Grande ni FUE global |
+| **ORC-T62** | Orcos de Sangre quieren `Vínculo Divino` de Varkor 2 PR gratis por herencia, más `Afinidad Sobrenatural` y hechizos | Todas las compras requieren PR/PD/Maná aplicables; Vínculo permite Fuente con juramento, **no** concede Disciplina, Habilidad ni Hechizo gratis |
+| **ORC-T63** | Orco en 0 Vida/Incapacitado pretende usar Voluntad como Reacción para ignorar daño, trauma o recuperar Acción | Voluntad modifica **una prueba posible** predeclarada, no una Reacción, un salvamento universal gratis ni curación de 0 Vida |
+| **ORC-T64** | Voluntad ignoró miedo en una Escena; en la siguiente prueba de otra Escena recupera uso, pero mantiene miedo | Recarga 1/Escena **sin** curar la condición; cada nueva prueba requiere Desventaja elegible actual y declaración antes de tirar |
+
+**Totales de cobertura:** 40 anteriores `ORC-T01–ORC-T40` + **24 `ORC-T41–ORC-T64`** = **64 criterios documentales; ninguno ejecutado en Foundry ni mesa**. El modelo auxiliar (`MOD`) tiene 20 escenarios de clasificación con **20 coincidencias**, pero **seis resultados describen de forma deliberada un asunto abierto**; no cuentan como seis decisiones mecánicas resueltas. **B4/B5:** cierre del orden de cancelación de fuentes/ventajas, gasto de uso ineficaz, clasificación del arrastre sin oposición y comparación de efectividad del poder 1/Escena.
