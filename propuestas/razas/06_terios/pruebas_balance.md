@@ -89,3 +89,24 @@
 **Prioridad media:** en «Variedad reemplaza adaptación» no consta si puede sustituirse una Principal por Secundaria. Propuesta conservadora: equivalencia de categoría y documento explícito, sometida a aprobación global; no sobrescribir el Manual Maestro.
 
 **Resultado:** 48 criterios de aceptación documentales; **playtest empírico no ejecutado**. No se identificó necesidad de Habilidad racial nueva. Se identificó una ampliación de Origen cultural, desarrollada en módulo separado para una decisión editorial posterior.
+
+## VIII. Casos B2 de regresión documental — TER-T49 a TER-T60
+
+**Son criterios derivados de lectura del Manual Maestro, no tests ejecutados**. La función de branquias y el procedimiento de Variedad tienen decisión pendiente de B3/B4; no convertir la solución propuesta en canon.
+
+| ID | Situación | Resultado esperado / pregunta abierta |
+|---|---|---|
+| TER-T49 | Terio elefantino elige **Órgano prensil Principal** y compra `Cola Prensil` por PR pretendiendo dos acciones de manipulación | El órgano no da Acción/Reacción/ataque/recarga adicional; beneficios exactamente equivalentes no se acumulan. Diferenciar anatomía y propiedades antes de cobrar dos veces lo mismo |
+| TER-T50 | Terio con caparazón elige **Protección Natural 1** y viste armadura Protección 3 | Protección efectiva de fuente corporal/equipo es **3**, no 4; barrera independiente sólo por su propio texto |
+| TER-T51 | Terio con garra elige **Arma Natural Daño 3/Pen 0** y ataca además con arma | Una acción de ataque legal y su arma; sin daño sumado ni ataque de regalo |
+| TER-T52 | Terio con **Locomoción Especializada (nado 6)** y compra **Anfibio 1 PR** | Combinación plausible con anatomía compatible: nado y respiración resuelven propiedades distintas; no concede presión, corriente, temperatura, higiene ni acciones extra |
+| TER-T53 | Terio ilustrado con **branquias físicas** sin Anfibio ni otra capacidad | El texto de origen exige anatomía funcional, pero **no establece coste/efecto explícito** para respirar agua en la lista Teria: decisión pendiente. La restricción de compra Anfibio es **propuesta**, no canon literal |
+| TER-T54 | Terio aviano con **Vuelo Dominante** quiere cerrar turno en aire abierto | No importar de Hada el requisito de posarse al inicio/fin; aplicar vuelo sostenido Terio normal y condiciones reales. La altura/maniobras que falten definir pasan B3 |
+| TER-T55 | Terio aviano con Vuelo Dominante entra en **Carga Pesada** durante su turno | El vuelo sostenido racial no puede usarse mientras dure la Carga Pesada/Excesiva; resolver pérdida de sustentación, caída y costes en B3 sin generar inmunidad |
+| TER-T56 | Terio con Locomoción Especializada trepa 6 y adquiere **Trepador Natural 1 PR** | Trepar 6 en medio anatómico válido no da un segundo tramo ni Acción extra; Trepador Natural puede regular el **coste por espacio** en apoyos válidos según su texto. Determinar si son propiedades diferentes antes de declarar duplicación o beneficio |
+| TER-T57 | Terio Excavador crea túnel por arena con una Acción y exige «MOV subterráneo 6» | El texto garantiza remover y crear paso **con tiempo**, no velocidad subterránea normal ni metros/Acción; registrar método, estabilidad y tiempo en B3 |
+| TER-T58 | Una **Variedad** pretende reemplazar una Principal por Dominante y conservar la Secundaria | El paquete permite Principal+Secundaria **o** Dominante, nunca ambos. «Misma categoría de sustitución» sigue propuesta editorial conservadora; no oficializar sin decisión |
+| TER-T59 | Terio con **Sentido especializado olfato** compra Sentido Agudo en ese olfato | Dos +1 equivalentes sobre mismo sentido/señal no se acumulan; usar efecto mayor. No se anula la opción de compra en un sentido distinto con anatomía compatible |
+| TER-T60 | Terio de «Origen Renkaino» junto a otro Origen canónico | La 11.ª entrada Renkaino **no existe todavía en `main` ni Foundry**; sólo si se adoptara, sustituiría un Origen, no sumaría idiomas/Facetas/PD/PR |
+
+**Pruebas adicionales pendientes B3/B4:** carga/caída y vuelo, falta de aire con nado, anatomía real frente a coste de beneficio, órganos prensiles frente a Cola/Miembros Extra, protección frente a Barrera Cinética/Piel Alterada y compatibilidad Variedad con el presupuesto excluyente.
