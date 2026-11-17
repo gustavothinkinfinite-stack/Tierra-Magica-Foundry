@@ -46,3 +46,18 @@ Estos números son **orientativos y no canónicos**, sin bonificaciones por peso
 
 ## Diferencias respecto del canon y decisión editorial
 Se proponen rangos biológicos, tres tradiciones institucionales, ritos, doctrinas locales, mediación y una herramienta de seguimiento. **No se propone ninguna modificación al paquete racial** ni una nueva Habilidad, Técnica o Rasgo. Se conserva el misterio del Primer Desafío y Kobolds. Todo lo añadido permanece sujeto a aprobación global.
+
+
+## Actualización B3 — Ojo, Escurridizo y Complexión (17-11-2026)
+
+**ESTADO: B3 completada documentalmente, no validada en mesa ni Foundry. PROPUESTA NO CANÓNICA.** Creado \`auditorias/03_exploits_y_pruebas.md\` con **24 escenarios adversariales, cuatro secuencias y doce incidencias**. La matriz \`pruebas_balance.md\` contiene **69 criterios documentales**: \`GOB-01–GOB-45\` previos más \`GOB-46–GOB-69\`. \`auditorias/modelo_auxiliar_b3_goblinoides.js\` implementa **20 comprobaciones auxiliares**, con coincidencia de las 20 expectativas; **no es motor Foundry**, y no decide huecos, oportunidades, Reacciones ni geometría real.
+
+**[CANON] Ojo.** +1 **antes de prueba**, **1/Escena**, y sólo con información nueva, cambio real o debilidad concreta descubierta y aprovechada. Se permite en una **prueba de Ataque** pertinente si la oportunidad es genuina; no añade Daño/ataques, y Ayuda real puede conferir Ventaja separada, sin techo general ficticio de modificadores. No se extrae información gratis ni se reinterpreta el mismo mapa como cinco sucesos. La posible aplicación excepcional en Iniciativa requiere contexto verificable (**pendiente B4**, no +1 general).
+
+**[CANON] Escurridizo.** Goblin Pequeña MOV6: tránsito por casilla de criatura Mediana o mayor con hueco real **2 MOV por espacio**; salida libre común **1**; ejemplo 2+1=3, dos ocupados+salida 2+2+1=5. Retirada inicial desde amenaza activa limita tramo de MOV normal a **3** antes de los condicionantes. Escurridizo **no anula Reacciones legítimas**, pero tampoco existe ataque de oportunidad universal. Un Goblin Agarrado tiene MOV0 para alejarse; uno Derribado paga los puntos de levantarse o arrastrarse normales.
+
+**[PROPUESTA B3 GOB-B3-PROP-01, NO CANON]** Revisar presupuesto y salida físicamente legal antes de entrar en ocupado para impedir terminar Movimiento dentro; el Manual sólo prohíbe **el resultado ilegal**, no describe explícitamente ese prechequeo. **[PENDIENTE B5 GOB-B3-PROP-02]** Si una Reacción interrumpe dentro de ocupado, determinar de forma transversal coste ya pagado, ubicación y posibles acciones legales sin conceder teletransporte, rebote o daño automático. También queda pendiente orden de Retirada+Correr+Exhausto, común a otras ascendencias.
+
+**[CANON] Complexión Bugbear.** Sigue **Mediano real**, Grande efectivo únicamente para Carga y fuerza bruta contra **objetos inertes**. Sin +1 FUE numérico, arma Grande, alcance, daño o bonus a Empujar, Derribar, Agarrar o Desarmar. Hobgoblin **no** adquiere \`Cohesión\`, \`Liderazgo\` ni Ayuda automática: sólo Ojo y la creación común. \`Registro de Oportunidad\` sigue herramienta propuesta sin efectos.
+
+**Evidencia:** **69 DOC / 20 MOD auxiliares / 0 ENV Foundry / 0 MESA**. B4 medirá utilidad de las tres opciones y Ojo frente a razas distintas; B5 ensayará movimiento e interrupción como regla universal. Siguiente B3 Terios/Anihombres.
