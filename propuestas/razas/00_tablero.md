@@ -12,7 +12,7 @@
 | 04 | Orcos | Borrador v0.1; **B1 y B2 documentales completas** | B3: fuentes de Desventaja, Ventaja/Ayuda, Carga; B4: Bastión/Sangre |
 | 05 | Goblinoides | Borrador v0.1; **B1 y B2 documentales completas** | B3: pasos/interrupciones y Ojo; B4: balance Hobgoblin y biología |
 | 06 | Terios/Anihombres | Borrador v0.1; **B1 y B2 documentales completas** | B3: branquias/Anfibio, Variedad, vuelo, equipamiento; B4: Renkai/biología |
-| 07 | Feéricos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B3: vuelo Hada, viento, raíz; B4: contraste Verdantes y Terios |
+| 07 | Feéricos | Borrador integral v0.1 + **B1 y B2 documentales completas**; 52 casos documentales | B3: vuelo mixto, desanclaje y viento; B4: contraste Verdantes/Terios |
 | 08 | Ankar | Borrador integral v0.1 + **B1 canon/lore completado, con correcciones** | B2/B3: detección 6 espacios y efectos mixtos; B4: tradición y biología |
 | 09 | Cristálidos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: interfaz de Conductor, ocultaciones, acciones; B3: energía/recursos; B4: biología |
 | 10 | Verdantes | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B4: CLN-01 y supervivencia, Enraizar, biomas; B3: exploits de anatomía |
@@ -29,7 +29,7 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente; B2 en curso |
-| B2. Mecánicas y costes | **En curso: 6/12 (hasta Terios/Anihombres)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Feéricos**, luego restantes |
+| B2. Mecánicas y costes | **En curso: 7/12 (hasta Feéricos)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Ankar**, luego restantes |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
@@ -259,3 +259,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Hallazgo crítico: la obligación canónica de anatomía funcional (incluidas branquias cuando existan) no fija por sí sola **en qué componente del paquete Terio** se concede respiración acuática. El borrador conserva compra **Anfibio 1 PR** como **propuesta conservadora**, no afirmación de regla explícita vigente; necesita decisión en B3/B4.
 - Variedad reemplaza adaptación en `main` pero la **misma categoría de reemplazo** es protocolo editorial **no canónico**; preservar presupuesto **Principal + Secundaria o Dominante**. Vuelo Terio Dominante **no hereda** apoyo al inicio/fin de turno de Hada, pero sí prohibición por Carga Pesada/Excesiva. Equipo/órgano prensil/arma natural no crean Acciones gratis.
 - **Progreso B2: 6/12**; próximo Feéricos. No se modificó `main`, Foundry ni mapa; B3–B5 y textos finales siguen pendientes.
+
+### 2026-11-17 — B2 Feéricos: auditoría mecánica documentada (esta ejecución)
+- Reabiertos `00_tablero.md`, `README.md`, `00_plan_auditorias_y_manual.md`, expediente Feéricos y Manual Maestro en `main` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`). Confirmada B2 anterior hasta Terios y **ausencia** del archivo B2 Feéricos antes de escribir.
+- Creado `07_feericos/auditorias/02_mecanicas_y_costes.md`: fichas de Movimiento Hada, Paso de Cabra, Cuernos, Vínculo Arbóreo, Enraizar y Cuerpo del Viento; matriz transversal de PD/PR, combate, magia, descanso, 0 Vida, dispositivos, alquimia, Ingeniería, familiares y crafting.
+- Cuatro incidencias FEE-B2-01 a 04, con propuestas **no canónicas** FEE-PB2-01 a 04 para velocidades mixtas, desanclaje, viento mágico y continuidad del vínculo. Las primeras tres requieren revisión B3/B4, sin introducirlas en reglas activas.
+- En la ejecución inmediatamente anterior se ampliaron `07_feericos/pruebas_balance.md` a **52 casos documentales** y `auditoria_y_desarrollo.md` con límites mecánicos; no se repitieron esas ediciones. **No se ejecutaron playtests ni Foundry**.
+- **B2: 7/12. Próxima unidad: Ankar B2.** Ningún cambio en `main`, Manual Maestro, mapa o Foundry; propuestas aún no aprobadas.
