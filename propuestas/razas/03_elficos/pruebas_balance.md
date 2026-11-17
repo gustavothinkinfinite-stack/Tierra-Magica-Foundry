@@ -1,6 +1,6 @@
 # Élficos — Auditoría mecánica y pruebas de aceptación v0.1
 
-**Estado:** propuesta documental; no es resultado de una partida real. **Canon de referencia:** Manual Maestro, paquete Élfico v0.3 y reglas transversales de ascendencia.
+**Estado:** 56 criterios documentales (36 iniciales + 20 B3), sin ejecución de partida ni Foundry; 16 comprobaciones de un modelo auxiliar distinto del motor. **Canon de referencia:** Manual Maestro, paquete Élfico v0.3 y reglas transversales de ascendencia.
 
 ## I. Creación y ramas
 | ID | Escenario | Resultado esperado / limitación |
@@ -84,3 +84,33 @@
 | ELF-T36 | Efecto mágico afecta directamente ecosistema perceptible, pero ocultación particular se opone a su descubrimiento | Evaluar las reglas concretas de ocultación y disponibilidad sensorial; no conceder inmunidad élfica ni negar siempre la detección |
 
 **Riesgos derivados:** perceptibilidad frente a barreras, umbral no cuantificado «significativa», engaño por apariencias, efecto activo frente a efecto pasado y apilamiento con Sentido Agudo. La resolución B2 queda en `auditorias/02_mecanicas_y_costes.md`; B3 probará secuencias, B4 frecuencia de utilidad.
+
+
+## VIII. Regresiones B3 — ELF-T37 a ELF-T56: percepción, magia y explotación temporal
+
+**Evidencia:** `DOC` = caso previsto por lectura; **no fue ejecutado en mesa ni Foundry**. Se contrastaron además **16 casos `MOD`** en modelo auxiliar JS restringido a condiciones de disparo de Resonancia y +1 PER (16 salidas coincidentes con las previstas); **los juicios «significativa», «directa» y «perceptible» son entradas, no umbrales calculados por el modelo**.
+
+| ID | Secuencia adversarial / variante | Resultado normativo o decisión pendiente |
+|---|---|---|
+| **ELF-T37** | Elfo oye **señal natural sutil** que determina prueba PER y luego exige +1 adicional en Iniciativa | +1 sólo en **PER pertinente**. Iniciativa, Ataque, Defensa y Reacción conservan sus valores; descubrir la emboscada antes puede alterar información de escena, no el bono numérico |
+| **ELF-T38** | Elfo recibe un +1 por Sentidos Élficos visual y compra **Sentido Agudo (vista)**, exige +2 frente a idéntica huella | Fuentes **equivalentes** sobre el mismo sentido y detalle no se suman; beneficio efectivo de +1, sin doble tirada |
+| **ELF-T39** | Huellas naturales mezcladas con **cable manufacturado**; jugador aplica +1 a toda Investigación | Determinar señal **decisiva** y prueba apropiada: +1 PER sólo si detalle natural visual/auditivo sutil es determinante; no Investigación general ni fabricación |
+| **ELF-T40** | Elfo detecta olor de esporas y afirma +1 Sentidos Élficos por «natural» | No por olfato: el paquete sólo señala **vista u oído**. Sentido Agudo olfato comprado tiene texto propio |
+| **ELF-T41** | Un Elfo Oscuro sin compra de Rasgo exige visión nocturna por larga adaptación histórica | No gana Visión en la Oscuridad por tradición. Si la compra por 2 PR, se aplican sus **6 espacios** y límites de detalle/humo/pared, sin +PER racial automático |
+| **ELF-T42** | Elfo oye crujido de rama, supera PER y declara repetición gratis para identificar criatura/autor | Detectar señal no equivale a identificar causa. Repetición de prueba idéntica exige cambio significativo; Investigación/Naturaleza y tiempo/método según proceda |
+| **ELF-T43** | Un ritual **no Sostenido** mantiene una alteración mágica significativa directa de bosque perceptible | Puede disparar Resonancia mientras **exista afección actual**; el canon **no** exige etiqueta técnica Sostenido |
+| **ELF-T44** | `Espejismo` Sostenido muestra bosque vibrante sin cambiar organismo, proceso vital o ecosistema real | No Resonancia por imagen natural o etiqueta Sostenido; examen de ilusión según sospecha/contradicción y texto del Hechizo |
+| **ELF-T45** | Mago elfo observa un dispositivo arcano que mueve autómata pero no afecta directamente vida | No Resonancia universal de Maná/artefactos. Si adquiere `Visión Arcana`, paga sus **2 Maná** y usa prueba propia |
+| **ELF-T46** | `Cierre Restaurador` cura objetivo visible; Elfo exige que la cura terminada deje aura detectable eternamente | No detector retrospectivo de curación. En el instante de la intervención, **evaluar** si hay alteración significativa de proceso vital; después, sin afección mágica presente, no se dispara |
+| **ELF-T47** | `Matriz Vital` (máximo 3 rondas) afecta objetivo visible y Elfo pide saber **Vida restante y pulsos** | Puede advertir presencia de alteración vital sólo cuando significativa/perceptible; no revela 2 Vida/pulso, pulsos usados, identidad del Hechizo ni progreso clínico |
+| **ELF-T48** | Enfermedad no mágica daña ecosistema ante Elfo y jugador reclama Resonancia por gravedad | Falta **naturaleza mágica**: no se activa. PER/Naturaleza/Medicina conservan procedimientos normales |
+| **ELF-T49** | Afección mágica significativa verdadera está **detrás de pared opaca** y el área no es perceptible para Elfo | La capacidad no atraviesa automáticamente barreras ni obtiene radio ilimitado; no activar con área realmente no perceptible. La percepción indirecta especial requiere texto que la habilite |
+| **ELF-T50** | Familiar con Sentidos Compartidos observa bosque distante detrás del muro; jugador proyecta allí Resonancia racial | Sentidos recibidos son los **reales del Familiar**; no crea origen del sensor racial, línea de efecto o hechizo. `Origen Remoto` tiene Vínculo III/3 PD y no transfiere Resonancia |
+| **ELF-T51** | Ilusión y `Velo Sensorial` ocultan alteración vital **real** en una parte visible del bosque | No declarar inmunidad general de Resonancia a ocultación ni negarla siempre. Comprobar si el **área real** es razonablemente perceptible y qué oculta el efecto. **PENDIENTE B3/B4** criterio entre Directores |
+| **ELF-T52** | Dos personas elfas observan **misma anomalía**; una ve bosque real, otra sólo imagen remota | El disparador depende de perceptibilidad **del observador**. No convertir advertencia de uno en detección innata del otro. Comunicaciones dan información, nunca extienden sensor ni alcance |
+| **ELF-T53** | Efecto de magia sobre **clima o maquinaria** que **indirectamente** daña cultivos | La capacidad exige afección mágica **directa** de vida/procesos/ecosistemas. Evaluar mecanismo concreto; **no** declarar detección automática de todo daño secundario. **PENDIENTE B4** borde entre efecto ambiental directo e indirecto |
+| **ELF-T54** | Elfo advierte alteración y anuncia Contramagia, Ataque con Ventaja y Reacción extra por «sentir magia» | Advertencia **no identifica Hechizo/Fuente/objetivo**, no otorga nuevas Acción/Reacción, Maná, línea de efecto, Ventaja o competencia. Aplicar cada subsistema concreto |
+| **ELF-T55** | Elfo con Resonancia intenta leer Maná, Fuente, DF de ilusión o estado de Herida Grave de objetivo | La salida es **existencia de alteración**, no diagnóstico, cantidad, localización exacta ni neutralización. `Visión Arcana` tampoco es omnisciencia |
+| **ELF-T56** | Elfo cae a **0 Vida/Incapacitado** durante evento de `Restauración Funcional`; jugador exige mantener Hechizo propio por percepción racial | No hay sostenimiento racial: Sostenimientos demandantes propios terminan al entrar Incapacitado/Inconsciente. Resonancia no cura, mantiene Maná, impide Trauma ni habilita acciones desde 0 Vida |
+
+**Cobertura acumulada:** `ELF-T01–ELF-T36` (36 criterios previos) + **20 `ELF-T37–ELF-T56` = 56 criterios documentales, 0 ejecutados en Foundry o mesa**. **MOD:** 16 comprobaciones condicionales (16 expectativas coincidentes) en `auditorias/modelo_auxiliar_b3_elficos.js`; no constituyen 16 tests de juego adicionales. **B4/B5:** fijar protocolo no numérico de «significativa», perceptibilidad/ocultación, afección directa ante magia ambiental y no-apilamiento sin prohibir compras legales.
