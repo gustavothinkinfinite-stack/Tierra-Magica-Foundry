@@ -14,7 +14,7 @@
 | 06 | Terios/Anihombres | Borrador v0.1; **B1 y B2 documentales completas** | B3: branquias/Anfibio, Variedad, vuelo, equipamiento; B4: Renkai/biología |
 | 07 | Feéricos | Borrador integral v0.1 + **B1 y B2 documentales completas**; 52 casos documentales | B3: vuelo mixto, desanclaje y viento; B4: contraste Verdantes/Terios |
 | 08 | Ankar | Borrador v0.1; **B1 y B2 documentales completas**; 44 casos | B3: alcance/frecuencia, apilamiento mental y efectos compuestos; B4: balance |
-| 09 | Cristálidos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: interfaz de Conductor, ocultaciones, acciones; B3: energía/recursos; B4: biología |
+| 09 | Cristálidos | Borrador v0.1; **B1 y B2 documentales completas**; 68 casos | B3: conexión, Sobrecarga y ocultación; B4: biología y balance |
 | 10 | Verdantes | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B4: CLN-01 y supervivencia, Enraizar, biomas; B3: exploits de anatomía |
 | 11 | Micelios | Expediente v0.1 + **B1 canon/lore completada** | B2: alcance químico, continuidad y Acción; B3: retransmisión; B4: biología |
 | 12 | Coralios | Expediente v0.1 + **B1 canon/lore completada** | B2: hidratación, Movimiento 5/6, Protección, Sentido; B4: Anfibio 1 PR |
@@ -29,7 +29,7 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente; B2 en curso |
-| B2. Mecánicas y costes | **En curso: 8/12 (hasta Ankar)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Cristálidos**, luego restantes |
+| B2. Mecánicas y costes | **En curso: 9/12 (hasta Cristálidos)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Verdantes**, luego Micelios y Coralios |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
@@ -273,3 +273,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Distinción importante: **Sentido** no lista posesión automáticamente como un quinto tipo detectable; **Custodia** sí protege ante posesión contra Defensa Mental. La percepción general de radio 6 no crea coordenadas, línea de efecto, Acción extra ni un pulso de escaneo definido.
 - B3 debe validar muros/ocultación/frecuencia, ataques compuestos y si `Mente Anclada` mágico puede acumularse con +1 racial; no se fijó regla universal nueva para posesión o defensa. `main`, Foundry, mapa y los paquetes canónicos no se alteraron.
 - **Progreso B2: 8/12. Próximo Cristálidos**; restantes Verdantes, Micelios y Coralios. B3–B5 y textos finales continúan pendientes.
+
+### 2026-11-17 — B2 Cristálidos: Resonancia, Conductor Vivo y Energía
+- Verificados paquete de Matriz Mixta v0.3 de `main`, CRAFT-05/07/09, Cristales de Resonancia de Familiares, Ritualismo, Magia y Sobrecarga, Ingeniería y maquinaria con `Energía/Caudal/Consumo/Estabilidad`, Acción/Reacción, 0 Vida/Descansos/Fatiga, PD/PR. B2 no existía antes de crearla.
+- Guardado `09_cristalidos/auditorias/02_mecanicas_y_costes.md`: **17 fichas de capacidades/sistemas, 18 escenarios de análisis, 11 incidencias**. Añadidos `CRI-T53–CRI-T68`: **68 casos documentales, 0 ejecutados**. Sin nuevos poderes ni cambios en doble página. Actualizados `auditoria_y_desarrollo.md` y `cierre_editorial.md`.
+- Hallazgos: **Conductor Vivo no produce Energía, Caudal, Estabilidad ni Maná**; diferencia Sobrecarga de Hechizos **VOL+Canalización DF17** de Sobrecarga Controlada de Ingeniería **INT+Ingeniería DF16**. Ejemplos de acumulador 8 E/C3: Consumo 3 legal si requisitos y E suficientes, Consumo 4 inválido en activación ordinaria; el puente racial no lo corrige. Cristales de Resonancia siguen excluidos de crafting, Piedras de Impronta y facetas corporales.
+- Abiertos B3/B4: contacto bajo ocultación, alcance dentro de estructuras, costes/tiempos del dispositivo, desconexión voluntaria durante avería y comparación de efectividad. `Protocolo de Acoplamiento Seguro` sigue **propuesta opcional no canónica**.
+- **B2: 9/12**; siguiente Verdantes. No se editó `main`, Foundry, ni mapa; sin partidas empíricas.
