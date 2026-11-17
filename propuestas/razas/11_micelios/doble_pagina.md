@@ -20,7 +20,7 @@ Necesitan humedad y nutrientes orgánicos compatibles. Pueden obtenerlos de un e
 
 Los testimonios de un pueblo se conservan mediante decisiones y trabajo. Algunas comunidades proponen **Archivos de Esporas**, donde los habitantes registran relatos, oficios y acuerdos en libros, objetos y conversaciones. Las redes vivas no guardan automáticamente todos sus recuerdos.
 
-En las **Casas del Sustrato**, vecinos de distintas especies negocian nutrientes, agua y mantenimiento de jardines; los **Custodios de Trama Viva** revisan la salud de redes comunitarias. Otros siguen a los **Círculos de Desprendimiento**, que defienden el derecho a marcharse, trabajar lejos de una colonia o mantener secretos.
+En las **Casas del Sustrato**, vecinos de distintas especies negocian nutrientes, agua y mantenimiento de jardines; los **Custodios de la Red Viva** revisan la salud de redes comunitarias. Otros siguen a los **Círculos de Desprendimiento**, que defienden el derecho a marcharse, trabajar lejos de una colonia o mantener secretos.
 
 Estas instituciones no son universales ni habilidades hereditarias.
 
