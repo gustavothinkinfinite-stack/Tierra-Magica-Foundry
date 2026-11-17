@@ -13,7 +13,7 @@ Con los siglos, sus descendientes recorrieron territorios distintos, fundaron co
 Ninguna de ellas representa una especie moralmente superior ni un destino obligatorio. La Primera Semilla no exige que la vida sea inmóvil: exige que pueda continuar cambiando.
 
 ### El cuerpo y la percepción
-Los Élficos son humanoides vivos de Escala Mediana. Necesitan sustento, descanso y un entorno viable; pueden enfermar, sufrir heridas y morir. Sus sentidos naturales permiten advertir ciertos detalles visuales y auditivos sutiles que otras personas podrían pasar por alto. Algunos reconocen, además, que algo significativo ha alterado mágicamente procesos vitales próximos, sin saber por ello qué lo produjo.
+Los Élficos son humanoides vivos de Escala Mediana. Necesitan sustento, descanso y un entorno viable; pueden enfermar, sufrir heridas y morir. Sus sentidos naturales permiten advertir ciertos detalles visuales y auditivos sutiles que otras personas podrían pasar por alto. También pueden advertir una alteración mágica significativa que esté afectando procesos vitales en un área razonablemente perceptible, sin saber qué la produjo.
 
 La llamada **Resonancia de la Savia** no equivale a conversar con plantas, identificar hechizos ni poseer magia entrenada. Tampoco convierte a un Elfo en sanador o guardabosques por nacimiento.
 
@@ -36,7 +36,7 @@ Pero un Elfo también puede venerar a otras divinidades, seguir varias práctica
 
 **Elfos Oscuros.** Sus antepasados se adaptaron a las profundidades. Hoy pueden habitar galerías, ciudades subterráneas y rutas de intercambio. Su nombre no determina maldad, apariencia uniforme ni capacidades ocultas para ver sin luz.
 
-**Comunidades comunes o mixtas.** Muchos Élficos pertenecen a familias o ciudades donde conviven distintas tradiciones, y otros no utilizan ninguna de estas denominaciones.
+**Comunidades comunes o mixtas.** Existen comunidades de tradiciones combinadas o sin adscripción. «Mixtas» aquí no significa híbridos biológicos entre especies.
 
 Los valles de **Erelia**, las academias de **Lysendra** y las ciudades comerciales de Edria son posibles escenarios para estas historias, nunca territorios exclusivos de una rama.
 
