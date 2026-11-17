@@ -9,7 +9,7 @@
 - `auditoria_y_desarrollo.md`: canon verificado, biología y tres tradiciones canónicas desarrolladas, linaje adicional propuesto, instituciones, rito, sociedad y soluciones de reglas sin subpaquetes nuevos.
 - `doble_pagina.md`: texto imprimible en dos páginas, **756 palabras imprimibles** (excluye nota de producción).
 - `brief_arte.md`: imagen «La fuerza que decide proteger» y viñetas opcionales, sin generación de arte.
-- `pruebas_balance.md`: **30 casos de aceptación documental** más guion de mesa; no confundir con partida ejecutada.
+- `pruebas_balance.md`: **30 casos iniciales y 10 regresiones B2 nuevas (ORC-T31–T40), total 40 casos documentales** más guion de mesa; ninguna partida ejecutada.
 
 ## Control cruzado de coherencia
 1. Varkor expresa Conflicto, no Mal, y comparte cosmología con Trolls/Garra, Ogros/Puño y Goblinoides/Ojo. **Conforme**.
@@ -41,3 +41,8 @@
 
 ## Dictamen
 **Borrador integral de Orcos completo; listo para revisión al finalizar las 12 familias.** El siguiente pueblo productivo es **Goblinoides — Hijos del Ojo**, incluyendo tres variantes jugables. Ningún sistema operativo ni documento canónico se modifica desde esta rama.
+
+
+### Actualización 17-11-2026 — Auditoría B2
+- Disponible `auditorias/02_mecanicas_y_costes.md`: 14 fichas, 18 escenarios y 9 incidencias. Se distingue el requisito **«exclusivamente»** de Voluntad del Colmillo, dos causas válidas simultáneas, Ayuda/Ventaja y los límites de Complexión.
+- El tratamiento de una activación sin efecto y de Ventaja simultánea sigue abierto para B3. **40 criterios documentales, ningún playtest real ni ejecución Foundry**.
