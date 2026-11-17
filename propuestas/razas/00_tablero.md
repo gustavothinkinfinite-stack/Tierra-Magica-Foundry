@@ -32,7 +32,7 @@
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; B3 cerrada documentalmente |
 | B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
 | B4. Comparación y mejoras | **12/12 documental: todas las familias** | Doce familias: 11 comparaciones cada una; Coralios 4 propuestas y 18 regresiones nuevas; Micelios 4 propuestas y 18 regresiones nuevas; Verdantes 4 propuestas y 16 regresiones nuevas; Cristálidos 3 propuestas y 14 regresiones nuevas; Ankar 3 y 14; Feéricos 4 y 16; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: B5 matriz global 12×12** |
-| B5. Regresiones globales | **EN CURSO: matriz 12×12, 66 pares; B5-I01–I11 desarrolladas documentalmente (43 propuestas; 218 regresiones DOC no ejecutadas); quedan incidencias abiertas** | `auditorias/05_matriz_global_y_regresiones.md`; NO equivale a cierre B5 | **Siguiente: B5-I12 incidencias residuales, criterios de aceptación y cierre documental** |
+| B5. Regresiones globales | **EN CURSO: matriz 12×12, 66 pares; B5-I01–I12 desarrolladas documentalmente (47 propuestas; 238 regresiones DOC no ejecutadas); conciliación y cierre editorial pendientes** | `auditorias/05_matriz_global_y_regresiones.md`; NO equivale a cierre B5 | **Siguiente: acta global de cierre documental B5, clasificación de bloqueantes y puerta de fase C** |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
 
@@ -534,3 +534,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `auditorias/05_b5_i11_feericos.md`: cuatro propuestas no canónicas B5-I11-P01–P04 y veinte regresiones DOC B5-I11-T01–T20; matriz actualizada.
 - Hada no puede suspenderse al terminar turno, ni sumar MOV, ni volar con Carga Pesada; Agarrar/0 Vida y caídas siguen reglas generales; Naturaleza Feérica no da Fuente. Abiertos interrupción, transporte y Vuelo Natural. **0 Foundry/mesa; B5 abierta**.
 - **Siguiente B5-I12:** cierre de incidencias residuales y criterios de aceptación antes de habilitar fase C.
+
+### 2026-11-17 — B5-I12: oficios, cultura y conciliación transversal
+- Releídos tablero, README, plan, matriz global y Manual Maestro `main` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`), subsistemas Ingeniería/Alquimia/CRAFT y creación.
+- Creado `auditorias/05_b5_i12_oficios_y_conciliacion.md`: cuatro propuestas no canónicas B5-I12-P01–P04, veinte regresiones DOC B5-I12-T01–T20, tabla que reconcilia doce filas originales con anexos de numeración divergente; matriz actualizada.
+- **47 propuestas B5, 238 regresiones DOC, 0 Foundry/mesa**. Los 12 temas están desarrollados, pero no resueltos ni validados íntegramente. Abiertos movimiento/caída, Anfibio, Conductor, 0 Vida y paridad Hobgoblin.
+- **Siguiente:** acta de cierre B5 con clasificación de bloqueantes editoriales y autorización explícita de fase C sólo si corresponde. B5 sigue abierta; no canonizar.
