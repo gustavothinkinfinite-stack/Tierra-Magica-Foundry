@@ -38,127 +38,206 @@ function silfo({tipo="desplazamiento",origen="mundano",causa="viento"}={}){
 const fixtures=[
   [
     "Hada tramo aéreo apoyos válidos",
-    "TRAMO_AEREO_CONDICIONAL",
+    "hada",
+    {},
     "TRAMO_AEREO_CONDICIONAL"
   ],
   [
     "Hada inicio en aire",
-    "TURNO_AEREO_INVALIDO",
+    "hada",
+    {
+      "apoyoInicio": false
+    },
     "TURNO_AEREO_INVALIDO"
   ],
   [
     "Hada acaba suspendida",
-    "TURNO_AEREO_INVALIDO",
+    "hada",
+    {
+      "apoyoFinal": false
+    },
     "TURNO_AEREO_INVALIDO"
   ],
   [
     "Hada Carga Pesada",
-    "AIRE_PROHIBIDO_CARGA",
+    "hada",
+    {
+      "carga": "pesada"
+    },
     "AIRE_PROHIBIDO_CARGA"
   ],
   [
     "Hada Carga Excesiva",
-    "AIRE_PROHIBIDO_CARGA",
+    "hada",
+    {
+      "carga": "excesiva"
+    },
     "AIRE_PROHIBIDO_CARGA"
   ],
   [
-    "Hada camina: no usar fórmula de vuelo",
-    "MODO_TIERRA_SEPARADO",
+    "Hada camina",
+    "hada",
+    {
+      "quiereAire": false
+    },
     "MODO_TIERRA_SEPARADO"
   ],
   [
     "Sátiro raíces transitables",
-    "SIN_SOBRECOSTE_LISTADO",
+    "satiro",
+    {},
     "SIN_SOBRECOSTE_LISTADO"
   ],
   [
     "Sátiro roca irregular",
-    "SIN_SOBRECOSTE_LISTADO",
+    "satiro",
+    {
+      "superficie": "roca-irregular"
+    },
     "SIN_SOBRECOSTE_LISTADO"
   ],
   [
     "Sátiro pendiente natural",
-    "SIN_SOBRECOSTE_LISTADO",
+    "satiro",
+    {
+      "superficie": "pendiente-natural"
+    },
     "SIN_SOBRECOSTE_LISTADO"
   ],
   [
     "Sátiro desnivel menor",
-    "SIN_SOBRECOSTE_LISTADO",
+    "satiro",
+    {
+      "superficie": "desnivel-menor"
+    },
     "SIN_SOBRECOSTE_LISTADO"
   ],
   [
     "Sátiro muro vertical",
-    "NO_TRANSITABLE",
+    "satiro",
+    {
+      "superficie": "muro-vertical",
+      "transitable": false
+    },
     "NO_TRANSITABLE"
   ],
   [
     "Sátiro aceite industrial",
-    "SIN_PASO_CABRA",
+    "satiro",
+    {
+      "superficie": "aceite-industrial"
+    },
     "SIN_PASO_CABRA"
   ],
   [
     "Sátiro doble causa",
-    "SOLO_ELIMINA_CAUSA_ELEGIBLE",
+    "satiro",
+    {
+      "causaAdicional": true
+    },
     "SOLO_ELIMINA_CAUSA_ELEGIBLE"
   ],
   [
     "Dríade sin Enraizar",
-    "ESCALA_NORMAL",
+    "driade",
+    {},
     "ESCALA_NORMAL"
   ],
   [
-    "Dríade Enraizar sin Acción gastada",
-    "ACCION_DE_ENRAIZAR_REQUERIDA",
+    "Dríade Enraizar sin Acción",
+    "driade",
+    {
+      "enraizada": true
+    },
     "ACCION_DE_ENRAIZAR_REQUERIDA"
   ],
   [
-    "Dríade anclada vs Empujar Escala Mediana",
-    3,
+    "Dríade anclada vs Empujar",
+    "driade",
+    {
+      "enraizada": true,
+      "accionUsada": true
+    },
     3
   ],
   [
     "Dríade liberada con 1 MOV",
-    "ESCALA_NORMAL_TRAS_LIBERAR_1_MOV",
+    "driade",
+    {
+      "enraizada": true,
+      "accionUsada": true,
+      "liberada": true
+    },
     "ESCALA_NORMAL_TRAS_LIBERAR_1_MOV"
   ],
   [
     "Dríade suelo destruido",
-    "ANCLA_FISICA_ABIERTA",
+    "driade",
+    {
+      "enraizada": true,
+      "accionUsada": true,
+      "suelo": false
+    },
     "ANCLA_FISICA_ABIERTA"
   ],
   [
     "Silfo caminar viento ordinario",
-    "IGNORE_PENALIDAD_VIENTO_ORDINARIO",
+    "silfo",
+    {},
     "IGNORE_PENALIDAD_VIENTO_ORDINARIO"
   ],
   [
     "Silfo caminar viento mágico",
-    "NO_IGNORA_POR_PAQUETE",
+    "silfo",
+    {
+      "origen": "magico"
+    },
     "NO_IGNORA_POR_PAQUETE"
   ],
   [
-    "Silfo empujar viento ordinario",
-    "ESCALA_EFECTIVA_MAS_UNO_SOLO_RESISTIR",
+    "Silfo Empujar viento ordinario",
+    "silfo",
+    {
+      "tipo": "empujar"
+    },
     "ESCALA_EFECTIVA_MAS_UNO_SOLO_RESISTIR"
   ],
   [
-    "Silfo empujar viento mágico",
-    "ELEGIBILIDAD_VIENTO_MAGICO_ABIERTA",
+    "Silfo Empujar viento mágico",
+    "silfo",
+    {
+      "tipo": "empujar",
+      "origen": "magico"
+    },
     "ELEGIBILIDAD_VIENTO_MAGICO_ABIERTA"
   ],
   [
-    "Silfo empujar cinético no viento",
-    "NO_ESCALA_VIENTO",
+    "Silfo Empujar golpe cinético",
+    "silfo",
+    {
+      "tipo": "empujar",
+      "causa": "onda-cinetica",
+      "origen": "magico"
+    },
     "NO_ESCALA_VIENTO"
   ],
   [
-    "Silfo viento ordinario más hielo",
-    "NO_IGNORA_POR_PAQUETE",
+    "Silfo hielo + viento",
+    "silfo",
+    {
+      "origen": "mundano",
+      "causa": "hielo"
+    },
     "NO_IGNORA_POR_PAQUETE"
   ]
 ];
-const result=fixtures.map(([nombre,observado,esperado])=>({nombre,observado,esperado,coincide:observado===esperado}));
+const dispatch={hada,satiro,driade,silfo};
+const result=fixtures.map(([nombre,clase,entrada,esperado])=>{
+  const observado=dispatch[clase](entrada);
+  return {nombre,clase,entrada,observado,esperado,coincide:observado===esperado};
+});
 const coincidencias=result.filter(x=>x.coincide).length;
 console.log(JSON.stringify({aviso:"MODELO AUXILIAR, NO FOUNDRY NI PRUEBA DE MESA",
-casos:result.length,coincidencias,limites:"Las entradas de escena están adjudicadas previamente; los eventos físicos y órdenes de acciones no se simulan; ABIERTA no equivale a decisión canónica.",result},null,2));
+casos:result.length,coincidencias,abiertos:result.filter(x=>String(x.observado).includes("ABIERTA")).length,
+limites:"Las entradas de escena se fijan antes de ejecutar; el programa no decide causalidad, Reacciones, geografía o normas nuevas.",result},null,2));
 if(coincidencias!==result.length)process.exitCode=1;
