@@ -17,7 +17,7 @@
 | 09 | Cristálidos | Borrador v0.1; **B1–B4 documentales completas**; **96 DOC B3 + 14 DOC B4**, 0 Foundry/mesa | B5: ocultación, consentimiento, 0 Vida y frecuencia de Conductor Vivo |
 | 10 | Verdantes | Borrador v0.1; **B1–B4 documentales completas**; **86 DOC B3 + 16 DOC B4**, 0 Foundry/mesa | B5: CLN-01, anclaje/Martillo Cinético, Derribar, 0 Vida, biomas y Viaje |
 | 11 | Micelios | Expediente v0.1; **B1–B4 documentales completas**, **100 DOC B3 + 18 DOC B4** | B5: radio geométrico, continuidad/reconexión, valor de Quimiosensibilidad y Enlace |
-| 12 | Coralios | Expediente v0.1; **B1, B2 y B3 documentales completas**, 88 casos DOC | B4: tierra/agua, hidratación, Anfibio 1 PR y balance |
+| 12 | Coralios | Expediente v0.1; **B1–B4 documentales completas**, **88 DOC B3 + 18 DOC B4** | B5: movimiento mixto, hidratación, Anfibio 1 PR y paridad |
 
 
 ## Fases posteriores al cierre de los 12 expedientes (mandato del creador)
@@ -31,8 +31,8 @@
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; B3 cerrada documentalmente |
 | B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
-| B4. Comparación y mejoras | **11/12 documental: Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar, Cristálidos, Verdantes y Micelios** | Primeras once familias: 11 comparaciones cada una; Micelios 4 propuestas y 18 regresiones nuevas; Verdantes 4 propuestas y 16 regresiones nuevas; Cristálidos 3 propuestas y 14 regresiones nuevas; Ankar 3 y 14; Feéricos 4 y 16; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: Coralios** |
-| B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
+| B4. Comparación y mejoras | **12/12 documental: todas las familias** | Doce familias: 11 comparaciones cada una; Coralios 4 propuestas y 18 regresiones nuevas; Micelios 4 propuestas y 18 regresiones nuevas; Verdantes 4 propuestas y 16 regresiones nuevas; Cristálidos 3 propuestas y 14 regresiones nuevas; Ankar 3 y 14; Feéricos 4 y 16; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: B5 matriz global 12×12** |
+| B5. Regresiones globales | **Siguiente fase** | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
 
@@ -456,3 +456,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `11_micelios/auditorias/04_comparativa_y_veredicto.md`: 11 comparaciones, 7 ejes, 4 propuestas no canónicas MIC-B4-P01–P04 y 18 regresiones MIC-B4-T01–T18 documentales.
 - Mantener paquete; B5: métrica de 12 espacios, reconexión/consentimiento, química perceptible y utilidad de Enlace con un solo Micelio. **100 DOC B3 previos + 18 DOC B4 nuevos no ejecutados, 0 Foundry, 0 mesa**.
 - **B4 11/12**; siguiente **Coralios**. Escrituras sólo en rama y carpeta autorizadas.
+
+### 2026-11-17 — B4 Coralios: cierre documental de doce familias
+- Verificados tablero, README, plan, B1–B3 y cierre Coralios; cotejado Manual Maestro de `main` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`).
+- Creado `12_coralios/auditorias/04_comparativa_y_veredicto.md`: 11 comparaciones, siete ejes, cuatro propuestas no canónicas COR-B4-P01–P04, 18 regresiones documentales COR-B4-T01–T18.
+- Paquete Coralio conservado. **88 DOC B3 previos + 18 DOC B4 nuevos no ejecutados; 0 Foundry, 0 mesa**. B5: movimiento mixto Hada/Terio/Coralio, hidratación, Anfibio 1 PR, percepciones y paridad.
+- **B4 documental 12/12.** Próximo trabajo: **B5, matriz 12×12, incidencias y regresiones globales**; fase C aún bloqueada hasta cierre B5. Sólo rama y carpeta autorizadas.
