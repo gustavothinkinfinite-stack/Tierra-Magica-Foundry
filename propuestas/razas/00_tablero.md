@@ -12,8 +12,8 @@
 | 04 | Orcos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar propuesta de Bastión/Sangre y playtest empírico |
 | 05 | Goblinoides | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Ojo, Escurridizo y Complexión; revisar biología propuesta |
 | 06 | Terios/Anihombres | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Renkai/Origen Renkaino, sustituciones de Variedad y playtest anatómico |
-| 07 | Feéricos | Próximo a trabajar | Auditoría Hoja/Eïra; cuatro variantes jugables, culturas, doble página y pruebas |
-| 08 | Ankar | Pendiente | Tránsito, custodia del alma, sociedades, doble página |
+| 07 | Feéricos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Continuidad de la Raíz y playtests de vuelo Hada, vínculo y viento |
+| 08 | Ankar | Próximo a trabajar | Auditar Vaelun/Primer Tránsito, biología, sociedad, doble página y pruebas |
 | 09 | Cristálidos | Pendiente | Matriz mixta, biología, otras clases no jugables, doble página |
 | 10 | Verdantes | Pendiente | Biomas, fisiología, identidad cultural, doble página |
 | 11 | Micelios | Pendiente | Redes, individualidad, comunicación y balance, doble página |
@@ -71,3 +71,12 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Doble página: **726 palabras imprimibles**; **48 casos documentales**, no pruebas ejecutadas en mesa; brief visual con Terio elefantino instructor en patio oriental, imagen no generada.
 - **Estado global: cinco expedientes integrales completos para revisión** —Enanos, Élficos, Orcos, Goblinoides y Terios—; Humanos sigue pendiente de consolidación. Ninguno está aprobado; `main`, Manual Maestro y Foundry no modificados.
 - **Próximo ciclo:** Feéricos — Hijos de la Hoja, con Hadas, Sátiros, Dríades y Silfos. Después, consolidar el expediente pendiente de Humanos sin duplicar versiones.
+
+### 2026-11-16 — Séptimo avance: Feéricos — Hijos de la Hoja
+- Leídos `README.md`, `00_tablero.md`, cierre de Terios y secciones del Manual Maestro en `main`: cuatro paquetes feéricos, Eïra/Primera Semilla, normas transversales y comparación con Verdantes y Elementales.
+- Consultada la guía visual v1.0 entregada por el creador. No se generaron ni modificaron imágenes.
+- Creados `07_feericos/auditoria_y_desarrollo.md`, `07_feericos/doble_pagina.md`, `07_feericos/brief_arte.md`, `07_feericos/pruebas_balance.md`, `07_feericos/cierre_editorial.md`.
+- Desarrollo de sociedades, instituciones, ritos, fisiologías y contrastes de Hada, Sátiro, Dríade y Silfo. Se incluye como propuesta aislada **Continuidad de la Raíz** para el caso de pérdida de árbol vinculado.
+- Control editorial: **742 palabras imprimibles** en doble página y **36 casos de aceptación documental**; no equivalen a playtests ejecutados. No se añaden Habilidades raciales ni cambios a paquetes v0.3.
+- **Estado global: seis expedientes integrales completos como borradores** —Enanos, Élficos, Orcos, Goblinoides, Terios y Feéricos—; Humanos sigue con doble página inicial pendiente de expediente integral. Sin aprobación del creador.
+- **Próximo ciclo productivo:** Ankar — Guardianes del Umbral. Mantener Humanos en cola de consolidación; nunca modificar `main`, mapa oficial ni código de Foundry.
