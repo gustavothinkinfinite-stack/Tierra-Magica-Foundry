@@ -117,6 +117,19 @@
 9. **Equipamiento:** alas, pezuñas y vínculo vegetal exigen vestuario apropiado. La adaptación de equipo común no genera recursos gratis, ni imposibilidad arbitraria de equipo inicial.
 10. **No escalan:** movimiento, escalar de resistencia, daño de Cuernos y demás beneficios no suben automáticamente con nivel.
 
+
+### Observaciones B2 — límites mecánicos sin convertir adjudicaciones en canon
+
+**[B2, Hada: dos medios y una economía de Movimiento]** El paquete indica Movimiento terrestre 5 y aéreo inicial 6, mientras el sistema universal concede una **reserva de Movimiento por turno**. No hay en la entrada Hada un procedimiento explícito de conversión cuando alterna medio terrestre y aéreo dentro del mismo turno. **No atribuir 5+6=11 espacios gratuitos** ni declarar como regla ratificada una fórmula de conversión: registrar la ruta, modo de cada tramo y costes y derivar la operación exacta a B3. La exigencia textual de **apoyo al comienzo y al final del turno** no equivale a inmunidad a caer si una Reacción desplaza al Hada entre turnos; aplicar Caídas en el momento que corresponda. No importar el vuelo Dominante Terio como permiso para terminar suspendida.
+
+**[B2, Sátiro: coste vs. viabilidad]** Paso de Cabra sólo elimina el **aumento de coste de Movimiento** por raíces, roca irregular, pendientes naturales pronunciadas y desniveles menores que puedan transitarse físicamente. No suprime automáticamente pruebas de Acrobacia/Atletismo, restricciones de Carga/Fatiga, una pared imposible ni el estado Derribado. Los Cuernos (3/Pen 0) son arma de ataque normal, no segunda Acción, Embestida ni Empujar gratis.
+
+**[B2, Dríade: diferencia literal con Verdante]** El `Enraizar` Feérico exige **Acción y suelo adecuado**, mejora Escala efectiva para los tres casos enumerados y liberarse cuesta **1 Movimiento**. La entrada de **Verdante** dice expresamente «mientras permanece inmóvil», frase que **no aparece literalmente en la entrada Dríade**. Estar «enraizada» presupone anclaje físico, pero el procedimiento exacto de desplazarse, perder suelo o romper el anclaje debe resolverse en B3 sin crear un estado universal de inmovilidad ni permitir conservar indefinidamente el beneficio mientras corre. El texto general de **Derribar** tampoco concede por sí mismo +Defensa numérica por aumento de Escala; `Empujar` sí cuantifica distancia en función de categorías.
+
+**[B2, Silfo: dos disparadores distintos]** La primera cláusula de **Cuerpo del Viento** ignora sólo penalizaciones al **desplazamiento causadas únicamente por viento mundano ordinario**. La segunda dice «+1 categoría de Escala efectiva sólo para resistir **Empujar causado por viento**» **sin repetir allí la palabra mundano**. No extrapolar inmunidad contra un hechizo, daño o tormenta, pero **tampoco negar automáticamente** la segunda cláusula si un efecto mágico genera **viento físico** y aplica un Empujar que usa categorías de Escala. Evaluar el origen real del desplazamiento y el texto particular; un impulso cinético no se convierte en viento por cambiar de nombre. Sin bonificación general a Defensa/Defensa Corporal ni alcance.
+
+**[B2, Continuidad de la Raíz]** El plazo de **siete días** y el procedimiento de sustitución del anclaje son una **regla temporal nueva y opcional**, no mera explicación de `main`. Deben revisarse con Descanso Completo, interrupciones, traslado de arboleda, rituales de crecimiento, incendios y actividad de aventura. La falta de vínculo puede impedir información de `Vínculo Arbóreo` por ausencia de vegetación conectada, pero el canon **no impone muerte, pérdida automática de estadísticas o búsqueda obligatoria de un sustituto** al morir un árbol. Mantener el módulo fuera de la doble página jugable hasta aprobación.
+
 ## VIII. Matriz de diferencias para aprobación
 | Código | Concepto | Novedad | Efecto |
 |---|---|---|---|
