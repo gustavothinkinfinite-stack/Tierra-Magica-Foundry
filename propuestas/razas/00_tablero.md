@@ -6,7 +6,7 @@
 
 | Nº | Familia | Estado del borrador | Siguiente trabajo |
 |---:|---|---|---|
-| 01 | Humanos | Expediente completo; **B1, B2 y B3 documentales completadas**; 62 casos, 12 comprobaciones de modelo auxiliar (no Foundry) | B4: balance Don vs. otras 11; aclarar grados |
+| 01 | Humanos | Expediente completo; **B1, B2, B3 y B4 documentales completadas**; 62 casos, 12 comprobaciones de modelo auxiliar (no Foundry) | B5: validar P01/P02 y regresiones globales; Foundry/mesa pendientes |
 | 02 | Enanos | Borrador v0.2; **B1, B2 y B3 documentales completas**; 44 criterios y 16 comprobaciones de modelo auxiliar (no Foundry) | B4: Presa/Derribar, Fatiga y balance; validación empírica pendiente |
 | 03 | Élficos | Borrador v0.1; **B1, B2 y B3 documentales completas**, 56 DOC y 16 MOD (no Foundry) | B4/B5: significación, ocultación, efecto directo/indirecto y valor comparado |
 | 04 | Orcos | Borrador v0.1; **B1, B2 y B3 documentales completas**, 64 DOC, 20 MOD (no Foundry) | B4/B5: gasto de Voluntad sin efecto, orden Ayuda/Ventaja, comparación de Complexión |
@@ -17,7 +17,7 @@
 | 09 | Cristálidos | Borrador v0.1; **B1, B2 y B3 documentales completas**; **96 DOC**, 0 Foundry/mesa | B4/B5: valor de lectura/puente, ocultación, consentimiento y 0 Vida |
 | 10 | Verdantes | Borrador v0.1; **B1, B2 y B3 documentales completas**; **86 DOC**, 0 Foundry/mesa | B4/B5: CLN-01, anclaje/Martillo Cinético, Derribar, 0 Vida, biomas y Viaje |
 | 11 | Micelios | Expediente v0.1; **B1, B2 y B3 documentales completas**, **100 DOC** | B4/B5: radio geométrico, continuidad/reconexión, valor de Quimiosensibilidad |
-| 12 | Coralios | Expediente v0.1; **B1 y B2 documentales completas**, 64 criterios | B3: tierra/agua, hidratación y protección; B4: Anfibio 1 PR y balance |
+| 12 | Coralios | Expediente v0.1; **B1, B2 y B3 documentales completas**, 88 casos DOC | B4: tierra/agua, hidratación, Anfibio 1 PR y balance |
 
 
 ## Fases posteriores al cierre de los 12 expedientes (mandato del creador)
@@ -29,9 +29,9 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
-| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Verdantes** |
-| B3. Exploits y secuencias | **DOCUMENTAL: 11/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar, Cristálidos, Verdantes, Micelios) | B3 Micelios: **100 DOC**, 40 nuevos, 4 secuencias, 12 incidencias; **0 MOD/Foundry/mesa** | **Siguiente: Coralios**; luego B4 por familia |
-| B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
+| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; B3 cerrada documentalmente |
+| B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
+| B4. Comparación y mejoras | **1/12 documental: Humanos** | Humanos: 11 comparaciones, 2 aclaraciones propuestas y 12 regresiones documentales nuevas | **Siguiente: Enanos** |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
@@ -390,3 +390,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **CANON:** MOV tierra5/agua6 sin doble reserva; Respiración Anfibia condicionada a hidratación y sin inmunidad a presión, temperatura o contaminación; Protección Natural1 no suma armadura; Sentido +1 PER sólo si señal acuática determinante. Exhausto reduce agua6→4 y tierra5→3. No hay magia, recursos de placas, Acciones ni Familiares gratuitos.
 - **ABIERTAS B4/B5:** conversión de Movimiento entre medios y Retirada/Correr; umbral operativo de hidratación; comparación con Anfibio 1 PR/Terios; señal hidrodinámica de causa mágica. `COR-PB3-01–03` son propuestas de adjudicación, no cambios a reglas vigentes.
 - **Estado global verificado: Fase A 12/12, B1 12/12, B2 12/12, B3 12/12 (documental).** Iniciar **B4 Humanos**, después otras once familias, B5 global y sólo entonces Fase C. No se modificaron `main`, Manual Maestro, atlas ni Foundry.
+
+### 2026-11-17 — B4 Humanos: comparación entre doce familias
+- Releídos tablero, README, plan, B2/B3 Humanos, B3 Coralios y Manual Maestro de `main` (creación, catálogo, paquetes de las doce familias y reglas transversales). Se constató que B3 Coralios ya estaba persistida, aunque el resumen del tablero estaba atrasado; se corrigió a 12/12 sin duplicar auditoría.
+- Creado `01_humanos/auditorias/04_comparativa_y_veredicto.md`: 11 contrastes raciales, escenarios de siete subsistemas, 2 aclaraciones NO CANÓNICAS de clasificación y sustitución de grados, y 12 regresiones documentales nuevas (no ejecutadas).
+- Veredicto: B4 Humanos cerrada documentalmente, **apta para C sólo tras B5**, sin cambios al paquete canónico; 0 nuevas pruebas Foundry/mesa.
+- **Próximo trabajo: B4 Enanos.** No se modificaron `main`, Manual Maestro, atlas ni código operativo.
