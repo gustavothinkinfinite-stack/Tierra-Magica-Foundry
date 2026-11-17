@@ -556,5 +556,11 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 ### 2026-11-17 — Protocolo B5 I04/I08: red y Conductor Vivo
 - Releídos tablero, README, plan, B2/B3 Micelios, B2/B5-I08 Cristálidos, acta B5 y Manual Maestro `main` (blob `334770e7ed7d2605767aecb169f57da6c1100508`).
 - Creado `auditorias/05_b5_protocolo_enlace_conductor_y_corte.md`: B5-NEX-P01–P04, 20 guiones B5-NEX-T01–T20 DOC no ejecutados. Diferencia red viva de interfaz, radio 12, voluntad, continuidad, gasto, consentimiento, corte y 0 Vida.
-- Acumulado **55 propuestas y 278 guiones DOC diseñados**, **0 Foundry/mesa**; I04/I08 con protocolos propuestos pero abiertos por geometría, dispositivos concretos, gasto/interrupción y persistencia. B5 abierta; fase C bloqueada.
+- Acumulado **59 propuestas y 298 guiones DOC diseñados**, **0 Foundry/mesa**; I04/I08 con protocolos propuestos pero abiertos por geometría, dispositivos concretos, gasto/interrupción y persistencia. B5 abierta; fase C bloqueada.
 - **Siguiente:** I05 Anfibio y equivalencias I11, seguido de I06/I07 Hobgoblin/Ojo.
+
+### 2026-11-17 — B5 I05/I11: Anfibio y equivalencias Terio/Coralio
+- Releídos tablero, README, plan, matriz, acta B5, B2 Terios/Coralios y Manual Maestro `main` (blob `334770e7ed7d2605767aecb169f57da6c1100508`).
+- Creado `auditorias/05_b5_anfibio_equivalencias_terios_coralios.md`: cuatro propuestas B5-AMP-P01–P04 y 20 guiones B5-AMP-T01–T20 **DOC no ejecutados**; matriz global actualizada.
+- Terio con Nado MOV6 no recibe respiración acuática gratuita; Anfibio general 1 PR; Coralio innato condicionado a hidratación. Queda bloqueada interpretación de compra Anfibio por Coralio deshidratado; no canonizar alternativa. **59 propuestas, 298 DOC, 0 Foundry/mesa.**
+- **Siguiente:** I06/I07 Hobgoblin/Ojo/Voluntad/Ayuda; B5 abierta, fase C bloqueada.
