@@ -6,7 +6,7 @@
 
 | Nº | Familia | Estado del borrador | Siguiente trabajo |
 |---:|---|---|---|
-| 01 | Humanos | Doble página v0.1 elaborada en conversación; aún por archivar aquí | Archivar / verificar capítulo canónico, pulir e incluir brief |
+| 01 | Humanos | Borrador integral v0.1 reconstruido desde canon completo para revisión (no aprobado) | B1: Aster, Don sin Forma y cotejo con antigua conversación; B2: Menor/Significativo |
 | 02 | Enanos | Borrador integral v0.2 completo para revisión global (no aprobado) | Tras revisión conjunta: decidir lore biológico y realizar playtest empírico |
 | 03 | Élficos | Borrador integral v0.1 completo para revisión global (no aprobado) | Tras revisión conjunta: validar biología y test de mesa de Resonancia de la Savia |
 | 04 | Orcos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar propuesta de Bastión/Sangre y playtest empírico |
@@ -17,7 +17,7 @@
 | 09 | Cristálidos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar fisiología propuesta y playtest de conducción, interfaces y Resonancia |
 | 10 | Verdantes | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar CLN-01, biología y test de Enraizar/biomas |
 | 11 | Micelios | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Enlace, alcance, retransmisión y evaluar MIC-08 |
-| 12 | Coralios | Próximo a trabajar | Auditar Respiración Anfibia, Esqueleto Coralino, Sentido de Corriente; cultura oceánica y doble página |
+| 12 | Coralios | Borrador integral v0.1 completo para revisión global (no aprobado) | B1/B2: comparar hidratación, Movimiento 5/6, Protección, Sentido y Anfibio 1 PR |
 
 
 ## Fases posteriores al cierre de los 12 expedientes (mandato del creador)
@@ -26,8 +26,9 @@
 
 | Fase | Estado | Entrega verificable | Próximo hito |
 |---|---|---|---|
-| A. Doce expedientes iniciales | En curso, **10/12** al incorporar plan | Cinco archivos base por familia | Coralios y consolidación de Humanos |
-| B1. Canon y lore | Pendiente | Auditoría individual por 12 familias | Tras A |
+| A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
+
+| B1. Canon y lore | **Siguiente fase activa** | Auditoría individual por 12 familias | Iniciar con Humanos y continuar sin duplicar |
 | B2. Mecánicas y costes | Pendiente | Auditoría exhaustiva contra subsistemas completos | Tras B1, por familia |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
@@ -148,3 +149,11 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Riesgos pendientes documentados: hidratación, interpretación de Sentido de Corriente, Movimiento mixto, no acumulación de Protección, comparación con Rasgo Anfibio. El protocolo CHC-01 es propuesta opcional, no canon.
 - **Estado: 11 de 12 expedientes iniciales completos**; falta **Humano**. La Fase B de auditorías múltiples y la Fase C de textos finales del manual siguen **pendientes**. No se debe detener el trabajo al llegar a 12/12.
 - **Próximo bloque:** consolidación de Humanos; después B1–B5 y sólo luego C. No se modificó `main`, Manual Maestro, atlas ni Foundry.
+
+### 2026-11-17 — Fase A completada (12/12) y B1 habilitada
+- En esta ejecución se abrieron tablero, README, plan y cierre de Micelios; se releyó en `main` la entrada Coralio, Rasgos Anfibio/Resistencia, Eïra, atlas, geografía y Crisis de Nacre; la guía visual local se inspeccionó literalmente.
+- **Coralios:** creados `12_coralios/auditoria_y_desarrollo.md`, `doble_pagina.md` (**709 palabras**), `brief_arte.md`, `pruebas_balance.md` (**48 casos documentales**). Al escribir `cierre_editorial.md` se detectó una entrega concurrente existente; se leyó, comprobó que ya estaba completa y se evitó sobrescribirla. El cierre corresponde a la misma auditoría, con CHC-01 aislado como propuesta y 11/12 expedientes al terminar Coralios.
+- **Humanos:** confirmado que no había documentos versionados; consultados en `main` el paquete Humano v0.3, el catálogo exacto de Don sin Forma, Aster/Primera Elección, Creación, Orígenes, cosmología, historia y geografía. Creados `01_humanos/auditoria_y_desarrollo.md`, `01_humanos/doble_pagina.md` (**774 palabras**), `01_humanos/brief_arte.md`, `01_humanos/pruebas_balance.md` (**42 casos documentales**) y `01_humanos/cierre_editorial.md`. La antigua doble página v0.1 sólo consta como antecedente conversacional y **NO** se afirma transcrita: se realizó reconstrucción canónica nueva.
+- **Fase A cumplida: 12/12 expedientes iniciales**, todos **borradores no canónicos**. Pruebas: únicamente casos de aceptación redactados, sin ensayos de mesa ni ejecución en Foundry.
+- **Fase B1 ACTIVA:** abrir auditorías canon/lore por raza, empezando por Humanos, con archivo `auditorias/01_canon_y_lore.md`, después Enanos y sucesivas. B2, B3, B4, B5 y Fase C `manual_final_propuesto.md` siguen pendientes.
+- **No detener automatización** al alcanzar 12/12; el proyecto continúa por mandato expreso hasta auditoría profunda, comparación y contenido final del Manual Básico. No se modificó `main`, Manual Maestro operativo, código Foundry o mapa.
