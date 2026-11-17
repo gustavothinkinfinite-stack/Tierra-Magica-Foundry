@@ -118,3 +118,40 @@
 | CRI-T68 | Cristálido queda a **0 Vida/Incapacitado** mientras hace puente de un sistema | Normalmente pierde capacidad de intervención voluntaria; el proyecto define continuidad y desconexión. No crear Sostenimiento, Reacción de emergencia, autorreparación ni inmunidad a Trauma |
 
 **Estado de aceptación:** la batería original contiene `CRI-T01–CRI-T52`; con estos **16 nuevos casos** registra **68 criterios documentales, 0 ejecutados**. **B3** deberá correr secuencias con fuentes de Energía, reversión de consentimiento, averías, contacto con ocultación, economía de Acciones e interacciones de Sostenimiento/0 Vida. **B4** medirá frecuencia y valor comparado con las otras once familias. No hay prueba de mesa ni de Foundry.
+
+## I. Regresiones B3 — CRI-T69–CRI-T96
+
+**28 criterios documentales nuevos, ninguno ejecutado en Foundry ni mesa.** Ver cuatro secuencias, diez incidencias y propuestas CRI-B3-P01–P03 en `auditorias/03_exploits_y_pruebas.md`.
+
+| ID | Situación adversarial | Resultado esperado / pendiente |
+|---|---|---|
+| CRI-T69 | Tocar gran estructura con circuito distante | Estado general, no mapa de módulos |
+| CRI-T70 | Contacto mediante guante/cable | No lectura remota ni sustitución automática de contacto directo |
+| CRI-T71 | Objeto luminoso inerte | La apariencia no altera la condición real |
+| CRI-T72 | Tocar E8/C3 | No revelar cantidad de E, C o Est |
+| CRI-T73 | Objeto recibe y descarga simultáneamente | Estado general; multietiqueta y temporalidad a B4/B5 |
+| CRI-T74 | Repetir veinte veces lectura | No obtener constructor, Fuente ni método de desactivación |
+| CRI-T75 | Sello anticontacto específicamente antirresonancia | Aplicar texto particular; prioridad abierta B5 |
+| CRI-T76 | Barrera sin contacto | No leer objeto al otro lado |
+| CRI-T77 | Máquina sin interfaz diseñada | Conductor Vivo no inventa compatibilidad |
+| CRI-T78 | E8/C3 Consumo3 compatible | Activa con requisitos y queda E5 |
+| CRI-T79 | E8/C3 Consumo4 | Inválida por Caudal sin Sobrecarga Controlada legal |
+| CRI-T80 | E2/C3 Consumo3 | Inválida por Energía |
+| CRI-T81 | Dos conductores en serie improvisada | No duplican E/C/Est ni Acción |
+| CRI-T82 | E8/C3 Consumo4 con Sobrecarga Controlada válida | INT+Ingeniería DF16: éxito E4 y Dañado; fallo Deshabilitado sin activación |
+| CRI-T83 | E2/C3 Consumo4 con Sobrecarga Controlada | No existe E suficiente, no habilitada |
+| CRI-T84 | Mago falta exactamente 1 Maná y conserva 1 | VOL+Canalización DF17, gasto y Fatiga según canon |
+| CRI-T85 | Mago con 0 Maná | Sobrecarga mágica no legal |
+| CRI-T86 | Retiro de consentimiento antes de activar | Sin puente voluntario, operación que lo exige inválida |
+| CRI-T87 | Retiro de consentimiento durante activación | No desconexión segura gratuita; procedimiento abierto B5 |
+| CRI-T88 | 0 Vida durante puente | Incapacitado/Trauma ordinarios; continuidad técnica abierta B5 |
+| CRI-T89 | Daño corporal por arco | Medicina/curación, no reparación corporal gratuita |
+| CRI-T90 | Extraer faceta para cristal de vínculo | No receta ni Cristal de Resonancia creado |
+| CRI-T91 | Cristal de Resonancia a Piedra de Impronta | No son intercambiables según CRAFT-05/07 |
+| CRI-T92 | Tocar cristal y reclamar Familiar | No vínculo gratuito |
+| CRI-T93 | Ritual sin Director/Fuente/componentes | Conductor no sustituye requisitos |
+| CRI-T94 | Activación sin Acción disponible | No Acción/Reacción adicional por ascendencia |
+| CRI-T95 | Resonancia como radar de combate | No detección a distancia ni Iniciativa/Defensa |
+| CRI-T96 | Resonancia como diagnóstico y Ventaja gratis | No identifica reparación ni da Habilidad/bono |
+
+**Cobertura acumulada:** 52 originales + 16 B2 + 28 B3 = **96 DOC**; **0 ENV, 0 MESA**. Las operaciones aritméticas del informe son ejemplos teóricos, no simulaciones ejecutadas.
