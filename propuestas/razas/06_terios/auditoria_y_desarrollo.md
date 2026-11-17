@@ -167,3 +167,18 @@ Las tradiciones no pertenecen a linajes específicos: una comunidad aviana y una
 **Vacío realmente prioritario:** ausencia de un Origen cultural explícito para la gran isla destinada a personajes Terios. **Resuelto en este expediente como módulo propuesto de coste cero que reemplaza otro Origen**, no como cambio en la creación canónica. El misterioso mecanismo preciso de la Primera Semilla puede seguir abierto.
 
 **Siguiente entrega:** doble página editorial (650–850 palabras) con mecánicas fieles, brief de arte orientado a la isla y batería de pruebas que incluya vuelos, órganos, caparazones, nado, reemplazo y Origen cultural propuesto.
+
+
+## 11. Actualización B3 — secuencias de adaptaciones, vuelo y anatomía (17-11-2026)
+
+**Estado:** auditorías B1, B2 y B3 **completadas a nivel documental**, **no validadas empíricamente**, PROPUESTA NO CANÓNICA. Se creó `auditorias/03_exploits_y_pruebas.md` con **24 cadenas adversariales, cuatro secuencias detalladas y doce incidencias**. `pruebas_balance.md` contiene **84 criterios documentales** (`TER-T01–TER-T84`, 24 nuevos B3). `auditorias/modelo_auxiliar_b3_terios.js`: **22 fixtures**, 22 coincidencias con expectativas del modelo, con **tres estados explícitamente abiertos**. No es el motor Foundry, y ninguna ejecución de juego fue realizada (DOC 84, MOD 22, ENV 0, MESA 0).
+
+**[CANON] Presupuesto final:** **Principal+Secundaria o Dominante**, nunca ambos. Los beneficios de una adaptación sustituida por Variedad se retiran; una nueva Variedad no agrega tercera capacidad ni nace de subir nivel. **[PENDIENTE B4 TER-B3-01]** el Manual no obliga a sustituir en la *misma categoría*, ni describe pasar A→B mediante una sola sustitución: `TER-02` de misma plaza sigue **propuesta editorial**.
+
+**[PENDIENTE B4 TER-B3-02]** La frase **«branquias funcionales»** del trasfondo no aparece como capacidad explícita de respirar agua en la tabla Teria. `Anfibio (1 PR)` es solución conservadora propuesta para formalizar respiración aire/agua; **no convertirla en exigencia canónica ya escrita** y tampoco regalar respiración completa por ilustración sin ratificar coste. Locomoción (nado6) y Anfibio son propiedades diferentes y pueden coexistir con compras legales.
+
+**[CANON + PENDIENTE B5 TER-B3-03]** Vuelo sostenido Dominante consume todo el presupuesto, sin movimiento/Acción adicional y **no funciona bajo Carga Pesada o Excesiva**. No importar el requisito de apoyo al comienzo/fin propio de Hada. Si recibe Carga Pesada en pleno vuelo, el momento de pérdida de sustentación, posición, posible Reacción y altura efectiva de caída necesitan **procedimiento transversal B5**. Si cae efectivamente 4 espacios sin mitigación, Caídas calcula **6 de daño** antes de aplicar reglas pertinentes, no daño automático al adquirir carga.
+
+**[CANON]** Órgano prensil, Cola Prensil, Miembros Extra y `Miembro Efímero` no entregan Acciones, Reacciones, Bloqueos/escudos, recargas ni ataques extras; Arma Natural es **Daño3/Pen0** sin sumarse a espada. Protección Natural1 y armadura3 no se suman: contra Pen1 Prot efectiva2. Complexión poderosa no altera ataque; Excavador no es `Fase Parcial` ni MOV subterráneo. El segundo tramo de Movimiento al cambiar tierra/nado/trepa/vuelo está **prohibido como reserva adicional**; el procedimiento de conversión sigue B5 con Hadas/Coralios.
+
+**[PROPUESTA, NO CANON]** El Origen Renkaino y nombre Renkai siguen aislados; el Territorio Oriental oficial no cambia, y sus nuevas opciones no se suman a Origen existente. **Siguiente B3 Feéricos**; tras las doce familias, B4/B5 y propuesta final de Manual.
