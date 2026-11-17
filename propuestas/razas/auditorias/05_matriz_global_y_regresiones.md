@@ -104,7 +104,7 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 | B5-I05 | Alta | TER–COR | Adaptación anfibia Terio vs Coralio racial vs Rasgo General Anfibio 1 PR; comparar presupuesto y condiciones de hidratación, no regalar un segundo beneficio | Mantener costes y límites existentes | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
 | B5-I06 | Media | GOB–HUM–ORC | Hobgoblin sólo Ojo vs variantes con segundo rasgo; medir paridad de escenas sin otorgar Liderazgo gratuito | Cualquier rasgo nuevo exige coste o sustitución explícita | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
 | B5-I07 | Media | ORC–GOB–HUM | Ojo, Voluntad, Ayuda, Ventaja/Desventaja e Iniciativa; orden de declaración y una oportunidad real | 1/Escena; no duplicar circunstancia | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
-| B5-I08 | Alta | CRI–MIC | Conductor Vivo, consentimiento/desconexión, Energía/Caudal/Sobrecarga; red micelial no sustituye interfaz | Acción y recursos del dispositivo; no Maná ni Energía gratis | ABIERTA |
+| B5-I08 | Alta | CRI–MIC | Conductor Vivo, consentimiento/desconexión, Energía/Caudal/Sobrecarga; red micelial no sustituye interfaz | Acción y recursos del dispositivo; no Maná ni Energía gratis | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
 | B5-I09 | Media | VER–MIC–COR | Hidratación, nutrientes, luz, Fatiga, Descanso y viaje; evitar contadores arbitrarios como CLN-01 | Provisiones y procedimientos generales | ABIERTA |
 | B5-I10 | Alta | TODAS | Estados a 0 Vida, Trauma, poderes mantenidos, contacto, raíces, vuelo, reacción y dispositivos | No hay cura/Acción extra ni inmunidad por biología | ABIERTA |
 | B5-I11 | Media | TODAS | Rasgos generales adquiridos y poderes equivalentes; impedir apilamiento de la misma propiedad y no impedir compras distintas | 25 PD/3 PR, salvo Don humano canónico | ABIERTA |
@@ -176,3 +176,8 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - [`05_b5_i07_terios.md`](./05_b5_i07_terios.md): cuatro propuestas B5-I07-P01–P04 no canónicas y 20 regresiones **DOC no ejecutadas** B5-I07-T01–T20.
 - Presupuesto excluyente Principal+Secundaria o Dominante; Variedad sustituye, no agrega. Natación ≠ respiración/Anfibio 1 PR; vuelo Dominante no funciona con Carga Pesada/Excesiva; movimiento mixto remite a B5-I01.
 - Abiertos: branquias y respiración costeada, equivalencias de Rasgos, cambio de Carga en vuelo y cambios de ruta. Cruces X05-06/X06-07/X06-11/X06-12, B5-G01/G02/G09; **0 Foundry, 0 mesa**. Siguiente **B5-I08 Cristálidos**.
+
+## Avance 17-11-2026 — B5-I08 Cristálidos
+- [`05_b5_i08_cristalidos.md`](./05_b5_i08_cristalidos.md): cuatro propuestas B5-I08-P01–P04 no canónicas y 20 regresiones **DOC no ejecutadas** B5-I08-T01–T20.
+- Conductor Vivo exige diseño compatible, consentimiento y recursos existentes; no crea Maná/Energía/Caudal ni inmunidad a sobrecarga. Matriz Mixta mantiene fisiología y 0 Vida; Resonancia sólo lectura cualitativa por contacto.
+- Pendientes interfaces, corte por retirada, interrupción tras gasto, coacción y riesgos. Cruces X01-09/X08-09/X09-10/X09-11/X09-12, B5-G06/G10/G12; **0 Foundry, 0 mesa**. Siguiente **B5-I09 Verdantes**.
