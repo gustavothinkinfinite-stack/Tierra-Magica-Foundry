@@ -13,7 +13,7 @@
 | 05 | Goblinoides | Borrador v0.1; **B1 y B2 documentales completas** | B3: pasos/interrupciones y Ojo; B4: balance Hobgoblin y biología |
 | 06 | Terios/Anihombres | Borrador v0.1; **B1 y B2 documentales completas** | B3: branquias/Anfibio, Variedad, vuelo, equipamiento; B4: Renkai/biología |
 | 07 | Feéricos | Borrador integral v0.1 + **B1 y B2 documentales completas**; 52 casos documentales | B3: vuelo mixto, desanclaje y viento; B4: contraste Verdantes/Terios |
-| 08 | Ankar | Borrador integral v0.1 + **B1 canon/lore completado, con correcciones** | B2/B3: detección 6 espacios y efectos mixtos; B4: tradición y biología |
+| 08 | Ankar | Borrador v0.1; **B1 y B2 documentales completas**; 44 casos | B3: alcance/frecuencia, apilamiento mental y efectos compuestos; B4: balance |
 | 09 | Cristálidos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: interfaz de Conductor, ocultaciones, acciones; B3: energía/recursos; B4: biología |
 | 10 | Verdantes | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B4: CLN-01 y supervivencia, Enraizar, biomas; B3: exploits de anatomía |
 | 11 | Micelios | Expediente v0.1 + **B1 canon/lore completada** | B2: alcance químico, continuidad y Acción; B3: retransmisión; B4: biología |
@@ -29,7 +29,7 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente; B2 en curso |
-| B2. Mecánicas y costes | **En curso: 7/12 (hasta Feéricos)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Ankar**, luego restantes |
+| B2. Mecánicas y costes | **En curso: 8/12 (hasta Ankar)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Cristálidos**, luego restantes |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
@@ -266,3 +266,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Cuatro incidencias FEE-B2-01 a 04, con propuestas **no canónicas** FEE-PB2-01 a 04 para velocidades mixtas, desanclaje, viento mágico y continuidad del vínculo. Las primeras tres requieren revisión B3/B4, sin introducirlas en reglas activas.
 - En la ejecución inmediatamente anterior se ampliaron `07_feericos/pruebas_balance.md` a **52 casos documentales** y `auditoria_y_desarrollo.md` con límites mecánicos; no se repitieron esas ediciones. **No se ejecutaron playtests ni Foundry**.
 - **B2: 7/12. Próxima unidad: Ankar B2.** Ningún cambio en `main`, Manual Maestro, mapa o Foundry; propuestas aún no aprobadas.
+
+### 2026-11-17 — B2 Ankar: Sentido del Umbral y Custodia del Alma
+- Reabierto paquete racial Ankar v0.3 de `main` (6 espacios, categorías de almas/espíritus, +1 Defensa Mental), defensas estáticas, magia de Influencia (`Mente Anclada`, `Temor`, `Sugestión`), Percepción, ocultación, Acción/Reacción, línea de efecto, cosmología de alma/eco/No Muertos y el estado todavía abierto de reglas específicas de posesión/Nigromancia.
+- Creado `08_ankar/auditorias/02_mecanicas_y_costes.md` con **16 fichas de subsistemas, 18 escenarios documentales y 10 incidencias**. Añadidos **14 casos ANK-31–ANK-44** a `pruebas_balance.md`, total **44 casos documentales, cero ejecutados**. Actualizados `auditoria_y_desarrollo.md` y `cierre_editorial.md`.
+- Distinción importante: **Sentido** no lista posesión automáticamente como un quinto tipo detectable; **Custodia** sí protege ante posesión contra Defensa Mental. La percepción general de radio 6 no crea coordenadas, línea de efecto, Acción extra ni un pulso de escaneo definido.
+- B3 debe validar muros/ocultación/frecuencia, ataques compuestos y si `Mente Anclada` mágico puede acumularse con +1 racial; no se fijó regla universal nueva para posesión o defensa. `main`, Foundry, mapa y los paquetes canónicos no se alteraron.
+- **Progreso B2: 8/12. Próximo Cristálidos**; restantes Verdantes, Micelios y Coralios. B3–B5 y textos finales continúan pendientes.
