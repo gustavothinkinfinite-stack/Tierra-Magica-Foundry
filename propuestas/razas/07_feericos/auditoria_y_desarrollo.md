@@ -147,3 +147,19 @@
 **No se identifica una Habilidad racial faltante indispensable.** Los cuatro paquetes v0.3 son jugables y distintos: movilidad aérea condicionada; desplazamiento natural + arma de cuernos; lectura arbórea local + anclaje; resistencia al viento ordinario. Los vacíos prioritarios son sociales y la **continuidad del vínculo arbóreo**, para la que se entrega una regla opcional autocontenida sin incorporarla a `main`.
 
 **Misterios reservados expresamente:** mecánica literal de la Primera Semilla, naturaleza exacta de seres feéricos no jugables, compatibilidad reproductiva general y posibles pactos feéricos más allá de Rasgos existentes. Son ganchos de ambientación, no obstáculos para jugar las cuatro ascendencias.
+
+
+## Actualización B3 — exploits de las cuatro variantes (17-11-2026)
+
+**Estado:** B1, B2 y **B3 documentales completadas**; aprobación canónica, pruebas Foundry/mesa, B4 y B5 **pendientes**. Se creó `auditorias/03_exploits_y_pruebas.md` con **24 ataques adversariales, cuatro secuencias paso a paso y doce incidencias**. `pruebas_balance.md` pasó a **76 criterios documentales** (`FEE-T01–FEE-T76`, +24 B3). Se guardó `auditorias/modelo_auxiliar_b3_feericos.js` con **24 fixtures ejecutables**, 24 coincidencias de la lógica del modelo con las expectativas, con **dos salidas ABIERTA**; no es Foundry ni mide balance (76 DOC, 24 MOD, **0 ENV, 0 MESA**).
+
+**[CANON: Hada]** Pequeña, MOV terrestre **5** y aéreo inicial **6**, con apoyo físico apropiado **al comenzar y terminar cada turno**; Carga Pesada/Excesiva prohíbe usar movimiento aéreo. No son dos reservas ni Vuelo Natural sostenido, ni inmunidad a caídas. **[PENDIENTE B5]** cambio de medio, Retirada/Exhausto/Correr, pérdida de apoyo entre turnos y adquisición de carga en vuelo. `FEE-PB2-01` de reserva mixta es propuesta, **no regla vigente**.
+
+**[CANON: Sátiro]** Paso de Cabra elimina exclusivamente coste adicional de raíces, roca irregular, pendientes naturales pronunciadas y desniveles menores **físicamente transitables**; hielo/aceite/otros riesgos no se cancelan por mezclar causas. Cuernos Daño3/Pen0 son arma natural, **no ataque ni Empujar adicionales**.
+
+**[CANON: Dríade]** Enraizar usa **Acción**, requiere suelo apropiado y concede +1 Escala efectiva **sólo al resistir Empujar, Derribar o desplazamiento físico impuesto**; liberarse cuesta **1 MOV**. Ejemplo ante Empujar Claro: atacante Pequeño vs Grande efectiva no mueve por fuerza ordinaria; Mediano vs Grande efectiva desplaza **1 espacio** si éxito válido. No +Defensa, Vida, Protección ni curación. **[PENDIENTE B4/B5]** Derribar carece de fórmula de bono numérico de Escala; la ficha Dríade **no** repite literalmente «permanece inmóvil» de Verdante; pérdida de suelo/anclaje y momento de liberación precisan procedimiento. `FEE-PB2-02` sigue propuesta opcional.
+**Vínculo Arbóreo** sólo informa estado general por **contacto con vegetación significativa vinculada**, no red, causa, historia ni Hechizo. El módulo `Continuidad de la Raíz` de 7 días **no es canon**; tampoco existe muerte inmediata por pérdida del árbol en el Manual.
+
+**[CANON: Silfo]** ignora penalización al desplazamiento **únicamente por viento mundano ordinario**, pero la segunda cláusula trata **Empujar causado por viento** sin repetir «mundano». **[PENDIENTE B4/B5]** viento mágico físico que realmente empuja requiere clasificación según texto y reglas de Escala; `FEE-PB2-03` no se ratificó. `Onda de Choque` y `Martillo Cinético` no son viento por simple tema cinético. Nada de vuelo, inmunidad a huracanes, Hechizos o daño.
+
+**Todas las ramas:** Naturaleza Feérica sólo descriptor, no Fuente, Maná, resistencias, Habilidades ni Vínculo gratuito. Próximo B3: **Ankar**.
