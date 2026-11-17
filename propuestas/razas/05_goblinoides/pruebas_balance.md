@@ -18,7 +18,7 @@
 | GOB-13 | Nueva información real durante la misma Escena tras gastar Ojo | No hay segundo uso |
 | GOB-14 | Nueva Escena, nueva oportunidad concreta | Uso disponible de nuevo |
 | GOB-15 | Pretender que Ojo revele una debilidad oculta | No revela información; requiere descubrimiento por otros medios |
-| GOB-16 | Ojo junto a otro bono circunstancial | Aplicar límite general de modificadores, sin excepción racial |
+| GOB-16 | Ojo junto a otro bono circunstancial o Ayuda válida | No existe techo numérico universal declarado: contrastar requisitos de cada bono y reglas específicas de no acumulación; +1 de Ojo no regala Ayuda ni la bloquea de por sí |
 | GOB-17 | Ojo para acción físicamente imposible | No vuelve posible lo imposible |
 | GOB-18 | Goblin atraviesa espacio Mediano con hueco | Permitido pagando terreno difícil |
 | GOB-19 | Goblin atraviesa 1 espacio ajeno | Coste 2 puntos de Movimiento, no 1 |
@@ -27,7 +27,7 @@
 | GOB-22 | Goblin atraviesa espacio de criatura Pequeña | Escurridizo no aplica por requisito Mediana o mayor |
 | GOB-23 | Goblin atraviesa criatura Grande | Permitido si hay espacio físico y salida legal; Reacciones siguen vigentes |
 | GOB-24 | Goblin pretende evitar Reacción habilitada | No la evita por Escurridizo |
-| GOB-25 | Goblin sin Movimiento para completar tránsito | No inicia tránsito sin destino legal |
+| GOB-25 | Goblin sin Movimiento para terminar fuera de espacio ocupado | El canon prohíbe terminar **Movimiento** dentro; el control preventivo «no iniciar la ruta sin salida» es **adjudicación propuesta**, no texto literal. Resolver interrupciones en B3 |
 | GOB-26 | Bugbear carga bulto inerte | Se trata como Grande sólo para Carga |
 | GOB-27 | Bugbear arrastra objeto inerte | Escala efectiva Grande sólo para esa fuerza |
 | GOB-28 | Bugbear Empuja o Derriba criatura | Sigue Mediano; no obtiene mejora de Complexión |
