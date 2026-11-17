@@ -206,3 +206,8 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - [`05_b5_acta_conciliacion_y_puerta_editorial.md`](./05_b5_acta_conciliacion_y_puerta_editorial.md): auditadas las doce filas temáticas originales y la discrepancia de numeración de anexos.
 - **7 bloqueantes editoriales:** I01, I02, I04, I05, I06, I08, I10; **4 pendientes de cierre editorial:** I03, I07, I09, I11; **1 frontera canónica delimitada:** I12. Ninguno implica aprobación ni prueba de motor.
 - **0/12 escenarios globales ejecutados, 0/66 pares certificados empíricamente, 0 Foundry/mesa.** No cerrar B5 ni habilitar fase C hasta resolver bloqueantes y revisar guiones. Siguiente: procedimiento común I01/I02/I10 (movimiento, anclaje y 0 Vida).
+
+## Avance 17-11-2026 — Procedimiento I01/I02/I10
+- [`05_b5_procedimiento_movimiento_anclaje_vida.md`](./05_b5_procedimiento_movimiento_anclaje_vida.md): cuatro propuestas B5-PROC-P01–P04 y veinte guiones DOC no ejecutados PROC-T01–T20.
+- Resuelve editorialmente orden propuesto de declaración, MOV, daño, desplazamiento, soporte, caída e Incapacitado, sin cambiar canon. Retirada multimodal, Derribar y persistencia a 0 Vida siguen pendientes; **0 Foundry/mesa**.
+- **Siguiente:** I04 enlace micelial + I08 Conductor Vivo; B5 NO cerrada.
