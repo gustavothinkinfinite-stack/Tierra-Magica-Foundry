@@ -570,3 +570,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado [`auditorias/05_b5_hobgoblin_ojo_voluntad_cinco_escenas.md`](./auditorias/05_b5_hobgoblin_ojo_voluntad_cinco_escenas.md): **5 escenas comparativas y 10 controles documentales revisados por lectura**, sin ejecución empírica. No añadirlos al contador anterior de regresiones *diseñadas* como si fueran pruebas nuevas ejecutadas.
 - **Dictamen:** desigualdad estructural Hobgoblin constatada por comparación de paquetes, magnitud de desbalance no medida; conservar canon y alternativa costeada sólo como propuesta. Secuencia de Ojo/Voluntad/Ayuda explicitada sin cambiar reglas vigentes.
 - **B5 abierta; C bloqueada.** Próximo bloque I03/I09: sentidos/ocultación y sustento; después conciliar bloqueos globales. 0 Foundry/mesa. Sólo rama/carpeta autorizadas.
+
+### 2026-11-17 — B5 I03/I09: sentidos, ocultación y sustento
+- Reabiertos los anexos I03, I09, I10 y Manual Maestro `main` (blob `334770e7ed7d2605767aecb169f57da6c1100508`).
+- Creado [`auditorias/05_b5_sentidos_ocultacion_y_sustento_escenas.md`](./auditorias/05_b5_sentidos_ocultacion_y_sustento_escenas.md): algoritmo de señales, 14 escenas SEN y 12 SUS con expectativas verificables por lectura; **26 casos DOC, 0 ejecutados en Foundry/mesa**.
+- I03 e I09 reciben pauta editorial explícita sin crear radar, recursos infinitos, penalizaciones horarias ni curación. Persisten barreras espirituales, umbrales de privación y bloqueos globales.
+- **B5 abierta; fase C bloqueada.** Próximo trabajo: conciliar los siete bloqueantes, matriz 66 pares y puerta editorial; no modificar `main` ni Foundry.
