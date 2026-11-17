@@ -45,3 +45,24 @@ Cuatro encuentros con 1) cripta de sello activo, eco y alma; 2) ilusión sin esp
 - La condición de espíritu manifiesto y los efectos específicamente ocultos deben adjudicarse según perfil/efecto concreto; no crear una habilidad general de rastreo.
 
 **Resultado:** batería documental preparada, **0/30 ejecutados empíricamente**. No se identifica una Habilidad racial nueva necesaria.
+
+## B2. Regresiones adicionales — ANK-31 a ANK-44 (documentales, no ejecutadas)
+
+| ID | Escenario | Resultado esperado / controversia pendiente |
+|---|---|---|
+| ANK-31 | Fenómeno enumerado entra de 7 a **6 espacios** del Ankar | Queda en alcance de Sentido; no hay Acción, pulso temporal ni tirada/DF numérica fijados expresamente. **PENDIENTE B3** frecuencia de comprobación |
+| ANK-32 | Alma desencarnada manifiesta permanece a **7 espacios** | Fuera del alcance escrito, aunque tenga apariencia visible. Lo que se ve normalmente se evalúa por otras reglas |
+| ANK-33 | Tres fenómenos de categorías distintas están en el mismo radio | Sentido advierte presencia general cuando corresponda; no revela **cuántos**, nombres, naturaleza precisa, posiciones ni causa por sí solo |
+| ANK-34 | Una pared opaca separa al Ankar de un efecto activo de retención a 4 espacios | El canon no fija regla universal de detección a través de muros: **no afirmar** ni que toda pared lo bloquee ni que se atraviese infaliblemente. Nunca concede línea de efecto, atacar o lanzar Hechizo a objetivo oculto |
+| ANK-35 | Sello diseñado específicamente contra percepción espiritual oculta retención de alma | Investigación o magia pueden ser necesarias; no ignorar el sello por tener Sentido. No inventar una DF de sello universal |
+| ANK-36 | Una **posesión** opera, sin constatar alma desencarnada manifiesta, tránsito incompleto, No Muerto sostenido espiritualmente o retención/desplazamiento/esclavización activa | **Custodia** sí enumera posesión; **Sentido no la enumera por nombre**. No activar Sentido por posesión genérica sin verificar uno de sus cuatro disparadores |
+| ANK-37 | Una ilusión visual simula una aparición junto a autómata corriente | No es No Muerto con sostén espiritual por apariencia; Sentido no identifica Ilusión, Arcana ni estado de autómata sin fenómeno real enumerado |
+| ANK-38 | Efecto de **posesión** se resuelve como ataque contra Defensa Mental | Defensa Mental base **11 + VOL**; aplica **+1 racial** sólo al ataque de posesión, sin tirada defensiva adicional ni gasto de Reacción |
+| ANK-39 | `Temor` y `Sugestión` se resuelven contra Defensa Mental | **No** +1 por Custodia: afectan miedo/influencia ordinaria; sin control directo del alma expresamente definido |
+| ANK-40 | `Mente Anclada` legal se declara por Reacción ante un efecto mental que también involucra posesión | `Mente Anclada` +2 según su propio texto, coste Maná/Reacción normal. **PENDIENTE B3** comprobar equivalencia/apilamiento con el +1 racial: no afirmar +3 ni invalidación universal sin fuente |
+| ANK-41 | Efecto tiene **dos resoluciones separadas**, una de miedo y otra de retención espiritual | +1 Custodia sólo donde se ataca explícitamente Defensa Mental por retención; no aplicarlo al miedo |
+| ANK-42 | Efecto único compuesto de miedo/posesión con **una sola** oposición a Defensa Mental | No hay procedimiento universal canónico para repartir la misma Defensa según dos efectos; guía de «efecto principal» es **propuesta B1/B2**, pendiente B3 |
+| ANK-43 | Ankar advierte retención a 4 espacios y ordena a su Familiar atacar tras muro | Sentido no produce línea de efecto ni Acción remota, y Familiar/Hechizos siguen sus restricciones propias |
+| ANK-44 | Un No Muerto sin sostén espiritual o un eco repetitivo sin alma atraviesa el radio | No disparar por etiqueta/forma si ninguna de las cuatro categorías está realmente presente; preservar investigación y clasificación específica |
+
+**Interfases B3/B4:** distancia y temporización de presencia, sello/ocultación, barra y línea de efecto, clasificación del No Muerto, efecto espiritual compuesto, costo de Reacción/Maná de Mente Anclada, comparación con Percepción élfica/Cristálida y supervisión del conocimiento. **Total: 44 criterios documentales, 0 pruebas reales ejecutadas.**
