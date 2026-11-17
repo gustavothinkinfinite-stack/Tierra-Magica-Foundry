@@ -30,7 +30,7 @@
 - **FEE-03:** Consejos de Raíz y Registros de Vínculos de Dríades.
 - **FEE-04:** Observatorios de Corrientes y Casas del Viento Bajo de Silfos.
 - **FEE-05:** procedimiento optativo Continuidad de la Raíz, sometido a análisis específico.
-- **FEE-06:** Liturgia del Umbral Verde como práctica regional no universal ni mecánica.
+- **FEE-06:** Liturgia del Ciclo Vivo como práctica regional no universal ni mecánica.
 - **FEE-07:** instituciones multiespecie y religión plural, sin creación automática de subrazas o fuentes.
 - **FEE-08:** no alterar los cuatro paquetes v0.3.
 
