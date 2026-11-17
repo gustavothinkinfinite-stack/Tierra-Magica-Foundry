@@ -45,6 +45,8 @@
 | **Fosorial** | Extremidades excavadoras, garras, vibrisas | Pequeña | Excavador, Sentido especializado, Movilidad Adaptada; no atravesar roca maciza ni túneles instantáneos |
 | **Quiróptero** | Membranas alares, ecoorientación anatómica posible | Pequeña | Vuelo sostenido Dominante o sentidos/trepa; sonar no equivale a visión total a través de muros |
 
+**[OBSERVACIÓN MECÁNICA B2 — ANATOMÍA Y COSTE, NO RESUELTA POR CANON]** El Manual pide anatomía animal funcional y menciona branquias si las hay, pero **no enuncia en el presupuesto Terio un efecto expreso de respiración subacuática**. El borrador propone que respirar agua ordinaria requiera **Anfibio (1 PR)** u otra capacidad específica compatible. Esa contención evita una habilidad de supervivencia gratuita, **pero es una decisión de diseño propuesta y no una consecuencia textual inevitable** de la palabra «funcional». Deberá decidirse en B3/B4 si ciertos linajes anatómicos pueden tener funciones fisiológicas narrativas sin efecto cuantificado, o si todo órgano capaz de respirar agua debe adquirir la capacidad mecánica correspondiente; no ilustrar branquias con función plenamente establecida si la ficha no puede sostenerla.
+
 **[PROPUESTA]** Tamaño y masa: la familia no posee una altura, peso o longevidad única. Un elefantino de Escala Mediana puede ser robusto sin alcanzar la Escala Grande, y un aviano no obtiene capacidad de vuelo sólo por tener plumas. Madurez y esperanza de vida deben describirse por linaje a nivel narrativo, **sin recompensas de PD por vivir más**. Se propone madurez social entre 15–25 años de manera muy flexible según comunidad; no es una regla médica ni una edad mínima jurídica universal. Una obra futura puede fijar fichas biológicas específicas por linaje sin reabrir el presupuesto de adaptaciones.
 
 ### 3.1. Ejemplos completos de construcción de personajes [PROPUESTA QUE UTILIZA EL PAQUETE CANÓNICO]
@@ -58,6 +60,8 @@ Cada ejemplo concreta elección, no es una subraza adicional:
 6. **Fosorial de galerías** — Pequeña, Movimiento 6; **Principal Excavador** + **Secundaria Sentido especializado (vibrisas u olfato)**. Remueve arena y tierra con tiempo, no abre paso instantáneo por roca.
 7. **Semiacuática costera** — Mediana, Movimiento 6; **Principal Locomoción Especializada (nado: Movimiento 6)** + **Secundaria Adaptación ambiental (+1 VIG frente a frío acuático ordinario, exposición específica)**. Necesita respirar mediante mecanismo anatómico válido; adaptación de nado no concede respiración anfibia.
 8. **Quiróptero cavernario** — Pequeña, Movimiento 6; **Principal Locomoción Especializada (trepa)** + **Secundaria Sentido especializado (eco auditivo)**. No vuela, salvo que sustituya su combinación por Vuelo sostenido Dominante; entonces pierde las otras dos adaptaciones.
+
+**[NOTA DE SECUENCIA B2 — VUELO]** El Vuelo sostenido Terio consume el **presupuesto racial completo**, utiliza Movimiento normal y queda prohibido bajo Carga Pesada/Excesiva; no concede inmunidad a caídas, Acción adicional ni vuelo separado por cada ala. **No** importar el requisito de **apoyarse al inicio y final del turno** propio de la opción Hada: ese requisito no figura en el Vuelo Dominante Terio. Tampoco se le atribuye maniobrabilidad perfecta o autonomía frente a condiciones que vuelvan el movimiento físicamente imposible. Interrupciones y pérdidas de sustentación necesitan secuencia B3.
 
 ## 4. Variedades y sustitución de adaptaciones [PROPUESTA]
 
