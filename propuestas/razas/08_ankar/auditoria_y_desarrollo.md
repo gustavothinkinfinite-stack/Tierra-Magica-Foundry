@@ -70,4 +70,9 @@
 
 **[PROPUESTAS PARA APROBACIÓN GLOBAL, NO CANON]** `ANK-PB3-01` registro de presencia sin ubicación ni gasto extra, con frecuencia de notificación pendiente B5; `ANK-PB3-02` adjudicar ataques mixtos indivisibles según efecto principal declarado antes de tirar; `ANK-PB3-03` permitir +1 racial con +2 mágico de Mente Anclada cuando ambos sean aplicables (VOL2 ⇒ Defensa16, **sólo si se aprueba**), manteniendo grupo mágico no acumulable; `ANK-PB3-04` ocultación espiritual según texto del sello, sin DF universal. Los cuatro procedimientos detallan coste, disparador, alcance, límites y tests en `auditorias/03_exploits_y_pruebas.md`.
 
-**Resultado B3:** 24 casos nuevos `ANK-45–ANK-68`, **68 documentales totales**, cuatro secuencias, 10 incidencias. **0 pruebas en Foundry, 0 de mesa, 0 modelo auxiliar**. No se alteró `main`, el Manual Maestro, el mapa ni Foundry. B4/B5 deben resolver frecuencia, barreras, efecto mixto y apilamiento antes del manual final propuesto.
+**Resultado B3:** 24 casos nuevos `ANK-45–ANK-68`, **68 documentales totales**, cuatro secuencias, 10 incidencias. **0 pruebas en Foundry, 0 de mesa; 28 comprobaciones de modelo auxiliar añadidas posteriormente (28 expectativas coincidentes, 4 abiertas)**. No se alteró `main`, el Manual Maestro, el mapa ni Foundry. B4/B5 deben resolver frecuencia, barreras, efecto mixto y apilamiento antes del manual final propuesto.
+
+
+### Anexo B3 — contraste auxiliar
+
+Se versionó `auditorias/modelo_auxiliar_b3_ankar.js` con **28 casos de clasificación** y 28 respuestas conforme a las expectativas del propio modelo; **4 permanecen marcadas ABIERTA** (ocultación, muro, apilamiento Custodia/Mente Anclada y efecto mental indivisible). No interpreta automáticamente duración, ocultación, Reacciones ni posesión/Nigromancia. **68 DOC, 28 MOD de alcance parcial, 0 Foundry, 0 MESA.** La propuesta `ANK-PB3-03` de alcanzar Defensa Mental 16 si VOL2 **no es canon aprobado**.
