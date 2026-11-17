@@ -11,7 +11,7 @@
 | 03 | Élficos | Borrador v0.1; **B1 y B2 documentales completas** | B3: Resonancia/ocultación, magia vital; B4: utilidad comparada y biología |
 | 04 | Orcos | Borrador v0.1; **B1 y B2 documentales completas** | B3: fuentes de Desventaja, Ventaja/Ayuda, Carga; B4: Bastión/Sangre |
 | 05 | Goblinoides | Borrador v0.1; **B1 y B2 documentales completas** | B3: pasos/interrupciones y Ojo; B4: balance Hobgoblin y biología |
-| 06 | Terios/Anihombres | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: Variedad/función anatómica, vuelo y equipo; B4: Renkai y biología |
+| 06 | Terios/Anihombres | Borrador v0.1; **B1 y B2 documentales completas** | B3: branquias/Anfibio, Variedad, vuelo, equipamiento; B4: Renkai/biología |
 | 07 | Feéricos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B3: vuelo Hada, viento, raíz; B4: contraste Verdantes y Terios |
 | 08 | Ankar | Borrador integral v0.1 + **B1 canon/lore completado, con correcciones** | B2/B3: detección 6 espacios y efectos mixtos; B4: tradición y biología |
 | 09 | Cristálidos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: interfaz de Conductor, ocultaciones, acciones; B3: energía/recursos; B4: biología |
@@ -29,7 +29,7 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente; B2 en curso |
-| B2. Mecánicas y costes | **En curso: 5/12 (Humanos, Enanos, Élficos, Orcos, Goblinoides)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Terios/Anihombres**, luego restantes |
+| B2. Mecánicas y costes | **En curso: 6/12 (hasta Terios/Anihombres)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Feéricos**, luego restantes |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
@@ -252,3 +252,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Corregidas las afirmaciones de `auditoria_y_desarrollo.md` y `pruebas_balance.md`: no hay techo numérico universal de modificadores circunstanciales en `main` (Ayuda válida y Ojo +1 tienen requisitos distintos); «no iniciar Escurridizo sin salida legal» es **pauta preventiva propuesta**, no texto literal del paquete. GOB-16/GOB-25 corregidos. Escurridizo cruza espacio Mediano+ con coste de terreno difícil **2 Movimiento/espacio**, sin Ataque de Oportunidad universal ni cancelar Reacciones habilitadas.
 - Añadidos escenarios GOB-31–GOB-45: **45 casos documentales, ninguno ejecutado**; sincronizado `cierre_editorial.md`. B3 deberá resolver interrupción con espacio ocupado, movimiento bajo Retirada/Fatiga y reuso legítimo de Ojo; B4 comparar Hobgoblin con otras ascendencias antes de tocar números.
 - **B2: 5/12**; siguiente Terios/Anihombres. No se editó `main`, Foundry ni mapa; quedan B3–B5 y los doce textos finales propuestos.
+
+### 2026-11-17 — B2 Terios: anatomía funcional, Variedad, vuelo y equipo
+- Reabierto `main` paquete Terio v0.3 y transversales, Rasgos Anfibio/Trepador Natural/Cola Prensil/Miembros Extra/Vuelo Natural, Carga/Acción/Movimiento/Fatiga, Protección/armas/0 Vida, Hechizos de vuelo y miembro extra, creación y Orígenes. Revisados `06_terios/` y anexo `modulo_origen_renkaino.md`.
+- Guardado `06_terios/auditorias/02_mecanicas_y_costes.md`: **18 fichas de subsistemas, 20 escenarios documentales, 10 incidencias**. Añadidos casos TER-T49–TER-T60: **60 pruebas documentales, cero ejecutadas**. Cierre editorial actualizado.
+- Hallazgo crítico: la obligación canónica de anatomía funcional (incluidas branquias cuando existan) no fija por sí sola **en qué componente del paquete Terio** se concede respiración acuática. El borrador conserva compra **Anfibio 1 PR** como **propuesta conservadora**, no afirmación de regla explícita vigente; necesita decisión en B3/B4.
+- Variedad reemplaza adaptación en `main` pero la **misma categoría de reemplazo** es protocolo editorial **no canónico**; preservar presupuesto **Principal + Secundaria o Dominante**. Vuelo Terio Dominante **no hereda** apoyo al inicio/fin de turno de Hada, pero sí prohibición por Carga Pesada/Excesiva. Equipo/órgano prensil/arma natural no crean Acciones gratis.
+- **Progreso B2: 6/12**; próximo Feéricos. No se modificó `main`, Foundry ni mapa; B3–B5 y textos finales siguen pendientes.
