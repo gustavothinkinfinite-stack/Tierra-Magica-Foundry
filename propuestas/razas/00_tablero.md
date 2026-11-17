@@ -6,7 +6,7 @@
 
 | Nº | Familia | Estado del borrador | Siguiente trabajo |
 |---:|---|---|---|
-| 01 | Humanos | Expediente completo; **B1 y B2 documentales completadas** | B3: exploits, PR/PD; B4: balance Don vs. otras 11 |
+| 01 | Humanos | Expediente completo; **B1, B2 y B3 documentales completadas**; 62 casos, 12 comprobaciones de modelo auxiliar (no Foundry) | B4: balance Don vs. otras 11; aclarar grados |
 | 02 | Enanos | Borrador v0.2; **B1 y B2 documentales completas** | B3: escalas, Presa, Fatiga; B4: comparación/biología |
 | 03 | Élficos | Borrador v0.1; **B1 y B2 documentales completas** | B3: Resonancia/ocultación, magia vital; B4: utilidad comparada y biología |
 | 04 | Orcos | Borrador v0.1; **B1 y B2 documentales completas** | B3: fuentes de Desventaja, Ventaja/Ayuda, Carga; B4: Bastión/Sangre |
@@ -29,8 +29,8 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
-| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, con incidencias B3/B4/B5 abiertas | Cerrada documentalmente; **siguiente B3 Humanos** |
-| B3. Exploits y secuencias | **PENDIENTE: 0/12** | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | **Siguiente: Humanos**, luego Enanos y restantes |
+| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, con incidencias B3/B4/B5 abiertas | Cerrada documentalmente; **B3 Humanos cerrada, sigue Enanos** |
+| B3. Exploits y secuencias | **DOCUMENTAL: 1/12** (Humanos) | 62 casos Humanos; 12 comprobaciones de modelo auxiliar; 0 pruebas Foundry/mesa | **Siguiente: Enanos**, luego las demás |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -295,3 +295,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Coralios:** reabierto paquete v0.3 y comparado con Anfibio 1 PR, Velocidades, Caídas, Protección/Penetración, Fatiga/Descanso/Medicina, Sentido Agudo, CHC-01 y magia/equipo. Nuevo `12_coralios/auditorias/02_mecanicas_y_costes.md` con **18 fichas, 20 escenarios y 11 incidencias**. Añadidos `COR-T49–COR-T64`, total **64 criterios documentales no ejecutados**; notas B2 en desarrollo y cierre editorial. Se corrigió el cierre antiguo que afirmaba que Humanos seguía pendiente: los 12 expedientes A y B1/B2 están completos.
 - **Coralios — límites:** tierra5/agua6 no suman dos reservas; cambio exacto entre medios queda para B3 común con Hada/Terio. Prot Natural 1 **no suma** armadura (armadura3 + Pen1 → Prot efectiva2). Respiración anfibia exige hidratación razonable, sin inmunidad a presión/toxinas/desecación; `CHC-01` no introduce reloj obligatorio. Sentido de Corriente +1 PER sólo cuando el agua transmite señal determinante; `Resonancia Oceánica` no integra paquete.
 - **Se verificó mediante lectura directa la existencia de las doce rutas individuales `auditorias/02_mecanicas_y_costes.md`, de Humanos a Coralios. B1 y B2: 12/12; B3: 0/12.** Los resultados previos son **análisis documentales**, no tests empíricos. **Siguiente unidad sustantiva B3 Humanos**, después B3 Enanos y los demás; tras B3, B4, B5, doce textos finales propuestos y cierre técnico. No se editó `main`, Foundry ni cartografía.
+
+### 2026-11-17 — B3 Humanos: explotación y secuencias, primera familia cerrada documentalmente
+- Confirmados el tablero, README, plan, expediente Humano y paquete de `main` (SHA `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`). No existía `01_humanos/auditorias/03_exploits_y_pruebas.md` antes de esta entrega.
+- Persistida auditoría `01_humanos/auditorias/03_exploits_y_pruebas.md`: **20 escenarios adversariales** (HUM-B3-01–20), cuatro secuencias detalladas, cinco incidencias, fuentes y separación explícita de lectura, modelo auxiliar y pruebas reales. Conserva incertidumbre sobre clasificación de Don y mejora de Resistencia Ambiental, sin inventar conversiones PD/PR.
+- Ampliado `01_humanos/pruebas_balance.md` a **62 criterios documentales** (HUM-T01–62). Versionado `01_humanos/auditorias/modelo_auxiliar_b3_humanos.js` para reproducir 12 fixtures. En el análisis se ejecutó evaluador equivalente con **12/12 expectativas coincidentes**; **no** es el motor Foundry, ni playtest, ni evidencia de que el código de Foundry funcione.
+- **Fase A 12/12; B1 12/12; B2 12/12; B3 documental 1/12; B4, B5 y C pendientes. Siguiente B3 Enanos.** Sin escritura en `main`, Manual Maestro, Foundry ni mapa. Todo sigue siendo **PROPUESTA NO CANÓNICA**.
