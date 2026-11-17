@@ -73,7 +73,7 @@ Tres PJs goblinoides y controles Humano/Enano/Orco durante 10 escenas mixtas: 3 
 
 ## B3. Regresiones de exploits y secuencias GOB-46 a GOB-69
 
-**Evidencia:** todos los nuevos casos son **DOC**, hipótesis y resultados por lectura, **no ejecuciones en Foundry ni partidas**. Un modelo auxiliar JS específico clasifica **20 escenarios de oportunidad y costes de cruce** y obtuvo 20 coincidencias con resultados esperados; su valor no es el de una prueba del motor. Ver \`auditorias/modelo_auxiliar_b3_goblinoides.js\`.
+**Evidencia:** todos los nuevos casos son **DOC**, hipótesis y resultados por lectura, **no ejecuciones en Foundry ni partidas**. Un modelo auxiliar JS específico clasifica **20 escenarios de oportunidad y costes de cruce** y obtuvo 20 coincidencias con resultados esperados; su valor no es el de una prueba del motor. Ver `auditorias/modelo_auxiliar_b3_goblinoides.js`.
 
 | ID | Secuencia adversarial | Resultado previsto / cuestión abierta |
 |---|---|---|
@@ -102,6 +102,6 @@ Tres PJs goblinoides y controles Humano/Enano/Orco durante 10 escenas mixtas: 3 
 | GOB-68 | Bugbear usa fuerza bruta sobre caja abandonada, luego arma activamente sostenida por enemigo | Primer caso puede aplicar Grande efectiva, el segundo es oposición/Desarmar y **no** aplica; tampoco concede +1 FUE numérico |
 | GOB-69 | Goblinoide queda a **0 Vida/Incapacitado** y pretende obtener Reacción, Movimiento, curación o Segundo Ojo | Aplican Incapacitado/Trauma/Descanso normalmente. Ojo no es curación ni genera nuevas acciones; ninguna de tres variedades evita Fatiga por raza |
 
-**Total actualizado:** **69 criterios DOC** (\`GOB-01–GOB-45\` originales/B2 y \`GOB-46–GOB-69\` B3). **MOD:** 20 escenarios del modelo auxiliar, 20/20 coincidencias, con dos etiquetas explícitas de procedimiento no ratificado (\`SALIDA_ILEGAL_PROPUESTA_PREVIA\` y \`INTERRUPCION_ABIERTA\`). **ENV Foundry: 0**; **MESA: 0**.
+**Total actualizado:** **69 criterios DOC** (`GOB-01–GOB-45` originales/B2 y `GOB-46–GOB-69` B3). **MOD:** 20 escenarios del modelo auxiliar, 20/20 coincidencias, con dos etiquetas explícitas de procedimiento no ratificado (`SALIDA_ILEGAL_PROPUESTA_PREVIA` y `INTERRUPCION_ABIERTA`). **ENV Foundry: 0**; **MESA: 0**.
 
 **Transversales abiertos B4/B5:** coste y ubicación ante interrupción de tránsito, precedencia de Retirada+Correr+Exhausto, excepcionalidad de Ojo sobre Iniciativa, reuso de circunstancias en escenas distintas y frecuencia real de oportunidades. La pauta preventiva de comprobar ruta completa se conserva como **propuesta de mesa** y no sustituye la literalidad del paquete.
