@@ -12,7 +12,7 @@
 | 04 | Orcos | Borrador v0.1; **B1–B4 documentales completas**, 64 DOC B3 + 12 regresiones B4; 20 MOD auxiliares (no Foundry) | B5: gasto de Voluntad, orden Ayuda/Ventaja y Complexión |
 | 05 | Goblinoides | Borrador v0.1; **B1–B4 documentales completas**, **69 DOC B3 + 15 DOC B4; 20 MOD auxiliares** | B5: Ojo en Iniciativa, interrupción Escurridizo y **paridad Hobgoblin pendiente** |
 | 06 | Terios/Anihombres | Borrador v0.1; **B1–B4 documentales completas**, **84 DOC B3 + 18 DOC B4; 22 MOD auxiliares** | B5: sustitución Variedad, branquias/Anfibio, vuelo bajo Carga y medios mixtos |
-| 07 | Feéricos | Borrador v0.1; **B1, B2 y B3 documentales completas**, **76 DOC + 24 MOD auxiliares** | B4/B5: Hada apoyos/velocidades, Dríade Derribar/desanclaje, Silfo viento mágico |
+| 07 | Feéricos | Borrador v0.1; **B1–B4 documentales completas**, **76 DOC B3 + 16 DOC B4; 24 MOD auxiliares** | B5: Hada apoyos/velocidades, Dríade Derribar/desanclaje, Silfo viento mágico |
 | 08 | Ankar | Borrador v0.1; **B1, B2 y B3 documentales completas**; **68 DOC + 28 MOD auxiliares**, 0 Foundry/mesa | B4/B5: frecuencia de Sentido, barreras, efectos mentales mixtos y apilamiento |
 | 09 | Cristálidos | Borrador v0.1; **B1, B2 y B3 documentales completas**; **96 DOC**, 0 Foundry/mesa | B4/B5: valor de lectura/puente, ocultación, consentimiento y 0 Vida |
 | 10 | Verdantes | Borrador v0.1; **B1, B2 y B3 documentales completas**; **86 DOC**, 0 Foundry/mesa | B4/B5: CLN-01, anclaje/Martillo Cinético, Derribar, 0 Vida, biomas y Viaje |
@@ -31,7 +31,7 @@
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; B3 cerrada documentalmente |
 | B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
-| B4. Comparación y mejoras | **6/12 documental: Humanos, Enanos, Élficos, Orcos, Goblinoides y Terios** | Primeras seis familias: 11 comparaciones cada una; Terios 4 propuestas y 18 regresiones nuevas; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: Feéricos** |
+| B4. Comparación y mejoras | **7/12 documental: Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios y Feéricos** | Primeras siete familias: 11 comparaciones cada una; Feéricos 4 propuestas y 16 regresiones nuevas; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: Ankar** |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
@@ -426,3 +426,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `06_terios/auditorias/04_comparativa_y_veredicto.md`: once contrastes, siete contextos, cuatro propuestas no canónicas TER-B4-P01–P04 y dieciocho regresiones TER-B4-T01–T18.
 - Propuesta de cerrar sustitución cruzada Principal+Secundaria→Dominante como no habilitada por Variedad; respiración dual mediante Anfibio costeado, sin gratuidad anatómica; pérdida de vuelo y medios mixtos pendientes de B5. **84 DOC B3 previos, 22 MOD auxiliares previos, 18 DOC B4 nuevos sin ejecutar; 0 Foundry, 0 mesa**.
 - **B4 6/12**; siguiente **Feéricos**. Sin modificar `main`, Foundry ni atlas.
+
+### 2026-11-17 — B4 Feéricos: comparativa y veredicto
+- Releídos tablero, README, plan, B2/B3 y cierre Feéricos, Manual Maestro de `main` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`).
+- Creado `07_feericos/auditorias/04_comparativa_y_veredicto.md`: 11 contrastes, siete ejes, 4 aclaraciones no canónicas FEE-B4-P01–P04 y 16 regresiones documentales FEE-B4-T01–T16.
+- Hada, Dríade y Silfo conservan reservas transversales B5 (vuelo y carga, anclaje y viento); Sátiro apto documental con reservas. **76 DOC B3 previos, 24 MOD auxiliares previos, 16 DOC B4 nuevos sin ejecutar, 0 Foundry, 0 mesa**.
+- **B4 7/12**, siguiente **Ankar**. Sólo rama y carpeta autorizadas.
