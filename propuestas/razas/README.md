@@ -2,7 +2,7 @@
 **Estado del conjunto:** BORRADOR PARA REVISIÓN GLOBAL. Ningún contenido de esta carpeta modifica el canon.
 
 ## Objetivo
-Completar las doce familias raciales jugables en un entorno de producción segregado y versionado. Al finalizar, el creador revisará todas las propuestas juntas; sólo lo que apruebe se integrará por una operación posterior y explícita en el Manual Maestro de `main` y, cuando corresponda, en Foundry.
+Completar las doce familias raciales jugables en un entorno de producción segregado y versionado. **Tras los doce expedientes, ejecutar varias rondas de auditoría canónica, mecánica, de exploits y comparación entre todas las razas; corregir los borradores; sólo después preparar las doce versiones finales propuestas de contenido para el Manual Básico.** El creador revisará el conjunto al finalizar todas esas fases; sólo lo que apruebe se integrará por una operación posterior y explícita en el Manual Maestro de `main` y, cuando corresponda, en Foundry.
 
 ## Jerarquía
 1. **Canon vigente:** `main:docs/Tierra_Magica_Manual_Maestro.md`. Es la única fuente activa de reglas y narrativa.
@@ -18,8 +18,12 @@ Completar las doce familias raciales jugables en un entorno de producción segre
 5. Guardar avances en `propuestas/razas/<NN_racial>/` usando archivos Markdown con nombres estables. Actualizar `00_tablero.md` con estado y siguiente tarea. No repetir ni reemplazar entregables sin registrar revisión.
 6. Para cada raza entregar: `auditoria_y_desarrollo.md`, `doble_pagina.md`, `brief_arte.md`, `pruebas_balance.md` cuando esté completo; se permiten etapas intermedias.
 7. Identificar en cada documento **[CANON]**, **[PROPUESTA]**, **[MISTERIO NARRATIVO CONSERVADO]** y **[REVISAR]** cuando correspondan. Los textos listos para imprimir pueden omitir etiquetas internas si el expediente asociado registra qué elementos son propuestos.
-8. Al cerrar el borrador de las doce razas, auditar los cruces entre pueblos, decidir qué mecánicas editoriales necesitan anexos, preparar índice y dossier de decisiones. El resultado sigue siendo una propuesta hasta la aprobación explícita.
-9. Si todo queda completado, entregar informe global y pausar la programación periódica si se dispone de permiso técnico.
+8. **Al cerrar los doce borradores, NO considerar finalizado el proyecto.** Seguir obligatoriamente `00_plan_auditorias_y_manual.md`: cuatro rondas individuales de auditoría por raza (canon/lore, mecánicas/costes, exploits/pruebas, comparación y mejora), control transversal/regresiones, y sólo al final redacción de 12 textos `manual_final_propuesto.md`, índice y dossier de integración.
+9. Cada nueva instrucción «avanzar» ejecuta el **siguiente trabajo sustantivo pendiente**, sin repetir lo completado y sin pedir microautorizaciones. **No detener la automatización al llegar a 12/12**, porque el proyecto sigue abierto hasta terminar auditoría y manual.
+10. Si todas las fases y sus entregables están realmente completos, entregar informe global y pausar programación periódica cuando sea posible. A partir de ahí, ante «avanzar», limitarse a informar estado final sin trabajos artificiales o repetidos.
+
+## Plan detallado posterior a los doce expedientes
+Ver [`00_plan_auditorias_y_manual.md`](./00_plan_auditorias_y_manual.md), incorporado por instrucción expresa del creador. Las dobles páginas v0.1 constituyen **material preliminar** y no reemplazan la redacción final posterior a auditoría.
 
 ## Límites
 - **Nunca escribir en `main`**. No alterar `docs/Tierra_Magica_Manual_Maestro.md` ni código de Foundry desde esta producción.
