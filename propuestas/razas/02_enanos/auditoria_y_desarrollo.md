@@ -136,3 +136,19 @@ Estas acciones pueden ser religiosas, laicas o familiares. Algunos fieles de Kho
 | Paquete racial | **Sin cambios** | Ninguno |
 
 **Próximo control:** batería técnica de casos y revisión de texto para asegurar que futuras propuestas culturales no se presenten accidentalmente como dogmas universales.
+
+
+## VIII. Actualización B3 — secuencias y contenciones (17-11-2026)
+
+**Estado:** B1 y B2 auditadas documentalmente; **B3 completada documentalmente**, todavía sin pruebas en Foundry ni playtests. Informe nuevo `auditorias/03_exploits_y_pruebas.md` con **20 intentos adversariales, cuatro secuencias desarrolladas y diez incidencias**, y `pruebas_balance.md` ahora **44 criterios documentales** (`ENA-T01–T44`). Modelo auxiliar `auditorias/modelo_auxiliar_b3_enanos.js`: **16 comprobaciones de cálculos parciales con resultados esperados coincidentes**, no equivalente al motor.
+
+**Correcciones de interpretación frente a exploits:**
+- **Empujar ofensivo**: Enano sigue **Pequeño**; contra objetivo **Mediano** con margen Claro (2 espacios base), el objetivo una Escala mayor queda desplazado **1 espacio**, no 2. **Empujar recibido**: atacante Pequeño contra Enano **Mediano efectivo** con margen Claro: **1 espacio**; con Dominante: **2 espacios**. Contra atacante Mediano y margen Claro: **2 espacios**. No se añade Defensa.
+- **Derribar:** el texto permite resistir como Mediano efectivo pero el procedimiento universal de Derribar no otorga un bono de Defensa ni tabla numérica de escalas; **no inventar +1 Defensa de Maniobra**. Abierto **B4** si debe formalizarse viabilidad de maniobras.
+- **Presa:** el inicio de **Agarrar** y la **DF de Presa** no reciben mejora de Cuerpo de Piedra. El **traslado** forzoso de quien ya está Agarrado podría involucrar la Escala efectiva, porque la regla racial sí menciona desplazamiento físico impuesto; se aisló `ENA-B3-PROP-01` para B4, **no es decisión canónica**.
+- **Magia:** `Martillo Cinético` conserva su ataque contra Defensa Corporal y Daño 3; `Onda de Choque` Daño 4 y desplazamiento propio. Cuerpo de Piedra no reduce Daño ni da inmunidad, y `Potencia Sobrenatural` equivalente **no se apila** en un +2 de Escala.
+- **Sangre de Metal:** Enano **VIG 2** tiene Defensa Corporal base **13**, **14** frente a toxina que ataque expresamente esa Defensa, no 15 ni doble tirada. Una prueba VIG posterior **independiente** puede recibir su propio +1. Marcha forzada normal no es agotamiento **ambiental** automático.
+- **Carga y Fatiga:** Mediano efectivo sólo para adjudicación de Carga **sin kg universales**; no mejora Movimiento 5 ni permite equipo Mediano incompatible. `Exhausto` reduce MOV 5→3, sin segunda reserva ni Acción extra; orden de Retirada+Correr+Fatiga es vacío transversal pendiente.
+- **Registro de evidencia:** **44 casos DOC; 16 MOD de lógica auxiliar; 0 ENV Foundry; 0 MESA**. La aparición de nuevos resultados sólo corresponde a prueba ejecutada en el sistema si se logra validación posterior.
+
+**Siguiente trabajo:** B3 Élficos; al completar las 12 familias, comparar Enanos frente a los otros once en B4 y cerrar vacíos transversales en B5. Todas las adiciones son propuesta no canónica.
