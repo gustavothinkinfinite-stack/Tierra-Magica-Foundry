@@ -15,7 +15,7 @@
 1. Varkor expresa Conflicto, no Mal, y comparte cosmología con Trolls/Garra, Ogros/Puño y Goblinoides/Ojo. **Conforme**.
 2. El Primer Desafío se narra como tradición; se conserva abierto el proceso material de creación de Orcos y otras familias. **Conforme**.
 3. Orcos Comunes, de Sangre y Grises están nombrados en canon; su contenido social concreto aparece sólo como **propuesta**. **Conforme**.
-4. «Orcos de Bastión» es un nombre e interpretación **nuevos** para los linajes excepcionalmente grandes mencionados sin nombre definitivo en el canon. No se presenta como nombre ratificado. **Conforme**.
+4. «Orcos de Bastión» es **una etiqueta editorial provisional y no ratificada** para algunos linajes excepcionalmente grandes mencionados sin nombre definitivo en el canon. Los supuestos registros de obras/asedios son **escenarios propuestos**, no fuentes históricas canónicas. No se presenta Bastión como cuarta rama jugable establecida. **Conforme**.
 5. Una única Ascendencia Orca, Escala Mediana, Movimiento 6; **Complexión Orca** y **Voluntad del Colmillo** tienen los alcances y exclusiones originales. **Conforme**.
 6. Sin +1 permanente a FUE, Ataque, daño, Empujar, Derribar, Agarrar, Defensa o Vida. **Conforme**.
 7. Activación Voluntad antes de tirar, una vez por Escena, sólo si Desventaja viene exclusivamente de dolor, miedo o agotamiento físico. **Conforme**.
