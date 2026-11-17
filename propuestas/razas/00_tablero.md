@@ -10,7 +10,7 @@
 | 02 | Enanos | Borrador v0.2; **B1–B4 documentales completas**; 44 criterios B3 + 12 regresiones B4; 16 comprobaciones auxiliares previas (no Foundry) | B5: Presa/Derribar, Fatiga y balance global; validación empírica pendiente |
 | 03 | Élficos | Borrador v0.1; **B1–B4 documentales completas**, 56 DOC B3 + 12 regresiones B4; 16 MOD auxiliares (no Foundry) | B5: significación, ocultación, efecto directo/indirecto y regresiones globales |
 | 04 | Orcos | Borrador v0.1; **B1–B4 documentales completas**, 64 DOC B3 + 12 regresiones B4; 20 MOD auxiliares (no Foundry) | B5: gasto de Voluntad, orden Ayuda/Ventaja y Complexión |
-| 05 | Goblinoides | Borrador v0.1; **B1, B2 y B3 documentales completas**, **69 DOC + 20 MOD auxiliares** | B4/B5: Ojo en Iniciativa, repetición de hechos, interrupción Escurridizo y balance Hobgoblin |
+| 05 | Goblinoides | Borrador v0.1; **B1–B4 documentales completas**, **69 DOC B3 + 15 DOC B4; 20 MOD auxiliares** | B5: Ojo en Iniciativa, interrupción Escurridizo y **paridad Hobgoblin pendiente** |
 | 06 | Terios/Anihombres | Borrador v0.1; **B1, B2 y B3 documentales completas**, **84 DOC + 22 MOD auxiliares** | B4/B5: Variedad A→B, branquias/Anfibio, vuelo bajo Carga, tramos mixtos y balance |
 | 07 | Feéricos | Borrador v0.1; **B1, B2 y B3 documentales completas**, **76 DOC + 24 MOD auxiliares** | B4/B5: Hada apoyos/velocidades, Dríade Derribar/desanclaje, Silfo viento mágico |
 | 08 | Ankar | Borrador v0.1; **B1, B2 y B3 documentales completas**; **68 DOC + 28 MOD auxiliares**, 0 Foundry/mesa | B4/B5: frecuencia de Sentido, barreras, efectos mentales mixtos y apilamiento |
@@ -31,7 +31,7 @@
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; B3 cerrada documentalmente |
 | B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
-| B4. Comparación y mejoras | **4/12 documental: Humanos, Enanos, Élficos y Orcos** | Humanos, Enanos, Élficos y Orcos: 11 comparaciones cada uno, 2 aclaraciones por familia y 12 regresiones documentales nuevas por familia | **Siguiente: Goblinoides** |
+| B4. Comparación y mejoras | **5/12 documental: Humanos, Enanos, Élficos, Orcos y Goblinoides** | Primeras cinco familias: 11 comparaciones cada una; Goblinoides 3 propuestas y 15 regresiones nuevas; las cuatro previas 2 aclaraciones y 12 regresiones cada una | **Siguiente: Terios/Anihombres** |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
@@ -414,3 +414,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `04_orcos/auditorias/04_comparativa_y_veredicto.md`: 11 contrastes, siete subsistemas, 2 aclaraciones no canónicas ORC-B4-P01/P02 y 12 regresiones ORC-B4-T01–T12 documentadas.
 - Veredicto: conservar paquete Orco; B5 debe resolver orden de Ayuda/Ventaja y fuentes múltiples, sin transformar propuestas en canon. **64 DOC previos + 12 DOC B4 nuevos, 20 MOD auxiliares previos, 0 Foundry, 0 mesa**.
 - **B4 4/12**. Siguiente: **Goblinoides**. Escrituras sólo en `propuestas/razas/` de la rama aislada.
+
+### 2026-11-17 — B4 Goblinoides: comparación y paridad de variantes
+- Releídos tablero, README, plan, B2/B3 y cierre Goblinoides, y Manual Maestro de `main` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`).
+- Creado `05_goblinoides/auditorias/04_comparativa_y_veredicto.md`: 11 contrastes, siete contextos, tres propuestas no canónicas GOB-B4-P01–P03 y 15 regresiones documentales GOB-B4-T01–T15.
+- Goblin y Bugbear aptos documentalmente con reservas B5; **Hobgoblin requiere estudio de paridad**, sin conceder Liderazgo cultural gratis. **69 DOC B3 previos, 20 MOD auxiliares previos, 15 DOC B4 nuevos sin ejecutar, 0 Foundry, 0 mesa**.
+- **B4 5/12**; siguiente **Terios/Anihombres**. Escrituras sólo en carpeta y rama autorizadas.
