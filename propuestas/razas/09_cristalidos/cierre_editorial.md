@@ -8,7 +8,7 @@
 1. `auditoria_y_desarrollo.md` — identificación de canon y vacíos, biología, ciclo vital, cuatro tradiciones sociales, historia, religión y protocolo opcional.
 2. `doble_pagina.md` — **712 palabras imprimibles** de izquierda narrativa y derecha jugable, excluida la nota editorial. Dos páginas redactadas, no maquetadas físicamente.
 3. `brief_arte.md` — pieza «La conexión consentida», escenas, paleta, anatomía y restricciones, **sin imagen generada**.
-4. `pruebas_balance.md` — **52 casos de aceptación documental** y guion de partida; **no** se han ejecutado partidas reales.
+4. `pruebas_balance.md` — **52 iniciales + 16 regresiones B2 (CRI-T53–T68): 68 casos de aceptación documental** y guion de partida; **no** se han ejecutado partidas reales.
 5. `cierre_editorial.md` — presente registro de auditoría final y decisiones para aprobación global.
 
 ## Auditoría de coincidencia canónica
@@ -50,3 +50,10 @@
 - Integrar sólo si el creador acepta propuesta global; **no tocar `main`, el Manual Maestro operativo ni Foundry antes**.
 
 **Dictamen:** Cristálidos completados como expediente de propuesta editorial y técnica para evaluación conjunta. Próximo expediente: **Verdantes — Adaptaciones de Bioma y Sustento Vegetal**.
+
+## Actualización B2 — 17-11-2026
+
+- Guardado `auditorias/02_mecanicas_y_costes.md` con **17 fichas de subsistemas, 18 escenarios documentales, 11 incidencias**. `pruebas_balance.md` contiene ahora **68 criterios de aceptación documentales, cero ejecutados**.
+- Los cambios de B2 se limitaron a `auditoria_y_desarrollo.md`, `pruebas_balance.md`, este cierre y archivo B2. La separación entre **Sobrecarga de Hechizo (VOL+Canalización DF17)** y **Sobrecarga Controlada de Ingeniería (INT+Ingeniería DF16)** se documentó con los límites reales de E/C/Consumo.
+- **Conductor Vivo** sólo es puente **voluntario** en diseño compatible: no recarga Energía, aumenta Caudal/Estabilidad, genera Maná, sustituye Fuente/operador ni concede Acción extra. `Protocolo de Acoplamiento Seguro` permanece **propuesta opcional de adjudicación**, no nueva capacidad canónica.
+- Abiertos B3/B4: ocultación de Resonancia en contacto, tiempo/Acción de lectura, fase de desconexión y consecuencias ante fallas, sobrecarga con construcción compatible y comparación de utilidad frente a otros sentidos. No cambiar `main`, Foundry, mapa ni el paquete racial.
