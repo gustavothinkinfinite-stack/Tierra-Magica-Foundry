@@ -1,5 +1,5 @@
 # Feéricos — Auditoría técnica y batería de aceptación v0.1
-**Estado:** 36 casos documentales definidos, **no playtests reales ejecutados**.
+**Estado:** **76 criterios documentales** (36 iniciales + 16 B2 + 24 B3), **0 ejecutados en Foundry o mesa**.
 **Fuente operativa:** `main:docs/Tierra_Magica_Manual_Maestro.md`, creación racial v0.3, reglas transversales, Acción/Movimiento/Reacción y Escala; fragmentos comparados con Eïra/Primera Semilla.
 
 ## A. Creación, descriptor y compatibilidad general
@@ -109,3 +109,37 @@ La nueva regla opcional «Continuidad de la Raíz» debe revisarse de forma aisl
 | FEE-T52 | `Martillo Cinético` desplaza al Silfo como impulso mágico, sin describir viento | No se convierte en Empujar **causado por viento** por su mera naturaleza de desplazamiento. No gana Escala efectiva por Cuerpo del Viento para un golpe cinético no ventoso |
 
 **Pendientes prioritarios:** B3 debe reproducir alternancia suelo/aire, caída entre turnos, interrupción por Reacción, enraizamiento/desanclaje, viento mágico con desplazamiento definido y el plazo de siete días; B4 debe medir importancia real de Hada/Sátiro/Dríade/Silfo frente a otras once familias.
+
+
+## H. Regresiones B3 de secuencias y exploits — FEE-T53 a FEE-T76
+
+**Evidencia de esta ronda:** 24 casos nuevos **DOC** por lectura, **no ejecutados en el motor Foundry ni en mesa**. Un modelo auxiliar separado comprueba 24 condiciones abstractas con expectativas coincidentes, incluidas **2 salidas deliberadamente abiertas**; no decide el orden de turnos, causalidad del viento, ni qué apoyo sostiene el peso real.
+
+| ID | Cadena adversarial / instante | Resultado esperado o vacío explícito |
+|---|---|---|
+| FEE-T53 | Hada comienza apoyada, vuela hasta plataforma apta y quiere sumar **5 MOV terrestres** completos | No dos reservas (aire 6 + tierra 5); **conversión exacta de tramos mixtos ABIERTA B5**, no adoptar FEE-PB2-01 sin aprobación |
+| FEE-T54 | Hada acaba turno en aire y se declara «flotando» porque no gastó MOV | **Inválido**: necesita apoyo al **inicio y fin de cada turno**; no suspensión gratuita |
+| FEE-T55 | Hada inicia turno ya cayendo tras un Empujar entre turnos e intenta activar vuelo racial sin apoyo | Falta apoyo inicial; no activa vuelo como rescate automático. **ABIERTA B5** secuencia de caída y Reacción/posición, sin daño ni caída ficticios |
+| FEE-T56 | Hada se posa sobre hoja incapaz de soportarla como «superficie» al final | No satisface apoyo físicamente apto; exige superficie capaz de sostener o permitir posarse realmente, con adjudicación física |
+| FEE-T57 | Hada con Carga Pesada intenta una travesía aérea de 2 espacios y soltar carga a mitad | Con carga Pesada/Excesiva **no puede usar MOV aéreo**; soltarse de objeto no crea vuelo retroactivo. **ABIERTA** ventana exacta si carga cambia en medio de turno |
+| FEE-T58 | Hada Exhausta usa MOV terrestre5 y aéreo6 íntegros por turnos separados en uno solo | Exhausto reduce Movimiento **2** (terrestre 5→3, aéreo inicial6→4 si modo habilitado), no duplica reservas; mezcla B5 |
+| FEE-T59 | Hada cae efectivamente **3 espacios** en terreno normal sin mitigación | Caída base **2×(3−1)=4**. Si consciente y apta, `AGI+Acrobacia` y DF de caída aplican; alas no inmunizan |
+| FEE-T60 | Sátiro atraviesa raíces y roca natural transitables, luego **hielo** independiente | Paso de Cabra elimina sólo sobrecoste de las causas listadas; hielo por sí mismo no queda cancelado |
+| FEE-T61 | Sátiro atraviesa aceite industrial y declara Paso de Cabra por tener pezuñas | No cubre aceite u obstáculo manufacturado; otras capacidades/terreno siguen |
+| FEE-T62 | Sátiro escala muro vertical o atraviesa desnivel imposible con Paso de Cabra | No permite trepa vertical/salto imposible; sigue física y pruebas de Atletismo/Acrobacia si pertinentes |
+| FEE-T63 | Sátiro usa Cuernos Daño3/Pen0, espada y **Empujar** en una Acción | Cuernos son **arma natural disponible**, no segundo ataque/Maniobra gratis ni daño sumado |
+| FEE-T64 | Sátiro corre por pendiente natural y supone inmunidad a `Retirada`, `Exhausto` y caída | Sólo sobrecoste de terreno enumerado; Correr consume Acción, Retirada limita tramo y Fatiga sigue |
+| FEE-T65 | Dríade enraíza usando su Acción y atacante **Pequeño** logra Empujar margen Claro | Cuenta **Grande efectiva** (Mediana +1) al resistir; Pequeño está dos escalas por debajo y no la desplaza por fuerza corporal ordinaria; no +Defensa |
+| FEE-T66 | Atacante **Mediano** Empuja Dríade enraizada con margen Claro | Objetivo **Grande efectivo**, una escala mayor: distancia base2→**1 espacio** si maniobra válida, sin +Defensa de Maniobra |
+| FEE-T67 | Atacante intenta **Derribar** Dríade enraizada, que exige +1 numérico Defensa de Maniobra | No hay +Defensa cuantificado. Efecto de Escala al resistir existe, pero su viabilidad concreta en Derribar requiere B4/B5 |
+| FEE-T68 | Dríade enraizada se desplaza un espacio voluntariamente y conserva +1 Escala efectiva sin liberar | El texto exige **1 MOV para liberarse**; **ABIERTA B4/B5** la formalización de inmovilidad hasta soltarse, pues la frase Verdante «inmóvil» no se repite en Dríade |
+| FEE-T69 | El suelo donde Dríade enraizó se rompe mientras enemigo usa desplazamiento | **ABIERTA B5:** cuándo cesa el anclaje y cómo se resuelve caída/empuje; no conservar inmunidad ni imponer daño fijo |
+| FEE-T70 | Dríade toca planta vinculada y deduce autor, Hechizo exacto, ubicación y estado de bosque remoto | **No**: sólo estado general de vegetación vinculada tocada; sin alcance remoto, diagnóstico o identidad del causante |
+| FEE-T71 | Árbol vinculado muere, jugador pide muerte inmediata de Dríade o reinicio por 7 días sin aprobación | Ninguno es canon. `Continuidad de la Raíz` de **7 días** es módulo **opcional propuesto**, sin cura, telepatía ni segundo vínculo |
+| FEE-T72 | Silfo camina por viento mundano ordinario, único sobrecoste de Movimiento | Ignora **esa penalización**, no obtiene MOV adicional ni vuela |
+| FEE-T73 | Viento mundano se combina con hielo o escombros: Silfo cancela toda dificultad | Eliminar sólo la **penalización por viento ordinario**, no otras fuentes |
+| FEE-T74 | Hechizo realmente causa **Empujar por viento físico**; Silfo exige inmunidad a todo daño y movimiento | La segunda cláusula **no repite «mundano»**: **ABIERTA B4/B5** aplicación de +1 Escala efectiva al componente Empujar por viento mágico. No inmunidad o +Defensa universal |
+| FEE-T75 | `Martillo Cinético` o `Onda de Choque` sin viento explícito impacta a Silfo | No es «Empujar causado por viento» sólo por ser cinético/mágico; sin +Escala racial, daños/economía propios del Hechizo |
+| FEE-T76 | Silfo aplica Cuerpo del Viento como vuelo de nacimiento, protección climática global y segundo +Escala por Hechizo | **No**: sin vuelo ni inmunidad a tormenta/magia; mejoras **equivalentes** de Escala no se acumulan salvo permiso |
+
+**Cobertura acumulada:** `FEE-T01–FEE-T52` previos + **24** `FEE-T53–FEE-T76` = **76 criterios documentales, 0 ENV, 0 MESA**. Modelo auxiliar `auditorias/modelo_auxiliar_b3_feericos.js`: **24 fixtures con 24 coincidencias con expectativas**, dos salidas de clasificación abiertas (destrucción de anclaje; viento mágico). En casos de caída/ventanas de carga otras incertidumbres están **fuera del alcance del modelo** y siguen abiertas en B5.
