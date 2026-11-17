@@ -10321,6 +10321,8 @@ La **Unidad Comercial** indica cuántas unidades físicas cubre el precio. Ejemp
 - 12 disparos ordinarios de arma de fuego = **5 p**
 - repuesto de Kit Médico, 5 usos = **5 p**
 
+El capítulo 9 también fija **20 flechas perforantes = 4 p** y **20 virotes perforantes = 6 p**. Estas entradas poseen precio y efecto de munición especiales; la tabla de recetas de munición de **CRAFT-03** sólo especifica la fabricación de flechas, virotes y disparos **ordinarios**. No se debe deducir de esas recetas un procedimiento ni un coste de fabricación para la variante perforante. Esta precisión es documental y no cambia el catálogo ni sus valores.
+
 El precio no es el único límite. Un objeto o servicio también puede tener **Disponibilidad** —Común, Profesional, Restringida, Rara o Excepcional— y un régimen de acceso social/legal. Tener suficiente dinero no crea existencias ni elimina licencias, requisitos o logística.
 
 ### Catálogo monetario de equipo
