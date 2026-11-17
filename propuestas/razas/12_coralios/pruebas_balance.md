@@ -100,3 +100,28 @@
 8. Evaluar críticamente si versatilidad aire/agua y Protección 1 es desbalanceada frente a Terios, Feéricos y demás doce familias; documentar frecuencia de aplicación y no modificar paquete en v0.1.
 
 **Dictamen:** **48 criterios de aceptación escritos; cero partidas ejecutadas en esta entrega**. La mayor incertidumbre a revisar en B2 es la interacción de Movimiento entre medios, falta de cuantificación de hidratación y balance entre Anfibio innato/Protección/Sentido frente a otros paquetes. El paquete existente sigue usable; no se justifica una Habilidad Coralio nueva antes de la auditoría global.
+
+## IX. Regresiones B2 — COR-T49 a COR-T64
+
+**Todos son criterios documentales, NO pruebas ejecutadas.** Se conserva la diferencia entre las reglas efectivamente publicadas y los métodos de adjudicación futuros B3/B4.
+
+| ID | Supuesto | Resultado esperado / límite aún abierto |
+|---|---|---|
+| COR-T49 | Coralio empieza en muelle, gasta **3 MOV tierra** y quiere nadar **6 MOV agua** tras saltar | No obtener dos reservas enteras (3+6) por cambiar de medio. El Manual no especifica algoritmo de tramos mixtos: **pendiente B3** |
+| COR-T50 | Coralio se mantiene en tierra toda la ronda | **MOV tierra 5**, no 6 por tener velocidad acuática |
+| COR-T51 | Coralio se desplaza exclusivamente por agua físicamente transitable | **MOV acuático 6** sin ignorar corrientes, presión, obstáculo, armadura ni pruebas exigibles |
+| COR-T52 | Coralio `Exhausto` cambia tierra/agua y pretende Correr y Retirada con reservas plenas | `Exhausto` reduce Movimiento en **2** (mínimo 1) y Correr consume Acción; orden de cambio de velocidad + Retirada **pendiente B3**, nunca doble MOV |
+| COR-T53 | Coralio tiene Esqueleto Coralino Prot 1 sin armadura y recibe ataque con Pen 1 | `Protección efectiva = max(0,1−1)=0`; no aplica «1 de resistencia» independiente |
+| COR-T54 | Coralio porta armadura Prot 3 con Esqueleto 1 y recibe ataque Pen 1 | Valor mayor **3**, nunca 4; Protección efectiva `max(0,3−1)=2` |
+| COR-T55 | Coralio recibe `Piel Alterada` Prot 2 compatible con categoría ya cubierta por armadura Prot 3 | No acumular valores equivalentes; `Piel Alterada` respeta coste de Maná, Sostenimiento y categoría declarada, no sustituye el +1 natural en valor adicional |
+| COR-T56 | Coralio sufre caída al agua desde mucha altura | Respirar agua y Prot 1 **no eliminan automáticamente daño de caída**; aplicar altura efectiva, Acrobacia y fuente de Protección pertinente según núcleo |
+| COR-T57 | Coralio recibe toxina/contaminación en agua o daño por presión | Respiración anfibia no hace inmune a toxina, presión ni desecación; Protección 1 sólo reduce daño cuando corresponde al tipo/efecto |
+| COR-T58 | Coralio compra Anfibio por **1 PR** pese a tener Respiración Anfibia racial | Propiedad respiratoria ya presente no se suma ni crea reservas/beneficios duplicados. **B4** debe evaluar diferencia textual de hidratación; no «eludir hidratación» por compra circular |
+| COR-T59 | Coralio en superficie húmeda durante tres días con agua/provisiones adecuadas | No necesita inmersión permanente; sigue sustento, Fatiga/Descanso y medio respirable. CHC-01 no introduce reloj universal |
+| COR-T60 | Coralio seco en ambiente hostil durante días y luego busca rehidratarse | Canon exige hidratación razonable, pero **no fija horas, daño diario ni tiempo de restablecimiento**. CHC-01 es guía propuesta, no condicionamiento ratificado. B3 secuencia |
+| COR-T61 | Vibra un objeto sumergido y la corriente de agua transmite señal determinante | **+1 PER** de Sentido de Corriente si realmente percibe mediante agua; pista sensorial, no posición/identidad exacta |
+| COR-T62 | Emisor mágico genera sonido en aire sin corriente o presión acuática determinante | No +1 por sonido aéreo, hechizo o vista; el paquete no concede `Resonancia Oceánica` |
+| COR-T63 | Coralio compra `Sentido Agudo` sobre mismo sentido de vibración acuática | No apilar dos +1 equivalentes a +2; consultar ámbito de cada fuente, sin prohibir mejora para otro sentido distinto |
+| COR-T64 | Coralio intenta fabricar barrera de coral vivo o Familiar por extraer placa corporal | La placa no genera materiales CRAFT, dinero, criatura o Familiar gratis; requeriría Proyecto, materiales, Habilidades, vínculo y coste propios |
+
+**Cobertura:** `COR-T01–COR-T48` + **16 casos COR-T49–COR-T64 = 64 criterios documentales**; no se ejecutaron en mesa ni en Foundry. B3 atenderá velocidades mixtas, Correr/Retirada/Exhausto, daño y protecciones, tiempo de hidratación y sentidos; B4 comparará valor con Anfibio 1 PR, Terios/Feéricos, otras once familias.
