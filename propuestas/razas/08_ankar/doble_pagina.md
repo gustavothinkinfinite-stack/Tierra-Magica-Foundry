@@ -8,7 +8,7 @@
 ### Cuando el mundo aprendió a dejar partir
 La muerte existía antes de Vaelun. La vida de Eïra ya conocía el crecimiento, el desgaste y el final. Pero la Primera Profanación mostró que aquello que sobrevivía a un cuerpo podía ser retenido, esclavizado o convertido en recurso.
 
-Entonces apareció Vaelun, Guardián del Último Umbral. El **Primer Tránsito** no fue la primera muerte: fue el primer paso espiritual acompañado y protegido. El dios no decidió el destino del alma ni la obligó a regresar. Le ofreció continuar.
+Entonces apareció Vaelun, Guardián del Último Umbral. El **Primer Tránsito** no fue la primera muerte: fue el primer paso espiritual acompañado y protegido. Según los relatos, el dios no decidió el destino del alma ni la obligó a regresar. Le ofreció continuar.
 
 Vaelun creó después a los **Ankar**, Guardianes del Umbral, con un principio: **«Que ningún alma sea tomada contra su voluntad.»** Son humanoides altos y esbeltos, de rasgos cánidos estilizados. Un Ankar no es un Terio Chacal: ambos pueden parecerse, pero provienen de principios primordiales diferentes.
 
