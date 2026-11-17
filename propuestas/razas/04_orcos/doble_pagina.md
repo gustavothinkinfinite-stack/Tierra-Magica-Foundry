@@ -39,11 +39,11 @@ Un Orco también puede venerar a Ilyr, Aurea, Oria o cualquier otra divinidad, o
 
 **Orcos Comunes.** La denominación reúne comunidades diversas sin una misión hereditaria única. En algunas, las asambleas vecinales negocian cultivos, protección de caminos, oficios y responsabilidades comunes.
 
-**Orcos de Sangre.** Sus relatos familiares recuerdan una afinidad singular con el Primer Desafío. Determinadas comunidades conservan juramentos y testimonios, aunque no todos sus miembros manifiestan poder sobrenatural.
+**Orcos de Sangre.** Los relatos los vinculan con una resonancia intensa del legado de Varkor, pero sus efectos físicos o mágicos concretos permanecen abiertos. Sus juramentos y archivos son propuestas culturales; **ningún poder es gratuito por linaje**.
 
 **Orcos Grises.** Algunas tradiciones desarrollaron una memoria especialmente atenta al costo de las guerras. Sus comunidades pueden valorar el rescate, la recuperación y la decisión de detener un enfrentamiento.
 
-**Orcos de Bastión.** Nombre propuesto para familias excepcionales de gran constitución. No constituyen una segunda raza ni conceden ventajas automáticamente.
+**Orcos de Bastión [PROPUESTA].** Nombre editorial provisional para posibles linajes excepcionales de gran constitución, aún sin denominación ratificada. No son una cuarta rama canónica ni otra raza y no conceden ventajas automáticamente.
 
 Las denominaciones pueden coexistir dentro de familias e historias personales. No fijan moralidad, nación o profesión.
 
