@@ -88,7 +88,7 @@
 
 **Prioridad media:** en «Variedad reemplaza adaptación» no consta si puede sustituirse una Principal por Secundaria. Propuesta conservadora: equivalencia de categoría y documento explícito, sometida a aprobación global; no sobrescribir el Manual Maestro.
 
-**Resultado:** 48 criterios de aceptación documentales; **playtest empírico no ejecutado**. No se identificó necesidad de Habilidad racial nueva. Se identificó una ampliación de Origen cultural, desarrollada en módulo separado para una decisión editorial posterior.
+**Resultado inicial:** 48 criterios documentales; ampliados a **84 (48 iniciales + 12 B2 + 24 B3)**, sin ejecución empírica. No se identificó necesidad de Habilidad racial nueva. Se identificó una ampliación de Origen cultural, desarrollada en módulo separado para una decisión editorial posterior.
 
 ## VIII. Casos B2 de regresión documental — TER-T49 a TER-T60
 
@@ -110,3 +110,37 @@
 | TER-T60 | Terio de «Origen Renkaino» junto a otro Origen canónico | La 11.ª entrada Renkaino **no existe todavía en `main` ni Foundry**; sólo si se adoptara, sustituiría un Origen, no sumaría idiomas/Facetas/PD/PR |
 
 **Pruebas adicionales pendientes B3/B4:** carga/caída y vuelo, falta de aire con nado, anatomía real frente a coste de beneficio, órganos prensiles frente a Cola/Miembros Extra, protección frente a Barrera Cinética/Piel Alterada y compatibilidad Variedad con el presupuesto excluyente.
+
+
+## IX. Regresiones B3 de exploits y secuencias — TER-T61 a TER-T84
+
+**Evidencia:** los 24 casos son criterios `DOC` y no ejecuciones de partida ni Foundry. Se añade un modelo auxiliar ad hoc con **22 comprobaciones `MOD`, 22 salidas coincidentes con expectativas de ese modelo**, incluidas tres respuestas que mantienen un vacío abierto; no confirma el comportamiento del motor ni ratifica opciones de diseño.
+
+| ID | Intento, secuencia o frontera | Resultado esperado por el Manual / pendiente |
+|---|---|---|
+| TER-T61 | Elegir Principal Órgano prensil + Secundaria Arma natural y agregar Vuelo Dominante por anatomía aviana | **Inválido**: presupuesto **Principal+Secundaria O Dominante**. Vuelo no se suma como tercera capacidad |
+| TER-T62 | Una Variedad sustituye Sentido especializado pero mantiene también el +1 PER antiguo | Reemplazar no añade tercera ni mantiene el efecto sustituido; con elección final A/B legítima |
+| TER-T63 | Reemplaza Principal por Dominante, mantiene Secundaria como «beneficio residual» | Presupuesto final **Dominante+Secundaria ilegal**. La equivalencia de plaza al reemplazar es propuesta, no regla publicada |
+| TER-T64 | Cambia una Principal por una Dominante y pretende además eliminar Secundaria para pasar de rama A a B | **ABIERTA B4** la semántica de reemplazar «una adaptación» y cruzar de rama; **no** ratificar transformación A→B de un solo paso sin regla nueva |
+| TER-T65 | Terio de nivel superior solicita otra Principal y nueva Variedad con tercer beneficio | **No** crece el paquete automáticamente al subir de nivel; no crear segunda Ascendencia |
+| TER-T66 | Terio Vuelo Dominante en aire recibe **Carga Pesada** al tomar un bulto | No puede mantener **vuelo racial sostenido** bajo Carga Pesada/Excesiva. **ABIERTA B5** pérdida de sustentación, instante y altura |
+| TER-T67 | Terio con vuelo activo a 4 espacios de altura sufre interrupción y cae efectivamente 4 espacios | Si no hay rescate/mitigación, daño de caída **2×(4−1)=6** antes de reducciones pertinentes. Volar no da inmunidad |
+| TER-T68 | Terio volador intenta no aterrizar al final del turno, y DJ le aplica regla de Hada | **No importar** obligación Hada de empezar/terminar apoyada: no figura en Dominante Terio. Mantener anatomía/medio viables |
+| TER-T69 | `Morfología Alada` Sostenida sobre vuelo Dominante permite **MOV12 en aire** y segunda Acción | **No** crea doble reserva de Movimiento ni Acción/Reacción; Hechizo paga Maná/Acción y Sostenimiento propios |
+| TER-T70 | Terio con alas funcionales pero presupuesto Principal+Secundaria sin Dominante declara vuelo permanente | La presencia anatómica no concede **vuelo sostenido gratuito**; solo si existe una fuente legal distinta |
+| TER-T71 | Terio Locomoción Especializada (nado6) usa MOV6 nadando y después MOV6 caminando dentro del turno | **No sumar dos reservas**. Fórmula de conversión para **tramos de medios distintos** **ABIERTA B5** transversal Hada/Coralios |
+| TER-T72 | Terio con branquias ilustradas sin Anfibio intenta respirar agua indefinidamente | **ABIERTA B4:** anatomía «funcional» escrita, pero falta adaptación Teria cuantificada de respiración; compra Anfibio (1 PR) es **contención propuesta**, no mandato canónico literal |
+| TER-T73 | Terio con nado6 y `Anfibio` comprado legalmente por 1 PR usa nado y respira agua ordinaria | **Dos propiedades distintas** con costos legales, pero sin inmunidad a corriente, presión, tóxicos o deshidratación |
+| TER-T74 | Terio Anfibio en agua contaminada/alta presión sostiene que puede respirar y moverse sin daño | Anfibio **no** elimina contaminación, presión, frío, corriente o pruebas de Natación; resolver exposición por reglas |
+| TER-T75 | Elefantino con Órgano prensil sostiene escudo extra, dispara arma de dos manos y recarga con trompa | **No** concede Acción/ataque/escudo mecánico ni recarga adicionales; uso de objetos y anatomía con costes normales |
+| TER-T76 | Terio con Órgano prensil compra `Cola Prensil` 1 PR y pide dos manipulaciones o un bloqueo adicional | No doble efecto equivalente ni Acción/Reacción extra; estudiar si ambas capacidades tienen usos realmente distintos antes de declarar compra redundante |
+| TER-T77 | Terio con `Miembros Extra` 2 PR y `Miembro Efímero` con Maná intenta 3 ataques, 2 escudos y 2 Sostenimientos | Apéndices, Rasgos y Hechizos **no** conceden Acciones, Reacciones, ataques o Sostenimientos adicionales |
+| TER-T78 | Felino con Arma natural (garras) y espada intenta infligir daño 3 de garras **más** daño del arma por una Acción | Arma natural **Daño3 Pen0** es arma disponible, no añadido o ataque extra; usar método/Habilidad y Acción correspondientes |
+| TER-T79 | Quelonio con Protección Natural 1 y ataque físico Pen1, sin armadura | Protección efectiva **max(0,1−1)=0** ante ataque susceptible de Protección; no «Resistencia a todo» |
+| TER-T80 | Quelonio con Prot Natural1 y armadura Prot3 frente a ataque Pen1 | Usar Prot **3, no 4**; efectiva **max(0,3−1)=2** en categoría aplicable |
+| TER-T81 | Terio Sentido especializado (olfato) + `Sentido Agudo` olfato frente a mismo rastro | No sumar dos +1 **equivalentes** sobre la misma percepción; tampoco +1 Iniciativa o diagnóstico de sustancia |
+| TER-T82 | Excavador usa Acción para atravesar pared rocosa de 1 espacio como si fuera `Fase Parcial` | Excavador crea paso en suelo **blando con tiempo**, sin MOV subterráneo ni atravesar roca por defecto; `Fase Parcial` requiere Hechizo separado, Maná7 y requisitos |
+| TER-T83 | Terio trepador con Locomoción 6 (trepa) compra `Trepador Natural` y quiere 12 MOV o adherencia a pared lisa | No segunda reserva, ni adherencia a superficie sin agarre; evaluar por separado velocidad de medio y coste por espacio sin regalar equivalentes |
+| TER-T84 | Terio de «Renkai» toma Origen cultural propuesto y otro Origen oficial, además de idioma regional | `Renkaino` **no está ratificado**; si alguna vez se aprueba, debe **sustituir**, no sumarse a otro Origen; no otorga adaptación, Fuente ni PD gratis |
+
+**Total:** `TER-T01–TER-T60` + `TER-T61–TER-T84` = **84 criterios documentales, 0 ejecuciones Foundry/mesa**. `MOD`: **22 casos auxiliares**, 22/22 resultados previamente previstos; estados abiertos de **Variedad**, **branquias** y **pérdida de sustentación**, no decisiones nuevas. **B4/B5** deben comparar coste de respiración, reemplazo, anatomía/compra de Rasgos, secuencias de caída, carga y Movimiento mixto.
