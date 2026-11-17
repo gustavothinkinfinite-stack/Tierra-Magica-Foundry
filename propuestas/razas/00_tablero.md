@@ -13,8 +13,8 @@
 | 05 | Goblinoides | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Ojo, Escurridizo y Complexión; revisar biología propuesta |
 | 06 | Terios/Anihombres | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Renkai/Origen Renkaino, sustituciones de Variedad y playtest anatómico |
 | 07 | Feéricos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Continuidad de la Raíz y playtests de vuelo Hada, vínculo y viento |
-| 08 | Ankar | Próximo a trabajar | Auditar Vaelun/Primer Tránsito, biología, sociedad, doble página y pruebas |
-| 09 | Cristálidos | Pendiente | Matriz mixta, biología, otras clases no jugables, doble página |
+| 08 | Ankar | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Sentido del Umbral, Custodia del Alma y revisar instituciones |
+| 09 | Cristálidos | Próximo a trabajar | Auditar Matriz Mixta, Resonancia Arcana, Conductor Vivo y biología |
 | 10 | Verdantes | Pendiente | Biomas, fisiología, identidad cultural, doble página |
 | 11 | Micelios | Pendiente | Redes, individualidad, comunicación y balance, doble página |
 | 12 | Coralios | Pendiente | Mar, ecosistemas, civilizaciones anfibias, doble página |
@@ -80,3 +80,11 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Control editorial: **742 palabras imprimibles** en doble página y **36 casos de aceptación documental**; no equivalen a playtests ejecutados. No se añaden Habilidades raciales ni cambios a paquetes v0.3.
 - **Estado global: seis expedientes integrales completos como borradores** —Enanos, Élficos, Orcos, Goblinoides, Terios y Feéricos—; Humanos sigue con doble página inicial pendiente de expediente integral. Sin aprobación del creador.
 - **Próximo ciclo productivo:** Ankar — Guardianes del Umbral. Mantener Humanos en cola de consolidación; nunca modificar `main`, mapa oficial ni código de Foundry.
+
+### 2026-11-16 — Octavo avance: Ankar — Guardianes del Umbral
+- Leídos tablero, README y confirmada ausencia del expediente Ankar. Releídos en `main` paquete Ankar v0.3, reglas transversales, Orígenes, cosmología de los siete Primordiales, §32 Vaelun y Primer Tránsito, cronología y geografía de Edria, panteón.
+- Guardados cinco archivos nuevos en `08_ankar/`: `auditoria_y_desarrollo.md`, `doble_pagina.md`, `brief_arte.md`, `pruebas_balance.md` y `cierre_editorial.md`.
+- Cuatro tradiciones civiles propuestas: Casas de la Última Carta, Vigilias de Puente, Archivos del Último Nombre y Puertas Abiertas. Biología, ciclo vital, historia contextual y debate ético. Sin nueva Habilidad racial, cambios de estadísticas ni magia gratuita.
+- **30 casos de aceptación documental**, no playtests ejecutados. Doble página editorial de unas 850 palabras de contenido imprimible, pendiente de maquetación. No se resuelve el destino último de las almas.
+- **Estado global: siete expedientes integrales completos como borradores** —Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos y Ankar—; Humanos sigue pendiente de consolidación.
+- **Próximo ciclo:** Cristálidos; después Verdantes, Micelios y Coralios, y consolidación final de Humanos. `main`, mapa oficial y Foundry no modificados.
