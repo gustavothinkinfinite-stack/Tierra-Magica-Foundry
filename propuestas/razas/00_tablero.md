@@ -16,7 +16,7 @@
 | 08 | Ankar | Borrador v0.1; **B1, B2 y B3 documentales completas**; **68 DOC + 28 MOD auxiliares**, 0 Foundry/mesa | B4/B5: frecuencia de Sentido, barreras, efectos mentales mixtos y apilamiento |
 | 09 | Cristálidos | Borrador v0.1; **B1, B2 y B3 documentales completas**; **96 DOC**, 0 Foundry/mesa | B4/B5: valor de lectura/puente, ocultación, consentimiento y 0 Vida |
 | 10 | Verdantes | Borrador v0.1; **B1, B2 y B3 documentales completas**; **86 DOC**, 0 Foundry/mesa | B4/B5: CLN-01, anclaje/Martillo Cinético, Derribar, 0 Vida, biomas y Viaje |
-| 11 | Micelios | Expediente v0.1; **B1 y B2 documentales completas**, 60 criterios | B3: distancia/red/barreras/retransmisión; B4: utilidad química y biología |
+| 11 | Micelios | Expediente v0.1; **B1, B2 y B3 documentales completas**, **100 DOC** | B4/B5: radio geométrico, continuidad/reconexión, valor de Quimiosensibilidad |
 | 12 | Coralios | Expediente v0.1; **B1 y B2 documentales completas**, 64 criterios | B3: tierra/agua, hidratación y protección; B4: Anfibio 1 PR y balance |
 
 
@@ -30,7 +30,7 @@
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Verdantes** |
-| B3. Exploits y secuencias | **DOCUMENTAL: 10/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar, Cristálidos, Verdantes) | B3 Verdantes: **86 DOC**, 30 nuevos; 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Siguiente: Micelios**, luego Coralios |
+| B3. Exploits y secuencias | **DOCUMENTAL: 11/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar, Cristálidos, Verdantes, Micelios) | B3 Micelios: **100 DOC**, 40 nuevos, 4 secuencias, 12 incidencias; **0 MOD/Foundry/mesa** | **Siguiente: Coralios**; luego B4 por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -375,3 +375,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **[CANON]** Adaptación elige bioma y **una sola** propiedad VIG ambiental/terreno. **[PROPUESTA VER-PB3-02]** ficha de selección explícita, sin poderes. **B4/B5**: comparación con Rasgos y Viaje regional, Llanura no canónica.
 - **[CANON]** Sustento necesita agua, luz y nutrientes, sin dispensar Descanso/Fatiga; **[PROPUESTA VER-PB3-03]** registro sin relojes ni castigo triple. `CLN-01` 4h/24h permanece **no canon y aislada**.
 - **B3: 10/12**; siguiente **Micelios**, después Coralios. B4/B5 y Fase C pendientes. No se editó `main`, Manual Maestro, mapa ni Foundry.
+
+### 2026-11-17 — B3 Micelios: redes, química, retransmisión y límites
+- Fuente verificada: `main:docs/Tierra_Magica_Manual_Maestro.md`, SHA `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`, entrada Micelios 408–419 y reglas de Acción/Reacción, Fatiga/Descanso, magia y maniobras. Revisados `README.md`, plan y expediente B1/B2.
+- Creado `11_micelios/auditorias/03_exploits_y_pruebas.md`: **40 casos nuevos MIC-T61–MIC-T100, cuatro secuencias y doce incidencias**. Ampliado `pruebas_balance.md` a **100 DOC, 0 MOD/Foundry/mesa**; sincronizados desarrollo y cierre editorial.
+- **[CANON]** Quimiosensibilidad +1 PER sólo para señales químicas cercanas enumeradas, sin radio numérico; Enlace requiere Acción, contacto directo de ambos con red viva compatible continua, otro Micelio voluntario y ≤12 espacios, mensajes simples sin radar, memoria, telepatía ni magia remota.
+- **[PROPUESTAS NO CANÓNICAS]** MIC-B3-P01 radio geométrico de 12 espacios entre participantes sin eliminar continuidad física; MIC-B3-P02 reconexión tras corte exige nueva Acción; MIC-B3-P03 retransmisión exige Acción y condiciones de cada emisor, sin extender radio original; MIC-B3-P04 registro físico de señal química antes del +1. Sin recursos, poderes ni bonos nuevos. B4/B5 resolverán comparación, geometría y compatibilidad.
+- **B3: 11/12. Siguiente: Coralios**. No se alteraron `main`, Manual Maestro, atlas ni código operativo Foundry.
