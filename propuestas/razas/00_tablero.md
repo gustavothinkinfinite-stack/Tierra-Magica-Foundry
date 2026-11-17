@@ -10,7 +10,7 @@
 | 02 | Enanos | Borrador v0.2; **B1, B2 y B3 documentales completas**; 44 criterios y 16 comprobaciones de modelo auxiliar (no Foundry) | B4: Presa/Derribar, Fatiga y balance; validación empírica pendiente |
 | 03 | Élficos | Borrador v0.1; **B1, B2 y B3 documentales completas**, 56 DOC y 16 MOD (no Foundry) | B4/B5: significación, ocultación, efecto directo/indirecto y valor comparado |
 | 04 | Orcos | Borrador v0.1; **B1, B2 y B3 documentales completas**, 64 DOC, 20 MOD (no Foundry) | B4/B5: gasto de Voluntad sin efecto, orden Ayuda/Ventaja, comparación de Complexión |
-| 05 | Goblinoides | Borrador v0.1; **B1 y B2 documentales completas** | B3: pasos/interrupciones y Ojo; B4: balance Hobgoblin y biología |
+| 05 | Goblinoides | Borrador v0.1; **B1, B2 y B3 documentales completas**, **69 DOC + 20 MOD auxiliares** | B4/B5: Ojo en Iniciativa, repetición de hechos, interrupción Escurridizo y balance Hobgoblin |
 | 06 | Terios/Anihombres | Borrador v0.1; **B1 y B2 documentales completas** | B3: branquias/Anfibio, Variedad, vuelo, equipamiento; B4: Renkai/biología |
 | 07 | Feéricos | Borrador integral v0.1 + **B1 y B2 documentales completas**; 52 casos documentales | B3: vuelo mixto, desanclaje y viento; B4: contraste Verdantes/Terios |
 | 08 | Ankar | Borrador v0.1; **B1 y B2 documentales completas**; 44 casos | B3: alcance/frecuencia, apilamiento mental y efectos compuestos; B4: balance |
@@ -29,8 +29,8 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
-| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías profundas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Goblinoides** |
-| B3. Exploits y secuencias | **DOCUMENTAL: 4/12** (Humanos, Enanos, Élficos, Orcos) | B3 Orcos: 64 DOC, 20 MOD (seis abiertos), 0 Foundry/mesa | **Siguiente: Goblinoides**, luego restantes |
+| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Terios** |
+| B3. Exploits y secuencias | **DOCUMENTAL: 5/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides) | B3 Goblinoides: 69 DOC, 20 MOD; **0 Foundry/mesa** | **Siguiente: Terios/Anihombres**, luego restantes |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -323,3 +323,12 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Bloqueos:** 1/Escena, declaración antes de tirar, sólo Desventaja por dolor/miedo/agotamiento físico y sin otras fuentes ajenas; Complexión +1 FUE efectiva sólo Carga/objetos inertes, no Ataque/Daño/Empujar/Desarmar/Presa; Exhausto reduce MOV6→4 y Colapsado impide esfuerzo significativo. No fuentes ni Rasgos gratuitos por Sangre/Bastión.
 - **ABIERTAS B4/B5:** dos fuentes elegibles (ignorar una deja Desventaja: uso sin efecto), interacción con Ayuda/Tónico/Ventaja y orden de cancelación/consumo; límite de arrastre con oposición activa vs carga de cuerpo inerte. **No se creó regla de reembolso, Ventaja residual ni nueva habilidad.**
 - **Progreso B3: 4/12 documental; próximo Goblinoides.** B1/B2 12/12, B4/B5 y manual final propuesto pendientes. Foundry 0, mesa 0. Sin cambios en `main`, sistema, Manual Maestro o cartografía.
+
+### 2026-11-17 — B3 Goblinoides: Ojo, Escurridizo y Complexión Bugbear
+- Reabierto \`main:docs/Tierra_Magica_Manual_Maestro.md\` (blob \`c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d\`), paquetes Goblin/Hobgoblin/Bugbear v0.3, Reacciones, Retirada, Correr, Fatiga, Escala, equipo y Carga, Ojo frente a Ayuda, Ventaja y Repetición, efectos al 0 Vida. Contrastados B1 y B2 antes de B3.
+- Guardado \`05_goblinoides/auditorias/03_exploits_y_pruebas.md\`: **24 ataques adversariales, 4 secuencias completas y 12 incidencias**. Ampliado \`pruebas_balance.md\` con \`GOB-46–GOB-69\`, **69 criterios documentales** en total; 0 pruebas Foundry/mesa. Guardado modelo auxiliar reproducible \`modelo_auxiliar_b3_goblinoides.js\` con **20 fixtures** de Ojo y costes de tránsito, **20 coincidencias con expectativas**, sin ejecución del motor. Desarrollo y cierre editorial sincronizados.
+- **Hallazgos:** Ojo 1/Escena antes de prueba, +1 por hecho nuevo/cambio real/debilidad concreta descubierta. Puede afectar prueba de Ataque legítima y coexistir con Ayuda válida por sus propios requisitos, sin +Daño, +Acciones o techo general de modificadores inventado. Hobgoblin **no** tiene Cohesión ni Liderazgo innatos.
+- **Escurridizo:** un espacio ocupado Mediano+ cuesta **2 MOV**, salida libre **1** (2+1=3). En Retirada MOV6, tramo normal máx. 3; Correr gasta Acción; Exhausto MOV6→4. No Ataque de Oportunidad universal ni inmunidad a Reacciones concretas. Verificar salida antes de iniciar ruta \`GOB-B3-PROP-01\` sigue **adjudicación propuesta**, no requisito canónico. **ABIERTA B5:** interrupción por Reacción dentro de espacio ocupado (coste/posición) y orden Retirada+Correr+Exhausto, compartido con otras razas.
+- **Complexión Bugbear:** Grande efectiva sólo para Carga/objeto inerte, no escala real/equipo/manipulación de criatura, y no +1 FUE. **Abiertas B4:** valor de Hobgoblin y aplicación de Ojo a Iniciativa en supuesto excepcional. Sin modificar \`main\`, Foundry ni atlas.
+- **Progreso documental B3: 5/12**. Próximo **Terios/Anihombres**; B4/B5/manual final propuesto posteriores. **69 DOC, 20 MOD auxiliares, 0 ENV, 0 MESA**.
+
