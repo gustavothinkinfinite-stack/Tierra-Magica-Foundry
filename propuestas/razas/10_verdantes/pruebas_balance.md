@@ -55,7 +55,7 @@
 ## D. CLN-01 — Procedimiento opcional de luz [PROPUESTA, NO CANON]
 | Caso | Situación | Resultado esperado únicamente si se adopta CLN-01 |
 |---|---|---|
-| VER-T39 | Tres días en túnel con lámpara hortícola compatible | Cada 24 h: hasta 4 h acumuladas de iluminación apropiada; raciones y agua normales; coste de lámpara/energía según equipo real, no gratis |
+| VER-T39 | Tres días en túnel con lámpara hortícola compatible, **sólo si se ensaya CLN-01 no canónico** | Probar mínimo propuesto de 4 horas acumuladas por 24 h; su cifra es una nueva regla de supervivencia aún no validada, no requisito del canon; raciones/equipo sin recursos gratuitos |
 | VER-T40 | Tres días sin luz adecuada, con agua disponible | Una sola carencia de sustento se resuelve según el subsistema general de privación, no daño instantáneo, doble Fatiga ni ventaja ficticia |
 
 ## E. Explotaciones cruzadas a ensayar
