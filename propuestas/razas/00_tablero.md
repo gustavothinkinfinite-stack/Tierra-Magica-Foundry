@@ -9,7 +9,7 @@
 | 01 | Humanos | Expediente completo; **B1, B2 y B3 documentales completadas**; 62 casos, 12 comprobaciones de modelo auxiliar (no Foundry) | B4: balance Don vs. otras 11; aclarar grados |
 | 02 | Enanos | Borrador v0.2; **B1, B2 y B3 documentales completas**; 44 criterios y 16 comprobaciones de modelo auxiliar (no Foundry) | B4: Presa/Derribar, Fatiga y balance; validación empírica pendiente |
 | 03 | Élficos | Borrador v0.1; **B1, B2 y B3 documentales completas**, 56 DOC y 16 MOD (no Foundry) | B4/B5: significación, ocultación, efecto directo/indirecto y valor comparado |
-| 04 | Orcos | Borrador v0.1; **B1 y B2 documentales completas** | B3: fuentes de Desventaja, Ventaja/Ayuda, Carga; B4: Bastión/Sangre |
+| 04 | Orcos | Borrador v0.1; **B1, B2 y B3 documentales completas**, 64 DOC, 20 MOD (no Foundry) | B4/B5: gasto de Voluntad sin efecto, orden Ayuda/Ventaja, comparación de Complexión |
 | 05 | Goblinoides | Borrador v0.1; **B1 y B2 documentales completas** | B3: pasos/interrupciones y Ojo; B4: balance Hobgoblin y biología |
 | 06 | Terios/Anihombres | Borrador v0.1; **B1 y B2 documentales completas** | B3: branquias/Anfibio, Variedad, vuelo, equipamiento; B4: Renkai/biología |
 | 07 | Feéricos | Borrador integral v0.1 + **B1 y B2 documentales completas**; 52 casos documentales | B3: vuelo mixto, desanclaje y viento; B4: contraste Verdantes/Terios |
@@ -29,8 +29,8 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
-| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Orcos** |
-| B3. Exploits y secuencias | **DOCUMENTAL: 3/12** (Humanos, Enanos, Élficos) | B3 Élficos: 56 DOC, 16 MOD; **0 pruebas Foundry/mesa** | **Siguiente: Orcos**, luego demás razas |
+| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías profundas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Goblinoides** |
+| B3. Exploits y secuencias | **DOCUMENTAL: 4/12** (Humanos, Enanos, Élficos, Orcos) | B3 Orcos: 64 DOC, 20 MOD (seis abiertos), 0 Foundry/mesa | **Siguiente: Goblinoides**, luego restantes |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -316,3 +316,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Resonancia:** conjunción de alteración mágica significativa **presente y directa** sobre seres vivos/procesos/ecosistemas y **área razonablemente perceptible**. Un ritual no `Sostenido` puede cumplir; una ilusión Sostenida sin afección vital real no. Una curación concluida no deja lectura retrospectiva. Familiar no extiende sensor racial/línea de efecto; detección no identifica Hechizo/Fuente, número de pulsos, autor ni solución.
 - **ABIERTAS B4/B5:** importancia `significativa` sin umbral numérico, `Velo Sensorial`/barreras frente a perceptibilidad y límite entre magia que daña **directamente** un ecosistema y daño secundario de maquinaria/clima mágicamente activados. No inventar radio, Acción, Maná, prueba o Habilidad nuevos.
 - **Progreso documental:** B1/B2 12/12, **B3 3/12**. Próxima raza **Orcos**. Ninguna propuesta aprobada, 0 tests Foundry, 0 playtests; `main`, Foundry y cartografía intocados.
+
+### 2026-11-17 — B3 Orcos: Voluntad, Complexión y precedencia de Desventajas
+- Reabierto `main:docs/Tierra_Magica_Manual_Maestro.md` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`), paquete Orco v0.3, §2 Ventaja/Desventaja/Ayuda/flujo de resolución, §7 Maniobras, Carga, Fatiga/Descanso, economía de Acción/Reacción, consumibles `Supresor del Dolor`/`Tónico de Vigor`, magia `Valor Inspirado` y Rasgos costeados. Se cotejó expediente B1/B2 y batería original.
+- Guardado `04_orcos/auditorias/03_exploits_y_pruebas.md` con **24 ataques adversariales, cuatro secuencias y doce incidencias**. `pruebas_balance.md`: añadidos `ORC-T41–ORC-T64`, total **64 criterios documentales, 0 ejecutados en Foundry/mesa**. Guardado `modelo_auxiliar_b3_orcos.js` con **20 fixtures, 20 coincidencias con expectativas de clasificación**, **seis resultados abiertos por diseño**. Actualizados desarrollo y cierre editorial.
+- **Bloqueos:** 1/Escena, declaración antes de tirar, sólo Desventaja por dolor/miedo/agotamiento físico y sin otras fuentes ajenas; Complexión +1 FUE efectiva sólo Carga/objetos inertes, no Ataque/Daño/Empujar/Desarmar/Presa; Exhausto reduce MOV6→4 y Colapsado impide esfuerzo significativo. No fuentes ni Rasgos gratuitos por Sangre/Bastión.
+- **ABIERTAS B4/B5:** dos fuentes elegibles (ignorar una deja Desventaja: uso sin efecto), interacción con Ayuda/Tónico/Ventaja y orden de cancelación/consumo; límite de arrastre con oposición activa vs carga de cuerpo inerte. **No se creó regla de reembolso, Ventaja residual ni nueva habilidad.**
+- **Progreso B3: 4/12 documental; próximo Goblinoides.** B1/B2 12/12, B4/B5 y manual final propuesto pendientes. Foundry 0, mesa 0. Sin cambios en `main`, sistema, Manual Maestro o cartografía.
