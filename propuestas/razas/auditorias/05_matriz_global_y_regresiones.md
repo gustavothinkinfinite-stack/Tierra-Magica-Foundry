@@ -107,7 +107,7 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 | B5-I08 | Alta | CRI–MIC | Conductor Vivo, consentimiento/desconexión, Energía/Caudal/Sobrecarga; red micelial no sustituye interfaz | Acción y recursos del dispositivo; no Maná ni Energía gratis | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
 | B5-I09 | Media | VER–MIC–COR | Hidratación, nutrientes, luz, Fatiga, Descanso y viaje; evitar contadores arbitrarios como CLN-01 | Provisiones y procedimientos generales | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
 | B5-I10 | Alta | TODAS | Estados a 0 Vida, Trauma, poderes mantenidos, contacto, raíces, vuelo, reacción y dispositivos | No hay cura/Acción extra ni inmunidad por biología | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
-| B5-I11 | Media | TODAS | Rasgos generales adquiridos y poderes equivalentes; impedir apilamiento de la misma propiedad y no impedir compras distintas | 25 PD/3 PR, salvo Don humano canónico | ABIERTA |
+| B5-I11 | Media | TODAS | Rasgos generales adquiridos y poderes equivalentes; impedir apilamiento de la misma propiedad y no impedir compras distintas | 25 PD/3 PR, salvo Don humano canónico | PROPUESTA DOC; VALIDACIÓN PENDIENTE |
 | B5-I12 | Media | TODAS | Crafting, Alquimia, Ingeniería, Familiares, rituales y cultura: no recursos ni competencias gratuitas | Materiales, tiempo, recursos y requisitos de sistema | ABIERTA |
 
 ## 4. Doce escenarios globales G01–G12 (diseño de regresión; NO ejecutados)
@@ -191,3 +191,8 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - [`05_b5_i10_coralios.md`](./05_b5_i10_coralios.md): cuatro propuestas no canónicas B5-I10-P01–P04 y 20 regresiones **DOC no ejecutadas** B5-I10-T01–T20.
 - Hidratación condiciona respiración anfibia sin reloj inventado; presión/corriente/contaminación/frío siguen amenazas; MOV tierra5/agua6 remite a B5-I01; Protección Natural1 no suma con armadura.
 - Abiertos umbral de hidratación, equipos y consumos, equivalencia Anfibio y presión. Cruces X06-12/X07-12/X09-12/X10-12/X11-12; B5-G01/G05/G09; **0 Foundry, 0 mesa**. Siguiente **B5-I11 Feéricos**.
+
+## Avance 17-11-2026 — B5-I11 Feéricos
+- [`05_b5_i11_feericos.md`](./05_b5_i11_feericos.md): cuatro propuestas no canónicas B5-I11-P01–P04 y 20 regresiones **DOC no ejecutadas** B5-I11-T01–T20.
+- Hada debe empezar/terminar apoyada, MOV tierra5/aire6 sin reservas acumulables, no vuelo con Carga Pesada/Excesiva; Agarrar/0 Vida/caída sin inmunidad; Naturaleza Feérica no concede Fuente/Maná; Sátiro/Dríade/Silfo conservan límites.
+- Abiertos interrupción y caída, carga de criaturas, Vuelo Natural y orden a 0 Vida. Cruces X02-07/X05-07/X06-07/X07-10/X07-12, B5-G01/G02/G04/G09; **0 Foundry, 0 mesa**. Siguiente **B5-I12 cierre de incidencias residuales**.
