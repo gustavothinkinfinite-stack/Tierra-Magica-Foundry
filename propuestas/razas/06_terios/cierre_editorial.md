@@ -11,7 +11,7 @@
 | `auditoria_y_desarrollo.md` | Canon, biología, ocho linajes ejemplo, variedades, usos de adaptación, sociedad y Territorio Oriental | Completo como propuesta |
 | `doble_pagina.md` | Dos páginas de Manual Básico, texto narrativo y bloque mecánico | **726 palabras imprimibles** |
 | `brief_arte.md` | Dirección de arte «El maestro de las terrazas», personaje elefantino y escenas multilinaje | Completo, arte no generado |
-| `pruebas_balance.md` | **48 casos documentales** contra reglas y exploits, con guion de mesa | Diseñados, **no** playtest ejecutado |
+| `pruebas_balance.md` | **48 casos iniciales + 12 regresiones B2 (TER-T49–T60) = 60 casos documentales** contra reglas y exploits, con guion de mesa | Diseñados, **no** playtest ejecutado |
 | `modulo_origen_renkaino.md` | Perfil completo para nueva opción de Origen cultural de la isla | Completo como **módulo nuevo no canónico** |
 
 ## Auditoría cruzada
@@ -28,7 +28,7 @@
 11. **Origen Renkaino:** propuesta de 11.ª opción cultural que reemplaza otra, sin coste ni bonos; está **fuera** del Manual Maestro y de Foundry actuales. Requiere aprobación geográfica y lingüística. **Conforme**.
 12. **Religión:** Eïra existe y permite culto, pero no concede Vínculo Divino gratuito. La escuela del elefantino no es una clase racial ni religión obligatoria. **Conforme**.
 13. **Arte:** ancla del estilo visual canónico, sin logotipos, dioses nuevos, mapas o capacidades extra. **Conforme**.
-14. **Pruebas:** 48 casos con respuestas esperadas por auditoría documental, no equivalentes a ensayos empíricos. **Playtest pendiente**.
+14. **Pruebas:** 60 casos con respuestas esperadas por auditoría documental (48 iniciales + 12 B2), no equivalentes a ensayos empíricos. **Playtest pendiente**.
 15. **Extensión:** 726 palabras imprimibles, dentro del objetivo 650–850. Quedan pendientes ensayo tipográfico y arte definitivo. **Conforme para borrador**.
 
 ## Cambios propuestos que deben examinarse al final
@@ -50,3 +50,10 @@
 Primero revisar y ratificar identidad cultural de Renkai y el paquete de Variedades; después evaluar el **Origen Renkaino** en capítulo de creación y en interfaces de Foundry. Si se rechaza el nombre propio, usar denominación neutral del Territorio Oriental sin modificar la mecánica Teria. Realizar una prueba completa de partida especialmente con vuelos, órganos prensiles y escenarios de agua/terreno difícil.
 
 **Dictamen final del borrador:** la familia Terio queda suficientemente desarrollada para el libro y ficha conceptual. Su paquete **vigente** no se cambió. Todas las innovaciones permanecen aisladas para revisión del creador. El siguiente pueblo productivo es **Feéricos — Hijos de la Hoja**.
+
+
+### Actualización B2 — 17-11-2026
+- Guardado `auditorias/02_mecanicas_y_costes.md`: **18 fichas de subsistemas, 20 escenarios documentales y 10 incidencias**. Añadidos `TER-T49–TER-T60` a `pruebas_balance.md` (**60 criterios no ejecutados**).
+- **Aclaración fundamental:** el Manual exige anatomía funcional (incluidas branquias si el linaje las tiene), pero no define una adaptación Teria de respiración acuática. El expediente conserva compra de **Anfibio (1 PR)** como propuesta conservadora, **no como canon literal inequívoco**. Se exige decisión en B3/B4 para evitar contradicción de anatomía o beneficio gratuito.
+- **Variedad:** sustitución en la misma categoría sigue siendo **protocolo de propuesta**, no regla vigente. **Vuelo Dominante Terio** no hereda la obligación de apoyo al inicio/fin propia de **Hada**; sí sigue Carga y Movimiento normales.
+- Continúa pendiente aprobación de **Origen Renkaino** y de su idioma. No se modificaron paquetes oficiales, `main`, Foundry o mapa, ni se realizaron partidas reales.
