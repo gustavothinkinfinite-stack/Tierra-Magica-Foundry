@@ -7,8 +7,8 @@
 | Nº | Familia | Estado del borrador | Siguiente trabajo |
 |---:|---|---|---|
 | 01 | Humanos | Expediente inicial completo; **B1 canon/lore auditado (con observaciones)** | B2: categoría Menor/Significativo; B3/B4 posteriores |
-| 02 | Enanos | Borrador integral v0.2 completo para revisión global (no aprobado) | Tras revisión conjunta: decidir lore biológico y realizar playtest empírico |
-| 03 | Élficos | Borrador integral v0.1 completo para revisión global (no aprobado) | Tras revisión conjunta: validar biología y test de mesa de Resonancia de la Savia |
+| 02 | Enanos | Borrador integral v0.2 + **B1 canon/lore completo, con correcciones** | B2: Cuerpo de Piedra, Sangre de Metal; B4: biología |
+| 03 | Élficos | Borrador integral v0.1 + **B1 canon/lore completo, con correcciones** | B2: alcance Resonancia, percepciones; B4: Oscuros y biología |
 | 04 | Orcos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar propuesta de Bastión/Sangre y playtest empírico |
 | 05 | Goblinoides | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Ojo, Escurridizo y Complexión; revisar biología propuesta |
 | 06 | Terios/Anihombres | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar Renkai/Origen Renkaino, sustituciones de Variedad y playtest anatómico |
@@ -28,7 +28,7 @@
 |---|---|---|---|
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
-| B1. Canon y lore | **En curso: 1/12 (Humanos)** | Auditoría individual por 12 familias | Próximo: Enanos, luego 10 restantes |
+| B1. Canon y lore | **En curso: 3/12 (Humanos, Enanos, Élficos)** | Auditoría individual por 12 familias | Próximo: Orcos, luego 8 restantes |
 | B2. Mecánicas y costes | Pendiente | Auditoría exhaustiva contra subsistemas completos | Tras B1, por familia |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
@@ -164,3 +164,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Corrección real en el borrador:** `01_humanos/auditoria_y_desarrollo.md` ahora distingue Rasgos **no elegibles por defecto** de los **excluidos expresamente** por Don sin Forma; ninguna capacidad/coste canónico modificado.
 - Cuestiones delegadas: nomenclatura Menor/Significativo a **B2**, edades a B4, recuperación de la doble página anterior si llegase a estar disponible. Sin playtest ni ejecución de pruebas Foundry.
 - **B1: 1 de 12 auditorías narrativas completadas**; siguiente Enanos. Fase A sigue completa **12/12**. Fases B2–B5 y C pendientes. No detener la automatización por alcanzar 12 expedientes.
+
+### 2026-11-17 — B1 auditorías de Enanos y Élficos
+- **B1 Enanos:** cotejados paquete racial v0.3, Khorun/Primera Forja, Kharum, Kar-Dur, Origen Kharumita, Segunda Forja, religión y geografía. Guardado `02_enanos/auditorias/01_canon_y_lore.md`: **24 contrastes canónicos, 11 comparaciones de identidad y 6 incidencias**. Correcciones persistidas en `auditoria_y_desarrollo.md`, `doble_pagina.md` y `cierre_editorial.md`: distinguir mito del Primer Golpe, renombrar rito de Errantes «Registro de Partida» (evita duplicidad con «Entrega de Herramientas» de Humanos), y recuento actualizado **772 palabras imprimibles** / 815 con aviso y encabezado general.
+- **B1 Élficos:** cotejados paquete racial v0.3, Eïra/Savia, Alto/Silvano/Oscuro, causa abierta de adaptación profunda, cultos, Erelia/Lysendra, Origen y prohibición de híbridos improvisados. Guardado `03_elficos/auditorias/01_canon_y_lore.md`: **24 contrastes canónicos, 11 comparaciones de identidad y 6 incidencias**. Correcciones persistidas en `auditoria_y_desarrollo.md`, `doble_pagina.md`, `cierre_editorial.md`: Resonancia refiere a alteración **actual** en área perceptible, «mixtas» son tradiciones no híbridos biológicos, rito cambiado de «Trasplante de Memoria» a «Traspaso de Testimonios». Doble página mantiene **835 palabras**.
+- **Progreso B1 3/12** (Humanos, Enanos, Élficos). Las incidencias mecánicas y de biología se trasladan a B2/B3/B4, no se dan como resueltas por lectura. Enanos tiene 24 casos de prueba documentales; Élficos 24, **ninguno ejecutado empíricamente**.
+- **Siguiente B1:** Orcos; luego Goblinoides, Terios, Feéricos, Ankar, Cristálidos, Verdantes, Micelios y Coralios. No se trabaja todavía en los textos finales `manual_final_propuesto.md` hasta cerrar todas las auditorías B1–B5.
+- No se modificaron `main`, Manual Maestro vigente, sistema Foundry ni mapa oficial; todos los cambios son propuestas aisladas.
