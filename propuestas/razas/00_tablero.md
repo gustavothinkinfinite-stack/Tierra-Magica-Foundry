@@ -7,7 +7,7 @@
 | Nº | Familia | Estado del borrador | Siguiente trabajo |
 |---:|---|---|---|
 | 01 | Humanos | Doble página v0.1 elaborada en conversación; aún por archivar aquí | Archivar / verificar capítulo canónico, pulir e incluir brief |
-| 02 | Enanos | Desarrollo cultural v0.2, doble página v0.2 y brief de arte guardados | Consolidar auditoría mecánica y batería de pruebas; cerrar expediente |
+| 02 | Enanos | Expediente v0.2, doble página v0.2, brief visual y matriz de pruebas guardados | Auditoría cruzada, pulido de texto y cierre como borrador; luego Humanos y Élficos |
 | 03 | Élficos | Pendiente | Auditoría de cosmos, tres tradiciones y sociedad; primera doble página |
 | 04 | Orcos | Pendiente | Auditoría, sociedades modernas, reglas, doble página |
 | 05 | Goblinoides | Pendiente | Desarrollar tres variantes, auditar potencial desequilibrio |
