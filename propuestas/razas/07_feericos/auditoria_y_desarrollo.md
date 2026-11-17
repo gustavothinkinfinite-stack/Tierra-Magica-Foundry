@@ -37,7 +37,7 @@
 ## III. Biología funcional de las cuatro variantes [PROPUESTA]
 
 ### Hadas — vuelos breves, vida material
-**Cuerpo:** humanoide Pequeña, proporciones capaces de sostener un par de alas o anatomía equivalente. Si el personaje usa Movimiento aéreo base, el diseño visual debe mostrar **alas funcionales** (membranas o superficies con apoyo mágico limitado propio de la naturaleza feérica, nunca un hechizo permanente libre). Las alas no cuentan como miembros manipuladores extra. Evitar tamaño minúsculo de insecto: Escala Pequeña, no Diminuta.
+**Cuerpo:** humanoide Pequeña, proporciones capaces de sostener un par de alas o anatomía equivalente. Si el personaje usa Movimiento aéreo base, el diseño visual debe mostrar **alas funcionales** (membranas o superficies anatómicas compatibles con el Movimiento aéreo racial condicionado; **Naturaleza Feérica es sólo descriptor**, no Fuente, hechizo ni sustentación ilimitada). Las alas no cuentan como miembros manipuladores extra. Evitar tamaño minúsculo de insecto: Escala Pequeña, no Diminuta.
 **Necesidades:** alimento, agua/aire, descanso y protección ambiental ordinarios según ficción; las alas pueden dañarse. Un dolor o lesión de alas debe resolverse bajo reglas existentes y condiciones pertinentes, no inventando penalizaciones permanentes por pura descripción.
 **Madurez:** procesos ordinarios de crecimiento y aprendizaje, con particularidades de comunidad; sin inmortalidad garantizada ni bonificaciones por edad.
 **Vida comunitaria:** viviendas con plataformas y corredores de aterrizaje, escaleras y accesibilidad para quienes no vuelan. El vuelo que exige apoyo al final del turno hace importantes los espacios de descanso y las rutas de refugio.
@@ -86,13 +86,13 @@
 **Conflicto:** pilotos arriesgados que niegan seguridad, tormentas inusuales sobre rutas comerciales, explotación de zonas de corrientes arcanas. Cuerpo del Viento no predice el tiempo ni concede Pilotaje.
 
 ### Redes cruzadas
-**[PROPUESTA]** Ciudades de Erelia pueden albergar Consejos de Raíz, Mesas de Encuentro y Juntas de Aterrizaje sin volverse «reinos feéricos». Los Silfos pueden vivir en la Liga de Bronce y las Hadas en Solenar. La identidad territorial procede del Origen elegido, no de una región racial. Una familia mixta entre ramas puede compartir prácticas, aunque **la compatibilidad reproductiva entre especies queda pendiente** del canon general: no inventar semifeéricos con dos paquetes.
+**[PROPUESTA]** Ciudades de Erelia pueden albergar Consejos de Raíz, Mesas de Encuentro y Juntas de Aterrizaje sin volverse «reinos feéricos». Los Silfos pueden vivir en la Liga de Bronce y las Hadas en Solenar. La identidad territorial procede del Origen elegido, no de una región racial. Un hogar multirrama por crianza, adopción o convivencia puede compartir prácticas, aunque **la compatibilidad reproductiva entre especies queda pendiente** del canon general: no inventar semifeéricos con dos paquetes.
 
 ## V. Religión y trato con otras divinidades
 
 **[CANON]** Eïra es Madre de la Primera Semilla, no una deidad de bondad universal. Los cultos poseen tres familias sacerdotales extendidas; no todos los Feéricos están obligados a participar. El vínculo religioso se adquiere mediante Rasgo **Vínculo Divino** con coste y juramento del sistema, no por Naturaleza Feérica.
 
-**[PROPUESTA]** La **Liturgia del Umbral Verde** es un rito comunitario de algunas localidades que discute cómo ampliar una ciudad sin extinguir su hábitat y cómo aceptar la muerte de especies e individuos sin profanar su tránsito. No produce milagros ni efectos de estado. Algunas poblaciones prefieren altares de Aurea, Oria, Vael, Selene o cultos regionales; un Silfo devoto de Vael no adquiere automáticamente control de tormentas. La colaboración con Feéricos de otras ramas es histórica posible, no telepatía ni red mental de Eïra.
+**[PROPUESTA]** La **Liturgia del Ciclo Vivo** es un rito comunitario de algunas localidades que discute cómo ampliar una ciudad sin extinguir su hábitat y cómo aceptar la muerte de especies e individuos sin profanar su tránsito. No produce milagros ni efectos de estado. Algunas poblaciones prefieren altares de Aurea, Oria, Vael, Selene o cultos regionales; un Silfo devoto de Vael no adquiere automáticamente control de tormentas. La colaboración con Feéricos de otras ramas es histórica posible, no telepatía ni red mental de Eïra.
 
 ## VI. Regla opcional de continuidad arbórea para evaluar [PROPUESTA MECÁNICA SEPARADA]
 **Objetivo de diseño:** el texto base no especifica qué ocurre si se destruye el árbol o arboleda vinculados a una Dríade; evitar la adjudicación improvisada de muerte automática, inmortalidad o curación espontánea. **No incorporarla al paquete vigente sin aprobación**.
@@ -125,7 +125,7 @@
 | FEE-03 | Dríades y Consejos de Raíz | Familia, registros, debates ecológicos | Cultura |
 | FEE-04 | Silfos y Observatorios | Oficios de meteorología aprendidos, rutas | Cultura |
 | FEE-05 | Continuidad de la Raíz | Procedimiento cuando se pierde el anclaje arbóreo | **Nueva regla opcional, no canon** |
-| FEE-06 | Liturgia del Umbral Verde | Rito cívico/religioso plural | Narrativo |
+| FEE-06 | Liturgia del Ciclo Vivo | Rito cívico/religioso plural | Narrativo |
 | FEE-07 | Matrimonio/parentesco diversos | Descripción abierta sin herencia dual mecánica | Coherencia |
 | FEE-08 | Ningún paquete nuevo | Se conservan cuatro opciones v0.3 | Mecánica sin cambio |
 
