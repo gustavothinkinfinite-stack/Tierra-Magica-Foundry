@@ -6,7 +6,7 @@
 
 | Nº | Familia | Estado del borrador | Siguiente trabajo |
 |---:|---|---|---|
-| 01 | Humanos | Borrador integral v0.1 reconstruido desde canon completo para revisión (no aprobado) | B1: Aster, Don sin Forma y cotejo con antigua conversación; B2: Menor/Significativo |
+| 01 | Humanos | Expediente inicial completo; **B1 canon/lore auditado (con observaciones)** | B2: categoría Menor/Significativo; B3/B4 posteriores |
 | 02 | Enanos | Borrador integral v0.2 completo para revisión global (no aprobado) | Tras revisión conjunta: decidir lore biológico y realizar playtest empírico |
 | 03 | Élficos | Borrador integral v0.1 completo para revisión global (no aprobado) | Tras revisión conjunta: validar biología y test de mesa de Resonancia de la Savia |
 | 04 | Orcos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar propuesta de Bastión/Sangre y playtest empírico |
@@ -28,7 +28,7 @@
 |---|---|---|---|
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
-| B1. Canon y lore | **Siguiente fase activa** | Auditoría individual por 12 familias | Iniciar con Humanos y continuar sin duplicar |
+| B1. Canon y lore | **En curso: 1/12 (Humanos)** | Auditoría individual por 12 familias | Próximo: Enanos, luego 10 restantes |
 | B2. Mecánicas y costes | Pendiente | Auditoría exhaustiva contra subsistemas completos | Tras B1, por familia |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
@@ -157,3 +157,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Fase A cumplida: 12/12 expedientes iniciales**, todos **borradores no canónicos**. Pruebas: únicamente casos de aceptación redactados, sin ensayos de mesa ni ejecución en Foundry.
 - **Fase B1 ACTIVA:** abrir auditorías canon/lore por raza, empezando por Humanos, con archivo `auditorias/01_canon_y_lore.md`, después Enanos y sucesivas. B2, B3, B4, B5 y Fase C `manual_final_propuesto.md` siguen pendientes.
 - **No detener automatización** al alcanzar 12/12; el proyecto continúa por mandato expreso hasta auditoría profunda, comparación y contenido final del Manual Básico. No se modificó `main`, Manual Maestro operativo, código Foundry o mapa.
+
+### 2026-11-17 — Primera auditoría B1: Humanos
+- Antes de auditar se abrieron directamente en la rama `01_humanos/auditoria_y_desarrollo.md`, `doble_pagina.md` y `cierre_editorial.md`, además del canon `main` de Aster, Don, catálogo de Rasgos, Orígenes, geografía e historia.
+- Archivo nuevo: `01_humanos/auditorias/01_canon_y_lore.md`. Comparación detallada de **18 verificaciones fuente→borrador** y once contrastes narrativos entre pueblos, con cuatro incidencias registradas.
+- **Corrección real en el borrador:** `01_humanos/auditoria_y_desarrollo.md` ahora distingue Rasgos **no elegibles por defecto** de los **excluidos expresamente** por Don sin Forma; ninguna capacidad/coste canónico modificado.
+- Cuestiones delegadas: nomenclatura Menor/Significativo a **B2**, edades a B4, recuperación de la doble página anterior si llegase a estar disponible. Sin playtest ni ejecución de pruebas Foundry.
+- **B1: 1 de 12 auditorías narrativas completadas**; siguiente Enanos. Fase A sigue completa **12/12**. Fases B2–B5 y C pendientes. No detener la automatización por alcanzar 12 expedientes.
