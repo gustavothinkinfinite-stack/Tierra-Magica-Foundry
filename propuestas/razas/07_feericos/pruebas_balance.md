@@ -84,3 +84,28 @@
 **36 casos documentales, no ejecutados empíricamente.** Los cuatro paquetes vigentes pueden utilizarse sin inventar Habilidades nuevas. Riesgos principales: vuelo Hada usado como suspensión indefinida, Paso de Cabra convertido en inmunidad a terreno, contacto arbóreo interpretado como radar, Cuerpo del Viento convertido en vuelo y Naturaleza Feérica como Fuente mágica gratuita.
 
 La nueva regla opcional «Continuidad de la Raíz» debe revisarse de forma aislada antes de cualquier inclusión en el Manual Maestro.
+
+## H. Regresiones B2 — FEE-T37 a FEE-T52
+
+**Casos de aceptación documentales, no ejecuciones empíricas.** Los resultados `PENDIENTE B3` señalan una ambigüedad que no se puede resolver presentando una invención como regla vigente.
+
+| ID | Escenario | Resultado esperado / límite |
+|---|---|---|
+| FEE-T37 | Hada inicia apoyada, vuela 4 espacios y quiere caminar otros 5 con «segunda reserva» | El sistema concede un Movimiento por turno, no 6 de vuelo **más** 5 de suelo gratuitos. **Pendiente B3** definir conversión exacta de tramos mixtos si existe una diferencia de velocidades |
+| FEE-T38 | Hada comienza apoyada y termina en suelo tras 6 espacios aéreos; intenta otra Acción por «aterrizar» | Si alcanza superficie apta, cumple apoyo; no adquiere segunda Acción ni Movimiento por el aterrizaje |
+| FEE-T39 | Hada es empujada de una plataforma **entre turnos** por efecto válido | El requisito de apoyo al iniciar el próximo turno **no concede vuelo libre** desde el aire; resolver desplazamiento/caída y ventana de Reacción aplicable sin inventar suspensión |
+| FEE-T40 | Hada cae 3 espacios, consciente y con sitio para aterrizaje | Daño base antes de mitigaciones **4**; `Caída controlada` AGI+Acrobacia puede reducir espacios efectivos según DF y resultado, si procede; las alas no dan inmunidad |
+| FEE-T41 | Hada Exhausta o con Carga Pesada quiere cruzar un vacío | Carga Pesada/Excesiva bloquea vuelo aéreo; Exhausto reduce Movimiento por reglas generales. **Pendiente B3** mezcla de velocidades y Fatiga |
+| FEE-T42 | Sátiro cruza 3 espacios con raíces naturales transitables que ordinariamente costarían 2 cada uno | Paso de Cabra evita **ese sobrecoste concreto**: coste básico **3 puntos** si ninguna causa independiente de terreno difícil subsiste |
+| FEE-T43 | Sátiro en pendiente natural peligrosa usa Paso de Cabra para negar toda prueba de equilibrio | No: anula un coste de desplazamiento especificado, no vuelve seguro ni posible lo que requiere Acrobacia/Atletismo |
+| FEE-T44 | Sátiro ataca con Cuernos y simultáneamente pretende Embestida con Empujar | Cuernos Daño 3/Pen 0 son arma, no Acción de Empujar gratuita, segundo ataque ni bonificación de carrera |
+| FEE-T45 | Dríade Enraizar frente a Empujar con atacante Pequeño y margen Claro (2 espacios) | Resistente cuenta como **Grande efectiva** si su Escala real es Mediana, para ese componente; un atacante Pequeño está dos categorías por debajo y **no desplaza con fuerza ordinaria** sin palanca/capacidad. No se eleva Defensa de Maniobra |
+| FEE-T46 | Dríade ya enraizada sufre intento ordinario de Derribar | El efecto de Escala es canónico, pero la maniobra de Derribar no convierte Escala en bono de Defensa numérica; la viabilidad concreta requiere adjudicación, **pendiente B3/B4** |
+| FEE-T47 | Dríade enraizada quiere moverse sin gastar 1 Movimiento de liberación | El canon exige **1 Movimiento** para liberarse. La entrada Dríade no incluye la frase expresa «permanece inmóvil» de Verdante; **pendiente B3** la pérdida de anclaje por desplazamiento o suelo destruido |
+| FEE-T48 | Se destruye el único árbol de vínculo y el jugador propone que Dríade muera instantáneamente | No existe tal condición de muerte en `main`; `Continuidad de la Raíz` es módulo propuesto **no automático** |
+| FEE-T49 | La mesa ensaya `Continuidad de la Raíz` durante viaje con Descanso Completo | Los **7 días** son plazo **nuevo opcional**, no regla canónica; el módulo no regala Vida/Maná, Acción ni exime del Descanso. Efectos de interrupción requieren B3 |
+| FEE-T50 | Silfo camina frente a ráfagas de viento **mundano ordinario** que son la única causa del sobrecoste | Ignora esa penalización concreta al **desplazamiento**; otras causas (hielo, escombros, Exhausto) no desaparecen |
+| FEE-T51 | Un hechizo produce **viento físico** que intenta Empujar al Silfo | Primera cláusula sólo cubre viento **mundano ordinario**; la segunda dice Empujar «causado por viento», sin reiterar «mundano». **Pendiente B3** determinar si efecto aplica Escala y es propiamente empuje de viento; no inmunidad al hechizo ni +Defensa |
+| FEE-T52 | `Martillo Cinético` desplaza al Silfo como impulso mágico, sin describir viento | No se convierte en Empujar **causado por viento** por su mera naturaleza de desplazamiento. No gana Escala efectiva por Cuerpo del Viento para un golpe cinético no ventoso |
+
+**Pendientes prioritarios:** B3 debe reproducir alternancia suelo/aire, caída entre turnos, interrupción por Reacción, enraizamiento/desanclaje, viento mágico con desplazamiento definido y el plazo de siete días; B4 debe medir importancia real de Hada/Sátiro/Dríade/Silfo frente a otras once familias.
