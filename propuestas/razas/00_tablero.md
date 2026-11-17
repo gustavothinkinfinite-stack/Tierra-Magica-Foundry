@@ -14,7 +14,7 @@
 | 06 | Terios/Anihombres | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: Variedad/función anatómica, vuelo y equipo; B4: Renkai y biología |
 | 07 | Feéricos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B3: vuelo Hada, viento, raíz; B4: contraste Verdantes y Terios |
 | 08 | Ankar | Borrador integral v0.1 + **B1 canon/lore completado, con correcciones** | B2/B3: detección 6 espacios y efectos mixtos; B4: tradición y biología |
-| 09 | Cristálidos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar fisiología propuesta y playtest de conducción, interfaces y Resonancia |
+| 09 | Cristálidos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: interfaz de Conductor, ocultaciones, acciones; B3: energía/recursos; B4: biología |
 | 10 | Verdantes | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar CLN-01, biología y test de Enraizar/biomas |
 | 11 | Micelios | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Enlace, alcance, retransmisión y evaluar MIC-08 |
 | 12 | Coralios | Borrador integral v0.1 completo para revisión global (no aprobado) | B1/B2: comparar hidratación, Movimiento 5/6, Protección, Sentido y Anfibio 1 PR |
@@ -28,7 +28,7 @@
 |---|---|---|---|
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
-| B1. Canon y lore | **En curso: 8/12 (hasta Ankar)** | Auditoría individual por 12 familias | Próximo: Cristálidos, luego 3 restantes |
+| B1. Canon y lore | **En curso: 9/12 (hasta Cristálidos)** | Auditoría individual por 12 familias | Próximo: Verdantes, luego Micelios y Coralios |
 | B2. Mecánicas y costes | Pendiente | Auditoría exhaustiva contra subsistemas completos | Tras B1, por familia |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
@@ -206,3 +206,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Corregido `08_ankar/auditoria_y_desarrollo.md`: Sentido del Umbral no se declara radar pasivo de escaneo continuo (canon no cuantifica activación ni paredes); adjudicación de Custodia del Alma en ataques compuestos se rotula **PROPUESTA** y se deriva B2; hospitales Ankar en Guerra de Coronas Rotas se identifican como leyenda local propuesta, no hecho ratificado.
 - Corregido `08_ankar/doble_pagina.md`: detalles de la primera alma se identifican como tradición mítica, no diálogo literalmente certificado. **835 palabras imprimibles**. La matriz `pruebas_balance.md` contiene **30 casos documentales, ninguno empírico**.
 - **Progreso B1: 8/12**, siguiente Cristálidos. Se mantienen todas las fases B2–B5 y C pendientes; ningún cambio en `main`, Foundry o atlas.
+
+### 2026-11-17 — B1 Cristálidos: interfaz compatible sin frase obligatoria
+- Reabiertos en `main` el paquete Cristálido v0.3, Khorun/Primera Forja, Familiares/Cristales de Resonancia tras Fractura y exclusión de CRAFT-05/07; revisados los cinco documentos de `09_cristalidos/`.
+- Creado `09_cristalidos/auditorias/01_canon_y_lore.md`: **26 verificaciones canónicas**, **11 comparaciones de identidad** y **7 incidencias**.
+- Corregido `09_cristalidos/auditoria_y_desarrollo.md`: el Protocolo de Acoplamiento Seguro ya no exige que un plano contenga literalmente «admite Conductor Vivo»; basta constancia de compatibilidad diseñada de dispositivo, ritual, proyecto o fenómeno, sin presumirla. La adjudicación de ocultaciones especializadas de Resonancia pasa a B2 y no se declara canon inventado.
+- Corregidos casos **CRI-T46 y CRI-T47** en `pruebas_balance.md` para reflejar diferencia entre diseño compatible y etiqueta literal. Hay **52 casos documentales, 0 pruebas empíricas**. `doble_pagina.md` mantiene **712 palabras**.
+- **Progreso B1: 9/12**, siguiente Verdantes; pendientes Micelios y Coralios, B2–B5 y doce textos finales. Ninguna modificación a `main`, Foundry o mapa.
