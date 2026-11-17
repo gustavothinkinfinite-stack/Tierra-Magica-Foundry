@@ -19,6 +19,6 @@
 - Balance empírico y prueba de maquetación: **pendientes**.
 
 ## Decisiones propuestas cerradas dentro del borrador
-Adoptar Red de Reparaciones/Mesas de Segunda Solución para ciertas comunidades goblins; Registro de Responsabilidades/Consejos de Turno para hobgoblins; Casas de Umbral para bugbears; Tres Preguntas y tres lecturas del Ojo como prácticas locales, nunca universales. Mantener abierta la naturaleza literal del Primer Desafío y el origen de Kobolds hasta cosmología dracónica.
+Adoptar Red de Reparaciones/Mesas de Segunda Solución para ciertas comunidades goblins; Registro de Responsabilidades/Consejos de Turno para hobgoblins; Casas de Paso Seguro para bugbears; Tres Preguntas y tres lecturas del Ojo como prácticas locales, nunca universales. Mantener abierta la naturaleza literal del Primer Desafío y el origen de Kobolds hasta cosmología dracónica.
 
 **Próxima raza:** Terios/Anihombres, con linaje, variedad, presupuesto de adaptaciones y pruebas de vuelo, armas naturales y movilidad. No escribir en `main` ni Foundry.
