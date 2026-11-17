@@ -587,3 +587,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Corrección de ruta:** la matriz real es [`auditorias/05_matriz_global_y_regresiones.md`](./auditorias/05_matriz_global_y_regresiones.md); no existe `05_b5_matriz_global_12x12.md`.
 - Creado [`auditorias/05_b5_registro_66_pares_cotejo_documental.md`](./auditorias/05_b5_registro_66_pares_cotejo_documental.md): **66/66 pares con frontera de compatibilidad cotejada por lectura**, no 66 pruebas nuevas ni certificadas; **0/66 ejecutados**, 0 Foundry/mesa. Persisten los siete bloqueos editoriales.
 - **B5 abierta; C bloqueada.** Próximo bloque: cerrar alternativas operativas de I01/I02/I04/I05/I06/I08/I10 con casos de aceptación completos y actualizar acta global. Escritura sólo rama/carpeta autorizadas.
+
+### 2026-11-17 — B5: siete alternativas operativas seleccionadas
+- Releídos tablero, README, plan, matriz real, registro 66 pares, anexos PROC/NEX/AMP/Hobgoblin y Manual Maestro `main` blob `334770e7ed7d2605767aecb169f57da6c1100508`.
+- Creado [`auditorias/05_b5_decisiones_operativas_siete_bloqueos.md`](./auditorias/05_b5_decisiones_operativas_siete_bloqueos.md): D01/D02/D04/D05/D06/D08/D10, costes y límites, casos de aceptación y contraejemplos. **No canónico**. Particularmente: Anfibio Coralio 1 PR como fuente independiente (propuesta), Hobgoblin sin bono nuevo, prototipos de laboratorio no son dispositivos canónicos.
+- **0 Foundry/mesa; B5 abierta y C bloqueada.** Siguiente: comprobar contra reglas exactas de subsistemas del Manual Maestro, corregir contradicciones, revisar aceptación de cruces críticos y actualizar acta de puerta C. No merge.
