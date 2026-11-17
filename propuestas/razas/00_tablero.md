@@ -7,7 +7,7 @@
 | Nº | Familia | Estado del borrador | Siguiente trabajo |
 |---:|---|---|---|
 | 01 | Humanos | Doble página v0.1 elaborada en conversación; aún por archivar aquí | Archivar / verificar capítulo canónico, pulir e incluir brief |
-| 02 | Enanos | Expediente v0.2, doble página v0.2, brief visual y matriz de pruebas guardados | Auditoría cruzada, pulido de texto y cierre como borrador; luego Humanos y Élficos |
+| 02 | Enanos | Borrador integral v0.2 completo para revisión global (no aprobado) | Tras revisión conjunta: decidir lore biológico y realizar playtest empírico |
 | 03 | Élficos | Pendiente | Auditoría de cosmos, tres tradiciones y sociedad; primera doble página |
 | 04 | Orcos | Pendiente | Auditoría, sociedades modernas, reglas, doble página |
 | 05 | Goblinoides | Pendiente | Desarrollar tres variantes, auditar potencial desequilibrio |
@@ -27,8 +27,13 @@
 - Creado convenio de producción y registro.
 - Elaborado `02_enanos/auditoria_y_desarrollo.md` como desarrollo cultural completo propuesto: fisiología, cuatro tradiciones, historia, instituciones, religión, vida cotidiana, tensiones, relaciones y reglas.
 - Preparada la doble página `02_enanos/doble_pagina.md` y brief `02_enanos/brief_arte.md` para revisión global.
-- **Próximo ciclo:** completar `02_enanos/pruebas_balance.md`, validar contra núcleo e investigar posibles límites de Cuerpo de Piedra / Sangre de Metal; luego archivar Humanos o iniciar Élficos.
+- Se completó `02_enanos/pruebas_balance.md` con 24 casos de prueba de aceptación documental (no son playtests realizados).\n- Se añadió `02_enanos/cierre_editorial.md` con auditoría cruzada y decisiones propuestas.\n- **Próximo ciclo:** archivar Humanos y avanzar al expediente completo de Élficos.
 - No se han modificado `main`, Foundry ni el Manual Maestro activo.
 
 ## Criterio de finalización
 Una raza estará **borrador completo para revisión** cuando posea fuente citada, expediente de desarrollo consistente, doble página lista para maquetar, brief visual, pruebas mecánicas y lista de diferencias respecto del canon. Su estado de aprobación por el creador seguirá siendo **PENDIENTE**.
+
+### 2026-11-16 — Segundo avance: cierre técnico de Enanos
+- Verificado el paquete mecánico contra canon de `main` y realizado control de extensión: 852 palabras con encabezados y nota editorial.
+- Creado `02_enanos/cierre_editorial.md` para el cierre como borrador completo; permanece pendiente de aprobación global.
+- Pendiente exclusivamente: pruebas empíricas y revisión del creador antes de cualquier ratificación.
