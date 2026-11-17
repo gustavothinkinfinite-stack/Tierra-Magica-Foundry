@@ -10291,7 +10291,7 @@ El siguiente bloque es **CRAFT-13 — Implementación Foundry VTT del sistema de
 
 ## 19. Economía, disponibilidad y equipo
 
-Las reglas de **uso práctico** de armas, armaduras, escudos, munición, Kits, raciones, consumibles y dispositivos están en el capítulo **9. Armas, armaduras y escudos**. Este capítulo define principalmente precio, Disponibilidad, mercado y adquisición.
+Las reglas de **uso práctico** de armas, armaduras, escudos, munición, Kits, raciones, consumibles y dispositivos están en el capítulo **9. Armas, armaduras, equipo y suministros**. Este capítulo define principalmente precio, Disponibilidad, mercado y adquisición.
 
 ### Moneda canónica
 
