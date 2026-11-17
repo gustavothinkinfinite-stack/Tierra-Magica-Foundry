@@ -136,3 +136,12 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 5. No tocar `main`, Manual Maestro, atlas ni código Foundry. Toda resolución sigue siendo **propuesta** hasta aprobación del creador.
 
 **Siguiente bloque sustantivo:** resolver **B5-I01 movimiento multimodal** con tabla de secuencias, alternativas, costes y casos límite; después I02 anclaje y I03 sentidos.
+
+## Avance 17-11-2026 — B5-I01 movimiento multimodal
+
+- **Estado:** propuesta documental desarrollada, **no canonizada ni validada empíricamente**. Ver [`05_b5_i01_movimiento_multimodal.md`](./05_b5_i01_movimiento_multimodal.md).
+- **B5-I01-P01:** presupuesto fraccional único `Σ(c/V_medio) ≤ 1` por tramo, sin sumar velocidades ni reiniciar al cambiar medio; Correr consume Acción y abre tramo nuevo.
+- **B5-I01-P02:** Retirada conserva límite reducido; propuesta de fracción equivalente al medio inicial y redondeo canónico en medio homogéneo.
+- **B5-I01-P03:** registrar altura, apoyo, Carga, ventana y caída; no regalar Reacciones ni aterrizaje.
+- **20 regresiones DOC B5-I01-T01–T20**, no ejecutadas; cruces prioritarios **X06-07, X06-12 y X07-12**. Pendientes: orden de caída/interrupción, diagonal/vertical, Retirada con múltiples amenazas y ejecución de pruebas.
+- **Siguiente incidencia: B5-I02**, anclaje Dríade/Verdante, Derribar, Martillo Cinético y pérdida de soporte.
