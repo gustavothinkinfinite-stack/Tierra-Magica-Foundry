@@ -581,3 +581,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Leídos tablero, README, plan, acta, protocolos de movimiento/anclaje/0 Vida, enlace/Conductor, Anfibio, Hobgoblin y sentidos/sustento; revalidado Manual Maestro `main` blob `334770e7ed7d2605767aecb169f57da6c1100508`.
 - Nuevo [`auditorias/05_b5_conciliacion_bloqueos_y_criterios_de_salida.md`](./auditorias/05_b5_conciliacion_bloqueos_y_criterios_de_salida.md): estado R/D/V para las 12 incidencias, siete decisiones pendientes explicitadas y seis guiones de cruce; **0 ejecuciones Foundry/mesa**. No sumar guiones a pruebas ejecutadas.
 - **B5 abierta, C bloqueada.** Se intentó leer `auditorias/05_b5_matriz_global_12x12.md`, ruta inexistente (404): localizar la matriz real antes de afirmar revisión de 66 pares. Siguiente: revisión pareja por pareja y cierre de decisiones D. Sin escritura fuera de rama/carpeta.
+
+### 2026-11-17 — B5: matriz original localizada y registro individual de 66 pares
+- Releídos tablero, README, plan, última conciliación, matriz original y Manual Maestro `main` blob `334770e7ed7d2605767aecb169f57da6c1100508`.
+- **Corrección de ruta:** la matriz real es [`auditorias/05_matriz_global_y_regresiones.md`](./auditorias/05_matriz_global_y_regresiones.md); no existe `05_b5_matriz_global_12x12.md`.
+- Creado [`auditorias/05_b5_registro_66_pares_cotejo_documental.md`](./auditorias/05_b5_registro_66_pares_cotejo_documental.md): **66/66 pares con frontera de compatibilidad cotejada por lectura**, no 66 pruebas nuevas ni certificadas; **0/66 ejecutados**, 0 Foundry/mesa. Persisten los siete bloqueos editoriales.
+- **B5 abierta; C bloqueada.** Próximo bloque: cerrar alternativas operativas de I01/I02/I04/I05/I06/I08/I10 con casos de aceptación completos y actualizar acta global. Escritura sólo rama/carpeta autorizadas.
