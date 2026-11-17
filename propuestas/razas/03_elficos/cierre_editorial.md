@@ -8,7 +8,7 @@
 - `auditoria_y_desarrollo.md`: 2.224 palabras aprox. de revisión y propuestas biológicas, históricas, sociales y religiosas.
 - `doble_pagina.md`: página izquierda narrativa y página derecha jugable; **835 palabras imprimibles** en la revisión actual (excluidos la nota de edición y el rótulo de estado).
 - `brief_arte.md`: dirección artística de escena principal «Acuerdo del río vivo» y cuatro viñetas optativas, sin imagen generada.
-- `pruebas_balance.md`: 24 casos iniciales de aceptación documental **más 12 regresiones B2 (ELF-T25–T36) = 36 casos**, todos con resultados esperados, sin pruebas de campo ejecutadas.
+- `pruebas_balance.md`: 24 casos iniciales de aceptación documental **más 12 regresiones B2 y 20 B3 (ELF-T37–T56) = 56 casos**, todos con resultados esperados, sin pruebas de campo ejecutadas.
 
 ## Auditoría cruzada
 1. **Eïra y cosmología:** el Pueblo Élfico nace de la Savia de la Primera Semilla. No se atribuye su origen a otro primordial. Conforme.
@@ -42,3 +42,10 @@
 ### Actualización 17-11-2026 — Auditoría B2
 - Disponible `auditorias/02_mecanicas_y_costes.md`: 12 fichas de subsistemas, 15 escenarios, 8 incidencias. Se aclara que una alteración vital mágica **presente** no depende de la etiqueta técnica Sostenido. No se añade radio, coste, Fuente o Habilidad al paquete.
 - Los 36 casos siguen documentales: **cero ejecuciones de Foundry o partidas empíricas**. B3/B4 continúan pendientes; el texto inicial no pasa aún a versión final del manual.
+
+
+### Actualización 17-11-2026 — Auditoría B3
+- Informe creado `auditorias/03_exploits_y_pruebas.md`: **20 intentos de exploit, cuatro secuencias paso a paso y diez incidencias**; `pruebas_balance.md` contiene **56 criterios documentales** (36 anteriores + 20 B3). `modelo_auxiliar_b3_elficos.js` conserva **16 fixtures**, con 16 coincidencias en lógica ad hoc, **no en Foundry**.
+- **Control principal:** Sentidos Élficos no acumula +1 con `Sentido Agudo` equivalente ni mejora Iniciativa; Resonancia requiere afección vital mágica directa, significativa, actual y área perceptible. No basta que un Hechizo sea Sostenido, ni se exige esa etiqueta si hay ritual/efecto vital todavía activo.
+- **Abiertos a B4/B5:** definición cualitativa de «significativa», perceptibilidad y ocultación (`Velo Sensorial`) y umbral entre magia que afecta directamente ecosistema y consecuencias secundarias de magia industrial/climática. No asignar radio, DF, Maná, Acción o detector de Hechizos nuevo.
+- Evidencia: **56 DOC; 16 MOD; 0 pruebas del motor Foundry; 0 sesiones de mesa**. El borrador de doble página no es versión final; se preservaron el paquete canónico y `main`. Siguiente B3 Orcos.
