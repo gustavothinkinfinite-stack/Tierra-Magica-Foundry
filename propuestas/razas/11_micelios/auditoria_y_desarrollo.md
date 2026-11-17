@@ -65,8 +65,8 @@ Colegios vecinales dedicados a repartir agua, sustratos nutritivos y acceso a ja
 ### 2. Archivos de Esporas — identidad que merece conservarse
 Redes de escribas, historiadores, cuidadores y escuelas que registran testimonios **mediante documentos, oralidad, objetos y memoria personal**, no por absorción directa desde redes de hongos. **Institución:** *Salas de Testigos*. **Rito:** *Nombre Fuera de la Red*, ceremonia donde una persona registra decisiones y errores como individuo. **Tensión:** colectivismo cívico vs. privacidad, censura y titularidad de memorias. No crea archivo racial mágico.
 
-### 3. Custodios de Trama Viva — infraestructura compartida
-Técnicos y horticultoras que mantienen redes miceliales vivas en pasajes, invernaderos, depósitos y lugares de reunión. El nombre «Trama Viva» es **institución física propuesta**, no el concepto universal de **la Trama** cosmológica del Manual Maestro. **Institución:** *Consejos de Continuidad*, responsables de sanidad, rutas de mantenimiento y acceso consentido. **Rito:** *Revisión del Hilo*, inspección de continuidad de una red antes de eventos comunitarios. **Tensión:** quién controla acceso a redes de información, privacidad y riesgo de sabotaje. Enlace racial sigue limitado a 12 espacios y mensajes simples.
+### 3. Custodios de la Red Viva — infraestructura compartida
+Técnicos y horticultoras que mantienen redes miceliales vivas en pasajes, invernaderos, depósitos y lugares de reunión. La denominación **Red Viva** alude únicamente a infraestructura fúngica material y **no** a la **Trama** cosmológica del Manual Maestro; se evita la anterior etiqueta ambigua «Trama Viva». **Institución:** *Consejos de Continuidad*, responsables de sanidad, rutas de mantenimiento y acceso consentido. **Rito:** *Revisión del Hilo*, inspección de continuidad de una red antes de eventos comunitarios. **Tensión:** quién controla acceso a redes de información, privacidad y riesgo de sabotaje. Enlace racial sigue limitado a 12 espacios y mensajes simples.
 
 ### 4. Círculos de Desprendimiento — libertad de no estar conectado
 Asociaciones de viajeros, comerciantes, artistas, escépticos y personas que viven lejos de colonias y defienden independencia corporal. **Institución:** *Posadas Secas* (nombre tradicional, **no necesariamente deshidratadas**), alojamiento con control de humedad y nutrición. **Rito:** *La Primera Desconexión*, celebración de autonomía personal, no corte forzoso de redes. **Tensión:** expectativas de participación colectiva vs. derecho a guardar secretos o migrar. No elimina Quimiosensibilidad ni otorgar inmunidad al aislamiento.
@@ -121,7 +121,7 @@ Secuencia obligatoria: **(1)** red fúngica viva, compatible y **continua**; **(
 | MIC-02 | Cuatro perfiles ecológicos estéticos, no subrazas | Dirección racial sin bonus |
 | MIC-03 | Casas del Sustrato y Mesas de Abasto Húmedo | Cultura |
 | MIC-04 | Archivos de Esporas y Salas de Testigos | Cultura |
-| MIC-05 | Custodios de Trama Viva y Consejos de Continuidad | Infraestructura social |
+| MIC-05 | Custodios de la Red Viva y Consejos de Continuidad | Infraestructura social; nombre revisado en B1 para evitar confusión con la Trama cosmológica |
 | MIC-06 | Círculos de Desprendimiento y Posadas Secas | Cultura y autonomía |
 | MIC-07 | Vigilia de la Descomposición Fértil | Rito local sin magia |
 | MIC-08 | Lista de continuidad comprobable | Guía editorial no canónica |
