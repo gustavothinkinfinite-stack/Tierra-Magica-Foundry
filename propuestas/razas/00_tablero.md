@@ -13,7 +13,7 @@
 | 05 | Goblinoides | Borrador integral v0.1 + **B1 canon/lore completo con corrección cultural** | B2/B3: Ojo, Escurridizo, Complexión; B4: biología y balance Hobgoblin |
 | 06 | Terios/Anihombres | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: Variedad/función anatómica, vuelo y equipo; B4: Renkai y biología |
 | 07 | Feéricos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2/B3: vuelo Hada, viento, raíz; B4: contraste Verdantes y Terios |
-| 08 | Ankar | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Sentido del Umbral, Custodia del Alma y revisar instituciones |
+| 08 | Ankar | Borrador integral v0.1 + **B1 canon/lore completado, con correcciones** | B2/B3: detección 6 espacios y efectos mixtos; B4: tradición y biología |
 | 09 | Cristálidos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar fisiología propuesta y playtest de conducción, interfaces y Resonancia |
 | 10 | Verdantes | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar CLN-01, biología y test de Enraizar/biomas |
 | 11 | Micelios | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Enlace, alcance, retransmisión y evaluar MIC-08 |
@@ -28,7 +28,7 @@
 |---|---|---|---|
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
-| B1. Canon y lore | **En curso: 7/12 (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos)** | Auditoría individual por 12 familias | Próximo: Ankar, luego 4 restantes |
+| B1. Canon y lore | **En curso: 8/12 (hasta Ankar)** | Auditoría individual por 12 familias | Próximo: Cristálidos, luego 3 restantes |
 | B2. Mecánicas y costes | Pendiente | Auditoría exhaustiva contra subsistemas completos | Tras B1, por familia |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
@@ -199,3 +199,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Correcciones en `07_feericos/auditoria_y_desarrollo.md`: Naturaleza Feérica sigue siendo descriptor, sin convertirlo en sustento mágico adicional de vuelo Hada; «familia mixta» corregido a hogar multirrama por adopción/convivencia; «Liturgia del Umbral Verde» sustituida por **Liturgia del Ciclo Vivo** para no confundirla con Vaelun. También actualizado `cierre_editorial.md`.
 - Continuidad de la Raíz de siete días sigue **opcional y no canónica**, pendiente de B2/B3, no añadida a la doble página. Borrador impreso **742 palabras**, pruebas **36 casos documentales, cero playtests ejecutados**.
 - **B1: 7/12**, próxima Ankar. B2–B5 y textos finales de Manual Básico aún pendientes; no detener automatización ni editar `main`, Foundry o cartografía.
+
+### 2026-11-17 — B1 Ankar: cosmología y límites de Sentido
+- Se releyó `main` paquete Ankar v0.3, §25 Primordiales, §32 Vaelun/Primer Tránsito (alma, espíritu, eco, las Tres Obligaciones, No Muerte, Nereth), Orígenes y cronología. Se verificaron cinco documentos de `08_ankar/` y la ausencia de B1 previa.
+- Creado `08_ankar/auditorias/01_canon_y_lore.md`: **26 comparaciones canónicas**, **11 distinciones narrativas** entre familias y **7 incidencias** con severidad, corrección y fase pendiente.
+- Corregido `08_ankar/auditoria_y_desarrollo.md`: Sentido del Umbral no se declara radar pasivo de escaneo continuo (canon no cuantifica activación ni paredes); adjudicación de Custodia del Alma en ataques compuestos se rotula **PROPUESTA** y se deriva B2; hospitales Ankar en Guerra de Coronas Rotas se identifican como leyenda local propuesta, no hecho ratificado.
+- Corregido `08_ankar/doble_pagina.md`: detalles de la primera alma se identifican como tradición mítica, no diálogo literalmente certificado. **835 palabras imprimibles**. La matriz `pruebas_balance.md` contiene **30 casos documentales, ninguno empírico**.
+- **Progreso B1: 8/12**, siguiente Cristálidos. Se mantienen todas las fases B2–B5 y C pendientes; ningún cambio en `main`, Foundry o atlas.
