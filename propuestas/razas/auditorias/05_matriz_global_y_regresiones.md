@@ -211,3 +211,8 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - [`05_b5_procedimiento_movimiento_anclaje_vida.md`](./05_b5_procedimiento_movimiento_anclaje_vida.md): cuatro propuestas B5-PROC-P01–P04 y veinte guiones DOC no ejecutados PROC-T01–T20.
 - Resuelve editorialmente orden propuesto de declaración, MOV, daño, desplazamiento, soporte, caída e Incapacitado, sin cambiar canon. Retirada multimodal, Derribar y persistencia a 0 Vida siguen pendientes; **0 Foundry/mesa**.
 - **Siguiente:** I04 enlace micelial + I08 Conductor Vivo; B5 NO cerrada.
+
+## Avance 17-11-2026 — Protocolo I04/I08 de red y Conductor Vivo
+- [`05_b5_protocolo_enlace_conductor_y_corte.md`](./05_b5_protocolo_enlace_conductor_y_corte.md): cuatro propuestas B5-NEX-P01–P04 y 20 regresiones B5-NEX-T01–T20 **DOC no ejecutadas**.
+- Contratos separados de red viva y puente compatible; 12 espacios y geometría propuesta; consentimiento y continuidad, desconexión, Energía/Caudal, orden de gasto y 0 Vida.
+- I04/I08 **siguen abiertas** hasta validar geometría y diseños concretos. **55 propuestas, 278 criterios DOC diseñados, 0 Foundry/mesa.** Siguiente I05/I11 Anfibio y Rasgos equivalentes; fase C no autorizada.
