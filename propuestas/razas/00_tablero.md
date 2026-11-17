@@ -13,7 +13,7 @@
 | 05 | Goblinoides | Borrador v0.1; **B1, B2 y B3 documentales completas**, **69 DOC + 20 MOD auxiliares** | B4/B5: Ojo en Iniciativa, repetición de hechos, interrupción Escurridizo y balance Hobgoblin |
 | 06 | Terios/Anihombres | Borrador v0.1; **B1, B2 y B3 documentales completas**, **84 DOC + 22 MOD auxiliares** | B4/B5: Variedad A→B, branquias/Anfibio, vuelo bajo Carga, tramos mixtos y balance |
 | 07 | Feéricos | Borrador v0.1; **B1, B2 y B3 documentales completas**, **76 DOC + 24 MOD auxiliares** | B4/B5: Hada apoyos/velocidades, Dríade Derribar/desanclaje, Silfo viento mágico |
-| 08 | Ankar | Borrador v0.1; **B1 y B2 documentales completas**; 44 casos | B3: alcance/frecuencia, apilamiento mental y efectos compuestos; B4: balance |
+| 08 | Ankar | Borrador v0.1; **B1, B2 y B3 documentales completas**; **68 DOC, 0 Foundry/mesa** | B4/B5: frecuencia de Sentido, barreras, efectos mentales mixtos y apilamiento |
 | 09 | Cristálidos | Borrador v0.1; **B1 y B2 documentales completas**; 68 casos | B3: conexión, Sobrecarga y ocultación; B4: biología y balance |
 | 10 | Verdantes | Borrador v0.1; **B1 y B2 documentales completas**; 56 casos | B3: Enraizar, Sustento, Bioma; B4: CLN-01 y balance |
 | 11 | Micelios | Expediente v0.1; **B1 y B2 documentales completas**, 60 criterios | B3: distancia/red/barreras/retransmisión; B4: utilidad química y biología |
@@ -30,7 +30,7 @@
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Ankar** |
-| B3. Exploits y secuencias | **DOCUMENTAL: 7/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos) | B3 Feéricos: 76 DOC, 24 MOD (2 estados abiertos), **0 Foundry/mesa** | **Siguiente: Ankar**, luego restantes |
+| B3. Exploits y secuencias | **DOCUMENTAL: 8/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar) | B3 Ankar: **68 DOC**, 24 nuevos, 4 secuencias, 10 incidencias, **0 Foundry/mesa** | **Siguiente: Cristálidos**, luego restantes |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -348,3 +348,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Dríade:** Enraizar cuesta Acción, libera por 1 MOV, +1 Escala efectiva sólo al resistir Empujar, Derribar/desplazamiento físico impuesto; ninguna Defensa/Protección gratis. Distinta redacción literal respecto a inmovilidad Verdante, suelo destruido y viabilidad de Derribar **ABIERTAS B4/B5**; `FEE-PB2-02` y módulo `Continuidad de la Raíz` (7 días) siguen **propuestas no ratificadas**.
 - **Silfo:** ignora penalización de desplazamiento únicamente por viento mundano ordinario; +1 Escala efectiva sólo para resistir Empujar causado por viento, segunda cláusula sin repetir «mundano». Viento mágico físicamente causante de Empujar y reglas de hechizos **ABIERTAS B4/B5**; no inmunidad ni vuelo innato.
 - **B3 documental: 7/12**, siguiente **Ankar**; B1/B2 12/12. B4/B5/manual final propuesto pendientes. **0 tests Foundry, 0 playtests**. No se editó `main`, Manual Maestro, sistema ni cartografía.
+
+### 2026-11-17 — B3 Ankar: Sentido, Custodia, efectos mixtos y no-apilamiento
+- Reabierto canon en `main:docs/Tierra_Magica_Manual_Maestro.md` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`), paquete Ankar v0.3, Vaelun, Defensa Mental, Influencia, Acción/Reacción, creación, geografía y reglas de no-apilamiento. Leídos `README.md`, `00_plan_auditorias_y_manual.md`, expediente Ankar, B1/B2 y tablero; B3 no existía y no se repitió.
+- Creado `08_ankar/auditorias/03_exploits_y_pruebas.md`: **24 regresiones ANK-45–ANK-68**, 4 secuencias, 10 incidencias, 4 propuestas no canónicas `ANK-PB3-01–04`. `pruebas_balance.md` total **68 DOC**, **0 MOD, 0 Foundry, 0 mesa**. Sin inventar tests empíricos.
+- **Sentido del Umbral:** seis espacios, sólo presencia general de categorías enumeradas; posesión no es disparador autónomo; no radar, coordenadas, familiar remoto, exorcismo ni línea de efecto. Frecuencia y barreras **B5 abiertas**.
+- **Custodia del Alma:** +1 Defensa Mental únicamente en intervención espiritual descrita; no miedo, ilusión o sugestión. `Mente Anclada` cuesta 3 Maná/Reacción, +2 Mental, y no se apila con `Valor Inspirado` equivalente. **+1 racial +2 mágico** queda **propuesta ANK-PB3-03**, no canon; efecto mixto indivisible también requiere B4/B5.
+- Actualizados `auditoria_y_desarrollo.md`, `pruebas_balance.md` y `cierre_editorial.md`. B3 **8/12**; siguiente **Cristálidos**. B4, B5 y fase C pendientes. No se editó `main`, Manual Maestro, mapa ni código Foundry.
