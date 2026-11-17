@@ -11,7 +11,7 @@
 | 03 | Élficos | Borrador v0.1; **B1, B2 y B3 documentales completas**, 56 DOC y 16 MOD (no Foundry) | B4/B5: significación, ocultación, efecto directo/indirecto y valor comparado |
 | 04 | Orcos | Borrador v0.1; **B1, B2 y B3 documentales completas**, 64 DOC, 20 MOD (no Foundry) | B4/B5: gasto de Voluntad sin efecto, orden Ayuda/Ventaja, comparación de Complexión |
 | 05 | Goblinoides | Borrador v0.1; **B1, B2 y B3 documentales completas**, **69 DOC + 20 MOD auxiliares** | B4/B5: Ojo en Iniciativa, repetición de hechos, interrupción Escurridizo y balance Hobgoblin |
-| 06 | Terios/Anihombres | Borrador v0.1; **B1 y B2 documentales completas** | B3: branquias/Anfibio, Variedad, vuelo, equipamiento; B4: Renkai/biología |
+| 06 | Terios/Anihombres | Borrador v0.1; **B1, B2 y B3 documentales completas**, **84 DOC + 22 MOD auxiliares** | B4/B5: Variedad A→B, branquias/Anfibio, vuelo bajo Carga, tramos mixtos y balance |
 | 07 | Feéricos | Borrador integral v0.1 + **B1 y B2 documentales completas**; 52 casos documentales | B3: vuelo mixto, desanclaje y viento; B4: contraste Verdantes/Terios |
 | 08 | Ankar | Borrador v0.1; **B1 y B2 documentales completas**; 44 casos | B3: alcance/frecuencia, apilamiento mental y efectos compuestos; B4: balance |
 | 09 | Cristálidos | Borrador v0.1; **B1 y B2 documentales completas**; 68 casos | B3: conexión, Sobrecarga y ocultación; B4: biología y balance |
@@ -29,8 +29,8 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
-| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Terios** |
-| B3. Exploits y secuencias | **DOCUMENTAL: 5/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides) | B3 Goblinoides: 69 DOC, 20 MOD; **0 Foundry/mesa** | **Siguiente: Terios/Anihombres**, luego restantes |
+| B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías profundas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; **B3 sigue con Feéricos** |
+| B3. Exploits y secuencias | **DOCUMENTAL: 6/12** (Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios) | B3 Terios: 84 DOC, 22 MOD (3 estados abiertos), **0 Foundry/mesa** | **Siguiente: Feéricos**, luego restantes |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
@@ -332,3 +332,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Complexión Bugbear:** Grande efectiva sólo para Carga/objeto inerte, no escala real/equipo/manipulación de criatura, y no +1 FUE. **Abiertas B4:** valor de Hobgoblin y aplicación de Ojo a Iniciativa en supuesto excepcional. Sin modificar `main`, Foundry ni atlas.
 - **Progreso documental B3: 5/12**. Próximo **Terios/Anihombres**; B4/B5/manual final propuesto posteriores. **69 DOC, 20 MOD auxiliares, 0 ENV, 0 MESA**.
 
+
+### 2026-11-17 — B3 Terios/Anihombres: adaptaciones, branquias, vuelo y recursos
+- Reabierto y contrastado `main:docs/Tierra_Magica_Manual_Maestro.md` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`), paquete Terio v0.3, presupuesto Principal+Secundaria **o** Dominante, Variedad, anatomía funcional, Rasgos `Anfibio`/`Trepador Natural`/`Cola Prensil`/`Miembros Extra`, magia de Alteración, turnos, Correr/Retirada, Fatiga, Caídas, Protección, equipo y Origen. Revisados expediente y auditorías B1/B2.
+- Guardado `06_terios/auditorias/03_exploits_y_pruebas.md`: **24 intentos adversariales, 4 secuencias detalladas y 12 incidencias**. Ampliado `pruebas_balance.md` con `TER-T61–TER-T84`, para **84 criterios documentales en total, cero ejecutados como juego**. Modelo auxiliar `auditorias/modelo_auxiliar_b3_terios.js`: **22 fixtures con 22 coincidencias** en lógica ad hoc, **3 respuestas deliberadamente abiertas**; no es implementación Foundry. Sincronizados `auditoria_y_desarrollo.md` y `cierre_editorial.md`.
+- **ABIERTAS B4/B5:** reemplazo por Variedad de categorías diferentes y conversión del presupuesto A a B (equivalencia de plaza es **TER-02 propuesta**, no canon); branquias reales/funcionales frente a respiración **Anfibio 1 PR** (obligación de compra solo **propuesta conservadora**); pérdida de sustentación en vuelo bajo Carga Pesada/Excesiva y orden de Caídas/Reacciones; movimiento entre medios sin segunda reserva. Referencia de caída física efectiva de 4 espacios: 6 de daño base, sin afirmar caída automática al tomar peso.
+- **Bloqueos por canon:** Dominante no coexiste con Principal/Secundaria; no escala el paquete al subir nivel; vuelo no da Acciones/Movimientos nuevos ni hereda requisito de apoyo Hada; no ataques/escudos/recargas extra de órganos; Arma natural Daño3 Pen0 no suma daño de espada; Protección1 no suma armadura; Excavador no es `Fase Parcial`; Renkaino sigue Origen cultural no aprobado.
+- **B3 documental: 6/12; siguiente Feéricos.** B1/B2 12/12, B4/B5 y textos finales propuestos pendientes. **0 tests Foundry, 0 mesa**; no se modificaron `main`, sistema, Manual Maestro o cartografía.
