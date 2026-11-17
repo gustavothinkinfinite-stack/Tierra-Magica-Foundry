@@ -1,0 +1,97 @@
+# CRISTÁLIDOS — Pruebas de reglas, compatibilidad y exploits v0.1
+**Estado:** criterios documentales y guion de sesión; **NO son resultados de playtests ejecutados**.
+**Canon operativo:** `main:docs/Tierra_Magica_Manual_Maestro.md` paquete Cristálido de Matriz Mixta v0.3, reglas transversales, crafting, Familiares/Cristales de Resonancia, magia y Acciones. Propuestas del expediente etiquetadas por separado.
+
+## A. Identidad, creación y fisiología
+| Caso | Escenario | Resultado esperado |
+|---|---|---|
+| CRI-T01 | Crear personaje de Matriz Mixta | Ascendencia Cristálido de Matriz Mixta, Escala Mediana, Movimiento 6, tres rasgos operativos sin gastar los 25 PD ni 3 PR |
+| CRI-T02 | Cristálido de cuerpo completamente cristalino | Existe en el mundo pero **no** dispone del paquete PJ base: no extrapolar inmunidades ni números del Matriz Mixta |
+| CRI-T03 | Personaje sufre Fatiga | Matriz Mixta no elimina Fatiga, descanso ni penalizaciones asociadas |
+| CRI-T04 | Cristálido herido y tratado por Medicina | Medicina se aplica conforme a reglas generales y método apropiado; sin regeneración espontánea ni reparación con crafting |
+| CRI-T05 | Exposición a toxina/enfermedad | No posee inmunidad ni +VIG universal por tener componentes de cristal |
+| CRI-T06 | Fractura de faceta en combate | No recibe Protección adicional ni reduce daño por estructura cristalina, salvo regla externa costeada |
+| CRI-T07 | Creación de origen Kharumita | Idiomas Común de Concordia + Kharumita y una Faceta del Origen; no idioma racial Cristálido |
+| CRI-T08 | Comprar Ingeniería/Arcana | Costes PD ordinarios; la ascendencia no proporciona rangos gratuitos |
+| CRI-T09 | Cristálido anciano | Longevidad y memoria cultural no agregan PD, rangos, Fuente o Maná |
+| CRI-T10 | Religión de Khorun | No otorga Vínculo Divino, acceso a Fuente o rituales sin comprar Rasgos y Habilidades requeridos |
+
+## B. Resonancia Arcana
+| Caso | Escenario | Resultado esperado |
+|---|---|---|
+| CRI-T11 | Contacto directo con acumulador activo | Puede reconocer condición energética general si contiene/recibe/conduce/descarga energía mágica |
+| CRI-T12 | Misma pieza sin energía y sin funcionamiento | Puede reconocer que está inerte en el sentido de esta capacidad; no concluye razón de la inercia |
+| CRI-T13 | Máquina activa a 3 espacios sin contacto | No hay detección racial a distancia, radar ni lectura de todo el sistema |
+| CRI-T14 | Dispositivo al otro lado de una pared | Sin contacto directo, no detecta estado a través del muro |
+| CRI-T15 | Cristal con energía mágica no identificada | Puede reconocer estado pero **no Fuente ni hechizo** ni cantidad de energía |
+| CRI-T16 | Distinguir si artefacto fue construido por una orden concreta | Resonancia no identifica constructor, propósito ni procedencia; requiere investigación |
+| CRI-T17 | Averiguar cómo desactivar una trampa arcana | Reconocer descarga no concede instrucciones; usar Ingeniería, Arcana y método pertinente |
+| CRI-T18 | Cristal de Resonancia de Familiar en mano | No puede deducir compatible Familiar, rareza, viabilidad ni función específica por Resonancia sola |
+| CRI-T19 | Cristálido toca gran muro con circuito oculto lejano | Contacto con estructura no da cartografía, alcance infinito ni posición exacta de todos sus circuitos |
+| CRI-T20 | Un mineral mundano sin magia visible | No detecta vetas ocultas ni evalúa calidad/valor minero general; sólo estado energético |
+| CRI-T21 | Objeto encantado con efecto de ocultación explícita | Resolver ocultación con la regla del efecto; Resonancia no se declara infalible |
+| CRI-T22 | Resolver prueba de Investigación tras Resonancia | Información inicial puede ser pista, pero no bonifica la tirada automáticamente ni sustituye Habilidad |
+
+## C. Conductor Vivo
+| Caso | Escenario | Resultado esperado |
+|---|---|---|
+| CRI-T23 | Dispositivo tiene interfaz diseñada para Conductor Vivo | Puede servir de puente **voluntariamente** conforme al procedimiento y requisitos existentes |
+| CRI-T24 | Máquina genérica sin interfaz compatible | No puede activarla, recargarla ni sustituir un circuito inexistente por tocarla |
+| CRI-T25 | Falta Fuente, Método, herramientas o componente requerido | Conductor Vivo no satisface requisitos faltantes; operación inválida |
+| CRI-T26 | Falta Maná, Reserva o Caudal del proyecto | Cristálido no crea recursos nuevos ni aumenta disponibilidad |
+| CRI-T27 | Dispositivo exige operador entrenado | Conductor Vivo no concede Ingeniería, Arcana o Canalización; debe existir operador legal |
+| CRI-T28 | Conectar sin consentimiento | La activación **voluntaria** del rasgo no ocurre; otra coacción/magia se juzga por reglas propias, no se presupone |
+| CRI-T29 | Un proyecto sobrecarga su circuito | Cristálido puede sufrir efectos normales; no es inmune ni autorreparador |
+| CRI-T30 | Dos Cristálidos en línea para multiplicar salida | No añade Maná/energía; conexiones múltiples exigen diseño y requisitos explícitos, no exploit de apilamiento |
+| CRI-T31 | Cristálido como componente y usuario simultáneo de dos dispositivos | No duplica Acciones/Reacciones ni satisfice varias plazas de conductor automáticamente |
+| CRI-T32 | Cristálido intenta modificar resultado de un ritual que no admite puente | No; no puede convertir por ficción un ritual incompatible en interfaz aceptada |
+| CRI-T33 | Desconexión bajo falla técnica | Aplicar consecuencias del sistema concreto; el consentimiento no concede inmunidad a daños al desconectar |
+| CRI-T34 | Conductor participa en un dispositivo diseñado pero no posee Fuente | Puede actuar como puente cuando el diseño lo admita, **pero** no suple Fuente que el procedimiento requiera de operadores o componentes |
+| CRI-T35 | Tratar al Cristálido como batería portable | Inválido; no genera energía ni acumula reservas por su cuerpo |
+
+## D. Materiales, religión y límites transversales
+| Caso | Escenario | Resultado esperado |
+|---|---|---|
+| CRI-T36 | Extraer faceta corporal para convertirla en Cristal de Resonancia | No autoriza crear componente de Familiar, comercio o reserva de Maná |
+| CRI-T37 | Usar Cristales de Resonancia como gemas de crafting | Prohibición explícita del manual; no VI universal ni ranuras |
+| CRI-T38 | Fabricar Piedras de Impronta a partir de Cristales de Resonancia | No son lo mismo; fabricación emplea matrices arcanas procesadas conforme a CRAFT-07 |
+| CRI-T39 | Comparar Cristálido con Elemental de Cristal | No se transfieren resistencias, inmunidades ni efectos elementales por compartir aspecto |
+| CRI-T40 | Proponer Matriz Mixta + raza completamente cristalina a nivel 1 | No fusionar paquetes ni extrapolar beneficios sin norma de herencias mixtas |
+| CRI-T41 | Obtener familiar por tocar un Cristal de Resonancia | No crea Vínculo Familiar gratis; se aplican costes y condiciones canónicas de Familiar Mágico |
+| CRI-T42 | Tradición Talleres de Calibración | No concede Ingeniería, profesión, licencia, módulo ni equipamiento gratuito |
+| CRI-T43 | Tradición Casas de Faceta | Los cristales no guardan recuerdos automáticos; los archivos usan aprendizaje, oralidad, documentación |
+| CRI-T44 | Tradición Círculos de Desacople | Derecho narrativo a consentir no equivale a bonus de Defensa Mental o protección mágica |
+| CRI-T45 | Sanación por magia que involucra cristales | Requiere hechizo/ritual y coste; Matriz Mixta no cambia economía de Restauración/Trauma |
+
+## E. Casos del Protocolo de Acoplamiento Seguro [PROPUESTA]
+| Caso | Escenario | Resultado esperado dentro del borrador opcional |
+|---|---|---|
+| CRI-T46 | Plano declara interfaz compatible y se cumplen requisitos | Permitir acoplamiento según tiempo y proceso del propio dispositivo, sin nueva Acción gratuita |
+| CRI-T47 | Plano no declara interfaz | Rechazar suposición de compatibilidad; primero desarrollar un Proyecto/modificación legal, con sus costes normales |
+| CRI-T48 | Retirar consentimiento de conducción | Deja de conducir voluntariamente, pero no ignora daño o contratiempos de desconexión que especifique diseño |
+| CRI-T49 | Encadenar 3 conductores sin diseño de circuito | No multiplicar Caudal ni alcance por encadenamiento improvisado |
+| CRI-T50 | Supuesta inmunidad a arco de sobrecarga por ser mineral | No; la regla explícita niega inmunidad y el protocolo no puede concederla |
+| CRI-T51 | Contacto por medio de herramienta, cable o puente tercero | Resonancia exige contacto directo con objeto/estructura objetivo; no extenderla mediante conductor remoto |
+| CRI-T52 | Intentar almacenar energía en cuerpo al final de escena | No hay Reserva ni acumulación; no conservar una «carga» para escenas futuras |
+
+## F. Comparaciones y exploits de secuencia
+- **Cristálido vs. Enano:** el Enano tiene resistencia contextual y Escala efectiva para Carga; el Cristálido no obtiene esos beneficios por tener densidad mineral. Un Kharumita Cristálido no recibe Cuerpo de Piedra.
+- **Cristálido vs. Elemental de Tierra/Cristal:** un Elemental verdadero expresa materia consciente distinta, sin heredar el mismo paquete. Un Cristálido no posee Forma elemental por narración.
+- **Cristálido vs. dispositivo:** Conductor Vivo no sustituye al operador ni a la Fuente. Proyectos y rituales tienen costes, instalaciones, planos, requisitos y restricciones que la ascendencia no salta.
+- **Cristálido vs. familiar:** Cristales de Resonancia son anclas raras y no baterías; un Familiar sigue siendo criatura con voluntad, no aparato surgido de la carne del Cristálido.
+- **Iniciativa/combate:** Resonancia no da bono a Iniciativa, Ataque, Defensa ni un radar para detectar enemigos. Un dispositivo arcano que lance rayos debe seguir línea de efecto, cobertura y Acción de sistema.
+- **Recursos:** no permitir extraer facetas repetidamente para fabricar materiales; tampoco procesar un cuerpo como si fuera mineral de equipo sin ficción y reglas de lesión, consentimiento y adquisición.
+- **Tiempo:** si el proyecto exige una jornada, el Cristálido no lo termina con «un toque». No inventar tiempos universales de conexión que reemplacen planos específicos.
+
+## G. Guion recomendado de prueba de mesa
+1. Crear tres Cristálidos de Matriz Mixta con Orígenes Broncino, Kharumita y Lysendrino y un Humano ingeniero; verificar paquetes idénticos y formación por PD.
+2. Escena de exploración: inspeccionar una mina y una caldera; distinguir estado energético de identidad, localización y lectura de materiales.
+3. Escena de investigación: cinco artefactos, uno activo, otro inerte, otro con descarga, otro oculto y uno sin contacto; contar información obtenida y tiradas realmente necesarias.
+4. Escena de oficio: proyecto de interfaz diseñado para un conductor y otro sin interfaz; verificar costos, Fuente, operadores, Acciones y herramientas.
+5. Escena de riesgo: sobrecarga de sistema; comprobar que la ascendencia no convierte el daño en nulo y que Medicina y efectos de curación respetan el núcleo.
+6. Escena social: negociación del derecho a desconectar, contrato laboral e inspección; no conferir bonificaciones morales por pertenecer a tradición.
+7. Escena con Familiar: diferenciar Cristal de Resonancia de cuerpo Cristálido, Pacto, Fuente y accesorios de crafting.
+8. Registrar eficacia de Resonancia frente a capacidades de investigación adquiridas: ¿acelera demasiado la detección? ¿sigue existiendo valor de Habilidades? Someter a ajuste si aparece abuso real.
+
+## Dictamen
+**52 casos de aceptación documental redactados; ninguno ejecutado en partida real.** El paquete vigente es suficiente. El único componente de regla nuevo es **un procedimiento de verificación editorial opcional** (Protocolo de Acoplamiento Seguro) que no concede capacidades ni recursos y no debe tratarse como canon.
