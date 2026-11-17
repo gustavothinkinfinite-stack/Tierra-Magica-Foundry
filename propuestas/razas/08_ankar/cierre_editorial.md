@@ -5,7 +5,7 @@
 - `auditoria_y_desarrollo.md`: biología, ciclo vital, sociedades, historia, cuatro tradiciones, religión, ejemplos mecánicos y matriz de diferencias.
 - `doble_pagina.md`: página narrativa y página jugable, cuatro ejemplos de adjudicación y tres aventuras.
 - `brief_arte.md`: «La última carta» y cuatro viñetas, sin imagen generada.
-- `pruebas_balance.md`: 30 casos de aceptación documental, **no ejecutados en mesa**.
+- `pruebas_balance.md`: **30 casos iniciales + 14 regresiones B2 (ANK-31–ANK-44), total 44 casos documentales**, **no ejecutados en mesa ni Foundry**.
 ## Control cruzado
 1. **Ankar ≠ Terio Chacal:** Vaelun/Tránsito frente a Eïra/Sangre; la morfología no fusiona paquetes.
 2. **Tránsito ≠ muerte original:** la muerte precede a Vaelun; el destino último de las almas no está fijado.
@@ -20,3 +20,10 @@
 11. **Misterios conservados:** destino del alma, reencarnación/división, autómatas conscientes, manifestaciones divinas definitivas.
 12. **Pendientes:** playtest, revisión global del creador, maquetación y arte definitivo. No hacer merge ni escribir en `main`.
 **Próximo bloque:** Cristálidos — Matriz Mixta, contraste con formas cristalinas no jugables.
+
+
+### Actualización de auditoría B2 — 17-11-2026
+- Creado `auditorias/02_mecanicas_y_costes.md` con **16 fichas de subsistemas, 18 escenarios de análisis y 10 incidencias**. **44 pruebas documentales, cero ejecuciones reales**.
+- Distinción mecánica importante: `Sentido del Umbral` detecta cuatro tipos de fenómenos espirituales en radio 6, mientras `Custodia del Alma` otorga +1 Defensa Mental contra una lista parcialmente diferente (incluye posesión). No inferir detección automática de toda posesión.
+- Abiertos B3/B4: frecuencia de percepción y muros, sellos especializados, grupo de apilamiento entre `Mente Anclada` y Custodia, ataque mixto miedo/posesión y comparación de utilidad con otras razas. Las reglas completas de posesión/Nigromancia no están ratificadas.
+- No se modificaron `main`, Foundry, mapa ni doble página. Ninguna propuesta está aprobada.
