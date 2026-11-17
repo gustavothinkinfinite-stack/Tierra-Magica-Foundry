@@ -75,7 +75,7 @@
 
 **Instituciones propuestas:** *Casas de Ruta*, redes civiles de hospedaje, cartas de trabajo, aprendizaje e información verificable; cada comunidad puede sostenerlas de modo diferente. No son una organización transnacional canónica única.
 
-**Rito propuesto:** *Entrega de Herramientas*, ceremonia simbólica en la que un viajero recibe instrucciones, contactos y obligaciones de custodia, no una pieza mágica ni competencia gratuita. Puede celebrarse al volver o al partir.
+**Rito propuesto:** *Registro de Partida*, ceremonia simbólica en la que un viajero recibe instrucciones, contactos y obligaciones de custodia, no una pieza mágica ni competencia gratuita. Puede celebrarse al volver o al partir.
 
 **Tensiones:** pertenecer a varias jurisdicciones; pérdida o adaptación de idiomas; discriminación contra migrantes; responsabilidad hacia un hogar que ya no se habita; dilemas entre lealtad familiar y deber contractual.
 
@@ -129,7 +129,7 @@ Estas acciones pueden ser religiosas, laicas o familiares. Algunos fieles de Kho
 |---|---|---|
 | Rangos propuestos de altura, masa y longevidad | Propuesta biológica | Narrativo; sin ajuste de cifras de juego |
 | Junta del Paso / Mesa de Galería / Círculo de Prueba / Casas de Ruta | Propuesta institucional | Cultura y aventuras |
-| Ritos del Deshielo, Estratos, Objeto Fallido y Entrega de Herramientas | Propuesta ritual | Sin efectos mágicos |
+| Ritos del Deshielo, Estratos, Objeto Fallido y Registro de Partida | Propuesta ritual | Sin efectos mágicos |
 | Prácticas de la Obra Abierta y tres gestos | Propuesta religiosa | No crean Vínculo ni Fuente |
 | Interacciones comunitarias con la Segunda Forja | Propuesta de historia social | No fija batallas, fechas ni provincias |
 | Cuatro tradiciones como identidades porosas | Desarrollo de regla canónica | Sin subrazas mecánicas |
