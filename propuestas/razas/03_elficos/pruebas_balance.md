@@ -63,3 +63,24 @@
 **Problema de interpretación que merece caso de DJ:** `área razonablemente perceptible` en Resonancia no contiene distancia numérica. Mantener la regla de texto original; puede añadirse en futura referencia de DJ un ejemplo no vinculante de perceptibilidad sin convertirla en radar. No inventar un radio fijo.
 
 **Estado:** 24 pruebas de aceptación documental definidas, **no ejecutadas físicamente**. Balance definitivo pendiente de prueba de mesa; lore y mecánicas quedan listos como borrador para aprobación global.
+
+## VII. Regresiones adicionales B2 — percepción y magia (casos ELF-T25–ELF-T36)
+
+**Estas doce pruebas son expectativas documentales, no sesiones ejecutadas.** Deben resolverse con el paquete v0.3 y el texto específico de cada Hechizo, sin inventar radio/DF de Resonancia.
+
+| ID | Escenario de comprobación | Resultado esperado según fuente |
+|---|---|---|
+| ELF-T25 | Un hechizo **Sostenido** crea sólo ilusión de follaje, sin modificar tejido ni ecosistema | No atribuir Resonancia por el simple rótulo Sostenido o por el aspecto vegetal. Examinar ilusión con sus reglas |
+| ELF-T26 | **Restauración Funcional** sostenida suspende penalización de Herida Grave de criatura visible | Evaluar si hay alteración mágica significativa **actual** de proceso vital; no inferir automáticamente el tipo de Hechizo, Vida, autor o diagnóstico |
+| ELF-T27 | **Matriz Vital** sostenida provoca un pulso real de recuperación bajo condiciones de visibilidad | La magia de Restauración no es invisible por pertenecer a otra Disciplina, pero detectar Resonancia exige significación real; no revelar pulsos exactos ni contadores |
+| ELF-T28 | **Cierre Restaurador** ya terminó y no dejó influencia mágica vigente | No convertir cicatriz/curación pasada en detector retrospectivo; los síntomas observables se examinan normalmente |
+| ELF-T29 | Ritual o anomalía **no etiquetado Sostenido** sigue alterando mágicamente un bosque perceptible | Puede cumplir Resonancia si es significativa y directa; no exigir etiqueta Sostenido como requisito extra |
+| ELF-T30 | Criatura invisible por magia visual sigue viviendo normalmente sin alteración vital adicional | Resonancia no revela identidad/posición por invisibilidad sola; señales sensoriales y ocultación se resuelven aparte |
+| ELF-T31 | Máquina con Maná que no afecta vida ni ecosistemas | No Resonancia de la Savia aunque el efecto sea poderoso y sostenido |
+| ELF-T32 | Elfo percibe sólo una huella visual natural y compra **Sentido Agudo (vista)** por 1 PR | Ante el mismo detalle, no sumar +1 racial y +1 equivalente de Rasgo para crear +2 de forma automática |
+| ELF-T33 | Elfo oye un detalle natural determinante antes de emboscada | Puede beneficiarse +1 PER en prueba válida, **no** +1 a Iniciativa, Defensa, Ataque ni Reacción |
+| ELF-T34 | Elfo no ve ni percibe razonablemente un área detrás de pared opaca; un familiar sí la observa | Percepción del Familiar no convierte al Elfo en origen remoto de Resonancia ni crea línea de efecto |
+| ELF-T35 | Elfo conoce o adquiere **Visión Arcana** con sus requisitos y coste | El Hechizo sigue cobrando Maná y su resolución propia; no es efecto gratuito de Resonancia |
+| ELF-T36 | Efecto mágico afecta directamente ecosistema perceptible, pero ocultación particular se opone a su descubrimiento | Evaluar las reglas concretas de ocultación y disponibilidad sensorial; no conceder inmunidad élfica ni negar siempre la detección |
+
+**Riesgos derivados:** perceptibilidad frente a barreras, umbral no cuantificado «significativa», engaño por apariencias, efecto activo frente a efecto pasado y apilamiento con Sentido Agudo. La resolución B2 queda en `auditorias/02_mecanicas_y_costes.md`; B3 probará secuencias, B4 frecuencia de utilidad.
