@@ -14,7 +14,7 @@
 | 06 | Terios/Anihombres | Borrador v0.1; **B1–B4 documentales completas**, **84 DOC B3 + 18 DOC B4; 22 MOD auxiliares** | B5: sustitución Variedad, branquias/Anfibio, vuelo bajo Carga y medios mixtos |
 | 07 | Feéricos | Borrador v0.1; **B1–B4 documentales completas**, **76 DOC B3 + 16 DOC B4; 24 MOD auxiliares** | B5: Hada apoyos/velocidades, Dríade Derribar/desanclaje, Silfo viento mágico |
 | 08 | Ankar | Borrador v0.1; **B1–B4 documentales completas**; **68 DOC B3 + 14 DOC B4; 28 MOD auxiliares**, 0 Foundry/mesa | B5: frecuencia de Sentido, barreras, efectos mixtos y apilamiento racial/mágico |
-| 09 | Cristálidos | Borrador v0.1; **B1, B2 y B3 documentales completas**; **96 DOC**, 0 Foundry/mesa | B4/B5: valor de lectura/puente, ocultación, consentimiento y 0 Vida |
+| 09 | Cristálidos | Borrador v0.1; **B1–B4 documentales completas**; **96 DOC B3 + 14 DOC B4**, 0 Foundry/mesa | B5: ocultación, consentimiento, 0 Vida y frecuencia de Conductor Vivo |
 | 10 | Verdantes | Borrador v0.1; **B1, B2 y B3 documentales completas**; **86 DOC**, 0 Foundry/mesa | B4/B5: CLN-01, anclaje/Martillo Cinético, Derribar, 0 Vida, biomas y Viaje |
 | 11 | Micelios | Expediente v0.1; **B1, B2 y B3 documentales completas**, **100 DOC** | B4/B5: radio geométrico, continuidad/reconexión, valor de Quimiosensibilidad |
 | 12 | Coralios | Expediente v0.1; **B1, B2 y B3 documentales completas**, 88 casos DOC | B4: tierra/agua, hidratación, Anfibio 1 PR y balance |
@@ -31,7 +31,7 @@
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente |
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; B3 cerrada documentalmente |
 | B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
-| B4. Comparación y mejoras | **8/12 documental: Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos y Ankar** | Primeras ocho familias: 11 comparaciones cada una; Ankar 3 propuestas y 14 regresiones nuevas; Feéricos 4 y 16; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: Cristálidos** |
+| B4. Comparación y mejoras | **9/12 documental: Humanos, Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar y Cristálidos** | Primeras nueve familias: 11 comparaciones cada una; Cristálidos 3 propuestas y 14 regresiones nuevas; Ankar 3 y 14; Feéricos 4 y 16; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: Verdantes** |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
 | C. Textos finales para el manual | Pendiente | `manual_final_propuesto.md` x12, índice e informe de integración | **Sólo tras B** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
@@ -438,3 +438,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado `08_ankar/auditorias/04_comparativa_y_veredicto.md`: once contrastes, siete ejes, tres propuestas no canónicas ANK-B4-P01–P03 y catorce regresiones ANK-B4-T01–T14.
 - Conservado paquete Ankar; B5 debe resolver percepción tras barreras, efectos mentales mixtos y compatibilidad Custodia/Mente Anclada sin convertir +3 en regla vigente. **68 DOC B3 + 14 DOC B4 sin ejecutar, 28 MOD auxiliares anteriores (4 abiertos), 0 Foundry, 0 mesa**.
 - **B4 8/12**; siguiente **Cristálidos**. Escrituras exclusivamente en rama y carpeta autorizadas.
+
+### 2026-11-17 — B4 Cristálidos: comparación y veredicto documental
+- Releídos tablero, README, plan, B1–B3 y cierre Cristálidos; reabierto Manual Maestro de `main` (blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`).
+- Creado `09_cristalidos/auditorias/04_comparativa_y_veredicto.md`: 11 comparaciones, 7 ejes, 3 aclaraciones no canónicas CRI-B4-P01–P03, 14 regresiones documentales CRI-B4-T01–T14.
+- Veredicto: conservar Matriz Mixta; B5 debe resolver ocultación, consentimiento/desconexión, 0 Vida y frecuencia de utilidad de Conductor Vivo. **96 DOC B3 previos, 14 DOC B4 nuevos sin ejecutar; 0 Foundry, 0 mesa**.
+- **B4 9/12**; siguiente **Verdantes**. Sin cambios en `main`, atlas o Foundry.
