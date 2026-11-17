@@ -1,5 +1,5 @@
 # ENANOS — Auditoría y batería de pruebas raciales v0.2
-**Estado:** pruebas propuestas y criterios de aceptación; no constituyen resultados observados de partida ni modifican el canon.
+**Estado:** **44 criterios documentales (24 iniciales + 20 B3)** y **16 comprobaciones de modelo auxiliar**; ninguna prueba de partida/Foundry. No modifican canon.
 **Paquete de referencia:** paquete Enano v0.3 en `main:docs/Tierra_Magica_Manual_Maestro.md`.
 
 ## A. Comprobaciones de legalidad
@@ -63,3 +63,40 @@
 - **Riesgo de canon nuevo:** longevidad, biología y ritos todavía son propuestas y no pueden aplicarse como hechos a otros documentos o a Foundry.
 
 **Resultado de auditoría documental:** no se detecta una Habilidad racial faltante que impida jugar Enanos con v0.3. El paquete se conserva. **Estado de test de juego real: PENDIENTE**; la matriz documenta los resultados esperados, no afirma haber ejecutado partidas.
+
+## G. Regresiones B3 — ENA-T25 a ENA-T44 (exploits de secuencia)
+
+**Clasificación de evidencia:** los veinte `ENA-T25–ENA-T44` son **DOC: escenarios documentales y resultados esperados por lectura**; no se ejecutaron en Foundry ni en partida. Se ejecutó además un **modelo JS auxiliar, independiente del sistema**, con 16 fixtures de Empujar y Sangre de Metal que coincidieron con sus expectativas; no simula tiradas 2d10, Derribar, Agarrar, Carga en kg ni módulos Foundry. Véase `auditorias/modelo_auxiliar_b3_enanos.js` y el informe `03_exploits_y_pruebas.md`.
+
+| ID | Secuencia adversarial | Criterio verificable / vacío que permanece |
+|---|---|---|
+| **ENA-T25** | Enano se declara **Mediano real** por Cuerpo de Piedra y equipa armadura/arma exclusiva para Mediano | **No:** su Escala real es Pequeña; Mediana efectiva sólo para Carga y resistir tres clases de desplazamiento. Equipo físicamente compatible, no bono de alcance/Defensa |
+| **ENA-T26** | Enano Pequeño inicia Empujar contra víctima Mediana y usa «Mediano de Cuerpo de Piedra» como atacante | **No:** el rasgo sólo mejora la resistencia, no su Empujar ofensivo. Con margen Claro base 2, objetivo una categoría mayor ⇒ **1 espacio** |
+| **ENA-T27** | Atacante Pequeño logra margen **Claro** de Empujar contra Enano | El Enano cuenta **Mediano efectivo** frente a Empujar: base 2 − 1 = **1 espacio**; no aumenta Defensa de Maniobra ni niega el éxito del ataque |
+| **ENA-T28** | Atacante Pequeño logra margen **Dominante** de Empujar contra Enano | Distancia base 3 − 1 = **2 espacios**, no «1 siempre» ni 0 |
+| **ENA-T29** | Atacante Mediano logra margen Claro contra Enano | Escalas efectivas iguales para esa resistencia: **2 espacios**, no reducción fija de 1 |
+| **ENA-T30** | Diminuto intenta Empujar Enano sin palanca ni capacidad excepcional | Diferencia de **dos categorías** contra Enano Mediano efectivo: **0 espacios** con fuerza corporal ordinaria |
+| **ENA-T31** | Un Empujar exitoso termina contra muro y jugador pide daño extra por «choque contra piedra» | Obstáculo **detiene desplazamiento sin daño adicional universal**. Si se sale de superficie válida, Caídas se resuelve aparte, sin inmunidad racial |
+| **ENA-T32** | Enano es Derribado por tirada legal e impone automáticamente +1 Defensa de Maniobra por Escala | **No +1 numérico**. Escala efectiva contextual existe pero Derribar no proporciona fórmula general de modificador por Escala; **B4** evaluar utilidad real y eventual texto claro |
+| **ENA-T33** | Enano es Agarrado; usa Cuerpo de Piedra para rechazar **la tirada inicial de Agarrar** o bajar DF de Presa | **No:** Agarrar no está enumerado en el rasgo; la Defensa de Maniobra y la DF de Presa siguen sus propias reglas |
+| **ENA-T34** | Atacante Pequeño mantiene Presa válida y quiere **arrastrar** al Enano contra su voluntad | Separar **inicio de Agarrar** de **fase de desplazamiento**. Cuerpo de Piedra podría importar en esta segunda fase, por «desplazamiento físico impuesto». Texto no da una tabla completa: **ABIERTA B3/B4**, no cancelar Presa automáticamente |
+| **ENA-T35** | Se conjura `Martillo Cinético` sobre Enano, y se declara +1 Defensa Corporal por ser de piedra | **No:** defensa para acierto y Daño 3 permanecen normales. Escala efectiva sólo cuando se calcule **desplazamiento**; usar tabla específica del Hechizo, no la de Empujar ordinario |
+| **ENA-T36** | `Onda de Choque` alcanza Enano y el jugador convierte desplazamiento fijo en inmunidad o reducción del Daño 4 | **No:** el hechizo usa Daño 4 y empuja 1 espacio cuando corresponda; la cuestión de cómo su desplazamiento fijo cruza la Escala efectiva se examina en **B3 transversal**, no implica defensa/Protección añadida |
+| **ENA-T37** | Comprar `Potencia Sobrenatural` y sumar +1 categoría efectiva adicional a Cuerpo de Piedra como si se apilaran | Dos mejoras **equivalentes de Escala efectiva** no se acumulan salvo permiso expreso; Hechizo Sostenido conserva coste Maná, Acción y condiciones |
+| **ENA-T38** | Enano con Cuerpo de Piedra carga un arma Grande o carro porque «equivale a Mediano» | La mejora permite valorar **Carga** como Mediano, pero no cambia Escala de equipo ni elimina límites físicos; sin fórmula universal en kg o inventario |
+| **ENA-T39** | Toxina ataca expresamente Defensa Corporal; Enano **VIG 2** reclama prueba defensiva extra y +1 VIG en la misma tirada | Defensa Corporal base = **13**, contra toxina **14**. Se compara ataque con valor estático, **no** se obtiene tirada independiente gratis |
+| **ENA-T40** | Toxina con fase de ataque a Defensa Corporal y **otra prueba de VIG posterior distinta** | En el ataque se usa Defensa Corporal +1, en la **prueba distinta** VIG +1 cuando corresponda; no sumar +2 en un único chequeo |
+| **ENA-T41** | Enano con Sangre de Metal en marcha forzada **sin peligro ambiental** reclama +1 VIG por «agotamiento» | **No automático:** el esfuerzo de marcha no es «agotamiento ambiental apropiado» por sí solo; Fatiga/Descanso normales |
+| **ENA-T42** | Enano con **Resistencia Ambiental Menor** al mismo frío y Sangre de Metal reclama +2 VIG en la misma prueba ambiental | Mejoras +1 **equivalentes sobre la misma propiedad/prueba** no se suman por duplicación; **B4** debe evaluar interacción con grado Significativo (Ventaja, no «+2») |
+| **ENA-T43** | Enano Exhausto se retira y usa Cuerpo de Piedra como MOV6 o deshace el -2 | MOV basal **5**, Exhausto reduce **2 → 3** (mínimo 1), sin mejora por Cuerpo de Piedra; fórmula exacta de Retirada/Correr/Exhausto y orden de tramos queda **B3 transversal** |
+| **ENA-T44** | Enano a 0 Vida, herido/enfermo, se repara por Ingeniería o Descanso mágico por «sangre metálica», obteniendo inmunidad a Trauma | **No:** Medicina/Trauma/0 Vida y Descanso normales, Sangre de Metal sólo en casos enumerados; ninguna regeneración ni Habilidad/Hechizo gratis |
+
+### Evidencia y seguimiento
+
+- **DOC:** `ENA-T01–ENA-T44` = **44 criterios documentales**, incluyendo 20 casos B3; 0 ejecuciones de juego.
+- **MOD:** 16 fixtures de un modelo auxiliar de dos procedimientos (`Empujar` ordinario y VIG/Defensa Corporal por Sangre de Metal), **16 coincidencias** con expectativas; **no es Foundry** y no simula maniobras completas ni tiradas de dados.
+- **ENV:** cero pruebas del módulo Foundry.
+- **MESA:** cero sesiones reales.
+- **Incidencias abiertas para B4/B5:** eficacia real de Escala efectiva contra Derribar, interpretación del traslado de Presa, comparaciones exactas de `Onda de Choque` y `Martillo Cinético`, apilamiento con Resistencia Ambiental y coste/alcance de Carga sin kg universal.
+
+**Próximo orden:** B3 Élficos, luego los otros nueve pueblos. No modificar reglas transversales de `main` ni otorgar poderes gratuitos por tradiciones culturales.
