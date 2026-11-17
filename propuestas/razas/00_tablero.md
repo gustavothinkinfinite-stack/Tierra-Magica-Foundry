@@ -6,7 +6,7 @@
 
 | Nº | Familia | Estado del borrador | Siguiente trabajo |
 |---:|---|---|---|
-| 01 | Humanos | Expediente inicial completo; **B1 canon/lore auditado (con observaciones)** | B2: categoría Menor/Significativo; B3/B4 posteriores |
+| 01 | Humanos | Expediente completo; **B1 y B2 documentales completadas** | B3: exploits, PR/PD; B4: balance Don vs. otras 11 |
 | 02 | Enanos | Borrador integral v0.2 + **B1 canon/lore completo, con correcciones** | B2: Cuerpo de Piedra, Sangre de Metal; B4: biología |
 | 03 | Élficos | Borrador integral v0.1 + **B1 canon/lore completo, con correcciones** | B2: alcance Resonancia, percepciones; B4: Oscuros y biología |
 | 04 | Orcos | Borrador integral v0.1 + **B1 canon/lore completo con correcciones** | B2: Voluntad/Desventajas; B3: FUE/Carga; B4: Bastión/Sangre y biología |
@@ -29,7 +29,7 @@
 | A. Doce expedientes iniciales | **COMPLETA: 12/12** | Cinco archivos base por familia | Abrir B1 |
 
 | B1. Canon y lore | **COMPLETADA: 12/12** | Auditoría individual por 12 familias | Cerrada documentalmente; siguiente B2 Humanos |
-| B2. Mecánicas y costes | **Pendiente: 0/12** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Humanos**, luego Enanos y restantes |
+| B2. Mecánicas y costes | **En curso: 1/12 (Humanos)** | Auditoría exhaustiva contra subsistemas completos | **Siguiente: Enanos**, luego restantes |
 | B3. Exploits y secuencias | Pendiente | Pruebas documentadas y, si se pueden ejecutar, verificadas realmente | Tras B2, por familia |
 | B4. Comparación y mejoras | Pendiente | Comparación con otras once razas y versión corregida | Tras B3, por familia |
 | B5. Regresiones globales | Pendiente | Matriz 12 familias, registro y cierre de incidencias | Tras B1–B4 |
@@ -226,3 +226,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Micelios:** creado `11_micelios/auditorias/01_canon_y_lore.md` (26 controles, 11 cruces y 7 incidencias). Renombrados **Custodios de Trama Viva → Custodios de la Red Viva** en `auditoria_y_desarrollo.md`, `doble_pagina.md` y `cierre_editorial.md`, para distinguir infraestructura fúngica de Trama cosmológica. El paquete racial no cambia; 44 pruebas siguen documentales, ninguna ejecutada.
 - **Coralios:** creado `12_coralios/auditorias/01_canon_y_lore.md` (26 controles, 11 cruces y 8 incidencias). Confirmados límites de Respiración Anfibia, Protección Natural 1 no acumulable, Sentido de Corriente, Movimiento 5/6, ausencia de Resonancia Oceánica y CHC-01 como propuesta opcional; 48 pruebas documentales, ninguna ejecutada.
 - **B1 COMPLETADA: 12/12.** Los expedientes iniciales Fase A siguen 12/12. **Próximo bloque sustantivo: B2 Humanos** (PD/PR, creación, Acciones, combate, magia, 0 Vida, crafting, familiares, Rasgos, exploits), luego B2 Enanos y restantes; después B3/B4/B5 y redacción C. **No pausar automatización**: quedan fases sustantivas. Ningún cambio en `main`, Manual Maestro, Foundry o mapa.
+
+### 2026-11-17 — B2 Humanos: Don sin Forma y costes
+- Comprobado que B1 de **Micelios y Coralios ya estaba completada por una ejecución concurrente**; no se duplicaron sus archivos. Tablero B1 validado en **12/12**.
+- Releídos directamente de `main` paquete Humano v0.3, catálogo entero de Rasgos, Don sin Forma, 3 PR/25 PD, progresión sin conversión universal, 2d10/Ventaja, Movimiento, Orígenes y reglas transversales.
+- Guardado `01_humanos/auditorias/02_mecanicas_y_costes.md`: **10 fichas de capacidad/sistema**, **12 construcciones de personaje** y **15 controles cruzados**, con **5 incidencias**. **Decisión propuesta HUM-B2-DEC-01:** sólo como asignación editorial **no ratificada**, Menores = Sentido Agudo/Trepador Natural/Afinidad Sobrenatural/Resistencia Ambiental Menor; Significativos = Visión en la Oscuridad/Resistencia Ambiental Significativa. El Manual Maestro **no** declara una equivalencia universal Menor=1 PR, Significativo=2 PR.
+- Riesgo abierto: compra/graduación de Resistencia Ambiental obtenida por Don, sin descuento de PR por inferencia; ninguna Habilidad, Fuente, Acción, Vida o Maná gratuitos. `pruebas_balance.md` conserva **42 criterios documentales no ejecutados**.
+- **Progreso B2: 1/12**, siguiente Enanos. No se cambió `main`, Foundry, ni cartografía. B3–B5 y manual_final_propuesto.md continúan pendientes.
