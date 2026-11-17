@@ -11,7 +11,7 @@
 | `auditoria_y_desarrollo.md` | Canon, biología, ocho linajes ejemplo, variedades, usos de adaptación, sociedad y Territorio Oriental | Completo como propuesta |
 | `doble_pagina.md` | Dos páginas de Manual Básico, texto narrativo y bloque mecánico | **726 palabras imprimibles** |
 | `brief_arte.md` | Dirección de arte «El maestro de las terrazas», personaje elefantino y escenas multilinaje | Completo, arte no generado |
-| `pruebas_balance.md` | **48 casos iniciales + 12 regresiones B2 (TER-T49–T60) = 60 casos documentales** contra reglas y exploits, con guion de mesa | Diseñados, **no** playtest ejecutado |
+| `pruebas_balance.md` | **48 casos iniciales + 12 regresiones B2 + 24 B3 (TER-T61–T84) = 84 casos documentales** contra reglas y exploits, con guion de mesa | Diseñados, **no** playtest ejecutado |
 | `modulo_origen_renkaino.md` | Perfil completo para nueva opción de Origen cultural de la isla | Completo como **módulo nuevo no canónico** |
 
 ## Auditoría cruzada
@@ -57,3 +57,13 @@ Primero revisar y ratificar identidad cultural de Renkai y el paquete de Varieda
 - **Aclaración fundamental:** el Manual exige anatomía funcional (incluidas branquias si el linaje las tiene), pero no define una adaptación Teria de respiración acuática. El expediente conserva compra de **Anfibio (1 PR)** como propuesta conservadora, **no como canon literal inequívoco**. Se exige decisión en B3/B4 para evitar contradicción de anatomía o beneficio gratuito.
 - **Variedad:** sustitución en la misma categoría sigue siendo **protocolo de propuesta**, no regla vigente. **Vuelo Dominante Terio** no hereda la obligación de apoyo al inicio/fin propia de **Hada**; sí sigue Carga y Movimiento normales.
 - Continúa pendiente aprobación de **Origen Renkaino** y de su idioma. No se modificaron paquetes oficiales, `main`, Foundry o mapa, ni se realizaron partidas reales.
+
+
+### Actualización B3 — 17-11-2026
+
+- Guardado `auditorias/03_exploits_y_pruebas.md` con **24 cadenas adversariales, 4 secuencias desarrolladas y 12 incidencias**. La matriz `pruebas_balance.md` suma **84 DOC**, de TER-T01 a TER-T84. Modelo `auditorias/modelo_auxiliar_b3_terios.js`: **22 controles auxiliares, 22 coincidencias con expectativas**, pero **tres respuestas preservan dudas**; no es un test de Foundry.
+- Las combinaciones Principal+Secundaria y Dominante son excluyentes; una Variedad que reemplaza no conserva beneficio anterior. **TER-02** (sustitución de misma plaza) sigue **propuesta no ratificada**. El alcance exacto de sustitución A→B requiere B4.
+- **Branquias funcionales/Anfibio 1 PR:** tensión textual real, sin solución canónica añadida; no imponer automáticamente el coste propuesto ni conceder respiración ilimitada sin evaluación de balance. `Renkaino` sigue como undécimo Origen sólo propuesto, ajeno a `main`.
+- Vuelo Dominante no admite Carga Pesada/Excesiva ni doble Movimiento, y no hereda la obligación de posarse Hada. **Caída por pérdida de sustentación en pleno turno y cambio de medios** quedan para B5. Una caída de cuatro espacios efectivos causa **6 de daño base** antes de mitigaciones especiales.
+- Órgano prensil, Rasgos de miembros y hechizos no agregan Acciones/ataques/escudos/recargas; Arma natural3/Pen0 no se suma a espada, Prot natural1 no se suma a armadura y Excavador necesita tiempo.
+- **Evidencia: 84 DOC; 22 MOD auxiliares (3 estados abiertos); 0 ENV Foundry; 0 MESA**. `main`, código Foundry, Manual Maestro y cartografía sin cambios; este cierre no aprueba el Manual Básico. **Siguiente B3 Feéricos**.
