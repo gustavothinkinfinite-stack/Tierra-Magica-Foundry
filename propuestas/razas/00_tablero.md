@@ -16,8 +16,8 @@
 | 08 | Ankar | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Sentido del Umbral, Custodia del Alma y revisar instituciones |
 | 09 | Cristálidos | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar fisiología propuesta y playtest de conducción, interfaces y Resonancia |
 | 10 | Verdantes | Borrador integral v0.1 completo para revisión global (no aprobado) | Revisar CLN-01, biología y test de Enraizar/biomas |
-| 11 | Micelios | Próximo a trabajar | Auditar Sustento Fúngico, Quimiosensibilidad y Enlace Micelial; culturas y doble página |
-| 12 | Coralios | Pendiente | Mar, ecosistemas, civilizaciones anfibias, doble página |
+| 11 | Micelios | Borrador integral v0.1 completo para revisión global (no aprobado) | Playtest de Enlace, alcance, retransmisión y evaluar MIC-08 |
+| 12 | Coralios | Próximo a trabajar | Auditar Respiración Anfibia, Esqueleto Coralino, Sentido de Corriente; cultura oceánica y doble página |
 
 ## Registro de ejecución
 
@@ -106,3 +106,12 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Editorial: **738 palabras imprimibles**, **40 casos documentales** con expectativas de resultado; **no son partidas ejecutadas**. Paquete Verdante v0.3 sin cambios.
 - **Estado global: nueve expedientes integrales de BORRADOR**, desde Enanos a Verdantes incluyendo Ankar, con Humanos aún pendiente de consolidación; ninguno ratificado.
 - **Próximo ciclo:** Micelios, luego Coralios y cerrar el expediente faltante de Humanos. No tocar `main`, código Foundry ni mapa.
+
+### 2026-11-16 — Undécimo avance: Micelios — Pueblos de la red y la elección
+- Consultados `00_tablero.md`, `README.md`, cierre de Verdantes y, en `main`, paquete v0.3 Micelio, creación, cosmología Eïra/Primera Semilla, Orígenes, geografía y reglas transversales.
+- Consultada la Guía de Estilo Visual v1.0 local, sin generar imagen.
+- Creados y verificados `11_micelios/auditoria_y_desarrollo.md`, `11_micelios/doble_pagina.md`, `11_micelios/brief_arte.md`, `11_micelios/pruebas_balance.md` y `11_micelios/cierre_editorial.md`.
+- Propuesta nueva: biología y ciclo vital fúngicos, cuatro perfiles ecológicos estéticos, cuatro tradiciones cívicas, política de privacidad/independencia y protocolo interpretativo MIC-08 para comprobar compatibilidad, continuidad y consentimiento del Enlace. **No se modifica** alcance de 12 espacios ni se crea telepatía o magia gratis.
+- Doble página: **714 palabras imprimibles**. Matriz: **44 casos de aceptación documental**, no partidas ejecutadas ni certificado empírico.
+- **Estado global: 10 de 12 expedientes integrales de BORRADOR completos** —Enanos, Élficos, Orcos, Goblinoides, Terios, Feéricos, Ankar, Cristálidos, Verdantes y Micelios—; Humanos pendiente de consolidación y Coralios pendiente de elaboración. Ninguno aprobado; `main`, mapa y Foundry sin cambios.
+- **Próximo ciclo:** Coralios; después completar Humanos y hacer auditoría cruzada, índice y dossier final.
