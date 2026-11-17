@@ -30,8 +30,13 @@
 
 ### Actualización B3 — 17-11-2026
 
-- `auditorias/03_exploits_y_pruebas.md` completada con **24 casos nuevos**, cuatro secuencias, 10 incidencias y cuatro propuestas de procedimiento **NO CANÓNICAS**. `pruebas_balance.md` contiene ahora **68 criterios documentales** (30 iniciales + 14 B2 + 24 B3). **0 Foundry, 0 mesa, 0 modelo auxiliar**.
+- `auditorias/03_exploits_y_pruebas.md` completada con **24 casos nuevos**, cuatro secuencias, 10 incidencias y cuatro propuestas de procedimiento **NO CANÓNICAS**. `pruebas_balance.md` contiene ahora **68 criterios documentales** (30 iniciales + 14 B2 + 24 B3). **0 Foundry, 0 mesa; 28 comprobaciones de un modelo auxiliar independiente añadidas posteriormente, 4 con estado abierto**.
 - La presencia general de Sentido no revela número, dirección, identidad, objetivo o método de exorcismo. Posesión sola activa el ámbito de Custodia, no necesariamente el de Sentido. Barreras y frecuencia siguen B5.
 - Defensa Mental estática 11+VOL; Custodia +1 sólo ante posesión/control/expulsión/retención espiritual. `Mente Anclada` +2 requiere Reacción y 3 Maná; combinar con +1 racial es **propuesta ANK-PB3-03**, no cifra vigente. Miedo/Sugestión sin Custodia; `Valor Inspirado` y `Mente Anclada` no se apilan entre sí.
 - El procedimiento de efecto mental compuesto `ANK-PB3-02` permanece propuesta no ratificada. No se añaden Fuente, Vínculo Divino, Habilidades ni inmunidades.
 - **B3 documental terminada, B4/B5 y texto `manual_final_propuesto.md` pendientes. Siguiente B3: Cristálidos.**
+
+
+### Anexo B3 — evidencia auxiliar
+
+El modelo `auditorias/modelo_auxiliar_b3_ankar.js` aporta **28 fixtures de condiciones de Sentido y Custodia**, con 28 coincidencias de salida prevista y **4 resultados explícitamente abiertos**. No simula hechizos/turnos ni verifica Foundry. La evidencia acumulada pasa a **68 DOC + 28 MOD auxiliares, ENV 0 y MESA 0**, sin cambiar los 24 nuevos casos documentales, las 10 incidencias ni el dictamen B3. Todas las propuestas siguen no canónicas.
