@@ -46,7 +46,7 @@
 
 **[CANON]** existen relatos de una resonancia intensa con Varkor; todavía no se ha fijado qué poder físico o mágico tienen en las reglas.
 
-**[PROPUESTA]** Poblaciones dispersas que conservan genealogías del Primer Desafío y tradiciones sobre juramentos de resistencia. «De Sangre» describe relatos familiares y señales culturales, no pureza biológica ni lealtad ideológica; algunas familias de Sangre son ateas y algunas comunidades de otros linajes conservan las mismas prácticas. Se propone que ciertos individuos presenten una sensibilidad a **manifestaciones sobrenaturales ligadas a juramentos y desafíos de Varkor**, no una reserva mágica gratuita.
+**[PROPUESTA]** Poblaciones dispersas que conservan **relatos genealógicos** sobre el Primer Desafío —cuya literalidad sigue sin verificarse— y tradiciones de juramentos de resistencia. «De Sangre» describe relatos familiares y señales culturales, no pureza biológica ni lealtad ideológica; algunas familias de Sangre son ateas y comunidades de otros linajes conservan prácticas semejantes. **[PROPUESTA]** Cuando un individuo manifieste una sensibilidad sobrenatural en una ficha jugable, se la representará mediante un **Rasgo comprado** y delimitado en el apartado siguiente; ningún miembro obtiene detección de juramentos, sangre o magia por llamarse «de Sangre».
 
 **Institución posible:** **Testigos del Juramento**, mediadores civiles o religiosos que conservan públicamente términos de pactos, sus riesgos y condiciones de ruptura.
 
@@ -72,7 +72,7 @@
 
 **[CANON]** fuentes antiguas mencionan linajes orcos de tamaño y resistencia extraordinarios, sin nombre, mecanismo ni estatus definido.
 
-**[PROPUESTA]** **Orcos de Bastión** es un nombre *nuevo* para una constelación rara de familias de gran talla y constitución especialmente robusta, visibles en registros de obras y asedios antiguos sin atribuirles una única creación, guerra o transformación. No son Gigantes, Ogros ni una quinta virtud. Siguen en Escala Mediana para el personaje básico. La talla exacta individual no altera automáticamente el equipo y no confiere alcance adicional.
+**[PROPUESTA]** **Orcos de Bastión** es un **nombre editorial provisional, no ratificado**, para posibles familias de gran talla y constitución especialmente robusta, evocadas en **relatos propuestos** de obras y asedios antiguos sin atribuirles una única creación, guerra o transformación. El canon menciona linajes excepcionales, **pero no establece que esta denominación o estos registros existan**. No son Gigantes, Ogros ni una quinta virtud. Siguen en Escala Mediana para el personaje básico. La talla exacta individual no altera automáticamente el equipo y no confiere alcance adicional.
 
 **Mecánica completa opcional:** representar resistencia adicional **mediante Corpulento (2 PR, +4 Vida)** o **Masivo (3 PR, +8 Vida)** del catálogo vigente cuando la ficción corporal lo sostenga. No se acumulan entre sí; no aumentan FUE, Escala, daño, Defensa, umbral de Daño Grave ni Carga. No todos los miembros de la tradición nacen con esos Rasgos, y cualquier otra raza puede comprarlos conforme a reglas generales. **No se agrega paquete de Bastión**.
 
