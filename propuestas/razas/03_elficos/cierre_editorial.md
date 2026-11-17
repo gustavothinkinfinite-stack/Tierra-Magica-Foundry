@@ -25,7 +25,7 @@
 
 ## Resoluciones completas dentro de la propuesta
 - Instituciones elegidas: Casas de Foco, Asambleas de Cuenca, Consejos del Umbral y agrupaciones urbanas mixtas.
-- Ritos culturales propuestos: Libro de Estaciones, Observancia del Agua Larga, Acuerdo de Sombra y Trasplante de Memoria; sin efectos mecánicos.
+- Ritos culturales propuestos: Libro de Estaciones, Observancia del Agua Larga, Acuerdo de Sombra y Traspaso de Testimonios; sin efectos mecánicos.
 - Motivo histórico propuesto del asentamiento de Oscuros en las profundidades: Descenso de las Raíces Profundas, proceso de movimientos por refugio, acceso a corredores y adaptación; **no** se afirma causa única definitiva de la adaptación fisiológica, que sigue siendo misterio deliberado del canon.
 - Un solo paquete Élfico, sin nuevas Habilidades innatas; capacidades culturales se compran con PD y otras reglas generales.
 - Diseño de ilustración funcional y multiespecie, sin magia gratuita ni estereotipo de superioridad.
