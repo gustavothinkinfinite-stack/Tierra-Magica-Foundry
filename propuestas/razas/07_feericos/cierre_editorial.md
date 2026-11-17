@@ -8,7 +8,7 @@
 - `auditoria_y_desarrollo.md`: separación [CANON]/[PROPUESTA], cuatro biotipos, cultura, ritos, historia, instituciones y límites de los paquetes; contiene un módulo opcional **Continuidad de la Raíz** para Dríades.
 - `doble_pagina.md`: texto de dos páginas de Manual Básico con **742 palabras imprimibles** según recuento automatizado, excluyendo la nota editorial.
 - `brief_arte.md`: «El acuerdo de las cuatro formas», escena de Hada/Sátiro/Dríade/Silfo en una ciudad con infraestructura funcional, según guía visual Tierra Mágica, sin imagen generada.
-- `pruebas_balance.md`: **36 casos de aceptación documental** (10 generales, 9 Hada, 6 Sátiro, 9 Dríade, 2 Silfo), comparaciones entre pueblos y guion de partida. **No se ha ejecutado playtest**.
+- `pruebas_balance.md`: **36 casos iniciales (10 generales, 9 Hada, 6 Sátiro, 9 Dríade, 2 Silfo) + 16 regresiones B2 (FEE-T37–T52), total 52 criterios documentales**, comparaciones entre pueblos y guion de partida. **No se ha ejecutado playtest**.
 
 ## Auditoría cruzada y exactitud
 1. **Cosmología:** Hoja/Eïra origina Feéricos; no se confunden con Savia/Élficos ni Sangre/Terios. **Conforme.**
@@ -41,3 +41,9 @@
 - Integración a `main` y posible cambio en Foundry: **prohibidos hasta aprobación expresa**.
 
 **Conclusión:** se finalizó un expediente autónomo y autocontenido de los cuatro Feéricos jugables. No hace falta crear nueva Habilidad ni segundo paquete; el único módulo de reglas nuevo es opcional y está claramente aislado. **Próxima familia:** Ankar — Guardianes del Umbral y el Tránsito de Vaelun. 
+
+
+### Actualización de auditoría B2 — 17-11-2026
+- Creado `auditorias/02_mecanicas_y_costes.md`; **B2 documentada**. Los 52 casos son **expectativas y ninguno se ejecutó** en mesa/Foundry.
+- Pendientes B3/B4: cambio entre velocidades terrestres 5 y aéreas 6 de Hada, apoyo fuera de turno, inmovilidad de Enraizar Dríade frente a Verdante, diferencia de cláusulas de viento Silfo y posible duración/valor del módulo no canónico `Continuidad de la Raíz` (7 días).
+- No se modificaron los cuatro paquetes raciales en `main`, ni el mapa ni Foundry; el borrador de doble página sigue pendiente de aprobación global.
