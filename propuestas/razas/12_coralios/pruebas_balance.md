@@ -1,6 +1,6 @@
 # Coralios — Batería de aceptación, balance y exploits v0.1
 
-**Estado:** **48 casos documentales de aceptación**, no playtests reales ni ejecución automática en Foundry. **Fuentes:** Manual Maestro en `main`, blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`, paquete Coralio v0.3, reglas transversales, catálogo Rasgo **Anfibio 1 PR**, **Resistencia Ambiental 1/2 PR**, creación, Movimiento, Acción/Reacción, Escala/Protección, Medicina, Magia, Fatiga, descanso, equipamiento, y cronología de Nacre. **Separación:** los casos CHC-01 se refieren exclusivamente al módulo opcional propuesto en `auditoria_y_desarrollo.md`.
+**Estado:** **88 casos documentales acumulados (48 iniciales, 16 B2, 24 B3)**, no playtests reales ni ejecución automática en Foundry. **Fuentes:** Manual Maestro en `main`, blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`, paquete Coralio v0.3, reglas transversales, catálogo Rasgo **Anfibio 1 PR**, **Resistencia Ambiental 1/2 PR**, creación, Movimiento, Acción/Reacción, Escala/Protección, Medicina, Magia, Fatiga, descanso, equipamiento, y cronología de Nacre. **Separación:** los casos CHC-01 se refieren exclusivamente al módulo opcional propuesto en `auditoria_y_desarrollo.md`.
 
 ## I. Creación y biología (COR-T01–T10)
 
@@ -125,3 +125,19 @@
 | COR-T64 | Coralio intenta fabricar barrera de coral vivo o Familiar por extraer placa corporal | La placa no genera materiales CRAFT, dinero, criatura o Familiar gratis; requeriría Proyecto, materiales, Habilidades, vínculo y coste propios |
 
 **Cobertura:** `COR-T01–COR-T48` + **16 casos COR-T49–COR-T64 = 64 criterios documentales**; no se ejecutaron en mesa ni en Foundry. B3 atenderá velocidades mixtas, Correr/Retirada/Exhausto, daño y protecciones, tiempo de hidratación y sentidos; B4 comparará valor con Anfibio 1 PR, Terios/Feéricos, otras once familias.
+
+
+## IX. Ampliación B3 — COR-T65–COR-T88 (17-11-2026)
+
+**Estado:** 24 casos documentales adicionales; **88 casos DOC acumulados** (48 iniciales + 16 B2 COR-T49–COR-T64 + 24 B3). **0 pruebas Foundry, 0 playtests y 0 simulaciones de motor**. El guion y el resultado esperado de cada caso están desarrollados en [auditoría B3](./auditorias/03_exploits_y_pruebas.md). No son ensayos ejecutados.
+
+| Casos | Objetivo y criterio de aceptación |
+|---|---|
+| COR-T65–T69 | Movimiento entre medios, Retirada y Correr: jamás sumar reservas ni recuperar Movimiento al cruzar medio; conversión exacta pendiente B5 |
+| COR-T70–T72 | Exhausto agua 6→4, tierra 5→3; Agarrado impide alejarse de Presa |
+| COR-T73–T75 | Protección 1 y armadura 3 ⇒ 3, con Pen1 ⇒ 2; barreras según texto propio |
+| COR-T76–T80 | Presión, contaminación, hidratación y Rasgos costeados no generan inmunidad ni efectos duplicados |
+| COR-T81–T84 | Sentido de Corriente sólo con señal física acuática determinante, no radar ni Visión Arcana |
+| COR-T85–T88 | 0 Vida, extracción de placas, Familiar y cultura no conceden curación, recursos, línea de efecto ni competencias gratis |
+
+**Incidencias:** COR-B3-01–12, de las cuales 01/02/04/05/09/12 requieren comparación B4 o resolución transversal B5. Propuestas COR-PB3-01–03 **NO CANÓNICAS**; no hay modificaciones a reglas operativas.
