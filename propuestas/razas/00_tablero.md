@@ -741,3 +741,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Corregido [registro de diferencias](./manual_final/registro_de_diferencias_con_main.md) con clasificación vigente y criterios de publicación; commit `ff2b44f`.
 - Creado [capítulo consolidado de ascendencias](./manual_final/capitulo_ascendencias_consolidado.md), ensamblando íntegros los **12 textos finales propuestos** (no los borradores v0.1), con procedencia por blob; commit `857d065`.
 - **Próximo bloque sustantivo:** revisión editorial cruzada del manuscrito corrido, corrección de referencias internas y discrepancias con canon, informe global de entrega. **0 Foundry/mesa; no merge ni escritura fuera de la carpeta autorizada.**
+
+### 2026-11-18 — Fase C: revisión editorial cruzada, ronda 1
+- Releídos tablero, README, plan, índice/acta, manuscrito continuo, tabla comparativa, registro, cotejo B5, hoja normativa y Manual Maestro actual `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- Creada [`manual_final/revision_editorial_cruzada_2026_11_18.md`](./manual_final/revision_editorial_cruzada_2026_11_18.md) con **seis incidencias editoriales comprobables (ED-01 a ED-06)**: jerarquía de títulos, repetición de advertencias, tabla con blob antiguo, distinción entre acta de expedientes y libro, taxonomía tipográfica y HUM1 pendiente.
+- **Siguiente bloque:** copia limpia del manuscrito con encabezados normalizados, seguida de verificación de la tabla contra `main` actual. No se afirma cierre de Fase C ni pruebas empíricas. Escritura sólo en rama y carpeta autorizadas.
