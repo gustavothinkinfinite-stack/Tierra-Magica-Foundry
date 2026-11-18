@@ -87,6 +87,47 @@ export function inspectCommerceReceiptBackup(json) {
     entries: Object.keys(payload.receipts).length, checksum };
 }
 
+// Previsualización de conciliación, estrictamente de sólo lectura. No habilita
+// importación, sobreescritura ni eliminación de recibos del Actor.
+export function previewCommerceReceiptReconciliation(actor, json) {
+  if (!actor?.uuid || typeof actor.getFlag !== "function") {
+    return { ok: false, error: "Se requiere un Actor persistente para comparar el respaldo." };
+  }
+  const inspected = inspectCommerceReceiptBackup(json);
+  if (!inspected.ok) return inspected;
+  if (inspected.actorUuid !== actor.uuid) {
+    return { ok: false, error: "El respaldo pertenece a otro Actor; no puede conciliarse aquí." };
+  }
+  const backup = JSON.parse(json);
+  const current = snapshotReceipts(actor);
+  const incoming = backup.receipts;
+  const missing = [];
+  const matching = [];
+  const conflicts = [];
+  for (const [key, receipt] of Object.entries(incoming)) {
+    const live = current[key];
+    if (!live) { missing.push(key); continue; }
+    // Una lápida y su recibo completo representan el mismo identificador,
+    // pero ninguna discrepancia en la huella o el estado pendiente se ignora.
+    const sameFingerprint = live.fingerprint === receipt.fingerprint;
+    const sameState = live.state === receipt.state ||
+      (["completed", "archived"].includes(live.state) &&
+       ["completed", "archived"].includes(receipt.state));
+    if (sameFingerprint && sameState) matching.push(key);
+    else conflicts.push(key);
+  }
+  const onlyCurrent = Object.keys(current).filter((key) =>
+    !Object.prototype.hasOwnProperty.call(incoming, key));
+  return {
+    ok: true, actorUuid: actor.uuid,
+    backedUp: inspected.entries,
+    matching: matching.length, missing: missing.length,
+    conflicts: conflicts.length, onlyCurrent: onlyCurrent.length,
+    missingKeys: missing, conflictKeys: conflicts,
+    safeToMergeAutomatically: false
+  };
+}
+
 async function storeReceipt(actor, key, receipt) {
   const now = Date.now();
   const rows = { ...snapshotReceipts(actor), [key]: { ...receipt, at: now } };
