@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, failDebitAfterWrite = false, failItemAfterWrite = false, failStockAfterWrite = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -160,6 +160,50 @@ test("el Director puede consultar los recibos tras reconstruir el Actor sin elim
   const absent = commerceReceiptLedgerStats({ getFlag: () => undefined });
   assert.deepEqual(absent, { pending: 0, recent: 0, archived: 0,
     total: 0, serializedCharacters: 2, limitCharacters: COMMERCE_RECEIPT_LEDGER_LIMIT });
+});
+
+test("el informe de pendientes es de sólo lectura, ordenado y acotado", () => {
+  const fingerprint = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 2]);
+  const records = {
+    "gm:late": { state: "pending", fingerprint, at: 20 },
+    "gm:early": { state: "pending", fingerprint, at: 1 },
+    "gm:completed": { state: "completed", fingerprint, at: 0, result: { ok: true } },
+    "gm:archived": { state: "archived", fingerprint, at: 0 },
+    "gm:legacy": { state: "pending", fingerprint: "unknown", at: "malformed" }
+  };
+  const env = environment({ initialReceipts: records });
+  const original = structuredClone(env.merchant.flags.commerceReceipts);
+  const report = commercePendingReceiptReport(env.merchant, { limit: 2 });
+  assert.equal(report.total, 3);
+  assert.equal(report.shown, 2);
+  assert.deepEqual(report.rows.map((row) => row.key), ["gm:legacy", "gm:early"]);
+  assert.equal(report.rows[0].requesterId, null);
+  assert.equal(report.rows[0].at, null);
+  assert.deepEqual(report.rows[1], {
+    key: "gm:early", at: 1, requesterId: "gm", merchantUuid: "Actor.shop",
+    buyerUuid: "Actor.buyer", offerId: "offer", quantity: 2
+  });
+  const all = commercePendingReceiptReport(env.merchant, { limit: 1000 });
+  assert.equal(all.rows.length, 3);
+  assert.deepEqual(env.merchant.flags.commerceReceipts, original);
+  assert.equal(env.getStock(), 2);
+  assert.equal(env.buyer.system.currency.totalCopper, 500);
+  assert.equal(env.items.length, 0);
+});
+
+test("informe de pendientes vacío o con huellas malformadas nunca altera el Actor", () => {
+  const env = environment({ initialReceipts: {
+    "gm:malformed": { state: "pending", fingerprint: JSON.stringify(["gm"]), at: 0 },
+    "gm:nothing": { state: "pending", at: 8 },
+    "gm:done": { state: "completed", fingerprint: "ok", at: 2 }
+  } });
+  const before = structuredClone(env.merchant.flags.commerceReceipts);
+  const report = commercePendingReceiptReport(env.merchant);
+  assert.equal(report.total, 2);
+  assert.ok(report.rows.every((row) => row.buyerUuid === null));
+  assert.deepEqual(env.merchant.flags.commerceReceipts, before);
+  assert.deepEqual(commercePendingReceiptReport({ getFlag: () => undefined }),
+    { total: 0, shown: 0, rows: [] });
 });
 
 test("historial saturado rechaza compras sin podar archivo ni tocar dinero o stock", async () => {
