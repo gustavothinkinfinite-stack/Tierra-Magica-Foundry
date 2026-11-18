@@ -179,12 +179,14 @@ export function openCommerce(actor) {
   const rows = config.offers.map((offer) => {
     const allowed = config.mode === "chest" ||
       (tierLevel(config.tier) >= offer.minTier && offer.specialty === config.specialty);
-    const available = allowed && offer.stock > 0;
+    const restricted = config.mode === "merchant" && offer.availabilityStatus === "restricted";
+    const available = allowed && !restricted && offer.stock > 0;
     const price = config.mode === "chest"
       ? "Gratis" : offer.priceCopper === null ? "Precio no definido"
       : formatCurrency(offer.priceCopper) + " / " + offer.priceQuantity + " ud.";
     const eligible = available && (config.mode === "chest" || offer.priceCopper !== null);
-    const reason = !allowed ? "No disponible en este nivel/especialidad"
+    const reason = restricted ? "Restringido: venta automática no autorizada"
+      : !allowed ? "No disponible en este nivel/especialidad"
       : offer.stock === 0 ? "Agotado" : "";
     return '<div class="tm-commerce-line">' +
       '<img src="' + esc(offer.img) + '" alt="" />' +
