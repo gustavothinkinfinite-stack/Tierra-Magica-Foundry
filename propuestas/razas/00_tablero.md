@@ -703,3 +703,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creados `11_micelios/manual_final_propuesto.md` (doble página editorial de 840 palabras contando encabezados) y `11_micelios/nota_integracion_manual.md`. Canon conservado; propuestas MIC-B4-P01–P04 y cultura no ratificadas separadas.
 - Pruebas: 100 casos B3 y 18 B4 documentales, 0 Foundry, 0 mesa. No se alteró `main`, mapa, Manual Maestro ni código operativo.
 - **Siguiente bloque:** verificar C12 Coralios y redactar su texto final y nota; después revisar estado efectivo de C03/C05/C08 y crear índice, tabla, diferencias e informe global. El recuento de C debe basarse en archivos verificados, no sólo en filas históricas del tablero.
+
+### 2026-11-18 — Fase C12: Coralios
+- Verificados tablero, README, plan, expediente Coralios, doble página v0.1, brief visual, B4 y Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e`.
+- Creados [`12_coralios/manual_final_propuesto.md`](./12_coralios/manual_final_propuesto.md) (**820 palabras**, dos páginas) y [`12_coralios/nota_integracion_manual.md`](./12_coralios/nota_integracion_manual.md). Canon de MOV, respiración, protección y PER conservado; D01/D05 e instituciones culturales señaladas como propuestas.
+- **Fase C: 12/12 textos según historial; falta verificar individualmente los doce archivos y sus notas**. Próximo bloque sustantivo: auditoría de integridad C01–C12 y producción de `manual_final/indice_y_criterios.md`, `tabla_de_razas.md`, `registro_de_diferencias_con_main.md` e `informe_de_entrega.md`. B5 cerrada sólo documentalmente con reservas; **0 Foundry/mesa**. Sólo rama y carpeta autorizadas.
