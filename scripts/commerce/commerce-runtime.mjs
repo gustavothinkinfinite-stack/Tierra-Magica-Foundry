@@ -455,10 +455,12 @@ export function createCommerceReceiptArchiveParts(actor, { targetCharacters = 10
   if (current.length || segments.length === 0) {
     segments.push(Object.fromEntries(current));
   }
+  const archiveId = receiptBackupChecksum(JSON.stringify(receipts)) +
+    "-" + JSON.stringify(receipts).length;
   return segments.map((rows, index) => {
     const payload = { format: ARCHIVE_FORMAT, version: 1,
-      actorUuid: actor.uuid, part: index + 1, totalParts: segments.length,
-      receipts: rows };
+      actorUuid: actor.uuid, archiveId, part: index + 1,
+      totalParts: segments.length, receipts: rows };
     const checksum = receiptBackupChecksum(JSON.stringify(payload));
     return JSON.stringify({ ...payload, checksum }, null, 2);
   });
@@ -469,6 +471,7 @@ export function inspectCommerceReceiptArchiveParts(parts, actor = null) {
     return failure("Se requiere un conjunto de segmentos válido.");
   }
   let actorUuid = null;
+  let archiveId = null;
   let total = null;
   const seenParts = new Set();
   const seenKeys = new Set();
@@ -481,7 +484,9 @@ export function inspectCommerceReceiptArchiveParts(parts, actor = null) {
     catch { return failure("Un segmento no contiene JSON válido."); }
     if (!document || document.format !== ARCHIVE_FORMAT ||
         document.version !== 1 || typeof document.actorUuid !== "string" ||
-        !document.actorUuid || !Number.isSafeInteger(document.part) ||
+        !document.actorUuid || typeof document.archiveId !== "string" ||
+        !/^[0-9a-f]{8}-[0-9]+$/.test(document.archiveId) ||
+        !Number.isSafeInteger(document.part) ||
         !Number.isSafeInteger(document.totalParts) ||
         document.totalParts < 1 || document.totalParts > 1000 ||
         document.part < 1 || document.part > document.totalParts ||
@@ -495,10 +500,11 @@ export function inspectCommerceReceiptArchiveParts(parts, actor = null) {
     }
     if (actorUuid === null) {
       actorUuid = document.actorUuid;
+      archiveId = document.archiveId;
       total = document.totalParts;
     }
-    if (document.actorUuid !== actorUuid || document.totalParts !== total ||
-        seenParts.has(document.part)) {
+    if (document.actorUuid !== actorUuid || document.archiveId !== archiveId ||
+        document.totalParts !== total || seenParts.has(document.part)) {
       return failure("Segmentos duplicados o pertenecientes a conjuntos distintos.");
     }
     seenParts.add(document.part);
@@ -511,8 +517,8 @@ export function inspectCommerceReceiptArchiveParts(parts, actor = null) {
   if (actor && actor.uuid !== actorUuid) {
     return failure("Los segmentos corresponden a otro Actor.");
   }
-  return { ok: true, actorUuid, parts: total, receipts: seenKeys.size,
-    readOnly: true };
+  return { ok: true, actorUuid, archiveId, parts: total,
+    receipts: seenKeys.size, readOnly: true };
 }
 
 // Previsualización de conciliación, estrictamente de sólo lectura. No habilita
