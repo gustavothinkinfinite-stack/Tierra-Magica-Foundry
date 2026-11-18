@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, previewCommercePendingReviewReconciliation, recoverCommercePendingReviews, createCommerceReceiptBackup, inspectCommerceReceiptBackup, createCommerceReceiptArchiveParts, inspectCommerceReceiptArchiveParts, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, previewCommercePendingReviewReconciliation, recoverCommercePendingReviews, createCommerceReceiptBackup, inspectCommerceReceiptBackup, createCommerceReceiptArchiveParts, inspectCommerceReceiptArchiveParts, lookupCommerceArchivedReceipt, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, failDebitAfterWrite = false, failItemAfterWrite = false, failStockAfterWrite = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -643,6 +643,59 @@ test("archivo histórico vacío tiene una pieza; recibos individuales gigantes s
     { targetCharacters: 4_999 }), /inválido/);
   assert.throws(() => createCommerceReceiptArchiveParts(env.merchant,
     { targetCharacters: 5_000 }), /segmento/);
+});
+
+test("consulta histórica distingue presencia en archivo de autoridad actual", () => {
+  const receipts = {
+    "gm:archived": { state: "archived", fingerprint: "unchanged", at: 1 },
+    "gm:pending": { state: "pending", fingerprint: "uncertain", at: 2 }
+  };
+  const env = environment({ initialReceipts: receipts });
+  const files = createCommerceReceiptArchiveParts(env.merchant);
+  const before = structuredClone(env.merchant.flags);
+  const present = lookupCommerceArchivedReceipt(env.merchant, files, "gm:archived");
+  assert.equal(present.ok, true);
+  assert.equal(present.archivePresent, true);
+  assert.equal(present.actorPresent, true);
+  assert.equal(present.matchingFingerprint, true);
+  assert.equal(present.compatibleState, true);
+  assert.equal(present.conflict, false);
+  assert.equal(present.canAuthorizeReplay, false);
+  const absent = lookupCommerceArchivedReceipt(env.merchant, files, "gm:unknown");
+  assert.equal(absent.ok, true);
+  assert.equal(absent.archivePresent, false);
+  assert.equal(absent.actorPresent, false);
+  assert.equal(absent.canAuthorizeReplay, false, "ausencia histórica no autoriza compra");
+  assert.deepEqual(env.merchant.flags, before);
+  assert.equal(env.items.length, 0);
+  assert.equal(env.getStock(), 2);
+});
+
+test("consulta detecta desaparición o alteración de lápidas sin tocar el Actor", () => {
+  const env = environment({ initialReceipts: {
+    "gm:used": { state: "archived", fingerprint: "old", at: 1 },
+    "gm:still": { state: "pending", fingerprint: "x", at: 2 }
+  } });
+  const files = createCommerceReceiptArchiveParts(env.merchant);
+  env.merchant.flags.commerceReceipts["gm:used"].fingerprint = "changed";
+  const conflicting = lookupCommerceArchivedReceipt(env.merchant, files, "gm:used");
+  assert.equal(conflicting.conflict, true);
+  assert.equal(conflicting.requiresManualReview, true);
+  delete env.merchant.flags.commerceReceipts["gm:used"];
+  const missing = lookupCommerceArchivedReceipt(env.merchant, files, "gm:used");
+  assert.equal(missing.archivePresent, true);
+  assert.equal(missing.actorPresent, false);
+  assert.equal(missing.requiresManualReview, true);
+  assert.equal(missing.canAuthorizeReplay, false);
+  const pending = lookupCommerceArchivedReceipt(env.merchant, files, "gm:still");
+  assert.equal(pending.archiveState, "pending");
+  assert.equal(pending.canAuthorizeReplay, false);
+  assert.equal(lookupCommerceArchivedReceipt(env.merchant, files.slice(1),
+    "gm:used").ok, files.length === 1);
+  assert.equal(lookupCommerceArchivedReceipt(env.merchant, files,
+    "__proto__").ok, false);
+  assert.equal(lookupCommerceArchivedReceipt(env.merchant, files,
+    "gm:used").ok, true);
 });
 
 test("historial saturado rechaza compras sin podar archivo ni tocar dinero o stock", async () => {
