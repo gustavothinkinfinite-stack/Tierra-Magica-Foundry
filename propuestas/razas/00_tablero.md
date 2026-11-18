@@ -14,7 +14,7 @@
 | 06 | Terios/Anihombres | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**, B1–B4 completas; 0 Foundry/mesa | Variedad, branquias/Anfibio y medios mixtos siguen reservas no canónicas |
 | 07 | Feéricos | **Fase C (manual final y nota de integración) COMPLETADA documentalmente**; B1–B4 completas | B5: movimiento mixto, DER-R2 y viento mágico siguen propuestas no ratificadas; 0 Foundry/mesa |
 | 08 | Ankar | Borrador v0.1; **B1–B4 documentales completas**; **68 DOC B3 + 14 DOC B4; 28 MOD auxiliares**, 0 Foundry/mesa | B5: frecuencia de Sentido, barreras, efectos mixtos y apilamiento racial/mágico |
-| 09 | Cristálidos | Borrador v0.1; **B1–B4 documentales completas**; **96 DOC B3 + 14 DOC B4**, 0 Foundry/mesa | B5: ocultación, consentimiento, 0 Vida y frecuencia de Conductor Vivo |
+| 09 | Cristálidos | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**; B1–B4 completas | Conductor Vivo y arbitrajes B5 permanecen no canónicos; 0 Foundry/mesa |
 | 10 | Verdantes | Borrador v0.1; **B1–B4 documentales completas**; **86 DOC B3 + 16 DOC B4**, 0 Foundry/mesa | B5: CLN-01, anclaje/Martillo Cinético, Derribar, 0 Vida, biomas y Viaje |
 | 11 | Micelios | Expediente v0.1; **B1–B4 documentales completas**, **100 DOC B3 + 18 DOC B4** | B5: radio geométrico, continuidad/reconexión, valor de Quimiosensibilidad y Enlace |
 | 12 | Coralios | Expediente v0.1; **B1–B4 documentales completas**, **88 DOC B3 + 18 DOC B4** | B5: movimiento mixto, hidratación, Anfibio 1 PR y paridad |
@@ -686,3 +686,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, expediente Ankar, doble página inicial, brief, cierre y B4; verificado Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (Vaelun, Sentido, Custodia, creación y límites).
 - Publicados [`08_ankar/manual_final_propuesto.md`](./08_ankar/manual_final_propuesto.md) (**847 palabras**, dos páginas) y [`08_ankar/nota_integracion_manual.md`](./08_ankar/nota_integracion_manual.md). Instituciones propuestas sin ventajas, límites de Sentido/Custodia intactos, misterio del alma conservado.
 - **Fase C 8/12; 4 restantes.** B5 cerrada documentalmente con reservas; **0 Foundry/mesa**. Próximo: **09 Cristálidos** y nota de integración. Sólo rama/carpeta de propuestas.
+
+### 2026-11-18 — Fase C: Cristálidos (9/12)
+- Releídos tablero, README, plan, expediente, doble página inicial, brief y pruebas de balance; cotejado Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (Primera Forja, Matriz Mixta, Resonancia Arcana, Conductor Vivo, PD/PR e Ingeniería).
+- Guardados [`09_cristalidos/manual_final_propuesto.md`](./09_cristalidos/manual_final_propuesto.md) (**777 palabras**, dos páginas) y [`09_cristalidos/nota_integracion_manual.md`](./09_cristalidos/nota_integracion_manual.md). Instituciones culturales sólo propuestas, sin ventajas; protocolo de acoplamiento y LAB fuera del texto canónico.
+- **Fase C 9/12; 3 restantes.** B5 cerrada sólo documentalmente con reservas; **0 Foundry/mesa**. Siguiente: **10 Verdantes** y nota de integración. Sólo rama/carpeta de propuestas.
