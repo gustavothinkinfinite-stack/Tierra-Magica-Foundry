@@ -10509,7 +10509,7 @@ La tabla anterior reúne **11 perfiles de referencia**, no once fichas exhaustiv
 
 ### Encuentros de referencia listos para dirigir (sin nuevas reglas)
 
-Estos cuatro ejemplos usan literalmente las estadísticas publicadas en la tabla de PNJ y criaturas. La situación narrativa es un ejemplo, no un acontecimiento canónico de Edria. Cada ataque se resuelve mediante la regla universal **2d10 + bono de Ataque contra Defensa**; el daño sólo se aplica después de acertar, con la Protección y Penetración correspondientes. No se asignan capacidades especiales no escritas.
+Estos siete ejemplos usan literalmente las estadísticas publicadas en la tabla de PNJ y criaturas. La situación narrativa es un ejemplo, no un acontecimiento canónico de Edria. Cada ataque se resuelve mediante la regla universal **2d10 + bono de Ataque contra Defensa**; el daño sólo se aplica después de acertar, con la Protección y Penetración correspondientes. No se asignan capacidades especiales no escritas.
 
 **Encuentro 1 — Bandido en una ruta comercial.** Un salteador intenta detener a los viajeros y exigirles que abandonen parte de la carga. Puede comenzar a distancia con arco corto o acercarse y usar espada corta; no obtiene ataques adicionales ni usa ambas armas simultáneamente por figurar las dos en su perfil.
 
@@ -10560,7 +10560,43 @@ Estos cuatro ejemplos usan literalmente las estadísticas publicadas en la tabla
 
 **Resolución de ejemplo:** en un ataque ordinario válido tira 2d10 + 7 contra la Defensa del objetivo. Si impacta, aplica Daño 11 con Penetración 1. La gran fuerza sugerida por el perfil no proporciona automáticamente Barrido, ataques de área, Reacciones adicionales ni inmunidad al control.
 
-**Alcance del cierre:** estos cuatro encuentros son utilizables con sus ataques declarados, pero no constituyen fichas exhaustivas de historia personal, inventario, percepción ni capacidades fuera del combate. No sustituyen los perfiles de referencia, no crean entradas nuevas del Compendio y no justifican deducir estadísticas faltantes de otros PNJ.
+**Encuentro 5 — Veterano en un puente de piedra.** Un combatiente experimentado protege una retirada. Su perfil ya especifica bono de ataque, Daño y Penetración, pero **no identifica un arma concreta**: «Ataque» es la denominación de la tabla y no se sustituye aquí por espada, lanza u otra arma nueva.
+
+| Campo | Valor |
+|---|---|
+| Vida | 16 |
+| Defensa / Corporal / Mental / Maniobra | 16 / 14 / 14 / 17 |
+| Protección | 3 |
+| Movimiento / Iniciativa | 6 / +4 |
+| Ataque principal publicado | Ataque +7; Daño 8; Pen 1 |
+
+**Resolución de ejemplo:** el ataque válido se resuelve con 2d10 + 7 contra Defensa; al acertar causa Daño 8, Penetración 1. El equipo físico y su compatibilidad narrativa se deberán definir en la escena sin deducir nuevas propiedades, Técnicas o acciones del bono genérico publicado.
+
+**Encuentro 6 — Tirador en un puesto de vigilancia.** Un tirador mantiene línea de visión desde una posición protegida. El Director determina alcance y cobertura de acuerdo con las reglas generales, sin conceder Ventaja por la mera descripción del puesto.
+
+| Campo | Valor |
+|---|---|
+| Vida | 12 |
+| Defensa / Corporal / Mental / Maniobra | 14 / 12 / 13 / 13 |
+| Protección | 1 |
+| Movimiento / Iniciativa | 6 / +4 |
+| Rifle | Ataque +7; Daño 7; Pen 3 |
+
+**Resolución de ejemplo:** dispara cuando su posición, arma y munición lo permiten, con 2d10 + 7 contra Defensa. Un impacto causa Daño 7, Penetración 3. El perfil no especifica modelo de rifle, tipo de cargador ni munición especial; no se atribuyen modos de fuego ni disparos adicionales.
+
+**Encuentro 7 — Centinela de Bronce en una instalación.** Un constructo guarda un acceso técnico y responde a una intrusión conforme a su función narrativa; su ficha no autoriza inferir un repertorio de órdenes, sensores especiales ni reservas de Energía.
+
+| Campo | Valor |
+|---|---|
+| Vida | 22 |
+| Defensa / Corporal / Mental / Maniobra | 12 / — / 12* / 16 |
+| Protección | 5 |
+| Movimiento / Iniciativa | 4 / +1 |
+| Golpe | Ataque +6; Daño 8; Pen 2 |
+
+**Resolución de ejemplo:** un Golpe válido usa 2d10 + 6 contra Defensa; un impacto causa Daño 8, Penetración 2. El guion en Defensa Corporal significa que la tabla no proporciona un valor universal; no equivale a inmunidad total ni se reemplaza por un número inventado. La Defensa Mental 12* sólo se aplica a efectos capaces de afectar al constructo, como indica el perfil. Toda interacción que requiera un valor o programa no definido debe resolverse con el perfil técnico pertinente antes de presentarla como procedimiento cerrado.
+
+**Alcance del cierre:** estos siete encuentros permiten resolver sus ataques declarados, pero no constituyen fichas exhaustivas de historia personal, inventario, percepción, recursos, programas ni capacidades fuera del combate. No sustituyen los perfiles de referencia ni crean entradas nuevas del Compendio. El Veterano y el Centinela conservan campos expresamente abiertos: el ejemplo no los completa por inferencia.
 
 ## 24. Dirección de juego
 
