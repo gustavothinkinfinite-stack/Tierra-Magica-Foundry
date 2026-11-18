@@ -58,3 +58,17 @@
 | D10 | Incapacitado, Trauma, protección pasiva | prioridad simultánea y persistencia | efectos sostenidos concretos |
 
 **Dictamen:** siete opciones editoriales **seleccionadas y costeadas donde corresponde**, con 15 casos de aceptación/contraejemplo descritos; **no certifican 66 parejas ni sustituyen ejecución**. B5 requiere contrastar los guiones contra las reglas de subsistema en `main`, revisar contradicciones (especialmente D05, D08) y actualizar el acta de puerta C. **No abrir fase C todavía.**
+
+
+## Adenda 18-11-2026 — precedencia de la hoja normativa única
+
+**Este expediente del 17-11 se conserva como antecedente histórico, no como segundo reglamento alternativo.** La **única candidatura normativa** de esta rama para los siete bloques es [`05_b5_hoja_unica_decisiones_normativas.md`](./05_b5_hoja_unica_decisiones_normativas.md), con matriz [`05_b5_conciliacion_30_casos_12_globales_y_pares.md`](./05_b5_conciliacion_30_casos_12_globales_y_pares.md), contrastada con el blob actual de `main` `aa7105f6ef4d744040cce4763d9e01ee28b87572`.
+
+**Conflictos corregidos en el borrador, NO en canon:**
+- **D02 vs DER-R2:** este documento prohibía inventar +1 numérico para Derribar; el nuevo dictamen formula **DER-R2 como cambio propuesto explícito**: +1 Defensa de Maniobra **sólo al resistir Derribar** cuando una facultad aumenta expresamente Escala efectiva en ese contexto. La versión previa sigue registrando la lectura literal **R0**.
+- **D05/ANF1:** mantiene Anfibio 1 PR y Coralio seco con fuente independiente; la hoja nueva distingue además **branquias anatómicas funcionales** de Locomoción de nado y de `Anfibio` general, pendiente aprobación y balance.
+- **D06:** `Disciplina Preparada` y `Señal de Coordinación` son **alternativas de estudio distintas** y no deben confundirse ni añadirse gratis. La candidatura elegida es **mantener Hobgoblin canónico con Ojo**, reconociendo asimetría sin paridad demostrada.
+- **D08:** consentimiento antes de declarar la intervención, pero luego **§2 manda declarar→pagar→comprobar→Reacciones→prueba**. Revocación tras el pago no reembolsa.
+- **I01/I04/I10:** nuevo texto especifica interrupción Goblin, reconexión, orden de 0 Vida y costes; es arbitraje propuesto, no normalización oficial.
+
+La presente adenda **no cierra B5 ni abre C**: 30 criterios DOC nuevos, 0 Foundry y 0 mesa; selección editorial y validación pendientes.
