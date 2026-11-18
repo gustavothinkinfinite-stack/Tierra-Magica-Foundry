@@ -113,6 +113,13 @@ export function quoteCommerce(config, offer, item, quantity = 1) {
   const count = positive(quantity);
   if (count === null || count > 1000) return { ok: false, error: "Cantidad inválida." };
   if (count > offer.stock) return { ok: false, error: "No hay existencias suficientes." };
+  // Una etiqueta Restringida exige una autorización distinta del tamaño del mercado.
+  // Hasta que exista un procedimiento canónico de licencias, no se vende automáticamente.
+  // Se contrasta con el Item real para que alterar el registro de oferta no lo eluda.
+  if (config.mode === "merchant" &&
+      (offerAvailabilityStatus(item) === "restricted" || offer.availabilityStatus === "restricted")) {
+    return { ok: false, error: "Artículo Restringido: la venta automática requiere autorización todavía no implementada." };
+  }
   if (tierLevel(config.tier) < offer.minTier && config.mode === "merchant") {
     return { ok: false, error: "Objeto no autorizado para el nivel comercial del establecimiento." };
   }
