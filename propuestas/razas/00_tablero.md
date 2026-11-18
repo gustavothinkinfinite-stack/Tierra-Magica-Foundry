@@ -724,3 +724,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Verificados los doce `manual_final_propuesto.md` y doce `nota_integracion_manual.md`. Las doce dobles páginas contienen página narrativa/jugable y 25 PD/3 PR; **12/12 dentro de extensión 650–850 palabras**. Goblinoides refinada a **849** palabras y Terios a **809**; notas de integración sincronizadas.
 - Entregado [`13_indice_editorial_y_acta_entrega.md`](./13_indice_editorial_y_acta_entrega.md), doce enlaces a capítulos y notas, registro de límites y decisiones B5 para integrar en `main` con cambios mecánicos explícitos.
 - **Fase C editorial 12/12 completada**, falta integración en Manual Maestro y control de versiones/Foundry; no inventar estado de «sistema probado» o release publicada.
+
+### 2026-11-18 — Fase C: registro de diferencias y alerta de deriva del canon
+- Releídos tablero, README, plan, tabla comparativa, hoja única B5, conciliación residual y Manual Maestro actual de `main`.
+- **Detectado nuevo blob de `main`: `0c8ddfb0b218bed38cd10962a1ac35bab8821466`**, distinto del citado por el índice/tabla; no declarar compatibilidad final hasta cotejo diferencial.
+- Creado [`manual_final/registro_de_diferencias_con_main.md`](./manual_final/registro_de_diferencias_con_main.md): 16 decisiones/áreas clasificadas en canon, editorial, nueva norma, pendiente e histórica, con costes, límites y regresiones documentales. No se alteró `main` ni Foundry.
+- **Siguiente:** cotejar cambios del Manual Maestro actual y ensamblar capítulo corrido; no repetir auditorías ya documentadas.
