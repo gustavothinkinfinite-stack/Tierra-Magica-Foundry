@@ -8,16 +8,16 @@
 |---:|---|---|---|
 | 01 | Humanos | **Fase C (doble página final propuesta + nota de integración) COMPLETADA documentalmente**, B1–B4 completas; paquete Don sin Forma fiel a canon | HUM-B2-DEC-01 y HUM-B4-P02 siguen propuestas no ratificadas; 0 Foundry/mesa |
 | 02 | Enanos | **Fase C (doble página final propuesta + nota de integración) COMPLETADA documentalmente**, B1–B4 completas; Cuerpo de Piedra y Sangre de Metal sin cambio canónico | ENA-B4-P01 y B5-DER-R2 siguen propuestas separadas; 0 Foundry/mesa |
-| 03 | Élficos | Borrador v0.1; **B1–B4 documentales completas**, 56 DOC B3 + 12 regresiones B4; 16 MOD auxiliares (no Foundry) | B5: significación, ocultación, efecto directo/indirecto y regresiones globales |
-| 04 | Orcos | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**, B1–B4 completas | ORC-B4-P01/P02 siguen no canónicas; 0 Foundry/mesa |
-| 05 | Goblinoides | Borrador v0.1; **B1–B4 documentales completas**, **69 DOC B3 + 15 DOC B4; 20 MOD auxiliares** | B5: Ojo en Iniciativa, interrupción Escurridizo y **paridad Hobgoblin pendiente** |
-| 06 | Terios/Anihombres | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**, B1–B4 completas; 0 Foundry/mesa | Variedad, branquias/Anfibio y medios mixtos siguen reservas no canónicas |
-| 07 | Feéricos | **Fase C (manual final y nota de integración) COMPLETADA documentalmente**; B1–B4 completas | B5: movimiento mixto, DER-R2 y viento mágico siguen propuestas no ratificadas; 0 Foundry/mesa |
-| 08 | Ankar | Borrador v0.1; **B1–B4 documentales completas**; **68 DOC B3 + 14 DOC B4; 28 MOD auxiliares**, 0 Foundry/mesa | B5: frecuencia de Sentido, barreras, efectos mixtos y apilamiento racial/mágico |
-| 09 | Cristálidos | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**; B1–B4 completas | Conductor Vivo y arbitrajes B5 permanecen no canónicos; 0 Foundry/mesa |
-| 10 | Verdantes | Borrador v0.1; **B1–B4 documentales completas**; **86 DOC B3 + 16 DOC B4**, 0 Foundry/mesa | B5: CLN-01, anclaje/Martillo Cinético, Derribar, 0 Vida, biomas y Viaje |
-| 11 | Micelios | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**, B1–B4 completas | MIC-B4-P01–P04 no canónicas; 0 Foundry/mesa |
-| 12 | Coralios | Expediente v0.1; **B1–B4 documentales completas**, **88 DOC B3 + 18 DOC B4** | B5: movimiento mixto, hidratación, Anfibio 1 PR y paridad |
+| 03 | Élficos | **FASE C COMPLETADA DOCUMENTALMENTE**: doble página 816 palabras + nota de integración; B1–B4 completas | Resonancia/ocultación revisado; aprobación del creador para integrar, pruebas Foundry/mesa de propuestas aún no ejecutadas |
+| 04 | Orcos | **FASE C COMPLETADA DOCUMENTALMENTE**: doble página 786 palabras + nota de integración; B1–B4 completas | Voluntad y Desventaja revisado; aprobación del creador para integrar, pruebas Foundry/mesa de propuestas aún no ejecutadas |
+| 05 | Goblinoides | **FASE C COMPLETADA DOCUMENTALMENTE**: doble página 849 palabras + nota de integración; B1–B4 completas | Hobgoblin asimétrico/Ojo revisado; aprobación del creador para integrar, pruebas Foundry/mesa de propuestas aún no ejecutadas |
+| 06 | Terios/Anihombres | **FASE C COMPLETADA DOCUMENTALMENTE**: doble página 809 palabras + nota de integración; B1–B4 completas | Variedad, branquias y vuelo revisado; aprobación del creador para integrar, pruebas Foundry/mesa de propuestas aún no ejecutadas |
+| 07 | Feéricos | **FASE C COMPLETADA DOCUMENTALMENTE**: doble página 829 palabras + nota de integración; B1–B4 completas | Hada, Enraizar, viento revisado; aprobación del creador para integrar, pruebas Foundry/mesa de propuestas aún no ejecutadas |
+| 08 | Ankar | **FASE C COMPLETADA DOCUMENTALMENTE**: doble página 847 palabras + nota de integración; B1–B4 completas | sentido espiritual revisado; aprobación del creador para integrar, pruebas Foundry/mesa de propuestas aún no ejecutadas |
+| 09 | Cristálidos | **FASE C COMPLETADA DOCUMENTALMENTE**: doble página 777 palabras + nota de integración; B1–B4 completas | Conductor Vivo revisado; aprobación del creador para integrar, pruebas Foundry/mesa de propuestas aún no ejecutadas |
+| 10 | Verdantes | **FASE C COMPLETADA DOCUMENTALMENTE**: doble página 788 palabras + nota de integración; B1–B4 completas | Sustento vegetal/biomas revisado; aprobación del creador para integrar, pruebas Foundry/mesa de propuestas aún no ejecutadas |
+| 11 | Micelios | **FASE C COMPLETADA DOCUMENTALMENTE**: doble página 840 palabras + nota de integración; B1–B4 completas | red micelial revisado; aprobación del creador para integrar, pruebas Foundry/mesa de propuestas aún no ejecutadas |
+| 12 | Coralios | **FASE C COMPLETADA DOCUMENTALMENTE**: doble página 832 palabras + nota de integración; B1–B4 completas | Anfibio y deshidratación revisado; aprobación del creador para integrar, pruebas Foundry/mesa de propuestas aún no ejecutadas |
 
 
 ## Fases posteriores al cierre de los 12 expedientes (mandato del creador)
@@ -33,7 +33,7 @@
 | B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
 | B4. Comparación y mejoras | **12/12 documental: todas las familias** | Doce familias: 11 comparaciones cada una; Coralios 4 propuestas y 18 regresiones nuevas; Micelios 4 propuestas y 18 regresiones nuevas; Verdantes 4 propuestas y 16 regresiones nuevas; Cristálidos 3 propuestas y 14 regresiones nuevas; Ankar 3 y 14; Feéricos 4 y 16; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: B5 matriz global 12×12** |
 | B5. Regresiones globales | **CERRADA DOCUMENTALMENTE CONDICIONADA EN PROPUESTAS**: 12 incidencias conciliadas, 7/7 decisiones candidatas no aprobadas, 66 pares X y 12 G cotejados por lectura, 30 U y 28 V documentados | Acta B5 v4 de puerta; **0 pruebas Foundry, 0 mesa, 0 ratificaciones** | No declarar balance empírico ni actualizar canon; **Fase C sólo para borradores propuestos** |
-| C. Textos finales para el manual | **REDACCIÓN PROPUESTA: 2/12**, Humanos y Enanos; B5 cerrada sólo documentalmente con reservas | `manual_final_propuesto.md` y `nota_integracion_manual.md` de Humanos/Enanos guardadas; quedan otras 10 familias, índice y diferencias | **Siguiente: Élficos (C3)**. Sin aprobación de canon ni pruebas reales |
+| C. Textos finales para el manual | **12/12 dobles páginas + 12/12 notas COMPLETADAS y cotejadas**; edición 650–850 palabras por familia | [Índice editorial y acta de entrega](./13_indice_editorial_y_acta_entrega.md), decisiones B5 aprobadas para integración con control técnico | **Siguiente: integrar canon Manual Maestro, validar implementación y preparar entrega/release** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
 
 En cada mensaje «avanzar» se hace la siguiente unidad sustantiva pendiente. **Si todo está realmente completado**, no rehacer trabajo ni inventar novedades: informar cierre brevemente. No hay permiso para hacer merge ni modificar `main`/Foundry.
@@ -718,3 +718,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, autoridad `main` y doce notas de integración C01–C12.
 - Creada [`manual_final/tabla_de_razas.md`](./manual_final/tabla_de_razas.md): matriz de 12 ascendencias con Escala/MOV, rasgos y límites, siete conflictos de integración y controles de equivalencia/no acumulación.
 - Se mantiene 0 Foundry/mesa; sin cambios de canon. **Próximo:** `manual_final/registro_de_diferencias_con_main.md` con decisiones B5 rastreables, seguido de ensamblaje editorial y corrección de extensiones.
+
+### 2026-11-18 — Fase C consolidada 12/12 y aprobación global
+- **Autorización expresa del creador para completar y aplicar decisiones y cambios necesarios** recibida en esta conversación. La aprobación de contenidos **no equivale** a haber ejecutado Foundry, pruebas de mesa ni una release de GitHub; se conservarán esos límites en el acta.
+- Verificados los doce `manual_final_propuesto.md` y doce `nota_integracion_manual.md`. Las doce dobles páginas contienen página narrativa/jugable y 25 PD/3 PR; **12/12 dentro de extensión 650–850 palabras**. Goblinoides refinada a **849** palabras y Terios a **809**; notas de integración sincronizadas.
+- Entregado [`13_indice_editorial_y_acta_entrega.md`](./13_indice_editorial_y_acta_entrega.md), doce enlaces a capítulos y notas, registro de límites y decisiones B5 para integrar en `main` con cambios mecánicos explícitos.
+- **Fase C editorial 12/12 completada**, falta integración en Manual Maestro y control de versiones/Foundry; no inventar estado de «sistema probado» o release publicada.
