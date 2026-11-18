@@ -10325,6 +10325,18 @@ El capítulo 9 también fija **20 flechas perforantes = 4 p** y **20 virotes per
 
 El precio no es el único límite. Un objeto o servicio también puede tener **Disponibilidad** —Común, Profesional, Restringida, Rara o Excepcional— y un régimen de acceso social/legal. Tener suficiente dinero no crea existencias ni elimina licencias, requisitos o logística.
 
+### Auditoría de disponibilidad en Foundry (pendiente de conciliación)
+
+**Hallazgo técnico documental, sin modificación de las reglas comerciales:** el capítulo distingue cinco categorías de Disponibilidad, mientras que `scripts/rules/commerce.mjs` usa cuatro niveles operativos de establecimiento (`village`, `town`, `city`, `metropolis`). **No existe en este capítulo una equivalencia universal ratificada** entre esas dos clasificaciones. Nivel de mercado y régimen social/legal no son conceptos idénticos.
+
+Al revisar el código fuente se identifican tres límites concretos:
+
+1. `offerAvailabilityTier(item)` asigna actualmente `common` cuando el campo de disponibilidad está ausente. Este **valor operativo por defecto no constituye ratificación** de que todos esos bienes sean «Comunes» en el mundo. El catálogo `CANONICAL_EQUIPMENT` de `scripts/catalog/equipment-canonical.mjs` contiene 25 objetos con precio exacto, pero sus entradas no declaran una disponibilidad individual.
+2. El código sí reconoce `rare` como nivel 3 y las armas `Pistola repetidora` y `Rifle repetidor` llevan `availability: "rare"` en `scripts/content.mjs`, concordando con la anotación **Rara** de la tabla de precios. No debe extenderse esa clasificación a otras armas sólo por similitud.
+3. La función de comercio no incluye una clave específica `professional`; `restricted` se dirige al nivel 4. Su traducción a las categorías **Profesional** y **Restringida** y las restricciones de licencia/acceso requieren una tabla explícita de correspondencias y reglas de autorización. Un nivel comercial por sí solo no demuestra derecho legal a comprar.
+
+**Pendiente de decisión de implementación:** distinguir el campo **no especificado** de «Común» sin promocionar automáticamente los objetos al nivel 4; definir equivalencias de mercado y requisitos de acceso de las cinco categorías; y después añadir pruebas de compra y rechazo que contemplen objetos sin clasificación, Profesionales, Restringidos y Raros. Hasta esa resolución, no se atribuirán disponibilidades canónicas a los 25 objetos de EQP-01 ni a otras entradas por inferencia.
+
 ### Catálogo monetario de equipo
 
 | Equipo | Precio |
