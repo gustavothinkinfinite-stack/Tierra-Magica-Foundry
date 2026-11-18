@@ -12,7 +12,7 @@
 | 04 | Orcos | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**, B1–B4 completas | ORC-B4-P01/P02 siguen no canónicas; 0 Foundry/mesa |
 | 05 | Goblinoides | Borrador v0.1; **B1–B4 documentales completas**, **69 DOC B3 + 15 DOC B4; 20 MOD auxiliares** | B5: Ojo en Iniciativa, interrupción Escurridizo y **paridad Hobgoblin pendiente** |
 | 06 | Terios/Anihombres | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**, B1–B4 completas; 0 Foundry/mesa | Variedad, branquias/Anfibio y medios mixtos siguen reservas no canónicas |
-| 07 | Feéricos | Borrador v0.1; **B1–B4 documentales completas**, **76 DOC B3 + 16 DOC B4; 24 MOD auxiliares** | B5: Hada apoyos/velocidades, Dríade Derribar/desanclaje, Silfo viento mágico |
+| 07 | Feéricos | **Fase C (manual final y nota de integración) COMPLETADA documentalmente**; B1–B4 completas | B5: movimiento mixto, DER-R2 y viento mágico siguen propuestas no ratificadas; 0 Foundry/mesa |
 | 08 | Ankar | Borrador v0.1; **B1–B4 documentales completas**; **68 DOC B3 + 14 DOC B4; 28 MOD auxiliares**, 0 Foundry/mesa | B5: frecuencia de Sentido, barreras, efectos mixtos y apilamiento racial/mágico |
 | 09 | Cristálidos | Borrador v0.1; **B1–B4 documentales completas**; **96 DOC B3 + 14 DOC B4**, 0 Foundry/mesa | B5: ocultación, consentimiento, 0 Vida y frecuencia de Conductor Vivo |
 | 10 | Verdantes | Borrador v0.1; **B1–B4 documentales completas**; **86 DOC B3 + 16 DOC B4**, 0 Foundry/mesa | B5: CLN-01, anclaje/Martillo Cinético, Derribar, 0 Vida, biomas y Viaje |
@@ -676,3 +676,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, expediente Terios, doble página inicial y brief; Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (Eïra, Linaje/Variedad, adaptaciones, creación, Anfibio y Territorio Oriental).
 - Guardados [`06_terios/manual_final_propuesto.md`](./06_terios/manual_final_propuesto.md) (**847 palabras**, dos páginas) y [`06_terios/nota_integracion_manual.md`](./06_terios/nota_integracion_manual.md). Escuelas comunitarias sólo propuesta cultural; no canonizar Renkai, Origen Renkaino ni reglas B5 de Variedad, branquias y movimiento.
 - **Fase C 6/12; 6 restantes**. B5 cerrada documentalmente con reservas; **0 Foundry/mesa**. Siguiente: **07 Feéricos**. Sólo rama/carpeta de propuestas.
+
+### 2026-11-18 — Fase C: Feéricos (7/12)
+- Releídos tablero, README, plan, expediente, doble página inicial, brief y B4 Feéricos; contrastado Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e`.
+- Guardados [`07_feericos/manual_final_propuesto.md`](./07_feericos/manual_final_propuesto.md) (805 palabras, dos páginas) y [`07_feericos/nota_integracion_manual.md`](./07_feericos/nota_integracion_manual.md). Cultura nueva explícitamente no canónica; DER-R2, movimiento mixto y viento mágico fuera del paquete canónico.
+- **Fase C 7/12; 5 restantes**. B5 cerrado sólo documentalmente con reservas; **0 Foundry/mesa**. Siguiente: **08 Ankar** y nota. Sólo rama/carpeta de propuestas.
