@@ -610,6 +610,18 @@ test("archivo histórico detecta piezas ausentes, repetidas, alteradas y lotes m
   assert.equal(inspectCommerceReceiptArchiveParts([
     JSON.stringify(modified), ...files.slice(1)
   ]).ok, false);
+  // Incluso con suma de control por pieza recalculada, la huella global debe
+  // detectar que el conjunto completo no es la fotografía exportada.
+  const { checksum: originalChecksum, ...payload } = modified;
+  void originalChecksum;
+  let hash = 2166136261;
+  for (const character of JSON.stringify(payload)) {
+    hash = Math.imul(hash ^ character.charCodeAt(0), 16777619) >>> 0;
+  }
+  modified.checksum = hash.toString(16).padStart(8, "0");
+  assert.equal(inspectCommerceReceiptArchiveParts([
+    JSON.stringify(modified), ...files.slice(1)
+  ]).ok, false, "la huella global detecta piezas re-firmadas con suma local");
   env.merchant.flags.commerceReceipts["gm:archived-0"].fingerprint = "otra";
   const different = createCommerceReceiptArchiveParts(env.merchant,
     { targetCharacters: 10_000 });
