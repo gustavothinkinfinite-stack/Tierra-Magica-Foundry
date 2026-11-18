@@ -10509,7 +10509,7 @@ La tabla anterior reúne **11 perfiles de referencia**, no once fichas exhaustiv
 
 ### Encuentros de referencia listos para dirigir (sin nuevas reglas)
 
-Estos dos ejemplos usan literalmente las estadísticas publicadas en la tabla de PNJ y criaturas. La situación narrativa es un ejemplo, no un acontecimiento canónico de Edria. Cada ataque se resuelve mediante la regla universal **2d10 + bono de Ataque contra Defensa**; el daño sólo se aplica después de acertar, con la Protección y Penetración correspondientes. No se asignan capacidades especiales no escritas.
+Estos cuatro ejemplos usan literalmente las estadísticas publicadas en la tabla de PNJ y criaturas. La situación narrativa es un ejemplo, no un acontecimiento canónico de Edria. Cada ataque se resuelve mediante la regla universal **2d10 + bono de Ataque contra Defensa**; el daño sólo se aplica después de acertar, con la Protección y Penetración correspondientes. No se asignan capacidades especiales no escritas.
 
 **Encuentro 1 — Bandido en una ruta comercial.** Un salteador intenta detener a los viajeros y exigirles que abandonen parte de la carga. Puede comenzar a distancia con arco corto o acercarse y usar espada corta; no obtiene ataques adicionales ni usa ambas armas simultáneamente por figurar las dos en su perfil.
 
@@ -10536,7 +10536,31 @@ Estos dos ejemplos usan literalmente las estadísticas publicadas en la tabla de
 
 **Resolución de ejemplo:** ataca con 2d10 + 4 contra la Defensa del objetivo. Un impacto causa Daño 7 con Penetración 1. La propiedad Alcance sólo produce los efectos expresamente autorizados por el capítulo de armas y las Técnicas aplicables; este ejemplo no añade espacios de alcance.
 
-**Alcance del cierre:** estos encuentros son utilizables con sus ataques declarados, pero no constituyen fichas exhaustivas de historia personal, inventario, percepción ni capacidades fuera del combate. No sustituyen los perfiles de referencia, no crean entradas nuevas del Compendio y no justifican deducir estadísticas faltantes de otros PNJ.
+**Encuentro 3 — Lobo en la periferia de un bosque.** Un lobo protege su paso o intenta obtener alimento. El Director decide sus motivaciones y si es posible evitar el conflicto. Su velocidad es una ventaja de posición, no un ataque adicional.
+
+| Campo | Valor |
+|---|---|
+| Vida | 10 |
+| Defensa / Corporal / Mental / Maniobra | 14 / 13 / 11 / 13 |
+| Protección | 0 |
+| Movimiento / Iniciativa | 8 / +4 |
+| Mordida | Ataque +5; Daño 5 |
+
+**Resolución de ejemplo:** si la mordida es físicamente viable, tira 2d10 + 5 contra la Defensa del objetivo. Un impacto aplica Daño 5 antes de mitigación. La mordida no causa automáticamente Presa, Sangrado, Derribo ni enfermedad: esos efectos requerirían una regla o capacidad adicional.
+
+**Encuentro 4 — Ogro en un paso rocoso.** Un ogro bloquea una ruta estrecha. Puede intentar detener el tránsito mediante amenaza, posición o fuerza bruta; ninguna de esas circunstancias le concede un modificador universal gratuito.
+
+| Campo | Valor |
+|---|---|
+| Vida | 28 |
+| Defensa / Corporal / Mental / Maniobra | 11 / 16 / 11 / 17 |
+| Protección | 2 |
+| Movimiento / Iniciativa | 6 / +1 |
+| Garrote | Ataque +7; Daño 11; Pen 1 |
+
+**Resolución de ejemplo:** en un ataque ordinario válido tira 2d10 + 7 contra la Defensa del objetivo. Si impacta, aplica Daño 11 con Penetración 1. La gran fuerza sugerida por el perfil no proporciona automáticamente Barrido, ataques de área, Reacciones adicionales ni inmunidad al control.
+
+**Alcance del cierre:** estos cuatro encuentros son utilizables con sus ataques declarados, pero no constituyen fichas exhaustivas de historia personal, inventario, percepción ni capacidades fuera del combate. No sustituyen los perfiles de referencia, no crean entradas nuevas del Compendio y no justifican deducir estadísticas faltantes de otros PNJ.
 
 ## 24. Dirección de juego
 
