@@ -3,7 +3,7 @@ import {
   COMMERCE_TIERS, COMMERCE_SPECIALTIES, COMMERCE_ITEM_TYPES,
   createCommerceOffer, normalizeCommerce, tierLevel
 } from "../rules/commerce.mjs";
-import { commerceReceiptLedgerStats, createCommerceReceiptBackup, inspectCommerceReceiptBackup, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
+import { commerceReceiptLedgerStats, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
 
 const esc = (value) => foundry.utils.escapeHTML(String(value ?? ""));
 const modeText = (mode) => mode === "chest" ? "Cofre / botín gratis" : "Comerciante";
@@ -82,6 +82,8 @@ export function configureCommerce(actor) {
         : '') +
       'Las archivadas y pendientes se conservan para impedir duplicados; no eliminarlas manualmente.</p>' +
     '<button type="button" data-commerce-backup>Exportar copia de recibos (JSON)</button>' +
+    '<label>Examinar respaldo de recibos <input type="file" accept=".json,application/json" data-commerce-restore-file /></label>' +
+    '<button type="button" data-commerce-restore>Comparar respaldo y recuperar marcadores faltantes</button>' +
     "</section>";
 
   const dialog = new Dialog({
@@ -134,6 +136,47 @@ export function configureCommerce(actor) {
           globalThis.saveDataToFile(backup, "application/json",
             "tierra-magica-recibos-" + safeName + ".json");
           ui.notifications.info("Copia de recibos preparada. Conservá el archivo en un lugar seguro; el Actor no se modificó.");
+        } catch (error) { ui.notifications.error(error.message); }
+      });
+      html.find("[data-commerce-restore]").on("click", async () => {
+        try {
+          if (!game.user?.isGM) throw new Error("Sólo el DJ puede examinar respaldos.");
+          const file = html.find("[data-commerce-restore-file]")[0]?.files?.[0];
+          if (!file) throw new Error("Seleccioná un archivo JSON de respaldo.");
+          if (file.size > 2_000_000) throw new Error("El archivo supera el límite de 2 MB para esta operación.");
+          const json = await file.text();
+          const preview = previewCommerceReceiptReconciliation(actor, json);
+          if (!preview.ok) throw new Error(preview.error ?? "No se pudo examinar el respaldo.");
+          const summary = "<p>Actor: " + esc(actor.name) + "</p>" +
+            "<p>Coincidentes: " + preview.matching +
+            " · Faltantes: " + preview.missing +
+            " · Conflictos: " + preview.conflicts +
+            " · Sólo en Actor: " + preview.onlyCurrent + "</p>" +
+            "<p>La recuperación incorpora únicamente identificadores ausentes. " +
+            "No devuelve monedas ni objetos y no elimina registros.</p>";
+          if (preview.conflicts) {
+            await Dialog.prompt({
+              title: "Conciliación bloqueada por conflictos",
+              content: summary + "<p>Resolvé los conflictos antes de recuperar marcadores.</p>",
+              callback: () => undefined
+            });
+            return;
+          }
+          if (!preview.missing) {
+            ui.notifications.info("No hay marcadores faltantes para recuperar.");
+            return;
+          }
+          const approved = await Dialog.confirm({
+            title: "Confirmar recuperación de identificadores",
+            content: summary +
+              "<p><strong>Verificá el origen del archivo.</strong> La suma de control no acredita quién lo creó. " +
+              "Los recibos pendientes seguirán pendientes de revisión manual.</p>"
+          });
+          if (!approved) return;
+          const result = await recoverCommerceReceiptMarkers(actor, json, { confirm: true });
+          if (!result.ok) throw new Error(result.error ?? "La recuperación fue rechazada.");
+          ui.notifications.info("Identificadores recuperados: " + result.recovered +
+            ". No se ejecutaron compras ni entregas.");
         } catch (error) { ui.notifications.error(error.message); }
       });
       const list = html.find(".tm-commerce-items");
