@@ -221,3 +221,11 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - [`05_b5_anfibio_equivalencias_terios_coralios.md`](./05_b5_anfibio_equivalencias_terios_coralios.md): cuatro propuestas B5-AMP-P01–P04, veinte guiones DOC B5-AMP-T01–T20 **no ejecutados**, matriz de respiración/MOV/PR.
 - Terio Locomoción Especializada (nado MOV6) **no** concede respirar agua; Rasgo Anfibio cuesta **1 PR**. Coralio respira ambos medios mientras razonablemente hidratado; compra de Anfibio para respirar deshidratado queda **pendiente** por diferencia de condiciones, no se inventa beneficio.
 - I05 sigue bloqueante, I11 pendiente de cierre; **59 propuestas, 298 criterios DOC diseñados; 0 Foundry/mesa**. Siguiente I06/I07 Hobgoblin/Ojo/Voluntad/Ayuda; B5 abierta y C no autorizada.
+
+
+## Avance 18-11-2026 — Dictamen DER/Anfibio/Hobgoblin y 12 guiones G
+
+- [`05_b5_dictamen_editorial_derribar_anfibio_hobgoblin.md`](./05_b5_dictamen_editorial_derribar_anfibio_hobgoblin.md): **18 criterios DOC nuevos** en tres grupos (DER, ANF, HOB), con fuentes actuales, alternativas y riesgos. DER-R2 (+1 Defensa Maniobra únicamente a Derribar con Escala efectiva explícita) **no canónica**; D05-B (Anfibio 1 PR como fuente respiratoria independiente del Coralio seco) **no canónica**; Señal Hobgoblin **no demuestra paridad** y sólo puede ser alternativa por reemplazo de Ojo.
+- [`05_b5_acta_puerta_v3_y_12_escenarios_globales.md`](./05_b5_acta_puerta_v3_y_12_escenarios_globales.md): **12/12 escenarios originales B5-G01–G12 cotejados por lectura**, sin duplicarlos como pruebas nuevas. **0/12 ejecutados**; se mantienen **66/66 pares DOC cotejados, 0/66 certificados empíricamente, 0 Foundry y 0 mesa**.
+- El acta v3 usa `main` blob `334770e7ed7d2605767aecb169f57da6c1100508`, no modifica referencias históricas. Siete bloqueantes **I01/I02/I04/I05/I06/I08/I10** siguen abiertos; cuatro pendientes propositivos y una frontera canónica delimitada.
+- **B5 NO cerrada; C BLOQUEADA.** Próximo: hoja única con propuestas operativas armonizadas de los siete bloqueos; resolver contradicciones antes de escribir dobles páginas finales.
