@@ -7,6 +7,8 @@ test("detecta las cuatro formas de modificar comercio o recibos", () => {
     { "flags.tierra-magica.commerce": { offers: [] } },
     { "flags.tierra-magica.commerce.offers": [] },
     { "flags.tierra-magica.commerceReceipts": {} },
+    { "flags.tierra-magica.commercePendingReviews": { "gm:review": [] } },
+    { flags: { "tierra-magica": { "-=commercePendingReviews": null } } },
     { "flags.tierra-magica.commerceReceipts.gm:operation": null },
     { flags: { "tierra-magica": { commerce: { offers: [] } } } },
     { flags: { "tierra-magica": { commerceReceipts: {} } } },
