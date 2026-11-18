@@ -273,6 +273,78 @@ export function inspectCommercePendingReviewBackup(json, actor = null) {
     checksum };
 }
 
+// Conciliación de revisiones: sólo se admite agregar una continuación exacta
+// de un historial local existente. Si diverge un evento, se rechaza TODO.
+export function previewCommercePendingReviewReconciliation(actor, json) {
+  if (!actor?.uuid || actor.type !== "npc" || typeof actor.getFlag !== "function") {
+    return failure("Se requiere un NPC persistente para conciliar revisiones.");
+  }
+  const inspected = inspectCommercePendingReviewBackup(json, actor);
+  if (!inspected.ok) return inspected;
+  const incoming = JSON.parse(json).reviews;
+  const current = actor.getFlag("tierra-magica", REVIEW_KEY) ?? {};
+  if (!validateReviewEntries(current)) return failure("La bitácora actual contiene entradas inválidas.");
+  const receipts = snapshotReceipts(actor);
+  const conflicts = [];
+  const missing = [];
+  let matching = 0;
+  for (const [key, events] of Object.entries(incoming)) {
+    if (!events.length) continue;
+    const receipt = Object.hasOwn(receipts, key) ? receipts[key] : undefined;
+    if (receipt?.state !== "pending" || typeof receipt.fingerprint !== "string" ||
+        events.some((event) => event.receiptFingerprint !== receipt.fingerprint)) {
+      conflicts.push(key);
+      continue;
+    }
+    const live = Object.hasOwn(current, key) ? current[key] : [];
+    const overlap = Math.min(live.length, events.length);
+    if (Array.from({ length: overlap }, (_, i) => i).some((i) =>
+      JSON.stringify(live[i]) !== JSON.stringify(events[i]))) {
+      conflicts.push(key);
+      continue;
+    }
+    matching += overlap;
+    if (events.length > live.length) {
+      missing.push({ key, count: events.length - live.length });
+    }
+  }
+  return { ok: true, actorUuid: actor.uuid, matching,
+    missing: missing.reduce((sum, row) => sum + row.count, 0),
+    missingOperations: missing.length, conflicts: conflicts.length,
+    conflictKeys: conflicts, safeToMergeAutomatically: false };
+}
+
+// La revalidación ocurre en la misma cola que compras y anotaciones. Nunca
+// se recuperan eventos sin un recibo pending compatible y confirmación del DJ.
+export async function recoverCommercePendingReviews(actor, json, { confirm = false } = {}) {
+  if (!game.user?.isGM || currentGm()?.id !== game.user.id) {
+    return failure("Sólo el DJ activo principal puede recuperar revisiones.");
+  }
+  if (confirm !== true) return failure("La recuperación exige confirmación explícita.");
+  return exclusive(async () => {
+    const preview = previewCommercePendingReviewReconciliation(actor, json);
+    if (!preview.ok) return preview;
+    if (preview.conflicts) return failure("Existen conflictos: ninguna revisión fue modificada.");
+    if (!preview.missing) return { ok: true, recovered: 0 };
+    const incoming = JSON.parse(json).reviews;
+    const previous = actor.getFlag("tierra-magica", REVIEW_KEY) ?? {};
+    const merged = Object.fromEntries(Object.entries(previous));
+    for (const [key, events] of Object.entries(incoming)) {
+      if (!events.length) continue;
+      const live = Object.hasOwn(merged, key) ? merged[key] : [];
+      if (events.length > live.length) {
+        merged[key] = [...live, ...structuredClone(events.slice(live.length))];
+      }
+    }
+    if (!validateReviewEntries(merged) ||
+        JSON.stringify(merged).length > REVIEW_LIMIT) {
+      return failure("La recuperación supera el límite de bitácora o contiene datos inválidos.");
+    }
+    await actor.setFlag("tierra-magica", REVIEW_KEY, merged);
+    return { ok: true, recovered: preview.missing };
+  }).catch((error) => failure(error?.message ?? error));
+}
+
 // Copia portátil, de sólo lectura. La suma de control detecta corrupción
 // accidental; no es firma digital ni autoriza purgar el Actor.
 function receiptBackupChecksum(serialized) {
