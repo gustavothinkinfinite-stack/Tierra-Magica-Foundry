@@ -428,7 +428,7 @@ export function createCommerceReceiptArchiveParts(actor, { targetCharacters = 10
     throw new Error("Se requiere un Actor persistente para segmentar recibos.");
   }
   if (!Number.isSafeInteger(targetCharacters) ||
-      targetCharacters < 10_000 || targetCharacters > 200_000) {
+      targetCharacters < 5_000 || targetCharacters > 200_000) {
     throw new Error("El tamaño objetivo de segmento es inválido.");
   }
   const receipts = snapshotReceipts(actor);
