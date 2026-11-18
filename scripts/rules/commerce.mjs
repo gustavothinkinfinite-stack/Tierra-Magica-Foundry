@@ -33,12 +33,20 @@ export function tierLevel(id) {
   return allowedTier.get(String(id ?? "")) ?? 1;
 }
 
+export function offerAvailabilityStatus(item) {
+  const raw = item?.system?.physical?.availability ?? item?.system?.availability;
+  return typeof raw === "string" && raw.trim() ? raw.trim().toLowerCase() : "unspecified";
+}
+
 export function offerAvailabilityTier(item) {
-  const availability = String(item?.system?.physical?.availability ?? item?.system?.availability ?? "common").toLowerCase();
+  // Compatibilidad operativa temporal: un artículo sin clasificación conserva
+  // el mínimo de mercado anterior, pero NO queda etiquetado como Común.
+  const availability = offerAvailabilityStatus(item);
+  const marketFallback = availability === "unspecified" ? "common" : availability;
   const base = {
-    common: 1, ordinary: 1, uncommon: 2, specialized: 2,
+    common: 1, ordinary: 1, uncommon: 2, specialized: 2, professional: 2,
     rare: 3, exceptional: 4, unique: 4, legendary: 4, restricted: 4
-  }[availability] ?? 4; // Valores desconocidos no se comercializan como "comunes" silenciosamente.
+  }[marketFallback] ?? 4; // Valores desconocidos no se comercializan como "comunes" silenciosamente.
   const enchantment = item?.system?.enchantment ?? {};
   const magic = Number(enchantment.grade ?? 0) > 0 ||
     Boolean(enchantment.patternKey || enchantment.functionalKey || enchantment.passiveKey ||
@@ -68,6 +76,8 @@ export function normalizeCommerce(raw = {}) {
       specialty: allowedSpecialty.has(row.specialty) ? row.specialty : specialty,
       stock: nonnegative(row.stock) ?? 0,
       minTier: [1, 2, 3, 4].includes(Number(row.minTier)) ? Number(row.minTier) : 4,
+      availabilityStatus: typeof row.availabilityStatus === "string" && row.availabilityStatus.trim()
+        ? row.availabilityStatus.trim().toLowerCase() : "unspecified",
       priceCopper: nonnegative(row.priceCopper),
       priceQuantity: positive(row.priceQuantity) ?? 1,
       priceStatus: row.priceStatus === "exact" ? "exact" : "unset"
@@ -87,6 +97,7 @@ export function createCommerceOffer(item, specialty = "general") {
     type: item.type,
     specialty: allowedSpecialty.has(specialty) ? specialty : "general",
     stock: 1, minTier: offerAvailabilityTier(item),
+    availabilityStatus: offerAvailabilityStatus(item),
     priceCopper: price.priceStatus === "exact" ? nonnegative(price.priceCopper) : null, // precio fijado al agregar la oferta
     priceQuantity: positive(price.priceQuantity) ?? 1,
     priceStatus: price.priceStatus === "exact" ? "exact" : "unset"
