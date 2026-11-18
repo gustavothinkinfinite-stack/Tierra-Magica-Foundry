@@ -97,7 +97,7 @@ test("rotación de 128 recibos cerrados conserva todas las operaciones pendiente
     ["gm:unresolved-old", { state: "pending",
       fingerprint: JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]), at: 1 }],
     ...Array.from({ length: 145 }, (_, index) =>
-      ["gm:historical-" + index, { state: "completed", result: { ok: true }, at: index + 2 }])
+      ["gm:historical-" + index, { state: "completed", fingerprint: JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]), result: { ok: true }, at: index + 2 }])
   ]);
   const env = environment({ stock: 2, initialReceipts });
   const result = await executeCommerceExchange(env.request("fresh"));
@@ -106,11 +106,31 @@ test("rotación de 128 recibos cerrados conserva todas las operaciones pendiente
   assert.equal(receipts["gm:unresolved-old"].state, "pending");
   assert.equal(receipts["gm:fresh"].state, "completed");
   assert.equal(Object.values(receipts).filter((row) => row.state === "completed").length, 128);
+  assert.equal(Object.values(receipts).filter((row) => row.state === "archived").length, 18);
   assert.equal(Object.values(receipts).filter((row) => row.state === "pending").length, 1);
+  const historicalReplay = await executeCommerceExchange(env.request("historical-0"));
+  assert.equal(historicalReplay.ok, false);
+  assert.match(historicalReplay.error, /histórica/i);
+  assert.equal(receipts["gm:historical-0"].state, "archived");
   const duplicate = await executeCommerceExchange(env.request("unresolved-old"));
   assert.equal(duplicate.ok, false);
   assert.match(duplicate.error, /pendiente/i);
   assert.equal(env.items.length, 1, "no se duplica la entrega durante conciliación manual");
+  assert.equal(env.getStock(), 1);
+  assert.equal(env.buyer.system.currency.totalCopper, 470);
+});
+
+test("las lápidas históricas sobreviven a otra compra y no se reactivan", async () => {
+  const fingerprint = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const env = environment({ initialReceipts: {
+    "gm:archived-old": { state: "archived", fingerprint, at: 1 },
+    "gm:completed-old": { state: "completed", fingerprint, result: { ok: true }, at: 2 }
+  } });
+  assert.equal((await executeCommerceExchange(env.request("newer"))).ok, true);
+  assert.equal(env.merchant.flags.commerceReceipts["gm:archived-old"].state, "archived");
+  const duplicate = await executeCommerceExchange(env.request("archived-old"));
+  assert.equal(duplicate.ok, false);
+  assert.equal(env.items.length, 1);
   assert.equal(env.getStock(), 1);
   assert.equal(env.buyer.system.currency.totalCopper, 470);
 });
