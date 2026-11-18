@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   COMMERCE_TIERS, COMMERCE_SPECIALTIES, createCommerceOffer,
-  normalizeCommerce, offerAvailabilityTier, quoteCommerce, tierLevel
+  normalizeCommerce, offerAvailabilityStatus, offerAvailabilityTier, quoteCommerce, tierLevel
 } from "../scripts/rules/commerce.mjs";
 
 const item = (overrides = {}) => ({
@@ -30,11 +30,23 @@ test("especialidad y mercado son ejes independientes", () => {
 
 test("el nivel de disponibilidad procede del objeto, sin rebajar valores desconocidos", () => {
   assert.equal(offerAvailabilityTier(item()), 1);
+  assert.equal(offerAvailabilityTier(item({ system: { physical: { availability: "professional" } } })), 2);
   assert.equal(offerAvailabilityTier(item({ system: { physical: { availability: "rare" } } })), 3);
   assert.equal(offerAvailabilityTier(item({ system: { physical: { availability: "mystery" } } })), 4);
   assert.equal(offerAvailabilityTier(item({ system: {
     physical: { availability: "common" }, enchantment: { grade: 1, patternKey: 'enchant-test' }
   } })), 3);
+});
+
+test("sin clasificación no equivale a Común en el registro de la oferta", () => {
+  const missing = item({ system: { physical: { priceCopper: 100, priceQuantity: 1, priceStatus: "exact" } } });
+  assert.equal(offerAvailabilityStatus(missing), "unspecified");
+  const offer = createCommerceOffer(missing, "smith");
+  assert.equal(offer.availabilityStatus, "unspecified");
+  assert.equal(offer.minTier, 1, "se conserva compatibilidad de mercado, sin atribuir canon");
+  assert.equal(normalizeCommerce({ mode: "merchant", offers: [offer] }).offers[0].availabilityStatus, "unspecified");
+  assert.equal(offerAvailabilityStatus(item()), "common");
+  assert.equal(createCommerceOffer(item(), "smith").availabilityStatus, "common");
 });
 
 test("una armadura de metrópolis no puede comprarse en herrería de aldea", () => {
