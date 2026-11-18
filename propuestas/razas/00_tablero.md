@@ -681,3 +681,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, expediente, doble página inicial, brief y B4 Feéricos; contrastado Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e`.
 - Guardados [`07_feericos/manual_final_propuesto.md`](./07_feericos/manual_final_propuesto.md) (805 palabras, dos páginas) y [`07_feericos/nota_integracion_manual.md`](./07_feericos/nota_integracion_manual.md). Cultura nueva explícitamente no canónica; DER-R2, movimiento mixto y viento mágico fuera del paquete canónico.
 - **Fase C 7/12; 5 restantes**. B5 cerrado sólo documentalmente con reservas; **0 Foundry/mesa**. Siguiente: **08 Ankar** y nota. Sólo rama/carpeta de propuestas.
+
+### 2026-11-18 — Fase C: Ankar (8/12)
+- Releídos tablero, README, plan, expediente Ankar, doble página inicial, brief, cierre y B4; verificado Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (Vaelun, Sentido, Custodia, creación y límites).
+- Publicados [`08_ankar/manual_final_propuesto.md`](./08_ankar/manual_final_propuesto.md) (**847 palabras**, dos páginas) y [`08_ankar/nota_integracion_manual.md`](./08_ankar/nota_integracion_manual.md). Instituciones propuestas sin ventajas, límites de Sentido/Custodia intactos, misterio del alma conservado.
+- **Fase C 8/12; 4 restantes.** B5 cerrada documentalmente con reservas; **0 Foundry/mesa**. Próximo: **09 Cristálidos** y nota de integración. Sólo rama/carpeta de propuestas.
