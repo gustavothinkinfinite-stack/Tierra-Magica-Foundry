@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, failDebitAfterWrite = false, failItemAfterWrite = false, failStockAfterWrite = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -204,6 +204,60 @@ test("informe de pendientes vacío o con huellas malformadas nunca altera el Act
   assert.deepEqual(env.merchant.flags.commerceReceipts, before);
   assert.deepEqual(commercePendingReceiptReport({ getFlag: () => undefined }),
     { total: 0, shown: 0, rows: [] });
+});
+
+test("expediente pendiente registra fotografía actual sin cerrar ni inventar efectos", async () => {
+  const fp = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const env = environment({ money: 470, stock: 1, initialReceipts: {
+    "gm:review": { state: "pending", fingerprint: fp, at: 100 },
+    "gm:closed": { state: "completed", fingerprint: fp, at: 101 }
+  } });
+  const before = structuredClone(env.merchant.flags);
+  const report = await createCommercePendingDossier(env.merchant, "gm:review");
+  assert.equal(report.ok, true);
+  assert.equal(report.dossier.state, "pending");
+  assert.equal(report.dossier.request.buyerUuid, "Actor.buyer");
+  assert.equal(report.dossier.snapshot.currentCopper, 470);
+  assert.equal(report.dossier.snapshot.currentStock, 1);
+  assert.equal(report.dossier.snapshot.buyerFound, true);
+  assert.equal(report.dossier.snapshot.candidateItems, null,
+    "Inventario no consultable no se considera vacío");
+  assert.ok(report.dossier.warning.includes("no prueba"));
+  assert.deepEqual(env.merchant.flags, before);
+  assert.equal(env.items.length, 0);
+  assert.equal((await createCommercePendingDossier(env.merchant, "gm:closed")).ok, false);
+  assert.equal((await createCommercePendingDossier(env.merchant, "gm:missing")).ok, false);
+});
+
+test("expediente identifica candidatos de inventario sin afirmar que corresponden al recibo", async () => {
+  const fp = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const env = environment({ initialReceipts: {
+    "gm:review": { state: "pending", fingerprint: fp, at: 100 }
+  } });
+  env.buyer.items = [
+    { id: "i1", name: "Espada", system: { quantity: 1, acquisition: {
+      sources: [{ kind: "commerce", uuid: "Actor.shop", itemUuid: "Item.source" }]
+    } } },
+    { id: "i2", name: "Otro", system: { acquisition: {
+      sources: [{ kind: "commerce", uuid: "Actor.other", itemUuid: "Item.source" }]
+    } } }
+  ];
+  const report = await createCommercePendingDossier(env.merchant, "gm:review");
+  assert.deepEqual(report.dossier.snapshot.candidateItems,
+    [{ id: "i1", name: "Espada", quantity: 1 }]);
+  assert.equal(env.buyer.items.length, 2);
+});
+
+test("expediente hereda huellas ilegibles sin suponer identidad ni cobro", async () => {
+  const env = environment({ initialReceipts: {
+    "gm:legacy": { state: "pending", fingerprint: "corrupt" }
+  } });
+  const report = await createCommercePendingDossier(env.merchant, "gm:legacy");
+  assert.equal(report.ok, true);
+  assert.equal(report.dossier.request, null);
+  assert.equal(report.dossier.snapshot.currentCopper, null);
+  assert.equal(report.dossier.snapshot.candidateItems, null);
+  assert.equal(env.merchant.flags.commerceReceipts["gm:legacy"].state, "pending");
 });
 
 test("historial saturado rechaza compras sin podar archivo ni tocar dinero o stock", async () => {
