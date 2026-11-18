@@ -6,12 +6,12 @@
 ### El Primer Golpe
 La tradición de la **Primera Forja** cuenta que Khorun descendió a las profundidades, encontró el fuego primordial y levantó un yunque de primera piedra. Al dar el **Primer Golpe**, despertó la materia consciente. Las tres imágenes de aquel acontecimiento son **Piedra, Montaña y Chispa**: los Enanos proceden de la Piedra, los Gigantes de la Montaña y los Elementales de la Chispa.
 
-Los mitos dicen que el Primer Forjador hizo huesos de piedra, fortaleció la sangre con metal, insufló voluntad mediante fuego profundo y entregó herramientas a sus criaturas. No es una descripción anatómica literal. Los Enanos son los **Hijos de la Piedra**, pero no tienen armadura mineral ni producen metal aprovechable por nacimiento.
+Los mitos hablan de huesos de piedra, sangre fortalecida con metal, voluntad del fuego profundo y herramientas entregadas por Khorun. No es una descripción anatómica literal. Los Enanos son los **Hijos de la Piedra**, pero no tienen armadura mineral ni producen metal aprovechable por nacimiento.
 
 ### Construir también es cuidar
-Para muchas comunidades enanas, dar forma a algo implica hacerse responsable de su mantenimiento. Un puente necesita inspecciones; una galería, ventilación y rutas de evacuación; una máquina, piezas reemplazables y personas capaces de repararla. La memoria de un fracaso puede resultar tan valiosa como el orgullo por una obra terminada.
+Para muchas comunidades enanas, dar forma a algo implica hacerse responsable de su mantenimiento. Un puente necesita inspecciones; una galería, ventilación; una máquina, mantenimiento. La memoria de un fracaso puede resultar tan valiosa como el orgullo por una obra terminada.
 
-Eso no convierte a cada Enano en herrero. Hay médicos, navegantes, comerciantes, estudiosas, intérpretes, devotos y soldados, así como personas que prefieren trabajos alejados de la piedra. Khorun encarna **Materia y Forma**, un principio mucho más amplio que un pueblo; venerarlo es una elección religiosa, no una obligación hereditaria.
+Eso no convierte a cada Enano en herrero. Hay médicos, navegantes, comerciantes, artistas y soldados. Khorun encarna **Materia y Forma**, un principio mucho más amplio que un pueblo; venerarlo es una elección religiosa, no una obligación hereditaria.
 
 ### Cuatro tradiciones, un mismo pueblo
 **Montaña:** comunidades vinculadas a pasos y refugios donde la seguridad de las rutas enfrenta necesidades locales y comercio lejano.
@@ -25,7 +25,7 @@ Eso no convierte a cada Enano en herrero. Hay médicos, navegantes, comerciantes
 Estas denominaciones expresan historias y costumbres, no castas ni subrazas mecánicas. Se mezclan entre sí y con otras comunidades. **Como propuesta cultural local**, algunas Juntas del Paso podrían celebrar un *Recuento de Deshielo* para revisar refugios y recordar errores de infraestructura; ni el rito ni la institución son universales o canónicos.
 
 ### Las Holdas y sus fronteras
-**Kharum**, en el Espinazo del Mundo, es una confederación de **Holdas**. Cada ciudad-fortaleza gobierna sus minas y túneles, mientras el **Consejo de Martillos** coordina defensa, estándares de ingeniería y comercio exterior. **Kar-Dur** ocupa una garganta montañosa; sus barrios enlazan talleres, fundiciones y ferrocarriles subterráneos. En 612 C., la **Segunda Forja** y los hallazgos de complejos de los **Fundadores** provocan disputas por la riqueza, la seguridad y la responsabilidad de excavar.
+**Kharum**, en el Espinazo del Mundo, es una confederación de **Holdas**. Cada ciudad-fortaleza gobierna sus minas y túneles, mientras el **Consejo de Martillos** coordina defensa, estándares de ingeniería y comercio exterior. **Kar-Dur** ocupa una garganta montañosa; sus barrios enlazan talleres, fundiciones y ferrocarriles subterráneos. En 612 C., la **Segunda Forja** y los hallazgos de los **Fundadores** plantean disputas sobre riqueza, seguridad y excavación.
 
 No todo Enano pertenece a Kharum. Quien crece en Valdoria, Erelia o Nacariel comparte los idiomas y familiaridades de su **Origen**, no una lengua racial automática.
 
