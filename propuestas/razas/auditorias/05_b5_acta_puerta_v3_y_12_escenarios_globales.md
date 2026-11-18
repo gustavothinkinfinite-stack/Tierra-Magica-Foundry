@@ -52,3 +52,17 @@
 **Siguiente tarea recomendada:** convertir las siete candidatas I01/I02/I04/I05/I06/I08/I10 en **una única hoja de decisiones para el texto de manual propuesto** con «norma literal / propuesta exacta / costo / diferencia / prueba de aceptación». Priorizar el tratamiento de **Derribar+Enraizar a 0 Vida**, **fuentes independientes de Anfibio**, **paridad Hobgoblin** y **reconexión/corte**; mantener el portón C cerrado hasta que no queden contradicciones B5. Posteriormente ejecutar pruebas instrumentadas (Foundry/mesa) si hay acceso, sin presentarlas como ya realizadas.
 
 **Ámbito de cambios:** sólo `propuestas/razas/` en `propuestas/razas-autonomas-2026`, sin editar `main`, código Foundry ni atlas.
+
+
+## V. Revalidación de la fuente principal tras un cambio concurrente de `main`
+
+Durante la verificación de cierre se detectó que el blob del Manual Maestro en `main` pasó de `334770e7ed7d2605767aecb169f57da6c1100508` a **`a2fcc6e21bd55ab86e857ae1f33abbd4326ceec1`**. Se reabrieron **ambas versiones por sus commits** (`124b1673aebd1e68194294bbf7002299cef34319` antigua y `4e533ca890067ac85d3c8f0ad0cea42c93e2bc08` nueva) y se compararon **las 13.241 y 13.261 líneas, respectivamente**.
+
+**Diferencias identificadas (tres hunks, sin otras diferencias):**
+1. Insertadas **12 líneas** de criterios editoriales para 11 perfiles de PNJ de referencia, antes del capítulo 24. Se advierte que Civil, Soldado, Canalizador hostil, Troll dominante y Centinela de Bronce no deben recibir por inferencia capacidades no descritas.
+2. Reescrito el estado de símbolos religiosos en §38: las **cinco Luminarias** tienen símbolos CANON v1.0, pero falta revisión conjunta de los Doce del Panteón Central.
+3. Actualizado el punto editorial correspondiente de la lista de trabajo pendiente al final del Manual.
+
+**Veredicto de compatibilidad:** el contenido de las reglas mecánicas invocadas por este acta y el dictamen DER/ANF/HOB —§2 flujo, §3 paquetes raciales, Anfibio, maniobras/Derribar/Empujar, Defensas, 0 Vida, magia `Martillo Cinético`, Enlace y Conductor— **es idéntico entre ambas versiones**. Por lo tanto **las conclusiones de compatibilidad mecánica de esta ronda continúan vigentes respecto al nuevo blob**. Se preserva el blob original en los encabezados como fuente leída en aquel instante; esta adenda es el control explícito de actualización, **sin atribuir retroactivamente lecturas no realizadas**.
+
+Esto **NO** significa que todo B5 esté cerrado, ni es una certificación del resto del manual. Las tres modificaciones de `main` provinieron de otro flujo de trabajo; **esta ronda no escribió en `main`**.
