@@ -419,6 +419,102 @@ export function inspectCommerceReceiptBackup(json) {
     entries: Object.keys(payload.receipts).length, checksum };
 }
 
+// Etapa preparatoria de historial escalable: segmentos PORTÁTILES de respaldo.
+// No se eliminan lápidas del Actor y los segmentos NO son una base autorizada
+// para deduplicar transacciones o importar recibos automáticamente.
+const ARCHIVE_FORMAT = "tierra-magica-commerce-receipt-archive-part";
+export function createCommerceReceiptArchiveParts(actor, { targetCharacters = 100_000 } = {}) {
+  if (!actor?.uuid || typeof actor.getFlag !== "function") {
+    throw new Error("Se requiere un Actor persistente para segmentar recibos.");
+  }
+  if (!Number.isSafeInteger(targetCharacters) ||
+      targetCharacters < 10_000 || targetCharacters > 200_000) {
+    throw new Error("El tamaño objetivo de segmento es inválido.");
+  }
+  const receipts = snapshotReceipts(actor);
+  if (!validReceiptBackupEntries(receipts)) {
+    throw new Error("El historial contiene recibos inválidos: no se segmentó.");
+  }
+  const segments = [];
+  let current = [];
+  let size = 2; // "{}"
+  for (const [key, receipt] of Object.entries(receipts)) {
+    const serializedRow = JSON.stringify(key) + ":" + JSON.stringify(receipt);
+    const extra = serializedRow.length + (current.length ? 1 : 0);
+    if (extra + 2 > targetCharacters) {
+      throw new Error("Un recibo individual supera el tamaño del segmento.");
+    }
+    if (current.length && size + extra > targetCharacters) {
+      segments.push(Object.fromEntries(current));
+      current = [];
+      size = 2;
+    }
+    current.push([key, receipt]);
+    size += serializedRow.length + (current.length > 1 ? 1 : 0);
+  }
+  if (current.length || segments.length === 0) {
+    segments.push(Object.fromEntries(current));
+  }
+  return segments.map((rows, index) => {
+    const payload = { format: ARCHIVE_FORMAT, version: 1,
+      actorUuid: actor.uuid, part: index + 1, totalParts: segments.length,
+      receipts: rows };
+    const checksum = receiptBackupChecksum(JSON.stringify(payload));
+    return JSON.stringify({ ...payload, checksum }, null, 2);
+  });
+}
+
+export function inspectCommerceReceiptArchiveParts(parts, actor = null) {
+  if (!Array.isArray(parts) || parts.length < 1 || parts.length > 1000) {
+    return failure("Se requiere un conjunto de segmentos válido.");
+  }
+  let actorUuid = null;
+  let total = null;
+  const seenParts = new Set();
+  const seenKeys = new Set();
+  for (const json of parts) {
+    if (typeof json !== "string" || json.length > 250_000) {
+      return failure("Un segmento tiene un tamaño o formato inválido.");
+    }
+    let document;
+    try { document = JSON.parse(json); }
+    catch { return failure("Un segmento no contiene JSON válido."); }
+    if (!document || document.format !== ARCHIVE_FORMAT ||
+        document.version !== 1 || typeof document.actorUuid !== "string" ||
+        !document.actorUuid || !Number.isSafeInteger(document.part) ||
+        !Number.isSafeInteger(document.totalParts) ||
+        document.totalParts < 1 || document.totalParts > 1000 ||
+        document.part < 1 || document.part > document.totalParts ||
+        !validReceiptBackupEntries(document.receipts) ||
+        typeof document.checksum !== "string") {
+      return failure("Un segmento contiene datos inválidos.");
+    }
+    const { checksum, ...payload } = document;
+    if (checksum !== receiptBackupChecksum(JSON.stringify(payload))) {
+      return failure("La suma de control de un segmento no coincide.");
+    }
+    if (actorUuid === null) {
+      actorUuid = document.actorUuid;
+      total = document.totalParts;
+    }
+    if (document.actorUuid !== actorUuid || document.totalParts !== total ||
+        seenParts.has(document.part)) {
+      return failure("Segmentos duplicados o pertenecientes a conjuntos distintos.");
+    }
+    seenParts.add(document.part);
+    for (const key of Object.keys(document.receipts)) {
+      if (seenKeys.has(key)) return failure("Un recibo se repite entre segmentos.");
+      seenKeys.add(key);
+    }
+  }
+  if (seenParts.size !== total) return failure("Faltan segmentos del respaldo.");
+  if (actor && actor.uuid !== actorUuid) {
+    return failure("Los segmentos corresponden a otro Actor.");
+  }
+  return { ok: true, actorUuid, parts: total, receipts: seenKeys.size,
+    readOnly: true };
+}
+
 // Previsualización de conciliación, estrictamente de sólo lectura. No habilita
 // importación, sobreescritura ni eliminación de recibos del Actor.
 export function previewCommerceReceiptReconciliation(actor, json) {
