@@ -3,7 +3,7 @@ import {
   COMMERCE_TIERS, COMMERCE_SPECIALTIES, COMMERCE_ITEM_TYPES,
   createCommerceOffer, normalizeCommerce, tierLevel
 } from "../rules/commerce.mjs";
-import { commerceReceiptLedgerStats, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
+import { commerceReceiptLedgerStats, createCommerceReceiptBackup, inspectCommerceReceiptBackup, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
 
 const esc = (value) => foundry.utils.escapeHTML(String(value ?? ""));
 const modeText = (mode) => mode === "chest" ? "Cofre / botín gratis" : "Comerciante";
@@ -81,6 +81,7 @@ export function configureCommerce(actor) {
         ? 'ATENCIÓN: el historial está próximo al límite y puede impedir nuevas compras. '
         : '') +
       'Las archivadas y pendientes se conservan para impedir duplicados; no eliminarlas manualmente.</p>' +
+    '<button type="button" data-commerce-backup>Exportar copia de recibos (JSON)</button>' +
     "</section>";
 
   const dialog = new Dialog({
@@ -118,6 +119,23 @@ export function configureCommerce(actor) {
     },
     default: "save",
     render: (html) => {
+      html.find("[data-commerce-backup]").on("click", () => {
+        try {
+          if (!game.user?.isGM) throw new Error("Sólo el DJ puede exportar este historial.");
+          const backup = createCommerceReceiptBackup(actor);
+          const check = inspectCommerceReceiptBackup(backup);
+          if (!check.ok || check.actorUuid !== actor.uuid) {
+            throw new Error(check.error ?? "No se pudo verificar el respaldo.");
+          }
+          if (typeof globalThis.saveDataToFile !== "function") {
+            throw new Error("La función de descarga de Foundry no está disponible.");
+          }
+          const safeName = String(actor.id ?? "npc").replace(/[^a-zA-Z0-9_-]/g, "-");
+          globalThis.saveDataToFile(backup, "application/json",
+            "tierra-magica-recibos-" + safeName + ".json");
+          ui.notifications.info("Copia de recibos preparada. Conservá el archivo en un lugar seguro; el Actor no se modificó.");
+        } catch (error) { ui.notifications.error(error.message); }
+      });
       const list = html.find(".tm-commerce-items");
       const refresh = () => list.html(offerEditorRows(draft));
       async function add(uuid) {
