@@ -3,7 +3,7 @@ import {
   COMMERCE_TIERS, COMMERCE_SPECIALTIES, COMMERCE_ITEM_TYPES,
   createCommerceOffer, normalizeCommerce, tierLevel
 } from "../rules/commerce.mjs";
-import { commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, previewCommercePendingReviewReconciliation, recoverCommercePendingReviews, createCommerceReceiptBackup, inspectCommerceReceiptBackup, createCommerceReceiptArchiveParts, inspectCommerceReceiptArchiveParts, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
+import { commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, previewCommercePendingReviewReconciliation, recoverCommercePendingReviews, createCommerceReceiptBackup, inspectCommerceReceiptBackup, createCommerceReceiptArchiveParts, inspectCommerceReceiptArchiveParts, lookupCommerceArchivedReceipt, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
 
 const esc = (value) => foundry.utils.escapeHTML(String(value ?? ""));
 const modeText = (mode) => mode === "chest" ? "Cofre / botín gratis" : "Comerciante";
@@ -117,6 +117,9 @@ export function configureCommerce(actor) {
     '<button type="button" data-commerce-review-restore>Comparar y recuperar revisiones faltantes</button>' +
     '<button type="button" data-commerce-backup>Exportar copia de recibos (JSON)</button>' +
     '<button type="button" data-commerce-archive>Exportar respaldo segmentado de recibos</button>' +
+    '<label>Segmentos históricos (seleccionar todas las partes) <input type="file" accept=".json,application/json" multiple data-commerce-archive-lookup-files /></label>' +
+    '<label>Identificador a consultar <input type="text" data-commerce-archive-lookup-key placeholder="usuario:identificador" /></label>' +
+    '<button type="button" data-commerce-archive-lookup>Consultar identificador en archivo</button>' +
     '<label>Examinar respaldo de recibos <input type="file" accept=".json,application/json" data-commerce-restore-file /></label>' +
     '<button type="button" data-commerce-restore>Comparar respaldo y recuperar marcadores faltantes</button>' +
     "</section>";
@@ -278,6 +281,36 @@ export function configureCommerce(actor) {
           globalThis.saveDataToFile(backup, "application/json",
             "tierra-magica-revisiones-" + safeName + ".json");
           ui.notifications.info("Respaldo de revisiones verificado. La bitácora no se modificó.");
+        } catch (error) { ui.notifications.error(error.message); }
+      });
+      html.find("[data-commerce-archive-lookup]").on("click", async () => {
+        try {
+          if (!game.user?.isGM) throw new Error("Sólo el DJ puede consultar archivos.");
+          const files = Array.from(html.find("[data-commerce-archive-lookup-files]")[0]?.files ?? []);
+          if (!files.length || files.length > 1000 ||
+              files.some((file) => !Number.isSafeInteger(file.size) || file.size > 250_000)) {
+            throw new Error("Seleccioná todas las piezas JSON, máximo 250 KB cada una.");
+          }
+          const key = String(html.find("[data-commerce-archive-lookup-key]").val() ?? "").trim();
+          // Los nombres no prueban que el conjunto sea completo: el motor
+          // comprueba todos los números de parte y la huella global.
+          const parts = await Promise.all(files.map((file) => file.text()));
+          const report = lookupCommerceArchivedReceipt(actor, parts, key);
+          if (!report.ok) throw new Error(report.error);
+          await Dialog.prompt({
+            title: "Consulta histórica · " + actor.name,
+            content: "<p>Identificador: <strong>" + esc(key) + "</strong></p>" +
+              "<p>En archivo: " + (report.archivePresent ? esc(report.archiveState) : "no consta") +
+              " · En Actor: " + (report.actorPresent ? esc(report.actorState) : "no consta") +
+              "</p><p>" + (report.conflict
+                ? "ATENCIÓN: los registros tienen datos incompatibles."
+                : report.requiresManualReview
+                  ? "ATENCIÓN: hay un recibo archivado ausente del Actor."
+                  : "Comparación sin conflicto detectado.") +
+              "</p><p><strong>La ausencia en el archivo no autoriza una nueva compra.</strong> " +
+              "No se modificaron recibos, fondos, objetos ni existencias.</p>",
+            callback: () => undefined
+          });
         } catch (error) { ui.notifications.error(error.message); }
       });
       html.find("[data-commerce-archive]").on("click", () => {
