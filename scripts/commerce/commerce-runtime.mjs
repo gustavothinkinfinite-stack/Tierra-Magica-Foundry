@@ -4,6 +4,10 @@ import { COMMERCE_ITEM_TYPES, normalizeCommerce, quoteCommerce } from "../rules/
 const CHANNEL = "system.tierra-magica";
 const SCOPE = "npc-commerce";
 const RECEIPTS_KEY = "commerceReceipts";
+// Límite operativo preventivo de caracteres serializados en el flag del Actor.
+// Nunca se purgan identificadores para hacer espacio: se detiene el comercio.
+export const COMMERCE_RECEIPT_LEDGER_LIMIT = 1_000_000;
+const COMMERCE_RECEIPT_RESERVE = 4096;
 const pending = new Map();
 let installed = false;
 let queue = Promise.resolve();
@@ -34,7 +38,8 @@ export function commerceReceiptLedgerStats(actor) {
     recent: values.filter((row) => row?.state === "completed").length,
     archived: values.filter((row) => row?.state === "archived").length,
     total: values.length,
-    serializedCharacters: JSON.stringify(rows).length
+    serializedCharacters: JSON.stringify(rows).length,
+    limitCharacters: COMMERCE_RECEIPT_LEDGER_LIMIT
   };
 }
 
@@ -90,7 +95,8 @@ async function doExchange(data) {
   }
   const key = requesterId + ":" + requestId;
   const fingerprint = JSON.stringify([requesterId, merchantUuid, buyerUuid, offerId, quantity]);
-  const prior = snapshotReceipts(merchant)[key];
+  const existingReceipts = snapshotReceipts(merchant);
+  const prior = existingReceipts[key];
   if (prior) {
     if (prior.fingerprint !== fingerprint) return failure("El identificador de la transacción ya fue utilizado.");
     if (prior.state === "pending") return failure("Operación pendiente de revisión del DJ: no se repite automáticamente.");
@@ -109,6 +115,13 @@ async function doExchange(data) {
   if (!quote.ok) return quote;
   if (quantity > 1 && source.system?.stacking === "unique") {
     return failure("Este objeto es único por entrada; adquirilo de a una unidad.");
+  }
+
+  // Preflight: un flag saturado no debe seguir creciendo ni perder lápidas.
+  // Se reserva margen para el recibo final, antes de dinero, entrega o stock.
+  const ledgerSize = JSON.stringify(existingReceipts).length;
+  if (ledgerSize + key.length + fingerprint.length + COMMERCE_RECEIPT_RESERVE > COMMERCE_RECEIPT_LEDGER_LIMIT) {
+    return failure("Historial comercial al límite: operación detenida sin modificar dinero ni inventario. Avisá al DJ para revisar y respaldar el historial; no borres recibos.");
   }
 
   const previousMoney = Number(buyer.system?.currency?.totalCopper);
