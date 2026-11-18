@@ -456,6 +456,53 @@ test("recuperación de revisiones rechaza recibos ausentes, cerrados y huellas d
     { confirm: true })).ok, false);
 });
 
+test("respaldo de recibos rechaza arrays, claves especiales y datos malformados", async () => {
+  const env = environment({ initialReceipts: {
+    "gm:good": { state: "pending", fingerprint: "fingerprint", at: 123 }
+  } });
+  // Se construyen respaldos con checksum válido usando el exportador; la
+  // validación estructural no debe depender únicamente del checksum.
+  const cases = [
+    { "__proto__": null, safe: { state: "pending", fingerprint: "x" } },
+    { "gm:array": [{ state: "pending", fingerprint: "x" }] },
+    { "gm:empty": { state: "pending", fingerprint: "" } },
+    { "gm:bad-date": { state: "archived", fingerprint: "x", at: "ayer" } },
+    { "gm:negative-date": { state: "pending", fingerprint: "x", at: -1 } },
+    { ["x".repeat(201)]: { state: "pending", fingerprint: "x" } },
+    { "gm:long": { state: "pending", fingerprint: "x".repeat(8193) } }
+  ];
+  // Objeto.__proto__ escrito mediante JSON.parse conserva la clave como
+  // propiedad propia y no altera el prototipo del objeto creado.
+  cases[0] = JSON.parse('{"__proto__":{"state":"pending","fingerprint":"x"}}');
+  for (const receipts of cases) {
+    const actor = { uuid: env.merchant.uuid, getFlag(scope, key) {
+      return key === "commerceReceipts" ? receipts : undefined;
+    } };
+    const json = createCommerceReceiptBackup(actor);
+    assert.equal(inspectCommerceReceiptBackup(json).ok, false);
+    assert.equal(previewCommerceReceiptReconciliation(env.merchant, json).ok, false);
+    assert.deepEqual(env.merchant.flags.commerceReceipts, {
+      "gm:good": { state: "pending", fingerprint: "fingerprint", at: 123 }
+    });
+  }
+  assert.equal(inspectCommerceReceiptBackup("x".repeat(2_000_001)).ok, false);
+  assert.equal(inspectCommerceReceiptBackup(123).ok, false);
+});
+
+test("respaldo válido conserva compatibilidad con formatos históricos sin fecha", async () => {
+  const env = environment({ initialReceipts: {
+    "gm:legacy": { state: "archived", fingerprint: "legacy" },
+    "gm:pending": { state: "pending", fingerprint: "still-open", at: 123 }
+  } });
+  const json = createCommerceReceiptBackup(env.merchant);
+  assert.equal(inspectCommerceReceiptBackup(json).ok, true);
+  const view = previewCommerceReceiptReconciliation(env.merchant, json);
+  assert.equal(view.ok, true);
+  assert.equal(view.matching, 2);
+  assert.equal(view.conflicts, 0);
+  assert.equal(view.missing, 0);
+});
+
 test("historial saturado rechaza compras sin podar archivo ni tocar dinero o stock", async () => {
   const initialReceipts = {
     "gm:archived-large": {
