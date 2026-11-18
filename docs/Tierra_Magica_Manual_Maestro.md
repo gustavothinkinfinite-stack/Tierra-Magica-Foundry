@@ -10509,7 +10509,7 @@ La tabla anterior reúne **11 perfiles de referencia**, no once fichas exhaustiv
 
 ### Encuentros de referencia listos para dirigir (sin nuevas reglas)
 
-Estos siete ejemplos usan literalmente las estadísticas publicadas en la tabla de PNJ y criaturas. La situación narrativa es un ejemplo, no un acontecimiento canónico de Edria. Cada ataque se resuelve mediante la regla universal **2d10 + bono de Ataque contra Defensa**; el daño sólo se aplica después de acertar, con la Protección y Penetración correspondientes. No se asignan capacidades especiales no escritas.
+Estos nueve ejemplos usan literalmente las estadísticas publicadas en la tabla de PNJ y criaturas. La situación narrativa es un ejemplo, no un acontecimiento canónico de Edria. **Cuando existe un ataque declarado**, se resuelve mediante la regla universal **2d10 + bono de Ataque contra Defensa**; el daño sólo se aplica después de acertar, con la Protección y Penetración correspondientes. El encuentro civil no tiene ataque numérico fijado. No se asignan capacidades especiales no escritas.
 
 **Encuentro 1 — Bandido en una ruta comercial.** Un salteador intenta detener a los viajeros y exigirles que abandonen parte de la carga. Puede comenzar a distancia con arco corto o acercarse y usar espada corta; no obtiene ataques adicionales ni usa ambas armas simultáneamente por figurar las dos en su perfil.
 
@@ -10596,7 +10596,32 @@ Estos siete ejemplos usan literalmente las estadísticas publicadas en la tabla 
 
 **Resolución de ejemplo:** un Golpe válido usa 2d10 + 6 contra Defensa; un impacto causa Daño 8, Penetración 2. El guion en Defensa Corporal significa que la tabla no proporciona un valor universal; no equivale a inmunidad total ni se reemplaza por un número inventado. La Defensa Mental 12* sólo se aplica a efectos capaces de afectar al constructo, como indica el perfil. Toda interacción que requiera un valor o programa no definido debe resolverse con el perfil técnico pertinente antes de presentarla como procedimiento cerrado.
 
-**Alcance del cierre:** estos siete encuentros permiten resolver sus ataques declarados, pero no constituyen fichas exhaustivas de historia personal, inventario, percepción, recursos, programas ni capacidades fuera del combate. No sustituyen los perfiles de referencia ni crean entradas nuevas del Compendio. El Veterano y el Centinela conservan campos expresamente abiertos: el ejemplo no los completa por inferencia.
+**Encuentro 8 — Civil durante una evacuación.** Un civil presencia el derrumbe parcial de un almacén y busca una salida segura. Puede informar, correr, pedir ayuda o intentar proteger a otra persona de acuerdo con su situación. No se presume competencia profesional ni capacidad de combate adicional.
+
+| Campo | Valor |
+|---|---|
+| Vida | 12 |
+| Defensa / Corporal / Mental / Maniobra | 12 / 12 / 12 / 12 |
+| Protección | 0 |
+| Movimiento / Iniciativa | 6 / +1 |
+| Ataque principal | Contextual; sin bono ni Daño universales |
+
+**Resolución de ejemplo:** el Director describe los riesgos del entorno; los personajes pueden ayudar mediante acciones permitidas por las reglas generales. Si se produce un ataque contra el civil, se utiliza su Defensa 12 y Protección 0. **No** se realiza una tirada de ataque «civil» inventada: para convertirlo en combatiente deberá identificarse un arma y un procedimiento aplicables en una ficha concreta.
+
+**Encuentro 9 — Troll dominante defendiendo un desfiladero.** Un troll intercepta a quienes cruzan su territorio. Este ejemplo emplea **sólo sus dos ataques ordinarios publicados**, sin activar las capacidades adicionales cuya definición sigue condicionada al perfil particular.
+
+| Campo | Valor |
+|---|---|
+| Vida | 32 |
+| Defensa / Corporal / Mental / Maniobra | 13 / 17 / 13 / 18 |
+| Protección | 4 |
+| Movimiento / Iniciativa | 6 / +3 |
+| Garra | Ataque +7; Daño 9; Pen 1 |
+| Martillo | Ataque +7; Daño 11; Pen 2 |
+
+**Resolución de ejemplo:** cuando el ataque elegido es físicamente válido, tira 2d10 + 7 contra Defensa; un impacto de Garra causa Daño 9, Pen 1, o un impacto de Martillo causa Daño 11, Pen 2. Que el perfil incluya dos opciones **no** concede dos ataques por Acción. **Barrido, empuje reactivo, descarga y dos Reacciones** no se incorporan en este encuentro básico: requieren perfiles específicos que fijen su funcionamiento.
+
+**Alcance del cierre:** los nueve encuentros ilustran el uso de valores publicados, pero no constituyen fichas exhaustivas de historia personal, inventario, percepción, recursos, programas ni capacidades fuera del combate. El encuentro civil es una escena no combativa y no fija un ataque nuevo. El Troll dominante se utiliza aquí únicamente con sus ataques ordinarios. El Veterano y el Centinela mantienen campos expresamente abiertos. No se sustituyen los perfiles de referencia ni se crean entradas nuevas del Compendio.
 
 ## 24. Dirección de juego
 
