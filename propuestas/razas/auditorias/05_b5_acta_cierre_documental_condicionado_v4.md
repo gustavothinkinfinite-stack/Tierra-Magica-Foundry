@@ -65,3 +65,9 @@
 **Estado resultante:** **B5 DOC CONDICIONAL CERRADA PARA REDACCIÓN PROPUESTA**; **FASE C DE PROPUESTAS HABILITADA**; **RATIFICACIÓN/ENV/MESA PENDIENTES**. Próximo `avanzar`: primera doble página `01_humanos/manual_final_propuesto.md`, cotejar paquete humano y referencias, conservar `doble_pagina.md` histórica, y actualizar tablero. La primera versión irá acompañada de una nota de integración si hay cualquier alternativa de norma.
 
 **Ámbito de trabajo:** exclusivamente `propuestas/razas/` de rama `propuestas/razas-autonomas-2026`. Nunca editar `main`, Manual Maestro canónico, código Foundry ni mapas.
+
+## 6. Revalidación frente a nueva revisión concurrente de main (18-11-2026)
+
+Tras guardar esta acta, `main:docs/Tierra_Magica_Manual_Maestro.md` cambió de blob **`3883fdfa885ae2c05ac6d1d2152afca245ca7eb0`** a **`898fdc9d41c3b216e11d70eb2be9df580f23dca9`**. Se reabrieron íntegramente ambas versiones por commits `5fd92557009b96d2e27b9d00c04a59ea2c98a3ac` y `b13b5fa5872ea335834ab0a02967b714abdb541c`, y se cotejaron todas las líneas. Hay **dos regiones modificadas**: (1) encabezado del ejemplo de encuentros de PNJ, de nueve a once; (2) inserción de los encuentros ilustrativos 10 y 11 y actualización de su alcance editorial. **No cambiaron** las reglas §2, §3, Rasgos, maniobras, percepción, respiración, Fatiga, Enlace, Conductor ni 0 Vida utilizadas por la conciliación de B5.
+
+**Consecuencia:** la puerta de cierre documental B5 sigue siendo compatible **para las reglas revisadas** con el blob más reciente; no se altera su reserva de aprobación ni se afirma revisión integral de PNJ para la fase C. Estos cambios a `main` ocurrieron fuera de esta auditoría. **Sólo se escribe en la rama de propuestas.**
