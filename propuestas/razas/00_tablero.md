@@ -708,3 +708,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Verificados tablero, README, plan, expediente Coralios, doble página v0.1, brief visual, B4 y Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e`.
 - Creados [`12_coralios/manual_final_propuesto.md`](./12_coralios/manual_final_propuesto.md) (**820 palabras**, dos páginas) y [`12_coralios/nota_integracion_manual.md`](./12_coralios/nota_integracion_manual.md). Canon de MOV, respiración, protección y PER conservado; D01/D05 e instituciones culturales señaladas como propuestas.
 - **Fase C: 12/12 textos según historial; falta verificar individualmente los doce archivos y sus notas**. Próximo bloque sustantivo: auditoría de integridad C01–C12 y producción de `manual_final/indice_y_criterios.md`, `tabla_de_razas.md`, `registro_de_diferencias_con_main.md` e `informe_de_entrega.md`. B5 cerrada sólo documentalmente con reservas; **0 Foundry/mesa**. Sólo rama y carpeta autorizadas.
+
+### 2026-11-18 — Mandato de integración integral al libro
+- El creador autoriza incorporar al futuro Manual Básico **todo el lore y las propuestas mecánicas nuevas**, con prioridad editorial, no Foundry. Se conserva el aislamiento de la rama para la revisión y se evita modificar `main` en este paso.
+- Verificados directamente **12/12 textos finales y 12/12 notas de integración**. En conteo por espacios, Goblinoides 857 y Terios 908 palabras: revisar extensión objetivo; nota Humanos requiere ampliación.
+- Creado [`manual_final/indice_y_criterios.md`](./manual_final/indice_y_criterios.md): orden del capítulo, política de incorporación de lore y mecánicas nuevas con costes y trazabilidad. Siguiente: tabla comparativa, registro de diferencias y ensamblaje del manuscrito.
