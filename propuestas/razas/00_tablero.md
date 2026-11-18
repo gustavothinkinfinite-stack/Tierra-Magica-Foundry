@@ -730,3 +730,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Detectado nuevo blob de `main`: `0c8ddfb0b218bed38cd10962a1ac35bab8821466`**, distinto del citado por el índice/tabla; no declarar compatibilidad final hasta cotejo diferencial.
 - Creado [`manual_final/registro_de_diferencias_con_main.md`](./manual_final/registro_de_diferencias_con_main.md): 16 decisiones/áreas clasificadas en canon, editorial, nueva norma, pendiente e histórica, con costes, límites y regresiones documentales. No se alteró `main` ni Foundry.
 - **Siguiente:** cotejar cambios del Manual Maestro actual y ensamblar capítulo corrido; no repetir auditorías ya documentadas.
+
+### 2026-11-18 — Fase C: cotejo efectivo de canon B5 actualizado
+- Releídos tablero, README, plan, registro y fuente canónica actual `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- **Hallazgo sustantivo:** el Manual Maestro actual ya contiene aclaraciones B5 sobre Enlace Micelial, Anfibio/Coralios, Voluntad del Colmillo, Conductor Vivo y otros cruces. No trasladar ciegamente las 16 filas del registro como normas nuevas; algunas ya son canon.
+- Creado [`manual_final/cotejo_canon_actual_b5.md`](./manual_final/cotejo_canon_actual_b5.md), con evidencia textual, control de clasificación y reservas. **Próximo:** reclasificar registro fila a fila y ensamblar capítulo corrido. Sin cambios fuera de rama/carpeta; 0 pruebas empíricas.
