@@ -15,30 +15,38 @@ Se releyeron `00_tablero.md`, `README.md`, `00_plan_auditorias_y_manual.md`, la 
 
 | ID | Área | Línea base / problema | Texto candidato y límites | Estado | Evidencia documental |
 |---|---|---|---|---|---|
-| MOV1 | Hada, Coralio y locomoción mixta | Velocidades por medio sin presupuesto mixto explícito | En un tramo, sumar coste de espacios / MOV efectivo de cada medio ≤1; Retirada ≤1/2 y límites enteros por tramo; Correr conserva Acción | **N** | B5 U01–U03 |
-| MOV2 | Goblin, ocupación, Reacciones | Interrupción dentro de tránsito por casilla ocupada | Registrar último espacio legal y coste consumido; no devolver MOV ni teletransportar; ninguna reacción universal | **N** | B5 U04 |
-| DER-R2 | Enanos, Dríades, Verdantes | Escala efectiva para resistir Derribar no se convierte por sí sola en Defensa de Maniobra | +1 circunstancial a Defensa de Maniobra sólo contra Derribar si facultad expresa eleva Escala efectiva al resistirlo; no apila ni afecta Empujar/Agarrar | **N** | B5 U05–U09; R0 histórico **H** |
-| ANC1 | Enraizar | Ambigüedad de inmovilidad y pérdida de soporte | Dríade/Verdante no se desplazan voluntariamente enraizados; Acción inicial, suelo apto y 1 MOV para soltar; perder soporte extingue el anclaje | **N** | B5 I02 |
-| MIC1–2 | Enlace Micelial | Distancia de 12 espacios y red viva continua | Distancia geométrica emisor–receptor ≤12, red física continua, Acción para cada reconexión; sin relé automático, telepatía ni sensor compartido | **N** | B5 U10–U13 |
-| ANF1 | Terio con branquias | «Funcionales» no cuantifica respiración acuática | Branquias anatómicas realmente funcionales permiten respirar agua ordinaria compatible, sin otorgar Anfibio completo, nado ni inmunidad; no las adquiere cualquier Terio | **N** | B5 I05; cotejo B4 pendiente |
-| ANF2 | Coralio y Anfibio 1 PR | Respiración racial condicionada a hidratación | Compra de Anfibio por 1 PR como fuente respiratoria independiente en deshidratación; no cura privación ni acumula efecto en hidratación normal | **N/P** | B5 I05, equivalencias I11 |
-| SENS1 | Élficos, Ankar, Cristálidos, Micelios, Coralios | Detección situacional susceptible de sobregeneralización | Contrato estímulo/medio/acceso/alcance/dato máximo; sin radar, identificación o radio nuevos; barreras según fenómeno, sin universalizar | **N editorial interpretativa** | B5 residual I03 |
-| VOL1 | Orcos | Voluntad del Colmillo dice «esa fuente» | Declarar antes de prueba, retirar una fuente elegible de Desventaja, no todas; luego resolver Ventaja/Desventaja y Ayuda; sin reembolso del uso | **N** | B5 residual I07; variante «todas» **H** |
-| OJO1 | Goblinoides | Ojo +1 situacional, no Ventaja | +1 a prueba propia con oportunidad concreta; no transferir por Ayuda, ni bono universal a Iniciativa; Hobgoblin conserva Ojo sin segundo poder | **C + aclaración P** | B5 I07 / I06 |
-| SUS1 | Verdantes, Micelios, Coralios | Sustento y exposición carecen de reloj universal | Separar nutrición, hidratación, respiración y descanso; aplicar Fatiga/Exposición generales por situación, sin inventar intervalos de daño | **E/P** | B5 residual I09 |
-| EQ1 | Todas las familias | Rasgo racial y comprado pueden describir mismo efecto | Comparar disparador, medio, objetivo, coste, alcance, resultado y límite; propiedad exactamente igual no apila ni se cobra doble; funciones distintas sí se costean | **C + procedimiento N** | B5 residual I11 |
-| COND1 | Cristálidos | Conductor Vivo sin catálogo de dispositivos | Sólo interfaz voluntaria con dispositivo diseñado compatible y recursos propios; sin batería, maná o autonomía gratuitos; no fijar energía sin diseño | **C/P** | B5 I08 |
-| VIDA1 | Todas | Riesgo de acciones raciales a 0 Vida | Incapacitado impide activaciones voluntarias nuevas; pasivos sólo mientras persistan requisitos físicos y reglas generales | **C/P** | B5 I10 |
-| HUM1 | Humanos | Clasificación Menor/Significativo de Don sin Forma incompleta | Tabla limitada de opciones elegibles; 1 Significativo o 2 Menores compatibles, sin PR extra; validar exclusiones y no crear nuevos Rasgos | **P** | Nota C01 HUM-B2-DEC-01 |
+| MOV1 | Hada, Coralio y locomoción mixta | Velocidades por medio sin presupuesto mixto explícito | En un tramo, sumar coste de espacios / MOV efectivo de cada medio ≤1; Retirada ≤1/2 y límites enteros por tramo; Correr conserva Acción | **C vigente (B5-I01)** | B5 U01–U03 |
+| MOV2 | Goblin, ocupación, Reacciones | Interrupción dentro de tránsito por casilla ocupada | Registrar último espacio legal y coste consumido; no devolver MOV ni teletransportar; ninguna reacción universal | **C vigente (B5-I01)** | B5 U04 |
+| DER-R2 | Enanos, Dríades, Verdantes | Escala efectiva para resistir Derribar no se convierte por sí sola en Defensa de Maniobra | +1 circunstancial a Defensa de Maniobra sólo contra Derribar si facultad expresa eleva Escala efectiva al resistirlo; no apila ni afecta Empujar/Agarrar | **C vigente (B5-I02)** | B5 U05–U09; R0 histórico **H** |
+| ANC1 | Enraizar | Ambigüedad de inmovilidad y pérdida de soporte | Dríade/Verdante no se desplazan voluntariamente enraizados; Acción inicial, suelo apto y 1 MOV para soltar; perder soporte extingue el anclaje | **C vigente (B5-I02)** | B5 I02 |
+| MIC1–2 | Enlace Micelial | Distancia de 12 espacios y red viva continua | Distancia geométrica emisor–receptor ≤12, red física continua, Acción para cada reconexión; sin relé automático, telepatía ni sensor compartido | **C vigente (B5-I04)** | B5 U10–U13 |
+| ANF1 | Terio con branquias | «Funcionales» no cuantifica respiración acuática | Branquias anatómicas realmente funcionales permiten respirar agua ordinaria compatible, sin otorgar Anfibio completo, nado ni inmunidad; no las adquiere cualquier Terio | **C vigente (B5-I05)** | B5 I05; cotejo B4 pendiente |
+| ANF2 | Coralio y Anfibio 1 PR | Respiración racial condicionada a hidratación | Compra de Anfibio por 1 PR como fuente respiratoria independiente en deshidratación; no cura privación ni acumula efecto en hidratación normal | **C vigente (B5-I05)** | B5 I05, equivalencias I11 |
+| SENS1 | Élficos, Ankar, Cristálidos, Micelios, Coralios | Detección situacional susceptible de sobregeneralización | Contrato estímulo/medio/acceso/alcance/dato máximo; sin radar, identificación o radio nuevos; barreras según fenómeno, sin universalizar | **C vigente (B5-I03)** | B5 residual I03 |
+| VOL1 | Orcos | Voluntad del Colmillo dice «esa fuente» | Declarar antes de prueba, retirar una fuente elegible de Desventaja, no todas; luego resolver Ventaja/Desventaja y Ayuda; sin reembolso del uso | **C vigente (B5-I07)** | B5 residual I07; variante «todas» **H** |
+| OJO1 | Goblinoides | Ojo +1 situacional, no Ventaja | +1 a prueba propia con oportunidad concreta; no transferir por Ayuda, ni bono universal a Iniciativa; Hobgoblin conserva Ojo sin segundo poder | **C vigente (B5-I06/I07)** | B5 I07 / I06 |
+| SUS1 | Verdantes, Micelios, Coralios | Sustento y exposición carecen de reloj universal | Separar nutrición, hidratación, respiración y descanso; aplicar Fatiga/Exposición generales por situación, sin inventar intervalos de daño | **C vigente (B5-I09)** | B5 residual I09 |
+| EQ1 | Todas las familias | Rasgo racial y comprado pueden describir mismo efecto | Comparar disparador, medio, objetivo, coste, alcance, resultado y límite; propiedad exactamente igual no apila ni se cobra doble; funciones distintas sí se costean | **C vigente (B5-I11)** | B5 residual I11 |
+| COND1 | Cristálidos | Conductor Vivo sin catálogo de dispositivos | Sólo interfaz voluntaria con dispositivo diseñado compatible y recursos propios; sin batería, maná o autonomía gratuitos; no fijar energía sin diseño | **C vigente (B5-I08)** | B5 I08 |
+| VIDA1 | Todas | Riesgo de acciones raciales a 0 Vida | Incapacitado impide activaciones voluntarias nuevas; pasivos sólo mientras persistan requisitos físicos y reglas generales | **C vigente (B5-I10)** | B5 I10 |
+| HUM1 | Humanos | Clasificación Menor/Significativo de Don sin Forma incompleta | Tabla limitada de opciones elegibles; 1 Significativo o 2 Menores compatibles, sin PR extra; validar exclusiones y no crear nuevos Rasgos | **P editorial (canon contiene propuesta pendiente)** | Nota C01 HUM-B2-DEC-01 |
 | CULT1 | Doce familias | Lore cultural nuevo no está en Manual Maestro | Incorporar instituciones, costumbres y conflictos como ejemplos plurales sin bonos, ciudades nuevas ni universalidad cultural | **E** | Doce dobles páginas y notas C01–C12 |
 
-## Reglas de publicación editorial
-1. En el capítulo de jugador, separar la **ficha racial básica** de los **recuadros de regla transversal nueva**: MOV1/MOV2, DER-R2/ANC1, MIC1–2, ANF1–2, VOL1 y EQ1 no deben ocultarse dentro de una sola raza.
-2. La tabla de razas contiene valores de referencia, **no sustituye** coste, condiciones ni excepciones de la regla completa.
-3. El texto del libro no debe presentar el +1 de DER-R2 como derivación histórica del canon: es una mejora de la nueva edición que cambia resultados de Derribar.
-4. El texto de Anfibio exige revisar **doble cobro**: si la compra no aporta una función adicional real, no cobrar 1 PR por una capacidad redundante. ANF2 sólo tiene sentido por la fuente independiente condicionada.
-5. Mantener misterio narrativo donde el canon no resuelve causa/origen. No asignar ubicaciones oficiales a instituciones nuevas.
-6. **Pendiente imprescindible:** revalidar cada línea frente al blob de `main` `0c8ddfb0...` y corregir toda divergencia antes de la entrega definitiva.
+## Conciliación de estado efectivo — verificación del 18-11-2026
+
+**Fuente leída:** `main:docs/Tierra_Magica_Manual_Maestro.md`, blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`. El apartado «Cierre normativo de Ascendencias — integración editorial aprobada (18-11-2026)» declara explícitamente vigentes las aclaraciones B5. Se cotejó el texto completo de los apartados B5-I01, I02, I03, I04, I05, I06, I07, I08, I09, I10 e I11. **Catorce filas** del registro (MOV1, MOV2, DER-R2, ANC1, MIC1–2, ANF1, ANF2, SENS1, VOL1, OJO1, SUS1, EQ1, COND1, VIDA1) ya están normadas por `main`; **no son novedades a aprobar**. HUM1 sigue siendo una clasificación editorial pendiente explícita en el texto humano de `main`. CULT1 es ampliación cultural narrativa, sin mecánicas.
+
+### Criterios corregidos para el libro
+1. **Reproducir fielmente**, sin alterar costes ni límites, el cierre B5 vigente. El movimiento mixto usa fracciones exactas y Retirada ≤1/2; Escala efectiva concede +1 circunstancial sólo contra Derribar, no defensa general; Enraizar requiere Acción y libera con 1 Movimiento.
+2. **Enlace Micelial** conserva Acción de conexión/reconexión, red viva continua, contacto y límite geométrico de 12 espacios. No añadir relés ni canales mágicos.
+3. **Anfibio** cuesta 1 PR, puede ser una fuente independiente para Coralios deshidratados, pero no cura deshidratación. No cobrar dos veces una función exactamente igual.
+4. **Voluntad del Colmillo** elimina una sola fuente elegible de Desventaja y consume uso aun si otra persiste. **Ojo** no transfiere Ayuda ni da Iniciativa automática. **Conductor Vivo** requiere especificación compatible y consentimiento.
+5. **HUM1:** conservar en el manuscrito el catálogo de Don sin Forma y distinguir la clasificación Menor/Significativo como propuesta pendiente, no regla vigente, hasta decisión editorial explícita.
+6. **CULT1:** incorporar el lore plural como ejemplos, sin transformar instituciones en ciudades oficiales, poderes, habilidades, PR o PD gratuitos.
+7. La tabla anterior se conserva para **trazabilidad histórica**, pero prevalece esta conciliación frente a frases antiguas que llamaban «norma nueva» a reglas ya aprobadas.
+
+### Control de versión
+El cierre normativo está en el `main` leído en esta ejecución. Si cambia el blob, reabrir este cotejo antes de cerrar la edición. Esta auditoría es documental; no prueba Foundry ni partidas.
 
 ## Regresiones mínimas para revisión posterior
 - Tierra2/agua3 Coralio: 2/5+3/6=0,9 permitido por MOV1; tierra3/agua3=1,1 prohibido.
