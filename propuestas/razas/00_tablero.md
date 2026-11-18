@@ -625,3 +625,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Nueva [`auditorias/05_b5_acta_puerta_v3_y_12_escenarios_globales.md`](./auditorias/05_b5_acta_puerta_v3_y_12_escenarios_globales.md): **12/12 escenarios B5-G01–G12 revisados documentalmente** con fuente/limitación, **0/12 ejecutados**; 66/66 pares con fronteras DOC cotejadas, **0/66 certificados empíricamente**. El acta anterior y la matriz global quedaron enlazadas a v3 sin borrar sus fechas o evidencias históricas.
 - **Siete bloqueos I01/I02/I04/I05/I06/I08/I10 siguen ABIERTOS**, más cuatro propuestas de cierre pendiente y una frontera canónica. **B5 NO cerrada, C BLOQUEADA**. **0 Foundry, 0 mesa**. Próximo trabajo: consolidar hoja única de texto candidato por cada bloqueo, verificar orden, coste, geometría, validez a 0 Vida y paridad sin inventar canon.
 - Sólo se editaron archivos bajo `propuestas/razas/` en rama `propuestas/razas-autonomas-2026`. No `main`, código Foundry, mapa ni ratificación.
+
+
+### 2026-11-18 — B5: revalidación de main durante dictamen
+- El blob de `main:docs/Tierra_Magica_Manual_Maestro.md` cambió concurrentemente **`334770e7ed7d2605767aecb169f57da6c1100508` → `a2fcc6e21bd55ab86e857ae1f33abbd4326ceec1`**. Se reabrieron ambas revisiones por commit y se comparó el archivo íntegro: **tres cambios editoriales**, en perfiles PNJ de referencia, símbolos canónicos de Cinco Luminarias y lista final de trabajo editorial.
+- **No cambiaron** en esa comparación las reglas utilizadas por el dictamen B5 sobre Derribar/Escala efectiva, Anfibio/PR, paquetes Goblinoides, Enlace, Conductor y 0 Vida. La **acta v3** contiene ahora una adenda de revalidación explícita del blob actual.
+- El cambio en `main` **no fue realizado por este trabajo**; todas las escrituras propias siguen en `propuestas/razas/` de la rama `propuestas/razas-autonomas-2026`. **B5 continúa abierta, C bloqueada; 0 pruebas Foundry/mesa.**
