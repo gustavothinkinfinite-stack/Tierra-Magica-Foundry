@@ -237,3 +237,11 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - [`05_b5_conciliacion_30_casos_12_globales_y_pares.md`](./05_b5_conciliacion_30_casos_12_globales_y_pares.md): **30 casos U01–U30 escritos y vinculados**, pero **ninguno ejecutado**, 12 G revisados por lectura y 66 pares cotejados previamente; los vínculos G/X **no son ejecución**.
 - **Canon consultado ahora:** `main` blob `aa7105f6ef4d744040cce4763d9e01ee28b87572`. Las versiones antiguas siguen identificadas por sus blobs propios, no se confunden.
 - Los siete bloqueos aún requieren aprobación y control de contradicciones; **I03/I07/I09/I11** requieren conciliación adicional. **B5 ABIERTA y Fase C BLOQUEADA; 0 Foundry/mesa.**
+
+
+## Avance 18-11-2026 — acta B5 v4 y cuatro residuales
+
+- [`05_b5_conciliacion_4_residuales_y_28_regresiones.md`](./05_b5_conciliacion_4_residuales_y_28_regresiones.md) concilia **I03 sentidos y ocultación, I07 Voluntad/Ojo/Ayuda, I09 sustento/biomas e I11 Rasgos equivalentes**, mediante cuatro textos candidatos y **28 regresiones V01–V28 documentales no ejecutadas**, siete por incidencia. Verificadas referencias a pares X existentes.
+- Se resolvió la contradicción entre B5-I05-P01 Orcos (retirar todas las causas de Desventaja elegibles) y la literalidad singular «esa fuente»: nueva candidatura I07-V1 retira **una fuente** y declara el uso antes de la cancelación de signos. Esta selección es **solo propuesta**, no cambio retroactivo del Manual Maestro.
+- [`05_b5_acta_cierre_documental_condicionado_v4.md`](./05_b5_acta_cierre_documental_condicionado_v4.md) comprueba los cuatro requisitos de puerta de la conciliación original: **7/7 decisiones únicas propuestas**, 12/12 incidencias clasificadas, 30/30 criterios U enlazados, 66/66 pares y 12/12 G cotejados DOC. **B5 cerrada a nivel documental bajo condiciones**; habilita sólo **Fase C de borradores no canónicos**, mientras ratificación, Foundry y mesa siguen pendientes.
+- **Fuente de esta unidad:** `main` blob `3883fdfa885ae2c05ac6d1d2152afca245ca7eb0` al cotejar casos. La cadena de blobs de informes previos queda en cada fecha, sin atribuciones retrospectivas. **Ningún caso U/V/G/X fue ejecutado como juego en esta unidad.**
