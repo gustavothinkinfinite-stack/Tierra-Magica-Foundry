@@ -366,25 +366,36 @@ export function createCommerceReceiptBackup(actor) {
   return JSON.stringify({ ...payload, checksum: receiptBackupChecksum(serialized) }, null, 2);
 }
 
+const RECEIPT_BACKUP_MAX = 2_000_000;
+function validReceiptBackupEntries(receipts) {
+  if (!receipts || typeof receipts !== "object" || Array.isArray(receipts)) return false;
+  return Object.entries(receipts).every(([key, receipt]) =>
+    key.length > 0 && key.length <= 200 && !forbiddenReviewKeys.has(key) &&
+    receipt && typeof receipt === "object" && !Array.isArray(receipt) &&
+    ["pending", "completed", "archived"].includes(receipt.state) &&
+    typeof receipt.fingerprint === "string" &&
+    receipt.fingerprint.length > 0 && receipt.fingerprint.length <= 8192 &&
+    (receipt.at === undefined ||
+      (Number.isSafeInteger(receipt.at) && receipt.at >= 0)));
+}
 export function inspectCommerceReceiptBackup(json) {
+  if (typeof json !== "string" || json.length > RECEIPT_BACKUP_MAX) {
+    return failure("El respaldo comercial supera el límite de 2 MB o no contiene texto.");
+  }
   let backup;
   try { backup = JSON.parse(json); }
   catch { return { ok: false, error: "El respaldo no contiene JSON válido." }; }
   if (!backup || backup.format !== "tierra-magica-commerce-receipts" ||
       backup.version !== 1 || typeof backup.actorUuid !== "string" ||
-      !backup.actorUuid || !backup.receipts || Array.isArray(backup.receipts) ||
-      typeof backup.receipts !== "object" || typeof backup.checksum !== "string") {
-    return { ok: false, error: "Formato de respaldo de comercio no válido." };
+      !backup.actorUuid || backup.actorUuid.length > 500 ||
+      !validReceiptBackupEntries(backup.receipts) ||
+      typeof backup.checksum !== "string") {
+    return { ok: false, error: "Formato o recibos del respaldo comercial inválidos." };
   }
   const { checksum, ...payload } = backup;
   if (receiptBackupChecksum(JSON.stringify(payload)) !== checksum) {
     return { ok: false, error: "La suma de control del respaldo no coincide." };
   }
-  const valid = Object.entries(payload.receipts).every(([key, receipt]) =>
-    key && receipt && typeof receipt === "object" &&
-    ["pending", "completed", "archived"].includes(receipt.state) &&
-    typeof receipt.fingerprint === "string");
-  if (!valid) return { ok: false, error: "El respaldo contiene recibos inválidos." };
   return { ok: true, actorUuid: payload.actorUuid,
     entries: Object.keys(payload.receipts).length, checksum };
 }
@@ -407,7 +418,8 @@ export function previewCommerceReceiptReconciliation(actor, json) {
   const matching = [];
   const conflicts = [];
   for (const [key, receipt] of Object.entries(incoming)) {
-    const live = current[key];
+    const live = Object.prototype.hasOwnProperty.call(current, key)
+      ? current[key] : undefined;
     if (!live) { missing.push(key); continue; }
     // Una lápida y su recibo completo representan el mismo identificador,
     // pero ninguna discrepancia en la huella o el estado pendiente se ignora.
