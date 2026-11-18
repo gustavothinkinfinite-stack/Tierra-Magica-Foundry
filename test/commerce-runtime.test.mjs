@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, failDebitAfterWrite = false, failItemAfterWrite = false, failStockAfterWrite = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -258,6 +258,60 @@ test("expediente hereda huellas ilegibles sin suponer identidad ni cobro", async
   assert.equal(report.dossier.snapshot.currentCopper, null);
   assert.equal(report.dossier.snapshot.candidateItems, null);
   assert.equal(env.merchant.flags.commerceReceipts["gm:legacy"].state, "pending");
+});
+
+test("la revisión del DJ es append-only y no desbloquea operaciones pendientes", async () => {
+  const fingerprint = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const env = environment({ initialReceipts: {
+    "gm:manual": { state: "pending", fingerprint, at: 100 }
+  } });
+  const initial = structuredClone(env.merchant.flags.commerceReceipts);
+  const a = await recordCommercePendingReview(env.merchant, "gm:manual",
+    { note: "  Verificados cobres actuales  ", checks: ["money"] });
+  const b = await recordCommercePendingReview(env.merchant, "gm:manual",
+    { note: "Examiné objetos y existencias", checks: ["items", "stock"] });
+  assert.equal(a.ok, true);
+  assert.equal(b.ok, true);
+  assert.notEqual(a.entryId, b.entryId);
+  assert.equal(b.entries, 2);
+  const history = commercePendingReviewHistory(env.merchant, "gm:manual");
+  assert.deepEqual(history.map((x) => x.note),
+    ["Verificados cobres actuales", "Examiné objetos y existencias"]);
+  assert.deepEqual(history.map((x) => x.status),
+    ["reviewed-still-pending", "reviewed-still-pending"]);
+  assert.deepEqual(env.merchant.flags.commerceReceipts, initial);
+  assert.equal(env.buyer.system.currency.totalCopper, 500);
+  assert.equal(env.items.length, 0);
+  assert.equal(env.getStock(), 2);
+  history[0].note = "alterado localmente";
+  assert.equal(commercePendingReviewHistory(env.merchant, "gm:manual")[0].note,
+    "Verificados cobres actuales");
+  const replay = await executeCommerceExchange(env.request("manual"));
+  assert.equal(replay.ok, false);
+  assert.match(replay.error, /pendiente/i);
+});
+
+test("revisión inválida, recibo cerrado y usuario no DJ no escriben bitácora", async () => {
+  const fingerprint = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const env = environment({ initialReceipts: {
+    "gm:open": { state: "pending", fingerprint },
+    "gm:closed": { state: "archived", fingerprint }
+  } });
+  const invalid = [
+    ["gm:open", { note: "" }],
+    ["gm:open", { note: "ok", checks: ["unknown"] }],
+    ["gm:open", { note: "ok", checks: ["money", "money"] }],
+    ["gm:closed", { note: "ok" }],
+    ["gm:missing", { note: "ok" }]
+  ];
+  for (const [key, details] of invalid) {
+    assert.equal((await recordCommercePendingReview(env.merchant, key, details)).ok, false);
+  }
+  game.user = { id: "player", isGM: false, active: true };
+  assert.equal((await recordCommercePendingReview(env.merchant, "gm:open",
+    { note: "sin autorización" })).ok, false);
+  assert.equal(env.merchant.flags.commercePendingReviews, undefined);
+  assert.deepEqual(commercePendingReviewHistory(env.merchant, "gm:open"), []);
 });
 
 test("historial saturado rechaza compras sin podar archivo ni tocar dinero o stock", async () => {
