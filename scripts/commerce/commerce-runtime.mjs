@@ -202,6 +202,77 @@ export function commercePendingReviewHistory(actor, key) {
   return structuredClone(events);
 }
 
+// Respaldo independiente de revisiones. La suma de control detecta cambios
+// accidentales; NO autentica a quien produjo o modificó el archivo.
+const REVIEW_BACKUP_FORMAT = "tierra-magica-commerce-pending-reviews";
+const REVIEW_BACKUP_MAX = 1_000_000;
+const forbiddenReviewKeys = new Set(["__proto__", "constructor", "prototype"]);
+function validateReviewEntries(rows) {
+  if (!rows || typeof rows !== "object" || Array.isArray(rows)) return false;
+  return Object.entries(rows).every(([key, events]) =>
+    key.length > 0 && key.length <= 200 && !forbiddenReviewKeys.has(key) &&
+    Array.isArray(events) && events.length <= 10000 &&
+    events.every((entry) => entry && typeof entry === "object" && !Array.isArray(entry) &&
+      typeof entry.id === "string" && entry.id.length > 0 && entry.id.length <= 200 &&
+      Number.isSafeInteger(entry.at) && entry.at >= 0 &&
+      typeof entry.gmId === "string" && entry.gmId.length > 0 &&
+      typeof entry.receiptFingerprint === "string" &&
+      entry.status === "reviewed-still-pending" &&
+      typeof entry.note === "string" && entry.note.trim().length > 0 &&
+      entry.note.length <= 2000 &&
+      Array.isArray(entry.checks) && entry.checks.length <= 4 &&
+      entry.checks.every((check) => ["money", "items", "stock", "backup"].includes(check)) &&
+      new Set(entry.checks).size === entry.checks.length));
+}
+export function createCommercePendingReviewBackup(actor) {
+  if (!actor?.uuid || typeof actor.getFlag !== "function") {
+    throw new Error("Se requiere un Actor persistente para respaldar revisiones.");
+  }
+  const raw = actor.getFlag("tierra-magica", REVIEW_KEY);
+  const reviews = structuredClone(raw ?? {});
+  if (!validateReviewEntries(reviews)) {
+    throw new Error("La bitácora contiene entradas inválidas y no puede exportarse.");
+  }
+  const payload = { format: REVIEW_BACKUP_FORMAT, version: 1,
+    actorUuid: actor.uuid, reviews };
+  const serialized = JSON.stringify(payload);
+  if (serialized.length > REVIEW_BACKUP_MAX) {
+    throw new Error("La bitácora supera el tamaño permitido para este respaldo.");
+  }
+  const json = JSON.stringify({
+    ...payload, checksum: receiptBackupChecksum(serialized)
+  }, null, 2);
+  if (json.length > REVIEW_BACKUP_MAX) {
+    throw new Error("El archivo de respaldo supera el límite permitido.");
+  }
+  return json;
+}
+export function inspectCommercePendingReviewBackup(json, actor = null) {
+  if (typeof json !== "string" || json.length > REVIEW_BACKUP_MAX) {
+    return failure("El respaldo es demasiado grande o no contiene texto JSON.");
+  }
+  let parsed;
+  try { parsed = JSON.parse(json); }
+  catch { return failure("El respaldo de revisiones no contiene JSON válido."); }
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed) ||
+      parsed.format !== REVIEW_BACKUP_FORMAT || parsed.version !== 1 ||
+      typeof parsed.actorUuid !== "string" || !parsed.actorUuid ||
+      typeof parsed.checksum !== "string" || !validateReviewEntries(parsed.reviews)) {
+    return failure("Formato o entradas del respaldo de revisiones inválidos.");
+  }
+  const { checksum, ...payload } = parsed;
+  if (checksum !== receiptBackupChecksum(JSON.stringify(payload))) {
+    return failure("La suma de control de las revisiones no coincide.");
+  }
+  if (actor && actor.uuid !== parsed.actorUuid) {
+    return failure("El respaldo de revisiones pertenece a otro Actor.");
+  }
+  return { ok: true, actorUuid: parsed.actorUuid,
+    operations: Object.keys(parsed.reviews).length,
+    entries: Object.values(parsed.reviews).reduce((total, events) => total + events.length, 0),
+    checksum };
+}
+
 // Copia portátil, de sólo lectura. La suma de control detecta corrupción
 // accidental; no es firma digital ni autoriza purgar el Actor.
 function receiptBackupChecksum(serialized) {
