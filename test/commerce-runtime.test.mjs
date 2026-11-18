@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, createCommerceReceiptBackup, inspectCommerceReceiptBackup, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -216,6 +216,48 @@ test("respaldo alterado o incompleto no supera la verificación y no se importa"
   assert.equal(inspectCommerceReceiptBackup(JSON.stringify({ format: "otro" })).ok, false);
   assert.equal(JSON.parse(json).receipts["gm:old"].fingerprint, "original");
   assert.equal(env.merchant.flags.commerceReceipts["gm:old"].fingerprint, "original");
+});
+
+test("conciliación de respaldo identifica faltantes, conflictos y registros locales sin escribir", () => {
+  const saved = environment({ initialReceipts: {
+    "gm:igual": { state: "completed", fingerprint: "igual", result: { ok: true }, at: 10 },
+    "gm:antiguo": { state: "archived", fingerprint: "antiguo", at: 2 },
+    "gm:disputa": { state: "pending", fingerprint: "original", at: 3 },
+    "gm:faltante": { state: "archived", fingerprint: "faltante", at: 1 }
+  } });
+  const backup = createCommerceReceiptBackup(saved.merchant);
+  const live = environment({ initialReceipts: {
+    "gm:igual": { state: "archived", fingerprint: "igual", at: 10 },
+    "gm:antiguo": { state: "completed", fingerprint: "antiguo", result: { ok: true }, at: 2 },
+    "gm:disputa": { state: "pending", fingerprint: "otra", at: 3 },
+    "gm:solo-actual": { state: "archived", fingerprint: "local", at: 4 }
+  } });
+  const original = structuredClone(live.merchant.flags.commerceReceipts);
+  const result = previewCommerceReceiptReconciliation(live.merchant, backup);
+  assert.equal(result.ok, true);
+  assert.deepEqual({ matching: result.matching, missing: result.missing,
+    conflicts: result.conflicts, onlyCurrent: result.onlyCurrent },
+    { matching: 2, missing: 1, conflicts: 1, onlyCurrent: 1 });
+  assert.deepEqual(result.missingKeys, ["gm:faltante"]);
+  assert.deepEqual(result.conflictKeys, ["gm:disputa"]);
+  assert.equal(result.safeToMergeAutomatically, false);
+  assert.deepEqual(live.merchant.flags.commerceReceipts, original);
+  assert.equal(live.buyer.system.currency.totalCopper, 500);
+  assert.equal(live.getStock(), 2);
+  assert.equal(live.items.length, 0);
+});
+
+test("conciliación rechaza respaldo corrupto o perteneciente a otro Actor", () => {
+  const source = environment({ initialReceipts: {
+    "gm:una": { state: "pending", fingerprint: "una", at: 1 }
+  } });
+  const backup = createCommerceReceiptBackup(source.merchant);
+  const other = { uuid: "Actor.another", getFlag: () => ({}) };
+  assert.equal(previewCommerceReceiptReconciliation(other, backup).ok, false);
+  const broken = JSON.parse(backup);
+  broken.receipts["gm:una"].fingerprint = "alterado";
+  assert.equal(previewCommerceReceiptReconciliation(source.merchant, JSON.stringify(broken)).ok, false);
+  assert.equal(previewCommerceReceiptReconciliation(source.merchant, "invalid").ok, false);
 });
 
 test("dos compras concurrentes de la última unidad son serializadas", async () => {
