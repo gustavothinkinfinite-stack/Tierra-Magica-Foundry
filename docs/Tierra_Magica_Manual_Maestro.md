@@ -12401,13 +12401,21 @@ Los cultos no son equivalentes a las deidades. Instituciones religiosas pueden e
 
 Las deidades pueden actuar como **Fuente Divina** para personajes con un Vínculo apropiado. Esto concede acceso narrativo/mágico según las reglas correspondientes, no autoridad moral automática, inmunidad a consecuencias ni un paquete universal de poderes.
 
-### Estado pendiente de símbolos
+### Estado de símbolos religiosos de las Cinco Luminarias
 
-Los símbolos religiosos de las Luminarias se desarrollan mediante el estándar común del registro técnico. **Aurea ya posee símbolo completo CANON v1.0 para La Llama Custodiada**, mientras que Nemor posee símbolo completo CANON v1.0 para El Umbral de Piedra; Oria, Vael y Selene continúan sin símbolo doctrinal fijado. La ficha de Aurea está cerrada. Nemor, Oria, Vael y Selene continúan pendientes de definición bajo el mismo estándar.
+**CERRADO — cinco símbolos doctrinales CANON v1.0.** El Manual Maestro y el registro técnico `docs/visual/SIMBOLOS_CANONICOS.md` reconocen las siguientes fichas completas:
 
-La estructura obligatoria para diseñarlos y reproducirlos es el **Estándar Universal de Símbolos Canónicos** definido en `docs/visual/SIMBOLOS_CANONICOS.md`. Cada símbolo sólo pasará a CANON cuando su ficha complete geometría, reconocimiento, color, variantes, pruebas y activo maestro conforme a ese estándar.
+| Luminaria | Símbolo | Identificador | Estado |
+|---|---|---|---|
+| Aurea | La Llama Custodiada | `SYM-DIV-AUREA-001` | CANON v1.0 |
+| Nemor | El Umbral de Piedra | `SYM-DIV-NEMOR-001` | CANON v1.0 |
+| Oria | La Medida Acordada | `SYM-DIV-ORIA-001` | CANON v1.0 |
+| Vael | El Rumbo Desviado | `SYM-DIV-VAEL-001` | CANON v1.0 |
+| Selene | El Velo Entreabierto | `SYM-DIV-SELENE-001` | CANON v1.0 |
 
-Permanecen abiertos para desarrollo futuro los elementos que el canon vigente mantiene expresamente sin fijar: símbolos doctrinales pendientes de las Luminarias, avatares y manifestaciones no definidas, estructuras universales de culto, calendarios exactos de festividades, milagros detallados, Vínculos Divinos específicos, planos, destino último de las almas, Archidemonios concretos, mecánicas completas de corrupción/posesión/Necromancia y numerosos paquetes jugables de pueblos primordiales. El Manual Maestro no rellena esos huecos por inferencia.
+La construcción, geometría, color, variantes, pruebas y activos maestros se rigen por el **Estándar Universal de Símbolos Canónicos** del registro técnico. Esta corrección sincroniza un resumen editorial desactualizado con fichas y menciones canónicas ya existentes; **no aprueba símbolos nuevos**. Sigue pendiente una auditoría de coherencia conjunta de los Doce del Panteón Central, sin suponer que los siete Primordiales ya posean símbolos religiosos completos.
+
+Permanecen abiertos para desarrollo futuro los elementos que el canon vigente mantiene expresamente sin fijar: avatares y manifestaciones no definidas, estructuras universales de culto, calendarios exactos de festividades, milagros detallados, Vínculos Divinos específicos, planos, destino último de las almas, Archidemonios concretos, mecánicas completas de corrupción/posesión/Necromancia y numerosos paquetes jugables de pueblos primordiales. El Manual Maestro no rellena esos huecos por inferencia.
 ---
 
 # PARTE II — CANON DEL MUNDO v1.2 INTEGRADO
@@ -13202,7 +13210,7 @@ Fin del Canon del Mundo v1.2
 
 El Archivo Narrativo Recuperado ya no forma parte del circuito editorial activo. El trabajo nuevo se realiza directamente en este Manual y cualquier recuperación histórica debe ser explícita.
 
-1. Diseñar mediante una estructura común los **símbolos religiosos de las Cinco Luminarias** y realizar después una pasada única de coherencia sobre los Doce del Panteón Central.
+1. **CERRADO (definición de las Cinco Luminarias):** Aurea, Nemor, Oria, Vael y Selene cuentan con símbolos religiosos CANON v1.0 y fichas técnicas completas. **PENDIENTE:** pasada conjunta de coherencia sobre los Doce del Panteón Central, identificando por separado cualquier Primordial que todavía carezca de ficha visual canónica.
 2. **CERRADO 2026-10-08:** historia intermedia de Edria desarrollada entre la Fractura del Cielo, los primeros acumuladores, la difusión de la pólvora, la integración ferroviaria, la Guerra de las Coronas Rotas, la Concordia, la Línea del Espinazo, la Segunda Forja y la Crisis de Nacre; los espacios deliberadamente abiertos permanecen sin fijar.
 3. **CERRADO 2026-10-08:** ejemplos de juego, creación y combate completados y revisados contra las reglas vigentes; se añadieron resolución de exploración y prueba enfrentada social, una creación alternativa con Familiar Mágico y un ejemplo de ataque a distancia con cobertura y Penetración, sin introducir reglas nuevas.
 4. Revisar tablas de equipo, precios, disponibilidad y contenido de mercado para edición.
