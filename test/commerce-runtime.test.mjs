@@ -503,6 +503,73 @@ test("respaldo válido conserva compatibilidad con formatos históricos sin fech
   assert.equal(view.missing, 0);
 });
 
+test("bitácora rechaza IDs de revisión duplicados entre operaciones con checksum recalculado", async () => {
+  const fp = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const receipts = {
+    "gm:a": { state: "pending", fingerprint: fp },
+    "gm:b": { state: "pending", fingerprint: fp }
+  };
+  const source = environment({ initialReceipts: receipts });
+  assert.equal((await recordCommercePendingReview(source.merchant, "gm:a",
+    { note: "Evento A" })).ok, true);
+  assert.equal((await recordCommercePendingReview(source.merchant, "gm:b",
+    { note: "Evento B" })).ok, true);
+  const valid = JSON.parse(createCommercePendingReviewBackup(source.merchant));
+  const invalid = structuredClone(valid.reviews);
+  invalid["gm:b"][0].id = invalid["gm:a"][0].id;
+  const fake = { uuid: source.merchant.uuid, getFlag(scope, key) {
+    return key === "commercePendingReviews" ? invalid : undefined;
+  } };
+  assert.throws(() => createCommercePendingReviewBackup(fake), /inválidas/);
+  const checksum = (serialized) => {
+    let hash = 2166136261;
+    for (let i = 0; i < serialized.length; i++) {
+      hash = Math.imul(hash ^ serialized.charCodeAt(i), 16777619) >>> 0;
+    }
+    return hash.toString(16).padStart(8, "0");
+  };
+  const payload = { format: valid.format, version: valid.version,
+    actorUuid: valid.actorUuid, reviews: invalid };
+  const json = JSON.stringify({ ...payload, checksum: checksum(JSON.stringify(payload)) });
+  assert.equal(inspectCommercePendingReviewBackup(json).ok, false,
+    "checksum correcto no debe validar IDs duplicados");
+  const live = environment({ initialReceipts: receipts });
+  const before = structuredClone(live.merchant.flags);
+  assert.equal(previewCommercePendingReviewReconciliation(live.merchant, json).ok, false);
+  assert.equal((await recoverCommercePendingReviews(live.merchant, json,
+    { confirm: true })).ok, false);
+  assert.deepEqual(live.merchant.flags, before);
+});
+
+test("bitácora rechaza cronología retrograda y huellas contradictorias", async () => {
+  const fp = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const env = environment({ initialReceipts: {
+    "gm:a": { state: "pending", fingerprint: fp }
+  } });
+  assert.equal((await recordCommercePendingReview(env.merchant, "gm:a",
+    { note: "Primero" })).ok, true);
+  assert.equal((await recordCommercePendingReview(env.merchant, "gm:a",
+    { note: "Segundo" })).ok, true);
+  const healthy = structuredClone(env.merchant.flags.commercePendingReviews);
+  for (const mutation of [
+    (rows) => { rows["gm:a"][1].at = rows["gm:a"][0].at - 1; },
+    (rows) => { rows["gm:a"][1].receiptFingerprint = "otra huella"; },
+    (rows) => { rows["gm:a"][1].id = rows["gm:a"][0].id; }
+  ]) {
+    const corrupted = structuredClone(healthy);
+    mutation(corrupted);
+    env.merchant.flags.commercePendingReviews = corrupted;
+    const before = structuredClone(env.merchant.flags);
+    assert.throws(() => createCommercePendingReviewBackup(env.merchant), /inválidas/);
+    assert.equal((await recordCommercePendingReview(env.merchant, "gm:a",
+      { note: "No se debe guardar" })).ok, false);
+    assert.deepEqual(env.merchant.flags, before);
+  }
+  env.merchant.flags.commercePendingReviews = healthy;
+  assert.equal(inspectCommercePendingReviewBackup(
+    createCommercePendingReviewBackup(env.merchant)).ok, true);
+});
+
 test("historial saturado rechaza compras sin podar archivo ni tocar dinero o stock", async () => {
   const initialReceipts = {
     "gm:archived-large": {
