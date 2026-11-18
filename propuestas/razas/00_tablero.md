@@ -11,7 +11,7 @@
 | 03 | Élficos | Borrador v0.1; **B1–B4 documentales completas**, 56 DOC B3 + 12 regresiones B4; 16 MOD auxiliares (no Foundry) | B5: significación, ocultación, efecto directo/indirecto y regresiones globales |
 | 04 | Orcos | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**, B1–B4 completas | ORC-B4-P01/P02 siguen no canónicas; 0 Foundry/mesa |
 | 05 | Goblinoides | Borrador v0.1; **B1–B4 documentales completas**, **69 DOC B3 + 15 DOC B4; 20 MOD auxiliares** | B5: Ojo en Iniciativa, interrupción Escurridizo y **paridad Hobgoblin pendiente** |
-| 06 | Terios/Anihombres | Borrador v0.1; **B1–B4 documentales completas**, **84 DOC B3 + 18 DOC B4; 22 MOD auxiliares** | B5: sustitución Variedad, branquias/Anfibio, vuelo bajo Carga y medios mixtos |
+| 06 | Terios/Anihombres | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**, B1–B4 completas; 0 Foundry/mesa | Variedad, branquias/Anfibio y medios mixtos siguen reservas no canónicas |
 | 07 | Feéricos | Borrador v0.1; **B1–B4 documentales completas**, **76 DOC B3 + 16 DOC B4; 24 MOD auxiliares** | B5: Hada apoyos/velocidades, Dríade Derribar/desanclaje, Silfo viento mágico |
 | 08 | Ankar | Borrador v0.1; **B1–B4 documentales completas**; **68 DOC B3 + 14 DOC B4; 28 MOD auxiliares**, 0 Foundry/mesa | B5: frecuencia de Sentido, barreras, efectos mixtos y apilamiento racial/mágico |
 | 09 | Cristálidos | Borrador v0.1; **B1–B4 documentales completas**; **96 DOC B3 + 14 DOC B4**, 0 Foundry/mesa | B5: ocultación, consentimiento, 0 Vida y frecuencia de Conductor Vivo |
@@ -671,3 +671,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, expediente Goblinoides, doble página v0.1, brief y B4; Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (tres variantes, Ojo, Varkor y creación).
 - Guardados [`05_goblinoides/manual_final_propuesto.md`](./05_goblinoides/manual_final_propuesto.md) (**843 palabras**, dos páginas) y [`05_goblinoides/nota_integracion_manual.md`](./05_goblinoides/nota_integracion_manual.md). Prueba de Revisión y Relevo Público son propuestas culturales sin bonificaciones. La variante Hobgoblin Señal de Coordinación permanece fuera del paquete canónico y del texto principal.
 - **Fase C 5/12; 7 restantes**. B5 cerrada sólo documentalmente con reservas; **0 Foundry/mesa**. Próximo: **06 Terios** y nota de integración. Sólo rama/carpeta de propuestas.
+
+### 2026-11-18 — Fase C: Terios (6/12)
+- Releídos tablero, README, plan, expediente Terios, doble página inicial y brief; Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (Eïra, Linaje/Variedad, adaptaciones, creación, Anfibio y Territorio Oriental).
+- Guardados [`06_terios/manual_final_propuesto.md`](./06_terios/manual_final_propuesto.md) (**847 palabras**, dos páginas) y [`06_terios/nota_integracion_manual.md`](./06_terios/nota_integracion_manual.md). Escuelas comunitarias sólo propuesta cultural; no canonizar Renkai, Origen Renkaino ni reglas B5 de Variedad, branquias y movimiento.
+- **Fase C 6/12; 6 restantes**. B5 cerrada documentalmente con reservas; **0 Foundry/mesa**. Siguiente: **07 Feéricos**. Sólo rama/carpeta de propuestas.
