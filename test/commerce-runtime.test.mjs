@@ -623,14 +623,14 @@ test("archivo histórico vacío tiene una pieza; recibos individuales gigantes s
   assert.equal(parts.length, 1);
   assert.equal(inspectCommerceReceiptArchiveParts(parts, env.merchant).receipts, 0);
   assert.throws(() => createCommerceReceiptArchiveParts(env.merchant,
-    { targetCharacters: 9_999 }), /inválido/);
+    { targetCharacters: 4_999 }), /inválido/);
   env.merchant.flags.commerceReceipts["gm:giant"] = {
     state: "pending", fingerprint: "x".repeat(8192), at: 1
   };
   assert.throws(() => createCommerceReceiptArchiveParts(env.merchant,
-    { targetCharacters: 8_000 }), /inválido/);
+    { targetCharacters: 4_999 }), /inválido/);
   assert.throws(() => createCommerceReceiptArchiveParts(env.merchant,
-    { targetCharacters: 10_000 }), /segmento/);
+    { targetCharacters: 5_000 }), /segmento/);
 });
 
 test("historial saturado rechaza compras sin podar archivo ni tocar dinero o stock", async () => {
