@@ -43,6 +43,50 @@ export function commerceReceiptLedgerStats(actor) {
   };
 }
 
+// Copia portátil, de sólo lectura. La suma de control detecta corrupción
+// accidental; no es firma digital ni autoriza purgar el Actor.
+function receiptBackupChecksum(serialized) {
+  let hash = 2166136261;
+  for (let index = 0; index < serialized.length; index += 1) {
+    hash = Math.imul(hash ^ serialized.charCodeAt(index), 16777619) >>> 0;
+  }
+  return hash.toString(16).padStart(8, "0");
+}
+
+export function createCommerceReceiptBackup(actor) {
+  if (!actor?.uuid || typeof actor.getFlag !== "function") {
+    throw new Error("Se requiere un Actor persistente para respaldar recibos.");
+  }
+  const receipts = structuredClone(snapshotReceipts(actor));
+  const payload = { format: "tierra-magica-commerce-receipts",
+    version: 1, actorUuid: actor.uuid, receipts };
+  const serialized = JSON.stringify(payload);
+  return JSON.stringify({ ...payload, checksum: receiptBackupChecksum(serialized) }, null, 2);
+}
+
+export function inspectCommerceReceiptBackup(json) {
+  let backup;
+  try { backup = JSON.parse(json); }
+  catch { return { ok: false, error: "El respaldo no contiene JSON válido." }; }
+  if (!backup || backup.format !== "tierra-magica-commerce-receipts" ||
+      backup.version !== 1 || typeof backup.actorUuid !== "string" ||
+      !backup.actorUuid || !backup.receipts || Array.isArray(backup.receipts) ||
+      typeof backup.receipts !== "object" || typeof backup.checksum !== "string") {
+    return { ok: false, error: "Formato de respaldo de comercio no válido." };
+  }
+  const { checksum, ...payload } = backup;
+  if (receiptBackupChecksum(JSON.stringify(payload)) !== checksum) {
+    return { ok: false, error: "La suma de control del respaldo no coincide." };
+  }
+  const valid = Object.entries(payload.receipts).every(([key, receipt]) =>
+    key && receipt && typeof receipt === "object" &&
+    ["pending", "completed", "archived"].includes(receipt.state) &&
+    typeof receipt.fingerprint === "string");
+  if (!valid) return { ok: false, error: "El respaldo contiene recibos inválidos." };
+  return { ok: true, actorUuid: payload.actorUuid,
+    entries: Object.keys(payload.receipts).length, checksum };
+}
+
 async function storeReceipt(actor, key, receipt) {
   const now = Date.now();
   const rows = { ...snapshotReceipts(actor), [key]: { ...receipt, at: now } };
