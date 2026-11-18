@@ -54,11 +54,11 @@ Las dos dimensiones son independientes:
 | Aldea / pueblo | 1 | Bienes corrientes |
 | Villa / mercado regional | 2 | Bienes poco habituales |
 | Ciudad | 3 | Bienes raros, equipo arcano configurado |
-| Metrópolis / enclave excepcional | 4 | Ofertas excepcionales o restringidas asignadas por DJ |
+| Metrópolis / enclave excepcional | 4 | Ofertas excepcionales; las Restringidas no se venden automáticamente |
 
 Estas categorías son **controles de interfaz/comercio**, no tablas nuevas de disponibilidad del mundo ni promesas de que un bien exista en una ciudad. La especialidad puede ser general, herrería, alquimia, ingeniería o arcana. Una oferta debe coincidir con la especialidad del establecimiento y cumplir su nivel mínimo; el DJ puede asignar un nivel mayor o menor manualmente a un objeto concreto.
 
-Al agregar un Item se propone un nivel mínimo en función de `system.physical.availability` y, en su caso, los indicadores estructurados de magia, runas, improntas o encantamiento. La disponibilidad desconocida parte del nivel 4 para no convertir errores de datos en mercancía común. Las ofertas **no** se cargan automáticamente por especialidad, ni siquiera en una metrópolis.
+Al agregar un Item se propone un nivel mínimo en función de `system.physical.availability` y, en su caso, los indicadores estructurados de magia, runas, improntas o encantamiento. La disponibilidad **no especificada** se conserva como `unspecified` y se muestra en el editor, sin declararla canónicamente Común. Por compatibilidad con establecimientos existentes, su mínimo comercial provisional permanece en nivel 1; el DJ puede elevarlo por oferta. Los valores desconocidos **explícitos** siguen siendo restrictivos (nivel 4). Las entradas `professional` se interpretan provisionalmente como nivel de mercado 2, sin ratificar equivalencias canónicas. Las mercancías `restricted` no pueden comprarse automáticamente, incluso en una metrópolis: el motor coteja tanto el Item real como el registro de oferta y no existe todavía flujo aprobado de licencias. Los cofres conservan la entrega gratuita como modalidad distinta de compraventa. Las ofertas **no** se cargan automáticamente por especialidad, ni siquiera en una metrópolis.
 
 Ejemplo: dos herreros pueden incluir la misma armadura encantada en sus catálogos, pero una oferta de nivel mínimo 3 no aparecerá como comprable en un herrero rural de nivel 1. Si el DJ necesita justificar una excepción, puede cambiar expresamente el nivel mínimo de **esa oferta**, sin cambiar el Item canónico.
 
@@ -75,6 +75,8 @@ Ejemplo: dos herreros pueden incluir la misma armadura encantada en sus catálog
 ## Autoridad y fallos
 
 La transacción se ejecuta en el cliente del **DJ activo principal**; éste valida personaje, permiso de propietario, cantidad, stock, precio y categoría. El DJ registra un recibo idempotente por solicitud en el Actor comerciante antes de mutar dinero o inventario, de modo que repetir la misma solicitud no entregue dos veces un objeto. Las operaciones se serializan; en caso de fallo se intenta revertir entrega y cobro. Si una caída interrumpe la operación, el recibo puede quedar pendiente y el DJ debe revisar el estado; no se hace una segunda entrega silenciosa.
+
+**Retención y prevención de repeticiones (implementación):** se conservan todos los recibos `pending` para revisión y los **128 recibos completados más recientes** con su resultado. Los más antiguos pasan a `archived`, manteniendo identificador y huella de solicitud: repetir su `requestId` se rechaza, no vuelve a pagar ni a entregar, aunque ya no pueda recuperarse el recibo detallado. Esto **no restaura identificadores descartados por versiones anteriores**. Los marcadores archivados no se eliminan automáticamente: su acumulación requiere seguimiento del tamaño de datos y un futuro mecanismo persistente de archivo/retención auditado, sin sacrificar la prevención de duplicados.
 
 **Limitaciones presentes:** la funcionalidad requiere un DJ conectado; no aplica distancias de interacción, horarios, regateo, venta del jugador al NPC, reposición automática ni restricciones narrativas sobre posesión o uso posterior de un objeto. Un comercio por token no vinculado puede tener stock independiente. Los objetos deben existir en el mundo o compendios; no se convierten automáticamente las páginas del Diario.
 
