@@ -229,3 +229,11 @@ Cada celda no diagonal identifica **un cruce bidireccional**. La matriz tiene 14
 - [`05_b5_acta_puerta_v3_y_12_escenarios_globales.md`](./05_b5_acta_puerta_v3_y_12_escenarios_globales.md): **12/12 escenarios originales B5-G01–G12 cotejados por lectura**, sin duplicarlos como pruebas nuevas. **0/12 ejecutados**; se mantienen **66/66 pares DOC cotejados, 0/66 certificados empíricamente, 0 Foundry y 0 mesa**.
 - El acta v3 usa `main` blob `334770e7ed7d2605767aecb169f57da6c1100508`, no modifica referencias históricas. Siete bloqueantes **I01/I02/I04/I05/I06/I08/I10** siguen abiertos; cuatro pendientes propositivos y una frontera canónica delimitada.
 - **B5 NO cerrada; C BLOQUEADA.** Próximo: hoja única con propuestas operativas armonizadas de los siete bloqueos; resolver contradicciones antes de escribir dobles páginas finales.
+
+
+## Avance 18-11-2026 — hoja única B5 y conciliación 30 criterios
+
+- [`05_b5_hoja_unica_decisiones_normativas.md`](./05_b5_hoja_unica_decisiones_normativas.md): **7/7 textos únicos de trabajo**, costo, alcance, diferencia con `main`, contraejemplo y prueba para I01/I02/I04/I05/I06/I08/I10. **DER-R2 es un +1 nuevo exclusivo de Derribar** bajo requisitos, no bonus canónico; consentimiento de Conductor se ordena sin alterar pago previo a comprobación de requisitos.
+- [`05_b5_conciliacion_30_casos_12_globales_y_pares.md`](./05_b5_conciliacion_30_casos_12_globales_y_pares.md): **30 casos U01–U30 escritos y vinculados**, pero **ninguno ejecutado**, 12 G revisados por lectura y 66 pares cotejados previamente; los vínculos G/X **no son ejecución**.
+- **Canon consultado ahora:** `main` blob `aa7105f6ef4d744040cce4763d9e01ee28b87572`. Las versiones antiguas siguen identificadas por sus blobs propios, no se confunden.
+- Los siete bloqueos aún requieren aprobación y control de contradicciones; **I03/I07/I09/I11** requieren conciliación adicional. **B5 ABIERTA y Fase C BLOQUEADA; 0 Foundry/mesa.**
