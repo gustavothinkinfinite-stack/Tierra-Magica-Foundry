@@ -691,3 +691,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, expediente, doble página inicial, brief y pruebas de balance; cotejado Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (Primera Forja, Matriz Mixta, Resonancia Arcana, Conductor Vivo, PD/PR e Ingeniería).
 - Guardados [`09_cristalidos/manual_final_propuesto.md`](./09_cristalidos/manual_final_propuesto.md) (**777 palabras**, dos páginas) y [`09_cristalidos/nota_integracion_manual.md`](./09_cristalidos/nota_integracion_manual.md). Instituciones culturales sólo propuestas, sin ventajas; protocolo de acoplamiento y LAB fuera del texto canónico.
 - **Fase C 9/12; 3 restantes.** B5 cerrada sólo documentalmente con reservas; **0 Foundry/mesa**. Siguiente: **10 Verdantes** y nota de integración. Sólo rama/carpeta de propuestas.
+
+### 2026-11-18 — Fase C: Verdantes (10/12)
+- Releídos tablero, README, plan, expediente, doble página inicial, brief y B4 Verdantes; cotejado Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (Eïra, Sustento Vegetal, Enraizar, Adaptación de Bioma, Medicina y creación).
+- Publicados [`10_verdantes/manual_final_propuesto.md`](./10_verdantes/manual_final_propuesto.md) (doble página final) y [`10_verdantes/nota_integracion_manual.md`](./10_verdantes/nota_integracion_manual.md). Instituciones culturales marcadas como propuestas; sin bonificaciones nuevas. DER-R2/3 y reloj de luz experimental no incorporados al paquete.
+- **Fase C 10/12; 2 restantes.** B5 cerrada documentalmente con reservas; **0 Foundry/mesa**. Próximo: **11 Micelios** y nota de integración. Sólo rama/carpeta de propuestas.
