@@ -735,3 +735,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, registro y fuente canónica actual `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
 - **Hallazgo sustantivo:** el Manual Maestro actual ya contiene aclaraciones B5 sobre Enlace Micelial, Anfibio/Coralios, Voluntad del Colmillo, Conductor Vivo y otros cruces. No trasladar ciegamente las 16 filas del registro como normas nuevas; algunas ya son canon.
 - Creado [`manual_final/cotejo_canon_actual_b5.md`](./manual_final/cotejo_canon_actual_b5.md), con evidencia textual, control de clasificación y reservas. **Próximo:** reclasificar registro fila a fila y ensamblar capítulo corrido. Sin cambios fuera de rama/carpeta; 0 pruebas empíricas.
+
+### 2026-11-18 — Fase C: conciliación de B5 y capítulo continuo
+- Releídos tablero, README, plan, registro, cotejo y Manual Maestro `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`. El cierre B5 vigente en `main` cubre 14 de las 16 áreas registradas; **HUM1** sigue como clasificación editorial pendiente y **CULT1** es lore narrativo sin efectos mecánicos.
+- Corregido [registro de diferencias](./manual_final/registro_de_diferencias_con_main.md) con clasificación vigente y criterios de publicación; commit `ff2b44f`.
+- Creado [capítulo consolidado de ascendencias](./manual_final/capitulo_ascendencias_consolidado.md), ensamblando íntegros los **12 textos finales propuestos** (no los borradores v0.1), con procedencia por blob; commit `857d065`.
+- **Próximo bloque sustantivo:** revisión editorial cruzada del manuscrito corrido, corrección de referencias internas y discrepancias con canon, informe global de entrega. **0 Foundry/mesa; no merge ni escritura fuera de la carpeta autorizada.**
