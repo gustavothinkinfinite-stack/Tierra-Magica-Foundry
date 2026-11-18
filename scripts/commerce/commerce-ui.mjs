@@ -22,7 +22,7 @@ function offerEditorRows(config) {
   return config.offers.map((item) =>
     '<div class="tm-commerce-edit-row" data-offer="' + esc(item.id) + '">' +
     '<img src="' + esc(item.img) + '" alt="" />' +
-    '<div class="tm-commerce-edit-name"><strong>' + esc(item.name) + '</strong><small>' + esc(item.type) + (item.availabilityStatus === "unspecified" ? " · Disponibilidad sin clasificar (mínimo comercial provisional)" : " · Disponibilidad: " + item.availabilityStatus) + "</small></div>" +
+    '<div class="tm-commerce-edit-name"><strong>' + esc(item.name) + '</strong><small>' + esc(item.type) + (item.availabilityStatus === "unspecified" ? " · Disponibilidad sin clasificar (mínimo comercial provisional)" : " · Disponibilidad: " + esc(item.availabilityStatus)) + "</small></div>" +
     '<label>Existencias<input class="tm-c-stock" type="number" min="0" step="1" value="' + item.stock + '"></label>' +
     '<label>Precio en cobres<input class="tm-c-price" type="number" min="0" step="1" value="' + (item.priceCopper ?? "") + '" placeholder="Sin precio"></label>' +
     '<label>Precio por unidades<input class="tm-c-per" type="number" min="1" step="1" value="' + item.priceQuantity + '"></label>' +
