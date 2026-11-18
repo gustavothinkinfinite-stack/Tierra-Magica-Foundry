@@ -661,6 +661,9 @@ test("consulta histórica distingue presencia en archivo de autoridad actual", (
   assert.equal(present.compatibleState, true);
   assert.equal(present.conflict, false);
   assert.equal(present.canAuthorizeReplay, false);
+  const reordered = lookupCommerceArchivedReceipt(env.merchant, [...files].reverse(), "gm:archived");
+  assert.equal(reordered.ok, true);
+  assert.equal(reordered.archivePresent, true);
   const absent = lookupCommerceArchivedReceipt(env.merchant, files, "gm:unknown");
   assert.equal(absent.ok, true);
   assert.equal(absent.archivePresent, false);
