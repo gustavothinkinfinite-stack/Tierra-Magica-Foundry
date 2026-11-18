@@ -19,3 +19,7 @@
 La doble página propuesta tiene **847 palabras contando títulos y apartados del cuerpo anterior a la nota no imprimible**; una página de historia/sociedad y otra jugable. El brief `06_terios/brief_arte.md` pide anatomía funcional, pintura digital cinematográfica y pluralidad de linajes; no exige imágenes ahora. Las escenas de escuela oriental son propuesta de cultura particular, no estética racial universal. No se generaron ilustraciones ni se alteró el mapa.
 
 **Próximo trabajo:** 07 Feéricos, doble página final y nota de integración. Mantener 0 Foundry/mesa y decisiones no ratificadas explícitas.
+
+## Control de extensión corregido — 18-11-2026
+
+**Manual final C6 revisado:** 809 palabras incluyendo encabezados y nota de producción (recorte editorial sin cambios mecánicos). La cifra anterior de 847 palabras estaba calculada sin nota de producción; no reutilizarla como total final.
