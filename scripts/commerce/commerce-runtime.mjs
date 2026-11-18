@@ -391,19 +391,30 @@ export function installCommerceRuntime() {
     }
   });
   installed = true;
-  game.socket.on(CHANNEL, async (message) => {
-    if (message?.scope !== SCOPE) return;
+  // En los eventos relanzados por Foundry, el segundo argumento es el
+  // usuario autenticado por el servidor. Los IDs escritos en el mensaje no
+  // demuestran identidad; sin ese dato se rechaza el evento (fail closed).
+  game.socket.on(CHANNEL, async (message, senderId) => {
+    if (message?.scope !== SCOPE || typeof senderId !== "string" || !senderId) return;
     if (message.kind === "response") {
-      if (message.requesterId === game.user?.id) {
+      if (senderId === currentGm()?.id && message.requesterId === game.user?.id) {
         pending.get(message.requestId)?.(message.result ?? failure("Respuesta comercial inválida."));
       }
       return;
     }
     if (message.kind !== "request" || currentGm()?.id !== game.user?.id) return;
-    const result = await executeCommerceExchange(message);
+    if (message.requesterId !== senderId) {
+      console.warn("Foundry T.M. | Solicitud comercial con identidad de socket discordante.");
+      return;
+    }
+    const requester = game.users.get(senderId);
+    // El DJ ejecuta sus propias compras directamente; un mensaje remoto que
+    // afirma venir de un DJ o usuario ausente no es una compra de jugador.
+    if (!requester?.active || requester.isGM) return;
+    const result = await executeCommerceExchange({ ...message, requesterId: senderId });
     game.socket.emit(CHANNEL, {
       scope: SCOPE, kind: "response",
-      requestId: message.requestId, requesterId: message.requesterId, result
+      requestId: message.requestId, requesterId: senderId, result
     });
   });
 }
