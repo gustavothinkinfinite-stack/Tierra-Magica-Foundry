@@ -66,3 +66,10 @@ Si ya no hay trabajo sustantivo, no rehacer expedientes para responder a «avanz
 3. Ejecutar **una o más unidades sustantivas**, según tiempo y contexto: completar material, auditar una raza/varias, cerrar incidencia o redactar textos finales.
 4. Persistir sólo bajo `propuestas/razas/` en la rama de propuestas; actualizar tablero y diario con fase, archivos, cantidad de casos de pruebas **reales vs. documentales** y próximo objetivo.
 5. No pedir autorizaciones intermedias, no escribir `main`, Foundry, Manual activo ni atlas. Todo **PROPUESTA PARA APROBACIÓN GLOBAL**.
+
+
+## Hito de ejecución — 18-11-2026: cierre documental B5
+
+Esta adenda **no modifica los requisitos históricos del plan**. La fase B5 cumplió **sus condiciones de puerta documental** según [`auditorias/05_b5_acta_cierre_documental_condicionado_v4.md`](./auditorias/05_b5_acta_cierre_documental_condicionado_v4.md): siete decisiones candidatas unificadas, cuatro incidencias residuales conciliadas, 66 pares cotejados, 12 escenarios globales revisados por lectura, 30 criterios U y 28 V documentados. Todo sigue **no canónico y no ejecutado empíricamente**. La redacción Fase C se habilita **únicamente en rama de propuestas**, con paquete literal y alternativas explícitamente marcadas y notas de integración cuando correspondan. No autoriza publicación, merge, cambios del motor ni promesas de balance probado.
+
+**Siguiente unidad autónoma:** `01_humanos/manual_final_propuesto.md` y nota de integración si existe diferencia normativa; después otras once familias, índice, tabla, registro de diferencias y entrega documental. Sin pedir microaprobaciones hasta la revisión global.
