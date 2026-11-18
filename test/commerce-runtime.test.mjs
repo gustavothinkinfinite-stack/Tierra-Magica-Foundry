@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { commerceReceiptLedgerStats, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -154,7 +154,34 @@ test("el Director puede consultar los recibos tras reconstruir el Actor sin elim
     "el diagnóstico no altera recibos ni resuelve pendientes");
   const absent = commerceReceiptLedgerStats({ getFlag: () => undefined });
   assert.deepEqual(absent, { pending: 0, recent: 0, archived: 0,
-    total: 0, serializedCharacters: 2 });
+    total: 0, serializedCharacters: 2, limitCharacters: COMMERCE_RECEIPT_LEDGER_LIMIT });
+});
+
+test("historial saturado rechaza compras sin podar archivo ni tocar dinero o stock", async () => {
+  const initialReceipts = {
+    "gm:archived-large": {
+      state: "archived",
+      fingerprint: "x".repeat(COMMERCE_RECEIPT_LEDGER_LIMIT),
+      at: 1
+    }
+  };
+  const env = environment({ initialReceipts, stock: 2 });
+  const before = structuredClone(env.merchant.flags.commerceReceipts);
+  const response = await executeCommerceExchange(env.request("new-after-limit"));
+  assert.equal(response.ok, false);
+  assert.match(response.error, /Historial comercial al límite/);
+  assert.equal(env.buyer.system.currency.totalCopper, 500);
+  assert.equal(env.getStock(), 2);
+  assert.equal(env.items.length, 0);
+  assert.deepEqual(env.merchant.flags.commerceReceipts, before,
+    "nunca se purga el marcador histórico para permitir otra compra");
+});
+
+test("una compra normal no se bloquea por la reserva preventiva", async () => {
+  const env = environment({ stock: 2 });
+  assert.equal((await executeCommerceExchange(env.request("normal-with-space"))).ok, true);
+  assert.equal(env.getStock(), 1);
+  assert.equal(env.buyer.system.currency.totalCopper, 470);
 });
 
 test("dos compras concurrentes de la última unidad son serializadas", async () => {
