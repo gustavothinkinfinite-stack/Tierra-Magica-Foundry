@@ -10495,6 +10495,18 @@ El asterisco de un constructo indica que su “Defensa Mental” representa sól
 
 Un Troll dominante puede incluir Barrido, empuje reactivo, descarga y dos Reacciones entre turnos propios cuando su perfil lo especifique. Esas Reacciones siguen sin poder repetirse sobre el mismo disparador salvo capacidad expresa.
 
+### Estado editorial de los perfiles de referencia
+
+La tabla anterior reúne **11 perfiles de referencia**, no once fichas exhaustivas de criatura. Se deben conservar sus valores publicados sin completar por inferencia los campos contextuales o las capacidades no detalladas:
+
+- **Civil:** «Ataque principal: Contextual» no fija una tirada, arma ni Daño universal. Requiere concretar la situación o una ficha de encuentro.
+- **Soldado:** «Marcial +5, daño 7–8, Pen 1» es un intervalo de referencia; una ficha cerrada debe identificar el armamento y el Daño concretos antes de utilizar ese ataque.
+- **Canalizador hostil:** «Maná 15, Canalización +6» no constituye por sí solo un repertorio de hechizos, una Fuente, una Disciplina ni una lista de costes y activaciones. Su ficha de encuentro debe señalar qué efectos puede lanzar.
+- **Troll dominante:** Barrido, empuje reactivo, descarga y dos Reacciones están formulados como posibilidades condicionales; no se atribuyen automáticamente todas esas capacidades a cada troll ni se inventan sus disparadores o efectos.
+- **Centinela de Bronce:** «Defensa Mental 12*» mantiene la restricción de aplicabilidad indicada en la nota del constructo; no debe convertirse en una mente biológica ordinaria por defecto.
+
+**Criterio de cierre editorial:** cada ejemplo que se presente como adversario «listo para jugar» debe precisar las elecciones que su tabla deja abiertas y remitir a las reglas vigentes para efectos, acciones y recursos. Este inventario documenta lagunas de presentación y **no modifica estadísticas, concede capacidades ni crea reglas nuevas**.
+
 ## 24. Dirección de juego
 
 El Director determina primero qué está ocurriendo en la ficción, si una acción es posible y si existe incertidumbre significativa. La tirada resuelve incertidumbre; no sustituye causalidad, competencia o información.
