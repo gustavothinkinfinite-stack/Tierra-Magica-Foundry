@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
-function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false } = {}) {
+function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, availability, offerAvailabilityStatus } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
   const users = [gm];
   users.get = (id) => id === gm.id ? gm : null;
@@ -12,7 +12,8 @@ function environment({ mode = "merchant", stock = 2, money = 500, price = 30, pr
     type: "weapon", img: "test.svg",
     system: { stacking, physical: {
       quantity: 1, priceStatus: price === null ? "unset" : "exact",
-      priceCopper: price ?? 0, priceQuantity
+      priceCopper: price ?? 0, priceQuantity,
+      ...(availability ? { availability } : {})
     }},
     toObject() {
       return { _id: "catalog-id", name: this.name, type: this.type, system: structuredClone(this.system) };
@@ -24,7 +25,8 @@ function environment({ mode = "merchant", stock = 2, money = 500, price = 30, pr
     flags: {
       commerce: { mode, tier: "metropolis", specialty: "smith", offers: [
         { id: "offer", uuid: source.uuid, name: source.name, type: source.type,
-          stock, minTier: 1, specialty: "smith", priceCopper: price, priceQuantity }
+          stock, minTier: 1, specialty: "smith", priceCopper: price, priceQuantity,
+          ...(offerAvailabilityStatus ? { availabilityStatus: offerAvailabilityStatus } : {}) }
       ] },
       commerceReceipts: {}
     },
@@ -128,6 +130,38 @@ test("no se compra sin fondos ni se cobra por encima de existencias", async () =
   assert.equal(env.items.length, 0);
   assert.equal(env.getStock(), 1);
   assert.equal(env.buyer.system.currency.totalCopper, 20);
+});
+
+test("venta Restringida rechazada por el motor no muta dinero, stock ni recibos", async () => {
+  const env = environment({ availability: "restricted", offerAvailabilityStatus: "common" });
+  const response = await executeCommerceExchange(env.request("restricted-source"));
+  assert.equal(response.ok, false);
+  assert.match(response.error, /Restringido/);
+  assert.equal(env.buyer.system.currency.totalCopper, 500);
+  assert.equal(env.getStock(), 2);
+  assert.equal(env.items.length, 0);
+  assert.deepEqual(env.merchant.flags.commerceReceipts, {},
+    "un rechazo anterior al pago no crea recibo de compra");
+});
+
+test("oferta antigua Restringida conserva veto de compra aunque el Item diga Común", async () => {
+  const env = environment({ availability: "common", offerAvailabilityStatus: "restricted" });
+  const response = await executeCommerceExchange(env.request("restricted-offer"));
+  assert.equal(response.ok, false);
+  assert.equal(env.buyer.system.currency.totalCopper, 500);
+  assert.equal(env.getStock(), 2);
+  assert.equal(env.items.length, 0);
+});
+
+test("cofre entrega objeto Restringido sin convertirlo en compraventa", async () => {
+  const env = environment({ mode: "chest", availability: "restricted", offerAvailabilityStatus: "restricted" });
+  const response = await executeCommerceExchange(env.request("restricted-chest"));
+  assert.equal(response.ok, true);
+  assert.equal(response.cost, 0);
+  assert.equal(env.buyer.system.currency.totalCopper, 500);
+  assert.equal(env.getStock(), 1);
+  assert.equal(env.items.length, 1);
+  assert.equal(env.items[0].system.acquisition.mode, "granted");
 });
 
 test("compra de un lote entrega quantity real y cobra el importe del lote", async () => {
