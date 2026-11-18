@@ -180,7 +180,6 @@ Un Archivo de Estaciones registra un deterioro imposible de explicar. La Resonan
 
 
 ## Orcos — hijos del colmillo
-**Fase C · Manual Básico · doble página final propuesta · NO CANÓNICA**
 
 ### Historia y cultura
 
@@ -232,7 +231,6 @@ Un contrato obliga a custodiar un convoy, pero un derrumbe amenaza a viajeros si
 
 
 ## Goblinoides — hijos del ojo
-**Fase C · Manual Básico · doble página final propuesta · NO CANÓNICA**
 
 ### Historia y cultura
 
@@ -286,7 +284,6 @@ Tres testigos conocen partes distintas del sabotaje de una línea férrea. La ve
 
 
 ## Terios / Anihombres — hijos de la sangre
-**Manual Básico · doble página final propuesta · 18-11-2026 · NO CANÓNICA**
 
 ### Historia y cultura
 
@@ -343,7 +340,6 @@ El **Origen** y el **Trasfondo** describen cultura y trayectoria, no son predete
 
 
 ## Feéricos — hijos de la hoja
-**Manual Básico · Fase C7 · DOBLE PÁGINA PROPUESTA, NO CANÓNICA**
 
 ### Historia y cultura
 
@@ -395,7 +391,6 @@ Una obra amenaza un árbol vinculado; desaparecen los apoyos de una ruta aérea;
 
 
 ## Ankar — guardianes del umbral
-**Manual Básico · doble página final propuesta · versión 1.0 · 18-11-2026. NO CANÓNICA hasta aprobación.**
 
 ### Historia y cultura
 
@@ -442,7 +437,6 @@ Un convoy lleva restos sin identificar y sus documentos no coinciden. Una famili
 
 
 ## Cristálidos — hijos de la materia resonante
-**Manual Básico · doble página final propuesta · C9 · 18-11-2026. No canónico.**
 
 ### Historia y cultura
 
@@ -490,7 +484,6 @@ Un gremio pretende apropiarse del trabajo de un conductor sin autorización. Una
 
 
 ## Verdantes — pueblos de raíz y camino
-**Manual Básico · doble página final propuesta · C10 · 18-11-2026. No canónico.**
 
 ### Historia y cultura
 
@@ -537,7 +530,6 @@ Un contrato de irrigación enfrenta a dos barrios; desaparece el archivo de una 
 
 
 ## Micelios — pueblos de la red y la elección
-**Manual Básico · doble página final propuesta · C11 · 18-11-2026. No canónico.**
 
 ### Historia y cultura
 
@@ -586,7 +578,6 @@ Un barrio pierde el suministro de sustrato durante una sequía; una red es sabot
 
 
 ## Coralios — pueblos de los arrecifes vivos
-**Manual Básico · doble página final propuesta · C12 · 18-11-2026 · NO CANÓNICO.**
 
 ### Historia y cultura
 
