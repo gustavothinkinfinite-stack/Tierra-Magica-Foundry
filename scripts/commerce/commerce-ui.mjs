@@ -51,6 +51,33 @@ function readEditor(html, draft) {
   });
 }
 
+// Flujo comprobable fuera del DOM: ninguna ruta llama a la recuperación
+// sin revisión previa, ausencia de conflictos y confirmación real del DJ.
+export async function runCommerceReceiptRecoveryFlow(actor, file, { confirm } = {}) {
+  if (!game.user?.isGM) return { ok: false, error: "Sólo el DJ puede examinar respaldos." };
+  if (!file || typeof file.text !== "function") {
+    return { ok: false, error: "Seleccioná un archivo JSON de respaldo." };
+  }
+  if (!Number.isSafeInteger(file.size) || file.size < 0 || file.size > 2_000_000) {
+    return { ok: false, error: "El archivo supera el límite de 2 MB o tiene tamaño inválido." };
+  }
+  const json = await file.text();
+  if (typeof json !== "string" || json.length > 2_000_000) {
+    return { ok: false, error: "El respaldo supera el tamaño admitido." };
+  }
+  const preview = previewCommerceReceiptReconciliation(actor, json);
+  if (!preview.ok) return preview;
+  if (preview.conflicts) return { ok: false, blocked: true, preview };
+  if (!preview.missing) return { ok: true, recovered: 0, preview };
+  if (typeof confirm !== "function") {
+    return { ok: false, error: "Se requiere confirmación explícita del DJ." };
+  }
+  const approved = await confirm(preview);
+  if (approved !== true) return { ok: false, cancelled: true, preview };
+  const result = await recoverCommerceReceiptMarkers(actor, json, { confirm: true });
+  return { ...result, preview };
+}
+
 export function configureCommerce(actor) {
   if (!game.user?.isGM || actor?.type !== "npc") return;
   const draft = normalizeCommerce(actor.getFlag("tierra-magica", "commerce"));
@@ -140,43 +167,33 @@ export function configureCommerce(actor) {
       });
       html.find("[data-commerce-restore]").on("click", async () => {
         try {
-          if (!game.user?.isGM) throw new Error("Sólo el DJ puede examinar respaldos.");
           const file = html.find("[data-commerce-restore-file]")[0]?.files?.[0];
-          if (!file) throw new Error("Seleccioná un archivo JSON de respaldo.");
-          if (file.size > 2_000_000) throw new Error("El archivo supera el límite de 2 MB para esta operación.");
-          const json = await file.text();
-          const preview = previewCommerceReceiptReconciliation(actor, json);
-          if (!preview.ok) throw new Error(preview.error ?? "No se pudo examinar el respaldo.");
-          const summary = "<p>Actor: " + esc(actor.name) + "</p>" +
-            "<p>Coincidentes: " + preview.matching +
-            " · Faltantes: " + preview.missing +
-            " · Conflictos: " + preview.conflicts +
-            " · Sólo en Actor: " + preview.onlyCurrent + "</p>" +
-            "<p>La recuperación incorpora únicamente identificadores ausentes. " +
-            "No devuelve monedas ni objetos y no elimina registros.</p>";
-          if (preview.conflicts) {
-            await Dialog.prompt({
-              title: "Conciliación bloqueada por conflictos",
-              content: summary + "<p>Resolvé los conflictos antes de recuperar marcadores.</p>",
-              callback: () => undefined
-            });
-            return;
-          }
-          if (!preview.missing) {
-            ui.notifications.info("No hay marcadores faltantes para recuperar.");
-            return;
-          }
-          const approved = await Dialog.confirm({
-            title: "Confirmar recuperación de identificadores",
-            content: summary +
-              "<p><strong>Verificá el origen del archivo.</strong> La suma de control no acredita quién lo creó. " +
-              "Los recibos pendientes seguirán pendientes de revisión manual.</p>"
+          const result = await runCommerceReceiptRecoveryFlow(actor, file, {
+            confirm: async (preview) => {
+              const summary = "<p>Actor: " + esc(actor.name) + "</p>" +
+                "<p>Coincidentes: " + preview.matching +
+                " · Faltantes: " + preview.missing +
+                " · Conflictos: " + preview.conflicts +
+                " · Sólo en Actor: " + preview.onlyCurrent + "</p>" +
+                "<p>Se recuperan sólo identificadores ausentes, sin devolver monedas ni objetos.</p>";
+              return Dialog.confirm({
+                title: "Confirmar recuperación de identificadores",
+                content: summary +
+                  "<p><strong>Verificá el origen del archivo.</strong> La suma de control no acredita quién lo creó. " +
+                  "Los recibos pendientes seguirán pendientes de revisión manual.</p>"
+              });
+            }
           });
-          if (!approved) return;
-          const result = await recoverCommerceReceiptMarkers(actor, json, { confirm: true });
+          if (result.blocked) {
+            ui.notifications.warn("Conciliación bloqueada: " + result.preview.conflicts +
+              " conflictos. No se modificaron recibos.");
+            return;
+          }
+          if (result.cancelled) return;
           if (!result.ok) throw new Error(result.error ?? "La recuperación fue rechazada.");
-          ui.notifications.info("Identificadores recuperados: " + result.recovered +
-            ". No se ejecutaron compras ni entregas.");
+          ui.notifications.info(result.recovered
+            ? "Identificadores recuperados: " + result.recovered + ". No se ejecutaron compras ni entregas."
+            : "No hay marcadores faltantes para recuperar.");
         } catch (error) { ui.notifications.error(error.message); }
       });
       const list = html.find(".tm-commerce-items");
