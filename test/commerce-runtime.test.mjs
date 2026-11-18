@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, previewCommercePendingReviewReconciliation, recoverCommercePendingReviews, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, failDebitAfterWrite = false, failItemAfterWrite = false, failStockAfterWrite = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -365,6 +365,95 @@ test("respaldo de revisiones vacío es válido y no genera entradas", () => {
     { ok: true, actorUuid: "Actor.shop", operations: 0, entries: 0,
       checksum: JSON.parse(backup).checksum });
   assert.equal(env.merchant.flags.commercePendingReviews, undefined);
+});
+
+test("recuperación de revisiones agrega sólo el sufijo faltante sin tocar recibos", async () => {
+  const fp = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const initial = { "gm:pending": { state: "pending", fingerprint: fp, at: 1 } };
+  const source = environment({ initialReceipts: initial });
+  const one = await recordCommercePendingReview(source.merchant, "gm:pending",
+    { note: "Primera revisión", checks: ["money"] });
+  assert.equal(one.ok, true);
+  const live = environment({ initialReceipts: initial });
+  live.merchant.flags.commercePendingReviews = structuredClone(
+    source.merchant.flags.commercePendingReviews);
+  assert.equal((await recordCommercePendingReview(source.merchant, "gm:pending",
+    { note: "Segunda revisión", checks: ["stock"] })).ok, true);
+  const backup = createCommercePendingReviewBackup(source.merchant);
+  const before = structuredClone(live.merchant.flags.commerceReceipts);
+  const preview = previewCommercePendingReviewReconciliation(live.merchant, backup);
+  assert.equal(preview.ok, true);
+  assert.equal(preview.matching, 1);
+  assert.equal(preview.missing, 1);
+  assert.equal(preview.conflicts, 0);
+  assert.equal(preview.safeToMergeAutomatically, false);
+  const denied = await recoverCommercePendingReviews(live.merchant, backup);
+  assert.equal(denied.ok, false);
+  assert.equal(commercePendingReviewHistory(live.merchant, "gm:pending").length, 1);
+  const result = await recoverCommercePendingReviews(live.merchant, backup, { confirm: true });
+  assert.deepEqual(result, { ok: true, recovered: 1 });
+  assert.deepEqual(commercePendingReviewHistory(live.merchant, "gm:pending"),
+    commercePendingReviewHistory(source.merchant, "gm:pending"));
+  const again = await recoverCommercePendingReviews(live.merchant, backup, { confirm: true });
+  assert.deepEqual(again, { ok: true, recovered: 0 });
+  assert.deepEqual(live.merchant.flags.commerceReceipts, before);
+  assert.equal(live.buyer.system.currency.totalCopper, 500);
+  assert.equal(live.getStock(), 2);
+  assert.equal(live.items.length, 0);
+});
+
+test("historial divergente bloquea por completo la recuperación de revisiones", async () => {
+  const fp = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const receipts = {
+    "gm:conflict": { state: "pending", fingerprint: fp, at: 1 },
+    "gm:missing": { state: "pending", fingerprint: fp, at: 1 }
+  };
+  const source = environment({ initialReceipts: receipts });
+  for (const key of Object.keys(receipts)) {
+    assert.equal((await recordCommercePendingReview(source.merchant, key,
+      { note: "Origen seguro " + key })).ok, true);
+  }
+  const backup = createCommercePendingReviewBackup(source.merchant);
+  const live = environment({ initialReceipts: receipts });
+  assert.equal((await recordCommercePendingReview(live.merchant, "gm:conflict",
+    { note: "Historia diferente" })).ok, true);
+  const before = structuredClone(live.merchant.flags);
+  const preview = previewCommercePendingReviewReconciliation(live.merchant, backup);
+  assert.equal(preview.conflicts, 1);
+  assert.equal(preview.missing, 1);
+  const result = await recoverCommercePendingReviews(live.merchant, backup,
+    { confirm: true });
+  assert.equal(result.ok, false);
+  assert.deepEqual(live.merchant.flags, before);
+});
+
+test("recuperación de revisiones rechaza recibos ausentes, cerrados y huellas distintas", async () => {
+  const fp = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const source = environment({ initialReceipts: {
+    "gm:old": { state: "pending", fingerprint: fp }
+  } });
+  await recordCommercePendingReview(source.merchant, "gm:old", { note: "Original" });
+  const backup = createCommercePendingReviewBackup(source.merchant);
+  for (const entry of [
+    {}, { "gm:old": { state: "archived", fingerprint: fp } },
+    { "gm:old": { state: "pending", fingerprint: "different" } }
+  ]) {
+    const live = environment({ initialReceipts: entry });
+    assert.equal(previewCommercePendingReviewReconciliation(live.merchant, backup)
+      .conflicts, 1);
+    assert.equal((await recoverCommercePendingReviews(live.merchant, backup,
+      { confirm: true })).ok, false);
+    assert.equal(live.merchant.flags.commercePendingReviews, undefined);
+  }
+  const other = environment({ initialReceipts: {
+    "gm:old": { state: "pending", fingerprint: fp }
+  } });
+  other.merchant.uuid = "Actor.different";
+  assert.equal(previewCommercePendingReviewReconciliation(other.merchant, backup).ok,
+    false);
+  game.user = { id: "player", isGM: false };
+  assert.equal((await recoverCommercePendingReviews(source.merchant, backup,
+    { confirm: true })).ok, false);
 });
 
 test("historial saturado rechaza compras sin podar archivo ni tocar dinero o stock", async () => {
