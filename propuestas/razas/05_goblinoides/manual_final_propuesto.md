@@ -16,7 +16,7 @@ Los **Hobgoblins** poseen cuerpos de Escala Mediana. Algunas comunidades desarro
 Los **Bugbears** son corpulentos, en el extremo superior de la Escala Mediana. Su fuerza aplicada a cargas y objetos inertes es notable, pero no son gigantes ni adquieren por tamaño una resistencia universal. Pueden ejercer el arte, la enseñanza, la navegación o la vigilancia. La fama de emboscadores no significa que todos posean Sigilo entrenado.
 
 ### Oficios, ciudades y creencias
-En la Edria arcano-industrial de **612 C.**, los tres pueblos participan en talleres, rutas ferroviarias, puertos, gremios y comunidades mixtas. Las fronteras políticas no equivalen a fronteras de sangre. Una familia puede compartir vecindario y trabajo con Enanos, Orcos o Humanos sin abandonar sus propias costumbres.
+En la Edria de **612 C.**, los tres pueblos participan en talleres, ferrocarriles, puertos y comunidades mixtas. Las fronteras políticas no equivalen a fronteras de sangre. Una familia puede compartir vecindario y trabajo con Enanos, Orcos o Humanos sin abandonar sus propias costumbres.
 
 **Propuesta cultural local:** algunos talleres celebran la *Prueba de Revisión*: antes de inaugurar una máquina, invitan a otra persona a señalar su fallo más peligroso. En ciertos consejos existe el *Relevo Público*, donde los responsables salientes entregan sus registros, incluidos los errores. Son prácticas posibles, **no instituciones universales ni fuentes de bonificaciones**.
 
@@ -30,14 +30,14 @@ Hay devotos de Varkor, fieles de otros dioses y personas sin culto. Ninguna asce
 ### Elegí una de tres ascendencias
 **Goblin.** **Escala Pequeña. Movimiento 6. Escurridizo:** podés atravesar el espacio de una criatura **Mediana o mayor** si hay espacio físico suficiente. Ese tránsito cuenta como **terreno difícil**; no podés terminar tu movimiento dentro del espacio ocupado. No atravesás muros ni anulás Reacciones habilitadas por otras reglas.
 
-**Hobgoblin.** **Escala Mediana. Movimiento 6.** Recibís Ojo para la Oportunidad, sin segunda competencia racial obligatoria. La organización militar o civil no concede Liderazgo, armas, Ingeniería, Ayuda ni Acciones gratuitas.
+**Hobgoblin.** **Escala Mediana. Movimiento 6.** Recibís Ojo para la Oportunidad, sin segunda competencia racial obligatoria. La cultura no concede Liderazgo, Ingeniería ni Acciones gratuitas.
 
 **Bugbear.** **Escala Mediana. Movimiento 6. Complexión Bugbear:** se te trata como **Grande sólo para Carga y fuerza bruta contra objetos inertes**. No ganás alcance, daño, Defensa, ventaja en maniobras contra criaturas ni derecho a equipo de Escala Grande. No obtenés Sigilo gratuitamente.
 
 ### Tres situaciones de juego
 **El corredor ocupado:** una goblin encuentra un hueco para cruzar el espacio de una guardia Mediana. Paga el coste de terreno difícil y debe terminar fuera de ese espacio. Si una Reacción enemiga es válida, Escurridizo no la impide.
 
-**La negociación:** un hobgoblin recibe un registro nuevo que prueba que una entrega llegó tarde. Puede declarar Ojo antes de una prueba pertinente para negociar. No puede repetir el +1 por el mismo registro ni descubrir mentiras desconocidas mediante el rasgo.
+**La negociación:** un hobgoblin recibe un registro nuevo que prueba que una entrega llegó tarde. Puede declarar Ojo antes de negociar mediante una prueba pertinente. No puede repetir el +1 por el mismo registro ni descubrir mentiras desconocidas mediante el rasgo.
 
 **La compuerta:** una bugbear ayuda a levantar una pieza metálica inmóvil. Su Escala efectiva Grande sirve para esa fuerza bruta y la Carga; si intenta Derribar a un enemigo, no obtiene esa mejora.
 
