@@ -713,3 +713,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - El creador autoriza incorporar al futuro Manual Básico **todo el lore y las propuestas mecánicas nuevas**, con prioridad editorial, no Foundry. Se conserva el aislamiento de la rama para la revisión y se evita modificar `main` en este paso.
 - Verificados directamente **12/12 textos finales y 12/12 notas de integración**. En conteo por espacios, Goblinoides 857 y Terios 908 palabras: revisar extensión objetivo; nota Humanos requiere ampliación.
 - Creado [`manual_final/indice_y_criterios.md`](./manual_final/indice_y_criterios.md): orden del capítulo, política de incorporación de lore y mecánicas nuevas con costes y trazabilidad. Siguiente: tabla comparativa, registro de diferencias y ensamblaje del manuscrito.
+
+### 2026-11-18 — Fase C: tabla comparativa verificada
+- Releídos tablero, README, plan, autoridad `main` y doce notas de integración C01–C12.
+- Creada [`manual_final/tabla_de_razas.md`](./manual_final/tabla_de_razas.md): matriz de 12 ascendencias con Escala/MOV, rasgos y límites, siete conflictos de integración y controles de equivalencia/no acumulación.
+- Se mantiene 0 Foundry/mesa; sin cambios de canon. **Próximo:** `manual_final/registro_de_diferencias_con_main.md` con decisiones B5 rastreables, seguido de ensamblaje editorial y corrección de extensiones.
