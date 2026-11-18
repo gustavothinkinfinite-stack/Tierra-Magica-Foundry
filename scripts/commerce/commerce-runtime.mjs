@@ -24,6 +24,20 @@ function snapshotReceipts(actor) {
   return rows && typeof rows === "object" ? { ...rows } : {};
 }
 
+// Diagnóstico de sólo lectura: los marcadores de protección no se podan
+// sin un archivo externo confiable. El DJ puede vigilar su crecimiento.
+export function commerceReceiptLedgerStats(actor) {
+  const rows = snapshotReceipts(actor);
+  const values = Object.values(rows);
+  return {
+    pending: values.filter((row) => row?.state === "pending").length,
+    recent: values.filter((row) => row?.state === "completed").length,
+    archived: values.filter((row) => row?.state === "archived").length,
+    total: values.length,
+    serializedCharacters: JSON.stringify(rows).length
+  };
+}
+
 async function storeReceipt(actor, key, receipt) {
   const now = Date.now();
   const rows = { ...snapshotReceipts(actor), [key]: { ...receipt, at: now } };
