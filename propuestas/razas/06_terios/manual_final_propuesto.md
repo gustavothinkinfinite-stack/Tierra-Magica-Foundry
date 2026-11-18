@@ -6,15 +6,15 @@
 ### Nacidos de la Sangre
 Las tradiciones de la Primera Semilla recuerdan tres expresiones de la Vida de Eïra: la Hoja de los Feéricos, la Savia de los Élficos y la Sangre de los Terios. Estos últimos, llamados también Anihombres, son pueblos conscientes nacidos con cuerpos de ascendencia animal. No son Humanos alterados, ni licántropos por naturaleza. Un Terio de aspecto chacalino tampoco es un Ankar: el origen de los Ankar se vincula a Vaelun, no a la Sangre de Eïra.
 
-La diversidad Teria no cabe en un único retrato. Hay cuerpos con pelaje, plumas, escamas, caparazones o piel desnuda; manos, garras, trompas, colas y alas cumplen funciones distintas. Su anatomía es real, no un disfraz. Pero una forma no dicta temperamento, inteligencia, moral, oficio ni destino. Un Terio de linaje felino puede estudiar Ingeniería; uno elefantino puede dedicarse a la poesía; uno aviano puede elegir una vida sedentaria.
+Hay cuerpos con pelaje, plumas, escamas, caparazones y anatomías diversas. Su anatomía es real, no un disfraz. Pero una forma no dicta temperamento, inteligencia, moral, oficio ni destino. Un Terio puede dedicarse a cualquier oficio compatible con su formación.
 
 ### Linajes y variedades
 Para describir a un personaje se emplea **Terio → Linaje → Variedad**. El linaje expresa una familia corporal; la variedad precisa una forma concreta dentro de ella. No constituye una segunda Ascendencia. Dos Terios del mismo linaje pueden elegir adaptaciones distintas, siempre que su cuerpo las justifique y respeten el presupuesto racial. La apariencia no entrega, por sí sola, una lista ilimitada de capacidades.
 
-Las necesidades cotidianas también varían. Un cuerpo cubierto de plumas requiere cuidados distintos de uno con caparazón, pero ninguno obtiene inmunidad general a la fatiga, al hambre, a la temperatura o al daño por simple descripción. Vestimentas, herramientas y armaduras se adaptan a cada anatomía conforme a las reglas ordinarias de equipo y adquisición.
+Los cuerpos tienen necesidades distintas, pero la anatomía no concede inmunidad al hambre, la Fatiga ni el daño. El equipo debe ser anatómicamente compatible.
 
 ### Una vida en muchos territorios
-Los Terios habitan Edria junto con otros pueblos. Sus comunidades pueden ser rurales, urbanas, portuarias o itinerantes. Comparten lenguas, leyes, escuelas y conflictos con vecinos de otras ascendencias. No existe una cultura Teria única ni una jerarquía universal entre linajes.
+Los Terios habitan Edria junto con otros pueblos. Comparten lenguas, instituciones y conflictos con otros pueblos. No existe una cultura Teria única ni una jerarquía universal entre linajes.
 
 Al este-sudeste de Edria se encuentra el **Territorio Oriental**, gran isla separada por mar navegable y con pantanos en su sector meridional. Allí pueden situarse relatos de sociedades anihombres diversas, sin fijar todavía fronteras, soberanías ni ciudades no ratificadas. **[PROPUESTA CULTURAL LOCAL]** Algunas escuelas comunitarias de la isla enseñan navegación, medicina, artes y cuidado de humedales mediante aprendizaje entre linajes. Estas instituciones no conceden Habilidades, Técnicas ni ventajas raciales.
 
@@ -47,7 +47,7 @@ Una Terio elefantina puede registrar **Órgano prensil** para su trompa y **Sent
 
 Nadar no significa respirar bajo el agua: **Anfibio** es un Rasgo general separado, con coste de **1 PR**, cuando corresponde. La forma del cuerpo no concede gratis otros Rasgos. Como cualquier personaje de nivel 1, un Terio dispone de **25 PD, 3 PR y seis aumentos de Atributo** bajo las reglas generales, independientes de su paquete racial.
 
-El **Origen** describe la sociedad donde se formó; el **Trasfondo**, su trayectoria práctica. Ninguno está predeterminado por el linaje. En una aventura, el problema interesante no es qué animal parece ser el personaje, sino qué decide hacer con sus capacidades y sus vínculos.
+El **Origen** y el **Trasfondo** describen cultura y trayectoria, no son predeterminados por el linaje.
 
 ---
 **NOTA EDITORIAL — NO IMPRIMIR:** Las escuelas comunitarias son propuesta cultural local sin bonificaciones. No usar «Renkai» como topónimo canónico ni incorporar el Origen Renkaino pendiente. Las sustituciones de Variedad, los efectos de branquias, la economía de rasgos redundantes y el movimiento mixto conservan las reservas de auditoría B4/B5. Texto principal mantiene el paquete del Manual Maestro; no canoniza extensiones.
