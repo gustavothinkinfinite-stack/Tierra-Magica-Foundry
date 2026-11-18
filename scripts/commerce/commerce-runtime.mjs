@@ -170,6 +170,9 @@ export async function recordCommercePendingReview(actor, key, { note, checks = [
       return failure("La bitácora de revisiones no tiene un formato válido.");
     }
     const rows = previous ? { ...previous } : {};
+    if (!validateReviewEntries(rows)) {
+      return failure("La bitácora contiene identificadores duplicados o secuencias inválidas.");
+    }
     const existing = Array.isArray(rows[key]) ? rows[key] : [];
     if (Object.hasOwn(rows, key) && !Array.isArray(rows[key])) {
       return failure("La secuencia de revisión existente es inválida.");
@@ -187,6 +190,9 @@ export async function recordCommercePendingReview(actor, key, { note, checks = [
       ...Object.entries(rows).filter(([id]) => id !== key),
       [key, [...existing, event]]
     ]);
+    if (!validateReviewEntries(next)) {
+      return failure("La nueva revisión repite un ID, altera la huella o rompe el orden.");
+    }
     if (JSON.stringify(next).length > REVIEW_LIMIT) {
       return failure("La bitácora alcanzó el límite: exportá respaldos antes de añadir revisiones.");
     }
@@ -209,20 +215,33 @@ const REVIEW_BACKUP_MAX = 1_000_000;
 const forbiddenReviewKeys = new Set(["__proto__", "constructor", "prototype"]);
 function validateReviewEntries(rows) {
   if (!rows || typeof rows !== "object" || Array.isArray(rows)) return false;
-  return Object.entries(rows).every(([key, events]) =>
-    key.length > 0 && key.length <= 200 && !forbiddenReviewKeys.has(key) &&
-    Array.isArray(events) && events.length <= 10000 &&
-    events.every((entry) => entry && typeof entry === "object" && !Array.isArray(entry) &&
-      typeof entry.id === "string" && entry.id.length > 0 && entry.id.length <= 200 &&
-      Number.isSafeInteger(entry.at) && entry.at >= 0 &&
-      typeof entry.gmId === "string" && entry.gmId.length > 0 &&
-      typeof entry.receiptFingerprint === "string" &&
-      entry.status === "reviewed-still-pending" &&
-      typeof entry.note === "string" && entry.note.trim().length > 0 &&
-      entry.note.length <= 2000 &&
-      Array.isArray(entry.checks) && entry.checks.length <= 4 &&
-      entry.checks.every((check) => ["money", "items", "stock", "backup"].includes(check)) &&
-      new Set(entry.checks).size === entry.checks.length));
+  const seenIds = new Set();
+  for (const [key, events] of Object.entries(rows)) {
+    if (!key || key.length > 200 || forbiddenReviewKeys.has(key) ||
+        !Array.isArray(events) || events.length > 10000) return false;
+    let previousAt = -1;
+    let fingerprint = null;
+    for (const entry of events) {
+      if (!entry || typeof entry !== "object" || Array.isArray(entry) ||
+          typeof entry.id !== "string" || !entry.id || entry.id.length > 200 ||
+          seenIds.has(entry.id) ||
+          !Number.isSafeInteger(entry.at) || entry.at < 0 || entry.at < previousAt ||
+          typeof entry.gmId !== "string" || !entry.gmId || entry.gmId.length > 200 ||
+          typeof entry.receiptFingerprint !== "string" ||
+          !entry.receiptFingerprint || entry.receiptFingerprint.length > 8192 ||
+          (fingerprint !== null && entry.receiptFingerprint !== fingerprint) ||
+          entry.status !== "reviewed-still-pending" ||
+          typeof entry.note !== "string" || !entry.note.trim() ||
+          entry.note.length > 2000 || !Array.isArray(entry.checks) ||
+          entry.checks.length > 4 ||
+          entry.checks.some((check) => !["money", "items", "stock", "backup"].includes(check)) ||
+          new Set(entry.checks).size !== entry.checks.length) return false;
+      seenIds.add(entry.id);
+      previousAt = entry.at;
+      fingerprint = entry.receiptFingerprint;
+    }
+  }
+  return true;
 }
 export function createCommercePendingReviewBackup(actor) {
   if (!actor?.uuid || typeof actor.getFlag !== "function") {
