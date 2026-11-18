@@ -16,7 +16,7 @@
 | 08 | Ankar | Borrador v0.1; **B1–B4 documentales completas**; **68 DOC B3 + 14 DOC B4; 28 MOD auxiliares**, 0 Foundry/mesa | B5: frecuencia de Sentido, barreras, efectos mixtos y apilamiento racial/mágico |
 | 09 | Cristálidos | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**; B1–B4 completas | Conductor Vivo y arbitrajes B5 permanecen no canónicos; 0 Foundry/mesa |
 | 10 | Verdantes | Borrador v0.1; **B1–B4 documentales completas**; **86 DOC B3 + 16 DOC B4**, 0 Foundry/mesa | B5: CLN-01, anclaje/Martillo Cinético, Derribar, 0 Vida, biomas y Viaje |
-| 11 | Micelios | Expediente v0.1; **B1–B4 documentales completas**, **100 DOC B3 + 18 DOC B4** | B5: radio geométrico, continuidad/reconexión, valor de Quimiosensibilidad y Enlace |
+| 11 | Micelios | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**, B1–B4 completas | MIC-B4-P01–P04 no canónicas; 0 Foundry/mesa |
 | 12 | Coralios | Expediente v0.1; **B1–B4 documentales completas**, **88 DOC B3 + 18 DOC B4** | B5: movimiento mixto, hidratación, Anfibio 1 PR y paridad |
 
 
@@ -696,3 +696,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, expediente, doble página inicial, brief y B4 Verdantes; cotejado Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (Eïra, Sustento Vegetal, Enraizar, Adaptación de Bioma, Medicina y creación).
 - Publicados [`10_verdantes/manual_final_propuesto.md`](./10_verdantes/manual_final_propuesto.md) (doble página final) y [`10_verdantes/nota_integracion_manual.md`](./10_verdantes/nota_integracion_manual.md). Instituciones culturales marcadas como propuestas; sin bonificaciones nuevas. DER-R2/3 y reloj de luz experimental no incorporados al paquete.
 - **Fase C 10/12; 2 restantes.** B5 cerrada documentalmente con reservas; **0 Foundry/mesa**. Próximo: **11 Micelios** y nota de integración. Sólo rama/carpeta de propuestas.
+
+
+### 2026-11-18 — Fase C11: Micelios
+- Confirmado que C11 no existía; releídos tablero, README, plan, expediente, B4 y paquete Micelio v0.3 en Manual Maestro de `main`.
+- Creados `11_micelios/manual_final_propuesto.md` (doble página editorial de 840 palabras contando encabezados) y `11_micelios/nota_integracion_manual.md`. Canon conservado; propuestas MIC-B4-P01–P04 y cultura no ratificadas separadas.
+- Pruebas: 100 casos B3 y 18 B4 documentales, 0 Foundry, 0 mesa. No se alteró `main`, mapa, Manual Maestro ni código operativo.
+- **Siguiente bloque:** verificar C12 Coralios y redactar su texto final y nota; después revisar estado efectivo de C03/C05/C08 y crear índice, tabla, diferencias e informe global. El recuento de C debe basarse en archivos verificados, no sólo en filas históricas del tablero.
