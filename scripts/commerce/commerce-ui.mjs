@@ -76,7 +76,11 @@ export function configureCommerce(actor) {
     '<small>También podés arrastrar un Item del Compendio o del directorio de Objetos sobre esta ventana. La lista de objetos es siempre explícita; ningún mercado genera equipo raro automáticamente.</small>' +
     '<p>Historial de operaciones: ' + ledger.recent + ' recientes, ' + ledger.pending +
       ' pendientes y ' + ledger.archived + ' archivadas (' + ledger.serializedCharacters +
-      ' caracteres serializados). Las archivadas y pendientes se conservan para impedir duplicados; no eliminarlas manualmente.</p>' +
+      ' de ' + ledger.limitCharacters + ' caracteres de capacidad preventiva). ' +
+      (ledger.serializedCharacters >= ledger.limitCharacters - 4096
+        ? 'ATENCIÓN: el historial está próximo al límite y puede impedir nuevas compras. '
+        : '') +
+      'Las archivadas y pendientes se conservan para impedir duplicados; no eliminarlas manualmente.</p>' +
     "</section>";
 
   const dialog = new Dialog({
