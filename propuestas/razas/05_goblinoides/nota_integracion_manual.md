@@ -16,3 +16,7 @@
 
 ## Control editorial
 Dos páginas de historia y juego. Brief `05_goblinoides/brief_arte.md`: tres variantes cooperando en infraestructura arcano-industrial, proporciones correctas, sin monstruosidad caricaturesca ni símbolos obligatorios. No se generó imagen. La publicación de este archivo no altera `main`, Foundry ni el mapa. **Próximo expediente: 06 Terios.**
+
+## Control de extensión corregido — 18-11-2026
+
+**Manual final C5 revisado:** 849 palabras incluyendo encabezados y título (recorte editorial sin cambio mecánico).
