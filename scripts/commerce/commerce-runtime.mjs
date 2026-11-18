@@ -78,6 +78,70 @@ export function commercePendingReceiptReport(actor, { limit = 25 } = {}) {
   return { total: entries.length, shown: rows.length, rows };
 }
 
+// Expediente informativo: fotografía del estado ACTUAL, no reconstrucción de
+// cómo quedó la operación. No cierra el recibo ni decide reparaciones.
+export async function createCommercePendingDossier(actor, key) {
+  if (!actor?.uuid || !key || typeof key !== "string") {
+    return { ok: false, error: "Actor o identificador de operación inválido." };
+  }
+  const receipt = snapshotReceipts(actor)[key];
+  if (receipt?.state !== "pending") {
+    return { ok: false, error: "El recibo no existe o no está pendiente." };
+  }
+  const record = commercePendingReceiptReport(actor, { limit: 100 });
+  // No depender del límite de filas ni del orden para hallar la solicitud.
+  let request = null;
+  try {
+    const parts = JSON.parse(receipt.fingerprint);
+    if (Array.isArray(parts) && parts.length === 5 &&
+        parts.slice(0, 4).every((v) => typeof v === "string") &&
+        Number.isSafeInteger(parts[4]) && parts[4] > 0) {
+      request = { requesterId: parts[0], merchantUuid: parts[1],
+        buyerUuid: parts[2], offerId: parts[3], quantity: parts[4] };
+    }
+  } catch { /* Las huellas heredadas pueden ser ilegibles. */ }
+  const config = actor.getFlag?.("tierra-magica", "commerce");
+  const offer = request && Array.isArray(config?.offers)
+    ? config.offers.find((entry) => entry.id === request.offerId) : null;
+  let buyer = null;
+  try {
+    if (request?.buyerUuid && typeof globalThis.fromUuid === "function") {
+      buyer = await globalThis.fromUuid(request.buyerUuid);
+    }
+  } catch { /* No afirmar que el personaje no existe si falló la consulta. */ }
+  const inventory = buyer?.items?.contents ?? buyer?.items;
+  const candidates = inventory && typeof inventory[Symbol.iterator] === "function"
+    ? [...inventory].filter((item) =>
+        item?.system?.acquisition?.sources?.some?.((source) =>
+          source?.kind === "commerce" && source.uuid === actor.uuid &&
+          (!offer?.uuid || source.itemUuid === offer.uuid)))
+        .slice(0, 100).map((item) => ({ id: item.id ?? null,
+          name: item.name ?? null, quantity: item.system?.quantity ?? null }))
+    : null;
+  const money = buyer?.system?.currency?.totalCopper;
+  const dossier = {
+    format: "tierra-magica-commerce-pending-dossier", version: 1,
+    actorUuid: actor.uuid, key, state: "pending",
+    recordedAt: Number.isFinite(receipt.at) ? receipt.at : null,
+    request,
+    snapshot: {
+      buyerFound: Boolean(buyer && buyer.type === "character"),
+      currentCopper: Number.isSafeInteger(money) ? money : null,
+      offerFound: Boolean(offer),
+      currentStock: Number.isSafeInteger(offer?.stock) ? offer.stock : null,
+      candidateItems: candidates
+    },
+    checklist: [
+      "Verificar el historial monetario antes y después del intento",
+      "Inspeccionar inventario y procedencia, comparando con otros intercambios",
+      "Contrastar existencias y registros anteriores del comerciante",
+      "Conservar respaldo de los recibos y documentar la decisión del DJ"
+    ],
+    warning: "Los valores son una fotografía actual, no prueba de cobro, entrega ni estado final. No se altera el recibo."
+  };
+  return { ok: true, dossier };
+}
+
 // Copia portátil, de sólo lectura. La suma de control detecta corrupción
 // accidental; no es firma digital ni autoriza purgar el Actor.
 function receiptBackupChecksum(serialized) {
