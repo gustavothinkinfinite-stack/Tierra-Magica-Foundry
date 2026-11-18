@@ -43,3 +43,13 @@
 **NO AUTORIZADA.** Para declarar B5 «cerrada documentalmente» hacen falta (a) una propuesta inequívoca por cada bloqueo B, con alcance, coste, límites y ejemplos, aunque siga no canónica; (b) conciliación trazable de las doce filas; (c) al menos un guion de aceptación reproducible por bloqueo y revisión de contradicciones contra el Manual Maestro; (d) actualización de la matriz indicando DOC diseñado vs DOC revisado, y sin fingir ejecución de Foundry. **La ausencia de pruebas empíricas no impide necesariamente un cierre puramente documental**, pero los vacíos normativos actuales sí lo impiden.
 
 La **siguiente unidad sustantiva** es resolver conjuntamente I01/I02/I10 en un anexo de procedimientos y casos límite, con decisiones editoriales propuestas y registro de discrepancias. No comenzar `manual_final_propuesto.md` antes del cierre B5. Sin merge ni edición de `main`.
+
+
+## Anexo de actualización — 2026-11-18: puerta v3
+
+La presente acta original preserva el contexto de su revisión del **17-11-2026** y su blob histórico. **Para decisiones posteriores debe consultarse el Manual Maestro vigente** (`main` blob `334770e7ed7d2605767aecb169f57da6c1100508`) y el acta complementaria [`05_b5_acta_puerta_v3_y_12_escenarios_globales.md`](./05_b5_acta_puerta_v3_y_12_escenarios_globales.md).
+
+- **12/12 escenarios globales G01–G12 cotejados documentalmente**, **0/12 ejecutados**. **66/66 pares con fronteras cotejadas por lectura**, **0/66 empíricamente certificados**. **0 Foundry, 0 MESA.**
+- Nuevo dictamen [`05_b5_dictamen_editorial_derribar_anfibio_hobgoblin.md`](./05_b5_dictamen_editorial_derribar_anfibio_hobgoblin.md), **18 criterios DOC adicionales** que no alteran el recuento histórico de **238 guiones DOC originales**. DER-R2 se conserva como **cambio numérico candidato**, D05-B como **independencia candidata Anfibio Coralio/1 PR**, Señal Hobgoblin como **alternativa opcional sin paridad demostrada**.
+- **Siete bloqueantes I01/I02/I04/I05/I06/I08/I10 continúan ABIERTOS** a aprobación y cierre de contradicciones. I03/I07/I09/I11 requieren cierre editorial; I12 tiene frontera canónica delimitada, no comprobación empírica.
+- **B5 ABIERTA; FASE C NO AUTORIZADA**. Este anexo actualiza evidencia, no cambia retroactivamente conclusiones de fuente antigua ni aprueba reglas nuevas.
