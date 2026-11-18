@@ -10652,6 +10652,26 @@ Los once ejemplos siguientes parten de estadísticas publicadas en la tabla de P
 
 **Alcance del cierre:** hay once **ejemplos de encuentro**, uno por perfil de referencia, pero **no once fichas técnicas completas ni once entradas nuevas de Compendio**. Civil permanece sin ataque universal; Soldado tiene una elección de Daño sólo para su ejemplo; Canalizador hostil utiliza una selección ejemplificativa de hechizos y Protección; Troll dominante sólo emplea ataques ordinarios; Veterano y Centinela conservan campos abiertos. Cada adaptación al runtime requiere resolver esos campos de forma explícita, no por inferencia.
 
+
+### Conciliación documental con el compendio Foundry VTT
+
+**AUDITADO EN CÓDIGO FUENTE · NO EQUIVALE A PRUEBA DE EJECUCIÓN EN FOUNDRY.** El catálogo `scripts/catalog/npc-catalog.mjs` define los **11 perfiles de referencia** de este capítulo como documentos de Actor tipo `npc`, conservando sus cifras y las incertidumbres relevantes. `tools/build-packs.mjs` incorpora esos perfiles al compendio de Actores `bestiary`, declarado en `system.json`.
+
+La implementación existente no obliga a crear desde cero esos once Actores. Mantiene expresamente:
+
+- Civil sin ataque cuantificado;
+- Soldado con el intervalo de Daño 7–8, sin seleccionar unilateralmente un valor;
+- Canalizador hostil con Maná 15, Canalización +6 y Protección posible 0–1, **sin** adjudicarle hechizos por defecto;
+- Centinela de Bronce sin un valor numérico de Defensa Corporal inventado;
+- Troll dominante sin activar capacidades o Reacciones especiales opcionales por su mero nombre.
+
+El archivo `test/bestiary.test.mjs` contiene pruebas automatizadas que comprueban cantidad de perfiles, valores derivados, defensa no aplicable del Centinela, incertidumbres del Canalizador, opciones condicionales del Troll, interfaz de ataque NPC y enlazado de arte. **La presencia de pruebas no demuestra que se hayan ejecutado ni superado en esta revisión documental.**
+
+El mismo proceso de compilación incluye **12 Actores adicionales de diseño original**: `original-bestiary.mjs` (1), `eidolon-manivoro.mjs` (1), `approved-creatures-v1.mjs` (5) y `approved-creatures-v2.mjs` (5). Las fichas de diseño original no se confunden con los once perfiles del Manual Maestro ni ascienden automáticamente a canon por estar empaquetadas; su estado requiere control editorial explícito. El total previsto por las cinco fuentes de construcción es **23 Actores**, sujeto a compilación y verificación efectiva.
+
+**Pendiente de cierre técnico:** ejecutar `npm run validate`, verificar que el compendio generado abra correctamente en una instalación compatible de Foundry, comprobar tiradas/recursos/efectos en escenas y revisar que los estados de canon o propuesta sigan identificables dentro del paquete publicado. Los ejemplos editoriales de encuentros 10 y 11 no se transfieren automáticamente a los Actores base.
+
+
 ## 24. Dirección de juego
 
 El Director determina primero qué está ocurriendo en la ficción, si una acción es posible y si existe incertidumbre significativa. La tirada resuelve incertidumbre; no sustituye causalidad, competencia o información.
