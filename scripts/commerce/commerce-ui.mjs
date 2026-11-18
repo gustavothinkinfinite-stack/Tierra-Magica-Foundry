@@ -3,7 +3,7 @@ import {
   COMMERCE_TIERS, COMMERCE_SPECIALTIES, COMMERCE_ITEM_TYPES,
   createCommerceOffer, normalizeCommerce, tierLevel
 } from "../rules/commerce.mjs";
-import { commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
+import { commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, previewCommercePendingReviewReconciliation, recoverCommercePendingReviews, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
 
 const esc = (value) => foundry.utils.escapeHTML(String(value ?? ""));
 const modeText = (mode) => mode === "chest" ? "Cofre / botín gratis" : "Comerciante";
@@ -113,6 +113,8 @@ export function configureCommerce(actor) {
     '<button type="button" data-commerce-case>Exportar expediente de conciliación (JSON)</button>' +
     '<button type="button" data-commerce-review>Registrar revisión sin cerrar el recibo</button>' +
     '<button type="button" data-commerce-review-backup>Exportar respaldo de revisiones (JSON)</button>' +
+    '<label>Examinar respaldo de revisiones <input type="file" accept=".json,application/json" data-commerce-review-restore-file /></label>' +
+    '<button type="button" data-commerce-review-restore>Comparar y recuperar revisiones faltantes</button>' +
     '<button type="button" data-commerce-backup>Exportar copia de recibos (JSON)</button>' +
     '<label>Examinar respaldo de recibos <input type="file" accept=".json,application/json" data-commerce-restore-file /></label>' +
     '<button type="button" data-commerce-restore>Comparar respaldo y recuperar marcadores faltantes</button>' +
@@ -225,6 +227,41 @@ export function configureCommerce(actor) {
           globalThis.saveDataToFile(JSON.stringify(result.dossier, null, 2),
             "application/json", "tierra-magica-conciliacion-" + safeName + ".json");
           ui.notifications.info("Expediente de conciliación preparado. El recibo continúa pendiente.");
+        } catch (error) { ui.notifications.error(error.message); }
+      });
+      html.find("[data-commerce-review-restore]").on("click", async () => {
+        try {
+          if (!game.user?.isGM) throw new Error("Sólo el DJ puede recuperar revisiones.");
+          const file = html.find("[data-commerce-review-restore-file]")[0]?.files?.[0];
+          if (!file || !Number.isSafeInteger(file.size) || file.size > 1_000_000) {
+            throw new Error("Seleccioná un respaldo JSON de revisiones de hasta 1 MB.");
+          }
+          const json = await file.text();
+          const preview = previewCommercePendingReviewReconciliation(actor, json);
+          if (!preview.ok) throw new Error(preview.error);
+          if (preview.conflicts) {
+            ui.notifications.warn("Recuperación bloqueada: " + preview.conflicts +
+              " operaciones tienen conflictos.");
+            return;
+          }
+          if (!preview.missing) {
+            ui.notifications.info("No hay revisiones faltantes que recuperar.");
+            return;
+          }
+          const approved = await Dialog.confirm({
+            title: "Confirmar recuperación de revisiones",
+            content: "<p>Se agregarán " + preview.missing + " revisiones a " +
+              preview.missingOperations + " operaciones pendientes del Actor " +
+              esc(actor.name) + ".</p>" +
+              "<p><strong>Confirmá el origen del archivo.</strong> La suma de control " +
+              "no demuestra autenticidad. Los recibos seguirán pendientes y " +
+              "no se modificarán monedas, objetos ni existencias.</p>"
+          });
+          if (!approved) return;
+          const result = await recoverCommercePendingReviews(actor, json, { confirm: true });
+          if (!result.ok) throw new Error(result.error);
+          ui.notifications.info("Revisiones recuperadas: " + result.recovered +
+            ". Los recibos siguen pendientes.");
         } catch (error) { ui.notifications.error(error.message); }
       });
       html.find("[data-commerce-review-backup]").on("click", () => {
