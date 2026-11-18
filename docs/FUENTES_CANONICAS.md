@@ -146,3 +146,13 @@ El antiguo bloque interno **«PARTE III — ARCHIVO NARRATIVO RECUPERADO DEL MAN
 Sus antiguos rótulos «ESTADO CANÓNICO v0.1/v0.2» son históricos y no recuperan autoridad por estar archivados. Un detalle de ese archivo sólo vuelve al canon cuando se incorpora expresamente al Manual Maestro mediante una decisión posterior.
 
 Las fuentes externas de trabajo usadas para recuperar estilo, geografía, cartografía y principios de diseño quedan registradas en \`docs/archive/fuentes_externas/REGISTRO_FUENTES_EXTERNAS_2026-10-06.md\`. Son material de respaldo y no una segunda autoridad textual.
+
+## Canonización editorial de doce Ascendencias — 18-11-2026
+
+**Autorización:** el creador autorizó expresamente todas las decisiones editoriales y normativas del proceso de razas en noviembre de 2026. La fuente única sigue siendo `docs/Tierra_Magica_Manual_Maestro.md`; no se crea un segundo libro de reglas paralelo.
+
+**Integrado:** doce capítulos dobles de contexto e identidad racial en el **ANEXO CANÓNICO** del Manual Maestro, además de `#### Cierre normativo de Ascendencias — integración editorial aprobada (18-11-2026)` dentro de §3. Las decisiones incorporadas son Movimiento mixto, resistencia de Derribar por Escala efectiva, Enlace Micelial, respiración de Terios/Coralios y Anfibio, asimetría Hobgoblin aceptada, contrato de Conductor Vivo, 0 Vida y simultaneidad, sentidos/ocultación, Voluntad/Ojo/Ayuda, sustento y equivalencia de Rasgos.
+
+**Proveniencia:** la carpeta `propuestas/razas/` conserva 12 dobles páginas previas, 12 notas de integración, auditorías B1–B5 y el índice de entrega `13_indice_editorial_y_acta_entrega.md`. Tras incorporarse expresamente al Manual Maestro, dichos archivos son **historial de trabajo** y no prevalecen ante una divergencia del texto aprobado. Las instituciones y costumbres ilustrativas integradas no añaden bonificaciones, profesiones obligatorias ni topónimos estatales.
+
+**Límite de verificación:** el trabajo de razas se cerró **documentalmente** (12/12 capítulos, 66 pares y 12 guiones globales cotejados por lectura); **0 playtests reales de mesa y 0 pruebas nuevas en Foundry de B5**. La integración editorial no prueba compatibilidad automática del motor ni publica por sí sola una nueva versión. Las reglas que Foundry no automatice se adjudican por el Director hasta una implementación validada y publicada.
