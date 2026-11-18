@@ -49,9 +49,11 @@ export function commerceReceiptLedgerStats(actor) {
 export function commercePendingReceiptReport(actor, { limit = 25 } = {}) {
   const size = Number.isSafeInteger(limit) ? Math.max(0, Math.min(limit, 100)) : 25;
   const receipts = snapshotReceipts(actor);
+  const timestamp = (row) =>
+    Number.isFinite(row?.at) && row.at >= 0 ? row.at : 0;
   const entries = Object.entries(receipts)
     .filter(([, receipt]) => receipt?.state === "pending")
-    .sort((a, b) => Number(a[1]?.at ?? 0) - Number(b[1]?.at ?? 0) ||
+    .sort((a, b) => timestamp(a[1]) - timestamp(b[1]) ||
       a[0].localeCompare(b[0]));
   const rows = entries.slice(0, size).map(([key, receipt]) => {
     let decoded;
