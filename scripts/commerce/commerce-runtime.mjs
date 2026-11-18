@@ -128,6 +128,42 @@ export function previewCommerceReceiptReconciliation(actor, json) {
   };
 }
 
+// Recuperación explícita por DJ de marcadores ausentes, nunca de cobros/items.
+// Se vuelve a evaluar dentro de la misma cola de transacciones para impedir
+// carreras entre una compra y el respaldo. Los conflictos bloquean TODO el lote.
+export async function recoverCommerceReceiptMarkers(actor, json, { confirm = false } = {}) {
+  if (!game.user?.isGM || currentGm()?.id !== game.user.id) {
+    return failure("Sólo el DJ activo principal puede recuperar identificadores.");
+  }
+  if (confirm !== true) return failure("La recuperación requiere confirmación explícita del DJ.");
+  return exclusive(async () => {
+    const preview = previewCommerceReceiptReconciliation(actor, json);
+    if (!preview.ok) return preview;
+    if (preview.conflicts !== 0) {
+      return failure("El respaldo contiene conflictos: no se modificó ningún recibo.");
+    }
+    const live = snapshotReceipts(actor);
+    const backup = JSON.parse(json).receipts;
+    const missing = preview.missingKeys;
+    const additions = missing.map((key) => {
+      const row = backup[key];
+      // El resultado de una compra histórica NO se reproduce ni restaura como
+      // recibo completado: sólo se conserva su veto a una repetición.
+      const safeRow = row.state === "pending"
+        ? { state: "pending", fingerprint: row.fingerprint, at: row.at }
+        : { state: "archived", fingerprint: row.fingerprint, at: row.at };
+      return [key, safeRow];
+    });
+    const merged = Object.fromEntries([...Object.entries(live), ...additions]);
+    if (JSON.stringify(merged).length + COMMERCE_RECEIPT_RESERVE > COMMERCE_RECEIPT_LEDGER_LIMIT) {
+      return failure("El respaldo supera el límite de recibos: recuperación cancelada sin cambios.");
+    }
+    if (!missing.length) return { ok: true, recovered: 0, conflicts: 0 };
+    await actor.setFlag("tierra-magica", RECEIPTS_KEY, merged);
+    return { ok: true, recovered: missing.length, conflicts: 0 };
+  }).catch((error) => failure(error?.message ?? error));
+}
+
 async function storeReceipt(actor, key, receipt) {
   const now = Date.now();
   const rows = { ...snapshotReceipts(actor), [key]: { ...receipt, at: now } };
