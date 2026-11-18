@@ -27,10 +27,15 @@ function snapshotReceipts(actor) {
 async function storeReceipt(actor, key, receipt) {
   const now = Date.now();
   const rows = { ...snapshotReceipts(actor), [key]: { ...receipt, at: now } };
-  const latest = Object.entries(rows)
+  // Las operaciones pendientes requieren conciliación manual y nunca se
+  // descartan automáticamente por rotación del historial de compras cerradas.
+  const entries = Object.entries(rows);
+  const unresolved = entries.filter(([, row]) => row?.state === "pending");
+  const completed = entries.filter(([, row]) => row?.state !== "pending")
     .sort((a, b) => Number(b[1]?.at ?? 0) - Number(a[1]?.at ?? 0))
     .slice(0, 128);
-  await actor.setFlag("tierra-magica", RECEIPTS_KEY, Object.fromEntries(latest));
+  await actor.setFlag("tierra-magica", RECEIPTS_KEY,
+    Object.fromEntries([...unresolved, ...completed]));
 }
 
 function authenticatedOwner(actor, user) {
