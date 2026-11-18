@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -258,6 +258,60 @@ test("conciliación rechaza respaldo corrupto o perteneciente a otro Actor", () 
   broken.receipts["gm:una"].fingerprint = "alterado";
   assert.equal(previewCommerceReceiptReconciliation(source.merchant, JSON.stringify(broken)).ok, false);
   assert.equal(previewCommerceReceiptReconciliation(source.merchant, "invalid").ok, false);
+});
+
+test("recuperación explícita añade sólo marcadores ausentes y bloquea replays", async () => {
+  const initial = environment({ initialReceipts: {
+    "gm:historical": { state: "completed", fingerprint:
+      JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]),
+      result: { ok: true }, at: 1 },
+    "gm:pending-old": { state: "pending", fingerprint: "manual", at: 2 }
+  } });
+  const backup = createCommerceReceiptBackup(initial.merchant);
+  const live = environment({ stock: 2 });
+  const missingConfirm = await recoverCommerceReceiptMarkers(live.merchant, backup);
+  assert.equal(missingConfirm.ok, false);
+  assert.deepEqual(live.merchant.flags.commerceReceipts, {});
+  const recovered = await recoverCommerceReceiptMarkers(live.merchant, backup, { confirm: true });
+  assert.deepEqual(recovered, { ok: true, recovered: 2, conflicts: 0 });
+  assert.equal(live.merchant.flags.commerceReceipts["gm:historical"].state, "archived");
+  assert.equal(live.merchant.flags.commerceReceipts["gm:pending-old"].state, "pending");
+  const replay = await executeCommerceExchange(live.request("historical"));
+  assert.equal(replay.ok, false);
+  assert.equal(live.items.length, 0);
+  assert.equal(live.getStock(), 2);
+  assert.equal(live.buyer.system.currency.totalCopper, 500);
+  assert.deepEqual(await recoverCommerceReceiptMarkers(live.merchant, backup, { confirm: true }),
+    { ok: true, recovered: 0, conflicts: 0 });
+});
+
+test("recuperación ante conflicto rechaza el lote entero sin sobrescribir", async () => {
+  const from = environment({ initialReceipts: {
+    "gm:conflict": { state: "pending", fingerprint: "old", at: 1 },
+    "gm:missing": { state: "archived", fingerprint: "missing", at: 2 }
+  } });
+  const backup = createCommerceReceiptBackup(from.merchant);
+  const live = environment({ initialReceipts: {
+    "gm:conflict": { state: "pending", fingerprint: "different", at: 1 }
+  } });
+  const before = structuredClone(live.merchant.flags.commerceReceipts);
+  const result = await recoverCommerceReceiptMarkers(live.merchant, backup, { confirm: true });
+  assert.equal(result.ok, false);
+  assert.deepEqual(live.merchant.flags.commerceReceipts, before);
+  assert.equal(live.merchant.flags.commerceReceipts["gm:missing"], undefined);
+});
+
+test("recuperación de marcadores rechaza a jugadores y respaldos de otro Actor", async () => {
+  const source = environment({ initialReceipts: {
+    "gm:old": { state: "archived", fingerprint: "old", at: 1 }
+  } });
+  const backup = createCommerceReceiptBackup(source.merchant);
+  const other = { ...source.merchant, uuid: "Actor.other" };
+  assert.equal((await recoverCommerceReceiptMarkers(other, backup, { confirm: true })).ok, false);
+  const initial = structuredClone(source.merchant.flags.commerceReceipts);
+  game.user = { id: "player", isGM: false, active: true };
+  assert.equal((await recoverCommerceReceiptMarkers(source.merchant, backup, { confirm: true })).ok, false);
+  assert.deepEqual(source.merchant.flags.commerceReceipts, initial);
 });
 
 test("dos compras concurrentes de la última unidad son serializadas", async () => {
