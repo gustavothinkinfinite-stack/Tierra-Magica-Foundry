@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { commerceReceiptLedgerStats, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -133,6 +133,28 @@ test("las lápidas históricas sobreviven a otra compra y no se reactivan", asyn
   assert.equal(env.items.length, 1);
   assert.equal(env.getStock(), 1);
   assert.equal(env.buyer.system.currency.totalCopper, 470);
+});
+
+test("el Director puede consultar los recibos tras reconstruir el Actor sin eliminarlos", async () => {
+  const env = environment({ stock: 2, initialReceipts: {
+    "gm:manual": { state: "pending", fingerprint: "manual", at: 1 },
+    "gm:closed": { state: "completed", fingerprint: "closed", result: { ok: true }, at: 2 },
+    "gm:old": { state: "archived", fingerprint: "old", at: 0 }
+  } });
+  const before = structuredClone(env.merchant.flags.commerceReceipts);
+  const restoredActor = {
+    getFlag(scope, key) { return structuredClone(before); }
+  };
+  const stats = commerceReceiptLedgerStats(restoredActor);
+  assert.deepEqual({ pending: stats.pending, recent: stats.recent,
+    archived: stats.archived, total: stats.total },
+    { pending: 1, recent: 1, archived: 1, total: 3 });
+  assert.equal(stats.serializedCharacters, JSON.stringify(before).length);
+  assert.deepEqual(env.merchant.flags.commerceReceipts, before,
+    "el diagnóstico no altera recibos ni resuelve pendientes");
+  const absent = commerceReceiptLedgerStats({ getFlag: () => undefined });
+  assert.deepEqual(absent, { pending: 0, recent: 0, archived: 0,
+    total: 0, serializedCharacters: 2 });
 });
 
 test("dos compras concurrentes de la última unidad son serializadas", async () => {
