@@ -1,7 +1,7 @@
 # Tablero — Proyecto razas de Tierra Mágica
 
 **Rama:** `propuestas/razas-autonomas-2026`
-**Estado:** trabajo autónomo en curso; absolutamente todo es **PROPUESTA NO CANÓNICA**. **Plan ampliado:** completar 12 expedientes → auditoría múltiple de cada familia y global → redactar 12 versiones finales propuestas para el Manual Básico. Ver [`00_plan_auditorias_y_manual.md`](./00_plan_auditorias_y_manual.md).
+**Estado histórico:** expediente B1–B5 y Fase C completados; contenido aceptado integrado en el Manual Maestro mediante PR #108 y #109. Los borradores de esta carpeta quedan como historial y **no son una segunda fuente de canon**. **Plan ampliado:** completar 12 expedientes → auditoría múltiple de cada familia y global → redactar 12 versiones finales propuestas para el Manual Básico. Ver [`00_plan_auditorias_y_manual.md`](./00_plan_auditorias_y_manual.md).
 **Fuente canónica:** `main:docs/Tierra_Magica_Manual_Maestro.md`.
 
 | Nº | Familia | Estado del borrador | Siguiente trabajo |
@@ -32,8 +32,8 @@
 | B2. Mecánicas y costes | **COMPLETADA DOCUMENTALMENTE: 12/12** | Doce auditorías mecánicas por familia, incidencias B3–B5 trazadas | Cerrada documentalmente; B3 cerrada documentalmente |
 | B3. Exploits y secuencias | **DOCUMENTAL: 12/12** (las doce familias) | B3 Coralios: **88 DOC**, 24 nuevos, 4 secuencias, 12 incidencias; **0 Foundry/mesa** | **Cerrada**; B4 en curso |
 | B4. Comparación y mejoras | **12/12 documental: todas las familias** | Doce familias: 11 comparaciones cada una; Coralios 4 propuestas y 18 regresiones nuevas; Micelios 4 propuestas y 18 regresiones nuevas; Verdantes 4 propuestas y 16 regresiones nuevas; Cristálidos 3 propuestas y 14 regresiones nuevas; Ankar 3 y 14; Feéricos 4 y 16; Terios 4 y 18; Goblinoides 3 y 15; las cuatro previas 2 y 12 cada una | **Siguiente: B5 matriz global 12×12** |
-| B5. Regresiones globales | **CERRADA DOCUMENTALMENTE CONDICIONADA EN PROPUESTAS**: 12 incidencias conciliadas, 7/7 decisiones candidatas no aprobadas, 66 pares X y 12 G cotejados por lectura, 30 U y 28 V documentados | Acta B5 v4 de puerta; **0 pruebas Foundry, 0 mesa, 0 ratificaciones** | No declarar balance empírico ni actualizar canon; **Fase C sólo para borradores propuestos** |
-| C. Textos finales para el manual | **12/12 dobles páginas + 12/12 notas COMPLETADAS y cotejadas**; edición 650–850 palabras por familia | [Índice editorial y acta de entrega](./13_indice_editorial_y_acta_entrega.md), decisiones B5 aprobadas para integración con control técnico | **Siguiente: integrar canon Manual Maestro, validar implementación y preparar entrega/release** |
+| B5. Regresiones globales | **CERRADA DOCUMENTALMENTE; decisiones normativas aprobadas e integradas en main** (PR #109); sin certificación empírica | 66 pares y 12 escenarios documentales, 30 U y 28 V, diferenciados de tests | **0 pruebas nativas de la nueva edición en Foundry y 0 playtests de mesa; no declarar release** |
+| C. Textos finales para el manual | **12/12 COMPLETADAS Y CANONIZADAS** en el anexo del Manual Maestro por PR #109, con doce notas de integración en historial | [Índice de entrega](./13_indice_editorial_y_acta_entrega.md); Manual Maestro como fuente única | **Integración editorial concluida. Falta certificación de motor/mesa y eventual release técnica** |
 | D. Cierre técnico del proyecto | Pendiente | Informe final global y programación pausada si es posible | Sólo cuando A, B y C estén cerradas |
 
 En cada mensaje «avanzar» se hace la siguiente unidad sustantiva pendiente. **Si todo está realmente completado**, no rehacer trabajo ni inventar novedades: informar cierre brevemente. No hay permiso para hacer merge ni modificar `main`/Foundry.
@@ -724,3 +724,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Verificados los doce `manual_final_propuesto.md` y doce `nota_integracion_manual.md`. Las doce dobles páginas contienen página narrativa/jugable y 25 PD/3 PR; **12/12 dentro de extensión 650–850 palabras**. Goblinoides refinada a **849** palabras y Terios a **809**; notas de integración sincronizadas.
 - Entregado [`13_indice_editorial_y_acta_entrega.md`](./13_indice_editorial_y_acta_entrega.md), doce enlaces a capítulos y notas, registro de límites y decisiones B5 para integrar en `main` con cambios mecánicos explícitos.
 - **Fase C editorial 12/12 completada**, falta integración en Manual Maestro y control de versiones/Foundry; no inventar estado de «sistema probado» o release publicada.
+
+### 2026-11-18 — Canonización completada mediante PR #108 y #109
+- **PR #108 fusionado por squash** en `main`, commit `23f2895b45fb909d858d2686f3b28c228cdf724a`: incorpora historia documental de propuestas, doce dobles páginas y notas.
+- **PR #109 fusionado por squash** en `main`, commit `2283d9106045a09ee671adfd578eafd8a15f9733`: integra en `docs/Tierra_Magica_Manual_Maestro.md` las doce páginas depuradas, aprobadas, y el cierre normativo transversal B5; actualiza `docs/FUENTES_CANONICAS.md` preservando la fuente única.
+- **Fase C: 12/12 integrada y canónica**, no meramente propuesta. La carpeta `propuestas/razas/` permanece como historial y registro de auditoría con fechas anteriores. Una contradicción prevalece el Manual Maestro vigente.
+- **Pruebas**: todas las comparaciones de B1–B5 en este expediente son lectura/protocolo; **no hay constancia de 12 escenarios globales ejecutados en Foundry ni pruebas de mesa** para las decisiones B5. El sistema estable en manifest/release sigue `v1.14.0`; no se ha publicado otra release en esta operación.
+- **Siguiente trabajo técnico independiente:** validar la aplicación manual y/o automática de reglas integradas (DER-R2, movimiento multimodal, 0 Vida, dispositivo compatible) con `npm test`, `npm run validate` y sesión real de Foundry antes de anunciar una versión que automatice esas aclaraciones. No es un bloqueo del cierre editorial, sí de certificación técnica.
