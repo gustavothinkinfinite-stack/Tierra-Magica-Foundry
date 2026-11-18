@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, failDebitAfterWrite = false, failItemAfterWrite = false, failStockAfterWrite = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -312,6 +312,59 @@ test("revisión inválida, recibo cerrado y usuario no DJ no escriben bitácora"
     { note: "sin autorización" })).ok, false);
   assert.equal(env.merchant.flags.commercePendingReviews, undefined);
   assert.deepEqual(commercePendingReviewHistory(env.merchant, "gm:open"), []);
+});
+
+test("respaldo independiente de revisiones conserva historial y no escribe nada", async () => {
+  const fp = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const env = environment({ initialReceipts: {
+    "gm:old": { state: "pending", fingerprint: fp, at: 1 }
+  } });
+  assert.equal((await recordCommercePendingReview(env.merchant, "gm:old",
+    { note: "Revisadas monedas", checks: ["money"] })).ok, true);
+  assert.equal((await recordCommercePendingReview(env.merchant, "gm:old",
+    { note: "Revisadas existencias", checks: ["stock"] })).ok, true);
+  const before = structuredClone(env.merchant.flags);
+  const backup = createCommercePendingReviewBackup(env.merchant);
+  const inspected = inspectCommercePendingReviewBackup(backup, env.merchant);
+  assert.equal(inspected.ok, true);
+  assert.equal(inspected.operations, 1);
+  assert.equal(inspected.entries, 2);
+  assert.equal(JSON.parse(backup).reviews["gm:old"].length, 2);
+  assert.equal(JSON.parse(backup).format, "tierra-magica-commerce-pending-reviews");
+  assert.equal(JSON.parse(backup).version, 1);
+  assert.deepEqual(env.merchant.flags, before);
+  assert.equal(env.merchant.flags.commerceReceipts["gm:old"].state, "pending");
+  assert.equal(env.buyer.system.currency.totalCopper, 500);
+  assert.equal(env.getStock(), 2);
+  assert.equal(env.items.length, 0);
+});
+
+test("verificación de revisiones rechaza modificación, otros actores y datos inválidos", async () => {
+  const fp = JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]);
+  const env = environment({ initialReceipts: {
+    "gm:old": { state: "pending", fingerprint: fp }
+  } });
+  await recordCommercePendingReview(env.merchant, "gm:old",
+    { note: "Original", checks: ["backup"] });
+  const backup = createCommercePendingReviewBackup(env.merchant);
+  const altered = JSON.parse(backup);
+  altered.reviews["gm:old"][0].note = "Alterado";
+  assert.equal(inspectCommercePendingReviewBackup(JSON.stringify(altered)).ok, false);
+  assert.equal(inspectCommercePendingReviewBackup(backup, { uuid: "Actor.other" }).ok, false);
+  assert.equal(inspectCommercePendingReviewBackup("no json").ok, false);
+  assert.equal(inspectCommercePendingReviewBackup("x".repeat(1_000_001)).ok, false);
+  assert.equal(inspectCommercePendingReviewBackup(backup).ok, true);
+  env.merchant.flags.commercePendingReviews["gm:old"][0].checks.push("unknown");
+  assert.throws(() => createCommercePendingReviewBackup(env.merchant), /inválidas/);
+});
+
+test("respaldo de revisiones vacío es válido y no genera entradas", () => {
+  const env = environment();
+  const backup = createCommercePendingReviewBackup(env.merchant);
+  assert.deepEqual({ ...inspectCommercePendingReviewBackup(backup, env.merchant) },
+    { ok: true, actorUuid: "Actor.shop", operations: 0, entries: 0,
+      checksum: JSON.parse(backup).checksum });
+  assert.equal(env.merchant.flags.commercePendingReviews, undefined);
 });
 
 test("historial saturado rechaza compras sin podar archivo ni tocar dinero o stock", async () => {
