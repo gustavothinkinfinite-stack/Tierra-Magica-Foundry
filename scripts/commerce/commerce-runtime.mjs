@@ -141,6 +141,67 @@ export async function createCommercePendingDossier(actor, key) {
   return { ok: true, dossier };
 }
 
+// Bitácora separada de revisión, sin convertir pending en completed ni
+// permitir repeticiones. Cada entrada es append-only y no admite reemplazos.
+const REVIEW_KEY = "commercePendingReviews";
+const REVIEW_LIMIT = 250_000;
+export async function recordCommercePendingReview(actor, key, { note, checks = [] } = {}) {
+  if (!game.user?.isGM || currentGm()?.id !== game.user.id) {
+    return failure("Sólo el DJ activo principal puede registrar revisiones.");
+  }
+  if (!actor?.uuid || actor.type !== "npc" ||
+      typeof key !== "string" || !key || key.length > 200) {
+    return failure("Actor o identificador inválido.");
+  }
+  if (typeof note !== "string" || !note.trim() || note.trim().length > 2000 ||
+      !Array.isArray(checks) || checks.length > 4 ||
+      checks.some((x) => !["money", "items", "stock", "backup"].includes(x)) ||
+      new Set(checks).size !== checks.length) {
+    return failure("Nota o comprobaciones de revisión inválidas.");
+  }
+  return exclusive(async () => {
+    const receipt = snapshotReceipts(actor)[key];
+    if (receipt?.state !== "pending" || typeof receipt.fingerprint !== "string") {
+      return failure("El recibo dejó de estar pendiente.");
+    }
+    const previous = actor.getFlag?.("tierra-magica", REVIEW_KEY);
+    if (previous !== undefined && previous !== null &&
+        (typeof previous !== "object" || Array.isArray(previous))) {
+      return failure("La bitácora de revisiones no tiene un formato válido.");
+    }
+    const rows = previous ? { ...previous } : {};
+    const existing = Array.isArray(rows[key]) ? rows[key] : [];
+    if (Object.hasOwn(rows, key) && !Array.isArray(rows[key])) {
+      return failure("La secuencia de revisión existente es inválida.");
+    }
+    const event = {
+      id: uid(),
+      at: Date.now(),
+      gmId: game.user.id,
+      receiptFingerprint: receipt.fingerprint,
+      status: "reviewed-still-pending",
+      checks: [...checks],
+      note: note.trim()
+    };
+    const next = Object.fromEntries([
+      ...Object.entries(rows).filter(([id]) => id !== key),
+      [key, [...existing, event]]
+    ]);
+    if (JSON.stringify(next).length > REVIEW_LIMIT) {
+      return failure("La bitácora alcanzó el límite: exportá respaldos antes de añadir revisiones.");
+    }
+    await actor.setFlag("tierra-magica", REVIEW_KEY, next);
+    return { ok: true, key, entryId: event.id, entries: next[key].length, pending: true };
+  }).catch((error) => failure(error?.message ?? error));
+}
+
+export function commercePendingReviewHistory(actor, key) {
+  const rows = actor?.getFlag?.("tierra-magica", REVIEW_KEY);
+  const events = rows && typeof rows === "object" && !Array.isArray(rows) &&
+    Array.isArray(rows[key]) ? rows[key] : [];
+  return structuredClone(events);
+}
+
 // Copia portátil, de sólo lectura. La suma de control detecta corrupción
 // accidental; no es firma digital ni autoriza purgar el Actor.
 function receiptBackupChecksum(serialized) {
@@ -458,11 +519,11 @@ export async function requestCommerceExchange({ merchantUuid, buyerUuid, offerId
 // inventarios y recibos comerciales de NPC en el cliente.
 export function changesProtectedCommerceFlags(changes) {
   if (!changes || typeof changes !== "object") return false;
-  const protectedKey = (key) => ["commerce", "commerceReceipts",
-    "-=commerce", "-=commerceReceipts"].some((name) =>
+  const protectedKey = (key) => ["commerce", "commerceReceipts", "commercePendingReviews",
+    "-=commerce", "-=commerceReceipts", "-=commercePendingReviews"].some((name) =>
     key === name || key.startsWith(name + "."));
   const isProtectedPath = (key) =>
-    ["commerce", "commerceReceipts"].some((name) =>
+    ["commerce", "commerceReceipts", "commercePendingReviews"].some((name) =>
       key === "flags.tierra-magica." + name ||
       key.startsWith("flags.tierra-magica." + name + ".") ||
       key === "flags.tierra-magica.-=" + name ||
