@@ -532,6 +532,56 @@ export function inspectCommerceReceiptArchiveParts(parts, actor = null) {
     receipts: seenKeys.size, readOnly: true };
 }
 
+// Consulta de auditoría contra un archivo segmentado completo. Las piezas son
+// evidencia histórica de un snapshot, NUNCA autoridad para habilitar compras.
+// La ausencia en el archivo tampoco demuestra que un ID no fue utilizado.
+export function lookupCommerceArchivedReceipt(actor, parts, key) {
+  if (!actor?.uuid || typeof actor.getFlag !== "function" ||
+      typeof key !== "string" || !key || key.length > 200 ||
+      forbiddenReviewKeys.has(key)) {
+    return failure("Actor o identificador histórico inválido.");
+  }
+  const verified = inspectCommerceReceiptArchiveParts(parts, actor);
+  if (!verified.ok) return verified;
+  let archived = null;
+  // Buscar sólo después de validar el lote entero y su huella global.
+  for (const json of parts) {
+    const receipts = JSON.parse(json).receipts;
+    if (Object.hasOwn(receipts, key)) {
+      archived = receipts[key];
+      break;
+    }
+  }
+  const liveRows = snapshotReceipts(actor);
+  const live = Object.hasOwn(liveRows, key) ? liveRows[key] : null;
+  const archivedState = archived?.state ?? null;
+  const liveState = live?.state ?? null;
+  const sameFingerprint = archived && live
+    ? archived.fingerprint === live.fingerprint : null;
+  const stateCompatible = archived && live
+    ? (archived.state === live.state ||
+        (["completed", "archived"].includes(archived.state) &&
+         ["completed", "archived"].includes(live.state))) : null;
+  const conflict = Boolean(archived && live &&
+    (!sameFingerprint || !stateCompatible));
+  return {
+    ok: true,
+    actorUuid: verified.actorUuid,
+    archiveId: verified.archiveId,
+    key,
+    archivePresent: archived !== null,
+    archiveState: archivedState,
+    actorPresent: live !== null,
+    actorState: liveState,
+    matchingFingerprint: sameFingerprint,
+    compatibleState: stateCompatible,
+    conflict,
+    canAuthorizeReplay: false,
+    requiresManualReview: conflict || Boolean(archived && !live),
+    warning: "Archivo de sólo lectura: la ausencia en el respaldo no autoriza repetir una transacción."
+  };
+}
+
 // Previsualización de conciliación, estrictamente de sólo lectura. No habilita
 // importación, sobreescritura ni eliminación de recibos del Actor.
 export function previewCommerceReceiptReconciliation(actor, json) {
