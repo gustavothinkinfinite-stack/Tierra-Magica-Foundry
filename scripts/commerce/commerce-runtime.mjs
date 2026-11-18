@@ -31,11 +31,20 @@ async function storeReceipt(actor, key, receipt) {
   // descartan automáticamente por rotación del historial de compras cerradas.
   const entries = Object.entries(rows);
   const unresolved = entries.filter(([, row]) => row?.state === "pending");
-  const completed = entries.filter(([, row]) => row?.state !== "pending")
-    .sort((a, b) => Number(b[1]?.at ?? 0) - Number(a[1]?.at ?? 0))
-    .slice(0, 128);
+  // Sólo conservamos el detalle de las 128 operaciones completadas recientes.
+  // Los identificadores antiguos quedan como lápidas persistentes: descartarlos
+  // permitiría volver a cobrar o entregar al repetir un requestId histórico.
+  const closed = entries.filter(([, row]) => row?.state !== "pending");
+  const recent = closed.filter(([, row]) => row?.state !== "archived")
+    .sort((a, b) => Number(b[1]?.at ?? 0) - Number(a[1]?.at ?? 0));
+  const archived = [
+    ...closed.filter(([, row]) => row?.state === "archived"),
+    ...recent.slice(128).map(([id, row]) => [id, {
+      state: "archived", fingerprint: row?.fingerprint, at: row?.at
+    }])
+  ];
   await actor.setFlag("tierra-magica", RECEIPTS_KEY,
-    Object.fromEntries([...unresolved, ...completed]));
+    Object.fromEntries([...unresolved, ...recent.slice(0, 128), ...archived]));
 }
 
 function authenticatedOwner(actor, user) {
@@ -71,6 +80,7 @@ async function doExchange(data) {
   if (prior) {
     if (prior.fingerprint !== fingerprint) return failure("El identificador de la transacción ya fue utilizado.");
     if (prior.state === "pending") return failure("Operación pendiente de revisión del DJ: no se repite automáticamente.");
+    if (prior.state === "archived") return failure("Operación histórica ya registrada: no se repite automáticamente.");
     return prior.result ?? failure("Recibo incompleto.");
   }
 
