@@ -475,6 +475,7 @@ export function inspectCommerceReceiptArchiveParts(parts, actor = null) {
   let total = null;
   const seenParts = new Set();
   const seenKeys = new Set();
+  const receiptsByPart = new Map();
   for (const json of parts) {
     if (typeof json !== "string" || json.length > 250_000) {
       return failure("Un segmento tiene un tamaño o formato inválido.");
@@ -508,12 +509,22 @@ export function inspectCommerceReceiptArchiveParts(parts, actor = null) {
       return failure("Segmentos duplicados o pertenecientes a conjuntos distintos.");
     }
     seenParts.add(document.part);
+    receiptsByPart.set(document.part, document.receipts);
     for (const key of Object.keys(document.receipts)) {
       if (seenKeys.has(key)) return failure("Un recibo se repite entre segmentos.");
       seenKeys.add(key);
     }
   }
   if (seenParts.size !== total) return failure("Faltan segmentos del respaldo.");
+  const complete = Object.fromEntries(
+    Array.from({ length: total }, (_, index) =>
+      Object.entries(receiptsByPart.get(index + 1) ?? {})).flat()
+  );
+  const serialized = JSON.stringify(complete);
+  const expectedId = receiptBackupChecksum(serialized) + "-" + serialized.length;
+  if (archiveId !== expectedId) {
+    return failure("El conjunto no coincide con la huella global del archivo.");
+  }
   if (actor && actor.uuid !== actorUuid) {
     return failure("Los segmentos corresponden a otro Actor.");
   }
