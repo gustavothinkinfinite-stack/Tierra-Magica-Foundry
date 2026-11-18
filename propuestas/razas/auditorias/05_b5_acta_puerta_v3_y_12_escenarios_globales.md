@@ -66,3 +66,12 @@ Durante la verificación de cierre se detectó que el blob del Manual Maestro en
 **Veredicto de compatibilidad:** el contenido de las reglas mecánicas invocadas por este acta y el dictamen DER/ANF/HOB —§2 flujo, §3 paquetes raciales, Anfibio, maniobras/Derribar/Empujar, Defensas, 0 Vida, magia `Martillo Cinético`, Enlace y Conductor— **es idéntico entre ambas versiones**. Por lo tanto **las conclusiones de compatibilidad mecánica de esta ronda continúan vigentes respecto al nuevo blob**. Se preserva el blob original en los encabezados como fuente leída en aquel instante; esta adenda es el control explícito de actualización, **sin atribuir retroactivamente lecturas no realizadas**.
 
 Esto **NO** significa que todo B5 esté cerrado, ni es una certificación del resto del manual. Las tres modificaciones de `main` provinieron de otro flujo de trabajo; **esta ronda no escribió en `main`**.
+
+
+## VI. Avance 18-11-2026 — hoja normativa única y 30 criterios
+
+**Nueva fuente de trabajo:** [`05_b5_hoja_unica_decisiones_normativas.md`](./05_b5_hoja_unica_decisiones_normativas.md), contra `main` blob **`aa7105f6ef4d744040cce4763d9e01ee28b87572`**. Contiene **7/7 textos candidatos** sobre I01/I02/I04/I05/I06/I08/I10, con **0/7 decisiones canónicamente ratificadas**; se preservaron en antecedentes las interpretaciones descartadas, particularmente R0 de Derribar frente a DER-R2 propuesta.
+
+La matriz [`05_b5_conciliacion_30_casos_12_globales_y_pares.md`](./05_b5_conciliacion_30_casos_12_globales_y_pares.md) vincula **30/30 criterios U01–U30** con los **12 G** existentes (o un vacío de escenario) y con pares X reales, **sin ejecutarlos**. Detecta nuevos puntos de examen: tránsito Goblin interrumpido, Derribar legal sobre Incapacitado y ficha concreta de Conductor Vivo. Además mantiene **branquias/Anfibio** y aceptación deliberada de la asimetría Hobgoblin como decisiones sujetas a aprobación.
+
+**Estado:** siete temas con borrador único, **siete bloqueos todavía abiertos para aprobación y prueba**; cuatro temas I03/I07/I09/I11 aún por integrar; **66 pares DOC, 12 G DOC, 30 U DOC y cero ensayos Foundry o mesa**. **B5 sigue abierta y C bloqueada.** Esta actualización no atribuye automáticamente contenido de la nueva versión de `main` a las actas históricas.
