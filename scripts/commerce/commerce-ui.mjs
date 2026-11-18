@@ -3,7 +3,7 @@ import {
   COMMERCE_TIERS, COMMERCE_SPECIALTIES, COMMERCE_ITEM_TYPES,
   createCommerceOffer, normalizeCommerce, tierLevel
 } from "../rules/commerce.mjs";
-import { commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
+import { commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
 
 const esc = (value) => foundry.utils.escapeHTML(String(value ?? ""));
 const modeText = (mode) => mode === "chest" ? "Cofre / botín gratis" : "Comerciante";
@@ -112,6 +112,7 @@ export function configureCommerce(actor) {
     '<label>Identificador pendiente <input type="text" data-commerce-case-key placeholder="usuario:identificador" /></label>' +
     '<button type="button" data-commerce-case>Exportar expediente de conciliación (JSON)</button>' +
     '<button type="button" data-commerce-review>Registrar revisión sin cerrar el recibo</button>' +
+    '<button type="button" data-commerce-review-backup>Exportar respaldo de revisiones (JSON)</button>' +
     '<button type="button" data-commerce-backup>Exportar copia de recibos (JSON)</button>' +
     '<label>Examinar respaldo de recibos <input type="file" accept=".json,application/json" data-commerce-restore-file /></label>' +
     '<button type="button" data-commerce-restore>Comparar respaldo y recuperar marcadores faltantes</button>' +
@@ -224,6 +225,21 @@ export function configureCommerce(actor) {
           globalThis.saveDataToFile(JSON.stringify(result.dossier, null, 2),
             "application/json", "tierra-magica-conciliacion-" + safeName + ".json");
           ui.notifications.info("Expediente de conciliación preparado. El recibo continúa pendiente.");
+        } catch (error) { ui.notifications.error(error.message); }
+      });
+      html.find("[data-commerce-review-backup]").on("click", () => {
+        try {
+          if (!game.user?.isGM) throw new Error("Sólo el DJ puede exportar revisiones.");
+          const backup = createCommercePendingReviewBackup(actor);
+          const verification = inspectCommercePendingReviewBackup(backup, actor);
+          if (!verification.ok) throw new Error(verification.error);
+          if (typeof globalThis.saveDataToFile !== "function") {
+            throw new Error("La descarga de Foundry no está disponible.");
+          }
+          const safeName = String(actor.id ?? "npc").replace(/[^a-zA-Z0-9_-]/g, "-");
+          globalThis.saveDataToFile(backup, "application/json",
+            "tierra-magica-revisiones-" + safeName + ".json");
+          ui.notifications.info("Respaldo de revisiones verificado. La bitácora no se modificó.");
         } catch (error) { ui.notifications.error(error.message); }
       });
       html.find("[data-commerce-backup]").on("click", () => {
