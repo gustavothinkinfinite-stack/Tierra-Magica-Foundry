@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
-function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, availability, offerAvailabilityStatus } = {}) {
+function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
   const users = [gm];
   users.get = (id) => id === gm.id ? gm : null;
@@ -28,7 +28,7 @@ function environment({ mode = "merchant", stock = 2, money = 500, price = 30, pr
           stock, minTier: 1, specialty: "smith", priceCopper: price, priceQuantity,
           ...(offerAvailabilityStatus ? { availabilityStatus: offerAvailabilityStatus } : {}) }
       ] },
-      commerceReceipts: {}
+      commerceReceipts: structuredClone(initialReceipts)
     },
     getFlag(scope, key) { return structuredClone(this.flags[key]); },
     async setFlag(scope, key, data) {
@@ -89,6 +89,29 @@ test("repetir requestId devuelve recibo, no duplica item ni pagos", async () => 
   assert.deepEqual(second, first);
   assert.equal(env.getStock(), 1);
   assert.equal(env.items.length, 1);
+  assert.equal(env.buyer.system.currency.totalCopper, 470);
+});
+
+test("rotación de 128 recibos cerrados conserva todas las operaciones pendientes", async () => {
+  const initialReceipts = Object.fromEntries([
+    ["gm:unresolved-old", { state: "pending",
+      fingerprint: JSON.stringify(["gm", "Actor.shop", "Actor.buyer", "offer", 1]), at: 1 }],
+    ...Array.from({ length: 145 }, (_, index) =>
+      ["gm:historical-" + index, { state: "completed", result: { ok: true }, at: index + 2 }])
+  ]);
+  const env = environment({ stock: 2, initialReceipts });
+  const result = await executeCommerceExchange(env.request("fresh"));
+  assert.equal(result.ok, true);
+  const receipts = env.merchant.flags.commerceReceipts;
+  assert.equal(receipts["gm:unresolved-old"].state, "pending");
+  assert.equal(receipts["gm:fresh"].state, "completed");
+  assert.equal(Object.values(receipts).filter((row) => row.state === "completed").length, 128);
+  assert.equal(Object.values(receipts).filter((row) => row.state === "pending").length, 1);
+  const duplicate = await executeCommerceExchange(env.request("unresolved-old"));
+  assert.equal(duplicate.ok, false);
+  assert.match(duplicate.error, /pendiente/i);
+  assert.equal(env.items.length, 1, "no se duplica la entrega durante conciliación manual");
+  assert.equal(env.getStock(), 1);
   assert.equal(env.buyer.system.currency.totalCopper, 470);
 });
 
