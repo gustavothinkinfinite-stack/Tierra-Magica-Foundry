@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, createCommerceReceiptBackup, inspectCommerceReceiptBackup, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -182,6 +182,40 @@ test("una compra normal no se bloquea por la reserva preventiva", async () => {
   assert.equal((await executeCommerceExchange(env.request("normal-with-space"))).ok, true);
   assert.equal(env.getStock(), 1);
   assert.equal(env.buyer.system.currency.totalCopper, 470);
+});
+
+test("respaldo local conserva pendientes, cerrados y archivados sin modificar Actor", () => {
+  const initialReceipts = {
+    "gm:pending-1": { state: "pending", fingerprint: "pending", at: 1 },
+    "gm:completed-1": { state: "completed", fingerprint: "completed", result: { ok: true }, at: 2 },
+    "gm:archived-1": { state: "archived", fingerprint: "archived", at: 3 }
+  };
+  const env = environment({ initialReceipts });
+  const prior = structuredClone(env.merchant.flags.commerceReceipts);
+  const backup = createCommerceReceiptBackup(env.merchant);
+  const inspected = inspectCommerceReceiptBackup(backup);
+  assert.deepEqual(inspected, {
+    ok: true, actorUuid: "Actor.shop", entries: 3, checksum: JSON.parse(backup).checksum
+  });
+  assert.deepEqual(JSON.parse(backup).receipts, prior);
+  assert.deepEqual(env.merchant.flags.commerceReceipts, prior);
+  assert.equal(env.buyer.system.currency.totalCopper, 500);
+  assert.equal(env.getStock(), 2);
+  assert.equal(env.items.length, 0);
+});
+
+test("respaldo alterado o incompleto no supera la verificación y no se importa", () => {
+  const env = environment({ initialReceipts: {
+    "gm:old": { state: "archived", fingerprint: "original", at: 1 }
+  } });
+  const json = createCommerceReceiptBackup(env.merchant);
+  assert.equal(inspectCommerceReceiptBackup("{bad json").ok, false);
+  const changed = JSON.parse(json);
+  changed.receipts["gm:old"].fingerprint = "manipulado";
+  assert.equal(inspectCommerceReceiptBackup(JSON.stringify(changed)).ok, false);
+  assert.equal(inspectCommerceReceiptBackup(JSON.stringify({ format: "otro" })).ok, false);
+  assert.equal(JSON.parse(json).receipts["gm:old"].fingerprint, "original");
+  assert.equal(env.merchant.flags.commerceReceipts["gm:old"].fingerprint, "original");
 });
 
 test("dos compras concurrentes de la última unidad son serializadas", async () => {
