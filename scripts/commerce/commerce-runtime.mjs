@@ -351,19 +351,41 @@ export async function requestCommerceExchange({ merchantUuid, buyerUuid, offerId
   });
 }
 
+// Foundry admite tanto paths aplanados como objetos anidados y claves "-="
+// de eliminación. Ninguna de esas formas debe permitir a jugadores alterar
+// inventarios y recibos comerciales de NPC en el cliente.
+export function changesProtectedCommerceFlags(changes) {
+  if (!changes || typeof changes !== "object") return false;
+  const protectedKey = (key) => ["commerce", "commerceReceipts",
+    "-=commerce", "-=commerceReceipts"].some((name) =>
+    key === name || key.startsWith(name + "."));
+  const isProtectedPath = (key) =>
+    ["commerce", "commerceReceipts"].some((name) =>
+      key === "flags.tierra-magica." + name ||
+      key.startsWith("flags.tierra-magica." + name + ".") ||
+      key === "flags.tierra-magica.-=" + name ||
+      key.startsWith("flags.tierra-magica.-=" + name + "."));
+  for (const [key, value] of Object.entries(changes)) {
+    if (isProtectedPath(key)) return true;
+    const nestedScope = key === "flags" ? value?.["tierra-magica"]
+      : key === "flags.tierra-magica" ? value : null;
+    if (nestedScope && typeof nestedScope === "object" &&
+        Object.keys(nestedScope).some(protectedKey)) return true;
+    if (key === "flags" && value && typeof value === "object" &&
+        Object.keys(value).some((path) =>
+          path.startsWith("tierra-magica.") &&
+          protectedKey(path.slice("tierra-magica.".length)))) return true;
+  }
+  return false;
+}
+
 export function installCommerceRuntime() {
   if (installed || !game.socket?.on) return;
   // Ningún usuario jugador puede reconfigurar las ofertas ni los recibos de un NPC,
   // incluso si el DJ le dio propiedad sobre el Actor.
   Hooks.on("preUpdateActor", (actor, changes) => {
     if (game.user?.isGM || actor?.type !== "npc") return;
-    const keys = Object.keys(changes ?? {});
-    if (keys.some((key) => key === "flags.tierra-magica.commerce" ||
-      key.startsWith("flags.tierra-magica.commerce.") ||
-      key === "flags.tierra-magica.commerceReceipts" ||
-      key.startsWith("flags.tierra-magica.commerceReceipts.")) ||
-      foundry.utils.hasProperty(changes, "flags.tierra-magica.commerce") ||
-      foundry.utils.hasProperty(changes, "flags.tierra-magica.commerceReceipts")) {
+    if (changesProtectedCommerceFlags(changes)) {
       ui.notifications.warn("Sólo el DJ modifica el stock y los recibos de un establecimiento.");
       return false;
     }
