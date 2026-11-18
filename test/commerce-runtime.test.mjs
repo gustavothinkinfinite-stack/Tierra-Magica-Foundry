@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, previewCommercePendingReviewReconciliation, recoverCommercePendingReviews, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
+import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommercePendingReviewBackup, inspectCommercePendingReviewBackup, previewCommercePendingReviewReconciliation, recoverCommercePendingReviews, createCommerceReceiptBackup, inspectCommerceReceiptBackup, createCommerceReceiptArchiveParts, inspectCommerceReceiptArchiveParts, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
 function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, failDebitAfterWrite = false, failItemAfterWrite = false, failStockAfterWrite = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
@@ -568,6 +568,69 @@ test("bitácora rechaza cronología retrograda y huellas contradictorias", async
   env.merchant.flags.commercePendingReviews = healthy;
   assert.equal(inspectCommercePendingReviewBackup(
     createCommercePendingReviewBackup(env.merchant)).ok, true);
+});
+
+test("archivo histórico segmentado conserva cada lápida sin cambiar el Actor", () => {
+  const receipts = Object.fromEntries(Array.from({ length: 150 }, (_, index) => [
+    "gm:archived-" + index,
+    { state: "archived", fingerprint: "fingerprint-" + index + "-" + "x".repeat(75), at: index }
+  ]));
+  receipts["gm:unresolved"] = { state: "pending", fingerprint: "pending", at: 151 };
+  const env = environment({ initialReceipts: receipts });
+  const before = structuredClone(env.merchant.flags);
+  const files = createCommerceReceiptArchiveParts(env.merchant, { targetCharacters: 10_000 });
+  assert.ok(files.length > 1, "el conjunto supera un segmento");
+  const check = inspectCommerceReceiptArchiveParts(files, env.merchant);
+  assert.equal(check.ok, true);
+  assert.equal(check.readOnly, true);
+  assert.equal(check.parts, files.length);
+  assert.equal(check.receipts, 151);
+  const combined = Object.assign({}, ...files.map((json) => JSON.parse(json).receipts));
+  assert.deepEqual(combined, receipts);
+  assert.deepEqual(env.merchant.flags, before);
+  assert.equal(env.buyer.system.currency.totalCopper, 500);
+  assert.equal(env.getStock(), 2);
+  assert.equal(env.items.length, 0);
+});
+
+test("archivo histórico detecta piezas ausentes, repetidas, alteradas y lotes mezclados", () => {
+  const receipts = Object.fromEntries(Array.from({ length: 110 }, (_, index) => [
+    "gm:archived-" + index,
+    { state: "archived", fingerprint: "x".repeat(90) + index, at: index }
+  ]));
+  const env = environment({ initialReceipts: receipts });
+  const files = createCommerceReceiptArchiveParts(env.merchant, { targetCharacters: 10_000 });
+  assert.ok(files.length > 1);
+  assert.equal(inspectCommerceReceiptArchiveParts(files.slice(1)).ok, false);
+  assert.equal(inspectCommerceReceiptArchiveParts([...files, files[0]]).ok, false);
+  assert.equal(inspectCommerceReceiptArchiveParts(files, { uuid: "Actor.other" }).ok, false);
+  assert.equal(inspectCommerceReceiptArchiveParts(["no json"]).ok, false);
+  const modified = JSON.parse(files[0]);
+  modified.receipts[Object.keys(modified.receipts)[0]].fingerprint = "altered";
+  assert.equal(inspectCommerceReceiptArchiveParts([
+    JSON.stringify(modified), ...files.slice(1)
+  ]).ok, false);
+  env.merchant.flags.commerceReceipts["gm:archived-0"].fingerprint = "otra";
+  const different = createCommerceReceiptArchiveParts(env.merchant,
+    { targetCharacters: 10_000 });
+  assert.equal(inspectCommerceReceiptArchiveParts([files[0], ...different.slice(1)]).ok,
+    false, "no mezcla segmentos de snapshots distintos del mismo Actor");
+});
+
+test("archivo histórico vacío tiene una pieza; recibos individuales gigantes se rechazan", () => {
+  const env = environment();
+  const parts = createCommerceReceiptArchiveParts(env.merchant);
+  assert.equal(parts.length, 1);
+  assert.equal(inspectCommerceReceiptArchiveParts(parts, env.merchant).receipts, 0);
+  assert.throws(() => createCommerceReceiptArchiveParts(env.merchant,
+    { targetCharacters: 9_999 }), /inválido/);
+  env.merchant.flags.commerceReceipts["gm:giant"] = {
+    state: "pending", fingerprint: "x".repeat(8192), at: 1
+  };
+  assert.throws(() => createCommerceReceiptArchiveParts(env.merchant,
+    { targetCharacters: 8_000 }), /inválido/);
+  assert.throws(() => createCommerceReceiptArchiveParts(env.merchant,
+    { targetCharacters: 10_000 }), /segmento/);
 });
 
 test("historial saturado rechaza compras sin podar archivo ni tocar dinero o stock", async () => {
