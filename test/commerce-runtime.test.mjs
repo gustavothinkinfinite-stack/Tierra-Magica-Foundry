@@ -691,7 +691,7 @@ test("consulta detecta desaparición o alteración de lápidas sin tocar el Acto
   assert.equal(pending.archiveState, "pending");
   assert.equal(pending.canAuthorizeReplay, false);
   assert.equal(lookupCommerceArchivedReceipt(env.merchant, files.slice(1),
-    "gm:used").ok, files.length === 1);
+    "gm:used").ok, false, "un conjunto incompleto o vacío no se consulta");
   assert.equal(lookupCommerceArchivedReceipt(env.merchant, files,
     "__proto__").ok, false);
   assert.equal(lookupCommerceArchivedReceipt(env.merchant, files,
