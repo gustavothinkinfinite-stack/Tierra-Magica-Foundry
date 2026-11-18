@@ -3,7 +3,7 @@ import {
   COMMERCE_TIERS, COMMERCE_SPECIALTIES, COMMERCE_ITEM_TYPES,
   createCommerceOffer, normalizeCommerce, tierLevel
 } from "../rules/commerce.mjs";
-import { commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
+import { commerceReceiptLedgerStats, commercePendingReceiptReport, createCommercePendingDossier, recordCommercePendingReview, commercePendingReviewHistory, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
 
 const esc = (value) => foundry.utils.escapeHTML(String(value ?? ""));
 const modeText = (mode) => mode === "chest" ? "Cofre / botín gratis" : "Comerciante";
@@ -111,6 +111,7 @@ export function configureCommerce(actor) {
     '<button type="button" data-commerce-pending>Examinar operaciones pendientes</button>' +
     '<label>Identificador pendiente <input type="text" data-commerce-case-key placeholder="usuario:identificador" /></label>' +
     '<button type="button" data-commerce-case>Exportar expediente de conciliación (JSON)</button>' +
+    '<button type="button" data-commerce-review>Registrar revisión sin cerrar el recibo</button>' +
     '<button type="button" data-commerce-backup>Exportar copia de recibos (JSON)</button>' +
     '<label>Examinar respaldo de recibos <input type="file" accept=".json,application/json" data-commerce-restore-file /></label>' +
     '<button type="button" data-commerce-restore>Comparar respaldo y recuperar marcadores faltantes</button>' +
@@ -175,6 +176,38 @@ export function configureCommerce(actor) {
               (report.total ? "<ol>" + rows + "</ol>" : "<p>No hay operaciones pendientes.</p>") +
               "<p>Consulta de sólo lectura: no resuelve ninguna operación.</p>",
             callback: () => undefined
+          });
+        } catch (error) { ui.notifications.error(error.message); }
+      });
+      html.find("[data-commerce-review]").on("click", async () => {
+        try {
+          if (!game.user?.isGM) throw new Error("Sólo el DJ puede registrar revisiones.");
+          const key = String(html.find("[data-commerce-case-key]").val() ?? "").trim();
+          const dossier = await createCommercePendingDossier(actor, key);
+          if (!dossier.ok) throw new Error(dossier.error);
+          const previous = commercePendingReviewHistory(actor, key).length;
+          await Dialog.prompt({
+            title: "Registrar revisión pendiente",
+            content: "<p>Operación: <strong>" + esc(key) + "</strong>. Revisiones previas: " +
+              previous + ". El recibo seguirá bloqueado como pendiente.</p>" +
+              '<label>Observaciones del DJ (obligatorias, máximo 2000 caracteres)' +
+              '<textarea name="tm-review-note" maxlength="2000" rows="4"></textarea></label>' +
+              '<p>Marcar únicamente evidencias efectivamente examinadas:</p>' +
+              '<label><input type="checkbox" name="tm-review-check" value="money">Monedas</label>' +
+              '<label><input type="checkbox" name="tm-review-check" value="items">Objetos</label>' +
+              '<label><input type="checkbox" name="tm-review-check" value="stock">Existencias</label>' +
+              '<label><input type="checkbox" name="tm-review-check" value="backup">Respaldo</label>',
+            callback: async (form) => {
+              const note = String(form.find('[name="tm-review-note"]').val() ?? "");
+              const checks = form.find('[name="tm-review-check"]:checked')
+                .map((_, node) => node.value).get();
+              const result = await recordCommercePendingReview(actor, key, { note, checks });
+              if (!result.ok) {
+                ui.notifications.error(result.error);
+                return;
+              }
+              ui.notifications.info("Revisión registrada; recibo pendiente sin cambios.");
+            }
           });
         } catch (error) { ui.notifications.error(error.message); }
       });
