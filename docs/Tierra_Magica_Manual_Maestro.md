@@ -10507,6 +10507,37 @@ La tabla anterior reúne **11 perfiles de referencia**, no once fichas exhaustiv
 
 **Criterio de cierre editorial:** cada ejemplo que se presente como adversario «listo para jugar» debe precisar las elecciones que su tabla deja abiertas y remitir a las reglas vigentes para efectos, acciones y recursos. Este inventario documenta lagunas de presentación y **no modifica estadísticas, concede capacidades ni crea reglas nuevas**.
 
+### Encuentros de referencia listos para dirigir (sin nuevas reglas)
+
+Estos dos ejemplos usan literalmente las estadísticas publicadas en la tabla de PNJ y criaturas. La situación narrativa es un ejemplo, no un acontecimiento canónico de Edria. Cada ataque se resuelve mediante la regla universal **2d10 + bono de Ataque contra Defensa**; el daño sólo se aplica después de acertar, con la Protección y Penetración correspondientes. No se asignan capacidades especiales no escritas.
+
+**Encuentro 1 — Bandido en una ruta comercial.** Un salteador intenta detener a los viajeros y exigirles que abandonen parte de la carga. Puede comenzar a distancia con arco corto o acercarse y usar espada corta; no obtiene ataques adicionales ni usa ambas armas simultáneamente por figurar las dos en su perfil.
+
+| Campo | Valor |
+|---|---|
+| Vida | 12 |
+| Defensa / Corporal / Mental / Maniobra | 13 / 12 / 12 / 13 |
+| Protección | 1 |
+| Movimiento / Iniciativa | 6 / +2 |
+| Espada corta | Ataque +4; Daño 6 |
+| Arco corto | Ataque +4; Daño 6 |
+
+**Resolución de ejemplo:** si declara un ataque con espada corta, tira 2d10 + 4 contra la Defensa del objetivo; si acierta, aplica Daño 6 antes de mitigación. La rendición, retirada o negociación dependen del desarrollo de la escena y no requieren una regla especial del bandido.
+
+**Encuentro 2 — Guardia en un acceso fortificado.** Un guardia protege la entrada de un puesto y exige autorización para pasar. En caso de conflicto, utiliza su lanza conforme al perfil ya publicado. La negociación previa no concede modificadores automáticos al combate.
+
+| Campo | Valor |
+|---|---|
+| Vida | 14 |
+| Defensa / Corporal / Mental / Maniobra | 14 / 13 / 12 / 14 |
+| Protección | 2 |
+| Movimiento / Iniciativa | 6 / +2 |
+| Lanza | Ataque +4; Daño 7; Pen 1; Alcance |
+
+**Resolución de ejemplo:** ataca con 2d10 + 4 contra la Defensa del objetivo. Un impacto causa Daño 7 con Penetración 1. La propiedad Alcance sólo produce los efectos expresamente autorizados por el capítulo de armas y las Técnicas aplicables; este ejemplo no añade espacios de alcance.
+
+**Alcance del cierre:** estos encuentros son utilizables con sus ataques declarados, pero no constituyen fichas exhaustivas de historia personal, inventario, percepción ni capacidades fuera del combate. No sustituyen los perfiles de referencia, no crean entradas nuevas del Compendio y no justifican deducir estadísticas faltantes de otros PNJ.
+
 ## 24. Dirección de juego
 
 El Director determina primero qué está ocurriendo en la ficción, si una acción es posible y si existe incertidumbre significativa. La tirada resuelve incertidumbre; no sustituye causalidad, competencia o información.
