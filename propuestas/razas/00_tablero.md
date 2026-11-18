@@ -9,7 +9,7 @@
 | 01 | Humanos | **Fase C (doble página final propuesta + nota de integración) COMPLETADA documentalmente**, B1–B4 completas; paquete Don sin Forma fiel a canon | HUM-B2-DEC-01 y HUM-B4-P02 siguen propuestas no ratificadas; 0 Foundry/mesa |
 | 02 | Enanos | **Fase C (doble página final propuesta + nota de integración) COMPLETADA documentalmente**, B1–B4 completas; Cuerpo de Piedra y Sangre de Metal sin cambio canónico | ENA-B4-P01 y B5-DER-R2 siguen propuestas separadas; 0 Foundry/mesa |
 | 03 | Élficos | Borrador v0.1; **B1–B4 documentales completas**, 56 DOC B3 + 12 regresiones B4; 16 MOD auxiliares (no Foundry) | B5: significación, ocultación, efecto directo/indirecto y regresiones globales |
-| 04 | Orcos | Borrador v0.1; **B1–B4 documentales completas**, 64 DOC B3 + 12 regresiones B4; 20 MOD auxiliares (no Foundry) | B5: gasto de Voluntad, orden Ayuda/Ventaja y Complexión |
+| 04 | Orcos | **Fase C (manual final + nota de integración) COMPLETADA documentalmente**, B1–B4 completas | ORC-B4-P01/P02 siguen no canónicas; 0 Foundry/mesa |
 | 05 | Goblinoides | Borrador v0.1; **B1–B4 documentales completas**, **69 DOC B3 + 15 DOC B4; 20 MOD auxiliares** | B5: Ojo en Iniciativa, interrupción Escurridizo y **paridad Hobgoblin pendiente** |
 | 06 | Terios/Anihombres | Borrador v0.1; **B1–B4 documentales completas**, **84 DOC B3 + 18 DOC B4; 22 MOD auxiliares** | B5: sustitución Variedad, branquias/Anfibio, vuelo bajo Carga y medios mixtos |
 | 07 | Feéricos | Borrador v0.1; **B1–B4 documentales completas**, **76 DOC B3 + 16 DOC B4; 24 MOD auxiliares** | B5: Hada apoyos/velocidades, Dríade Derribar/desanclaje, Silfo viento mágico |
@@ -661,3 +661,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, expedientes Élficos y texto inicial; Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` verificado (Savia/Eïra, ramas, Sentidos, Resonancia, creación, 0 Vida).
 - Guardados [`03_elficos/manual_final_propuesto.md`](./03_elficos/manual_final_propuesto.md) (**806 palabras**, dos páginas) y [`03_elficos/nota_integracion_manual.md`](./03_elficos/nota_integracion_manual.md). Archivo de Estaciones explícitamente propuesta local sin beneficio mecánico; no se inventan visión nocturna, detección ilimitada, magia o bonos de cultura.
 - **Fase C 3/12; 9 restantes**. B5 cerrada sólo documentalmente con reservas; 0 pruebas Foundry/mesa. Siguiente: **04 Orcos**, expediente y doble página final, más nota de integración. Exclusivamente rama/carpeta de propuestas.
+
+### 2026-11-18 — Fase C: Orcos (4/12)
+- Releídos tablero, README, plan, expediente, doble página inicial, brief visual y auditoría B4 Orcos; Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (Varkor, Primera Guerra, paquetes y creación).
+- Guardados [`04_orcos/manual_final_propuesto.md`](./04_orcos/manual_final_propuesto.md) (**786 palabras**, dos páginas) y [`04_orcos/nota_integracion_manual.md`](./04_orcos/nota_integracion_manual.md). Mesa del Acuerdo Difícil sólo propuesta cultural; no se canonizan ORC-B4-P01/P02 ni capacidades de Sangre.
+- **Fase C 4/12; 8 restantes**. B5 cerrada documentalmente con reservas; **0 Foundry/mesa**. Próximo: **05 Goblinoides**. Escritura exclusiva en rama/carpeta de propuestas.
