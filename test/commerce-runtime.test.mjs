@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { COMMERCE_RECEIPT_LEDGER_LIMIT, commerceReceiptLedgerStats, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, executeCommerceExchange } from "../scripts/commerce/commerce-runtime.mjs";
 
-function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
+function environment({ mode = "merchant", stock = 2, money = 500, price = 30, priceQuantity = 1, stacking = "unique", failCreation = false, failDebitAfterWrite = false, failItemAfterWrite = false, failStockAfterWrite = false, availability, offerAvailabilityStatus, initialReceipts = {} } = {}) {
   const gm = { id: "gm", isGM: true, active: true };
   const users = [gm];
   users.get = (id) => id === gm.id ? gm : null;
@@ -33,7 +33,10 @@ function environment({ mode = "merchant", stock = 2, money = 500, price = 30, pr
     getFlag(scope, key) { return structuredClone(this.flags[key]); },
     async setFlag(scope, key, data) {
       this.flags[key] = structuredClone(data);
-      if (key === "commerce") stockValue = data.offers[0].stock;
+      if (key === "commerce") {
+        stockValue = data.offers[0].stock;
+        if (failStockAfterWrite) throw new Error("Stock persistido, promesa falló");
+      }
       return this;
     }
   };
@@ -44,6 +47,7 @@ function environment({ mode = "merchant", stock = 2, money = 500, price = 30, pr
     testUserPermission() { return true; },
     async update(changes) {
       this.system.currency.totalCopper = changes["system.currency.totalCopper"];
+      if (failDebitAfterWrite) throw new Error("Cobro persistido, promesa falló");
       return this;
     },
     async createEmbeddedDocuments(kind, rows, options) {
@@ -56,6 +60,7 @@ function environment({ mode = "merchant", stock = 2, money = 500, price = 30, pr
         if (pos >= 0) items.splice(pos, 1);
       }};
       items.push(item);
+      if (failItemAfterWrite) throw new Error("Objeto creado, promesa falló");
       return [item];
     }
   };
@@ -343,6 +348,48 @@ test("fallo de creación restaura monedas y mantiene stock", async () => {
   assert.equal(env.buyer.system.currency.totalCopper, 500);
   assert.equal(env.getStock(), 1);
   assert.equal(env.items.length, 0);
+});
+
+test("cobro aplicado antes de arrojar error conserva recibo pendiente, nunca duplica", async () => {
+  const env = environment({ failDebitAfterWrite: true });
+  const first = await executeCommerceExchange(env.request("debit-uncertain"));
+  assert.equal(first.ok, false);
+  assert.match(first.error, /resultado incierto/i);
+  assert.equal(env.buyer.system.currency.totalCopper, 470);
+  assert.equal(env.items.length, 0);
+  assert.equal(env.getStock(), 2);
+  assert.equal(env.merchant.flags.commerceReceipts["gm:debit-uncertain"].state, "pending");
+  const again = await executeCommerceExchange(env.request("debit-uncertain"));
+  assert.equal(again.ok, false);
+  assert.match(again.error, /pendiente/i);
+  assert.equal(env.buyer.system.currency.totalCopper, 470);
+});
+
+test("objeto creado antes de arrojar error no es entregado por segunda vez", async () => {
+  const env = environment({ failItemAfterWrite: true });
+  const first = await executeCommerceExchange(env.request("item-uncertain"));
+  assert.equal(first.ok, false);
+  assert.equal(env.items.length, 1);
+  assert.equal(env.getStock(), 2);
+  assert.equal(env.merchant.flags.commerceReceipts["gm:item-uncertain"].state, "pending");
+  const second = await executeCommerceExchange(env.request("item-uncertain"));
+  assert.equal(second.ok, false);
+  assert.equal(env.items.length, 1);
+  assert.equal(env.buyer.system.currency.totalCopper, 500,
+    "el rollback del débito confirmado sigue intentando reembolso");
+});
+
+test("stock descontado antes del error no se descuenta una segunda vez", async () => {
+  const env = environment({ failStockAfterWrite: true });
+  const first = await executeCommerceExchange(env.request("stock-uncertain"));
+  assert.equal(first.ok, false);
+  assert.equal(env.getStock(), 1);
+  assert.equal(env.items.length, 0, "se elimina el Item conocido mediante rollback");
+  assert.equal(env.buyer.system.currency.totalCopper, 500);
+  assert.equal(env.merchant.flags.commerceReceipts["gm:stock-uncertain"].state, "pending");
+  const second = await executeCommerceExchange(env.request("stock-uncertain"));
+  assert.equal(second.ok, false);
+  assert.equal(env.getStock(), 1);
 });
 
 test("no se compra sin fondos ni se cobra por encima de existencias", async () => {
