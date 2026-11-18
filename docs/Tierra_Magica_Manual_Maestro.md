@@ -10509,7 +10509,7 @@ La tabla anterior reúne **11 perfiles de referencia**, no once fichas exhaustiv
 
 ### Encuentros de referencia listos para dirigir (sin nuevas reglas)
 
-Estos nueve ejemplos usan literalmente las estadísticas publicadas en la tabla de PNJ y criaturas. La situación narrativa es un ejemplo, no un acontecimiento canónico de Edria. **Cuando existe un ataque declarado**, se resuelve mediante la regla universal **2d10 + bono de Ataque contra Defensa**; el daño sólo se aplica después de acertar, con la Protección y Penetración correspondientes. El encuentro civil no tiene ataque numérico fijado. No se asignan capacidades especiales no escritas.
+Los once ejemplos siguientes parten de estadísticas publicadas en la tabla de PNJ y criaturas. Los encuentros 10 y 11 añaden **elecciones explícitas de ejemplo**, delimitadas como tales y no como variantes universales ratificadas. Las situaciones narrativas son ejemplos, no acontecimientos canónicos de Edria. **Cuando existe un ataque declarado**, se resuelve mediante la regla universal **2d10 + bono de Ataque contra Defensa**; el daño sólo se aplica después de acertar, con la Protección y Penetración correspondientes. El encuentro civil no tiene ataque numérico fijado. No se asignan capacidades especiales no escritas.
 
 **Encuentro 1 — Bandido en una ruta comercial.** Un salteador intenta detener a los viajeros y exigirles que abandonen parte de la carga. Puede comenzar a distancia con arco corto o acercarse y usar espada corta; no obtiene ataques adicionales ni usa ambas armas simultáneamente por figurar las dos en su perfil.
 
@@ -10621,7 +10621,36 @@ Estos nueve ejemplos usan literalmente las estadísticas publicadas en la tabla 
 
 **Resolución de ejemplo:** cuando el ataque elegido es físicamente válido, tira 2d10 + 7 contra Defensa; un impacto de Garra causa Daño 9, Pen 1, o un impacto de Martillo causa Daño 11, Pen 2. Que el perfil incluya dos opciones **no** concede dos ataques por Acción. **Barrido, empuje reactivo, descarga y dos Reacciones** no se incorporan en este encuentro básico: requieren perfiles específicos que fijen su funcionamiento.
 
-**Alcance del cierre:** los nueve encuentros ilustran el uso de valores publicados, pero no constituyen fichas exhaustivas de historia personal, inventario, percepción, recursos, programas ni capacidades fuera del combate. El encuentro civil es una escena no combativa y no fija un ataque nuevo. El Troll dominante se utiliza aquí únicamente con sus ataques ordinarios. El Veterano y el Centinela mantienen campos expresamente abiertos. No se sustituyen los perfiles de referencia ni se crean entradas nuevas del Compendio.
+**Encuentro 10 — Soldado defendiendo una barricada (opción editorial no universal).** La tabla canónica indica «Marcial +5, daño 7–8, Pen 1»; para demostrar una resolución concreta, **este encuentro elige Daño 7**, que ya pertenece a ese intervalo. Esta elección pertenece exclusivamente al ejemplo: no fija el daño de todos los soldados ni permite deducir qué arma porta. La ficha de un soldado plenamente equipado deberá identificar el arma y justificar sus propiedades.
+
+| Campo | Valor |
+|---|---|
+| Vida | 14 |
+| Defensa / Corporal / Mental / Maniobra | 14 / 13 / 13 / 15 |
+| Protección | 3 |
+| Movimiento / Iniciativa | 6 / +3 |
+| Ataque marcial de este ejemplo | Ataque +5; Daño 7; Pen 1 |
+| Perfil canónico de referencia | Marcial +5; Daño 7–8; Pen 1 |
+
+**Resolución de ejemplo:** si la posición y el equipo de la escena permiten ese ataque marcial, tira 2d10 + 5 contra Defensa; en caso de impacto, aplica Daño 7, Pen 1. No se adjudican alcance, recarga, propiedades, Técnicas ni ataques adicionales por inferencia. **Bloqueo de ficha definitiva:** concretar arma y equipo antes de incorporar una variante de Soldado al Compendio.
+
+**Encuentro 11 — Canalizador hostil en una cámara de vigilancia (opción editorial no universal).** La tabla canónica indica Maná 15, Canalización +6 y Protección 0–1, pero no fija Disciplina, hechizos conocidos ni valor de Protección concreto. Como **elección exclusiva de este ejemplo** se utiliza Protección 0 y se propone que el PNJ **conozca Evocación** y los hechizos existentes **Luz Arcana** y **Barrera Cinética**. Estas elecciones no constituyen un repertorio universal de canalizadores hostiles ni modifican las reglas de adquisición de hechizos.
+
+| Campo | Valor |
+|---|---|
+| Vida | 12 |
+| Defensa / Corporal / Mental / Maniobra | 13 / 12 / 15 / 12 |
+| Protección | 0 en este ejemplo (perfil general: 0–1) |
+| Movimiento / Iniciativa | 6 / +3 |
+| Maná / Canalización | 15 / +6 |
+| Luz Arcana, selección de ejemplo | Menor; 2 Maná; luz a un punto u objeto hasta 3 espacios, iluminación aproximada de 4 espacios durante una Escena |
+| Barrera Cinética, selección de ejemplo | Básico; 3 Maná; Reacción; +2 Defensa normal sólo contra el ataque que la disparó |
+
+**Resolución de ejemplo:** con los requisitos de Método Directo y hechizo conocido satisfechos, Luz Arcana consume 2 Maná y produce únicamente la iluminación descrita; no detecta ni ciega. Si el canalizador dispone de su Reacción y recibe un ataque válido, puede gastar 3 Maná en Barrera Cinética para elevar su Defensa normal de 13 a **15 únicamente contra ese ataque**. No altera su Defensa Mental ni Corporal y no conserva el bono para ataques posteriores. Con ambas activaciones, si son válidas y se producen, su Maná pasa de 15 a 10.
+
+**Límites del ejemplo mágico:** no se inventa un Atributo de lanzamiento ni se convierte «Canalización +6» en una tirada universal para otros hechizos. Este encuentro no define ataque ofensivo mágico ni autoriza lanzar hechizos no elegidos. La ficha específica de un canalizador combativo deberá concretar Fuente, Disciplina, hechizos, Atributo de lanzamiento cuando corresponda, competencia y requisitos.
+
+**Alcance del cierre:** hay once **ejemplos de encuentro**, uno por perfil de referencia, pero **no once fichas técnicas completas ni once entradas nuevas de Compendio**. Civil permanece sin ataque universal; Soldado tiene una elección de Daño sólo para su ejemplo; Canalizador hostil utiliza una selección ejemplificativa de hechizos y Protección; Troll dominante sólo emplea ataques ordinarios; Veterano y Centinela conservan campos abiertos. Cada adaptación al runtime requiere resolver esos campos de forma explícita, no por inferencia.
 
 ## 24. Dirección de juego
 
