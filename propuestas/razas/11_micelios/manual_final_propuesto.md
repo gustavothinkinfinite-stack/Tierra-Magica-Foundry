@@ -11,15 +11,15 @@ Sus cuerpos pueden mostrar fibras densas, filamentos, superficies aterciopeladas
 ### Humedad, alimento y libertad
 La vida fúngica necesita humedad y nutrientes orgánicos compatibles. Un Micelio puede abastecerse de un ambiente adecuado o transportar provisiones, pero un terreno fértil no significa comida instantánea ni una reserva infinita. Los viajes exigen previsión, igual que para cualquier otro pueblo. Las heridas, la Fatiga y el descanso siguen siendo asuntos reales, no dificultades anuladas por una fisiología distinta.
 
-Algunas comunidades viven próximas a redes vivas; otras se instalan en barrios de piedra, puertos o centros industriales. Quien abandona una colonia no pierde automáticamente sus recuerdos, voluntad o identidad. La independencia personal puede ser tan importante para una familia como la continuidad de sus vínculos.
+Algunas comunidades viven próximas a redes vivas; otras se instalan en barrios de piedra, puertos o centros industriales. Quien abandona una colonia no pierde automáticamente sus recuerdos, voluntad o identidad. La independencia personal importa tanto como sus vínculos.
 
 ### Oficios de la convivencia
 **Propuesta cultural:** las *Casas del Sustrato* administran reservas de agua y materia orgánica en ciertos asentamientos. Los *Custodios de la Red Viva* vigilan la continuidad de las redes compartidas, mientras los *Archivos de Esporas* conservan testimonios en soportes físicos, documentos y relatos. Ninguna red almacena por sí sola todos los pensamientos de sus habitantes.
 
-También existen, como propuesta, *Círculos de Desprendimiento*: grupos que defienden el derecho a desconectarse, guardar secretos o establecerse lejos de la comunidad natal. Son prácticas locales posibles, no instituciones universales ni localizaciones fijadas en el atlas. Pueden participar personas de otras ascendencias; pertenecer a ellas no concede Habilidades, contactos garantizados ni recursos gratuitos.
+También existen, como propuesta, *Círculos de Desprendimiento*: grupos que defienden el derecho a desconectarse, guardar secretos o establecerse lejos de la comunidad natal. No son instituciones universales ni lugares fijados en el atlas. Pueden participar personas de otras ascendencias; pertenecer a ellas no concede Habilidades, contactos garantizados ni recursos gratuitos.
 
 ### Cultos y desacuerdos
-Eïra inspira tradiciones de nacimiento, descomposición y renovación, pero ningún Micelio está obligado a venerarla. Pueden seguir otros cultos o ninguno. Un rito de despedida puede recordar el retorno de los nutrientes al suelo sin permitir hablar con los muertos ni otorgar Vínculo Divino. Los conflictos por abastecimiento, propiedad, contaminación o autonomía ofrecen historias más complejas que una supuesta obediencia natural a la colonia.
+Eïra inspira tradiciones de nacimiento, descomposición y renovación, pero ningún Micelio está obligado a venerarla. Pueden seguir otros cultos o ninguno. Un rito de despedida puede recordar el retorno de los nutrientes al suelo sin permitir hablar con los muertos ni otorgar Vínculo Divino. Abastecimiento, contaminación y autonomía generan conflictos sin obediencia colectiva obligatoria.
 
 ## Página derecha — Micelios en juego
 
