@@ -51,23 +51,3 @@ test("el jugador ignora una respuesta falsificada y sólo acepta la del DJ emiso
   assert.equal(emitted.length, 1, "el jugador no emite acciones ni responde a respuestas falsificadas");
 });
 
-test("la respuesta de un DJ que dejó de ser principal no se acepta", async () => {
-  // La selección de DJ principal es dinámica. La prueba anterior comprueba
-  // la aceptación; este caso verifica el rechazo sin confiar en el payload.
-  const gm = { id: "gm", active: true, isGM: true };
-  const newGm = { id: "00-gm", active: false, isGM: true };
-  const player = { id: "player", active: true, isGM: false };
-  const users = [gm, newGm, player];
-  users.get = (id) => users.find((entry) => entry.id === id) ?? null;
-  let listener;
-  const outgoing = [];
-  globalThis.game = { user: player, users, socket: {
-    on(channel, handler) { listener = handler; },
-    emit(channel, message) { outgoing.push(message); }
-  } };
-  // Una instalación independiente del listener mantiene el comportamiento
-  // observable sin depender de valores de senderId incluidos en el payload.
-  // La primera prueba ya registró el listener, por lo que aquí se comprueba
-  // el cambio de GM con los estados de usuario que la misma closure consulta.
-  assert.equal(newGm.active, false);
-});
