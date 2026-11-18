@@ -88,8 +88,7 @@ export async function createCommercePendingDossier(actor, key) {
   if (receipt?.state !== "pending") {
     return { ok: false, error: "El recibo no existe o no está pendiente." };
   }
-  const record = commercePendingReceiptReport(actor, { limit: 100 });
-  // No depender del límite de filas ni del orden para hallar la solicitud.
+  // El expediente consulta directamente la operación solicitada, sin truncado.
   let request = null;
   try {
     const parts = JSON.parse(receipt.fingerprint);
