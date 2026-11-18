@@ -666,3 +666,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, expediente, doble página inicial, brief visual y auditoría B4 Orcos; Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (Varkor, Primera Guerra, paquetes y creación).
 - Guardados [`04_orcos/manual_final_propuesto.md`](./04_orcos/manual_final_propuesto.md) (**786 palabras**, dos páginas) y [`04_orcos/nota_integracion_manual.md`](./04_orcos/nota_integracion_manual.md). Mesa del Acuerdo Difícil sólo propuesta cultural; no se canonizan ORC-B4-P01/P02 ni capacidades de Sangre.
 - **Fase C 4/12; 8 restantes**. B5 cerrada documentalmente con reservas; **0 Foundry/mesa**. Próximo: **05 Goblinoides**. Escritura exclusiva en rama/carpeta de propuestas.
+
+### 2026-11-18 — Fase C: Goblinoides (5/12)
+- Releídos tablero, README, plan, expediente Goblinoides, doble página v0.1, brief y B4; Manual Maestro `main` blob `f0f46e85b0d2e9d2449426748d9090c050e0a21e` (tres variantes, Ojo, Varkor y creación).
+- Guardados [`05_goblinoides/manual_final_propuesto.md`](./05_goblinoides/manual_final_propuesto.md) (**843 palabras**, dos páginas) y [`05_goblinoides/nota_integracion_manual.md`](./05_goblinoides/nota_integracion_manual.md). Prueba de Revisión y Relevo Público son propuestas culturales sin bonificaciones. La variante Hobgoblin Señal de Coordinación permanece fuera del paquete canónico y del texto principal.
+- **Fase C 5/12; 7 restantes**. B5 cerrada sólo documentalmente con reservas; **0 Foundry/mesa**. Próximo: **06 Terios** y nota de integración. Sólo rama/carpeta de propuestas.
