@@ -3,7 +3,7 @@ import {
   COMMERCE_TIERS, COMMERCE_SPECIALTIES, COMMERCE_ITEM_TYPES,
   createCommerceOffer, normalizeCommerce, tierLevel
 } from "../rules/commerce.mjs";
-import { commerceReceiptLedgerStats, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
+import { commerceReceiptLedgerStats, commercePendingReceiptReport, createCommerceReceiptBackup, inspectCommerceReceiptBackup, previewCommerceReceiptReconciliation, recoverCommerceReceiptMarkers, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
 
 const esc = (value) => foundry.utils.escapeHTML(String(value ?? ""));
 const modeText = (mode) => mode === "chest" ? "Cofre / botín gratis" : "Comerciante";
@@ -108,6 +108,7 @@ export function configureCommerce(actor) {
         ? 'ATENCIÓN: el historial está próximo al límite y puede impedir nuevas compras. '
         : '') +
       'Las archivadas y pendientes se conservan para impedir duplicados; no eliminarlas manualmente.</p>' +
+    '<button type="button" data-commerce-pending>Examinar operaciones pendientes</button>' +
     '<button type="button" data-commerce-backup>Exportar copia de recibos (JSON)</button>' +
     '<label>Examinar respaldo de recibos <input type="file" accept=".json,application/json" data-commerce-restore-file /></label>' +
     '<button type="button" data-commerce-restore>Comparar respaldo y recuperar marcadores faltantes</button>' +
@@ -148,6 +149,33 @@ export function configureCommerce(actor) {
     },
     default: "save",
     render: (html) => {
+      html.find("[data-commerce-pending]").on("click", async () => {
+        try {
+          if (!game.user?.isGM) throw new Error("Sólo el DJ puede consultar operaciones pendientes.");
+          const report = commercePendingReceiptReport(actor);
+          const rows = report.rows.map((entry) => {
+            const timestamp = entry.at === null ? "Fecha no registrada"
+              : new Date(entry.at).toLocaleString("es-AR");
+            const details = entry.requesterId === null
+              ? "Huella no interpretable: revisar el respaldo original"
+              : "Jugador: " + esc(entry.requesterId) +
+                " · Personaje: " + esc(entry.buyerUuid) +
+                " · Oferta: " + esc(entry.offerId) +
+                " · Cantidad: " + entry.quantity;
+            return "<li><strong>" + esc(entry.key) + "</strong> — " +
+              esc(timestamp) + "<div>" + details + "</div></li>";
+          }).join("");
+          await Dialog.prompt({
+            title: "Operaciones pendientes · " + actor.name,
+            content: "<p>Recibos pendientes: " + report.total +
+              " (mostrando " + report.shown + "). No volver a ejecutar la compra " +
+              "ni borrar el recibo sin conciliar dinero, objeto y stock.</p>" +
+              (report.total ? "<ol>" + rows + "</ol>" : "<p>No hay operaciones pendientes.</p>") +
+              "<p>Consulta de sólo lectura: no resuelve ninguna operación.</p>",
+            callback: () => undefined
+          });
+        } catch (error) { ui.notifications.error(error.message); }
+      });
       html.find("[data-commerce-backup]").on("click", () => {
         try {
           if (!game.user?.isGM) throw new Error("Sólo el DJ puede exportar este historial.");
