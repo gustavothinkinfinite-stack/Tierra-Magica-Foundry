@@ -1,0 +1,73 @@
+# Verdantes — Cierre editorial y auditoría cruzada v0.1
+
+**ESTADO:** BORRADOR INTEGRAL COMPLETO PARA REVISIÓN GLOBAL — **NO APROBADO, NO CANÓNICO**.
+**Fecha:** 2026-11-16. **Rama exclusiva:** `propuestas/razas-autonomas-2026` bajo `propuestas/razas/10_verdantes/`.
+**Autoridad revisada:** `main:docs/Tierra_Magica_Manual_Maestro.md`, blob `c2ecb4c82490c92429eed16cf3d2a8957ffb2e7d`, §§3 y 26 (Verdantes, Eïra/Primera Semilla, diferencias Dríades/Trents/Micelios), paquete v0.3, Creación y Orígenes, geografía Edria 612 C. Guía visual adjunta v1.0 inspeccionada.
+
+## Entregables guardados y verificados
+
+| Archivo | Contenido y estado |
+|---|---|
+| `auditoria_y_desarrollo.md` | Canon verificable, cuerpo, ciclo vital, cinco biomas con una única ventaja, cuatro redes sociales, historia, religión, comparaciones y **CLN-01** aislado |
+| `doble_pagina.md` | Página narrativa + página de reglas, **738 palabras imprimibles** fuera de nota editorial; listo como texto, no diagramado |
+| `brief_arte.md` | «El agua que se comparte», composición 4:5 y viñetas de bioma, respetando arte del proyecto; **sin imagen generada** |
+| `pruebas_balance.md` | **40 criterios iniciales + 16 regresiones B2 (VER-T41–T56), total 56 casos** de aceptación y guion de partida, resultados documentales **no observados en playtest** |
+| `cierre_editorial.md` | Presente auditoría y lista de decisiones para aprobación global |
+
+## Auditoría cruzada del paquete
+1. **Cosmología y origen:** Verdantes posteriores a los primeros tres pueblos de la Primera Semilla; no son Dríades, Trents ni Micelios. **Conforme.**
+2. **Identidad:** ninguna profesión, religión, moral, idioma u origen predeterminado por ser organismo vegetal. **Conforme.**
+3. **Creación:** Escala Mediana, Movimiento 6; 25 PD/3 PR no consumidos por paquete; sin Habilidades o Atributos gratuitos. **Conforme.**
+4. **Sustento Vegetal:** luz suficiente, agua y nutrientes compatibles; puede transportar provisiones; Fatiga y Descanso Completo comunes. No fotosíntesis infinita ni curación al sol. **Conforme.**
+5. **Enraizar:** Acción, suelo adecuado, inmovilidad, +1 categoría de Escala efectiva sólo resistencia a Empujar/Derribar/desplazamiento físico impuesto; desarraigar cuesta 1 Movimiento, no cura. **Conforme.**
+6. **Adaptación de Bioma:** un bioma y **una** ventaja estrecha: +1 VIG exposición definitoria **o** eliminación de una causa concreta de terreno difícil. No ambos. **Conforme.**
+7. **Vulnerabilidad biológica:** pérdida de savia puede representar Sangrado, Medicina aplica, enfermedad/herida/Trauma no son inmunidades por material. **Conforme.**
+8. **Ejemplos:** Jungla, Pantano, Tundra y Desierto proceden del Manual. **Llanura/hierba alta es una ampliación propuesta**, no ejemplo canónico. **Identificado.**
+9. **Relaciones culturales:** Casas del Riego, Archivos de Anillos, Caminos de Germinación y Círculos del Sustrato son instituciones de propuesta y multiespecie, sin ubicaciones cartográficas fijas. **Conforme.**
+10. **Religión:** Eïra no es deidad obligatoria ni Bien universal; no se obtiene Vínculo Divino. **Conforme.**
+11. **Geografía:** referencias a Erelia, Liga y Solenar respetan sus ámbitos; no se crean regiones, rutas ni fronteras oficiales. **Conforme.**
+12. **CLN-01:** mínimo propuesto de 4 horas acumuladas de luz compatible cada 24 horas; raciones de nutrientes/agua normales; ausencia pretende resolverse con privación ordinaria, sin doble penalización. **NO CANON: introduce una condición nueva, cuantificada y potencialmente restrictiva**, no es simple aclaración de «luz suficiente». Requiere evaluación de supervivencia en B2 y balance en B4 antes de adoptarse; separado de la doble página.
+13. **Extensión editorial:** 738 palabras imprimibles (objetivo 650–850). Pendiente comprobar tipografía definitiva y distribución con ilustración. **Conforme como borrador.**
+14. **Balance:** 56 casos de aceptación en matriz (40 iniciales + 16 B2), ninguno ejecutado empíricamente. **Pendiente playtest.**
+
+## Decisiones nuevas para revisión conjunta
+- **VER-01:** fisiología de tallos, tejidos vasculares y biología vulnerable; altura 1,45–1,95 m, masa 40–110 kg orientativas; madurez 18–26 y vida habitual 100–180 años, sin cambios numéricos de juego.
+- **VER-02:** cinco perfiles de bioma, incluyendo Llanura propuesta, con un único beneficio por PJ.
+- **VER-03:** Casas del Riego, Mesas del Agua Compartida.
+- **VER-04:** Archivos de Anillos y Salas de Anillos.
+- **VER-05:** Caminos de Germinación, Posadas de Brote.
+- **VER-06:** Círculos del Sustrato y Pacto de Injerto.
+- **VER-07:** filosofía de la Estación Propia y ritos cívicos/religiosos sin poderes.
+- **VER-08:** procedimiento opcional **Ciclo de Luz y Nutrientes**, cuatro horas de luz apta por 24 h, sujeto a coherencia general del sistema de sustento.
+- **VER-09:** conservar íntegro paquete v0.3 y distinción Dríade/Trent/Micelio, sin nueva Habilidad.
+
+## Misterios conservados deliberadamente
+- Modo literal/simbólico de la Primera Semilla.
+- Descendencia entre especies de origen distinto y paquetes mixtos.
+- Lugar y fecha precisos de diferenciación de los primeros Verdantes por ecosistema.
+- Extremos biológicos no compatibles con el PJ estándar y sus eventuales reglas particulares.
+- Resultado de magia sobre plantas cuando el texto no incluya personas vegetales conscientes.
+
+## Integración futura tras aprobación expresa
+1. Someter los valores biológicos a control cruzado con las once familias.
+2. Decidir si añadir Llanura a ejemplos y cómo redactar el requisito de luz del paquete de juego.
+3. Si se aprueba CLN-01, confrontarlo con los subsistemas completos de privación y provisiones para no imponer una penalización nueva; sólo entonces redactar inserción a Manual y casos para Foundry.
+4. Realizar pruebas de mesa (56 criterios documentales), maqueta física de dos páginas e ilustración aprobada.
+5. Sólo incorporar cambios aprobados por el creador a `main` y Foundry mediante una operación posterior. Esta ejecución **no** los modifica.
+
+**Dictamen:** expediente de Verdantes completo como **propuesta editorial y técnica revisable**. Próxima familia: **Micelios** — sustentación fúngica, Quimiosensibilidad, Enlace Micelial, redes, individualidad y límites de comunicación.
+
+## Actualización mecánica B2 — 17-11-2026
+
+- Informe nuevo `auditorias/02_mecanicas_y_costes.md`: **17 fichas de sistemas, 20 escenarios de análisis, 11 incidencias**. `pruebas_balance.md` suma **56 criterios documentales; 0 ejecutados en mesa/Foundry**.
+- `CLN-01` establece **4 horas por 24 horas** sólo como **regla nueva opcional no canónica**. `main` exige luz suficiente pero no fija ese mínimo, un daño diario por falta de luz/agua ni tres relojes de privación. Se preservan provisiones/forrajeo/Descanso/Fatiga universales.
+- `Enraizar` cuesta **Acción**, requiere suelo apropiado e inmovilidad, mejora Escala efectiva de resistencia y soltarse cuesta **1 Movimiento**. La interacción con el término **«anclado»** de `Martillo Cinético` sigue abierta para B3: puede afectar desplazamiento, pero no Defensa Corporal ni Daño 3.
+- `Adaptación de Bioma` concede **una** ventaja VIG o terreno específica; idéntico +1 de Resistencia Ambiental Menor comprado no se suma. El alcance sobre las categorías de Ruta/Viaje y el bioma Llanura propuesto requieren B3/B4. Sin cambio de paquete en `main`, Foundry ni atlas.
+
+## Actualización B3 — 17-11-2026
+
+- B3 documental completa: `auditorias/03_exploits_y_pruebas.md` con **30 ataques/regresiones, cuatro secuencias, doce incidencias y tres procedimientos propuestos**. `pruebas_balance.md` alcanza **86 casos VER-T01–VER-T86**, ninguno ejecutado en Foundry o mesa; **no hubo simulación ejecutada**.
+- Enraizar: Acción, inmovilidad, suelo apropiado, +1 Escala efectiva contextual, liberación 1 Movimiento; `Martillo Cinético` mantiene Daño 3 y Defensa Corporal. **VER-PB3-01** (anclado para desplazamiento 0) es propuesta no ratificada, junto con la ventana de pérdida de anclaje y 0 Vida para B5.
+- Adaptación: sólo un beneficio ambiental/terreno registrado; **VER-PB3-02** propone ficha precisa sin bonificación nueva. Comparación con Rasgos de Resistencia Ambiental, otros biomas y Viaje regional sigue B4/B5.
+- Sustento: agua/luz/nutrientes, Descanso y Fatiga normales; sin fotosíntesis curativa ni triple penalización. **VER-PB3-03** propone registro funcional; **CLN-01 (4h/24h)** permanece módulo separado, **no canon**.
+- Se conserva el borrador inicial de doble página y brief visual, sin convertirlos en manual final. Próximo B3 **Micelios**, después Coralios. No se modificaron `main`, Manual Maestro, mapa ni código Foundry.

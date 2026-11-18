@@ -1,0 +1,143 @@
+# VERDANTES — Matriz de aceptación, balance y exploits v0.1
+**Estado:** **86 criterios documentales** (40 iniciales + 16 B2 + 30 B3), con resultados *esperados* de auditoría estática. **No equivalen a partidas ejecutadas ni a una certificación de balance empírico.**
+**Fuente vigente:** `main:docs/Tierra_Magica_Manual_Maestro.md`: paquete Verdante v0.3, reglas transversales, Creación/Origen, Escala/Maniobras, Fatiga/Descanso y comparación con Dríades, Terios y Micelios. El procedimiento CLN-01 se prueba **sólo como propuesta opcional**, separado del canon.
+
+## A. Ascendencia, bioma y reglas de creación
+| Caso | Situación | Resultado esperado |
+|---|---|---|
+| VER-T01 | Crear Verdante a nivel 1 | Escala Mediana, Movimiento 6, Sustento Vegetal, Enraizar, Adaptación de Bioma; no consumir 25 PD/3 PR generales |
+| VER-T02 | Elegir dos biomas | Ilegal: sólo uno se registra por Ascendencia |
+| VER-T03 | Elegir Adaptación +1 VIG y movilidad simultáneas | Ilegal: sólo una ventaja anatómica estrecha, VIG **o** terreno |
+| VER-T04 | Bioma Pantano, elección «barro somero» | Ignora esa causa específica de terreno difícil, no agua profunda ni todos los peligros |
+| VER-T05 | Bioma Pantano, elección «agua somera» | No implica ignorar barro pegajoso cuando no sea la misma causa escogida |
+| VER-T06 | Bioma Jungla, vegetación transit­able | Puede ignorar terreno difícil por **vegetación ordinaria** si registrada; no árboles sólidos ni lianas como escaleras |
+| VER-T07 | Bioma Tundra +1 VIG frío ambiental | Sólo contra exposición ambiental concreta; no magia de hielo general |
+| VER-T08 | Bioma Desierto +1 VIG calor ambiental | No +1 frente a sed y fuego por inferencia, ni inmunidad a desierto |
+| VER-T09 | Bioma Desierto +1 VIG deshidratación ambiental | No se aplica también contra calor ambiental como beneficio separado |
+| VER-T10 | Propuesta bioma Llanura/hierba alta | Aceptable **sólo en este borrador**, una causa concreta de terreno, sin modificar entradas canónicas |
+| VER-T11 | Viajar de pantano a tundra | El bioma registrado no cambia gratis ni concede nueva ventaja en cada estación |
+| VER-T12 | Comprar un Rasgo general equivalente | No se acumula una capacidad idéntica, salvo regla expresa del sistema |
+| VER-T13 | Personaje de Origen Broncino | Idiomas y Facetas Broncino, no «lengua Verdante» racial |
+| VER-T14 | Verdante que estudia Medicina | Debe comprar Habilidades con PD normales; corteza o savia no otorgan especialización |
+| VER-T15 | Edad avanzada de Verdante | No crea rango de Historia, Medicina, Naturaleza o conocimiento perfecto |
+
+## B. Sustento Vegetal y heridas
+| Caso | Situación | Resultado esperado |
+|---|---|---|
+| VER-T16 | Verdante recibe luz solar abundante | No recupera Vida ni Maná por exposición |
+| VER-T17 | Agua y nutrientes disponibles, no luz suficiente | Existe carencia de sustento según reglas de supervivencia; no inmunidad por hidratarse |
+| VER-T18 | Luz suficiente pero no agua | Sigue existiendo carencia equivalente a hidratación; no se alimenta solo de sol |
+| VER-T19 | Transportar provisiones compatibles | Pueden sustituir obtención de recursos del entorno sin conceder exención de Carga |
+| VER-T20 | Descanso Completo sin enraizar | Permitido si cumple reglas de descanso y ambiente; enraizar no es obligatorio por raza |
+| VER-T21 | Enraizar durante marcha agotadora | No elimina Fatiga, sueño ni necesidad de descanso |
+| VER-T22 | Sangrado por corte corporal | Puede representarse como pérdida de savia; aplica condición/rules de Sangrado, no inmunidad |
+| VER-T23 | Infección o enfermedad vegetal | Puede sufrir enfermedad por normas generales; no inmunidad por fisiología |
+| VER-T24 | Curación mediante Medicina | Aplicable con técnicas plausibles; no tiene que recurrir a Artesanía o a proyecto mecánico |
+| VER-T25 | Regeneración espontánea de extremidad por riego | No disponible en paquete; requiere capacidades explícitas y costes normales |
+| VER-T26 | Corteza visible y armadura física | No obtiene Protección Natural gratuita ni apilamiento de defensas por descripción |
+| VER-T27 | Espinas o lianas representadas en retrato | No son Arma natural, Agarrar extra, Acción adicional ni restricción de enemigo sin capacidad pagada |
+
+## C. Enraizar y Escala efectiva
+| Caso | Situación | Resultado esperado |
+|---|---|---|
+| VER-T28 | Enraizar en suelo apropiado | Consume Acción y permanece inmóvil |
+| VER-T29 | Enraizar sobre piso metálico sin suelo | No se activa automáticamente: falta soporte apropiado; requeriría proyecto o entorno expresamente válido |
+| VER-T30 | Resistencia a Empujar una vez enraizado | +1 **categoría efectiva** de Escala, no +1 numérico a Defensa de Maniobra |
+| VER-T31 | Resistencia a Derribar enraizado | Mejora interacción de Escala efectiva sólo en resistencia específica |
+| VER-T32 | Desplazamiento físico impuesto | Aplica categoría efectiva si el efecto es del tipo enumerado; no cancela daño |
+| VER-T33 | Ataque de espada contra Verdante enraizado | No bonificador a Defensa, Protección, Vida ni daño evitado por escalar |
+| VER-T34 | Verdante enraizado quiere salir | Liberarse cuesta 1 punto de Movimiento; no recibe Acción adicional ni desplazamiento gratuito |
+| VER-T35 | Verdante enraizado se queda quieto y dispara | Si el arma/Acción es legal, enraizar no crea un ataque ni puntería extra; requisitos generales siguen vigentes |
+| VER-T36 | Enraizar junto a aliado y pretender bloquear un espacio 2x2 | Escala física sigue Mediana: no cambia huella espacial, alcance ni cobertura gratuita |
+| VER-T37 | Comparar Dríade enraizada y Verdante enraizado | La misma clase de mejora de Escala efectiva no se acumula por «raíz» narrada; Verdante no gana Vínculo Arbóreo |
+| VER-T38 | Múltiples mejoras equivalentes de Escala efectiva | No se apilan salvo permiso expreso, independientemente de origen mágico o racial |
+
+## D. CLN-01 — Procedimiento opcional de luz [PROPUESTA, NO CANON]
+| Caso | Situación | Resultado esperado únicamente si se adopta CLN-01 |
+|---|---|---|
+| VER-T39 | Tres días en túnel con lámpara hortícola compatible, **sólo si se ensaya CLN-01 no canónico** | Probar mínimo propuesto de 4 horas acumuladas por 24 h; su cifra es una nueva regla de supervivencia aún no validada, no requisito del canon; raciones/equipo sin recursos gratuitos |
+| VER-T40 | Tres días sin luz adecuada, con agua disponible | Una sola carencia de sustento se resuelve según el subsistema general de privación, no daño instantáneo, doble Fatiga ni ventaja ficticia |
+
+## E. Explotaciones cruzadas a ensayar
+- **Dríade:** Enraizar semejante no autoriza al Verdante a leer estado del árbol a distancia o estar vinculado metafísicamente a bosque.
+- **Trent:** un Verdante no adquiere Escala Grande, raíces ofensivas ni Protección por apariencia arbórea.
+- **Micelio:** no es hongo ni posee Quimiosensibilidad/Enlace Micelial.
+- **Terio de bioma:** adaptación de Verdante es propia del paquete; no sumar adaptaciones Terio ni elegir dominante de Vuelo por pertenencia «natural» a Eïra.
+- **Hada:** no puede «enraizar y volar» copiando habilidades de otra Ascendencia.
+- **Vínculo Divino:** devoción a Eïra no crea magia gratuita ni reemplaza PR del Rasgo legal.
+- **Biomas:** eliminar coste de una causa concreta de terreno difícil no permite correr sobre abismos, agua profunda, roca vertical, barro líquido muy profundo o tierra mágicamente intransitable.
+- **Economía del viaje:** la propia nutrición no permite convertir agua y luz en un recurso transferible a compañeros, ni recargar acumuladores, ni eliminar raciones de todo el grupo.
+
+## F. Guion de playtest futuro
+1. Crear cinco Verdantes en cinco biomas con iguales PD, PR y orígenes distintos; demostrar que sólo una ventaja estrecha se registra.
+2. Simular un viaje por jungla, pantano, tundra, desierto y llanura; contrastar exposición de VIG vs. causas de terreno y registrar activación por escena.
+3. Escena de mina: sin luz, con luz ordinaria, con luminaria hortícola de proyecto, raciones compatibles; comparar canon y CLN-01 sin confundirlos.
+4. Escena de derrumbe y combate: Enraizar, Empujar, Derribar, Agarrar, daño físico y liberación, sin aumentar Defensa general o huella.
+5. Escena médica: fractura de tallo, pérdida de savia y una enfermedad, respetando Medicina y el coste de curación.
+6. Escena social de reparto de agua: Casas del Riego con residentes no Verdantes, sin bonificaciones numéricas por cargo/cultura.
+7. Comparar con Dríade, Terio, Micelio y Humano en seis escenas representativas; registrar valor real del paquete y posibles problemas de adjudicación.
+
+## G. Dictamen técnico
+El paquete Verdante v0.3 sigue **jugable sin nueva Habilidad racial**. CLN-01 es una **propuesta opcional** de claridad para sustento, no una obligación vigente. Los 40 resultados son expectativas de revisión documental, **no resultados observados en mesa**. Las situaciones de emergencia y el balance real quedan pendientes de playtest después de la aprobación de la propuesta.
+
+## H. Regresiones B2 — VER-T41 a VER-T56 (documentales, NO ejecutadas)
+
+| ID | Escenario | Resultado esperado de acuerdo con fuente / decisión abierta |
+|---|---|---|
+| VER-T41 | Verdante en ruta de viaje normal con nutrientes y agua transportados | Sustento Vegetal sustituye el **tipo** de raciones; la pauta general de viaje es **1 ración por persona/jornada**. No se consumen simultáneamente raciones humana y vegetal por duplicación |
+| VER-T42 | Verdante forrajea donde existen agua/nutrientes ambientales disponibles | Se aplican tiempo aproximado de **2 h**, `PER+Supervivencia` y DF según disponibilidad cuando exista incertidumbre. No genera raciones para todos sin prueba |
+| VER-T43 | Se pierde fuente de agua en desierto durante jornada | El núcleo no fija litros/día ni daño automático/día; puede haber Fatiga, limitación de marcha o imposibilidad según la situación; no doble penalización por ser Verdante |
+| VER-T44 | Verdante pasa la noche o una jornada en túnel sin luz solar | La regla dice **luz suficiente** sin fijar mínimo horario. **No imponer 4h/24h** salvo activación expresa de CLN-01 como propuesta |
+| VER-T45 | Ensayo opcional de CLN-01 en mina 3 días con luminaria hortícola | Registrar las **4 h acumuladas/24 h** sólo en **ensayo no canónico**; el dispositivo debe existir y pagar sus propios recursos/precios/Consumo, sin luz o Maná gratis |
+| VER-T46 | Grupo de cinco viajeros pretende que un Verdante fotosintético suministre raciones ajenas | Sustento sólo alimenta al Verdante mediante entorno/provisiones; no transforma su biología en despensa del grupo |
+| VER-T47 | Verdante bioma tundra tiene **+1 VIG frío ambiental** y compra Resistencia Ambiental Menor al mismo frío | Dos +1 equivalentes sobre la **misma prueba/amenaza** no forman +2 automáticamente; aplicar no acumulación de propiedad duplicada |
+| VER-T48 | Verdante tundra compra Resistencia Ambiental Significativa (2 PR) contra ese frío | El grado general concede **Ventaja en pruebas VIG**, no «+2 VIG»; evaluar junto al efecto racial específico y reglas de no duplicación sin inventar conversión |
+| VER-T49 | Verdante bioma desierto elige +1 VIG **calor**, recibe quemadura de Proyectil Ígneo | No bonifica Defensa, Protección o VIG general contra ataque de fuego por equivalencia temática; sólo exposición ambiental elegida |
+| VER-T50 | Verdante pantano elige eliminar barro somero; atraviesa espacio con barro y escombros | Ignorar barro no elimina **escombros**, ni atraviesa agua profunda o pantano físicamente intransitable; ninguna inmunidad global al bioma |
+| VER-T51 | Verdante jungla ignora vegetación ordinaria difícil en combate y usa viaje a escala regional | La capacidad elimina **una causa concreta de coste de Movimiento local**; no elimina automáticamente todas las categorías de terreno, riesgos ni DF de Viaje |
+| VER-T52 | Verdante Mediano enraizado es Empujado por criatura Pequeña con margen Claro | Enraizar le da **Grande efectiva** frente a Empujar; dos categorías mayor que atacante Pequeño: no desplazamiento por fuerza corporal ordinaria sin palanca/capacidad, sin +Defensa |
+| VER-T53 | Verdante enraizado objetivo de Derribar convencional | `Derribar` usa Defensa de Maniobra; **no** sumar un +1 numérico por Escala, aunque la diferencia pueda afectar viabilidad de la maniobra según caso |
+| VER-T54 | `Martillo Cinético` alcanza Verdante enraizado, suelo adecuado, anclaje mantenido | Ataque contra **Defensa Corporal** y **Daño 3** normales. El hechizo desplaza 0 a objetivo «anclado»; **B3** debe verificar si este Enraizar cuenta formalmente como anclaje en contexto, sin crear inmunidad al daño |
+| VER-T55 | Verdante enraizado se libera para desplazarse | Liberarse cuesta **1 Movimiento**; no conservar Escala Grande efectiva tras dejar inmovilidad/anclaje; Fatiga/retirada aplican normalmente |
+| VER-T56 | Verdante herido recibe `Piel Alterada` y viste armadura | Se aplica Protección del Hechizo (2 para categoría elegida) y la armadura conforme a **no-acumulación de protección equivalente**; Enraizar no aporta Protección, Vida ni Maná |
+
+**Batería documental:** `VER-T01–VER-T40` + **16 casos VER-T41–VER-T56 = 56 criterios**, **0 ejecuciones de mesa/Foundry**. Los valores de CLN-01 permanecen `[PROPUESTA]`, no parte del paquete racial v0.3. B3 debe probar secuencias Enraizar/liberar/Empujar/Martillo Cinético, suministros y Fatiga; B4 comprobar ventaja relativa de biomas frente a Resistencia Ambiental, Terios y Dríades.
+
+## B3 — Regresiones VER-T57–VER-T86 (17-11-2026)
+
+**30 casos nuevos DOCUMENTALES, NO EJECUTADOS**; resultados esperados y vacíos explícitos, fuente detallada `auditorias/03_exploits_y_pruebas.md`.
+
+| Caso | Escenario | Resultado esperado | Evidencia |
+|---|---|---|---|
+| VER-T57 | Enraizar sobre suelo firme y apropiado | Consume 1 Acción; queda inmóvil, Escala Mediana real y Grande efectiva sólo para resistencias enumeradas. | DOC — expectativa, no ejecución |
+| VER-T58 | Enraizar sobre plataforma sin suelo apropiado | No activa anclaje; una tabla de madera no es automáticamente suelo apto por llamarse plataforma. | DOC — expectativa, no ejecución |
+| VER-T59 | Enraizar en suelo y reclamar +1 Defensa Corporal | Rechazar: no modifica Defensa Corporal ni de Maniobra. | DOC — expectativa, no ejecución |
+| VER-T60 | Enraizar y ser Empujado por criatura Pequeña | Grande efectiva; Pequeña dos categorías menor, no desplaza con fuerza ordinaria sin capacidad/palanca. | DOC — expectativa, no ejecución |
+| VER-T61 | Enraizar y ser Empujado por criatura Mediana con margen Claro | Si maniobra legal, distancia 2 reducida a 1 espacio por una categoría de diferencia; no +1 a Defensa. | DOC — expectativa, no ejecución |
+| VER-T62 | Enraizar y recibir Derribar de atacante Mediano | Escala efectiva cuenta para resistencia física, pero no hay bono universal +1 a Defensa de Maniobra; adjudicación B5. | DOC — expectativa, no ejecución |
+| VER-T63 | Enraizar y recibir Martillo Cinético con impacto válido | Daño 3 y Defensa Corporal normales; cláusula de 0 desplazamiento a objetivo «anclado» requiere criterio de equivalencia B5. | DOC — expectativa, no ejecución |
+| VER-T64 | Enraizar, liberarse y correr en el mismo turno | Liberación cuesta 1 Movimiento; Correr consume Acción y sólo si disponible, sin refundir Acción de Enraizar. | DOC — expectativa, no ejecución |
+| VER-T65 | Enraizar y usar Retirada sin liberarse | No puede desplazarse manteniendo la inmovilidad; primero paga 1 Movimiento, luego límites de Retirada. | DOC — expectativa, no ejecución |
+| VER-T66 | Enraizar, quedar Exhausto y liberarse | Movimiento 6→4 por Exhausto, luego pagar 1 para soltarse; no 6 gratis ni segunda reserva. | DOC — expectativa, no ejecución |
+| VER-T67 | Enraizar y destruir suelo debajo entre turnos | Anclaje físico deja de tener soporte; instante exacto, caída/Reacción y cese del estado son cuestión transversal B5, sin inmunidad. | DOC — expectativa, no ejecución |
+| VER-T68 | Enraizar y caer a 0 Vida | No recupera Vida/Maná; estado y Trauma generales; continuidad automática del anclaje queda abierta. | DOC — expectativa, no ejecución |
+| VER-T69 | Adaptación pantano: barro y escombros simultáneos | Eliminar sobrecoste de barro escogido, no escombros ni riesgo independiente. | DOC — expectativa, no ejecución |
+| VER-T70 | Adaptación jungla: vegetación difícil local vs ruta regional | Sólo causa de coste local registrada; no cancela DF ni categoría global de viaje sin regla explícita. | DOC — expectativa, no ejecución |
+| VER-T71 | Adaptación tundra + Resistencia Ambiental Menor mismo frío | +1 VIG equivalente no se apila como +2 en una misma prueba. | DOC — expectativa, no ejecución |
+| VER-T72 | Adaptación tundra + Resistencia Ambiental Significativa mismo frío | Ventaja del Rasgo no equivale a +2; compatibilidad de propiedades distintas a B4/B5 sin doble +1 idéntico. | DOC — expectativa, no ejecución |
+| VER-T73 | Adaptación desierto calor frente a Proyectil Ígneo | No bonifica defensa/daño ni resistencia a ataque mágico de fuego; sólo exposición ambiental. | DOC — expectativa, no ejecución |
+| VER-T74 | Cambiar Adaptación de barro a calor en cada escena | Inválido: bioma y única propiedad se eligen en creación. | DOC — expectativa, no ejecución |
+| VER-T75 | Llanura/hierba alta como opción del paquete oficial | Ejemplo del expediente propuesto, no ejemplo ratificado del canon; exige B4. | DOC — expectativa, no ejecución |
+| VER-T76 | Verdante en mina sin luz durante 24 horas | Necesita luz suficiente; canon no fija horas mínimas ni daño fijo; CLN-01 4h/24h sólo propuesta. | DOC — expectativa, no ejecución |
+| VER-T77 | Tres carencias: agua, nutrientes y luz en una jornada | No generar triple Fatiga por tres contadores raciales inventados; aplicar privación y consecuencias generales contextualizadas. | DOC — expectativa, no ejecución |
+| VER-T78 | Forrajear 2 horas y fabricar raciones ilimitadas para grupo | Usar PER+Supervivencia/DF y rendimiento ordinarios; sustento racial no produce alimento para terceros. | DOC — expectativa, no ejecución |
+| VER-T79 | Regar Verdante herido y declarar curación automática | Sin recuperación de Vida/Maná; Medicina, descanso y efectos comprados siguen. | DOC — expectativa, no ejecución |
+| VER-T80 | Corteza natural, armadura y Piel Alterada | No Protección gratuita de corteza; aplicar equipo/hechizo y no apilar equivalentes. | DOC — expectativa, no ejecución |
+| VER-T81 | Savia, Sangrado y 0 Vida | Medicina y Trauma comunes; no inmune a Sangrado ni reparable por Ingeniería por ser vegetal. | DOC — expectativa, no ejecución |
+| VER-T82 | Rasgos vegetales y miembros extra | Ramas y lianas cosméticas no conceden manos, Acciones, alcance ni Agarrar adicionales. | DOC — expectativa, no ejecución |
+| VER-T83 | Dispositivo de luz para sustento durante viaje | Requiere dispositivo real, consumo/recursos y condiciones de luz pertinentes; no energía gratis por fisiología. | DOC — expectativa, no ejecución |
+| VER-T84 | Familiar recoge agua y Verdante recupera Acción | Familiar opera bajo sus propias reglas; no regala Acción, Movimiento ni forrajeo automático. | DOC — expectativa, no ejecución |
+| VER-T85 | Bioma + Escala efectiva + magia de protección | Son dominios distintos; Enraizar no añade Protección ni se apila Escala efectiva equivalente sin permiso. | DOC — expectativa, no ejecución |
+| VER-T86 | Sustento Vegetal, Descanso Completo y Fatiga de marcha | Descanso y Fatiga normales; fotosíntesis no sustituye descanso ni elimina marchas forzadas. | DOC — expectativa, no ejecución |
+
+**Total acumulado: 86 criterios documentales VER-T01–VER-T86; 0 pruebas de Foundry, 0 playtests de mesa y 0 simulaciones ejecutadas.** CLN-01 4h/24h, VER-PB3-01/02/03 y Llanura son propuestas no ratificadas; B4/B5 deben decidir sus límites.
