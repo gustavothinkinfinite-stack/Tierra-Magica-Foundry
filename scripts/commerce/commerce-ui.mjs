@@ -3,7 +3,7 @@ import {
   COMMERCE_TIERS, COMMERCE_SPECIALTIES, COMMERCE_ITEM_TYPES,
   createCommerceOffer, normalizeCommerce, tierLevel
 } from "../rules/commerce.mjs";
-import { installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
+import { commerceReceiptLedgerStats, installCommerceRuntime, requestCommerceExchange } from "./commerce-runtime.mjs";
 
 const esc = (value) => foundry.utils.escapeHTML(String(value ?? ""));
 const modeText = (mode) => mode === "chest" ? "Cofre / botín gratis" : "Comerciante";
@@ -54,6 +54,7 @@ function readEditor(html, draft) {
 export function configureCommerce(actor) {
   if (!game.user?.isGM || actor?.type !== "npc") return;
   const draft = normalizeCommerce(actor.getFlag("tierra-magica", "commerce"));
+  const ledger = commerceReceiptLedgerStats(actor);
   const content =
     '<section class="tm-commerce-editor">' +
     '<p>Seleccioná los objetos exactos del catálogo. Cofre: entrega gratis; comerciante: descuenta cobres.</p>' +
@@ -73,6 +74,9 @@ export function configureCommerce(actor) {
     '<button type="button" data-commerce-add>Agregar</button>' +
     "</div>" +
     '<small>También podés arrastrar un Item del Compendio o del directorio de Objetos sobre esta ventana. La lista de objetos es siempre explícita; ningún mercado genera equipo raro automáticamente.</small>' +
+    '<p>Historial de operaciones: ' + ledger.recent + ' recientes, ' + ledger.pending +
+      ' pendientes y ' + ledger.archived + ' archivadas (' + ledger.serializedCharacters +
+      ' caracteres serializados). Las archivadas y pendientes se conservan para impedir duplicados; no eliminarlas manualmente.</p>' +
     "</section>";
 
   const dialog = new Dialog({
