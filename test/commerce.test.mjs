@@ -64,6 +64,28 @@ test("la familia comercial no se omite cambiando el mercado", () => {
   assert.equal(quoteCommerce(config, offer, source, 1).ok, false);
 });
 
+test("Restringida no se compra automáticamente ni en metrópolis ni manipulando la oferta", () => {
+  const restricted = item({ system: { physical: {
+    availability: "restricted", priceCopper: 100, priceQuantity: 1, priceStatus: "exact"
+  } } });
+  const offer = { ...createCommerceOffer(restricted, "smith"), stock: 2 };
+  const config = normalizeCommerce({ mode: "merchant", tier: "metropolis", specialty: "smith", offers: [offer] });
+  assert.equal(offerAvailabilityTier(restricted), 4);
+  assert.equal(quoteCommerce(config, config.offers[0], restricted, 1).ok, false);
+  config.offers[0].availabilityStatus = "common";
+  config.offers[0].minTier = 1;
+  assert.equal(quoteCommerce(config, config.offers[0], restricted, 1).ok, false,
+    "la disponibilidad del Item real prevalece sobre los datos manipulables de la oferta");
+  const ordinary = item();
+  const forged = { ...createCommerceOffer(ordinary, "smith"), stock: 2, availabilityStatus: "restricted" };
+  const otherConfig = normalizeCommerce({ mode: "merchant", tier: "metropolis", specialty: "smith", offers: [forged] });
+  assert.equal(quoteCommerce(otherConfig, otherConfig.offers[0], ordinary, 1).ok, false,
+    "una oferta marcada Restringida no autoriza venta aunque el Item carezca del campo");
+  config.mode = "chest";
+  assert.deepEqual(quoteCommerce(config, config.offers[0], restricted, 1),
+    { ok: true, quantity: 1, cost: 0 }, "el cofre sigue siendo entrega dirigida, no compraventa");
+});
+
 test("cofre entrega sin dinero y permite objetos raros asignados por DJ", () => {
   const { config, offer, source } = fixture({ mode: "chest", minTier: 4 });
   assert.deepEqual(quoteCommerce(config, offer, source, 2), { ok: true, quantity: 2, cost: 0 });
