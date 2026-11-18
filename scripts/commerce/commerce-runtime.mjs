@@ -43,6 +43,39 @@ export function commerceReceiptLedgerStats(actor) {
   };
 }
 
+// Informe de solo lectura para que el DJ identifique solicitudes pendientes.
+// La huella contiene únicamente referencias de la solicitud, no demuestra
+// qué mutaciones llegaron a persistirse ni autoriza un cierre automático.
+export function commercePendingReceiptReport(actor, { limit = 25 } = {}) {
+  const size = Number.isSafeInteger(limit) ? Math.max(0, Math.min(limit, 100)) : 25;
+  const receipts = snapshotReceipts(actor);
+  const entries = Object.entries(receipts)
+    .filter(([, receipt]) => receipt?.state === "pending")
+    .sort((a, b) => Number(a[1]?.at ?? 0) - Number(b[1]?.at ?? 0) ||
+      a[0].localeCompare(b[0]));
+  const rows = entries.slice(0, size).map(([key, receipt]) => {
+    let decoded;
+    try {
+      const parsed = JSON.parse(receipt.fingerprint);
+      if (Array.isArray(parsed) && parsed.length === 5 &&
+          parsed.slice(0, 4).every((value) => typeof value === "string") &&
+          Number.isSafeInteger(parsed[4]) && parsed[4] > 0) {
+        decoded = parsed;
+      }
+    } catch { /* los registros heredados pueden carecer de huella decodificable */ }
+    return {
+      key,
+      at: Number.isFinite(receipt.at) && receipt.at >= 0 ? receipt.at : null,
+      requesterId: decoded?.[0] ?? null,
+      merchantUuid: decoded?.[1] ?? null,
+      buyerUuid: decoded?.[2] ?? null,
+      offerId: decoded?.[3] ?? null,
+      quantity: decoded?.[4] ?? null
+    };
+  });
+  return { total: entries.length, shown: rows.length, rows };
+}
+
 // Copia portátil, de sólo lectura. La suma de control detecta corrupción
 // accidental; no es firma digital ni autoriza purgar el Actor.
 function receiptBackupChecksum(serialized) {
