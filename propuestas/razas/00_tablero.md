@@ -613,3 +613,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Verificados tablero, README, plan, comparativa DER/HOB/CON, anexos B5, matriz y Manual Maestro `main` blob `334770e7ed7d2605767aecb169f57da6c1100508`.
 - Creado [`auditorias/05_b5_revision_xg_cero_vida_y_puerta_v2.md`](./auditorias/05_b5_revision_xg_cero_vida_y_puerta_v2.md): tabla de persistencia de ocho tipos de rasgos, **seis guiones XG cotejados por lectura** y revisión condicional DER-X08/09; estado de doce incidencias. **0 Foundry/mesa**; no confundir guiones con ensayos.
 - **B5 ABIERTA; C BLOQUEADA.** Siguiente: arbitrar Derribar contra Incapacitado y métrica vertical/mixta, revisar economía Anfibio/Hobgoblin, actualizar acta global. Sólo rama y carpeta autorizadas.
+
+### 2026-11-18 — B5: Derribar contra Incapacitado, Retirada y PR
+- Releídos tablero, README, plan, revisión XG/0 Vida y decisiones operativas; contrastado Manual Maestro `main` blob `334770e7ed7d2605767aecb169f57da6c1100508` (Derribar, Retirada, Cuerpo de Piedra, 25 PD/3 PR y Anfibio 1 PR).
+- Creado [`auditorias/05_b5_dictamen_derribar_retirada_economia.md`](./auditorias/05_b5_dictamen_derribar_retirada_economia.md): **21 casos documentales** (6 DR3, 7 MOV3, 8 ECO), **0 Foundry/mesa**. DER-R3 especifica Incapacitado sin reacción nueva, movimiento mixto conserva fracciones y redondeo homogéneo, economía Anfibio/Señal no otorga PR gratuitos.
+- **B5 ABIERTA; C BLOQUEADA.** Pendiente decisión editorial global DER-R2, D05, Señal y cierre de acta; las alternativas siguen no canónicas. Escritura exclusiva en rama/carpeta autorizadas.
