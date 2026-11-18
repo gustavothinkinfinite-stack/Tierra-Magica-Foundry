@@ -302,10 +302,14 @@ async function doExchange(data) {
         await buyer.update({ "system.currency.totalCopper": current + quote.cost }, { tmCommerce: true });
       } catch (rollbackError) { rollbackErrors.push("monedas: " + rollbackError.message); }
     }
-    const result = failure("Compra/retirada cancelada: " + String(error?.message ?? error) +
-      (rollbackErrors.length ? ". Recuperación manual requerida: " + rollbackErrors.join(", ") : ""));
-    await storeReceipt(merchant, key, { state: "completed", fingerprint, result });
-    return result;
+    // Una operación puede aplicar su mutación y recién entonces fallar su
+    // promesa. Incluso si el rollback aparentemente funciona, no podemos
+    // demostrar que todas las escrituras quedaron revertidas. El recibo
+    // permanece pendiente para impedir un replay hasta conciliarlo con el DJ.
+    const details = rollbackErrors.length ? " Fallaron reversiones: " + rollbackErrors.join(", ") + "." : "";
+    console.error("Foundry T.M. | Comercio con resultado incierto; recibo pendiente", error, rollbackErrors);
+    return failure("Compra/retirada de resultado incierto: " + String(error?.message ?? error) +
+      ". Recibo pendiente: revisión manual del DJ obligatoria antes de reintentar." + details);
   }
 
   const result = { ok: true, itemName: offer.name, quantity, cost: quote.cost, mode: config.mode };
