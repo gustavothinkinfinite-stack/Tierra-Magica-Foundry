@@ -872,3 +872,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - [Acta C-12](./manual_final/cotejo_integral_12_fuentes_2026_11_19.md): **103 párrafos sustantivos** de las doce fuentes encontrados en sus respectivas secciones del consolidado, tras normalizar formato y acentos; **0 ausencias textuales** en el alcance de la prueba.
 - El control es unidireccional y no demuestra equivalencia semántica ni ausencia de cláusulas adicionales. **Siguiente bloque:** cotejo inverso de adiciones normativas, listas cortas y encabezados; después verificación de índice, tabla, diferencias e informe de entrega.
 - **0 Foundry, 0 mesa, 0 maquetas; 0 ratificaciones.** Sin escritura en `main`, atlas ni Foundry.
+
+### 2026-11-19 — Informe de entrega documental y puerta de control inverso
+- Releídos tablero, README, plan y doce textos C; consultado Manual Maestro de `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- Confirmada existencia de las doce fuentes, capítulo consolidado, índice, tabla y registro de diferencias. Se detectó que `manual_final/informe_de_entrega.md` aún no existía; **creado** [informe de entrega documental](./manual_final/informe_de_entrega.md) con doce enlaces individuales, estado de auditoría y límites explícitos.
+- Control inverso exploratorio por párrafos mostró diferencias de formato/segmentación; **no se califican como contradicciones** ni como equivalencia normativa demostrada. Próxima unidad: cotejo semántico inverso de listas, costes, negaciones y excepciones por raza, seguido de validación de enlaces y cierre editorial.
+- **0 Foundry, 0 mesa, 0 maquetas, 0 ratificaciones.** Fase C permanece abierta; no modificar `main`, atlas ni motor.
