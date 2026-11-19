@@ -3463,7 +3463,7 @@ Unidades comerciales canónicas:
 
 La munición perforante no aumenta Daño, no modifica la tirada de ataque y se consume normalmente aunque el disparo falle.
 
-La compra cubre esa cantidad física real. Dividir el lote divide también su valor proporcional.
+La compra cubre esa cantidad física real. Dividir el lote divide también su valor proporcional. **Al comprar una cantidad fraccionada del lote comercial, calculá el precio proporcional exacto en cobres de todas las unidades del mismo producto incluidas en la transacción y redondeá una sola vez hacia arriba al cobre entero.** No redondees cada proyectil antes de sumar. Ejemplo: 10 virotes ordinarios de un lote de 20 por 3 p cuestan **15 c**; 1 virote cuesta **2 c** al comprarlo solo (1,5 c antes del redondeo). Para ventas y recuperaciones se aplican, sobre el valor correspondiente de la cantidad completa, los porcentajes y el redondeo final **hacia abajo** ya establecidos en CRAFT-02. No se permite fragmentar artificialmente operaciones para explotar redondeos.
 
 No existe un porcentaje universal de recuperación de flechas o virotes después de un combate. Pueden recuperarse unidades intactas cuando la ficción, el lugar y el tiempo de búsqueda lo permitan; un proyectil roto, perdido o inaccesible se pierde.
 
@@ -10350,6 +10350,8 @@ La **Unidad Comercial** indica cuántas unidades físicas cubre el precio. Ejemp
 - repuesto de Kit Médico, 5 usos = **5 p**
 
 El capítulo 9 también fija **20 flechas perforantes = 4 p** y **20 virotes perforantes = 6 p**. Estas entradas poseen precio y efecto de munición especiales; la tabla de recetas de munición de **CRAFT-03** sólo especifica la fabricación de flechas, virotes y disparos **ordinarios**. No se debe deducir de esas recetas un procedimiento ni un coste de fabricación para la variante perforante. Esta precisión es documental y no cambia el catálogo ni sus valores.
+
+En compras de cantidades menores que una Unidad Comercial, **prorrateá en cobres sobre la cantidad total de ese producto en la transacción y redondeá una sola vez hacia arriba al cobre entero**, conforme al ejemplo de Munición del capítulo 9; la venta y recuperación se redondean hacia abajo según CRAFT-02. No generes valores unitarios ficticios redondeados para multiplicarlos después.
 
 El precio no es el único límite. Un objeto o servicio también puede tener **Disponibilidad** —Común, Profesional, Restringida, Rara o Excepcional— y un régimen de acceso social/legal. Tener suficiente dinero no crea existencias ni elimina licencias, requisitos o logística.
 
