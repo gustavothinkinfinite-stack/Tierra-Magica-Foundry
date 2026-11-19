@@ -48,6 +48,13 @@ El empaquetado de 23 Actores de Foundry no demuestra por sí mismo que las doce 
 
 **Fundamento:** los dos paquetes normativos §3 y las dos dobles páginas del anexo coinciden explícitamente en «1 punto de Movimiento»; sólo la paráfrasis B5-I02 decía abreviadamente «1 Movimiento». Se unifica por el texto específico repetido en cuatro lugares, sin introducir nueva capacidad.
 
+## DEC-ED-07 — Prorrateo de Unidad Comercial en cobre entero
+**Aprobación del Consejo:** para comprar una cantidad menor que el lote de referencia, se usa el valor exacto proporcional en cobres de **todas las unidades de ese producto de la transacción** y se redondea **una sola vez hacia arriba** al cobre entero. Las ventas y recuperaciones conservan el redondeo final hacia abajo de CRAFT-02. Está prohibido fraccionar artificialmente una operación para obtener ventajas de redondeo.
+
+**Ejemplos:** 20 virotes ordinarios = 3 p = 30 c; 10 virotes = 15 c; comprar 1 virote solo = techo(1,5 c) = **2 c**. No se multiplica una cifra unitaria redondeada para presupuestar pedidos grandes. La decisión hace explícita la convención ya empleada en el Manual para costes hacia arriba y ventas hacia abajo sin alterar el precio del lote.
+
+**Autoridad:** se añadió al Manual Maestro §§9 y 19. La maqueta debe mantener el precio original de los lotes y puede mostrar este ejemplo en nota didáctica.
+
 ## Próximas verificaciones necesarias
 - [ ] Cotejar todas las tablas de compra con la fuente y sus precios/Unidades Comerciales.
 - [ ] Comprobar línea a línea el bloque de seis fichas maquetables con las entradas §23.
