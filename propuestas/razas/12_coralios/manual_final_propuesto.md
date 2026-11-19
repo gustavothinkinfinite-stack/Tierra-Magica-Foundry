@@ -21,7 +21,7 @@ Algunos Coralios veneran a **Eïra**, asociada a la vida y sus cambios. Otros ho
 ## Página derecha — Coralios en juego
 
 ### Paquete racial vigente
-**Escala: Mediana. Movimiento terrestre: 5. Movimiento acuático: 6.** Cada velocidad corresponde a su medio. Al cambiar de medio en un mismo Movimiento, sumá las fracciones de cada tramo respecto de su MOV efectivo: el total no puede superar 1 (B5-I01 vigente). Por ejemplo, tierra 2/5 + agua 3/6 = 9/10 es legal; tierra 3/5 + agua 3/6 = 11/10 no lo es. Retirada limita el total a 1/2.
+**Escala: Mediana. Movimiento terrestre: 5. Movimiento acuático: 6.** Cada velocidad corresponde a su medio. Al cambiar de medio en un mismo Movimiento, sumá las fracciones de cada tramo respecto de su MOV efectivo: el total no puede superar 1 (B5-I01 vigente). Por ejemplo, tierra 2/5 + agua 3/6 = 9/10 es legal; tierra 3/5 + agua 3/6 = 11/10 no lo es. Retirada exige una suma fraccionaria ≤ 1/2 y, además, cada tramo homogéneo no puede gastar más de floor(MOV efectivo de ese medio/2) puntos, contando sobrecostes de terreno antes de dividir (B5-I01 vigente).
 
 **Respiración Anfibia.** Podés respirar aire y agua mientras permanezcas **razonablemente hidratado**. No sos inmune a desecación, presión de las profundidades, temperatura extrema, corrientes, contaminación ni toxinas. La hidratación exige cuidado razonable según la situación y las reglas generales; no se incorpora un reloj racial de daño por horas.
 
