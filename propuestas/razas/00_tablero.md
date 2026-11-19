@@ -840,3 +840,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Informe [`manual_final/control_normativo_humanos_terios_feericos_2026_11_19.md`](./manual_final/control_normativo_humanos_terios_feericos_2026_11_19.md): **12 campos documentales**, **14 casos de aceptación diseñados**, **0 ejecutados**.
 - Detectadas dos precisiones editoriales pendientes: branquias Terias funcionales frente a Anfibio (B5-I05) y bonificación circunstancial específica de Derribar en Dríade Enraizada (B5-I02); Don sin Forma mantiene clasificación alternativa no ratificada.
 - **Siguiente:** corregir las dos precisiones en fuentes y consolidado con control de 650–850 palabras; cotejar Ankar/Cristálidos/Verdantes/Micelios; informe global. Sin merge ni escritura fuera de rama/carpeta.
+
+### 2026-11-19 — Precisiones normativas Terios y Feéricos
+- Verificado en `main` B5-I05: branquias funcionales registradas permiten respirar agua ordinaria sin regalar Anfibio, nado ni inmunidades; corregidos texto individual Terios y manuscrito consolidado.
+- Verificado en `main` B5-I02: Enraizar concede +1 circunstancial a Defensa de Maniobra exclusivamente contra Derribar mientras esté activo; corregidos texto individual Feéricos y manuscrito consolidado.
+- Comprobación documental de equivalencia por sustitución exacta; **0 pruebas Foundry y 0 mesa**. No se modificó canon ni se aprobaron propuestas.
+- **Siguiente unidad:** control normativo de Ankar, Cristálidos, Verdantes y Micelios; revisar extensión editorial tras las precisiones y corregir si supera 850 palabras.
