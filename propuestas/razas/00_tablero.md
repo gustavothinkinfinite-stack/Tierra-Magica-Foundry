@@ -822,3 +822,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **GN-01 corregida:** Escurridizo interrumpido ya tiene regla vigente B5-I01; retirada la etiqueta errónea de arbitraje no ratificado en Goblinoides y manuscrito.
 - Creado [`manual_final/control_normativo_goblinoides_coralios_2026_11_19.md`](./manual_final/control_normativo_goblinoides_coralios_2026_11_19.md) con matriz de 8 controles y limitaciones.
 - **Pendiente sustantivo:** expresar en Coralios el límite por tramo homogéneo de Retirada, además de la suma fraccionaria; luego cotejar las otras diez familias. **0 Foundry, 0 mesa, 0 maquetas.**
+
+### 2026-11-19 — Precisión normativa Coralios / Retirada (B5-I01)
+- Releídos tablero, README, plan, texto Coralios y manuscrito consolidado; cotejado el Manual Maestro de `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- Corregida la omisión de la restricción por tramo homogéneo: además de suma fraccionaria ≤ 1/2, cada tramo admite como máximo `floor(MOV efectivo del medio/2)` puntos, con sobrecostes antes de dividir. Se sincronizaron `12_coralios/manual_final_propuesto.md` y `manual_final/capitulo_ascendencias_lectura_editorial.md`.
+- Aclaración estrictamente documental de regla ya vigente; **0 pruebas empíricas**, **0 ratificaciones nuevas**, sin cambios en `main`, atlas o Foundry.
+- **Siguiente bloque:** cotejar negaciones, costes, excepciones y restricciones de las diez razas restantes frente al canon y a las fuentes individuales; después informe global y control editorial final.
