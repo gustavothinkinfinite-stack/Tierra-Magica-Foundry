@@ -866,3 +866,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 ### 2026-11-19 — Control de extensión imprimible C02/C06/C07/C12
 - [Acta de recuento imprimible](./manual_final/control_imprimible_c02_c06_c07_c12_2026_11_19.md): Enanos 839, Terios 772, Feéricos 824, Coralios 819 palabras, incluidos encabezados imprimibles y excluidas notas/metadatos. Cuatro excesos del conteo de archivo completo eran falsos positivos; sin recortes ni cambios normativos.
 - Próximo bloque sustantivo: concordancia integral de doce fuentes con consolidado (costes, negaciones, listas y excepciones); después informe de entrega. Sin maquetación ni pruebas empíricas.
+
+### 2026-11-19 — Cotejo textual integral de doce fuentes finales
+- Leídos tablero, README, plan, doce textos finales y manuscrito consolidado; cotejada autoridad del Manual Maestro de `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- [Acta C-12](./manual_final/cotejo_integral_12_fuentes_2026_11_19.md): **103 párrafos sustantivos** de las doce fuentes encontrados en sus respectivas secciones del consolidado, tras normalizar formato y acentos; **0 ausencias textuales** en el alcance de la prueba.
+- El control es unidireccional y no demuestra equivalencia semántica ni ausencia de cláusulas adicionales. **Siguiente bloque:** cotejo inverso de adiciones normativas, listas cortas y encabezados; después verificación de índice, tabla, diferencias e informe de entrega.
+- **0 Foundry, 0 mesa, 0 maquetas; 0 ratificaciones.** Sin escritura en `main`, atlas ni Foundry.
