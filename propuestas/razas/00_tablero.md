@@ -883,3 +883,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Contrastados 187 párrafos largos del manuscrito consolidado contra los doce textos individuales: 186 coincidencias normalizadas y una nota final de procedencia editorial ajena a las reglas de Coralios. [Acta C-12R](./manual_final/cotejo_inverso_12_fuentes_2026_11_19.md).
 - No se detectaron adiciones textuales jugables en este alcance; no equivale a auditoría semántica exhaustiva de listas cortas, encabezados ni negaciones. **0 Foundry, 0 mesa, 0 maquetas.**
 - **Siguiente bloque:** revisión específica de listas cortas y cláusulas negativas, remisiones internas y decisiones B5; después cierre editorial si procede.
+
+### 2026-11-19 — Control C-12S/1 de cláusulas breves: Humanos y Goblinoides
+- Releídos tablero, README, plan, C01/C05, consolidado y registro de diferencias; confirmada autoridad de `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- Creado [control de cláusulas breves C01/C05](./manual_final/control_clausulas_breves_c01_c05_2026_11_19.md): **12 contratos normativos y 12 casos documentales**, incluidos Don sin Forma, Escurridizo, Ojo, Complexión y 0 Vida. Sin contradicción detectada en el alcance; clasificación HUM1 continúa propuesta no ratificada.
+- **Próximo:** Enanos, Élficos y Orcos con cláusulas cortas, luego siete familias restantes y remisiones. **0 Foundry, 0 mesa, 0 maquetas, 0 ratificaciones**. Sin cambios fuera de la rama/carpeta.
