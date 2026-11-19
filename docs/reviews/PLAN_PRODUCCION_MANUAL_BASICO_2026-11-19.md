@@ -98,7 +98,7 @@
 ## Avance registrado — armamento y munición
 - Verificados **29 perfiles de armas, cinco de armaduras y tres de escudos** con tablas canónicas y catálogos fuente. Se recuperaron en §19 **nueve filas de precio ya vigentes en §9**, sin cambiar valores.
 - Preparadas las tablas de lectura con **cinco lotes de munición** en `docs/reviews/TABLAS_EDITORIALES_ARMAS_ARMADURAS_ESCUDOS_MUNICION_2026-11-19.md`.
-- Se registró un caso de redondeo monetario pendiente cuando el precio proporcional es fracción de cobre; no se inventa norma.
+- **DEC-ED-07 ratificada:** compra de unidades fraccionarias de lote redondeada al cobre hacia arriba sobre el total de la transacción; venta/recuperación hacia abajo, con ejemplos para 1 y 10 virotes.
 - Siguen pendientes la verificación de variantes ítem a ítem, pruebas y maquetación.
 
 ## Registro de progreso inicial
