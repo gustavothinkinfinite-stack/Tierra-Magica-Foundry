@@ -45,7 +45,7 @@ La memoria de Eïra acompaña a muchos Terios, pero su parentesco mítico con la
 ### Tres personajes posibles
 Una Terio elefantina puede registrar **Órgano prensil** para su trompa y **Sentido especializado** para su olfato: no obtiene una tercera mano de combate. Un Terio felino puede elegir **Locomoción Especializada (trepa)** y **Arma natural (garras)**: atacar con ellas no crea un segundo ataque. Una Terio aviana con **Vuelo sostenido** renuncia a las adaptaciones Principal y Secundaria; sus alas no evitan la restricción de Carga.
 
-Nadar no significa respirar bajo el agua: **Anfibio** es un Rasgo general separado, con coste de **1 PR**, cuando corresponde. La forma del cuerpo no concede gratis otros Rasgos. Como cualquier personaje de nivel 1, un Terio dispone de **25 PD, 3 PR y seis aumentos de Atributo** bajo las reglas generales, independientes de su paquete racial.
+Nadar no significa respirar bajo el agua. Un Terio con **branquias funcionales** registradas y compatibles con su Linaje/Variedad respira agua ordinaria por ellas, sin obtener nado, respiración aérea si su anatomía no la permite, ni protección frente a presión o tóxicos. **Anfibio (1 PR)** permite respirar aire y agua ordinarios, pero no concede esas otras protecciones. La forma del cuerpo no concede gratis otros Rasgos. Como cualquier personaje de nivel 1, un Terio dispone de **25 PD, 3 PR y seis aumentos de Atributo** bajo las reglas generales, independientes de su paquete racial.
 
 El **Origen** y el **Trasfondo** describen cultura y trayectoria, no son predeterminados por el linaje.
 
