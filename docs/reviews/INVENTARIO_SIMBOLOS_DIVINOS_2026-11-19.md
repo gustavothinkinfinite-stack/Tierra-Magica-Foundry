@@ -1,7 +1,7 @@
 # Inventario editorial — Símbolos del Panteón Central
 **Fecha:** 2026-11-19 · **Estado:** AUDITORÍA INICIAL, SIN CANONIZACIÓN
 
-Fuente visual: `docs/visual/SIMBOLOS_CANONICOS.md`. Fuente de autoridad: Manual Maestro. Se comprobó presencia de fichas `SYM-DIV-...` en el registro técnico; **no se comprobó aún integridad de todos los SVG/PNG, aprobación de reproducciones de imprenta ni referencias individuales del Manual Maestro**.
+Fuente visual: `docs/visual/SIMBOLOS_CANONICOS.md`. Fuente de autoridad: Manual Maestro. Se comprobó presencia de fichas `SYM-DIV-...` en el registro técnico y existencia de assets con prefijos correspondientes en `assets/symbols/divinities/`. Para las cinco Luminarias hay archivos `MASTER.svg`, `PRIMARY.svg`, `LIGHT.svg`, `INVERTED.svg`, `REDUCED.svg`, variantes reducidas y `PREVIEW.png` (45 archivos en total); **no se comprobó aún integridad/render de cada archivo, aprobación de reproducciones de imprenta ni referencias individuales del Manual Maestro**.
 
 | Deidad | Grupo | Ficha `SYM-DIV-...` identificada en registro | Estado de verificación |
 |---|---|---|---|
@@ -21,7 +21,7 @@ Fuente visual: `docs/visual/SIMBOLOS_CANONICOS.md`. Fuente de autoridad: Manual 
 **Criterio editorial:** la ausencia de ficha en este registro no demuestra inexistencia de arte en otros archivos ni autoriza a inventar símbolos. La representación final requiere cotejo con Manual Maestro, aprobación explícita, archivo vectorial o raster de calidad comprobada y prueba de imprenta.
 
 ## Acciones siguientes
-- [ ] Inspeccionar el árbol `assets/symbols/` y relacionar cada activo con su ID.
+- [x] Inspeccionado el árbol `assets/symbols/divinities/`: 45 archivos de las cinco Luminarias, nueve por entidad; no se encontraron activos `SYM-DIV-...` de los siete Primordiales en esa carpeta.
 - [ ] Comprobar geometría, color, escala de reproducción y versiones monocromas de las cinco fichas encontradas.
 - [ ] Buscar posibles propuestas de siete Primordiales en fuentes históricas, distinguiéndolas del canon vigente.
 - [ ] Escalar sólo decisiones de aprobación visual pendientes.
