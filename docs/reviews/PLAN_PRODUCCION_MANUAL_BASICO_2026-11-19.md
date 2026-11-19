@@ -71,6 +71,11 @@
 - Diseño final de portada, créditos y derechos de uso de ilustraciones.
 - Contenido que se excluye del Manual Básico por corresponder a compendios avanzados.
 
+## Avance registrado el 2026-11-19
+- **P01/P03 en ejecución:** tres discrepancias B5 del anexo racial corregidas y cotejo inicial de las doce ascendencias documentado en `docs/reviews/COTEJO_B5_DOCE_ASCENDENCIAS_2026-11-19.md`.
+- **Dos decisiones abiertas:** Don sin Forma (clasificación Significativo/Menor) y equivalencia del coste «1 Movimiento» / «1 punto de Movimiento» de Enraizar. La primera requiere ratificación; la segunda, revisión normativa.
+- **Criterio de avance:** ninguno de P01 ni P03 se marca terminado hasta cotejo exhaustivo y cierre de discrepancias.
+
 ## Registro de progreso inicial
 - [x] Producto objetivo editorial establecido.
 - [x] Rama de trabajo independiente y matriz de auditoría ya existentes.
