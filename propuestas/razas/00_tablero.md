@@ -811,3 +811,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, las doce fuentes finales y el capítulo consolidado; consultado el Manual Maestro en `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
 - Creado [`manual_final/verificacion_concordancia_2026_11_19.md`](./manual_final/verificacion_concordancia_2026_11_19.md): 12 secciones inspeccionadas, conteos 650–850; control léxico favorable en seis familias, extracción inconclusa en cinco y diferencias por notas técnicas en Terios. **No equivale a certificación semántica ni de paginación.**
 - **Siguiente bloque:** cotejo manual de Terios y cinco fuentes de estructura alternativa; revisar negaciones y costes, después informe global. 0 Foundry, 0 mesa, 0 maquetas verificadas.
+
+### 2026-11-19 — Cotejo complementario de seis fuentes editoriales
+- Comparadas Terios, Feéricos, Cristálidos, Verdantes, Micelios y Coralios contra el manuscrito consolidado: **46 párrafos narrativos**, **45 localizados íntegros** y **1 reserva editorial no canónica de Coralios no reproducida**. No se trasladó esa reserva como regla.
+- Informe: [`manual_final/cotejo_parrafos_seis_fuentes_2026_11_19.md`](./manual_final/cotejo_parrafos_seis_fuentes_2026_11_19.md).
+- **Pendiente sustantivo:** cotejar listas y negaciones mecánicas de las doce secciones contra `main`, comprobar excepciones y notas, luego informe global; paginación real aún no probada. **0 Foundry, 0 mesa, 0 maquetas**.
