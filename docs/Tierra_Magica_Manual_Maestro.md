@@ -13563,7 +13563,7 @@ No todo Enano pertenece a Kharum. Quien crece en Valdoria, Erelia o Nacariel com
 ##### Resistir no equivale a inmunidad
 Un Enano puede sufrir Fatiga, Sangrado, Trauma y estados comunes. **Exhausto** reduce su Movimiento ordinario de **5 a 3**, salvo reglas aplicables de otros efectos. Cuerpo de Piedra no cura heridas, no vuelve inútil Agarrar ni concede una Reacción gratuita. Sangre de Metal no evita una marcha agotadora por simple esfuerzo.
 
-**Ejemplo de Empujar:** una criatura Pequeña acierta con margen Claro y desplazaría normalmente **2 espacios**. Contra un Enano, que resiste como Mediano, el desplazamiento por fuerza corporal ordinaria se reduce a **1 espacio**, si el terreno permite moverlo. No aparece un +1 general a Defensa de Maniobra. **Derribar** usa sus reglas universales; cualquier corrección numérica nueva permanece fuera del paquete canónico.
+**Ejemplo de Empujar:** una criatura Pequeña acierta con margen Claro y desplazaría normalmente **2 espacios**. Contra un Enano, que resiste como Mediano, el desplazamiento por fuerza corporal ordinaria se reduce a **1 espacio**, si el terreno permite moverlo. No aparece un +1 general a Defensa de Maniobra. **Derribar:** según el cierre normativo B5-I02 del §3, **Cuerpo de Piedra concede +1 circunstancial a Defensa de Maniobra exclusivamente para resistir Derribar**; no se aplica a Empujar ni a Defensa general.
 
 ##### La persona detrás de la ascendencia
 Elegí **una Ascendencia, un Origen y un Trasfondo**. Como los demás personajes, el Enano dispone de **25 PD**, **3 PR** ordinarios y equipo según las reglas generales. **Ingeniería, Artesanía, Atletismo, Historia, Religión, magia y fabricación** requieren las adquisiciones y condiciones habituales: las cuatro tradiciones no otorgan Habilidades, Recursos, Fuentes ni dispositivos gratuitos.
@@ -13948,7 +13948,7 @@ Eïra ocupa un lugar importante en numerosas tradiciones, pero no impone culto. 
 
 **Sustento Vegetal.** Necesitás **agua, luz suficiente y nutrientes compatibles**. Estas necesidades cumplen la misma función de supervivencia que alimentación e hidratación para otros pueblos. Podés obtener parte de ellas del entorno apropiado o transportarlas como provisiones. Seguís necesitando **Descanso Completo** y podés sufrir **Fatiga**. No hay curación ni generación de Maná por fotosíntesis.
 
-**Enraizar.** Gastás una **Acción** sobre **suelo apropiado**. Mientras permanecés **inmóvil**, se te considera **una categoría de Escala efectiva mayor** solamente para **resistir Empujar, Derribar y desplazamiento físico impuesto**. Liberarte cuesta **1 punto de Movimiento**. No modifica tu Escala real, Defensa general, Carga, ataque, daño o alcance. Enraizar no recupera Vida ni Maná; tampoco te vuelve inmune a heridas o a maniobras exitosas. Cualquier traducción adicional de Escala efectiva a modificadores de Derribar es una propuesta transversal separada, no parte de este paquete.
+**Enraizar.** Gastás una **Acción** sobre **suelo apropiado**. Mientras permanecés **inmóvil**, se te considera **una categoría de Escala efectiva mayor** solamente para **resistir Empujar, Derribar y desplazamiento físico impuesto**. Liberarte cuesta **1 punto de Movimiento**. No modifica tu Escala real, Defensa general, Carga, ataque, daño o alcance. Enraizar no recupera Vida ni Maná; tampoco te vuelve inmune a heridas o a maniobras exitosas. El cierre normativo B5-I02 del §3 concede **+1 circunstancial a Defensa de Maniobra sólo para resistir Derribar mientras Enraizar siga activo sobre suelo apto**; no aumenta Defensa general ni altera Empujar.
 
 **Adaptación de Bioma.** Al crear el personaje elegís **un bioma** y registrás **una sola ventaja anatómica estrecha** asociada: **+1 VIG** contra **una exposición ambiental definitoria**, **o** eliminar **una causa concreta de terreno difícil**. No obtenés las dos opciones ni inmunidad al bioma completo. Ejemplos: jungla, vegetación ordinaria transitable; pantano, barro **o** agua somera; tundra, +1 VIG contra frío ambiental; desierto, +1 VIG contra calor **o** deshidratación ambiental.
 
@@ -14028,7 +14028,7 @@ Algunos Coralios veneran a **Eïra**, asociada a la vida y sus cambios. Otros ho
 #### Página derecha — Coralios en juego
 
 ##### Paquete racial vigente
-**Escala: Mediana. Movimiento terrestre: 5. Movimiento acuático: 6.** Cada velocidad corresponde a su medio. Cambiar entre tierra y agua no permite gastar dos reservas completas de Movimiento en un mismo desplazamiento; el arbitraje exacto de tramos mixtos se conserva como propuesta aparte, no como nueva regla canónica.
+**Escala: Mediana. Movimiento terrestre: 5. Movimiento acuático: 6.** Cada velocidad corresponde a su medio. Cambiar entre tierra y agua no concede dos reservas de Movimiento: aplicá la **regla vigente B5-I01 del §3**, sumando las fracciones exactas de puntos gastados sobre Movimiento efectivo de cada medio (total máximo **1**, o **1/2** en Retirada, con sus límites adicionales), sin redondeos intermedios.
 
 **Respiración Anfibia.** Podés respirar aire y agua mientras permanezcas **razonablemente hidratado**. No sos inmune a desecación, presión de las profundidades, temperatura extrema, corrientes, contaminación ni toxinas. La hidratación exige cuidado razonable según la situación y las reglas generales; no se incorpora un reloj racial de daño por horas.
 
