@@ -101,6 +101,12 @@
 - **DEC-ED-07 ratificada:** compra de unidades fraccionarias de lote redondeada al cobre hacia arriba sobre el total de la transacción; venta/recuperación hacia abajo, con ejemplos para 1 y 10 virotes.
 - Siguen pendientes la verificación de variantes ítem a ítem, pruebas y maquetación.
 
+## Avance — Alquimia y ocho fórmulas (2026-11-19)
+- Verificación **8/8** de nombre y precio entre §16 y la tabla de CRAFT-11; no se cambiaron valores ni recetas.
+- Las ocho fichas editoriales con activación, Saturación, vías, efectos, CM, tiempos y requisitos se encuentran en `docs/reviews/FICHAS_EDITORIALES_OCHO_FORMULAS_ALQUIMICAS_2026-11-19.md`.
+- Se aclaró en el §9 que su tabla de consumibles es **un resumen**, y que §16 y CRAFT-11 fijan los detalles completos. Se destacan Bálsamo vs Poción Restauradora y la Saturación Antitóxica de Neutralizante.
+- Pendientes: pruebas de uso y corrección de maqueta. **No está terminada la auditoría integral.**
+
 ## Registro de progreso inicial
 - [x] Producto objetivo editorial establecido.
 - [x] Rama de trabajo independiente y matriz de auditoría ya existentes.
