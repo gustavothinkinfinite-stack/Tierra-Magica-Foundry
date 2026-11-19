@@ -8,7 +8,7 @@
 |---|---|---|---|
 | ECO-01 | Preparación inicial | Manual §3 Paso 6 y §19: **única ruta mecánica Compra libre** por PEI de 20 o = 2.000 c. Referencia rápida anterior todavía ofrecía «Paquete de Preparación o Compra libre». | **Corregido en rama:** referencia rápida usa Compra libre y listas orientativas pagadas al precio normal. |
 | ECO-02 | Recuento de hechizos en guía derivada | Referencia rápida decía «Catálogo nuclear: 18 hechizos» sin distinguir ese antecedente de los 60 actuales. | **Corregido en rama:** 60 hechizos canónicos; no se alteraron costes ni fichas de hechizos. |
-| ECO-03 | Equipo ordinario | Manual §9 y EQP-01 registran **25 objetos canónicos**, desglosados en 8 herramientas/equipos, 15 kits y 2 suministros, con precio exacto. | **Consistencia estructural comprobada**; cotejo exhaustivo de todos los perfiles y precios derivado pendiente. |
+| ECO-03 | Equipo ordinario | Manual §9 y EQP-01 registran **25 objetos canónicos**, desglosados en 8 herramientas/equipos, 15 kits y 2 suministros, con precio exacto. | **25/25 coincidencias de precio y denominación/cobertura verificadas** en Manual §9 y EQP-01; pendiente sólo revisión gráfica y de referencias §19. |
 | ECO-04 | Propuestas no canónicas | EQP-01 y Manual §9 registran **65 propuestas mundanas sin precio** y **10 especiales bloqueadas** por ausencia de perfil. | **No aprobar por inferencia.** Recomendación editorial: excluir sus fichas de compra del volumen básico hasta decisión expresa; conservar en fuente y anexos de diseño. |
 | ECO-05 | Moneda | Manual §§3, 9, 19: 10 c = 1 p, 10 p = 1 o, 100 c = 1 o; PEI de 20 o y Reserva posterior de 2 o. | Coherente en secciones muestreadas; no debe confundirse presupuesto con dinero personal. |
 | ECO-06 | Armaduras | Manual §9 y ARM-01 reconocen cinco perfiles base (Protección 1–5) y **89 variantes aprobadas**, sin efecto adicional por nombre. | Consistencia de totales y perfiles base verificada por lectura; falta verificación mecánica item a item. |
@@ -30,6 +30,10 @@
 
 Los números anteriores describen **categorías documentales**, no precios ni una nueva selección cerrada de contenido del libro. Las variantes mecánicamente equivalentes pueden agruparse tipográficamente sin eliminarlas del canon.
 
+## Verificación adicional — tabla ordinaria lista para maqueta
+
+El cotejo por pares comparó **8 herramientas + 15 kits** en el orden y con precios del Manual Maestro (§9) y EQP-01 y encontró **0 diferencias**. También coincidieron el precio y las unidades de los **2 suministros**. Se preparó la tabla derivada en `docs/reviews/TABLA_EDITORIAL_EQUIPO_25_2026-11-19.md`, con notas de suministro, PEI y sin disponibilidades inferidas. Esto **no cierra** aún armas, consumibles, clasificación comercial ni precios de fabricación.
+
 ## Recomendaciones de cierre de libro
 1. Preparar una **tabla única de compra** de equipo aprobado con moneda, precio, unidad comercial, peso físico si existe una regla aprobada (no inventarlo), FUE mínima cuando corresponda, disponibilidad sólo si fue ratificada y requisitos de acceso.
 2. Imprimir por separado las reglas de **creación con PEI** y las de compra ordinaria. No reintroducir Paquetes de Preparación como modalidad mecánica.
@@ -41,7 +45,8 @@ Los números anteriores describen **categorías documentales**, no precios ni un
 ## Criterio de aceptación
 - [ ] Todas las entradas comerciales impresas son canónicas y poseen precio o una marca de precio variable explícitamente ratificada.
 - [ ] La compra inicial usa sólo Compra libre y conserva intacto el presupuesto.
-- [ ] Las tablas físicas se cotejaron ítem por ítem con el Manual Maestro.
+- [x] Las **25 entradas ordinarias EQP-01** se cotejaron ítem por ítem con el Manual Maestro.
+- [ ] Queda el cotejo ítem por ítem de **armas, munición, consumibles, armaduras y escudos**.
 - [ ] La relación disponibilidad / mercado / acceso legal recibió decisión explícita o instrucciones de adjudicación aprobadas.
 - [ ] El ejemplo de compra, venta y adaptación pasa revisión de costes y redondeos.
 - [ ] No se modificó contenido mecánico, precio o capacidad sin aprobación.
