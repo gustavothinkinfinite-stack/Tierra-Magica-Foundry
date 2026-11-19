@@ -21,7 +21,7 @@ Algunos Coralios veneran a **Eïra**, asociada a la vida y sus cambios. Otros ho
 ## Página derecha — Coralios en juego
 
 ### Paquete racial vigente
-**Escala: Mediana. Movimiento terrestre: 5. Movimiento acuático: 6.** Cada velocidad corresponde a su medio. Cambiar entre tierra y agua no permite gastar dos reservas completas de Movimiento en un mismo desplazamiento; el arbitraje exacto de tramos mixtos se conserva como propuesta aparte, no como nueva regla canónica.
+**Escala: Mediana. Movimiento terrestre: 5. Movimiento acuático: 6.** Cada velocidad corresponde a su medio. Al cambiar de medio en un mismo Movimiento, sumá las fracciones de cada tramo respecto de su MOV efectivo: el total no puede superar 1 (B5-I01 vigente). Por ejemplo, tierra 2/5 + agua 3/6 = 9/10 es legal; tierra 3/5 + agua 3/6 = 11/10 no lo es. Retirada limita el total a 1/2.
 
 **Respiración Anfibia.** Podés respirar aire y agua mientras permanezcas **razonablemente hidratado**. No sos inmune a desecación, presión de las profundidades, temperatura extrema, corrientes, contaminación ni toxinas. La hidratación exige cuidado razonable según la situación y las reglas generales; no se incorpora un reloj racial de daño por horas.
 
@@ -37,4 +37,4 @@ Por ejemplo, una exploradora Coralio cruza un muelle, entra en agua somera y per
 ### Historias para jugar
 Una esclusa que protege un barrio vivo comienza a fallar; un cargamento desaparece entre puertos rivales; una familia busca documentos de las expediciones perdidas en Nacre. Ninguna trama impone una moral o profesión a todos los Coralios.
 
-**Reserva editorial no canónica:** el presupuesto fraccional para movimiento entre medios, la interpretación de Anfibio adquirido por 1 PR en un Coralio deshidratado y los protocolos de exposición a sequedad permanecen en las auditorías. No son reglas vigentes ni han sido probadas en Foundry o mesa.
+**Reserva editorial no canónica:** sólo los protocolos opcionales de exposición a sequedad y sus posibles pruebas adicionales permanecen en las auditorías; el presupuesto fraccional entre medios ya es canon B5-I01. Anfibio adquirido por 1 PR puede ser fuente respiratoria independiente, pero no elimina la deshidratación (aclaración vigente B5). No son reglas vigentes ni han sido probadas en Foundry o mesa.
