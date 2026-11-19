@@ -11,6 +11,8 @@
 2. **Resumen final de ascendencias:** sustituida la afirmación histórica «sin paquetes mecánicos gratuitos» por la situación actual de doce paquetes vigentes, separados de los presupuestos profesionales generales.
 3. **Estructura de trabajo inicial:** actualizada la antigua referencia a «Parte III» para identificar el archivo narrativo histórico como almacenamiento externo no normativo, de acuerdo con la disposición final y la política de fuente única.
 
+4. **Cotejo racial B5 (segunda pasada):** corregidas tres referencias de anexo que describían como propuestas las reglas ya aprobadas de Derribar/Enraizar (Enanos y Verdantes) y Movimiento mixto (Coralios). Registro de alcance y decisiones abiertas en `docs/reviews/COTEJO_B5_DOCE_ASCENDENCIAS_2026-11-19.md`.
+
 Estas modificaciones sólo sincronizan documentación: **no alteran costes, capacidades, atributos, estadísticas, canon ni programación**.
 
 ## Matriz de hallazgos
@@ -21,7 +23,7 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 | ED-02 | Alta | «Estado de consolidación» describía pueblos sin paquetes, mientras el §3 y el anexo incorporan 12 paquetes | **Corregido en rama** | Conservar separación entre Ascendencia, Origen y Trasfondo |
 | ED-03 | Media | «Estructura de trabajo» mencionaba Parte III aunque el archivo histórico ya está fuera del circuito activo | **Corregido en rama** | Mantener el archivo sólo para trazabilidad |
 | ED-04 | Alta / decisión | En el anexo canónico de Humanos, bajo «Opciones compatibles y límites», permanece una **«Aclaración editorial propuesta, pendiente de aprobación»** sobre categorías Significativo/Menor de Don sin Forma | **Bloqueado: requiere aprobación expresa** | Decidir equivalencias de Rasgos; no reetiquetar como aprobado sin ratificación |
-| ED-05 | Media | El cierre B5 del §3 ya presenta aclaraciones vigentes de Movimiento entre medios, Escala/Enraizar/Derribar, Enlace Micelial y demás interacciones; el anexo incluye detalles de traslado entre medios y Derribar | **Requiere cotejo línea a línea** | Verificar que toda paráfrasis racial respete el cierre B5; eliminar sólo etiquetas obsoletas, no texto normativo válido |
+| ED-05 | Media | B5 vigente en §3 frente a etiquetas de propuesta en páginas de Enanos, Verdantes y Coralios | **Tres contradicciones corregidas en rama; cotejo restante abierto** | Resolver discrepancia de términos «1 Movimiento» / «1 punto de Movimiento» y verificar demás paráfrasis raciales en registro B5 |
 | ED-06 | Alta / publicación | Capítulo 9 identifica **65 propuestas mundanas** de equipo todavía pendientes de precio y uso fino | **Pendiente de selección editorial** | Decidir si se excluyen del Manual Básico o se resuelven con aprobación; no inventar precios |
 | ED-07 | Alta / publicación | Capítulo 23 separa 11 perfiles de referencia de fichas exhaustivas; algunos campos permanecen contextuales (Civil, Soldado, Canalizador, Troll, Centinela) | **Parcial** | Seleccionar fichas realmente «listas para mesa» y verificar que no necesiten inferir capacidades |
 | ED-08 | Media | Símbolos de los siete Primordiales y cinco Luminarias deben tener un inventario visual de cobertura; el registro técnico está delegado a `docs/visual/SIMBOLOS_CANONICOS.md` | **No cerrado en esta pasada** | Comprobar 12/12 por entidad, versión y aprobación explícita |
@@ -40,7 +42,7 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 
 ## Estado de las seis áreas de cierre
 
-1. **Coherencia:** en curso, tres correcciones seguras aplicadas; falta cotejo semántico sección por sección y resolución de ED-04.
+1. **Coherencia:** en curso, seis correcciones seguras aplicadas (tres históricas y tres raciales B5); falta cotejo semántico sección por sección y resolución de ED-04 y B5-D02.
 2. **Equipo/economía:** en revisión; no se cambiaron valores por falta de aprobación.
 3. **PNJ/criaturas:** parcial; perfiles de referencia y encuentros ya existen, pero no equivalen todos a fichas autónomas completas.
 4. **Iconografía:** pendiente inventario verificable 12/12.
