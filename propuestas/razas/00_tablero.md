@@ -862,3 +862,7 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, doce fuentes `manual_final_propuesto.md` y encabezado/autoridad del Manual Maestro `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
 - Creado [control global de extensión](./manual_final/control_global_extension_2026_11_19.md): recuento actual de archivos Markdown completos. Cuatro exceden 850 si se incluyen notas y metadatos: Enanos 851, Terios 857, Feéricos 877, Coralios 893. Ocho están dentro del rango; estos números no equivalen al cuerpo imprimible ni a maquetación real.
 - **Siguiente bloque:** separar y medir texto imprimible de las cuatro fuentes, corregir excesos reales sin borrar restricciones canónicas, cotejar con consolidado y actualizar índice. Fase C sigue en verificación; 0 Foundry, 0 mesa, 0 maquetas; sin merge.
+
+### 2026-11-19 — Control de extensión imprimible C02/C06/C07/C12
+- [Acta de recuento imprimible](./manual_final/control_imprimible_c02_c06_c07_c12_2026_11_19.md): Enanos 839, Terios 772, Feéricos 824, Coralios 819 palabras, incluidos encabezados imprimibles y excluidas notas/metadatos. Cuatro excesos del conteo de archivo completo eran falsos positivos; sin recortes ni cambios normativos.
+- Próximo bloque sustantivo: concordancia integral de doce fuentes con consolidado (costes, negaciones, listas y excepciones); después informe de entrega. Sin maquetación ni pruebas empíricas.
