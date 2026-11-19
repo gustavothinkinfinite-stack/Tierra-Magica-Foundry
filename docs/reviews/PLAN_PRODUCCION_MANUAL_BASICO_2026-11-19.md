@@ -120,6 +120,12 @@
 - **Advertencia:** la composición se reprodujo sobre las cadenas obtenidas del conector GitHub; la ejecución independiente del script en Node no se comprobó aún por indisponibilidad de red en el contenedor. Manuscrito NO apto para imprenta.
 - Problemas: 14 números de capítulo repetidos entre Parte I/II, notas técnicas intercaladas y duplicación racial de lectura. P09–P11 siguen en curso.
 
+## Avance — primera maqueta piloto Carta e identificadores de capítulos
+- Se generó y renderizó un **PDF de prueba de 10 páginas US Letter**, con introducción, reglas 2d10, creación, doble página Humana y tablas de armaduras/escudos. El PDF se entregó como archivo en la conversación; **no se incorporó el binario a GitHub**.
+- Diseño y validaciones registradas en `docs/reviews/MAQUETA_PILOTO_CARTA_10P_2026-11-19.md`.
+- Se asignaron **52 identificadores únicos** (`R01–R38`, `M01–M14`) para resolver la duplicación de números de capítulos; `docs/reviews/INDICE_IDS_CAPITULOS_UNICOS_2026-11-19.md`.
+- Pendientes: aplicar anclas y referencias al manuscrito definitivo, revisión tipográfica de tamaño real, tratamiento de notas internas, arte, sangrado, imprenta y PDF/X. La maqueta es **prototipo**, no validación editorial final.
+
 ## Registro de progreso inicial
 - [x] Producto objetivo editorial establecido.
 - [x] Rama de trabajo independiente y matriz de auditoría ya existentes.
