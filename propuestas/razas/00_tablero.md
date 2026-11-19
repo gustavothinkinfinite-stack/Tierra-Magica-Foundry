@@ -806,3 +806,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan y fuente Goblinoides; verificado Manual Maestro de `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
 - Recortados siete pasajes narrativos redundantes en `05_goblinoides/manual_final_propuesto.md` y el manuscrito de lectura, conservando íntegros Ojo, Escurridizo, Complexión Bugbear, arbitraje SEM-03 no ratificado y costes generales. Conteo de fuente: **827 palabras** (por espacios, con títulos); la paginación visual sigue sin comprobarse.
 - **Siguiente:** auditoría final de equivalencia entre 12 fuentes y manuscrito, control de remisiones y dossier global. **0 Foundry / 0 mesa**, sin canonización.
+
+### 2026-11-19 — Verificación de concordancia (control parcial)
+- Releídos tablero, README, plan, las doce fuentes finales y el capítulo consolidado; consultado el Manual Maestro en `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- Creado [`manual_final/verificacion_concordancia_2026_11_19.md`](./manual_final/verificacion_concordancia_2026_11_19.md): 12 secciones inspeccionadas, conteos 650–850; control léxico favorable en seis familias, extracción inconclusa en cinco y diferencias por notas técnicas en Terios. **No equivale a certificación semántica ni de paginación.**
+- **Siguiente bloque:** cotejo manual de Terios y cinco fuentes de estructura alternativa; revisar negaciones y costes, después informe global. 0 Foundry, 0 mesa, 0 maquetas verificadas.
