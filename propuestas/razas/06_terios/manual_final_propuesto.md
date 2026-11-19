@@ -50,4 +50,4 @@ Nadar no significa respirar bajo el agua: **Anfibio** es un Rasgo general separa
 El **Origen** y el **Trasfondo** describen cultura y trayectoria, no son predeterminados por el linaje.
 
 ---
-**NOTA EDITORIAL — NO IMPRIMIR:** Las escuelas comunitarias son propuesta cultural local sin bonificaciones. No usar «Renkai» como topónimo canónico ni incorporar el Origen Renkaino pendiente. Las sustituciones de Variedad, los efectos de branquias, la economía de rasgos redundantes y el movimiento mixto conservan las reservas de auditoría B4/B5. Texto principal mantiene el paquete del Manual Maestro; no canoniza extensiones.
+**NOTA EDITORIAL — NO IMPRIMIR:** Las escuelas comunitarias son propuesta cultural local sin bonificaciones. No usar «Renkai» como topónimo canónico ni incorporar el Origen Renkaino pendiente. Las sustituciones de Variedad, los efectos de branquias y la economía de rasgos redundantes conservan las reservas de auditoría B4/B5. El movimiento mixto se resuelve por la regla vigente B5-I01; no es una propuesta pendiente. Texto principal mantiene el paquete del Manual Maestro; no canoniza extensiones.
