@@ -801,3 +801,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Control de extensión sincronizada: Goblinoides 881 (excede meta 850), Terios 721, Feéricos 777, Verdantes 760 y Coralios 779 palabras, contando encabezados. **No declarar cerrada la fase editorial:** falta recortar Goblinoides, cotejar equivalencia semántica final y preparar informe global.
 - **Pruebas:** sincronización documental; 0 pruebas Foundry y 0 playtests de mesa. Sin cambios en `main`, mapa o código.
 - **Siguiente bloque:** resolver extensión de Goblinoides y verificar manuscrito final antes del informe de entrega.
+
+### 2026-11-19 — Recorte editorial C05 y sincronización
+- Releídos tablero, README, plan y fuente Goblinoides; verificado Manual Maestro de `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- Recortados siete pasajes narrativos redundantes en `05_goblinoides/manual_final_propuesto.md` y el manuscrito de lectura, conservando íntegros Ojo, Escurridizo, Complexión Bugbear, arbitraje SEM-03 no ratificado y costes generales. Conteo de fuente: **827 palabras** (por espacios, con títulos); la paginación visual sigue sin comprobarse.
+- **Siguiente:** auditoría final de equivalencia entre 12 fuentes y manuscrito, control de remisiones y dossier global. **0 Foundry / 0 mesa**, sin canonización.
