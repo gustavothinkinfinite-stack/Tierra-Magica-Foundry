@@ -88,6 +88,13 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 - Quedan **16 líneas con terminología técnica explícita** detectadas por patrón, inventariadas en `docs/reviews/REFERENCIAS_Y_NOTAS_TECNICAS_SEGUNDA_PASADA_2026-11-19.md`. Se requieren decisiones individuales antes de excluir contenido y comprobar las anclas en el PDF final.
 - La fase de depuración **continúa abierta**, sin declaración de aptitud para imprenta.
 
+## Avance — cierre de la lista de 16 notas técnicas
+- Las **16 líneas con terminología literal Foundry/runtime/Compendio/CREA** se resolvieron en el **derivado de lectura**, mediante **18 sustituciones justificadas**. Sus límites mecánicos se conservaron; la información de migración `crowns` sigue en el Maestro, no en la edición destinada al lector.
+- Se sincronizaron los cambios en `tools/build-print-manuscript.mjs`.
+- Verificación del manuscrito recuperado: **52 capítulos y 52 anclas únicas; nueve enlaces internos sin fallos; doce ascendencias; cero coincidencias del patrón técnico acotado**.
+- Registro de hallazgos: `docs/reviews/CIERRE_TERCERA_PASADA_TECNICA_2026-11-19.md`.
+- **Pendiente:** otras notas de proceso sin esas palabras clave, validación por Node y composición completa; el archivo no está certificado para imprenta.
+
 ## Criterios de tratamiento
 
 - **Corrección editorial segura:** referencias desactualizadas o descripciones históricas cuyo estado vigente ya está respaldado inequívocamente en el Manual.
