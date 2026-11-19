@@ -851,3 +851,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Contrastados contra `main:docs/Tierra_Magica_Manual_Maestro.md` once rasgos/cláusulas de las cuatro familias, sin contradicciones normativas detectadas en el alcance revisado.
 - Registrados **16 casos de aceptación documentales; 0 Foundry y 0 mesa** en [control normativo de cuatro familias](./manual_final/control_normativo_ankar_cristalidos_verdantes_micelios_2026_11_19.md).
 - No se modificaron paquetes ni canon. **Siguiente:** control normativo de familias restantes y verificación editorial global de las doce fuentes.
+
+### 2026-11-19 — Cotejo Enanos: Empujar y B5-I02
+- Contrastado el ejemplo de Empujar con la fórmula universal en `main`: atacante Pequeño, margen Claro, defensor Enano resistente como Mediano = **1 espacio**; ejemplo válido sólo bajo esas condiciones.
+- Detectada omisión editorial de **+1 circunstancial a Defensa de Maniobra contra Derribar** de B5-I02 ya vigente. Corregidos `02_enanos/manual_final_propuesto.md` y `manual_final/capitulo_ascendencias_lectura_editorial.md` sin alterar reglas.
+- Registro: [`manual_final/correccion_enanos_b5_i02_2026_11_19.md`](./manual_final/correccion_enanos_b5_i02_2026_11_19.md). **5 casos documentales, 0 Foundry, 0 mesa**.
+- **Siguiente:** verificación global de equivalencia normativa y extensión de las doce fuentes y manuscrito; preparar informe final sin declarar paginación empírica.
