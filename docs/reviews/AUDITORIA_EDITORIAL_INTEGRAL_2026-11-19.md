@@ -39,6 +39,10 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 - **DEC-ED-05** clasifica los Rasgos compatibles de Don sin Forma mediante costes ya canónicos de §5: Visión en la Oscuridad y Resistencia Ambiental Significativa como Significativos; Sentido Agudo, Trepador Natural, Afinidad Sobrenatural y Resistencia Ambiental Menor como Menores.
 - **DEC-ED-06** unifica la liberación de Enraizar en **1 punto de Movimiento**, sin consumir todo el recurso. Ambas se reflejan en el Manual Maestro de la rama y tienen fundamento en `docs/reviews/DECISIONES_EDITORIALES_APROBADAS_2026-11-19.md`.
 
+## Avance en armamento
+- Se sincronizó la tabla de precios del §19 con **nueve perfiles** que ya estaban correctamente valorados en §9; Mandoble conserva su fila bajo nombre equivalente. Se prepararon tablas para edición impresa (29 armas, 5 armaduras, 3 escudos, 5 lotes de munición) y se registraron límites en `docs/reviews/COTEJO_ARMAMENTO_2026-11-19.md`.
+- **Nuevo punto pendiente:** prorrateo de lotes con fracciones de cobre; el Maestro establece cobre como unidad mínima y permite dividir lotes proporcionalmente, sin explicitar redondeo de compra de unidades indivisibles.
+
 ## Criterios de tratamiento
 
 - **Corrección editorial segura:** referencias desactualizadas o descripciones históricas cuyo estado vigente ya está respaldado inequívocamente en el Manual.
