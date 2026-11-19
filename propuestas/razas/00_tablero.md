@@ -899,3 +899,7 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, cuatro fuentes finales y paquetes correspondientes del Manual Maestro vigente en `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
 - [Control C-12S/3](./manual_final/control_clausulas_breves_c06_c07_c08_c09_2026_11_19.md): 20 contratos y 20 escenarios documentales; 0 ejecutados en Foundry, 0 en mesa. Sin contradicciones directas nuevas en los contratos seleccionados; no se ratifican propuestas.
 - **Siguiente:** C-12S/4 Verdantes, Micelios y Coralios; después enlaces, índices y cierre editorial global. No modificar `main` ni Foundry.
+
+### 2026-11-19 — C-12S/4: Verdantes, Micelios y Coralios
+- Contrastados los tres textos finales con los paquetes raciales de `main` y B5-I01. Guardado [`manual_final/control_clausulas_breves_c10_c11_c12_2026_11_19.md`](./manual_final/control_clausulas_breves_c10_c11_c12_2026_11_19.md): **18 contratos y 18 escenarios documentales, 0 Foundry, 0 mesa**. No se detectaron contradicciones literales en cláusulas seleccionadas; sin cambios de reglas.
+- **Siguiente:** auditoría de enlaces, índice, tabla, diferencias e informe de entrega; no cerrar C sin comprobar referencias y reservas no canónicas. No se alteró `main` ni código operativo.
