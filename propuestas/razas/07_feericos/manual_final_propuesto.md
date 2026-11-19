@@ -45,4 +45,4 @@ El paquete racial no consume los **25 PD ni los 3 PR** de creación, ni concede 
 Una obra amenaza un árbol vinculado; desaparecen los apoyos de una ruta aérea; un puerto responsabiliza a un Silfo por una tormenta. Cada situación plantea elecciones, no poderes nuevos.
 
 ---
-**Nota de producción — no imprimir:** consejo de mediación propuesto; los arbitrajes B5 de movimiento mixto, Derribar y viento mágico no son canon.
+**Nota de producción — no imprimir:** consejo de mediación propuesto. Movimiento entre medios y Escala efectiva/Derribar ya tienen aclaraciones vigentes B5-I01 y B5-I02; no se proponen como reglas nuevas. La protección ante viento mágico no se infiere de Cuerpo del Viento.
