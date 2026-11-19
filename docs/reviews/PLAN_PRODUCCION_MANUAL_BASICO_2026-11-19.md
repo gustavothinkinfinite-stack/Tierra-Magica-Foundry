@@ -17,8 +17,8 @@
 - [ ] P02. Unificar términos de Ascendencia/Origen/Trasfondo, recursos, tablas y referencias cruzadas.
 - [ ] P03. Cotejar las 12 dobles páginas raciales contra el cierre B5 normativo.
 - [ ] P04. Resolver mediante aprobación expresa equivalencias de rasgos de Don sin Forma: ED-04.
-- [ ] P05. Aprobar selección de tablas económicas y exclusión o canonización expresa de las 65 propuestas mundanas y diez propuestas especiales bloqueadas.
-- [ ] P06. Delimitar las fichas de PNJ y criaturas imprescindibles y cerrar campos necesarios para uso sin improvisación.
+- [x] P05. **Selección editorial aprobada:** sólo perfiles canónicos con precio/reglas vigentes; propuestas sin precio y equipo especial sin Perfil fuera de las tablas de compra impresa. **Pendiente dentro del cierre económico:** cotejo ítem por ítem de precios y terminología comercial, que continúa en P01/P02/P08.
+- [x] P06. **Selección editorial realizada:** seis perfiles de combate definidos y transcritos desde §23; los otros cinco se identifican expresamente como fichas contextuales o incompletas. Pendientes pruebas de mesa, arte y cotejo final en P08/P14/P22.
 - [ ] P07. Distinguir canon de propuestas culturales locales; conservar espacios deliberadamente abiertos.
 - [ ] P08. Someter cambios a diff, revisar invariantes y ejecutar pruebas documentales/regresiones disponibles.
 
@@ -80,6 +80,11 @@
 - **P05 en ejecución:** inventario de 25 equipos ordinarios canónicos, 65 propuestas mundanas y 10 especiales; contraste inicial de armaduras, escudos, moneda, ventas y disponibilidades en `docs/reviews/COTEJO_EQUIPO_ECONOMIA_2026-11-19.md`.
 - Se actualizaron dos referencias derivadas en `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md`: Compra libre como ruta única de PEI y grimorio canónico de 60 hechizos.
 - Continúa pendiente la revisión exhaustiva de cada precio y la decisión sobre equivalencias de disponibilidad/mercado; **P05 no está cerrado**.
+
+## Avance registrado — selección del contenido del libro y bestiario
+- **P05 / P06:** aprobadas las decisiones de alcance por delegación del usuario, con criterios del Consejo; respaldo en `docs/reviews/DECISIONES_EDITORIALES_APROBADAS_2026-11-19.md`.
+- **Borrador de seis fichas de uso inmediato:** `docs/reviews/BESTIARIO_BASICO_FICHAS_SELECCIONADAS_2026-11-19.md`. No confundir con las 11 fichas completas ni con los 23 Actores empaquetados.
+- Persisten como verificaciones obligatorias el control item por item de precios, pruebas de mesa, coherencia con §23, cierre Don sin Forma/Enraizar y preflight de la edición física.
 
 ## Registro de progreso inicial
 - [x] Producto objetivo editorial establecido.
