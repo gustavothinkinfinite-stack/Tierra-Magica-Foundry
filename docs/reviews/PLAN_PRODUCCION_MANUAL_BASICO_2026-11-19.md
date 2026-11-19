@@ -113,6 +113,13 @@
 - Se conservó CRAFT-12 por contener posibles correcciones normativas y se excluyeron únicamente bloques claros de gobernanza/archivo histórico fuera del cuerpo de lectura.
 - **Pendiente:** ejecutar Node, inspeccionar resultado generado, auditoría de referencias internas y separar notas técnicas dentro de capítulos. **No marcar P09–P11 completos.**
 
+## Avance — primer manuscrito de lectura generado
+- **Derivado generado y recuperado desde GitHub:** `docs/edicion_impresa/Manual_Basico_Manuscrito_Lectura.md` (842.593 caracteres, ~126.303 palabras).
+- **Integridad verificada:** cinco bloques normativos y narrativos coinciden byte a byte a nivel textual (ignorando el recorte externo `trim`) con sus segmentos del Maestro y aparecen exactamente una vez; 12 ascendencias y 52 capítulos encabezados están presentes.
+- **Documento de verificación:** `docs/reviews/VALIDACION_MANUSCRITO_LECTURA_2026-11-19.md`.
+- **Advertencia:** la composición se reprodujo sobre las cadenas obtenidas del conector GitHub; la ejecución independiente del script en Node no se comprobó aún por indisponibilidad de red en el contenedor. Manuscrito NO apto para imprenta.
+- Problemas: 14 números de capítulo repetidos entre Parte I/II, notas técnicas intercaladas y duplicación racial de lectura. P09–P11 siguen en curso.
+
 ## Registro de progreso inicial
 - [x] Producto objetivo editorial establecido.
 - [x] Rama de trabajo independiente y matriz de auditoría ya existentes.
