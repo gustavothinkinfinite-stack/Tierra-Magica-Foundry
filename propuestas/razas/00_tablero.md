@@ -878,3 +878,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Confirmada existencia de las doce fuentes, capítulo consolidado, índice, tabla y registro de diferencias. Se detectó que `manual_final/informe_de_entrega.md` aún no existía; **creado** [informe de entrega documental](./manual_final/informe_de_entrega.md) con doce enlaces individuales, estado de auditoría y límites explícitos.
 - Control inverso exploratorio por párrafos mostró diferencias de formato/segmentación; **no se califican como contradicciones** ni como equivalencia normativa demostrada. Próxima unidad: cotejo semántico inverso de listas, costes, negaciones y excepciones por raza, seguido de validación de enlaces y cierre editorial.
 - **0 Foundry, 0 mesa, 0 maquetas, 0 ratificaciones.** Fase C permanece abierta; no modificar `main`, atlas ni motor.
+
+### 2026-11-19 — Cotejo inverso C-12R
+- Contrastados 187 párrafos largos del manuscrito consolidado contra los doce textos individuales: 186 coincidencias normalizadas y una nota final de procedencia editorial ajena a las reglas de Coralios. [Acta C-12R](./manual_final/cotejo_inverso_12_fuentes_2026_11_19.md).
+- No se detectaron adiciones textuales jugables en este alcance; no equivale a auditoría semántica exhaustiva de listas cortas, encabezados ni negaciones. **0 Foundry, 0 mesa, 0 maquetas.**
+- **Siguiente bloque:** revisión específica de listas cortas y cláusulas negativas, remisiones internas y decisiones B5; después cierre editorial si procede.
