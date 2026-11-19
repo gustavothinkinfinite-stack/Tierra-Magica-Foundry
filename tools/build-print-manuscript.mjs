@@ -129,6 +129,29 @@ for(const [original,linked] of readerCrossReferences){
 }
 
 
+// Redacción de lectura: se conserva la norma y se omite su historial técnico.
+const readerCopyedits=[
+  [
+    "Para que la creación del Manual y la ficha de Foundry utilicen el mismo lenguaje, todo PJ de nivel 1 registra **exactamente una Ascendencia, un Origen y un Trasfondo**.",
+    "Todo personaje jugador de nivel 1 registra **exactamente una Ascendencia, un Origen y un Trasfondo**."
+  ],
+  [
+    "Resumen del catálogo cerrado en CREA-14:",
+    "Resumen del catálogo vigente para creación:"
+  ],
+  [
+    "Los antiguos **Paquetes de Preparación** dejan de ser una modalidad mecánica separada durante CREA-14. Un grupo puede publicar listas recomendadas de equipo, pero cada objeto de esas listas se compra y contabiliza con las mismas reglas de Compra libre.",
+    "Los antiguos **Paquetes de Preparación** no constituyen una modalidad mecánica separada. Un grupo puede publicar listas recomendadas de equipo, pero cada objeto de esas listas se compra y contabiliza con las mismas reglas de Compra libre."
+  ],
+  [
+    "La creación estándar usa **PEI 20 o = 2.000 c** como presupuesto material. No es dinero y no puede convertirse en saldo. Durante CREA-14 existe una única modalidad mecánica: **Compra libre** con objetos de precio exacto.",
+    "La creación estándar usa **PEI 20 o = 2.000 c** como presupuesto material. No es dinero y no puede convertirse en saldo. Existe una única modalidad mecánica: **Compra libre** con objetos de precio exacto."
+  ]
+];
+for(const [original,clean] of readerCopyedits){
+  if(assembled.split(original).length!==2)throw Error("Redacción no única: "+original);
+  assembled=assembled.replace(original,clean);
+}
 const numbers=(assembled.match(/^### (?:HUMANOS|ENANOS|ÉLFICOS|Orcos|Goblinoides|Terios \/ Anihombres|Feéricos|ANKAR|Cristálidos|Verdantes|Micelios|Coralios) —/gm)||[]).length;
 if(numbers!==12)throw Error("Se esperaban doce dobles páginas: "+numbers);
 for(const marker of required.slice(0,5)){
