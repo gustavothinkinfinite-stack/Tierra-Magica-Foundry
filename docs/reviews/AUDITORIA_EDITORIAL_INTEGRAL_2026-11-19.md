@@ -24,7 +24,7 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 | ED-01 | Alta | Sección «Estado de consolidación», anterior a la edición: recuento histórico 18 frente al grimorio actual de 60 | **Corregido en rama** | Confirmar que ningún índice derivado repita 18 como total vigente |
 | ED-02 | Alta | «Estado de consolidación» describía pueblos sin paquetes, mientras el §3 y el anexo incorporan 12 paquetes | **Corregido en rama** | Conservar separación entre Ascendencia, Origen y Trasfondo |
 | ED-03 | Media | «Estructura de trabajo» mencionaba Parte III aunque el archivo histórico ya está fuera del circuito activo | **Corregido en rama** | Mantener el archivo sólo para trazabilidad |
-| ED-04 | Alta / decisión | En el anexo canónico de Humanos, bajo «Opciones compatibles y límites», permanece una **«Aclaración editorial propuesta, pendiente de aprobación»** sobre categorías Significativo/Menor de Don sin Forma | **Bloqueado: requiere aprobación expresa** | Decidir equivalencias de Rasgos; no reetiquetar como aprobado sin ratificación |
+| ED-04 | Alta / decisión | La doble página Humana dejaba la clasificación de Rasgos Significativo/Menor como propuesta, aunque el catálogo del §5 ya fija costes y grados | **Resuelto en rama (DEC-ED-05)** | Clasificación aprobada con base en 1 PR Menor / 2 PR Significativo, sólo para Rasgos expresamente compatibles |
 | ED-05 | Media | B5 vigente en §3 frente a etiquetas de propuesta en páginas de Enanos, Verdantes y Coralios | **Tres contradicciones corregidas en rama; cotejo restante abierto** | Resolver discrepancia de términos «1 Movimiento» / «1 punto de Movimiento» y verificar demás paráfrasis raciales en registro B5 |
 | ED-06 | Alta / publicación | Catálogo EQP-01: 65 propuestas mundanas y 10 especiales sin precio/Perfil; Disponibilidad y mercado aún sin equivalencia universal | **Alcance editorial aprobado; auditoría económica detallada pendiente** | No imprimir como bienes comprables propuestas sin precio/perfil. Conservar categorías vigentes sin asignar rarezas por inferencia. Ver `DECISIONES_EDITORIALES_APROBADAS_2026-11-19.md` |
 | ED-07 | Alta / publicación | Once perfiles de referencia, varios con campos contextuales; seis perfiles poseen ataques numéricos y defensas publicadas | **Seis perfiles seleccionados para edición; prueba práctica pendiente** | Cotejar `BESTIARIO_BASICO_FICHAS_SELECCIONADAS_2026-11-19.md`; mantener otros cinco como referencia, no como fichas autónomas definitivas |
@@ -33,6 +33,11 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 | ED-10 | Media | El anexo «DOCE ASCENDENCIAS» aparece después del bloque de estado de consolidación y del material técnico CREA-11, no integrado físicamente en §3 | **Decisión de organización pendiente** | Definir inserción y referencias cruzadas para la maquetación sin duplicar ni perder contenido |
 | ED-11 | Media | Apartados técnicos CRAFT-01…12 y catálogos extensos ocupan una proporción importante del documento fuente | **Riesgo editorial** | Distinguir texto de lectura básico de anexos de consulta; preservar el canon único aunque se generen volúmenes derivados |
 | ED-12 | Alta / certificación | Las auditorías técnicas de Foundry constan en documentación, pero esta pasada **no ejecutó** pruebas ni observó partidas de mesa | **No verificado** | Ejecutar regresiones y playtests por separado antes de declarar calidad operativa completa |
+
+## Decisiones posteriores ratificadas
+
+- **DEC-ED-05** clasifica los Rasgos compatibles de Don sin Forma mediante costes ya canónicos de §5: Visión en la Oscuridad y Resistencia Ambiental Significativa como Significativos; Sentido Agudo, Trepador Natural, Afinidad Sobrenatural y Resistencia Ambiental Menor como Menores.
+- **DEC-ED-06** unifica la liberación de Enraizar en **1 punto de Movimiento**, sin consumir todo el recurso. Ambas se reflejan en el Manual Maestro de la rama y tienen fundamento en `docs/reviews/DECISIONES_EDITORIALES_APROBADAS_2026-11-19.md`.
 
 ## Criterios de tratamiento
 
@@ -44,7 +49,7 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 
 ## Estado de las seis áreas de cierre
 
-1. **Coherencia:** en curso, ocho correcciones documentales seguras aplicadas (tres históricas y tres raciales B5); falta cotejo semántico sección por sección y resolución de ED-04 y B5-D02.
+1. **Coherencia:** en curso, ocho correcciones documentales seguras aplicadas (tres históricas y tres raciales B5); falta cotejo semántico sección por sección; ED-04 y B5-D02 están resueltos editorialmente.
 2. **Equipo/economía:** alcance del catálogo de compra aprobado sin cambios de precio; cotejo final de valores y mercado pendiente.
 3. **PNJ/criaturas:** seis fichas de referencia seleccionadas para el libro; el resto sigue contextual o incompleto. Prueba de mesa y cotejo final pendientes.
 4. **Iconografía:** pendiente inventario verificable 12/12.
@@ -53,7 +58,7 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 
 ## Verificación antes de fusionar
 - [ ] Revisar diff completo y confirmar cero cambios normativos involuntarios.
-- [ ] Resolver ED-04. Alcance de ED-06/ED-07 aprobado en `DECISIONES_EDITORIALES_APROBADAS_2026-11-19.md`, con verificaciones económicas y de bestiario aún abiertas.
+- [x] Resolver ED-04 mediante DEC-ED-05; B5-D02 mediante DEC-ED-06. Alcance de ED-06/ED-07 aprobado en `DECISIONES_EDITORIALES_APROBADAS_2026-11-19.md`, con verificaciones económicas y de bestiario aún abiertas.
 - [ ] Completar cotejo racial B5 y registro iconográfico.
 - [ ] Ejecutar pruebas de documentos y regresión pertinentes sobre el head de la rama.
 - [ ] Comprobar que `main` no cambió por estas operaciones.
