@@ -31,7 +31,7 @@ Rangos de Habilidad 0–5: bonos **+0/+1/+2/+4/+6/+8**; costes acumulados **0/1/
 - **10 c = 1 p; 10 p = 1 o; 100 c = 1 o.**
 - **PEI 20 o:** presupuesto de equipo durante creación; no es dinero.
 - **Reserva 2 o:** saldo líquido que se concede una sola vez al cerrar la preparación material.
-- Paquete de Preparación **o** Compra libre; no se combinan y el sobrante de Paquete se pierde.
+- **Compra libre** es la única ruta mecánica de equipo inicial: objetos del catálogo con precio exacto hasta 20 o (2.000 c). Las listas recomendadas son orientativas y cada objeto se paga a precio normal; el PEI sobrante se pierde.
 - Foundry conserva una única fuente de valor en cobres; o/p/c son presentación.
 - Unidad Comercial: el precio puede cubrir un lote, por ejemplo 20 flechas = 2 p, 20 virotes = 3 p, 12 disparos = 5 p.
 - Venta rápida: 25%, redondeo final hacia abajo al cobre. Venta directa: precio acordado; ~50% es sólo referencia.
@@ -98,7 +98,7 @@ Competencia operativa por grado, usando rango base: **Truco/Menor/Básico → En
 
 **Sobrecarga:** sólo si falta exactamente 1 Maná y queda al menos 1; consume el restante; VOL + Canalización DF17. Colapsado no puede Sobrecargar.
 
-**Catálogo nuclear:** 18 hechizos. Barrera Cinética: 3 Maná, Reacción, +2 Defensa normal sólo contra el ataque declarado. Piel Alterada: 4 Maná, Sostenido, Protección 2 sólo contra una categoría coherente declarada y sin acumular con armadura equivalente. Potencia Sobrenatural: 4 Maná, Sostenido, permite interactuar como una categoría de Escala mayor sin aumentar FUE, daño ni Defensa.
+**Grimorio canónico:** 60 hechizos (el núcleo histórico de 18 no es el total vigente). Barrera Cinética: 3 Maná, Reacción, +2 Defensa normal sólo contra el ataque declarado. Piel Alterada: 4 Maná, Sostenido, Protección 2 sólo contra una categoría coherente declarada y sin acumular con armadura equivalente. Potencia Sobrenatural: 4 Maná, Sostenido, permite interactuar como una categoría de Escala mayor sin aumentar FUE, daño ni Defensa.
 
 ## Alquimia, dispositivos y rituales
 
