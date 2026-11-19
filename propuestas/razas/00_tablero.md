@@ -893,3 +893,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Verificados tablero, README, plan y tres fuentes finales contra el Manual Maestro en `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
 - [Acta C-12S/2](./manual_final/control_clausulas_breves_c02_c03_c04_2026_11_19.md): **18 contratos y 18 escenarios documentales**; control de Escala efectiva, Derribar, Sangre de Metal, percepción y Resonancia, Voluntad y Desventaja. Sin nueva contradicción en el alcance. **0 Foundry, 0 mesa, 0 maquetas, 0 ratificaciones**.
 - **Siguiente:** C-12S/3 Terios, Feéricos, Ankar y Cristálidos; después Verdantes, Micelios, Coralios y cierre de remisiones.
+
+
+### 2026-11-19 — C-12S/3: Terios, Feéricos, Ankar y Cristálidos
+- Releídos tablero, README, plan, cuatro fuentes finales y paquetes correspondientes del Manual Maestro vigente en `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- [Control C-12S/3](./manual_final/control_clausulas_breves_c06_c07_c08_c09_2026_11_19.md): 20 contratos y 20 escenarios documentales; 0 ejecutados en Foundry, 0 en mesa. Sin contradicciones directas nuevas en los contratos seleccionados; no se ratifican propuestas.
+- **Siguiente:** C-12S/4 Verdantes, Micelios y Coralios; después enlaces, índices y cierre editorial global. No modificar `main` ni Foundry.
