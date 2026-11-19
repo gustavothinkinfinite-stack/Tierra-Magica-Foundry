@@ -62,6 +62,12 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 - Se preparó la reubicación del anexo racial detrás de creación, pero **no se ejecutó ni evaluó todavía la compilación real bajo Node.js**, ni está lista para imprenta.
 - Documento: `docs/reviews/MAPA_PROCEDENCIA_MANUSCRITO_IMPRESO_2026-11-19.md`.
 
+## Manuscrito de lectura producido y auditado
+- Se creó en la rama `docs/edicion_impresa/Manual_Basico_Manuscrito_Lectura.md` y se recuperó de GitHub para comprobar su existencia.
+- Cinco bloques completos del Maestro conservados exactamente una vez, doce ascendencias trasladadas y 52 capítulos identificados.
+- Se registraron VAL-01 (numeración repetida 1–14), VAL-02 (contenido técnico intercalado), VAL-03 (repeticiones raciales), VAL-04 (anclas y paginación) y VAL-05 (extensión) en `docs/reviews/VALIDACION_MANUSCRITO_LECTURA_2026-11-19.md`.
+- Sigue pendiente prueba independiente de Node.js y una maqueta piloto real; la integridad textual **no equivale a preparación para imprenta**.
+
 ## Criterios de tratamiento
 
 - **Corrección editorial segura:** referencias desactualizadas o descripciones históricas cuyo estado vigente ya está respaldado inequívocamente en el Manual.
