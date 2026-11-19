@@ -3642,7 +3642,7 @@ Fórmulas de referencia:
 | Toxina Debilitante | VIG DF14; con fallo, Desventaja en acciones físicas dependientes de fuerza muscular |
 | Bomba Incendiaria | área pequeña; Daño 6, Pen 1; requiere colocación válida |
 
-Sus precios monetarios están **ratificados en CRAFT-11 — Catálogo de proyectos y recetas de referencia**. Un precio histórico no se convierte por inferencia cuando una entrada distinta siga sin valoración vigente.
+**Esta tabla es sólo una referencia rápida de efectos, no la ficha completa de activación.** Las reglas de Vía, Activación, Duración y Saturación se encuentran en **16. Alquimia**; el precio, coste de materiales, tiempo, competencia y requisitos de preparación constan en **CRAFT-11 — Catálogo de proyectos y recetas de referencia**, dentro del capítulo 18. En particular, **Bálsamo Restaurador requiere 1 minuto**, mientras que **Poción Restauradora consume una Acción**; ambos comparten Saturación Restaurativa. El **Neutralizante Común** tiene Saturación Antitóxica y no habilita resistencias beneficiosas ilimitadas antes de Respiro. Un precio histórico no se convierte por inferencia cuando una entrada distinta siga sin valoración vigente.
 
 ### Dispositivos arcano-industriales
 
