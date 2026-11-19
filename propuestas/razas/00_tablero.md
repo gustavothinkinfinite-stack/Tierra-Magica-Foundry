@@ -771,3 +771,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, doce textos editoriales, revisión cruzada, auditoría cultural y manuscrito de lectura; verificado Manual Maestro `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
 - Creado [`manual_final/control_referencias_y_extension_2026_11_18.md`](./manual_final/control_referencias_y_extension_2026_11_18.md). Conteo directo por espacios: **12/12 entre 650 y 850 palabras**; los antiguos excesos de Goblinoides y Terios ya no existen en las fuentes actuales. Ninguna fuente contiene enlaces Markdown internos; no se deduce de ello que las referencias semánticas estén completas.
 - **EXT-01 cerrada documentalmente; REF-01 parcial; REF-02, MAQ-01 y BAL-01 abiertas.** Siguiente: cotejo semántico de remisiones y denominaciones, después informe global. 0 pruebas empíricas; sin merge ni escritura fuera de la rama/carpeta.
+
+### 2026-11-18 — Cotejo semántico focalizado B5-I01 / Coralios
+- Leídos tablero, README, plan, control de referencias y fuentes C01, C05, C12, tabla comparativa; contrastado Manual Maestro de `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- Corregida C12: el movimiento entre medios es **canon vigente B5-I01**, no propuesta pendiente; ejemplos 9/10 permitido, 11/10 prohibido, Retirada ≤1/2. Se retiró la falsa reserva de propuesta.
+- Registrada [auditoría semántica focalizada](./manual_final/auditoria_semantica_remisiones_2026_11_18.md), incluida inconsistencia en copia editorial tardía del propio Manual Maestro (sin tocar `main`). Tres verificaciones documentales; **0 Foundry, 0 mesa**.
+- **Siguiente bloque:** cotejar las restantes remisiones y topónimos de C02–C11 contra `main`, después informe global y control final de maquetación. Sin merge ni cambios operativos.
