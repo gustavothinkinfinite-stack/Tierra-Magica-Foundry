@@ -68,6 +68,12 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 - Se registraron VAL-01 (numeración repetida 1–14), VAL-02 (contenido técnico intercalado), VAL-03 (repeticiones raciales), VAL-04 (anclas y paginación) y VAL-05 (extensión) en `docs/reviews/VALIDACION_MANUSCRITO_LECTURA_2026-11-19.md`.
 - Sigue pendiente prueba independiente de Node.js y una maqueta piloto real; la integridad textual **no equivale a preparación para imprenta**.
 
+## Avance — primera maqueta piloto Carta e identificadores de capítulos
+- Se generó y renderizó un **PDF de prueba de 10 páginas US Letter**, con introducción, reglas 2d10, creación, doble página Humana y tablas de armaduras/escudos. El PDF se entregó como archivo en la conversación; **no se incorporó el binario a GitHub**.
+- Diseño y validaciones registradas en `docs/reviews/MAQUETA_PILOTO_CARTA_10P_2026-11-19.md`.
+- Se asignaron **52 identificadores únicos** (`R01–R38`, `M01–M14`) para resolver la duplicación de números de capítulos; `docs/reviews/INDICE_IDS_CAPITULOS_UNICOS_2026-11-19.md`.
+- Pendientes: aplicar anclas y referencias al manuscrito definitivo, revisión tipográfica de tamaño real, tratamiento de notas internas, arte, sangrado, imprenta y PDF/X. La maqueta es **prototipo**, no validación editorial final.
+
 ## Criterios de tratamiento
 
 - **Corrección editorial segura:** referencias desactualizadas o descripciones históricas cuyo estado vigente ya está respaldado inequívocamente en el Manual.
