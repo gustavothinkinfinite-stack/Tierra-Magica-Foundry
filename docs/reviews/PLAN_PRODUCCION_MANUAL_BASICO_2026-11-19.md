@@ -91,6 +91,10 @@
 - **DEC-ED-06:** unificado coste de liberar Enraizar a **1 punto de Movimiento**, como ya figuraba en los dos paquetes y sus anexos.
 - **P03:** todavía requiere comprobar todas las paráfrasis y casos de interacción, aunque los dos bloqueos mecánicos detectados ya están resueltos.
 
+## Avance registrado — primera tabla de compra derivada
+- **25/25 artículos EQP-01 comprobados** contra Manual §9 sin diferencias de precio; tabla de trabajo para maquetación en `docs/reviews/TABLA_EDITORIAL_EQUIPO_25_2026-11-19.md`.
+- No marcar todavía P01/P08 como cerrados: faltan otros catálogos, pruebas y control de referencias.
+
 ## Registro de progreso inicial
 - [x] Producto objetivo editorial establecido.
 - [x] Rama de trabajo independiente y matriz de auditoría ya existentes.
