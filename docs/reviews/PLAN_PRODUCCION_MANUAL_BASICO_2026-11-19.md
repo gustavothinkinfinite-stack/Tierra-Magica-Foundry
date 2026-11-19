@@ -107,6 +107,12 @@
 - Se aclaró en el §9 que su tabla de consumibles es **un resumen**, y que §16 y CRAFT-11 fijan los detalles completos. Se destacan Bálsamo vs Poción Restauradora y la Saturación Antitóxica de Neutralizante.
 - Pendientes: pruebas de uso y corrección de maqueta. **No está terminada la auditoría integral.**
 
+## Avance — arquitectura de manuscrito de lectura
+- **P09/P10/P11 en ejecución:** se creó `tools/build-print-manuscript.mjs` para generar una vista de lectura desde el Maestro, reubicar las doce ascendencias inmediatamente después de §3 y conservar reglas/canon restantes.
+- Se documentó con límites verificables y riesgos `docs/reviews/MAPA_PROCEDENCIA_MANUSCRITO_IMPRESO_2026-11-19.md`. Se validó la presencia estructural de 24 capítulos base, 14 de mundo, 14 de panteón y 12 ascendencias con el texto real.
+- Se conservó CRAFT-12 por contener posibles correcciones normativas y se excluyeron únicamente bloques claros de gobernanza/archivo histórico fuera del cuerpo de lectura.
+- **Pendiente:** ejecutar Node, inspeccionar resultado generado, auditoría de referencias internas y separar notas técnicas dentro de capítulos. **No marcar P09–P11 completos.**
+
 ## Registro de progreso inicial
 - [x] Producto objetivo editorial establecido.
 - [x] Rama de trabajo independiente y matriz de auditoría ya existentes.
