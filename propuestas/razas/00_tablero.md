@@ -777,3 +777,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Corregida C12: el movimiento entre medios es **canon vigente B5-I01**, no propuesta pendiente; ejemplos 9/10 permitido, 11/10 prohibido, Retirada ≤1/2. Se retiró la falsa reserva de propuesta.
 - Registrada [auditoría semántica focalizada](./manual_final/auditoria_semantica_remisiones_2026_11_18.md), incluida inconsistencia en copia editorial tardía del propio Manual Maestro (sin tocar `main`). Tres verificaciones documentales; **0 Foundry, 0 mesa**.
 - **Siguiente bloque:** cotejar las restantes remisiones y topónimos de C02–C11 contra `main`, después informe global y control final de maquetación. Sin merge ni cambios operativos.
+
+### 2026-11-18 — Cotejo semántico C02–C11, conciliación B5
+- Releídos tablero, README, plan, diez textos C02–C11 y Manual Maestro `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`, incluidos B5-I01, B5-I02, Enlace Micelial y ratificación del Territorio Oriental.
+- Creada [auditoría C02–C11](./manual_final/auditoria_semantica_c02_c11_b5_2026_11_18.md), matriz individual de diez capítulos; tres inconsistencias de clasificación **SEM-04/05/06 corregidas** en C06, C07 y C10, sin crear reglas ni costes.
+- La condición insular y ubicación del Territorio Oriental en C06 son compatibles con el canon; no se ratificaron ciudades, fronteras ni nombres propuestos.
+- **Siguiente:** aclarar en C05 la interrupción de Escurridizo (SEM-03); resincronizar manuscrito de lectura desde fuentes individuales; control global de referencias, maquetación e informe final. **0 Foundry/mesa**, sin merge, sin escritura fuera de rama/carpeta.
