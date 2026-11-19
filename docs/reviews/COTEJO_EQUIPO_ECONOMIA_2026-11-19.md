@@ -38,6 +38,13 @@ El cotejo por pares comparó **8 herramientas + 15 kits** en el orden y con prec
 
 Se revisaron 29 perfiles de armas, cinco de armaduras y tres de escudos; §19 recibió nueve filas de precios **ya ratificados por §9**, más ordenamiento nominal del Mandoble. Las tablas derivadas quedan en `docs/reviews/TABLAS_EDITORIALES_ARMAS_ARMADURAS_ESCUDOS_MUNICION_2026-11-19.md`. Los detalles de nueve omisiones comerciales, alias de Mandoble y fraccionamiento de munición en `docs/reviews/COTEJO_ARMAMENTO_2026-11-19.md`. Continúa pendiente la política de cobres fraccionarios cuando se divide un lote de virotes o disparos.
 
+## Cierre de revisión de armamento — decisión DEC-ED-07
+- Catálogo base §9: **29 armas, 5 armaduras, 3 escudos**; los valores se trasladaron a tablas derivadas para maquetación.
+- §19 recibió **nueve** filas de precios previamente aprobados en §9, conservando el alias de Mandoble.
+- Se aprobó **DEC-ED-07**: compras de unidades separadas del lote se prorratean por cantidad total de producto de la operación y se redondean una sola vez hacia arriba a cobre; ventas/recuperaciones siguen redondeo hacia abajo. El Manual §§9 y 19 ya contienen esta regla.
+- Registro: `docs/reviews/COTEJO_ARMAMENTO_2026-11-19.md` y `docs/reviews/TABLAS_EDITORIALES_ARMAS_ARMADURAS_ESCUDOS_MUNICION_2026-11-19.md`.
+- Pendientes: cotejo total de variantes individualizadas y pruebas funcionales.
+
 ## Recomendaciones de cierre de libro
 1. Preparar una **tabla única de compra** de equipo aprobado con moneda, precio, unidad comercial, peso físico si existe una regla aprobada (no inventarlo), FUE mínima cuando corresponda, disponibilidad sólo si fue ratificada y requisitos de acceso.
 2. Imprimir por separado las reglas de **creación con PEI** y las de compra ordinaria. No reintroducir Paquetes de Preparación como modalidad mecánica.
