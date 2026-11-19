@@ -50,7 +50,7 @@ Este Manual distingue tres clases de contenido:
 
 - **Parte I:** reglas y procedimientos vigentes para jugar.
 - **Parte II:** Canon del Mundo v1.2 integrado íntegramente como referencia narrativa.
-- **Parte III:** archivo narrativo recuperado del manual largo v0.2; preserva detalle todavía no ratificado o pendiente de edición.
+- **Archivo histórico externo:** el material narrativo recuperado del manual largo v0.2 se conserva en `docs/archive/historico/ARCHIVO_NARRATIVO_RECUPERADO_MANUAL_v0.2_2026-10-06.md`; no forma parte del circuito editorial activo ni constituye una tercera parte vigente del libro.
 - **Estado de consolidación:** indica qué está cerrado, qué requiere edición y qué material del archivo recuperado debe decidirse antes de la edición impresa.
 
 ---
@@ -13420,10 +13420,10 @@ Fin del Canon del Mundo v1.2
 - Economía de Acción, Movimiento y Reacción.
 - Combate, Escala, maniobras, armas, armaduras, escudos y técnicas ratificadas.
 - Vida, Trauma, Heridas Graves, Fatiga y descansos.
-- Magia, Maná, Sostenimiento, Sobrecarga y catálogo estable de 18 hechizos.
+- Magia, Maná, Sostenimiento, Sobrecarga y grimorio canónico de 60 hechizos.
 - Alquimia, Ingeniería arcano-industrial, dispositivos, Ritualismo y proyectos.
 - Familiares: vínculo, economía de control, desarrollo y canon narrativo v1.2.
-- Regla 1.0 de pueblos/orígenes sin paquetes mecánicos gratuitos.
+- Doce paquetes de Ascendencia jugables vigentes, separados de Origen, Trasfondo, cultura, profesión y religión; no consumen los 25 PD ni los 3 PR generales.
 - Canon del Mundo v1.2 completo.
 - Panteón Central: siete Primordiales + cinco Luminarias.
 
