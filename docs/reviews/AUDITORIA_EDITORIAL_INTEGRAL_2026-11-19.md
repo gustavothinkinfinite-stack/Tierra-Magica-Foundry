@@ -13,6 +13,8 @@
 
 4. **Cotejo racial B5 (segunda pasada):** corregidas tres referencias de anexo que describían como propuestas las reglas ya aprobadas de Derribar/Enraizar (Enanos y Verdantes) y Movimiento mixto (Coralios). Registro de alcance y decisiones abiertas en `docs/reviews/COTEJO_B5_DOCE_ASCENDENCIAS_2026-11-19.md`.
 
+5. **Economía y guía derivada:** actualizada la referencia rápida para eliminar la modalidad histórica de Paquetes de Preparación y presentar los 60 hechizos vigentes; ver `docs/reviews/COTEJO_EQUIPO_ECONOMIA_2026-11-19.md`.
+
 Estas modificaciones sólo sincronizan documentación: **no alteran costes, capacidades, atributos, estadísticas, canon ni programación**.
 
 ## Matriz de hallazgos
@@ -24,7 +26,7 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 | ED-03 | Media | «Estructura de trabajo» mencionaba Parte III aunque el archivo histórico ya está fuera del circuito activo | **Corregido en rama** | Mantener el archivo sólo para trazabilidad |
 | ED-04 | Alta / decisión | En el anexo canónico de Humanos, bajo «Opciones compatibles y límites», permanece una **«Aclaración editorial propuesta, pendiente de aprobación»** sobre categorías Significativo/Menor de Don sin Forma | **Bloqueado: requiere aprobación expresa** | Decidir equivalencias de Rasgos; no reetiquetar como aprobado sin ratificación |
 | ED-05 | Media | B5 vigente en §3 frente a etiquetas de propuesta en páginas de Enanos, Verdantes y Coralios | **Tres contradicciones corregidas en rama; cotejo restante abierto** | Resolver discrepancia de términos «1 Movimiento» / «1 punto de Movimiento» y verificar demás paráfrasis raciales en registro B5 |
-| ED-06 | Alta / publicación | Capítulo 9 identifica **65 propuestas mundanas** de equipo todavía pendientes de precio y uso fino | **Pendiente de selección editorial** | Decidir si se excluyen del Manual Básico o se resuelven con aprobación; no inventar precios |
+| ED-06 | Alta / publicación | Capítulo 9 identifica **65 propuestas mundanas** y diez especiales sin perfil o precio, y §19 documenta Disponibilidad/mercado aún sin equivalencia ratificada | **Inventariado en cotejo económico, decisión editorial pendiente** | Separar las 25 entradas ordinarias canónicas de propuestas, cotejar precios y aprobar política de disponibilidad; no inventar precios |
 | ED-07 | Alta / publicación | Capítulo 23 separa 11 perfiles de referencia de fichas exhaustivas; algunos campos permanecen contextuales (Civil, Soldado, Canalizador, Troll, Centinela) | **Parcial** | Seleccionar fichas realmente «listas para mesa» y verificar que no necesiten inferir capacidades |
 | ED-08 | Media | Símbolos de los siete Primordiales y cinco Luminarias deben tener un inventario visual de cobertura; el registro técnico está delegado a `docs/visual/SIMBOLOS_CANONICOS.md` | **No cerrado en esta pasada** | Comprobar 12/12 por entidad, versión y aprobación explícita |
 | ED-09 | Media | `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md` existe, pero el Manual Maestro aún marca glosario e índices editoriales como pendientes | **Pendiente** | Generar índice temático, índice de hechizos/tablas y glosario del libro final; sincronizar referencia rápida con los 60 hechizos |
@@ -42,7 +44,7 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 
 ## Estado de las seis áreas de cierre
 
-1. **Coherencia:** en curso, seis correcciones seguras aplicadas (tres históricas y tres raciales B5); falta cotejo semántico sección por sección y resolución de ED-04 y B5-D02.
+1. **Coherencia:** en curso, ocho correcciones documentales seguras aplicadas (tres históricas y tres raciales B5); falta cotejo semántico sección por sección y resolución de ED-04 y B5-D02.
 2. **Equipo/economía:** en revisión; no se cambiaron valores por falta de aprobación.
 3. **PNJ/criaturas:** parcial; perfiles de referencia y encuentros ya existen, pero no equivalen todos a fichas autónomas completas.
 4. **Iconografía:** pendiente inventario verificable 12/12.
