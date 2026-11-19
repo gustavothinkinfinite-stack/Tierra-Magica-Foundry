@@ -68,7 +68,7 @@ Se transcriben **29 perfiles de armas**, **5 perfiles de armaduras**, **3 perfil
 | 20 flechas perforantes | 4 p | +1 Pen al disparo hasta Pen 3 por esta vía |
 | 20 virotes perforantes | 6 p | +1 Pen al disparo hasta Pen 3 por esta vía |
 
-**Nota de uso:** una unidad se consume al disparar, impacte o falle. La munición perforante no añade daño ni cambia la tirada de ataque; los lotes representan cantidades físicas. Si se vende o compra fracción de un lote cuyo precio unitario no es un número entero de cobres, el documento normativo aún debe concretar una política de redondeo aplicable: **no inventarla durante la edición**.
+**Nota de uso:** una unidad se consume al disparar, impacte o falle. La munición perforante no añade daño ni cambia la tirada de ataque; los lotes representan cantidades físicas. El Manual Maestro §§9 y 19, con la decisión DEC-ED-07, establece prorrateo sobre toda la cantidad del producto en la transacción, redondeando **la compra una sola vez hacia arriba al cobre**, mientras ventas/recuperaciones siguen CRAFT-02 (abajo). Ejemplo: 10 virotes ordinarios cuestan 15 c; uno suelto, 2 c.
 
 ## Coincidencias y advertencias
 - Los 29 perfiles se encuentran en la tabla de §9, con precios publicados.
@@ -85,7 +85,7 @@ Se transcriben **29 perfiles de armas**, **5 perfiles de armaduras**, **3 perfil
 - [x] Escudos: 3/3 perfiles contrastados con ESC-01.
 - [x] Cinco lotes de munición recogidos desde §9 y precios existentes.
 - [ ] Comparar todas las propiedades de 171 variantes de armas, 89 de armaduras y 51 de escudos con catálogo estructurado de Foundry, si se precisa una publicación ampliada detallada.
-- [ ] Comprobar ejemplos de aplicación de munición fraccionada y los redondeos a cobres con decisión canónica.
+- [x] Norma de prorrateo y ejemplos de 1/10 virotes ratificados en DEC-ED-07; pendientes tests automatizados del comercio si se reutiliza esta norma en Foundry.
 - [ ] Componer la maqueta piloto y realizar pruebas de lectura y de imprenta.
 
 **Regla de seguridad:** este archivo es una exportación editorial, no una nueva autoridad de reglas.
