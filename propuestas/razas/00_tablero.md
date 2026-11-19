@@ -828,3 +828,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Corregida la omisión de la restricción por tramo homogéneo: además de suma fraccionaria ≤ 1/2, cada tramo admite como máximo `floor(MOV efectivo del medio/2)` puntos, con sobrecostes antes de dividir. Se sincronizaron `12_coralios/manual_final_propuesto.md` y `manual_final/capitulo_ascendencias_lectura_editorial.md`.
 - Aclaración estrictamente documental de regla ya vigente; **0 pruebas empíricas**, **0 ratificaciones nuevas**, sin cambios en `main`, atlas o Foundry.
 - **Siguiente bloque:** cotejar negaciones, costes, excepciones y restricciones de las diez razas restantes frente al canon y a las fuentes individuales; después informe global y control editorial final.
+
+### 2026-11-19 — Control normativo de Enanos, Élficos y Orcos
+- Cotejados los paquetes raciales individuales de Fase C contra el Manual Maestro de `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`). Nueve campos normativos concordantes por lectura; **14 casos de aceptación diseñados, 0 ejecutados en Foundry y 0 en mesa**.
+- Informe: [`manual_final/control_normativo_enanos_elficos_orcos_2026_11_19.md`](./manual_final/control_normativo_enanos_elficos_orcos_2026_11_19.md).
+- Reserva: cotejar el ejemplo numérico de Empujar contra Enano con el procedimiento universal; no tomar el ejemplo como fórmula general.
+- **Próximo bloque:** Humanos, Terios y Feéricos; luego Ankar, Cristálidos, Verdantes y Micelios, y equivalencia normativa final del consolidado. Sin cambios canónicos.
