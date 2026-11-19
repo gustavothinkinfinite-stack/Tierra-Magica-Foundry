@@ -76,6 +76,11 @@
 - **Dos decisiones abiertas:** Don sin Forma (clasificación Significativo/Menor) y equivalencia del coste «1 Movimiento» / «1 punto de Movimiento» de Enraizar. La primera requiere ratificación; la segunda, revisión normativa.
 - **Criterio de avance:** ninguno de P01 ni P03 se marca terminado hasta cotejo exhaustivo y cierre de discrepancias.
 
+## Avance registrado — cotejo económico
+- **P05 en ejecución:** inventario de 25 equipos ordinarios canónicos, 65 propuestas mundanas y 10 especiales; contraste inicial de armaduras, escudos, moneda, ventas y disponibilidades en `docs/reviews/COTEJO_EQUIPO_ECONOMIA_2026-11-19.md`.
+- Se actualizaron dos referencias derivadas en `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md`: Compra libre como ruta única de PEI y grimorio canónico de 60 hechizos.
+- Continúa pendiente la revisión exhaustiva de cada precio y la decisión sobre equivalencias de disponibilidad/mercado; **P05 no está cerrado**.
+
 ## Registro de progreso inicial
 - [x] Producto objetivo editorial establecido.
 - [x] Rama de trabajo independiente y matriz de auditoría ya existentes.
