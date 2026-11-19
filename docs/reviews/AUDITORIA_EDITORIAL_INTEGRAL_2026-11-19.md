@@ -43,6 +43,13 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 - Se sincronizó la tabla de precios del §19 con **nueve perfiles** que ya estaban correctamente valorados en §9; Mandoble conserva su fila bajo nombre equivalente. Se prepararon tablas para edición impresa (29 armas, 5 armaduras, 3 escudos, 5 lotes de munición) y se registraron límites en `docs/reviews/COTEJO_ARMAMENTO_2026-11-19.md`.
 - **Nuevo punto pendiente:** prorrateo de lotes con fracciones de cobre; el Maestro establece cobre como unidad mínima y permite dividir lotes proporcionalmente, sin explicitar redondeo de compra de unidades indivisibles.
 
+## Cierre de revisión de armamento — decisión DEC-ED-07
+- Catálogo base §9: **29 armas, 5 armaduras, 3 escudos**; los valores se trasladaron a tablas derivadas para maquetación.
+- §19 recibió **nueve** filas de precios previamente aprobados en §9, conservando el alias de Mandoble.
+- Se aprobó **DEC-ED-07**: compras de unidades separadas del lote se prorratean por cantidad total de producto de la operación y se redondean una sola vez hacia arriba a cobre; ventas/recuperaciones siguen redondeo hacia abajo. El Manual §§9 y 19 ya contienen esta regla.
+- Registro: `docs/reviews/COTEJO_ARMAMENTO_2026-11-19.md` y `docs/reviews/TABLAS_EDITORIALES_ARMAS_ARMADURAS_ESCUDOS_MUNICION_2026-11-19.md`.
+- Pendientes: cotejo total de variantes individualizadas y pruebas funcionales.
+
 ## Criterios de tratamiento
 
 - **Corrección editorial segura:** referencias desactualizadas o descripciones históricas cuyo estado vigente ya está respaldado inequívocamente en el Manual.
