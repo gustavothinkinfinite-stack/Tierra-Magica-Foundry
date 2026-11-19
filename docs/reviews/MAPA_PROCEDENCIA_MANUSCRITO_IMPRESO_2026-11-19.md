@@ -33,7 +33,8 @@ Se mantienen los títulos y la numeración originales (la **Parte II** tiene §�
 - [x] 14 capítulos de cosmología y panteón (§§25–38) presentes.
 - [x] Doce encabezados de ascendencias identificados.
 - [x] La zona extensa de CRAFT permanece incluida sin truncamiento.
-- [ ] Ejecutar `node tools/build-print-manuscript.mjs` y controlar la salida real en Node.js (hasta aquí se inspeccionó la estructura in situ y se probó la lógica de segmentación sobre el texto recuperado).
+- [x] Se generó y reabrió en GitHub `docs/edicion_impresa/Manual_Basico_Manuscrito_Lectura.md` mediante ensamblado equivalente sobre el Maestro recuperado con el conector. Se validó integridad de 5/5 bloques.
+- [ ] Ejecución independiente del script por Node y comparación de artefacto; el contenedor actual no puede descargar desde GitHub.
 - [ ] Detectar duplicaciones y referencias cruzadas inválidas tras el movimiento.
 - [ ] Completar selección de 60 hechizos, catálogos, PNJ y cartografía para el volumen único.
 - [ ] Convertir a manuscrito legible tipográficamente sin los reportes internos incrustados.
@@ -45,6 +46,8 @@ Se mantienen los títulos y la numeración originales (la **Parte II** tiene §�
 3. **Mundo y panteón:** reordenar la cosmología detrás del mundo ayuda a lectura, pero sus referencias temáticas deberán mantenerse inteligibles.
 4. **Numeración repetida:** Parte I y Parte II comparten §§1–14; para la edición impresa se necesitarán identificadores estructurales únicos y marcadores de capítulo distintos.
 5. **Extensión física:** el material vigente resulta muy extenso; no es serio prometer una paginación o lomo hasta medirlo después de la composición y del papel elegido.
+
+**Verificación posterior:** `docs/reviews/VALIDACION_MANUSCRITO_LECTURA_2026-11-19.md`. El manuscrito de lectura existe efectivamente en la rama, aunque no es una maqueta paginada ni PDF final.
 
 ## Próxima secuencia
 1. Ejecutar el ensamblador e inspeccionar el Markdown emitido.
