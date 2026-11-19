@@ -88,6 +88,46 @@ assembled=assembled.split("\n").map((line)=>{
   return '<a id="'+id+'"></a>\n'+line;
 }).join("\n");
 if(ids.length!==52)throw Error("Se esperaban 52 IDs de capítulos, encontrados "+ids.length);
+// Remisiones editoriales no ambiguas; no cambia reglas ni la numeración fuente.
+const readerCrossReferences=[
+  [
+    "El catálogo vigente se encuentra en el capítulo de Técnicas.",
+    "El catálogo vigente se encuentra en el [capítulo de Técnicas](#tm-r13)."
+  ],
+  [
+    "Disponible sólo en su forma base definida en el capítulo 5; cualquier Don adicional exige un perfil expresamente costeado",
+    "Disponible sólo en su forma base definida en el [capítulo 5](#tm-r05); cualquier Don adicional exige un perfil expresamente costeado"
+  ],
+  [
+    "conforme al capítulo de Familiares.",
+    "conforme al [capítulo de Familiares](#tm-r14)."
+  ],
+  [
+    "del capítulo de Vida y daño.",
+    "del [capítulo de Vida, heridas y recuperación](#tm-r10)."
+  ],
+  [
+    "del capítulo de Combate:",
+    "del [capítulo de Combate](#tm-r08):"
+  ],
+  [
+    "dentro del capítulo 18.",
+    "dentro del [capítulo 18](#tm-r18)."
+  ],
+  [
+    "dentro del capítulo 6.",
+    "dentro del [capítulo 6](#tm-r06)."
+  ],
+  [
+    "en el capítulo 18.",
+    "en el [capítulo 18](#tm-r18)."
+  ]
+];
+for(const [original,linked] of readerCrossReferences){
+  if(!assembled.includes(original))throw Error("Remisión no encontrada: "+original);
+  assembled=assembled.split(original).join(linked);
+}
+
 
 const numbers=(assembled.match(/^### (?:HUMANOS|ENANOS|ÉLFICOS|Orcos|Goblinoides|Terios \/ Anihombres|Feéricos|ANKAR|Cristálidos|Verdantes|Micelios|Coralios) —/gm)||[]).length;
 if(numbers!==12)throw Error("Se esperaban doce dobles páginas: "+numbers);
