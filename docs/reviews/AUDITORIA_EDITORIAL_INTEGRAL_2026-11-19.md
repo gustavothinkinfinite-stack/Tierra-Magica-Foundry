@@ -26,8 +26,8 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 | ED-03 | Media | «Estructura de trabajo» mencionaba Parte III aunque el archivo histórico ya está fuera del circuito activo | **Corregido en rama** | Mantener el archivo sólo para trazabilidad |
 | ED-04 | Alta / decisión | En el anexo canónico de Humanos, bajo «Opciones compatibles y límites», permanece una **«Aclaración editorial propuesta, pendiente de aprobación»** sobre categorías Significativo/Menor de Don sin Forma | **Bloqueado: requiere aprobación expresa** | Decidir equivalencias de Rasgos; no reetiquetar como aprobado sin ratificación |
 | ED-05 | Media | B5 vigente en §3 frente a etiquetas de propuesta en páginas de Enanos, Verdantes y Coralios | **Tres contradicciones corregidas en rama; cotejo restante abierto** | Resolver discrepancia de términos «1 Movimiento» / «1 punto de Movimiento» y verificar demás paráfrasis raciales en registro B5 |
-| ED-06 | Alta / publicación | Capítulo 9 identifica **65 propuestas mundanas** y diez especiales sin perfil o precio, y §19 documenta Disponibilidad/mercado aún sin equivalencia ratificada | **Inventariado en cotejo económico, decisión editorial pendiente** | Separar las 25 entradas ordinarias canónicas de propuestas, cotejar precios y aprobar política de disponibilidad; no inventar precios |
-| ED-07 | Alta / publicación | Capítulo 23 separa 11 perfiles de referencia de fichas exhaustivas; algunos campos permanecen contextuales (Civil, Soldado, Canalizador, Troll, Centinela) | **Parcial** | Seleccionar fichas realmente «listas para mesa» y verificar que no necesiten inferir capacidades |
+| ED-06 | Alta / publicación | Catálogo EQP-01: 65 propuestas mundanas y 10 especiales sin precio/Perfil; Disponibilidad y mercado aún sin equivalencia universal | **Alcance editorial aprobado; auditoría económica detallada pendiente** | No imprimir como bienes comprables propuestas sin precio/perfil. Conservar categorías vigentes sin asignar rarezas por inferencia. Ver `DECISIONES_EDITORIALES_APROBADAS_2026-11-19.md` |
+| ED-07 | Alta / publicación | Once perfiles de referencia, varios con campos contextuales; seis perfiles poseen ataques numéricos y defensas publicadas | **Seis perfiles seleccionados para edición; prueba práctica pendiente** | Cotejar `BESTIARIO_BASICO_FICHAS_SELECCIONADAS_2026-11-19.md`; mantener otros cinco como referencia, no como fichas autónomas definitivas |
 | ED-08 | Media | Símbolos de los siete Primordiales y cinco Luminarias deben tener un inventario visual de cobertura; el registro técnico está delegado a `docs/visual/SIMBOLOS_CANONICOS.md` | **No cerrado en esta pasada** | Comprobar 12/12 por entidad, versión y aprobación explícita |
 | ED-09 | Media | `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md` existe, pero el Manual Maestro aún marca glosario e índices editoriales como pendientes | **Pendiente** | Generar índice temático, índice de hechizos/tablas y glosario del libro final; sincronizar referencia rápida con los 60 hechizos |
 | ED-10 | Media | El anexo «DOCE ASCENDENCIAS» aparece después del bloque de estado de consolidación y del material técnico CREA-11, no integrado físicamente en §3 | **Decisión de organización pendiente** | Definir inserción y referencias cruzadas para la maquetación sin duplicar ni perder contenido |
@@ -45,15 +45,15 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 ## Estado de las seis áreas de cierre
 
 1. **Coherencia:** en curso, ocho correcciones documentales seguras aplicadas (tres históricas y tres raciales B5); falta cotejo semántico sección por sección y resolución de ED-04 y B5-D02.
-2. **Equipo/economía:** en revisión; no se cambiaron valores por falta de aprobación.
-3. **PNJ/criaturas:** parcial; perfiles de referencia y encuentros ya existen, pero no equivalen todos a fichas autónomas completas.
+2. **Equipo/economía:** alcance del catálogo de compra aprobado sin cambios de precio; cotejo final de valores y mercado pendiente.
+3. **PNJ/criaturas:** seis fichas de referencia seleccionadas para el libro; el resto sigue contextual o incompleto. Prueba de mesa y cotejo final pendientes.
 4. **Iconografía:** pendiente inventario verificable 12/12.
 5. **Glosario/índices:** pendiente de cierre de contenido; existe referencia rápida separada.
 6. **Producción editorial:** aún no iniciada en esta rama; sin PDF o maqueta final.
 
 ## Verificación antes de fusionar
 - [ ] Revisar diff completo y confirmar cero cambios normativos involuntarios.
-- [ ] Resolver o excluir expresamente de alcance editorial ED-04, ED-06 y ED-07.
+- [ ] Resolver ED-04. Alcance de ED-06/ED-07 aprobado en `DECISIONES_EDITORIALES_APROBADAS_2026-11-19.md`, con verificaciones económicas y de bestiario aún abiertas.
 - [ ] Completar cotejo racial B5 y registro iconográfico.
 - [ ] Ejecutar pruebas de documentos y regresión pertinentes sobre el head de la rama.
 - [ ] Comprobar que `main` no cambió por estas operaciones.
