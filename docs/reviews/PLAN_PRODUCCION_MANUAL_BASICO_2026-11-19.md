@@ -147,6 +147,13 @@
 - Registro de hallazgos: `docs/reviews/CIERRE_TERCERA_PASADA_TECNICA_2026-11-19.md`.
 - **Pendiente:** otras notas de proceso sin esas palabras clave, validación por Node y composición completa; el archivo no está certificado para imprenta.
 
+## Avance — glosario de lectura y rótulos de fabricación
+- Se incorporó al manuscrito un apéndice de **25 definiciones literales** del glosario vigente, derivado de `docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md`; existe además como `docs/edicion_impresa/Glosario_de_Consulta_Manual_Basico.md`.
+- Se transformaron **12 rótulos** `VIGENTE · CERRADO` de CRAFT-01 a CRAFT-12 en `Regla vigente`, sin recortar sus reglas.
+- Se actualizaron manuscrito y generador; anclas **52/52**, nueve vínculos sin errores, y cotejo del apéndice completo contra el derivado.
+- Resultado y pendientes: `docs/reviews/CUARTA_PASADA_GLOSARIO_ROTULOS_2026-11-19.md`.
+- Permanecen abiertos la ejecución de Node, el índice paginado y la maqueta extendida.
+
 ## Registro de progreso inicial
 - [x] Producto objetivo editorial establecido.
 - [x] Rama de trabajo independiente y matriz de auditoría ya existentes.
