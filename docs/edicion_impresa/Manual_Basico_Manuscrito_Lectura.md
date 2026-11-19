@@ -16,6 +16,7 @@ Este documento es derivado y debe reconstruirse cuando cambie el Maestro.
 
 # PARTE I — REGLAS VIGENTES Y GUÍA DE JUEGO
 
+<a id="tm-r01"></a>
 ## 1. Qué es Tierra Mágica
 
 Tierra Mágica es un juego de rol de fantasía medieval arcano-industrial. La magia forma parte de la sociedad y convive con tecnología de vapor, ingeniería arcana, armas tradicionales, criaturas fantásticas, dioses, pactos y familiares mágicos.
@@ -35,6 +36,7 @@ El sistema busca personajes heroicos sin convertir la progresión en inflación 
 - Una tirada alta no concede conocimiento, competencia ni posibilidad física que el personaje no posee.
 - Se reutiliza el mismo motor siempre que sea razonable y se evitan recursos secundarios innecesarios.
 
+<a id="tm-r02"></a>
 ## 2. Regla fundamental
 
 Una prueba usa:
@@ -120,6 +122,7 @@ Hay empate. Los bonos relevantes también son iguales (+4 frente a +4), por lo q
 
 Esto no obliga a creer una afirmación imposible ni convierte Empatía en detector de mentiras. Sólo resuelve qué consigue esa confrontación concreta con la información disponible.
 
+<a id="tm-r03"></a>
 ## 3. Creación de personaje paso a paso
 
 La creación de personaje debe poder completarse leyendo únicamente este Manual. La base común es **25 PD + 3 PR + PEI 20 o + Reserva líquida 2 o**, siete Atributos y una identidad narrativa libre de clases obligatorias.
@@ -1679,6 +1682,7 @@ Una esclusa que protege un barrio vivo comienza a fallar; un cargamento desapare
 
 ---
 
+<a id="tm-r04"></a>
 ## 4. Desarrollo y subida de nivel
 
 Tierra Mágica no usa clases. Subir de nivel **no entrega un paquete fijo de clase ni un bono universal a las tiradas**. El personaje crece gastando PD en las capacidades que decide desarrollar.
@@ -2712,6 +2716,7 @@ Aunque un personaje tenga PD suficientes para pagar Maestro antes, **no puede al
 
 Del mismo modo, Gran Maestro sólo puede alcanzarse desde nivel 15 y cuesta 8 PD adicionales desde Maestro, además de exigir una Especialización cuando la Habilidad tenga catálogo de Especializaciones.
 
+<a id="tm-r05"></a>
 ## 5. Rasgos y Puntos de Rasgo
 
 Los Rasgos representan propiedades persistentes del personaje que no encajan como entrenamiento ordinario. En creación se dispone de **3 PR**, separados de los PD y **adicionales al paquete racial jugable**. Los PR y los PD no se convierten entre sí. Un Rasgo puede ser Innato, Adquirido, Vincular o Condicional. Los Rasgos negativos no generan PR adicionales.
@@ -2850,6 +2855,7 @@ El personaje posee anatomía capaz de vuelo sostenido y puede volar hasta su Mov
 
 Don sin Forma puede elegir gratuitamente únicamente Rasgos Generales compatibles con su propia regla: **un Significativo** (Visión en la Oscuridad de 2 PR o Resistencia Ambiental en grado Significativo de 2 PR) **o dos Menores** (Sentido Agudo, Trepador Natural, Afinidad Sobrenatural o Resistencia Ambiental en grado Menor, todos de 1 PR), siempre que el concepto explique las propiedades. Ésta es una clasificación de elecciones compatibles, **no una reserva de PR** ni un derecho a convertir 2 PR de referencia en otros Rasgos. No puede utilizarse para Vínculos, Pactos, Familiar Mágico, Prótesis derivada de un acontecimiento todavía inexistente, Corpulento, Masivo, Vuelo Natural ni para duplicar una capacidad racial.
 
+<a id="tm-r06"></a>
 ## 6. Turno, movimiento y posición
 
 En su turno una criatura dispone normalmente de **Movimiento + Acción + Reacción**. El Movimiento puede dividirse antes y después de la Acción cuando la situación lo permite. La Reacción se recupera al inicio del turno propio; una Reacción no utilizada se pierde al ser reemplazada por la nueva. Una capacidad que conceda varias Reacciones especifica cuántas pueden utilizarse entre dos turnos propios. La misma Reacción no se repite sobre el mismo disparador salvo regla expresa.
@@ -3217,6 +3223,7 @@ El atajo es más corto en kilómetros, pero exige prueba de Viaje **PER + Superv
 
 **Retrasar** desplaza el turno a un momento posterior de la ronda. La criatura conserva esa nueva posición de iniciativa y nunca obtiene dos turnos por retrasar.
 
+<a id="tm-r07"></a>
 ## 7. Escala y maniobras
 
 Las categorías de Escala son **Diminuta, Pequeña, Mediana, Grande, Enorme y Colosal**. No conceden bonos genéricos a ataque, Defensa o daño. Como referencia espacial: Diminuta ocupa menos de un espacio; Pequeña y Mediana uno; Grande 2x2; Enorme 3x3; Colosal 4x4 o más.
@@ -3333,6 +3340,7 @@ Recoger del suelo un objeto accesible dentro del propio alcance cuesta normalmen
 
 Para Derribar, Empujar o Agarrar puede reducir en una categoría la diferencia funcional de Escala cuando el efecto sea compatible. No convierte automáticamente en posible una maniobra contra algo anclado, inmóvil o anatómicamente imposible.
 
+<a id="tm-r08"></a>
 ## 8. Combate
 
 El combate usa la misma lógica general del sistema, pero organiza las decisiones en un orden estricto para que todos sepan **cuándo pueden actuar, qué recurso consumen y contra qué valor se resuelve cada acción**.
@@ -3808,6 +3816,7 @@ La cobertura modificó la posibilidad de impacto; no redujo el daño después de
 
 **Nueva ronda:** después de que todos hayan actuado, continúa el mismo orden salvo reglas como Retrasar.
 
+<a id="tm-r09"></a>
 ## 9. Armas, armaduras, equipo y suministros
 
 Este capítulo explica **qué hace el equipo durante el juego**. Los precios, Disponibilidad y reglas comerciales completas se encuentran en **Economía, disponibilidad y equipo**.
@@ -4216,6 +4225,7 @@ Total: **6 o 6 p**.
 
 Ese equipo no concede bonos ocultos. El arco usa sus estadísticas; la armadura concede Protección 1; los Kits habilitan sus métodos apropiados; las flechas, provisiones y combustible se consumen físicamente cuando se utilizan.
 
+<a id="tm-r10"></a>
 ## 10. Vida, heridas, Trauma y recuperación
 
 La Vida máxima es 10 + 2xVIG. Llegar a 0 Vida causa **Incapacitado**, no muerte automática. Para un personaje orgánico, la primera caída pertinente desde Vida positiva a 0 mientras tiene Trauma 0 eleva Trauma a 1. Golpear repetidamente a una criatura ya en 0 no incrementa Trauma de manera automática. Una lesión deliberadamente grave, una ejecución o una fuerza devastadora pueden producir consecuencias mayores según la ficción.
@@ -4298,6 +4308,7 @@ Fatiga: **Fresco, Fatigado, Exhausto, Colapsado**. Fatigado sufre Desventaja en 
 
 Condiciones universales: Derribado, Agarrado, Desprevenido, Desorientado, Incapacitado e Inconsciente. Estabilizado es un estado positivo. Las duraciones de referencia son Instantánea, hasta el siguiente turno, Escena, Temporal y Sostenida.
 
+<a id="tm-r11"></a>
 ## 11. Magia
 
 La magia usa las mismas reglas fundamentales de Acción, Reacción, objetivos y oposición que el resto del sistema, pero añade **Maná, competencia mágica, Método y Sostenimiento**.
@@ -4829,6 +4840,7 @@ Piel Alterada continúa Sostenida porque Onda de Choque no es Sostenida. Nara, a
 
 **Ritual:** usa Ritualismo y su Tiempo; no se comprime en una Acción.
 
+<a id="tm-r12"></a>
 ## 12. Grimorio canónico
 
 El catálogo mecánico canónico está formado por **60 hechizos**. Nombres históricos, variantes de diseño, trucos no ratificados o entradas antiguas no crean hechizos adicionales ni versiones gratuitas. Un efecto nuevo sólo entra en el catálogo cuando se define aquí con coste, objetivo, alcance, duración, resistencia y límites suficientes.
@@ -4958,6 +4970,7 @@ Influencia modifica estados emocionales, atención, disposición y decisiones de
 
 Nombres como Chispa, Pulso, Descarga, Lanza, Impulso, Paso Ligero, Molde, Ajuste, Adaptación, Alterar Forma, Forma Adaptativa, Alivio, Estabilización, Purificación, Diagnóstico, Realce, Marca, Eco, Lectura de Huella, Matiz, Susurro, Impulso Emocional, Silencio Mental, Señal, Mano, Ancla o Restauración Profunda pertenecen al **archivo de diseño**, no al catálogo mecánico canónico. Si un uso narrativo reproduce un efecto mecánico de uno de los 60 hechizos, debe pagar y respetar el hechizo correspondiente.
 
+<a id="tm-r13"></a>
 ## 13. Técnicas
 
 Las Técnicas representan entrenamiento, maniobras o capacidades aprendidas. Sus grados y costes normales son Básica 2 PD, Avanzada 3 PD, Maestra 5 PD y Legendaria 8+ PD. Una Técnica sólo hace lo que especifica: no crea competencia, acciones, Reacciones, alcance o recursos adicionales salvo que lo indique expresamente.
@@ -4983,6 +4996,7 @@ Las Técnicas representan entrenamiento, maniobras o capacidades aprendidas. Sus
 
 **Intercepción** está ratificada como Técnica Básica de 2 PD con la resolución indicada en el catálogo anterior.
 
+<a id="tm-r14"></a>
 ## 14. Familiares, vínculos e invocaciones
 
 **Familiar Mágico** es un Rasgo de Vínculo de 3 PR. El Familiar es una criatura independiente vinculada al personaje, no una extensión perfecta del jugador ni un segundo personaje completo gratuito. Tiene personalidad, deseos, conocimiento, criterio y una naturaleza propia. El vínculo no implica obediencia absoluta.
@@ -5056,6 +5070,7 @@ A 0 Vida el Familiar queda Incapacitado o gravemente herido según su naturaleza
 
 Las criaturas invocadas usan los mismos tres modos conceptuales: Autónoma, Vinculada o Reactiva. Invocar, contener y controlar son funciones distintas. Una invocación Vinculada no concede un segundo turno completo: cambiar una orden táctica compleja consume la Acción del invocador y una orden persistente sólo continúa gratis mientras sea simple y no constituya una intervención táctica significativa repetida. Varias invocaciones demandantes quedan sujetas a los límites de Sostenimiento aplicables.
 
+<a id="tm-r15"></a>
 ## 15. Ritualismo
 
 Ritualismo es una Habilidad independiente de Canalización. Un ritual usa **2d10 + Atributo apropiado + Ritualismo** cuando necesita una prueba. Cada ritual define Complejidad, DF, Tiempo, Participantes, Componentes, Fuente, Alcance, Efecto y consecuencias de fallo.
@@ -5074,6 +5089,7 @@ Los componentes habilitan el procedimiento; no son bonos numéricos arbitrarios.
 
 La investigación ritual puede descubrir procedimientos nuevos, pero una tirada no vuelve viable algo que el mundo establece como imposible. No existe Resurrección estándar ni una regla universal de sacrificio convertido en Maná.
 
+<a id="tm-r16"></a>
 ## 16. Alquimia
 
 Una Fórmula se describe mediante **Nombre, Grado, Preparación, Componentes, Herramientas, Vía, Activación, Duración, Saturación, Efecto y Preservación**. Preparar una fórmula conocida en laboratorio adecuado, con ingredientes, tiempo y competencia suficientes, es una tarea rutinaria y no exige tirada. La improvisación, presión o investigación sí pueden hacerlo.
@@ -5113,6 +5129,7 @@ Los explosivos usan una prueba de colocación cuando existe incertidumbre, norma
 
 **CRAFT-11 — Catálogo de proyectos y recetas de referencia** fija precio, CM, tiempo, competencia y activación completa de estas ocho Fórmulas.
 
+<a id="tm-r17"></a>
 ## 17. Ingeniería arcano-industrial
 
 Las máquinas no usan Maná personal por defecto. Un acumulador se define por **Energía**, **Caudal** máximo por activación y **Estabilidad**. Un dispositivo define su **Consumo**. Para activarlo debe cumplirse Consumo <= Energía disponible y Consumo <= Caudal; la activación reduce Energía, no Maná.
@@ -5131,6 +5148,7 @@ Dispositivos de referencia incluyen lámparas arcanas, herramientas motorizadas,
 
 Ingeniería diseña, construye y repara mecanismos; Arcana comprende fenómenos mágicos; Canalización dirige activamente magia personal cuando corresponda. Una Habilidad no reemplaza universalmente a las otras.
 
+<a id="tm-r18"></a>
 ## 18. Proyectos, fabricación e investigación
 
 > **CRAFT-01 — VIGENTE · CERRADO.** Este capítulo contiene el motor universal de proyectos y fabricación. Las ampliaciones CRAFT-02 y posteriores cuantifican economía, recetas, calidad, materiales especiales, trampas, runas, objetos mágicos, ingeniería avanzada e investigación sin reemplazar este motor salvo revisión explícita del canon.
@@ -10828,6 +10846,7 @@ CRAFT-12 queda como auditoría de regresión: cualquier regla futura que afecte 
 El siguiente bloque es **CRAFT-13 — Implementación Foundry VTT del sistema de fabricación**.
 
 
+<a id="tm-r19"></a>
 ## 19. Economía, disponibilidad y equipo
 
 Las reglas de **uso práctico** de armas, armaduras, escudos, munición, Kits, raciones, consumibles y dispositivos están en el capítulo **9. Armas, armaduras, equipo y suministros**. Este capítulo define principalmente precio, Disponibilidad, mercado y adquisición.
@@ -10865,22 +10884,6 @@ El capítulo 9 también fija **20 flechas perforantes = 4 p** y **20 virotes per
 En compras de cantidades menores que una Unidad Comercial, **prorrateá en cobres sobre la cantidad total de ese producto en la transacción y redondeá una sola vez hacia arriba al cobre entero**, conforme al ejemplo de Munición del capítulo 9; la venta y recuperación se redondean hacia abajo según CRAFT-02. No generes valores unitarios ficticios redondeados para multiplicarlos después.
 
 El precio no es el único límite. Un objeto o servicio también puede tener **Disponibilidad** —Común, Profesional, Restringida, Rara o Excepcional— y un régimen de acceso social/legal. Tener suficiente dinero no crea existencias ni elimina licencias, requisitos o logística.
-
-### Auditoría de disponibilidad en Foundry (pendiente de conciliación)
-
-**Hallazgo técnico documental, sin modificación de las reglas comerciales:** el capítulo distingue cinco categorías de Disponibilidad, mientras que `scripts/rules/commerce.mjs` usa cuatro niveles operativos de establecimiento (`village`, `town`, `city`, `metropolis`). **No existe en este capítulo una equivalencia universal ratificada** entre esas dos clasificaciones. Nivel de mercado y régimen social/legal no son conceptos idénticos.
-
-Al revisar el código fuente se identifican tres límites concretos:
-
-1. `offerAvailabilityTier(item)` asigna actualmente `common` cuando el campo de disponibilidad está ausente. Este **valor operativo por defecto no constituye ratificación** de que todos esos bienes sean «Comunes» en el mundo. El catálogo `CANONICAL_EQUIPMENT` de `scripts/catalog/equipment-canonical.mjs` contiene 25 objetos con precio exacto, pero sus entradas no declaran una disponibilidad individual.
-2. El código sí reconoce `rare` como nivel 3 y las armas `Pistola repetidora` y `Rifle repetidor` llevan `availability: "rare"` en `scripts/content.mjs`, concordando con la anotación **Rara** de la tabla de precios. No debe extenderse esa clasificación a otras armas sólo por similitud.
-3. La función de comercio no incluye una clave específica `professional`; `restricted` se dirige al nivel 4. Su traducción a las categorías **Profesional** y **Restringida** y las restricciones de licencia/acceso requieren una tabla explícita de correspondencias y reglas de autorización. Un nivel comercial por sí solo no demuestra derecho legal a comprar.
-
-**Corrección técnica de compatibilidad (2026-11-18):** el comercio distingue desde ahora un estado operativo `availabilityStatus: "unspecified"` cuando el objeto carece de clasificación; no lo presenta como categoría canónica «Común». La oferta conserva ese estado al normalizarse y el editor del comerciante lo muestra explícitamente. El motor reconoce además `professional` como entrada de disponibilidad operativa de nivel de mercado 2. **Son medidas de trazabilidad e interoperabilidad, no asignaciones canónicas nuevas.** Para no romper comercios previamente creados, el nivel mínimo de un bien `unspecified` continúa provisionalmente en 1; esa compatibilidad de compra **no equivale** a declarar el bien Común. El editor permite modificar el nivel mínimo de cada oferta. Se añadieron pruebas automatizadas para estado ausente, estado explícito y `professional`.
-
-**Salvaguarda comercial provisional (2026-11-18):** un artículo etiquetado **Restringida** no se compra mediante la venta automática del comerciante, aunque éste sea de nivel `metropolis` y posea existencias. `quoteCommerce` consulta la disponibilidad del objeto real y también la conservada en la oferta para evitar que modificar el nivel mínimo o el registro de oferta eluda la restricción. La interfaz deshabilita la compra cuando la oferta declara `restricted`; si una oferta heredada no almacena esa etiqueta, el servidor continúa validando el objeto real. Los **cofres** mantienen su funcionamiento independiente como entregas gratuitas del Director. **No se ha creado un sistema de permisos, licencias ni adjudicado nuevas rarezas:** es una barrera temporal contra ventas automáticas no justificadas mientras se ratifican las reglas de acceso.
-
-**Pendiente de decisión de implementación:** ratificar equivalencias entre los cinco grados de Disponibilidad y los cuatro niveles de mercado; concretar el procedimiento para autorizar ventas **Restringidas** y sus controles; definir la política definitiva de venta de bienes `unspecified` sin bloquear comercio legítimo ni elevar su rareza por inferencia; ampliar pruebas de autorización una vez aprobado el diseño. Hasta esa resolución, no se atribuirán disponibilidades canónicas a los 25 objetos de EQP-01 ni a otras entradas por inferencia.
 
 ### Catálogo monetario de equipo
 
@@ -10953,6 +10956,7 @@ CRAFT-03 aclara que fabricar desde cero para un usuario conocido incluye el ajus
 
 **crowns** es un campo legado obsoleto, no una cuarta moneda canónica. No tiene equivalencia automática. Foundry preserva el valor original y marca el Actor como pendiente hasta que una persona indique explícitamente cuántos cobres vale 1 crown o confirme que debe archivarse sin convertirlo. Nunca se suma crowns silenciosamente a un saldo canónico existente.
 
+<a id="tm-r20"></a>
 ## 20. Pueblos jugables, herencias, culturas y orígenes
 
 ### Regla mecánica vigente
@@ -10999,6 +11003,7 @@ La profesión u oficio describe la trayectoria del personaje. No constituye una 
 
 Una herencia mixta debe ser coherente con la anatomía, biología, magia y ficción establecidas. No sirve para sumar gratuitamente todos los beneficios de dos paquetes. La compatibilidad reproductiva o mágica entre determinados pueblos continúa abierta allí donde el canon no la haya definido; no se asumen automáticamente semielfos, semiorcos u otros linajes hasta que esa compatibilidad sea consolidada.
 
+<a id="tm-r21"></a>
 ## 21. Guía narrativa de Origen y pertenencia
 
 Al crear un personaje conviene registrar:
@@ -11015,6 +11020,7 @@ Al crear un personaje conviene registrar:
 
 Estos datos son importantes porque la ficción establece acceso, conocimiento, leyes, reputación, permisos, información y consecuencias. Sin embargo, no funcionan como bonos numéricos ocultos.
 
+<a id="tm-r22"></a>
 ## 22. Vehículos, monturas y autómatas
 
 Las reglas de distancia diaria para **viaje a pie, caballo y carreta**, así como terreno, ritmo, marcha forzada y navegación, están en el capítulo 6. Ferrocarriles, dirigibles, embarcaciones y otros transportes de infraestructura usan la velocidad y horario de su ruta o perfil concreto; no heredan automáticamente la tabla de viaje terrestre.
@@ -11033,6 +11039,7 @@ Un autómata puede ser una herramienta automatizada o un actor independiente seg
 
 El juego no incorpora un subsistema de combate masivo preventivo. Batallas de gran escala se resuelven con las herramientas normales, escenas y objetivos relevantes hasta que una necesidad de juego reproducible justifique reglas adicionales.
 
+<a id="tm-r23"></a>
 ## 23. PNJ y criaturas
 
 Los PNJ se construyen directamente para representar su función; no necesitan gastar PD como un personaje jugador. El mundo no escala automáticamente con el nivel del grupo. Una criatura peligrosa conserva su identidad mecánica independientemente de quién la enfrente.
@@ -11219,25 +11226,7 @@ Los once ejemplos siguientes parten de estadísticas publicadas en la tabla de P
 **Alcance del cierre:** hay once **ejemplos de encuentro**, uno por perfil de referencia, pero **no once fichas técnicas completas ni once entradas nuevas de Compendio**. Civil permanece sin ataque universal; Soldado tiene una elección de Daño sólo para su ejemplo; Canalizador hostil utiliza una selección ejemplificativa de hechizos y Protección; Troll dominante sólo emplea ataques ordinarios; Veterano y Centinela conservan campos abiertos. Cada adaptación al runtime requiere resolver esos campos de forma explícita, no por inferencia.
 
 
-### Conciliación documental con el compendio Foundry VTT
-
-**AUDITADO EN CÓDIGO FUENTE · NO EQUIVALE A PRUEBA DE EJECUCIÓN EN FOUNDRY.** El catálogo `scripts/catalog/npc-catalog.mjs` define los **11 perfiles de referencia** de este capítulo como documentos de Actor tipo `npc`, conservando sus cifras y las incertidumbres relevantes. `tools/build-packs.mjs` incorpora esos perfiles al compendio de Actores `bestiary`, declarado en `system.json`.
-
-La implementación existente no obliga a crear desde cero esos once Actores. Mantiene expresamente:
-
-- Civil sin ataque cuantificado;
-- Soldado con el intervalo de Daño 7–8, sin seleccionar unilateralmente un valor;
-- Canalizador hostil con Maná 15, Canalización +6 y Protección posible 0–1, **sin** adjudicarle hechizos por defecto;
-- Centinela de Bronce sin un valor numérico de Defensa Corporal inventado;
-- Troll dominante sin activar capacidades o Reacciones especiales opcionales por su mero nombre.
-
-El archivo `test/bestiary.test.mjs` contiene pruebas automatizadas que comprueban cantidad de perfiles, valores derivados, defensa no aplicable del Centinela, incertidumbres del Canalizador, opciones condicionales del Troll, interfaz de ataque NPC y enlazado de arte. **Validación automatizada comprobada:** el flujo `Validate` de GitHub Actions [ejecución 44236019982](https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/actions/runs/44236019982) terminó en **success** para el commit `4b126772d10a50c252950b35c7715822db1d09c0` (2026-11-18). La definición `.github/workflows/validate.yml` ejecuta `npm run audit:crafting` y `npm run validate` (compilación de compendios, chequeos y pruebas). Este resultado confirma el éxito del pipeline para ese commit; no sustituye una prueba interactiva de Foundry VTT.
-
-El mismo proceso de compilación incluye **12 Actores adicionales de diseño original**: `original-bestiary.mjs` (1), `eidolon-manivoro.mjs` (1), `approved-creatures-v1.mjs` (5) y `approved-creatures-v2.mjs` (5). Las fichas de diseño original no se confunden con los once perfiles del Manual Maestro ni ascienden automáticamente a canon por estar empaquetadas; su estado requiere control editorial explícito. El total previsto por las cinco fuentes de construcción es **23 Actores**. La compilación forma parte del pipeline de validación que superó la ejecución antes citada; sigue pendiente inspeccionar el contenido del paquete en una instalación de Foundry VTT.
-
-**Pendiente de cierre técnico:** verificar que el compendio generado abra correctamente en una instalación compatible de Foundry, comprobar tiradas/recursos/efectos en escenas y revisar que los estados de canon o propuesta sigan identificables dentro del paquete publicado. Los ejemplos editoriales de encuentros 10 y 11 no se transfieren automáticamente a los Actores base.
-
-
+<a id="tm-r24"></a>
 ## 24. Dirección de juego
 
 El Director determina primero qué está ocurriendo en la ficción, si una acción es posible y si existe incertidumbre significativa. La tirada resuelve incertidumbre; no sustituye causalidad, competencia o información.
@@ -11270,6 +11259,7 @@ No se crea un subsistema nuevo para anticipar un problema hipotético. Primero s
 
 > **VIGENTE — CANON NARRATIVO.** Esta Parte reproduce e integra el contenido del Canon del Mundo v1.2 recuperado de las fuentes del proyecto. Si una sección resumida de la Parte I entra en conflicto con esta Parte en una cuestión puramente narrativa, prevalece esta Parte. Las consecuencias mecánicas, en cambio, deben estar expresamente definidas en la Parte I.
 
+<a id="tm-m01"></a>
 ## 1. Los pilares canónicos
 • La magia existe en toda persona como potencial, pero el uso competente requiere formación,
 conocimiento, Maná, método y acceso. No toda la población es lanzadora de hechizos.
@@ -11297,6 +11287,7 @@ Fecha presente
 El presente canónico es el año 612 de la Concordia (612 C.). La Concordia no marca el origen del mundo:
 fue el tratado que terminó la Guerra de las Coronas Rotas y estableció el calendario diplomático usado
 hoy por las principales potencias.
+<a id="tm-m02"></a>
 ## 2. Historia de Tierra Mágica
 Antes de la Concordia: las edades antiguas
 Los registros más antiguos hablan de la Edad de los Fundadores, civilizaciones capaces de construir
@@ -11403,6 +11394,7 @@ Los ferrocarriles y dirigibles existentes demostraron aquí su doble naturaleza.
 
 El continente llegó al año 0 C. con una capacidad logística mayor que en cualquier guerra anterior y con instituciones políticas todavía incapaces de controlar sus consecuencias.
 
+<a id="tm-m03"></a>
 ## 3. La edad moderna y la Concordia
 
 ### La Guerra de las Coronas Rotas — 0 a 11 C.
@@ -11564,6 +11556,7 @@ Se ratifican visualmente en el mapa único las formas y la distribución general
 | 598 C. | Crisis de Nacre: desaparición de tres expediciones; su causa permanece abierta. |
 | 612 C. | Presente canónico. |
 
+<a id="tm-m04"></a>
 ## 4. Las seis potencias de Edria
 Reino de Valdoria
 Valdoria ocupa las tierras fértiles del centro occidental. Es una monarquía de tradición feudal
@@ -11622,6 +11615,7 @@ Ninguna potencia domina todos los recursos estratégicos. Valdoria controla ruta
 manufactura y puertos; Lysendra, conocimiento; Erelia, recursos vivos y fluviales; Solenar, corredores
 orientales y redes religiosas; Kharum, metales y pasos montañosos. La interdependencia sostiene la paz
 tanto como los tratados.
+<a id="tm-m05"></a>
 ## 5. Ciudades canónicas
 Ciudad Estado Identidad y función
 Auraval Valdoria Capital diplomática construida en
@@ -11685,6 +11679,7 @@ Movilidad dentro de las ciudades
 Carros, animales de tiro, ascensores de contrapeso, tranvías de cable y pequeños sistemas de vapor
 comparten las calles. Los dispositivos arcanos de transporte son caros y especializados. La mayoría de
 la población se desplaza por medios mundanos mejorados, no mediante teletransporte cotidiano.
+<a id="tm-m06"></a>
 ## 6. Gremios, órdenes e instituciones
 Colegio de Ingenieros de la Segunda Forja
 Organización transnacional que certifica ingenieros, inspectores de calderas y diseñadores de sistemas
@@ -11716,6 +11711,7 @@ No es un ejército nacional, sino una red de escoltas, guías y contratistas con
 toda Edria. Sus miembros protegen caravanas, trenes, expediciones y convoyes. Aventureros
 independientes suelen comenzar aquí porque la Compañía reconoce experiencia de campo aunque
 carezca de títulos nobles.
+<a id="tm-m07"></a>
 ## 7. Magia, religión y cosmología social
 La Trama
 La palabra “Trama” es el término común para describir el conjunto de relaciones entre alma, ambiente,
@@ -11792,6 +11788,7 @@ Límites religiosos
 Ninguna iglesia puede crear Maná ilimitado, resucitar de forma rutinaria a los muertos o eliminar
 todas las consecuencias de una lesión grave. Los milagros poderosos existen, pero son excepcionales,
 condicionados y políticamente significativos. La muerte conserva peso social y narrativo.
+<a id="tm-m08"></a>
 ## 8. Tecnología, comercio y vida material
 Nivel tecnológico
 La tecnología civil de Edria corresponde a una industrialización temprana desigual. Hay zonas con
@@ -11825,6 +11822,7 @@ Comercio estratégico
 • Reactivos alquímicos: Erelia y varios archipiélagos exportan sustancias raras.
 • Planos y fórmulas: conocimiento protegido por gremios, academias y estados.
 • Cartas de ruta: un mapa fiable puede valer tanto como una carga de mercancías.
+<a id="tm-m09"></a>
 ## 9. Pueblos, culturas y pertenencia
 Tierra Mágica no vincula automáticamente cultura, nación y especie. Las grandes ciudades son
 diversas, las fronteras han cambiado muchas veces y familias enteras han migrado siguiendo guerras,
@@ -11857,6 +11855,7 @@ nuevas vías de poder: títulos profesionales, patentes, contratos, riqueza merc
 servicio público. Un maestro ingeniero o sanador puede negociar de igual a igual con nobles menores.
 Esa movilidad genera tensión porque las instituciones antiguas no siempre reconocen con rapidez las
 nuevas formas de prestigio.
+<a id="tm-m10"></a>
 ## 10. Conflictos activos del presente
 La Guerra Fría del Cobre
 La Liga de Bronce y Valdoria compiten por controlar tarifas, patentes y rutas ferroviarias. Ninguna
@@ -11884,6 +11883,7 @@ Un pequeño número de autómatas avanzados ha mostrado conductas que sus constr
 explicar con facilidad. Los ingenieros hablan de patrones emergentes, algunos religiosos de posible
 alma y varios gobiernos de fraude o espionaje. No existe una respuesta canónica definitiva sobre
 conciencia artificial.
+<a id="tm-m11"></a>
 ## 11. Fronteras, ruinas y regiones peligrosas
 El Espinazo del Mundo
 Cordillera central que divide Edria de norte a sur. Contiene minas, ciudades de Kharum, glaciares,
@@ -11911,6 +11911,7 @@ Las Ciudades Hundidas
 Bajo varios lagos y estuarios se conocen restos urbanos anteriores a la Fractura. No todas pertenecen a
 la misma cultura. Algunas permanecen secas detrás de barreras inexplicables; otras solo son accesibles
 durante cambios de marea o fenómenos astronómicos.
+<a id="tm-m12"></a>
 ## 12. Ley, guerra y diplomacia
 Leyes sobre magia
 La magia personal ordinaria no es ilegal por sí misma. Los estados regulan efectos, no la mera
@@ -11939,6 +11940,7 @@ gran escala.
 Estas prohibiciones no son una garantía moral; son normas jurídicas que a veces se violan. Su
 existencia permite investigaciones, tribunales, encubrimientos y conflictos diplomáticos como parte de
 las campañas.
+<a id="tm-m13"></a>
 ## 13. Cómo se vive en Tierra Mágica
 La magia cotidiana
 Una persona corriente conoce la existencia de trucos, sanación menor, protección y lectura arcana,
@@ -11984,6 +11986,7 @@ Motivos habituales para una campaña
 cartografiadas.
 • Enfrentarse a conflictos laborales, sucesorios o gremiales donde ninguna facción es automáticamente
 enemiga.
+<a id="tm-m14"></a>
 ## 14. Registro de canon y límites de expansión
 Canon fijado por esta versión
 • El continente principal de juego se llama Edria y el presente es 612 C.
@@ -12032,6 +12035,7 @@ Fin del Canon del Mundo v1.2
 
 ---
 
+<a id="tm-r25"></a>
 ## 25. Cosmología: los Principios Primordiales
 
 Esta sección consolida la cosmología conforme a **Tierra Mágica — Canon del Mundo v1.2** y al material histórico que éste mantiene vigente. Las reglas mecánicas antiguas o no ratificadas no se reintroducen por esta vía.
@@ -12066,6 +12070,7 @@ Los siete Primordiales y las cinco Luminarias forman los **Doce del Panteón Cen
 
 Los dominios divinos no son propiedades exclusivas. Eïra y Aurea pueden compartir aspectos de vida; Ilyr y Aurea, protección; Vaelun y Nemor, muerte y memoria; Aster y Vael, viaje y descubrimiento; Ilyr y Oria, justicia y ley; Vaelun y Selene, fronteras espirituales. Estos solapamientos no implican identidad.
 
+<a id="tm-r26"></a>
 ## 26. Eïra y la Primera Semilla
 
 **Eïra, Madre de la Primera Semilla**, es una de las siete deidades Primordiales y encarna el principio de **Vida**. Entre sus títulos tradicionales se encuentran **la Madre Verde, la Primera Raíz, Señora del Ciclo y Aquella que Hace Brotar**. Sus ámbitos comprenden vida, crecimiento, adaptación, bosques, animales, estaciones, fertilidad, depredación, renovación y equilibrio natural. Su símbolo tradicional es una semilla abierta de la que surgen tres raíces entrelazadas.
@@ -12132,6 +12137,7 @@ Eïra puede actuar como **Fuente Divina** mediante un Vínculo apropiado. Sus V�
 
 Estos ámbitos no conceden por sí solos efectos mecánicos. Todo milagro o capacidad debe estar definido por las reglas correspondientes y respetar los límites generales del sistema. Eïra no permite por defecto creación ilimitada de vida, resurrección rutinaria ni curación que ignore Medicina, Restauración, Trauma u otros costes establecidos.
 
+<a id="tm-r27"></a>
 ## 27. Khorun y la Primera Forja
 
 **Khorun, el Primer Forjador**, es una de las siete deidades Primordiales y encarna el principio de **Materia y Forma**. Entre sus títulos tradicionales se encuentran **Padre de la Montaña, Señor de las Profundidades, Aquel que Dio Forma y Corazón del Mundo**. Sus ámbitos comprenden piedra, metal, fuego interior, montañas, cavernas, minerales, forja, construcción, resistencia, fuerza, creación material y fuerzas elementales.
@@ -12220,6 +12226,7 @@ Khorun puede actuar como **Fuente Divina** para personajes que posean un Víncul
 
 Estos ámbitos no conceden efectos mecánicos por sí mismos. La personalidad divina detallada de Khorun, sus dogmas, iglesias, órdenes sacerdotales, festividades, mandamientos, prohibiciones, manifestaciones, avatares, milagros y Vínculos Divinos específicos permanecen abiertos para desarrollo posterior.
 
+<a id="tm-r28"></a>
 ## 28. Varkor y la Primera Guerra
 
 **Varkor, Señor de la Primera Guerra**, es una de las siete deidades Primordiales y encarna el principio de **Conflicto**. Entre sus títulos tradicionales se encuentran **Puño Rojo, Padre de los Fuertes, Rompedor de Cadenas y Aquel que No Retrocede**. Sus ámbitos comprenden guerra, fuerza, valor, conquista, resistencia, furia, competencia, desafío, supervivencia mediante la lucha y victoria.
@@ -12328,6 +12335,7 @@ Varkor puede actuar como **Fuente Divina** mediante un Vínculo apropiado. Sus �
 
 Estos ámbitos no conceden efectos mecánicos por sí mismos. La personalidad divina detallada de Varkor, sus estructuras religiosas, sacerdocios, templos, festividades, mandamientos, prohibiciones formales, avatares, milagros, Vínculos específicos y relación mecánica con la magia de guerra permanecen abiertos.
 
+<a id="tm-r29"></a>
 ## 29. Aster y la Primera Elección
 
 **Aster, Señor de las Mil Sendas**, es una de las siete deidades Primordiales y encarna el principio de **Elección**: la capacidad de reconocer alternativas y escoger un rumbo que no esté determinado de antemano.
@@ -12436,6 +12444,7 @@ Aster puede actuar como **Fuente Divina** mediante un Vínculo apropiado. Sus á
 
 Estos ámbitos no conceden efectos mecánicos por sí mismos. La apariencia y manifestaciones detalladas de Aster, sus estructuras religiosas, órdenes sacerdotales, templos, festividades, mandamientos, prohibiciones, avatares, milagros y Vínculos específicos permanecen abiertos.
 
+<a id="tm-r30"></a>
 ## 30. Ilyr, la Primera Luz y el Primer Juramento
 
 **Ilyr, Portador de la Primera Luz**, es una de las siete deidades Primordiales y encarna el principio de **Bien**: el reconocimiento consciente de que la dignidad, libertad y bienestar de otros poseen valor y pueden exigir acción, responsabilidad o coste personal.
@@ -12553,6 +12562,7 @@ Ilyr puede actuar como **Fuente Divina** mediante un Vínculo apropiado. Sus ám
 
 Estos ámbitos no conceden efectos mecánicos por sí mismos. Los milagros, Vínculos específicos, reglas de caída y redención, estadísticas celestiales y capacidades sobrenaturales concretas permanecen sujetos a desarrollo posterior.
 
+<a id="tm-r31"></a>
 ## 31. Nereth y la Primera Profanación
 
 **Nereth, Señor de la Primera Profanación**, es una de las siete deidades Primordiales y encarna **Corrupción y Mal**.
@@ -12678,6 +12688,7 @@ Nereth puede actuar como **Fuente Divina** mediante un Vínculo apropiado y cons
 
 Estos ámbitos no conceden capacidades mecánicas por sí mismos. La estructura de sus cultos, sus avatares, planos demoníacos, Archidemonios concretos, reglas de posesión, Corrupción, Necromancia, Pactos y destino de las almas permanecen abiertos.
 
+<a id="tm-r32"></a>
 ## 32. Vaelun y el Primer Tránsito
 
 **Vaelun, Guardián del Último Umbral**, es una de las siete deidades Primordiales y encarna el principio de **Tránsito**.
@@ -12838,6 +12849,7 @@ Estos ámbitos no conceden capacidades mecánicas automáticamente. Los milagros
 
 La apariencia y avatares definitivos de Vaelun, sus cultos, órdenes religiosas, ritos funerarios completos, milagros, Vínculos específicos, estructura del más allá y destino último de las almas permanecen abiertos.
 
+<a id="tm-r33"></a>
 ## 33. Aurea, la Llama
 
 **Aurea, la Llama** es una de las Cinco Luminarias, Dioses Menores reales surgidos después de los siete Primordiales. Es una entidad divina independiente y no un aspecto, nombre alternativo ni avatar de Eïra o Ilyr.
@@ -13004,6 +13016,7 @@ Aurea no concede por defecto inmunidad al fuego, curación ilimitada, resurrecci
 
 Los milagros, Vínculos específicos, consecuencias de juramentos y demás efectos sobrenaturales concretos permanecen abiertos hasta su desarrollo mecánico.
 
+<a id="tm-r34"></a>
 ## 34. Nemor, el Guardián
 
 **Nemor, el Guardián** es una de las Cinco Luminarias, Dioses Menores reales surgidos después de los siete Primordiales.
@@ -13212,6 +13225,7 @@ Un Vínculo con Nemor no permite automáticamente convocar muertos, conocer toda
 
 Los milagros, Vínculos específicos, ritos sobrenaturales y demás efectos mecánicos permanecen abiertos hasta su desarrollo posterior.
 
+<a id="tm-r35"></a>
 ## 35. Oria, la Balanza
 
 **Oria, la Balanza** es una de las Cinco Luminarias, Dioses Menores reales surgidos después de los siete Primordiales.
@@ -13420,6 +13434,7 @@ Un Vínculo con Oria no proporciona automáticamente detección universal de men
 
 Los milagros, Vínculos específicos, ritos contractuales y demás efectos mecánicos permanecen abiertos hasta desarrollo posterior.
 
+<a id="tm-r36"></a>
 ## 36. Vael, el Navegante
 
 **Vael, el Navegante** es una de las Cinco Luminarias, Dioses Menores reales surgidos después de los siete Primordiales.
@@ -13633,6 +13648,7 @@ Un Vínculo con Vael no permite automáticamente conocer la ruta correcta, prede
 
 Los milagros, Vínculos específicos, ritos de viaje y efectos relacionados con fortuna permanecen abiertos hasta su desarrollo posterior.
 
+<a id="tm-r37"></a>
 ## 37. Selene, la Velada
 
 **Selene, la Velada** es una de las Cinco Luminarias, Dioses Menores reales surgidos después de los siete Primordiales.
@@ -13897,6 +13913,7 @@ Un Vínculo con Selene no permite automáticamente detectar mentiras, leer pensa
 
 Los milagros, Vínculos específicos, ritos oníricos, capacidades de custodia y efectos relacionados con Umbrales permanecen abiertos hasta su desarrollo posterior.
 
+<a id="tm-r38"></a>
 ## 38. Relaciones del Panteón y límites de canon
 
 Los siete Primordiales y las cinco Luminarias forman los **Doce del Panteón Central canónico conocido**.
