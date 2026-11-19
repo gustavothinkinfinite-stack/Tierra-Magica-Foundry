@@ -55,7 +55,39 @@ const intro=[
 "su traslado a apéndice de diseño sólo podrá hacerse tras una revisión de cobertura.",
 "Este documento es derivado y debe reconstruirse cuando cambie el Maestro."
 ].join("\n");
-const assembled=[intro,first,annex,rest,world,panteon].join("\n\n---\n\n")+"\n";
+let assembled=[intro,first,annex,rest,world,panteon].join("\n\n---\n\n")+"\n";
+
+// Se eliminan sólo apartados técnicos delimitados por encabezado y revisados.
+// Los apartados siguen intactos en el Manual Maestro. Las notas normativas
+// anteriores y siguientes quedan dentro del libro.
+const editorialExclusions=[
+  ["### Auditoría de disponibilidad en Foundry (pendiente de conciliación)",
+   "### Catálogo monetario de equipo"],
+  ["### Conciliación documental con el compendio Foundry VTT",
+   "## 24. Dirección de juego"]
+];
+for(const [start,end] of editorialExclusions){
+  const ai=assembled.indexOf(start+"\n"),bi=assembled.indexOf(end+"\n",ai+start.length);
+  if(ai<0||bi<0||assembled.split(start+"\n").length!==2)throw Error("Delimitador editorial ausente o repetido: "+start);
+  assembled=assembled.slice(0,ai)+assembled.slice(bi);
+}
+
+// Anclas inequívocas para ambas series de capítulos. Las anclas no cambian
+// el título fuente y pueden utilizarse para PDF, índice y referencias.
+let part="R",ids=[];
+assembled=assembled.split("\n").map((line)=>{
+  if(line==="# PARTE II — CANON DEL MUNDO v1.2 INTEGRADO")part="M";
+  const hit=line.match(/^## (\d+)\. (.+)$/);
+  if(!hit)return line;
+  const n=Number(hit[1]);
+  if(n<1||(part==="M"&&n>14)||(part==="R"&&n>38))return line;
+  const id="tm-"+part.toLowerCase()+String(n).padStart(2,"0");
+  if(ids.includes(id))throw Error("Ancla duplicada: "+id);
+  ids.push(id);
+  return '<a id="'+id+'"></a>\n'+line;
+}).join("\n");
+if(ids.length!==52)throw Error("Se esperaban 52 IDs de capítulos, encontrados "+ids.length);
+
 const numbers=(assembled.match(/^### (?:HUMANOS|ENANOS|ÉLFICOS|Orcos|Goblinoides|Terios \/ Anihombres|Feéricos|ANKAR|Cristálidos|Verdantes|Micelios|Coralios) —/gm)||[]).length;
 if(numbers!==12)throw Error("Se esperaban doce dobles páginas: "+numbers);
 for(const marker of required.slice(0,5)){
