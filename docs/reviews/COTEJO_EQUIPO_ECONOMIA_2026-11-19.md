@@ -45,6 +45,12 @@ Se revisaron 29 perfiles de armas, cinco de armaduras y tres de escudos; §19 re
 - Registro: `docs/reviews/COTEJO_ARMAMENTO_2026-11-19.md` y `docs/reviews/TABLAS_EDITORIALES_ARMAS_ARMADURAS_ESCUDOS_MUNICION_2026-11-19.md`.
 - Pendientes: cotejo total de variantes individualizadas y pruebas funcionales.
 
+## Avance — Alquimia y ocho fórmulas (2026-11-19)
+- Verificación **8/8** de nombre y precio entre §16 y la tabla de CRAFT-11; no se cambiaron valores ni recetas.
+- Las ocho fichas editoriales con activación, Saturación, vías, efectos, CM, tiempos y requisitos se encuentran en `docs/reviews/FICHAS_EDITORIALES_OCHO_FORMULAS_ALQUIMICAS_2026-11-19.md`.
+- Se aclaró en el §9 que su tabla de consumibles es **un resumen**, y que §16 y CRAFT-11 fijan los detalles completos. Se destacan Bálsamo vs Poción Restauradora y la Saturación Antitóxica de Neutralizante.
+- Pendientes: pruebas de uso y corrección de maqueta. **No está terminada la auditoría integral.**
+
 ## Recomendaciones de cierre de libro
 1. Preparar una **tabla única de compra** de equipo aprobado con moneda, precio, unidad comercial, peso físico si existe una regla aprobada (no inventarlo), FUE mínima cuando corresponda, disponibilidad sólo si fue ratificada y requisitos de acceso.
 2. Imprimir por separado las reglas de **creación con PEI** y las de compra ordinaria. No reintroducir Paquetes de Preparación como modalidad mecánica.
