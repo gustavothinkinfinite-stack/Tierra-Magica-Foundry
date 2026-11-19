@@ -816,3 +816,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Comparadas Terios, Feéricos, Cristálidos, Verdantes, Micelios y Coralios contra el manuscrito consolidado: **46 párrafos narrativos**, **45 localizados íntegros** y **1 reserva editorial no canónica de Coralios no reproducida**. No se trasladó esa reserva como regla.
 - Informe: [`manual_final/cotejo_parrafos_seis_fuentes_2026_11_19.md`](./manual_final/cotejo_parrafos_seis_fuentes_2026_11_19.md).
 - **Pendiente sustantivo:** cotejar listas y negaciones mecánicas de las doce secciones contra `main`, comprobar excepciones y notas, luego informe global; paginación real aún no probada. **0 Foundry, 0 mesa, 0 maquetas**.
+
+### 2026-11-19 — Control normativo focalizado Goblinoides/Coralios
+- Cotejado canon vigente de `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`) con textos finales Goblinoides y Coralios y consolidado.
+- **GN-01 corregida:** Escurridizo interrumpido ya tiene regla vigente B5-I01; retirada la etiqueta errónea de arbitraje no ratificado en Goblinoides y manuscrito.
+- Creado [`manual_final/control_normativo_goblinoides_coralios_2026_11_19.md`](./manual_final/control_normativo_goblinoides_coralios_2026_11_19.md) con matriz de 8 controles y limitaciones.
+- **Pendiente sustantivo:** expresar en Coralios el límite por tramo homogéneo de Retirada, además de la suma fraccionaria; luego cotejar las otras diez familias. **0 Foundry, 0 mesa, 0 maquetas.**
