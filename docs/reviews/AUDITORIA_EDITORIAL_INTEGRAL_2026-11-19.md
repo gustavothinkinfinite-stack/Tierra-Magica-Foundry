@@ -56,6 +56,12 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 - Se aclaró en el §9 que su tabla de consumibles es **un resumen**, y que §16 y CRAFT-11 fijan los detalles completos. Se destacan Bálsamo vs Poción Restauradora y la Saturación Antitóxica de Neutralizante.
 - Pendientes: pruebas de uso y corrección de maqueta. **No está terminada la auditoría integral.**
 
+## Avance en estructura impresa
+- Se registró el mapa de procedencia y un generador no destructivo de manuscrito de lectura: `tools/build-print-manuscript.mjs`.
+- La segmentación sobre la fuente recuperada detectó límites únicos, 24 capítulos de reglas, 14 de mundo, 14 de cosmología/panteón y 12 ascendencias, sin excluir CRAFT-12.
+- Se preparó la reubicación del anexo racial detrás de creación, pero **no se ejecutó ni evaluó todavía la compilación real bajo Node.js**, ni está lista para imprenta.
+- Documento: `docs/reviews/MAPA_PROCEDENCIA_MANUSCRITO_IMPRESO_2026-11-19.md`.
+
 ## Criterios de tratamiento
 
 - **Corrección editorial segura:** referencias desactualizadas o descripciones históricas cuyo estado vigente ya está respaldado inequívocamente en el Manual.
