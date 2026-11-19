@@ -399,7 +399,7 @@ Estas reglas complementan los doce paquetes raciales jugables. Son aclaraciones 
 
 **Rasgos equivalentes (B5-I11).** Compará disparador, medio, objetivo, coste, alcance, resultado y límites. Las prestaciones **exactamente iguales** no acumulan bonos ni se cobran dos veces durante la creación; distintas funciones (p. ej., nado y respirar) pueden coexistir pagando su coste normal. Protección Natural y armadura no se suman. Miembros extra no otorgan Acciones ni ataques adicionales. Dos defensas parecidas no se transforman por inferencia en +2 universal: aplicá el texto y ámbito de cada fuente.
 
-**Costes profesionales (B5-I12).** Ascendencia, Origen, Trasfondo, cultura y religión no añaden por inferencia rangos de Habilidad, dinero, equipo, poderes, Fuentes, Vínculos, materiales, proyectos ni competencias de fabricación. Los paquetes raciales siguen estáticos salvo progresión o compra expresa. Estas decisiones fueron aprobadas editorialmente; su implementación Foundry y su equilibrio empírico son verificaciones técnicas independientes, no efectos automáticos de esta redacción.
+**Costes profesionales (B5-I12).** Ascendencia, Origen, Trasfondo, cultura y religión no añaden por inferencia rangos de Habilidad, dinero, equipo, poderes, Fuentes, Vínculos, materiales, proyectos ni competencias de fabricación. Los paquetes raciales siguen estáticos salvo progresión o compra expresa. Estas restricciones no conceden beneficios adicionales fuera de los indicados.
 
 #### Identidad estructurada de creación: Ascendencia, Origen y Trasfondo
 
@@ -766,7 +766,7 @@ El **Bono Defensivo** se deriva del rango base más alto entre **Armas Ligeras, 
 | Maestro | +3 |
 | Gran Maestro | +4 |
 
-Foundry calcula automáticamente ese rango a partir de las cuatro Habilidades de armas. Estar **Desprevenido** puede hacer perder el Bono Defensivo según las reglas de combate; no cambia permanentemente el rango.
+El rango se calcula a partir de las cuatro Habilidades de armas. Estar **Desprevenido** puede hacer perder el Bono Defensivo según las reglas de combate; no cambia permanentemente el rango.
 
 El **umbral informativo de Daño Grave** es 5 + VIG, equivalente a la mitad de la Vida máxima ordinaria. Alcanzarlo no crea automáticamente una Herida Grave: obliga a evaluar si el impacto y la ficción justifican una lesión concreta.
 
@@ -3499,7 +3499,7 @@ El orden de mitigación es:
 
 La **Penetración sólo reduce Protección**; no reduce Resistencia. Varias Resistencias del mismo tipo no se suman: se utiliza la mayor. Varias Vulnerabilidades equivalentes tampoco se suman: se utiliza la mayor. La Inmunidad prevalece sobre Resistencia y Vulnerabilidad.
 
-Foundry puede registrar tipos personalizados para una campaña. Esa capacidad es una extensión operativa: **un tipo personalizado no pasa a ser canon de Tierra Mágica hasta quedar definido en este Manual**.
+Una campaña puede utilizar tipos personalizados de daño, pero **ninguno pasa a formar parte del canon general de Tierra Mágica hasta quedar definido en el Manual**.
 
 El **Modo No letal** no es un tipo de daño ni puede poseer una Resistencia propia. Un ataque puede ser, por ejemplo, **Contundente + No letal**. El daño no letal reduce Vida normalmente y puede llevar a 0 Vida e Incapacitado, pero esa caída no aumenta Trauma y ese impacto no activa por sí solo el umbral de Daño Grave, una Herida Grave o Sangrado. Una capacidad puede establecer una excepción expresa.
 
@@ -3937,7 +3937,7 @@ Una cadena o látigo puede ser un método ficcional válido para intentar Desarm
 
 ### Catálogo ampliado aprobado de armas
 
-Además de los **29 perfiles canónicos** de la tabla anterior, el catálogo oficial de Foundry contiene **171 variantes de perfil aprobadas**. Cada variante usa **exactamente** las estadísticas, Habilidad, Atributos, Daño, Penetración, FUE mínima, Alcance, Recarga, Potencia, propiedades y precio de su perfil de referencia, salvo que una regla posterior la convierta explícitamente en un perfil distinto.
+Además de los **29 perfiles canónicos** de la tabla anterior, el catálogo aprobado incluye **171 variantes de perfil**. Cada variante usa **exactamente** las estadísticas, Habilidad, Atributos, Daño, Penetración, FUE mínima, Alcance, Recarga, Potencia, propiedades y precio de su perfil de referencia, salvo que una regla posterior la convierta explícitamente en un perfil distinto.
 
 El nombre histórico, cultural, regional o funcional **no crea un modificador adicional**. Esta lista forma parte del catálogo oficial del Manual:
 
@@ -3964,7 +3964,7 @@ El nombre histórico, cultural, regional o funcional **no crea un modificador ad
 
 Las variantes regionales mantienen su procedencia como dato de catálogo, pero la región no concede por sí sola bonos de ataque, daño, Defensa, Penetración, disponibilidad automática o descuento de precio.
 
-**Estado de expansión no canónica.** Permanecen fuera del Compendio **44 propuestas**: 7 Armas Ligeras arrojadizas que requieren separar modo de ataque y Habilidad; 10 armas de varios cañones o dispersión; 2 armas que necesitan un Perfil de Material explícito; y 25 armas arcano-industriales que necesitan un Perfil explícito de Host/Módulo/Device/arma vinculada. CRAFT-13 ya cerró la infraestructura de Materiales, fabricación y Energía, pero no autoriza inferir esos perfiles por el nombre.
+**Estado de expansión no canónica.** Permanecen sin perfil canónico completo **44 propuestas**: 7 Armas Ligeras arrojadizas que requieren separar modo de ataque y Habilidad; 10 armas de varios cañones o dispersión; 2 armas que necesitan un Perfil de Material explícito; y 25 armas arcano-industriales que necesitan un Perfil explícito de Host/Módulo/Device/arma vinculada. La existencia de reglas generales sobre materiales, fabricación y Energía no autoriza inferir perfiles nuevos por su nombre.
 
 ### Munición y Recarga
 
@@ -4007,7 +4007,7 @@ Con FUE un punto por debajo del mínimo, Movimiento -1, Carga Pesada y Desventaj
 
 ### Catálogo ampliado aprobado de armaduras
 
-Los cinco perfiles anteriores son las únicas anclas mecánicas de armadura del catálogo actual. El Compendio añade **89 variantes aprobadas**, todas copias mecánicas exactas de uno de esos cinco perfiles:
+Los cinco perfiles anteriores son las únicas anclas mecánicas de armadura del catálogo actual. El catálogo añade **89 variantes aprobadas**, todas copias mecánicas exactas de uno de esos cinco perfiles:
 
 - **Armadura ligera:** Gambesón, Aketón, Jubón acolchado, Chaqueta acolchada, Cota de cuero, Chaleco de cuero, Cuero de cazador, Cuero de explorador, Casaca de guardia ligera, Peto de cuero ligero, Armadura de viajero, Armadura de montañés, Cuero de jinete, Vestidura de campaña acolchada, Chaqueta de escaramuzador, Gambesón de galería Kharum, Casaca portuaria de Cobravia, Cuero de Verdelinde, Jubón de campo de Lys, Casaca de caravana solenaria.
 - **Armadura reforzada:** Gambesón reforzado, Cuero hervido, Cota de cuero reforzada, Brigantina ligera, Jack de placas, Casaca claveteada, Coselete de láminas, Coraza de escamas ligera, Lamelar ligera, Chaqueta de anillas, Armadura de guardia, Coraza de frontera, Peto segmentado ligero, Casaca de combate reforzada, Armadura de mercenario, Coselete de Auraval, Brigantina de Kar-Dur, Brigantina cobravia, Coraza forestal reforzada, Coselete académico de Lys, Coraza de peregrino de Heliara.
@@ -4041,7 +4041,7 @@ Las recetas de fabricación de armas, armaduras, escudos, munición y herramient
 
 ### Catálogo ampliado aprobado de escudos
 
-Los tres perfiles anteriores siguen siendo las únicas anclas mecánicas de escudo. El Compendio añade **51 variantes aprobadas**, todas copias exactas de Broquel, Escudo estándar o Escudo pesado:
+Los tres perfiles anteriores siguen siendo las únicas anclas mecánicas de escudo. El catálogo añade **51 variantes aprobadas**, todas copias exactas de Broquel, Escudo estándar o Escudo pesado:
 
 - **Broquel:** Rodela pequeña, Broquel de duelo, Broquel de infantería, Broquel redondo, Broquel de jinete, Broquel de abordaje, Escudo de antebrazo, Broquel con umbo, Broquel de guardia, Broquel de Auraval, Broquel de Kar-Dur, Broquel de Cobravia, Broquel de Verdelinde, Broquel académico de Lys, Broquel solar de Heliara.
 - **Escudo estándar:** Escudo redondo, Escudo cometa, Escudo calefactor, Escudo oval, Escudo de caballería, Escudo de infantería, Escudo de abordaje, Escudo de guardia, Escudo de campaña, Escudo de madera forrada, Escudo de cuero tensado, Rodela de guerra, Escudo del Camino Real, Escudo del Espinazo, Escudo portuario de Bronce, Escudo forestal de Erelia, Escudo de custodio de Lys, Escudo del Sol.
@@ -4118,7 +4118,7 @@ Una fuente de luz sólo ilumina si existe un objeto compatible —lámpara, faro
 
 ### Estado del catálogo EQP-01
 
-Los **25 objetos** ya enumerados en las tablas de Equipo, Kits y Suministros de este capítulo son Items canónicos del Compendio y conservan exactamente sus precios y usos publicados.
+Los **25 objetos** ya enumerados en las tablas de Equipo, Kits y Suministros de este capítulo son objetos canónicos del catálogo y conservan exactamente sus precios y usos publicados.
 
 Además existe una expansión estructurada de **75 propuestas que todavía no son equipo canónico**. Su presencia en el catálogo de diseño no autoriza compra, precio, bono o efecto hasta que la auditoría correspondiente las promueva.
 
@@ -4134,7 +4134,7 @@ Las **65 propuestas mundanas** pendientes de precio y uso fino son:
 
 Las **10 propuestas especiales bloqueadas** son: Lámpara arcana portátil, Visor espectral, Brújula de Trama, Herramienta motorizada de campo, Polea cinética, Mochila de acumulador, Baliza arcana de navegación, Caja de conservación rúnica, Lámpara de cristal resonante, Kit de reparación de cristal vivo.
 
-Las propuestas mundanas anteriores no tienen precio oficial todavía. Las especiales tampoco reciben Energía, Caudal, Estabilidad, capacidad rúnica, propiedades mágicas o efectos de material por inferencia. CRAFT-13 ya aporta la infraestructura necesaria; cada propuesta especial sigue requiriendo un Perfil explícito antes de entrar al runtime.
+Las propuestas mundanas anteriores no tienen precio oficial todavía. Las especiales tampoco reciben Energía, Caudal, Estabilidad, capacidad rúnica, propiedades mágicas o efectos de material por inferencia. Las reglas generales no bastan para aprobar las propuestas: cada objeto especial requiere un Perfil explícito antes de poder usarse con estadísticas propias.
 
 ### Consumibles, pociones y fórmulas
 
@@ -4954,7 +4954,7 @@ Influencia modifica estados emocionales, atención, disposición y decisiones de
 - **Potencia Sobrenatural** cambia qué magnitud física puede afrontar el personaje, no sus valores de FUE, daño, Defensa, tamaño o alcance.
 - **Cierre Restaurador**, Círculo Restaurador, Matriz Vital y Renovación Integral respetan máximo de Vida y límites de lesión. Ninguno reduce Trauma salvo regla posterior expresa.
 - **Regeneración**, Reconstrucción, Restauración Funcional y Renovación Integral requieren la adjudicación médica y anatómica descrita; no crean efectos adicionales no escritos.
-- El requisito de Medicina de **Reconstrucción** permanece canónico sin rango mínimo cuantificado; Foundry no inventa uno.
+- El requisito de Medicina de **Reconstrucción** permanece vigente sin rango mínimo cuantificado; no debe suponerse uno.
 - **Pantalla Cinética** comparte grupo de apilamiento con cobertura equivalente.
 - **Cuerpo Mineral**, Piel Alterada y armadura equivalente no crean capas acumulativas equivalentes.
 - **Valor Inspirado** y **Mente Anclada** comparten grupo de protección mental mágica.
@@ -10843,8 +10843,6 @@ CRAFT-12 queda como auditoría de regresión: cualquier regla futura que afecte 
 
 **CRAFT-12 queda cerrado.**
 
-El siguiente bloque es **CRAFT-13 — Implementación Foundry VTT del sistema de fabricación**.
-
 
 <a id="tm-r19"></a>
 ## 19. Economía, disponibilidad y equipo
@@ -10859,7 +10857,7 @@ La moneda mecánica de referencia usa **cobre (c), plata (p) y oro (o)**:
 - **10 p = 1 o**
 - **100 c = 1 o**
 
-El cobre es la unidad mínima ordinaria. Oro, plata y cobre son tres formas de presentar un único valor; no son patrimonios independientes. En Foundry la fuente autoritativa se almacena como un entero de cobres.
+El cobre es la unidad mínima ordinaria. Oro, plata y cobre son tres formas de presentar un único valor; no son patrimonios independientes. Para los cálculos monetarios se utiliza un único valor expresado en cobres enteros.
 
 Las monedas regionales continúan existiendo dentro de Edria. c/p/o es una normalización mecánica del valor y no afirma que todas las potencias acuñen la misma moneda física. Cuando una divisa concreta importe, puede registrarse como un bien separado hasta ser aceptada o cambiada. No existe un tipo de cambio regional universal.
 
@@ -10946,15 +10944,11 @@ Un trabajo realizado para un comprador preacordado es un **Encargo** y remunera 
 
 La rentabilidad exige costes, tiempo y demanda reales. Dinero compra recursos y servicios disponibles; **PD compra desarrollo personal**.
 
-### Adaptación de equipo — REV-CREA-08-001
+### Adaptación de equipo
 
 Adaptación menor: recargo **25%** del precio base. Adaptación mayor: **50%**. El recargo mínimo es **1 p = 10 c**. Si el porcentaje produce fracción de cobre, el recargo se redondea hacia arriba al cobre entero.
 
 CRAFT-03 aclara que fabricar desde cero para un usuario conocido incluye el ajuste ordinario de talla. El recargo de Adaptación se aplica al modificar equipo terminado o cuando anatomía, Escala o estructura exigen un cambio real fuera del patrón ordinario. Cuando la Adaptación se realiza personalmente como Proyecto, el recargo funciona como VR del servicio y CRAFT-02 determina sus costes.
-
-### Migración de crowns
-
-**crowns** es un campo legado obsoleto, no una cuarta moneda canónica. No tiene equivalencia automática. Foundry preserva el valor original y marca el Actor como pendiente hasta que una persona indique explícitamente cuántos cobres vale 1 crown o confirme que debe archivarse sin convertirlo. Nunca se suma crowns silenciosamente a un saldo canónico existente.
 
 <a id="tm-r20"></a>
 ## 20. Pueblos jugables, herencias, culturas y orígenes
@@ -11205,7 +11199,7 @@ Los once ejemplos siguientes parten de estadísticas publicadas en la tabla de P
 | Ataque marcial de este ejemplo | Ataque +5; Daño 7; Pen 1 |
 | Perfil canónico de referencia | Marcial +5; Daño 7–8; Pen 1 |
 
-**Resolución de ejemplo:** si la posición y el equipo de la escena permiten ese ataque marcial, tira 2d10 + 5 contra Defensa; en caso de impacto, aplica Daño 7, Pen 1. No se adjudican alcance, recarga, propiedades, Técnicas ni ataques adicionales por inferencia. **Bloqueo de ficha definitiva:** concretar arma y equipo antes de incorporar una variante de Soldado al Compendio.
+**Resolución de ejemplo:** si la posición y el equipo de la escena permiten ese ataque marcial, tira 2d10 + 5 contra Defensa; en caso de impacto, aplica Daño 7, Pen 1. No se adjudican alcance, recarga, propiedades, Técnicas ni ataques adicionales por inferencia. **Límite de este ejemplo:** concretar el arma y equipo antes de usar una ficha definitiva de Soldado.
 
 **Encuentro 11 — Canalizador hostil en una cámara de vigilancia (opción editorial no universal).** La tabla canónica indica Maná 15, Canalización +6 y Protección 0–1, pero no fija Disciplina, hechizos conocidos ni valor de Protección concreto. Como **elección exclusiva de este ejemplo** se utiliza Protección 0 y se propone que el PNJ **conozca Evocación** y los hechizos existentes **Luz Arcana** y **Barrera Cinética**. Estas elecciones no constituyen un repertorio universal de canalizadores hostiles ni modifican las reglas de adquisición de hechizos.
 
@@ -11223,7 +11217,7 @@ Los once ejemplos siguientes parten de estadísticas publicadas en la tabla de P
 
 **Límites del ejemplo mágico:** no se inventa un Atributo de lanzamiento ni se convierte «Canalización +6» en una tirada universal para otros hechizos. Este encuentro no define ataque ofensivo mágico ni autoriza lanzar hechizos no elegidos. La ficha específica de un canalizador combativo deberá concretar Fuente, Disciplina, hechizos, Atributo de lanzamiento cuando corresponda, competencia y requisitos.
 
-**Alcance del cierre:** hay once **ejemplos de encuentro**, uno por perfil de referencia, pero **no once fichas técnicas completas ni once entradas nuevas de Compendio**. Civil permanece sin ataque universal; Soldado tiene una elección de Daño sólo para su ejemplo; Canalizador hostil utiliza una selección ejemplificativa de hechizos y Protección; Troll dominante sólo emplea ataques ordinarios; Veterano y Centinela conservan campos abiertos. Cada adaptación al runtime requiere resolver esos campos de forma explícita, no por inferencia.
+**Alcance de esta sección:** hay once **ejemplos de encuentro**, uno por perfil de referencia, pero **no once fichas técnicas completas ni once criaturas nuevas**. Civil permanece sin ataque universal; Soldado tiene una elección de Daño sólo para su ejemplo; Canalizador hostil utiliza una selección ejemplificativa de hechizos y Protección; Troll dominante sólo emplea ataques ordinarios; Veterano y Centinela conservan campos abiertos. Toda ficha definitiva necesita resolver esos campos de forma explícita, no por inferencia.
 
 
 <a id="tm-r24"></a>
