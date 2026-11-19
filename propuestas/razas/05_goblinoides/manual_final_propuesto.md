@@ -4,21 +4,21 @@
 ## PÁGINA IZQUIERDA — LA VICTORIA DE COMPRENDER
 
 ### El cuarto camino de Varkor
-Las historias de la Primera Guerra cuentan que, ante el desafío de Varkor, no bastó con resistir ni con golpear más fuerte. El Ojo observó el terreno, escuchó a sus compañeros y encontró el instante preciso. De esa respuesta proceden, según la tradición, los **Goblinoides**, Hijos del Ojo. El mito no obliga a creer que todos sus descendientes sean estrategas ni demuestra cada detalle de su nacimiento.
+Las historias de la Primera Guerra cuentan que, ante el desafío de Varkor, no bastó con resistir ni con golpear más fuerte. El Ojo observó el terreno, escuchó a sus compañeros y encontró el instante preciso. De esa respuesta proceden, según la tradición, los **Goblinoides**, Hijos del Ojo. El mito no convierte a todos sus descendientes en estrategas.
 
-Varkor representa el **Conflicto**, no el Mal. El conocimiento de una debilidad puede servir para tender una emboscada, pero también para reforzar un puente antes de que caiga, negociar una tregua o salvar a quienes quedaron aislados tras una tormenta. Los Goblinoides deciden qué hacer con lo que descubren, como cualquier otro pueblo.
+Varkor representa el **Conflicto**, no el Mal. Conocer una debilidad permite emboscar, prevenir desastres o negociar treguas. Los Goblinoides deciden qué hacer con lo que descubren, como cualquier otro pueblo.
 
 ### Tres ascendencias, ninguna jerarquía
-Los **Goblins**, pequeños y de Movimiento ágil, suelen ser reconocidos por su facilidad para moverse entre cuerpos mayores cuando hay espacio. En distintas regiones trabajan como agricultores, exploradores, artesanos, comerciantes o médicos. No todos inventan máquinas, ni una goblin nace sabiendo Ingeniería.
+Los **Goblins**, pequeños y de Movimiento ágil, suelen ser reconocidos por su facilidad para moverse entre cuerpos mayores cuando hay espacio. Ejercen diversos oficios, sin Ingeniería innata.
 
-Los **Hobgoblins** poseen cuerpos de Escala Mediana. Algunas comunidades desarrollaron sistemas de abastecimiento, fortificaciones y administraciones complejas; otras prefieren asambleas sin mandos permanentes. La disciplina es una enseñanza, no un órgano biológico. Un hobgoblin puede improvisar, dedicarse a la poesía o desconfiar de cualquier ejército.
+Los **Hobgoblins** poseen cuerpos de Escala Mediana. Sus comunidades adoptan administraciones complejas o asambleas sin mandos permanentes. La disciplina es una enseñanza, no un órgano biológico. Un hobgoblin puede improvisar, dedicarse a la poesía o desconfiar de cualquier ejército.
 
-Los **Bugbears** son corpulentos, en el extremo superior de la Escala Mediana. Su fuerza aplicada a cargas y objetos inertes es notable, pero no son gigantes ni adquieren por tamaño una resistencia universal. Pueden ejercer el arte, la enseñanza, la navegación o la vigilancia. La fama de emboscadores no significa que todos posean Sigilo entrenado.
+Los **Bugbears** son corpulentos, en el extremo superior de la Escala Mediana. Su fuerza aplicada a cargas y objetos inertes es notable, pero no son gigantes ni adquieren por tamaño una resistencia universal. No poseen Sigilo entrenado por nacimiento.
 
 ### Oficios, ciudades y creencias
-En la Edria de **612 C.**, los tres pueblos participan en talleres, ferrocarriles, puertos y comunidades mixtas. Las fronteras políticas no equivalen a fronteras de sangre. Una familia puede compartir vecindario y trabajo con Enanos, Orcos o Humanos sin abandonar sus propias costumbres.
+En la Edria de **612 C.**, los tres pueblos participan en talleres, ferrocarriles, puertos y comunidades mixtas. Las fronteras políticas no equivalen a fronteras de sangre. Conviven con otros pueblos sin perder sus costumbres.
 
-**Propuesta cultural local:** algunos talleres celebran la *Prueba de Revisión*: antes de inaugurar una máquina, invitan a otra persona a señalar su fallo más peligroso. En ciertos consejos existe el *Relevo Público*, donde los responsables salientes entregan sus registros, incluidos los errores. Son prácticas posibles, **no instituciones universales ni fuentes de bonificaciones**.
+**Propuesta cultural local:** algunos talleres celebran la *Prueba de Revisión*: antes de inaugurar una máquina, invitan a otra persona a señalar su fallo más peligroso. En ciertos consejos existe el *Relevo Público*, donde los responsables salientes entregan sus registros, incluidos los errores. No son universales ni conceden bonificaciones.
 
 Hay devotos de Varkor, fieles de otros dioses y personas sin culto. Ninguna ascendencia recibe Vínculo Divino automáticamente. Los **Kobolds** no son una cuarta opción goblinoide del Manual Básico: su relación con la cosmología dracónica continúa abierta.
 
