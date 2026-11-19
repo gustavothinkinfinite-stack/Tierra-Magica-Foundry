@@ -794,3 +794,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Se releyeron tablero, README, plan, doce textos individuales y Manual Maestro vigente de `main`.
 - Generado [`manual_final/control_sincronizacion_fuentes_2026_11_19.md`](./manual_final/control_sincronizacion_fuentes_2026_11_19.md) con comparación de párrafos y divergencias por raza. No se alteró el manuscrito consolidado automáticamente para evitar sobrescribir correcciones editoriales existentes.
 - **Próximo bloque sustantivo:** conciliar manualmente las diferencias de Goblinoides, Terios, Feéricos y Coralios y regenerar el capítulo de lectura desde los doce archivos individuales, preservando su jerarquía editorial. Después realizar comprobación final de extensión y entrega.
+
+### 2026-11-19 — Conciliación de cinco fuentes editoriales
+- Se sincronizó `manual_final/capitulo_ascendencias_lectura_editorial.md` con los cinco textos individuales divergentes: Goblinoides, Terios, Feéricos, Verdantes y Coralios; siete secciones sin cambios.
+- Registro: [conciliacion_cinco_razas_2026_11_19.md](./manual_final/conciliacion_cinco_razas_2026_11_19.md). La fuente canónica de `main` conserva blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- Control de extensión sincronizada: Goblinoides 881 (excede meta 850), Terios 721, Feéricos 777, Verdantes 760 y Coralios 779 palabras, contando encabezados. **No declarar cerrada la fase editorial:** falta recortar Goblinoides, cotejar equivalencia semántica final y preparar informe global.
+- **Pruebas:** sincronización documental; 0 pruebas Foundry y 0 playtests de mesa. Sin cambios en `main`, mapa o código.
+- **Siguiente bloque:** resolver extensión de Goblinoides y verificar manuscrito final antes del informe de entrega.
