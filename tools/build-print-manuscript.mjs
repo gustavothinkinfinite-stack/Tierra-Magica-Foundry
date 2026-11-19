@@ -243,6 +243,12 @@ const allFromSource=[first,annex,rest,world,panteon].join("\n");
 for(const term of ["## 12. Grimorio canónico","### CRAFT-12 — Auditoría integral del sistema de fabricación","## 16. Alquimia","## 23. PNJ y criaturas","## 38. Relaciones del Panteón y límites de canon"]){
  if(!allFromSource.includes(term))throw Error("Falta contenido: "+term);
 }
+// Rótulos de estado CRAFT para lectura: el contenido normativo se conserva.
+if(assembled.split("> **CRAFT-01 — VIGENTE · CERRADO.**").length!==2)throw Error("Falta rótulo CRAFT-01");
+if(assembled.split("> **VIGENTE · CERRADO.**").length!==12)throw Error("Se esperaban 11 rótulos CRAFT de estado");
+assembled=assembled.replace("> **CRAFT-01 — VIGENTE · CERRADO.**","> **CRAFT-01 — Regla vigente.**");
+assembled=assembled.split("> **VIGENTE · CERRADO.**").join("> **Regla vigente.**");
+
 // Apéndice de consulta derivado literalmente de la referencia rápida oficial.
 const glossarySection=glossaryRaw.split("\n## Glosario\n");
 if(glossarySection.length!==2)throw Error("Sección Glosario ausente o duplicada");
