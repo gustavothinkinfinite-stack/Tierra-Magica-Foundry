@@ -627,7 +627,7 @@ Ejemplos: Espadas, Hachas, Lanzas; Cirugía, Traumatología, Toxicología; Vapor
 
 #### Técnicas
 
-Costes normales: **Básica 2 PD, Avanzada 3 PD, Maestra 5 PD, Legendaria 8+ PD**. Cada Técnica establece sus propios requisitos. El catálogo vigente se encuentra en el capítulo de Técnicas.
+Costes normales: **Básica 2 PD, Avanzada 3 PD, Maestra 5 PD, Legendaria 8+ PD**. Cada Técnica establece sus propios requisitos. El catálogo vigente se encuentra en el [capítulo de Técnicas](#tm-r13).
 
 #### Magia, Disciplinas y Hechizos
 
@@ -665,7 +665,7 @@ Resumen del catálogo cerrado en CREA-14:
 | Resistencia Ambiental | 1 o 2 PR | Disponible en creación |
 | Vuelo Natural | 4 PR | Excepcional; no comprable con los 3 PR estándar |
 | Familiar Mágico | 3 PR | Disponible en creación; usa uno de los cuatro perfiles iniciales del Paso 5 |
-| Pacto Externo | 2 PR | Disponible sólo en su forma base definida en el capítulo 5; cualquier Don adicional exige un perfil expresamente costeado |
+| Pacto Externo | 2 PR | Disponible sólo en su forma base definida en el [capítulo 5](#tm-r05); cualquier Don adicional exige un perfil expresamente costeado |
 
 Los 3 PR generales existen **además** del paquete racial. Si el paquete racial ya concede una propiedad equivalente a un Rasgo general, no se compra de nuevo para acumularla. Un Rasgo puede ampliar una capacidad racial sólo cuando su propia regla describa expresamente esa mejora. Una misma propiedad no se cobra dos veces.
 
@@ -701,7 +701,7 @@ Para resolver un Familiar:
 - un ataque válido usa **2d10 + Ataque contra Defensa** y causa el Daño indicado antes de Protección;
 - llegar a 0 Vida lo deja Incapacitado; no utiliza la progresión de Trauma de un PJ orgánico salvo regla específica.
 
-El Familiar **no posee Maná propio por defecto** y no recibe Acción o Reacción independientes para el propietario. Una intervención táctica significativa se resuelve mediante Acción Vinculada y consume normalmente la Reacción del personaje; una orden táctica compleja nueva consume la Acción del personaje conforme al capítulo de Familiares.
+El Familiar **no posee Maná propio por defecto** y no recibe Acción o Reacción independientes para el propietario. Una intervención táctica significativa se resuelve mediante Acción Vinculada y consume normalmente la Reacción del personaje; una orden táctica compleja nueva consume la Acción del personaje conforme al [capítulo de Familiares](#tm-r14).
 
 Durante creación registra:
 - nombre, naturaleza y apariencia;
@@ -1934,7 +1934,7 @@ Usos frecuentes:
 - maniobrar en vuelo cuando una fuente válida ya permite volar;
 - pasar por una abertura o postura difícil cuando la anatomía lo permite.
 
-Las caídas usan la regla específica de **Caída controlada** del capítulo de Vida y daño.
+Las caídas usan la regla específica de **Caída controlada** del [capítulo de Vida, heridas y recuperación](#tm-r10).
 
 Acrobacia no concede:
 
@@ -3837,7 +3837,7 @@ Cada arma puede indicar:
 - **Recarga:** Acciones necesarias antes de volver a disparar cuando se indique;
 - **Propiedades:** etiquetas y reglas particulares.
 
-Un ataque ordinario sigue el procedimiento del capítulo de Combate:
+Un ataque ordinario sigue el procedimiento del [capítulo de Combate](#tm-r08):
 
 **2d10 + Atributo pertinente + Habilidad de arma + modificadores contra Defensa.**
 
@@ -4037,7 +4037,7 @@ La calidad Defectuosa/Común/Superior/Excepcional describe fabricación y propie
 
 **CRAFT-08 — Objetos mágicos, encantamientos y sintonización** define Encantamientos autónomos, Reserva Encantada, Hechizos Vinculados, accesorios mágicos y el límite universal de Sintonización.
 
-Las recetas de fabricación de armas, armaduras, escudos, munición y herramientas del catálogo vigente se encuentran en **CRAFT-03 — Armas, armaduras y herramientas**, dentro del capítulo 18.
+Las recetas de fabricación de armas, armaduras, escudos, munición y herramientas del catálogo vigente se encuentran en **CRAFT-03 — Armas, armaduras y herramientas**, dentro del [capítulo 18](#tm-r18).
 
 ### Catálogo ampliado aprobado de escudos
 
@@ -4100,7 +4100,7 @@ Cuando un Kit es esencial para una tarea profesional, carecer de él puede volve
 
 ### Raciones, provisiones y combustible
 
-Las distancias diarias, forraje, agua, campamento y efectos de viajar fuera de caminos se explican en **Viajes y desplazamiento de larga distancia**, dentro del capítulo 6.
+Las distancias diarias, forraje, agua, campamento y efectos de viajar fuera de caminos se explican en **Viajes y desplazamiento de larga distancia**, dentro del [capítulo 6](#tm-r06).
 
 **Provisiones 7 días — 2 p** representa siete raciones diarias de comida conservable para **un viajero ordinario** durante condiciones normales.
 
@@ -4162,7 +4162,7 @@ Fórmulas de referencia:
 | Toxina Debilitante | VIG DF14; con fallo, Desventaja en acciones físicas dependientes de fuerza muscular |
 | Bomba Incendiaria | área pequeña; Daño 6, Pen 1; requiere colocación válida |
 
-**Esta tabla es sólo una referencia rápida de efectos, no la ficha completa de activación.** Las reglas de Vía, Activación, Duración y Saturación se encuentran en **16. Alquimia**; el precio, coste de materiales, tiempo, competencia y requisitos de preparación constan en **CRAFT-11 — Catálogo de proyectos y recetas de referencia**, dentro del capítulo 18. En particular, **Bálsamo Restaurador requiere 1 minuto**, mientras que **Poción Restauradora consume una Acción**; ambos comparten Saturación Restaurativa. El **Neutralizante Común** tiene Saturación Antitóxica y no habilita resistencias beneficiosas ilimitadas antes de Respiro. Un precio histórico no se convierte por inferencia cuando una entrada distinta siga sin valoración vigente.
+**Esta tabla es sólo una referencia rápida de efectos, no la ficha completa de activación.** Las reglas de Vía, Activación, Duración y Saturación se encuentran en **16. Alquimia**; el precio, coste de materiales, tiempo, competencia y requisitos de preparación constan en **CRAFT-11 — Catálogo de proyectos y recetas de referencia**, dentro del [capítulo 18](#tm-r18). En particular, **Bálsamo Restaurador requiere 1 minuto**, mientras que **Poción Restauradora consume una Acción**; ambos comparten Saturación Restaurativa. El **Neutralizante Común** tiene Saturación Antitóxica y no habilita resistencias beneficiosas ilimitadas antes de Respiro. Un precio histórico no se convierte por inferencia cuando una entrada distinta siga sin valoración vigente.
 
 ### Dispositivos arcano-industriales
 
@@ -4204,7 +4204,7 @@ La moneda usa:
 
 Precio, Disponibilidad y acceso son independientes. Tener dinero suficiente no garantiza encontrar un objeto Raro, Restringido o Excepcional.
 
-La **venta rápida** utiliza 25% del Valor Aplicable definido por CRAFT-02. La venta directa no tiene una tasa universal; alrededor de 50% del Valor Aplicable es sólo una referencia posible cuando existe comprador. Estado, reparación, Encargos y desmantelamiento se resuelven en el capítulo 18.
+La **venta rápida** utiliza 25% del Valor Aplicable definido por CRAFT-02. La venta directa no tiene una tasa universal; alrededor de 50% del Valor Aplicable es sólo una referencia posible cuando existe comprador. Estado, reparación, Encargos y desmantelamiento se resuelven en el [capítulo 18](#tm-r18).
 
 Durante creación, PEI es presupuesto y **no dinero**. Después de comenzar el juego, el equipo se compra con moneda, fabricación, recompensa u otra fuente física válida.
 
