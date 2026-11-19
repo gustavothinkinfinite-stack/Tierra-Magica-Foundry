@@ -38,7 +38,7 @@ El §9 especifica cinco lotes:
 - 20 flechas perforantes 4 p;
 - 20 virotes perforantes 6 p.
 
-La munición se consume por unidad disparada, con independencia de impacto. La perforante añade Pen +1 al disparo hasta Pen 3 por esta vía, sin añadir daño ni bono de ataque. **Punto de atención:** venta fraccionada de lotes (por ejemplo, un virote ordinario equivaldría a 1,5 cobres al prorratear 3 p/20); moneda ordinaria mínima = 1 cobre. §9 dice prorratear sin explicitar redondeo de compra fraccionada, así que no se puede certificar el algoritmo monetario del libro sin una regla adicional ratificada. No se cambiaron precios.
+La munición se consume por unidad disparada, con independencia de impacto. La perforante añade Pen +1 al disparo hasta Pen 3 por esta vía, sin añadir daño ni bono de ataque. **RESUELTO (DEC-ED-07):** los lotes se prorratean sobre el total de unidades del producto en la transacción; compra redondeada una sola vez hacia arriba al cobre, venta/recuperación hacia abajo según CRAFT-02. Diez virotes de 20 por 3 p cuestan 15 c; uno suelto cuesta 2 c. Quedó normado en §§9 y 19, sin cambiar precios de lote.
 
 ## Hallazgo ARM-ED-04 — «Cuchillo» no es un trigésimo perfil
 La tabla de §19 incluye «Cuchillo — 3 p»; §9 no le asigna perfil de daño individual. En el libro, debe figurar como objeto vendido con precio vigente, **no** como un perfil de combate con daño inventado.
@@ -47,7 +47,7 @@ La tabla de §19 incluye «Cuchillo — 3 p»; §9 no le asigna perfil de daño 
 `docs/reviews/TABLAS_EDITORIALES_ARMAS_ARMADURAS_ESCUDOS_MUNICION_2026-11-19.md`.
 
 ## Pendiente
-- [ ] Resolver regla de redondeo para división de lotes cuya unidad no coincide con cobre entero.
+- [x] Resuelto con DEC-ED-07 y sincronizado con §§9 y 19.
 - [ ] Cotejo de cada variante y sus atributos declarados en catálogos de Foundry, si se publican individualmente en el libro.
 - [ ] Verificar de forma independiente ejemplos de daño y munición y realizar playtest.
 - [ ] Revisar visualmente tabla comercial de §19 y el borrador maquetado.
