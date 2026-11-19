@@ -846,3 +846,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Verificado en `main` B5-I02: Enraizar concede +1 circunstancial a Defensa de Maniobra exclusivamente contra Derribar mientras esté activo; corregidos texto individual Feéricos y manuscrito consolidado.
 - Comprobación documental de equivalencia por sustitución exacta; **0 pruebas Foundry y 0 mesa**. No se modificó canon ni se aprobaron propuestas.
 - **Siguiente unidad:** control normativo de Ankar, Cristálidos, Verdantes y Micelios; revisar extensión editorial tras las precisiones y corregir si supera 850 palabras.
+
+### 2026-11-19 — Cotejo normativo de Ankar, Cristálidos, Verdantes y Micelios
+- Contrastados contra `main:docs/Tierra_Magica_Manual_Maestro.md` once rasgos/cláusulas de las cuatro familias, sin contradicciones normativas detectadas en el alcance revisado.
+- Registrados **16 casos de aceptación documentales; 0 Foundry y 0 mesa** en [control normativo de cuatro familias](./manual_final/control_normativo_ankar_cristalidos_verdantes_micelios_2026_11_19.md).
+- No se modificaron paquetes ni canon. **Siguiente:** control normativo de familias restantes y verificación editorial global de las doce fuentes.
