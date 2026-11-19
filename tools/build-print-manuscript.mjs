@@ -246,7 +246,7 @@ for(const term of ["## 12. Grimorio canónico","### CRAFT-12 — Auditoría inte
 // Apéndice de consulta derivado literalmente de la referencia rápida oficial.
 const glossarySection=glossaryRaw.split("\n## Glosario\n");
 if(glossarySection.length!==2)throw Error("Sección Glosario ausente o duplicada");
-const glossaryEntries=glossarySection[1].split("\n").filter(x=>/^\\*\\*[^*]+:\\*\\*/.test(x)&&!x.startsWith("**Fuente activa única:"));
+const glossaryEntries=glossarySection[1].split("\n").filter(x=>x.startsWith("**")&&x.includes(":**")&&!x.startsWith("**Fuente activa única:"));
 if(glossaryEntries.length!==25)throw Error("Se esperaban 25 entradas de glosario: "+glossaryEntries.length);
 const glossaryAppendix=[
 "# Glosario de consulta — Manual Básico",
