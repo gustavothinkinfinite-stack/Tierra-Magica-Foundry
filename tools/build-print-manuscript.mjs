@@ -15,6 +15,8 @@ const root=resolve(import.meta.dirname,"..");
 const source=resolve(root,"docs/Tierra_Magica_Manual_Maestro.md");
 const dest=resolve(root,"docs/edicion_impresa/Manual_Basico_Manuscrito_Lectura.md");
 const raw=(await readFile(source,"utf8")).replace(/\r\n/g,"\n");
+const glossarySource=resolve(root,"docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md");
+const glossaryRaw=(await readFile(glossarySource,"utf8")).replace(/\r\n/g,"\n");
 const required=[
 "# PARTE I — REGLAS VIGENTES Y GUÍA DE JUEGO",
 "## 3. Creación de personaje paso a paso",
@@ -241,6 +243,23 @@ const allFromSource=[first,annex,rest,world,panteon].join("\n");
 for(const term of ["## 12. Grimorio canónico","### CRAFT-12 — Auditoría integral del sistema de fabricación","## 16. Alquimia","## 23. PNJ y criaturas","## 38. Relaciones del Panteón y límites de canon"]){
  if(!allFromSource.includes(term))throw Error("Falta contenido: "+term);
 }
+// Apéndice de consulta derivado literalmente de la referencia rápida oficial.
+const glossarySection=glossaryRaw.split("\n## Glosario\n");
+if(glossarySection.length!==2)throw Error("Sección Glosario ausente o duplicada");
+const glossaryEntries=glossarySection[1].split("\n").filter(x=>/^\\*\\*[^*]+:\\*\\*/.test(x)&&!x.startsWith("**Fuente activa única:"));
+if(glossaryEntries.length!==25)throw Error("Se esperaban 25 entradas de glosario: "+glossaryEntries.length);
+const glossaryAppendix=[
+"# Glosario de consulta — Manual Básico",
+"",
+"**Estado editorial:** derivado literal de la referencia rápida oficial, preparado para revisión de lectura. No añade reglas.",
+"",
+"**Procedencia:** \`docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md\`, sección «Glosario». Las definiciones se conservaron textualmente y se omitió la instrucción de gestión sobre «Fuente activa única».",
+"",
+glossaryEntries.map(x=>x.trim()).join("\n\n"),
+"",
+"Las definiciones completas y las excepciones se encuentran en los capítulos normativos del Manual Básico. Este glosario no sustituye las reglas."
+].join("\n");
+assembled=assembled.trimEnd()+"\n\n---\n\n# APÉNDICE DE CONSULTA — GLOSARIO\n\n"+glossaryAppendix+"\n";
 await mkdir(dirname(dest),{recursive:true});
 await writeFile(dest,assembled);
 console.log(JSON.stringify({source,output:dest,ascendencias:12,characters:assembled.length,words:assembled.trim().split(/\s+/).length,notes:"NO aprobado para imprenta"}));
