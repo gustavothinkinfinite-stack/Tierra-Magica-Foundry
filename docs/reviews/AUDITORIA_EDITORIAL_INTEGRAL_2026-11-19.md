@@ -74,6 +74,13 @@ Estas modificaciones sólo sincronizan documentación: **no alteran costes, capa
 - Se asignaron **52 identificadores únicos** (`R01–R38`, `M01–M14`) para resolver la duplicación de números de capítulos; `docs/reviews/INDICE_IDS_CAPITULOS_UNICOS_2026-11-19.md`.
 - Pendientes: aplicar anclas y referencias al manuscrito definitivo, revisión tipográfica de tamaño real, tratamiento de notas internas, arte, sangrado, imprenta y PDF/X. La maqueta es **prototipo**, no validación editorial final.
 
+## Avance — depuración técnica y navegación de capítulos
+- Segunda iteración del manuscrito de lectura guardada: **836.917 caracteres**, **12 ascendencias**, **52 anclas únicas** en dos series R/M.
+- Se actualizaron tanto el derivado `docs/edicion_impresa/Manual_Basico_Manuscrito_Lectura.md` como el generador `tools/build-print-manuscript.mjs`.
+- Se retiraron **sólo del derivado impreso** dos bloques de informes Foundry (mercado, bestiario), aproximadamente **6.716 caracteres** en total; permanecen íntegros en el Maestro. El contenido normativo circundante se conservó.
+- Se detectó y corrigió la transición de IDs del panteón, que anteriormente producía 38 IDs en lugar de 52.
+- Verificación y próximos puntos en `docs/reviews/DEPURACION_MANUSCRITO_LECTURA_2026-11-19.md`. **No certificar libro para imprenta**: siguen referencias ambiguas en prosa, notas técnicas residuales y trabajo visual pendiente.
+
 ## Criterios de tratamiento
 
 - **Corrección editorial segura:** referencias desactualizadas o descripciones históricas cuyo estado vigente ya está respaldado inequívocamente en el Manual.
