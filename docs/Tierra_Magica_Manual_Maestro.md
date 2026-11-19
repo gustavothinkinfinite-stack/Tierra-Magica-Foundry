@@ -10376,8 +10376,11 @@ Al revisar el código fuente se identifican tres límites concretos:
 | Cuchillo | 3 p |
 | Daga | 6 p |
 | Espada corta | 1 o |
-| Espada larga | 2 o |
 | Sable | 1 o 5 p |
+| Cadena corta de combate | 1 o |
+| Látigo | 5 p |
+| Látigo reforzado | 1 o |
+| Espada larga | 2 o |
 | Hacha | 2 o 5 p |
 | Maza | 1 o |
 | Martillo de guerra | 3 o |
@@ -10386,6 +10389,12 @@ Al revisar el código fuente se identifican tres límites concretos:
 | Mandoble / Espadón equivalente | 4 o |
 | Gran hacha | 5 o |
 | Gran martillo | 5 o |
+| Honda | 2 p |
+| Honda de guerra | 5 p |
+| Fustíbalo | 8 p |
+| Azagaya | 2 p |
+| Jabalina | 3 p |
+| Jabalina pesada | 5 p |
 | Arco corto | 1 o |
 | Arco largo | 2 o |
 | Ballesta | 3 o |
