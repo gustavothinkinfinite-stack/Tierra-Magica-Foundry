@@ -783,3 +783,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creada [auditoría C02–C11](./manual_final/auditoria_semantica_c02_c11_b5_2026_11_18.md), matriz individual de diez capítulos; tres inconsistencias de clasificación **SEM-04/05/06 corregidas** en C06, C07 y C10, sin crear reglas ni costes.
 - La condición insular y ubicación del Territorio Oriental en C06 son compatibles con el canon; no se ratificaron ciudades, fronteras ni nombres propuestos.
 - **Siguiente:** aclarar en C05 la interrupción de Escurridizo (SEM-03); resincronizar manuscrito de lectura desde fuentes individuales; control global de referencias, maquetación e informe final. **0 Foundry/mesa**, sin merge, sin escritura fuera de rama/carpeta.
+
+### 2026-11-18 — SEM-03: Escurridizo y Reacciones
+- Verificados los tres documentos rectores, el texto C05 y `main:docs/Tierra_Magica_Manual_Maestro.md` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- Actualizado [`05_goblinoides/manual_final_propuesto.md`](./05_goblinoides/manual_final_propuesto.md): la Reacción sigue vigente y no se permite terminar en espacio ocupado. La ubicación exacta tras interrupción **no está especificada expresamente en el apartado canónico de Escurridizo**; la última posición libre y legal se identifica ahora como **arbitraje propuesto no ratificado**, sin reembolso de Movimiento. No presentar SEM-03 como regla canónica cerrada.
+- **Estado SEM-03:** aclaración editorial realizada, decisión normativa aún pendiente de aprobación global. **Pruebas: 1 cotejo documental; 0 Foundry; 0 mesa.**
+- **Siguiente:** resincronizar el manuscrito de lectura desde las doce fuentes individuales, comprobar extensiones y coherencia de remisiones; después informe global. Sin escritura fuera de `propuestas/razas/`.
