@@ -16,7 +16,7 @@
 - [ ] P01. Cotejar capítulo por capítulo el texto normativo y eliminar contradicciones demostradas.
 - [ ] P02. Unificar términos de Ascendencia/Origen/Trasfondo, recursos, tablas y referencias cruzadas.
 - [ ] P03. Cotejar las 12 dobles páginas raciales contra el cierre B5 normativo.
-- [ ] P04. Resolver mediante aprobación expresa equivalencias de rasgos de Don sin Forma: ED-04.
+- [x] P04. **Resuelto por DEC-ED-05:** equivalencias de rasgos de Don sin Forma; fundamentadas en el §5 y reflejadas en el Maestro.
 - [x] P05. **Selección editorial aprobada:** sólo perfiles canónicos con precio/reglas vigentes; propuestas sin precio y equipo especial sin Perfil fuera de las tablas de compra impresa. **Pendiente dentro del cierre económico:** cotejo ítem por ítem de precios y terminología comercial, que continúa en P01/P02/P08.
 - [x] P06. **Selección editorial realizada:** seis perfiles de combate definidos y transcritos desde §23; los otros cinco se identifican expresamente como fichas contextuales o incompletas. Pendientes pruebas de mesa, arte y cotejo final en P08/P14/P22.
 - [ ] P07. Distinguir canon de propuestas culturales locales; conservar espacios deliberadamente abiertos.
@@ -85,6 +85,11 @@
 - **P05 / P06:** aprobadas las decisiones de alcance por delegación del usuario, con criterios del Consejo; respaldo en `docs/reviews/DECISIONES_EDITORIALES_APROBADAS_2026-11-19.md`.
 - **Borrador de seis fichas de uso inmediato:** `docs/reviews/BESTIARIO_BASICO_FICHAS_SELECCIONADAS_2026-11-19.md`. No confundir con las 11 fichas completas ni con los 23 Actores empaquetados.
 - Persisten como verificaciones obligatorias el control item por item de precios, pruebas de mesa, coherencia con §23, cierre Don sin Forma/Enraizar y preflight de la edición física.
+
+## Avance registrado — resolución de Don sin Forma y Enraizar
+- **DEC-ED-05:** cerrado Don sin Forma, sin convertir el Don en PR ni añadir Rasgos compatibles; coste del catálogo §5 1 PR Menor / 2 PR Significativo.
+- **DEC-ED-06:** unificado coste de liberar Enraizar a **1 punto de Movimiento**, como ya figuraba en los dos paquetes y sus anexos.
+- **P03:** todavía requiere comprobar todas las paráfrasis y casos de interacción, aunque los dos bloqueos mecánicos detectados ya están resueltos.
 
 ## Registro de progreso inicial
 - [x] Producto objetivo editorial establecido.
