@@ -834,3 +834,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Informe: [`manual_final/control_normativo_enanos_elficos_orcos_2026_11_19.md`](./manual_final/control_normativo_enanos_elficos_orcos_2026_11_19.md).
 - Reserva: cotejar el ejemplo numérico de Empujar contra Enano con el procedimiento universal; no tomar el ejemplo como fórmula general.
 - **Próximo bloque:** Humanos, Terios y Feéricos; luego Ankar, Cristálidos, Verdantes y Micelios, y equivalencia normativa final del consolidado. Sin cambios canónicos.
+
+### 2026-11-19 — Control normativo de Humanos, Terios y Feéricos
+- Releídos tablero, README y plan; cotejadas las tres fuentes C01/C06/C07 con `main:docs/Tierra_Magica_Manual_Maestro.md` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- Informe [`manual_final/control_normativo_humanos_terios_feericos_2026_11_19.md`](./manual_final/control_normativo_humanos_terios_feericos_2026_11_19.md): **12 campos documentales**, **14 casos de aceptación diseñados**, **0 ejecutados**.
+- Detectadas dos precisiones editoriales pendientes: branquias Terias funcionales frente a Anfibio (B5-I05) y bonificación circunstancial específica de Derribar en Dríade Enraizada (B5-I02); Don sin Forma mantiene clasificación alternativa no ratificada.
+- **Siguiente:** corregir las dos precisiones en fuentes y consolidado con control de 650–850 palabras; cotejar Ankar/Cristálidos/Verdantes/Micelios; informe global. Sin merge ni escritura fuera de rama/carpeta.
