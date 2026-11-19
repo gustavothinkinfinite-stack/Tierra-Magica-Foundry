@@ -1,0 +1,96 @@
+# Índice temático de consulta — Manual Básico
+
+**Estado:** índice editorial automático de secciones; no incluye paginación impresa. **Fuente única de remisiones:** el manuscrito de lectura de la rama editorial, con 52 anclas de capítulo.
+
+**Criterio técnico:** las voces se seleccionaron editorialmente; para cada voz se localizaron apariciones literales completas dentro de cada capítulo. Las remisiones muestran hasta cuatro capítulos y el número total de capítulos donde la voz aparece. Una coincidencia textual no certifica que el capítulo contenga una definición completa.
+
+| Término | Remisiones por capítulo | Capítulos con mención |
+|---|---|---:|
+| Acción | [tm-r02](Manual_Basico_Manuscrito_Lectura.md#tm-r02) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 24 |
+| Adaptación de Bioma | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) | 1 |
+| Agarrar | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 5 |
+| Agarre | [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) | 2 |
+| Alquimia | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [tm-r16](Manual_Basico_Manuscrito_Lectura.md#tm-r16) · … | 9 |
+| Anfibio | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) | 2 |
+| Armadura | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [tm-r10](Manual_Basico_Manuscrito_Lectura.md#tm-r10) · [tm-r11](Manual_Basico_Manuscrito_Lectura.md#tm-r11) · … | 7 |
+| Armas | [tm-r01](Manual_Basico_Manuscrito_Lectura.md#tm-r01) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · … | 18 |
+| Ascendencia | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r20](Manual_Basico_Manuscrito_Lectura.md#tm-r20) · [tm-r26](Manual_Basico_Manuscrito_Lectura.md#tm-r26) · [tm-r29](Manual_Basico_Manuscrito_Lectura.md#tm-r29) | 4 |
+| Atributo | [tm-r02](Manual_Basico_Manuscrito_Lectura.md#tm-r02) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · … | 13 |
+| Ayuda | [tm-r02](Manual_Basico_Manuscrito_Lectura.md#tm-r02) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · … | 12 |
+| Caída | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 8 |
+| Canalización | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · … | 11 |
+| Carga | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · … | 14 |
+| Caudal | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [tm-r15](Manual_Basico_Manuscrito_Lectura.md#tm-r15) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 9 |
+| Cobertura | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 10 |
+| Combate | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 15 |
+| Conductor Vivo | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) | 1 |
+| Contraataque | [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r13](Manual_Basico_Manuscrito_Lectura.md#tm-r13) | 2 |
+| Correr | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · … | 7 |
+| Curación | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r11](Manual_Basico_Manuscrito_Lectura.md#tm-r11) · … | 8 |
+| Daño Grave | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 6 |
+| Defensa | [tm-r01](Manual_Basico_Manuscrito_Lectura.md#tm-r01) · [tm-r02](Manual_Basico_Manuscrito_Lectura.md#tm-r02) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · … | 22 |
+| Derribar | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 6 |
+| Desarmar | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · … | 5 |
+| Descanso Completo | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [tm-r10](Manual_Basico_Manuscrito_Lectura.md#tm-r10) · [tm-r18](Manual_Basico_Manuscrito_Lectura.md#tm-r18) | 4 |
+| Desventaja | [tm-r01](Manual_Basico_Manuscrito_Lectura.md#tm-r01) · [tm-r02](Manual_Basico_Manuscrito_Lectura.md#tm-r02) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · … | 13 |
+| DF | [tm-r02](Manual_Basico_Manuscrito_Lectura.md#tm-r02) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 14 |
+| Disciplina | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r11](Manual_Basico_Manuscrito_Lectura.md#tm-r11) · … | 9 |
+| Don sin Forma | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r29](Manual_Basico_Manuscrito_Lectura.md#tm-r29) | 3 |
+| Empujar | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 5 |
+| Encantamiento | [tm-r18](Manual_Basico_Manuscrito_Lectura.md#tm-r18) | 1 |
+| Energía | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 17 |
+| Enlace Micelial | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) | 1 |
+| Enraizar | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) | 1 |
+| Escala | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · … | 17 |
+| Especialización | [tm-r02](Manual_Basico_Manuscrito_Lectura.md#tm-r02) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r18](Manual_Basico_Manuscrito_Lectura.md#tm-r18) · … | 5 |
+| Esquiva | [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) | 1 |
+| Familiar | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 13 |
+| Fatiga | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · … | 8 |
+| Fuente | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 24 |
+| Guardia | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · … | 7 |
+| Hazaña | [tm-r02](Manual_Basico_Manuscrito_Lectura.md#tm-r02) · [tm-r10](Manual_Basico_Manuscrito_Lectura.md#tm-r10) · [tm-r18](Manual_Basico_Manuscrito_Lectura.md#tm-r18) · [tm-r24](Manual_Basico_Manuscrito_Lectura.md#tm-r24) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 5 |
+| Herida Grave | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [tm-r10](Manual_Basico_Manuscrito_Lectura.md#tm-r10) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 9 |
+| Incapacitado | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r10](Manual_Basico_Manuscrito_Lectura.md#tm-r10) · … | 7 |
+| Ingeniería | [tm-r01](Manual_Basico_Manuscrito_Lectura.md#tm-r01) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · … | 16 |
+| Iniciativa | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · … | 8 |
+| Inmunidad | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r11](Manual_Basico_Manuscrito_Lectura.md#tm-r11) · … | 10 |
+| Investigación | [tm-r02](Manual_Basico_Manuscrito_Lectura.md#tm-r02) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · … | 13 |
+| Maná | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 21 |
+| Medicina | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [tm-r10](Manual_Basico_Manuscrito_Lectura.md#tm-r10) · … | 10 |
+| Movimiento | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · … | 18 |
+| Ojo para la Oportunidad | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) | 1 |
+| Origen | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r11](Manual_Basico_Manuscrito_Lectura.md#tm-r11) · [tm-r12](Manual_Basico_Manuscrito_Lectura.md#tm-r12) · [tm-r13](Manual_Basico_Manuscrito_Lectura.md#tm-r13) · … | 22 |
+| PD | [tm-r01](Manual_Basico_Manuscrito_Lectura.md#tm-r01) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 14 |
+| PEI | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [tm-r18](Manual_Basico_Manuscrito_Lectura.md#tm-r18) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 6 |
+| Penetración | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 9 |
+| Pifia | [tm-r02](Manual_Basico_Manuscrito_Lectura.md#tm-r02) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [tm-r11](Manual_Basico_Manuscrito_Lectura.md#tm-r11) · [tm-r17](Manual_Basico_Manuscrito_Lectura.md#tm-r17) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 7 |
+| Poción | [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [tm-r16](Manual_Basico_Manuscrito_Lectura.md#tm-r16) · [tm-r18](Manual_Basico_Manuscrito_Lectura.md#tm-r18) | 4 |
+| PR | [tm-r01](Manual_Basico_Manuscrito_Lectura.md#tm-r01) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 8 |
+| Protección | [tm-r01](Manual_Basico_Manuscrito_Lectura.md#tm-r01) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 26 |
+| Protección Natural | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) | 1 |
+| Rasgo | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 6 |
+| Reacción | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 15 |
+| Resistencia de daño | [tm-r38](Manual_Basico_Manuscrito_Lectura.md#tm-r38) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) | 1 |
+| Retirada | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r18](Manual_Basico_Manuscrito_Lectura.md#tm-r18) · … | 6 |
+| Ritualismo | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [tm-r11](Manual_Basico_Manuscrito_Lectura.md#tm-r11) · … | 8 |
+| Sangrado | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r10](Manual_Basico_Manuscrito_Lectura.md#tm-r10) · … | 8 |
+| Saturación | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [tm-r14](Manual_Basico_Manuscrito_Lectura.md#tm-r14) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 14 |
+| Sostenimiento | [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r11](Manual_Basico_Manuscrito_Lectura.md#tm-r11) · [tm-r12](Manual_Basico_Manuscrito_Lectura.md#tm-r12) · [tm-r13](Manual_Basico_Manuscrito_Lectura.md#tm-r13) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 7 |
+| Técnica | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · … | 15 |
+| Trasfondo | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r20](Manual_Basico_Manuscrito_Lectura.md#tm-r20) | 2 |
+| Trauma | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · [tm-r09](Manual_Basico_Manuscrito_Lectura.md#tm-r09) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) · … | 13 |
+| Turno | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r06](Manual_Basico_Manuscrito_Lectura.md#tm-r06) · [tm-r07](Manual_Basico_Manuscrito_Lectura.md#tm-r07) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 11 |
+| Unidad Comercial | [tm-r18](Manual_Basico_Manuscrito_Lectura.md#tm-r18) · [tm-r19](Manual_Basico_Manuscrito_Lectura.md#tm-r19) · [tm-r38](Manual_Basico_Manuscrito_Lectura.md#tm-r38) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) | 3 |
+| Ventaja | [tm-r01](Manual_Basico_Manuscrito_Lectura.md#tm-r01) · [tm-r02](Manual_Basico_Manuscrito_Lectura.md#tm-r02) · [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · … | 16 |
+| Vida | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r04](Manual_Basico_Manuscrito_Lectura.md#tm-r04) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r08](Manual_Basico_Manuscrito_Lectura.md#tm-r08) · … | 29 |
+| Vínculo Divino | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r05](Manual_Basico_Manuscrito_Lectura.md#tm-r05) · [tm-r26](Manual_Basico_Manuscrito_Lectura.md#tm-r26) · [tm-r31](Manual_Basico_Manuscrito_Lectura.md#tm-r31) | 4 |
+| Visión Arcana | [tm-r03](Manual_Basico_Manuscrito_Lectura.md#tm-r03) · [tm-r12](Manual_Basico_Manuscrito_Lectura.md#tm-r12) · [tm-r18](Manual_Basico_Manuscrito_Lectura.md#tm-r18) | 3 |
+| Vulnerabilidad de daño | [tm-r38](Manual_Basico_Manuscrito_Lectura.md#tm-r38) · [Glosario](Glosario_de_Consulta_Manual_Basico.md) | 1 |
+
+## Alcance y pendientes
+
+- Voces verificadas con presencia literal: **80** de 80 candidatas.
+- Voces sin coincidencia literal y excluidas: ninguna.
+- Las 25 definiciones del glosario oficial permanecen sin modificaciones.
+- Se debe revisar el contexto de cada coincidencia, añadir subentradas e incorporar folios reales cuando exista el PDF definitivo.
+- Las reglas del Maestro, el manuscrito fuente y las anclas preexistentes no se modifican.
