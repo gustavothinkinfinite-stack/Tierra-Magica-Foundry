@@ -5151,7 +5151,7 @@ Ingeniería diseña, construye y repara mecanismos; Arcana comprende fenómenos 
 <a id="tm-r18"></a>
 ## 18. Proyectos, fabricación e investigación
 
-> **CRAFT-01 — VIGENTE · CERRADO.** Este capítulo contiene el motor universal de proyectos y fabricación. Las ampliaciones CRAFT-02 y posteriores cuantifican economía, recetas, calidad, materiales especiales, trampas, runas, objetos mágicos, ingeniería avanzada e investigación sin reemplazar este motor salvo revisión explícita del canon.
+> **CRAFT-01 — Regla vigente.** Este capítulo contiene el motor universal de proyectos y fabricación. Las ampliaciones CRAFT-02 y posteriores cuantifican economía, recetas, calidad, materiales especiales, trampas, runas, objetos mágicos, ingeniería avanzada e investigación sin reemplazar este motor salvo revisión explícita del canon.
 
 ### Principio general
 
@@ -5592,7 +5592,7 @@ Esos elementos deben utilizar este motor y se cierran en CRAFT-02 y posteriores.
 
 ### CRAFT-02 — Economía de fabricación
 
-> **VIGENTE · CERRADO.** CRAFT-02 fija la economía universal de fabricación ordinaria: valor de referencia, coste material, valor de insumos, trabajo profesional, acceso a instalaciones, reparación, desmantelamiento, recuperación, lotes, venta y encargos. Las recetas concretas y las ampliaciones de Calidad, materiales especiales, runas, objetos mágicos e ingeniería pueden reemplazar un valor universal sólo cuando lo indiquen expresamente.
+> **Regla vigente.** CRAFT-02 fija la economía universal de fabricación ordinaria: valor de referencia, coste material, valor de insumos, trabajo profesional, acceso a instalaciones, reparación, desmantelamiento, recuperación, lotes, venta y encargos. Las recetas concretas y las ampliaciones de Calidad, materiales especiales, runas, objetos mágicos e ingeniería pueden reemplazar un valor universal sólo cuando lo indiquen expresamente.
 
 #### Valor de Referencia y Coste de Materiales
 
@@ -5862,7 +5862,7 @@ Esos elementos comienzan en **CRAFT-03 — Armas, armaduras y herramientas** y d
 
 ### CRAFT-03 — Armas, armaduras y herramientas
 
-> **VIGENTE · CERRADO.** CRAFT-03 convierte el catálogo material ordinario vigente en recetas fabricables mediante CRAFT-01 y CRAFT-02. Salvo indicación expresa, todas las recetas producen una pieza **Común**, con materiales ordinarios y exactamente las estadísticas ya definidas en el capítulo 9; fabricar no altera Daño, Penetración, Protección, Defensa, Recarga ni propiedades.
+> **Regla vigente.** CRAFT-03 convierte el catálogo material ordinario vigente en recetas fabricables mediante CRAFT-01 y CRAFT-02. Salvo indicación expresa, todas las recetas producen una pieza **Común**, con materiales ordinarios y exactamente las estadísticas ya definidas en el capítulo 9; fabricar no altera Daño, Penetración, Protección, Defensa, Recarga ni propiedades.
 
 #### Convenciones de receta
 
@@ -6088,7 +6088,7 @@ CRAFT-04 se desarrolla a continuación.
 
 ### CRAFT-04 — Calidad y modificaciones
 
-> **VIGENTE · CERRADO.** CRAFT-04 define la Calidad de manufactura, su coste, requisitos y valor; establece la Capacidad de Modificación de los objetos persistentes; y proporciona un catálogo inicial de modificaciones mundanas. No sustituye CRAFT-05 para materiales especiales ni CRAFT-07/08 para runas, piedras y objetos mágicos.
+> **Regla vigente.** CRAFT-04 define la Calidad de manufactura, su coste, requisitos y valor; establece la Capacidad de Modificación de los objetos persistentes; y proporciona un catálogo inicial de modificaciones mundanas. No sustituye CRAFT-05 para materiales especiales ni CRAFT-07/08 para runas, piedras y objetos mágicos.
 
 #### Qué representa la Calidad
 
@@ -6379,7 +6379,7 @@ CRAFT-05 se desarrolla a continuación.
 
 ### CRAFT-05 — Materiales especiales
 
-> **VIGENTE · CERRADO.** CRAFT-05 define cómo los materiales Especializados, Raros y Excepcionales entran en un Proyecto; separa sus propiedades de Calidad y Modificaciones; fija coste, dificultad de trabajo, recuperación y compatibilidad; y ratifica un primer catálogo material basado en recursos y regiones que ya existen en el canon.
+> **Regla vigente.** CRAFT-05 define cómo los materiales Especializados, Raros y Excepcionales entran en un Proyecto; separa sus propiedades de Calidad y Modificaciones; fija coste, dificultad de trabajo, recuperación y compatibilidad; y ratifica un primer catálogo material basado en recursos y regiones que ya existen en el canon.
 
 #### Relación con el canon del mundo
 
@@ -6762,7 +6762,7 @@ CRAFT-06 se desarrolla a continuación.
 
 ### CRAFT-06 — Trampas y construcciones
 
-> **VIGENTE · CERRADO.** CRAFT-06 define trampas físicas, disparadores, mecanismos, cargas, ocultación, detección, desactivación, rearme y construcciones de campaña. Reutiliza efectos ya cuantificados del sistema en vez de crear una economía paralela de daño. Las runas, encantamientos y dispositivos avanzados permanecen para CRAFT posteriores.
+> **Regla vigente.** CRAFT-06 define trampas físicas, disparadores, mecanismos, cargas, ocultación, detección, desactivación, rearme y construcciones de campaña. Reutiliza efectos ya cuantificados del sistema en vez de crear una economía paralela de daño. Las runas, encantamientos y dispositivos avanzados permanecen para CRAFT posteriores.
 
 #### Principio de una trampa
 
@@ -7273,7 +7273,7 @@ CRAFT-07 se desarrolla a continuación.
 
 ### CRAFT-07 — Runas, piedras y engarces
 
-> **VIGENTE · CERRADO.** CRAFT-07 define Capacidad Rúnica, matrices, inscripciones permanentes, Piedras de Impronta intercambiables, activación mediante Maná personal, costes, compatibilidades, extracción, sustitución y un catálogo inicial de Improntas. No define todavía encantamientos autónomos, sintonización mayor ni objetos mágicos completos: esos elementos pertenecen a CRAFT-08.
+> **Regla vigente.** CRAFT-07 define Capacidad Rúnica, matrices, inscripciones permanentes, Piedras de Impronta intercambiables, activación mediante Maná personal, costes, compatibilidades, extracción, sustitución y un catálogo inicial de Improntas. No define todavía encantamientos autónomos, sintonización mayor ni objetos mágicos completos: esos elementos pertenecen a CRAFT-08.
 
 #### Principio: Impronta, no dos sistemas de poder
 
@@ -7848,7 +7848,7 @@ CRAFT-08 se desarrolla a continuación.
 
 ### CRAFT-08 — Objetos mágicos, encantamientos y sintonización
 
-> **VIGENTE · CERRADO.** CRAFT-08 define objetos mágicos autónomos, Encantamientos, accesorios mágicos dedicados, Reserva Encantada, vinculación de hechizos, Sintonización y sellos autónomos de custodia. Mantiene separados Maná personal, Energía/Caudal de dispositivos y magia almacenada en un objeto. Los artefactos únicos, maldiciones complejas e investigación de efectos inéditos permanecen para CRAFT-10.
+> **Regla vigente.** CRAFT-08 define objetos mágicos autónomos, Encantamientos, accesorios mágicos dedicados, Reserva Encantada, vinculación de hechizos, Sintonización y sellos autónomos de custodia. Mantiene separados Maná personal, Energía/Caudal de dispositivos y magia almacenada en un objeto. Los artefactos únicos, maldiciones complejas e investigación de efectos inéditos permanecen para CRAFT-10.
 
 #### Runa frente a Encantamiento
 
@@ -8415,7 +8415,7 @@ La integración entre Encantamiento y maquinaria se define a continuación. El d
 
 ### CRAFT-09 — Ingeniería y dispositivos
 
-> **VIGENTE · CERRADO.** CRAFT-09 cuantifica acumuladores, Estabilidad, recarga, transferencia, módulos técnicos, dispositivos portátiles y autómatas auxiliares. Conserva la separación entre Energía, Maná y Reserva Encantada y convierte los dispositivos de referencia del capítulo 17 en equipo fabricable y utilizable.
+> **Regla vigente.** CRAFT-09 cuantifica acumuladores, Estabilidad, recarga, transferencia, módulos técnicos, dispositivos portátiles y autómatas auxiliares. Conserva la separación entre Energía, Maná y Reserva Encantada y convierte los dispositivos de referencia del capítulo 17 en equipo fabricable y utilizable.
 
 #### Arquitectura energética
 
@@ -8989,7 +8989,7 @@ CRAFT-10 se desarrolla a continuación.
 
 ### CRAFT-10 — Investigación, prototipos y estabilización de diseños
 
-> **VIGENTE · CERRADO.** CRAFT-10 define cómo transformar una idea, muestra, efecto desconocido o combinación nueva en conocimiento reproducible. Conserva el ciclo **Concepto -> Viabilidad -> Investigación -> Prototipo -> Fórmula/Plano/Patrón estable**, sin puntos universales de progreso y sin permitir que una tirada alta atraviese límites establecidos por el canon.
+> **Regla vigente.** CRAFT-10 define cómo transformar una idea, muestra, efecto desconocido o combinación nueva en conocimiento reproducible. Conserva el ciclo **Concepto -> Viabilidad -> Investigación -> Prototipo -> Fórmula/Plano/Patrón estable**, sin puntos universales de progreso y sin permitir que una tirada alta atraviese límites establecidos por el canon.
 
 #### Principio de investigación
 
@@ -9719,7 +9719,7 @@ CRAFT-11 se desarrolla a continuación.
 
 ### CRAFT-11 — Catálogo de proyectos y recetas de referencia
 
-> **VIGENTE · CERRADO.** CRAFT-11 no añade un motor nuevo. Reúne proyectos listos para usar que aplican CRAFT-01 a CRAFT-10 y completa las ocho Fórmulas alquímicas vigentes con precio y receta de preparación. El catálogo sirve como patrón para crear nuevas entradas sin recalcular cada subsistema durante la partida.
+> **Regla vigente.** CRAFT-11 no añade un motor nuevo. Reúne proyectos listos para usar que aplican CRAFT-01 a CRAFT-10 y completa las ocho Fórmulas alquímicas vigentes con precio y receta de preparación. El catálogo sirve como patrón para crear nuevas entradas sin recalcular cada subsistema durante la partida.
 
 #### Cómo leer el catálogo
 
@@ -10386,7 +10386,7 @@ CRAFT-12 se desarrolla a continuación.
 
 ### CRAFT-12 — Auditoría integral del sistema de fabricación
 
-> **VIGENTE · CERRADO.** CRAFT-12 audita CRAFT-01 a CRAFT-11 contra economía, progresión, combate, economía de acciones, magia, Energía, reparación, recuperación, trampas, consumibles e Investigación. No añade un motor nuevo: corrige únicamente contradicciones, bypasses o secuencias explotables encontradas durante la auditoría.
+> **Regla vigente.** CRAFT-12 audita CRAFT-01 a CRAFT-11 contra economía, progresión, combate, economía de acciones, magia, Energía, reparación, recuperación, trampas, consumibles e Investigación. No añade un motor nuevo: corrige únicamente contradicciones, bypasses o secuencias explotables encontradas durante la auditoría.
 
 #### Objetivo
 
