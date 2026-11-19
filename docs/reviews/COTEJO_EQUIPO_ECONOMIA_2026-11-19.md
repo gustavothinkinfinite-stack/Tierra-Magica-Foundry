@@ -34,6 +34,10 @@ Los números anteriores describen **categorías documentales**, no precios ni un
 
 El cotejo por pares comparó **8 herramientas + 15 kits** en el orden y con precios del Manual Maestro (§9) y EQP-01 y encontró **0 diferencias**. También coincidieron el precio y las unidades de los **2 suministros**. Se preparó la tabla derivada en `docs/reviews/TABLA_EDITORIAL_EQUIPO_25_2026-11-19.md`, con notas de suministro, PEI y sin disponibilidades inferidas. Esto **no cierra** aún armas, consumibles, clasificación comercial ni precios de fabricación.
 
+## Avance de armamento — cotejo 2026-11-19
+
+Se revisaron 29 perfiles de armas, cinco de armaduras y tres de escudos; §19 recibió nueve filas de precios **ya ratificados por §9**, más ordenamiento nominal del Mandoble. Las tablas derivadas quedan en `docs/reviews/TABLAS_EDITORIALES_ARMAS_ARMADURAS_ESCUDOS_MUNICION_2026-11-19.md`. Los detalles de nueve omisiones comerciales, alias de Mandoble y fraccionamiento de munición en `docs/reviews/COTEJO_ARMAMENTO_2026-11-19.md`. Continúa pendiente la política de cobres fraccionarios cuando se divide un lote de virotes o disparos.
+
 ## Recomendaciones de cierre de libro
 1. Preparar una **tabla única de compra** de equipo aprobado con moneda, precio, unidad comercial, peso físico si existe una regla aprobada (no inventarlo), FUE mínima cuando corresponda, disponibilidad sólo si fue ratificada y requisitos de acceso.
 2. Imprimir por separado las reglas de **creación con PEI** y las de compra ordinaria. No reintroducir Paquetes de Preparación como modalidad mecánica.
