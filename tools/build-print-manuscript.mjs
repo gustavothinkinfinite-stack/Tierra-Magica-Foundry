@@ -77,6 +77,7 @@ for(const [start,end] of editorialExclusions){
 let part="R",ids=[];
 assembled=assembled.split("\n").map((line)=>{
   if(line==="# PARTE II — CANON DEL MUNDO v1.2 INTEGRADO")part="M";
+  if(line==="## 25. Cosmología: los Principios Primordiales")part="R";
   const hit=line.match(/^## (\d+)\. (.+)$/);
   if(!hit)return line;
   const n=Number(hit[1]);
