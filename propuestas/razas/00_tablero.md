@@ -789,3 +789,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Actualizado [`05_goblinoides/manual_final_propuesto.md`](./05_goblinoides/manual_final_propuesto.md): la Reacción sigue vigente y no se permite terminar en espacio ocupado. La ubicación exacta tras interrupción **no está especificada expresamente en el apartado canónico de Escurridizo**; la última posición libre y legal se identifica ahora como **arbitraje propuesto no ratificado**, sin reembolso de Movimiento. No presentar SEM-03 como regla canónica cerrada.
 - **Estado SEM-03:** aclaración editorial realizada, decisión normativa aún pendiente de aprobación global. **Pruebas: 1 cotejo documental; 0 Foundry; 0 mesa.**
 - **Siguiente:** resincronizar el manuscrito de lectura desde las doce fuentes individuales, comprobar extensiones y coherencia de remisiones; después informe global. Sin escritura fuera de `propuestas/razas/`.
+
+### 2026-11-19 — Control de sincronización de las doce fuentes
+- Se releyeron tablero, README, plan, doce textos individuales y Manual Maestro vigente de `main`.
+- Generado [`manual_final/control_sincronizacion_fuentes_2026_11_19.md`](./manual_final/control_sincronizacion_fuentes_2026_11_19.md) con comparación de párrafos y divergencias por raza. No se alteró el manuscrito consolidado automáticamente para evitar sobrescribir correcciones editoriales existentes.
+- **Próximo bloque sustantivo:** conciliar manualmente las diferencias de Goblinoides, Terios, Feéricos y Coralios y regenerar el capítulo de lectura desde los doce archivos individuales, preservando su jerarquía editorial. Después realizar comprobación final de extensión y entrega.
