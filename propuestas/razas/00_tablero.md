@@ -888,3 +888,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Releídos tablero, README, plan, C01/C05, consolidado y registro de diferencias; confirmada autoridad de `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
 - Creado [control de cláusulas breves C01/C05](./manual_final/control_clausulas_breves_c01_c05_2026_11_19.md): **12 contratos normativos y 12 casos documentales**, incluidos Don sin Forma, Escurridizo, Ojo, Complexión y 0 Vida. Sin contradicción detectada en el alcance; clasificación HUM1 continúa propuesta no ratificada.
 - **Próximo:** Enanos, Élficos y Orcos con cláusulas cortas, luego siete familias restantes y remisiones. **0 Foundry, 0 mesa, 0 maquetas, 0 ratificaciones**. Sin cambios fuera de la rama/carpeta.
+
+### 2026-11-19 — Control C-12S/2 de cláusulas breves: Enanos, Élficos y Orcos
+- Verificados tablero, README, plan y tres fuentes finales contra el Manual Maestro en `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- [Acta C-12S/2](./manual_final/control_clausulas_breves_c02_c03_c04_2026_11_19.md): **18 contratos y 18 escenarios documentales**; control de Escala efectiva, Derribar, Sangre de Metal, percepción y Resonancia, Voluntad y Desventaja. Sin nueva contradicción en el alcance. **0 Foundry, 0 mesa, 0 maquetas, 0 ratificaciones**.
+- **Siguiente:** C-12S/3 Terios, Feéricos, Ankar y Cristálidos; después Verdantes, Micelios, Coralios y cierre de remisiones.
