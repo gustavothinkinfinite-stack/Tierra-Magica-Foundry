@@ -403,7 +403,7 @@ Estas reglas complementan los doce paquetes raciales jugables. Son aclaraciones 
 
 #### Identidad estructurada de creación: Ascendencia, Origen y Trasfondo
 
-Para que la creación del Manual y la ficha de Foundry utilicen el mismo lenguaje, todo PJ de nivel 1 registra **exactamente una Ascendencia, un Origen y un Trasfondo**.
+Todo personaje jugador de nivel 1 registra **exactamente una Ascendencia, un Origen y un Trasfondo**.
 
 - **Ascendencia** = el paquete racial o variante mecánica elegida. No describe automáticamente cultura ni profesión.
 - **Origen** = la sociedad o región donde el personaje se formó principalmente. Entrega Familiaridad Cultural, Perfil Lingüístico y una Faceta de Origen, pero ningún rango de Habilidad.
@@ -647,7 +647,7 @@ Referencia de costes: Menor 1 PR, Significativo 2 PR, Mayor 3 PR, Excepcional 4+
 
 Para creación estándar de nivel 1, un Rasgo sólo puede elegirse si su entrada del capítulo **5. Rasgos y Puntos de Rasgo** está marcada como **Disponible en creación**. Toda elección obligatoria del Rasgo debe quedar escrita en la ficha al adquirirlo.
 
-Resumen del catálogo cerrado en CREA-14:
+Resumen del catálogo vigente para creación:
 
 | Rasgo | Coste | Estado |
 |---|---:|---|
@@ -734,7 +734,7 @@ Procedimiento:
 
 **PEI utiliza el precio terminado de catálogo.** No puede gastarse como CM, VI, materias primas, alquiler de taller, Encargo o «fabricación previa a la campaña» para obtener a mitad de precio un objeto cuyo precio terminado exceda el presupuesto. Si una campaña concede explícitamente tiempo y recursos de fabricación antes de la primera sesión, se registra como concesión de campaña fuera del PEI.
 
-Los antiguos **Paquetes de Preparación** dejan de ser una modalidad mecánica separada durante CREA-14. Un grupo puede publicar listas recomendadas de equipo, pero cada objeto de esas listas se compra y contabiliza con las mismas reglas de Compra libre. Así no existe una segunda economía, descuento oculto ni contenido necesario fuera del Manual.
+Los antiguos **Paquetes de Preparación** no constituyen una modalidad mecánica separada. Un grupo puede publicar listas recomendadas de equipo, pero cada objeto de esas listas se compra y contabiliza con las mismas reglas de Compra libre. Así no existe una segunda economía, descuento oculto ni contenido necesario fuera del Manual.
 
 Después de cerrar el inventario inicial, el personaje recibe una sola vez una **Reserva líquida de 2 o = 200 c**. Esa Reserva ya es dinero de juego y no forma parte del PEI.
 
@@ -10865,7 +10865,7 @@ Las monedas regionales continúan existiendo dentro de Edria. c/p/o es una norma
 
 ### PEI y Reserva inicial
 
-La creación estándar usa **PEI 20 o = 2.000 c** como presupuesto material. No es dinero y no puede convertirse en saldo. Durante CREA-14 existe una única modalidad mecánica: **Compra libre** con objetos de precio exacto. Las listas recomendadas de equipo son sólo atajos editoriales y cada objeto conserva su precio normal. Todo PEI no utilizado se pierde al cerrar la preparación.
+La creación estándar usa **PEI 20 o = 2.000 c** como presupuesto material. No es dinero y no puede convertirse en saldo. Existe una única modalidad mecánica: **Compra libre** con objetos de precio exacto. Las listas recomendadas de equipo son sólo atajos editoriales y cada objeto conserva su precio normal. Todo PEI no utilizado se pierde al cerrar la preparación.
 
 Tras cerrar la preparación material, un personaje jugador creado mediante el procedimiento estándar recibe una sola vez una **Reserva líquida de 2 o = 200 c**. NPC, Familiares, plantillas, personajes importados o Actors antiguos no reciben esa Reserva automáticamente.
 
