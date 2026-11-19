@@ -37,11 +37,22 @@
 ## DEC-ED-04 — Criaturas originales todavía separadas
 El empaquetado de 23 Actores de Foundry no demuestra por sí mismo que las doce criaturas originales hayan pasado a ser canon narrativo/mecánico del Manual Básico. Se catalogan para revisión posterior y permanecen fuera de la selección editorial de esta tirada salvo promoción expresa documentada en el Maestro.
 
+
+## DEC-ED-05 — Clasificación de Rasgos para Don sin Forma
+**Aprobación del Consejo:** entre los Rasgos expresamente compatibles, la categoría **Significativo** corresponde a **Visión en la Oscuridad (2 PR)** y **Resistencia Ambiental en grado Significativo (2 PR)**. La categoría **Menor** corresponde a **Sentido Agudo, Trepador Natural, Afinidad Sobrenatural y Resistencia Ambiental en grado Menor** (1 PR cada uno). El personaje Humano elige **uno de los primeros o dos de los segundos**, sin convertir el Don en PR libres.
+
+**Fundamento:** el Manual Maestro §3 Paso 4 establece las categorías Menor 1 PR / Significativo 2 PR; §5 fija costes, grados, compatibilidad y exclusiones. La antigua etiqueta de propuesta del anexo era una inconsistencia documental. El Consejo ratifica esta clasificación dentro de la delegación editorial otorgada; no altera efectos, precios ni la lista de Rasgos compatibles.
+
+## DEC-ED-06 — Liberarse de Enraizar
+**Aprobación del Consejo:** Dríade y Verdante pueden **liberarse voluntariamente con 1 punto de Movimiento** del desplazamiento disponible; no consumen el recurso íntegro Movimiento. Mantiene el coste de **1 Acción para Enraizar**. No se libera voluntariamente una criatura Incapacitada. El anclaje y sus beneficios requieren suelo apropiado y continuidad del soporte.
+
+**Fundamento:** los dos paquetes normativos §3 y las dos dobles páginas del anexo coinciden explícitamente en «1 punto de Movimiento»; sólo la paráfrasis B5-I02 decía abreviadamente «1 Movimiento». Se unifica por el texto específico repetido en cuatro lugares, sin introducir nueva capacidad.
+
 ## Próximas verificaciones necesarias
 - [ ] Cotejar todas las tablas de compra con la fuente y sus precios/Unidades Comerciales.
 - [ ] Comprobar línea a línea el bloque de seis fichas maquetables con las entradas §23.
 - [ ] Verificar opciones de ataque (alcance, munición, armamento) sin deducir capacidades.
-- [ ] Resolver clasificación Don sin Forma y la expresión «1 Movimiento»/«1 punto de Movimiento».
+- [x] Resolver clasificación Don sin Forma y la expresión «1 Movimiento»/«1 punto de Movimiento» mediante decisiones DEC-ED-05 y DEC-ED-06 registradas en el Maestro.
 - [ ] Ejecutar pruebas y revisión ortotipográfica antes de maquetación definitiva.
 
 **Esta aprobación sólo alcanza el tratamiento editorial documentado aquí. No declara terminada la auditoría global ni autoriza fusionar la rama sin revisión de diferencias.**
