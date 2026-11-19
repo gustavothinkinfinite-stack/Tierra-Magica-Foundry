@@ -152,6 +152,86 @@ for(const [original,clean] of readerCopyedits){
   if(assembled.split(original).length!==2)throw Error("Redacción no única: "+original);
   assembled=assembled.replace(original,clean);
 }
+// Redacción de lectura adicional aprobada, separada de la fuente canónica.
+const technicalCopyedits=[
+  [
+    "Estas decisiones fueron aprobadas editorialmente; su implementación Foundry y su equilibrio empírico son verificaciones técnicas independientes, no efectos automáticos de esta redacción.",
+    "Estas restricciones no conceden beneficios adicionales fuera de los indicados."
+  ],
+  [
+    "Foundry calcula automáticamente ese rango a partir de las cuatro Habilidades de armas.",
+    "El rango se calcula a partir de las cuatro Habilidades de armas."
+  ],
+  [
+    "Foundry puede registrar tipos personalizados para una campaña. Esa capacidad es una extensión operativa: **un tipo personalizado no pasa a ser canon de Tierra Mágica hasta quedar definido en este Manual**.",
+    "Una campaña puede utilizar tipos personalizados de daño, pero **ninguno pasa a formar parte del canon general de Tierra Mágica hasta quedar definido en el Manual**."
+  ],
+  [
+    "el catálogo oficial de Foundry contiene **171 variantes de perfil aprobadas**",
+    "el catálogo aprobado incluye **171 variantes de perfil**"
+  ],
+  [
+    "Permanecen fuera del Compendio **44 propuestas**",
+    "Permanecen sin perfil canónico completo **44 propuestas**"
+  ],
+  [
+    "CRAFT-13 ya cerró la infraestructura de Materiales, fabricación y Energía, pero no autoriza inferir esos perfiles por el nombre.",
+    "La existencia de reglas generales sobre materiales, fabricación y Energía no autoriza inferir perfiles nuevos por su nombre."
+  ],
+  [
+    "El Compendio añade **89 variantes aprobadas**",
+    "El catálogo añade **89 variantes aprobadas**"
+  ],
+  [
+    "El Compendio añade **51 variantes aprobadas**",
+    "El catálogo añade **51 variantes aprobadas**"
+  ],
+  [
+    "son Items canónicos del Compendio y conservan",
+    "son objetos canónicos del catálogo y conservan"
+  ],
+  [
+    "CRAFT-13 ya aporta la infraestructura necesaria; cada propuesta especial sigue requiriendo un Perfil explícito antes de entrar al runtime.",
+    "Las reglas generales no bastan para aprobar las propuestas: cada objeto especial requiere un Perfil explícito antes de poder usarse con estadísticas propias."
+  ],
+  [
+    "- El requisito de Medicina de **Reconstrucción** permanece canónico sin rango mínimo cuantificado; Foundry no inventa uno.",
+    "- El requisito de Medicina de **Reconstrucción** permanece vigente sin rango mínimo cuantificado; no debe suponerse uno."
+  ],
+  [
+    "El siguiente bloque es **CRAFT-13 — Implementación Foundry VTT del sistema de fabricación**.\n\n",
+    ""
+  ],
+  [
+    "En Foundry la fuente autoritativa se almacena como un entero de cobres.",
+    "Para los cálculos monetarios se utiliza un único valor expresado en cobres enteros."
+  ],
+  [
+    "### Adaptación de equipo — REV-CREA-08-001",
+    "### Adaptación de equipo"
+  ],
+  [
+    "### Migración de crowns\n\n**crowns** es un campo legado obsoleto, no una cuarta moneda canónica. No tiene equivalencia automática. Foundry preserva el valor original y marca el Actor como pendiente hasta que una persona indique explícitamente cuántos cobres vale 1 crown o confirme que debe archivarse sin convertirlo. Nunca se suma crowns silenciosamente a un saldo canónico existente.\n\n",
+    ""
+  ],
+  [
+    "**Bloqueo de ficha definitiva:** concretar arma y equipo antes de incorporar una variante de Soldado al Compendio.",
+    "**Límite de este ejemplo:** concretar el arma y equipo antes de usar una ficha definitiva de Soldado."
+  ],
+  [
+    "**Alcance del cierre:** hay once **ejemplos de encuentro**, uno por perfil de referencia, pero **no once fichas técnicas completas ni once entradas nuevas de Compendio**.",
+    "**Alcance de esta sección:** hay once **ejemplos de encuentro**, uno por perfil de referencia, pero **no once fichas técnicas completas ni once criaturas nuevas**."
+  ],
+  [
+    "Cada adaptación al runtime requiere resolver esos campos de forma explícita, no por inferencia.",
+    "Toda ficha definitiva necesita resolver esos campos de forma explícita, no por inferencia."
+  ]
+];
+for(const [original,clean] of technicalCopyedits){
+  if(assembled.split(original).length!==2)throw Error('Redacción técnica ausente o repetida: '+original.slice(0,70));
+  assembled=assembled.replace(original,clean);
+}
+
 const numbers=(assembled.match(/^### (?:HUMANOS|ENANOS|ÉLFICOS|Orcos|Goblinoides|Terios \/ Anihombres|Feéricos|ANKAR|Cristálidos|Verdantes|Micelios|Coralios) —/gm)||[]).length;
 if(numbers!==12)throw Error("Se esperaban doce dobles páginas: "+numbers);
 for(const marker of required.slice(0,5)){
