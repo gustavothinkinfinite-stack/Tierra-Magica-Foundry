@@ -133,6 +133,13 @@
 - Se detectó y corrigió la transición de IDs del panteón, que anteriormente producía 38 IDs en lugar de 52.
 - Verificación y próximos puntos en `docs/reviews/DEPURACION_MANUSCRITO_LECTURA_2026-11-19.md`. **No certificar libro para imprenta**: siguen referencias ambiguas en prosa, notas técnicas residuales y trabajo visual pendiente.
 
+## Avance — remisiones internas y segunda pasada técnica
+- Se vincularon **9 remisiones** con siete destinos únicos (R05, R06, R08, R10, R13, R14 y R18), todos comprobados contra las 52 anclas.
+- Se depuraron **4 frases de creación** que mencionaban historial de Foundry/CREA, sin modificar el contenido mecánico.
+- Los cambios quedaron **en manuscrito y en generador reproducible**; no se modificó el Manual Maestro.
+- Quedan **16 líneas con terminología técnica explícita** detectadas por patrón, inventariadas en `docs/reviews/REFERENCIAS_Y_NOTAS_TECNICAS_SEGUNDA_PASADA_2026-11-19.md`. Se requieren decisiones individuales antes de excluir contenido y comprobar las anclas en el PDF final.
+- La fase de depuración **continúa abierta**, sin declaración de aptitud para imprenta.
+
 ## Registro de progreso inicial
 - [x] Producto objetivo editorial establecido.
 - [x] Rama de trabajo independiente y matriz de auditoría ya existentes.
