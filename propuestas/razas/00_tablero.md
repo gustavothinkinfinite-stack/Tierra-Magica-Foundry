@@ -857,3 +857,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Detectada omisión editorial de **+1 circunstancial a Defensa de Maniobra contra Derribar** de B5-I02 ya vigente. Corregidos `02_enanos/manual_final_propuesto.md` y `manual_final/capitulo_ascendencias_lectura_editorial.md` sin alterar reglas.
 - Registro: [`manual_final/correccion_enanos_b5_i02_2026_11_19.md`](./manual_final/correccion_enanos_b5_i02_2026_11_19.md). **5 casos documentales, 0 Foundry, 0 mesa**.
 - **Siguiente:** verificación global de equivalencia normativa y extensión de las doce fuentes y manuscrito; preparar informe final sin declarar paginación empírica.
+
+### 2026-11-19 — Control global de extensión de doce fuentes (recuento conservador)
+- Releídos tablero, README, plan, doce fuentes `manual_final_propuesto.md` y encabezado/autoridad del Manual Maestro `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- Creado [control global de extensión](./manual_final/control_global_extension_2026_11_19.md): recuento actual de archivos Markdown completos. Cuatro exceden 850 si se incluyen notas y metadatos: Enanos 851, Terios 857, Feéricos 877, Coralios 893. Ocho están dentro del rango; estos números no equivalen al cuerpo imprimible ni a maquetación real.
+- **Siguiente bloque:** separar y medir texto imprimible de las cuatro fuentes, corregir excesos reales sin borrar restricciones canónicas, cotejar con consolidado y actualizar índice. Fase C sigue en verificación; 0 Foundry, 0 mesa, 0 maquetas; sin merge.
