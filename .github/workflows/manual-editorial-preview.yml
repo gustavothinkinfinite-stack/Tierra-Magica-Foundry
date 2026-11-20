@@ -6,6 +6,7 @@ on:
       - review/auditoria-editorial-integral-2026-11-19
     paths:
       - 'tools/build-print-html.mjs'
+      - 'tools/render-print-review.py'
       - 'tools/verify-print-manuscript.mjs'
       - 'tools/build-print-manuscript.mjs'
       - 'docs/edicion_impresa/**'
@@ -40,6 +41,31 @@ jobs:
           grep -q 'tm-r38' docs/edicion_impresa/Manual_Basico_Prueba_Integral.html
           grep -q 'tm-m14' docs/edicion_impresa/Manual_Basico_Prueba_Integral.html
           grep -q 'NO APROBADO PARA IMPRENTA' docs/edicion_impresa/Manual_Basico_Prueba_Integral.html
+      - name: Preparar Python para PDF
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar convertidor y lector PDF
+        run: python -m pip install --disable-pip-version-check weasyprint pypdf
+      - name: Renderizar PDF integral y comprobar páginas
+        run: python tools/render-print-review.py
+      - name: Preparar vistas de revisión de páginas
+        run: |
+          mkdir -p docs/edicion_impresa/vistas_revision
+          if command -v pdftoppm >/dev/null 2>&1; then
+            pdftoppm -f 1 -l 3 -scale-to 1000 -png docs/edicion_impresa/Tierra_Magica_Manual_Basico_Prueba_Integral.pdf docs/edicion_impresa/vistas_revision/pagina
+          else
+            echo 'pdftoppm no instalado; vistas PNG omitidas'
+          fi
+      - name: Publicar PDF e informe de paginación
+        uses: actions/upload-artifact@v4
+        with:
+          name: Tierra-Magica-Manual-Basico-PDF-Revision
+          path: |
+            docs/edicion_impresa/Tierra_Magica_Manual_Basico_Prueba_Integral.pdf
+            docs/edicion_impresa/Control_Paginacion_Prueba_Integral.json
+            docs/edicion_impresa/vistas_revision/*.png
+          if-no-files-found: error
       - name: Publicar prueba HTML como artefacto
         uses: actions/upload-artifact@v4
         with:
