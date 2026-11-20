@@ -44,14 +44,15 @@ for(let i=0;i<lines.length;){
   // Presentar cada fila como tarjeta de atributos preserva todos los pares
   // encabezado-valor sin reducir la tipografía ni cortar nombres de campos.
   if(th.length>=7){
+    // Las cuadrículas CSS de cuatro columnas en motores PDF pueden reducir
+    // arbitrariamente el ancho de los campos y fragmentar palabras letra por
+    // letra. Fichas lineales reproducibles: un atributo y su valor por párrafo.
     const cards=data.map((td)=>{
       const title='<h6>'+inline(td[0])+'</h6>';
       const stats=th.slice(1).map((label,k)=>{
-        const value=td[k+1];
-        const wide=(label.length>20||value.length>46)?' stat-wide':'';
-        return '<div class="stat-cell'+wide+'"><strong>'+inline(label)+'</strong><span>'+inline(value)+'</span></div>';
+        return '<p class="profile-prop"><strong>'+inline(label)+':</strong> '+inline(td[k+1])+'</p>';
       }).join("");
-      return '<section class="profile-card">'+title+'<div class="stat-grid">'+stats+'</div></section>';
+      return '<section class="profile-card">'+title+'<div class="profile-properties">'+stats+'</div></section>';
     });
     out.push('<div class="wide-profiles" role="group">'+cards.join("\n")+'</div>');
   }else{
@@ -78,13 +79,14 @@ const css=[
 ".toc{break-after:page}.toc ul{columns:2;list-style:none;padding:0}.toc li{font:9pt/1.4 Arial,sans-serif;break-inside:avoid;margin:0 0 2mm}.toc a{text-decoration:none;color:#173b55;display:block}.toc a::after{content:leader('.') target-counter(attr(href),page);color:#617483;font-variant-numeric:tabular-nums}",
 ".book{max-width:216mm;margin:auto;padding:17mm;background:#fffdf7}h1,h2,h3,h4,h5{color:#173b55;break-after:avoid;line-height:1.2}",
 "h1{break-before:page;font-size:25pt;border-bottom:2px solid #b58b45}h2{break-before:page;font-size:21pt;border-bottom:1px solid #b58b45}",
+".book h1 + h1{break-before:auto;font-size:20pt;margin-top:4mm}",
 ".book h1 + h2{break-before:auto}",
 "h3{font-size:15pt}h4{font-size:12pt}h5{font-size:11pt}p{margin:0 0 3.5mm;orphans:3;widows:3}",
 "ul,ol{padding-left:6mm;margin:2mm 0 4mm}li{break-inside:avoid;margin:0 0 1mm}blockquote{border-left:3px solid #b58b45;background:#f6f1e7;padding:3mm 4mm}",
 ".table{overflow-x:auto;margin:4mm 0 6mm}table{width:100%;border-collapse:collapse;font:8.2pt/1.24 Arial,sans-serif}",
 "th,td{padding:1.5mm 2mm;border:.4pt solid #b6c2c7;overflow-wrap:break-word;word-break:normal;hyphens:auto;vertical-align:top}th{background:#244860;color:white;text-align:left}",
 ".table-spells table{table-layout:fixed}.table-spells th:nth-child(1){width:24%}.table-spells th:nth-child(2){width:12%}.table-spells th:nth-child(3){width:9%}.table-spells th:nth-child(4){width:55%}",
-".wide-profiles{margin:4mm 0 6mm}.profile-card{border:1px solid #b6c2c7;background:#fffdf8;margin:2.5mm 0;padding:2.5mm 3mm;break-inside:avoid}.profile-card h6{margin:0 0 2mm;font:700 11pt Georgia,serif;color:#173b55}.stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2mm 3mm}.stat-cell{font:8.7pt/1.28 Arial,sans-serif;min-width:0;overflow-wrap:break-word}.stat-cell strong{display:block;font-size:7.6pt;color:#546474}.stat-cell span{display:block;margin-top:.5mm}.stat-wide{grid-column:1/-1}",
+".wide-profiles{margin:4mm 0 6mm}.profile-card{border:1px solid #b6c2c7;background:#fffdf8;margin:2.5mm 0;padding:2.5mm 3mm;break-inside:avoid}.profile-card h6{margin:0 0 2mm;font:700 11pt Georgia,serif;color:#173b55}.profile-prop{font:9pt/1.35 Arial,sans-serif;margin:0 0 1.3mm;overflow-wrap:normal;word-break:normal;hyphens:auto}.profile-prop strong{color:#425a68}",
 "thead{display:table-header-group}tr{break-inside:avoid}.art{border:1px dashed #b58b45;background:#f7f2e7;padding:7mm 3mm;text-align:center;font:9pt Arial,sans-serif}",
 "pre{white-space:pre-wrap;overflow-wrap:anywhere;font:8pt monospace}hr{border:0;border-top:1px solid #d5c2a1}",
 "@media print{body{background:white}.book{padding:0;max-width:none}.cover{margin:-21mm -17mm -20mm -20mm}.table{overflow:visible}}",
