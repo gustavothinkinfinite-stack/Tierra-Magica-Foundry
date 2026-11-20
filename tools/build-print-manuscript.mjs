@@ -217,6 +217,14 @@ const technicalCopyedits=[
     ""
   ],
   [
+    "CRAFT-13 ya cerró esas autoridades, pero los nombres no conceden propiedades por inferencia.",
+    "Sin un Perfil aprobado y explícito, estos nombres no conceden propiedades adicionales por inferencia."
+  ],
+  [
+    "CRAFT-13 ya cerró esas autoridades, pero los nombres no conceden Defensa, cobertura ni Energía por inferencia.",
+    "Sin un Perfil aprobado y explícito, estos nombres no conceden Defensa, cobertura ni Energía por inferencia."
+  ],
+  [
     "**Bloqueo de ficha definitiva:** concretar arma y equipo antes de incorporar una variante de Soldado al Compendio.",
     "**Límite de este ejemplo:** concretar el arma y equipo antes de usar una ficha definitiva de Soldado."
   ],
