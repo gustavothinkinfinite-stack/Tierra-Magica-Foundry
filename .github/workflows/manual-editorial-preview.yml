@@ -9,6 +9,7 @@ on:
       - 'tools/render-print-review.py'
       - 'tools/audit-print-review.py'
       - 'tools/audit-print-layout.py'
+      - 'tools/audit-print-pagination.py'
       - 'tools/audit-print-extraction.py'
       - 'tools/verify-print-manuscript.mjs'
       - 'tools/build-print-manuscript.mjs'
@@ -69,6 +70,8 @@ jobs:
           python tools/audit-print-extraction.py
       - name: Auditar composición y crear hojas de contacto
         run: python tools/audit-print-layout.py
+      - name: Clasificar páginas cortas y continuidad de capítulos
+        run: python tools/audit-print-pagination.py
       - name: Preparar vistas de revisión de páginas
         run: |
           mkdir -p docs/edicion_impresa/vistas_revision
@@ -98,6 +101,7 @@ jobs:
             docs/edicion_impresa/Auditoria_Texto_Geometria_PDF.json
             docs/edicion_impresa/Auditoria_Tercer_Extractor_e_Indice.json
             docs/edicion_impresa/Auditoria_Composicion_Visual.json
+            docs/edicion_impresa/Auditoria_Paginas_Cortas_y_Continuidad.json
             docs/edicion_impresa/vistas_revision/*.png
           if-no-files-found: error
       - name: Publicar prueba HTML como artefacto
