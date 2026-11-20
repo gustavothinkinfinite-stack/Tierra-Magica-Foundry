@@ -11562,7 +11562,7 @@ conserva sus leyes y envía delegados a un Directorio común responsable de adua
 comercial, defensa naval y grandes obras. Las familias mercantes compiten con sindicatos de oficio,
 cooperativas de taller y casas bancarias.
 La Liga fabrica armas de fuego, calderas, locomotoras y componentes de autómata. Su riqueza depende
-de importaciones de alimento, carbón y cristal. Es la región donde más claramente se ve la vida arcano￾industrial: chimeneas, grúas, tranvías de cable, fábricas, puertos y laboratorios conviven con templos
+de importaciones de alimento, carbón y cristal. Es la región donde más claramente se ve la vida arcano-industrial: chimeneas, grúas, tranvías de cable, fábricas, puertos y laboratorios conviven con templos
 medievales y barrios amurallados.
 Principado de Lysendra
 **Ubicación geográfica ratificada (2026-10-09):** el Principado de Lysendra se sitúa en la **vertiente oriental del Espinazo del Mundo**, **al sudoeste de Erelia y al noroeste de Solenar**. Esta relación espacial es canon vinculante. Permanecen abiertos el perímetro político detallado, las coordenadas, el trazado de sus ríos y el origen, la forma, las cotas y las dimensiones del lago profundo de Lys. Los modelos lacustres de las Etapas 7–10 son propuestas técnicas, no datos canónicos.
