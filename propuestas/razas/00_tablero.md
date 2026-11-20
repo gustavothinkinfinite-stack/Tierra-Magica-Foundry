@@ -927,3 +927,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - En índice, tabla, registro, informe y acta se detectaron **0 enlaces Markdown con fragmento `#`**. C-REF/1 ya había confirmado 39/39 destinos existentes; queda sin certificar semántica de remisiones y renderizado.
 - Corregida en [`13_indice_editorial_y_acta_entrega.md`](./13_indice_editorial_y_acta_entrega.md) una indicación antigua que sugería escribir en `main`: incompatible con el mandato vigente. Actualizado el próximo paso del [`índice editorial`](./manual_final/indice_y_criterios.md).
 - **Siguiente:** reconciliar cifras y afirmaciones históricas con el manuscrito de lectura y las doce fuentes; luego decidir cierre documental C. No se alteró canon ni código Foundry.
+
+### 2026-11-19 — C-NUM/1: conciliación cuantitativa del acta
+- Releídos tablero, README, plan, acta, índice, informe, tabla y manuscrito de lectura; contrastada autoridad `main:docs/Tierra_Magica_Manual_Maestro.md` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- Detectada afirmación demasiado fuerte en acta: el total **9791** suma recuentos históricos de Markdown, no cuerpos imprimibles. C-PRINT posterior da C02 839, C06 772, C07 824, C12 819 frente a 833, 809, 829 y 832 del acta. Corregida descripción de métricas y alcance de certificación; no se retocó texto racial.
+- Actualizada [`13_indice_editorial_y_acta_entrega.md`](./13_indice_editorial_y_acta_entrega.md) con C-NUM/1 y reserva explícita: ocho cuerpos imprimibles sin recuento homogéneo comprobado en esta unidad; 24 páginas teóricas, no maqueta real.
+- **Siguiente bloque:** verificar recuentos imprimibles homogéneos de C01/C03/C04/C05/C08/C09/C10/C11 y consolidado; luego conciliar indicadores B5 y decidir cierre C. Sin Foundry ni mesa, sin ratificación.
