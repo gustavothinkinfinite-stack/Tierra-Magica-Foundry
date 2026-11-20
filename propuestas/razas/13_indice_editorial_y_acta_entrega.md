@@ -47,4 +47,9 @@ Para adoptar cambios mecánicos en `main` corresponde una **modificación normat
 - **Autoridad:** no inventar Fuente, Vínculo, Habilidades, daño, Vida, Maná o equipamiento gratuitos. Ninguna nueva cultura crea subraza.
 - **Limitaciones:** quedan sin certificación de partida 0 Vida, turnos y Reacciones, movimientos mixtos, pruebas de dispositivos y balance de Hobgoblin. La estabilidad técnica del sistema publicado `v1.14.0` es una cuestión separada del nuevo texto racial.
 
-**Siguiente paso de integración autorizado:** incorporar los textos aceptados y las normas B5 en la fuente canónica, comprobar diferencias, ejecutar controles técnicos disponibles y registrar con precisión si se publicó o no una nueva versión de Foundry. No declarar una «release actualizada» sin ejecutar su publicación.
+**Siguiente paso dentro del alcance autorizado:** concluir el cierre editorial de Fase C en esta rama, con cotejo de remisiones y coherencia de cifras; preparar un informe de revisión global para el creador. **No está autorizado** incorporar textos en `main`, modificar el Manual Maestro, cambiar el motor Foundry ni publicar una release desde este taller. Toda adopción canónica requiere una decisión y un proceso posteriores fuera de este alcance.
+
+
+## Adenda de integridad editorial C-REF/2 — 19-11-2026
+
+La comprobación C-REF/1 constató 68 enlaces relativos en los cuatro documentos principales, resueltos a 39 destinos únicos, todos existentes en la rama. C-REF/2 revisó las referencias Markdown con fragmentos `#` en esos cuatro documentos y en esta acta: **0 referencias con fragmentos**; por tanto no existen anclas internas de ese conjunto que deban comprobarse. Esto no demuestra la corrección semántica de cada enlace ni el renderizado final. Se corrigió además la antigua instrucción de integración en `main`, incompatible con el mandato de aislamiento. No se ejecutaron pruebas de juego, Foundry ni paginación física.
