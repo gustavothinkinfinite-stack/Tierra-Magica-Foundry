@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "proposito": "Integración editorial controlada de las doce ilustraciones de ascendencias (sin generación automática).",
+  "estado": "borrador_no_aprobado_para_imprenta",
+  "formato_admitido": "PNG",
+  "minimo_pixeles": [
+    1600,
+    1000
+  ],
+  "ascendencias": [
+    {
+      "nombre": "Humanos",
+      "slug": "01_humanos",
+      "brief": "propuestas/razas/01_humanos/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    },
+    {
+      "nombre": "Enanos",
+      "slug": "02_enanos",
+      "brief": "propuestas/razas/02_enanos/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    },
+    {
+      "nombre": "Élficos",
+      "slug": "03_elficos",
+      "brief": "propuestas/razas/03_elficos/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    },
+    {
+      "nombre": "Orcos",
+      "slug": "04_orcos",
+      "brief": "propuestas/razas/04_orcos/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    },
+    {
+      "nombre": "Goblinoides",
+      "slug": "05_goblinoides",
+      "brief": "propuestas/razas/05_goblinoides/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    },
+    {
+      "nombre": "Terios / Anihombres",
+      "slug": "06_terios_anihombres",
+      "brief": "propuestas/razas/06_terios_anihombres/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    },
+    {
+      "nombre": "Feéricos",
+      "slug": "07_feericos",
+      "brief": "propuestas/razas/07_feericos/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    },
+    {
+      "nombre": "Ankar",
+      "slug": "08_ankar",
+      "brief": "propuestas/razas/08_ankar/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    },
+    {
+      "nombre": "Cristálidos",
+      "slug": "09_cristalidos",
+      "brief": "propuestas/razas/09_cristalidos/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    },
+    {
+      "nombre": "Verdantes",
+      "slug": "10_verdantes",
+      "brief": "propuestas/razas/10_verdantes/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    },
+    {
+      "nombre": "Micelios",
+      "slug": "11_micelios",
+      "brief": "propuestas/razas/11_micelios/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    },
+    {
+      "nombre": "Coralios",
+      "slug": "12_coralios",
+      "brief": "propuestas/razas/12_coralios/brief_arte.md",
+      "estado": "pendiente",
+      "archivo": null,
+      "autor": null,
+      "licencia": null,
+      "creditos": null,
+      "alt": null
+    }
+  ]
+}
