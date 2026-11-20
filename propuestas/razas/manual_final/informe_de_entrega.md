@@ -26,7 +26,7 @@ Las doce familias cuentan con expediente inicial, B1–B4 documental, B5 documen
 - **Comprobado por lectura:** los doce archivos individuales y el manuscrito consolidado existen; el consolidado contiene doce encabezados de ascendencia, cada uno con Historia y cultura y Creación y juego. Los cuatro excesos de longitud detectados al contar Markdown completo fueron falsos positivos tras aislar el cuerpo imprimible; ver [control imprimible](./control_imprimible_c02_c06_c07_c12_2026_11_19.md).
 - **Cotejo directo anterior:** [C-12](./cotejo_integral_12_fuentes_2026_11_19.md) informa 103 párrafos sustantivos localizados, cero ausencias bajo su normalización. Esto no demuestra equivalencia normativa.
 - **Control inverso exploratorio actual:** al separar párrafos por líneas en blanco y comparar literalmente, aparecen diferencias de segmentación y marcado, especialmente en Goblinoides, Terios, Feéricos, Verdantes y Coralios. Ese procedimiento **no es una prueba fiable de adiciones normativas**; no se declara equivalencia bidireccional ni incidencia mecánica sin una comparación semántica de listas, negaciones y condiciones. No se altera el texto para forzar coincidencias.
-- **Pendiente verificable:** comparación inversa cláusula por cláusula de costes, listas, excepciones y negaciones, incluyendo contenido añadido por el consolidado; control de enlaces, notas y decisiones candidatas B5; prueba real de paginación. Esta entrega es documental, no publicación final.
+- **Estado de controles posteriores:** el cotejo inverso y los controles C-12S/1–4 se documentaron posteriormente; ver índice editorial. El control de destinos de enlaces de los cuatro documentos principales se completó el 19-11-2026 (39/39 destinos existentes). Continúan pendientes la comprobación de anclas, la conciliación editorial final y la paginación real. Esta entrega es documental, no publicación final.
 - **Pruebas:** cero ejecuciones en Foundry, cero partidas de mesa y cero pruebas de maqueta; no se declara balance empírico ni compatibilidad ejecutada.
 
 ## Decisiones de integración
@@ -35,9 +35,14 @@ Las propuestas narrativas y las alternativas de reglas continúan sin ratificaci
 
 ## Próxima unidad sustantiva
 
-Completar el **cotejo inverso semántico** de las doce secciones contra cada fuente individual y contra `main`, con tabla de cláusulas añadidas, omitidas o reformuladas y decisión justificada por caso. Sólo tras cerrar diferencias reales y verificar enlaces/estructura corresponde acta definitiva de cierre de Fase C y evaluación de Fase D.
+Revisar anclas y referencias no relativas, conciliar cifras históricas del acta e índice y cerrar documentalmente la Fase C si no hay discrepancias sustantivas. La paginación física y las pruebas empíricas no están ejecutadas.
 
 
 ## Control de referencias y estado — 19-11-2026
 
 Se releyeron el tablero, README, plan, índice, tabla, registro de diferencias y el Manual Maestro vigente en `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`). Se inició una verificación automatizada de destinos relativos en los cuatro documentos editoriales, pero la operación alcanzó el límite de llamadas de la herramienta antes de producir un resultado completo. **No se certifican enlaces como válidos sin comprobación individual.** Se conserva pendiente el control de rutas y anclas, seguido de conciliación de cifras históricas y cierre editorial. Las 12 fuentes siguen siendo propuestas; 0 pruebas de mesa, 0 Foundry, 0 maquetas y 0 ratificaciones.
+
+
+## Verificación de destinos relativos completada — 19-11-2026
+
+Se extrajeron **68 enlaces relativos** de `indice_y_criterios.md`, `tabla_de_razas.md`, `registro_de_diferencias_con_main.md` e `informe_de_entrega.md`, que resuelven a **39 destinos únicos**. Se consultó en GitHub cada uno de los 39 destinos sobre la rama `propuestas/razas-autonomas-2026`: **39 existentes, 0 inexistentes**. Incluyen los 12 textos raciales, sus 12 notas y 15 referencias de auditoría, índice, tabla, manuscrito y acta. **Alcance:** comprobación de existencia de archivo, no validación de anclas `#`, exactitud semántica de cada remisión, ni renderización de Markdown. Esta comprobación reemplaza la limitación provisional consignada en el control anterior; se conserva esa anotación como historial. La autoridad de `main` consultada conserva el blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`. No se han ejecutado pruebas Foundry, mesa ni maqueta.
