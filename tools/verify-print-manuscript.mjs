@@ -56,8 +56,8 @@ try {
   }
 
   const text = generated.toString("utf8");
-  const anchors = [...text.matchAll(/<a id="(tm-[rm]\\d+)"><\\/a>/g)].map(m => m[1]);
-  const targets = [...text.matchAll(/\\]\\(#(tm-[rm]\\d+)\\)/g)].map(m => m[1]);
+  const anchors = [...text.matchAll(/<a id="(tm-[rm]\d+)"><\/a>/g)].map(m => m[1]);
+  const targets = [...text.matchAll(/\]\(#(tm-[rm]\d+)\)/g)].map(m => m[1]);
   const races = [
     "Humanos", "Enanos", "Élficos", "Orcos", "Goblinoides",
     "Terios / Anihombres", "Feéricos", "Ankar", "Cristálidos",
@@ -67,9 +67,9 @@ try {
   const raceEnd = text.indexOf("#### Notas de balance y progresión racial", raceStart);
   if (raceStart < 0 || raceEnd < 0) throw new Error("No se pudo aislar la sección racial.");
   const racial = text.slice(raceStart, raceEnd);
-  const actualRaces = [...racial.matchAll(/^##### ([^\\n]+)/gm)].map(m => m[1]);
+  const actualRaces = [...racial.matchAll(/^##### ([^\n]+)/gm)].map(m => m[1]);
   const appendix = text.slice(text.lastIndexOf("# APÉNDICE DE CONSULTA — GLOSARIO"));
-  const glossaryCount = [...appendix.matchAll(/^\\*\\*[^\\n]+?:\\*\\*/gm)].length;
+  const glossaryCount = [...appendix.matchAll(/^\*\*[^\n]+?:\*\*/gm)].length;
   const failures = [];
   if (anchors.length !== 52 || new Set(anchors).size !== 52) failures.push("anclas");
   if (targets.some(id => !anchors.includes(id))) failures.push("enlaces internos");
