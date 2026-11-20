@@ -903,3 +903,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 ### 2026-11-19 — C-12S/4: Verdantes, Micelios y Coralios
 - Contrastados los tres textos finales con los paquetes raciales de `main` y B5-I01. Guardado [`manual_final/control_clausulas_breves_c10_c11_c12_2026_11_19.md`](./manual_final/control_clausulas_breves_c10_c11_c12_2026_11_19.md): **18 contratos y 18 escenarios documentales, 0 Foundry, 0 mesa**. No se detectaron contradicciones literales en cláusulas seleccionadas; sin cambios de reglas.
 - **Siguiente:** auditoría de enlaces, índice, tabla, diferencias e informe de entrega; no cerrar C sin comprobar referencias y reservas no canónicas. No se alteró `main` ni código operativo.
+
+### 2026-11-19 — Reconciliación de índice editorial y controles C-12
+- Releídos tablero, README, plan, índice, tabla, registro de diferencias, informe de entrega y último control C-12S/4; contrastada autoridad del Manual Maestro en `main`.
+- Corregido [índice y criterios](./manual_final/indice_y_criterios.md): la advertencia histórica sobre supuestos excesos de Goblinoides/Terios y la falta de nota humana ya no describía el estado verificado; sustituida por resultados imprimibles C02/C06/C07/C12, cotejos directo/inverso, cuatro controles de cláusulas y reserva HUM1.
+- **Sin cambios mecánicos ni nueva ratificación.** No se ejecutaron pruebas Foundry, mesa ni maqueta.
+- **Siguiente bloque sustantivo:** verificar destinos de enlaces relativos de índice, tabla, registro, acta e informe; corregir remisiones rotas y cifras históricas obsoletas. Después decidir cierre documental C/D sin confundirlo con publicación ni pruebas empíricas.
