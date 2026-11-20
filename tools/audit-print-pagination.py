@@ -68,3 +68,13 @@ report={
 }
 DEST.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps({k:v for k,v in report.items() if k!="incidencias"},ensure_ascii=False))
+print("PAGINAS_A_REVISAR="+json.dumps([
+    {"pagina":v["pagina"],"altura_pt":v["altura_ultimo_texto_pt"],
+     "ultimo_texto":v["ultimo_bloque"][:85],
+     "pagina_siguiente":v["pagina_siguiente"],
+     "inicio_siguiente":v["primer_texto_siguiente"][:85]}
+    for v in short if v["categoria"]=="corta_sin_cambio_claro"
+],ensure_ascii=False))
+print("PAGINAS_ANTES_DE_CAPITULO="+json.dumps([
+    v["pagina"] for v in short if v["categoria"]=="cierre_antes_de_capitulo"
+]))
