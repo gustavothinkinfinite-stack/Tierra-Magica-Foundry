@@ -6,7 +6,13 @@ import {fileURLToPath} from "node:url";
 const root=resolve(dirname(fileURLToPath(import.meta.url)),"..");
 const input=resolve(root,"docs/edicion_impresa/Manual_Basico_Manuscrito_Lectura.md");
 const output=resolve(root,"docs/edicion_impresa/Manual_Basico_Prueba_Integral.html");
-const s=(await readFile(input,"utf8")).replace(/\r\n/g,"\n");
+const raw=(await readFile(input,"utf8")).replace(/\r\n/g,"\n");
+// El prefacio de gobernanza se conserva en Markdown, pero no se imprime.
+// La cubierta de prueba ya informa expresamente el estado editorial.
+const partMarker="# PARTE I — REGLAS VIGENTES Y GUÍA DE JUEGO";
+const partStart=raw.indexOf(partMarker);
+if(partStart<0)throw Error("Inicio de contenido del Manual Básico no encontrado");
+const s=raw.slice(partStart);
 const esc=x=>String(x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 function inline(x){return esc(x).replace(/\[([^\]]+)\]\((#[a-z0-9-]+)\)/gi,'<a href="$2">$1</a>').replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>").replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g,"<em>$1</em>").replace(/\x60([^\x60]+)\x60/g,"<code>$1</code>");}
 const headings=[...s.matchAll(/^<a id="(tm-[rm]\d+)"><\/a>\n## (.+)$/gm)].map(m=>({id:m[1],title:m[2]}));
