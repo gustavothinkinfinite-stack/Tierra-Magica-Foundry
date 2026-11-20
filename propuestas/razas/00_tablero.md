@@ -953,3 +953,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Cotejadas las doce secciones por párrafos largos normalizados: 12/12 presentes. Las notas `NO IMPRIMIR` de Terios y Feéricos permanecen correctamente fuera del manuscrito. Detectada reserva editorial Micelios C11 **dentro** del manuscrito, contraria al criterio de C-NUM/2; retirada exclusivamente de la lectura imprimible y conservada en fuente individual.
 - Creado [control C-RES/1](./manual_final/control_reservas_manuscrito_c_res_1_2026_11_20.md) con método, límites y reservas. **Siguiente:** revisar cláusulas cortas y diferencias semánticas frente a doce fuentes y registro de `main`, después decidir acta documental de C. No declarar 24 páginas maquetadas ni pruebas empíricas.
 - Sin cambios en canon, mapa ni Foundry; 0 ensayos empíricos y 0 ratificaciones.
+
+### 2026-11-20 — C-RES/2: cotejo bidireccional de líneas breves
+- Releídos tablero, README, plan, C-RES/1, C-12R y las doce fuentes finales; contrastado Manual Maestro en `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- Creado [C-RES/2](./manual_final/control_clausulas_linea_a_linea_c_res_2_2026_11_20.md): comparación en ambos sentidos de **todas las líneas >=15 caracteres** de las 12 fuentes frente al manuscrito, normalizando puntuación, Markdown y espacios. Diferencias restringidas a 3 rótulos de fuente por raza frente a 2 rótulos de manuscrito; Coralios añade procedencia administrativa. **No se detectaron diferencias en líneas jugables** bajo este método.
+- No se alteró contenido racial: las diferencias son encabezados y metadatos, no reglas. No equivale a cotejo de líneas menores de 15 caracteres, prueba empírica ni maquetación.
+- **Siguiente:** cierre de reservas normativas y decisión de acta documental C; no ratificar canon ni dar por ejecutadas pruebas Foundry/mesa.
