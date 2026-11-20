@@ -10824,11 +10824,9 @@ Después de aplicar las correcciones de CRAFT-12:
 
 Esto no significa que **todo futuro Perfil** esté balanceado. Cada nuevo material, hechizo, Módulo, Encantamiento, criatura o artefacto sigue requiriendo auditoría contra estas fronteras.
 
-#### Resultado de cierre
+#### Control de compatibilidad futura
 
-CRAFT-01 a CRAFT-11 quedan considerados **coherentes entre sí después de las correcciones de CRAFT-12**.
-
-CRAFT-12 queda como auditoría de regresión: cualquier regla futura que afecte crafting debe comprobar al menos:
+Cualquier regla futura que afecte el sistema de fabricación debe comprobar al menos:
 
 - coste material;
 - valor/reventa;
@@ -10840,8 +10838,6 @@ CRAFT-12 queda como auditoría de regresión: cualquier regla futura que afecte 
 - recursos;
 - Sintonización;
 - compatibilidad con Investigación.
-
-**CRAFT-12 queda cerrado.**
 
 
 <a id="tm-r19"></a>
