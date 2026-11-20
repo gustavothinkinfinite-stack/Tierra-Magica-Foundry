@@ -915,3 +915,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Se inició control de destinos relativos; el lote de comprobación excedió el límite de llamadas antes de concluir, por lo que **no se afirma validación completa**.
 - Actualizado [`manual_final/informe_de_entrega.md`](./manual_final/informe_de_entrega.md) con la limitación y los pendientes verificables.
 - **Siguiente:** comprobar rutas y anclas por lotes pequeños; conciliar cifras históricas y decidir cierre documental. Sin cambios canónicos, sin Foundry, mesa ni maqueta.
+
+### 2026-11-19 — Control de destinos de enlaces C-REF/1 completado
+- Releídos tablero, README, plan y cuatro documentos editoriales, contra autoridad `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- **68 enlaces relativos → 39 destinos únicos; 39/39 archivos existentes** verificados individualmente en la rama. Incluye 12 textos finales, 12 notas y 15 documentos transversales. Cero rutas inexistentes en este alcance.
+- Actualizado [`manual_final/informe_de_entrega.md`](./manual_final/informe_de_entrega.md) para retirar pendientes históricos ya cubiertos por C-12S y registrar control de destinos. No se verificaron anclas, renderizado, paginación ni pruebas empíricas.
+- **Siguiente:** comprobar anclas y remisiones no relativas, reconciliar cifras históricas y decidir cierre documental C. No alterar canon ni Foundry.
