@@ -13563,7 +13563,7 @@ No todo Enano pertenece a Kharum. Quien crece en Valdoria, Erelia o Nacariel com
 ##### Resistir no equivale a inmunidad
 Un Enano puede sufrir Fatiga, Sangrado, Trauma y estados comunes. **Exhausto** reduce su Movimiento ordinario de **5 a 3**, salvo reglas aplicables de otros efectos. Cuerpo de Piedra no cura heridas, no vuelve inútil Agarrar ni concede una Reacción gratuita. Sangre de Metal no evita una marcha agotadora por simple esfuerzo.
 
-**Ejemplo de Empujar:** una criatura Pequeña acierta con margen Claro y desplazaría normalmente **2 espacios**. Contra un Enano, que resiste como Mediano, el desplazamiento por fuerza corporal ordinaria se reduce a **1 espacio**, si el terreno permite moverlo. No aparece un +1 general a Defensa de Maniobra. **Derribar** usa sus reglas universales; cualquier corrección numérica nueva permanece fuera del paquete canónico.
+**Ejemplo de Empujar:** una criatura Pequeña acierta con margen Claro y desplazaría normalmente **2 espacios**. Contra un Enano, que resiste como Mediano, el desplazamiento por fuerza corporal ordinaria se reduce a **1 espacio**, si el terreno permite moverlo. No aparece un +1 general a Defensa de Maniobra. **Contra Derribar**, Cuerpo de Piedra concede **+1 circunstancial a Defensa de Maniobra** conforme a **B5-I02**; este modificador no se aplica a Empujar, Agarrar ni Desarmar.
 
 ##### La persona detrás de la ascendencia
 Elegí **una Ascendencia, un Origen y un Trasfondo**. Como los demás personajes, el Enano dispone de **25 PD**, **3 PR** ordinarios y equipo según las reglas generales. **Ingeniería, Artesanía, Atletismo, Historia, Religión, magia y fabricación** requieren las adquisiciones y condiciones habituales: las cuatro tradiciones no otorgan Habilidades, Recursos, Fuentes ni dispositivos gratuitos.
@@ -13775,7 +13775,7 @@ La memoria de Eïra acompaña a muchos Terios, pero su parentesco mítico con la
 ##### Tres personajes posibles
 Una Terio elefantina puede registrar **Órgano prensil** para su trompa y **Sentido especializado** para su olfato: no obtiene una tercera mano de combate. Un Terio felino puede elegir **Locomoción Especializada (trepa)** y **Arma natural (garras)**: atacar con ellas no crea un segundo ataque. Una Terio aviana con **Vuelo sostenido** renuncia a las adaptaciones Principal y Secundaria; sus alas no evitan la restricción de Carga.
 
-Nadar no significa respirar bajo el agua: **Anfibio** es un Rasgo general separado, con coste de **1 PR**, cuando corresponde. La forma del cuerpo no concede gratis otros Rasgos. Como cualquier personaje de nivel 1, un Terio dispone de **25 PD, 3 PR y seis aumentos de Atributo** bajo las reglas generales, independientes de su paquete racial.
+Nadar no significa respirar bajo el agua: **Locomoción Especializada (nado 6)** no concede respiración. Las **branquias anatómicamente funcionales** registradas y compatibles con Linaje/Variedad permiten respirar agua ordinaria, pero no otorgan nado, respiración aérea sin mecanismo apropiado ni inmunidad ambiental (B5-I05). **Anfibio** es un Rasgo general separado, con coste de **1 PR**, que permite respirar aire y agua ordinarios sin otorgar nado ni hidratación. La forma del cuerpo no concede gratis otros Rasgos. Como cualquier personaje de nivel 1, un Terio dispone de **25 PD, 3 PR y seis aumentos de Atributo** bajo las reglas generales, independientes de su paquete racial.
 
 El **Origen** y el **Trasfondo** describen cultura y trayectoria, no son predeterminados por el linaje.
 
@@ -13804,7 +13804,7 @@ Los cultos de Eïra celebran el Primer Brote, la Plenitud y el Retorno a la Tier
 
 **Ejemplo cultural local:** algunas comunidades establecen consejos de mediación para obras próximas a arboledas vinculadas y rutas aéreas. Son instituciones narrativas, no habilidades, inmunidades ni ventajas gratuitas. En la era arcano-industrial, sus decisiones pueden enfrentar a comerciantes, ingenieros y vecinos sin que ninguno represente a toda una ascendencia.
 
-#### Página derecha — Cuatro ascendencias jugables
+#### Página derecha — Cuatro variantes jugables de la ascendencia Feérica
 
 ##### Naturaleza Feérica
 Descriptor sobrenatural compartido. Un ritual, hechizo, barrera o fenómeno puede reconocerlo si su texto lo indica. Por sí solo **no concede Maná, Fuente, Disciplina, resistencia mágica, hechizos ni Vínculo con Eïra**. Se elige una ascendencia, nunca los cuatro paquetes juntos.
@@ -13816,7 +13816,7 @@ Descriptor sobrenatural compartido. Un ritual, hechizo, barrera o fenómeno pued
 **Escala Mediana. Movimiento 6.** **Paso de Cabra:** raíces, roca irregular, pendientes naturales pronunciadas y desniveles menores no aumentan el coste de Movimiento si son físicamente transitables. No concede trepa vertical, salto imposible ni equilibrio automático. **Cuernos:** arma natural de **Daño 3, Penetración 0**; usa el ataque normal, sin Acción adicional.
 
 ##### Dríade
-**Escala Mediana. Movimiento 6.** **Vínculo Arbóreo:** por contacto con vegetación significativa perteneciente a su vínculo conoce su estado general: saludable, dañada, enferma, ardiendo, muriendo o afectada por magia evidente. No revela ubicación remota, historia, mensajes, causa precisa ni identidad del hechizo. **Enraizar:** requiere **Acción** y suelo apropiado; mientras permanece enraizada obtiene **+1 categoría de Escala efectiva** sólo para resistir Empujar, Derribar y desplazamiento físico impuesto. Liberarse cuesta **1 punto de Movimiento**. No concede curación ni Defensa general.
+**Escala Mediana. Movimiento 6.** **Vínculo Arbóreo:** por contacto con vegetación significativa perteneciente a su vínculo conoce su estado general: saludable, dañada, enferma, ardiendo, muriendo o afectada por magia evidente. No revela ubicación remota, historia, mensajes, causa precisa ni identidad del hechizo. **Enraizar:** requiere **Acción** y suelo apropiado; mientras permanece enraizada obtiene **+1 categoría de Escala efectiva** sólo para resistir Empujar, Derribar y desplazamiento físico impuesto. Liberarse cuesta **1 punto de Movimiento**. No concede curación ni Defensa general. **Contra Derribar**, mientras el anclaje siga siendo válido, aplicá además el **+1 circunstancial a Defensa de Maniobra** previsto en B5-I02; no se extiende a Empujar, Agarrar ni Desarmar.
 
 ##### Silfo
 **Escala Mediana. Movimiento 6.** **Cuerpo del Viento:** ignora penalizaciones de desplazamiento causadas únicamente por viento mundano ordinario. Obtiene **+1 categoría de Escala efectiva** sólo para resistir Empujar causado por viento. No concede vuelo sostenido ni inmunidad a tormentas, magia o daño.
@@ -14072,7 +14072,7 @@ Este apéndice es una **herramienta de consulta** derivada de las reglas de este
 
 | Término | Definición de consulta | Desarrollo |
 |---|---|---|
-| **Acción** | Recurso principal del turno, normalmente uno, usado para atacar, hacer maniobras, lanzar la mayoría de hechizos y otras intervenciones significativas. | §8 |
+| **Acción** | Recurso principal del turno, normalmente uno, usado para atacar, hacer maniobras, lanzar la mayoría de hechizos y otras intervenciones significativas. | §6, §8 |
 | **Adaptación racial** | Elección incluida en un paquete de Ascendencia; no equivale a una compra de Rasgo general. | §3 |
 | **Alcance** | Distancia máxima indicada por un efecto; percibir a distancia no crea línea de efecto. | §3, §11 |
 | **Anfibio** | Rasgo Innato de 1 PR para respirar aire y agua ordinarios; no otorga nado ni hidratación. | §5, B5-I05 |
