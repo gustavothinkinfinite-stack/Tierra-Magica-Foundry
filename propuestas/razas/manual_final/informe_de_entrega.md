@@ -36,3 +36,8 @@ Las propuestas narrativas y las alternativas de reglas continúan sin ratificaci
 ## Próxima unidad sustantiva
 
 Completar el **cotejo inverso semántico** de las doce secciones contra cada fuente individual y contra `main`, con tabla de cláusulas añadidas, omitidas o reformuladas y decisión justificada por caso. Sólo tras cerrar diferencias reales y verificar enlaces/estructura corresponde acta definitiva de cierre de Fase C y evaluación de Fase D.
+
+
+## Control de referencias y estado — 19-11-2026
+
+Se releyeron el tablero, README, plan, índice, tabla, registro de diferencias y el Manual Maestro vigente en `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`). Se inició una verificación automatizada de destinos relativos en los cuatro documentos editoriales, pero la operación alcanzó el límite de llamadas de la herramienta antes de producir un resultado completo. **No se certifican enlaces como válidos sin comprobación individual.** Se conserva pendiente el control de rutas y anclas, seguido de conciliación de cifras históricas y cierre editorial. Las 12 fuentes siguen siendo propuestas; 0 pruebas de mesa, 0 Foundry, 0 maquetas y 0 ratificaciones.
