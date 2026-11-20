@@ -1,0 +1,53 @@
+name: Manual Básico — prueba editorial integral
+
+on:
+  push:
+    branches:
+      - review/auditoria-editorial-integral-2026-11-19
+    paths:
+      - 'tools/build-print-html.mjs'
+      - 'tools/verify-print-manuscript.mjs'
+      - 'tools/build-print-manuscript.mjs'
+      - 'docs/edicion_impresa/**'
+      - 'docs/Tierra_Magica_Manual_Maestro.md'
+      - 'docs/REFERENCIA_RAPIDA_GLOSARIO_1.0.md'
+      - '.github/workflows/manual-editorial-preview.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prueba-manuscrito:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recuperar la rama editorial
+        uses: actions/checkout@v4
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verificar reproducibilidad del manuscrito
+        id: verify
+        continue-on-error: true
+        run: node tools/verify-print-manuscript.mjs
+      - name: Generar HTML integral
+        run: node tools/build-print-html.mjs
+      - name: Comprobar salida
+        run: |
+          test -s docs/edicion_impresa/Manual_Basico_Prueba_Integral.html
+          grep -q 'Contenido' docs/edicion_impresa/Manual_Basico_Prueba_Integral.html
+          grep -q 'tm-r38' docs/edicion_impresa/Manual_Basico_Prueba_Integral.html
+          grep -q 'tm-m14' docs/edicion_impresa/Manual_Basico_Prueba_Integral.html
+          grep -q 'NO APROBADO PARA IMPRENTA' docs/edicion_impresa/Manual_Basico_Prueba_Integral.html
+      - name: Publicar prueba HTML como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: Tierra-Magica-Manual-Basico-Prueba-HTML
+          path: docs/edicion_impresa/Manual_Basico_Prueba_Integral.html
+          if-no-files-found: error
+      - name: Declarar fallo de reproducibilidad tras subir el artefacto
+        if: steps.verify.outcome == 'failure'
+        run: |
+          echo 'El manuscrito versionado difiere de la salida del generador. Revisar el log de verificación.'
+          exit 1
