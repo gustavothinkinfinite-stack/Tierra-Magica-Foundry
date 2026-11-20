@@ -34,9 +34,34 @@ for(let i=0;i<lines.length;){
  if(/^---+$/.test(line)){out.push("<hr>");i++;continue;}
  if(line.startsWith("\x60\x60\x60")){let data=[];i++;while(i<lines.length&&!lines[i].trim().startsWith("\x60\x60\x60"))data.push(lines[i++]);i++;out.push("<pre>"+esc(data.join("\n"))+"</pre>");continue;}
  if(line.startsWith("|")&&i+1<lines.length&&sep(lines[i+1])){
-  let th=cells(lines[i]),rows=['<div class="table"><table><thead><tr>'+th.map(c=>"<th>"+inline(c)+"</th>").join("")+"</tr></thead><tbody>"];i+=2;
-  while(i<lines.length&&lines[i].trim().startsWith("|")){let td=cells(lines[i++]);rows.push("<tr>"+th.map((_,k)=>"<td>"+inline(td[k]||"")+"</td>").join("")+"</tr>");}
-  rows.push("</tbody></table></div>");out.push(rows.join("\n"));tables++;continue;
+  const th=cells(lines[i]),data=[];i+=2;
+  while(i<lines.length&&lines[i].trim().startsWith("|")){
+    const td=cells(lines[i++]);
+    if(td.length!==th.length)throw Error("Fila de tabla con columnas discordantes: "+i);
+    data.push(td);
+  }
+  // Las tablas de siete o más columnas resultan ilegibles en Carta.
+  // Presentar cada fila como tarjeta de atributos preserva todos los pares
+  // encabezado-valor sin reducir la tipografía ni cortar nombres de campos.
+  if(th.length>=7){
+    const cards=data.map((td)=>{
+      const title='<h6>'+inline(td[0])+'</h6>';
+      const stats=th.slice(1).map((label,k)=>{
+        const value=td[k+1];
+        const wide=(label.length>20||value.length>46)?' stat-wide':'';
+        return '<div class="stat-cell'+wide+'"><strong>'+inline(label)+'</strong><span>'+inline(value)+'</span></div>';
+      }).join("");
+      return '<section class="profile-card">'+title+'<div class="stat-grid">'+stats+'</div></section>';
+    });
+    out.push('<div class="wide-profiles" role="group">'+cards.join("\n")+'</div>');
+  }else{
+    const type=th.length===4 && th[0].trim()==="Hechizo" && th.some(h=>h.includes("Resolución canónica"))?" table-spells":"";
+    const rows=['<div class="table'+type+'"><table><thead><tr>'+th.map(c=>"<th>"+inline(c)+"</th>").join("")+"</tr></thead><tbody>"];
+    for(const td of data)rows.push("<tr>"+th.map((_,k)=>"<td>"+inline(td[k]||"")+"</td>").join("")+"</tr>");
+    rows.push("</tbody></table></div>");
+    out.push(rows.join("\n"));
+  }
+  tables++;continue;
  }
  if(line.startsWith(">")){let q=[];while(i<lines.length&&lines[i].trim().startsWith(">"))q.push(inline(lines[i++].trim().replace(/^>\s?/,"")));out.push("<blockquote>"+q.join("<br>")+"</blockquote>");continue;}
  const item=line.match(/^([-*+]|\d+[.)]) (.+)$/);
@@ -56,7 +81,9 @@ const css=[
 "h3{font-size:15pt}h4{font-size:12pt}h5{font-size:11pt}p{margin:0 0 3.5mm;orphans:3;widows:3}",
 "ul,ol{padding-left:6mm;margin:2mm 0 4mm}li{break-inside:avoid;margin:0 0 1mm}blockquote{border-left:3px solid #b58b45;background:#f6f1e7;padding:3mm 4mm}",
 ".table{overflow-x:auto;margin:4mm 0 6mm}table{width:100%;border-collapse:collapse;font:8.2pt/1.24 Arial,sans-serif}",
-"th,td{padding:1.5mm 2mm;border:.4pt solid #b6c2c7;overflow-wrap:anywhere;vertical-align:top}th{background:#244860;color:white;text-align:left}",
+"th,td{padding:1.5mm 2mm;border:.4pt solid #b6c2c7;overflow-wrap:break-word;word-break:normal;hyphens:auto;vertical-align:top}th{background:#244860;color:white;text-align:left}",
+".table-spells table{table-layout:fixed}.table-spells th:nth-child(1){width:24%}.table-spells th:nth-child(2){width:12%}.table-spells th:nth-child(3){width:9%}.table-spells th:nth-child(4){width:55%}",
+".wide-profiles{margin:4mm 0 6mm}.profile-card{border:1px solid #b6c2c7;background:#fffdf8;margin:2.5mm 0;padding:2.5mm 3mm;break-inside:avoid}.profile-card h6{margin:0 0 2mm;font:700 11pt Georgia,serif;color:#173b55}.stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2mm 3mm}.stat-cell{font:8.7pt/1.28 Arial,sans-serif;min-width:0;overflow-wrap:break-word}.stat-cell strong{display:block;font-size:7.6pt;color:#546474}.stat-cell span{display:block;margin-top:.5mm}.stat-wide{grid-column:1/-1}",
 "thead{display:table-header-group}tr{break-inside:avoid}.art{border:1px dashed #b58b45;background:#f7f2e7;padding:7mm 3mm;text-align:center;font:9pt Arial,sans-serif}",
 "pre{white-space:pre-wrap;overflow-wrap:anywhere;font:8pt monospace}hr{border:0;border-top:1px solid #d5c2a1}",
 "@media print{body{background:white}.book{padding:0;max-width:none}.cover{margin:-21mm -17mm -20mm -20mm}.table{overflow:visible}}",
@@ -68,4 +95,4 @@ const html='<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Ti
 '<nav class="toc"><h2>Contenido</h2><p>52 capítulos con remisiones a la paginación de esta prueba. Los folios pueden cambiar en la edición final.</p><ul>'+toc+'</ul></nav>'+
 '<main class="book">'+out.join("\n")+"</main></body></html>";
 await mkdir(dirname(output),{recursive:true});await writeFile(output,html,"utf8");
-console.log(JSON.stringify({output,chapters:headings.length,links:links.length,races,tables,sourceChars:s.length,htmlChars:html.length,approved:false}));
+console.log(JSON.stringify({output,chapters:headings.length,links:links.length,races,tables,sourceChars:s.length,htmlChars:html.length,wideTablesAsCards:true,approved:false}));
