@@ -69,7 +69,7 @@ try {
   const racial = text.slice(raceStart, raceEnd);
   const actualRaces = [...racial.matchAll(/^##### ([^\n]+)/gm)].map(m => m[1]);
   const appendix = text.slice(text.lastIndexOf("# APÉNDICE DE CONSULTA — GLOSARIO"));
-  const glossaryCount = [...appendix.matchAll(/^\*\*[^\n]+?:\*\*/gm)].length;
+  const glossaryCount = [...appendix.matchAll(/^\*\*(?!Estado editorial:|Procedencia:)[^\n]+?:\*\*/gm)].length;
   const failures = [];
   if (anchors.length !== 52 || new Set(anchors).size !== 52) failures.push("anclas");
   if (targets.some(id => !anchors.includes(id))) failures.push("enlaces internos");
