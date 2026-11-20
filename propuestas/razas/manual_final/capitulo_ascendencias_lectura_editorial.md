@@ -2,7 +2,7 @@
 
 **Manuscrito de lectura editorial · sincronización 19-11-2026 · PROPUESTA NO CANÓNICA**
 
-Este capítulo presenta las doce ascendencias para revisión del Manual Básico. El Manual Maestro vigente de `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`) conserva autoridad sobre las reglas, la historia y la geografía. Las instituciones culturales descritas no conceden capacidades gratuitas. La clasificación Menor/Significativo de *Don sin Forma* permanece pendiente de decisión editorial. Ninguna prueba documental sustituye pruebas en mesa.
+Este capítulo presenta las doce ascendencias para revisión del Manual Básico. El Manual Maestro vigente de `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`) conserva autoridad sobre las reglas, la historia y la geografía. Las instituciones culturales descritas no conceden capacidades gratuitas. Los costes de los Rasgos generales del Manual Maestro determinan qué elecciones Menores o Significativas permite *Don sin Forma*; cualquier reclasificación futura sería una propuesta separada. Ninguna prueba documental sustituye pruebas en mesa.
 
 ## Contenido
 
@@ -59,7 +59,7 @@ El catálogo vigente contempla por defecto **Sentido Agudo**, **Visión en la Os
 #### Dos caminos posibles
 **Exploradora de cavernas:** elige Visión en la Oscuridad mediante Don, si anatomía y ficción lo sostienen. Conserva sus 3 PR; debe adquirir Supervivencia o Atletismo normalmente.
 
-**Mediador de caravanas:** desea mejorar su oído y percibir una manifestación sobrenatural delimitada, pero sólo puede escoger la combinación si ambos rasgos están clasificados como Menores por la regla vigente. Mientras esa equivalencia no esté ratificada, debe elegir una opción que cumpla inequívocamente el catálogo y la categoría autorizada por el Manual Maestro; no obtiene Persuasión, hechizos ni información inaccesible.
+**Mediador de caravanas:** elige Sentido Agudo (oído, 1 PR de referencia) y Afinidad Sobrenatural (manifestaciones de una categoría delimitada, 1 PR de referencia) mediante las dos elecciones Menores de Don sin Forma. Ambos Rasgos figuran como disponibles en creación en el Manual Maestro; esta combinación no consume sus 3 PR ordinarios, no otorga Persuasión, hechizos ni información inaccesible, y no permite duplicar una propiedad equivalente.
 
 #### Lo que elegís aprender
 Como cualquier personaje de nivel 1, un Humano distribuye aumentos iniciales de Atributo y dispone de **25 PD**, **3 PR** y el presupuesto ordinario de equipo. Ascendencia, Origen y Trasfondo se registran por separado. Magia, Medicina, Ingeniería, combate y alquimia requieren sus adquisiciones normales.
