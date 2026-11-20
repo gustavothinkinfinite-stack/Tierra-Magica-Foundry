@@ -60,7 +60,11 @@ jobs:
           pdftotext -v
       - name: Comparar extracción con Poppler e inspeccionar índice
         run: |
-          command -v pdftotext
+          if ! command -v pdftotext >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq poppler-utils
+          fi
+          pdftotext -v
           python tools/audit-print-extraction.py
       - name: Preparar vistas de revisión de páginas
         run: |
