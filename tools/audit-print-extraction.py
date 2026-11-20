@@ -50,6 +50,7 @@ low = []
 poppler_nul_pages = []
 poppler_replacement_pages = []
 poppler_empty = []
+replacement_contexts = []
 fitz_empty = []
 sizes = []
 for i, page in enumerate(doc):
@@ -59,6 +60,8 @@ for i, page in enumerate(doc):
         poppler_nul_pages.append(i + 1)
     if "\ufffd" in pp:
         poppler_replacement_pages.append(i + 1)
+        for m in re.finditer("\ufffd", pp):
+            replacement_contexts.append({"pagina":i+1,"offset":m.start(),"contexto":pp[max(0,m.start()-60):m.start()+60]})
     if len(pp.strip()) < 15:
         poppler_empty.append(i + 1)
     if len(ft.strip()) < 15:
@@ -79,12 +82,17 @@ for i, page in enumerate(doc):
 
 # La columna de enlaces del índice debe apuntar a páginas PDF válidas.
 links = []
-for i in range(min(len(doc), 12)):
-    page = doc[i]
+link_kinds = Counter()
+index_links = []
+for i, page in enumerate(doc):
     for link in page.get_links():
+        kind = link.get("kind")
+        link_kinds[str(kind)] += 1
         target = link.get("page", -1)
-        if link.get("kind") == fitz.LINK_GOTO:
+        if kind == fitz.LINK_GOTO:
             links.append({"origen": i + 1, "destino": target + 1})
+            if i < 12:
+                index_links.append({"origen":i+1,"destino":target+1})
 invalid_links = [x for x in links if not (1 <= x["destino"] <= len(doc))]
 src = SOURCE.read_text(encoding="utf-8")
 chapter_ids = re.findall(r'<a id="(tm-[rm]\d+)"></a>\n##', src)
@@ -102,14 +110,17 @@ report = {
     "paginas_poppler": len(parts),
     "poppler_nul_paginas": len(poppler_nul_pages),
     "poppler_reemplazos_paginas": len(poppler_replacement_pages),
+    "poppler_reemplazo_contexto": replacement_contexts[:10],
     "poppler_paginas_sin_texto": poppler_empty[:60],
     "fitz_paginas_sin_texto": fitz_empty[:60],
     "solapamiento_mediana_poppler_fitz": sorted(ratios)[len(ratios) // 2],
     "solapamiento_minimo_poppler_fitz": min(ratios),
     "paginas_con_solapamiento_menor_a_85": len(low),
     "paginas_de_bajo_solapamiento_ejemplos": low[:30],
-    "enlaces_internos_detectados_en_12_paginas_iniciales": len(links),
-    "destinos_unicos_del_indice": len(set(x["destino"] for x in links)),
+    "enlaces_internos_detectados_en_12_paginas_iniciales": len(index_links),
+    "enlaces_internos_en_todo_el_pdf": len(links),
+    "tipos_de_anotaciones_en_todo_el_pdf": dict(link_kinds),
+    "destinos_unicos_del_indice": len(set(x["destino"] for x in index_links)),
     "enlaces_fuera_de_rango": invalid_links,
     "capitulos_fuente": len(chapter_ids),
     "muestras_titulos_en_primeras_paginas": {
