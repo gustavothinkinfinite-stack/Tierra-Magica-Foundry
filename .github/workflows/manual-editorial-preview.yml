@@ -8,6 +8,7 @@ on:
       - 'tools/build-print-html.mjs'
       - 'tools/render-print-review.py'
       - 'tools/audit-print-review.py'
+      - 'tools/audit-print-extraction.py'
       - 'tools/verify-print-manuscript.mjs'
       - 'tools/build-print-manuscript.mjs'
       - 'docs/edicion_impresa/**'
@@ -52,6 +53,10 @@ jobs:
         run: python tools/render-print-review.py
       - name: Auditar capa de texto y geometría del PDF
         run: python tools/audit-print-review.py
+      - name: Comparar extracción con Poppler e inspeccionar índice
+        run: |
+          command -v pdftotext
+          python tools/audit-print-extraction.py
       - name: Preparar vistas de revisión de páginas
         run: |
           mkdir -p docs/edicion_impresa/vistas_revision
@@ -68,6 +73,7 @@ jobs:
             docs/edicion_impresa/Tierra_Magica_Manual_Basico_Prueba_Integral.pdf
             docs/edicion_impresa/Control_Paginacion_Prueba_Integral.json
             docs/edicion_impresa/Auditoria_Texto_Geometria_PDF.json
+            docs/edicion_impresa/Auditoria_Tercer_Extractor_e_Indice.json
             docs/edicion_impresa/vistas_revision/*.png
           if-no-files-found: error
       - name: Publicar prueba HTML como artefacto
