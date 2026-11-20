@@ -78,6 +78,7 @@ const css=[
 ".toc{break-after:page}.toc ul{columns:2;list-style:none;padding:0}.toc li{font:9pt/1.4 Arial,sans-serif;break-inside:avoid;margin:0 0 2mm}.toc a{text-decoration:none;color:#173b55;display:block}.toc a::after{content:leader('.') target-counter(attr(href),page);color:#617483;font-variant-numeric:tabular-nums}",
 ".book{max-width:216mm;margin:auto;padding:17mm;background:#fffdf7}h1,h2,h3,h4,h5{color:#173b55;break-after:avoid;line-height:1.2}",
 "h1{break-before:page;font-size:25pt;border-bottom:2px solid #b58b45}h2{break-before:page;font-size:21pt;border-bottom:1px solid #b58b45}",
+".book h1 + h2{break-before:auto}",
 "h3{font-size:15pt}h4{font-size:12pt}h5{font-size:11pt}p{margin:0 0 3.5mm;orphans:3;widows:3}",
 "ul,ol{padding-left:6mm;margin:2mm 0 4mm}li{break-inside:avoid;margin:0 0 1mm}blockquote{border-left:3px solid #b58b45;background:#f6f1e7;padding:3mm 4mm}",
 ".table{overflow-x:auto;margin:4mm 0 6mm}table{width:100%;border-collapse:collapse;font:8.2pt/1.24 Arial,sans-serif}",
