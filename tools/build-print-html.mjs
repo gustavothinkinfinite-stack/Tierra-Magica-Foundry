@@ -71,6 +71,8 @@ for(let i=0;i<lines.length;){
 }
 if(pendingAnchor)throw Error("Ancla final sin título: "+pendingAnchor);
 if(races!==12)throw Error("No se compusieron las doce ascendencias");
+// Solo los 52 títulos con ancla tm-* comienzan capítulo y exigen salto.
+// Las subsecciones H2 como CRAFT-11 A/B/G son continuidad interna, sin salto.
 const css=[
 "@page{size:letter;margin:21mm 17mm 20mm 20mm}",
 "@page{@bottom-center{content:'TIERRA MÁGICA · PRUEBA · ' counter(page);font:8pt Arial,sans-serif}}",
@@ -78,7 +80,8 @@ const css=[
 ".cover{background:#173b55;color:white;padding:30mm 20mm;min-height:235mm;break-after:page}.cover h1{color:white;border:0;font-size:40pt}",
 ".toc{break-after:page}.toc ul{columns:2;list-style:none;padding:0}.toc li{font:9pt/1.4 Arial,sans-serif;break-inside:avoid;margin:0 0 2mm}.toc a{text-decoration:none;color:#173b55;display:block}.toc a::after{content:leader('.') target-counter(attr(href),page);color:#617483;font-variant-numeric:tabular-nums}",
 ".book{max-width:216mm;margin:auto;padding:17mm;background:#fffdf7}h1,h2,h3,h4,h5{color:#173b55;break-after:avoid;line-height:1.2}",
-"h1{break-before:page;font-size:25pt;border-bottom:2px solid #b58b45}h2{break-before:page;font-size:21pt;border-bottom:1px solid #b58b45}",
+"h1{break-before:page;font-size:25pt;border-bottom:2px solid #b58b45}h2{break-before:auto;font-size:21pt;border-bottom:1px solid #b58b45}",
+".book h2[id^=tm-]{break-before:page}",
 ".book h1 + h1{break-before:auto;font-size:20pt;margin-top:4mm}",
 ".book h1 + h2{break-before:auto}",
 "h3{font-size:15pt}h4{font-size:12pt}h5{font-size:11pt}p{margin:0 0 3.5mm;orphans:3;widows:3}",
