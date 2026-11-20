@@ -977,3 +977,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Hallazgo concreto: el registro de diferencias todavía ordenaba conservar la clasificación HUM1 Menor/Significativo en el manuscrito, contradiciendo su exclusión C-RES/3. Corregida esa instrucción: sólo catálogo y límites canónicos se imprimen; la alternativa queda en fuente individual, sin ratificar.
 - Actualizado el informe de entrega con cifras C-NUM/3 (**9.637 archivo, 9.466 doce bloques, 12/12 en rango**) y reservas. Los 9.574 tokens de fuentes son medición distinta. La reserva técnica Micelios continúa fuera de imprenta.
 - **Siguiente:** revisión semántica final de reservas no explícitas frente al Manual Maestro y decisión de acta de cierre C condicionada. No confundir con maqueta o prueba empírica; 0 Foundry, 0 mesa, 0 maquetas, 0 ratificaciones. Sin escritura fuera de esta rama y carpeta.
+
+### 2026-11-20 — C-RES/5: reserva HUM1 implícita en ejemplo jugable
+- Releídos tablero, README, plan, C-RES/3, C-B5/1, registro, informe, acta, fuentes Humanos y Micelios y manuscrito; verificado Manual Maestro `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- **Incidencia real:** tras excluir clasificación Menor/Significativo, el ejemplo «Mediador de caravanas» seguía eligiendo juntos Sentido Agudo + Afinidad Sobrenatural, presuponiendo indirectamente que ambos son Menores. Corregido **sólo en manuscrito de lectura**: combinación condicionada a clasificación canónica inequívoca; fuente individual intacta para trazabilidad.
+- Creado [control C-RES/5](./manual_final/control_reservas_normativas_c_res_5_2026_11_20.md). C-RES/2 deja de ser identidad literal actual; C-NUM/3 queda como recuento previo a esta modificación.
+- **Siguiente:** barrido semántico de ejemplos que puedan incorporar ventajas implícitas; recuento actualizado y decisión de cierre documental C. 0 mesa, 0 Foundry, 0 maqueta, 0 ratificaciones; sin cambio canónico.
