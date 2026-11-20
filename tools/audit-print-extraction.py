@@ -80,24 +80,47 @@ for i, page in enumerate(doc):
                     "tokens_poppler": sum(a.values()),
                     "tokens_fitz": sum(b.values())})
 
-# La columna de enlaces del índice debe apuntar a páginas PDF válidas.
+# Comprobar enlaces con destino de página y folios visibles del índice.
+# WeasyPrint puede emitir LINK_NAMED (kind=4), no solamente LINK_GOTO.
 links = []
 link_kinds = Counter()
 index_links = []
+seen_index_ids = set()
+folio_discrepancies = []
 for i, page in enumerate(doc):
     for link in page.get_links():
         kind = link.get("kind")
         link_kinds[str(kind)] += 1
         target = link.get("page", -1)
-        if kind == fitz.LINK_GOTO:
-            links.append({"origen": i + 1, "destino": target + 1})
-            if i < 12:
-                index_links.append({"origen":i+1,"destino":target+1})
+        if kind not in (fitz.LINK_GOTO, fitz.LINK_NAMED) or not isinstance(target, int):
+            continue
+        entry = {"origen": i + 1, "destino": target + 1,
+                 "id": link.get("nameddest", "")}
+        links.append(entry)
+        if i >= 12:
+            continue
+        index_links.append(entry)
+        chapter_id = entry["id"]
+        if not chapter_id or chapter_id in seen_index_ids:
+            continue
+        seen_index_ids.add(chapter_id)
+        # El rectángulo de enlace incluye texto, puntos guía y folio.
+        # Comparar el folio impreso contra la página de destino real.
+        row_text = page.get_text("text", clip=link["from"], sort=True)
+        number = re.search(r"(\\d+)\\s*$", row_text)
+        shown = int(number.group(1)) if number else None
+        if shown != target + 1:
+            folio_discrepancies.append({"id": chapter_id,
+                                        "folio_visible": shown,
+                                        "pagina_destino": target + 1,
+                                        "fila": row_text[:130]})
 invalid_links = [x for x in links if not (1 <= x["destino"] <= len(doc))]
 src = SOURCE.read_text(encoding="utf-8")
-chapter_ids = re.findall(r'<a id="(tm-[rm]\d+)"></a>\n##', src)
+chapter_ids = re.findall(r'<a id="(tm-[rm]\\d+)"></a>\\n##', src)
 if len(chapter_ids) != 52 or len(set(chapter_ids)) != 52:
     raise SystemExit("ERROR: se requieren 52 capítulos en la fuente")
+missing_index_ids = sorted(set(chapter_ids) - seen_index_ids)
+extra_index_ids = sorted(seen_index_ids - set(chapter_ids))
 
 # Contenido visible de primeras páginas: evidencia para verificar si
 # aparecieron folios y nombres de capítulos al renderizar el índice.
@@ -121,6 +144,10 @@ report = {
     "enlaces_internos_en_todo_el_pdf": len(links),
     "tipos_de_anotaciones_en_todo_el_pdf": dict(link_kinds),
     "destinos_unicos_del_indice": len(set(x["destino"] for x in index_links)),
+    "capitulos_del_indice_con_destino": len(seen_index_ids),
+    "capitulos_faltantes_en_el_indice": missing_index_ids,
+    "ids_ajenos_al_indice": extra_index_ids,
+    "folios_distintos_de_su_destino": folio_discrepancies,
     "enlaces_fuera_de_rango": invalid_links,
     "capitulos_fuente": len(chapter_ids),
     "muestras_titulos_en_primeras_paginas": {
@@ -137,5 +164,5 @@ report = {
 }
 REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 print(json.dumps(report, ensure_ascii=False))
-if invalid_links or poppler_nul_pages or poppler_empty:
-    raise SystemExit("ERROR: enlaces fuera de rango, NUL o páginas sin texto en Poppler")
+if invalid_links or poppler_nul_pages or poppler_empty or missing_index_ids or extra_index_ids or folio_discrepancies:
+    raise SystemExit("ERROR: PDF con anomalías de enlace, folio, NUL o texto")
