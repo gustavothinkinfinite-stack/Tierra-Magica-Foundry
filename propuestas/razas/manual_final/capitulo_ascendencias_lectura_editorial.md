@@ -59,7 +59,7 @@ El catálogo vigente contempla por defecto **Sentido Agudo**, **Visión en la Os
 #### Dos caminos posibles
 **Exploradora de cavernas:** elige Visión en la Oscuridad mediante Don, si anatomía y ficción lo sostienen. Conserva sus 3 PR; debe adquirir Supervivencia o Atletismo normalmente.
 
-**Mediador de caravanas:** elige Sentido Agudo para el oído y Afinidad Sobrenatural para una manifestación estrecha y perceptible. No recibe Persuasión, hechizos ni información inaccesible.
+**Mediador de caravanas:** desea mejorar su oído y percibir una manifestación sobrenatural delimitada, pero sólo puede escoger la combinación si ambos rasgos están clasificados como Menores por la regla vigente. Mientras esa equivalencia no esté ratificada, debe elegir una opción que cumpla inequívocamente el catálogo y la categoría autorizada por el Manual Maestro; no obtiene Persuasión, hechizos ni información inaccesible.
 
 #### Lo que elegís aprender
 Como cualquier personaje de nivel 1, un Humano distribuye aumentos iniciales de Atributo y dispone de **25 PD**, **3 PR** y el presupuesto ordinario de equipo. Ascendencia, Origen y Trasfondo se registran por separado. Magia, Medicina, Ingeniería, combate y alquimia requieren sus adquisiciones normales.
