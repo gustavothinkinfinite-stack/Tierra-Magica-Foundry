@@ -13436,7 +13436,7 @@ El Archivo Narrativo Recuperado ya no forma parte del circuito editorial activo.
 3. **CERRADO 2026-10-08:** ejemplos de juego, creación y combate completados y revisados contra las reglas vigentes; se añadieron resolución de exploración y prueba enfrentada social, una creación alternativa con Familiar Mágico y un ejemplo de ataque a distancia con cobertura y Penetración, sin introducir reglas nuevas.
 4. Revisar tablas de equipo, precios, disponibilidad y contenido de mercado para edición.
 5. Resolver cualquier plantilla universal pendiente que todavía obligue a improvisar valores —por ejemplo perfiles concretos de Familiares, PNJ o criaturas— antes de considerarla sección editorialmente cerrada.
-6. Añadir glosario e índices al final del proceso.
+6. **CERRADO EDITORIALMENTE 2026-11-20:** referencia rápida, glosario operativo e índice temático integrados al final del Manual. **PENDIENTE DE MAQUETACIÓN:** sustituir las referencias por capítulo por paginación definitiva y generar índice de páginas al exportar el libro.
 7. Sólo después de cerrar el contenido se realizará maquetación, selección final de arte, paginación, créditos, pruebas de impresión y exportación PDF/DOCX.
 
 ## Regla de trabajo desde esta versión
@@ -14043,3 +14043,100 @@ Por ejemplo, una exploradora Coralio cruza un muelle, entra en agua somera y per
 
 ##### Historias para jugar
 Una esclusa que protege un barrio vivo comienza a fallar; un cargamento desaparece entre puertos rivales; una familia busca documentos de las expediciones perdidas en Nacre. Ninguna trama impone una moral o profesión a todos los Coralios.
+
+
+# REFERENCIA RÁPIDA, GLOSARIO E ÍNDICE TEMÁTICO — EDICIÓN DEL MANUAL BÁSICO
+
+Este apéndice es una **herramienta de consulta** derivada de las reglas de este mismo Manual; **no crea reglas ni modifica costes**. En cualquier discrepancia prevalece el procedimiento completo del capítulo correspondiente. Los números de capítulo remiten a secciones, **no** a números definitivos de página: éstos se asignarán tras la maquetación.
+
+## Hoja rápida de resolución
+
+| Operación | Recordatorio |
+|---|---|
+| Prueba ordinaria | **2d10 + Atributo + Habilidad + modificadores ≥ DF**. No tirar sin incertidumbre real o ante imposibilidad física. |
+| Dificultad | DF 8 muy favorable; 10 sencilla; 12 moderada; 14 demandante; 16 difícil; 18 muy difícil; 20 extraordinaria; 22 heroica; 24+ sobrenatural. |
+| Ventaja / Desventaja | Tirar **3d10** y conservar los **dos mayores / dos menores**. Una Ventaja y una Desventaja se cancelan; no apilar el mismo signo. |
+| Hazaña / Pifia | **10+10 / 1+1** naturales en los dados **conservados**, sin invertir por sí solas el éxito o fallo. |
+| Margen | Ajustado **0–4**; Claro **5–9**; Dominante **10+**. Sólo calcular si una regla lo usa. |
+| Crear personaje | Elegir **una Ascendencia, un Origen y un Trasfondo**; distribuir los aumentos iniciales conforme §3; gastar **25 PD**, **3 PR** y el **PEI** según sus propias reglas. |
+| Combate | Determinar posiciones/percepción; **Iniciativa = 2d10 + PER + modificadores**; cada turno: normalmente **Movimiento, 1 Acción y 1 Reacción** bajo los disparadores y estados pertinentes. |
+| Movimiento multimodal | Sumar `coste del medio / MOV efectivo del medio`; total **≤ 1**. En Retirada **≤ 1/2** y restricciones del medio. No duplicar reservas. |
+| Defensa por Escala / Derribar | **+1 circunstancial** a Defensa de Maniobra **sólo** cuando una facultad expresa eleva Escala efectiva al **resistir Derribar**; no extender a Empujar ni a otras Defensas. |
+| Magia | **Maná máximo = 6 + 3×VOL**; Fuente, Disciplina, Habilidad y Método deben ser compatibles. Declarar y pagar según el flujo universal. |
+| Vida | **Vida máxima = 10 + 2×VIG**; llegar a **0 Vida** aplica Incapacitado y Trauma pertinente, sin muerte automática. |
+| Caídas | Caída ordinaria: 1 espacio o menos normalmente **0**; desde 2 espacios, **2×(espacios efectivos−1)** antes de mitigaciones especiales. |
+| Recuperación | **Respiro ~10 min** no recupera Vida/Maná automáticamente; **Descanso ~1 h** recupera VIG+2 Vida y VOL+1 Maná según límite; **Descanso Completo ~8 h** recupera Maná y Fatiga según reglas y lesiones. |
+| Equipo | **10 c = 1 p; 10 p = 1 o**. Precio, Disponibilidad y permiso de acceso son cosas distintas; PEI no es moneda. |
+
+## Glosario operativo
+
+| Término | Definición de consulta | Desarrollo |
+|---|---|---|
+| **Acción** | Recurso principal del turno, normalmente uno, usado para atacar, hacer maniobras, lanzar la mayoría de hechizos y otras intervenciones significativas. | §8 |
+| **Adaptación racial** | Elección incluida en un paquete de Ascendencia; no equivale a una compra de Rasgo general. | §3 |
+| **Alcance** | Distancia máxima indicada por un efecto; percibir a distancia no crea línea de efecto. | §3, §11 |
+| **Anfibio** | Rasgo Innato de 1 PR para respirar aire y agua ordinarios; no otorga nado ni hidratación. | §5, B5-I05 |
+| **Ascendencia** | Paquete racial o variante mecánica singular que el personaje elige durante creación. | §3 |
+| **Atributo** | Valor intrínseco usado con una Habilidad en las pruebas; su mejora sigue las reglas de creación y progresión. | §3–4 |
+| **Ayuda** | Aporte pertinente de otro personaje que normalmente concede Ventaja cuando realmente puede colaborar. | §2 |
+| **Caudal** | Límite de suministro o transferencia de Energía según dispositivo e interfaz; no es fuente de energía gratuita. | Ingeniería |
+| **Carga** | Condición física del equipo transportado, evaluada por Escala/FUE y restricciones expresas, sin peso universal inventado. | §6, §9 |
+| **Conductor Vivo** | Facultad Cristálida voluntaria que requiere una interfaz de proyecto compatible y recursos reales. | §3, B5-I08 |
+| **Derribar** | Maniobra cuya oposición utiliza Defensa de Maniobra; el +1 de B5-I02 sólo se aplica a defensa racial por Escala efectiva expresa. | §7, B5-I02 |
+| **Desventaja** | Se tiran 3d10 y se conservan los dos más bajos; no se apila consigo misma y cancela una Ventaja. | §2 |
+| **DF** | Dificultad: total que debe alcanzarse o superarse para que una prueba tenga éxito. | §2 |
+| **Disciplina** | Conjunto de Hechizos; las seis del sistema son Evocación, Alteración, Restauración, Percepción, Influencia y Conjuración. | §11 |
+| **Empujar** | Maniobra de desplazamiento físico cuya distancia depende de la diferencia de Escala; no recibe automáticamente el +1 defensivo de Derribar. | §7 |
+| **Enlace Micelial** | Mensajes simples entre Micelios voluntarios en contacto con la misma red viva continua, dentro de 12 espacios y con Acción de conexión. | §3, B5-I04 |
+| **Enraizar** | Acción de Dríade/Verdante sobre suelo apto, que mejora Escala efectiva en resistencias concretas y requiere 1 Movimiento para soltarse. | §3, B5-I02 |
+| **Escala** | Categoría del tamaño del personaje o criatura; no equivale a su cantidad de Vida ni a todos los parámetros de ataque. | §7 |
+| **Escala efectiva** | Categoría utilizada sólo en la interacción especificada por la facultad, sin modificar Escala real ni otros beneficios por inferencia. | §3, §7 |
+| **Especialización** | Desarrollo especializado de una Habilidad, comprado con PD cuando sus requisitos se cumplen. | §4 |
+| **Faceta** | Familiaridad contextual del Origen o Trasfondo, sin otorgar por sí sola rango de Habilidad. | §3 |
+| **Familiar** | Criatura individual con Vínculo, perfil y economía de acciones propios; no aporta turnos ni recursos ilimitados al dueño. | §3, §14 |
+| **Fatiga** | Estado de cansancio gestionado por condiciones, exposición y descansos; la fisiología racial no elimina sus reglas generales. | §10 |
+| **Fuente** | Origen operativo de la magia: Alma, Divina, Ambiental o Externa; no concede hechizos por sí sola. | §11 |
+| **Habilidad** | Competencia con rangos y costes acumulados de PD; hay 26 Habilidades en el núcleo. | §3–4 |
+| **Hazaña** | Resultado de 10 y 10 naturales en los dos dados conservados; no convierte automáticamente un fallo en éxito. | §2 |
+| **Herida Grave** | Lesión concreta diferenciada de Trauma; puede requerir control, tratamiento y recuperación. | §10 |
+| **Incapacitado** | Estado que se aplica al llegar a 0 Vida; no permite declarar nuevas Acciones/Reacciones voluntarias. | §10, B5-I10 |
+| **Iniciativa** | Orden del combate determinado por 2d10 + PER + modificadores pertinentes. | §8 |
+| **Maná** | Recurso de magia, con máximo ordinario 6 + 3×VOL, consumido según hechizos y métodos. | §11 |
+| **Margen** | Diferencia pertinente entre total y DF: Ajustado 0–4, Claro 5–9 y Dominante 10 o más. | §2 |
+| **Movimiento** | Reserva de espacios gastable durante el turno; no es una Acción; los medios diferentes comparten presupuesto fraccional. | §6, B5-I01 |
+| **Origen** | Sociedad o región de formación; proporciona Familiaridad Cultural, Perfil Lingüístico y una Faceta, no Habilidades gratuitas. | §3 |
+| **PD** | Puntos de Desarrollo: 25 en creación para Habilidades, Especializaciones, Técnicas, Disciplinas y Hechizos. | §3–4 |
+| **PEI** | Presupuesto de Equipo Inicial; no equivale a moneda líquida del personaje tras comenzar la partida. | §3, §9 |
+| **Penetración** | Propiedad del ataque o munición que interactúa con Protección conforme al procedimiento de combate. | §8–9 |
+| **Pifia** | Resultado de 1 y 1 naturales en los dos dados conservados; no convierte automáticamente un éxito en fallo. | §2 |
+| **PR** | Puntos de Rasgo: 3 en creación, separados de PD y del paquete racial. | §3, §5 |
+| **Protección** | Mitigación de daño de una fuente apropiada; armadura y Protección Natural no se suman por defecto. | §8–10 |
+| **Prueba** | Resolución con 2d10 + Atributo + Habilidad + modificadores contra DF, cuando existe incertidumbre real. | §2 |
+| **Reacción** | Respuesta a un disparador válido, normalmente una entre inicios de turnos propios. | §8 |
+| **Reserva** | Cantidad de un recurso disponible; su existencia y gasto no se infieren de la Ascendencia. | Magia, Ingeniería |
+| **Respiro** | Pausa breve de aproximadamente diez minutos; no recupera Vida ni Maná automáticamente. | §10 |
+| **Retirada** | Movimiento con límite propio; para varios medios se aplica como máximo media reserva fraccional total. | §6, B5-I01 |
+| **Ritualismo** | Habilidad usada por el Método Ritual; no es intercambiable automáticamente con Canalización. | §11 |
+| **Ronda** | Secuencia completa de turnos según Iniciativa. | §8 |
+| **Sangrado** | Estado que causa pérdida de Vida al final del turno según severidad; normalmente no se acumulan fuentes idénticas. | §10 |
+| **Sostenimiento** | Condición de mantenimiento de un efecto mágico con coste y término según su propia ficha/regla. | §11 |
+| **Técnica** | Capacidad comprada con PD y requisitos propios que no concede automáticamente otro turno o ataque. | §4, §8 |
+| **Trauma** | Gravedad sistémica en niveles 0 Sin Trauma, 1 Grave, 2 Crítico y 3 Terminal; no equivale a Herida Grave. | §10 |
+| **Trasfondo** | Trayectoria práctica singular del personaje, con Familiaridad Práctica y dos Facetas. | §3 |
+| **Turno** | Momento de actuación de una criatura dentro de una ronda, con Movimiento, Acción y Reacción sujetos a estados. | §8 |
+| **Ventaja** | Se tiran 3d10 y se conservan los dos más altos; no se apila consigo misma y cancela Desventaja. | §2 |
+| **Vida** | Recurso de integridad cuya máxima ordinaria es 10 + 2×VIG; llegar a 0 aplica Incapacitado. | §10 |
+
+## Índice temático para navegación editorial
+
+- **Creación y desarrollo**: Ascendencias, Orígenes, Trasfondos, PD, PR, Facetas, valores derivados, 26 Habilidades, Especializaciones, Técnicas y equipo inicial — **capítulos 3–5**.
+- **Resolución**: DF, Ventaja/Desventaja, Ayuda, repetición, pruebas enfrentadas, Hazañas/Pifias y márgenes — **capítulo 2**.
+- **Movimiento y maniobras**: posición, Retirada, Escala efectiva, Derribar, Empujar, Agarrar y Desarmar — **capítulos 6–7 y B5**.
+- **Combate**: Iniciativa, Acción, Movimiento, Reacción, Defensa, Protección, Penetración y estados — **capítulo 8**.
+- **Equipo y supervivencia**: armas, armaduras, suministros, dinero, Fatiga, Vida, Trauma, Descanso y Medicina — **capítulos 9–10**.
+- **Magia**: Maná, Fuentes, Disciplinas, Canalización, Ritualismo, Método Directo/Ritual, Sostenimiento y Grimorio — **capítulos de magia y hechizos**.
+- **Fabricación e ingeniería**: proyectos, lotes de materiales, energía, Caudal, dispositivos, alquimia, permisos y equipo — **capítulos de fabricación/comercio**.
+- **Mundo y religión**: Edria, historia, atlas, Panteón Central, Primordiales y Luminarias — **apartados de ambientación y cosmología**.
+- **Doce razas**: paquetes mecánicos en **capítulo 3**, normativa transversal **B5**, relatos y ejemplos en el **Anexo Canónico de Doce Ascendencias**.
+
+**Criterio de imprenta:** este índice es **temático y estable por capítulo**. El índice de **números de página** se genera sólo a partir del PDF maquetado definitivo para evitar referencias incorrectas.
