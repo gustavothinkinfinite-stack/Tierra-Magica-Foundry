@@ -42,4 +42,4 @@ El paquete canónico de cada ascendencia se conserva como línea base de compara
 - **Límites:** cero pruebas Foundry, mesa y maqueta real. Las 24 páginas son objetivo de composición, no paginación demostrada. No hay autorización de merge ni de convertir propuestas en canon.
 
 ## Próxima operación
-Verificar destinos de enlaces relativos en índices, tabla, registro e informe; reconciliar las cifras históricas del acta editorial con el cuerpo imprimible actual y cerrar C sólo si no quedan discrepancias sustantivas verificables.
+Los 39 destinos únicos de los 68 enlaces relativos de índice, tabla, registro e informe están comprobados (C-REF/1). Ninguno de esos cuatro documentos ni el acta editorial contiene enlaces Markdown con fragmento `#` (C-REF/2). **Siguiente:** reconciliar cifras históricas y afirmaciones de cierre con el cuerpo imprimible actual; evaluar cierre documental C sin confundirlo con paginación física, pruebas empíricas o ratificación.
