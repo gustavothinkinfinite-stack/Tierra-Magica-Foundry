@@ -83,7 +83,7 @@ const css=[
 "h1{break-before:page;font-size:25pt;border-bottom:2px solid #b58b45}h2{break-before:auto;font-size:21pt;border-bottom:1px solid #b58b45}",
 ".book h2[id^=tm-]{break-before:page}",
 ".book h1 + h1{break-before:auto;font-size:20pt;margin-top:4mm}",
-".book h1 + h2{break-before:auto}",
+".book h1 + h2[id^=tm-]{break-before:auto}",
 "h3{font-size:15pt}h4{font-size:12pt}h5{font-size:11pt}p{margin:0 0 3.5mm;orphans:3;widows:3}",
 "ul,ol{padding-left:6mm;margin:2mm 0 4mm}li{break-inside:avoid;margin:0 0 1mm}blockquote{border-left:3px solid #b58b45;background:#f6f1e7;padding:3mm 4mm}",
 ".table{overflow-x:auto;margin:4mm 0 6mm}table{width:100%;border-collapse:collapse;font:8.2pt/1.24 Arial,sans-serif}",
