@@ -13804,7 +13804,7 @@ Los cultos de Eïra celebran el Primer Brote, la Plenitud y el Retorno a la Tier
 
 **Ejemplo cultural local:** algunas comunidades establecen consejos de mediación para obras próximas a arboledas vinculadas y rutas aéreas. Son instituciones narrativas, no habilidades, inmunidades ni ventajas gratuitas. En la era arcano-industrial, sus decisiones pueden enfrentar a comerciantes, ingenieros y vecinos sin que ninguno represente a toda una ascendencia.
 
-#### Página derecha — Cuatro ascendencias jugables
+#### Página derecha — Cuatro variantes jugables de la ascendencia Feérica
 
 ##### Naturaleza Feérica
 Descriptor sobrenatural compartido. Un ritual, hechizo, barrera o fenómeno puede reconocerlo si su texto lo indica. Por sí solo **no concede Maná, Fuente, Disciplina, resistencia mágica, hechizos ni Vínculo con Eïra**. Se elige una ascendencia, nunca los cuatro paquetes juntos.
@@ -13816,7 +13816,7 @@ Descriptor sobrenatural compartido. Un ritual, hechizo, barrera o fenómeno pued
 **Escala Mediana. Movimiento 6.** **Paso de Cabra:** raíces, roca irregular, pendientes naturales pronunciadas y desniveles menores no aumentan el coste de Movimiento si son físicamente transitables. No concede trepa vertical, salto imposible ni equilibrio automático. **Cuernos:** arma natural de **Daño 3, Penetración 0**; usa el ataque normal, sin Acción adicional.
 
 ##### Dríade
-**Escala Mediana. Movimiento 6.** **Vínculo Arbóreo:** por contacto con vegetación significativa perteneciente a su vínculo conoce su estado general: saludable, dañada, enferma, ardiendo, muriendo o afectada por magia evidente. No revela ubicación remota, historia, mensajes, causa precisa ni identidad del hechizo. **Enraizar:** requiere **Acción** y suelo apropiado; mientras permanece enraizada obtiene **+1 categoría de Escala efectiva** sólo para resistir Empujar, Derribar y desplazamiento físico impuesto. Liberarse cuesta **1 punto de Movimiento**. No concede curación ni Defensa general.
+**Escala Mediana. Movimiento 6.** **Vínculo Arbóreo:** por contacto con vegetación significativa perteneciente a su vínculo conoce su estado general: saludable, dañada, enferma, ardiendo, muriendo o afectada por magia evidente. No revela ubicación remota, historia, mensajes, causa precisa ni identidad del hechizo. **Enraizar:** requiere **Acción** y suelo apropiado; mientras permanece enraizada obtiene **+1 categoría de Escala efectiva** sólo para resistir Empujar, Derribar y desplazamiento físico impuesto. Liberarse cuesta **1 punto de Movimiento**. No concede curación ni Defensa general. **Contra Derribar**, mientras el anclaje siga siendo válido, aplicá además el **+1 circunstancial a Defensa de Maniobra** previsto en B5-I02; no se extiende a Empujar, Agarrar ni Desarmar.
 
 ##### Silfo
 **Escala Mediana. Movimiento 6.** **Cuerpo del Viento:** ignora penalizaciones de desplazamiento causadas únicamente por viento mundano ordinario. Obtiene **+1 categoría de Escala efectiva** sólo para resistir Empujar causado por viento. No concede vuelo sostenido ni inmunidad a tormentas, magia o daño.
