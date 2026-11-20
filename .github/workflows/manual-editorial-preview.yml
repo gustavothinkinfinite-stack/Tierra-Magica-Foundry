@@ -53,6 +53,11 @@ jobs:
         run: python tools/render-print-review.py
       - name: Auditar capa de texto y geometría del PDF
         run: python tools/audit-print-review.py
+      - name: Instalar Poppler para el tercer extractor
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y poppler-utils
+          pdftotext -v
       - name: Comparar extracción con Poppler e inspeccionar índice
         run: |
           command -v pdftotext
