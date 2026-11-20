@@ -8,6 +8,7 @@ from pathlib import Path
 import json
 import re
 import fitz
+from PIL import Image, ImageDraw
 
 ROOT=Path(__file__).resolve().parent.parent
 DIR=ROOT/"docs/edicion_impresa"
@@ -66,6 +67,27 @@ report={
         "Cualquier modificación de tipografía o arte invalida esta paginación y requiere repetir el informe"
     ]
 }
+# Diagnóstico visual de secuencias particularmente cortas; no implica aprobación.
+# Pares contiguos: 32/33 (perfiles), 258-263 (tabla segmentada),
+# 309-313 (acumuladores) y 497/498 (glosario).
+targets=[31,32,257,258,259,260,261,262,308,309,310,311,312,496,497]
+tiles=[]
+for pi in targets:
+    if pi>=len(doc): continue
+    pix=doc[pi].get_pixmap(matrix=fitz.Matrix(.55,.55),alpha=False)
+    raw=Image.frombytes("RGB",(pix.width,pix.height),pix.samples)
+    tile=Image.new("RGB",(385,485),"#e4e8eb")
+    tile.paste(raw,((385-raw.width)//2,10))
+    ImageDraw.Draw(tile).text((10,460),"Página "+str(pi+1),fill="#1c3042")
+    tiles.append(tile)
+if tiles:
+    sheet=Image.new("RGB",(385*5,485*((len(tiles)+4)//5)),"#d3d8dd")
+    for i,tile in enumerate(tiles):
+        sheet.paste(tile,((i%5)*385,(i//5)*485))
+    views=DIR/"vistas_revision"
+    views.mkdir(parents=True,exist_ok=True)
+    sheet.save(views/"contacto_cortas.jpg",quality=77,optimize=True)
+
 DEST.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps({k:v for k,v in report.items() if k!="incidencias"},ensure_ascii=False))
 print("PAGINAS_A_REVISAR="+json.dumps([
