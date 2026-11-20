@@ -41,7 +41,7 @@ Se releyeron `00_tablero.md`, `README.md`, `00_plan_auditorias_y_manual.md`, la 
 2. **Enlace Micelial** conserva Acción de conexión/reconexión, red viva continua, contacto y límite geométrico de 12 espacios. No añadir relés ni canales mágicos.
 3. **Anfibio** cuesta 1 PR, puede ser una fuente independiente para Coralios deshidratados, pero no cura deshidratación. No cobrar dos veces una función exactamente igual.
 4. **Voluntad del Colmillo** elimina una sola fuente elegible de Desventaja y consume uso aun si otra persiste. **Ojo** no transfiere Ayuda ni da Iniciativa automática. **Conductor Vivo** requiere especificación compatible y consentimiento.
-5. **HUM1:** conservar en el manuscrito el catálogo de Don sin Forma y distinguir la clasificación Menor/Significativo como propuesta pendiente, no regla vigente, hasta decisión editorial explícita.
+5. **HUM1 (criterio actualizado C-RES/3):** conservar en el manuscrito el catálogo y los límites canónicos de Don sin Forma, **sin imprimir la clasificación Menor/Significativo no ratificada**. La clasificación candidata queda sólo en `01_humanos/manual_final_propuesto.md` y su expediente, pendiente de revisión global. Esta decisión sustituye la instrucción histórica de mantener la clasificación en el manuscrito.
 6. **CULT1:** incorporar el lore plural como ejemplos, sin transformar instituciones en ciudades oficiales, poderes, habilidades, PR o PD gratuitos.
 7. La tabla anterior se conserva para **trazabilidad histórica**, pero prevalece esta conciliación frente a frases antiguas que llamaban «norma nueva» a reglas ya aprobadas.
 
@@ -60,3 +60,12 @@ El cierre normativo está en el `main` leído en esta ejecución. Si cambia el b
 **Evidencia:** escenarios documentales, **0 ejecución Foundry, 0 prueba de mesa**. No se ha hecho merge ni se ha modificado `main`, mapa o código operativo.
 
 **Siguiente unidad:** cotejo de cambios del blob vigente de `main` contra B5 y luego ensamblaje de las doce páginas en manuscrito continuo, incorporando sólo candidatas normativas resueltas y marcando las restantes.
+
+
+## Conciliación editorial posterior — C-RES/4 (20-11-2026)
+
+La redacción anterior de HUM1 en este registro contradecía la corrección C-RES/3 aplicada al manuscrito de lectura: **no se debe imprimir una etiqueta de clasificación todavía no ratificada**, aunque se señale como propuesta. Se ha corregido el criterio de integración en el punto 5 anterior, conservando el registro histórico y la fuente individual. La omisión de ese párrafo en el manuscrito es una **diferencia editorial deliberada**, no una pérdida accidental de canon ni una modificación del Manual Maestro.
+
+Control de alcance: se releyeron tablero, README, plan, C-B5/1, C-RES/3, fuente Humanos, fuente Micelios, manuscrito y autoridad `main` (`0c8ddfb0b218bed38cd10962a1ac35bab8821466`). La reserva técnica de Micelios también permanece sólo en su fuente y no se debe trasladar a imprenta. Las cifras vigentes para el manuscrito posterior a HUM1 son **9.637 tokens completos, 9.466 en los doce bloques, 12/12 dentro de 650–850** (C-NUM/3); las fuentes individuales conservan el cómputo independiente de **9.574**. Estas cifras son recuentos por espacios, no páginas físicas.
+
+**Puerta pendiente:** cotejo semántico de cada cláusula restante frente a `main`, revisión global del creador y maquetación física. No hay aprobación normativa, prueba de mesa ni ejecución Foundry. No se autoriza merge.
