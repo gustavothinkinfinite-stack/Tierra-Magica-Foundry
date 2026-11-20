@@ -257,7 +257,7 @@ Los siguientes doce paquetes son la lista jugable base actual. Variantes cultura
 - **Escala:** Mediana.
 - **Movimiento:** 6.
 - Anatomía y sentidos humanoides ordinarios.
-- **Don sin Forma:** durante creación obtiene gratuitamente **1 Rasgo General Significativo** o **2 Rasgos Generales Menores** compatibles, además de sus 3 PR normales. No puede utilizarse para aumentar Atributos, Ataque, Defensa, daño, Protección, Vida o Maná; tampoco para Rasgos raciales, Familiar Mágico, Vínculo Divino, Pactos, Fuentes mágicas especiales, ni Rasgos cuyo acontecimiento de ficción todavía no haya ocurrido. En el catálogo general actual son compatibles por defecto Sentido Agudo, Visión en la Oscuridad, Trepador Natural, Afinidad Sobrenatural y Resistencia Ambiental cuando la ficción concreta lo sostenga. La elección gratuita no paga mejoras posteriores del Rasgo.
+- **Don sin Forma:** durante creación obtiene gratuitamente **1 Rasgo General Significativo** o **2 Rasgos Generales Menores** compatibles, además de sus 3 PR normales. No puede utilizarse para aumentar Atributos, Ataque, Defensa, daño, Protección, Vida o Maná; tampoco para Rasgos raciales, Familiar Mágico, Vínculo Divino, Pactos, Fuentes mágicas especiales, ni Rasgos cuyo acontecimiento de ficción todavía no haya ocurrido. En el catálogo general actual son compatibles por defecto **Sentido Agudo, Trepador Natural, Afinidad Sobrenatural y Resistencia Ambiental Menor** como opciones **Menores (1 PR)**; **Visión en la Oscuridad y Resistencia Ambiental Significativa** como opciones **Significativas (2 PR)**, siempre que la ficción concreta las sostenga. Esta clasificación sirve únicamente para las opciones gratuitas de Don sin Forma, no transforma sus elecciones en PR intercambiables. La elección gratuita no paga mejoras posteriores del Rasgo.
 - Los Humanos no poseen subrazas divinas originales. Su diversidad procede de migraciones, climas, culturas, mezclas, magia, religión, guerras, aislamiento, alimentación, historia y adaptación.
 
 ##### Enanos
@@ -13490,7 +13490,7 @@ El **Origen** describe el entorno cultural; el **Trasfondo**, las experiencias; 
 ##### Las Cinco Sendas
 Los relatos de Aster distinguen cinco imágenes para pensar una vida. **El Camino** representa explorar y partir. **La Mano**, construir y reparar. **La Voz**, conversar y acordar. **La Mirada**, observar y comprender. **La Huella**, transmitir lo aprendido. Una persona puede seguir varias Sendas, rechazarlas o cambiar de parecer. No son castas ni rasgos mecánicos.
 
-En algunas comunidades —**propuesta cultural**, no institución universal— existen Casas de Relevo que conservan obras inconclusas y Círculos de Horizonte que anotan tanto lo descubierto como lo ignorado. Otros grupos organizan Mesas de Segunda Firma para revisar acuerdos heredados o Talleres de Preguntas donde los errores se convierten en material de estudio. Admiten integrantes de cualquier pueblo y no otorgan bonificaciones de nacimiento.
+En algunas comunidades —**ejemplo cultural local**, no institución universal— existen Casas de Relevo que conservan obras inconclusas y Círculos de Horizonte que anotan tanto lo descubierto como lo ignorado. Otros grupos organizan Mesas de Segunda Firma para revisar acuerdos heredados o Talleres de Preguntas donde los errores se convierten en material de estudio. Admiten integrantes de cualquier pueblo y no otorgan bonificaciones de nacimiento.
 
 ##### El peso de lo que permanece
 La brevedad relativa de muchas vidas humanas alimenta historias de urgencia y legado. Una herramienta transmitida, una promesa corregida o una ruta compartida pueden sobrevivir a quien las inició. También sobreviven decisiones dañinas. Aster no exige bondad ni veneración: la Elección permite equivocarse, dominar, reparar o renunciar.
@@ -13507,7 +13507,7 @@ El Don **no** aumenta Atributos, Ataque, Defensa, daño, Protección, Vida ni Ma
 ##### Opciones compatibles y límites
 El catálogo vigente contempla por defecto **Sentido Agudo**, **Visión en la Oscuridad**, **Trepador Natural**, **Afinidad Sobrenatural** y **Resistencia Ambiental**, cuando la ficción los justifique. Sentido Agudo mejora sólo detalles determinantes del sentido elegido. Visión en la Oscuridad distingue formas en oscuridad mundana dentro de su alcance, sin atravesar obstáculos. Trepador Natural facilita desplazarse sobre superficies trepables, sin eliminar riesgos. Afinidad Sobrenatural detecta manifestaciones directamente perceptibles de una afinidad delimitada, sin identificar hechizos automáticamente. Resistencia Ambiental protege frente a una exposición concreta.
 
-**Aclaración editorial propuesta, pendiente de aprobación:** clasificar Visión en la Oscuridad y Resistencia Ambiental Significativa como Significativos; Sentido Agudo, Trepador Natural, Afinidad Sobrenatural y Resistencia Ambiental Menor como Menores. Esta equivalencia limitada **no modifica el catálogo canónico ni convierte el Don en PR intercambiables**.
+**Clasificación vigente de Don sin Forma:** **Significativos**: Visión en la Oscuridad (2 PR) y Resistencia Ambiental Significativa (2 PR). **Menores**: Sentido Agudo, Trepador Natural, Afinidad Sobrenatural y Resistencia Ambiental Menor (1 PR cada uno). El personaje obtiene una opción Significativa o dos Menores compatibles, **sin transformar el Don en PR intercambiables ni modificar el coste de los Rasgos**.
 
 ##### Dos caminos posibles
 **Exploradora de cavernas:** elige Visión en la Oscuridad mediante Don, si anatomía y ficción lo sostienen. Conserva sus 3 PR; debe adquirir Supervivencia o Atletismo normalmente.
@@ -13544,7 +13544,7 @@ Eso no convierte a cada Enano en herrero. Hay médicos, navegantes, comerciantes
 
 **Errantes:** hogares repartidos entre rutas, puertos y estaciones, capaces de mantener pertenencias múltiples sin renunciar a ninguna.
 
-Estas denominaciones expresan historias y costumbres, no castas ni subrazas mecánicas. Se mezclan entre sí y con otras comunidades. **Como propuesta cultural local**, algunas Juntas del Paso podrían celebrar un *Recuento de Deshielo* para revisar refugios y recordar errores de infraestructura; ni el rito ni la institución son universales o canónicos.
+Estas denominaciones expresan historias y costumbres, no castas ni subrazas mecánicas. Se mezclan entre sí y con otras comunidades. **Como ejemplo cultural local**, algunas Juntas del Paso podrían celebrar un *Recuento de Deshielo* para revisar refugios y recordar errores de infraestructura; ni el rito ni la institución son universales o canónicos.
 
 ##### Las Holdas y sus fronteras
 **Kharum**, en el Espinazo del Mundo, es una confederación de **Holdas**. Cada ciudad-fortaleza gobierna sus minas y túneles, mientras el **Consejo de Martillos** coordina defensa, estándares de ingeniería y comercio exterior. **Kar-Dur** ocupa una garganta montañosa; sus barrios enlazan talleres, fundiciones y ferrocarriles subterráneos. En 612 C., la **Segunda Forja** y los hallazgos de los **Fundadores** plantean disputas sobre riqueza, seguridad y excavación.
@@ -13599,7 +13599,7 @@ Eïra inspira ceremonias del Primer Brote, la Plenitud y el Retorno a la Tierra.
 
 En Erelia pueden encontrarse pueblos vinculados a ríos y bosques; en Lysendra, estudiantes y especialistas de muchas ascendencias. Ninguna de esas regiones pertenece exclusivamente a los Élficos. Los oficios, idiomas y lealtades dependen de la crianza y de las elecciones personales.
 
-**Propuesta cultural local:** algunas comunidades mantienen *Archivos de Estaciones*, donde se registran cambios ambientales y errores de generaciones anteriores. Es una institución posible, no universal ni capaz de otorgar Historia, Naturaleza o magia gratuita.
+**Ejemplo cultural local:** algunas comunidades mantienen *Archivos de Estaciones*, donde se registran cambios ambientales y errores de generaciones anteriores. Es una institución posible, no universal ni capaz de otorgar Historia, Naturaleza o magia gratuita.
 
 #### PÁGINA DERECHA — CREAR UN ÉLFICO
 
@@ -13649,7 +13649,7 @@ Algunos relatos mencionan linajes orcos de tamaño extraordinario. Su nombre, or
 ##### Sociedad, culto y responsabilidad
 En Edria conviven Orcos dedicados al comercio, ingeniería, agricultura, derecho, armas y arte. Una comunidad puede valorar el honor militar; otra, la negociación o la protección de los vulnerables. La fe en Varkor tampoco es universal: un Orco puede seguir otras divinidades o ninguna. El **Vínculo Divino** se adquiere por sus reglas ordinarias.
 
-**Propuesta cultural local:** la *Mesa del Acuerdo Difícil* invita a cada parte de una disputa a explicar primero la necesidad de su adversario. Es una práctica posible, no una ley de todos los Orcos y **no concede Persuasión, Liderazgo ni bonificaciones gratuitas**.
+**Ejemplo cultural local:** la *Mesa del Acuerdo Difícil* invita a cada parte de una disputa a explicar primero la necesidad de su adversario. Es una práctica posible, no una ley de todos los Orcos y **no concede Persuasión, Liderazgo ni bonificaciones gratuitas**.
 
 #### PÁGINA DERECHA — JUGAR UN ORCO
 
@@ -13696,7 +13696,7 @@ Los **Bugbears** son corpulentos, en el extremo superior de la Escala Mediana. S
 ##### Oficios, ciudades y creencias
 En la Edria de **612 C.**, los tres pueblos participan en talleres, ferrocarriles, puertos y comunidades mixtas. Las fronteras políticas no equivalen a fronteras de sangre. Una familia puede compartir vecindario y trabajo con Enanos, Orcos o Humanos sin abandonar sus propias costumbres.
 
-**Propuesta cultural local:** algunos talleres celebran la *Prueba de Revisión*: antes de inaugurar una máquina, invitan a otra persona a señalar su fallo más peligroso. En ciertos consejos existe el *Relevo Público*, donde los responsables salientes entregan sus registros, incluidos los errores. Son prácticas posibles, **no instituciones universales ni fuentes de bonificaciones**.
+**Ejemplo cultural local:** algunos talleres celebran la *Prueba de Revisión*: antes de inaugurar una máquina, invitan a otra persona a señalar su fallo más peligroso. En ciertos consejos existe el *Relevo Público*, donde los responsables salientes entregan sus registros, incluidos los errores. Son prácticas posibles, **no instituciones universales ni fuentes de bonificaciones**.
 
 Hay devotos de Varkor, fieles de otros dioses y personas sin culto. Ninguna ascendencia recibe Vínculo Divino automáticamente. Los **Kobolds** no son una cuarta opción goblinoide del Manual Básico: su relación con la cosmología dracónica continúa abierta.
 
@@ -13802,7 +13802,7 @@ Los Silfos se relacionan con vientos, alturas y tormentas. Pueden estudiar naveg
 ##### Cultos, acuerdos y disputas
 Los cultos de Eïra celebran el Primer Brote, la Plenitud y el Retorno a la Tierra, con diferencias regionales. Ningún Feérico está obligado a venerarla: puede seguir otras divinidades o ninguna. Tampoco obtiene Vínculo Divino por nacer Feérico.
 
-**Propuesta cultural local:** algunas comunidades establecen consejos de mediación para obras próximas a arboledas vinculadas y rutas aéreas. Son instituciones narrativas, no habilidades, inmunidades ni ventajas gratuitas. En la era arcano-industrial, sus decisiones pueden enfrentar a comerciantes, ingenieros y vecinos sin que ninguno represente a toda una ascendencia.
+**Ejemplo cultural local:** algunas comunidades establecen consejos de mediación para obras próximas a arboledas vinculadas y rutas aéreas. Son instituciones narrativas, no habilidades, inmunidades ni ventajas gratuitas. En la era arcano-industrial, sus decisiones pueden enfrentar a comerciantes, ingenieros y vecinos sin que ninguno represente a toda una ascendencia.
 
 #### Página derecha — Cuatro ascendencias jugables
 
@@ -13885,12 +13885,12 @@ Sus anatomías son diversas. Algunos poseen estructuras casi enteramente cristal
 ##### Vetas, cuidados y memoria
 Una faceta puede revelar la historia de un cuerpo: una cicatriz, una veta crecida con los años o una superficie pulida por el trabajo. Ningún color determina carácter, moral o aptitud mágica. Tampoco toda estructura cristalina es armadura. Los Cristálidos de Matriz Mixta se alimentan, descansan, enferman, sienten agotamiento y requieren atención médica.
 
-**Propuesta cultural:** algunas familias llaman *mudanza de faceta* a los cambios minerales de la vida. Se celebran como aniversarios o se anotan en registros familiares. No constituyen curación, metamorfosis de combate ni memoria perfecta.
+**Ejemplo cultural local:** algunas familias llaman *mudanza de faceta* a los cambios minerales de la vida. Se celebran como aniversarios o se anotan en registros familiares. No constituyen curación, metamorfosis de combate ni memoria perfecta.
 
 ##### Sociedades de personas, no de herramientas
 Los Cristálidos habitan ciudades, caminos y comunidades compartidas. Pueden dedicarse al comercio, agricultura, enseñanza, navegación, guerra o investigación; no nacen con profesión asignada. Su presencia en talleres arcanos responde a posibilidades técnicas y decisiones personales, no a obligaciones naturales.
 
-**Propuestas culturales:** las *Mesas de Calibración* reúnen especialistas para registrar accidentes e interfaces seguras. Las *Casas de Faceta* preservan relatos y genealogías mediante archivos ordinarios. Los *Círculos de Desacople* defienden el consentimiento de quienes participan en mecanismos de conducción. Ninguna institución concede Ingeniería, conocimientos, licencias, equipo o modificadores por pertenencia.
+**Ejemplos culturales locales:** las *Mesas de Calibración* reúnen especialistas para registrar accidentes e interfaces seguras. Las *Casas de Faceta* preservan relatos y genealogías mediante archivos ordinarios. Los *Círculos de Desacople* defienden el consentimiento de quienes participan en mecanismos de conducción. Ninguna institución concede Ingeniería, conocimientos, licencias, equipo o modificadores por pertenencia.
 
 ##### Cultos y desacuerdos
 Khorun inspira ceremonias dedicadas a la forma y los materiales, pero no es la única divinidad venerada. Un Cristálido puede seguir otras religiones o ninguna. El debate sobre dispositivos que emplean conductores vivos atraviesa gremios y hogares: una interfaz compatible no equivale a un derecho sobre el cuerpo ajeno. Ese conflicto permite aventuras de descubrimiento, negociación y resistencia sin reducir a todo un pueblo a una misma postura.
@@ -13934,12 +13934,12 @@ Los Verdantes necesitan agua, luz suficiente y nutrientes compatibles. Pueden ob
 Su biología puede condicionar rutas, horarios y viviendas sin dictar oficio o carácter. Un Verdante de desierto puede ser navegante; uno de pantano, ingeniero de puentes; uno de tundra, diplomático. Origen y Trasfondo representan experiencias y vínculos que no vienen incluidos en la ascendencia.
 
 ##### El agua como asunto público
-**Propuesta cultural:** algunas comunidades organizan *Casas del Riego* para negociar canales y reservas compartidas; otras conservan testimonios en *Archivos de Anillos* o mantienen *Caminos de Germinación* para viajeros. Son instituciones posibles, no una organización universal ni lugares fijados en el mapa. Sus integrantes pueden pertenecer a cualquier pueblo y no reciben Habilidades gratuitas.
+**Ejemplo cultural local:** algunas comunidades organizan *Casas del Riego* para negociar canales y reservas compartidas; otras conservan testimonios en *Archivos de Anillos* o mantienen *Caminos de Germinación* para viajeros. Son instituciones posibles, no una organización universal ni lugares fijados en el mapa. Sus integrantes pueden pertenecer a cualquier pueblo y no reciben Habilidades gratuitas.
 
 Los desacuerdos por agua, propiedad y obras públicas también atraviesan a los Verdantes. Un canal que permite sobrevivir a un barrio puede perjudicar cultivos vecinos. Una fábrica puede proporcionar iluminación y empleo mientras contamina el sustrato. Ninguna de estas tensiones exige que los Verdantes sean guardianes naturales ni enemigos inevitables de la industria.
 
 ##### Fe y memoria
-Eïra ocupa un lugar importante en numerosas tradiciones, pero no impone culto. Algunos Verdantes veneran otras divinidades o rechazan la religión. **Propuesta cultural:** ceremonias de primer brote y relatos de estaciones recuerdan nacimientos, migraciones y pérdidas. No son rituales con efecto sobrenatural, fuentes de Maná ni recuerdos perfectos grabados en la madera.
+Eïra ocupa un lugar importante en numerosas tradiciones, pero no impone culto. Algunos Verdantes veneran otras divinidades o rechazan la religión. **Ejemplo cultural local:** ceremonias de primer brote y relatos de estaciones recuerdan nacimientos, migraciones y pérdidas. No son rituales con efecto sobrenatural, fuentes de Maná ni recuerdos perfectos grabados en la madera.
 
 #### Página derecha — Verdantes en juego
 
@@ -13948,7 +13948,7 @@ Eïra ocupa un lugar importante en numerosas tradiciones, pero no impone culto. 
 
 **Sustento Vegetal.** Necesitás **agua, luz suficiente y nutrientes compatibles**. Estas necesidades cumplen la misma función de supervivencia que alimentación e hidratación para otros pueblos. Podés obtener parte de ellas del entorno apropiado o transportarlas como provisiones. Seguís necesitando **Descanso Completo** y podés sufrir **Fatiga**. No hay curación ni generación de Maná por fotosíntesis.
 
-**Enraizar.** Gastás una **Acción** sobre **suelo apropiado**. Mientras permanecés **inmóvil**, se te considera **una categoría de Escala efectiva mayor** solamente para **resistir Empujar, Derribar y desplazamiento físico impuesto**. Liberarte cuesta **1 punto de Movimiento**. No modifica tu Escala real, Defensa general, Carga, ataque, daño o alcance. Enraizar no recupera Vida ni Maná; tampoco te vuelve inmune a heridas o a maniobras exitosas. Cualquier traducción adicional de Escala efectiva a modificadores de Derribar es una propuesta transversal separada, no parte de este paquete.
+**Enraizar.** Gastás una **Acción** sobre **suelo apropiado**. Mientras permanecés **inmóvil**, se te considera **una categoría de Escala efectiva mayor** solamente para **resistir Empujar, Derribar y desplazamiento físico impuesto**. Liberarte cuesta **1 punto de Movimiento**. No modifica tu Escala real, Defensa general, Carga, ataque, daño o alcance. Enraizar no recupera Vida ni Maná; tampoco te vuelve inmune a heridas o a maniobras exitosas. **Contra Derribar**, aplicá además el **+1 circunstancial a Defensa de Maniobra** del cierre normativo de Ascendencias **B5-I02**, sólo mientras el anclaje siga siendo válido; no se extiende a otras maniobras.
 
 **Adaptación de Bioma.** Al crear el personaje elegís **un bioma** y registrás **una sola ventaja anatómica estrecha** asociada: **+1 VIG** contra **una exposición ambiental definitoria**, **o** eliminar **una causa concreta de terreno difícil**. No obtenés las dos opciones ni inmunidad al bioma completo. Ejemplos: jungla, vegetación ordinaria transitable; pantano, barro **o** agua somera; tundra, +1 VIG contra frío ambiental; desierto, +1 VIG contra calor **o** deshidratación ambiental.
 
@@ -13979,7 +13979,7 @@ La vida fúngica necesita humedad y nutrientes orgánicos compatibles. Un Miceli
 Algunas comunidades viven próximas a redes vivas; otras se instalan en barrios de piedra, puertos o centros industriales. Quien abandona una colonia no pierde automáticamente sus recuerdos, voluntad o identidad. La independencia personal importa tanto como sus vínculos.
 
 ##### Oficios de la convivencia
-**Propuesta cultural:** las *Casas del Sustrato* administran reservas de agua y materia orgánica en ciertos asentamientos. Los *Custodios de la Red Viva* vigilan la continuidad de las redes compartidas, mientras los *Archivos de Esporas* conservan testimonios en soportes físicos, documentos y relatos. Ninguna red almacena por sí sola todos los pensamientos de sus habitantes.
+**Ejemplo cultural local:** las *Casas del Sustrato* administran reservas de agua y materia orgánica en ciertos asentamientos. Los *Custodios de la Red Viva* vigilan la continuidad de las redes compartidas, mientras los *Archivos de Esporas* conservan testimonios en soportes físicos, documentos y relatos. Ninguna red almacena por sí sola todos los pensamientos de sus habitantes.
 
 También existen, como propuesta, *Círculos de Desprendimiento*: grupos que defienden el derecho a desconectarse, guardar secretos o establecerse lejos de la comunidad natal. No son instituciones universales ni lugares fijados en el atlas. Pueden participar personas de otras ascendencias; pertenecer a ellas no concede Habilidades, contactos garantizados ni recursos gratuitos.
 
@@ -14018,7 +14018,7 @@ Su origen compartido no los obliga a una religión, profesión o gobierno. Hay C
 ##### Hogares que requieren cuidados
 Las comunidades submarinas pueden integrar construcciones con arrecifes vivos. Sus viviendas necesitan mantenimiento, materiales, herramientas y trabajo especializado; la presencia de una persona Coralio no levanta paredes ni repara canales de forma instantánea. En las costas, sus habitantes participan de talleres, mercados, embarcaderos y oficios compartidos con otros pueblos. Aprender Ingeniería, navegación o Medicina exige los mismos medios y decisiones de creación que para cualquier ascendencia.
 
-**Propuesta cultural:** los *Consejos de Marea* reúnen a residentes para negociar acceso al agua y seguridad de muelles. Las *Casas de Crecimiento* conservan técnicas de mantenimiento de estructuras vivas; las *Ligaduras de Sal* coordinan intercambios entre superficie y mar; los *Archivistas del Fondo* recopilan testimonios de viajes y naufragios. Ninguna institución es universal, está fijada como nación en el mapa ni concede Habilidades, recursos o autoridad por nacimiento.
+**Ejemplo cultural local:** los *Consejos de Marea* reúnen a residentes para negociar acceso al agua y seguridad de muelles. Las *Casas de Crecimiento* conservan técnicas de mantenimiento de estructuras vivas; las *Ligaduras de Sal* coordinan intercambios entre superficie y mar; los *Archivistas del Fondo* recopilan testimonios de viajes y naufragios. Ninguna institución es universal, está fijada como nación en el mapa ni concede Habilidades, recursos o autoridad por nacimiento.
 
 ##### Memoria del mar, incertidumbre del futuro
 Nacariel, Cobravia y Puerto Umbral son lugares donde pueden encontrarse viajeros y trabajadores Coralios, sin que sus habitantes formen un único Estado. El **Mar de Nacre** conserva ruinas y peligros ligados a corrientes arcanas. Durante la **Crisis de Nacre de 598 C.** desaparecieron tres expediciones: nadie ha establecido definitivamente su destino. Un personaje puede investigar ese misterio, pero su ascendencia no le proporciona la respuesta.
@@ -14028,7 +14028,7 @@ Algunos Coralios veneran a **Eïra**, asociada a la vida y sus cambios. Otros ho
 #### Página derecha — Coralios en juego
 
 ##### Paquete racial vigente
-**Escala: Mediana. Movimiento terrestre: 5. Movimiento acuático: 6.** Cada velocidad corresponde a su medio. Cambiar entre tierra y agua no permite gastar dos reservas completas de Movimiento en un mismo desplazamiento; el arbitraje exacto de tramos mixtos se conserva como propuesta aparte, no como nueva regla canónica.
+**Escala: Mediana. Movimiento terrestre: 5. Movimiento acuático: 6.** Cada velocidad corresponde a su medio. Cambiar entre tierra y agua no permite gastar dos reservas completas de Movimiento en un mismo desplazamiento; **los tramos mixtos se calculan mediante la suma fraccional establecida en B5-I01**.
 
 **Respiración Anfibia.** Podés respirar aire y agua mientras permanezcas **razonablemente hidratado**. No sos inmune a desecación, presión de las profundidades, temperatura extrema, corrientes, contaminación ni toxinas. La hidratación exige cuidado razonable según la situación y las reglas generales; no se incorpora un reloj racial de daño por horas.
 
