@@ -909,3 +909,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Corregido [índice y criterios](./manual_final/indice_y_criterios.md): la advertencia histórica sobre supuestos excesos de Goblinoides/Terios y la falta de nota humana ya no describía el estado verificado; sustituida por resultados imprimibles C02/C06/C07/C12, cotejos directo/inverso, cuatro controles de cláusulas y reserva HUM1.
 - **Sin cambios mecánicos ni nueva ratificación.** No se ejecutaron pruebas Foundry, mesa ni maqueta.
 - **Siguiente bloque sustantivo:** verificar destinos de enlaces relativos de índice, tabla, registro, acta e informe; corregir remisiones rotas y cifras históricas obsoletas. Después decidir cierre documental C/D sin confundirlo con publicación ni pruebas empíricas.
+
+### 2026-11-19 — Verificación de enlaces iniciada; límite de herramientas
+- Releídos tablero, README, plan, índice, tabla, registro, informe y autoridad de `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- Se inició control de destinos relativos; el lote de comprobación excedió el límite de llamadas antes de concluir, por lo que **no se afirma validación completa**.
+- Actualizado [`manual_final/informe_de_entrega.md`](./manual_final/informe_de_entrega.md) con la limitación y los pendientes verificables.
+- **Siguiente:** comprobar rutas y anclas por lotes pequeños; conciliar cifras históricas y decidir cierre documental. Sin cambios canónicos, sin Foundry, mesa ni maqueta.
