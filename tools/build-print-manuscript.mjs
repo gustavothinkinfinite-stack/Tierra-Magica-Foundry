@@ -251,6 +251,36 @@ const allFromSource=[first,annex,rest,world,panteon].join("\n");
 for(const term of ["## 12. Grimorio canónico","### CRAFT-12 — Auditoría integral del sistema de fabricación","## 16. Alquimia","## 23. PNJ y criaturas","## 38. Relaciones del Panteón y límites de canon"]){
  if(!allFromSource.includes(term))throw Error("Falta contenido: "+term);
 }
+// El contenido mecánico CRAFT-12 permanece completo. Estas ediciones afectan
+// sólo declaraciones históricas de cierre y la formulación de su control futuro.
+const craft12ReaderEdits = [
+  [
+    "#### Resultado de cierre",
+    "#### Control de compatibilidad futura"
+  ],
+  [
+    "CRAFT-01 a CRAFT-11 quedan considerados **coherentes entre sí después de las correcciones de CRAFT-12**.\n\n",
+    ""
+  ],
+  [
+    "CRAFT-12 queda como auditoría de regresión: cualquier regla futura que afecte crafting debe comprobar al menos:",
+    "Cualquier regla futura que afecte el sistema de fabricación debe comprobar al menos:"
+  ],
+  [
+    "**CRAFT-12 queda cerrado.**\n\n",
+    ""
+  ]
+];
+const craft12Start=assembled.indexOf("### CRAFT-12 — Auditoría integral del sistema de fabricación");
+const craft12End=assembled.indexOf("## 19. Economía, disponibilidad y equipo",craft12Start);
+if(craft12Start<0||craft12End<0)throw Error("Límites CRAFT-12 no encontrados");
+let craft12=assembled.slice(craft12Start,craft12End);
+for(const [from,to] of craft12ReaderEdits){
+  if(craft12.split(from).length!==2)throw Error("Sustitución CRAFT-12 ambigua: "+from.slice(0,70));
+  craft12=craft12.replace(from,to);
+}
+assembled=assembled.slice(0,craft12Start)+craft12+assembled.slice(craft12End);
+
 // Rótulos de estado CRAFT para lectura: el contenido normativo se conserva.
 if(assembled.split("> **CRAFT-01 — VIGENTE · CERRADO.**").length!==2)throw Error("Falta rótulo CRAFT-01");
 if(assembled.split("> **VIGENTE · CERRADO.**").length!==12)throw Error("Se esperaban 11 rótulos CRAFT de estado");
