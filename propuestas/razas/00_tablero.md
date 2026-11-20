@@ -965,3 +965,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Hallazgo: el manuscrito aún contenía la **clasificación no ratificada Menor/Significativo de Don sin Forma** dentro de la página jugable de Humanos, pese a advertencias HUM1. Eliminado únicamente ese párrafo del manuscrito imprimible; preservado en fuente `01_humanos/manual_final_propuesto.md` para revisión global.
 - Creado [informe C-RES/3](./manual_final/control_reservas_normativas_c_res_3_2026_11_20.md) con la diferencia intencional frente a C-RES/2. **Siguiente:** recuento actualizado de manuscrito y barrido de otras reservas normativas antes de acta documental C.
 - **Sin cambios canónicos ni Foundry; 0 pruebas empíricas, 0 maquetas, 0 ratificaciones.**
+
+### 2026-11-20 — C-NUM/3: recuento posterior a HUM1 y barrido de reservas
+- Releídos tablero, README, plan, C-RES/3, C-NUM/2, manuscrito y acta; verificada autoridad del Manual Maestro `main` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- Recalculado manuscrito de lectura: **9.637 tokens completos, 9.466 en doce bloques raciales** (−33 frente a C-NUM/2); **12/12 bloques entre 650 y 850**. Las doce fuentes individuales siguen con medición histórica independiente de 9.574 tokens imprimibles.
+- Barrido de reservas explícitas: sin HUM1 ni etiquetas técnicas pendientes de aprobación dentro de bloques raciales; permanecen propuestas culturales locales, no beneficios gratuitos. Detalle y límites en [C-RES/3, seguimiento C-NUM/3](./manual_final/control_reservas_normativas_c_res_3_2026_11_20.md).
+- **Siguiente:** revisión semántica final de las reservas y consistencia de acta/informe, y decisión de cierre documental condicionado C. No confundir con maquetación, canon o pruebas empíricas.
