@@ -4017,7 +4017,7 @@ Los cinco perfiles anteriores son las únicas anclas mecánicas de armadura del 
 
 Dentro de esas variantes hay **24 armaduras regionales**, cuatro por cada región principal: Valdoria, Kharum, Liga de Bronce, Erelia, Lysendra y Solenar. La procedencia regional no modifica Protección, FUE mínima, precio, Sigilo, resistencia elemental ni Capacidad Rúnica.
 
-**No canónicas todavía:** Armadura de cristal, Placas de cristal y Coraza de madera viva necesitan un Perfil de Material explícito; Armadura resonante, Arnés de acumulador y Placas cinéticas necesitan un Perfil Host/Módulo/energético explícito. CRAFT-13 ya cerró esas autoridades, pero los nombres no conceden propiedades por inferencia.
+**No canónicas todavía:** Armadura de cristal, Placas de cristal y Coraza de madera viva necesitan un Perfil de Material explícito; Armadura resonante, Arnés de acumulador y Placas cinéticas necesitan un Perfil Host/Módulo/energético explícito. Sin un Perfil aprobado y explícito, estos nombres no conceden propiedades adicionales por inferencia.
 
 ### Escudos
 
@@ -4051,7 +4051,7 @@ Hay **18 variantes regionales**, tres por cada región principal. La forma, nomb
 
 En particular, **Pavés**, **Escudo torre** y nombres equivalentes usan el perfil de Escudo pesado: no generan cobertura total por el nombre del Item. La cobertura sólo aparece cuando la posición, terreno u otra regla la producen.
 
-**No canónicos todavía:** Escudo de cristal, Escudo de madera viva y Pavés de piedra viva necesitan un Perfil de Material explícito; Escudo resonante, Escudo de acumulador y Escudo cinético necesitan un Perfil Host/Módulo/energético explícito. CRAFT-13 ya cerró esas autoridades, pero los nombres no conceden Defensa, cobertura ni Energía por inferencia.
+**No canónicos todavía:** Escudo de cristal, Escudo de madera viva y Pavés de piedra viva necesitan un Perfil de Material explícito; Escudo resonante, Escudo de acumulador y Escudo cinético necesitan un Perfil Host/Módulo/energético explícito. Sin un Perfil aprobado y explícito, estos nombres no conceden Defensa, cobertura ni Energía por inferencia.
 
 ### Equipo de aventura y herramientas
 
