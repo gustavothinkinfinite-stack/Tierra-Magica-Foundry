@@ -1,5 +1,5 @@
 # Tierra Mágica — Integración editorial del capítulo de ascendencias
-**Edición de trabajo para el Manual Básico · 18-11-2026 · Rama de propuestas.**
+**Edición de trabajo para el Manual Básico · revisada 19-11-2026 · Rama de propuestas.**
 
 ## Mandato editorial actualizado
 El creador solicita **integrar todo el desarrollo de las doce razas, incluyendo las propuestas nuevas**, con prioridad absoluta en terminar el **libro**, no en desarrollar Foundry. Esta autorización permite seleccionar y redactar como contenido editorial de la futura edición los desarrollos culturales, narrativos y mecánicos costeados; **no convierte por sí sola la rama de trabajo en el canon publicado de `main`**. Se prepara aquí un manuscrito integrable, con trazabilidad y revisión de coherencia antes de cualquier sustitución del Manual Maestro.
@@ -33,8 +33,13 @@ El creador solicita **integrar todo el desarrollo de las doce razas, incluyendo 
 
 El paquete canónico de cada ascendencia se conserva como línea base de comparación. Si se selecciona una mejora para la nueva edición, registrarla como **CAMBIO PROPUESTO PARA EL LIBRO**, nunca como regla vigente de `main` hasta su incorporación formal. Los resultados documentales no equivalen a pruebas en mesa.
 
-## Control de integridad realizado
-Se comprobó mediante lectura directa en GitHub la existencia de los **12 `manual_final_propuesto.md` y las 12 `nota_integracion_manual.md`** en la rama aislada. Hay divergencias de conteo según tokenización: en conteo por espacios, Goblinoides registra 857 y Terios 908 palabras, frente al objetivo editorial 650–850; requieren ajuste de extensión antes de maquetar. También debe ampliarse la nota de integración de Humanos, más breve que las demás. **No declarar el libro terminado**: falta consolidar texto corrido, resolver decisiones mecánicas, editar y revisar.
+## Control de integridad actualizado — 19-11-2026
+
+- **Inventario:** doce textos finales y doce notas de integración; manuscrito consolidado, tabla, registro e informe de entrega existentes.
+- **Extensión:** el recuento del archivo Markdown completo incluye metadatos y notas no imprimibles. El [control de cuerpo imprimible](./control_imprimible_c02_c06_c07_c12_2026_11_19.md) midió Enanos 839, Terios 772, Feéricos 824 y Coralios 819 palabras. Los excesos históricos de archivo completo eran falsos positivos; no recortar por ese criterio.
+- **Concordancia:** [directa C-12](./cotejo_integral_12_fuentes_2026_11_19.md), [inversa C-12R](./cotejo_inverso_12_fuentes_2026_11_19.md) y cláusulas breves [C-12S/1](./control_clausulas_breves_c01_c05_2026_11_19.md), [C-12S/2](./control_clausulas_breves_c02_c03_c04_2026_11_19.md), [C-12S/3](./control_clausulas_breves_c06_c07_c08_c09_2026_11_19.md), [C-12S/4](./control_clausulas_breves_c10_c11_c12_2026_11_19.md). Estos controles son documentales, no equivalencia normativa exhaustiva ni pruebas funcionales.
+- **Reglas:** B5-I01–I11 se registran vigentes en el Manual Maestro de main cotejado; HUM1 permanece interpretación editorial no ratificada, CULT1 es desarrollo narrativo sin ventajas. Ver [registro de diferencias](./registro_de_diferencias_con_main.md).
+- **Límites:** cero pruebas Foundry, mesa y maqueta real. Las 24 páginas son objetivo de composición, no paginación demostrada. No hay autorización de merge ni de convertir propuestas en canon.
 
 ## Próxima operación
-Construir la tabla de doce familias y un registro explícito de diferencias mecánicas B4/B5; después ensamblar el capítulo corrido y corregir las extensiones. Conservar la rama y carpeta autorizadas mientras se prepara la integración editorial; no realizar merge automático ni editar Foundry.
+Verificar destinos de enlaces relativos en índices, tabla, registro e informe; reconciliar las cifras históricas del acta editorial con el cuerpo imprimible actual y cerrar C sólo si no quedan discrepancias sustantivas verificables.
