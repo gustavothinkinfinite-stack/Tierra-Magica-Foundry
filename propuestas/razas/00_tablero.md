@@ -959,3 +959,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creado [C-RES/2](./manual_final/control_clausulas_linea_a_linea_c_res_2_2026_11_20.md): comparación en ambos sentidos de **todas las líneas >=15 caracteres** de las 12 fuentes frente al manuscrito, normalizando puntuación, Markdown y espacios. Diferencias restringidas a 3 rótulos de fuente por raza frente a 2 rótulos de manuscrito; Coralios añade procedencia administrativa. **No se detectaron diferencias en líneas jugables** bajo este método.
 - No se alteró contenido racial: las diferencias son encabezados y metadatos, no reglas. No equivale a cotejo de líneas menores de 15 caracteres, prueba empírica ni maquetación.
 - **Siguiente:** cierre de reservas normativas y decisión de acta documental C; no ratificar canon ni dar por ejecutadas pruebas Foundry/mesa.
+
+### 2026-11-20 — C-RES/3: reserva HUM1 excluida de impresión
+- Releídos tablero, README, plan, B5 v4, C-B5/1, C-RES/1, C-RES/2, C-NUM/2, expediente Humanos y manuscrito; contrastada autoridad `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- Hallazgo: el manuscrito aún contenía la **clasificación no ratificada Menor/Significativo de Don sin Forma** dentro de la página jugable de Humanos, pese a advertencias HUM1. Eliminado únicamente ese párrafo del manuscrito imprimible; preservado en fuente `01_humanos/manual_final_propuesto.md` para revisión global.
+- Creado [informe C-RES/3](./manual_final/control_reservas_normativas_c_res_3_2026_11_20.md) con la diferencia intencional frente a C-RES/2. **Siguiente:** recuento actualizado de manuscrito y barrido de otras reservas normativas antes de acta documental C.
+- **Sin cambios canónicos ni Foundry; 0 pruebas empíricas, 0 maquetas, 0 ratificaciones.**
