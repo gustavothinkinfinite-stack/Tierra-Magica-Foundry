@@ -983,3 +983,8 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **Incidencia real:** tras excluir clasificación Menor/Significativo, el ejemplo «Mediador de caravanas» seguía eligiendo juntos Sentido Agudo + Afinidad Sobrenatural, presuponiendo indirectamente que ambos son Menores. Corregido **sólo en manuscrito de lectura**: combinación condicionada a clasificación canónica inequívoca; fuente individual intacta para trazabilidad.
 - Creado [control C-RES/5](./manual_final/control_reservas_normativas_c_res_5_2026_11_20.md). C-RES/2 deja de ser identidad literal actual; C-NUM/3 queda como recuento previo a esta modificación.
 - **Siguiente:** barrido semántico de ejemplos que puedan incorporar ventajas implícitas; recuento actualizado y decisión de cierre documental C. 0 mesa, 0 Foundry, 0 maqueta, 0 ratificaciones; sin cambio canónico.
+
+### 2026-11-20 — C-RES/6: corregida reserva excesiva sobre Don sin Forma
+- Verificados los costes del Manual Maestro en `main`: **Sentido Agudo 1 PR**, **Afinidad Sobrenatural 1 PR**, ambos disponibles en creación; **Menor = 1 PR**. La combinación de dos Menores compatibles ya está autorizada por el Don canónico y no requiere ratificación adicional. C-RES/5 había sobrerrestringido este ejemplo.
+- Corregidos ejemplo e introducción del manuscrito consolidado; registrada trazabilidad en [C-RES/6](./manual_final/control_reservas_normativas_c_res_6_2026_11_20.md), con seis casos documentales. Sin alterar expediente individual ni canon.
+- **Siguiente:** revisar los otros ejemplos jugables contra coste, elegibilidad, alcance y requisitos del canon; actualizar el conteo de palabras del manuscrito y conciliar informe/acta antes de cierre C. 0 mesa, 0 Foundry, 0 maquetas, 0 ratificaciones.
