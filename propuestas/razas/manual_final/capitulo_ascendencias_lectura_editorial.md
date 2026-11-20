@@ -56,8 +56,6 @@ El Don **no** aumenta Atributos, Ataque, Defensa, daño, Protección, Vida ni Ma
 #### Opciones compatibles y límites
 El catálogo vigente contempla por defecto **Sentido Agudo**, **Visión en la Oscuridad**, **Trepador Natural**, **Afinidad Sobrenatural** y **Resistencia Ambiental**, cuando la ficción los justifique. Sentido Agudo mejora sólo detalles determinantes del sentido elegido. Visión en la Oscuridad distingue formas en oscuridad mundana dentro de su alcance, sin atravesar obstáculos. Trepador Natural facilita desplazarse sobre superficies trepables, sin eliminar riesgos. Afinidad Sobrenatural detecta manifestaciones directamente perceptibles de una afinidad delimitada, sin identificar hechizos automáticamente. Resistencia Ambiental protege frente a una exposición concreta.
 
-**Aclaración editorial propuesta, pendiente de aprobación:** clasificar Visión en la Oscuridad y Resistencia Ambiental Significativa como Significativos; Sentido Agudo, Trepador Natural, Afinidad Sobrenatural y Resistencia Ambiental Menor como Menores. Esta equivalencia limitada **no modifica el catálogo canónico ni convierte el Don en PR intercambiables**.
-
 #### Dos caminos posibles
 **Exploradora de cavernas:** elige Visión en la Oscuridad mediante Don, si anatomía y ficción lo sostienen. Conserva sus 3 PR; debe adquirir Supervivencia o Atletismo normalmente.
 
