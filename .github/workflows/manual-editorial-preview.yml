@@ -86,7 +86,7 @@ jobs:
           import base64
           from pathlib import Path
           folder = Path('docs/edicion_impresa/vistas_revision')
-          samples = [folder / 'contacto_general.jpg'] + sorted(folder.glob('tabla_*.jpg'))[:1]
+          samples = [folder / 'contacto_general.jpg', folder / 'contacto_cortas.jpg'] + sorted(folder.glob('tabla_*.jpg'))[:1]
           for file in samples:
               if file.is_file():
                   print('TM_IMG_BEGIN:' + file.name + ':' + base64.b64encode(file.read_bytes()).decode('ascii') + ':TM_IMG_END')
