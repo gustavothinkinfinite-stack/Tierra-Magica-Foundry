@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Composición de prueba del manuscrito completo; fuente normativa inalterada.
 import {readFile,writeFile,mkdir} from "node:fs/promises";
-import {resolve,dirname,relative,sep} from "node:path";
+import {resolve,dirname,relative,sep as pathSep} from "node:path";
 import {fileURLToPath} from "node:url";
 const root=resolve(dirname(fileURLToPath(import.meta.url)),"..");
 const input=resolve(root,"docs/edicion_impresa/Manual_Basico_Manuscrito_Lectura.md");
@@ -46,7 +46,7 @@ for(const item of manifest.ascendencias){
   if(bytes.length<24||bytes.subarray(0,8).toString("hex")!=="89504e470d0a1a0a")throw Error("Archivo de arte no es un PNG válido: "+item.nombre);
   const width=bytes.readUInt32BE(16),height=bytes.readUInt32BE(20);
   if(width<1600||height<1000)throw Error("Resolución de arte insuficiente: "+item.nombre+" ("+width+"×"+height+")");
-  const src=relative(dirname(output),filePath).split(sep).join("/");
+  const src=relative(dirname(output),filePath).split(pathSep).join("/");
   illustrationMarkup.set(item.nombre,'<figure class="art-approved"><img src="'+esc(src)+'" alt="'+esc(item.alt)+'"><figcaption>'+esc(item.creditos)+'</figcaption></figure>');
   realArt++;
 }
