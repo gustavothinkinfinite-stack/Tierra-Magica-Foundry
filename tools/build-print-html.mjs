@@ -41,7 +41,7 @@ for(const item of manifest.ascendencias){
   const expected="assets/ilustraciones/ascendencias/"+item.slug+".png";
   if(item.archivo!==expected)throw Error("Ruta no autorizada para "+item.nombre+": "+item.archivo);
   const filePath=resolve(root,item.archivo);
-  if(!filePath.startsWith(resolve(root,"assets/ilustraciones/ascendencias")+sep))throw Error("Ruta de arte fuera de la carpeta autorizada");
+  if(!filePath.startsWith(resolve(root,"assets/ilustraciones/ascendencias")+pathSep))throw Error("Ruta de arte fuera de la carpeta autorizada");
   const bytes=await readFile(filePath);
   if(bytes.length<24||bytes.subarray(0,8).toString("hex")!=="89504e470d0a1a0a")throw Error("Archivo de arte no es un PNG válido: "+item.nombre);
   const width=bytes.readUInt32BE(16),height=bytes.readUInt32BE(20);
