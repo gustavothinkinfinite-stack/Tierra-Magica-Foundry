@@ -46,3 +46,12 @@ Se releyeron el tablero, README, plan, índice, tabla, registro de diferencias y
 ## Verificación de destinos relativos completada — 19-11-2026
 
 Se extrajeron **68 enlaces relativos** de `indice_y_criterios.md`, `tabla_de_razas.md`, `registro_de_diferencias_con_main.md` e `informe_de_entrega.md`, que resuelven a **39 destinos únicos**. Se consultó en GitHub cada uno de los 39 destinos sobre la rama `propuestas/razas-autonomas-2026`: **39 existentes, 0 inexistentes**. Incluyen los 12 textos raciales, sus 12 notas y 15 referencias de auditoría, índice, tabla, manuscrito y acta. **Alcance:** comprobación de existencia de archivo, no validación de anclas `#`, exactitud semántica de cada remisión, ni renderización de Markdown. Esta comprobación reemplaza la limitación provisional consignada en el control anterior; se conserva esa anotación como historial. La autoridad de `main` consultada conserva el blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`. No se han ejecutado pruebas Foundry, mesa ni maqueta.
+
+
+## Actualización editorial C-RES/4 — 20-11-2026
+
+La conciliación C-NUM/3 posterior a la exclusión HUM1 mide **9.637 tokens por espacios en el manuscrito completo** y **9.466 en sus doce secciones raciales**, todas dentro de 650–850. Las doce fuentes individuales conservan un cómputo separado de 9.574 tokens imprimibles. No mezclar estos totales ni emplear las cifras históricas 9.791 o 9.670 como estado actual.
+
+Se corrigió en [`registro_de_diferencias_con_main.md`](./registro_de_diferencias_con_main.md) una contradicción operativa: la antigua instrucción de mantener la clasificación Menor/Significativo de Don sin Forma en el manuscrito no corresponde al estado C-RES/3. El manuscrito conserva catálogo y límites canónicos; la clasificación propuesta permanece sólo en el expediente individual. La reserva técnica de Micelios también se mantiene fuera de imprenta. Las instrucciones anteriores de este informe sobre anclas y conciliación de cifras son hitos históricos, no pendientes sin resolver: C-REF/2 encontró cero enlaces con fragmentos `#` en los cinco documentos examinados; C-NUM/3 sustituyó los recuentos previos.
+
+**Pendientes reales:** revisión semántica final de reservas restantes, cotejo de vigencia contra `main`, cierre documental condicionado si procede y prueba de maqueta. **0 pruebas de mesa, 0 Foundry, 0 maquetas y 0 ratificaciones**. No se ha autorizado integrar ni publicar.
