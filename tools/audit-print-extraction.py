@@ -107,7 +107,7 @@ for i, page in enumerate(doc):
         # El rectángulo de enlace incluye texto, puntos guía y folio.
         # Comparar el folio impreso contra la página de destino real.
         row_text = page.get_text("text", clip=link["from"], sort=True)
-        number = re.search(r"(\\d+)\\s*$", row_text)
+        number = re.search(r"(\d+)\s*$", row_text)
         shown = int(number.group(1)) if number else None
         if shown != target + 1:
             folio_discrepancies.append({"id": chapter_id,
@@ -116,7 +116,7 @@ for i, page in enumerate(doc):
                                         "fila": row_text[:130]})
 invalid_links = [x for x in links if not (1 <= x["destino"] <= len(doc))]
 src = SOURCE.read_text(encoding="utf-8")
-chapter_ids = re.findall(r'<a id="(tm-[rm]\\d+)"></a>\\n##', src)
+chapter_ids = re.findall(r'<a id="(tm-[rm]\d+)"></a>\n##', src)
 if len(chapter_ids) != 52 or len(set(chapter_ids)) != 52:
     raise SystemExit("ERROR: se requieren 52 capítulos en la fuente")
 missing_index_ids = sorted(set(chapter_ids) - seen_index_ids)
