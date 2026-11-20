@@ -43,3 +43,8 @@ El paquete canónico de cada ascendencia se conserva como línea base de compara
 
 ## Próxima operación
 Los 39 destinos únicos de los 68 enlaces relativos de índice, tabla, registro e informe están comprobados (C-REF/1). Ninguno de esos cuatro documentos ni el acta editorial contiene enlaces Markdown con fragmento `#` (C-REF/2). **Siguiente:** reconciliar cifras históricas y afirmaciones de cierre con el cuerpo imprimible actual; evaluar cierre documental C sin confundirlo con paginación física, pruebas empíricas o ratificación.
+
+
+## C-B5/1 — Conciliación de indicadores y reservas (20-11-2026)
+
+Véase [matriz C-B5/1](./conciliacion_indicadores_b5_y_reservas_2026_11_20.md): 66 pares, 12 G, 30 U y 28 V son **evidencia documental, no ejecuciones**; siete candidatas unificadas y cuatro residuales conciliadas **no equivalen a once reglas aprobadas**. El registro de diferencias cotejado con `main` distingue disposiciones vigentes de propuestas. HUM1, CULT1, reserva C11 y maquetación real siguen delimitadas. Próxima unidad: inspección de reservas dentro del manuscrito de lectura y correspondencia exacta con fuentes antes de acta C.
