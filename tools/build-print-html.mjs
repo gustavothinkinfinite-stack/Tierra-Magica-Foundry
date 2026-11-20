@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Composición de prueba del manuscrito completo; fuente normativa inalterada.
 import {readFile,writeFile,mkdir} from "node:fs/promises";
-import {resolve,dirname} from "node:path";
+import {resolve,dirname,relative,sep} from "node:path";
 import {fileURLToPath} from "node:url";
 const root=resolve(dirname(fileURLToPath(import.meta.url)),"..");
 const input=resolve(root,"docs/edicion_impresa/Manual_Basico_Manuscrito_Lectura.md");
@@ -19,6 +19,37 @@ const headings=[...s.matchAll(/^<a id="(tm-[rm]\d+)"><\/a>\n## (.+)$/gm)].map(m=
 if(headings.length!==52||new Set(headings.map(x=>x.id)).size!==52)throw Error("Estructura de 52 capítulos no verificada");
 const links=[...s.matchAll(/\]\(#(tm-[rm]\d+)\)/g)].map(m=>m[1]);if(links.some(id=>!headings.some(x=>x.id===id)))throw Error("Enlace interno sin destino");
 const raceNames=["Humanos","Enanos","Élficos","Orcos","Goblinoides","Terios / Anihombres","Feéricos","Ankar","Cristálidos","Verdantes","Micelios","Coralios"];
+// Integración de ilustraciones solamente cuando haya aprobación documental
+// explícita y un PNG local suficientemente grande. Los briefs no son imágenes.
+const manifestPath=resolve(root,"docs/edicion_impresa/Manifest_Ilustraciones_Ascendencias.json");
+const manifest=JSON.parse(await readFile(manifestPath,"utf8"));
+if(manifest.version!==1||manifest.ascendencias?.length!==12)throw Error("Manifiesto de ascendencias incompleto");
+if(JSON.stringify(manifest.ascendencias.map(x=>x.nombre))!==JSON.stringify(raceNames))throw Error("Orden de ascendencias distinto del manuscrito");
+const illustrationMarkup=new Map();
+let realArt=0, pendingArt=0;
+for(const item of manifest.ascendencias){
+  if(!["pendiente","aprobado"].includes(item.estado))throw Error("Estado de ilustración no válido: "+item.nombre);
+  if(item.estado==="pendiente"){
+    if(item.archivo!==null)throw Error("No asociar arte a una ilustración pendiente: "+item.nombre);
+    pendingArt++;
+    illustrationMarkup.set(item.nombre,'<div class="art" role="note">ILUSTRACIÓN PENDIENTE DE APROBACIÓN · '+esc(item.nombre)+'</div>');
+    continue;
+  }
+  for(const field of ["archivo","autor","licencia","creditos","alt"]){
+    if(typeof item[field]!=="string"||!item[field].trim())throw Error("Falta "+field+" en arte aprobado: "+item.nombre);
+  }
+  const expected="assets/ilustraciones/ascendencias/"+item.slug+".png";
+  if(item.archivo!==expected)throw Error("Ruta no autorizada para "+item.nombre+": "+item.archivo);
+  const filePath=resolve(root,item.archivo);
+  if(!filePath.startsWith(resolve(root,"assets/ilustraciones/ascendencias")+sep))throw Error("Ruta de arte fuera de la carpeta autorizada");
+  const bytes=await readFile(filePath);
+  if(bytes.length<24||bytes.subarray(0,8).toString("hex")!=="89504e470d0a1a0a")throw Error("Archivo de arte no es un PNG válido: "+item.nombre);
+  const width=bytes.readUInt32BE(16),height=bytes.readUInt32BE(20);
+  if(width<1600||height<1000)throw Error("Resolución de arte insuficiente: "+item.nombre+" ("+width+"×"+height+")");
+  const src=relative(dirname(output),filePath).split(sep).join("/");
+  illustrationMarkup.set(item.nombre,'<figure class="art-approved"><img src="'+esc(src)+'" alt="'+esc(item.alt)+'"><figcaption>'+esc(item.creditos)+'</figcaption></figure>');
+  realArt++;
+}
 const begin=s.indexOf("##### Humanos"),end=s.indexOf("#### Notas de balance y progresión racial",begin);
 if(begin<0||end<0||JSON.stringify([...s.slice(begin,end).matchAll(/^##### ([^\n]+)$/gm)].map(m=>m[1]))!==JSON.stringify(raceNames))throw Error("Ascendencias incompletas");
 const lines=s.split("\n"),out=[];let chapter="",pendingAnchor=null,races=0,tables=0;
@@ -30,7 +61,7 @@ for(let i=0;i<lines.length;){
  const a=line.match(/^<a id="(tm-[rm]\d+)"><\/a>$/);
  if(a){if(pendingAnchor)throw Error("Ancla sin encabezado: "+pendingAnchor);chapter=a[1];pendingAnchor=chapter;i++;continue;}
  const h=line.match(/^(#{1,6}) (.+)$/);
- if(h){let n=h[1].length,label=h[2];if(pendingAnchor&&n!==2)throw Error("Ancla anterior a título que no es capítulo: "+pendingAnchor);if(n===5&&chapter==="tm-r03"&&raceNames.includes(label)){races++;out.push('<div class="art">ESPACIO PARA ILUSTRACIÓN PENDIENTE · '+esc(label)+'</div>');}const attr=pendingAnchor?' id="'+pendingAnchor+'"':"";out.push("<h"+n+attr+">"+inline(label)+"</h"+n+">");pendingAnchor=null;i++;continue;}
+ if(h){let n=h[1].length,label=h[2];if(pendingAnchor&&n!==2)throw Error("Ancla anterior a título que no es capítulo: "+pendingAnchor);if(n===5&&chapter==="tm-r03"&&raceNames.includes(label)){races++;out.push(illustrationMarkup.get(label));}const attr=pendingAnchor?' id="'+pendingAnchor+'"':"";out.push("<h"+n+attr+">"+inline(label)+"</h"+n+">");pendingAnchor=null;i++;continue;}
  if(/^---+$/.test(line)){out.push("<hr>");i++;continue;}
  if(line.startsWith("\x60\x60\x60")){let data=[];i++;while(i<lines.length&&!lines[i].trim().startsWith("\x60\x60\x60"))data.push(lines[i++]);i++;out.push("<pre>"+esc(data.join("\n"))+"</pre>");continue;}
  if(line.startsWith("|")&&i+1<lines.length&&sep(lines[i+1])){
@@ -90,7 +121,7 @@ const css=[
 "th,td{padding:1.5mm 2mm;border:.4pt solid #b6c2c7;overflow-wrap:break-word;word-break:normal;hyphens:auto;vertical-align:top}th{background:#244860;color:white;text-align:left}",
 ".table-spells table{table-layout:fixed}.table-spells th:nth-child(1){width:24%}.table-spells th:nth-child(2){width:12%}.table-spells th:nth-child(3){width:9%}.table-spells th:nth-child(4){width:55%}",
 ".wide-profiles{margin:4mm 0 6mm}.profile-card{border:1px solid #b6c2c7;background:#fffdf8;margin:2.5mm 0;padding:2.5mm 3mm;break-inside:avoid}.profile-card h6{margin:0 0 2mm;font:700 11pt Georgia,serif;color:#173b55}.profile-prop{font:9pt/1.35 Arial,sans-serif;margin:0 0 1.3mm;overflow-wrap:normal;word-break:normal;hyphens:auto}.profile-prop strong{color:#425a68}",
-"thead{display:table-header-group}tr{break-inside:avoid}.art{border:1px dashed #b58b45;background:#f7f2e7;padding:7mm 3mm;text-align:center;font:9pt Arial,sans-serif}",
+"thead{display:table-header-group}tr{break-inside:avoid}.art{border:1px dashed #b58b45;background:#f7f2e7;padding:7mm 3mm;text-align:center;font:9pt Arial,sans-serif}.art-approved{margin:4mm 0 5mm;break-inside:avoid;text-align:center}.art-approved img{display:block;max-width:100%;max-height:105mm;object-fit:contain;margin:auto}.art-approved figcaption{font:8pt Arial,sans-serif;color:#596771;margin-top:2mm}",
 "pre{white-space:pre-wrap;overflow-wrap:anywhere;font:8pt monospace}hr{border:0;border-top:1px solid #d5c2a1}",
 "@media print{body{background:white}.book{padding:0;max-width:none}.cover{margin:-21mm -17mm -20mm -20mm}.table{overflow:visible}}",
 "@media screen{.cover,.toc,.book{max-width:216mm;margin:10mm auto;box-shadow:0 4px 15px #b8c0c0}.toc{padding:17mm}}"
@@ -101,4 +132,4 @@ const html='<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Ti
 '<nav class="toc"><h2>Contenido</h2><p>52 capítulos con remisiones a la paginación de esta prueba. Los folios pueden cambiar en la edición final.</p><ul>'+toc+'</ul></nav>'+
 '<main class="book">'+out.join("\n")+"</main></body></html>";
 await mkdir(dirname(output),{recursive:true});await writeFile(output,html,"utf8");
-console.log(JSON.stringify({output,chapters:headings.length,links:links.length,races,tables,sourceChars:s.length,htmlChars:html.length,wideTablesAsCards:true,approved:false}));
+console.log(JSON.stringify({output,chapters:headings.length,links:links.length,races,tables,sourceChars:s.length,htmlChars:html.length,wideTablesAsCards:true,illustracionesAprobadas:realArt,ilustracionesPendientes:pendingArt,approved:false}));
