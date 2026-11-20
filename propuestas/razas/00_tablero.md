@@ -946,3 +946,10 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Creada [matriz C-B5/1](./manual_final/conciliacion_indicadores_b5_y_reservas_2026_11_20.md): 12 ascendencias, 66 pares, 12 escenarios G, 30 criterios U, 28 regresiones V; 7 candidatas principales + 4 temas residuales, **cero pruebas empíricas y cero ratificaciones**. Aclarada precedencia del canon de `main` frente a candidatas históricas.
 - Reservas HUM1, CULT1, C11, equivalencias Anfibio, interfaz de dispositivos, 0 Vida y paginación delimitadas; índice editorial enlazado. **Siguiente:** inspeccionar el manuscrito de lectura para excluir reservas no imprimibles y comprobar correspondencia de las doce fuentes; emitir acta C sólo si el control resulta satisfactorio.
 - Escritura exclusivamente en `propuestas/razas/` de rama aislada. Sin merge, cambios canónicos, Foundry ni mapa.
+
+
+### 2026-11-20 — C-RES/1: reserva Micelios retirada del manuscrito de lectura
+- Leídos tablero, README, plan, C-B5/1, acta editorial, manuscrito de lectura y doce fuentes individuales. Contrastado `main:docs/Tierra_Magica_Manual_Maestro.md` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- Cotejadas las doce secciones por párrafos largos normalizados: 12/12 presentes. Las notas `NO IMPRIMIR` de Terios y Feéricos permanecen correctamente fuera del manuscrito. Detectada reserva editorial Micelios C11 **dentro** del manuscrito, contraria al criterio de C-NUM/2; retirada exclusivamente de la lectura imprimible y conservada en fuente individual.
+- Creado [control C-RES/1](./manual_final/control_reservas_manuscrito_c_res_1_2026_11_20.md) con método, límites y reservas. **Siguiente:** revisar cláusulas cortas y diferencias semánticas frente a doce fuentes y registro de `main`, después decidir acta documental de C. No declarar 24 páginas maquetadas ni pruebas empíricas.
+- Sin cambios en canon, mapa ni Foundry; 0 ensayos empíricos y 0 ratificaciones.
