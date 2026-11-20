@@ -971,3 +971,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Recalculado manuscrito de lectura: **9.637 tokens completos, 9.466 en doce bloques raciales** (−33 frente a C-NUM/2); **12/12 bloques entre 650 y 850**. Las doce fuentes individuales siguen con medición histórica independiente de 9.574 tokens imprimibles.
 - Barrido de reservas explícitas: sin HUM1 ni etiquetas técnicas pendientes de aprobación dentro de bloques raciales; permanecen propuestas culturales locales, no beneficios gratuitos. Detalle y límites en [C-RES/3, seguimiento C-NUM/3](./manual_final/control_reservas_normativas_c_res_3_2026_11_20.md).
 - **Siguiente:** revisión semántica final de las reservas y consistencia de acta/informe, y decisión de cierre documental condicionado C. No confundir con maquetación, canon o pruebas empíricas.
+
+### 2026-11-20 — C-RES/4: contradicción HUM1 resuelta entre registro y manuscrito
+- Releídos tablero, README, plan, C-B5/1, C-RES/3, fuentes Humanos y Micelios, manuscrito, registro e informe; verificada autoridad `main` blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`.
+- Hallazgo concreto: el registro de diferencias todavía ordenaba conservar la clasificación HUM1 Menor/Significativo en el manuscrito, contradiciendo su exclusión C-RES/3. Corregida esa instrucción: sólo catálogo y límites canónicos se imprimen; la alternativa queda en fuente individual, sin ratificar.
+- Actualizado el informe de entrega con cifras C-NUM/3 (**9.637 archivo, 9.466 doce bloques, 12/12 en rango**) y reservas. Los 9.574 tokens de fuentes son medición distinta. La reserva técnica Micelios continúa fuera de imprenta.
+- **Siguiente:** revisión semántica final de reservas no explícitas frente al Manual Maestro y decisión de acta de cierre C condicionada. No confundir con maqueta o prueba empírica; 0 Foundry, 0 mesa, 0 maquetas, 0 ratificaciones. Sin escritura fuera de esta rama y carpeta.
