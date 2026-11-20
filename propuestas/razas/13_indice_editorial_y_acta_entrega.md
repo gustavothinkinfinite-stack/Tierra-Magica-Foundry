@@ -41,7 +41,7 @@ Para adoptar cambios mecánicos en `main` corresponde una **modificación normat
 
 ## Control de calidad de esta entrega
 
-- **Texto:** 12/12 ficheros presentes, estructurados como dos páginas editoriales, con mecánicas y ejemplos según paquete de referencia. El cumplimiento de 650–850 palabras debe evaluarse sobre el cuerpo imprimible de cada fuente, no sobre la columna histórica de esta acta. Cuatro casos tienen recuento imprimible posterior documentado (C02/C06/C07/C12); los otros ocho requieren evidencia homogénea para certificar el conjunto.
+- **Texto:** 12/12 ficheros presentes, estructurados como dos páginas editoriales, con mecánicas y ejemplos según paquete de referencia. El cumplimiento de 650–850 palabras debe evaluarse sobre el cuerpo imprimible de cada fuente, no sobre la columna histórica de esta acta. El control posterior C-EJ/1 verificó las doce secciones del manuscrito de lectura con un método homogéneo de separación por encabezados y recuento por espacios: 9.442 palabras en 12 bloques y 12/12 dentro de 650–850. Es un control de bloques Markdown, no medición tipográfica ni certificación de paginación física.
 - **Procedencia:** 12/12 notas de integración existentes; las instituciones locales propuestas no crean bonificaciones por cultura.
 - **Balance:** 66 pares y 12 guiones globales cotejados por lectura. 30 casos U y 28 V documentados en B5, **cero ejecutados como juego**.
 - **Autoridad:** no inventar Fuente, Vínculo, Habilidades, daño, Vida, Maná o equipamiento gratuitos. Ninguna nueva cultura crea subraza.
@@ -63,3 +63,10 @@ La tabla inicial registra 785 + 833 + 816 + 786 + 849 + 809 + 829 + 847 + 777 + 
 ## Conciliación cuantitativa C-NUM/2 — 20-11-2026
 
 Se completó la comprobación homogénea de las **doce fuentes** en [control de extensión C-NUM/2](./manual_final/control_extension_homogenea_12_2026_11_20.md). El resultado es **12/12 dentro del rango de 650–850 tokens por espacios del cuerpo imprimible**, con **9.574** tokens imprimibles y **9.938** en archivos completos. El manuscrito de lectura contiene **9.670** tokens en el archivo completo y **9.499** en sus doce bloques, cuya división y encabezados no son idénticos a los de las fuentes. El histórico 9.791 no debe emplearse como total vigente. Queda **resuelto el pendiente de ocho fuentes** registrado en C-NUM/1; la reserva C11 (41 tokens) debe excluirse de la imprenta. Pendiente: conciliación B5, comprobación editorial final y maquetación real. Ninguna cifra certifica páginas físicas ni pruebas empíricas.
+
+
+## Conciliación editorial C-ACT/1 — 20-11-2026
+
+La columna de extensiones del índice es **histórica** (9.791 en doce fuentes con criterios anteriores). El recuento C-NUM/3 (9.466 bloques y 9.637 archivo) precede a las revisiones C-RES/5 y C-RES/6 y **no debe presentarse como el último estado**. El último control de manuscrito es [C-EJ/1](./manual_final/control_ejemplos_y_recuento_c_ej_1_2026_11_20.md): **9.442 palabras por espacios en doce bloques, 12/12 entre 650–850**; excluye introducción y procedencia administrativa de Coralios. Los tres números miden corpus o versiones distintos y no se suman ni sustituyen entre sí.
+
+Las reservas de Don sin Forma se rigen por C-RES/6 (Sentido Agudo y Afinidad Sobrenatural, 1 PR cada uno, son Rasgos Menores compatibles en creación); C-RES/5 queda como antecedente superado. HUM1, clasificación alternativa no ratificada, no se imprime. La nota técnica Micelios queda fuera del cuerpo imprimible. Las 12 verificaciones C-EJ/1 son documentales, no playtests. **Cierre editorial documental condicionado**: inventario, control de longitud y ejemplos conciliados; sigue pendiente la revisión del creador, la maqueta de 24 páginas, pruebas de mesa/Foundry y cualquier adopción canónica. No se autoriza integración ni publicación.
