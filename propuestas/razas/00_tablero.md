@@ -933,3 +933,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - Detectada afirmación demasiado fuerte en acta: el total **9791** suma recuentos históricos de Markdown, no cuerpos imprimibles. C-PRINT posterior da C02 839, C06 772, C07 824, C12 819 frente a 833, 809, 829 y 832 del acta. Corregida descripción de métricas y alcance de certificación; no se retocó texto racial.
 - Actualizada [`13_indice_editorial_y_acta_entrega.md`](./13_indice_editorial_y_acta_entrega.md) con C-NUM/1 y reserva explícita: ocho cuerpos imprimibles sin recuento homogéneo comprobado en esta unidad; 24 páginas teóricas, no maqueta real.
 - **Siguiente bloque:** verificar recuentos imprimibles homogéneos de C01/C03/C04/C05/C08/C09/C10/C11 y consolidado; luego conciliar indicadores B5 y decidir cierre C. Sin Foundry ni mesa, sin ratificación.
+
+
+### 2026-11-20 — C-NUM/2: cierre del control cuantitativo homogéneo de Fase C
+- Leídos tablero, README, plan, acta, ocho fuentes restantes y manuscrito de lectura; contrastada autoridad `main:docs/Tierra_Magica_Manual_Maestro.md` (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`). Reutilizado control C02/C06/C07/C12 para evitar duplicación.
+- Creado [control de extensión homogénea de 12 fuentes](./manual_final/control_extension_homogenea_12_2026_11_20.md): **12/12** imprimibles dentro de 650–850, **9.574** tokens imprimibles frente a **9.938** tokens de archivos completos. C11 excluye 41 tokens de reserva editorial. El manuscrito de lectura registra **9.670** tokens de archivo y **9.499** en doce bloques; diferencias de formato no implican cambios normativos.
+- Actualizada [acta editorial](./13_indice_editorial_y_acta_entrega.md): el histórico **9.791** no representa el recuento actual. **Siguiente bloque:** conciliación B5 y reservas editoriales; decidir cierre documental C sólo tras ese control. Sin pruebas empíricas, maquetación, merge ni cambios en canon.
