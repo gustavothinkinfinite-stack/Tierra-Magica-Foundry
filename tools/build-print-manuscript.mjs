@@ -281,6 +281,12 @@ for(const [from,to] of craft12ReaderEdits){
 }
 assembled=assembled.slice(0,craft12Start)+craft12+assembled.slice(craft12End);
 
+// Reparación puramente tipográfica de un carácter no Unicode válido para
+// publicación, presente en la fuente canónica (U+FFFE). No altera la mecánica.
+const illegalSequence = "arcano\\uFFFEindustrial".replace("\\uFFFE", "\uFFFE");
+if(assembled.split(illegalSequence).length !== 2)throw Error("Secuencia U+FFFE ausente o repetida");
+assembled = assembled.replace(illegalSequence, "arcano-industrial");
+
 // Rótulos de estado CRAFT para lectura: el contenido normativo se conserva.
 if(assembled.split("> **CRAFT-01 — VIGENTE · CERRADO.**").length!==2)throw Error("Falta rótulo CRAFT-01");
 if(assembled.split("> **VIGENTE · CERRADO.**").length!==12)throw Error("Se esperaban 11 rótulos CRAFT de estado");
