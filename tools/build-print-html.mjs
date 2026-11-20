@@ -15,16 +15,16 @@ const links=[...s.matchAll(/\]\(#(tm-[rm]\d+)\)/g)].map(m=>m[1]);if(links.some(i
 const raceNames=["Humanos","Enanos","Élficos","Orcos","Goblinoides","Terios / Anihombres","Feéricos","Ankar","Cristálidos","Verdantes","Micelios","Coralios"];
 const begin=s.indexOf("##### Humanos"),end=s.indexOf("#### Notas de balance y progresión racial",begin);
 if(begin<0||end<0||JSON.stringify([...s.slice(begin,end).matchAll(/^##### ([^\n]+)$/gm)].map(m=>m[1]))!==JSON.stringify(raceNames))throw Error("Ascendencias incompletas");
-const lines=s.split("\n"),out=[];let chapter="",races=0,tables=0;
+const lines=s.split("\n"),out=[];let chapter="",pendingAnchor=null,races=0,tables=0;
 function cells(line){let x=line.trim();if(x.startsWith("|"))x=x.slice(1);if(x.endsWith("|"))x=x.slice(0,-1);return x.split(/(?<!\\)\|/).map(t=>t.trim().replace(/\\\|/g,"|"));}
 function sep(line){return /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(line);}
 function special(line){return /^\s*(?:#{1,6} |>|[-*+] |\d+[.)] |---+$|\x60{3}|<a id="tm-)/.test(line);}
 for(let i=0;i<lines.length;){
  const line=lines[i].trim();if(!line){i++;continue;}
  const a=line.match(/^<a id="(tm-[rm]\d+)"><\/a>$/);
- if(a){chapter=a[1];out.push('<span id="'+chapter+'"></span>');i++;continue;}
+ if(a){if(pendingAnchor)throw Error("Ancla sin encabezado: "+pendingAnchor);chapter=a[1];pendingAnchor=chapter;i++;continue;}
  const h=line.match(/^(#{1,6}) (.+)$/);
- if(h){let n=h[1].length,label=h[2];if(n===5&&chapter==="tm-r03"&&raceNames.includes(label)){races++;out.push('<div class="art">ESPACIO PARA ILUSTRACIÓN PENDIENTE · '+esc(label)+'</div>');}out.push("<h"+n+">"+inline(label)+"</h"+n+">");i++;continue;}
+ if(h){let n=h[1].length,label=h[2];if(pendingAnchor&&n!==2)throw Error("Ancla anterior a título que no es capítulo: "+pendingAnchor);if(n===5&&chapter==="tm-r03"&&raceNames.includes(label)){races++;out.push('<div class="art">ESPACIO PARA ILUSTRACIÓN PENDIENTE · '+esc(label)+'</div>');}const attr=pendingAnchor?' id="'+pendingAnchor+'"':"";out.push("<h"+n+attr+">"+inline(label)+"</h"+n+">");pendingAnchor=null;i++;continue;}
  if(/^---+$/.test(line)){out.push("<hr>");i++;continue;}
  if(line.startsWith("\x60\x60\x60")){let data=[];i++;while(i<lines.length&&!lines[i].trim().startsWith("\x60\x60\x60"))data.push(lines[i++]);i++;out.push("<pre>"+esc(data.join("\n"))+"</pre>");continue;}
  if(line.startsWith("|")&&i+1<lines.length&&sep(lines[i+1])){
@@ -37,13 +37,14 @@ for(let i=0;i<lines.length;){
  if(item){let ordered=/^\d/.test(item[1]),tag=ordered?"ol":"ul",items=[];while(i<lines.length){let m=lines[i].trim().match(/^([-*+]|\d+[.)]) (.+)$/);if(!m||/^\d/.test(m[1])!==ordered)break;items.push("<li>"+inline(m[2])+"</li>");i++;}out.push("<"+tag+">"+items.join("")+"</"+tag+">");continue;}
  let p=[line];i++;while(i<lines.length&&lines[i].trim()&&!special(lines[i])&&!(lines[i].trim().startsWith("|")&&i+1<lines.length&&sep(lines[i+1])))p.push(lines[i++].trim());out.push("<p>"+inline(p.join(" "))+"</p>");
 }
+if(pendingAnchor)throw Error("Ancla final sin título: "+pendingAnchor);
 if(races!==12)throw Error("No se compusieron las doce ascendencias");
 const css=[
 "@page{size:letter;margin:21mm 17mm 20mm 20mm}",
 "@page{@bottom-center{content:'TIERRA MÁGICA · PRUEBA · ' counter(page);font:8pt Arial,sans-serif}}",
 "*{box-sizing:border-box}body{font:10.5pt/1.45 Georgia,serif;color:#20303d;background:#e6e8e8;margin:0}",
 ".cover{background:#173b55;color:white;padding:30mm 20mm;min-height:235mm;break-after:page}.cover h1{color:white;border:0;font-size:40pt}",
-".toc{break-after:page}.toc ul{columns:2;list-style:none;padding:0}.toc li{font:9pt/1.4 Arial,sans-serif;break-inside:avoid;margin:0 0 2mm}.toc a{text-decoration:none;color:#173b55}",
+".toc{break-after:page}.toc ul{columns:2;list-style:none;padding:0}.toc li{font:9pt/1.4 Arial,sans-serif;break-inside:avoid;margin:0 0 2mm}.toc a{text-decoration:none;color:#173b55;display:block}.toc a::after{content:leader('.') target-counter(attr(href),page);color:#617483;font-variant-numeric:tabular-nums}",
 ".book{max-width:216mm;margin:auto;padding:17mm;background:#fffdf7}h1,h2,h3,h4,h5{color:#173b55;break-after:avoid;line-height:1.2}",
 "h1{break-before:page;font-size:25pt;border-bottom:2px solid #b58b45}h2{break-before:page;font-size:21pt;border-bottom:1px solid #b58b45}",
 "h3{font-size:15pt}h4{font-size:12pt}h5{font-size:11pt}p{margin:0 0 3.5mm;orphans:3;widows:3}",
@@ -58,7 +59,7 @@ const css=[
 const toc=headings.map(h=>'<li><a href="#'+h.id+'">'+esc(h.title)+"</a></li>").join("");
 const html='<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Tierra Mágica · Prueba integral</title><style>'+css+'</style></head><body>'+
 '<section class="cover"><h1>Tierra Mágica</h1><p>Manual Básico · Prueba editorial integral en formato Carta.</p><p>NO APROBADO PARA IMPRENTA. Sin ilustraciones definitivas, paginación validada, sangrado, ICC ni PDF/X.</p></section>'+
-'<nav class="toc"><h2>Contenido</h2><p>52 capítulos con enlaces; los folios reales se asignan después de renderizar.</p><ul>'+toc+'</ul></nav>'+
+'<nav class="toc"><h2>Contenido</h2><p>52 capítulos con remisiones a la paginación de esta prueba. Los folios pueden cambiar en la edición final.</p><ul>'+toc+'</ul></nav>'+
 '<main class="book">'+out.join("\n")+"</main></body></html>";
 await mkdir(dirname(output),{recursive:true});await writeFile(output,html,"utf8");
 console.log(JSON.stringify({output,chapters:headings.length,links:links.length,races,tables,sourceChars:s.length,htmlChars:html.length,approved:false}));
