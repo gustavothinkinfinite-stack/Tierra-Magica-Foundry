@@ -921,3 +921,9 @@ Una raza estará **borrador completo para revisión** cuando posea fuente citada
 - **68 enlaces relativos → 39 destinos únicos; 39/39 archivos existentes** verificados individualmente en la rama. Incluye 12 textos finales, 12 notas y 15 documentos transversales. Cero rutas inexistentes en este alcance.
 - Actualizado [`manual_final/informe_de_entrega.md`](./manual_final/informe_de_entrega.md) para retirar pendientes históricos ya cubiertos por C-12S y registrar control de destinos. No se verificaron anclas, renderizado, paginación ni pruebas empíricas.
 - **Siguiente:** comprobar anclas y remisiones no relativas, reconciliar cifras históricas y decidir cierre documental C. No alterar canon ni Foundry.
+
+### 2026-11-19 — C-REF/2: anclas y alcance de acta
+- Leídos tablero, README, plan, acta e índice; autoridad `main` sin cambio (blob `0c8ddfb0b218bed38cd10962a1ac35bab8821466`).
+- En índice, tabla, registro, informe y acta se detectaron **0 enlaces Markdown con fragmento `#`**. C-REF/1 ya había confirmado 39/39 destinos existentes; queda sin certificar semántica de remisiones y renderizado.
+- Corregida en [`13_indice_editorial_y_acta_entrega.md`](./13_indice_editorial_y_acta_entrega.md) una indicación antigua que sugería escribir en `main`: incompatible con el mandato vigente. Actualizado el próximo paso del [`índice editorial`](./manual_final/indice_y_criterios.md).
+- **Siguiente:** reconciliar cifras y afirmaciones históricas con el manuscrito de lectura y las doce fuentes; luego decidir cierre documental C. No se alteró canon ni código Foundry.
