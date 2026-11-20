@@ -555,8 +555,6 @@ La Ascendencia Micelio no consume los **25 PD** ni los **3 PR** generales y no c
 
 Dos Micelios que tocan la misma red continua a ocho espacios pueden intercambiar una advertencia sencilla después de que el emisor use su Acción. Si un derrumbe corta la red, la comunicación termina; una pared sin conexión material no puede atravesarse mediante una red imaginaria. Si alguien detecta contaminación por una señal química perceptible, deberá investigar para determinar su origen.
 
-**Reserva editorial no canónica:** la medición geométrica de los doce espacios, el procedimiento preciso de reconexión y la retransmisión secuencial tienen propuestas de arbitraje en el expediente; no son nuevas reglas vigentes. No se consideran probadas en Foundry ni en mesa.
-
 #### Semillas de aventura
 Un barrio pierde el suministro de sustrato durante una sequía; una red es saboteada antes de una negociación; una archivista busca testimonios independientes de una colonia que prefiere el silencio. Ninguna situación tiene una respuesta obligatoria dictada por la ascendencia.
 
@@ -603,5 +601,7 @@ Una esclusa que protege un barrio vivo comienza a fallar; un cargamento desapare
 
 
 ## Procedencia y control editorial
+
+Control C-RES/1 (20-11-2026): se retiró del bloque imprimible Micelios la reserva editorial de 41 tokens; la reserva permanece trazable en `11_micelios/manual_final_propuesto.md` y sus notas. No se alteró la mecánica ni el resto de ese bloque. Los textos individuales pueden conservar notas «no imprimir» que no forman parte de este manuscrito de lectura.
 
 Este texto partió del manuscrito técnico [capitulo_ascendencias_consolidado.md](./capitulo_ascendencias_consolidado.md). El 19-11-2026 se sustituyeron las cinco secciones divergentes (Goblinoides, Terios, Feéricos, Verdantes y Coralios) por sus fuentes individuales revisadas, conservando la división editorial en historia y juego y omitiendo notas técnicas no imprimibles. Las otras siete secciones no se alteraron. Las reservas de auditoría continúan en sus expedientes; esta sincronización no aprueba reglas ni reemplaza pruebas de mesa.
