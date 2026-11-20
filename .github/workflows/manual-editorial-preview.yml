@@ -8,6 +8,7 @@ on:
       - 'tools/build-print-html.mjs'
       - 'tools/render-print-review.py'
       - 'tools/audit-print-review.py'
+      - 'tools/audit-print-layout.py'
       - 'tools/audit-print-extraction.py'
       - 'tools/verify-print-manuscript.mjs'
       - 'tools/build-print-manuscript.mjs'
@@ -48,7 +49,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Instalar convertidor y lector PDF
-        run: python -m pip install --disable-pip-version-check weasyprint pypdf pymupdf
+        run: python -m pip install --disable-pip-version-check weasyprint pypdf pymupdf pillow
       - name: Renderizar PDF integral y comprobar páginas
         run: python tools/render-print-review.py
       - name: Auditar capa de texto y geometría del PDF
@@ -66,6 +67,8 @@ jobs:
           fi
           pdftotext -v
           python tools/audit-print-extraction.py
+      - name: Auditar composición y crear hojas de contacto
+        run: python tools/audit-print-layout.py
       - name: Preparar vistas de revisión de páginas
         run: |
           mkdir -p docs/edicion_impresa/vistas_revision
@@ -74,6 +77,17 @@ jobs:
           else
             echo 'pdftoppm no instalado; vistas PNG omitidas'
           fi
+      - name: Publicar muestra visual en registro de auditoría
+        run: |
+          python - <<'PY'
+          import base64
+          from pathlib import Path
+          folder = Path('docs/edicion_impresa/vistas_revision')
+          samples = [folder / 'contacto_general.jpg'] + sorted(folder.glob('tabla_*.jpg'))[:1]
+          for file in samples:
+              if file.is_file():
+                  print('TM_IMG_BEGIN:' + file.name + ':' + base64.b64encode(file.read_bytes()).decode('ascii') + ':TM_IMG_END')
+          PY
       - name: Publicar PDF e informe de paginación
         uses: actions/upload-artifact@v4
         with:
@@ -83,6 +97,7 @@ jobs:
             docs/edicion_impresa/Control_Paginacion_Prueba_Integral.json
             docs/edicion_impresa/Auditoria_Texto_Geometria_PDF.json
             docs/edicion_impresa/Auditoria_Tercer_Extractor_e_Indice.json
+            docs/edicion_impresa/Auditoria_Composicion_Visual.json
             docs/edicion_impresa/vistas_revision/*.png
           if-no-files-found: error
       - name: Publicar prueba HTML como artefacto
