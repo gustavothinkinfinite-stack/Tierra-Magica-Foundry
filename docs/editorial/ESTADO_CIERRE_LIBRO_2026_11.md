@@ -35,3 +35,17 @@
 - La tarea recurrente **Finalizar libro Tierra Mágica** revisará esta lista cada hora y hará una unidad verificable, actualizando progreso con datos confirmados.
 
 **Último avance de esta unidad:** sincronización editorial de reglas B5 en anexo racial y catálogo del Don, referencia rápida y glosario de 54 términos. Pendientes sustantivos: economía, fichas, símbolos, preflight visual, maqueta, índice de páginas y PDF.
+
+
+## 21-11-2026 — Infraestructura de maquetación integral
+
+- **PR #124 fusionado** en main, commit 3b5a79693a1f7e658f8aa038766874a489342610: herramientas 'tools/editorial/maquetar_manual.py' y 'maquetacion.css' y workflow '.github/workflows/manual-basico-pdf.yml'.
+- Se implementó extracción controlada de **PARTE I + PARTE II + ANEXO CANÓNICO DE LAS DOCE ASCENDENCIAS + REFERENCIA RÁPIDA/GLOSARIO**, sin incluir la bitácora administrativa intermedia en la edición para lectores; no se modifica el contenido del Manual Maestro.
+- Formato **6×9 pulgadas** con cubiertas opcionales, página de título, índice con **números de página calculados en composición**, jerarquía de títulos, corrección de tablas anchas a fichas de registro, numeración, encabezados, pies y marcadores de capítulo.
+- El script genera **PDF, manifest SHA256/páginas/imágenes incluidas y HTML opcional**. GitHub Actions tiene un pipeline de PDF y artefacto descargable sujeto a ejecución exitosa.
+- **Prueba local de motor**, con un manuscrito de humo de 111.419 caracteres (no texto canónico): PDF de **74 páginas** generado, formato verificado y varias páginas inspeccionadas. **No equivale a comprobación del Manual completo**.
+- **No hay todavía constancia validada en este registro de ejecución exitosa del workflow ni de PDF completo entregado**. No se afirmará lo contrario hasta comprobar un manifest y archivo real.
+- Los **archivos artísticos** aportados por el usuario existen en el contexto del proyecto, pero no se encontraron en el repositorio bajo 'assets/editorial/'. El flujo usa cubiertas tipográficas de reserva y manifiesta la ausencia. **Incorporar imágenes autorizadas** a esa ruta antes de cerrar edición ilustrada.
+- **Preflight de imprenta pendiente**: créditos, derechos, sangrado, perfil CMYK/colores, imposición, índice paginado final, mapas y validación de páginas con tablas extensas.
+
+**Próxima tarea horaria prioritaria:** comprobar la ejecución del workflow nuevo y, si falla, corregirlo; después incorporar portada, contraportada y retratos existentes a la ruta de activos (sin transformar iconografía doctrinal) y revisar visualmente una muestra amplia del PDF real. No abrir otra rama paralela de maquetación sin consultar este estado.
