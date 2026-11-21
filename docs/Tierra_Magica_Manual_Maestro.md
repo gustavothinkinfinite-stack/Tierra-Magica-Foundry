@@ -13807,7 +13807,7 @@ Los cultos de Eïra celebran el Primer Brote, la Plenitud y el Retorno a la Tier
 #### Página derecha — Cuatro variantes jugables de la ascendencia Feérica
 
 ##### Naturaleza Feérica
-Descriptor sobrenatural compartido. Un ritual, hechizo, barrera o fenómeno puede reconocerlo si su texto lo indica. Por sí solo **no concede Maná, Fuente, Disciplina, resistencia mágica, hechizos ni Vínculo con Eïra**. Se elige una ascendencia, nunca los cuatro paquetes juntos.
+Descriptor sobrenatural compartido. Un ritual, hechizo, barrera o fenómeno puede reconocerlo si su texto lo indica. Por sí solo **no concede Maná, Fuente, Disciplina, resistencia mágica, hechizos ni Vínculo con Eïra**. Al elegir la ascendencia Feérica se selecciona una sola de sus cuatro variantes jugables; sus paquetes no se acumulan.
 
 ##### Hada
 **Escala Pequeña. Movimiento terrestre 5. Movimiento aéreo inicial 6.** Puede cruzar huecos y desniveles, pero **debe comenzar y terminar cada turno apoyada** en una superficie que pueda sostenerla o permitirle posarse. No puede permanecer suspendida al finalizar el turno. **Carga Pesada o Excesiva** impide usar el Movimiento aéreo. Ejemplo: alcanza un balcón cercano si allí puede posarse; no espera flotando sobre un abismo.
@@ -14076,7 +14076,7 @@ Este apéndice es una **herramienta de consulta** derivada de las reglas de este
 | **Adaptación racial** | Elección incluida en un paquete de Ascendencia; no equivale a una compra de Rasgo general. | §3 |
 | **Alcance** | Distancia máxima indicada por un efecto; percibir a distancia no crea línea de efecto. | §3, §11 |
 | **Anfibio** | Rasgo Innato de 1 PR para respirar aire y agua ordinarios; no otorga nado ni hidratación. | §5, B5-I05 |
-| **Ascendencia** | Paquete racial o variante mecánica singular que el personaje elige durante creación. | §3 |
+| **Ascendencia** | Elección de pueblo jugable durante la creación; cuando una ascendencia ofrece variantes, se selecciona un único paquete de esa ascendencia, sin acumular variantes. | §3, Anexo de Doce Ascendencias |
 | **Atributo** | Valor intrínseco usado con una Habilidad en las pruebas; su mejora sigue las reglas de creación y progresión. | §3–4 |
 | **Ayuda** | Aporte pertinente de otro personaje que normalmente concede Ventaja cuando realmente puede colaborar. | §2 |
 | **Caudal** | Límite de suministro o transferencia de Energía según dispositivo e interfaz; no es fuente de energía gratuita. | Ingeniería |
