@@ -49,3 +49,12 @@
 - **Preflight de imprenta pendiente**: créditos, derechos, sangrado, perfil CMYK/colores, imposición, índice paginado final, mapas y validación de páginas con tablas extensas.
 
 **Próxima tarea horaria prioritaria:** comprobar la ejecución del workflow nuevo y, si falla, corregirlo; después incorporar portada, contraportada y retratos existentes a la ruta de activos (sin transformar iconografía doctrinal) y revisar visualmente una muestra amplia del PDF real. No abrir otra rama paralela de maquetación sin consultar este estado.
+
+
+## 21-11-2026 — Control CI de activos editoriales
+
+- **Base revisada:** main commit `b4b92446c50441f2e3a674ca5a7b28b9c77a8442`; Manual Maestro blob `b315dbf5725c203246079048de52542ad23c6e3a`. Se releen workflow, maquetador y este registro.
+- **Hallazgo reproducible por lectura del YAML:** el workflow sólo se disparaba por cambios de Manual, Python, CSS o propio workflow. Agregar cubiertas/retratos a `assets/editorial/` no disparaba la generación automática, aunque el script sí consume esa ruta.
+- **Corrección:** añadir `assets/editorial/**` a los filtros de `push.paths` del workflow; archivo único de CI modificado. Commit de la corrección `aa5fd5bb4efacba46dd753fe03a8789fa8350969`.
+- **Límite de verificación:** la lectura de archivos y el diff son comprobables, pero el conector GitHub disponible no expone listado de ejecuciones por workflow y la consulta pública al endpoint de Actions no devolvió datos. **No se confirma ejecución exitosa, artifact, manifest ni PDF completo.** No se descargaron ni inspeccionaron páginas reales.
+- **Siguientes controles:** consultar [Actions del manual](https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/actions/workflows/manual-basico-pdf.yml), obtener ID de ejecución, conclusión, artifact y manifest, comparar SHA-256 con fuente y PDF, inspeccionar muestras. Incorporar únicamente arte autorizado existente y revisar licencias/créditos. Continuar preflight y economía/PNJ sin confundir PDF de lectura con libro final o imprenta.

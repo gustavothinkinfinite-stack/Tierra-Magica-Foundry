@@ -8,6 +8,7 @@ on:
       - 'docs/Tierra_Magica_Manual_Maestro.md'
       - 'tools/editorial/maquetar_manual.py'
       - 'tools/editorial/maquetacion.css'
+      - 'assets/editorial/**'
       - '.github/workflows/manual-basico-pdf.yml'
 
 permissions:
