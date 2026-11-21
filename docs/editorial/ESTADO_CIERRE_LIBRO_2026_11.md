@@ -119,3 +119,13 @@
 - Verificado en la lectura actual de `main` que el workflow conserva los controles `pdf_sha256`, `source_sha256` y `pdf_bytes`. No se ha descargado ni validado en esta unidad un artifact posterior al PR #127: el PDF de 598 páginas citado en QA-ED-02 sigue siendo el anterior.
 - La anomalía de extracción con caracteres nulos es un hallazgo pendiente de diagnóstico, no una corrección aplicada ni un defecto de impresión demostrado.
 - Próximos bloqueos: ejecución/artifact nuevo y manifest contrastado; inventario binario de cubiertas y doce retratos autorizados, revisión visual de índice/tablas, créditos, mapa y preflight de imprenta. No se declara libro ilustrado ni PDF de imprenta final.
+
+
+## 21-11-2026 — QA-ED-03: contraste de extracción PDF
+
+- **Base main comprobada:** commit `63534d46e67db58257a1eba5321c86fb00752f42`; fuente canónica sin cambios. Se releyeron workflow, maquetador y expediente antes de modificar.
+- **PDF preliminar anterior:** artifact [14707700181](https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/actions/runs/44904014385/artifacts/14707700181), procedente de ejecución exitosa [44904014385](https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/actions/runs/44904014385), anterior a controles de integridad PR #127.
+- **Prueba local ejecutada sobre el PDF real de 598 páginas:** `pypdf.PdfReader(...).pages[i].extract_text()` presenta NUL en **557 páginas**; página 11 tiene **1.459 NUL**. En contraste, `pdftotext -f 11 -l 11 -layout` (Poppler) devuelve texto español legible en esa página. **No atribuir automáticamente el problema al PDF ni certificar accesibilidad**: hay discrepancia entre extractores.
+- **Cambios propuestos:** `tools/editorial/auditar_extraccion_pdf.py` audita todas las páginas mediante pypdf y Poppler, produce `dist/control/extraccion_texto.json`; workflow lo adjunta al artifact y reacciona a cambios del script. Diagnóstico **no bloqueante**, sin alterar reglas ni canon.
+- **Commits de rama:** script `287d32eda2a15356e9473992284999851a2eea6a`; CI `adadd9b51e2a89149f62b720abda464a63e24488`. Falta validación de la nueva ejecución en Actions y del JSON real.
+- **Pendientes prioritarios:** obtener artifact posterior a PR #127 y verificar SHA del PDF y fuente contra manifest; inspeccionar anomalías del diagnóstico; incorporar cubiertas y doce retratos autorizados con permisos y resolución comprobados; tablas, índice, cartografía, créditos y preflight de imprenta. PDF de lectura preliminar no equivale a edición ilustrada ni PDF de imprenta.
