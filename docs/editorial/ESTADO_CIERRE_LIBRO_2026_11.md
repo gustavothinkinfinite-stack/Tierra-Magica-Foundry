@@ -85,3 +85,12 @@
 - **Corrección:** en `.github/workflows/manual-basico-pdf.yml`, comprobar SHA-256 del PDF, SHA-256 de la fuente canónica y tamaño del PDF frente al manifest. Los `assert` fallarán antes de subir el artifact si hay divergencias. No se alteran reglas ni imágenes.
 - **Evidencia:** cambio de workflow commit `2db57c88694031f3eb555c2d5beba42b4d459b6e`. El control es revisión estática del YAML; **no se afirma ejecución exitosa de CI posterior a este cambio** ni PDF regenerado.
 - **Pendientes:** confirmar nueva ejecución y artifact con `pdf_sha256`; inspección de índice y tablas del PDF completo; recuperar únicamente cubiertas y doce retratos autorizados, documentar permisos/créditos; verificar mapa, preflight y exportación de imprenta. La salida de lectura previa de 598 páginas sigue siendo preliminar y no equivale a libro ilustrado o PDF de imprenta.
+
+
+## 21-11-2026 — QA-ED-01: auditoría estructural del PDF de lectura
+
+- Base `main`: `e0e3afe49c565ee105fe6e971584fe9e2f68c2e8` (PR #127 fusionado). Fuente canónica sin cambios.
+- Artifact anterior de Actions #44904014385: PDF SHA-256 `5ec3f0197a50b5110f369d41bce671b4fab0aa8c823ea4a4baef2ee5ff2df57d`. Inspección local real con PyMuPDF: 598 páginas de 432×648 pt; ninguna con menos de 20 caracteres extraídos; 1.012 marcadores PDF, distintos de las 69 entradas del índice impreso; muestras de páginas 1–6, 11, 101, 300 y 598. Páginas 2 y 4 sólo tienen cabecera y número; requiere revisión de cortesía.
+- Expediente detallado: [`QA-ED-01_auditoria_pdf_lectura_2026-11-21.md`](QA-ED-01_auditoria_pdf_lectura_2026-11-21.md), commit `8e71cba8ee3ca4a5f8936a8f3a8c8c889a3ea2b8`.
+- El conector de runs asociado a commit de merge devuelve lista vacía porque filtra eventos de PR: **no permite descartar un run push**. Nuevo artifact con hashes CI-ED-04 aún sin verificar. No se generó PDF nuevo.
+- Siguiente prioridad: comprobar Actions posterior a #127, descargar y contrastar manifest; después incorporar arte autorizado y auditar índice/tablas visualmente. Libro ilustrado e imprenta pendientes.
