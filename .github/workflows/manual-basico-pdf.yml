@@ -36,7 +36,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends fonts-noto-core fonts-lato fonts-dejavu-core poppler-utils
           python -m pip install --upgrade pip
-          python -m pip install "weasyprint==68.0" "markdown-it-py==4.0.0" "beautifulsoup4==4.14.3" "pypdf==6.6.2"
+          python -m pip install "weasyprint>=62,<70" "markdown-it-py>=4,<5" "beautifulsoup4>=4.12,<5" "pypdf>=5,<7"
 
       - name: Componer el manual completo
         run: |
