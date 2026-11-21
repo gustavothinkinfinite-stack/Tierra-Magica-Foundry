@@ -216,6 +216,7 @@ def main() -> None:
         'edition': 'lectura; no certificado para imprenta',
         'pages': pages,
         'pdf_bytes': args.output.stat().st_size,
+        'pdf_sha256': hashlib.sha256(args.output.read_bytes()).hexdigest(),
         'toc_entries': len(chapters),
         'wide_tables_converted_to_records': cards,
         'deity_illustrations': pictures,
