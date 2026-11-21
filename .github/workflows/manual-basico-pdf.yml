@@ -1,0 +1,82 @@
+name: Maquetar Manual Básico (PDF de lectura)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/Tierra_Magica_Manual_Maestro.md'
+      - 'tools/editorial/maquetar_manual.py'
+      - 'tools/editorial/maquetacion.css'
+      - '.github/workflows/manual-basico-pdf.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: manual-basico-pdf
+  cancel-in-progress: true
+
+jobs:
+  maqueta:
+    name: Generar libro completo 6x9
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Obtener fuente canónica
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Tipografías y renderizador
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-core fonts-lato fonts-dejavu-core poppler-utils
+          python -m pip install --upgrade pip
+          python -m pip install "weasyprint>=62,<70" "markdown-it-py>=4,<5" "beautifulsoup4>=4.12,<5" "pypdf>=5,<7"
+
+      - name: Componer el manual completo
+        run: |
+          python tools/editorial/maquetar_manual.py \
+            --source docs/Tierra_Magica_Manual_Maestro.md \
+            --style tools/editorial/maquetacion.css \
+            --assets assets/editorial \
+            --output dist/Tierra_Magica_Manual_Basico_Lectura.pdf \
+            --manifest dist/Tierra_Magica_Manual_Basico_Lectura.manifest.json
+          pdfinfo dist/Tierra_Magica_Manual_Basico_Lectura.pdf | grep -E 'Pages:|Page size:|File size:'
+
+      - name: Control de integridad y muestras de render
+        run: |
+          mkdir -p dist/control
+          pdftoppm -f 1 -l 1 -scale-to 1100 -png -singlefile \
+            dist/Tierra_Magica_Manual_Basico_Lectura.pdf dist/control/portada
+          pdftoppm -f 5 -l 5 -scale-to 1100 -png -singlefile \
+            dist/Tierra_Magica_Manual_Basico_Lectura.pdf dist/control/interior
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pypdf import PdfReader
+          pdf = Path('dist/Tierra_Magica_Manual_Basico_Lectura.pdf')
+          m = json.loads(Path('dist/Tierra_Magica_Manual_Basico_Lectura.manifest.json').read_text())
+          r = PdfReader(str(pdf))
+          assert len(r.pages) == m['pages']
+          assert len(r.pages) > 150
+          assert m['toc_entries'] >= 55
+          assert Path('dist/control/portada.png').stat().st_size > 10000
+          assert Path('dist/control/interior.png').stat().st_size > 10000
+          print('Integridad básica y render: OK',m['pages'],'páginas')
+          PY
+
+      - name: Conservar PDF y evidencia
+        uses: actions/upload-artifact@v4
+        with:
+          name: tierra-magica-manual-basico-lectura
+          path: |
+            dist/Tierra_Magica_Manual_Basico_Lectura.pdf
+            dist/Tierra_Magica_Manual_Basico_Lectura.manifest.json
+            dist/control/*.png
+          if-no-files-found: error
+          retention-days: 30
