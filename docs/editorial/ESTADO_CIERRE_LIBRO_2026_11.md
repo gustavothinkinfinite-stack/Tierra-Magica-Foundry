@@ -102,3 +102,12 @@
 - Expediente `docs/editorial/QA-ED-01_auditoria_pdf_lectura_2026-11-21.md` incorporado. La fuente canónica no fue editada por este PR.
 - Se volvió a comprobar localmente la existencia del PDF preliminar del artifact anterior y su SHA-256 `5ec3f0197a50b5110f369d41bce671b4fab0aa8c823ea4a4baef2ee5ff2df57d`. Esta comprobación **no** equivale a validar un artifact generado después de #127.
 - Pendiente inmediato: obtener ejecución posterior al merge #127 y su artifact, contrastar `pdf_sha256`, `source_sha256`, `pdf_bytes`; luego inspección visual de índice/tablas, arte autorizado, mapa y preflight de imprenta. Sin certificación de libro ilustrado ni PDF de imprenta.
+
+
+## 21-11-2026 — QA-ED-02: enlaces y extracción de texto
+
+- Base revisada de `main`: `93c91b37ea4b215b6b3d85ec94ab4c86ddf816c7`. Fuente canónica no modificada.
+- PDF binario previo (Actions #44904014385) SHA-256 `5ec3f0197a50b5110f369d41bce671b4fab0aa8c823ea4a4baef2ee5ff2df57d`; `pypdf` confirma 598 páginas y 424 enlaces PDF, ninguno sin destino o URI declarado.
+- Hallazgo nuevo: extracción de texto con caracteres nulos intercalados en varias páginas muestreadas (1, 3, 11, 300 y 598); investigar tipografía y accesibilidad sin confundir extracción defectuosa con defecto visual demostrado.
+- Expediente: [QA-ED-02](QA-ED-02_enlaces_extraccion_2026-11-21.md); commit de expediente `089d1b8dfa49aa2d3681a332bdc5c392291ba2d7`.
+- El conector de runs por SHA `93c91b37ea4b215b6b3d85ec94ab4c86ddf816c7` devolvió cero ejecuciones (filtro de PR); **no prueba ausencia de ejecución push**. Artifact posterior a #127 no validado. Pendientes: manifest nuevo, enlaces semánticos del índice, arte autorizado, tablas y preflight de imprenta.
