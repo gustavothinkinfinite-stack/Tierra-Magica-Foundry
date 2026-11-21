@@ -8,6 +8,7 @@ on:
       - 'docs/Tierra_Magica_Manual_Maestro.md'
       - 'tools/editorial/maquetar_manual.py'
       - 'tools/editorial/maquetacion.css'
+      - 'tools/editorial/auditar_extraccion_pdf.py'
       - 'assets/editorial/**'
       - '.github/workflows/manual-basico-pdf.yml'
 
@@ -75,6 +76,12 @@ jobs:
           print('Integridad básica y render: OK',m['pages'],'páginas')
           PY
 
+      - name: Diagnóstico de extracción de texto
+        run: |
+          python tools/editorial/auditar_extraccion_pdf.py \
+            dist/Tierra_Magica_Manual_Basico_Lectura.pdf \
+            --output dist/control/extraccion_texto.json
+
       - name: Conservar PDF y evidencia
         uses: actions/upload-artifact@v4
         with:
@@ -83,5 +90,6 @@ jobs:
             dist/Tierra_Magica_Manual_Basico_Lectura.pdf
             dist/Tierra_Magica_Manual_Basico_Lectura.manifest.json
             dist/control/*.png
+            dist/control/*.json
           if-no-files-found: error
           retention-days: 30
