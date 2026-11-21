@@ -57,12 +57,16 @@ jobs:
           pdftoppm -f 5 -l 5 -scale-to 1100 -png -singlefile \
             dist/Tierra_Magica_Manual_Basico_Lectura.pdf dist/control/interior
           python - <<'PY'
+          import hashlib
           import json
           from pathlib import Path
           from pypdf import PdfReader
           pdf = Path('dist/Tierra_Magica_Manual_Basico_Lectura.pdf')
           m = json.loads(Path('dist/Tierra_Magica_Manual_Basico_Lectura.manifest.json').read_text())
           r = PdfReader(str(pdf))
+          assert hashlib.sha256(pdf.read_bytes()).hexdigest() == m['pdf_sha256'], 'SHA-256 PDF no coincide con manifest'
+          assert pdf.stat().st_size == m['pdf_bytes'], 'Tamaño PDF no coincide con manifest'
+          assert hashlib.sha256(Path('docs/Tierra_Magica_Manual_Maestro.md').read_bytes()).hexdigest() == m['source_sha256'], 'SHA-256 fuente no coincide con manifest'
           assert len(r.pages) == m['pages']
           assert len(r.pages) > 150
           assert m['toc_entries'] >= 55
