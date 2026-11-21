@@ -94,3 +94,11 @@
 - Expediente detallado: [`QA-ED-01_auditoria_pdf_lectura_2026-11-21.md`](QA-ED-01_auditoria_pdf_lectura_2026-11-21.md), commit `8e71cba8ee3ca4a5f8936a8f3a8c8c889a3ea2b8`.
 - El conector de runs asociado a commit de merge devuelve lista vacía porque filtra eventos de PR: **no permite descartar un run push**. Nuevo artifact con hashes CI-ED-04 aún sin verificar. No se generó PDF nuevo.
 - Siguiente prioridad: comprobar Actions posterior a #127, descargar y contrastar manifest; después incorporar arte autorizado y auditar índice/tablas visualmente. Libro ilustrado e imprenta pendientes.
+
+
+## 21-11-2026 — QA-ED-01 integrado (seguimiento)
+
+- PR [#128](https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/pull/128) fusionado en `main`; SHA de integración `fd460d055739582b6d48955be3cbcb5c5f10104a` (verificado por respuesta de GitHub).
+- Expediente `docs/editorial/QA-ED-01_auditoria_pdf_lectura_2026-11-21.md` incorporado. La fuente canónica no fue editada por este PR.
+- Se volvió a comprobar localmente la existencia del PDF preliminar del artifact anterior y su SHA-256 `5ec3f0197a50b5110f369d41bce671b4fab0aa8c823ea4a4baef2ee5ff2df57d`. Esta comprobación **no** equivale a validar un artifact generado después de #127.
+- Pendiente inmediato: obtener ejecución posterior al merge #127 y su artifact, contrastar `pdf_sha256`, `source_sha256`, `pdf_bytes`; luego inspección visual de índice/tablas, arte autorizado, mapa y preflight de imprenta. Sin certificación de libro ilustrado ni PDF de imprenta.
