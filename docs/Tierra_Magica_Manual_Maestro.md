@@ -14068,6 +14068,27 @@ Este apéndice es una **herramienta de consulta** derivada de las reglas de este
 | Recuperación | **Respiro ~10 min** no recupera Vida/Maná automáticamente; **Descanso ~1 h** recupera VIG+2 Vida y VOL+1 Maná según límite; **Descanso Completo ~8 h** recupera Maná y Fatiga según reglas y lesiones. |
 | Equipo | **10 c = 1 p; 10 p = 1 o**. Precio, Disponibilidad y permiso de acceso son cosas distintas; PEI no es moneda. |
 
+## Índice de aclaraciones normativas B5
+
+Este índice facilita localizar las doce aclaraciones del **Cierre normativo de Ascendencias (B5)**. Es una guía de navegación: no sustituye el texto completo de cada aclaración ni crea reglas nuevas. Las claves se conservan tal como están publicadas, incluso cuando el orden de aparición en el cierre difiere del orden numérico.
+
+| Clave | Materia para localizar en el cierre B5 |
+|---|---|
+| **B5-I01** | Movimiento entre medios y presupuesto fraccional. |
+| **B5-I02** | Escala efectiva, Enraizar y defensa contra Derribar. |
+| **B5-I03** | Sentidos y ocultación. |
+| **B5-I04** | Enlace Micelial. |
+| **B5-I05** | Respiración de Terios, Coralios y rasgo Anfibio. |
+| **B5-I06** | Hobgoblin y Ojo. |
+| **B5-I07** | Voluntad, Ojo y Ayuda. |
+| **B5-I08** | Conductor Vivo. |
+| **B5-I09** | Sustento y adaptación a biomas. |
+| **B5-I10** | Incapacitación a 0 Vida y simultaneidad. |
+| **B5-I11** | Rasgos equivalentes y efectos no acumulables. |
+| **B5-I12** | Costes profesionales. |
+
+La numeración de página y los hipervínculos de PDF se incorporarán únicamente cuando exista una maquetación final comprobada.
+
 ## Glosario operativo
 
 | Término | Definición de consulta | Desarrollo |
