@@ -76,3 +76,12 @@
 - **Cambio trazable:** `tools/editorial/maquetar_manual.py` incorpora `pdf_sha256` calculado sobre los bytes del PDF recién exportado. Commit de código `3f1626d47a03c5253e427ec74ea435c5d4a3b405`; la salida JSON futura tendrá esa huella además de `source_sha256` y `pdf_bytes`.
 - **Control independiente sobre artifact anterior:** ZIP local original contiene PDF, manifest y dos PNG de control; SHA-256 del PDF descargado `5ec3f0197a50b5110f369d41bce671b4fab0aa8c823ea4a4baef2ee5ff2df57d` (calculado con `sha256sum`). Este artifact **es anterior a la modificación** y no demuestra que el campo nuevo haya sido ejecutado en CI.
 - **Pendiente obligatorio:** fusionar PR, esperar nueva ejecución de Actions, descargar artifact y comprobar `pdf_sha256` contra el PDF real; luego inspección de tablas, índice, arte autorizado, mapa, créditos y preflight. No afirmar nuevo PDF ni aptitud de imprenta hasta verificarlos.
+
+
+## 21-11-2026 — Control CI-ED-04: contraste de huellas en el workflow
+
+- **Base de `main` consultada:** commit `7ee06a1520557381588a51c0c0e5ed83fd74a32e`; Manual Maestro blob `b315dbf5725c203246079048de52542ad23c6e3a`. Se releen fuente canónica, workflow, maquetador y este expediente antes del cambio.
+- **Hallazgo:** el maquetador ya escribe `pdf_sha256`, `source_sha256` y `pdf_bytes` en el manifest, pero el control CI sólo comprobaba páginas, entradas del índice y muestras PNG. No contrastaba las huellas con los archivos reales.
+- **Corrección:** en `.github/workflows/manual-basico-pdf.yml`, comprobar SHA-256 del PDF, SHA-256 de la fuente canónica y tamaño del PDF frente al manifest. Los `assert` fallarán antes de subir el artifact si hay divergencias. No se alteran reglas ni imágenes.
+- **Evidencia:** cambio de workflow commit `2db57c88694031f3eb555c2d5beba42b4d459b6e`. El control es revisión estática del YAML; **no se afirma ejecución exitosa de CI posterior a este cambio** ni PDF regenerado.
+- **Pendientes:** confirmar nueva ejecución y artifact con `pdf_sha256`; inspección de índice y tablas del PDF completo; recuperar únicamente cubiertas y doce retratos autorizados, documentar permisos/créditos; verificar mapa, preflight y exportación de imprenta. La salida de lectura previa de 598 páginas sigue siendo preliminar y no equivale a libro ilustrado o PDF de imprenta.
