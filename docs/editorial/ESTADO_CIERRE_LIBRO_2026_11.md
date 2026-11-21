@@ -111,3 +111,11 @@
 - Hallazgo nuevo: extracción de texto con caracteres nulos intercalados en varias páginas muestreadas (1, 3, 11, 300 y 598); investigar tipografía y accesibilidad sin confundir extracción defectuosa con defecto visual demostrado.
 - Expediente: [QA-ED-02](QA-ED-02_enlaces_extraccion_2026-11-21.md); commit de expediente `089d1b8dfa49aa2d3681a332bdc5c392291ba2d7`.
 - El conector de runs por SHA `93c91b37ea4b215b6b3d85ec94ab4c86ddf816c7` devolvió cero ejecuciones (filtro de PR); **no prueba ausencia de ejecución push**. Artifact posterior a #127 no validado. Pendientes: manifest nuevo, enlaces semánticos del índice, arte autorizado, tablas y preflight de imprenta.
+
+
+## 21-11-2026 — QA-ED-02 integrado (seguimiento)
+
+- PR [#129](https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/pull/129) fusionado en `main`, SHA de integración `b1761d545badbbcab5042b6511dab555a3650c17`; expediente `docs/editorial/QA-ED-02_enlaces_extraccion_2026-11-21.md` incorporado.
+- Verificado en la lectura actual de `main` que el workflow conserva los controles `pdf_sha256`, `source_sha256` y `pdf_bytes`. No se ha descargado ni validado en esta unidad un artifact posterior al PR #127: el PDF de 598 páginas citado en QA-ED-02 sigue siendo el anterior.
+- La anomalía de extracción con caracteres nulos es un hallazgo pendiente de diagnóstico, no una corrección aplicada ni un defecto de impresión demostrado.
+- Próximos bloqueos: ejecución/artifact nuevo y manifest contrastado; inventario binario de cubiertas y doce retratos autorizados, revisión visual de índice/tablas, créditos, mapa y preflight de imprenta. No se declara libro ilustrado ni PDF de imprenta final.
