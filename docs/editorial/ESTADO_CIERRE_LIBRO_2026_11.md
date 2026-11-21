@@ -129,3 +129,11 @@
 - **Cambios propuestos:** `tools/editorial/auditar_extraccion_pdf.py` audita todas las páginas mediante pypdf y Poppler, produce `dist/control/extraccion_texto.json`; workflow lo adjunta al artifact y reacciona a cambios del script. Diagnóstico **no bloqueante**, sin alterar reglas ni canon.
 - **Commits de rama:** script `287d32eda2a15356e9473992284999851a2eea6a`; CI `adadd9b51e2a89149f62b720abda464a63e24488`. Falta validación de la nueva ejecución en Actions y del JSON real.
 - **Pendientes prioritarios:** obtener artifact posterior a PR #127 y verificar SHA del PDF y fuente contra manifest; inspeccionar anomalías del diagnóstico; incorporar cubiertas y doce retratos autorizados con permisos y resolución comprobados; tablas, índice, cartografía, créditos y preflight de imprenta. PDF de lectura preliminar no equivale a edición ilustrada ni PDF de imprenta.
+
+
+## 21-11-2026 — QA-ED-03 integrado (control de extracción)
+
+- PR #130 fusionado en `main`, SHA de integración `2ea7b5c714c556b7a3114cbf2ff6f01c0810190e`. Se incorporan el auditor `tools/editorial/auditar_extraccion_pdf.py` y la instrumentación de diagnóstico en el workflow. La fuente canónica `docs/Tierra_Magica_Manual_Maestro.md` no fue editada en esta unidad.
+- La auditoría compara extracción de `pypdf` y Poppler y conserva resultados JSON como evidencia, sin interpretar automáticamente diferencias de extracción como fallas de impresión.
+- **No se verificó todavía una ejecución de Actions posterior a este merge**, ni se descargó su artifact: el resultado de este cambio en CI queda pendiente de confirmación. El último PDF binario previamente comprobado sigue siendo la edición de lectura de 598 páginas, no el libro ilustrado ni el PDF de imprenta.
+- **Próximos bloqueos:** localizar ejecución de Actions por workflow/push, comprobar conclusión y descargar PDF/manifest/diagnóstico; verificar huellas PDF/fuente y conteo de páginas; incorporar cubiertas y doce retratos originales sólo tras identificar los archivos reales y sus créditos; auditar tablas, índice, iconografía, mapa y preflight de imprenta.
