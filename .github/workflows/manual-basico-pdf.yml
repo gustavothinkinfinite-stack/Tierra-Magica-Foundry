@@ -209,6 +209,28 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
+      - name: Inventario criptográfico de entrega
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          root = Path('dist')
+          output = root / 'control' / 'entrega_sha256.json'
+          files = {}
+          for path in sorted(root.rglob('*')):
+              if path.is_file() and path != output:
+                  files[path.relative_to(root).as_posix()] = {
+                      'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+                      'bytes': path.stat().st_size,
+                  }
+          assert 'Tierra_Magica_Manual_Basico_Lectura.pdf' in files
+          assert 'Tierra_Magica_Manual_Basico_Lectura.manifest.json' in files
+          assert 'control/procedencia_ci.json' in files
+          output.write_text(json.dumps({'schema': 1, 'files': files}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print('Archivos inventariados:', len(files))
+          PY
+
       - name: Conservar PDF y evidencia
         uses: actions/upload-artifact@v4
         with:
