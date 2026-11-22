@@ -165,3 +165,12 @@
 - **Alcance real:** el código comprueba la generación y tamaño mínimo de cada muestra, **no** certifica por sí solo la estética, el índice, los recortes o las tablas. La etapa debe ejecutarse en GitHub Actions para disponer de nuevas imágenes reales. El PDF anterior de 598 páginas sigue siendo el último binario previamente verificado.
 - **Bloqueo de acceso:** el endpoint de listado de runs por workflow no está admitido por el conector GitHub de esta sesión; no se pudo confirmar ni descargar un artifact posterior al PR #127. El directorio `assets/editorial/` continúa sin archivos comprobados en `main` (última consulta 404).
 - **Próximas condiciones:** obtener run/artifact posterior a este commit y contrastar manifest y PDF; abrir muestras PNG y revisar índice/tablas; incorporar las 14 imágenes originales con créditos/permisos; completar mapa, equipo/PNJ y preflight de imprenta. **No se declara PDF ilustrado ni PDF de imprenta.**
+
+
+## 22-11-2026 — ART-ED-03: impedir omisiones silenciosas de retratos
+
+- **Comparación con `main`:** se releyeron el workflow, maquetador y expediente vigentes; se conservó intacta la fuente canónica `docs/Tierra_Magica_Manual_Maestro.md`.
+- **Hallazgo:** el control anterior aceptaba cualquier número de retratos insertados entre cero y el total disponible. Con los 14 PNG presentes podía publicar un PDF con retratos omitidos por una discordancia de encabezados, sin fallar CI.
+- **Corrección en `main`:** commit `c36bfe01949e461e3f60f5204a18e6e8300e074e` modifica `.github/workflows/manual-basico-pdf.yml`. Si están los 14 activos, exige exactamente 12 retratos incorporados y ambas cubiertas originales; si no, falla antes de publicar el artifact. Mientras falten originales, el inventario continúa informando el faltante sin inventar imágenes.
+- **Verificación alcanzada:** cambio de código confirmado por GitHub. **No se ha confirmado ejecución posterior del workflow ni descargado un artifact nuevo.** La API de runs por SHA del conector sólo cubre eventos PR, no permite certificar ejecuciones `push`.
+- **Próximos bloqueos:** obtener ID de ejecución `push` y artifact, contrastar SHA-256 de PDF/fuente con manifest; localizar/importar las 14 imágenes originales y sus créditos, revisar muestras visuales, tablas e índice; cerrar equipo/PNJ/iconografía/mapa y preflight de imprenta. El PDF de lectura previamente comprobado no es la edición ilustrada ni apta para imprenta.
