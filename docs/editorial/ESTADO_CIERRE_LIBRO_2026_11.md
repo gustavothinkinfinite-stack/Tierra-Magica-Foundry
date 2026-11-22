@@ -268,3 +268,12 @@
 - **Mejora trazable:** commit `94be70a334dc4b94910ac2fb289b969bfcc64195` añade al workflow un inventario `dist/control/entrega_sha256.json` con SHA-256 y tamaño de cada archivo entregado (PDF, manifest, informes y muestras), excluyendo el propio inventario para evitar autorreferencia. Verifica que existan PDF, manifest y procedencia antes de publicar.
 - **Estado de comprobación:** código integrado en main; ejecución real del nuevo paso aún no verificada. El artifact histórico 44904014385 (598 páginas) es anterior y no prueba este cambio.
 - **Próximos bloqueos:** acceder a runs/artifacts y descargar ZIP para comparar SHA-256; revisar muestras de índice y tablas; recuperar dos cubiertas y doce retratos originales con permisos y créditos; completar equipo/PNJ, símbolos y mapa sin inventar canon; preparar sangrado, perfiles de color y preflight de imprenta. No declarar edición ilustrada ni PDF de imprenta.
+
+
+## 22-11-2026 — CI-ED-08: validación efectiva del inventario antes de publicar
+
+- **Base main verificada antes del cambio:** `64b2cb0f1a2db2c8e97fdf368b86579547d62533`. Se releen workflow, maquetador y registro editorial. Fuente canónica sin modificar.
+- **Bloqueo de Actions:** consulta de ejecuciones `/actions/workflows/manual-basico-pdf.yml/runs` y artifacts `/actions/artifacts` rechazada por el conector con HTTP 400 (URL no permitida). No se verifica ejecución nueva, PDF nuevo ni manifest nuevo.
+- **Cambio verificable:** el inventario `entrega_sha256.json` antes se escribía sin verificar sus propios valores. Ahora el workflow incluye un paso previo a `upload-artifact` que compara exactamente el conjunto de archivos de `dist` (excluido el propio inventario), sus tamaños y SHA-256. Una divergencia detiene la publicación. Commit de código: `2ed8bcbad04bf0ad0ce4819922d6ad676f2dc377`.
+- **Límite:** se confirma edición del YAML en main, no su ejecución. El último artifact descargado y comprobado en este expediente continúa siendo el PDF preliminar de 598 páginas del run 44904014385.
+- **Siguiente prioridad:** obtener acceso efectivo a la lista de runs/artifacts, descargar ZIP reciente, validar PDF/manifest/huellas, inspeccionar índice y tablas. Recuperar 2 cubiertas y 12 retratos autorizados en `assets/editorial` con créditos y permisos; continuar mapa, equipo, PNJ y preflight de imprenta. No confundir lectura con edición ilustrada ni imprenta.
