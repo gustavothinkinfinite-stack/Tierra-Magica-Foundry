@@ -153,6 +153,7 @@ jobs:
           report['review_status'] = 'automated_link_audit_only'
           out = Path('dist/control/indice_enlaces.json')
           out.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+          assert report['invalid_page_targets'] == 0, 'Índice: enlaces con destino fuera del PDF; revisar dist/control/indice_enlaces.json'
           print('Auditoría de enlaces:', report)
           PY
 
