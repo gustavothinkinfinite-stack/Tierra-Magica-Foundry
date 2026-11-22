@@ -159,12 +159,14 @@ jobs:
           PY
 
       - name: Diagnóstico de extracción de texto
+        if: success() || failure()
         run: |
           python tools/editorial/auditar_extraccion_pdf.py \
             dist/Tierra_Magica_Manual_Basico_Lectura.pdf \
             --output dist/control/extraccion_texto.json
 
       - name: Preflight técnico preliminar de páginas y fuentes
+        if: success() || failure()
         run: |
           python tools/editorial/auditar_preflight_pdf.py \
             dist/Tierra_Magica_Manual_Basico_Lectura.pdf \
