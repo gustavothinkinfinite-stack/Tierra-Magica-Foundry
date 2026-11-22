@@ -35,7 +35,7 @@ def main():
             descriptor = font.get("/FontDescriptor")
             descriptor = descriptor.get_object() if descriptor else {}
             embedded = any(key in descriptor for key in ("/FontFile", "/FontFile2", "/FontFile3"))
-            fonts[base] = fonts.get(base, False) or embedded
+            # Un solo uso no incrustado basta para marcar la fuente como pendiente.\n            # OR ocultaba usos sin incrustar si otro objeto homónimo sí la tenía.\n            fonts[base] = fonts.get(base, True) and embedded
     for name, embedded in sorted(fonts.items()):
         if not embedded:
             missing_fonts.append(name)
