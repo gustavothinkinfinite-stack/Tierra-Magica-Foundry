@@ -82,6 +82,9 @@ jobs:
           assert bool(m['original_covers']['front_cover_original']) == (entries[0]['status'] == 'present'), 'Portada no coincide con inventario'
           assert bool(m['original_covers']['back_cover_original']) == (entries[1]['status'] == 'present'), 'Contraportada no coincide con inventario'
           assert 0 <= m['deity_illustrations'] <= sum(e['status'] == 'present' for e in entries[2:]), 'Retratos fuera del inventario'
+          if inventory['present'] == 14:
+              assert m['deity_illustrations'] == 12, 'Hay 12 retratos disponibles pero no se insertaron todos en el PDF'
+              assert all(m['original_covers'].values()), 'Cubiertas originales disponibles pero no incluidas'
           assert len(r.pages) == m['pages']
           assert len(r.pages) > 150
           assert m['toc_entries'] >= 55
