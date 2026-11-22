@@ -234,3 +234,12 @@
 - **Corrección:** restaurar saltos de línea reales y ejecutar la asignación dentro del bucle de recursos de fuentes. Commit `6aba2830c5116d8b871744ac5dde8a51a4a6cf20` (`tools/editorial/auditar_preflight_pdf.py`). La ejecución del auditor sobre un PDF real queda pendiente de comprobar.
 - **GitHub Actions:** la consulta del listado de ejecuciones del workflow por la ruta API de Actions fue rechazada por el conector como endpoint no permitido. No se obtuvo artifact nuevo, manifest ni muestras posteriores a la corrección; el PDF de lectura comprobado anteriormente sigue siendo el de 598 páginas, ejecución 44904014385.
 - **Próximos bloqueos:** confirmar ejecución del workflow tras el cambio, descargar artifact y contrastar SHA-256 de PDF/fuente; comprobar que `preflight_pdf.json` enumere las fuentes reales y las no incrustadas; inspeccionar tablas, índice y muestras. Localizar las dos cubiertas y doce retratos originales autorizados para `assets/editorial/`, resolver créditos, mapa y preflight de imprenta. PDF de lectura no equivale a edición ilustrada ni a PDF final de imprenta.
+
+
+## 22-11-2026 — CI-ED-05: conservar diagnóstico de fallos
+
+- **Base de main comprobada antes del cambio:** commit `9e923231e83af49e295e8ae1e90f0bf88a169801`; workflow releído (blob `01cc9f8e0ad54574e35f94daf3ac6c76db16ea8e`). No se alteró el Manual Maestro.
+- **Hallazgo:** si falla una validación previa a `Conservar PDF y evidencia`, el job omite el artifact y pierde los informes JSON/PNG disponibles, dificultando diagnosticar la causa exacta.
+- **Cambio:** se agregó un paso `if: failure()` para subir únicamente manifiesto e informes/muestras existentes a `tierra-magica-manual-basico-diagnostico-fallo` (14 días, `if-no-files-found: warn`). No se incluye el PDF en el artifact de fallo; el artifact normal permanece reservado a ejecuciones exitosas. Commit `28161e828a587ca39dc410c658687ec260b4e7ef`.
+- **Límite:** revisión estática y commit verificado, no ejecución de Actions posterior ni PDF nuevo comprobado. El conector disponible para runs por commit sólo devuelve eventos PR y no permite comprobar pushes de main.
+- **Próximos bloqueos:** comprobar el run de [Actions](https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/actions/workflows/manual-basico-pdf.yml), descargar manifest/PDF de una ejecución exitosa, contrastar SHA-256, inspeccionar índice/tablas y muestras; recuperar 14 PNG autorizados, resolver créditos/mapa/PNJ/equipo y preflight de imprenta. PDF de lectura previo de 598 páginas no equivale a libro ilustrado definitivo.
