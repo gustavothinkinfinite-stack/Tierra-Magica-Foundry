@@ -231,6 +231,27 @@ jobs:
           print('Archivos inventariados:', len(files))
           PY
 
+      - name: Verificar inventario criptográfico antes de publicar
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          root = Path('dist')
+          inventory = root / 'control' / 'entrega_sha256.json'
+          data = json.loads(inventory.read_text(encoding='utf-8'))
+          assert data['schema'] == 1 and data['files'], 'Inventario vacío o esquema incorrecto'
+          actual = {p.relative_to(root).as_posix() for p in root.rglob('*')
+                    if p.is_file() and p != inventory}
+          expected = set(data['files'])
+          assert actual == expected, f'Archivos no inventariados o faltantes: {sorted(actual ^ expected)}'
+          for name, entry in data['files'].items():
+              file = root / name
+              assert file.stat().st_size == entry['bytes'], f'Tamaño incorrecto: {name}'
+              assert hashlib.sha256(file.read_bytes()).hexdigest() == entry['sha256'], f'SHA-256 incorrecto: {name}'
+          print('Inventario verificado:', len(expected), 'archivos')
+          PY
+
       - name: Conservar PDF y evidencia
         uses: actions/upload-artifact@v4
         with:
