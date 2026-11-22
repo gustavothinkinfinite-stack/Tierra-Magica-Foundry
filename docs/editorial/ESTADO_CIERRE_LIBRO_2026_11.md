@@ -243,3 +243,11 @@
 - **Cambio:** se agregó un paso `if: failure()` para subir únicamente manifiesto e informes/muestras existentes a `tierra-magica-manual-basico-diagnostico-fallo` (14 días, `if-no-files-found: warn`). No se incluye el PDF en el artifact de fallo; el artifact normal permanece reservado a ejecuciones exitosas. Commit `28161e828a587ca39dc410c658687ec260b4e7ef`.
 - **Límite:** revisión estática y commit verificado, no ejecución de Actions posterior ni PDF nuevo comprobado. El conector disponible para runs por commit sólo devuelve eventos PR y no permite comprobar pushes de main.
 - **Próximos bloqueos:** comprobar el run de [Actions](https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/actions/workflows/manual-basico-pdf.yml), descargar manifest/PDF de una ejecución exitosa, contrastar SHA-256, inspeccionar índice/tablas y muestras; recuperar 14 PNG autorizados, resolver créditos/mapa/PNJ/equipo y preflight de imprenta. PDF de lectura previo de 598 páginas no equivale a libro ilustrado definitivo.
+
+
+## 22-11-2026 — QA-ED-10: impedir auditoría de fuentes vacía
+
+- Comparación con main: releídos workflow, auditor de preflight y expediente; Manual Maestro sin modificaciones. Se comprobó que el auditor recuperaba el registro de fuentes, pero no rechazaba inventarios vacíos, regresión previamente observada.
+- Corrección: commit 82fb5a3a9123992c2f50ed8024791077012865c0 (https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/commit/82fb5a3a9123992c2f50ed8024791077012865c0) exige al preflight fallar cuando no detecta ninguna fuente en el manual de texto. El informe JSON se escribe antes de fallar y puede conservarse en artifact de diagnóstico.
+- Límite: commit confirmado en main, sin ejecución nueva del auditor ni PDF posterior comprobado. Consulta de listado de runs rechazada por conector (HTTP 400, endpoint no permitido); directorio assets/editorial no resuelto (404). Último PDF binario verificado: preliminar de 598 páginas, run 44904014385.
+- Bloqueos: obtener run y artifact posteriores, contrastar PDF/manifest/SHA-256, revisar preflight_pdf.json, muestras, tablas e índice; localizar 14 PNG autorizados y créditos; cerrar economía/PNJ, mapa, iconografía y certificación de imprenta. PDF de lectura no es libro ilustrado ni PDF listo para imprenta.
