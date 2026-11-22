@@ -114,6 +114,47 @@ jobs:
           print('Muestras de revisión visual generadas:', pages)
           PY
 
+      - name: Auditoría de enlaces internos del índice
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pypdf import PdfReader
+          pdf = PdfReader('dist/Tierra_Magica_Manual_Basico_Lectura.pdf')
+          report = {'pages': len(pdf.pages), 'internal_links': 0, 'external_links': 0, 'unresolved_destinations': 0, 'invalid_page_targets': 0}
+          samples = []
+          for page_no, page in enumerate(pdf.pages, 1):
+              for annotation_ref in page.get('/Annots', []):
+                  annotation = annotation_ref.get_object()
+                  if annotation.get('/Subtype') != '/Link':
+                      continue
+                  action = annotation.get('/A')
+                  dest = annotation.get('/Dest')
+                  if action and action.get('/S') == '/URI':
+                      report['external_links'] += 1
+                      continue
+                  if action and action.get('/S') == '/GoTo':
+                      dest = action.get('/D')
+                  if dest is None:
+                      report['unresolved_destinations'] += 1
+                      continue
+                  report['internal_links'] += 1
+                  try:
+                      target = pdf.get_destination_page_number(dest)
+                      if not 0 <= target < len(pdf.pages):
+                          report['invalid_page_targets'] += 1
+                          samples.append({'source_page': page_no, 'target': target})
+                  except Exception as exc:
+                      report['unresolved_destinations'] += 1
+                      if len(samples) < 20:
+                          samples.append({'source_page': page_no, 'error': str(exc)[:160]})
+          report['examples'] = samples[:20]
+          report['review_status'] = 'automated_link_audit_only'
+          out = Path('dist/control/indice_enlaces.json')
+          out.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+          print('Auditoría de enlaces:', report)
+          PY
+
       - name: Diagnóstico de extracción de texto
         run: |
           python tools/editorial/auditar_extraccion_pdf.py \
