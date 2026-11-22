@@ -110,6 +110,7 @@ def insert_deities(soup: BeautifulSoup, assets: Path) -> int:
         'vael-navegante': 'Vael, el Navegante.png'
     }
     inserted = 0
+    inserted_files = set()
     for heading in soup.find_all('h2'):
         name = slug(heading.get_text(' ', strip=True))
         for key, filename in art.items():
@@ -117,7 +118,8 @@ def insert_deities(soup: BeautifulSoup, assets: Path) -> int:
             if not matches or (key == 'vaelun' and 'vaelun' not in name):
                 continue
             file = assets / filename
-            if file.is_file():
+            if file.is_file() and filename not in inserted_files:
+                inserted_files.add(filename)
                 fig = soup.new_tag('figure', attrs={'class': 'deity-figure'})
                 fig.append(soup.new_tag('img', src=file.resolve().as_uri(),
                                        alt=heading.get_text(' ', strip=True)))
