@@ -77,3 +77,22 @@ hr { border:0; border-top:1px solid #c8bba3; margin:.26in 0; }
 .colophon { page:frontmatter; break-before:right; break-after:page; padding-top:1.55in; }
 .colophon h1 { font-size:19pt; color:#2f5364; }
 a { text-decoration:none; color:#3d6977; }
+
+/* QA-ED-14: evitar recortes horizontales por tokens extensos en 6×9.
+   Mantener la justificación, pero permitir cortes dentro de URLs, nombres y
+   valores de registros cuando el ancho útil de la página no alcance. */
+main.content p, main.content li, main.content blockquote,
+main.content h1, main.content h2, main.content h3,
+main.content h4, main.content h5, main.content h6,
+.toc li, .toc li a, .toc li a span {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.table-classic th, .table-classic td,
+.table-record, .record-line, .record-label, .record-value {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.record-line { flex-wrap: wrap; }
+.record-value { flex: 1 1 0; }
