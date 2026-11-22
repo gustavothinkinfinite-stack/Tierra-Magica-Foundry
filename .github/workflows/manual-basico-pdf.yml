@@ -169,6 +169,34 @@ jobs:
             dist/Tierra_Magica_Manual_Basico_Lectura.pdf \
             --output dist/control/preflight_pdf.json
 
+      - name: Registrar procedencia de la ejecución
+        if: always()
+        env:
+          TM_REPO: ${{ github.repository }}
+          TM_SHA: ${{ github.sha }}
+          TM_RUN_ID: ${{ github.run_id }}
+          TM_RUN_ATTEMPT: ${{ github.run_attempt }}
+          TM_WORKFLOW: ${{ github.workflow }}
+        run: |
+          mkdir -p dist/control
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+          data = {
+              'repository': os.environ['TM_REPO'],
+              'checkout_sha': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+              'event_sha': os.environ['TM_SHA'],
+              'run_id': os.environ['TM_RUN_ID'],
+              'run_attempt': os.environ['TM_RUN_ATTEMPT'],
+              'workflow': os.environ['TM_WORKFLOW'],
+          }
+          assert data['checkout_sha'] == data['event_sha'], 'Checkout no coincide con SHA de evento'
+          data['run_url'] = 'https://github.com/' + data['repository'] + '/actions/runs/' + data['run_id']
+          Path('dist/control/procedencia_ci.json').write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
+          PY
+
       - name: Conservar diagnóstico si falla la validación
         if: failure()
         uses: actions/upload-artifact@v4
