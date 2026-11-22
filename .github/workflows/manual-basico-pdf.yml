@@ -9,6 +9,7 @@ on:
       - 'tools/editorial/maquetar_manual.py'
       - 'tools/editorial/maquetacion.css'
       - 'tools/editorial/auditar_extraccion_pdf.py'
+      - 'tools/editorial/auditar_preflight_pdf.py'
       - 'tools/editorial/inventariar_activos.py'
       - 'assets/editorial/**'
       - '.github/workflows/manual-basico-pdf.yml'
@@ -160,6 +161,12 @@ jobs:
           python tools/editorial/auditar_extraccion_pdf.py \
             dist/Tierra_Magica_Manual_Basico_Lectura.pdf \
             --output dist/control/extraccion_texto.json
+
+      - name: Preflight técnico preliminar de páginas y fuentes
+        run: |
+          python tools/editorial/auditar_preflight_pdf.py \
+            dist/Tierra_Magica_Manual_Basico_Lectura.pdf \
+            --output dist/control/preflight_pdf.json
 
       - name: Conservar PDF y evidencia
         uses: actions/upload-artifact@v4
