@@ -27,6 +27,11 @@ def main():
         for name, ref in font_map.items():
             font = ref.get_object()
             base = str(font.get("/BaseFont", name))
+            descendants = font.get("/DescendantFonts")
+            if descendants:
+                descendants = descendants.get_object()
+                if descendants:
+                    font = descendants[0].get_object()
             descriptor = font.get("/FontDescriptor")
             descriptor = descriptor.get_object() if descriptor else {}
             embedded = any(key in descriptor for key in ("/FontFile", "/FontFile2", "/FontFile3"))
