@@ -169,6 +169,18 @@ jobs:
             dist/Tierra_Magica_Manual_Basico_Lectura.pdf \
             --output dist/control/preflight_pdf.json
 
+      - name: Conservar diagnóstico si falla la validación
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tierra-magica-manual-basico-diagnostico-fallo
+          path: |
+            dist/Tierra_Magica_Manual_Basico_Lectura.manifest.json
+            dist/control/*.json
+            dist/control/*.png
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Conservar PDF y evidencia
         uses: actions/upload-artifact@v4
         with:
