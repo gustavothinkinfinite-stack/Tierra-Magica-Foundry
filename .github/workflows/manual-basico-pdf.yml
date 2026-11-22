@@ -9,6 +9,7 @@ on:
       - 'tools/editorial/maquetar_manual.py'
       - 'tools/editorial/maquetacion.css'
       - 'tools/editorial/auditar_extraccion_pdf.py'
+      - 'tools/editorial/inventariar_activos.py'
       - 'assets/editorial/**'
       - '.github/workflows/manual-basico-pdf.yml'
 
@@ -39,6 +40,12 @@ jobs:
           sudo apt-get install -y --no-install-recommends fonts-noto-core fonts-lato fonts-dejavu-core poppler-utils
           python -m pip install --upgrade pip
           python -m pip install "weasyprint>=62,<70" "markdown-it-py>=4,<5" "beautifulsoup4>=4.12,<5" "pypdf>=5,<7"
+
+      - name: Inventario de cubiertas y retratos autorizados
+        run: |
+          python tools/editorial/inventariar_activos.py \
+            --assets assets/editorial \
+            --output dist/control/activos_editoriales.json
 
       - name: Componer el manual completo
         run: |
