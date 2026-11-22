@@ -124,6 +124,30 @@ jobs:
           pdf = PdfReader('dist/Tierra_Magica_Manual_Basico_Lectura.pdf')
           report = {'pages': len(pdf.pages), 'internal_links': 0, 'external_links': 0, 'unresolved_destinations': 0, 'invalid_page_targets': 0}
           samples = []
+          # Los enlaces WeasyPrint usan arrays PDF [page_ref, /XYZ, ...],
+          # no objetos Destination de pypdf.
+          page_by_ref = {
+              (page.indirect_reference.idnum, page.indirect_reference.generation): i
+              for i, page in enumerate(pdf.pages)
+              if page.indirect_reference is not None
+          }
+          def resolve_page(dest):
+              if isinstance(dest, (str, bytes)):
+                  named = pdf.named_destinations.get(str(dest))
+                  if named is None:
+                      raise ValueError(f'Destino nombrado inexistente: {dest}')
+                  return pdf.get_destination_page_number(named)
+              if isinstance(dest, (list, tuple)) or getattr(dest, '__class__', type(None)).__name__ == 'ArrayObject':
+                  if not dest:
+                      raise ValueError('Array de destino vacío')
+                  ref = dest[0]
+                  if hasattr(ref, 'idnum'):
+                      key = (ref.idnum, ref.generation)
+                      if key not in page_by_ref:
+                          raise ValueError(f'Referencia de página desconocida: {key}')
+                      return page_by_ref[key]
+                  raise ValueError(f'Destino sin referencia indirecta: {ref!r}')
+              return pdf.get_destination_page_number(dest)
           for page_no, page in enumerate(pdf.pages, 1):
               for annotation_ref in page.get('/Annots', []):
                   annotation = annotation_ref.get_object()
@@ -141,7 +165,7 @@ jobs:
                       continue
                   report['internal_links'] += 1
                   try:
-                      target = pdf.get_destination_page_number(dest)
+                      target = resolve_page(dest)
                       if not 0 <= target < len(pdf.pages):
                           report['invalid_page_targets'] += 1
                           samples.append({'source_page': page_no, 'target': target})
