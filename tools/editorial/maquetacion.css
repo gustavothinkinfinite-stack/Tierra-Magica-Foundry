@@ -96,3 +96,16 @@ main.content h4, main.content h5, main.content h6,
 }
 .record-line { flex-wrap: wrap; }
 .record-value { flex: 1 1 0; }
+
+/* QA-ED-20: los recuadros sombreados deben reservar su padding dentro del
+   ancho disponible; evitar que líneas justificadas se peguen al borde. */
+main.content blockquote {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: .10in .20in .10in .17in;
+  text-align: left;
+}
+main.content blockquote p {
+  text-align: left;
+  overflow-wrap: anywhere;
+}
