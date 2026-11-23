@@ -15,7 +15,11 @@ def main():
     sizes = Counter()
     fonts = {}
     missing_fonts = []
+    rotated_pages = []
     for number, page in enumerate(reader.pages, 1):
+        rotation = int(page.get("/Rotate", 0) or 0) % 360
+        if rotation:
+            rotated_pages.append({"page": number, "rotation_degrees": rotation})
         box = page.mediabox
         width = round(float(box.width), 2)
         height = round(float(box.height), 2)
@@ -49,6 +53,7 @@ def main():
         "all_pages_6x9": sizes == Counter({"432.0x648.0": len(reader.pages)}),
         "fonts": [{"name": k, "embedded": v} for k, v in sorted(fonts.items())],
         "fonts_without_embedded_file": missing_fonts,
+        "rotated_pages": rotated_pages,
         "review_status": "technical_screening_not_print_certification",
     }
     a.output.parent.mkdir(parents=True, exist_ok=True)
@@ -57,6 +62,8 @@ def main():
         raise SystemExit("ERROR: no se detectaron fuentes en un manual con texto; revisar auditor y recursos PDF")
     if not result["all_pages_6x9"]:
         raise SystemExit("ERROR: dimensiones de página distintas de 6x9 pulgadas")
+    if rotated_pages:
+        raise SystemExit("ERROR: páginas rotadas detectadas: " + str(rotated_pages[:20]))
     if missing_fonts:
         raise SystemExit("ERROR: fuentes sin incrustar: " + ", ".join(missing_fonts))
     print(f"Preflight preliminar: {len(reader.pages)} páginas, {len(fonts)} fuentes, {len(missing_fonts)} sin archivo incrustado")
