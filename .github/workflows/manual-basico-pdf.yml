@@ -42,6 +42,21 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install "weasyprint>=62,<70" "markdown-it-py>=4,<5" "beautifulsoup4>=4.12,<5" "pypdf>=5,<7"
 
+      - name: Comprobar sintaxis básica del CSS editorial
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          css = Path('tools/editorial/maquetacion.css').read_text(encoding='utf-8')
+          assert r'\\n' not in css, 'CSS contiene secuencias literales \\n: revisar saltos de línea'
+          clean = re.sub(r'/\*.*?\*/', '', css, flags=re.S)
+          assert '/*' not in clean and '*/' not in clean, 'Comentario CSS sin cerrar o mal formado'
+          assert clean.count('{') == clean.count('}'), 'Llaves CSS desequilibradas'
+          for selector in ('@page', 'main.content blockquote', '.table-record'):
+              assert selector in clean, f'Regla CSS esencial ausente: {selector}'
+          print('Guardia CSS básica superada (no sustituye revisión visual)')
+          PY
+
       - name: Inventario de cubiertas y retratos autorizados
         run: |
           python tools/editorial/inventariar_activos.py \
