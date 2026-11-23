@@ -59,10 +59,17 @@ jobs:
           import tinycss2
           stylesheet = tinycss2.parse_stylesheet(css, skip_comments=True, skip_whitespace=True)
           errors = [node for node in stylesheet if node.type == 'error']
+          # Las reglas @page también contienen declaraciones y bloques margin-box.
+          # El control anterior sólo recorría reglas ordinarias.
+          def check_declarations(nodes):
+              for item in nodes:
+                  if item.type == 'error':
+                      errors.append(item)
+                  elif item.type == 'at-rule' and item.content is not None:
+                      check_declarations(tinycss2.parse_declaration_list(item.content, skip_comments=True, skip_whitespace=True))
           for node in stylesheet:
-              if node.type == 'qualified-rule':
-                  declarations = tinycss2.parse_declaration_list(node.content, skip_comments=True, skip_whitespace=True)
-                  errors.extend(d for d in declarations if d.type == 'error')
+              if node.type in ('qualified-rule', 'at-rule') and node.content is not None:
+                  check_declarations(tinycss2.parse_declaration_list(node.content, skip_comments=True, skip_whitespace=True))
           assert not errors, 'Errores de parseo CSS: ' + '; '.join(str(e.message) for e in errors[:8])
           print('Guardia CSS básica y parser tinycss2 superados (no sustituye revisión visual)')
           PY
