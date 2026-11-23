@@ -57,6 +57,8 @@ def main():
         raise SystemExit("ERROR: no se detectaron fuentes en un manual con texto; revisar auditor y recursos PDF")
     if not result["all_pages_6x9"]:
         raise SystemExit("ERROR: dimensiones de página distintas de 6x9 pulgadas")
+    if missing_fonts:
+        raise SystemExit("ERROR: fuentes sin incrustar: " + ", ".join(missing_fonts))
     print(f"Preflight preliminar: {len(reader.pages)} páginas, {len(fonts)} fuentes, {len(missing_fonts)} sin archivo incrustado")
 
 if __name__ == "__main__":
