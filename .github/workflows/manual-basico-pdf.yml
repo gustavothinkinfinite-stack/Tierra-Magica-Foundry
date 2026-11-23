@@ -48,7 +48,7 @@ jobs:
           from pathlib import Path
           import re
           css = Path('tools/editorial/maquetacion.css').read_text(encoding='utf-8')
-          assert r'\\n' not in css, 'CSS contiene secuencias literales \\n: revisar saltos de línea'
+          assert r'\n' not in css, 'CSS contiene secuencias literales \\n: revisar saltos de línea'
           clean = re.sub(r'/\*.*?\*/', '', css, flags=re.S)
           assert '/*' not in clean and '*/' not in clean, 'Comentario CSS sin cerrar o mal formado'
           assert clean.count('{') == clean.count('}'), 'Llaves CSS desequilibradas'
