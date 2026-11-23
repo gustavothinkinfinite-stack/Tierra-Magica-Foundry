@@ -17,6 +17,7 @@ def main():
     missing_fonts = []
     rotated_pages = []
     cropbox_mismatches = []
+    nonzero_media_origins = []
     for number, page in enumerate(reader.pages, 1):
         rotation = int(page.get("/Rotate", 0) or 0) % 360
         if rotation:
@@ -25,6 +26,10 @@ def main():
         width = round(float(box.width), 2)
         height = round(float(box.height), 2)
         sizes[f"{width}x{height}"] += 1
+        # La medida puede ser 6x9 aunque la caja esté desplazada del origen.
+        origin = [round(float(box.left), 2), round(float(box.bottom), 2)]
+        if origin != [0.0, 0.0]:
+            nonzero_media_origins.append({"page": number, "origin_pt": origin})
         # Un CropBox distinto del MediaBox puede ocultar texto aun con tamaño 6x9.
         crop = page.cropbox
         media_rect = [round(float(v), 2) for v in box]
@@ -62,6 +67,7 @@ def main():
         "fonts_without_embedded_file": missing_fonts,
         "rotated_pages": rotated_pages,
         "cropbox_mismatches": cropbox_mismatches,
+        "nonzero_media_origins": nonzero_media_origins,
         "review_status": "technical_screening_not_print_certification",
     }
     a.output.parent.mkdir(parents=True, exist_ok=True)
@@ -74,6 +80,8 @@ def main():
         raise SystemExit("ERROR: páginas rotadas detectadas: " + str(rotated_pages[:20]))
     if cropbox_mismatches:
         raise SystemExit("ERROR: CropBox distinto de MediaBox: " + str(cropbox_mismatches[:20]))
+    if nonzero_media_origins:
+        raise SystemExit("ERROR: MediaBox desplazado del origen: " + str(nonzero_media_origins[:20]))
     if missing_fonts:
         raise SystemExit("ERROR: fuentes sin incrustar: " + ", ".join(missing_fonts))
     print(f"Preflight preliminar: {len(reader.pages)} páginas, {len(fonts)} fuentes, {len(missing_fonts)} sin archivo incrustado")
