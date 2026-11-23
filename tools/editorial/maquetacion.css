@@ -1,7 +1,7 @@
 /* Tierra Mágica — composición 6x9, edición de lectura verificable */
 @page {
   size: 6in 9in;
-  margin: .77in .68in .71in .73in;
+  margin: .77in .78in .71in .73in;
   @top-left { content: "TIERRA MÁGICA"; font: 7px Lato, sans-serif; color: #466776; letter-spacing: .14em; }
   @top-right { content: string(chapter); font: 7px Lato, sans-serif; color: #90744b; }
   @bottom-left { content: "MANUAL BÁSICO"; font: 7px Lato, sans-serif; color: #6b7b7e; letter-spacing: .12em; }
@@ -78,7 +78,7 @@ hr { border:0; border-top:1px solid #c8bba3; margin:.26in 0; }
 .colophon h1 { font-size:19pt; color:#2f5364; }
 a { text-decoration:none; color:#3d6977; }
 
-/* QA-ED-14: evitar recortes horizontales por tokens extensos en 6×9.
+/* QA-ED-17: ampliar margen exterior derecho de 0.68 a 0.78 in para\n   dar holgura al texto junto al borde; validar la paginación en CI. */\n\n/* QA-ED-14: evitar recortes horizontales por tokens extensos en 6×9.
    Mantener la justificación, pero permitir cortes dentro de URLs, nombres y
    valores de registros cuando el ancho útil de la página no alcance. */
 main.content p, main.content li, main.content blockquote,
