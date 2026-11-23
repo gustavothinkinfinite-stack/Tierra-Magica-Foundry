@@ -16,6 +16,7 @@ def main():
     fonts = {}
     missing_fonts = []
     rotated_pages = []
+    cropbox_mismatches = []
     for number, page in enumerate(reader.pages, 1):
         rotation = int(page.get("/Rotate", 0) or 0) % 360
         if rotation:
@@ -24,6 +25,12 @@ def main():
         width = round(float(box.width), 2)
         height = round(float(box.height), 2)
         sizes[f"{width}x{height}"] += 1
+        # Un CropBox distinto del MediaBox puede ocultar texto aun con tamaño 6x9.
+        crop = page.cropbox
+        media_rect = [round(float(v), 2) for v in box]
+        crop_rect = [round(float(v), 2) for v in crop]
+        if crop_rect != media_rect:
+            cropbox_mismatches.append({"page": number, "media_box": media_rect, "crop_box": crop_rect})
         resources = page.get("/Resources")
         resources = resources.get_object() if resources else {}
         font_map = resources.get("/Font")
@@ -54,6 +61,7 @@ def main():
         "fonts": [{"name": k, "embedded": v} for k, v in sorted(fonts.items())],
         "fonts_without_embedded_file": missing_fonts,
         "rotated_pages": rotated_pages,
+        "cropbox_mismatches": cropbox_mismatches,
         "review_status": "technical_screening_not_print_certification",
     }
     a.output.parent.mkdir(parents=True, exist_ok=True)
@@ -64,6 +72,8 @@ def main():
         raise SystemExit("ERROR: dimensiones de página distintas de 6x9 pulgadas")
     if rotated_pages:
         raise SystemExit("ERROR: páginas rotadas detectadas: " + str(rotated_pages[:20]))
+    if cropbox_mismatches:
+        raise SystemExit("ERROR: CropBox distinto de MediaBox: " + str(cropbox_mismatches[:20]))
     if missing_fonts:
         raise SystemExit("ERROR: fuentes sin incrustar: " + ", ".join(missing_fonts))
     print(f"Preflight preliminar: {len(reader.pages)} páginas, {len(fonts)} fuentes, {len(missing_fonts)} sin archivo incrustado")
