@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import struct
+import zlib
 from pathlib import Path
 
 EXPECTED = [
@@ -29,7 +30,16 @@ def inspect(path):
     data = path.read_bytes()
     if len(data) < 33 or data[:8] != b"\x89PNG\r\n\x1a\n" or data[12:16] != b"IHDR":
         return {"status": "invalid_png", "bytes": len(data)}
+    # La firma PNG y el marcador IHDR por sí solos no garantizan un encabezado íntegro.
+    if struct.unpack(">I", data[8:12])[0] != 13:
+        return {"status": "invalid_png", "bytes": len(data), "reason": "invalid_ihdr_length"}
+    expected_crc = struct.unpack(">I", data[29:33])[0]
+    actual_crc = zlib.crc32(data[12:29]) & 0xFFFFFFFF
+    if expected_crc != actual_crc:
+        return {"status": "invalid_png", "bytes": len(data), "reason": "invalid_ihdr_crc"}
     width, height = struct.unpack(">II", data[16:24])
+    if width == 0 or height == 0:
+        return {"status": "invalid_png", "bytes": len(data), "reason": "zero_dimensions"}
     return {
         "status": "present", "bytes": len(data),
         "sha256": hashlib.sha256(data).hexdigest(),
