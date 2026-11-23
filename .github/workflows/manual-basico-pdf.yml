@@ -277,6 +277,15 @@ jobs:
           assert 'Tierra_Magica_Manual_Basico_Lectura.pdf' in files
           assert 'Tierra_Magica_Manual_Basico_Lectura.manifest.json' in files
           assert 'control/procedencia_ci.json' in files
+          # QA-ED-27: impedir publicar un artifact sin todas las muestras
+          # declaradas por el paso de revisión visual.
+          samples = json.loads((root / 'control/muestras_visuales.json').read_text(encoding='utf-8'))
+          assert samples['review_status'] == 'pending_human_visual_review'
+          assert samples['sample_pages'] == sorted(set(samples['sample_pages']))
+          assert all(1 <= n <= samples['total_pages'] for n in samples['sample_pages'])
+          for page in samples['sample_pages']:
+              name = f'control/muestra_p{page:04d}.png'
+              assert name in files and files[name]['bytes'] > 10000, f'Muestra declarada ausente: {name}'
           output.write_text(json.dumps({'schema': 1, 'files': files}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           print('Archivos inventariados:', len(files))
           PY
