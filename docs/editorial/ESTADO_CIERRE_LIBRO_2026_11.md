@@ -414,3 +414,11 @@
 - **Cambio verificable:** se corrigió la expresión en `.github/workflows/manual-basico-pdf.yml` para buscar la secuencia literal correcta `r'\\n'`. Commit `891f574d4641b3006f6c14714d9a08578d51c73d`. No se modificó el Manual Maestro ni el CSS.
 - **Verificación limitada:** la lectura del archivo y la actualización de GitHub están confirmadas; la consulta del listado de ejecuciones por endpoint de Actions fue rechazada por el conector. No se descargó PDF nuevo ni manifest en esta unidad. La corrección de CI aún requiere una ejecución exitosa.
 - **Próximos bloqueos:** confirmar run y artifact posteriores al commit; verificar manifest, PDF y página 99; recuperar 14 archivos gráficos originales autorizados y comprobar créditos; continuar auditoría visual, preflight e imprenta. **PDF de lectura no equivale a edición ilustrada definitiva.**
+
+
+## 23-11-2026 — QA-ED-24: muestras de regresión tipográfica en CI
+
+- **Base cotejada:** `main` en `e33dc7af946cb002541cddf616306e3d5f2dedbc` (QA-ED-23); se leyeron workflow, CSS y expediente antes de intervenir. La fuente canónica no se alteró.
+- **Cambio trazable:** [commit `18a3a9e9b10e20c32a549e75ac9c2a1c3a9b2d71`](https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/commit/18a3a9e9b10e20c32a549e75ac9c2a1c3a9b2d71) añade páginas 30, 99 y 517 (si existen) a las muestras PNG de CI, conservando muestras distribuidas y el inventario `muestras_visuales.json`. Evita perder las páginas históricamente observadas en las siguientes compilaciones. Los números de página **no garantizan igual contenido** tras repaginación; sigue siendo necesaria inspección visual.
+- **Validación limitada:** se verificó la escritura del workflow en `main`, no una ejecución posterior ni el contenido del nuevo artifact. No se afirma que el CSS QA-ED-20/21 esté visualmente validado. Último PDF inspeccionado según QA-ED-19: 606 páginas, anterior a las correcciones recientes.
+- **Bloqueos inmediatos:** verificar Actions posterior a QA-ED-24, descargar artifact y manifest, comprobar SHA-256 y abrir PNG de páginas 30/99/517, índice y tablas. Recuperar 2 cubiertas y 12 retratos originales con procedencia y créditos, sin generar reemplazos; después equipo/PNJ/iconografía/mapa y preflight de imprenta. **PDF de lectura ≠ libro ilustrado definitivo ≠ PDF para imprenta.**
