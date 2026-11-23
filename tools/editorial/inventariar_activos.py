@@ -37,6 +37,31 @@ def inspect(path):
     actual_crc = zlib.crc32(data[12:29]) & 0xFFFFFFFF
     if expected_crc != actual_crc:
         return {"status": "invalid_png", "bytes": len(data), "reason": "invalid_ihdr_crc"}
+    # Verificar estructura completa: chunks, CRC, IDAT e IEND final.
+    # Un IHDR válido no basta si el PNG está truncado o contiene datos corruptos.
+    offset = 8
+    has_idat = False
+    has_iend = False
+    while offset < len(data):
+        if offset + 12 > len(data):
+            return {"status": "invalid_png", "bytes": len(data), "reason": "truncated_chunk"}
+        chunk_length = struct.unpack(">I", data[offset:offset + 4])[0]
+        end = offset + 12 + chunk_length
+        if end > len(data):
+            return {"status": "invalid_png", "bytes": len(data), "reason": "truncated_chunk"}
+        kind = data[offset + 4:offset + 8]
+        crc = struct.unpack(">I", data[end - 4:end])[0]
+        if (zlib.crc32(data[offset + 4:end - 4]) & 0xFFFFFFFF) != crc:
+            return {"status": "invalid_png", "bytes": len(data), "reason": "invalid_chunk_crc"}
+        if kind == b"IDAT":
+            has_idat = True
+        if kind == b"IEND":
+            if chunk_length != 0 or end != len(data):
+                return {"status": "invalid_png", "bytes": len(data), "reason": "invalid_iend"}
+            has_iend = True
+        offset = end
+    if not has_idat or not has_iend:
+        return {"status": "invalid_png", "bytes": len(data), "reason": "missing_idat_or_iend"}
     width, height = struct.unpack(">II", data[16:24])
     if width == 0 or height == 0:
         return {"status": "invalid_png", "bytes": len(data), "reason": "zero_dimensions"}
