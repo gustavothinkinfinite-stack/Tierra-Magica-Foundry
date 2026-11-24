@@ -580,3 +580,12 @@
 - **PDF:** último artifact materialmente inspeccionado permanece en [Maquetar 45247889146](https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/actions/runs/45247889146), 606 páginas, SHA-256 `c5f025eb87c3529a4d354cf8984bce1ebaa16246b7e5c723daffecf676e3e833`. No se descargó un PDF nuevo en esta unidad. El workflow PDF no aparece entre los runs posteriores revisados; no se infiere que deba dispararse ante cambios exclusivos de test/docs.
 - **Arte:** consulta de `assets/editorial/` en main devuelve 404. No se incorporan archivos no recuperados ni se crean ilustraciones sustitutivas.
 - **Próximos bloqueos:** inspeccionar a escala de lectura las tablas y el índice del PDF real; localizar y verificar procedencia/créditos de dos cubiertas y doce retratos; completar equipo, PNJ, iconografía, mapa y requisitos de imprenta. **PDF de lectura ≠ edición ilustrada definitiva ≠ PDF listo para imprenta.**
+
+
+## 23-11-2026 — QA-ED-42: defecto visual del índice corregido
+
+- Base: expediente QA-ED-41, blob `02e6356e59b372d21bed4e0bdc4963bef0b917ba`; Manual Maestro leído de main, blob `b315dbf5725c203246079048de52542ad23c6e3a`.
+- Se descargó nuevamente el artifact 14854299503 del run 45247889146 y se verificaron independientemente los 20/20 archivos del inventario por tamaño y SHA-256, sin discrepancias. PDF de 606 páginas.
+- Inspección visual real: página 10, tabla Dificultades legible, sin recortes evidentes; página 7, un párrafo de prosa completo aparece indebidamente como entrada del índice. La página 8 contiene una sola entrada. Causa: Markdown interpreta la línea `---` inmediatamente posterior al párrafo como encabezado Setext de nivel 2. El maquetador incluye h2 en el índice.
+- Corrección en main: `4e7e4e5cd0316093fa8012916ef8a3a9742df520`, separación mediante línea vacía antes de la regla horizontal; no se altera texto ni canon. Pendiente nueva compilación y comprobación visual de índice, paginación y enlaces.
+- Búsqueda en biblioteca localizó `Tierra_Magica_Portada_Referencia_v1.png` como referencia, no como cubierta final confirmada. No se incorporó arte sin verificar correspondencia con originales. Pendientes dos cubiertas y doce retratos divinos, equipo/PNJ/iconografía/mapa, créditos y preflight específico de imprenta. PDF de lectura no equivale a edición ilustrada ni archivo certificado para imprenta.
