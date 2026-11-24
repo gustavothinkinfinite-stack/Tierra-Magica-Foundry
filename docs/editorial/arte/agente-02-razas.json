@@ -63,6 +63,21 @@
       "rasgosExcluidos": "Gigantismo obligatorio, ferocidad o profesión marcial innatas, armas naturales regladas por colmillos.",
       "decisionesProvisionales": "Tres adultos orcos de fisonomías y edades distintas cooperan en una esclusa de un puerto no localizado; vestuario, pigmentación y orejas afiladas son interpretaciones revisables; no se identifican tradiciones por apariencia.",
       "referencia": "Manual Maestro, creación > Paso 1 > Orcos; capítulos 20–21; anexo Orcos — Hijos del Colmillo; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
+    },
+    "goblinoides": {
+      "canon": "Hijos del Ojo de Varkor. Tres ascendencias goblinoides jugables: Goblin de Escala Pequeña, Hobgoblin de Escala Mediana, Bugbear corpulento en el extremo superior de Escala Mediana. Comparten Ojo para la Oportunidad. Kobolds excluidos del paquete base.",
+      "altura": "No fijada en los pasajes consultados. La diferencia de escala debe conservarse.",
+      "proporciones": "Goblin pequeño y ágil; Hobgoblin mediano; Bugbear mediano de complexión corpulenta. Proporciones específicas de miembros y cráneo son interpretaciones provisionales.",
+      "estructuraOsea": "Sin detalle anatómico específico en los pasajes consultados; estructura humanoide funcional como interpretación artística.",
+      "pielCabelloOjos": "Pigmentación, cabello, vello corporal y color de ojos no fijados en pasajes consultados; no constituyen rasgos obligatorios.",
+      "orejasDentaduraExtremidades": "Facciones, orejas afiladas, vello de Bugbear y dentadura según diseño provisional; sin capacidades mecánicas nuevas.",
+      "variantes": "Goblin, Hobgoblin y Bugbear son tres opciones de ascendencia dentro de la familia, sin jerarquía.",
+      "dimorfismo": "No fijado.",
+      "adaptaciones": "Goblin puede desplazarse por espacios disponibles entre criaturas mayores; Bugbear cuenta como Grande únicamente para carga y fuerza bruta contra objetos inertes; Hobgoblin no tiene segunda competencia racial obligatoria.",
+      "sobrenatural": "Sin manifestaciones mágicas, visión nocturna o capacidades profesionales gratuitas por ascendencia.",
+      "rasgosExcluidos": "Bugbear de Escala Grande real, Kobold como opción goblinoide base, moral o profesión innatas; no se añaden armas naturales ni sentidos sobrenaturales.",
+      "decisionesProvisionales": "Tres adultos en muelle fluvial genérico: comerciante Goblin, interlocutor Hobgoblin y navegante Bugbear. Pigmentación, fisonomías, vello y ropa revisables; evitar convertir estas decisiones en canon biológico. Diferencia de escala visible, no cuantificada.",
+      "referencia": "Manual Maestro, creación > Paso 1 > Goblinoides; capítulos 20–21; anexo Goblinoides — Hijos del Ojo; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
     }
   },
   "recursos": [
@@ -221,34 +236,40 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3035273,
+      "sha256": "2a928d03f59b37cc3bb0b6c4484a7a093b3d9f356487e66d50fa120158f35159",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical opening for Goblinoids, Children of the Eye: three adult civilian characters standing on a common riverside dock, a small goblin textile merchant, a medium-scale hobgoblin interlocutor and a broad, upper-medium-scale bugbear navigator. Distinct silhouettes, proportions and facial structures, functional clothing, natural cooperation, no oversized giant, no weapons or military stereotype. Provisional skin colors, tapered ears and bugbear body hair, not universal canonical traits. Unnamed Edria port, functional steam infrastructure, warm atmospheric light and restrained cyan accents, no text or racial insignia.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original y copia recuperada de Biblioteca decodificados con Pillow: PNG RGB, 1024 x 1536, 3035273 bytes y SHA-256 idénticos, igualdad byte por byte comprobada. Inspección visual: tres adultos con diferencias de talla, corpulencia, fisonomía y cobertura corporal; Goblin a la izquierda, Hobgoblin al centro, Bugbear a la derecha. No es un estudio anatómico a escala; parte de la silueta del Goblin queda oculta por textiles y cajas. Pigmentación, orejas y vello son provisionales. Sin texto legible ni marcas de agua observados. Escena genérica no localizada; adornos de banderas ambientales no constituyen emblemas raciales oficiales. Resolución inferior al objetivo; sin reescalado. Prompt registrado como especificación artística, no transcripción del prompt interno no expuesto. Transferencia binaria GitHub pendiente por limitación previa; commit de imagen nulo.",
       "id": "RAZ-GOBL-001",
       "ascendencia": "Goblinoides",
-      "titulo": "Goblinoides — Ilustración principal",
+      "titulo": "Goblinoides — Hijos del Ojo",
       "categoria": "apertura_ascendencia",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Goblinoides",
-      "ubicacionSugerida": "Apertura de la sección de ascendencia",
-      "ruta": "assets/editorial/razas/goblinoides/goblinoides-apertura-v01.png"
+      "referenciaCanonica": "Manual Maestro, creación > Paso 1 > Goblinoides; capítulos 20–21; anexo Goblinoides — Hijos del Ojo; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "Goblinoides — Hijos del Ojo",
+      "ubicacionSugerida": "Página izquierda — La Victoria de Comprender",
+      "ruta": "assets/editorial/razas/goblinoides/goblinoides-apertura-v01.png",
+      "bibliotecaFileId": "file_00000000e770820e9d7cf036849ed406",
+      "bibliotecaId": "libfile_10a9a96c49488191afe0ed4f5332df75",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/goblinoides/goblinoides-apertura-v01.png"
     },
     {
       "variante": null,
