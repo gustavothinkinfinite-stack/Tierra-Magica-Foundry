@@ -108,6 +108,21 @@
       "rasgosExcluidos": "Vuelo sostenido de Silfo, levitación permanente de Hada, equiparar Dríade con Verdante o Trent, imponer magia entrenada, culto o profesión.",
       "decisionesProvisionales": "Cuatro adultos en terraza junto a arboleda no localizada; Hada alada apoyada en plataforma, Sátiro con cuernos y pezuñas, Dríade tocando árbol y Silfo sentado. Vestimenta, facciones, motivos vegetales, alas y cabello son propuestas reversibles. Escala del Hada poco evidente por perspectiva y plataforma; no usar la imagen como comparación métrica.",
       "referencia": "Manual Maestro, creación > Paso 1 > Feéricos; capítulos 20–21; anexo Feéricos — Hijos de la Hoja; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
+    },
+    "ankar": {
+      "canon": "Guardianes del Umbral creados por Vaelun. Humanoides altos y esbeltos de rasgos cánidos estilizados y manos funcionales; Escala Mediana. No son Terios Chacal. Recordar, Custodiar y Dejar Partir son deberes de muchas tradiciones, no profesión ni religión obligatoria.",
+      "altura": "Altos; sin cifra exacta definida en los pasajes consultados.",
+      "proporciones": "Altas y esbeltas, humanoides; proporciones exactas provisionales.",
+      "estructuraOsea": "Humanoide; sin descripción osteológica detallada.",
+      "pielCabelloOjos": "Pigmentación, cabello, vello y ojos no fijados en los pasajes consultados; diseño provisional.",
+      "orejasDentaduraExtremidades": "Rasgos cánidos estilizados y manos capaces de realizar oficios ordinarios. Orejas, hocico y dentadura específicos provisionales; no se establece cola ni locomoción animal obligatoria.",
+      "variantes": "No se fijan variantes anatómicas jugables en los pasajes consultados.",
+      "dimorfismo": "No fijado.",
+      "adaptaciones": "Sentido del Umbral y Custodia del Alma son rasgos espirituales acotados; no implican anatomía luminosa, inmunidad ni poderes mágicos profesionales.",
+      "sobrenatural": "Origen en Vaelun; no equivale a ascendencia animal de Eïra ni a no muerto.",
+      "rasgosExcluidos": "Identidad Terio Chacal, iconografía funeraria universal, sacerdocio obligatorio, poderes de nigromancia innatos, anatomía animal no respaldada.",
+      "decisionesProvisionales": "Tres adultos en estación ferroviaria no localizada: viajero mayor, empleada de estación y mecánico. Hocicos, orejas, vello, colores, ropa y proporciones individuales revisables; no fijan subrazas.",
+      "referencia": "Manual Maestro, creación > Paso 1 > Ankar; capítulos 20–21; anexo ANKAR — GUARDIANES DEL UMBRAL; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
     }
   },
   "recursos": [
@@ -380,34 +395,40 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3017081,
+      "sha256": "293f68e9c3b392bb71dda409001e09ac0545c43ce9d03723175066bd305fdeaa",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical opening for Ankar, Guardians of the Threshold: three tall slender adult medium-scale humanoids with stylized canid features and functional humanoid hands, in a generic Edria railway station, an older traveler, station attendant and railway mechanic. Practical varied clothing, no obligatory funerary motifs or priesthood, no jackal Terio identity, natural warm light with restrained cyan accents, functional railway infrastructure, no official racial emblem. Specific muzzle shapes, ears, pigmentation and hair provisional.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original y copia recuperada de Biblioteca abiertos y decodificados con Pillow: PNG RGB, 1024 × 1536, 3017081 bytes, SHA-256 coincidente e igualdad byte por byte comprobada. Inspección visual: tres adultos de rasgos cánidos, manos humanoides, profesiones civiles; dos figuras altas y la central más baja. La estatura exacta y la distinción anatómica inequívoca frente a Terios Chacal requieren estudio comparativo específico, pues los hocicos y orejas pueden evocar cánidos animales. No se presenta como definición anatómica definitiva. Banderas ambientales no constituyen emblemas raciales oficiales. Sin texto legible ni marcas de agua observados. Escenario genérico no localizado. Resolución inferior al objetivo, original sin reescalar. Prompt registrado como especificación artística, no transcripción del prompt interno no expuesto. Transferencia binaria GitHub pendiente por limitación anterior; commit de imagen nulo.",
       "id": "RAZ-ANKA-001",
       "ascendencia": "Ankar",
-      "titulo": "Ankar — Ilustración principal",
+      "titulo": "Ankar — Guardianes del Umbral",
       "categoria": "apertura_ascendencia",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Ankar",
-      "ubicacionSugerida": "Apertura de la sección de ascendencia",
-      "ruta": "assets/editorial/razas/ankar/ankar-apertura-v01.png"
+      "referenciaCanonica": "Manual Maestro, creación > Paso 1 > Ankar; capítulos 20–21; anexo ANKAR — GUARDIANES DEL UMBRAL; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "ANKAR — GUARDIANES DEL UMBRAL",
+      "ubicacionSugerida": "Página izquierda — Recordar sin Retener",
+      "ruta": "assets/editorial/razas/ankar/ankar-apertura-v01.png",
+      "bibliotecaFileId": "file_0000000020b4820ea7b82d47a53bf938",
+      "bibliotecaId": "libfile_585b6c8f2cb08191940940e38a83e27d",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/ankar/ankar-apertura-v01.png"
     },
     {
       "variante": null,
