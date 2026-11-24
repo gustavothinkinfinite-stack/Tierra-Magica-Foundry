@@ -483,25 +483,31 @@
       "ubicacionSugerida": "La Chispa — Los Elementales",
       "ruta": "assets/editorial/dioses/khorun/khorun-la-chispa-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 3279915,
+      "sha256": "c844fd8064bf76f07981a37b955a9105b8785364848d54fc8a8ca569d69a8036",
       "prompt": null,
       "referenciasCanonicas": [
-        "docs/Tierra_Magica_Manual_Maestro.md — La Chispa — Los Elementales"
+        "docs/Tierra_Magica_Manual_Maestro.md — 27. Khorun y la Primera Forja — La Chispa — Los Elementales",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Pendiente; sustituir categorías no documentadas por escenas canónicas.",
-      "commit": null
+      "observaciones": "PNG RGB verificado mediante apertura y comparación de SHA-256 de original y copia recuperada de Biblioteca. Representación mitológica provisional de las cuatro familias elementales (Tierra, Fuego, Agua y Aire); no fija anatomía, escala, secuencia histórica ni capacidades mecánicas. Prompt exacto no expuesto por el generador. Transferencia binaria a GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000df0c820e89f2223b3762cae0",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/khorun/khorun-la-chispa-v01.png"
     },
     {
       "id": "DIV-KHORUN-007",
