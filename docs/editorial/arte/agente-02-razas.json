@@ -138,6 +138,21 @@
       "rasgosExcluidos": "Gólem, artefacto animado, cuerpo enteramente mineral en la variante jugable, armadura natural obligatoria, batería viviente, profesión o moral determinada por color.",
       "decisionesProvisionales": "Tres adultos en taller de encuadernación y archivo no localizado; facetas en sienes y antebrazos, pigmentación, formas cristalinas, cabello y vestuario revisables. No se definen órganos internos ni propiedades ópticas universales.",
       "referencia": "Manual Maestro, creación > Paso 1 > Cristálidos; capítulos 20–21; anexo Cristálidos — Hijos de la Materia Resonante; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
+    },
+    "verdantes": {
+      "canon": "Pueblos vegetales conscientes y móviles posteriores a los Tres Primeros Pueblos de Eïra. Escala Mediana. Biología autónoma distinta de Dríades, Trents y Micelios. Pueden poseer corteza flexible, tallos articulados, hojas, fibras y raíces adaptadas.",
+      "altura": "No fijada en pasajes consultados.",
+      "proporciones": "Escala Mediana, movilidad autónoma; formas y proporciones específicas revisables.",
+      "estructuraOsea": "No especificada; tejidos vegetales articulados como interpretación, sin asumir esqueleto animal.",
+      "pielCabelloOjos": "Corteza flexible, fibras y hojas respaldadas como posibilidades, no rasgos universales. Color, forma y distribución provisionales.",
+      "orejasDentaduraExtremidades": "No fijadas; manos manipuladoras y articulaciones vegetales funcionales como propuesta artística.",
+      "variantes": "Adaptaciones de bioma, no subrazas mecánicas nuevas. Ejemplos canónicos: jungla, pantano, tundra y desierto.",
+      "dimorfismo": "No especificado.",
+      "adaptaciones": "Sustento Vegetal requiere agua, luz y nutrientes compatibles; descanso y Fatiga ordinarios. Enraizar requiere suelo apropiado e inmovilidad. Una ventaja anatómica estrecha de bioma, sin inmunidad general.",
+      "sobrenatural": "Origen vinculado a Eïra; no impone culto, curación por fotosíntesis, generación de Maná ni facultades mágicas automáticas.",
+      "rasgosExcluidos": "Dríade, Trent, Micelio, armadura vegetal automática, profesión o moral innatas, inmunidad ambiental general.",
+      "decisionesProvisionales": "Tres adultos de morfologías leñosa, foliar de humedal y suculenta inspirada en desierto, en taller de cerámica urbano no localizado. Facciones, hojas, fibras, pigmentación, ropa y articulaciones específicas son revisables; no prueban una adaptación mecánica determinada.",
+      "referencia": "Manual Maestro, creación > Paso 1 > Verdantes; capítulos 20–21; anexo Verdantes — Pueblos de raíz y camino; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
     }
   },
   "recursos": [
@@ -486,34 +501,40 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3154913,
+      "sha256": "3aea5123a13a9287169ea62eb385946df7cd179adb58ab76dfbe681036aa9faf",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical opening for Verdantes, autonomous mobile conscious plant people of medium scale. Three adult individuals with differentiated provisional plant tissue morphologies: a bark-and-fiber ceramicist working at a pottery wheel, a wetland-inspired broad-leaf artisan inspecting glazed pottery, and a succulent desert-inspired traveler. Articulated functional plant hands, natural expressive faces, practical clothing, no tree-bound spirits, no giant tree bodies or fungal caps. Urban pottery workshop, functional kiln and pipes, warm and cool natural lighting with restrained cyan accents, no racial emblems or named city.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original y copia recuperada de Biblioteca decodificados con Pillow: PNG RGB, 1024 × 1536, 3154913 bytes, SHA-256 coincidente e igualdad byte por byte comprobada. Inspección visual: tres adultos con tejidos vegetales diferenciados y actividad civil; hojas, fibras, corteza y formas suculentas como propuestas revisables. Piernas y raíces parcialmente ocultas por mobiliario y encuadre; no sustituye estudio anatómico. No se acredita adaptación mecánica concreta por apariencia. Sin texto legible ni marcas de agua observados. Escena genérica no localizada. Resolución inferior al objetivo, original sin reescalar. Prompt registrado como especificación artística previa, no transcripción del prompt interno del generador. Transferencia binaria GitHub pendiente por limitación anterior; commit de imagen nulo.",
       "id": "RAZ-VERD-001",
       "ascendencia": "Verdantes",
-      "titulo": "Verdantes — Ilustración principal",
+      "titulo": "Verdantes — Pueblos de raíz y camino",
       "categoria": "apertura_ascendencia",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Verdantes",
-      "ubicacionSugerida": "Apertura de la sección de ascendencia",
-      "ruta": "assets/editorial/razas/verdantes/verdantes-apertura-v01.png"
+      "referenciaCanonica": "Manual Maestro, creación > Paso 1 > Verdantes; capítulos 20–21; anexo Verdantes — Pueblos de raíz y camino; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "Verdantes — Pueblos de raíz y camino",
+      "ubicacionSugerida": "Página izquierda — La vida que aprendió a caminar",
+      "ruta": "assets/editorial/razas/verdantes/verdantes-apertura-v01.png",
+      "bibliotecaFileId": "file_000000006478820ea1c401feddbfdd8c",
+      "bibliotecaId": "libfile_cc0d0d10a3408191a6324fae73dd7ead",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/verdantes/verdantes-apertura-v01.png"
     },
     {
       "variante": null,
