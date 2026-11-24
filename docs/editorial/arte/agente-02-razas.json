@@ -153,6 +153,21 @@
       "rasgosExcluidos": "Dríade, Trent, Micelio, armadura vegetal automática, profesión o moral innatas, inmunidad ambiental general.",
       "decisionesProvisionales": "Tres adultos de morfologías leñosa, foliar de humedal y suculenta inspirada en desierto, en taller de cerámica urbano no localizado. Facciones, hojas, fibras, pigmentación, ropa y articulaciones específicas son revisables; no prueban una adaptación mecánica determinada.",
       "referencia": "Manual Maestro, creación > Paso 1 > Verdantes; capítulos 20–21; anexo Verdantes — Pueblos de raíz y camino; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
+    },
+    "micelios": {
+      "canon": "Organismos fúngicos conscientes, no plantas ni animales, de Escala Mediana. Cuerpos con posibles fibras densas, filamentos, superficies aterciopeladas y estructuras de fructificación; diversidad individual sin subrazas mecánicas automáticas. Individuo, comunidad y red son distintos.",
+      "altura": "No fijada en pasajes consultados.",
+      "proporciones": "Escala Mediana; proporciones humanoides articuladas como propuesta provisional.",
+      "estructuraOsea": "No definida; tejidos fúngicos densos y filamentos como propuesta de estructura corporal, sin afirmar esqueleto animal.",
+      "pielCabelloOjos": "Superficies fúngicas, colores terrosos, filamentos y fructificaciones posibles; pigmentación, ojos y distribución de estructuras provisionales.",
+      "orejasDentaduraExtremidades": "No especificadas; manos manipuladoras y extremidades funcionales como interpretación visual.",
+      "variantes": "Diversidad morfológica individual, no subrazas con beneficios automáticos.",
+      "dimorfismo": "No fijado.",
+      "adaptaciones": "Sustento Fúngico requiere humedad y nutrientes orgánicos compatibles; Quimiosensibilidad acotada a señales químicas pertinentes; Enlace Micelial exige contacto directo con red viva compatible y continua y otro Micelio voluntario conectado dentro de 12 espacios.",
+      "sobrenatural": "No implica telepatía, mente colectiva, transferencia de Maná ni recuerdos compartidos universales; redes comunitarias complejas son infraestructura.",
+      "rasgosExcluidos": "Hojas vegetales, fotosíntesis, anatomía animal obligatoria, caricatura de hongo, obediencia colectiva, profesión o culto universal.",
+      "decisionesProvisionales": "Tres adultos en taller urbano de instrumentos musicales, no localizado. Estructuras de fructificación integradas alrededor de cabeza y hombros, filamentos en extremidades y superficies de tonos ocres, claros y rojizos. Vestimenta, facciones, articulaciones y distribución de tejidos revisables.",
+      "referencia": "Manual Maestro, creación > Paso 1 > Micelios; capítulos 20–21; anexo Micelios — Pueblos de la red y la elección; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
     }
   },
   "recursos": [
@@ -539,34 +554,40 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3146256,
+      "sha256": "b7e4209b8d3c4cbff9962e0d9f3ffcdebc57fc32134feab0f8cfef0897ce5ff8",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical opening for Micelios, conscious autonomous fungal people of medium scale. Three adult individuals with differentiated organic fungal morphologies: dense fibers, fine filaments, velvety textures and integrated fruiting structures. Civilian mentorship in an unnamed humid urban instrument workshop. Functional articulated hands, individual expressions, practical clothes, no plant leaves, cartoon mushroom bodies or visible collective mental network. Warm daylight, restrained cyan accents and functional early arcane-industrial infrastructure. Provisional tissue morphology and pigmentation.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original y copia recuperada de Biblioteca abiertos y decodificados con Pillow: PNG RGB, 1024 × 1536, 3146256 bytes; SHA-256 coincidente e igualdad byte por byte comprobada. Inspección visual: tres adultos con tejidos filamentosos, fructificaciones integradas y actividad artesanal. Facciones humanoides, formas de fructificación, pigmentación y articulaciones provisionales; no demuestra anatomía interna ni escala métrica. Parte del cuerpo inferior del personaje izquierdo queda oculta por mobiliario. No se representa Enlace Micelial activo ni mente colectiva. Sin texto legible ni marcas de agua observados. Escenario genérico no localizado. Resolución inferior al objetivo, original sin reescalar. Prompt registrado como especificación artística en inglés, no transcripción del prompt interno no expuesto. Transferencia binaria GitHub pendiente por limitación anterior; commit de imagen nulo.",
       "id": "RAZ-MICE-001",
       "ascendencia": "Micelios",
-      "titulo": "Micelios — Ilustración principal",
+      "titulo": "Micelios — Pueblos de la red y la elección",
       "categoria": "apertura_ascendencia",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Micelios",
-      "ubicacionSugerida": "Apertura de la sección de ascendencia",
-      "ruta": "assets/editorial/razas/micelios/micelios-apertura-v01.png"
+      "referenciaCanonica": "Manual Maestro, creación > Paso 1 > Micelios; capítulos 20–21; anexo Micelios — Pueblos de la red y la elección; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "Micelios — Pueblos de la red y la elección",
+      "ubicacionSugerida": "Página izquierda — Muchas voces, ninguna obligación",
+      "ruta": "assets/editorial/razas/micelios/micelios-apertura-v01.png",
+      "bibliotecaFileId": "file_00000000897c820e97849019b7bde30d",
+      "bibliotecaId": "libfile_f667dbb3de648191bd4859ea53d7f7ba",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/micelios/micelios-apertura-v01.png"
     },
     {
       "variante": null,
