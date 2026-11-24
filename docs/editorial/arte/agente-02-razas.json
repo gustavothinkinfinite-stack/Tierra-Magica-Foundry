@@ -48,6 +48,21 @@
       "rasgosExcluidos": "Moral, profesión, magia o visión en oscuridad obligatorias; piel vegetal, auras permanentes o jerarquías de pureza.",
       "decisionesProvisionales": "Cuatro adultos en mercado fluvial no localizado; ropa, fisonomías, orejas y ocupaciones reversibles, sin identificar variantes mediante color de piel.",
       "referencia": "Manual Maestro, creación > Paso 1 > Élficos; capítulos 20–21; anexo ÉLFICOS — HIJOS DE LA SAVIA; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
+    },
+    "orcos": {
+      "canon": "Humanoides de Escala Mediana, complexión robusta y colmillos visibles frecuentes, no universales. Complexión Orca favorece fuerza aplicada a objetos inertes; Voluntad del Colmillo expresa perseverancia. Tradiciones Comunes, de Sangre y Grises sin castas mecánicas ni moral heredada.",
+      "altura": "No fijada en pasajes consultados.",
+      "proporciones": "Medianas, robustas con diversidad individual.",
+      "estructuraOsea": "Humanoide; detalles no especificados.",
+      "pielCabelloOjos": "Tonalidades, cabello y ojos no fijados en pasajes consultados; decisiones visuales provisionales.",
+      "orejasDentaduraExtremidades": "Colmillos visibles frecuentes, no armas naturales regladas. Forma de orejas, tamaño de colmillos y otros detalles anatómicos provisionales.",
+      "variantes": "Comunes, de Sangre y Grises: tradiciones históricas, no subrazas mecánicas; linajes de tamaño extraordinario no son opción jugable cerrada.",
+      "dimorfismo": "No fijado.",
+      "adaptaciones": "Capacidad física y perseverancia situacionales; necesidades biológicas ordinarias.",
+      "sobrenatural": "Sin manifestación mágica adicional obligatoria para tradición de Sangre.",
+      "rasgosExcluidos": "Gigantismo obligatorio, ferocidad o profesión marcial innatas, armas naturales regladas por colmillos.",
+      "decisionesProvisionales": "Tres adultos orcos de fisonomías y edades distintas cooperan en una esclusa de un puerto no localizado; vestuario, pigmentación y orejas afiladas son interpretaciones revisables; no se identifican tradiciones por apariencia.",
+      "referencia": "Manual Maestro, creación > Paso 1 > Orcos; capítulos 20–21; anexo Orcos — Hijos del Colmillo; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
     }
   },
   "recursos": [
@@ -168,34 +183,40 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3027226,
+      "sha256": "da9f7c7523b89913d07e44b411e03d3d5c5812f8067dad815fadb69715f73452",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical opening for Orcs, Children of the Fang: three adult medium-scale robust orcs with varied ages, natural faces and frequently visible lower tusks, cooperating on a canal lock repair in an unnamed Edria river port; kneeling engineer, elder overseer and laborer. Functional stone and timber infrastructure, brass mechanisms, warm light and restrained cyan lantern; no obligatory warrior identity, no racial insignia, no new subrace.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original y copia recuperada de Biblioteca abiertos y decodificados con Pillow: PNG RGB, dimensiones, bytes y SHA-256 idénticos. Inspección visual: tres adultos con colmillos y anatomía robusta, escena civil, sin marcas de agua ni texto legible; plano contiene trazos no legibles. Orejas afiladas y pigmentación como interpretación provisional. La descripción automática del generador usó la expresión orcish/half-orc; la pieza representa Orcos exclusivamente y no acredita ascendencia mixta ni modifica canon. Resolución inferior al objetivo; sin reescalado. Prompt registrado es especificación artística, no transcripción del prompt interno del generador. Transferencia binaria GitHub pendiente por limitación previa; commit de imagen nulo.",
       "id": "RAZ-ORCO-001",
       "ascendencia": "Orcos",
-      "titulo": "Orcos — Ilustración principal",
+      "titulo": "Orcos — Hijos del Colmillo",
       "categoria": "apertura_ascendencia",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Orcos",
-      "ubicacionSugerida": "Apertura de la sección de ascendencia",
-      "ruta": "assets/editorial/razas/orcos/orcos-apertura-v01.png"
+      "referenciaCanonica": "Manual Maestro, creación > Paso 1 > Orcos; capítulos 20–21; anexo Orcos — Hijos del Colmillo; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "Orcos — Hijos del Colmillo",
+      "ubicacionSugerida": "Página izquierda — La Fuerza de Elegir",
+      "ruta": "assets/editorial/razas/orcos/orcos-apertura-v01.png",
+      "bibliotecaFileId": "file_000000005368820eb72f8f544883693b",
+      "bibliotecaId": "libfile_4570488743948191aea703de3c16ef2a",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/orcos/orcos-apertura-v01.png"
     },
     {
       "variante": null,
