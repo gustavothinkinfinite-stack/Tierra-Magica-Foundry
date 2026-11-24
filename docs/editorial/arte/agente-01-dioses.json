@@ -849,25 +849,32 @@
       "ubicacionSugerida": "28. Varkor y la Primera Guerra",
       "ruta": "assets/editorial/dioses/varkor/varkor-ornamento-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1774,
+        "alto": 887
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 868249,
+      "sha256": "8bd38d8b0bbc4edeb0103582339b7fe5e3a72ead2d7c7a834c45d8294e7157b7",
       "prompt": null,
       "referenciasCanonicas": [
-        "docs/Tierra_Magica_Manual_Maestro.md — 28. Varkor y la Primera Guerra"
+        "docs/Tierra_Magica_Manual_Maestro.md — 28. Varkor y la Primera Guerra",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json",
+        "DIV-VARKOR-005"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Plan provisional; sustitución de categorías no documentadas por temas canónicos.",
-      "commit": null
+      "observaciones": "PNG RGBA original y copia recuperada de Biblioteca abiertos y comparados byte por byte; SHA-256 idénticos, alfa 0–255. Resolución nativa superior al objetivo 1200×600, sin reescalado. Ornamento provisional derivado del puño cerrado con cicatriz vertical canónico; motivos laterales decorativos sin significado religioso adicional. Prompt exacto no expuesto. Transferencia binaria a GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000002c5c820e9bd6cfe7d9545f9c",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/varkor/varkor-ornamento-v01.png"
     }
   ]
 }
