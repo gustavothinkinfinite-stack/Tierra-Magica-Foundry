@@ -812,25 +812,32 @@
       "ubicacionSugerida": "Varkor y la era arcano-industrial",
       "ruta": "assets/editorial/dioses/varkor/varkor-era-arcano-industrial-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 3163840,
+      "sha256": "879ec9cfa2786e609f80b7cf8468cf683216bca86518852a3cbf84406ac91e3b",
       "prompt": null,
       "referenciasCanonicas": [
-        "docs/Tierra_Magica_Manual_Maestro.md — Varkor y la era arcano-industrial"
+        "docs/Tierra_Magica_Manual_Maestro.md — 28. Varkor y la Primera Guerra — Varkor y la era arcano-industrial",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json",
+        "DIV-VARKOR-005"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Plan provisional; sustitución de categorías no documentadas por temas canónicos.",
-      "commit": null
+      "observaciones": "PNG RGB original y copia recuperada de Biblioteca abiertos y SHA-256 idénticos. Interpretación provisional de fortificaciones, dirigibles, artillería e ingeniería arcana; no establece localización, facción ni doctrina religiosa canónicas. Resolución nativa inferior al objetivo horizontal, sin reescalado. Transferencia binaria GitHub pendiente; prompt exacto no expuesto.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000200c820ea8f372e734f8a643",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/varkor/varkor-era-arcano-industrial-v01.png"
     },
     {
       "id": "DIV-VARKOR-008",
