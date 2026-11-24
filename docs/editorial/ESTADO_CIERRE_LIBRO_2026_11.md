@@ -597,3 +597,12 @@
 - Corrección `0425c30b7c668719b15464bb06ded54b8b463069`: los identificadores generados podían colisionar si los títulos eran, por ejemplo, «Reglas», «Reglas», «Reglas 2». El contador por slug no garantizaba unicidad global. Se añade un conjunto de destinos usados y se incrementa el sufijo hasta encontrar uno libre. No cambia el canon.
 - No se ha comprobado una nueva ejecución ni descargado otro PDF en esta unidad; la corrección requiere validación CI y revisión de enlaces. Último PDF materialmente registrado: QA-ED-42, 606 páginas, anterior a la corrección Setext.
 - Pendientes: verificar compilación posterior a QA-ED-42/43 y manifest, índice y tablas; recuperar dos cubiertas y doce retratos originales, equipo/PNJ/iconografía/mapa, créditos y preflight de imprenta. PDF de lectura no equivale a edición ilustrada definitiva ni archivo certificado para imprenta.
+
+
+## 24-11-2026 — QA-ED-44: PDF posterior a correcciones verificado
+
+- Base main: `95c3c09bef08bbb01f5f1d1fbe4f82d16e0e3f4f`. Validate 45318496262 exitoso.
+- Maquetar [45318490860](https://github.com/gustavothinkinfinite-stack/Tierra-Magica-Foundry/actions/runs/45318490860) exitoso sobre `0425c30b7c668719b15464bb06ded54b8b463069`. Artifact 14885977503 descargado y descomprimido (21 archivos). PDF abierto localmente: 606 páginas, 1711065 bytes, SHA-256 calculado y coincidente con manifest `7596be8bc8c5e94c6ed3f594e73baf5b9eff2deb7748522c2c770339e00e9591`.
+- Manifest: 68 entradas de índice, 39 tablas anchas convertidas a fichas, cero retratos y ninguna cubierta original. Auditoría CI: 410 enlaces internos, cero destinos sin resolver o fuera de rango; nueve fuentes incrustadas, 606 páginas de 6×9 pulgadas. No es certificación de imprenta.
+- Inspección visual página 7: párrafo espurio eliminado, índice legible; extracción local confirma índice en páginas 5–7, página 8 sin contenido salvo cabecera/pie y comienzo de Parte I en página 9. Revisar si página par vacía es intencional y comprobar correspondencia semántica de destinos.
+- assets/editorial en main devuelve 404. Pendientes recuperar originales verificables (2 cubiertas y 12 retratos), revisar tablas restantes, equipo/PNJ/iconografía/mapa, créditos y preflight de imprenta. Manual Maestro intacto; no es edición ilustrada definitiva.
