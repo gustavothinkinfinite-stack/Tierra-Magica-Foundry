@@ -10427,9 +10427,11 @@ Adaptación menor: recargo **25%** del precio base. Adaptación mayor: **50%**. 
 
 CRAFT-03 aclara que fabricar desde cero para un usuario conocido incluye el ajuste ordinario de talla. El recargo de Adaptación se aplica al modificar equipo terminado o cuando anatomía, Escala o estructura exigen un cambio real fuera del patrón ordinario. Cuando la Adaptación se realiza personalmente como Proyecto, el recargo funciona como VR del servicio y CRAFT-02 determina sus costes.
 
-### Migración de crowns
+### Monedas de registros antiguos
 
-**crowns** es un campo legado obsoleto, no una cuarta moneda canónica. No tiene equivalencia automática. Foundry preserva el valor original y marca el Actor como pendiente hasta que una persona indique explícitamente cuántos cobres vale 1 crown o confirme que debe archivarse sin convertirlo. Nunca se suma crowns silenciosamente a un saldo canónico existente.
+**crowns** es una denominación obsoleta, no una cuarta moneda canónica. No tiene equivalencia automática. Si un registro antiguo contiene crowns, debe conservarse su valor original hasta que se establezca explícitamente cuántos cobres vale 1 crown o se decida archivarlo sin convertirlo. Nunca se suma crowns silenciosamente a un saldo canónico existente.
+
+> **Nota técnica para Foundry:** el sistema preserva el valor original del campo legado crowns y marca el Actor como pendiente hasta que una persona confirme la conversión o el archivo sin conversión.
 
 ## 20. Pueblos jugables, herencias, culturas y orígenes
 
