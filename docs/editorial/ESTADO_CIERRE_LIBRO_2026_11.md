@@ -629,3 +629,11 @@
 - Inspección visual de páginas 426–427: catálogo monetario de equipo dividido entre páginas, encabezado Equipo/Precio repetido correctamente, filas y precios legibles, sin recortes visibles. La nota de kits al final de p. 427 es legible. No se certifica el resto de tablas ni se modifica el canon.
 - Bloqueo editorial identificado en p. 426: el texto de lectura incluye notas técnicas de Foundry y decisiones pendientes sobre disponibilidad comercial; no deben confundirse con reglas definitivas. Requiere clasificación editorial y resolución canónica antes de edición final, sin inventar equivalencias ni precios.
 - Pendientes: originales de cubiertas y retratos, cotejo de portada histórica, revisión restante de tablas, equipo/PNJ/iconografía/mapa, créditos y preflight de imprenta. No se generó un PDF nuevo. PDF de lectura no equivale a edición ilustrada definitiva ni certificación de imprenta.
+
+
+## 24-11-2026 — QA-ED-48: separación de migración técnica y reglas de moneda
+
+- Base main comprobada: `0cac1c9069260bd45fce507197bd22f27a6f93f4`. PDF material QA-ED-44, 606 páginas, disponible localmente; extracción de páginas 428–431 y revisión visual de p. 429.
+- La página 429 presenta adaptación de equipo, migración de crowns y comienzo del capítulo 20; texto legible y sin recortes visibles. La sección Migración de crowns mezcla la regla canónica (no existe cuarta moneda ni equivalencia automática) con instrucciones de migración de Actors de Foundry. Para la edición final conservar la regla de moneda y separar las instrucciones de software como nota técnica, sin modificar valores ni conversiones. No se altera el Manual Maestro en esta unidad.
+- P. 428 confirma que los precios históricos sin ratificación no se convierten por inferencia; no resolver disponibilidad comercial mediante precios inventados. P. 430–431 remiten a los paquetes raciales y orígenes ya definidos en creación de personaje; revisión textual, no visual completa.
+- Pendientes: originales de dos cubiertas y doce retratos, separación editorial de notas técnicas, equipo/PNJ/iconografía/mapa, créditos y preflight. No se generó otro PDF ni se certifica imprenta.
