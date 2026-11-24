@@ -33,6 +33,21 @@
       "rasgosExcluidos": "Piel mineral, armadura natural pétrea, metal corporal aprovechable, profesión o religión obligatoria.",
       "decisionesProvisionales": "Cuatro adultos de edades, fisonomías, vestimentas y actividades distintas; paso montañoso no localizado; sin asignar subrazas ni normas de altura.",
       "referencia": "Manual Maestro, creación > Paso 1 > Enanos; capítulos 20 y 21; anexo ENANOS — HIJOS DE LA PIEDRA; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
+    },
+    "elficos": {
+      "canon": "Un único Pueblo Élfico Primordial vinculado a Eïra, diversificado históricamente en Altos, Silvanos, Oscuros y comunidades comunes o mixtas. Escala Mediana; Sentidos Élficos y Resonancia de la Savia no implican capacidades mágicas universales ni visión perfecta en oscuridad.",
+      "altura": "Sin altura exacta definida en las secciones consultadas.",
+      "proporciones": "Humanoides de Escala Mediana; complexiones individuales y proporciones naturales, provisionales.",
+      "estructuraOsea": "No especificada; representación humanoide provisional.",
+      "pielCabelloOjos": "Tonalidades y fisonomías diversas, sin asociación obligatoria con tradiciones; decisiones artísticas.",
+      "orejasDentaduraExtremidades": "Orejas levemente afiladas como recurso visual provisional no fijado en pasajes consultados; dentadura y extremidades humanoides ordinarias como interpretación.",
+      "variantes": "Altos, Silvanos, Oscuros y comunes o mixtos; historias, culturas y adaptaciones, no cuatro especies ni castas.",
+      "dimorfismo": "No fijado en las secciones consultadas.",
+      "adaptaciones": "Oscuros: ascendencia histórica de regiones profundas; no visión en oscuridad gratuita.",
+      "sobrenatural": "Resonancia de la Savia advierte alteraciones mágicas significativas que afectan vida; no exige manifestación visible.",
+      "rasgosExcluidos": "Moral, profesión, magia o visión en oscuridad obligatorias; piel vegetal, auras permanentes o jerarquías de pureza.",
+      "decisionesProvisionales": "Cuatro adultos en mercado fluvial no localizado; ropa, fisonomías, orejas y ocupaciones reversibles, sin identificar variantes mediante color de piel.",
+      "referencia": "Manual Maestro, creación > Paso 1 > Élficos; capítulos 20–21; anexo ÉLFICOS — HIJOS DE LA SAVIA; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
     }
   },
   "recursos": [
@@ -115,34 +130,40 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3104945,
+      "sha256": "c51f68a712f63e8990c48659c22af85b67e6570e9e983b2bb1ae145eb1372fd4",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical opening illustration of four adult elves, Children of Sap, medium humanoid scale, diverse skin tones, ages, builds and practical civilian occupations, at a generic riverside urban market in Edria. Slightly tapered ears as provisional visual design, no fixed skin color or profession by tradition. Living trees integrated with functional stone buildings, waterwheels, restrained brass pipework, golden light and cyan lantern accents, no innate glowing magic, no racial insignia.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original y copia recuperada de Biblioteca: PNG RGB válido, dimensiones, tamaño y SHA-256 coincidentes. Resolución inferior al objetivo de impresión; sin reescalado. Inspección visual: cuatro adultos, anatomía humanoide, orejas afiladas provisionales, diversidad de actividades, sin marcas de agua ni texto legible; papeles contienen trazos gráficos no legibles. Composición y asentamiento genéricos no localizados; sin subrazas anatómicas nuevas. Prompt registrado es especificación artística previa, no transcripción del prompt interno del generador (no expuesto). Transferencia binaria GitHub pendiente por limitación ya registrada; commit de imagen nulo. Consulta assets/editorial/razas en main devolvió 404.",
       "id": "RAZ-ELFI-001",
       "ascendencia": "Élficos",
-      "titulo": "Élficos — Ilustración principal",
+      "titulo": "Élficos — Hijos de la Savia",
       "categoria": "apertura_ascendencia",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Élficos",
-      "ubicacionSugerida": "Apertura de la sección de ascendencia",
-      "ruta": "assets/editorial/razas/elficos/elficos-apertura-v01.png"
+      "referenciaCanonica": "Manual Maestro, creación > Paso 1 > Élficos; capítulos 20–21; anexo ÉLFICOS — HIJOS DE LA SAVIA; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "ÉLFICOS — HIJOS DE LA SAVIA",
+      "ubicacionSugerida": "Página izquierda — La Vida que Cambia",
+      "ruta": "assets/editorial/razas/elficos/elficos-apertura-v01.png",
+      "bibliotecaFileId": "file_00000000ac0c820eb3486a7e05cbbaa5",
+      "bibliotecaId": "libfile_880a433604d081919efbfb03966ab539",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/elficos/elficos-apertura-v01.png"
     },
     {
       "variante": null,
