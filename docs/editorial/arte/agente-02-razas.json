@@ -24,26 +24,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3022227,
+      "sha256": "8eeeab75b27b02437db727cf3b8f0dde816c05efa95127750591e73e499d8d1e",
       "enlace": null,
       "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical full-page opening for Humans, Children of the Road, of Tierra Mágica. Three ordinary adult humans with diverse skin tones, ages and builds, full bodies clearly visible, a dark-skinned middle-aged woman in practical merchant layers, a younger light-skinned male traveler with worn cloak, and an older brown-skinned craftswoman with a tool satchel. Natural interaction at an unnamed Edria stone bridge and trading crossroads, distant late medieval terraced buildings and restrained functional brass steam infrastructure, subtle cyan arcane lantern and warm dawn. No deity, no supernatural anatomy, no uniform culture, no exaggerated armor, no generic ravens. Warm stone, petrol blue, aged gold, leather, forest green. Negative space in upper area. No border.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "Composición provisional; asentamiento genérico no localizado; no representa subrazas ni instituciones universales.",
+      "observaciones": "Original PNG RGB verificado, recuperado desde Biblioteca y SHA-256 coincidente. Resolución nativa inferior al objetivo; sin reescalado. Transferencia binaria a GitHub pendiente: conector no acepta referencia de archivo local para crear blob. Prompt registrado es especificación artística previa; texto interno efectivo del generador no expuesto. Asentamiento genérico no localizado; sin subrazas ni instituciones universales.",
       "id": "RAZ-HUMA-001",
       "ascendencia": "Humanos",
       "titulo": "Humanos — Hijos del Camino",
@@ -51,7 +54,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "HUMANOS — HIJOS DEL CAMINO",
       "ubicacionSugerida": "Página izquierda — La Primera Elección",
-      "ruta": "assets/editorial/razas/humanos/humanos-apertura-v01.png"
+      "ruta": "assets/editorial/razas/humanos/humanos-apertura-v01.png",
+      "bibliotecaFileId": "file_000000006c54820e90b021777f9df736",
+      "bibliotecaId": "libfile_8682b60acea0819186a3088a55e494ea",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/humanos/humanos-apertura-v01.png"
     },
     {
       "variante": null,
