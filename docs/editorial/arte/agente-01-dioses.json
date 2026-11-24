@@ -677,19 +677,22 @@
       "sha256": "5902b14a706aa6c7963de8155fd7dd7cfe416cf2d73de785359f95e3cca99bf3",
       "prompt": null,
       "referenciasCanonicas": [
-        "docs/Tierra_Magica_Manual_Maestro.md — Las Cuatro Virtudes de Varkor"
+        "docs/Tierra_Magica_Manual_Maestro.md — Las Cuatro Virtudes de Varkor",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
       ],
       "fechaCreacion": "2026-11-24",
       "version": 1,
       "procedencia": "Ilustración original generada para Tierra Mágica",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "PNG RGB abierto y verificado localmente. Original de conversación file_000000001a3c82129b22e4e848ebedf5. Dos intentos de Biblioteca rechazados con 403 trusted producer. Transferencia binaria pendiente; no se confirma conservación persistente. Interpretación simbólica de las cuatro virtudes, no determina moralidad ni capacidades raciales.",
-      "commit": null
+      "observaciones": "Interpretación alegórica de Colmillo, Garra, Puño y Ojo; no fija rasgos raciales ni moralidad. Original y copia de Biblioteca verificados con SHA-256 idéntico, sin reescalado. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_0000000032ac8212b69e75bd2815b41f",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/varkor/varkor-cuatro-virtudes-v01.png"
     },
     {
       "id": "DIV-VARKOR-004",
@@ -710,19 +713,22 @@
       "sha256": "c30aa99f011c0b86d18f4085df02dc1e1aade15a45e7a285038e160a5d2de7c9",
       "prompt": null,
       "referenciasCanonicas": [
-        "docs/Tierra_Magica_Manual_Maestro.md — Fuerza, conflicto y moralidad"
+        "docs/Tierra_Magica_Manual_Maestro.md — Fuerza, conflicto y moralidad",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
       ],
       "fechaCreacion": "2026-11-24",
       "version": 1,
       "procedencia": "Ilustración original generada para Tierra Mágica",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "PNG RGB abierto y verificado localmente. Original de conversación file_000000007c5c81f6be6d31fe6499e740. Biblioteca rechazada con 403 trusted producer; transferencia pendiente. Escena ilustrativa de resistencia y cooperación, no acontecimiento histórico canónico.",
-      "commit": null
+      "observaciones": "Escena narrativa provisional de cooperación y resistencia; no documenta un hecho histórico. Original y copia de Biblioteca verificados con SHA-256 idéntico, sin reescalado. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_0000000098c881f6b6ea18f32f44b8d6",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/varkor/varkor-conflicto-y-resistencia-v01.png"
     },
     {
       "id": "DIV-VARKOR-005",
@@ -734,25 +740,31 @@
       "ubicacionSugerida": "28. Varkor y la Primera Guerra",
       "ruta": "assets/editorial/dioses/varkor/varkor-simbolo-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1254,
+        "alto": 1254
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 1691168,
+      "sha256": "02503880dea28d364bb5e596660aef0d25a24f7c087cd58c40cb5368835821a3",
       "prompt": null,
       "referenciasCanonicas": [
-        "docs/Tierra_Magica_Manual_Maestro.md — 28. Varkor y la Primera Guerra"
+        "docs/Tierra_Magica_Manual_Maestro.md — 28. Varkor y la Primera Guerra",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Plan provisional; sustitución de categorías no documentadas por temas canónicos.",
-      "commit": null
+      "observaciones": "Puño cerrado en hierro ennegrecido atravesado por cicatriz vertical roja. PNG RGBA con alfa 0–255; inferior al objetivo 1500×1500. Acabado provisional. Original y copia de Biblioteca verificados con SHA-256 idéntico, sin reescalado. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000cea4820ea386e427a860a9db",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/varkor/varkor-simbolo-v01.png"
     },
     {
       "id": "DIV-VARKOR-006",
