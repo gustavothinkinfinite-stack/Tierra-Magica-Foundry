@@ -447,25 +447,31 @@
       "ubicacionSugerida": "27. Khorun y la Primera Forja",
       "ruta": "assets/editorial/dioses/khorun/khorun-simbolo-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1254,
+        "alto": 1254
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 1527544,
+      "sha256": "abf757c2398221df9d34c15b3a47f4d0f38e0d99285dff4c9cfe5586758ccd71",
       "prompt": null,
       "referenciasCanonicas": [
-        "docs/Tierra_Magica_Manual_Maestro.md — 27. Khorun y la Primera Forja"
+        "docs/Tierra_Magica_Manual_Maestro.md — 27. Khorun y la Primera Forja",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Pendiente; sustituir categorías no documentadas por escenas canónicas.",
-      "commit": null
+      "observaciones": "PNG RGBA abierto y verificado; alfa 0–255, dimensiones nativas inferiores al objetivo 1500×1500. Martillo vertical sobre montaña partida con brasa central. Acabado ornamental provisional; no establece atributos canónicos adicionales. Prompt exacto no expuesto por el generador. Original conservado en Biblioteca; binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000ae04820e8cd5630167e1eeb5",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/khorun/khorun-simbolo-v01.png"
     },
     {
       "id": "DIV-KHORUN-006",
