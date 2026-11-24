@@ -123,6 +123,21 @@
       "rasgosExcluidos": "Identidad Terio Chacal, iconografía funeraria universal, sacerdocio obligatorio, poderes de nigromancia innatos, anatomía animal no respaldada.",
       "decisionesProvisionales": "Tres adultos en estación ferroviaria no localizada: viajero mayor, empleada de estación y mecánico. Hocicos, orejas, vello, colores, ropa y proporciones individuales revisables; no fijan subrazas.",
       "referencia": "Manual Maestro, creación > Paso 1 > Ankar; capítulos 20–21; anexo ANKAR — GUARDIANES DEL UMBRAL; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
+    },
+    "cristalidos": {
+      "canon": "Pueblos posteriores vinculados a la Primera Forja. La variante jugable es Cristálido de Matriz Mixta, con estructuras cristalinas integradas en tejido vivo y órganos; Escala Mediana. Los completamente cristalinos existen pero quedan fuera del paquete básico.",
+      "altura": "No especificada en los pasajes consultados.",
+      "proporciones": "Escala Mediana; proporciones humanoides funcionales como interpretación provisional.",
+      "estructuraOsea": "No especificada; no asumir esqueleto totalmente mineral.",
+      "pielCabelloOjos": "Facetas minerales integradas con tejido vivo; colores, cabello, ojos y distribución de facetas provisionales.",
+      "orejasDentaduraExtremidades": "No fijadas; manos y articulaciones funcionales de apariencia humanoide como propuesta artística.",
+      "variantes": "Matriz Mixta jugable; completamente cristalinos no incluidos en paquete básico.",
+      "dimorfismo": "No fijado.",
+      "adaptaciones": "Procesos vitales ordinarios de sustento, descanso, Fatiga y Medicina. Resonancia Arcana por contacto; Conductor Vivo voluntario en interfaz compatible, sin generar energía ni inmunidad a sobrecarga.",
+      "sobrenatural": "Afinidad con corrientes mágicas no implica emisión visible de luz, Maná gratuito ni magia entrenada.",
+      "rasgosExcluidos": "Gólem, artefacto animado, cuerpo enteramente mineral en la variante jugable, armadura natural obligatoria, batería viviente, profesión o moral determinada por color.",
+      "decisionesProvisionales": "Tres adultos en taller de encuadernación y archivo no localizado; facetas en sienes y antebrazos, pigmentación, formas cristalinas, cabello y vestuario revisables. No se definen órganos internos ni propiedades ópticas universales.",
+      "referencia": "Manual Maestro, creación > Paso 1 > Cristálidos; capítulos 20–21; anexo Cristálidos — Hijos de la Materia Resonante; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
     }
   },
   "recursos": [
@@ -431,36 +446,42 @@
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/ankar/ankar-apertura-v01.png"
     },
     {
-      "variante": null,
+      "variante": "Matriz Mixta",
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3146866,
+      "sha256": "1f5918d2257a7c1a9f49a5405c62188b1f6619ef9ad751e42e682be01c3305eb",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical opening illustration for mixed-matrix crystalline people, Children of Resonant Matter: three adult individuals of varied ages in a bookbinding workshop and archive, with living tissue and integrated mineral facets on temples and forearms, natural articulated hands and expressions. Varied crystal colors and distributions as provisional designs, no mineral armor, golems, complete crystalline bodies, innate energy emission or compulsory magical profession. Functional bookbinding equipment, stone architecture and brass infrastructure, warm daylight and restrained cyan lanterns, no named city or racial insignia.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original y copia recuperada de Biblioteca abiertos y decodificados con Pillow: PNG RGB, 1024 × 1536, 3146866 bytes, SHA-256 coincidente e igualdad byte por byte comprobada. Inspección visual: tres adultos de Matriz Mixta con facetas integradas en piel, manos funcionales y actividades civiles. La distribución mineral es superficialmente visible; no se demuestra anatomía interna ni la proporción de tejidos en todo el cuerpo. Encuadre de taller oculta piernas y parte de las articulaciones, por lo que no sustituye estudio anatómico. Colores, tamaños y distribución de facetas provisionales. Sin texto legible ni marca de agua observados; decoración de libros no representa escritura canónica. Escenario genérico no localizado. Resolución inferior al objetivo, original sin reescalar. Prompt registrado como especificación artística en inglés, no transcripción del prompt interno no expuesto. Transferencia binaria GitHub pendiente por limitación anterior; commit de imagen nulo.",
       "id": "RAZ-CRIS-001",
       "ascendencia": "Cristálidos",
-      "titulo": "Cristálidos — Ilustración principal",
+      "titulo": "Cristálidos — Hijos de la Materia Resonante",
       "categoria": "apertura_ascendencia",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Cristálidos",
-      "ubicacionSugerida": "Apertura de la sección de ascendencia",
-      "ruta": "assets/editorial/razas/cristalidos/cristalidos-apertura-v01.png"
+      "referenciaCanonica": "Manual Maestro, creación > Paso 1 > Cristálidos; capítulos 20–21; anexo Cristálidos — Hijos de la Materia Resonante; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "Cristálidos — Hijos de la Materia Resonante",
+      "ubicacionSugerida": "Página izquierda — Los pueblos de la Primera Forja",
+      "ruta": "assets/editorial/razas/cristalidos/cristalidos-apertura-v01.png",
+      "bibliotecaFileId": "file_0000000063b0820ea0f8e6894f9dc92f",
+      "bibliotecaId": "libfile_0384a1a0da6081918abd7c3369ccaa8e",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/cristalidos/cristalidos-apertura-v01.png"
     },
     {
       "variante": null,
