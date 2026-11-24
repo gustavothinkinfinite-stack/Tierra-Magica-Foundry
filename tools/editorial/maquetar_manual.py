@@ -82,11 +82,16 @@ def cardify_wide_tables(soup: BeautifulSoup) -> int:
 def headings_and_toc(soup: BeautifulSoup) -> list[tuple[str, str, int]]:
     entries = []
     duplicate = {}
+    used_targets = set()
     for heading in soup.find_all(re.compile('^h[1-6]$')):
         title = heading.get_text(' ', strip=True)
         key = slug(title)
         duplicate[key] = duplicate.get(key, 0) + 1
         target = key if duplicate[key] == 1 else f'{key}-{duplicate[key]}'
+        while target in used_targets:
+            duplicate[key] += 1
+            target = f'{key}-{duplicate[key]}'
+        used_targets.add(target)
         heading['id'] = target
         level = int(heading.name[1])
         if level <= 2:
