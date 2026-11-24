@@ -168,6 +168,21 @@
       "rasgosExcluidos": "Hojas vegetales, fotosíntesis, anatomía animal obligatoria, caricatura de hongo, obediencia colectiva, profesión o culto universal.",
       "decisionesProvisionales": "Tres adultos en taller urbano de instrumentos musicales, no localizado. Estructuras de fructificación integradas alrededor de cabeza y hombros, filamentos en extremidades y superficies de tonos ocres, claros y rojizos. Vestimenta, facciones, articulaciones y distribución de tejidos revisables.",
       "referencia": "Manual Maestro, creación > Paso 1 > Micelios; capítulos 20–21; anexo Micelios — Pueblos de la red y la elección; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
+    },
+    "coralios": {
+      "canon": "Pueblos biológicos coralinos conscientes y anfibios, surgidos de arrecifes transformados por la Primera Semilla de Eïra. Escala Mediana; estructuras calcáreas vivas y tejidos flexibles; crestas, membranas y colores variables. No son elementales ni estatuas animadas.",
+      "altura": "No fijada en los pasajes consultados.",
+      "proporciones": "Escala Mediana; anatomía bípeda articulada en esta interpretación provisional.",
+      "estructuraOsea": "Esqueleto coralino, con estructuras calcáreas vivas; organización interna específica no definida.",
+      "pielCabelloOjos": "Tejidos flexibles y estructuras calcáreas; pigmentación, porosidad, forma de crestas y ojos variables, diseño provisional.",
+      "orejasDentaduraExtremidades": "No especificadas en los pasajes consultados; membranas y crestas posibles. Manos y pies funcionales de esta representación son propuestas revisables.",
+      "variantes": "Diversidad individual; las crestas, membranas y colores no constituyen subrazas mecánicas.",
+      "dimorfismo": "No fijado.",
+      "adaptaciones": "Respiración anfibia con hidratación razonable; Movimiento terrestre 5 y acuático 6; Esqueleto Coralino concede Protección Natural 1 no acumulable con armadura; Sentido de Corriente acotado a señales acuáticas pertinentes.",
+      "sobrenatural": "Relación histórica con magia oceánica no concede Resonancia Oceánica en paquete base.",
+      "rasgosExcluidos": "Elemental acuático, estatua animada, Cristálido, sirena como anatomía obligatoria, inmunidad a presión o desecación, magia oceánica innata, profesión o culto universal.",
+      "decisionesProvisionales": "Tres adultos en embarcadero costero no localizado: persona mayor que repara vela, viajera y artesano con vasija. Estructuras porosas calcáreas, crestas ramificadas y membranas flexibles, distribución y color revisables; no se fija mecanismo respiratorio interno ni anatomía universal.",
+      "referencia": "Manual Maestro, creación > Paso 1 > Coralios; capítulos 20–21; anexo Coralios — Pueblos de los Arrecifes Vivos; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
     }
   },
   "recursos": [
@@ -592,34 +607,40 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3795943,
+      "sha256": "47c9f2c2948407710f58851fcb3f98a1f2097bb98e4777e203b904d561dd2999",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical opening for Coralios, conscious amphibious biological coral people of medium scale: three adult individuals with differentiated living calcareous structures, flexible tissues, porous surfaces, organic crests and membranes. Civilian encounter on an unnamed coastal quay: elder mending sailcloth, traveler and artisan presenting pottery. Functional articulated hands and feet, practical clothing, natural expressions, no mermaid tails, crystalline facets, water elemental bodies or innate oceanic magic. Coastal architecture, sails and restrained arcane-industrial infrastructure, warm daylight and muted marine tones. Specific morphology and pigmentation provisional.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original y copia recuperada de Biblioteca abiertos y decodificados con Pillow: PNG RGB, 1024 × 1536, 3795943 bytes; SHA-256 coincidente e igualdad byte por byte comprobada. Inspección visual: tres adultos con estructuras porosas calcáreas, crestas orgánicas y tejidos flexibles, en actividad civil costera. Morfología, pigmentación, forma de extremidades y crestas provisionales; no demuestra anatomía interna, respiración anfibia ni nado. Sin texto legible ni marcas de agua observados. Escenario genérico no localizado. Resolución inferior al objetivo, original sin reescalar. Prompt registrado como especificación artística en inglés, no transcripción del prompt interno no expuesto. Transferencia binaria GitHub pendiente por limitación anterior; commit de imagen nulo.",
       "id": "RAZ-CORA-001",
       "ascendencia": "Coralios",
-      "titulo": "Coralios — Ilustración principal",
+      "titulo": "Coralios — Pueblos de los Arrecifes Vivos",
       "categoria": "apertura_ascendencia",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Coralios",
-      "ubicacionSugerida": "Apertura de la sección de ascendencia",
-      "ruta": "assets/editorial/razas/coralios/coralios-apertura-v01.png"
+      "referenciaCanonica": "Manual Maestro, creación > Paso 1 > Coralios; capítulos 20–21; anexo Coralios — Pueblos de los Arrecifes Vivos; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "Coralios — Pueblos de los Arrecifes Vivos",
+      "ubicacionSugerida": "Página izquierda — La vida entre dos orillas",
+      "ruta": "assets/editorial/razas/coralios/coralios-apertura-v01.png",
+      "bibliotecaFileId": "file_00000000dd8c820eba3f85cb5a6d58d4",
+      "bibliotecaId": "libfile_0f23d508bc1c81919970ea6e5674918d",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/coralios/coralios-apertura-v01.png"
     },
     {
       "variante": null,
