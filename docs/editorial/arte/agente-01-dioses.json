@@ -557,25 +557,32 @@
       "ubicacionSugerida": "27. Khorun y la Primera Forja",
       "ruta": "assets/editorial/dioses/khorun/khorun-ornamento-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1774,
+        "alto": 887
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 744211,
+      "sha256": "110b170411b76b6aadae3f2c17017ff6af15d75c1d67f88d8a85a62e0ddd21cc",
       "prompt": null,
       "referenciasCanonicas": [
-        "docs/Tierra_Magica_Manual_Maestro.md — 27. Khorun y la Primera Forja"
+        "docs/Tierra_Magica_Manual_Maestro.md — 27. Khorun y la Primera Forja",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json",
+        "DIV-KHORUN-005"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Pendiente; sustituir categorías no documentadas por escenas canónicas.",
-      "commit": null
+      "observaciones": "PNG RGBA abierto; transparencia alfa 0–255. SHA-256 idéntico entre original y copia recuperada de Biblioteca. Dimensiones nativas 1774×887, superiores al objetivo ornamental 1200×600; sin reescalado. Ornamentación provisional derivada del símbolo canónico; no establece nuevos atributos religiosos. Prompt exacto no expuesto. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000004fcc820e971c780d6fd9aae7",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/khorun/khorun-ornamento-v01.png"
     }
   ]
 }
