@@ -1,7 +1,7 @@
 {
   "agente": "03",
   "nombre": "Profesiones y Aventureros",
-  "version": 1,
+  "version": 2,
   "fechaActualizacion": "2026-11-24",
   "objetivoEditorialProvisional": 192,
   "recursos": [
@@ -28,12 +28,57 @@
       "version": 1,
       "procedencia": "Imagen original generada para Tierra Mágica",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente_transferencia",
+      "estadoAlmacenamiento": "biblioteca_verificada_pendiente_github",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commitImagen": null,
-      "observaciones": "Imagen real entregada en conversación; sin verificación de almacenamiento persistente. Detalles visuales secundarios no constituyen canon."
+      "observaciones": "Original respaldado en Biblioteca persistente y recuperado con hash idéntico; transferencia a GitHub pendiente. Detalles visuales secundarios no constituyen canon.",
+      "biblioteca": {
+        "id": "libfile_a392c75914fc81919abd0dc179c8c1fa",
+        "fileId": "file_000000002e50820e98adffcfc46494ee",
+        "ruta": "/Tierra Magica/Produccion Editorial/Agente 03 - Profesiones y Aventureros/exploracion-iria-bosque-inundado-v01.png",
+        "verificacion": "Original recuperado, PNG válido y SHA-256 coincidente"
+      }
+    },
+    {
+      "id": "PRO-SOC-001",
+      "titulo": "La investigadora y la coartada del informante",
+      "categoria": "interacciones-sociales",
+      "mecanicaRelacionada": "Prueba enfrentada social, Engaño y Empatía",
+      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md — Parte I, §2, Ejemplo breve: prueba enfrentada social",
+      "capitulo": "Regla fundamental",
+      "encabezadoInsercion": "Ejemplo breve: prueba enfrentada social",
+      "composicion": "horizontal_3_2",
+      "rutaPrevista": "assets/editorial/profesiones/interacciones-sociales/social-informante-investigadora-v01.png",
+      "rutaVerificada": null,
+      "dimensiones": [
+        1536,
+        1024
+      ],
+      "formato": "PNG",
+      "tamanoBytes": 2519894,
+      "sha256": "6819d0e087c02a97870db7832709b7ac782027ba71f1a730fed1abdfdc780dc0",
+      "prompt": null,
+      "referenciasVisuales": [
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
+      ],
+      "fechaCreacion": "2026-11-24",
+      "version": 1,
+      "procedencia": "Imagen original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca_verificada_pendiente_github",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "commitImagen": null,
+      "biblioteca": {
+        "id": "libfile_864e5cb54c60819193c91f052dee2228",
+        "fileId": "file_000000005d50820ea9af6a10287e365c",
+        "ruta": "/Tierra Magica/Produccion Editorial/Agente 03 - Profesiones y Aventureros/social-informante-investigadora-v01.png",
+        "verificacion": "PNG recuperado y SHA-256 idéntico"
+      },
+      "observaciones": "Escenario y vestimentas interpretativos; no fijan localización ni canon. Resolución nativa inferior a la meta editorial; sin reescalado. Prompt interno no disponible."
     }
   ]
 }
