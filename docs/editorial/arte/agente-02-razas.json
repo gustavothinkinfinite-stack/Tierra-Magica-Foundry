@@ -18,6 +18,21 @@
       "sobrenatural": "No incorporar manifestaciones innatas universales",
       "decisionesProvisionales": "Vestuario, fisonomías, edades y composición; sin valor normativo",
       "referencia": "Manual Maestro líneas 253–261, 10436–10502, 13479–13500"
+    },
+    "enanos": {
+      "canon": "Escala Pequeña; Cuerpo de Piedra y Sangre de Metal representan resistencia y capacidad física, no anatomía mineral literal. Montaña, Profundos, Forja y Errantes son tradiciones culturales, no castas mecánicas.",
+      "altura": "Sin altura exacta definida en las secciones consultadas.",
+      "proporciones": "Complexión robusta de escala Pequeña; torso compacto y extremidades proporcionadas.",
+      "estructuraOsea": "Orgánica; no mineral literal.",
+      "pielCabelloOjos": "Diversidad individual orgánica; colores y fisonomías de la imagen son provisionales.",
+      "orejasDentaduraExtremidades": "Anatomía humanoide orgánica como interpretación provisional; no rasgos sobrenaturales añadidos.",
+      "variantes": "Montaña, Profundos, Forja, Errantes: tradiciones, no subrazas anatómicas obligatorias.",
+      "dimorfismo": "Sin patrón anatómico específico fijado en secciones consultadas.",
+      "adaptaciones": "Resistencia física y ambiental conforme al paquete; no expresarla con armadura natural.",
+      "sobrenatural": "Mitos de huesos de piedra y sangre metálica no literales.",
+      "rasgosExcluidos": "Piel mineral, armadura natural pétrea, metal corporal aprovechable, profesión o religión obligatoria.",
+      "decisionesProvisionales": "Cuatro adultos de edades, fisonomías, vestimentas y actividades distintas; paso montañoso no localizado; sin asignar subrazas ni normas de altura.",
+      "referencia": "Manual Maestro, creación > Paso 1 > Enanos; capítulos 20 y 21; anexo ENANOS — HIJOS DE LA PIEDRA; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
     }
   },
   "recursos": [
@@ -62,34 +77,40 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 2715024,
+      "sha256": "b81733030627d356fb08f9b7b79819e8d1672bab1cc694b89641f310376444dc",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical full-page opening for dwarves, Children of Stone: four adult dwarves of small stature and robust organic anatomy, diverse ages, faces and clothing, in an unnamed Edria mountain pass trade settlement. Civilian activities and functional clothing, no obligatory smiths or warriors. Functional masonry, bridge, restrained steam infrastructure, warm sunrise with cyan accents, upper negative space. No mineral skin, literal stone armor or racial insignia.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original abierto y verificado; copia recuperada de Biblioteca con idénticos bytes y SHA-256. Resolución nativa inferior al objetivo; sin reescalado. Inspección visual: cuatro adultos, anatomía orgánica, sin texto legible ni marca de agua; escala exacta no cuantificable por falta de comparador humano. Vestuario y escena provisionales no localizados. Prompt registrado es especificación artística en inglés, no transcripción del prompt interno del generador (no expuesto). Transferencia a GitHub pendiente: create_blob requiere cadena base64 y no acepta referencia al archivo binario; no se repite el procedimiento previamente fallido. Commit de imagen nulo hasta transferencia real.",
       "id": "RAZ-ENAN-001",
       "ascendencia": "Enanos",
-      "titulo": "Enanos — Ilustración principal",
+      "titulo": "Enanos — Hijos de la Piedra",
       "categoria": "apertura_ascendencia",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Enanos",
-      "ubicacionSugerida": "Apertura de la sección de ascendencia",
-      "ruta": "assets/editorial/razas/enanos/enanos-apertura-v01.png"
+      "referenciaCanonica": "Manual Maestro, creación > Paso 1 > Enanos; capítulos 20–21; anexo ENANOS — HIJOS DE LA PIEDRA; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "ENANOS — HIJOS DE LA PIEDRA",
+      "ubicacionSugerida": "Página izquierda — La Piedra que Recuerda",
+      "ruta": "assets/editorial/razas/enanos/enanos-apertura-v01.png",
+      "bibliotecaFileId": "file_0000000041f4820e9e7109e9ceb11d45",
+      "bibliotecaId": "libfile_47c47e6c051c8191b142171255e8ea4f",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/enanos/enanos-apertura-v01.png"
     },
     {
       "variante": null,
