@@ -93,6 +93,21 @@
       "rasgosExcluidos": "Licantropía o transformación como origen universal; confundir Terio chacal con Ankar; rasgos animales arbitrarios, capacidades gratuitas, cultura o moral impuesta por linaje.",
       "decisionesProvisionales": "Tres adultos en un mercado genérico de humedal: elefantina con textiles, felino moteado con cesta y aviana posada. Vestimenta, pigmentación, proporciones y articulaciones precisas revisables. El asentamiento no se identifica con una ciudad oficial. Alas plegadas y posición sentada no permiten evaluar el vuelo ni toda la anatomía aviana.",
       "referencia": "Manual Maestro, creación > Paso 1 > Terios / Anihombres; capítulos 20–21; anexo Terios / Anihombres — Hijos de la Sangre; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
+    },
+    "feericos": {
+      "canon": "Hijos de la Hoja de Eïra, familia diversa. Cuatro variantes jugables iniciales: Hada (Pequeña, frecuentemente alada), Sátiro (Mediana, rasgos caprinos y cuernos), Dríade (Mediana, vínculo arbóreo y capacidad de enraizar), Silfo (Mediana, vinculado al viento, sin vuelo sostenido innato). Trents, Náyades, Nereidas y otras formas existen pero no poseen paquete jugable inicial en este Manual.",
+      "altura": "No se fijan alturas exactas en los pasajes consultados.",
+      "proporciones": "Dependientes de variante y escala; proporciones específicas provisionales.",
+      "estructuraOsea": "No detallada; estructura funcional según variante.",
+      "pielCabelloOjos": "Pigmentación, cabello, ojos y marcas orgánicas no fijados en pasajes consultados; diseño provisional.",
+      "orejasDentaduraExtremidades": "Hada con alas como rasgo frecuente; morfología de alas provisional. Sátiro con cuernos y rasgos caprinos, pezuñas respaldadas por anexo. Dríade con vínculo arbóreo, no Verdante autónomo. Silfo sin alas ni levitación en esta composición. Facciones y orejas provisionales.",
+      "variantes": "Hadas, Sátiros, Dríades y Silfos son las cuatro variantes jugables iniciales; no acumulan paquetes.",
+      "dimorfismo": "No fijado.",
+      "adaptaciones": "Hada requiere apoyos al comenzar y terminar movimiento aéreo, no suspensión sostenida. Sátiro puede recorrer superficies naturales transitables según Paso de Cabra. Dríade conoce estado general de vegetación vinculada mediante contacto y puede enraizar. Silfo resiste efectos concretos de viento ordinario; no inmunidad ni vuelo innato.",
+      "sobrenatural": "Naturaleza Feérica es descriptor compartido, no concede Maná, Fuente, Disciplina, resistencia mágica ni Vínculo Divino gratuitos.",
+      "rasgosExcluidos": "Vuelo sostenido de Silfo, levitación permanente de Hada, equiparar Dríade con Verdante o Trent, imponer magia entrenada, culto o profesión.",
+      "decisionesProvisionales": "Cuatro adultos en terraza junto a arboleda no localizada; Hada alada apoyada en plataforma, Sátiro con cuernos y pezuñas, Dríade tocando árbol y Silfo sentado. Vestimenta, facciones, motivos vegetales, alas y cabello son propuestas reversibles. Escala del Hada poco evidente por perspectiva y plataforma; no usar la imagen como comparación métrica.",
+      "referencia": "Manual Maestro, creación > Paso 1 > Feéricos; capítulos 20–21; anexo Feéricos — Hijos de la Hoja; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
     }
   },
   "recursos": [
@@ -327,34 +342,40 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3247824,
+      "sha256": "48f6fa2f95e2f6da3fa3e9915f2799c9c1fdb25e5488d47549a6fd7999ac4125",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical opening for Faerie folk, Children of the Leaf: four adult playable variants meeting on an elevated terrace beside a grove, a small adult winged fairy standing securely on a platform, a medium-scale satyr with caprine legs, hooves and horns, a medium-scale dryad touching a bonded tree, and a medium-scale wingless sylph supported by solid ground, no levitation. Civil discussion of bridge construction, functional tools and architecture, warm natural light and restrained cyan accents, no innate spell effects or racial insignia. Provisional facial and botanical details, no fixed city.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original y copia recuperada de Biblioteca abiertos y decodificados con Pillow: 1024 × 1536, 3247824 bytes, SHA-256 coincidente e igualdad byte por byte comprobada. Inspección visual: cuatro adultos diferenciados, Hada apoyada en plataforma (alas parcialmente recortadas por el encuadre), Sátiro con cuernos y pezuñas, Dríade tocando árbol, Silfo sentado sin alas. La escala Pequeña del Hada no queda inequívocamente demostrada por su posición elevada; requiere estudio comparativo posterior. No se certifica escala métrica ni anatomía completa de las alas. Rasgos faciales y vegetales provisionales. Plano con trazos gráficos no legibles; sin texto legible ni marcas de agua observados. Escenario genérico no localizado. Resolución inferior al objetivo, original sin reescalar. Prompt registrado como especificación artística previa, no transcripción del prompt interno no expuesto. Transferencia binaria GitHub pendiente por limitación anterior; commit de imagen nulo.",
       "id": "RAZ-FEER-001",
       "ascendencia": "Feéricos",
-      "titulo": "Feéricos — Ilustración principal",
+      "titulo": "Feéricos — Hijos de la Hoja",
       "categoria": "apertura_ascendencia",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Feéricos",
-      "ubicacionSugerida": "Apertura de la sección de ascendencia",
-      "ruta": "assets/editorial/razas/feericos/feericos-apertura-v01.png"
+      "referenciaCanonica": "Manual Maestro, creación > Paso 1 > Feéricos; capítulos 20–21; anexo Feéricos — Hijos de la Hoja; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "Feéricos — Hijos de la Hoja",
+      "ubicacionSugerida": "Página izquierda — Los caminos de la Hoja",
+      "ruta": "assets/editorial/razas/feericos/feericos-apertura-v01.png",
+      "bibliotecaFileId": "file_000000005cec820e8a16098076a1d919",
+      "bibliotecaId": "libfile_925e1db93ed08191af677a1558233d69",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/feericos/feericos-apertura-v01.png"
     },
     {
       "variante": null,
