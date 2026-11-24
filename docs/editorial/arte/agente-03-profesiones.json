@@ -1,0 +1,39 @@
+{
+  "agente": "03",
+  "nombre": "Profesiones y Aventureros",
+  "version": 1,
+  "fechaActualizacion": "2026-11-24",
+  "objetivoEditorialProvisional": 192,
+  "recursos": [
+    {
+      "id": "PRO-EXP-001",
+      "titulo": "Iria examina el paso del bosque inundado",
+      "categoria": "exploracion",
+      "mecanicaRelacionada": "Exploración, Ayuda, Supervivencia y decisión de realizar una prueba",
+      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md — Parte I, §2, Ejemplo de juego: una resolución de exploración",
+      "capitulo": "Regla fundamental y resolución",
+      "encabezadoInsercion": "Ejemplo de juego: una resolución de exploración",
+      "composicion": "panoramica_horizontal",
+      "rutaPrevista": "assets/editorial/profesiones/exploracion/exploracion-iria-bosque-inundado-v01.png",
+      "rutaVerificada": null,
+      "dimensiones": [
+        1672,
+        941
+      ],
+      "formato": "PNG",
+      "tamanoBytes": 2984449,
+      "sha256": "865279cae1b86380025509e4680bdb1a35c5b589b9e4b6dd2b26a985eef94be3",
+      "prompt": "Escena cinematográfica realista de Iria examinando una crecida en bosque inundado y recibiendo ayuda para cruzar; equipamiento funcional, luz cálida y acentos arcanos, sin texto.",
+      "fechaCreacion": "2026-11-24",
+      "version": 1,
+      "procedencia": "Imagen original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "pendiente_transferencia",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "commitImagen": null,
+      "observaciones": "Imagen real entregada en conversación; sin verificación de almacenamiento persistente. Detalles visuales secundarios no constituyen canon."
+    }
+  ]
+}
