@@ -589,3 +589,11 @@
 - Inspección visual real: página 10, tabla Dificultades legible, sin recortes evidentes; página 7, un párrafo de prosa completo aparece indebidamente como entrada del índice. La página 8 contiene una sola entrada. Causa: Markdown interpreta la línea `---` inmediatamente posterior al párrafo como encabezado Setext de nivel 2. El maquetador incluye h2 en el índice.
 - Corrección en main: `4e7e4e5cd0316093fa8012916ef8a3a9742df520`, separación mediante línea vacía antes de la regla horizontal; no se altera texto ni canon. Pendiente nueva compilación y comprobación visual de índice, paginación y enlaces.
 - Búsqueda en biblioteca localizó `Tierra_Magica_Portada_Referencia_v1.png` como referencia, no como cubierta final confirmada. No se incorporó arte sin verificar correspondencia con originales. Pendientes dos cubiertas y doce retratos divinos, equipo/PNJ/iconografía/mapa, créditos y preflight específico de imprenta. PDF de lectura no equivale a edición ilustrada ni archivo certificado para imprenta.
+
+
+## 24-11-2026 — QA-ED-43: unicidad global de destinos del índice
+
+- Base cotejada: maquetador blob `4ac6b26e9d806a81b4afd586421c0006ea691853`, expediente blob `819da83fe84ee1f9f7572d9f2f410e0f8af6b9ec` en main.
+- Corrección `0425c30b7c668719b15464bb06ded54b8b463069`: los identificadores generados podían colisionar si los títulos eran, por ejemplo, «Reglas», «Reglas», «Reglas 2». El contador por slug no garantizaba unicidad global. Se añade un conjunto de destinos usados y se incrementa el sufijo hasta encontrar uno libre. No cambia el canon.
+- No se ha comprobado una nueva ejecución ni descargado otro PDF en esta unidad; la corrección requiere validación CI y revisión de enlaces. Último PDF materialmente registrado: QA-ED-42, 606 páginas, anterior a la corrección Setext.
+- Pendientes: verificar compilación posterior a QA-ED-42/43 y manifest, índice y tablas; recuperar dos cubiertas y doce retratos originales, equipo/PNJ/iconografía/mapa, créditos y preflight de imprenta. PDF de lectura no equivale a edición ilustrada definitiva ni archivo certificado para imprenta.
