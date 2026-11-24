@@ -925,27 +925,94 @@
       "prompt": null,
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
-        "Tierra_Magica_Portada_Referencia_v1.png"
+        "Tierra_Magica_Portada_Referencia_v1.png",
+        "RAZ-ANKA-001 — ankar-apertura-v01.png"
       ],
       "fechaGeneracion": null,
       "version": 1,
       "procedencia": null,
-      "estadoProduccion": "pendiente",
+      "estadoProduccion": "requiere_reemplazo",
       "estadoAlmacenamiento": "pendiente",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Cuatro salidas reales de generación conservadas y recuperadas de Biblioteca, todas PNG RGB 1024 × 1536; igualdad byte por byte y SHA-256 comprobados. Ninguna cumple el criterio editorial para aprobar el retrato. No existe archivo definitivo ni commit binario. Se limita la repetición; continuar siguiente recurso pendiente y retomar este retrato posteriormente. No se modifica el canon. La propuesta de horticultor, un par de orejas cánidas, manos humanoides y anatomía plantígrada es una decisión artística reversible, no una regla nueva.",
       "id": "RAZ-ANKA-002",
       "ascendencia": "Ankar",
-      "titulo": "Ankar — Personaje masculino",
+      "titulo": "Ankar — Personaje masculino: horticultor (requiere reemplazo)",
       "categoria": "retrato",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Ankar",
-      "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/ankar/ankar-personaje-masculino-v01.png"
+      "referenciaCanonica": "Manual Maestro, anexo ANKAR — GUARDIANES DEL UMBRAL, líneas 13834–13880; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "ANKAR — GUARDIANES DEL UMBRAL",
+      "ubicacionSugerida": "Sección de Ankar, junto a Tres obligaciones, muchas vidas",
+      "ruta": "assets/editorial/razas/ankar/ankar-personaje-masculino-v01.png",
+      "borradoresRechazados": [
+        {
+          "intento": 1,
+          "bibliotecaFileId": "file_000000002e54820e9f4e5c4b4fc61d3c",
+          "bibliotecaId": "libfile_b91ff00eadc081919dcbdb5ce23ba810",
+          "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/ankar/borradores-rechazados/ankar-personaje-masculino-intento-01.png",
+          "formato": "PNG",
+          "dimensiones": {
+            "ancho": 1024,
+            "alto": 1536
+          },
+          "tamanoBytes": 3243682,
+          "sha256": "0c0a8f9cf354987356be1072124dbb9ad5e3ef30f31991efea66cc0ab137f9c1",
+          "fechaGeneracion": "2026-11-24",
+          "motivo": "Oreja lateral adicional junto al par de orejas cánidas; la composición agrícola es recuperable.",
+          "estadoAlmacenamiento": "almacenada"
+        },
+        {
+          "intento": 2,
+          "bibliotecaFileId": "file_00000000d498820ea725e47af0885d5b",
+          "bibliotecaId": "libfile_1b678cf4992c8191bcc64f9dc11f77d1",
+          "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/ankar/borradores-rechazados/ankar-personaje-masculino-intento-02.png",
+          "formato": "PNG",
+          "dimensiones": {
+            "ancho": 1024,
+            "alto": 1536
+          },
+          "tamanoBytes": 3418121,
+          "sha256": "3abb0d7177a3569ab2888a091ade23a15871656d7fa6c57200ab8a2b78a73835",
+          "fechaGeneracion": "2026-11-24",
+          "motivo": "Hocico y pies excesivamente animalizados para la diferenciación buscada; cambia oficio y escenario.",
+          "estadoAlmacenamiento": "almacenada"
+        },
+        {
+          "intento": 3,
+          "bibliotecaFileId": "file_000000005734820e826a620fdc908b14",
+          "bibliotecaId": "libfile_56119481ccfc81919e257114d18f902e",
+          "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/ankar/borradores-rechazados/ankar-personaje-masculino-intento-03.png",
+          "formato": "PNG",
+          "dimensiones": {
+            "ancho": 1024,
+            "alto": 1536
+          },
+          "tamanoBytes": 3309274,
+          "sha256": "3f66217f8b96ac3ec9303063d3d37525994e5812fd45092bd6ce85554227b0f7",
+          "fechaGeneracion": "2026-11-24",
+          "motivo": "Cola y pies animalizados, morfología más próxima a Terio; cambia escenario.",
+          "estadoAlmacenamiento": "almacenada"
+        },
+        {
+          "intento": 4,
+          "bibliotecaFileId": "file_00000000cf04820e9acf281aa12ed7e7",
+          "bibliotecaId": "libfile_e2ab922b6b1081918d865345b21f67fd",
+          "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/ankar/borradores-rechazados/ankar-personaje-masculino-intento-04.png",
+          "formato": "PNG",
+          "dimensiones": {
+            "ancho": 1024,
+            "alto": 1536
+          },
+          "tamanoBytes": 3453906,
+          "sha256": "316e25041ebda575a21115c6f71d6a46fd4778f6982bcbdced79dbbb35880dc1",
+          "fechaGeneracion": "2026-11-24",
+          "motivo": "Salida ajena a la ascendencia solicitada: Sátiro. No contabilizar ni duplicar recurso Feérico.",
+          "estadoAlmacenamiento": "almacenada"
+        }
+      ]
     },
     {
       "variante": null,
