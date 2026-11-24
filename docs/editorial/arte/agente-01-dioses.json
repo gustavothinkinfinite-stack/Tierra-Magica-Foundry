@@ -668,24 +668,27 @@
       "ubicacionSugerida": "Las Cuatro Virtudes de Varkor",
       "ruta": "assets/editorial/dioses/varkor/varkor-cuatro-virtudes-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 3345300,
+      "sha256": "5902b14a706aa6c7963de8155fd7dd7cfe416cf2d73de785359f95e3cca99bf3",
       "prompt": null,
       "referenciasCanonicas": [
         "docs/Tierra_Magica_Manual_Maestro.md — Las Cuatro Virtudes de Varkor"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
       "estadoAlmacenamiento": "pendiente",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Plan provisional; sustitución de categorías no documentadas por temas canónicos.",
+      "observaciones": "PNG RGB abierto y verificado localmente. Original de conversación file_000000001a3c82129b22e4e848ebedf5. Dos intentos de Biblioteca rechazados con 403 trusted producer. Transferencia binaria pendiente; no se confirma conservación persistente. Interpretación simbólica de las cuatro virtudes, no determina moralidad ni capacidades raciales.",
       "commit": null
     },
     {
