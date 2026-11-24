@@ -78,6 +78,21 @@
       "rasgosExcluidos": "Bugbear de Escala Grande real, Kobold como opción goblinoide base, moral o profesión innatas; no se añaden armas naturales ni sentidos sobrenaturales.",
       "decisionesProvisionales": "Tres adultos en muelle fluvial genérico: comerciante Goblin, interlocutor Hobgoblin y navegante Bugbear. Pigmentación, fisonomías, vello y ropa revisables; evitar convertir estas decisiones en canon biológico. Diferencia de escala visible, no cuantificada.",
       "referencia": "Manual Maestro, creación > Paso 1 > Goblinoides; capítulos 20–21; anexo Goblinoides — Hijos del Ojo; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
+    },
+    "terios": {
+      "canon": "Hijos de la Sangre de Eïra: pueblos conscientes nacidos con anatomías de ascendencia animal reales y funcionales, no Humanos transformados ni licántropos. Organización Terio → Linaje → Variedad. Escala normalmente Pequeña o Mediana. Ejemplos canónicos de personajes elefantina, felino y aviana; no inventar subrazas mecánicas.",
+      "altura": "No fijada en los pasajes consultados; normalmente Escala Pequeña o Mediana según linaje.",
+      "proporciones": "Variables según anatomía animal de referencia; estructuras integradas en torso y extremidades humanoides funcionales, no cabezas animales sobre cuerpos humanos indiferenciados.",
+      "estructuraOsea": "Depende del linaje; articulaciones y proporciones específicas son propuestas artísticas reversibles.",
+      "pielCabelloOjos": "Pelaje, plumas, escamas, caparazones u otras coberturas según linaje. Pigmentación y detalles individuales no universales.",
+      "orejasDentaduraExtremidades": "Según anatomía de referencia. Trompa elefantina prensil, garras felinas y alas avianas son ejemplos respaldados por el canon; no toda presencia anatómica concede capacidades adicionales.",
+      "variantes": "Linaje y Variedad precisan anatomía. Selección representada: elefantina, felino de aspecto moteado y aviana de aspecto rapaz. No constituyen catálogo exhaustivo.",
+      "dimorfismo": "No fijado en pasajes consultados.",
+      "adaptaciones": "Una Principal y una Secundaria o una Dominante; Variedad puede reemplazar, no añadir. Ejemplos: órgano prensil y olfato elefantino; trepa y garras felinas; vuelo sostenido aviano si su anatomía funcional y elección lo permiten. Nado no implica respiración acuática; branquias funcionales y Anfibio se rigen por reglas específicas.",
+      "sobrenatural": "Origen vinculado a Eïra; no impone magia, culto ni personalidad.",
+      "rasgosExcluidos": "Licantropía o transformación como origen universal; confundir Terio chacal con Ankar; rasgos animales arbitrarios, capacidades gratuitas, cultura o moral impuesta por linaje.",
+      "decisionesProvisionales": "Tres adultos en un mercado genérico de humedal: elefantina con textiles, felino moteado con cesta y aviana posada. Vestimenta, pigmentación, proporciones y articulaciones precisas revisables. El asentamiento no se identifica con una ciudad oficial. Alas plegadas y posición sentada no permiten evaluar el vuelo ni toda la anatomía aviana.",
+      "referencia": "Manual Maestro, creación > Paso 1 > Terios / Anihombres; capítulos 20–21; anexo Terios / Anihombres — Hijos de la Sangre; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f."
     }
   },
   "recursos": [
@@ -274,34 +289,40 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3371434,
+      "sha256": "aca087bcf0f3a3bb9e6ef9f0a93461a12eec3656687805343391bbae2c5cdbfb",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical opening illustration for Terios, Children of Blood: three adult people of distinct animal lineages, an elephantine woman with integrated prehensile trunk and weight-bearing feet, a spotted feline adult with functional animal-derived limbs and hands, an avian adult with folded wings and raptor-like feet perched on a seat. Natural interaction and functional garments adapted to their anatomy, generic wetland market with waterways and functional arcano-industrial water infrastructure, warm natural light and subtle cyan accents. No transformations, no werewolves, no invented racial insignia, no fixed city, no exaggerated magical effects.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original y copia recuperada de Biblioteca abiertos y decodificados con Pillow: PNG RGB, 1024 × 1536, 3371434 bytes y SHA-256 idénticos; igualdad byte por byte comprobada. Inspección visual: anatomías elefantina, felina y aviana diferenciadas; trompa en contacto con textil, extremidades felinas visibles, aviana sentada con alas plegadas y pie visible. La pose y encuadre no permiten evaluar toda la estructura de las alas, el vuelo ni ambos pies avianos; no se certifica anatomía de vuelo a partir de esta imagen. Se requieren estudios posteriores específicos por linaje y ampliación de colección según diversidad canónica. Escalas exactas no cuantificadas. Sin texto legible ni marcas de agua observados. Escena genérica no localizada. Resolución inferior al objetivo; sin reescalado. Prompt registrado como especificación artística, no transcripción del prompt interno no expuesto. Transferencia binaria a GitHub pendiente por limitación previa; commit de imagen nulo.",
       "id": "RAZ-TERI-001",
       "ascendencia": "Terios/Anihombres",
-      "titulo": "Terios/Anihombres — Ilustración principal",
+      "titulo": "Terios / Anihombres — Hijos de la Sangre",
       "categoria": "apertura_ascendencia",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Terios/Anihombres",
-      "ubicacionSugerida": "Apertura de la sección de ascendencia",
-      "ruta": "assets/editorial/razas/terios/terios-apertura-v01.png"
+      "referenciaCanonica": "Manual Maestro, creación > Paso 1 > Terios / Anihombres; capítulos 20–21; anexo Terios / Anihombres — Hijos de la Sangre; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "Terios / Anihombres — Hijos de la Sangre",
+      "ubicacionSugerida": "Página izquierda — Los Cuerpos de la Vida",
+      "ruta": "assets/editorial/razas/terios/terios-apertura-v01.png",
+      "bibliotecaFileId": "file_000000004bfc820ebbbcb5e9bf510037",
+      "bibliotecaId": "libfile_a695dd8db0b081919df2e124f103212f",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/terios/terios-apertura-v01.png"
     },
     {
       "variante": null,
