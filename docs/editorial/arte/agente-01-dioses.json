@@ -776,25 +776,31 @@
       "ubicacionSugerida": "Los Goblinoides — Hijos del Ojo",
       "ruta": "assets/editorial/dioses/varkor/varkor-el-ojo-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 3055234,
+      "sha256": "fe915ba73ae3ef4540ce6912254f4038e7f00965667daa3d6494242e9bfaccbc",
       "prompt": null,
       "referenciasCanonicas": [
-        "docs/Tierra_Magica_Manual_Maestro.md — Los Goblinoides — Hijos del Ojo"
+        "docs/Tierra_Magica_Manual_Maestro.md — 28. Varkor y la Primera Guerra — Los Goblinoides — Hijos del Ojo",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Plan provisional; sustitución de categorías no documentadas por temas canónicos.",
-      "commit": null
+      "observaciones": "PNG RGB original y copia recuperada de Biblioteca abiertos, SHA-256 idénticos. Escena narrativa provisional de planificación y logística; no establece profesiones raciales obligatorias, un lugar canónico ni un hecho histórico. Resolución nativa inferior al objetivo, sin reescalado. Binario GitHub pendiente; prompt exacto no disponible.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000005694820e98c28f65367e3ed4",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/varkor/varkor-el-ojo-v01.png"
     },
     {
       "id": "DIV-VARKOR-007",
