@@ -519,25 +519,33 @@
       "ubicacionSugerida": "Eïra y Khorun — Vida y Forma",
       "ruta": "assets/editorial/dioses/khorun/khorun-vida-y-forma-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 3314171,
+      "sha256": "a2b128d07d0c9a2cfcef04cdcacacbf7a4700353d84cdb5726b15e383c460922",
       "prompt": null,
       "referenciasCanonicas": [
-        "docs/Tierra_Magica_Manual_Maestro.md — Eïra y Khorun — Vida y Forma"
+        "docs/Tierra_Magica_Manual_Maestro.md — 27. Khorun y la Primera Forja — Eïra y Khorun — Vida y Forma",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json",
+        "Eïra, la Madre de la Primera Semilla.png",
+        "Khorun, el Primer Forjador.png"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica, basada en los retratos oficiales de Eïra y Khorun",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Pendiente; sustituir categorías no documentadas por escenas canónicas.",
-      "commit": null
+      "observaciones": "Original PNG RGB abierto y copia de Biblioteca recuperada con SHA-256 idéntico. Interpretación mítica provisional de la complementariedad de Vida y Forma; no define vínculo romántico, rivalidad, proporciones divinas ni geografía canónica. Resolución nativa 1536×1024, sin reescalado. Prompt exacto no expuesto por el generador. Transferencia binaria a GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000005df4820e94f590aab7fb3076",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/khorun/khorun-vida-y-forma-v01.png"
     },
     {
       "id": "DIV-KHORUN-008",
