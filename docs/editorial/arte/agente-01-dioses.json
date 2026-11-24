@@ -701,24 +701,27 @@
       "ubicacionSugerida": "Fuerza, conflicto y moralidad",
       "ruta": "assets/editorial/dioses/varkor/varkor-conflicto-y-resistencia-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 3194261,
+      "sha256": "c30aa99f011c0b86d18f4085df02dc1e1aade15a45e7a285038e160a5d2de7c9",
       "prompt": null,
       "referenciasCanonicas": [
         "docs/Tierra_Magica_Manual_Maestro.md — Fuerza, conflicto y moralidad"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
       "estadoAlmacenamiento": "pendiente",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Plan provisional; sustitución de categorías no documentadas por temas canónicos.",
+      "observaciones": "PNG RGB abierto y verificado localmente. Original de conversación file_000000007c5c81f6be6d31fe6499e740. Biblioteca rechazada con 403 trusted producer; transferencia pendiente. Escena ilustrativa de resistencia y cooperación, no acontecimiento histórico canónico.",
       "commit": null
     },
     {
