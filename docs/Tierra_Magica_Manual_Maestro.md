@@ -12637,6 +12637,7 @@ Las deidades pueden actuar como **Fuente Divina** para personajes con un Víncul
 La construcción, geometría, color, variantes, pruebas y activos maestros se rigen por el **Estándar Universal de Símbolos Canónicos** del registro técnico. Esta corrección sincroniza un resumen editorial desactualizado con fichas y menciones canónicas ya existentes; **no aprueba símbolos nuevos**. Sigue pendiente una auditoría de coherencia conjunta de los Doce del Panteón Central, sin suponer que los siete Primordiales ya posean símbolos religiosos completos.
 
 Permanecen abiertos para desarrollo futuro los elementos que el canon vigente mantiene expresamente sin fijar: avatares y manifestaciones no definidas, estructuras universales de culto, calendarios exactos de festividades, milagros detallados, Vínculos Divinos específicos, planos, destino último de las almas, Archidemonios concretos, mecánicas completas de corrupción/posesión/Necromancia y numerosos paquetes jugables de pueblos primordiales. El Manual Maestro no rellena esos huecos por inferencia.
+
 ---
 
 # PARTE II — CANON DEL MUNDO v1.2 INTEGRADO
