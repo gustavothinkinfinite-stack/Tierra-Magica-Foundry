@@ -637,3 +637,10 @@
 - La página 429 presenta adaptación de equipo, migración de crowns y comienzo del capítulo 20; texto legible y sin recortes visibles. La sección Migración de crowns mezcla la regla canónica (no existe cuarta moneda ni equivalencia automática) con instrucciones de migración de Actors de Foundry. Para la edición final conservar la regla de moneda y separar las instrucciones de software como nota técnica, sin modificar valores ni conversiones. No se altera el Manual Maestro en esta unidad.
 - P. 428 confirma que los precios históricos sin ratificación no se convierten por inferencia; no resolver disponibilidad comercial mediante precios inventados. P. 430–431 remiten a los paquetes raciales y orígenes ya definidos en creación de personaje; revisión textual, no visual completa.
 - Pendientes: originales de dos cubiertas y doce retratos, separación editorial de notas técnicas, equipo/PNJ/iconografía/mapa, créditos y preflight. No se generó otro PDF ni se certifica imprenta.
+
+
+## 25-11-2026 — Producción editorial: comercio y perfiles de referencia
+
+- Base main `79e6c5b1ceb3f4004fb3e53e30d94980e1dbbf22`; canon blob `00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f`, intacto.
+- Commit `d621723a5654f48d0d04307e7bee39191e5f0b51`: la proyección de lectura sustituye dos bloques de mantenimiento de Foundry por orientación al lector (disponibilidad comercial y once perfiles de referencia), y retira una nota exclusivamente técnica de migración de crowns. Conserva las reglas de moneda, precios y campos abiertos. Los límites se comprobaron contra el canon; el maquetador falla explícitamente si cambian los marcadores.
+- Producción de esta unidad: 2 secciones editoriales transformadas y 1 nota técnica separada; 0 imágenes nuevas, 0 integradas, 0 páginas finales verificadas. Inventario gráfico total aún no consolidado; no se presupone existencia de doce retratos. PDF anterior de 606 páginas sigue provisional. Compilación posterior al cambio pendiente; no se certifica el resultado visual. Se mantiene formato provisional 6×9, sin decidir formato final de imprenta.
