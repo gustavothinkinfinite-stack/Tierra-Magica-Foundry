@@ -1026,24 +1026,27 @@
       "ubicacionSugerida": "29. Aster y la Primera Elección",
       "ruta": "assets/editorial/dioses/aster/aster-simbolo-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1312,
+        "alto": 1199
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 2041963,
+      "sha256": "4e35fc36f7bb3dd036e0b0bc7f5a20f5ad8b144225d534fdad85c4e8863cfadd",
       "prompt": null,
       "referenciasCanonicas": [
         "docs/Tierra_Magica_Manual_Maestro.md — 29. Aster y la Primera Elección"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
       "estadoAlmacenamiento": "pendiente",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Plan provisional sujeto a comprobación del canon; sustituye categorías religiosas no documentadas por escenas respaldadas.",
+      "observaciones": "Símbolo abierto con caminos; PNG RGBA. Apertura y SHA-256 comprobados. Original de conversación file_00000000df7481f79801f46bcff69eda. Conservación y binario pendientes; no se repite carga 403.",
       "commit": null
     },
     {
@@ -1056,24 +1059,27 @@
       "ubicacionSugerida": "El Don sin Forma",
       "ruta": "assets/editorial/dioses/aster/aster-don-sin-forma-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 3145475,
+      "sha256": "0bbba566dd7d7e502b19bf71f614d40baebd3b6b36b71075c9e0829b103febc6",
       "prompt": null,
       "referenciasCanonicas": [
         "docs/Tierra_Magica_Manual_Maestro.md — El Don sin Forma"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
       "estadoAlmacenamiento": "pendiente",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Plan provisional sujeto a comprobación del canon; sustituye categorías religiosas no documentadas por escenas respaldadas.",
+      "observaciones": "Reflejos de posibilidades como metáfora visual, no poder sobrenatural ni lugar canónico. PNG RGB. Apertura y SHA-256 comprobados. Original de conversación file_00000000fbdc81f5a805ec84cee46192. Conservación y binario pendientes; no se repite carga 403.",
       "commit": null
     },
     {
