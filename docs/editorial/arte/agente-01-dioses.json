@@ -1,7 +1,7 @@
 {
   "agente": "01",
   "version": 1,
-  "fechaActualizacion": "2026-11-24",
+  "fechaActualizacion": "2026-11-25",
   "objetivo": 108,
   "canon": "docs/Tierra_Magica_Manual_Maestro.md",
   "recursos": [
@@ -1092,24 +1092,27 @@
       "ubicacionSugerida": "Brevedad, urgencia y Legado",
       "ruta": "assets/editorial/dioses/aster/aster-legado-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 2878282,
+      "sha256": "a7ce634155483c0b4e1197083345518052755e3b45fd5cc4ae8c1f4a7afb3f21",
       "prompt": null,
       "referenciasCanonicas": [
         "docs/Tierra_Magica_Manual_Maestro.md — Brevedad, urgencia y Legado"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-25",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
       "estadoAlmacenamiento": "pendiente",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Plan provisional sujeto a comprobación del canon; sustituye categorías religiosas no documentadas por escenas respaldadas.",
+      "observaciones": "PNG RGB abierto y verificado localmente. Original de conversación file_000000004bc081f589d26befa9af80b8. Interpretación provisional de continuidad de una obra; instrumento y taller no canónicos. Conservación y binario pendientes; no se repite carga 403.",
       "commit": null
     },
     {
