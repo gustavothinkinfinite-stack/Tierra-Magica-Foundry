@@ -1,7 +1,7 @@
 {
   "agente": "02",
   "version": 1,
-  "fechaActualizacion": "2026-11-24",
+  "fechaActualizacion": "2026-11-25",
   "objetivo": 168,
   "canon": "docs/Tierra_Magica_Manual_Maestro.md",
   "blobCanon": "00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f",
@@ -1522,36 +1522,43 @@
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/cristalidos/cristalidos-personaje-femenino-v01.png"
     },
     {
-      "variante": null,
+      "variante": "Morfología suculenta de inspiración desértica (provisional)",
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1024,
+        "alto": 1536
+      },
+      "tamanoBytes": 3174872,
+      "sha256": "e9e342f675bdf7d0cc1719775eceed8f727afb48822642f0211f01b3f3cb3f09",
       "enlace": null,
-      "prompt": null,
+      "prompt": "An original high-end fantasy tabletop roleplaying rulebook illustration, sophisticated digital oil painting, classical fantasy composition, believable and canonically consistent anatomy, richly detailed natural materials, refined painterly textures, expressive character design, realistic fabric and leather craftsmanship, atmospheric depth, controlled cinematic lighting, medieval fantasy worldbuilding with subtle arcane-industrial elements where appropriate, culturally diverse character representation, grounded visual storytelling, cohesive editorial art direction, professional collectible fantasy book artwork, distinctive original visual identity, balanced composition, no visible text, no lettering, no watermark, no modern objects. Vertical full-body portrait of an adult female Verdante navigator, medium scale, autonomous conscious mobile plant organism with desert-inspired succulent morphology, integrated fleshy leaf rosette, articulated stems and functional hands and feet. Both feet visible, standing on a ship deck without rooting, holding a brass compass. Functional navy and ochre travel garments, ropes, nautical gear and restrained arcane-industrial infrastructure, unnamed harbor, warm sunlight. No aquatic breathing, innate magic, tree-bound spirit, fungal anatomy or automatic environmental immunity. Morphology and pigmentation provisional. Maintain continuity with the Verdante master illustration.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
-        "Tierra_Magica_Portada_Referencia_v1.png"
+        "Tierra_Magica_Portada_Referencia_v1.png",
+        "RAZ-VERD-001 — verdantes-apertura-v01.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-25",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original y copia recuperada de Biblioteca abiertos y decodificados con Pillow: PNG RGB, 1024 × 1536, 3174872 bytes; SHA-256 coincidente e igualdad byte por byte comprobada. Referencia maestra recuperada, inspeccionada visualmente y SHA-256 coincidente con manifiesto; guía visual consultada. Figura adulta de cuerpo completo, ambas manos y pies visibles, tejidos vegetales suculentos y roseta foliar integrada, actividad civil de navegación. No se representa Enraizar ni se acredita adaptación de bioma específica o capacidad acuática. Forma de hojas, facciones, pigmentación, manos, pies y ropa son interpretaciones provisionales. Pose estática no demuestra biomecánica ni anatomía interna. Cartas náuticas con grafismos ambientales no legibles, sin texto legible ni marcas de agua observados. Escenario genérico no localizado. Resolución inferior al objetivo 2000 × 3000, original sin reescalado. Prompt registrado como especificación artística en inglés, no transcripción del prompt interno del generador. Transferencia binaria a GitHub pendiente por limitación anterior; commit de imagen nulo.",
       "id": "RAZ-VERD-003",
       "ascendencia": "Verdantes",
-      "titulo": "Verdantes — Personaje femenino",
+      "titulo": "Verdantes — Personaje femenino: navegante",
       "categoria": "retrato",
-      "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
-      "anclaEditorial": "Verdantes",
-      "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/verdantes/verdantes-personaje-femenino-v01.png"
+      "referenciaCanonica": "Manual Maestro, anexo Verdantes — Pueblos de raíz y camino, líneas 13924–13967; ejemplo de Verdante de desierto navegante; blob 00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f.",
+      "anclaEditorial": "Verdantes — Pueblos de raíz y camino",
+      "ubicacionSugerida": "Sección de Verdantes, junto a Necesidades y decisiones",
+      "ruta": "assets/editorial/razas/verdantes/verdantes-personaje-femenino-v01.png",
+      "bibliotecaFileId": "file_0000000081dc820e8f848126f6769743",
+      "bibliotecaId": "libfile_e709dcd6ebd0819187d12892063dd797",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/verdantes/verdantes-personaje-femenino-v01.png"
     },
     {
       "variante": null,
