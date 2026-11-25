@@ -1147,6 +1147,171 @@
       "aprobacion": "provisional_autorizada",
       "observaciones": "PNG RGBA abierto y cargado íntegramente; alfa 0–255. Original file_0000000075d881f7bc15c4e8e14f128b. Ornamento provisional, motivos decorativos sin canon adicional. Conservación y binario pendientes; no se repite carga 403.",
       "commit": null
+    },
+    {
+      "id": "DIV-ILYR-003",
+      "divinidad": "Ilyr",
+      "titulo": "Santuario de Ilyr",
+      "categoria": "santuario",
+      "capitulo": 30,
+      "anclaEditorial": "Religión y magia divina",
+      "ubicacionSugerida": "Religión y magia divina",
+      "ruta": "assets/editorial/dioses/ilyr/ilyr-santuario-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3441313,
+      "sha256": "7e48c22feac62934fd103eadfd15d8aa54a00862c501fe4b6793561aaafcaff2",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — Religión y magia divina"
+      ],
+      "fechaCreacion": "2026-11-25",
+      "version": 1,
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "pendiente",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Original celestial_temple_above_the_clouds.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo.",
+      "commit": null
+    },
+    {
+      "id": "DIV-ILYR-004",
+      "divinidad": "Ilyr",
+      "titulo": "El Juramento de las Seis Alas",
+      "categoria": "culto",
+      "capitulo": 30,
+      "anclaEditorial": "El Juramento de las Seis Alas",
+      "ubicacionSugerida": "El Juramento de las Seis Alas",
+      "ruta": "assets/editorial/dioses/ilyr/ilyr-seis-alas-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3329664,
+      "sha256": "0831c1690407a3450861214104e9a86fde6a9d37eb8c8664afc1bad54aaa4b95",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — El Juramento de las Seis Alas"
+      ],
+      "fechaCreacion": "2026-11-25",
+      "version": 1,
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "pendiente",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Original a_highly_detailed_fantasy_renaissance_style_oil_pa.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo.",
+      "commit": null
+    },
+    {
+      "id": "DIV-ILYR-005",
+      "divinidad": "Ilyr",
+      "titulo": "Símbolo sagrado de Ilyr",
+      "categoria": "simbolo",
+      "capitulo": 30,
+      "anclaEditorial": "30. Ilyr, la Primera Luz y el Primer Juramento",
+      "ubicacionSugerida": "30. Ilyr, la Primera Luz y el Primer Juramento",
+      "ruta": "assets/editorial/dioses/ilyr/ilyr-simbolo-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "formato": "PNG",
+      "tamanoBytes": 2618442,
+      "sha256": "7721f0ae16a04e65476517b39f2db4f7701eba7714291fe5df81d0f05148d832",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 30. Ilyr, la Primera Luz y el Primer Juramento"
+      ],
+      "fechaCreacion": "2026-11-25",
+      "version": 1,
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "pendiente",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Original a_clean_high_detail_emblem_insignia_on_a_transpar.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo.",
+      "commit": null
+    },
+    {
+      "id": "DIV-ILYR-007",
+      "divinidad": "Ilyr",
+      "titulo": "Libertad, Caída y Redención",
+      "categoria": "escena_secundaria",
+      "capitulo": 30,
+      "anclaEditorial": "Libertad, Caída y Redención",
+      "ubicacionSugerida": "Libertad, Caída y Redención",
+      "ruta": "assets/editorial/dioses/ilyr/ilyr-redencion-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3186148,
+      "sha256": "da1293c8c0efca276368910fc19467f0d6e80dc466dc0e3482ab54e022d4c255",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — Libertad, Caída y Redención"
+      ],
+      "fechaCreacion": "2026-11-25",
+      "version": 1,
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "pendiente",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Original winged_guardian_amidst_the_ruins.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo.",
+      "commit": null
+    },
+    {
+      "id": "DIV-ILYR-008",
+      "divinidad": "Ilyr",
+      "titulo": "Ornamento editorial de Ilyr",
+      "categoria": "ornamento",
+      "capitulo": 30,
+      "anclaEditorial": "30. Ilyr, la Primera Luz y el Primer Juramento",
+      "ubicacionSugerida": "30. Ilyr, la Primera Luz y el Primer Juramento",
+      "ruta": "assets/editorial/dioses/ilyr/ilyr-ornamento-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 2172,
+        "alto": 724
+      },
+      "formato": "PNG",
+      "tamanoBytes": 1558620,
+      "sha256": "34f018eed934ade10a34a31f41c24df8ea8b9d54a3b98172a7dac3fcee1c521f",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 30. Ilyr, la Primera Luz y el Primer Juramento"
+      ],
+      "fechaCreacion": "2026-11-25",
+      "version": 1,
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "pendiente",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Original golden_six_winged_sun_emblem.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo.",
+      "commit": null
     }
   ]
 }
