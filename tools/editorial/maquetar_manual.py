@@ -38,7 +38,52 @@ def reader_text(raw: str) -> str:
     primary, races = raw[start:stop].strip(), raw[appendix:].strip()
     if len(primary) < 300000 or len(races) < 15000:
         raise ValueError('El texto no tiene longitud plausible de manual completo')
+    # Editorial projection: preserve the canonical source and replace only
+    # explicitly identified software-maintenance sections with reader guidance.
+    primary = reader_guidance(primary)
     return primary + '\n\n' + races
+
+
+def reader_guidance(text: str) -> str:
+    sections = (
+        (
+            '### Auditoría de disponibilidad en Foundry (pendiente de conciliación)',
+            '### Catálogo monetario de equipo',
+            '### Disponibilidad y acceso al mercado\n\n'
+            'La Disponibilidad de un bien y el tamaño del mercado son criterios distintos. '
+            'No existe una equivalencia universal ratificada entre los cinco grados de '
+            'Disponibilidad y los niveles de establecimiento. La ausencia de clasificación '
+            'no convierte un bien en Común. Las armas repetidoras indicadas como Raras '
+            'conservan esa clasificación; no se extiende a otras armas por semejanza. '
+            'Los bienes Restringidos requieren autorización de acceso; la existencia '
+            'de stock y dinero no la sustituye. No se asignan disponibilidades por '
+            'inferencia a los 25 objetos de EQP-01 ni a otras entradas.\n\n',
+        ),
+        (
+            '### Conciliación documental con el compendio Foundry VTT',
+            '## 24. Dirección de juego',
+            '### Uso de los perfiles de referencia\n\n'
+            'Los once perfiles conservan sus valores y campos abiertos. El Civil no '
+            'tiene ataque cuantificado; el Soldado conserva Daño 7–8; el Canalizador '
+            'hostil tiene Maná 15, Canalización +6 y Protección posible 0–1, sin '
+            'hechizos predeterminados. El Centinela de Bronce no tiene Defensa Corporal '
+            'numérica establecida y el Troll dominante no activa capacidades o '
+            'Reacciones opcionales por su nombre. Los ejemplos de encuentros 10 y 11 '
+            'no modifican automáticamente los perfiles base.\n\n',
+        ),
+    )
+    for start, end, replacement in sections:
+        if text.count(start) != 1 or text.count(end) != 1:
+            raise ValueError('Cambió una sección editorial: ' + start)
+        first, last = text.index(start), text.index(end)
+        if first >= last:
+            raise ValueError('Límites editoriales invertidos: ' + start)
+        text = text[:first] + replacement + text[last:]
+    note = '> **Nota técnica para Foundry:** el sistema preserva el valor original del campo legado crowns y marca el Actor como pendiente hasta que una persona confirme la conversión o el archivo sin conversión.'
+    if text.count(note) != 1:
+        raise ValueError('Cambió la nota técnica de moneda')
+    return text.replace(note, '')
+
 
 
 def cardify_wide_tables(soup: BeautifulSoup) -> int:
