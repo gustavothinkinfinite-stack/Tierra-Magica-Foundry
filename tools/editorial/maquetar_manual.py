@@ -82,7 +82,38 @@ def reader_guidance(text: str) -> str:
     note = '> **Nota técnica para Foundry:** el sistema preserva el valor original del campo legado crowns y marca el Actor como pendiente hasta que una persona confirme la conversión o el archivo sin conversión.'
     if text.count(note) != 1:
         raise ValueError('Cambió la nota técnica de moneda')
-    return text.replace(note, '')
+    text = text.replace(note, '')
+    # Present the CRAFT-12 mechanical reference as reader guidance.
+    first = '#### Auditoría de acciones y Reacciones'
+    last = '## 19. Economía, disponibilidad y equipo'
+    if text.count(first) != 1 or text.count(last) != 1:
+        raise ValueError('Cambió el cierre editorial de fabricación')
+    a, b = text.index(first), text.index(last)
+    block = text[a:b]
+    for old, new in (
+        ('Auditoría de acciones y Reacciones', 'Acciones y Reacciones de objetos fabricados'),
+        ('Auditoría de apilamiento ofensivo', 'Límites de apilamiento ofensivo'),
+        ('Auditoría defensiva', 'Límites de protección y defensa'),
+        ('Auditoría de recursos', 'Separación de recursos'),
+        ('Auditoría de recuperación', 'Recuperación de componentes'),
+        ('Auditoría del catálogo', 'Composición del catálogo de referencia'),
+    ):
+        block = block.replace('#### ' + old, '#### ' + new)
+    block = block.replace('Se verificó:', 'Al aplicar estas reglas:')
+    block = block.replace('Se verificó por estados:', 'Estados de referencia:')
+    closing = '#### Estado posterior a correcciones'
+    if block.count(closing) != 1:
+        raise ValueError('Cambió el informe de cierre CRAFT-12')
+    block = block[:block.index(closing)] + (
+        '#### Límites de fabricación e investigación\n\n'
+        'Los requisitos de rango, Plano e Instalación siguen vigentes. '
+        'Se respetan CapM, CRu, Sintonización y los límites de carga; '
+        'un Prototipo no equivale a un Plano. Los perfiles nuevos deben '
+        'respetar coste, reventa, recuperación, tiempo, competencia, acciones, '
+        'apilamiento, recursos, Sintonización y compatibilidad con Investigación. '
+        'Estas restricciones no garantizan el equilibrio de todo perfil futuro.\n\n'
+    )
+    return text[:a] + block + text[b:]
 
 
 
