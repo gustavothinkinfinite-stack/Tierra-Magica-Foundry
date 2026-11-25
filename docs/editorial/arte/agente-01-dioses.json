@@ -1125,24 +1125,27 @@
       "ubicacionSugerida": "29. Aster y la Primera Elección",
       "ruta": "assets/editorial/dioses/aster/aster-ornamento-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 2172,
+        "alto": 724
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 1246257,
+      "sha256": "8988c8d41e876f6671e59f547a984e60fcc2278db735a1c0c4f15493fffc6888",
       "prompt": null,
       "referenciasCanonicas": [
         "docs/Tierra_Magica_Manual_Maestro.md — 29. Aster y la Primera Elección"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-25",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
       "estadoAlmacenamiento": "pendiente",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Plan provisional sujeto a comprobación del canon; sustituye categorías religiosas no documentadas por escenas respaldadas.",
+      "observaciones": "PNG RGBA abierto y cargado íntegramente; alfa 0–255. Original file_0000000075d881f7bc15c4e8e14f128b. Ornamento provisional, motivos decorativos sin canon adicional. Conservación y binario pendientes; no se repite carga 403.",
       "commit": null
     }
   ]
