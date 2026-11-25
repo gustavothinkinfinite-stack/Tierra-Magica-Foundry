@@ -993,24 +993,27 @@
       "ubicacionSugerida": "Libertad y consecuencias",
       "ruta": "assets/editorial/dioses/aster/aster-libertad-y-consecuencias-v01.png",
       "enlace": null,
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "formato": "PNG",
-      "tamanoBytes": null,
-      "sha256": null,
+      "tamanoBytes": 3106831,
+      "sha256": "7c17107735911669fd4a204419dbedda379bc28ef87269d2b1c35ee5bb852cc2",
       "prompt": null,
       "referenciasCanonicas": [
         "docs/Tierra_Magica_Manual_Maestro.md — Libertad y consecuencias"
       ],
-      "fechaCreacion": null,
+      "fechaCreacion": "2026-11-24",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
       "estadoAlmacenamiento": "pendiente",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Plan provisional sujeto a comprobación del canon; sustituye categorías religiosas no documentadas por escenas respaldadas.",
+      "observaciones": "PNG RGB abierto y verificado localmente. Original file_0000000012a48212947cc079861e6553. Biblioteca rechazó carga 403 trusted producer. Transferencia binaria pendiente. Escena provisional de debate sobre libertad y restricciones colectivas; sin hechos históricos nuevos. Se seleccionó la segunda variante por diversidad de perspectivas; primera variante no inventariada. Emblemas de brújula decorativos, no símbolo canónico.",
       "commit": null
     },
     {
