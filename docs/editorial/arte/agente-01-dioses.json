@@ -1168,30 +1168,42 @@
       "capitulo": 30,
       "anclaEditorial": "Religión y magia divina",
       "ubicacionSugerida": "Religión y magia divina",
-      "ruta": "assets/editorial/dioses/ilyr/ilyr-santuario-v01.png",
+      "ruta": "assets/editorial/dioses/ilyr/ilyr-santuario-v02.png",
       "enlace": null,
       "dimensiones": {
         "ancho": 1536,
         "alto": 1024
       },
       "formato": "PNG",
-      "tamanoBytes": 3441313,
-      "sha256": "7e48c22feac62934fd103eadfd15d8aa54a00862c501fe4b6793561aaafcaff2",
-      "prompt": null,
+      "tamanoBytes": 3108977,
+      "sha256": "a844f4a927f9e8e8827ebd9aaa6cf72e818f758693e262ccf809a2ede15f709b",
+      "prompt": "Santuario de piedra clara con asistencia a viajeros y heridos de distintos pueblos. Sin iglesia universal ni nuevos símbolos religiosos.",
       "referenciasCanonicas": [
         "docs/Tierra_Magica_Manual_Maestro.md — Religión y magia divina"
       ],
-      "fechaCreacion": "2026-11-25",
-      "version": 1,
-      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "fechaCreacion": "2026-11-27",
+      "version": 2,
+      "procedencia": "Ilustración generativa nueva de sustitución por original v01 inaccesible",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "biblioteca",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Original celestial_temple_above_the_clouds.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo.",
-      "commit": null
+      "observaciones": "Original v01 no recuperado, sus metadatos se conservan. PNG nuevo abierto y decodificado localmente; tamaño, dimensiones y SHA-256 comprobados. Biblioteca confirmó carga. Interpretación artística, no institución canónica. Transferencia binaria pendiente.",
+      "commit": null,
+      "versionAnteriorNoRecuperada": {
+        "ruta": "assets/editorial/dioses/ilyr/ilyr-santuario-v01.png",
+        "sha256": "7e48c22feac62934fd103eadfd15d8aa54a00862c501fe4b6793561aaafcaff2",
+        "tamanoBytes": 3441313,
+        "dimensiones": {
+          "ancho": 1536,
+          "alto": 1024
+        },
+        "version": 1
+      },
+      "bibliotecaFileId": "file_00000000f56c820e874683ad66198eed",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/ilyr/ilyr-santuario-v02.png"
     },
     {
       "id": "DIV-ILYR-004",
