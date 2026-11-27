@@ -2004,26 +2004,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3232257,
+      "sha256": "fcf42d57b2d3ae3071e75d5503606b9033f1be82afaf570103997d68eed8c33c",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina anatómica horizontal de tres Verdantes adultos de cuerpo completo con morfologías leñosa, foliar de humedal y suculenta de desierto; manos articuladas, pies funcionales y detalles de tejidos vegetales. Fondo neutro de pergamino, sin texto ni marco, sin hongos, árboles gigantes ni efectos mágicos. Las diferencias de apariencia no implican nuevas subrazas ni ventajas mecánicas.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB verificado localmente con dimensiones, tamaño y SHA-256; carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación provisional. Rasgos específicos de hojas, corteza, suculencia y proporciones son decisiones artísticas, no subrazas, inmunidades ni reglas nuevas. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-VERD-004",
       "ascendencia": "Verdantes",
       "titulo": "Verdantes — Estudio anatómico",
@@ -2031,7 +2034,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Verdantes",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/verdantes/verdantes-anatomia-v01.png"
+      "ruta": "assets/editorial/razas/verdantes/verdantes-anatomia-v01.png",
+      "bibliotecaFileId": "file_000000008c9c820e950c093d3a844523",
+      "bibliotecaId": "libfile_cee691b0a2e48191b1a9ad04aad351dc",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/verdantes/verdantes-anatomia-v01.png"
     },
     {
       "variante": null,
