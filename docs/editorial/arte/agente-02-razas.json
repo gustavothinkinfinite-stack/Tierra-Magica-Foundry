@@ -3271,26 +3271,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3248880,
+      "sha256": "5d954d5dc15b063b23c7c633f5139d84645554dca2331b345b5432cf3b032288",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa de viajeros Goblins, Hobgoblins y Bugbears en una estación ferroviaria de Edria no localizada. Abrigos, chaquetas, capas, bolsos y equipaje adaptados a sus complexiones; interacción civil natural. Arquitectura de piedra e infraestructura ferroviaria arcano-industrial, iluminación cálida y acentos cian. Sin uniformes raciales, jerarquías ni texto legible.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original abierto y decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada; recuperación binaria no cotejada. Aprobación editorial provisional. Estación, locomotora, prendas y banderines son interpretaciones revisables, sin adscripción a una localidad o emblema oficial. Los Goblins aparecen sentados o agachados, por lo que la perspectiva no permite certificar diferencias métricas de estatura; no utilizar como lámina de escala. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-GOBL-007",
       "ascendencia": "Goblinoides",
       "titulo": "Goblinoides — Vestimenta y cultura 1",
@@ -3298,7 +3301,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Goblinoides",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/goblinoides/goblinoides-vestimenta-01-v01.png"
+      "ruta": "assets/editorial/razas/goblinoides/goblinoides-vestimenta-01-v01.png",
+      "bibliotecaFileId": "file_0000000087d8820e8b936119235c34e2",
+      "bibliotecaId": "libfile_68246ba0ae4c8191a60e556ca81aab8d",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/goblinoides/goblinoides-vestimenta-01-v01.png"
     },
     {
       "variante": null,
