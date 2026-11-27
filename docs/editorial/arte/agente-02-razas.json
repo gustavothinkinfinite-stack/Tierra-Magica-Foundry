@@ -3195,26 +3195,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3762509,
+      "sha256": "7c7d3f0729bf7e840a5c7a3ab52fd95cc71ec903e1dd3eaf5a155e66c875427f",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa en un taller textil junto a un canal y bosque antiguo. Cinco adultos élficos trabajan con lino, lana, cuero y tejidos finos; telar funcional, confección y ajuste de prendas, ropa laboral, civil y de viaje. Arquitectura de piedra, rueda hidráulica e infraestructura arcano-industrial funcional, iluminación cálida y acentos cian. Sin texto ni adscripciones culturales por apariencia.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 calculados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Taller y entorno no localizados, indumentaria y motivos textiles interpretativos. Evita asignar tradiciones por rasgos físicos; no introduce uniformes obligatorios. Persiste cierta repetición de bordados de otras piezas y conviene variar cortes y materiales en la segunda escena. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-ELFI-007",
       "ascendencia": "Élficos",
       "titulo": "Élficos — Vestimenta y cultura 1",
@@ -3222,7 +3225,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Élficos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/elficos/elficos-vestimenta-01-v01.png"
+      "ruta": "assets/editorial/razas/elficos/elficos-vestimenta-01-v01.png",
+      "bibliotecaFileId": "file_000000000c00820e9e69f95fe78668fa",
+      "bibliotecaId": "libfile_1255b3f35a6c8191bed5eddb82f3a3c6",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/elficos/elficos-vestimenta-01-v01.png"
     },
     {
       "variante": null,
