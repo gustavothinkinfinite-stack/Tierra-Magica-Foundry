@@ -3140,26 +3140,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3649301,
+      "sha256": "7eb00a681816d7307bbd57fb8e66259b4e3f233f9390cbab371a9a5d1024e6f3",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa en un refugio de montaña no localizado, con adultos enanos de escala Pequeña y anatomía orgánica: viajeros, comerciantes, cronista y personal de mantenimiento. Abrigos de lana gruesa, capas de viaje, cuero, delantales y herramientas funcionales; arquitectura de piedra y madera, iluminación cálida y ferrocarril de montaña al fondo. Pintura digital realista editorial, sin texto legible, marcas de agua ni castas anatómicas.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Escena narrativa inspirada en tradiciones de Montaña y Errantes, sin identificar un lugar oficial ni asignar oficios obligatorios. Vestuario, motivos textiles, infraestructura y banderines son interpretaciones revisables; algunas prendas de manga corta en clima frío pueden ajustarse en futuras escenas. La siguiente pieza puede contrastar con un ambiente de galería o taller. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-ENAN-007",
       "ascendencia": "Enanos",
       "titulo": "Enanos — Vestimenta y cultura 1",
@@ -3167,7 +3170,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Enanos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/enanos/enanos-vestimenta-01-v01.png"
+      "ruta": "assets/editorial/razas/enanos/enanos-vestimenta-01-v01.png",
+      "bibliotecaFileId": "file_0000000039cc820e904302a6c730d330",
+      "bibliotecaId": "libfile_858772614db08191b309f2dca1943b87",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/enanos/enanos-vestimenta-01-v01.png"
     },
     {
       "variante": null,
