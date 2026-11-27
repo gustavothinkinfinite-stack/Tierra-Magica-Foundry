@@ -1534,6 +1534,41 @@
       "commit": null,
       "bibliotecaFileId": "file_00000000de10820ebe1191ea9f1bd249",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/selene/selene-ornamento-editorial-v01.png"
+    },
+    {
+      "id": "COS-001",
+      "divinidad": null,
+      "titulo": "Los siete acontecimientos primordiales",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "25. Cosmología: los Principios Primordiales",
+      "ubicacionSugerida": "Apertura del capítulo 25",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-001-siete-acontecimientos-primordiales-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3529588,
+      "sha256": "69efbac0e2f54f50ce8c3b7d146cd92a7afbe129e4bd2ba87b2fc15511560f46",
+      "prompt": "Panorama alegórico de los siete principios primordiales en paisaje continuo, sin retratos repetidos, texto ni emblemas.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 25. Cosmología: los Principios Primordiales"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB abierto y verificado localmente. Composición alegórica, no mapa cosmológico literal ni cronología espacial. Copia en Biblioteca confirmada por servicio de almacenamiento. Transferencia binaria a GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000d9a4820ea530d1312888e38b",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-001-siete-acontecimientos-primordiales-v01.png"
     }
   ]
 }
