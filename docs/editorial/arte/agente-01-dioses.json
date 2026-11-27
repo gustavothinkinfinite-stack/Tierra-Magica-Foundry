@@ -1864,6 +1864,43 @@
       "commit": null,
       "bibliotecaFileId": "file_0000000057dc820eb8137ce34956347c",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-009-materia-forma-civilizacion-v01.png"
+    },
+    {
+      "id": "COS-010",
+      "divinidad": null,
+      "titulo": "Protección, justicia y acuerdos",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "25. Cosmología: los Principios Primordiales",
+      "ubicacionSugerida": "Lámina comparativa de Ilyr, Aurea y Oria",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-010-proteccion-justicia-acuerdos-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3329139,
+      "sha256": "320dd05897fd72338ab375343e752686a50b6d6ca1259f23cd7ff33a2ba750d9",
+      "prompt": "Asamblea comunitaria en refugio tras inundación: asistencia a desconocidos, protección de familias y deliberación voluntaria sobre acuerdos de reconstrucción. Diversidad de pueblos, ambiente arcano-industrial.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 30. Ilyr, la Primera Luz y el Primer Juramento — El Juramento de las Seis Alas",
+        "docs/Tierra_Magica_Manual_Maestro.md — 33 — Aurea y los otros principios",
+        "docs/Tierra_Magica_Manual_Maestro.md — 35. Oria, la Balanza — Acuerdo y consentimiento"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB decodificado, tamaño y SHA-256 calculados localmente. Biblioteca confirmada por servicio. Escena alegórica sin fijar acontecimiento o lugar canónico; revisar trazos de documentos para evitar texto espurio. Transferencia binaria a GitHub pendiente por falta de puente verificado.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000003524820e80d9b95e61d8dfdc",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-010-proteccion-justicia-acuerdos-v01.png"
     }
   ]
 }
