@@ -3811,6 +3811,41 @@
       "commit": null,
       "bibliotecaFileId": "file_00000000be54820eab04e186bf462a6f",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nemor/nemor-noche-de-los-nombres-v01.png"
+    },
+    {
+      "id": "DIV-VAEL-003",
+      "divinidad": "Vael",
+      "titulo": "Las Casas del Camino",
+      "categoria": "santuario",
+      "capitulo": 36,
+      "anclaEditorial": "Cultos de Vael",
+      "ubicacionSugerida": "Cultos de Vael — Las Casas del Camino",
+      "ruta": "assets/editorial/dioses/vael/vael-casas-del-camino-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1671,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3254998,
+      "sha256": "b962220c1e61efa2db3517bffa141864a32aa3e4327f2956727b81b6e702f6ed",
+      "prompt": "Refugio de viajeros junto a ruta montañosa, diversidad de pueblos y ambientación arcano-industrial, sin rótulos ni emblemas añadidos.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 36. Vael, el Navegante — Cultos de Vael"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa nueva para cubrir posición sin original recuperable",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, tamaño y SHA-256 comprobados; carga del original confirmada en Biblioteca. Refugio y emplazamiento de interpretación artística, no localización canónica. Revisar trazos del mapa decorativo antes de maquetación. Transferencia binaria pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000005478820eb0c7a2eefc1c0820",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/vael/vael-casas-del-camino-v01.png"
     }
   ]
 }
