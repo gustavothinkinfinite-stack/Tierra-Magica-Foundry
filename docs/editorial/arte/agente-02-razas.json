@@ -2896,14 +2896,14 @@
       "fechaGeneracion": null,
       "version": 1,
       "procedencia": null,
-      "estadoProduccion": "pendiente",
+      "estadoProduccion": "requiere_reemplazo",
       "estadoAlmacenamiento": "pendiente",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Se recuperó e inspeccionó la referencia RAZ-ANKA-003 antes de generar. Primer intento: orejas laterales adicionales además del par cánido. Segundo intento de corrección: deriva hacia humanoides avianos ajenos al canon Ankar. Ambos PNG RGB decodificados localmente, dimensiones, bytes y SHA-256 comprobados; respaldo en Biblioteca confirmado, recuperación de las copias no cotejada. Ninguna pieza válida; no contabilizar. Requiere resolver identidad visual y control anatómico antes de nuevos intentos. No se modifica el canon.",
       "id": "RAZ-ANKA-006",
       "ascendencia": "Ankar",
       "titulo": "Ankar — Diversidad interna 2",
@@ -2911,7 +2911,41 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Ankar",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/ankar/ankar-variante-02-v01.png"
+      "ruta": "assets/editorial/razas/ankar/ankar-variante-02-v01.png",
+      "borradoresRechazados": [
+        {
+          "intento": 1,
+          "bibliotecaFileId": "file_00000000334c820ea2822f03c96d5cf8",
+          "bibliotecaId": "libfile_214340b69184819188b46d7d9960f16f",
+          "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/ankar/borradores-rechazados/ankar-variante-02-intento-01.png",
+          "formato": "PNG",
+          "dimensiones": {
+            "ancho": 1536,
+            "alto": 1024
+          },
+          "tamanoBytes": 2830346,
+          "sha256": "35c7cc9b862dbe981c9e017e3e6769a9db3426495b3d22f49ebbb9acb19c427d",
+          "fechaGeneracion": "2026-11-27",
+          "motivo": "Orejas adicionales.",
+          "estadoAlmacenamiento": "almacenada"
+        },
+        {
+          "intento": 2,
+          "bibliotecaFileId": "file_00000000db28820eb43060c1a8efde75",
+          "bibliotecaId": "libfile_30e4aed27ea08191b62abb133d496b77",
+          "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/ankar/borradores-rechazados/ankar-variante-02-intento-02.png",
+          "formato": "PNG",
+          "dimensiones": {
+            "ancho": 1536,
+            "alto": 1024
+          },
+          "tamanoBytes": 3248375,
+          "sha256": "a37aa509231e20f8a9afce13082ae80526aee70532921b346802d3788942338d",
+          "fechaGeneracion": "2026-11-27",
+          "motivo": "Anatomía aviana ajena a los Ankar.",
+          "estadoAlmacenamiento": "almacenada"
+        }
+      ]
     },
     {
       "variante": null,
