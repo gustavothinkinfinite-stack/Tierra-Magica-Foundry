@@ -3417,26 +3417,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3462873,
+      "sha256": "3f587293d3243b60c262e969438b890295e73db5d09fecb810479c97a030fb69",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal de cinco Cristálidos adultos de Matriz Mixta en una celebración familiar de mudanza de faceta: una mujer mayor muestra una formación mineral en el antebrazo y una joven registra el cambio en un libro familiar. Vestimenta festiva y cotidiana, mangas y cierres funcionales, tejido orgánico visible y facetas sin emisión mágica. Patio residencial no localizado, alimentos, luz natural y detalles arcano-industriales ambientales. Pintura digital realista editorial, sin texto legible ni símbolos oficiales.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original PNG RGB abierto y decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Escena inspirada en ejemplo cultural local de mudanza de faceta, no rito universal ni metamorfosis mecánica. Prendas, alimentos, facetas, parentescos y patio son interpretaciones artísticas revisables. La composición de medio cuerpo limita la lectura del vestuario completo. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-CRIS-007",
       "ascendencia": "Cristálidos",
       "titulo": "Cristálidos — Vestimenta y cultura 1",
@@ -3444,7 +3447,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Cristálidos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/cristalidos/cristalidos-vestimenta-01-v01.png"
+      "ruta": "assets/editorial/razas/cristalidos/cristalidos-vestimenta-01-v01.png",
+      "bibliotecaFileId": "file_000000000cdc820eafb2dd926da40399",
+      "bibliotecaId": "libfile_434604e620d0819181af1ea1157636b5",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/cristalidos/cristalidos-vestimenta-01-v01.png"
     },
     {
       "variante": null,
