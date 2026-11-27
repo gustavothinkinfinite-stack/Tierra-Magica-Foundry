@@ -3173,7 +3173,24 @@
       "ruta": "assets/editorial/razas/enanos/enanos-vestimenta-01-v01.png",
       "bibliotecaFileId": "file_0000000039cc820e904302a6c730d330",
       "bibliotecaId": "libfile_858772614db08191b309f2dca1943b87",
-      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/enanos/enanos-vestimenta-01-v01.png"
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/enanos/enanos-vestimenta-01-v01.png",
+      "alternativas": [
+        {
+          "bibliotecaFileId": "file_000000006b90820ead25ccf3c9d98f26",
+          "bibliotecaId": "libfile_c031a6049dc08191ba3ec4d12d2c4b2e",
+          "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/enanos/enanos-vestimenta-01-v01(1).png",
+          "formato": "PNG",
+          "dimensiones": {
+            "ancho": 1536,
+            "alto": 1024
+          },
+          "tamanoBytes": 3621899,
+          "sha256": "a36c5236ffc266553b77f21de79d49fd3264b9d10f360184874d8bb934e0356a",
+          "estadoAlmacenamiento": "almacenada",
+          "fechaGeneracion": "2026-11-27",
+          "observaciones": "Alternativa generada durante ejecución concurrente. Mercado de montaña con puesto de tejidos y prendas de abrigo. Original abierto y verificado localmente; carga confirmada, recuperación de copia no cotejada. Se conserva pieza principal registrada por otra ejecución; alternativa no contabilizada por separado."
+        }
+      ]
     },
     {
       "variante": null,
