@@ -1606,6 +1606,43 @@
       "commit": null,
       "bibliotecaFileId": "file_00000000bb88820e98af08c1c45ec687",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-002-siete-dioses-primordiales-v01.png"
+    },
+    {
+      "id": "COS-003",
+      "divinidad": null,
+      "titulo": "Las Cinco Luminarias",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "Las Cinco Luminarias y el Panteón Central",
+      "ubicacionSugerida": "Lámina colectiva de las Cinco Luminarias",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-003-cinco-luminarias-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3732354,
+      "sha256": "5665cf233e030073e603ff01e259a7828a0a901adfb7cacdb1690d5bae615836",
+      "prompt": "Composición alegórica colectiva de Aurea, Nemor, Oria, Vael y Selene, con igual presencia y referencias de los retratos oficiales, sin texto.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 25. Cosmología: los Principios Primordiales — Las Cinco Luminarias y el Panteón Central",
+        "Cinco retratos oficiales del proyecto",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB original abierto, decodificado y verificado localmente. Composición alegórica, no reunión histórica. Cotejo y corrección de atributos respecto de los retratos oficiales pendientes (especialmente báculos, aureolas y rostro de Nemor). La luna y los motivos de navegación no deben interpretarse como símbolos doctrinales. Biblioteca confirmada; transferencia binaria pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000003a84820ea13cbeb8bacbb515",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-003-cinco-luminarias-v01.png"
     }
   ]
 }
