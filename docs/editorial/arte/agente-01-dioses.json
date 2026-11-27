@@ -3846,6 +3846,42 @@
       "commit": null,
       "bibliotecaFileId": "file_000000005478820eb0c7a2eefc1c0820",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/vael/vael-casas-del-camino-v01.png"
+    },
+    {
+      "id": "DIV-SELENE-003",
+      "divinidad": "Selene",
+      "titulo": "Sueño y percepción",
+      "categoria": "escena_secundaria",
+      "capitulo": 37,
+      "anclaEditorial": "Sueño",
+      "ubicacionSugerida": "Sueño y Percepción",
+      "ruta": "assets/editorial/dioses/selene/selene-sueno-percepcion-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 2562184,
+      "sha256": "238fe65693c477eac9cb9e95c5e2610d8ee6d4233ae644118b723d8233275b83",
+      "prompt": "Viajera felina dormida junto a una ventana lluviosa; reflejos y recuerdos ambiguos como metáfora pictórica, sin plano onírico literal.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 37. Selene, la Velada — Sueño",
+        "docs/Tierra_Magica_Manual_Maestro.md — 37. Selene, la Velada — Percepción"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa nueva para cubrir posición sin original recuperable",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB decodificado localmente; dimensiones, tamaño y SHA-256 comprobados. Carga confirmada en Biblioteca. Reflejos de interpretación artística; no establece profecía ni plano universal del sueño. Transferencia binaria pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_0000000038f8820eae3edc2b85e7f915",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/selene/selene-sueno-percepcion-v01.png"
     }
   ]
 }
