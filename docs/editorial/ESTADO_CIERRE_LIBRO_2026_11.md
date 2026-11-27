@@ -651,3 +651,10 @@
 - Base main `6176ee340a3977e080e49051d8fa9e88e3d38677`; canon blob `00f6bf608dbb45ff3a6d5a27347eab9b19d6fd4f` intacto.
 - Commit `30a5a9b63b0f64c46f7319f3e2150f4a16c1d2ac`: proyección editorial del cierre CRAFT-12, seis subsecciones de referencia mecánica y síntesis de límites de fabricación; se retira el informe de desarrollo y transición a Foundry. Se conservan las listas mecánicas precedentes y los requisitos de investigación.
 - Producción: 1 bloque editorial transformado, 6 subtítulos adaptados, 0 piezas artísticas nuevas, 0 integradas, 0 páginas finales verificadas. Total artístico necesario aún sin consolidar. Compilación e inspección pendientes; no se afirma PDF nuevo. Formato 6×9 provisional. No se reintenta transferencia gráfica bloqueada en esta unidad.
+
+
+## 27-11-2026 — Producción general: intento de estudio anatómico Ankar
+
+- Selección: RAZ-ANKA-004, según manifiesto de razas; canon anexo ANKAR — GUARDIANES DEL UMBRAL. Original PNG de 1536 × 1024, 3.211.508 bytes, SHA-256 e5983a50c5fe2309e6413150188333659b55493ef6bcb48ea68cc7de2b64d6dd. Rechazado provisionalmente por hocico excesivamente animalizado y engranajes decorativos. Respaldo confirmado en Biblioteca: /Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/ankar/borradores-rechazados/ankar-anatomia-intento-01.png (file_00000000ce74820e81b1eda288ac107d).
+- Segundo intento no corresponde a la pieza solicitada; panorámica general de aventureros conservada para clasificación, sin contar como pieza aprobada. PNG 1536 × 1024, 3.659.587 bytes, SHA-256 d37dd0f2e9e877c02081718a175330fb1d529bacc416f40c8f7d69a78a2e0dd6. Biblioteca: /Tierra Magica/Produccion Editorial/Produccion General/por-clasificar/grupo-aventureros-panoramica-v01.png (file_000000002958820e9da496ff45994d2d).
+- Resultado: 2 originales generados y respaldados, 0 piezas de inventario aprobadas, 0 binarios transferidos a GitHub, 0 páginas integradas. Se conserva el estado previo de los manifiestos. Evitar repetir el bloqueo; avanzar al estudio Cristálidos RAZ-CRIS-004 y retomar Ankar posteriormente. No se modificó el canon.
