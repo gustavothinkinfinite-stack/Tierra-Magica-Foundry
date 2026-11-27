@@ -1271,30 +1271,42 @@
       "capitulo": 30,
       "anclaEditorial": "Libertad, Caída y Redención",
       "ubicacionSugerida": "Libertad, Caída y Redención",
-      "ruta": "assets/editorial/dioses/ilyr/ilyr-redencion-v01.png",
+      "ruta": "assets/editorial/dioses/ilyr/ilyr-redencion-v02.png",
       "enlace": null,
       "dimensiones": {
         "ancho": 1536,
         "alto": 1024
       },
       "formato": "PNG",
-      "tamanoBytes": 3186148,
-      "sha256": "da1293c8c0efca276368910fc19467f0d6e80dc466dc0e3482ab54e022d4c255",
+      "tamanoBytes": 3453592,
+      "sha256": "185f044043e9c42e5e51d479359ee769380b8b34bc5ad97aea574b996095669f",
       "prompt": null,
       "referenciasCanonicas": [
         "docs/Tierra_Magica_Manual_Maestro.md — Libertad, Caída y Redención"
       ],
       "fechaCreacion": "2026-11-25",
-      "version": 1,
-      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "version": 2,
+      "procedencia": "Variante preexistente seleccionada provisionalmente para sustituir original inaccesible",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "biblioteca",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Original winged_guardian_amidst_the_ruins.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo.",
-      "commit": null
+      "observaciones": "No es el original v01; sus metadatos se preservan en versionAnteriorNoRecuperada. Alternativa existente decodificada, SHA-256 calculado y almacenamiento confirmado. Cotejo iconográfico previo a maquetación.",
+      "commit": null,
+      "versionAnteriorNoRecuperada": {
+        "ruta": "assets/editorial/dioses/ilyr/ilyr-redencion-v01.png",
+        "sha256": "da1293c8c0efca276368910fc19467f0d6e80dc466dc0e3482ab54e022d4c255",
+        "tamanoBytes": 3186148,
+        "dimensiones": {
+          "ancho": 1536,
+          "alto": 1024
+        },
+        "version": 1
+      },
+      "bibliotecaFileId": "file_0000000001e8820e8a647396e849ecc2",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/ilyr/ilyr-redencion-v02.png"
     },
     {
       "id": "DIV-ILYR-008",
@@ -1304,30 +1316,42 @@
       "capitulo": 30,
       "anclaEditorial": "30. Ilyr, la Primera Luz y el Primer Juramento",
       "ubicacionSugerida": "30. Ilyr, la Primera Luz y el Primer Juramento",
-      "ruta": "assets/editorial/dioses/ilyr/ilyr-ornamento-v01.png",
+      "ruta": "assets/editorial/dioses/ilyr/ilyr-ornamento-v02.png",
       "enlace": null,
       "dimensiones": {
         "ancho": 2172,
         "alto": 724
       },
       "formato": "PNG",
-      "tamanoBytes": 1558620,
-      "sha256": "34f018eed934ade10a34a31f41c24df8ea8b9d54a3b98172a7dac3fcee1c521f",
+      "tamanoBytes": 2398644,
+      "sha256": "af663a1f49b87a6258c9ad233ba0a848ab28810258064e123ed2758df7571f4b",
       "prompt": null,
       "referenciasCanonicas": [
         "docs/Tierra_Magica_Manual_Maestro.md — 30. Ilyr, la Primera Luz y el Primer Juramento"
       ],
       "fechaCreacion": "2026-11-25",
-      "version": 1,
-      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "version": 2,
+      "procedencia": "Variante preexistente seleccionada provisionalmente para sustituir original inaccesible",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "biblioteca",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Original golden_six_winged_sun_emblem.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo.",
-      "commit": null
+      "observaciones": "No es el original v01; sus metadatos se preservan en versionAnteriorNoRecuperada. Alternativa existente decodificada, SHA-256 calculado y almacenamiento confirmado. Cotejo iconográfico previo a maquetación.",
+      "commit": null,
+      "versionAnteriorNoRecuperada": {
+        "ruta": "assets/editorial/dioses/ilyr/ilyr-ornamento-v01.png",
+        "sha256": "34f018eed934ade10a34a31f41c24df8ea8b9d54a3b98172a7dac3fcee1c521f",
+        "tamanoBytes": 1558620,
+        "dimensiones": {
+          "ancho": 2172,
+          "alto": 724
+        },
+        "version": 1
+      },
+      "bibliotecaFileId": "file_000000006790820eaa3c29d8dc40b5ac",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/ilyr/ilyr-ornamento-v02.png"
     },
     {
       "id": "DIV-AUREA-005",
@@ -3530,6 +3554,111 @@
       "commit": null,
       "bibliotecaFileId": "file_000000003bdc820eb6208aa1a38f885c",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/selene/selene-vigilia-umbrales-v01.png"
+    },
+    {
+      "id": "DIV-ILYR-006",
+      "divinidad": "Ilyr",
+      "capitulo": 30,
+      "titulo": "El Primer Juramento",
+      "categoria": "escena_secundaria",
+      "anclaEditorial": "El Primer Juramento y los Celestiales",
+      "ubicacionSugerida": "El Primer Juramento y los Celestiales",
+      "ruta": "assets/editorial/dioses/ilyr/ilyr-primer-juramento-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3841466,
+      "sha256": "2bded8e43d341182a7ca95b281a1a8e496a9596846cf8703c626132f833cbcf9",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 30 — El Primer Juramento y los Celestiales"
+      ],
+      "fechaCreacion": null,
+      "version": 1,
+      "procedencia": "PNG preexistente; selección editorial provisional por inspección visual",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Original juramento_celestial_al_amanecer.png, PNG decodificado, SHA-256 calculado, carga de Biblioteca confirmada. No se acredita que sea la selección histórica de este ID. ",
+      "commit": null,
+      "bibliotecaFileId": "file_000000003d88820ebd7c73b7767d5843",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/ilyr/ilyr-primer-juramento-v01.png"
+    },
+    {
+      "id": "DIV-AUREA-006",
+      "divinidad": "Aurea",
+      "capitulo": 33,
+      "titulo": "Renovación",
+      "categoria": "escena_secundaria",
+      "anclaEditorial": "Renovación",
+      "ubicacionSugerida": "Renovación",
+      "ruta": "assets/editorial/dioses/aurea/aurea-renovacion-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3355549,
+      "sha256": "85739d420039e50b93bed01427960f3932461a2396fa20ef4a1f1dd7862cb0cd",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 33 — Renovación"
+      ],
+      "fechaCreacion": null,
+      "version": 1,
+      "procedencia": "PNG preexistente; selección editorial provisional por inspección visual",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Original a_cinematic_fantasy_medieval_village_scene_at_dusk.png, PNG decodificado, SHA-256 calculado, carga de Biblioteca confirmada. No se acredita que sea la selección histórica de este ID. ",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000c5b8820ea085c202ee7347de",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/aurea/aurea-renovacion-v01.png"
+    },
+    {
+      "id": "DIV-NEMOR-004",
+      "divinidad": "Nemor",
+      "capitulo": 34,
+      "titulo": "Los Ancestros",
+      "categoria": "escena_secundaria",
+      "anclaEditorial": "Los Ancestros",
+      "ubicacionSugerida": "Los Ancestros",
+      "ruta": "assets/editorial/dioses/nemor/nemor-ancestros-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3462373,
+      "sha256": "3841fa0c6f9d8d959b6796c3a925ee940a05ec014f131812677b9ecae2f12acc",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 34 — Los Ancestros"
+      ],
+      "fechaCreacion": null,
+      "version": 1,
+      "procedencia": "PNG preexistente; selección editorial provisional por inspección visual",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Original a_richly_detailed_cinematic_fantasy_illustration.png, PNG decodificado, SHA-256 calculado, carga de Biblioteca confirmada. No se acredita que sea la selección histórica de este ID. Motivos arbóreos no son símbolo doctrinal de Nemor; revisar antes de integración.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000008d60820e9c42754a1ef71f7d",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nemor/nemor-ancestros-v01.png"
     }
   ]
 }
