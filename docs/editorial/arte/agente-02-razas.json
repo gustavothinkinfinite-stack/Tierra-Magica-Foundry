@@ -2770,26 +2770,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 2940932,
+      "sha256": "02bb4b4d4b7e20570078ce5748a9f06958cf0bcd68dc4801bf8659f3349a074b",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de dos Goblins de Escala Pequeña, dos Hobgoblins de Escala Mediana y dos Bugbears corpulentos en el extremo superior de Escala Mediana, adultos de distintas edades y complexiones, vestimenta civil, poses naturales, línea de suelo compartida y fondo de pergamino. Sin texto, gigantes ni jerarquías entre ascendencias.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 calculados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación provisional. Amplía diversidad de edades, complexiones y fisonomías; altura exacta, pigmentación, orejas, vello y vestuario son interpretaciones revisables, sin introducir ascendencias adicionales ni Escala Grande real para Bugbear. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-GOBL-006",
       "ascendencia": "Goblinoides",
       "titulo": "Goblinoides — Diversidad interna 2",
@@ -2797,7 +2800,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Goblinoides",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/goblinoides/goblinoides-variante-02-v01.png"
+      "ruta": "assets/editorial/razas/goblinoides/goblinoides-variante-02-v01.png",
+      "bibliotecaFileId": "file_00000000d5e4820e849c3dc12dff41b4",
+      "bibliotecaId": "libfile_a58df75032448191866c99a1aa0d6ad0",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/goblinoides/goblinoides-variante-02-v01.png"
     },
     {
       "variante": null,
