@@ -2618,26 +2618,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3105102,
+      "sha256": "a79d55288bdc5c72b3c4f71a7e8e882c3fed963dbb1db43ffe1d13677fe8fd98",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de seis Humanos adultos con mayor variedad de tonos de piel, formas corporales, edades y facciones. Fondo de pergamino y vestimenta funcional de Tierra Mágica, sin texto ni atributos sobrenaturales. Sin asociar apariencia física a culturas o profesiones obligatorias.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada; recuperación binaria no cotejada. Aprobación editorial provisional. Complementa la primera lámina con mayor diversidad de pigmentaciones, edades y complexiones. Fisonomías y vestuario son decisiones artísticas revisables, no subrazas ni adscripciones culturales obligatorias. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-HUMA-006",
       "ascendencia": "Humanos",
       "titulo": "Humanos — Diversidad interna 2",
@@ -2645,7 +2648,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Humanos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/humanos/humanos-variante-02-v01.png"
+      "ruta": "assets/editorial/razas/humanos/humanos-variante-02-v01.png",
+      "bibliotecaFileId": "file_000000003d40820e8a3a38d8804b155d",
+      "bibliotecaId": "libfile_7830e75e781c81919261a84f00109acb",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/humanos/humanos-variante-02-v01.png"
     },
     {
       "variante": null,
