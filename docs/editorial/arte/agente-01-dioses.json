@@ -1938,6 +1938,42 @@
       "commit": null,
       "bibliotecaFileId": "file_000000001194820e92cb6ea35b47c0e2",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-011-velo-fronteras-realidad-v01.png"
+    },
+    {
+      "id": "COS-012",
+      "divinidad": null,
+      "titulo": "La coexistencia de los principios divinos",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "Las Cinco Luminarias y el Panteón Central",
+      "ubicacionSugerida": "Lámina de cierre cosmológico",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-012-coexistencia-principios-divinos-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3616636,
+      "sha256": "6516f3c47f695e66d4a64d63c398fbdc7e12f69b2de024244959c5218336e59c",
+      "prompt": "Vista elevada de ciudad arcano-industrial al anochecer, con jardines, memoriales, talleres, rutas comerciales y pueblos diversos; coexistencia de principios sin armonía ni religión universal.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 25. Cosmología: los Principios Primordiales — Las Cinco Luminarias y el Panteón Central",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original, copia byte a byte con nombre editorial",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB abierto, decodificado y verificado localmente; copia exacta del original. Biblioteca confirmada. Ciudad ficticia, no localización canónica. Revisar inscripciones y motivos funerarios antes de integración. Transferencia binaria pendiente por ausencia de puente verificado.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000001078820e9858105846a39b2a",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-012-coexistencia-principios-divinos-v01.png"
     }
   ]
 }
