@@ -2308,26 +2308,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3147920,
+      "sha256": "5a4b12f1c65f82c31c56b87cee3f26560fa7b4c35138374c8284db8c54917ffd",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de seis Terios adultos de los linajes felino, elefantino y aviano, con anatomías animales integradas, diversidad individual, ropa adaptada al cuerpo, alas como extremidades anteriores sin brazos suplementarios. Fondo de pergamino, sin texto ni efectos mágicos.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB abierto y decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación provisional. Morfologías leonina, felina moteada, elefantinas y avianas de aspecto rapaz y búho son interpretaciones visuales revisables; no fijan nuevas variedades mecánicas, alturas, capacidad de vuelo ni adaptaciones automáticas. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-TERI-005",
       "ascendencia": "Terios/Anihombres",
       "titulo": "Terios/Anihombres — Diversidad interna 1",
@@ -2335,7 +2338,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Terios/Anihombres",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/terios/terios-variante-01-v01.png"
+      "ruta": "assets/editorial/razas/terios/terios-variante-01-v01.png",
+      "bibliotecaFileId": "file_00000000ca04820ead5fcd71c2af21bb",
+      "bibliotecaId": "libfile_11b3a4d623608191a62a31708547c1be",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/terios/terios-variante-01-v01.png"
     },
     {
       "variante": null,
