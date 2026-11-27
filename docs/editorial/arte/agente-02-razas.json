@@ -2156,26 +2156,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "tamanoBytes": null,
       "sha256": null,
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de seis Enanos adultos de estatura baja y complexiones compactas, con diversidad de edades, piel, cabello y fisonomías. Vestuario civil y de viaje variado, anatomía orgánica y fondo de pergamino, sin texto ni rasgos minerales.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Inspección visual y carga PNG en Biblioteca confirmadas. Verificación binaria, bytes y SHA-256 pendientes. Aprobación editorial provisional. Fisonomías, vestuario y profesiones ilustrativos, sin asignación a subrazas ni tradiciones obligatorias. Transferencia a GitHub e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-ENAN-005",
       "ascendencia": "Enanos",
       "titulo": "Enanos — Diversidad interna 1",
@@ -2183,7 +2186,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Enanos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/enanos/enanos-variante-01-v01.png"
+      "ruta": "assets/editorial/razas/enanos/enanos-variante-01-v01.png",
+      "bibliotecaFileId": "file_00000000d3f0820e8a01d474c3a56cdd",
+      "bibliotecaId": "libfile_292e843b3170819184a8206a5c64fa45",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/enanos/enanos-variante-01-v01.png"
     },
     {
       "variante": null,
