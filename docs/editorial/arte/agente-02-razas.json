@@ -2950,26 +2950,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3067418,
+      "sha256": "9506ea4cb03281960b47a9519f3f80c6eb4e22499675f58d2882194a3dbad16d",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de seis Cristálidos adultos de Matriz Mixta, distintas edades y complexiones, facetas minerales de diferentes formas y tamaños integradas en tejido vivo, especialmente sienes y antebrazos. Tejido orgánico visible, vestimenta civil, fondo de pergamino sin texto. Sin armaduras minerales, cuerpos enteramente cristalinos ni luminosidad mágica.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Facetas de mayor tamaño, colores y fisonomías son interpretaciones artísticas revisables, no armaduras ni subrazas mecánicas. La composición conserva la distribución predominante en sienes y antebrazos de la primera lámina, con variación de tamaño y forma. Transferencia a GitHub e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-CRIS-006",
       "ascendencia": "Cristálidos",
       "titulo": "Cristálidos — Diversidad interna 2",
@@ -2977,7 +2980,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Cristálidos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/cristalidos/cristalidos-variante-02-v01.png"
+      "ruta": "assets/editorial/razas/cristalidos/cristalidos-variante-02-v01.png",
+      "bibliotecaFileId": "file_00000000dfd0820e9e2819544b8e3349",
+      "bibliotecaId": "libfile_cc950cd7c5b481918a46aa6d2840ed49",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/cristalidos/cristalidos-variante-02-v01.png"
     },
     {
       "variante": null,
