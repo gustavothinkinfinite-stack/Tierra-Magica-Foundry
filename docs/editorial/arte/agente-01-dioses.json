@@ -1497,6 +1497,43 @@
       "commit": null,
       "bibliotecaFileId": "file_000000008644820e9cbb6e885a241a51",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/selene/selene-velo-entreabierto-transparente-v01.png"
+    },
+    {
+      "id": "DIV-SELENE-008",
+      "divinidad": "Selene",
+      "titulo": "Ornamento editorial de Selene",
+      "categoria": "ornamento",
+      "capitulo": 37,
+      "anclaEditorial": "37. Selene, la Velada",
+      "ubicacionSugerida": "Separador de capítulo",
+      "ruta": "assets/editorial/dioses/selene/selene-ornamento-editorial-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 2172,
+        "alto": 724
+      },
+      "formato": "PNG",
+      "tamanoBytes": 824268,
+      "sha256": "2f4a939e02e1ab1c4d56c5e6e89eaf204beedb2ed8576bab18388626d959e088",
+      "prompt": "Separador horizontal, filigrana plata, índigo y marfil, centro libre, fondo transparente. Integración posterior del símbolo oficial.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 37. Selene, la Velada",
+        "docs/visual/SIMBOLOS_CANONICOS.md — SYM-DIV-SELENE-001",
+        "assets/symbols/divinities/SYM-DIV-SELENE-001_PRIMARY.svg"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa y composición con PNG derivado del SVG oficial, sin alterar trayectorias.",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGBA verificado, alfa 0–255. Original intacto: 884153 bytes, SHA-256 97f8c5ef69283c6c21bab2ff1c5f3d64c95548e57e9636f6091bd1fd7d362bfd, Biblioteca file_000000004440820e837aeb3f69478fbc. Se utilizó el derivado transparente del símbolo verificado, SHA-256 96751be9ed48f75512213e017856487cfa7d0c068e6ad2dcb1b5088c8c3cca3b. Se eliminó residuo alfa central previo a composición. Transferencia binaria pendiente por falta de puente verificado.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000de10820ebe1191ea9f1bd249",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/selene/selene-ornamento-editorial-v01.png"
     }
   ]
 }
