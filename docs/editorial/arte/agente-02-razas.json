@@ -1966,26 +1966,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3058546,
+      "sha256": "a22912433119330e2b8ec99dd4b6eaa09f11e2b987bb6df02282725c5923b1bb",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal sin texto ni marco, dos adultos de cuerpo completo y detalles de sien, antebrazo y mano; piel orgánica visible, pequeñas facetas minerales no luminosas integradas en tejido vivo, articulaciones funcionales y vestimenta sencilla. Sin gólems, armadura mineral, anatomía interna inventada ni poderes visibles. Pintura digital realista de manual de rol, fondo neutro.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG original RGB abierto y verificado localmente; respaldo en Biblioteca confirmado por carga, recuperación binaria aún no cotejada. Aprobación editorial provisional. Distribución y color de facetas, apariencia y proporciones individuales son decisiones artísticas revisables, no canon anatómico universal. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-CRIS-004",
       "ascendencia": "Cristálidos",
       "titulo": "Cristálidos — Estudio anatómico",
@@ -1993,7 +1996,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Cristálidos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/cristalidos/cristalidos-anatomia-v01.png"
+      "ruta": "assets/editorial/razas/cristalidos/cristalidos-anatomia-v01.png",
+      "bibliotecaFileId": "file_00000000bf6c820e8df6c9d03cd3d738",
+      "bibliotecaId": "libfile_963867ac7ed88191a0e8a157768ed460",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/cristalidos/cristalidos-anatomia-v01.png"
     },
     {
       "variante": null,
