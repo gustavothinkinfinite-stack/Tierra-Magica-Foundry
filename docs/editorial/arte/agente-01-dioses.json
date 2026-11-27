@@ -3776,6 +3776,41 @@
       "commit": null,
       "bibliotecaFileId": "file_0000000038cc820e932793a12a6c9c0d",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nemor/nemor-tumbas-y-restos-v01.png"
+    },
+    {
+      "id": "DIV-NEMOR-007",
+      "divinidad": "Nemor",
+      "titulo": "La Noche de los Nombres",
+      "categoria": "escena_secundaria",
+      "capitulo": 34,
+      "anclaEditorial": "Celebraciones",
+      "ubicacionSugerida": "Celebraciones — La Noche de los Nombres",
+      "ruta": "assets/editorial/dioses/nemor/nemor-noche-de-los-nombres-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 2936707,
+      "sha256": "9ad3a3afb11eb2c14db25bb48758238bfc6d251ff9d57a5b0b638b4a8e212c58",
+      "prompt": "Comunidad de pueblos diversos recuerda a sus muertos mediante historias, música, comida y visitas funerarias; escena nocturna sin apariciones espirituales.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 34. Nemor, el Guardián — Celebraciones"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa nueva para cubrir posición sin original recuperable",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB decodificado localmente; dimensiones, tamaño y SHA-256 comprobados; carga de copia exacta confirmada en Biblioteca. Celebración de interpretación artística local, no rito universal ni ubicación canónica. Transferencia binaria pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000be54820eab04e186bf462a6f",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nemor/nemor-noche-de-los-nombres-v01.png"
     }
   ]
 }
