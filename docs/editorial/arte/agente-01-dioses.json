@@ -2060,6 +2060,146 @@
       "commit": null,
       "bibliotecaFileId": "file_0000000056b0820eb4396e49c27ea8d6",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/ilyr/ilyr-primera-luz-v01.png"
+    },
+    {
+      "id": "DIV-NERETH-001",
+      "divinidad": "Nereth",
+      "titulo": "Nereth, el Señor de la Primera Profanación",
+      "categoria": "retrato",
+      "capitulo": 31,
+      "anclaEditorial": "31. Nereth y la Primera Profanación",
+      "ubicacionSugerida": "Apertura del capítulo",
+      "ruta": "assets/editorial/dioses/nereth/nereth-retrato-principal-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1122,
+        "alto": 1402
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3306527,
+      "sha256": "9888e3c6e47dd79e4dedaeeaf7105d15e95e76a43bf5a183b5e9ef95c07e84be",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 31. Nereth y la Primera Profanación"
+      ],
+      "fechaCreacion": null,
+      "version": 1,
+      "procedencia": "Retrato oficial aportado al proyecto",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Identidad confirmada por nombre de archivo oficial. Original local y copia descargada de Biblioteca decodificados; SHA-256, tamaño y dimensiones coinciden. Regularizado 2026-11-27; binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000005c5c820e97b6942ae21bf8ca",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nereth/nereth-retrato-principal-v01.png"
+    },
+    {
+      "id": "DIV-NERETH-002",
+      "divinidad": "Nereth",
+      "titulo": "La Primera Profanación",
+      "categoria": "acontecimiento",
+      "capitulo": 31,
+      "anclaEditorial": "La Primera Profanación",
+      "ubicacionSugerida": "La Primera Profanación",
+      "ruta": "assets/editorial/dioses/nereth/nereth-primera-profanacion-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3378045,
+      "sha256": "5767dabc30dbb780a8c79971159c289593603f54e388a12870e5513324a8b800",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 31. Nereth y la Primera Profanación"
+      ],
+      "fechaCreacion": null,
+      "version": 1,
+      "procedencia": "Ilustración preexistente recuperada",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Identificación por inspección visual y anclaje canónico; asignación editorial provisional de variante, no confirmación de selección histórica. Revisar iconografía y representación no literal del acontecimiento. Original local y copia descargada de Biblioteca decodificados; SHA-256, tamaño y dimensiones coinciden. Regularizado 2026-11-27; binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000006f40820e9d1a1be358a3c4fb",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nereth/nereth-primera-profanacion-v01.png"
+    },
+    {
+      "id": "DIV-NERETH-005",
+      "divinidad": "Nereth",
+      "titulo": "Símbolo religioso de Nereth",
+      "categoria": "simbolo",
+      "capitulo": 31,
+      "anclaEditorial": "31. Nereth y la Primera Profanación",
+      "ubicacionSugerida": "31. Nereth y la Primera Profanación",
+      "ruta": "assets/editorial/dioses/nereth/nereth-simbolo-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1083,
+        "alto": 1452
+      },
+      "formato": "PNG",
+      "tamanoBytes": 1127527,
+      "sha256": "6842482a9d1513cd4ece1fded024709ef1ae003c3e41187db9dedaf4f4e0813b",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 31. Nereth y la Primera Profanación"
+      ],
+      "fechaCreacion": null,
+      "version": 1,
+      "procedencia": "Ilustración preexistente recuperada",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Identificación visual por círculo agrietado y tres cadenas; diseño provisional, no SVG oficial. Original local y copia descargada de Biblioteca decodificados; SHA-256, tamaño y dimensiones coinciden. Regularizado 2026-11-27; binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000008a10820eb0b0075bfae9b2bc",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nereth/nereth-simbolo-v01.png"
+    },
+    {
+      "id": "DIV-NERETH-008",
+      "divinidad": "Nereth",
+      "titulo": "Ornamento editorial de Nereth",
+      "categoria": "ornamento",
+      "capitulo": 31,
+      "anclaEditorial": "31. Nereth y la Primera Profanación",
+      "ubicacionSugerida": "Separador de capítulo",
+      "ruta": "assets/editorial/dioses/nereth/nereth-ornamento-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 2172,
+        "alto": 724
+      },
+      "formato": "PNG",
+      "tamanoBytes": 1270605,
+      "sha256": "47240a62235d7ec124d9683ba5637d27da56d802cb1709ad1e000cd3eb70bc97",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 31. Nereth y la Primera Profanación"
+      ],
+      "fechaCreacion": null,
+      "version": 1,
+      "procedencia": "Ilustración preexistente recuperada",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Separador identificado por motivos del símbolo tradicional, revisión iconográfica pendiente. Original local y copia descargada de Biblioteca decodificados; SHA-256, tamaño y dimensiones coinciden. Regularizado 2026-11-27; binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000007348820e8309bd53c1d5e36f",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nereth/nereth-ornamento-v01.png"
     }
   ]
 }
