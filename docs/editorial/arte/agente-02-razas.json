@@ -3233,26 +3233,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3570824,
+      "sha256": "a030b2660e00334592098fd182b6cf6e5ef5f9fc66eec5cb9d45904d2e8b8110",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa de cinco Orcos adultos en un taller de reparación de prendas y equipamiento junto a un puente urbano. Ropa laboral, civil y de viaje, lana, lino y cuero, costuras visibles, herramientas funcionales y prendas reparadas. Arquitectura de piedra e infraestructura arcano-industrial, iluminación natural cálida. Sin texto ni uniformes culturales obligatorios; evitar reducir la cultura orca a la guerra.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Taller y ciudad no localizados, prendas y fisonomías interpretativas; no se establecen castas ni uniformes. La escena vuelve a utilizar un taller textil y puente como en la pieza élfica; la segunda ilustración debería cambiar de actividad y entorno. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-ORCO-007",
       "ascendencia": "Orcos",
       "titulo": "Orcos — Vestimenta y cultura 1",
@@ -3260,7 +3263,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Orcos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/orcos/orcos-vestimenta-01-v01.png"
+      "ruta": "assets/editorial/razas/orcos/orcos-vestimenta-01-v01.png",
+      "bibliotecaFileId": "file_000000004f7c820e83e48cd73a9f303c",
+      "bibliotecaId": "libfile_d235e73d8058819181ea74a2ad9fd54a",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/orcos/orcos-vestimenta-01-v01.png"
     },
     {
       "variante": null,
