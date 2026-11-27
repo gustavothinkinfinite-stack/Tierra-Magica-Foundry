@@ -2080,26 +2080,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "tamanoBytes": null,
       "sha256": null,
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de tres Coralios adultos bípedos, con estructuras calcáreas porosas, tejidos flexibles y diferentes crestas y membranas. Detalles de rostro, mano y textura coralina sobre pergamino neutro, sin texto, marcos ni efectos mágicos.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Ilustración inspeccionada visualmente; carga PNG en Biblioteca confirmada. Bytes, SHA-256 y recuperación binaria pendientes de verificación. Aprobación editorial provisional. Crestas, membranas, color y distribución de tejidos son interpretaciones visuales revisables; no implican nuevas subrazas ni ventajas adicionales. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-CORA-004",
       "ascendencia": "Coralios",
       "titulo": "Coralios — Estudio anatómico",
@@ -2107,7 +2110,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Coralios",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/coralios/coralios-anatomia-v01.png"
+      "ruta": "assets/editorial/razas/coralios/coralios-anatomia-v01.png",
+      "bibliotecaFileId": "file_000000008024820e9b870698f76dd206",
+      "bibliotecaId": "libfile_06e64cca40048191b6197285d7abd015",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/coralios/coralios-anatomia-v01.png"
     },
     {
       "variante": null,
