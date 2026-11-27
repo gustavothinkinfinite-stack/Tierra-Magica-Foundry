@@ -3347,26 +3347,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3834742,
+      "sha256": "1f14d8e83e8a80a4040e7141d0bd8b0be2a8d97ceffe340e9af866ed69aa17bb",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa en terraza comunitaria junto a una arboleda: Hada apoyada en plataforma con vestimenta compatible con alas, Sátiro con cuernos y pezuñas y ropa adaptada, Dríade en contacto con su árbol, Silfo sin alas apoyado en suelo. Conversación sobre una obra próxima, planos decorativos, arquitectura e infraestructura arcano-industrial. Pintura digital realista editorial. Sin texto ni localidad oficial fijada.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original abierto y decodificado localmente; dimensiones, bytes y SHA-256 calculados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Escena inspirada en el ejemplo cultural local de mediación sobre obras próximas a arboledas vinculadas. Vestuario, lugar, infraestructura y diseños son interpretaciones revisables. La plataforma y perspectiva dificultan comprobar la escala Pequeña del Hada; no utilizar como comparación métrica. Sin nuevas instituciones universales, poderes o localidades canónicas. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-FEER-007",
       "ascendencia": "Feéricos",
       "titulo": "Feéricos — Vestimenta y cultura 1",
@@ -3374,7 +3377,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Feéricos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/feericos/feericos-vestimenta-01-v01.png"
+      "ruta": "assets/editorial/razas/feericos/feericos-vestimenta-01-v01.png",
+      "bibliotecaFileId": "file_000000006820820ea2dbce7d1f42a514",
+      "bibliotecaId": "libfile_006be0e747448191afd9415a48e77bb3",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/feericos/feericos-vestimenta-01-v01.png"
     },
     {
       "variante": null,
