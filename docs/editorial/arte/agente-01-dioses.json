@@ -3671,6 +3671,41 @@
       "commit": null,
       "bibliotecaFileId": "file_000000008d60820e9c42754a1ef71f7d",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nemor/nemor-ancestros-v01.png"
+    },
+    {
+      "id": "DIV-VAELUN-003",
+      "divinidad": "Vaelun",
+      "titulo": "Los Ankar — Guardianes del Umbral",
+      "categoria": "santuario",
+      "capitulo": 32,
+      "anclaEditorial": "Los Ankar — Guardianes del Umbral",
+      "ubicacionSugerida": "Los Ankar — Guardianes del Umbral",
+      "ruta": "assets/editorial/dioses/vaelun/vaelun-guardianes-umbral-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3011995,
+      "sha256": "0b07a05ac72e07bb02488e0cbfd50dadafd12a1a551b05e37137b70bacc70cef",
+      "prompt": "Santuario funerario custodiado por Ankar altos y esbeltos, con visitantes de distintos pueblos; sin representar el destino del alma.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 32. Vaelun y el Primer Tránsito — Los Ankar — Guardianes del Umbral"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa nueva para cubrir posición sin original recuperable",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG original decodificado localmente, tamaño y SHA-256 calculados; carga en Biblioteca confirmada. Santuario de interpretación artística, sin fijar institución ni ubicación canónica. Cotejar motivos ornamentales de vestuario, no símbolos doctrinales. Transferencia binaria pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000df3c820eaeb2c08d588dae0b",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/vaelun/vaelun-guardianes-umbral-v01.png"
     }
   ]
 }
