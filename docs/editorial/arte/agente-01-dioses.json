@@ -1460,6 +1460,43 @@
       "commit": null,
       "bibliotecaFileId": "file_0000000076bc820e8ce01dac6cfcb307",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/vael/vael-rumbo-desviado-transparente-v01.png"
+    },
+    {
+      "id": "DIV-SELENE-005",
+      "divinidad": "Selene",
+      "titulo": "El Velo Entreabierto",
+      "categoria": "simbolo",
+      "capitulo": 37,
+      "anclaEditorial": "37. Selene, la Velada",
+      "ubicacionSugerida": "Símbolo religioso canónico",
+      "ruta": "assets/editorial/dioses/selene/selene-velo-entreabierto-transparente-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 2000,
+        "alto": 2000
+      },
+      "formato": "PNG",
+      "tamanoBytes": 60199,
+      "sha256": "96751be9ed48f75512213e017856487cfa7d0c068e6ad2dcb1b5088c8c3cca3b",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 37. Selene, la Velada",
+        "docs/visual/SIMBOLOS_CANONICOS.md — SYM-DIV-SELENE-001 — El Velo Entreabierto",
+        "assets/symbols/divinities/SYM-DIV-SELENE-001_PRIMARY.svg"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Rasterización directa del SVG oficial; omisión del fondo para composición editorial",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGBA abierto, alfa 0–255. PNG principal RGB 2000×2000, 55139 bytes, SHA-256 8cfecb4589f7b582770784703afc6850983b010efba0596c6e05036454f853d4, Biblioteca file_000000000870820eb8868dcdb5af213d. Transparencia para composición, no variante cromática formal. Binarios pendientes de GitHub.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000008644820e9cbb6e885a241a51",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/selene/selene-velo-entreabierto-transparente-v01.png"
     }
   ]
 }
