@@ -2488,26 +2488,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3174151,
+      "sha256": "5a1216294fc41f0c28bd782382cbc1af53b0ee13755d9347834d3ac3b01933c0",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina de seis Verdantes adultos con tejidos vegetales diferenciados, inspirados en cortezas, hojas de humedal, fibras de tundra y plantas suculentas. Vestuario civil variado, pies apoyados y manos funcionales, sin raíces ancladas, hongos ni efectos mágicos. Las formas serán interpretaciones visuales, no nuevas subrazas.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original abierto y decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación provisional. Morfologías botánicas, pigmentaciones, vestuario y fisonomías son interpretaciones artísticas revisables, no nuevas subrazas ni adaptaciones mecánicas automáticas. Transferencia a GitHub e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-VERD-005",
       "ascendencia": "Verdantes",
       "titulo": "Verdantes — Diversidad interna 1",
@@ -2515,7 +2518,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Verdantes",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/verdantes/verdantes-variante-01-v01.png"
+      "ruta": "assets/editorial/razas/verdantes/verdantes-variante-01-v01.png",
+      "bibliotecaFileId": "file_000000000054820eac0654297683751b",
+      "bibliotecaId": "libfile_ae86fa2916308191a30c10200d86ab38",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/verdantes/verdantes-variante-01-v01.png"
     },
     {
       "variante": null,
