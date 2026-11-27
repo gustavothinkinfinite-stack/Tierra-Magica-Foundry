@@ -3026,26 +3026,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3295820,
+      "sha256": "60f3cc0f790a0978259581a85d344e65ccf7e91490a1be59496043cacd295a49",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de seis Micelios adultos, algunos sin sombreros prominentes, con filamentos, tejidos aterciopelados y estructuras de fructificación de distintos tamaños integradas en el cuerpo. Vestimenta civil variada, fondo de pergamino, sin hojas ni efectos sobrenaturales.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Complementa la primera lámina con individuos de fructificaciones menos prominentes y mayor variedad de texturas filamentosas y porosas; algunas figuras conservan fructificaciones grandes. Morfologías, colores, fisonomías y vestuario son interpretaciones revisables, no subrazas ni ventajas mecánicas. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-MICE-006",
       "ascendencia": "Micelios",
       "titulo": "Micelios — Diversidad interna 2",
@@ -3053,7 +3056,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Micelios",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/micelios/micelios-variante-02-v01.png"
+      "ruta": "assets/editorial/razas/micelios/micelios-variante-02-v01.png",
+      "bibliotecaFileId": "file_00000000f1a8820ea4d534c859ca2319",
+      "bibliotecaId": "libfile_76abab2e6e448191b04342e9c0aec39d",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/micelios/micelios-variante-02-v01.png"
     },
     {
       "variante": null,
