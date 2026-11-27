@@ -3706,6 +3706,41 @@
       "commit": null,
       "bibliotecaFileId": "file_00000000df3c820eaeb2c08d588dae0b",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/vaelun/vaelun-guardianes-umbral-v01.png"
+    },
+    {
+      "id": "DIV-VAELUN-007",
+      "divinidad": "Vaelun",
+      "titulo": "Voluntad y No Muerte",
+      "categoria": "escena_secundaria",
+      "capitulo": 32,
+      "anclaEditorial": "Voluntad, No Muerte y espíritus",
+      "ubicacionSugerida": "Voluntad, No Muerte y espíritus",
+      "ruta": "assets/editorial/dioses/vaelun/vaelun-voluntad-no-muerte-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 2603557,
+      "sha256": "adfa2eec1fc4ab5cf7b6d0c8d8b5b0c8a876542a14bd55400d2f82ba86ee05e0",
+      "prompt": "Escena individual de un guardián Ankar escuchando a un revenant enano consciente que busca completar una promesa; sin combate ni representación del destino del alma.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 32. Vaelun y el Primer Tránsito — Voluntad, No Muerte y espíritus"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa nueva para cubrir posición sin original recuperable",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB original abierto y decodificado localmente; tamaño y SHA-256 calculados. Carga en Biblioteca confirmada. Personajes, promesa, cofre y lugar son interpretación artística, no hechos canónicos. Transferencia binaria pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000199c820eb7ed07502b9de45c",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/vaelun/vaelun-voluntad-no-muerte-v01.png"
     }
   ]
 }
