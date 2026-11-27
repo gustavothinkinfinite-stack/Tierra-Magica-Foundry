@@ -1423,6 +1423,43 @@
       "commit": null,
       "bibliotecaFileId": "file_000000003cdc820e8bc4279dbaeeb349",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/oria/oria-medida-acordada-transparente-v01.png"
+    },
+    {
+      "id": "DIV-VAEL-005",
+      "divinidad": "Vael",
+      "titulo": "El Rumbo Desviado",
+      "categoria": "simbolo",
+      "capitulo": 36,
+      "anclaEditorial": "36. Vael, el Navegante",
+      "ubicacionSugerida": "Símbolo religioso canónico",
+      "ruta": "assets/editorial/dioses/vael/vael-rumbo-desviado-transparente-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 2000,
+        "alto": 2000
+      },
+      "formato": "PNG",
+      "tamanoBytes": 34206,
+      "sha256": "6887d70f3dfd149495e130fadb3fb559ac63ced8fc1c679eb4973ba96720eb1d",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 36. Vael, el Navegante",
+        "docs/visual/SIMBOLOS_CANONICOS.md — SYM-DIV-VAEL-001 — El Rumbo Desviado",
+        "assets/symbols/divinities/SYM-DIV-VAEL-001_PRIMARY.svg"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Rasterización directa del SVG oficial; omisión del fondo para composición editorial",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGBA abierto, alfa 0–255. PNG principal RGB 2000×2000, 29612 bytes, SHA-256 a4cc9950ede65adb485d29f2b5f0726391be24cb5139b4f6523b55fe19a05c64, Biblioteca file_00000000ca2c820e817f562cb59ecc81. Transparencia para composición, no variante cromática formal. Binarios pendientes de GitHub.",
+      "commit": null,
+      "bibliotecaFileId": "file_0000000076bc820e8ce01dac6cfcb307",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/vael/vael-rumbo-desviado-transparente-v01.png"
     }
   ]
 }
