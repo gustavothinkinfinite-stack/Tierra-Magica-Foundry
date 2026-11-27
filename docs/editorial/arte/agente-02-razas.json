@@ -2194,26 +2194,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3207366,
+      "sha256": "5570561e2e0576f0b649d6ee74770f3b52758bba1b9dd4954faa9781d3c487a3",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de seis Élficos adultos con variedad de edades, complexiones, pigmentaciones y vestimentas. Orejas discretamente afiladas, anatomía humanoide natural y fondo neutro de pergamino. Sin asignar color de piel, profesión o poderes a las tradiciones Altas, Silvanas u Oscuras.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB abierto localmente, dimensiones, bytes y SHA-256 verificados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación provisional. Fisonomías y vestimenta ilustrativas, sin atribuir poderes, pigmentaciones o profesiones a tradiciones. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-ELFI-005",
       "ascendencia": "Élficos",
       "titulo": "Élficos — Diversidad interna 1",
@@ -2221,7 +2224,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Élficos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/elficos/elficos-variante-01-v01.png"
+      "ruta": "assets/editorial/razas/elficos/elficos-variante-01-v01.png",
+      "bibliotecaFileId": "file_00000000d228820e89b3c516caba6af5",
+      "bibliotecaId": "libfile_9d8ed53424c88191aa4d1b0a574ed7b0",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/elficos/elficos-variante-01-v01.png"
     },
     {
       "variante": null,
