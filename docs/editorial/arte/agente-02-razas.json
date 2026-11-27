@@ -2346,26 +2346,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 2989719,
+      "sha256": "d2d2b04ff1e05289c156641c1afe429d26a3974316280fab832cfa8934500603",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de cuatro adultos: Hada de menor estatura con alas y pies apoyados, Sátiro con cuernos y pezuñas, Dríade junto a su árbol vinculado y Silfo sin alas, sobre una misma línea de suelo. Vestimenta funcional variada, fondo de pergamino y ausencia de texto o efectos mágicos.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB abierto y decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación provisional. Fisonomías, alas, pigmentación y vestuario son interpretaciones revisables; Silfo sin vuelo, Hada apoyada. La segunda lámina deberá mostrar diferencias individuales dentro de variantes, no repetir únicamente la comparación entre las cuatro. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-FEER-005",
       "ascendencia": "Feéricos",
       "titulo": "Feéricos — Diversidad interna 1",
@@ -2373,7 +2376,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Feéricos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/feericos/feericos-variante-01-v01.png"
+      "ruta": "assets/editorial/razas/feericos/feericos-variante-01-v01.png",
+      "bibliotecaFileId": "file_000000005358820e88693f5528970b0a",
+      "bibliotecaId": "libfile_0bec4bddccf881918983b05062f5ae3d",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/feericos/feericos-variante-01-v01.png"
     },
     {
       "variante": null,
