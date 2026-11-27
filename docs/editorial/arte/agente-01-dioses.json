@@ -3741,6 +3741,41 @@
       "commit": null,
       "bibliotecaFileId": "file_00000000199c820eb7ed07502b9de45c",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/vaelun/vaelun-voluntad-no-muerte-v01.png"
+    },
+    {
+      "id": "DIV-NEMOR-006",
+      "divinidad": "Nemor",
+      "titulo": "Tumbas y restos",
+      "categoria": "escena_secundaria",
+      "capitulo": 34,
+      "anclaEditorial": "Tumbas y restos",
+      "ubicacionSugerida": "Tumbas y restos",
+      "ruta": "assets/editorial/dioses/nemor/nemor-tumbas-y-restos-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1671,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3108497,
+      "sha256": "72a51fb15d1c07721cbb6c4bf02c397907336bc60cd7daa22678db6ec189d8dc",
+      "prompt": "Investigación funeraria respetuosa por un enano, una orca y un goblin en una necrópolis; escena arcano-industrial sin símbolos religiosos inventados.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 34. Nemor, el Guardián — Tumbas y restos"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa nueva para cubrir posición sin original recuperable",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB original decodificado localmente; tamaño y SHA-256 comprobados; almacenamiento confirmado. Escena y necrópolis de interpretación artística, no institución ni procedimiento universal. Transferencia binaria a GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_0000000038cc820e932793a12a6c9c0d",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nemor/nemor-tumbas-y-restos-v01.png"
     }
   ]
 }
