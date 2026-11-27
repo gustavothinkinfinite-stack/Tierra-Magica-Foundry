@@ -2396,14 +2396,14 @@
       "fechaGeneracion": null,
       "version": 1,
       "procedencia": null,
-      "estadoProduccion": "pendiente",
+      "estadoProduccion": "requiere_reemplazo",
       "estadoAlmacenamiento": "pendiente",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Dos intentos generados y conservados como borradores rechazados. El primero presenta orejas cánidas y orejas laterales adicionales; el segundo representa humanoides con caparazón y anatomía de tortuga, ajenos a los Ankar. No contabilizar como ilustraciones válidas. Ambos PNG abiertos y decodificados localmente, SHA-256 calculado y carga en Biblioteca confirmada; recuperación binaria no cotejada. Retomar con referencia visual aprobada, sin repetir intentos indiscriminados.",
       "id": "RAZ-ANKA-005",
       "ascendencia": "Ankar",
       "titulo": "Ankar — Diversidad interna 1",
@@ -2411,7 +2411,41 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Ankar",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/ankar/ankar-variante-01-v01.png"
+      "ruta": "assets/editorial/razas/ankar/ankar-variante-01-v01.png",
+      "borradoresRechazados": [
+        {
+          "intento": 1,
+          "bibliotecaFileId": "file_00000000f3f0820e8cf46af1fe9d0845",
+          "bibliotecaId": "libfile_333d4424d9d08191a1b32fbde10971e8",
+          "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/ankar/borradores-rechazados/ankar-variante-01-intento-01.png",
+          "formato": "PNG",
+          "dimensiones": {
+            "ancho": 1536,
+            "alto": 1024
+          },
+          "tamanoBytes": 2869958,
+          "sha256": "7ebbf1d07a295da239aef40ac112db7c6239f8970e7f1f9559078c5647a03033",
+          "fechaGeneracion": "2026-11-27",
+          "motivo": "Orejas adicionales.",
+          "estadoAlmacenamiento": "almacenada"
+        },
+        {
+          "intento": 2,
+          "bibliotecaFileId": "file_000000002e10820ebdb858cbb6cab523",
+          "bibliotecaId": "libfile_45cfbe679efc8191a21bdf00260c6a59",
+          "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/ankar/borradores-rechazados/ankar-variante-01-intento-02.png",
+          "formato": "PNG",
+          "dimensiones": {
+            "ancho": 1536,
+            "alto": 1024
+          },
+          "tamanoBytes": 3234121,
+          "sha256": "f5b4fbf88efde0118fdca48069e155da919e25d32f17a5d9db08f7b13d8e3cb3",
+          "fechaGeneracion": "2026-11-27",
+          "motivo": "Anatomía de tortuga ajena al canon Ankar.",
+          "estadoAlmacenamiento": "almacenada"
+        }
+      ]
     },
     {
       "variante": null,
