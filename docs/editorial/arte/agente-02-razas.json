@@ -2042,26 +2042,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3439241,
+      "sha256": "c2d90dbf05fd0a71783358bf83e587372a484771a6befa5b6b473524c1f413c3",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de tres Micelios adultos de cuerpo completo, con tejidos fúngicos diferenciados: fibras densas, superficies aterciopeladas y estructuras de fructificación laminadas. Detalles de rostro, mano articulada y texturas orgánicas sobre pergamino neutro. Sin hojas, caricaturas, texto, marcos ni manifestaciones de una mente colectiva.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original PNG RGB verificado localmente, dimensiones, bytes y SHA-256 calculados. Carga en Biblioteca confirmada; recuperación binaria no cotejada. Aprobación editorial provisional. Fructificaciones y distribución de tejidos revisables; no implican armadura, subrazas, mente colectiva ni ventajas adicionales. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-MICE-004",
       "ascendencia": "Micelios",
       "titulo": "Micelios — Estudio anatómico",
@@ -2069,7 +2072,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Micelios",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/micelios/micelios-anatomia-v01.png"
+      "ruta": "assets/editorial/razas/micelios/micelios-anatomia-v01.png",
+      "bibliotecaFileId": "file_00000000b478820eb26445e71eb443d8",
+      "bibliotecaId": "libfile_c0a4419589a48191afa7f6fc4f33b659",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/micelios/micelios-anatomia-v01.png"
     },
     {
       "variante": null,
