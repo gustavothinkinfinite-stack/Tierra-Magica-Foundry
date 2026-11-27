@@ -1569,6 +1569,43 @@
       "commit": null,
       "bibliotecaFileId": "file_00000000d9a4820ea530d1312888e38b",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-001-siete-acontecimientos-primordiales-v01.png"
+    },
+    {
+      "id": "COS-002",
+      "divinidad": null,
+      "titulo": "Los siete Dioses Primordiales",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "25. Cosmología: los Principios Primordiales",
+      "ubicacionSugerida": "Lámina colectiva del Panteón Primordial",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-002-siete-dioses-primordiales-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3708623,
+      "sha256": "36e3cd4a06dc20a25539e434a1b2667e212208b43a3071fd12555502051d6aac",
+      "prompt": "Composición alegórica colectiva de Eïra, Khorun, Varkor, Aster, Ilyr, Nereth y Vaelun en ese orden, según retratos de referencia, sin texto ni jerarquía.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 25. Cosmología: los Principios Primordiales",
+        "Siete retratos oficiales del proyecto",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB abierto y verificado localmente. Composición alegórica, no reunión histórica. Requiere corrección iconográfica antes de integración definitiva, especialmente Varkor y Vaelun, y cotejo de atributos de los siete con los retratos oficiales. Transferencia binaria pendiente por falta de puente verificado.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000bb88820e98af08c1c45ec687",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-002-siete-dioses-primordiales-v01.png"
     }
   ]
 }
