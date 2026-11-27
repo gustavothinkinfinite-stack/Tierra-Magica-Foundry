@@ -1643,6 +1643,43 @@
       "commit": null,
       "bibliotecaFileId": "file_000000003a84820ea13cbeb8bacbb515",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-003-cinco-luminarias-v01.png"
+    },
+    {
+      "id": "COS-004",
+      "divinidad": null,
+      "titulo": "Los Doce del Panteón Central",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "Las Cinco Luminarias y el Panteón Central",
+      "ubicacionSugerida": "Lámina panorámica del Panteón Central",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-004-doce-panteon-central-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1774,
+        "alto": 887
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3715643,
+      "sha256": "5512b547464283874a5634a1e7476493e3d6d2521940ce1a0930f015614ca516",
+      "prompt": "Friso alegórico de doce figuras, siete Primordiales y cinco Luminarias, sin texto ni jerarquía de poder, según retratos de referencia.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 25. Cosmología: los Principios Primordiales — Las Cinco Luminarias y el Panteón Central",
+        "Doce retratos oficiales del proyecto",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB abierto, verificado y decodificado. Doce figuras en dos grupos; distribución editorial, no jerarquía de poder ni reunión histórica. Persisten diferencias con los retratos oficiales, en particular Varkor, Ilyr, Nereth, Vaelun y atributos de las Luminarias. Revisión iconográfica requerida antes de maquetación. Transferencia binaria pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000005150820ead11bcc37d2ac3d8",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-004-doce-panteon-central-v01.png"
     }
   ]
 }
