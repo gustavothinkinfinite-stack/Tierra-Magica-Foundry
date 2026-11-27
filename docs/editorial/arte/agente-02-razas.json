@@ -3607,26 +3607,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3200706,
+      "sha256": "542a12550ed032a36c1db5b9b29208b5b071c63a6e4cf5cb57729ee1f5e1c8f1",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa de cinco Enanos adultos en una galería habitada, inspirada en las tradiciones de Profundos y Forja. Inspección de infraestructura de ventilación, prendas de mantenimiento, delantales, chaquetas y ropa civil, anatomía orgánica compacta, iluminación subterránea cálida con acentos cian. Sin texto legible, castas ni ubicación oficial. Pintura digital realista editorial.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Contrasta el refugio de montaña anterior con una galería habitada y labores de mantenimiento. Vestuario, maquinaria y entorno son interpretaciones revisables; no se establecen castas, profesiones innatas ni ubicación oficial. Persisten bordados y prendas similares a otras piezas; algunos personajes llevan cabello suelto junto a maquinaria, por lo que no debe emplearse como referencia normativa de seguridad laboral. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-ENAN-008",
       "ascendencia": "Enanos",
       "titulo": "Enanos — Vestimenta y cultura 2",
@@ -3634,7 +3637,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Enanos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/enanos/enanos-vestimenta-02-v01.png"
+      "ruta": "assets/editorial/razas/enanos/enanos-vestimenta-02-v01.png",
+      "bibliotecaFileId": "file_0000000045f4820eb5c2dcfce743234b",
+      "bibliotecaId": "libfile_13ff675d93488191933333bf39587afc",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/enanos/enanos-vestimenta-02-v01.png"
     },
     {
       "variante": null,
