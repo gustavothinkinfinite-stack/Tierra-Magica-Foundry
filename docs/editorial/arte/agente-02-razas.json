@@ -2232,26 +2232,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
       "tamanoBytes": null,
       "sha256": null,
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de seis Orcos adultos, complexiones variadas, colmillos de distinto tamaño, diversidad de edades y pigmentaciones. Vestimenta civil, artesanal y de viaje, sin asociar apariencia a tradición o profesión obligatoria. Fondo de pergamino, sin texto.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Inspección visual y carga PNG en Biblioteca confirmadas. Verificación binaria, bytes y SHA-256 pendientes. Aprobación editorial provisional. Diversidad individual de colmillos, pigmentaciones, edades y vestuario; no se establecen híbridos, subrazas, castas ni profesiones obligatorias. Transferencia a GitHub e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-ORCO-005",
       "ascendencia": "Orcos",
       "titulo": "Orcos — Diversidad interna 1",
@@ -2259,7 +2262,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Orcos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/orcos/orcos-variante-01-v01.png"
+      "ruta": "assets/editorial/razas/orcos/orcos-variante-01-v01.png",
+      "bibliotecaFileId": "file_0000000052cc820eb473d1f744f9cd66",
+      "bibliotecaId": "libfile_3c5af1b60a3881918b01ccae52df83df",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/orcos/orcos-variante-01-v01.png"
     },
     {
       "variante": null,
