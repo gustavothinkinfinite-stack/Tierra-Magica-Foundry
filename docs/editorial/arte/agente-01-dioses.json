@@ -1680,6 +1680,43 @@
       "commit": null,
       "bibliotecaFileId": "file_000000005150820ead11bcc37d2ac3d8",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-004-doce-panteon-central-v01.png"
+    },
+    {
+      "id": "COS-005",
+      "divinidad": null,
+      "titulo": "Los pueblos de la Creación",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "25. Cosmología: los Principios Primordiales",
+      "ubicacionSugerida": "Lámina narrativa de diversidad de pueblos y autonomía cultural",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-005-pueblos-de-la-creacion-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3649658,
+      "sha256": "ac01c023c7d807cb8b5665370819381e675e20623b83651c8b052029aa9fe7b2",
+      "prompt": "Panorama de un puerto arcano-industrial con convivencia cotidiana de diversos pueblos, sin jerarquías de ascendencia, sin texto.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 25. Cosmología: los Principios Primordiales",
+        "docs/Tierra_Magica_Manual_Maestro.md — 26. Eïra y la Primera Semilla",
+        "docs/editorial/arte/agente-02-razas.json"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB original decodificado y SHA-256 verificado localmente. Puerto ficticio no identificado con lugar canónico; selección no exhaustiva de pueblos, no representación literal de los acontecimientos de creación. Cotejo anatómico fino pendiente. Biblioteca confirmada. Transferencia binaria pendiente por ausencia de puente verificado entre archivo local y conector GitHub.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000002548820ea63ad9788e4c4ff9",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-005-pueblos-de-la-creacion-v01.png"
     }
   ]
 }
