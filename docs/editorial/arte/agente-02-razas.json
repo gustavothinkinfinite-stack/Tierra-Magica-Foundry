@@ -3102,26 +3102,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3596064,
+      "sha256": "bccdc11d132aa60dbb762a1f9659b86297a14675fba9bc404696f0132f6b131c",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa en un mercado urbano de Tierra Mágica. Adultos humanos de diferentes edades y fisonomías muestran indumentaria civil, laboral, de abrigo, viaje y comercio mediante interacción natural en un puesto de tejidos. Lino, lana, cuero y metal con desgaste funcional; arquitectura medieval tardía e infraestructura arcano-industrial integrada; luz natural cálida y acentos cian. Sin texto, marcas de agua ni símbolos oficiales inventados. Pintura digital realista editorial.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 calculados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Se eligió una escena narrativa en lugar de otra alineación de figuras para distinguir la función de este bloque. Ciudad, prendas, motivos textiles y banderines ambientales son interpretaciones revisables, sin adscripción a una cultura o lugar oficial. Algunos motivos ornamentales son similares a los del bloque anterior; conviene contrastar cortes y materiales en la segunda escena. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-HUMA-007",
       "ascendencia": "Humanos",
       "titulo": "Humanos — Vestimenta y cultura 1",
@@ -3129,7 +3132,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Humanos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/humanos/humanos-vestimenta-01-v01.png"
+      "ruta": "assets/editorial/razas/humanos/humanos-vestimenta-01-v01.png",
+      "bibliotecaFileId": "file_000000008a98820e85f8749ea89387ac",
+      "bibliotecaId": "libfile_b15519ce5e5c8191b0419e13928f8d25",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/humanos/humanos-vestimenta-01-v01.png"
     },
     {
       "variante": null,
