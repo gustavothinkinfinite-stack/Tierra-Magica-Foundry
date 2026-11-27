@@ -1349,6 +1349,43 @@
       "commit": null,
       "bibliotecaFileId": "file_00000000f8cc820e9192996233b614ad",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/aurea/aurea-llama-custodiada-transparente-v01.png"
+    },
+    {
+      "id": "DIV-NEMOR-005",
+      "divinidad": "Nemor",
+      "titulo": "El Umbral de Piedra",
+      "categoria": "simbolo",
+      "capitulo": 34,
+      "anclaEditorial": "34. Nemor, el Guardián",
+      "ubicacionSugerida": "Símbolo religioso canónico",
+      "ruta": "assets/editorial/dioses/nemor/nemor-umbral-de-piedra-transparente-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 2000,
+        "alto": 2000
+      },
+      "formato": "PNG",
+      "tamanoBytes": 23333,
+      "sha256": "533d9762f3615d08c41456104f91a6a818d496cd592fb936fd779518820adfbd",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 34. Nemor, el Guardián",
+        "docs/visual/SIMBOLOS_CANONICOS.md — SYM-DIV-NEMOR-001 — El Umbral de Piedra",
+        "assets/symbols/divinities/SYM-DIV-NEMOR-001_PRIMARY.svg"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Rasterización directa del SVG oficial; fondo omitido para composición editorial",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGBA abierto, alfa 0–255. PNG formal RGB 2000×2000, 20380 bytes, SHA-256 bfc99f3d7b89052fdedc8f9bcc2962e07655a936e627802f0efed2c43319fa34, Biblioteca file_00000000383c820e95a5dbdaee73ab64. Transparencia para composición, no variante cromática formal. Binario pendiente de GitHub.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000008464820e91f52bb1bedb2da1",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nemor/nemor-umbral-de-piedra-transparente-v01.png"
     }
   ]
 }
