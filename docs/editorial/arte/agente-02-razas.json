@@ -3309,26 +3309,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3693748,
+      "sha256": "dc9f4b8989a7b582076d061a739011068c306937c22bc09a8326ff35139eb3ca",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa de cinco Terios adultos en una escuela de navegación de humedales: morfologías elefantina, felina, mustélida, reptiliana y quelonia, indumentaria y equipo adaptados a cuerpos diferentes, intercambio de conocimientos sobre una carta de navegación, muelles y embarcaciones. Pintura digital realista editorial, luz cálida. Asentamiento genérico, sin fijar localidades, poderes ni profesiones innatas.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original abierto y decodificado localmente; dimensiones, bytes y SHA-256 calculados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Escena inspirada en ejemplo cultural local de escuelas comunitarias de humedales. Carta de navegación decorativa no válida como cartografía canónica, asentamiento no localizado. Indumentaria y morfologías interpretativas; no se establecen linajes mecánicos adicionales ni capacidades automáticas. La posición de los personajes oculta parte de las prendas y extremidades, por lo que no sirve como referencia anatómica completa. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-TERI-007",
       "ascendencia": "Terios/Anihombres",
       "titulo": "Terios/Anihombres — Vestimenta y cultura 1",
@@ -3336,7 +3339,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Terios/Anihombres",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/terios/terios-vestimenta-01-v01.png"
+      "ruta": "assets/editorial/razas/terios/terios-vestimenta-01-v01.png",
+      "bibliotecaFileId": "file_000000005c2c820eb533ec8aaf51a1e6",
+      "bibliotecaId": "libfile_9f46653f66f8819192e441227b09f1e2",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/terios/terios-vestimenta-01-v01.png"
     },
     {
       "variante": null,
