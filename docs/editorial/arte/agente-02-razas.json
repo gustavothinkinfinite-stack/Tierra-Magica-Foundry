@@ -3569,26 +3569,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3533294,
+      "sha256": "bd33867ca146bc590eacf5cb1a8e0551d0169868cfb7047fa9c62ec4d3a5e2e9",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa en una Casa de Relevo rural inspirada en las tradiciones de Aster. Artesanos experimentados transmiten herramientas, conocimientos y proyectos inconclusos a aprendices. Prendas de lino y lana, capas cortas, delantales y ropa de trabajo remendada, composición de cuerpo entero, patio rural e infraestructura arcano-industrial discreta. Pintura digital realista editorial, sin ubicación oficial ni texto legible.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original PNG RGB abierto y decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada; recuperación binaria no cotejada. Aprobación editorial provisional. Casa de Relevo inspirada en ejemplo cultural local del Manual, sin fijar localidad ni institución universal. Prendas, oficios, herramientas y arquitectura son interpretaciones artísticas revisables. Contrasta el mercado urbano anterior con un entorno rural y prendas laborales, aunque persisten motivos ornamentales y algunas posturas ocultan parte del vestuario. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-HUMA-008",
       "ascendencia": "Humanos",
       "titulo": "Humanos — Vestimenta y cultura 2",
@@ -3596,7 +3599,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Humanos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/humanos/humanos-vestimenta-02-v01.png"
+      "ruta": "assets/editorial/razas/humanos/humanos-vestimenta-02-v01.png",
+      "bibliotecaFileId": "file_0000000060b8820eb7000e771b7bbd61",
+      "bibliotecaId": "libfile_7d2098411fdc81918807efd2f89a233f",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/humanos/humanos-vestimenta-02-v01.png"
     },
     {
       "variante": null,
