@@ -2808,26 +2808,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3095692,
+      "sha256": "41a430b240132c322fa9418f3b6297907d0b73c10c620315851caa9d5edd9e2a",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de seis Terios adultos con morfologías de referencia lupina, vulpina, reptiliana, quelonia, anfibia y mustélida. Anatomías animales integradas, extremidades funcionales y vestimenta adaptada al cuerpo. Fondo de pergamino, sin texto ni efectos mágicos. Propuestas visuales, no nuevos paquetes raciales.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada; recuperación binaria no cotejada. Aprobación editorial provisional. Las seis morfologías animales son interpretaciones artísticas revisables de la diversidad descrita en el Manual, no un catálogo ratificado de linajes ni variedades mecánicas. Caparazones, colas y anatomías acuáticas no conceden automáticamente Protección, respiración anfibia ni otras adaptaciones. No confundir los individuos cánidos con Ankar. Transferencia a GitHub e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-TERI-006",
       "ascendencia": "Terios/Anihombres",
       "titulo": "Terios/Anihombres — Diversidad interna 2",
@@ -2835,7 +2838,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Terios/Anihombres",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/terios/terios-variante-02-v01.png"
+      "ruta": "assets/editorial/razas/terios/terios-variante-02-v01.png",
+      "bibliotecaFileId": "file_00000000bdc4820e83f5a811fc44aff7",
+      "bibliotecaId": "libfile_305e3d55475c8191b3959828ce4176ed",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/terios/terios-variante-02-v01.png"
     },
     {
       "variante": null,
