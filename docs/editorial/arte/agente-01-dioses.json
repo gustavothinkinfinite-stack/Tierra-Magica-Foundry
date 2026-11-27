@@ -1717,6 +1717,43 @@
       "commit": null,
       "bibliotecaFileId": "file_000000002548820ea63ad9788e4c4ff9",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-005-pueblos-de-la-creacion-v01.png"
+    },
+    {
+      "id": "COS-006",
+      "divinidad": null,
+      "titulo": "Vida, muerte y tránsito",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "25. Cosmología: los Principios Primordiales",
+      "ubicacionSugerida": "Lámina comparativa de ciclo vital, tránsito del alma y memoria",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-006-vida-muerte-y-transito-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3515011,
+      "sha256": "42f61b93baefb180f7634f7226d4bfea369d282d7ca1bb81f8400246f4eff848",
+      "prompt": "Composición alegórica continua del ciclo natural, tránsito del alma y memoria preservada por los vivos, sin fijar destino del alma ni geografía del más allá.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 25. Cosmología: los Principios Primordiales",
+        "docs/Tierra_Magica_Manual_Maestro.md — 26. Eïra y la Primera Semilla",
+        "docs/Tierra_Magica_Manual_Maestro.md — 34. Nemor, el Guardián — Nemor y los otros principios"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB original decodificado y SHA-256 calculado localmente. Figura cánida central de interpretación alegórica: revisar como guardián Ankar y no como retrato oficial de Vaelun. No establece geografía del más allá ni destino del alma. Biblioteca confirmada; transferencia binaria pendiente por falta de puente verificado.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000e0ac820e83c8e03e77f27637",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-006-vida-muerte-y-transito-v01.png"
     }
   ]
 }
