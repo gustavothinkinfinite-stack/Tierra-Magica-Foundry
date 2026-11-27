@@ -2846,26 +2846,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3384268,
+      "sha256": "d7e5d1a62605f66397972963dc516aa07355f7e8199510769ff8dd6e81583e8a",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de ocho Feéricos adultos, dos Hadas de Escala Pequeña aladas y apoyadas, dos Sátiros de Escala Mediana con cuernos y pezuñas, dos Dríades junto a un árbol vivo y dos Silfos sin alas ni levitación. Diferencias individuales de edad, complexión, fisonomía y vestimenta civil; fondo de pergamino, línea de suelo compartida, sin texto ni magia visible.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada; recuperación binaria no cotejada. Aprobación editorial provisional. Ocho adultos en cuatro pares, complementa la primera lámina con diversidad individual. Alas, cuernos, edades, estaturas y vestimenta son interpretaciones revisables; no se fijan medidas exactas ni nuevas variantes o capacidades. Composición relativamente densa; comprobar legibilidad al maquetar. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-FEER-006",
       "ascendencia": "Feéricos",
       "titulo": "Feéricos — Diversidad interna 2",
@@ -2873,7 +2876,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Feéricos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/feericos/feericos-variante-02-v01.png"
+      "ruta": "assets/editorial/razas/feericos/feericos-variante-02-v01.png",
+      "bibliotecaFileId": "file_000000002154820e8d2d39d4dce2fcf1",
+      "bibliotecaId": "libfile_4e5f9a9cbb488191b7124227da919270",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/feericos/feericos-variante-02-v01.png"
     },
     {
       "variante": null,
