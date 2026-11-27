@@ -1828,6 +1828,42 @@
       "commit": null,
       "bibliotecaFileId": "file_00000000ac40820ebcd3e19d80b057f3",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-008-eleccion-viaje-transformacion-v01.png"
+    },
+    {
+      "id": "COS-009",
+      "divinidad": null,
+      "titulo": "Materia, Forma y Civilización",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "25. Cosmología: los Principios Primordiales",
+      "ubicacionSugerida": "Lámina comparativa de los principios de Khorun y Aster",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-009-materia-forma-civilizacion-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3480610,
+      "sha256": "41ba466800ff9d84d6606ae481ce0953c90fbe6db57291d9ff99db1c046436f5",
+      "prompt": "Escena de ingeniería colectiva arcano-industrial: equipo de diversos pueblos planifica y construye un viaducto.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 27. Khorun y la Primera Forja",
+        "docs/Tierra_Magica_Manual_Maestro.md — 29. Aster y la Primera Elección — Aster y el mundo"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB original abierto y decodificado; SHA-256 y tamaño verificados localmente. Construcción y lugar de interpretación artística, no emplazamiento canónico. Biblioteca confirmada. Transferencia binaria pendiente por ausencia de puente verificado.",
+      "commit": null,
+      "bibliotecaFileId": "file_0000000057dc820eb8137ce34956347c",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-009-materia-forma-civilizacion-v01.png"
     }
   ]
 }
