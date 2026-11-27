@@ -1791,6 +1791,43 @@
       "commit": null,
       "bibliotecaFileId": "file_000000007de4820eab48935d38ca9c3c",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-007-bien-conflicto-corrupcion-v01.png"
+    },
+    {
+      "id": "COS-008",
+      "divinidad": null,
+      "titulo": "Elección, viaje y transformación",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "25. Cosmología: los Principios Primordiales",
+      "ubicacionSugerida": "Lámina comparativa de los principios de Aster y Vael",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-008-eleccion-viaje-transformacion-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1671,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3518622,
+      "sha256": "11cafd2eb285bd2bd756e003d958de546e2e4eb9d2b2f6ba44afdd694d5b8031",
+      "prompt": "Escena narrativa arcano-industrial: una viajera goblin decide partir desde una estación ferroviaria y una expedición diversa reorganiza su recorrido ante un puente destruido.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 29. Aster y la Primera Elección — Elección y voluntad",
+        "docs/Tierra_Magica_Manual_Maestro.md — 36. Vael, el Navegante — Viaje, Cambio, Fortuna incierta",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original, copia byte a byte con nombre editorial",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB abierto y decodificado; SHA-256 calculado sobre copia exacta del original. Escena alegórica, no lugar o acontecimiento histórico canónico. Biblioteca confirmada. Transferencia binaria pendiente por ausencia de puente verificado.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000ac40820ebcd3e19d80b057f3",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-008-eleccion-viaje-transformacion-v01.png"
     }
   ]
 }
