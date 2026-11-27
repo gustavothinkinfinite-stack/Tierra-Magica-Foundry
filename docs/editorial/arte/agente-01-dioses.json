@@ -1386,6 +1386,43 @@
       "commit": null,
       "bibliotecaFileId": "file_000000008464820e91f52bb1bedb2da1",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/nemor/nemor-umbral-de-piedra-transparente-v01.png"
+    },
+    {
+      "id": "DIV-ORIA-005",
+      "divinidad": "Oria",
+      "titulo": "La Medida Acordada",
+      "categoria": "simbolo",
+      "capitulo": 35,
+      "anclaEditorial": "35. Oria, la Balanza",
+      "ubicacionSugerida": "Símbolo religioso canónico",
+      "ruta": "assets/editorial/dioses/oria/oria-medida-acordada-transparente-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 2000,
+        "alto": 2000
+      },
+      "formato": "PNG",
+      "tamanoBytes": 28103,
+      "sha256": "48cbc170738f48c6ab3d83c6e9f57dbee5ab442e3ad567d6b94d11e2f54dc3f2",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 35. Oria, la Balanza",
+        "docs/visual/SIMBOLOS_CANONICOS.md — SYM-DIV-ORIA-001 — La Medida Acordada",
+        "assets/symbols/divinities/SYM-DIV-ORIA-001_PRIMARY.svg"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Rasterización directa del SVG oficial; fondo omitido para composición editorial",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGBA abierto, alfa 0–255. PNG formal RGB 2000×2000, 23753 bytes, SHA-256 86305af78367344149b739cb6b4bc1f529e25f6b1ecce2713478bf11113915ae, Biblioteca file_000000000aec820eb0170d8a6cbacad8. Transparencia para composición, no variante cromática formal. La barra del SVG oficial cubre la tercera graduación negativa; se conserva el original sin corrección unilateral. Binario pendiente de GitHub.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000003cdc820e8bc4279dbaeeb349",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/oria/oria-medida-acordada-transparente-v01.png"
     }
   ]
 }
