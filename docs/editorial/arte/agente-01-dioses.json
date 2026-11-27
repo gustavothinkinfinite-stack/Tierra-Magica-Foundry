@@ -1,7 +1,7 @@
 {
   "agente": "01",
   "version": 1,
-  "fechaActualizacion": "2026-11-25",
+  "fechaActualizacion": "2026-11-27",
   "objetivo": 108,
   "canon": "docs/Tierra_Magica_Manual_Maestro.md",
   "recursos": [
@@ -1312,6 +1312,43 @@
       "aprobacion": "provisional_autorizada",
       "observaciones": "Original golden_six_winged_sun_emblem.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo.",
       "commit": null
+    },
+    {
+      "id": "DIV-AUREA-005",
+      "divinidad": "Aurea",
+      "titulo": "La Llama Custodiada",
+      "categoria": "simbolo",
+      "capitulo": 33,
+      "anclaEditorial": "33. Aurea, la Llama",
+      "ubicacionSugerida": "Símbolo religioso canónico",
+      "ruta": "assets/editorial/dioses/aurea/aurea-llama-custodiada-transparente-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 2000,
+        "alto": 2000
+      },
+      "formato": "PNG",
+      "tamanoBytes": 87043,
+      "sha256": "3f07133f96e60220fe5833904e97ab3fb032173349754539628ace70d068ec93",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 33. Aurea, la Llama",
+        "docs/visual/SIMBOLOS_CANONICOS.md — SYM-DIV-AUREA-001 — La Llama Custodiada",
+        "assets/symbols/divinities/SYM-DIV-AUREA-001_PRIMARY.svg"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Rasterización directa del SVG principal canónico; fondo omitido exclusivamente para composición editorial",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "SHA-256 SVG fuente verificado contra ficha: a2d809f7ef32dc574c121179c47f997e827d8fcd50ac2413b15fb55f2314b181. PNG RGBA abierto, alfa 0–255. Variante formal RGB 2000×2000, 75306 bytes, SHA-256 282cc873b71ebd88749d4c9d2fe36e091dec1ef2e5faaaededee7f8d66f8bc32, Biblioteca file_0000000026fc820eb6b17ec63ba2bcfd. La transparencia no constituye variante cromática formal. Binarios pendientes de GitHub.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000f8cc820e9192996233b614ad",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/aurea/aurea-llama-custodiada-transparente-v01.png"
     }
   ]
 }
