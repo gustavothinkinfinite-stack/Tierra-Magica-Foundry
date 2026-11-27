@@ -975,13 +975,15 @@
       "version": 1,
       "procedencia": "Ilustración original generada para Tierra Mágica",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "biblioteca",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "PNG RGB abierto y verificado localmente. Archivo de conversación file_0000000034ec81f5aa96beaa6c479e3b. Biblioteca rechaza carga por ID y por ruta (403 trusted producer); transferencia binaria pendiente. Interpretación provisional de las cinco sendas, no castas ni profesiones obligatorias. Resolución nativa sin reescalado.",
-      "commit": null
+      "observaciones": "PNG RGB abierto y verificado localmente. Archivo de conversación file_0000000034ec81f5aa96beaa6c479e3b. Biblioteca rechaza carga por ID y por ruta (403 trusted producer); transferencia binaria pendiente. Interpretación provisional de las cinco sendas, no castas ni profesiones obligatorias. Resolución nativa sin reescalado. Regularización 2026-11-27: se recuperó PNG local cuyo SHA-256 coincide con el registro, se decodificó y se confirmó carga en Biblioteca. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_0000000033b081f59de7e2d1dcb88fcb",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/aster/aster-cinco-sendas-v01.png"
     },
     {
       "id": "DIV-ASTER-004",
@@ -1008,13 +1010,15 @@
       "version": 1,
       "procedencia": "Ilustración original generada para Tierra Mágica",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "biblioteca",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "PNG RGB abierto y verificado localmente. Original file_0000000012a48212947cc079861e6553. Biblioteca rechazó carga 403 trusted producer. Transferencia binaria pendiente. Escena provisional de debate sobre libertad y restricciones colectivas; sin hechos históricos nuevos. Se seleccionó la segunda variante por diversidad de perspectivas; primera variante no inventariada. Emblemas de brújula decorativos, no símbolo canónico.",
-      "commit": null
+      "observaciones": "PNG RGB abierto y verificado localmente. Original file_0000000012a48212947cc079861e6553. Biblioteca rechazó carga 403 trusted producer. Transferencia binaria pendiente. Escena provisional de debate sobre libertad y restricciones colectivas; sin hechos históricos nuevos. Se seleccionó la segunda variante por diversidad de perspectivas; primera variante no inventariada. Emblemas de brújula decorativos, no símbolo canónico. Regularización 2026-11-27: se recuperó PNG local cuyo SHA-256 coincide con el registro, se decodificó y se confirmó carga en Biblioteca. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000002574821283eb284f43513fa0",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/aster/aster-libertad-y-consecuencias-v01.png"
     },
     {
       "id": "DIV-ASTER-005",
@@ -1041,13 +1045,15 @@
       "version": 1,
       "procedencia": "Ilustración original generada para Tierra Mágica",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "biblioteca",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Símbolo abierto con caminos; PNG RGBA. Apertura y SHA-256 comprobados. Original de conversación file_00000000df7481f79801f46bcff69eda. Conservación y binario pendientes; no se repite carga 403.",
-      "commit": null
+      "observaciones": "Símbolo abierto con caminos; PNG RGBA. Apertura y SHA-256 comprobados. Original de conversación file_00000000df7481f79801f46bcff69eda. Conservación y binario pendientes; no se repite carga 403. Regularización 2026-11-27: se recuperó PNG local cuyo SHA-256 coincide con el registro, se decodificó y se confirmó carga en Biblioteca. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000c1a881f7893f4ac6a5ddcec4",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/aster/aster-simbolo-v01.png"
     },
     {
       "id": "DIV-ASTER-006",
@@ -1074,13 +1080,15 @@
       "version": 1,
       "procedencia": "Ilustración original generada para Tierra Mágica",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "biblioteca",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Reflejos de posibilidades como metáfora visual, no poder sobrenatural ni lugar canónico. PNG RGB. Apertura y SHA-256 comprobados. Original de conversación file_00000000fbdc81f5a805ec84cee46192. Conservación y binario pendientes; no se repite carga 403.",
-      "commit": null
+      "observaciones": "Reflejos de posibilidades como metáfora visual, no poder sobrenatural ni lugar canónico. PNG RGB. Apertura y SHA-256 comprobados. Original de conversación file_00000000fbdc81f5a805ec84cee46192. Conservación y binario pendientes; no se repite carga 403. Regularización 2026-11-27: se recuperó PNG local cuyo SHA-256 coincide con el registro, se decodificó y se confirmó carga en Biblioteca. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_0000000082b481f58f1e86519eb45ac5",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/aster/aster-don-sin-forma-v01.png"
     },
     {
       "id": "DIV-ASTER-007",
@@ -1107,13 +1115,15 @@
       "version": 1,
       "procedencia": "Ilustración original generada para Tierra Mágica",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "biblioteca",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "PNG RGB abierto y verificado localmente. Original de conversación file_000000004bc081f589d26befa9af80b8. Interpretación provisional de continuidad de una obra; instrumento y taller no canónicos. Conservación y binario pendientes; no se repite carga 403.",
-      "commit": null
+      "observaciones": "PNG RGB abierto y verificado localmente. Original de conversación file_000000004bc081f589d26befa9af80b8. Interpretación provisional de continuidad de una obra; instrumento y taller no canónicos. Conservación y binario pendientes; no se repite carga 403. Regularización 2026-11-27: se recuperó PNG local cuyo SHA-256 coincide con el registro, se decodificó y se confirmó carga en Biblioteca. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_0000000080ac81f5a77e180027380a84",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/aster/aster-legado-v01.png"
     },
     {
       "id": "DIV-ASTER-008",
@@ -1140,13 +1150,15 @@
       "version": 1,
       "procedencia": "Ilustración original generada para Tierra Mágica",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "biblioteca",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "PNG RGBA abierto y cargado íntegramente; alfa 0–255. Original file_0000000075d881f7bc15c4e8e14f128b. Ornamento provisional, motivos decorativos sin canon adicional. Conservación y binario pendientes; no se repite carga 403.",
-      "commit": null
+      "observaciones": "PNG RGBA abierto y cargado íntegramente; alfa 0–255. Original file_0000000075d881f7bc15c4e8e14f128b. Ornamento provisional, motivos decorativos sin canon adicional. Conservación y binario pendientes; no se repite carga 403. Regularización 2026-11-27: se recuperó PNG local cuyo SHA-256 coincide con el registro, se decodificó y se confirmó carga en Biblioteca. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000631881f79147aeda36e84821",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/aster/aster-ornamento-v01.png"
     },
     {
       "id": "DIV-ILYR-003",
@@ -1206,13 +1218,15 @@
       "version": 1,
       "procedencia": "Ilustración original generada para Tierra Mágica",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "biblioteca",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Original a_highly_detailed_fantasy_renaissance_style_oil_pa.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo.",
-      "commit": null
+      "observaciones": "Original a_highly_detailed_fantasy_renaissance_style_oil_pa.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo. Regularización 2026-11-27: se recuperó PNG local cuyo SHA-256 coincide con el registro, se decodificó y se confirmó carga en Biblioteca. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000000e08820ebdf421af909fc768",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/ilyr/ilyr-seis-alas-v01.png"
     },
     {
       "id": "DIV-ILYR-005",
@@ -1239,13 +1253,15 @@
       "version": 1,
       "procedencia": "Ilustración original generada para Tierra Mágica",
       "estadoProduccion": "generada",
-      "estadoAlmacenamiento": "pendiente",
+      "estadoAlmacenamiento": "biblioteca",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
-      "observaciones": "Original a_clean_high_detail_emblem_insignia_on_a_transpar.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo.",
-      "commit": null
+      "observaciones": "Original a_clean_high_detail_emblem_insignia_on_a_transpar.png; apertura y SHA-256 comprobados. Interpretación provisional, no canon adicional. Transferencia pendiente; bloqueo 403 previo. Regularización 2026-11-27: se recuperó PNG local cuyo SHA-256 coincide con el registro, se decodificó y se confirmó carga en Biblioteca. Binario GitHub pendiente.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000008c64820e8b3d8b06cce9c189",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/ilyr/ilyr-simbolo-v01.png"
     },
     {
       "id": "DIV-ILYR-007",
@@ -1974,6 +1990,76 @@
       "commit": null,
       "bibliotecaFileId": "file_000000001078820e9858105846a39b2a",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-012-coexistencia-principios-divinos-v01.png"
+    },
+    {
+      "id": "DIV-ILYR-001",
+      "divinidad": "Ilyr",
+      "titulo": "Ilyr, el Portador de la Primera Luz",
+      "categoria": "retrato",
+      "capitulo": 30,
+      "anclaEditorial": "30. Ilyr, la Primera Luz y el Primer Juramento",
+      "ubicacionSugerida": "Apertura del capítulo",
+      "ruta": "assets/editorial/dioses/ilyr/ilyr-retrato-principal-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1122,
+        "alto": 1402
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3274878,
+      "sha256": "9dfb877f6370bb4083ad101906f80a0e35a8e32df4295a618b44d9d94d3cae53",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 30. Ilyr, la Primera Luz y el Primer Juramento"
+      ],
+      "fechaCreacion": null,
+      "version": 1,
+      "procedencia": "Retrato oficial aportado al proyecto",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Retrato oficial reutilizado, no generado en esta ejecución. PNG abierto y SHA-256 calculado localmente; carga en Biblioteca confirmada el 2026-11-27.",
+      "commit": null,
+      "bibliotecaFileId": "file_00000000e5f4820e93b69e1c21b049f3",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/ilyr/ilyr-retrato-principal-v01.png"
+    },
+    {
+      "id": "DIV-ILYR-002",
+      "divinidad": "Ilyr",
+      "titulo": "La Primera Luz",
+      "categoria": "acontecimiento",
+      "capitulo": 30,
+      "anclaEditorial": "La Primera Luz",
+      "ubicacionSugerida": "Junto a La Primera Luz",
+      "ruta": "assets/editorial/dioses/ilyr/ilyr-primera-luz-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3536637,
+      "sha256": "93301303fe2a0d1e14d25774e1721d71feac35cddf43205c17656f23604ad57c",
+      "prompt": null,
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 30. Ilyr, la Primera Luz y el Primer Juramento"
+      ],
+      "fechaCreacion": null,
+      "version": 1,
+      "procedencia": "Ilustración preexistente recuperada",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "Archivo la_primera_luz_de_ilyr.png, inspeccionado visualmente; representa la protección de los vencidos. Fecha original no verificada. Cotejo iconográfico pendiente. PNG abierto y SHA-256 calculado localmente; carga en Biblioteca confirmada el 2026-11-27.",
+      "commit": null,
+      "bibliotecaFileId": "file_0000000056b0820eb4396e49c27ea8d6",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/ilyr/ilyr-primera-luz-v01.png"
     }
   ]
 }
