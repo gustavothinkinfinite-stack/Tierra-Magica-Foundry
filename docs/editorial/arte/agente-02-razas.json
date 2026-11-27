@@ -3493,26 +3493,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3389234,
+      "sha256": "19a1c5da9747bef4d0621933619e1359f55e9db10ed3929d861888c49635cb8e",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa de cinco Micelios adultos en un Archivo de Esporas, consultando y conservando documentos físicos, con prendas holgadas, cierres adaptados a filamentos y fructificaciones, mobiliario y estanterías, iluminación cálida e infraestructura arcano-industrial ambiental. Sin mente colectiva, poderes visibles ni localidad oficial. Pintura digital realista editorial.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original PNG RGB decodificado localmente; dimensiones, bytes y SHA-256 calculados. Carga en Biblioteca confirmada; recuperación binaria no cotejada. Aprobación editorial provisional. Archivo de Esporas basado en ejemplo cultural local del Manual Maestro, no institución universal. Prendas, fructificaciones, mobiliario e infraestructura son interpretaciones revisables. Predominan los mismos bordados y fructificaciones grandes de escenas anteriores; la segunda pieza deberá ampliar cortes y morfologías. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-MICE-007",
       "ascendencia": "Micelios",
       "titulo": "Micelios — Vestimenta y cultura 1",
@@ -3520,7 +3523,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Micelios",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/micelios/micelios-vestimenta-01-v01.png"
+      "ruta": "assets/editorial/razas/micelios/micelios-vestimenta-01-v01.png",
+      "bibliotecaFileId": "file_0000000078c8820e90aef1a791049f41",
+      "bibliotecaId": "libfile_d7ef4260b8b88191b78dea034043e673",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/micelios/micelios-vestimenta-01-v01.png"
     },
     {
       "variante": null,
