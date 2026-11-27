@@ -1754,6 +1754,43 @@
       "commit": null,
       "bibliotecaFileId": "file_00000000e0ac820e83c8e03e77f27637",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-006-vida-muerte-y-transito-v01.png"
+    },
+    {
+      "id": "COS-007",
+      "divinidad": null,
+      "titulo": "El Bien, el Conflicto y la Corrupción",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "25. Cosmología: los Principios Primordiales",
+      "ubicacionSugerida": "Lámina comparativa de los principios de Varkor, Ilyr y Nereth",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-007-bien-conflicto-corrupcion-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3351193,
+      "sha256": "97c940971ef60a74a3572060d6608922e2488789f17484c1bb48114c655364c3",
+      "prompt": "Tres conductas en ambiente arcano-industrial: enfrentamiento entre fuerzas comparables, protectora orca auxilia a un herido y autoridad ejerce coerción. Sin identificar moralidad con ascendencia.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 28. Fuerza, conflicto y moralidad",
+        "docs/Tierra_Magica_Manual_Maestro.md — 30. Ilyr y los otros principios",
+        "docs/Tierra_Magica_Manual_Maestro.md — 31. Mal y Corrupción"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB original abierto, decodificado y SHA-256 calculado localmente. Escena alegórica, no acontecimiento histórico ni localización canónica; revisar motivos decorativos antes de maquetación. Biblioteca confirmada. Transferencia binaria pendiente por ausencia de puente verificado.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000007de4820eab48935d38ca9c3c",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-007-bien-conflicto-corrupcion-v01.png"
     }
   ]
 }
