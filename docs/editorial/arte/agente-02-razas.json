@@ -3455,26 +3455,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3522049,
+      "sha256": "1788dfcb57b9917ccd451c9c1837404ceb0ee1eeb0642814d93045c8851f7969",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa de cinco Verdantes adultos en una Casa del Riego, negociando el reparto de agua alrededor de una maqueta de canales. Morfologías vegetales diferenciadas, prendas transpirables, cierres ajustables y extremidades vegetales libres. Arquitectura de piedra, terrazas cultivadas e infraestructura hidráulica arcano-industrial. Pintura digital realista editorial, sin texto legible ni ubicación oficial.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original PNG RGB decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Escena inspirada en el ejemplo local de Casas del Riego. Maqueta, ubicación, indumentaria, infraestructura y morfologías son interpretaciones revisables; no fijan geografía, instituciones universales ni capacidades raciales. Algunas prendas y calzado cubren tejidos vegetales; la siguiente escena puede explorar alternativas de vestuario más diferenciadas. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-VERD-007",
       "ascendencia": "Verdantes",
       "titulo": "Verdantes — Vestimenta y cultura 1",
@@ -3482,7 +3485,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Verdantes",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/verdantes/verdantes-vestimenta-01-v01.png"
+      "ruta": "assets/editorial/razas/verdantes/verdantes-vestimenta-01-v01.png",
+      "bibliotecaFileId": "file_00000000167c820ebde9c8749ae07506",
+      "bibliotecaId": "libfile_7d2fa1c8554c8191bdf5eca94b3c59b5",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/verdantes/verdantes-vestimenta-01-v01.png"
     },
     {
       "variante": null,
