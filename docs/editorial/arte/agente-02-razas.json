@@ -2656,26 +2656,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3055887,
+      "sha256": "b6f1ff1ab7e1f044610f11b67942f8f2d4a2f9ed8f38a745d84c5b17790b6049",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de seis Enanos adultos de baja estatura, con distintas complexiones, tonalidades de piel, facciones y edades, incluyendo personajes sin barba. Anatomía orgánica, vestuario cotidiano y fondo de pergamino, sin símbolos de castas ni rasgos minerales.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Complementa diversidad de edad, fisonomías y complexiones; rasgos y vestuario son interpretaciones revisables, sin subrazas ni tradiciones obligatorias. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-ENAN-006",
       "ascendencia": "Enanos",
       "titulo": "Enanos — Diversidad interna 2",
@@ -2683,7 +2686,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Enanos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/enanos/enanos-variante-02-v01.png"
+      "ruta": "assets/editorial/razas/enanos/enanos-variante-02-v01.png",
+      "bibliotecaFileId": "file_0000000079b4820ea3a9f0967d5b26c6",
+      "bibliotecaId": "libfile_e87a88c249148191b6442a6ada586f19",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/enanos/enanos-variante-02-v01.png"
     },
     {
       "variante": null,
