@@ -2988,26 +2988,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3212682,
+      "sha256": "cb58dfe1c1959c1dfc850df5b8ba10f8b50bff2820c2dadf4fbac9e5b027f321",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de seis Verdantes adultos con morfologías inspiradas en juncos, helechos, cortezas, tallos carnosos, fibras vegetales y arbustos. Extremidades funcionales, pies apoyados sin anclaje, vestimenta civil y fondo de pergamino. Sin texto, hongos ni poderes visibles. Diferencias botánicas como interpretaciones artísticas, no nuevas subrazas.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Complementa la primera lámina con tejidos vegetales y siluetas diferenciados, aunque repite algunas formas suculentas y fibrosas. Morfologías, pigmentación, proporciones y vestuario son decisiones artísticas revisables, no nuevas subrazas ni adaptaciones mecánicas automáticas. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-VERD-006",
       "ascendencia": "Verdantes",
       "titulo": "Verdantes — Diversidad interna 2",
@@ -3015,7 +3018,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Verdantes",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/verdantes/verdantes-variante-02-v01.png"
+      "ruta": "assets/editorial/razas/verdantes/verdantes-variante-02-v01.png",
+      "bibliotecaFileId": "file_000000004ac8820e950c14bfebb435ba",
+      "bibliotecaId": "libfile_b2a23a1bc0988191b4a0b8e0c41b8e13",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/verdantes/verdantes-variante-02-v01.png"
     },
     {
       "variante": null,
