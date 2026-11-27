@@ -3531,26 +3531,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3809950,
+      "sha256": "956c965debce120d839ca8547f7278bce9db98fcf8279336f14dd714b6119464",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa de cinco Coralios adultos en un intercambio comercial entre habitantes de costa y mar, inspirado en las Ligaduras de Sal. Prendas ligeras, cierres ajustables, sandalias y espacio para crestas y membranas coralinas. Escalinatas de piedra junto al agua, puerto genérico, textiles, recipientes y equipamiento marítimo arcano-industrial. Pintura digital realista editorial, sin texto ni localidad oficial.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original PNG RGB abierto y decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada; recuperación binaria no cotejada. Aprobación editorial provisional. Inspiración en el ejemplo cultural local de Ligaduras de Sal, sin convertirlo en institución universal. Puerto, crestas, indumentaria y objetos comerciales son interpretaciones revisables. Las prendas de tela sumergidas son poco prácticas para nado prolongado; explorar indumentaria específicamente acuática en la segunda escena. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-CORA-007",
       "ascendencia": "Coralios",
       "titulo": "Coralios — Vestimenta y cultura 1",
@@ -3558,7 +3561,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Coralios",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/coralios/coralios-vestimenta-01-v01.png"
+      "ruta": "assets/editorial/razas/coralios/coralios-vestimenta-01-v01.png",
+      "bibliotecaFileId": "file_00000000cf34820ebd97e2d10da7af6d",
+      "bibliotecaId": "libfile_311f023793e0819189ae78da69437c55",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/coralios/coralios-vestimenta-01-v01.png"
     },
     {
       "variante": null,
