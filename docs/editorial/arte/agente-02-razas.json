@@ -3064,26 +3064,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3331992,
+      "sha256": "4158e96820d90050361113c2977b733816b416cca659f27e7f562eabe02f3b3d",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Lámina horizontal de seis Coralios adultos con crestas reducidas, estructuras de coral cerebro, coral laminar y porosidad fina, tejidos flexibles y manos funcionales. Vestuario cotidiano, fondo de pergamino, sin texto ni manifestaciones mágicas. Formas y colores como interpretaciones visuales revisables.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original PNG RGB decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Complementa la primera lámina con formas cerebriformes, laminadas y tubulares; varias crestas y poros siguen siendo prominentes. Morfologías, pigmentación, proporciones y vestuario son interpretaciones revisables, no subrazas ni nuevas ventajas mecánicas. Transferencia e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-CORA-006",
       "ascendencia": "Coralios",
       "titulo": "Coralios — Diversidad interna 2",
@@ -3091,7 +3094,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Coralios",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/coralios/coralios-variante-02-v01.png"
+      "ruta": "assets/editorial/razas/coralios/coralios-variante-02-v01.png",
+      "bibliotecaFileId": "file_000000006598820e8f46af3f001fd6be",
+      "bibliotecaId": "libfile_605650d51cac81918e16225daa364c2e",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/coralios/coralios-variante-02-v01.png"
     },
     {
       "variante": null,
