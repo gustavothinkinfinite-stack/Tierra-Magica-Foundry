@@ -1901,6 +1901,43 @@
       "commit": null,
       "bibliotecaFileId": "file_000000003524820e80d9b95e61d8dfdc",
       "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-010-proteccion-justicia-acuerdos-v01.png"
+    },
+    {
+      "id": "COS-011",
+      "divinidad": null,
+      "titulo": "El Velo y las fronteras de la realidad",
+      "categoria": "cosmologia_general",
+      "capitulo": 25,
+      "anclaEditorial": "25. Cosmología: los Principios Primordiales",
+      "ubicacionSugerida": "Lámina cosmológica complementaria sobre límites perceptivos y planares",
+      "ruta": "assets/editorial/dioses/cosmologia/cos-011-velo-fronteras-realidad-v01.png",
+      "enlace": null,
+      "dimensiones": {
+        "ancho": 1672,
+        "alto": 941
+      },
+      "formato": "PNG",
+      "tamanoBytes": 3025604,
+      "sha256": "a29573140421246c1794b249f14f00bb00a954e677f72f7738e388164ee386c3",
+      "prompt": "Paisaje liminal al crepúsculo con reflejos que no coinciden con el entorno y expedición de pueblos diversos observando desde la orilla. Sin portal, texto ni símbolos religiosos. No definir otros planos.",
+      "referenciasCanonicas": [
+        "docs/Tierra_Magica_Manual_Maestro.md — 37. Selene, la Velada — Fronteras entre mundos",
+        "docs/Tierra_Magica_Manual_Maestro.md — 37. Selene, la Velada — Selene en Edria contemporánea",
+        "Foundry_TM_Guia_Estilo_Visual_v1.json"
+      ],
+      "fechaCreacion": "2026-11-27",
+      "version": 1,
+      "procedencia": "Ilustración generativa original, copia byte a byte con nombre editorial",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "biblioteca",
+      "estadoIntegracion": "pendiente",
+      "estadoMaquetacion": "pendiente",
+      "estadoGitHub": "pendiente",
+      "aprobacion": "provisional_autorizada",
+      "observaciones": "PNG RGB decodificado localmente y copia de SHA-256 idéntica al original. Biblioteca confirmada. Paisaje y reflejo de interpretación artística, no localización canónica, mapa planar ni causa del Problema de los Umbrales. Revisar trazos del cuaderno antes de maquetación. Transferencia binaria pendiente por falta de puente verificado.",
+      "commit": null,
+      "bibliotecaFileId": "file_000000001194820e92cb6ea35b47c0e2",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 01 - Dioses y Cosmologia/cosmologia/cos-011-velo-fronteras-realidad-v01.png"
     }
   ]
 }
