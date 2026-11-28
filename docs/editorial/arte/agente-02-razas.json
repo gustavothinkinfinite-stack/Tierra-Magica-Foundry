@@ -3797,26 +3797,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3405683,
+      "sha256": "ed3ffab9ee557ef1826fd0ff776d179ca9c879eb36fb84f049d313967b4780ca",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa de cuatro Feéricos adultos en una fiesta musical local al aire libre, plaza costera ventosa no localizada. Hada alada de menor estatura, Sátiro con cuernos y pezuñas tocando un instrumento, Dríade junto a su árbol, Silfo sin alas. Personajes apoyados en el mismo nivel del suelo, prendas festivas adaptadas a anatomías diferentes. Pintura digital realista editorial e infraestructura arcano-industrial ambiental, sin capacidades musicales innatas ni texto legible.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "Original PNG RGB abierto y decodificado localmente; dimensiones, bytes y SHA-256 calculados. Carga en Biblioteca confirmada, recuperación binaria no cotejada. Aprobación editorial provisional. Escena inspirada en las fiestas musicales de algunas comunidades descritas en el Manual Maestro; no establece costumbre universal ni oficio innato. Hada de menor estatura y apoyada en suelo, Silfo sin alas, Sátiro con pezuñas y Dríade en contacto con árbol. La perspectiva y estaturas ilustrativas no constituyen referencia métrica. Vestuario, plaza, instrumento y fisonomías son interpretaciones revisables; persisten motivos textiles repetidos. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-FEER-008",
       "ascendencia": "Feéricos",
       "titulo": "Feéricos — Vestimenta y cultura 2",
@@ -3824,7 +3827,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Feéricos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/feericos/feericos-vestimenta-02-v01.png"
+      "ruta": "assets/editorial/razas/feericos/feericos-vestimenta-02-v01.png",
+      "bibliotecaFileId": "file_0000000082ec820e8973a713e6599045",
+      "bibliotecaId": "libfile_5d71ae5190748191b0fb596963479474",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/feericos/feericos-vestimenta-02-v01.png"
     },
     {
       "variante": null,
