@@ -3683,26 +3683,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3083313,
+      "sha256": "8669719494eaf8f28eba51b81628b9bd81200cd1ca84531c966936e4b3f95b9c",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa de cinco Orcos adultos de distintas edades en una Mesa del Acuerdo Difícil, negociando respetuosamente en un salón comunitario. Indumentaria civil y formal, tejidos relativamente lisos, chaquetas estructuradas, capas cortas, sin armaduras ni uniformes raciales. Arquitectura pétrea, iluminación cálida y acentos cian arcano-industriales. Sin texto legible ni ubicación oficial. Pintura digital realista editorial.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada; recuperación binaria no cotejada. Aprobación editorial provisional. Inspiración en la Mesa del Acuerdo Difícil, ejemplo cultural local del Manual Maestro, no institución universal ni fuente de ventajas mecánicas. Salón, indumentaria, documentos y personajes son interpretaciones revisables. Contrasta con el taller de reparación anterior; el mobiliario oculta parcialmente algunas prendas y persiste cierta ornamentación. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-ORCO-008",
       "ascendencia": "Orcos",
       "titulo": "Orcos — Vestimenta y cultura 2",
@@ -3710,7 +3713,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Orcos",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/orcos/orcos-vestimenta-02-v01.png"
+      "ruta": "assets/editorial/razas/orcos/orcos-vestimenta-02-v01.png",
+      "bibliotecaFileId": "file_00000000c838820e8cdcfe2592dd05dd",
+      "bibliotecaId": "libfile_7e4171e8b3488191ba9cfb67d7615271",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/orcos/orcos-vestimenta-02-v01.png"
     },
     {
       "variante": null,
