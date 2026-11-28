@@ -3721,26 +3721,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3391280,
+      "sha256": "4a4a000ad82d1f614c4f1415f2e2065f80292a0159cfd3d865f3f9c178202ac4",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa de un Relevo Público goblinoide en un patio administrativo no localizado. Goblin pequeño, Hobgoblins medianos y Bugbear corpulento participan en la entrega de registros, con indumentaria civil diferenciada y figuras principales de pie. Arquitectura pétrea e infraestructura arcano-industrial, pintura digital realista editorial. Sin jerarquías raciales ni instituciones universales.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original decodificado localmente; dimensiones, bytes y SHA-256 comprobados. Carga en Biblioteca confirmada; recuperación binaria no cotejada. Aprobación editorial provisional. Escena inspirada en Relevo Público, ejemplo cultural local del Manual Maestro, no institución universal. Vestuario, patio, emblema decorativo y fisonomías son interpretaciones revisables. Diferencia de estatura visible; perspectiva y corpulencia acentuada del Bugbear impiden usar la escena como referencia métrica o inferir Escala Grande real. Persisten motivos textiles anteriores. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-GOBL-008",
       "ascendencia": "Goblinoides",
       "titulo": "Goblinoides — Vestimenta y cultura 2",
@@ -3748,7 +3751,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Goblinoides",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/goblinoides/goblinoides-vestimenta-02-v01.png"
+      "ruta": "assets/editorial/razas/goblinoides/goblinoides-vestimenta-02-v01.png",
+      "bibliotecaFileId": "file_00000000d19c820e96a4d08f2cdfeb9f",
+      "bibliotecaId": "libfile_999db728dd80819191e6c948f77d3e1d",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/goblinoides/goblinoides-vestimenta-02-v01.png"
     },
     {
       "variante": null,
