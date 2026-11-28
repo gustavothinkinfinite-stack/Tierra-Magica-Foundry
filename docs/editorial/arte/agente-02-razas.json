@@ -3759,26 +3759,29 @@
     {
       "variante": null,
       "formato": "PNG",
-      "dimensiones": null,
-      "tamanoBytes": null,
-      "sha256": null,
+      "dimensiones": {
+        "ancho": 1536,
+        "alto": 1024
+      },
+      "tamanoBytes": 3600099,
+      "sha256": "63b7aa0146eaa617e779b6eaa66a67673e0dd9d1aca6b6ea743831f2048bf5d9",
       "enlace": null,
-      "prompt": null,
+      "prompt": "Escena horizontal narrativa de cinco Terios adultos en una escuela comunitaria de artes del Territorio Oriental, sin localidad concreta. Dos avianos, dos felinos y una elefantina participan en dibujo, talla y cerámica. Prendas con cierres y aberturas adaptadas a alas, colas y trompa. Extremidades anteriores avianas integradas con alas, sin brazos suplementarios. Pintura digital realista editorial, arquitectura e infraestructura arcano-industrial ambiental. Sin capacidades mecánicas nuevas ni texto legible.",
       "referenciasVisuales": [
         "Foundry_TM_Guia_Estilo_Visual_v1.json",
         "Tierra_Magica_Portada_Referencia_v1.png"
       ],
-      "fechaGeneracion": null,
+      "fechaGeneracion": "2026-11-27",
       "version": 1,
-      "procedencia": null,
-      "estadoProduccion": "pendiente",
-      "estadoAlmacenamiento": "pendiente",
+      "procedencia": "Ilustración original generada para Tierra Mágica",
+      "estadoProduccion": "generada",
+      "estadoAlmacenamiento": "almacenada",
       "estadoIntegracion": "pendiente",
       "estadoMaquetacion": "pendiente",
       "estadoGitHub": "pendiente",
       "aprobacion": "provisional_autorizada",
       "commit": null,
-      "observaciones": "",
+      "observaciones": "PNG RGB original abierto y decodificado localmente; dimensiones, bytes y SHA-256 calculados. Carga en Biblioteca confirmada; recuperación binaria no cotejada. Aprobación editorial provisional. Escena inspirada en ejemplo local de escuelas comunitarias del Territorio Oriental, sin fijar asentamiento. Prendas, morfologías y herramientas interpretativas. Las alas avianas se integran visualmente con las extremidades anteriores, pero el detalle de la mano alada es provisional y no certifica aptitud de vuelo ni manipulación. Persisten algunos motivos textiles anteriores y las posturas sentadas ocultan parte de las prendas. Transferencia binaria e integración pendientes. Prompt registrado como especificación artística.",
       "id": "RAZ-TERI-008",
       "ascendencia": "Terios/Anihombres",
       "titulo": "Terios/Anihombres — Vestimenta y cultura 2",
@@ -3786,7 +3789,10 @@
       "referenciaCanonica": "docs/Tierra_Magica_Manual_Maestro.md; creación, capítulo 20–21, anexo canónico",
       "anclaEditorial": "Terios/Anihombres",
       "ubicacionSugerida": "Sección de ascendencia, ubicación a definir",
-      "ruta": "assets/editorial/razas/terios/terios-vestimenta-02-v01.png"
+      "ruta": "assets/editorial/razas/terios/terios-vestimenta-02-v01.png",
+      "bibliotecaFileId": "file_00000000d5e4820ebadc8c75d6266ad9",
+      "bibliotecaId": "libfile_29099b3f2e7c81919e5399d0660991e8",
+      "bibliotecaRuta": "/Tierra Magica/Produccion Editorial/Agente 02 - Razas y Pueblos/terios/terios-vestimenta-02-v01.png"
     },
     {
       "variante": null,
